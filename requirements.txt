@@ -1,0 +1,4 @@
+pprintpp~=0.4.0
+mkdocs~=1.4.2
+substrate-interface~=1.4.2
+scalecodec>=1.1.4
