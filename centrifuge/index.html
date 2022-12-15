@@ -3743,7 +3743,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            None: None,
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'scale_info::70',
@@ -3828,6 +3827,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -5558,20 +5558,7 @@ Aside from that edge case, there should be no other way to have more collators t
 registered session keys and (b) be able to reserve the <code>CandidacyBond</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_46">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_82">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'register_as_candidate', {}
@@ -5584,20 +5571,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <p>This call will fail if the total number of candidates would drop below <code>MinCandidates</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_47">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_83">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'leave_intent', {}
@@ -5982,20 +5956,7 @@ usually means being a stash account).</p>
 - DbWrites per key id: <code>KeyOwner</code>
 # &lt;/weight&gt;</p>
 <h5 id="attributes_55">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_95">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'purge_keys', {}
@@ -6907,20 +6868,7 @@ the unreserved fees will be inaccessible. <strong>All access to this account wil
 Weight is a function of the number of proxies the user has (P).
 # &lt;/weight&gt;</p>
 <h5 id="attributes_68">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_118">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Proxy', 'remove_proxies', {}
@@ -7709,11 +7657,6 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
         None: None,
         'Council': {
             'Member': 'AccountId',
@@ -8583,6 +8526,11 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             },
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }
@@ -9111,14 +9059,14 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::79',
                     'Xcm': 'scale_info::79',
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'Void': (),
             },
             'priority': 'u8',
         },
@@ -9837,20 +9785,7 @@ We assume the maximum weight among all 3 cases: vote_equal, vote_more and vote_l
 <p>This removes the lock and returns the deposit.</p>
 <p>The dispatch origin of this call must be signed and be a voter.</p>
 <h5 id="attributes_115">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_162">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Elections', 'remove_voter', {}
@@ -10826,20 +10761,7 @@ currently delegating.</p>
 <p>Weight: <code>O(R)</code> where R is the number of referendums the voter delegating to has
   voted on. Weight is charged as if maximum votes.</p>
 <h5 id="attributes_139">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_193">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'undelegate', {}
@@ -10851,20 +10773,7 @@ currently delegating.</p>
 <p>The dispatch origin of this call must be <em>Root</em>.</p>
 <p>Weight: <code>O(1)</code>.</p>
 <h5 id="attributes_140">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_194">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'clear_public_proposals', {}
@@ -12377,20 +12286,7 @@ identity.</p>
 - One event.
 # &lt;/weight&gt;</p>
 <h5 id="attributes_175">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_233">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Identity', 'clear_identity', {}
@@ -12850,20 +12746,7 @@ super-identity.</p>
 <p>NOTE: This should not normally be used, but is provided in the case that the non-
 controller of an account is maliciously registered as a sub-account.</p>
 <h5 id="attributes_186">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_244">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Identity', 'quit_sub', {}
@@ -13392,20 +13275,7 @@ locked under this pallet.</p>
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 # &lt;/weight&gt;</p>
 <h5 id="attributes_197">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_255">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vest', {}
@@ -14719,20 +14589,7 @@ their eviction date, what this function does is to remove those child tries whic
 date_represented_by_root &lt; current_date. Additionally it needs to take care of indexes
 created for accessing anchors, eg: to find an anchor given an id.</p>
 <h5 id="attributes_232">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_290">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Anchor', 'evict_anchors', {}
@@ -15516,20 +15373,7 @@ must be done on this account and the proxies for this account.</p>
 <h4 id="finalize">finalize</h4>
 <p>Update the migration status to <code>Complete</code></p>
 <h5 id="attributes_248">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_319">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Migration', 'finalize', {}
@@ -17132,20 +16976,7 @@ Fails if
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_293">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_357">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'suspend_xcm_execution', {}
@@ -17159,20 +16990,7 @@ Fails if
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_294">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_358">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'resume_xcm_execution', {}

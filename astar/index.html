@@ -4348,20 +4348,7 @@ identity.</p>
 - One event.
 # &lt;/weight&gt;</p>
 <h5 id="attributes_29">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_40">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Identity', 'clear_identity', {}
@@ -4827,20 +4814,7 @@ super-identity.</p>
 <p>NOTE: This should not normally be used, but is provided in the case that the non-
 controller of an account is maliciously registered as a sub-account.</p>
 <h5 id="attributes_40">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_51">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Identity', 'quit_sub', {}
@@ -7366,20 +7340,7 @@ locked under this pallet.</p>
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 # &lt;/weight&gt;</p>
 <h5 id="attributes_87">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_118">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vest', {}
@@ -7884,20 +7845,7 @@ entire stake for that contract will be unstaked.</p>
 <p>If there are unbonding chunks which will be fully unbonded in future eras,
 they will remain and can be withdrawn later.</p>
 <h5 id="attributes_99">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_132">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'DappsStaking', 'withdraw_unbonded', {}
@@ -8017,20 +7965,7 @@ they might be immediately re-staked.</p>
 <p>Force a new era at the start of the next block.</p>
 <p>The dispatch origin must be Root.</p>
 <h5 id="attributes_103">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_136">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'DappsStaking', 'force_new_era', {}
@@ -11023,20 +10958,7 @@ Aside from that edge case, there should be no other way to have more collators t
 registered session keys and (b) be able to reserve the <code>CandidacyBond</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_167">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_207">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'register_as_candidate', {}
@@ -11049,20 +10971,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <p>This call will fail if the total number of candidates would drop below <code>MinCandidates</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_168">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_208">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'leave_intent', {}
@@ -11346,20 +11255,7 @@ usually means being a stash account).</p>
 - DbWrites per key id: <code>KeyOwner</code>
 # &lt;/weight&gt;</p>
 <h5 id="attributes_176">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_216">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'purge_keys', {}
@@ -11588,20 +11484,7 @@ block number as the type might suggest.</p>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_179">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_228">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'suspend_xcm_execution', {}
@@ -11615,20 +11498,7 @@ block number as the type might suggest.</p>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_180">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_229">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'resume_xcm_execution', {}

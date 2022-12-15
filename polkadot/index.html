@@ -5940,17 +5940,17 @@ be reported.</p>
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
-                        'RuntimeEnvironmentUpdated': None,
-                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'RuntimeEnvironmentUpdated': None,
                         'Seal': (
                             '[u8; 4]',
                             'Bytes',
@@ -6038,12 +6038,12 @@ reporter.</p>
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -6066,12 +6066,12 @@ reporter.</p>
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -8011,20 +8011,7 @@ which is capped at CompactAssignments::LIMIT (T::MaxNominations).
 - Writes are limited to the <code>origin</code> account key.
 # &lt;/weight&gt;</p>
 <h5 id="attributes_68">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_108">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Staking', 'chill', {}
@@ -8216,20 +8203,7 @@ election will continue until the next era is triggered.</p>
 - Write: ForceEra
 # &lt;/weight&gt;</p>
 <h5 id="attributes_74">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_114">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Staking', 'force_no_eras', {}
@@ -8250,20 +8224,7 @@ have enough blocks to get a result.</p>
 - Write ForceEra
 # &lt;/weight&gt;</p>
 <h5 id="attributes_75">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_115">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Staking', 'force_new_era', {}
@@ -8333,20 +8294,7 @@ have enough blocks to get a result.</p>
 If this is called just before a new era is triggered, the election process may not
 have enough blocks to get a result.</p>
 <h5 id="attributes_78">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_118">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Staking', 'force_new_era_always', {}
@@ -9807,20 +9755,7 @@ usually means being a stash account).</p>
 - DbWrites per key id: <code>KeyOwner</code>
 # &lt;/weight&gt;</p>
 <h5 id="attributes_102">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_175">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'purge_keys', {}
@@ -10963,20 +10898,7 @@ currently delegating.</p>
 <p>Weight: <code>O(R)</code> where R is the number of referendums the voter delegating to has
   voted on. Weight is charged as if maximum votes.</p>
 <h5 id="attributes_126">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_211">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'undelegate', {}
@@ -10988,20 +10910,7 @@ currently delegating.</p>
 <p>The dispatch origin of this call must be <em>Root</em>.</p>
 <p>Weight: <code>O(1)</code>.</p>
 <h5 id="attributes_127">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_212">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'clear_public_proposals', {}
@@ -13551,20 +13460,7 @@ We assume the maximum weight among all 3 cases: vote_equal, vote_more and vote_l
 <p>This removes the lock and returns the deposit.</p>
 <p>The dispatch origin of this call must be signed and be a voter.</p>
 <h5 id="attributes_186">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_273">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhragmenElection', 'remove_voter', {}
@@ -14282,20 +14178,7 @@ pass <code>members</code> pre-sorted.</p>
 <p>Remove the prime member if it exists.</p>
 <p>May only be called from <code>T::PrimeOrigin</code>.</p>
 <h5 id="attributes_204">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_298">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalMembership', 'clear_prime', {}
@@ -15231,20 +15114,7 @@ locked under this pallet.</p>
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 # &lt;/weight&gt;</p>
 <h5 id="attributes_230">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_327">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vest', {}
@@ -16967,20 +16837,7 @@ identity.</p>
 - One event.
 # &lt;/weight&gt;</p>
 <h5 id="attributes_251">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_345">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Identity', 'clear_identity', {}
@@ -17446,20 +17303,7 @@ super-identity.</p>
 <p>NOTE: This should not normally be used, but is provided in the case that the non-
 controller of an account is maliciously registered as a sub-account.</p>
 <h5 id="attributes_262">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_356">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Identity', 'quit_sub', {}
@@ -18171,20 +18015,7 @@ zero.</p>
 <p>WARNING: This may be called on accounts created by <code>pure</code>, however if done, then
 the unreserved fees will be inaccessible. <strong>All access to this account will be lost.</strong></p>
 <h5 id="attributes_276">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_370">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Proxy', 'remove_proxies', {}
@@ -22556,20 +22387,7 @@ time claiming rewards). The payout will be transferred to the member&amp;#x27;s 
 <p>The member will earn rewards pro rata based on the members stake vs the sum of the
 members in the pools stake. Rewards do not &quot;expire&quot;.</p>
 <h5 id="attributes_352">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_484">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'NominationPools', 'claim_payout', {}
@@ -23745,20 +23563,7 @@ unstaked.</p>
 the normal staking system, but they lose part of their unbonding chunks due to consuming
 the chain&amp;#x27;s resources.</p>
 <h5 id="attributes_374">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_515">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'FastUnstake', 'register_fast_unstake', {}
@@ -23772,20 +23577,7 @@ the chain&amp;#x27;s resources.</p>
 calling <code>register_fast_unstake</code>. This should probably be followed by a call to
 <code>Staking::rebond</code>.</p>
 <h5 id="attributes_375">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_516">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'FastUnstake', 'deregister', {}
@@ -25562,12 +25354,11 @@ invalid dispute.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -25577,6 +25368,7 @@ invalid dispute.</p>
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
@@ -27601,20 +27393,7 @@ witness data.</p>
 <hr />
 <h4 id="force_unfreeze">force_unfreeze</h4>
 <h5 id="attributes_467">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_648">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParasDisputes', 'force_unfreeze', {}
@@ -28003,20 +27782,7 @@ The origin must reserve a deposit of <code>ParaDeposit</code> for the registrati
 <p>## Events
 The <code>Reserved</code> event is emitted in case of success, which provides the ID reserved for use.</p>
 <h5 id="attributes_477">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_659">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Registrar', 'reserve', {}
@@ -28518,20 +28284,7 @@ bid win. This amount is held throughout the range.</li>
 <p>Cancel an in-progress auction.</p>
 <p>Can only be called by Root origin.</p>
 <h5 id="attributes_488">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_673">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Auctions', 'cancel_auction', {}

@@ -2048,7 +2048,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'multisig': 'AccountId',
                 },
             },
-            None: None,
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
                     'dmq_head': '[u8; 32]',
@@ -2182,6 +2181,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -4022,20 +4022,7 @@ Aside from that edge case, there should be no other way to have more collators t
 registered session keys and (b) be able to reserve the <code>CandidacyBond</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_47">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_86">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'register_as_candidate', {}
@@ -4048,20 +4035,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <p>This call will fail if the total number of candidates would drop below <code>MinCandidates</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_48">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_87">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'leave_intent', {}
@@ -4318,20 +4292,7 @@ usually means being a stash account).</p>
 - DbWrites per key id: <code>KeyOwner</code>
 # &lt;/weight&gt;</p>
 <h5 id="attributes_55">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_94">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'purge_keys', {}
@@ -4560,20 +4521,7 @@ block number as the type might suggest.</p>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_58">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_106">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'suspend_xcm_execution', {}
@@ -4587,20 +4535,7 @@ block number as the type might suggest.</p>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_59">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_107">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'resume_xcm_execution', {}
@@ -57220,12 +57155,12 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             },
         },
         'Void': (),
-        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }
@@ -58101,20 +58036,7 @@ the unreserved fees will be inaccessible. <strong>All access to this account wil
 Weight is a function of the number of proxies the user has (P).
 # &lt;/weight&gt;</p>
 <h5 id="attributes_132">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_165">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Proxy', 'remove_proxies', {}
@@ -59070,20 +58992,7 @@ Must be called by the Root origin.</p>
 <h4 id="join_alliance">join_alliance</h4>
 <p>Submit oneself for candidacy. A fixed deposit is reserved.</p>
 <h5 id="attributes_153">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_189">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Alliance', 'join_alliance', {}
@@ -59157,20 +59066,7 @@ There is no deposit required to the nominator or nominee.</p>
 <p>As a member, give a retirement notice and start a retirement period required to pass in
 order to retire.</p>
 <h5 id="attributes_156">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_192">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Alliance', 'give_retirement_notice', {}
@@ -59181,20 +59077,7 @@ order to retire.</p>
 <p>As a member, retire from the alliance and unreserve the deposit.
 This can only be done once you have <code>give_retirement_notice</code> and it has expired.</p>
 <h5 id="attributes_157">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_193">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Alliance', 'retire', {}

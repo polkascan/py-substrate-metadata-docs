@@ -3113,48 +3113,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'AttestationRevoked': ('AccountId', '[u8; 32]'),
                 'DepositReclaimed': ('AccountId', '[u8; 32]'),
             },
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::30',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'Delegation': {
-                'DelegationCreated': (
-                    'AccountId',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    'AccountId',
-                    'scale_info::64',
-                ),
-                'DelegationRemoved': ('AccountId', '[u8; 32]'),
-                'DelegationRevoked': ('AccountId', '[u8; 32]'),
-                'DepositReclaimed': ('AccountId', '[u8; 32]'),
-                'HierarchyCreated': ('AccountId', '[u8; 32]', '[u8; 32]'),
-                'HierarchyRemoved': ('AccountId', '[u8; 32]'),
-                'HierarchyRevoked': ('AccountId', '[u8; 32]'),
-            },
-            None: None,
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -3185,7 +3143,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'yes': 'u32',
                 },
             },
-            'Ctype': {'CTypeCreated': ('AccountId', '[u8; 32]')},
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::76'),
                 'InvalidFormat': '[u8; 8]',
@@ -3243,6 +3200,60 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'vote': 'scale_info::40',
                     'voter': 'AccountId',
                 },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::30',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'Ctype': {'CTypeCreated': ('AccountId', '[u8; 32]')},
+            'Delegation': {
+                'DelegationCreated': (
+                    'AccountId',
+                    '[u8; 32]',
+                    '[u8; 32]',
+                    '[u8; 32]',
+                    'AccountId',
+                    'scale_info::64',
+                ),
+                'DelegationRemoved': ('AccountId', '[u8; 32]'),
+                'DelegationRevoked': ('AccountId', '[u8; 32]'),
+                'DepositReclaimed': ('AccountId', '[u8; 32]'),
+                'HierarchyCreated': ('AccountId', '[u8; 32]', '[u8; 32]'),
+                'HierarchyRemoved': ('AccountId', '[u8; 32]'),
+                'HierarchyRevoked': ('AccountId', '[u8; 32]'),
             },
             'Did': {
                 'DidCallDispatched': ('AccountId', 'scale_info::38'),
@@ -3427,17 +3438,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'Scheduled': {'index': 'u32', 'when': 'u64'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -5087,20 +5087,7 @@ usually means being a stash account).</p>
 - DbWrites per key id: <code>KeyOwner</code>
 # &lt;/weight&gt;</p>
 <h5 id="attributes_42">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_63">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'purge_keys', {}
@@ -5241,20 +5228,7 @@ block number as the type might suggest.</p>
 ShouldEndSession&lt;_&gt;&gt;::should_end_session.</p>
 <p>The dispatch origin must be Root.</p>
 <h5 id="attributes_44">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_71">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainStaking', 'force_new_round', {}
@@ -5490,20 +5464,7 @@ candidate could still author blocks, and thus be eligible to receive
 rewards, until the end of the next session.</p>
 <p>Emits <code>CollatorScheduledExit</code>.</p>
 <h5 id="attributes_51">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_78">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainStaking', 'init_leave_candidates', {}
@@ -5561,20 +5522,7 @@ and updates the collators.</p>
 <code>init_leave_candidates</code>.</p>
 <p>Emits <code>CollatorCanceledExit</code>.</p>
 <h5 id="attributes_53">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_80">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainStaking', 'cancel_leave_candidates', {}
@@ -5708,20 +5656,7 @@ rounds.</p>
 the current delegation.</p>
 <p>Emits <code>DelegatorLeft</code>.</p>
 <h5 id="attributes_57">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_84">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainStaking', 'leave_delegators', {}
@@ -5840,20 +5775,7 @@ any of the following options
 for anyone.</p>
 <p>Emits <code>Rewarded</code>.</p>
 <h5 id="attributes_61">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_88">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainStaking', 'claim_rewards', {}
@@ -5866,20 +5788,7 @@ for anyone.</p>
 network.</p>
 <p>The dispatch origin must be a collator.</p>
 <h5 id="attributes_62">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_89">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainStaking', 'increment_collator_rewards', {}
@@ -5892,20 +5801,7 @@ network.</p>
 delegations.</p>
 <p>The dispatch origin must be a delegator.</p>
 <h5 id="attributes_63">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_90">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainStaking', 'increment_delegator_rewards', {}
@@ -5921,20 +5817,7 @@ before adjusting the inflation.</p>
 too early.</p>
 <p>Emits <code>RoundInflationSet</code>.</p>
 <h5 id="attributes_64">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_91">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainStaking', 'execute_scheduled_reward_change', {}
@@ -7107,12 +6990,12 @@ passed.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -7688,20 +7571,7 @@ currently delegating.</p>
 <p>Weight: <code>O(R)</code> where R is the number of referendums the voter delegating to has
   voted on. Weight is charged as if maximum votes.</p>
 <h5 id="attributes_99">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_141">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'undelegate', {}
@@ -7713,20 +7583,7 @@ currently delegating.</p>
 <p>The dispatch origin of this call must be <em>Root</em>.</p>
 <p>Weight: <code>O(1)</code>.</p>
 <h5 id="attributes_100">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_142">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'clear_public_proposals', {}
@@ -10428,20 +10285,7 @@ pass <code>members</code> pre-sorted.</p>
 <p>Remove the prime member if it exists.</p>
 <p>May only be called from <code>T::PrimeOrigin</code>.</p>
 <h5 id="attributes_164">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_208">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalMembership', 'clear_prime', {}
@@ -12191,20 +12035,7 @@ locked under this pallet.</p>
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 # &lt;/weight&gt;</p>
 <h5 id="attributes_195">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_232">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vest', {}
@@ -12930,9 +12761,9 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
-                'Void': (),
             },
             'priority': 'u8',
         },
@@ -13173,20 +13004,7 @@ the unreserved fees will be inaccessible. <strong>All access to this account wil
 Weight is a function of the number of proxies the user has (P).
 # &lt;/weight&gt;</p>
 <h5 id="attributes_215">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_254">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Proxy', 'remove_proxies', {}
@@ -14249,20 +14067,7 @@ pass <code>members</code> pre-sorted.</p>
 <p>Remove the prime member if it exists.</p>
 <p>May only be called from <code>T::PrimeOrigin</code>.</p>
 <h5 id="attributes_240">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_281">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TipsMembership', 'clear_prime', {}
@@ -16248,20 +16053,7 @@ Weight: O(1)
 - Writes: Did
 # &lt;/weight&gt;</p>
 <h5 id="attributes_287">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_327">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Did', 'remove_delegation_key', {}
@@ -16321,20 +16113,7 @@ Weight: O(1)
 - Writes: Did
 # &lt;/weight&gt;</p>
 <h5 id="attributes_289">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_329">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Did', 'remove_attestation_key', {}
@@ -16632,20 +16411,7 @@ freed and balance of the new deposit owner will get reserved.</p>
 <p>The subject of the call must be the did owner.
 The sender of the call will be the new deposit owner.</p>
 <h5 id="attributes_297">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_337">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Did', 'change_deposit_owner', {}
@@ -17137,20 +16903,7 @@ Weight: O(1)
 - Writes: ConnectedDids + ConnectedAccounts
 # &lt;/weight&gt;</p>
 <h5 id="attributes_304">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_358">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'DidLookup', 'associate_sender', {}
@@ -17167,20 +16920,7 @@ Weight: O(1)
 - Writes: ConnectedDids + ConnectedAccounts
 # &lt;/weight&gt;</p>
 <h5 id="attributes_305">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_359">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'DidLookup', 'remove_sender_association', {}
@@ -17456,20 +17196,7 @@ Weight: O(1)
 - Writes: Names, Owner storage entries + currency deposit release
 # &lt;/weight&gt;</p>
 <h5 id="attributes_313">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_368">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Web3Names', 'release_by_owner', {}
@@ -17580,20 +17307,7 @@ freed and balance of the new deposit owner will get reserved.</p>
 <p>The subject of the call must be the owner of the web3name.
 The sender of the call will be the new deposit owner.</p>
 <h5 id="attributes_317">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_372">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Web3Names', 'change_deposit_owner', {}
@@ -18442,20 +18156,7 @@ willing to run</p>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_334">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_407">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'suspend_xcm_execution', {}
@@ -18469,20 +18170,7 @@ willing to run</p>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_335">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_408">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'resume_xcm_execution', {}

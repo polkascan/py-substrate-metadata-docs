@@ -2030,9 +2030,9 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">{
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -4348,20 +4348,7 @@ Aside from that edge case, there should be no other way to have more collators t
 registered session keys and (b) be able to reserve the <code>CandidacyBond</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_48">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_86">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'register_as_candidate', {}
@@ -4374,20 +4361,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <p>This call will fail if the total number of candidates would drop below <code>MinCandidates</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_49">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_87">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'leave_intent', {}
@@ -4644,20 +4618,7 @@ usually means being a stash account).</p>
 - DbWrites per key id: <code>KeyOwner</code>
 # &lt;/weight&gt;</p>
 <h5 id="attributes_56">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_94">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'purge_keys', {}
@@ -4884,20 +4845,7 @@ block number as the type might suggest.</p>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_59">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_106">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'suspend_xcm_execution', {}
@@ -4911,20 +4859,7 @@ block number as the type might suggest.</p>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
 <h5 id="attributes_60">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_107">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'resume_xcm_execution', {}
@@ -56768,6 +56703,12 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
@@ -57631,12 +57572,6 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             },
         },
         'Void': (),
-        None: None,
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
     'call': 'Call',
 }
@@ -58497,20 +58432,7 @@ zero.</p>
 <p>WARNING: This may be called on accounts created by <code>pure</code>, however if done, then
 the unreserved fees will be inaccessible. <strong>All access to this account will be lost.</strong></p>
 <h5 id="attributes_134">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p>No attributes</p>
 <h5 id="python_164">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Proxy', 'remove_proxies', {}
