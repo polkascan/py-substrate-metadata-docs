@@ -1,6 +1,8 @@
 site_name: PySubstrate metadata docs
 site_url: https://polkascan.github.io/py-substrate-interface/
 repo_url: https://github.com/polkascan/py-substrate-metadata-docs
+edit_uri: edit/main/docs/
+
 nav:
     - Overview: index.md
     - Polkadot: polkadot.md
