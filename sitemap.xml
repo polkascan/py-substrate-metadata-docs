@@ -2,12 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://polkascan.github.io/py-substrate-interface/</loc>
-         <lastmod>2022-12-13</lastmod>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/acala/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/astar/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/centrifuge/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/collectives/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/karura/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/kilt-spiritnet/</loc>
+         <lastmod>2022-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://polkascan.github.io/py-substrate-interface/kusama/</loc>
-         <lastmod>2022-12-13</lastmod>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/moonbeam/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/moonriver/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/polkadot/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/shiden/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/statemine/</loc>
+         <lastmod>2022-12-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://polkascan.github.io/py-substrate-interface/statemint/</loc>
+         <lastmod>2022-12-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
