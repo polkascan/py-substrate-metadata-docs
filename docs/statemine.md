@@ -377,9 +377,9 @@ call = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -2559,8 +2559,7 @@ registered session keys and (b) be able to reserve the `CandidacyBond`.
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2578,8 +2577,7 @@ This call will fail if the total number of candidates would drop below `MinCandi
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2802,8 +2800,7 @@ usually means being a stash account).
 - DbWrites per key id: `KeyOwner`
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3061,8 +3058,7 @@ Suspends all XCM executions for the XCMP queue, regardless of the sender&\#x27;s
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3079,8 +3075,7 @@ Note that this function doesn&\#x27;t change the status of the in/out bound chan
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -54267,6 +54262,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
@@ -55130,12 +55131,6 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
-        None: None,
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
     'call': 'Call',
 }
@@ -55785,8 +55780,7 @@ The dispatch origin for this call must be _Signed_.
 WARNING: This may be called on accounts created by `pure`, however if done, then
 the unreserved fees will be inaccessible. **All access to this account will be lost.**
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python

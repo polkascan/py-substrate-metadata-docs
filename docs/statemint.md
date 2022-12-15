@@ -628,6 +628,18 @@ call = substrate.query(
                 'UnexpectedResponse': ('scale_info::44', 'u64'),
                 'VersionChangeNotified': ('scale_info::44', 'u32'),
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -655,17 +667,6 @@ call = substrate.query(
                 },
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -808,7 +809,6 @@ call = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -2369,12 +2369,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -2548,8 +2548,7 @@ registered session keys and (b) be able to reserve the `CandidacyBond`.
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2567,8 +2566,7 @@ This call will fail if the total number of candidates would drop below `MinCandi
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2791,8 +2789,7 @@ usually means being a stash account).
 - DbWrites per key id: `KeyOwner`
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3050,8 +3047,7 @@ Suspends all XCM executions for the XCMP queue, regardless of the sender&\#x27;s
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3068,8 +3064,7 @@ Note that this function doesn&\#x27;t change the status of the in/out bound chan
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -55774,8 +55769,7 @@ The dispatch origin for this call must be _Signed_.
 WARNING: This may be called on accounts created by `pure`, however if done, then
 the unreserved fees will be inaccessible. **All access to this account will be lost.**
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python

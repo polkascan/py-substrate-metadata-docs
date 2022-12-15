@@ -420,48 +420,6 @@ call = substrate.query(
                 'AttestationRevoked': ('AccountId', '[u8; 32]'),
                 'DepositReclaimed': ('AccountId', '[u8; 32]'),
             },
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::30',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'Delegation': {
-                'DelegationCreated': (
-                    'AccountId',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    'AccountId',
-                    'scale_info::64',
-                ),
-                'DelegationRemoved': ('AccountId', '[u8; 32]'),
-                'DelegationRevoked': ('AccountId', '[u8; 32]'),
-                'DepositReclaimed': ('AccountId', '[u8; 32]'),
-                'HierarchyCreated': ('AccountId', '[u8; 32]', '[u8; 32]'),
-                'HierarchyRemoved': ('AccountId', '[u8; 32]'),
-                'HierarchyRevoked': ('AccountId', '[u8; 32]'),
-            },
-            None: None,
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -492,7 +450,6 @@ call = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Ctype': {'CTypeCreated': ('AccountId', '[u8; 32]')},
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::76'),
                 'InvalidFormat': '[u8; 8]',
@@ -550,6 +507,60 @@ call = substrate.query(
                     'vote': 'scale_info::40',
                     'voter': 'AccountId',
                 },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::30',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'Ctype': {'CTypeCreated': ('AccountId', '[u8; 32]')},
+            'Delegation': {
+                'DelegationCreated': (
+                    'AccountId',
+                    '[u8; 32]',
+                    '[u8; 32]',
+                    '[u8; 32]',
+                    'AccountId',
+                    'scale_info::64',
+                ),
+                'DelegationRemoved': ('AccountId', '[u8; 32]'),
+                'DelegationRevoked': ('AccountId', '[u8; 32]'),
+                'DepositReclaimed': ('AccountId', '[u8; 32]'),
+                'HierarchyCreated': ('AccountId', '[u8; 32]', '[u8; 32]'),
+                'HierarchyRemoved': ('AccountId', '[u8; 32]'),
+                'HierarchyRevoked': ('AccountId', '[u8; 32]'),
             },
             'Did': {
                 'DidCallDispatched': ('AccountId', 'scale_info::38'),
@@ -734,17 +745,6 @@ call = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u64'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -2177,8 +2177,7 @@ usually means being a stash account).
 - DbWrites per key id: `KeyOwner`
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2347,8 +2346,7 @@ ShouldEndSession&lt;_&gt;&gt;::should_end_session.
 
 The dispatch origin must be Root.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2559,8 +2557,7 @@ rewards, until the end of the next session.
 
 Emits `CollatorScheduledExit`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2619,8 +2616,7 @@ Requires the candidate to previously have called
 
 Emits `CollatorCanceledExit`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2749,8 +2745,7 @@ the current delegation.
 
 Emits `DelegatorLeft`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2859,8 +2854,7 @@ for anyone.
 
 Emits `Rewarded`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2878,8 +2872,7 @@ network.
 
 The dispatch origin must be a collator.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2897,8 +2890,7 @@ delegations.
 
 The dispatch origin must be a delegator.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2920,8 +2912,7 @@ too early.
 
 Emits `RoundInflationSet`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3834,12 +3825,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -4352,8 +4343,7 @@ Emits `Undelegated`.
 Weight: `O(R)` where R is the number of referendums the voter delegating to has
   voted on. Weight is charged as if maximum votes.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -4370,8 +4360,7 @@ The dispatch origin of this call must be _Root_.
 
 Weight: `O(1)`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -6448,8 +6437,7 @@ Remove the prime member if it exists.
 
 May only be called from `T::PrimeOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -8036,8 +8024,7 @@ Emits either `VestingCompleted` or `VestingUpdated`.
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -8564,9 +8551,9 @@ call = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
-                'Void': (),
             },
             'priority': 'u8',
         },
@@ -8791,8 +8778,7 @@ the unreserved fees will be inaccessible. **All access to this account will be l
 Weight is a function of the number of proxies the user has (P).
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -9635,8 +9621,7 @@ Remove the prime member if it exists.
 
 May only be called from `T::PrimeOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -11294,8 +11279,7 @@ Weight: O(1)
 - Writes: Did
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -11358,8 +11342,7 @@ Weight: O(1)
 - Writes: Did
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -11631,8 +11614,7 @@ freed and balance of the new deposit owner will get reserved.
 The subject of the call must be the did owner.
 The sender of the call will be the new deposit owner.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -12134,8 +12116,7 @@ Weight: O(1)
 - Writes: ConnectedDids + ConnectedAccounts
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -12157,8 +12138,7 @@ Weight: O(1)
 - Writes: ConnectedDids + ConnectedAccounts
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -12393,8 +12373,7 @@ Weight: O(1)
 - Writes: Names, Owner storage entries + currency deposit release
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -12497,8 +12476,7 @@ freed and balance of the new deposit owner will get reserved.
 The subject of the call must be the owner of the web3name.
 The sender of the call will be the new deposit owner.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -13346,8 +13324,7 @@ Suspends all XCM executions for the XCMP queue, regardless of the sender&\#x27;s
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -13364,8 +13341,7 @@ Note that this function doesn&\#x27;t change the status of the in/out bound chan
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python

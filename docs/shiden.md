@@ -377,9 +377,9 @@ call = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -2377,8 +2377,7 @@ Emits `IdentityCleared` if successful.
 - One event.
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2764,8 +2763,7 @@ super-identity.
 NOTE: This should not normally be used, but is provided in the case that the non-
 controller of an account is maliciously registered as a sub-account.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -4887,8 +4885,7 @@ Emits either `VestingCompleted` or `VestingUpdated`.
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -5314,8 +5311,7 @@ Withdraw all funds that have completed the unbonding process.
 If there are unbonding chunks which will be fully unbonded in future eras,
 they will remain and can be withdrawn later.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -5410,8 +5406,7 @@ Force a new era at the start of the next block.
 
 The dispatch origin must be Root.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -7696,8 +7691,7 @@ registered session keys and (b) be able to reserve the `CandidacyBond`.
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -7715,8 +7709,7 @@ This call will fail if the total number of candidates would drop below `MinCandi
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -7957,8 +7950,7 @@ usually means being a stash account).
 - DbWrites per key id: `KeyOwner`
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -8218,8 +8210,7 @@ Suspends all XCM executions for the XCMP queue, regardless of the sender&\#x27;s
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -8236,8 +8227,7 @@ Note that this function doesn&\#x27;t change the status of the in/out bound chan
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python

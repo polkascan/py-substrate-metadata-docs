@@ -394,18 +394,6 @@ call = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Auctions': {
                 'AuctionClosed': {'auction_index': 'u32'},
                 'AuctionStarted': {
@@ -436,31 +424,6 @@ call = substrate.query(
                     'block_number': 'u32',
                 },
             },
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::31',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
             'Bounties': {
                 'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
                 'BountyBecameActive': {'index': 'u32'},
@@ -474,29 +437,6 @@ call = substrate.query(
                 'BountyProposed': {'index': 'u32'},
                 'BountyRejected': {'bond': 'u128', 'index': 'u32'},
             },
-            'ChildBounties': {
-                'Added': {'child_index': 'u32', 'index': 'u32'},
-                'Awarded': {
-                    'beneficiary': 'AccountId',
-                    'child_index': 'u32',
-                    'index': 'u32',
-                },
-                'Canceled': {'child_index': 'u32', 'index': 'u32'},
-                'Claimed': {
-                    'beneficiary': 'AccountId',
-                    'child_index': 'u32',
-                    'index': 'u32',
-                    'payout': 'u128',
-                },
-            },
-            'Claims': {
-                'Claimed': {
-                    'amount': 'u128',
-                    'ethereum_address': '[u8; 20]',
-                    'who': 'AccountId',
-                },
-            },
-            'ConvictionVoting': {'Delegated': ('AccountId', 'AccountId'), 'Undelegated': 'AccountId'},
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -527,6 +467,71 @@ call = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'Grandpa': {
+                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
+                'Paused': None,
+                'Resumed': None,
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::31',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'ChildBounties': {
+                'Added': {'child_index': 'u32', 'index': 'u32'},
+                'Awarded': {
+                    'beneficiary': 'AccountId',
+                    'child_index': 'u32',
+                    'index': 'u32',
+                },
+                'Canceled': {'child_index': 'u32', 'index': 'u32'},
+                'Claimed': {
+                    'beneficiary': 'AccountId',
+                    'child_index': 'u32',
+                    'index': 'u32',
+                    'payout': 'u128',
+                },
+            },
+            'Claims': {
+                'Claimed': {
+                    'amount': 'u128',
+                    'ethereum_address': '[u8; 20]',
+                    'who': 'AccountId',
+                },
+            },
+            'ConvictionVoting': {'Delegated': ('AccountId', 'AccountId'), 'Undelegated': 'AccountId'},
             'Crowdloan': {
                 'AddedToNewRaise': {'para_id': 'u32'},
                 'AllRefunded': {'para_id': 'u32'},
@@ -647,11 +652,6 @@ call = substrate.query(
                     'track': 'u16',
                 },
                 'TimedOut': {'index': 'u32', 'tally': 'scale_info::441'},
-            },
-            'Grandpa': {
-                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
-                'Paused': None,
-                'Resumed': None,
             },
             'Hrmp': {
                 'ChannelClosed': ('u32', 'scale_info::373'),
@@ -3374,8 +3374,7 @@ The dispatch origin for this call must be _Signed_ by the controller, not the st
 - Writes are limited to the `origin` account key.
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3544,8 +3543,7 @@ election will continue until the next era is triggered.
 - Write: ForceEra
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3573,8 +3571,7 @@ have enough blocks to get a result.
 - Write ForceEra
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3633,8 +3630,7 @@ The election process starts multiple blocks before the end of the era.
 If this is called just before a new era is triggered, the election process may not
 have enough blocks to get a result.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -5078,8 +5074,7 @@ usually means being a stash account).
 - DbWrites per key id: `KeyOwner`
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -6140,8 +6135,7 @@ Emits `Undelegated`.
 Weight: `O(R)` where R is the number of referendums the voter delegating to has
   voted on. Weight is charged as if maximum votes.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -6158,8 +6152,7 @@ The dispatch origin of this call must be _Root_.
 
 Weight: `O(1)`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -8006,8 +7999,7 @@ This removes the lock and returns the deposit.
 
 The dispatch origin of this call must be signed and be a voter.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -8658,8 +8650,7 @@ Remove the prime member if it exists.
 
 May only be called from `T::PrimeOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -9646,6 +9637,11 @@ call = substrate.compose_call(
         'ParachainsOrigin': {
             'Parachain': 'u32',
         },
+        'TechnicalCommittee': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
         'XcmPallet': {
             'Response': {
                 'interior': {
@@ -10510,11 +10506,6 @@ call = substrate.compose_call(
             'Signed': 'AccountId',
         },
         None: None,
-        'TechnicalCommittee': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
         'Void': (),
     },
 }
@@ -10844,7 +10835,6 @@ call = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             None: None,
             'Council': {
                 'Member': 'AccountId',
@@ -10891,6 +10881,7 @@ call = substrate.query(
                 'Response': {'interior': 'scale_info::158', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::158', 'parents': 'u8'},
             },
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -11832,12 +11823,6 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -12739,6 +12724,12 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
 }
 )
@@ -13072,6 +13063,8 @@ call = substrate.query(
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+            None: None,
             'Origins': (
                 'StakingAdmin',
                 'Treasurer',
@@ -13112,8 +13105,6 @@ call = substrate.query(
                 'Response': {'interior': 'scale_info::158', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::158', 'parents': 'u8'},
             },
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -15368,8 +15359,7 @@ Emits `IdentityCleared` if successful.
 - One event.
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -15755,8 +15745,7 @@ super-identity.
 NOTE: This should not normally be used, but is provided in the case that the non-
 controller of an account is maliciously registered as a sub-account.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -16467,8 +16456,7 @@ Key: M (len of members), P (number of payouts for a particular member)
 Total Complexity: O(M + logM + P + X)
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -16538,8 +16526,7 @@ member.
 Total Complexity: O(1)
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -17525,8 +17512,7 @@ their recovery configuration deposit.
 The dispatch origin for this call must be _Signed_ and must be a
 recoverable account (i.e. has a recovery configuration).
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -17822,8 +17808,7 @@ Emits either `VestingCompleted` or `VestingUpdated`.
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -18397,13 +18382,13 @@ call = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Void': (),
                 'XcmPallet': {
                     'Response': 'scale_info::157',
                     'Xcm': 'scale_info::157',
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -18623,8 +18608,7 @@ The dispatch origin for this call must be _Signed_.
 WARNING: This may be called on accounts created by `pure`, however if done, then
 the unreserved fees will be inaccessible. **All access to this account will be lost.**
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -22247,8 +22231,7 @@ Ensure we have sufficient funding for all potential payouts.
 
 - `origin`: Must be accepted by `FundOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -23582,8 +23565,7 @@ time claiming rewards). The payout will be transferred to the member&\#x27;s acc
 The member will earn rewards pro rata based on the members stake vs the sum of the
 members in the pools stake. Rewards do not &quot;expire&quot;.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -24607,8 +24589,7 @@ If the check fails, the stash remains chilled and waiting for being unbonded as 
 the normal staking system, but they lose part of their unbonding chunks due to consuming
 the chain&\#x27;s resources.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -24627,8 +24608,7 @@ Note that the associated stash is still fully unbonded and chilled as a conseque
 calling `register_fast_unstake`. This should probably be followed by a call to
 `Staking::rebond`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -27964,8 +27944,7 @@ call = substrate.query(
 ---------
 #### force_unfreeze
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -28283,8 +28262,7 @@ The origin must reserve a deposit of `ParaDeposit` for the registration.
 \#\# Events
 The `Reserved` event is emitted in case of success, which provides the ID reserved for use.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -28742,8 +28720,7 @@ Cancel an in-progress auction.
 
 Can only be called by Root origin.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python

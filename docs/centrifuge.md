@@ -896,7 +896,6 @@ call = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            None: None,
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'scale_info::70',
@@ -981,6 +980,7 @@ call = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -2583,8 +2583,7 @@ registered session keys and (b) be able to reserve the `CandidacyBond`.
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2602,8 +2601,7 @@ This call will fail if the total number of candidates would drop below `MinCandi
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2968,8 +2966,7 @@ usually means being a stash account).
 - DbWrites per key id: `KeyOwner`
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3755,8 +3752,7 @@ the unreserved fees will be inaccessible. **All access to this account will be l
 Weight is a function of the number of proxies the user has (P).
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -4389,11 +4385,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
         None: None,
         'Council': {
             'Member': 'AccountId',
@@ -5263,6 +5254,11 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }
@@ -5594,14 +5590,14 @@ call = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::79',
                     'Xcm': 'scale_info::79',
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'Void': (),
             },
             'priority': 'u8',
         },
@@ -6178,8 +6174,7 @@ This removes the lock and returns the deposit.
 
 The dispatch origin of this call must be signed and be a voter.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -7038,8 +7033,7 @@ Emits `Undelegated`.
 Weight: `O(R)` where R is the number of referendums the voter delegating to has
   voted on. Weight is charged as if maximum votes.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -7056,8 +7050,7 @@ The dispatch origin of this call must be _Root_.
 
 Weight: `O(1)`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -8280,8 +8273,7 @@ Emits `IdentityCleared` if successful.
 - One event.
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -8664,8 +8656,7 @@ super-identity.
 NOTE: This should not normally be used, but is provided in the case that the non-
 controller of an account is maliciously registered as a sub-account.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -9085,8 +9076,7 @@ Emits either `VestingCompleted` or `VestingUpdated`.
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -10083,8 +10073,7 @@ their eviction date, what this function does is to remove those child tries whic
 date_represented_by_root &lt; current_date. Additionally it needs to take care of indexes
 created for accessing anchors, eg: to find an anchor given an id.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -10759,8 +10748,7 @@ call = substrate.compose_call(
 #### finalize
 Update the migration status to `Complete`
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -11892,8 +11880,7 @@ Suspends all XCM executions for the XCMP queue, regardless of the sender&\#x27;s
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -11910,8 +11897,7 @@ Note that this function doesn&\#x27;t change the status of the in/out bound chan
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python

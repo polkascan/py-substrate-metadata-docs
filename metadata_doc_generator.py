@@ -72,11 +72,14 @@ def generate_docs(node_url: str):
 
                     doc += [f'##### Attributes']
 
-                    doc += [f'| Name | Type |']
-                    doc += [f'| -------- | -------- | ']
+                    if call_function.args:
+                        doc += [f'| Name | Type |']
+                        doc += [f'| -------- | -------- | ']
 
-                    for arg in call_function.args:
-                        doc += [f'| {arg.name} | `{arg.value["typeName"]}` | ']
+                        for arg in call_function.args:
+                            doc += [f'| {arg.name} | `{arg.value["typeName"]}` | ']
+                    else:
+                        doc += ['No attributes']
 
                     doc += ['', f'##### Python']
                     doc += [f'```python']

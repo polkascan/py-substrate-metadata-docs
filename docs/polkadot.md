@@ -1804,17 +1804,17 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
-                        'RuntimeEnvironmentUpdated': None,
-                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'RuntimeEnvironmentUpdated': None,
                         'Seal': (
                             '[u8; 4]',
                             'Bytes',
@@ -1891,12 +1891,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -1919,12 +1919,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -3652,8 +3652,7 @@ The dispatch origin for this call must be _Signed_ by the controller, not the st
 - Writes are limited to the `origin` account key.
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3820,8 +3819,7 @@ election will continue until the next era is triggered.
 - Write: ForceEra
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3849,8 +3847,7 @@ have enough blocks to get a result.
 - Write ForceEra
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -3909,8 +3906,7 @@ The election process starts multiple blocks before the end of the era.
 If this is called just before a new era is triggered, the election process may not
 have enough blocks to get a result.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -5343,8 +5339,7 @@ usually means being a stash account).
 - DbWrites per key id: `KeyOwner`
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -6407,8 +6402,7 @@ Emits `Undelegated`.
 Weight: `O(R)` where R is the number of referendums the voter delegating to has
   voted on. Weight is charged as if maximum votes.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -6425,8 +6419,7 @@ The dispatch origin of this call must be _Root_.
 
 Weight: `O(1)`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -8391,8 +8384,7 @@ This removes the lock and returns the deposit.
 
 The dispatch origin of this call must be signed and be a voter.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -9043,8 +9035,7 @@ Remove the prime member if it exists.
 
 May only be called from `T::PrimeOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -9851,8 +9842,7 @@ Emits either `VestingCompleted` or `VestingUpdated`.
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -11456,8 +11446,7 @@ Emits `IdentityCleared` if successful.
 - One event.
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -11843,8 +11832,7 @@ super-identity.
 NOTE: This should not normally be used, but is provided in the case that the non-
 controller of an account is maliciously registered as a sub-account.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -12412,8 +12400,7 @@ The dispatch origin for this call must be _Signed_.
 WARNING: This may be called on accounts created by `pure`, however if done, then
 the unreserved fees will be inaccessible. **All access to this account will be lost.**
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -16134,8 +16121,7 @@ time claiming rewards). The payout will be transferred to the member&\#x27;s acc
 The member will earn rewards pro rata based on the members stake vs the sum of the
 members in the pools stake. Rewards do not &quot;expire&quot;.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -17103,8 +17089,7 @@ If the check fails, the stash remains chilled and waiting for being unbonded as 
 the normal staking system, but they lose part of their unbonding chunks due to consuming
 the chain&\#x27;s resources.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -17123,8 +17108,7 @@ Note that the associated stash is still fully unbonded and chilled as a conseque
 calling `register_fast_unstake`. This should probably be followed by a call to
 `Staking::rebond`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -18501,12 +18485,11 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -18516,6 +18499,7 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
@@ -20386,8 +20370,7 @@ call = substrate.query(
 ---------
 #### force_unfreeze
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -20705,8 +20688,7 @@ The origin must reserve a deposit of `ParaDeposit` for the registration.
 \#\# Events
 The `Reserved` event is emitted in case of success, which provides the ID reserved for use.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -21110,8 +21092,7 @@ Cancel an in-progress auction.
 
 Can only be called by Root origin.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python

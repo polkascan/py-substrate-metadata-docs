@@ -559,7 +559,6 @@ call = substrate.query(
                     'multisig': 'AccountId',
                 },
             },
-            None: None,
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
                     'dmq_head': '[u8; 32]',
@@ -693,6 +692,7 @@ call = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -2414,8 +2414,7 @@ registered session keys and (b) be able to reserve the `CandidacyBond`.
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2433,8 +2432,7 @@ This call will fail if the total number of candidates would drop below `MinCandi
 
 This call is not available to `Invulnerable` collators.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2657,8 +2655,7 @@ usually means being a stash account).
 - DbWrites per key id: `KeyOwner`
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2918,8 +2915,7 @@ Suspends all XCM executions for the XCMP queue, regardless of the sender&\#x27;s
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -2936,8 +2932,7 @@ Note that this function doesn&\#x27;t change the status of the in/out bound chan
 
 - `origin`: Must pass `ControllerOrigin`.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -54919,12 +54914,12 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
-        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }
@@ -55594,8 +55589,7 @@ the unreserved fees will be inaccessible. **All access to this account will be l
 Weight is a function of the number of proxies the user has (P).
 \# &lt;/weight&gt;
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -56330,8 +56324,7 @@ call = substrate.compose_call(
 #### join_alliance
 Submit oneself for candidacy. A fixed deposit is reserved.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -56392,8 +56385,7 @@ call = substrate.compose_call(
 As a member, give a retirement notice and start a retirement period required to pass in
 order to retire.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
@@ -56407,8 +56399,7 @@ call = substrate.compose_call(
 As a member, retire from the alliance and unreserve the deposit.
 This can only be done once you have `give_retirement_notice` and it has expired.
 ##### Attributes
-| Name | Type |
-| -------- | -------- | 
+No attributes
 
 ##### Python
 ```python
