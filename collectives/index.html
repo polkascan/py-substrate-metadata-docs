@@ -44,16 +44,13 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Overview</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../polkadot/">Polkadot</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../statemint/">Statemint</a>
-                </li>
-              </ul>
+              <p class="caption"><span class="caption-text">Polkadot Ecosystem Runtimes</span></p>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Collectives</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../polkadot/">Polkadot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../statemint/">Statemint</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Collectives</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#system">System</a>
         <ul>
@@ -1300,47 +1297,42 @@
         </ul>
     </li>
     </ul>
-                </li>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../acala/">Acala</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ajuna/">Ajuna Network</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../astar/">Astar</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../clover-mainnet/">Clover</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../composable/">Composable Finance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../darwinia-parachain/">Darwinia</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../kilt-spiritnet/">Kilt</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../moonbeam/">Moonbeam</a>
+                  </li>
               </ul>
+              <p class="caption"><span class="caption-text">Kusama Ecosystem Runtimes</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../moonbeam/">Moonbeam</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../acala/">Acala</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kilt-spiritnet/">Kilt</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../astar/">Astar</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kusama/">Kusama</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../statemine/">Statemine</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../moonriver/">Moonriver</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../karura/">Karura</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../shiden/">Shiden</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../kusama/">Kusama</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../statemine/">Statemine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../moonriver/">Moonriver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../karura/">Karura</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../shiden/">Shiden</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -1356,6 +1348,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Polkadot Ecosystem Runtimes &raquo;</li>
       <li>Collectives</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/polkascan/py-substrate-metadata-docs/edit/main/docs/collectives.md" class="icon icon-github"> Edit on GitHub</a>
@@ -1995,11 +1988,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'NewDesiredCandidates': {'desired_candidates': 'u32'},
                 'NewInvulnerables': {'invulnerables': ['AccountId']},
             },
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::40'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
-            },
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -2021,6 +2009,12 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'remaining_weight': 'scale_info::8',
                     'required_weight': 'scale_info::8',
                 },
+            },
+            None: None,
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 8]', 'scale_info::40'),
+                'InvalidFormat': '[u8; 8]',
+                'UnsupportedVersion': '[u8; 8]',
             },
             'Multisig': {
                 'MultisigApproval': {
@@ -2181,7 +2175,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -56287,6 +56280,12 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'AllianceMotion': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -57155,12 +57154,6 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             },
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }
@@ -60301,7 +60294,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../statemint/" class="btn btn-neutral float-left" title="Statemint"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../moonbeam/" class="btn btn-neutral float-right" title="Moonbeam">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../acala/" class="btn btn-neutral float-right" title="Acala">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -60331,7 +60324,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
       <span><a href="../statemint/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../moonbeam/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../acala/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

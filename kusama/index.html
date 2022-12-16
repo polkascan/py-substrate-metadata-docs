@@ -44,40 +44,40 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Overview</a>
                 </li>
               </ul>
+              <p class="caption"><span class="caption-text">Polkadot Ecosystem Runtimes</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../polkadot/">Polkadot</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../polkadot/">Polkadot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../statemint/">Statemint</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../collectives/">Collectives</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../acala/">Acala</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ajuna/">Ajuna Network</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../astar/">Astar</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../clover-mainnet/">Clover</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../composable/">Composable Finance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../darwinia-parachain/">Darwinia</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../kilt-spiritnet/">Kilt</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../moonbeam/">Moonbeam</a>
+                  </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../statemint/">Statemint</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../collectives/">Collectives</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../moonbeam/">Moonbeam</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../acala/">Acala</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kilt-spiritnet/">Kilt</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../astar/">Astar</a>
-                </li>
-              </ul>
+              <p class="caption"><span class="caption-text">Kusama Ecosystem Runtimes</span></p>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Kusama</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Kusama</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#system">System</a>
         <ul>
@@ -4680,23 +4680,15 @@
         </ul>
     </li>
     </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../statemine/">Statemine</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../moonriver/">Moonriver</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../karura/">Karura</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../shiden/">Shiden</a>
-                </li>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../statemine/">Statemine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../moonriver/">Moonriver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../karura/">Karura</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../shiden/">Shiden</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -4712,6 +4704,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Kusama Ecosystem Runtimes &raquo;</li>
       <li>Kusama</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/polkascan/py-substrate-metadata-docs/edit/main/docs/kusama.md" class="icon icon-github"> Edit on GitHub</a>
@@ -5231,6 +5224,23 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">[
     {
         'event': {
+            'Grandpa': {
+                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
+                'Paused': None,
+                'Resumed': None,
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Auctions': {
                 'AuctionClosed': {'auction_index': 'u32'},
                 'AuctionStarted': {
@@ -5261,6 +5271,31 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'block_number': 'u32',
                 },
             },
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::31',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
             'Bounties': {
                 'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
                 'BountyBecameActive': {'index': 'u32'},
@@ -5274,6 +5309,29 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'BountyProposed': {'index': 'u32'},
                 'BountyRejected': {'bond': 'u128', 'index': 'u32'},
             },
+            'ChildBounties': {
+                'Added': {'child_index': 'u32', 'index': 'u32'},
+                'Awarded': {
+                    'beneficiary': 'AccountId',
+                    'child_index': 'u32',
+                    'index': 'u32',
+                },
+                'Canceled': {'child_index': 'u32', 'index': 'u32'},
+                'Claimed': {
+                    'beneficiary': 'AccountId',
+                    'child_index': 'u32',
+                    'index': 'u32',
+                    'payout': 'u128',
+                },
+            },
+            'Claims': {
+                'Claimed': {
+                    'amount': 'u128',
+                    'ethereum_address': '[u8; 20]',
+                    'who': 'AccountId',
+                },
+            },
+            'ConvictionVoting': {'Delegated': ('AccountId', 'AccountId'), 'Undelegated': 'AccountId'},
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -5304,71 +5362,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'yes': 'u32',
                 },
             },
-            'Grandpa': {
-                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
-                'Paused': None,
-                'Resumed': None,
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::31',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'ChildBounties': {
-                'Added': {'child_index': 'u32', 'index': 'u32'},
-                'Awarded': {
-                    'beneficiary': 'AccountId',
-                    'child_index': 'u32',
-                    'index': 'u32',
-                },
-                'Canceled': {'child_index': 'u32', 'index': 'u32'},
-                'Claimed': {
-                    'beneficiary': 'AccountId',
-                    'child_index': 'u32',
-                    'index': 'u32',
-                    'payout': 'u128',
-                },
-            },
-            'Claims': {
-                'Claimed': {
-                    'amount': 'u128',
-                    'ethereum_address': '[u8; 20]',
-                    'who': 'AccountId',
-                },
-            },
-            'ConvictionVoting': {'Delegated': ('AccountId', 'AccountId'), 'Undelegated': 'AccountId'},
             'Crowdloan': {
                 'AddedToNewRaise': {'para_id': 'u32'},
                 'AllRefunded': {'para_id': 'u32'},
@@ -6330,12 +6323,11 @@ be reported.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -6345,6 +6337,7 @@ be reported.</p>
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
@@ -6358,12 +6351,11 @@ be reported.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -6373,6 +6365,7 @@ be reported.</p>
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
@@ -6428,12 +6421,12 @@ reporter.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -6456,12 +6449,12 @@ reporter.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -15471,6 +15464,12 @@ these are removed, either through <code>unvote</code> or <code>reap_vote</code>.
         },
     },
     'proposal_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -15513,6 +15512,7 @@ these are removed, either through <code>unvote</code> or <code>reap_vote</code>.
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
+        'Void': (),
         'XcmPallet': {
             'Response': {
                 'interior': {
@@ -16371,13 +16371,6 @@ these are removed, either through <code>unvote</code> or <code>reap_vote</code>.
                 'parents': 'u8',
             },
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
-        'Void': (),
     },
 }
 )
@@ -16990,7 +16983,6 @@ these are removed, either through <code>unvote</code> or <code>reap_vote</code>.
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
-            None: None,
             'Council': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
@@ -17037,6 +17029,7 @@ these are removed, either through <code>unvote</code> or <code>reap_vote</code>.
                 'Xcm': {'interior': 'scale_info::158', 'parents': 'u8'},
             },
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -19574,8 +19567,6 @@ fee.</p>
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
             'Origins': (
                 'StakingAdmin',
                 'Treasurer',
@@ -19616,6 +19607,8 @@ fee.</p>
                 'Response': {'interior': 'scale_info::158', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::158', 'parents': 'u8'},
             },
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -25721,13 +25714,13 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Void': (),
                 'XcmPallet': {
                     'Response': 'scale_info::157',
                     'Xcm': 'scale_info::157',
                 },
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },
@@ -90022,7 +90015,7 @@ desired version of XCM).</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../astar/" class="btn btn-neutral float-left" title="Astar"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../moonbeam/" class="btn btn-neutral float-left" title="Moonbeam"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../statemine/" class="btn btn-neutral float-right" title="Statemine">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -90050,7 +90043,7 @@ desired version of XCM).</p>
         </span>
     
     
-      <span><a href="../astar/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../moonbeam/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../statemine/" style="color: #fcfcfc">Next &raquo;</a></span>

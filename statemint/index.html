@@ -44,12 +44,11 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Overview</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../polkadot/">Polkadot</a>
-                </li>
-              </ul>
+              <p class="caption"><span class="caption-text">Polkadot Ecosystem Runtimes</span></p>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Statemint</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../polkadot/">Polkadot</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Statemint</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#system">System</a>
         <ul>
@@ -1432,51 +1431,44 @@
         </ul>
     </li>
     </ul>
-                </li>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../collectives/">Collectives</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../acala/">Acala</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ajuna/">Ajuna Network</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../astar/">Astar</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../clover-mainnet/">Clover</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../composable/">Composable Finance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../darwinia-parachain/">Darwinia</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../kilt-spiritnet/">Kilt</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../moonbeam/">Moonbeam</a>
+                  </li>
               </ul>
+              <p class="caption"><span class="caption-text">Kusama Ecosystem Runtimes</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../collectives/">Collectives</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../moonbeam/">Moonbeam</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../acala/">Acala</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kilt-spiritnet/">Kilt</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../astar/">Astar</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../kusama/">Kusama</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../statemine/">Statemine</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../moonriver/">Moonriver</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../karura/">Karura</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../shiden/">Shiden</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../kusama/">Kusama</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../statemine/">Statemine</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../moonriver/">Moonriver</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../karura/">Karura</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../shiden/">Shiden</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -1492,6 +1484,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Polkadot Ecosystem Runtimes &raquo;</li>
       <li>Statemint</li>
     <li class="wy-breadcrumbs-aside">
           <a href="https://github.com/polkascan/py-substrate-metadata-docs/edit/main/docs/statemint.md" class="icon icon-github"> Edit on GitHub</a>
@@ -2130,16 +2123,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
-            'CollatorSelection': {
-                'CandidateAdded': {
-                    'account_id': 'AccountId',
-                    'deposit': 'u128',
-                },
-                'CandidateRemoved': {'account_id': 'AccountId'},
-                'NewCandidacyBond': {'bond_amount': 'u128'},
-                'NewDesiredCandidates': {'desired_candidates': 'u32'},
-                'NewInvulnerables': {'invulnerables': ['AccountId']},
-            },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::43'),
                 'InvalidFormat': '[u8; 8]',
@@ -2253,18 +2236,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'UnexpectedResponse': ('scale_info::44', 'u64'),
                 'VersionChangeNotified': ('scale_info::44', 'u32'),
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -2292,6 +2263,50 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 },
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::40',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::8',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::8',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::8',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
+            'CollatorSelection': {
+                'CandidateAdded': {
+                    'account_id': 'AccountId',
+                    'deposit': 'u128',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'NewCandidacyBond': {'bond_amount': 'u128'},
+                'NewDesiredCandidates': {'desired_candidates': 'u32'},
+                'NewInvulnerables': {'invulnerables': ['AccountId']},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -2411,28 +2426,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'DispatchedAs': {'result': 'scale_info::84'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
-            },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::40',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::8',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::8',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::8',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
         },
         'phase': {
@@ -4136,12 +4129,12 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -57533,12 +57526,12 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             },
         },
         'Void': (),
-        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }
