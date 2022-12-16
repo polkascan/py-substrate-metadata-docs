@@ -506,11 +506,6 @@ call = substrate.query(
                 'NewDesiredCandidates': {'desired_candidates': 'u32'},
                 'NewInvulnerables': {'invulnerables': ['AccountId']},
             },
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::40'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
-            },
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -532,6 +527,12 @@ call = substrate.query(
                     'remaining_weight': 'scale_info::8',
                     'required_weight': 'scale_info::8',
                 },
+            },
+            None: None,
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 8]', 'scale_info::40'),
+                'InvalidFormat': '[u8; 8]',
+                'UnsupportedVersion': '[u8; 8]',
             },
             'Multisig': {
                 'MultisigApproval': {
@@ -692,7 +693,6 @@ call = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -54046,6 +54046,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'AllianceMotion': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -54914,12 +54920,6 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }

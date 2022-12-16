@@ -5,18 +5,26 @@ edit_uri: edit/main/docs/
 
 nav:
     - Overview: index.md
-    - Polkadot: polkadot.md
-    - Statemint: statemint.md
-    - Collectives: collectives.md
-    - Moonbeam: moonbeam.md
-    - Acala: acala.md
-    - Centrifuge: centrifuge.md
-    - Kilt: kilt-spiritnet.md
-    - Astar: astar.md
-    - Kusama: kusama.md
-    - Statemine: statemine.md
-    - Moonriver: moonriver.md
-    - Karura: karura.md
-    - Shiden: shiden.md
+    - Polkadot Ecosystem Runtimes:
+        - Polkadot: polkadot.md
+        - Statemint: statemint.md
+        - Collectives: collectives.md
+        - Acala: acala.md
+        - Ajuna Network: ajuna.md
+        - Astar: astar.md
+        - Bifrost: bifrost_polkadot.md
+        - Bitgreen: bitgreen-parachain.md
+        - Centrifuge: centrifuge.md
+        - Clover: clover-mainnet.md
+        - Composable Finance: composable.md
+        - Darwinia: darwinia-parachain.md
+        - Kilt: kilt-spiritnet.md
+        - Moonbeam: moonbeam.md
+    - Kusama Ecosystem Runtimes:
+        - Kusama: kusama.md
+        - Statemine: statemine.md
+        - Moonriver: moonriver.md
+        - Karura: karura.md
+        - Shiden: shiden.md
 
 theme: readthedocs

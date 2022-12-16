@@ -17,7 +17,9 @@
 import html
 import logging
 import os
+from time import strftime
 
+import yaml
 from pprintpp import pformat
 from scalecodec import ScaleBytes
 from scalecodec.exceptions import RemainingScaleBytesNotEmptyException
@@ -31,15 +33,19 @@ def generate_docs(node_url: str):
 
     with SubstrateInterface(url=node_url) as substrate:
 
-        logging.info(f"Generating docs for node URL {node_url}")
+        logging.info(f"Generating docs for {node_url}")
 
         version_info = substrate.get_constant('System', 'Version')
         runtime_name = version_info['spec_name'].value
 
-        doc_file_name = os.path.join(os.path.dirname(__file__), 'docs', f'{runtime_name.lower()}.md')
+        doc_file_name = os.path.join(
+            os.path.dirname(__file__), 'docs', f'{runtime_name.replace(" ", "-").lower()}.md'
+        )
 
         doc = [f"# {runtime_name}"]
         doc += ['---------']
+
+        # doc += [f"Document generated: {strftime('%Y-%m-%d %H:%M:%S')}"]
 
         doc += ["| Properties |  |"]
         doc += ["| -------- | -------- |"]
@@ -49,7 +55,6 @@ def generate_docs(node_url: str):
         doc += [f"| SS58 Format     | {substrate.ss58_format}     |"]
         doc += [f"| Token symbol      | {substrate.token_symbol}     |"]
         doc += [f"| Token decimals      | {substrate.token_decimals}     |"]
-        # doc += [f"| Doc generated      | {strftime('%Y-%m-%d %H:%M:%S')}     |"]
 
         for pallet in substrate.get_metadata().pallets:
 
@@ -207,21 +212,9 @@ def generate_docs(node_url: str):
 
 
 if __name__ == "__main__":
-    endpoints = [
-        "wss://rpc.polkadot.io",
-        "wss://statemint-rpc.polkadot.io",
-        "wss://polkadot-collectives-rpc.polkadot.io",
-        "wss://wss.api.moonbeam.network",
-        "wss://acala-rpc-0.aca-api.network",
-        "wss://spiritnet.kilt.io/",
-        "wss://fullnode.parachain.centrifuge.io",
-        "wss://rpc.astar.network",
-        "wss://kusama-rpc.polkadot.io",
-        "wss://statemine-rpc.polkadot.io",
-        "wss://karura-rpc-0.aca-api.network",
-        "wss://wss.api.moonriver.moonbeam.network",
-        "wss://rpc.shiden.astar.network"
-    ]
 
-    for endpoint in endpoints:
-        generate_docs(endpoint)
+    with open("config.yml", "r") as yaml_file:
+        config = yaml.load(yaml_file, Loader=yaml.FullLoader)
+
+    for network in config["networks"]:
+        generate_docs(network)

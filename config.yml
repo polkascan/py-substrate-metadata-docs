@@ -1,0 +1,21 @@
+networks:
+  - wss://rpc.polkadot.io
+  - wss://statemint-rpc.polkadot.io
+  - wss://polkadot-collectives-rpc.polkadot.io
+  - wss://wss.api.moonbeam.network
+  - wss://acala-polkadot.api.onfinality.io/public-ws
+  - wss://rpc-parachain.ajuna.network
+#  - wss://wss.odyssey.aresprotocol.io # Cert error
+  - wss://bifrost-polkadot.api.onfinality.io/public-ws
+  - wss://mainnet.bitgreen.org
+  - wss://rpc-para.clover.finance
+  - wss://rpc.composable.finance
+  - wss://spiritnet.kilt.io/
+  - wss://fullnode.parachain.centrifuge.io
+  - wss://parachain-rpc.darwinia.network
+  - wss://rpc.astar.network
+  - wss://kusama-rpc.polkadot.io
+  - wss://statemine-rpc.polkadot.io
+  - wss://karura-rpc-0.aca-api.network
+  - wss://wss.api.moonriver.moonbeam.network
+  - wss://rpc.shiden.astar.network
