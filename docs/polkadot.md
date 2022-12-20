@@ -529,33 +529,6 @@ call = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Crowdloan': {
-                'AddedToNewRaise': {'para_id': 'u32'},
-                'AllRefunded': {'para_id': 'u32'},
-                'Contributed': {
-                    'amount': 'u128',
-                    'fund_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'Created': {'para_id': 'u32'},
-                'Dissolved': {'para_id': 'u32'},
-                'Edited': {'para_id': 'u32'},
-                'HandleBidResult': {
-                    'para_id': 'u32',
-                    'result': 'scale_info::31',
-                },
-                'MemoUpdated': {
-                    'memo': 'Bytes',
-                    'para_id': 'u32',
-                    'who': 'AccountId',
-                },
-                'PartiallyRefunded': {'para_id': 'u32'},
-                'Withdrew': {
-                    'amount': 'u128',
-                    'fund_index': 'u32',
-                    'who': 'AccountId',
-                },
-            },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -607,6 +580,34 @@ call = substrate.query(
                     'ref_index': 'u32',
                     'vote': 'scale_info::64',
                     'voter': 'AccountId',
+                },
+            },
+            None: None,
+            'Crowdloan': {
+                'AddedToNewRaise': {'para_id': 'u32'},
+                'AllRefunded': {'para_id': 'u32'},
+                'Contributed': {
+                    'amount': 'u128',
+                    'fund_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'Created': {'para_id': 'u32'},
+                'Dissolved': {'para_id': 'u32'},
+                'Edited': {'para_id': 'u32'},
+                'HandleBidResult': {
+                    'para_id': 'u32',
+                    'result': 'scale_info::31',
+                },
+                'MemoUpdated': {
+                    'memo': 'Bytes',
+                    'para_id': 'u32',
+                    'who': 'AccountId',
+                },
+                'PartiallyRefunded': {'para_id': 'u32'},
+                'Withdrew': {
+                    'amount': 'u128',
+                    'fund_index': 'u32',
+                    'who': 'AccountId',
                 },
             },
             'ElectionProviderMultiPhase': {
@@ -920,6 +921,14 @@ call = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'Tips': {
                 'NewTip': {'tip_hash': '[u8; 32]'},
                 'TipClosed': {
@@ -993,15 +1002,6 @@ call = substrate.query(
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
-            None: None,
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
             'VoterList': {
                 'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
                 'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
@@ -1804,12 +1804,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -1832,12 +1832,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -10243,12 +10243,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -10263,6 +10257,7 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        None: None,
         'XcmPallet': {
             'Response': {
                 'interior': {
@@ -11120,6 +11115,11 @@ call = substrate.compose_call(
                 },
                 'parents': 'u8',
             },
+        },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
         },
     },
     'call': 'Call',
@@ -18485,12 +18485,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        None: None,
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',

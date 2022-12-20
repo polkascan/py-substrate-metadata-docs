@@ -33,8 +33,6 @@ def generate_docs(node_url: str):
 
     with SubstrateInterface(url=node_url) as substrate:
 
-        logging.info(f"Generating docs for {node_url}")
-
         version_info = substrate.get_constant('System', 'Version')
         runtime_name = version_info['spec_name'].value
 
@@ -210,11 +208,26 @@ def generate_docs(node_url: str):
         with open(doc_file_name, "w") as file:
             file.write('\n'.join(doc))
 
+        return substrate.chain, f'{runtime_name.replace(" ", "-").lower()}.md'
+
 
 if __name__ == "__main__":
 
     with open("config.yml", "r") as yaml_file:
         config = yaml.load(yaml_file, Loader=yaml.FullLoader)
 
+    network_info = []
+
     for network in config["networks"]:
-        generate_docs(network)
+        logging.info(f"Generating docs for {network}")
+        info = generate_docs(network)
+        network_info.append(info)
+
+    print('---- Nav items -------------')
+    for name, doc_file in network_info:
+        print(f'- {name}: {doc_file}')
+
+    print('---- Index items -------------')
+    for name, doc_file in network_info:
+        print(f'* [{name}]({doc_file})')
+
