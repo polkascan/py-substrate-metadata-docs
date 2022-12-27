@@ -39,6 +39,16 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href=".">Overview</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-read-the-type-information">How to read the type information</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1-storage-function-parameters">Example 1: Storage function parameters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2-storage-function-return-value">Example 2: Storage function return value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-3-call-parameters">Example 3: Call parameters</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#library-resources">Library resources</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#polkadot-ecosystem-runtimes">Polkadot Ecosystem Runtimes</a>
@@ -210,6 +220,73 @@
               
                 <h1 id="pysubstrate-metadata-docs">PySubstrate Metadata docs</h1>
 <p>Documentation of Substrate metadata for well known runtimes and how to use it with <a href="https://github.com/polkascan/py-substrate-interface">py-substrate-interface</a>.</p>
+<h2 id="how-to-read-the-type-information">How to read the type information</h2>
+<h3 id="example-1-storage-function-parameters">Example 1: Storage function parameters</h3>
+<pre><code class="language-python">call = substrate.query(
+    'RmrkCore', 'Properties', ['u32', (None, 'u32'), 'Bytes']
+)
+</code></pre>
+<p>This should be interpreted as follows:</p>
+<ul>
+<li>
+<p>The first parameter is of type <code>u32</code>, which is a 32-bit integer</p>
+</li>
+<li>
+<p>The second parameter is a tuple, which represents all possible variants of the <code>Enum</code> in RUST (more specific an <code>Option</code> in this case). Only one variant must be selected, so <code>(None, 'u32')</code> means <em>either</em> <code>None</code> <em>or</em> a <code>u32</code></p>
+</li>
+<li>
+<p>The third parameter <code>Bytes</code> is an arbitrary <code>str</code>, <code>bytes</code> or hex-string</p>
+</li>
+</ul>
+<p>So an example would be:</p>
+<pre><code class="language-python">result = substrate.query(
+    'RmrkCore', 'Properties', [10324, 31, '0x068500be5822de000000000000000000']
+)
+</code></pre>
+<p>Or </p>
+<pre><code class="language-python">result = substrate.query(
+    'RmrkCore', 'Properties', [10324, None, '0x068500be5822de000000000000000000']
+)
+</code></pre>
+<h3 id="example-2-storage-function-return-value">Example 2: Storage function return value</h3>
+<pre><code class="language-python">call = substrate.query(
+    'Identity', 'Registrars', []
+)
+</code></pre>
+<p>The return function is defined as: </p>
+<pre><code class="language-python">[(None, {'account': 'AccountId', 'fee': 'u128', 'fields': 'u64'})]
+</code></pre>
+<p>Which should be interpreted as:</p>
+<ol>
+<li>The return value is a Python list containing elements of definition <code>(None, {'account': 'AccountId', 'fee': 'u128', 'fields': 'u64'})</code></li>
+<li>Each of these elements are in RUST of type <code>Enum</code> (like the example above an <code>Option</code>) and again only one value must be selected of <code>tuple</code> so <em>either</em> (a) <code>None</code> <em>or</em>  (b) <code>{'account': 'AccountId', 'fee': 'u128', 'fields': 'u64'}</code>  </li>
+<li>In case of (b) it is a <code>dict</code> (in RUST a <code>struct</code>) containing an <code>account</code> (<code>AccountID</code>), <code>fee</code> (128-bit int) and <code>fields</code> (64-bit int) </li>
+</ol>
+<p>Example of output of this storage function:</p>
+<pre><code class="language-python">[{'account': '15wHrzgaZA1gt8GyAFqWLG8Pt5RJBm5sYEGmppKDafqiaDUD', 'fee': 121321321, 'fields': 1231}, None, {'account': '1297caNVrdbg9tQew1kJSHJuMQr93Z4vcD1offK6AzgV4KSE', 'fee': 0, 'fields': 0}]
+</code></pre>
+<h3 id="example-3-call-parameters">Example 3: Call parameters</h3>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Treasury', 'spend', {
+        'amount': 'u128',
+        'beneficiary': {
+            'Address20': '[u8; 20]',
+            'Address32': '[u8; 32]',
+            'Id': 'AccountId',
+            'Index': 'u32',
+            'Raw': 'Bytes',
+        },
+})
+</code></pre>
+<p>This call requires two parameters, "amount" which is a 128-bit int and "beneficiary" which expects an <code>Enum</code>.</p>
+<p>Like the <code>struct</code> data-type in Example 2 this is shown as a <code>dict</code> in Python, but the difference is that now all 
+possible variants are shown, and only one of those variants must be provided. The difference between an <code>Enum</code> and a 
+<code>Struct</code> <code>dict</code> is that <code>Enum</code> variants are in CamelCase, as 
+<code>Struct</code> parameters are in snake_case.  </p>
+<p>So examples of valid input for <code>beneficiary</code> are:
+* <code>{'Id': '15wHrzgaZA1gt8GyAFqWLG8Pt5RJBm5sYEGmppKDafqiaDUD'}</code>
+* <code>{'Address20': '0x0CAC409596b076487517263441282DBa6B7dc137'}</code>
+* <code>{'Index': 54}</code> </p>
 <h2 id="library-resources">Library resources</h2>
 <ul>
 <li><a href="https://github.com/polkascan/py-substrate-interface#readme">Installation and usage of py-substrate-interface</a></li>
@@ -336,5 +413,5 @@
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2022-12-20 12:47:52.721217+00:00
+Build Date UTC : 2022-12-27 12:46:50.937951+00:00
 -->
