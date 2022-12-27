@@ -51,9 +51,9 @@ Which should be interpreted as:
 
 1. The return value is a Python list containing elements of definition `(None, {'account': 'AccountId', 'fee': 'u128', 'fields': 'u64'})`
 2. Each of these elements are in RUST of type `Enum` (like the example above an `Option`) and again only one value must be selected of `tuple` so _either_ (a) `None` _or_  (b) `{'account': 'AccountId', 'fee': 'u128', 'fields': 'u64'}`  
-3. In case of (b) it is a `dict` (in RUST a `struct`) containing an `account` (`AccountID`), `fee` (128-bit int) and `fields` (64-bit int) 
+3. In case of (b) it is a `dict` (in RUST a `struct`) containing an "account" (type `AccountID`), "fee" (128-bit int) and "fields" (64-bit int) 
 
-Example of output of this storage function:
+Example output of this storage function:
 
 ```python
 [{'account': '15wHrzgaZA1gt8GyAFqWLG8Pt5RJBm5sYEGmppKDafqiaDUD', 'fee': 121321321, 'fields': 1231}, None, {'account': '1297caNVrdbg9tQew1kJSHJuMQr93Z4vcD1offK6AzgV4KSE', 'fee': 0, 'fields': 0}]
@@ -82,9 +82,13 @@ possible variants are shown, and only one of those variants must be provided. Th
 `Struct` parameters are in snake_case.  
 
 So examples of valid input for `beneficiary` are:
-* `{'Id': '15wHrzgaZA1gt8GyAFqWLG8Pt5RJBm5sYEGmppKDafqiaDUD'}`
-* `{'Address20': '0x0CAC409596b076487517263441282DBa6B7dc137'}`
-* `{'Index': 54}` 
+```python
+{'Id': '15wHrzgaZA1gt8GyAFqWLG8Pt5RJBm5sYEGmppKDafqiaDUD'}
+
+{'Address20': '0x0CAC409596b076487517263441282DBa6B7dc137'}
+
+{'Index': 54}
+``` 
 
 ## Library resources 
 
