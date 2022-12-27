@@ -260,9 +260,9 @@
 <ol>
 <li>The return value is a Python list containing elements of definition <code>(None, {'account': 'AccountId', 'fee': 'u128', 'fields': 'u64'})</code></li>
 <li>Each of these elements are in RUST of type <code>Enum</code> (like the example above an <code>Option</code>) and again only one value must be selected of <code>tuple</code> so <em>either</em> (a) <code>None</code> <em>or</em>  (b) <code>{'account': 'AccountId', 'fee': 'u128', 'fields': 'u64'}</code>  </li>
-<li>In case of (b) it is a <code>dict</code> (in RUST a <code>struct</code>) containing an <code>account</code> (<code>AccountID</code>), <code>fee</code> (128-bit int) and <code>fields</code> (64-bit int) </li>
+<li>In case of (b) it is a <code>dict</code> (in RUST a <code>struct</code>) containing an "account" (type <code>AccountID</code>), "fee" (128-bit int) and "fields" (64-bit int) </li>
 </ol>
-<p>Example of output of this storage function:</p>
+<p>Example output of this storage function:</p>
 <pre><code class="language-python">[{'account': '15wHrzgaZA1gt8GyAFqWLG8Pt5RJBm5sYEGmppKDafqiaDUD', 'fee': 121321321, 'fields': 1231}, None, {'account': '1297caNVrdbg9tQew1kJSHJuMQr93Z4vcD1offK6AzgV4KSE', 'fee': 0, 'fields': 0}]
 </code></pre>
 <h3 id="example-3-call-parameters">Example 3: Call parameters</h3>
@@ -283,10 +283,13 @@
 possible variants are shown, and only one of those variants must be provided. The difference between an <code>Enum</code> and a 
 <code>Struct</code> <code>dict</code> is that <code>Enum</code> variants are in CamelCase, as 
 <code>Struct</code> parameters are in snake_case.  </p>
-<p>So examples of valid input for <code>beneficiary</code> are:
-* <code>{'Id': '15wHrzgaZA1gt8GyAFqWLG8Pt5RJBm5sYEGmppKDafqiaDUD'}</code>
-* <code>{'Address20': '0x0CAC409596b076487517263441282DBa6B7dc137'}</code>
-* <code>{'Index': 54}</code> </p>
+<p>So examples of valid input for <code>beneficiary</code> are:</p>
+<pre><code class="language-python">{'Id': '15wHrzgaZA1gt8GyAFqWLG8Pt5RJBm5sYEGmppKDafqiaDUD'}
+
+{'Address20': '0x0CAC409596b076487517263441282DBa6B7dc137'}
+
+{'Index': 54}
+</code></pre>
 <h2 id="library-resources">Library resources</h2>
 <ul>
 <li><a href="https://github.com/polkascan/py-substrate-interface#readme">Installation and usage of py-substrate-interface</a></li>
@@ -413,5 +416,5 @@ possible variants are shown, and only one of those variants must be provided. Th
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2022-12-27 12:46:50.937951+00:00
+Build Date UTC : 2022-12-27 12:55:20.407656+00:00
 -->
