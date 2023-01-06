@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Spec name     | statemint     |
 | Implementation name     | statemint     |
-| Spec version     | 9320     |
+| Spec version     | 9330     |
 | SS58 Format     | 0     |
 | Token symbol      | DOT     |
 | Token decimals      | 10     |
@@ -232,7 +232,7 @@ On on-chain remark happened.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'Account', ['AccountId']
 )
 ```
@@ -258,7 +258,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'ExtrinsicCount', []
 )
 ```
@@ -273,7 +273,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'BlockWeight', []
 )
 ```
@@ -292,7 +292,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'AllExtrinsicsLen', []
 )
 ```
@@ -307,7 +307,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'BlockHash', ['u32']
 )
 ```
@@ -322,7 +322,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'ExtrinsicData', ['u32']
 )
 ```
@@ -337,7 +337,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'Number', []
 )
 ```
@@ -352,7 +352,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'ParentHash', []
 )
 ```
@@ -367,7 +367,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'Digest', []
 )
 ```
@@ -399,7 +399,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'Events', []
 )
 ```
@@ -409,64 +409,6 @@ call = substrate.query(
 [
     {
         'event': {
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::31',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'CollatorSelection': {
-                'CandidateAdded': {
-                    'account_id': 'AccountId',
-                    'deposit': 'u128',
-                },
-                'CandidateRemoved': {'account_id': 'AccountId'},
-                'NewCandidacyBond': {'bond_amount': 'u128'},
-                'NewDesiredCandidates': {'desired_candidates': 'u32'},
-                'NewInvulnerables': {'invulnerables': ['AccountId']},
-            },
-            'DmpQueue': {
-                'ExecutedDownward': {
-                    'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::43',
-                },
-                'InvalidFormat': {'message_id': '[u8; 32]'},
-                'OverweightEnqueued': {
-                    'message_id': '[u8; 32]',
-                    'overweight_index': 'u64',
-                    'required_weight': 'scale_info::8',
-                },
-                'OverweightServiced': {
-                    'overweight_index': 'u64',
-                    'weight_used': 'scale_info::8',
-                },
-                'UnsupportedVersion': {'message_id': '[u8; 32]'},
-                'WeightExhausted': {
-                    'message_id': '[u8; 32]',
-                    'remaining_weight': 'scale_info::8',
-                    'required_weight': 'scale_info::8',
-                },
-            },
-            None: None,
             'AssetTxPayment': {
                 'AssetTxFeePaid': {
                     'actual_fee': 'u128',
@@ -476,10 +418,20 @@ call = substrate.query(
                 },
             },
             'Assets': {
+                'AccountsDestroyed': {
+                    'accounts_destroyed': 'u32',
+                    'accounts_remaining': 'u32',
+                    'asset_id': 'u32',
+                },
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
                     'delegate': 'AccountId',
                     'owner': 'AccountId',
+                },
+                'ApprovalsDestroyed': {
+                    'approvals_destroyed': 'u32',
+                    'approvals_remaining': 'u32',
+                    'asset_id': 'u32',
                 },
                 'ApprovedTransfer': {
                     'amount': 'u128',
@@ -501,6 +453,7 @@ call = substrate.query(
                     'owner': 'AccountId',
                 },
                 'Destroyed': {'asset_id': 'u32'},
+                'DestructionStarted': {'asset_id': 'u32'},
                 'ForceCreated': {'asset_id': 'u32', 'owner': 'AccountId'},
                 'Frozen': {'asset_id': 'u32', 'who': 'AccountId'},
                 'Issued': {
@@ -538,10 +491,67 @@ call = substrate.query(
                     'owner': 'AccountId',
                 },
             },
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::31',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'CollatorSelection': {
+                'CandidateAdded': {
+                    'account_id': 'AccountId',
+                    'deposit': 'u128',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'NewCandidacyBond': {'bond_amount': 'u128'},
+                'NewDesiredCandidates': {'desired_candidates': 'u32'},
+                'NewInvulnerables': {'invulnerables': ['AccountId']},
+            },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::43'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
+            },
+            'DmpQueue': {
+                'ExecutedDownward': {
+                    'message_id': '[u8; 32]',
+                    'outcome': 'scale_info::43',
+                },
+                'InvalidFormat': {'message_id': '[u8; 32]'},
+                'OverweightEnqueued': {
+                    'message_id': '[u8; 32]',
+                    'overweight_index': 'u64',
+                    'required_weight': 'scale_info::8',
+                },
+                'OverweightServiced': {
+                    'overweight_index': 'u64',
+                    'weight_used': 'scale_info::8',
+                },
+                'UnsupportedVersion': {'message_id': '[u8; 32]'},
+                'WeightExhausted': {
+                    'message_id': '[u8; 32]',
+                    'remaining_weight': 'scale_info::8',
+                    'required_weight': 'scale_info::8',
+                },
             },
             'Multisig': {
                 'MultisigApproval': {
@@ -809,6 +819,7 @@ call = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -825,7 +836,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'EventCount', []
 )
 ```
@@ -849,7 +860,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'EventTopics', ['[u8; 32]']
 )
 ```
@@ -864,7 +875,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'LastRuntimeUpgrade', []
 )
 ```
@@ -879,7 +890,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'UpgradedToU32RefCount', []
 )
 ```
@@ -895,7 +906,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'UpgradedToTripleRefCount', []
 )
 ```
@@ -910,7 +921,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'ExecutionPhase', []
 )
 ```
@@ -1011,9 +1022,9 @@ constant = substrate.get_constant('System', 'DbWeight')
     'impl_name': 'statemint',
     'impl_version': 0,
     'spec_name': 'statemint',
-    'spec_version': 9320,
+    'spec_version': 9330,
     'state_version': 0,
-    'transaction_version': 9,
+    'transaction_version': 10,
 }
 ```
 ##### Python
@@ -1214,7 +1225,7 @@ Downward messages were processed using the given weight.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'PendingValidationCode', []
 )
 ```
@@ -1233,7 +1244,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'NewValidationCode', []
 )
 ```
@@ -1250,7 +1261,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'ValidationData', []
 )
 ```
@@ -1270,7 +1281,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'DidSetValidationCode', []
 )
 ```
@@ -1285,7 +1296,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'LastRelayChainBlockNumber', []
 )
 ```
@@ -1306,7 +1317,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'UpgradeRestrictionSignal', []
 )
 ```
@@ -1326,7 +1337,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'RelayStateProof', []
 )
 ```
@@ -1347,7 +1358,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'RelevantMessagingState', []
 )
 ```
@@ -1396,7 +1407,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'HostConfiguration', []
 )
 ```
@@ -1424,7 +1435,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'LastDmqMqcHead', []
 )
 ```
@@ -1442,7 +1453,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'LastHrmpMqcHeads', []
 )
 ```
@@ -1459,7 +1470,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'ProcessedDownwardMessages', []
 )
 ```
@@ -1476,7 +1487,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'HrmpWatermark', []
 )
 ```
@@ -1493,7 +1504,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'HrmpOutboundMessages', []
 )
 ```
@@ -1510,7 +1521,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'UpwardMessages', []
 )
 ```
@@ -1525,7 +1536,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'PendingUpwardMessages', []
 )
 ```
@@ -1541,7 +1552,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'AnnouncedHrmpMessagesPerCandidate', []
 )
 ```
@@ -1557,7 +1568,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'ReservedXcmpWeightOverride', []
 )
 ```
@@ -1573,7 +1584,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'ReservedDmpWeightOverride', []
 )
 ```
@@ -1588,7 +1599,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'AuthorizedUpgrade', []
 )
 ```
@@ -1605,7 +1616,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'CustomValidationHeadData', []
 )
 ```
@@ -1692,7 +1703,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Timestamp', 'Now', []
 )
 ```
@@ -1707,7 +1718,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Timestamp', 'DidUpdate', []
 )
 ```
@@ -1742,7 +1753,7 @@ constant = substrate.get_constant('Timestamp', 'MinimumPeriod')
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainInfo', 'ParachainId', []
 )
 ```
@@ -2081,7 +2092,7 @@ Some amount was removed from the account (e.g. for misbehavior).
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Balances', 'TotalIssuance', []
 )
 ```
@@ -2119,7 +2130,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Balances', 'Account', ['AccountId']
 )
 ```
@@ -2140,7 +2151,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Balances', 'Locks', ['AccountId']
 )
 ```
@@ -2155,7 +2166,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Balances', 'Reserves', ['AccountId']
 )
 ```
@@ -2172,7 +2183,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Balances', 'StorageVersion', []
 )
 ```
@@ -2229,7 +2240,7 @@ Account liquidity restrictions prevent withdrawal
 
 ---------
 #### InsufficientBalance
-Balance too low to send value
+Balance too low to send value.
 
 ---------
 #### ExistentialDeposit
@@ -2274,7 +2285,7 @@ has been paid by `who`.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'TransactionPayment', 'NextFeeMultiplier', []
 )
 ```
@@ -2288,7 +2299,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'TransactionPayment', 'StorageVersion', []
 )
 ```
@@ -2369,12 +2380,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -2405,7 +2416,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Authorship', 'Uncles', []
 )
 ```
@@ -2420,7 +2431,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Authorship', 'Author', []
 )
 ```
@@ -2435,7 +2446,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Authorship', 'DidSetUncles', []
 )
 ```
@@ -2621,7 +2632,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'CollatorSelection', 'Invulnerables', []
 )
 ```
@@ -2636,7 +2647,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'CollatorSelection', 'Candidates', []
 )
 ```
@@ -2651,7 +2662,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'CollatorSelection', 'LastAuthoredBlock', ['AccountId']
 )
 ```
@@ -2668,7 +2679,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'CollatorSelection', 'DesiredCandidates', []
 )
 ```
@@ -2685,7 +2696,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'CollatorSelection', 'CandidacyBond', []
 )
 ```
@@ -2817,7 +2828,7 @@ block number as the type might suggest.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'Validators', []
 )
 ```
@@ -2832,7 +2843,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'CurrentIndex', []
 )
 ```
@@ -2848,7 +2859,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'QueuedChanged', []
 )
 ```
@@ -2864,7 +2875,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'QueuedKeys', []
 )
 ```
@@ -2883,7 +2894,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'DisabledValidators', []
 )
 ```
@@ -2898,7 +2909,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'NextKeys', ['AccountId']
 )
 ```
@@ -2913,7 +2924,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'KeyOwner', [('[u8; 4]', 'Bytes')]
 )
 ```
@@ -2955,7 +2966,7 @@ Key setting account is not live, so it&\#x27;s impossible to associate keys.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Aura', 'Authorities', []
 )
 ```
@@ -2972,7 +2983,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Aura', 'CurrentSlot', []
 )
 ```
@@ -2996,7 +3007,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'AuraExt', 'Authorities', []
 )
 ```
@@ -3267,7 +3278,7 @@ An XCM from the overweight queue was executed with the given actual weight used.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'InboundXcmpStatus', []
 )
 ```
@@ -3297,7 +3308,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'InboundXcmpMessages', ['u32', 'u32']
 )
 ```
@@ -3317,7 +3328,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'OutboundXcmpStatus', []
 )
 ```
@@ -3340,7 +3351,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'OutboundXcmpMessages', ['u32', 'u16']
 )
 ```
@@ -3355,7 +3366,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'SignalMessages', ['u32']
 )
 ```
@@ -3370,7 +3381,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'QueueConfig', []
 )
 ```
@@ -3395,7 +3406,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'Overweight', ['u64']
 )
 ```
@@ -3411,7 +3422,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'OverweightCount', []
 )
 ```
@@ -3426,7 +3437,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'QueueSuspended', []
 )
 ```
@@ -44928,7 +44939,7 @@ Some assets have been claimed from an asset trap
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'QueryCounter', []
 )
 ```
@@ -44943,7 +44954,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'Queries', ['u64']
 )
 ```
@@ -45206,7 +45217,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'AssetTraps', ['[u8; 32]']
 )
 ```
@@ -45222,7 +45233,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'SafeXcmVersion', []
 )
 ```
@@ -45237,7 +45248,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'SupportedVersion', [
     'u32',
     {
@@ -48069,7 +48080,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'VersionNotifiers', [
     'u32',
     {
@@ -50902,7 +50913,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'VersionNotifyTargets', [
     'u32',
     {
@@ -53736,7 +53747,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'VersionDiscoveryQueue', []
 )
 ```
@@ -53867,7 +53878,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'CurrentMigration', []
 )
 ```
@@ -54070,7 +54081,7 @@ Downward message from the overweight queue was executed.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'DmpQueue', 'Configuration', []
 )
 ```
@@ -54085,7 +54096,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'DmpQueue', 'PageIndex', []
 )
 ```
@@ -54100,7 +54111,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'DmpQueue', 'Pages', ['u32']
 )
 ```
@@ -54115,7 +54126,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'DmpQueue', 'Overweight', ['u64']
 )
 ```
@@ -54143,13 +54154,13 @@ The amount of weight given is possibly not enough for executing the message.
 #### batch
 Send a batch of dispatch calls.
 
-May be called from any origin.
+May be called from any origin except `None`.
 
 - `calls`: The calls to be dispatched from the same origin. The number of call must not
   exceed the constant: `batched_calls_limit` (available in constant metadata).
 
-If origin is root then call are dispatch without checking origin filter. (This includes
-bypassing `frame_system::Config::BaseCallFilter`).
+If origin is root then the calls are dispatched without checking origin filter. (This
+includes bypassing `frame_system::Config::BaseCallFilter`).
 
 \# &lt;weight&gt;
 - Complexity: O(C) where C is the number of calls to be batched.
@@ -54205,13 +54216,13 @@ call = substrate.compose_call(
 Send a batch of dispatch calls and atomically execute them.
 The whole transaction will rollback and fail if any of the calls failed.
 
-May be called from any origin.
+May be called from any origin except `None`.
 
 - `calls`: The calls to be dispatched from the same origin. The number of call must not
   exceed the constant: `batched_calls_limit` (available in constant metadata).
 
-If origin is root then call are dispatch without checking origin filter. (This includes
-bypassing `frame_system::Config::BaseCallFilter`).
+If origin is root then the calls are dispatched without checking origin filter. (This
+includes bypassing `frame_system::Config::BaseCallFilter`).
 
 \# &lt;weight&gt;
 - Complexity: O(C) where C is the number of calls to be batched.
@@ -54251,11 +54262,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
         None: None,
         'CumulusXcm': {
             'Relay': None,
@@ -55120,6 +55126,11 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }
@@ -55131,13 +55142,13 @@ call = substrate.compose_call(
 Send a batch of dispatch calls.
 Unlike `batch`, it allows errors and won&\#x27;t interrupt.
 
-May be called from any origin.
+May be called from any origin except `None`.
 
 - `calls`: The calls to be dispatched from the same origin. The number of call must not
   exceed the constant: `batched_calls_limit` (available in constant metadata).
 
-If origin is root then call are dispatch without checking origin filter. (This includes
-bypassing `frame_system::Config::BaseCallFilter`).
+If origin is root then the calls are dispatch without checking origin filter. (This
+includes bypassing `frame_system::Config::BaseCallFilter`).
 
 \# &lt;weight&gt;
 - Complexity: O(C) where C is the number of calls to be batched.
@@ -55509,7 +55520,7 @@ A multisig operation has been cancelled.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Multisig', 'Multisigs', ['AccountId', '[u8; 32]']
 )
 ```
@@ -56104,7 +56115,7 @@ A proxy was removed.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Proxy', 'Proxies', ['AccountId']
 )
 ```
@@ -56136,7 +56147,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Proxy', 'Announcements', ['AccountId']
 )
 ```
@@ -56271,7 +56282,7 @@ Issue a new class of fungible assets from a public origin.
 
 This new asset class has no assets initially and its owner is the origin.
 
-The origin must be Signed and the sender must have sufficient funds free.
+The origin must conform to the configured `CreateOrigin` and have sufficient funds free.
 
 Funds of sender are reserved by `AssetDeposit`.
 
@@ -56358,42 +56369,102 @@ call = substrate.compose_call(
 ```
 
 ---------
-#### destroy
-Destroy a class of fungible assets.
+#### start_destroy
+Start the process of destroying a class of fungible asset
+start_destroy is the first in a series of extrinsics that should be called, to allow
+destroying an asset.
 
 The origin must conform to `ForceOrigin` or must be Signed and the sender must be the
 owner of the asset `id`.
 
 - `id`: The identifier of the asset to be destroyed. This must identify an existing
-asset.
+  asset.
 
-Emits `Destroyed` event when successful.
-
-NOTE: It can be helpful to first freeze an asset before destroying it so that you
-can provide accurate witness information and prevent users from manipulating state
-in a way that can make it harder to destroy.
-
-Weight: `O(c + p + a)` where:
-- `c = (witness.accounts - witness.sufficients)`
-- `s = witness.sufficients`
-- `a = witness.approvals`
+Assets must be freezed before calling start_destroy.
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
 | id | `T::AssetId` | 
-| witness | `DestroyWitness` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
-    'Assets', 'destroy', {
-    'id': 'u32',
-    'witness': {
-        'accounts': 'u32',
-        'approvals': 'u32',
-        'sufficients': 'u32',
-    },
-}
+    'Assets', 'start_destroy', {'id': 'u32'}
+)
+```
+
+---------
+#### destroy_accounts
+Destroy all accounts associated with a given asset.
+`destroy_accounts` should only be called after `start_destroy` has been called, and the
+asset is in a `Destroying` state
+
+Due to weight restrictions, this function may need to be called multiple
+times to fully destroy all accounts. It will destroy `RemoveItemsLimit` accounts at a
+time.
+
+- `id`: The identifier of the asset to be destroyed. This must identify an existing
+  asset.
+
+Each call Emits the `Event::DestroyedAccounts` event.
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetId` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'destroy_accounts', {'id': 'u32'}
+)
+```
+
+---------
+#### destroy_approvals
+Destroy all approvals associated with a given asset up to the max (T::RemoveItemsLimit),
+`destroy_approvals` should only be called after `start_destroy` has been called, and the
+asset is in a `Destroying` state
+
+Due to weight restrictions, this function may need to be called multiple
+times to fully destroy all approvals. It will destroy `RemoveItemsLimit` approvals at a
+time.
+
+- `id`: The identifier of the asset to be destroyed. This must identify an existing
+  asset.
+
+Each call Emits the `Event::DestroyedApprovals` event.
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetId` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'destroy_approvals', {'id': 'u32'}
+)
+```
+
+---------
+#### finish_destroy
+Complete destroying asset and unreserve currency.
+`finish_destroy` should only be called after `start_destroy` has been called, and the
+asset is in a `Destroying` state. All accounts or approvals should be destroyed before
+hand.
+
+- `id`: The identifier of the asset to be destroyed. This must identify an existing
+  asset.
+
+Each successful call Emits the `Event::Destroyed` event.
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetId` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'finish_destroy', {'id': 'u32'}
 )
 ```
 
@@ -57343,6 +57414,34 @@ Some asset `asset_id` was thawed.
 | asset_id | `T::AssetId` | ```u32```
 
 ---------
+#### AccountsDestroyed
+Accounts were destroyed for given asset.
+##### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u32```
+| accounts_destroyed | `u32` | ```u32```
+| accounts_remaining | `u32` | ```u32```
+
+---------
+#### ApprovalsDestroyed
+Approvals were destroyed for given asset.
+##### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u32```
+| approvals_destroyed | `u32` | ```u32```
+| approvals_remaining | `u32` | ```u32```
+
+---------
+#### DestructionStarted
+An asset class is in the process of being destroyed.
+##### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u32```
+
+---------
 #### Destroyed
 An asset class was destroyed.
 ##### Attributes
@@ -57429,7 +57528,7 @@ An asset has had its attributes changed by the `Force` origin.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Assets', 'Asset', ['u32']
 )
 ```
@@ -57442,11 +57541,11 @@ call = substrate.query(
     'approvals': 'u32',
     'deposit': 'u128',
     'freezer': 'AccountId',
-    'is_frozen': 'bool',
     'is_sufficient': 'bool',
     'issuer': 'AccountId',
     'min_balance': 'u128',
     'owner': 'AccountId',
+    'status': ('Live', 'Frozen', 'Destroying'),
     'sufficients': 'u32',
     'supply': 'u128',
 }
@@ -57457,7 +57556,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Assets', 'Account', ['u32', 'AccountId']
 )
 ```
@@ -57484,7 +57583,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Assets', 'Approvals', ['u32', 'AccountId', 'AccountId']
 )
 ```
@@ -57499,7 +57598,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Assets', 'Metadata', ['u32']
 )
 ```
@@ -57516,6 +57615,19 @@ call = substrate.query(
 ```
 ---------
 ### Constants
+---------
+#### RemoveItemsLimit
+ Max number of items to destroy per `destroy_accounts` and `destroy_approvals` call.
+
+ Must be configured to result in a weight that makes each call fit in a block.
+##### Value
+```python
+1000
+```
+##### Python
+```python
+constant = substrate.get_constant('Assets', 'RemoveItemsLimit')
+```
 ---------
 #### AssetDeposit
  The basic amount of funds that must be reserved for an asset.
@@ -57649,6 +57761,23 @@ The asset-account doesn&\#x27;t have an associated deposit.
 The operation would result in funds being burned.
 
 ---------
+#### LiveAsset
+The asset is a live asset and is actively being used. Usually emit for operations such
+as `start_destroy` which require the asset to be in a destroying state.
+
+---------
+#### AssetNotLive
+The asset is not live, and likely being destroyed.
+
+---------
+#### IncorrectStatus
+The asset status is not the expected status.
+
+---------
+#### NotFrozen
+The asset should be frozen before the given operation.
+
+---------
 
 ## Uniques
 ---------
@@ -57659,7 +57788,7 @@ Issue a new collection of non-fungible items from a public origin.
 
 This new collection has no items initially and its owner is the origin.
 
-The origin must be Signed and the sender must have sufficient funds free.
+The origin must conform to the configured `CreateOrigin` and have sufficient funds free.
 
 `ItemDeposit` funds of sender are reserved.
 
@@ -58861,7 +58990,7 @@ An item was bought.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'Class', ['u32']
 )
 ```
@@ -58887,7 +59016,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'OwnershipAcceptance', ['AccountId']
 )
 ```
@@ -58903,7 +59032,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'Account', ['AccountId', 'u32', 'u32']
 )
 ```
@@ -58919,7 +59048,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'ClassAccount', ['AccountId', 'u32']
 )
 ```
@@ -58934,7 +59063,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'Asset', ['u32', 'u32']
 )
 ```
@@ -58949,7 +59078,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'ClassMetadataOf', ['u32']
 )
 ```
@@ -58964,7 +59093,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'InstanceMetadataOf', ['u32', 'u32']
 )
 ```
@@ -58979,7 +59108,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'Attribute', ['u32', (None, 'u32'), 'Bytes']
 )
 ```
@@ -58994,7 +59123,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'ItemPriceOf', ['u32', 'u32']
 )
 ```
@@ -59009,7 +59138,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Uniques', 'CollectionMaxSupply', ['u32']
 )
 ```

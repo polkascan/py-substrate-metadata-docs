@@ -144,7 +144,7 @@ def generate_docs(node_url: str):
                     doc += ['', f'##### Python']
                     doc += [f'```python']
                     doc += [
-                        f"call = substrate.query(\n    '{pallet.name}', '{storage_function.name}', {pformat(storage_function.get_param_info(max_recursion=5), indent=4, width=40)}\n)"]
+                        f"result = substrate.query(\n    '{pallet.name}', '{storage_function.name}', {pformat(storage_function.get_param_info(max_recursion=5), indent=4, width=40)}\n)"]
                     doc += [f'```']
 
                     return_obj = substrate.runtime_config.create_scale_object(storage_function.get_value_type_string())

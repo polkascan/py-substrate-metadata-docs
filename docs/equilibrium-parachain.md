@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Spec name     | Equilibrium-parachain     |
 | Implementation name     | Equilibrium-parachain     |
-| Spec version     | 7     |
+| Spec version     | 9     |
 | SS58 Format     | 68     |
 | Token symbol      | ['TOKEN']     |
 | Token decimals      | [9]     |
@@ -232,7 +232,7 @@ On on-chain remark happened.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'Account', ['AccountId']
 )
 ```
@@ -253,7 +253,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'ExtrinsicCount', []
 )
 ```
@@ -268,7 +268,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'BlockWeight', []
 )
 ```
@@ -287,7 +287,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'AllExtrinsicsLen', []
 )
 ```
@@ -302,7 +302,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'BlockHash', ['u32']
 )
 ```
@@ -317,7 +317,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'ExtrinsicData', ['u32']
 )
 ```
@@ -332,7 +332,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'Number', []
 )
 ```
@@ -347,7 +347,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'ParentHash', []
 )
 ```
@@ -362,7 +362,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'Digest', []
 )
 ```
@@ -394,7 +394,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'Events', []
 )
 ```
@@ -676,35 +676,6 @@ call = substrate.query(
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'Subaccounts': {
-                'RegisterBailsman': ('AccountId', 'AccountId'),
-                'SubaccountCreated': (
-                    'AccountId',
-                    'AccountId',
-                    'scale_info::88',
-                ),
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::27',
-                    'dispatch_info': 'scale_info::24',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::24'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'Treasury': {
-                'Buyout': {
-                    'asset': 'u64',
-                    'buyout_amount': 'u128',
-                    'exchange_amount': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            None: None,
             'PolkadotXcm': {
                 'AssetsTrapped': (
                     '[u8; 32]',
@@ -775,35 +746,18 @@ call = substrate.query(
                     'proxy_type': 'scale_info::108',
                 },
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::27',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::34'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::27'},
-            },
-            'Vesting': {
-                'VestingCompleted': 'AccountId',
-                'VestingUpdated': ('AccountId', 'u128'),
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'Subaccounts': {
+                'RegisterBailsman': ('AccountId', 'AccountId'),
+                'SubaccountCreated': (
+                    'AccountId',
+                    'AccountId',
+                    'scale_info::88',
+                ),
             },
             'Vesting2': {
                 'VestingCompleted': 'AccountId',
                 'VestingUpdated': ('AccountId', 'u128'),
-            },
-            'Whitelists': {
-                'AddedToWhitelist': 'AccountId',
-                'RemovedFromWhitelist': 'AccountId',
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -844,6 +798,52 @@ call = substrate.query(
                 'SaleBase': ('AccountId', 'u32', 'u128', 'u128'),
                 'SellXBase': ('AccountId', 'u32', 'u128', 'u128'),
             },
+            None: None,
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::27',
+                    'dispatch_info': 'scale_info::24',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::24'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            'Treasury': {
+                'Buyout': {
+                    'asset': 'u64',
+                    'buyout_amount': 'u128',
+                    'exchange_amount': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::27',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::34'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::27'},
+            },
+            'Vesting': {
+                'VestingCompleted': 'AccountId',
+                'VestingUpdated': ('AccountId', 'u128'),
+            },
+            'Whitelists': {
+                'AddedToWhitelist': 'AccountId',
+                'RemovedFromWhitelist': 'AccountId',
+            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -860,7 +860,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'EventCount', []
 )
 ```
@@ -884,7 +884,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'EventTopics', ['[u8; 32]']
 )
 ```
@@ -899,7 +899,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'LastRuntimeUpgrade', []
 )
 ```
@@ -914,7 +914,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'UpgradedToU32RefCount', []
 )
 ```
@@ -930,7 +930,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'UpgradedToTripleRefCount', []
 )
 ```
@@ -945,7 +945,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'System', 'ExecutionPhase', []
 )
 ```
@@ -1047,7 +1047,7 @@ constant = substrate.get_constant('System', 'DbWeight')
     'impl_name': 'Equilibrium-parachain',
     'impl_version': 1,
     'spec_name': 'Equilibrium-parachain',
-    'spec_version': 7,
+    'spec_version': 9,
     'state_version': 0,
     'transaction_version': 1,
 }
@@ -1250,7 +1250,7 @@ Downward messages were processed using the given weight.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'PendingValidationCode', []
 )
 ```
@@ -1269,7 +1269,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'NewValidationCode', []
 )
 ```
@@ -1286,7 +1286,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'ValidationData', []
 )
 ```
@@ -1306,7 +1306,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'DidSetValidationCode', []
 )
 ```
@@ -1321,7 +1321,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'LastRelayChainBlockNumber', []
 )
 ```
@@ -1342,7 +1342,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'UpgradeRestrictionSignal', []
 )
 ```
@@ -1362,7 +1362,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'RelayStateProof', []
 )
 ```
@@ -1383,7 +1383,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'RelevantMessagingState', []
 )
 ```
@@ -1432,7 +1432,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'HostConfiguration', []
 )
 ```
@@ -1460,7 +1460,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'LastDmqMqcHead', []
 )
 ```
@@ -1478,7 +1478,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'LastHrmpMqcHeads', []
 )
 ```
@@ -1495,7 +1495,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'ProcessedDownwardMessages', []
 )
 ```
@@ -1512,7 +1512,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'HrmpWatermark', []
 )
 ```
@@ -1529,7 +1529,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'HrmpOutboundMessages', []
 )
 ```
@@ -1546,7 +1546,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'UpwardMessages', []
 )
 ```
@@ -1561,7 +1561,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'PendingUpwardMessages', []
 )
 ```
@@ -1577,7 +1577,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'AnnouncedHrmpMessagesPerCandidate', []
 )
 ```
@@ -1593,7 +1593,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'ReservedXcmpWeightOverride', []
 )
 ```
@@ -1609,7 +1609,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'ReservedDmpWeightOverride', []
 )
 ```
@@ -1624,7 +1624,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'AuthorizedUpgrade', []
 )
 ```
@@ -1641,7 +1641,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainSystem', 'CustomValidationHeadData', []
 )
 ```
@@ -2779,7 +2779,7 @@ Too many calls batched.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'RandomnessCollectiveFlip', 'RandomMaterial', []
 )
 ```
@@ -2831,7 +2831,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Timestamp', 'Now', []
 )
 ```
@@ -2846,7 +2846,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Timestamp', 'DidUpdate', []
 )
 ```
@@ -2881,7 +2881,7 @@ constant = substrate.get_constant('Timestamp', 'MinimumPeriod')
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ParachainInfo', 'ParachainId', []
 )
 ```
@@ -2952,7 +2952,7 @@ Validator successfully removed
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqSessionManager', 'Validators', ['AccountId']
 )
 ```
@@ -2968,7 +2968,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqSessionManager', 'IsChanged', []
 )
 ```
@@ -3049,7 +3049,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Authorship', 'Uncles', []
 )
 ```
@@ -3064,7 +3064,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Authorship', 'Author', []
 )
 ```
@@ -3079,7 +3079,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Authorship', 'DidSetUncles', []
 )
 ```
@@ -3220,7 +3220,7 @@ block number as the type might suggest.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'Validators', []
 )
 ```
@@ -3235,7 +3235,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'CurrentIndex', []
 )
 ```
@@ -3251,7 +3251,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'QueuedChanged', []
 )
 ```
@@ -3267,7 +3267,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'QueuedKeys', []
 )
 ```
@@ -3286,7 +3286,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'DisabledValidators', []
 )
 ```
@@ -3301,7 +3301,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'NextKeys', ['AccountId']
 )
 ```
@@ -3316,7 +3316,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Session', 'KeyOwner', [('[u8; 4]', 'Bytes')]
 )
 ```
@@ -3365,7 +3365,7 @@ Key setting account is not live, so it&\#x27;s impossible to associate keys.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'AuraExt', 'Authorities', []
 )
 ```
@@ -4045,7 +4045,7 @@ Asset updated in the store \[asset, asset_name\]
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqAssets', 'Assets', []
 )
 ```
@@ -4089,7 +4089,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqAssets', 'AssetsToRemove', []
 )
 ```
@@ -4120,7 +4120,7 @@ Asset with the same AssetId already exists
 
 ---------
 #### AssetNotExists
-Asset not found
+Cannot delete an asset that does not exist
 
 ---------
 #### AssetAlreadyToBeRemoved
@@ -4253,7 +4253,7 @@ aggregated price and `AccountId` of the price submitter
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Oracle', 'PricePoints', ['u64']
 )
 ```
@@ -4281,7 +4281,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Oracle', 'FinMetricsRecalcEnabled', []
 )
 ```
@@ -4481,7 +4481,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqTreasury', 'PalletManager', []
 )
 ```
@@ -4606,7 +4606,7 @@ Buyout event
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Treasury', 'BuyoutLimit', []
 )
 ```
@@ -4621,7 +4621,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Treasury', 'Buyouts', ['AccountId']
 )
 ```
@@ -8906,7 +8906,7 @@ No attributes
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBalances', 'Account', ['AccountId', 'u64']
 )
 ```
@@ -8921,7 +8921,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBalances', 'Reserved', ['AccountId', 'u64']
 )
 ```
@@ -8936,7 +8936,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBalances', 'IsTransfersEnabled', []
 )
 ```
@@ -8952,7 +8952,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBalances', 'IsXcmTransfersEnabled', []
 )
 ```
@@ -8967,7 +8967,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBalances', 'NextXcmLimitPeriod', []
 )
 ```
@@ -8982,7 +8982,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBalances', 'XcmNativeTransfers', ['AccountId']
 )
 ```
@@ -8997,7 +8997,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBalances', 'DailyXcmLimit', []
 )
 ```
@@ -9011,7 +9011,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBalances', 'MigrationToggle', []
 )
 ```
@@ -9172,7 +9172,7 @@ has been paid by `who`.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'TransactionPayment', 'NextFeeMultiplier', []
 )
 ```
@@ -9186,7 +9186,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'TransactionPayment', 'StorageVersion', []
 )
 ```
@@ -9308,7 +9308,7 @@ Bailsman subaccount is no longer a bailsman. \[who\]
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Bailsman', 'BailsmenCount', []
 )
 ```
@@ -9323,7 +9323,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Bailsman', 'LastDistribution', ['AccountId']
 )
 ```
@@ -9338,7 +9338,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Bailsman', 'DistributionQueue', []
 )
 ```
@@ -9365,7 +9365,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Bailsman', 'AutoRedistributionEnabled', []
 )
 ```
@@ -9553,7 +9553,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Whitelists', 'WhiteList', []
 )
 ```
@@ -9787,7 +9787,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqRate', 'Keys', []
 )
 ```
@@ -9802,7 +9802,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqRate', 'LastFeeUpdate', ['AccountId']
 )
 ```
@@ -9817,7 +9817,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqRate', 'NowMillisOffset', []
 )
 ```
@@ -9832,7 +9832,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqRate', 'AutoReinitEnabled', []
 )
 ```
@@ -10157,7 +10157,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Republic', 'PalletManager', []
 )
 ```
@@ -10281,7 +10281,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqInvestors', 'PalletManager', []
 )
 ```
@@ -10405,7 +10405,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqLiquidityFarming', 'PalletManager', []
 )
 ```
@@ -10564,7 +10564,7 @@ An `account` has become fully vested. No further vesting can happen
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Vesting', 'Vesting', ['AccountId']
 )
 ```
@@ -10579,7 +10579,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Vesting', 'Vested', ['AccountId']
 )
 ```
@@ -10760,7 +10760,7 @@ An `account` has become fully vested. No further vesting can happen
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Vesting2', 'Vesting', ['AccountId']
 )
 ```
@@ -10775,7 +10775,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Vesting2', 'Vested', ['AccountId']
 )
 ```
@@ -11008,7 +11008,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Claims', 'Claims', ['[u8; 20]']
 )
 ```
@@ -11023,7 +11023,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Claims', 'Total', []
 )
 ```
@@ -11041,7 +11041,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Claims', 'Vesting', ['[u8; 20]']
 )
 ```
@@ -11057,7 +11057,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Claims', 'Signing', ['[u8; 20]']
 )
 ```
@@ -11073,7 +11073,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Claims', 'Preclaims', ['AccountId']
 )
 ```
@@ -11127,7 +11127,7 @@ Invalid receiver
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqAggregates', 'AccountUserGroups', [
     (
         'Unknown',
@@ -11150,7 +11150,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqAggregates', 'TotalUserGroups', [
     (
         'Unknown',
@@ -11290,7 +11290,7 @@ Register bailsman subaccount as bailsman
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Subaccounts', 'Subaccount', [
     'AccountId',
     ('Bailsman', 'Trader', 'Borrower'),
@@ -11311,7 +11311,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Subaccounts', 'OwnerAccount', ['AccountId']
 )
 ```
@@ -11509,7 +11509,7 @@ Financial metrics for the specified portfolio have been recalculated
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Financial', 'Updates', ['u64']
 )
 ```
@@ -11528,7 +11528,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Financial', 'PriceLogs', ['u64']
 )
 ```
@@ -11546,7 +11546,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Financial', 'PerAssetMetrics', ['u64']
 )
 ```
@@ -11567,7 +11567,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Financial', 'PerPortfolioMetrics', ['AccountId']
 )
 ```
@@ -11588,7 +11588,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Financial', 'Metrics', []
 )
 ```
@@ -12123,7 +12123,7 @@ Execution of call failed. \[dest_id, nonce\]
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ChainBridge', 'ChainNonces', ['u8']
 )
 ```
@@ -12138,7 +12138,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ChainBridge', 'DisabledChains', ['u8']
 )
 ```
@@ -12153,7 +12153,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ChainBridge', 'RelayerThreshold', []
 )
 ```
@@ -12168,7 +12168,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ChainBridge', 'Relayers', ['AccountId']
 )
 ```
@@ -12183,7 +12183,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ChainBridge', 'RelayerCount', []
 )
 ```
@@ -12199,7 +12199,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ChainBridge', 'Votes', ['u8', ('u64', 'Call')]
 )
 ```
@@ -12219,7 +12219,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ChainBridge', 'Resources', ['[u8; 32]']
 )
 ```
@@ -12234,7 +12234,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ChainBridge', 'Fees', ['u8']
 )
 ```
@@ -12249,7 +12249,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'ChainBridge', 'ProposalLifetime', []
 )
 ```
@@ -12597,7 +12597,7 @@ Minimum transfer amount to out of the network has changed. \[chainId, resourceId
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBridge', 'AssetResource', ['u64']
 )
 ```
@@ -12611,7 +12611,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBridge', 'Resources', ['[u8; 32]']
 )
 ```
@@ -12625,7 +12625,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBridge', 'MinimumTransferAmount', ['u8', '[u8; 32]']
 )
 ```
@@ -12639,7 +12639,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqBridge', 'EnabledWithdrawals', ['[u8; 32]']
 )
 ```
@@ -12863,7 +12863,7 @@ Sudo critical failure
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqMultisigSudo', 'Keys', ['AccountId']
 )
 ```
@@ -12878,7 +12878,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqMultisigSudo', 'Threshold', []
 )
 ```
@@ -12893,7 +12893,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqMultisigSudo', 'MultisigProposals', ['[u8; 32]']
 )
 ```
@@ -12999,7 +12999,7 @@ Event is fired when an account is liquidated.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqMarginCall', 'MaintenanceTimers', ['AccountId']
 )
 ```
@@ -13226,7 +13226,7 @@ Orders matched
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqDex', 'OrderIdCounter', []
 )
 ```
@@ -13240,7 +13240,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqDex', 'OrdersByAssetAndChunkKey', ['u64', 'u64']
 )
 ```
@@ -13264,7 +13264,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqDex', 'ActualChunksByAsset', ['u64']
 )
 ```
@@ -13278,7 +13278,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqDex', 'BestPriceByAsset', ['u64']
 )
 ```
@@ -13293,7 +13293,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqDex', 'AssetWeightByAccountId', ['AccountId']
 )
 ```
@@ -13315,7 +13315,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqDex', 'ChunkCorridorByAsset', ['u64']
 )
 ```
@@ -13500,7 +13500,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqLending', 'OnlyBailsmanTill', []
 )
 ```
@@ -13515,7 +13515,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqLending', 'Lenders', ['AccountId', 'u64']
 )
 ```
@@ -13530,7 +13530,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqLending', 'LendersAggregates', ['u64']
 )
 ```
@@ -13546,7 +13546,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqLending', 'CumulatedReward', ['u64']
 )
 ```
@@ -13738,7 +13738,7 @@ User `who` unlocks `amount` of Eq
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqLockdrop', 'MaxOffchainUnlocks', []
 )
 ```
@@ -13754,7 +13754,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqLockdrop', 'LockStart', []
 )
 ```
@@ -13769,7 +13769,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqLockdrop', 'Locks', ['AccountId']
 )
 ```
@@ -13784,7 +13784,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqLockdrop', 'AutoUnlockEnabled', []
 )
 ```
@@ -14147,7 +14147,7 @@ A multisig operation has been cancelled.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Multisig', 'Multisigs', ['AccountId', '[u8; 32]']
 )
 ```
@@ -14166,7 +14166,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Multisig', 'Calls', ['[u8; 32]']
 )
 ```
@@ -14757,7 +14757,7 @@ A proxy was removed.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Proxy', 'Proxies', ['AccountId']
 )
 ```
@@ -14772,7 +14772,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Proxy', 'Announcements', ['AccountId']
 )
 ```
@@ -15006,7 +15006,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqMarketMaker', 'WhiteList', ['AccountId']
 )
 ```
@@ -15432,7 +15432,7 @@ Included values are:
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Xdot', 'PoolCount', []
 )
 ```
@@ -15446,7 +15446,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Xdot', 'Pools', ['u32']
 )
 ```
@@ -15470,7 +15470,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Xdot', 'Initializer', ['u32']
 )
 ```
@@ -15632,7 +15632,7 @@ No attributes
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'Migration', 'Migration', []
 )
 ```
@@ -15993,7 +15993,7 @@ Included values are:
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'CurveAmm', 'PoolCount', []
 )
 ```
@@ -16008,7 +16008,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'CurveAmm', 'Pools', ['u32']
 )
 ```
@@ -16033,7 +16033,7 @@ call = substrate.query(
  Anti ddos fee for pool creation
 ##### Value
 ```python
-100000000000
+100000000000000
 ```
 ##### Python
 ```python
@@ -57555,7 +57555,7 @@ migrating the location to our new XCM format.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'QueryCounter', []
 )
 ```
@@ -57570,7 +57570,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'Queries', ['u64']
 )
 ```
@@ -57841,7 +57841,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'AssetTraps', ['[u8; 32]']
 )
 ```
@@ -57857,7 +57857,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'SafeXcmVersion', []
 )
 ```
@@ -57872,7 +57872,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'SupportedVersion', [
     'u32',
     {
@@ -60704,7 +60704,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'VersionNotifiers', [
     'u32',
     {
@@ -63537,7 +63537,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'VersionNotifyTargets', [
     'u32',
     {
@@ -66371,7 +66371,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'VersionDiscoveryQueue', []
 )
 ```
@@ -66443,7 +66443,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'PolkadotXcm', 'CurrentMigration', []
 )
 ```
@@ -66615,7 +66615,7 @@ Downward message from the overweight queue was executed.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'DmpQueue', 'Configuration', []
 )
 ```
@@ -66630,7 +66630,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'DmpQueue', 'PageIndex', []
 )
 ```
@@ -66645,7 +66645,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'DmpQueue', 'Pages', ['u32']
 )
 ```
@@ -66660,7 +66660,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'DmpQueue', 'Overweight', ['u64']
 )
 ```
@@ -66943,7 +66943,7 @@ An XCM from the overweight queue was executed with the given actual weight used.
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'InboundXcmpStatus', []
 )
 ```
@@ -66973,7 +66973,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'InboundXcmpMessages', ['u32', 'u32']
 )
 ```
@@ -66993,7 +66993,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'OutboundXcmpStatus', []
 )
 ```
@@ -67016,7 +67016,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'OutboundXcmpMessages', ['u32', 'u16']
 )
 ```
@@ -67031,7 +67031,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'SignalMessages', ['u32']
 )
 ```
@@ -67046,7 +67046,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'QueueConfig', []
 )
 ```
@@ -67071,7 +67071,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'Overweight', ['u64']
 )
 ```
@@ -67087,7 +67087,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'OverweightCount', []
 )
 ```
@@ -67102,7 +67102,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'XcmpQueue', 'QueueSuspended', []
 )
 ```
@@ -67204,7 +67204,7 @@ call = substrate.compose_call(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqWrappedDot', 'RelayStakingInfo', []
 )
 ```
@@ -67229,7 +67229,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqWrappedDot', 'CurrentBalance', []
 )
 ```
@@ -67244,7 +67244,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqWrappedDot', 'WithdrawQueue', []
 )
 ```
@@ -67259,7 +67259,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqWrappedDot', 'LastWithdrawEra', []
 )
 ```
@@ -67274,7 +67274,7 @@ call = substrate.query(
 
 ##### Python
 ```python
-call = substrate.query(
+result = substrate.query(
     'EqWrappedDot', 'StakingRoutinePeriodicity', []
 )
 ```
@@ -67325,7 +67325,7 @@ constant = substrate.get_constant('EqWrappedDot', 'MinReserve')
  Min amount to deposit, by default 5 DOT
 ##### Value
 ```python
-5000000000
+1000000000
 ```
 ##### Python
 ```python

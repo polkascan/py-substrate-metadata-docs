@@ -4,6 +4,22 @@ Documentation of Substrate metadata for well known runtimes and how to use it wi
 
 ## How to read the type information
 
+### Core types
+
+| Type                    | Description                                                                             | Type information example                                             |
+|-------------------------|-----------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| `u8`, `u16`, `u32`, etc | Unsigned 8/16/32/etc bit integer                                                        | 1                                                                    |
+| `bool`                  | Boolean                                                                                 | `True`                                                               |
+| `[u8; 32]`              | Fixed sized array with in this case 32 `u8` elements. Can also be written as hex-string | `0xe1781813275653a970b4260298b3858b36d38e072256dad674f7c786a0cae236` |
+| `Bytes`                 | Arbitrary length `str`. Internally same as a `Vec<u8>`                                  | `'test'`                                                             |
+| `AccountId`             | SS58 encoded account                                                                    | `'5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'`                     |
+| `Call`                  | Substrate `RuntimeCall` to place into an extrinsic or nest in another call              | Result of `substrate.compose_call()`                                 |
+| Enum                    | Enumeration of possible variants, represented as a `dict` with CamelCase variants       | `{'Id': 'AccountId','Index': 'u32'}`                                 |
+| Option                  | Special enumeration provided 'None' and 'Some' variants represented as a `tuple`        | `(None, 'u32')`                                                      |
+| Struct                  | Data structure, represented as a `dict` with snake_case properties                      | `{'account': 'AccountId', 'fee': 'u128', 'fields': 'u64'}`           |
+| Vec                     | Variable size array containing a certain type, for example a `u32`                      | `['u32']`                                                            |
+
+
 ### Example 1: Storage function parameters
 
 ```python
@@ -107,7 +123,7 @@ So examples of valid input for `beneficiary` are:
 * [Ajuna Polkadot](ajuna.md)
 * [Astar](astar.md)
 * [Bifrost Polkadot](bifrost_polkadot.md)
-* [Bitgreen](bitgreen-parachain.md)
+* [Bitgreen](bitgreen.md)
 * [Centrifuge](centrifuge.md)
 * [Clover](clover-mainnet.md)
 * [Composable Finance](composable.md)
