@@ -60,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost Polkadot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen/">Bitgreen</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
                   </li>
@@ -2098,7 +2098,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="account">Account</h4>
 <p>The full account information for a particular account ID.</p>
 <h5 id="python_9">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'Account', ['AccountId']
 )
 </code></pre>
@@ -2120,7 +2120,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="extrinsiccount">ExtrinsicCount</h4>
 <p>Total extrinsics count for the current block.</p>
 <h5 id="python_10">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicCount', []
 )
 </code></pre>
@@ -2131,7 +2131,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="blockweight">BlockWeight</h4>
 <p>The current weight for the block.</p>
 <h5 id="python_11">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'BlockWeight', []
 )
 </code></pre>
@@ -2142,7 +2142,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="allextrinsicslen">AllExtrinsicsLen</h4>
 <p>Total length (in bytes) for all extrinsics put together, for the current block.</p>
 <h5 id="python_12">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'AllExtrinsicsLen', []
 )
 </code></pre>
@@ -2153,7 +2153,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="blockhash">BlockHash</h4>
 <p>Map of block numbers to block hashes.</p>
 <h5 id="python_13">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'BlockHash', ['u32']
 )
 </code></pre>
@@ -2164,7 +2164,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="extrinsicdata">ExtrinsicData</h4>
 <p>Extrinsics data for the current block (maps an extrinsic&#x27;s index to its data).</p>
 <h5 id="python_14">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicData', ['u32']
 )
 </code></pre>
@@ -2175,7 +2175,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="number">Number</h4>
 <p>The current block number being processed. Set by <code>execute_block</code>.</p>
 <h5 id="python_15">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'Number', []
 )
 </code></pre>
@@ -2186,7 +2186,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="parenthash">ParentHash</h4>
 <p>Hash of the previous block.</p>
 <h5 id="python_16">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'ParentHash', []
 )
 </code></pre>
@@ -2197,7 +2197,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="digest">Digest</h4>
 <p>Digest of the current block, also part of the block header.</p>
 <h5 id="python_17">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'Digest', []
 )
 </code></pre>
@@ -2223,7 +2223,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <p>Events have a large in-memory size. Box the events to not go out-of-memory
  just in case someone still reads them from within the runtime.</p>
 <h5 id="python_18">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'Events', []
 )
 </code></pre>
@@ -2554,11 +2554,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
-            },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -2570,6 +2565,10 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::22'},
             },
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
             'XcmpQueue': {
                 'BadFormat': (None, '[u8; 32]'),
                 'BadVersion': (None, '[u8; 32]'),
@@ -2580,6 +2579,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'UpwardMessageSent': (None, '[u8; 32]'),
                 'XcmpMessageSent': (None, '[u8; 32]'),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -2594,7 +2594,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="eventcount">EventCount</h4>
 <p>The number of events in the <code>Events&amp;lt;T&amp;gt;</code> list.</p>
 <h5 id="python_19">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'EventCount', []
 )
 </code></pre>
@@ -2612,7 +2612,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
  the <code>EventIndex</code> then in case if the topic has the same contents on the next block
  no notification will be triggered thus the event might be lost.</p>
 <h5 id="python_20">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'EventTopics', ['[u8; 32]']
 )
 </code></pre>
@@ -2623,7 +2623,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="lastruntimeupgrade">LastRuntimeUpgrade</h4>
 <p>Stores the <code>spec_version</code> and <code>spec_name</code> of when the last runtime upgrade happened.</p>
 <h5 id="python_21">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'LastRuntimeUpgrade', []
 )
 </code></pre>
@@ -2634,7 +2634,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="upgradedtou32refcount">UpgradedToU32RefCount</h4>
 <p>True if we have upgraded so that <code>type RefCount</code> is <code>u32</code>. False (default) if not.</p>
 <h5 id="python_22">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToU32RefCount', []
 )
 </code></pre>
@@ -2646,7 +2646,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <p>True if we have upgraded so that AccountInfo contains three types of <code>RefCount</code>. False
  (default) if not.</p>
 <h5 id="python_23">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToTripleRefCount', []
 )
 </code></pre>
@@ -2657,7 +2657,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="executionphase">ExecutionPhase</h4>
 <p>The execution phase of the block.</p>
 <h5 id="python_24">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'System', 'ExecutionPhase', []
 )
 </code></pre>
@@ -3011,7 +3011,7 @@ if the appropriate time has come.</p>
 <p>As soon as the relay chain gives us the go-ahead signal, we will overwrite the <a href="sp_core::storage::well_known_keys::CODE"><code>:code</code></a>
  which will result the next block process with the new validation code. This concludes the upgrade process.</p>
 <h5 id="python_35">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'PendingValidationCode', []
 )
 </code></pre>
@@ -3025,7 +3025,7 @@ if the appropriate time has come.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block if no other pallet already set
  the value.</p>
 <h5 id="python_36">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'NewValidationCode', []
 )
 </code></pre>
@@ -3038,7 +3038,7 @@ if the appropriate time has come.</p>
  This value is expected to be set only once per block and it&#x27;s never stored
  in the trie.</p>
 <h5 id="python_37">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ValidationData', []
 )
 </code></pre>
@@ -3054,7 +3054,7 @@ if the appropriate time has come.</p>
 <h4 id="didsetvalidationcode">DidSetValidationCode</h4>
 <p>Were the validation data set to notify the relay chain?</p>
 <h5 id="python_38">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'DidSetValidationCode', []
 )
 </code></pre>
@@ -3070,7 +3070,7 @@ if the appropriate time has come.</p>
  relay-chain. This value is ephemeral which means it doesn&#x27;t hit the storage. This value is
  set after the inherent.</p>
 <h5 id="python_39">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'UpgradeRestrictionSignal', []
 )
 </code></pre>
@@ -3084,7 +3084,7 @@ if the appropriate time has come.</p>
  before processing of the inherent, e.g. in <code>on_initialize</code> this data may be stale.</p>
 <p>This data is also absent from the genesis.</p>
 <h5 id="python_40">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'RelayStateProof', []
 )
 </code></pre>
@@ -3099,7 +3099,7 @@ if the appropriate time has come.</p>
  before processing of the inherent, e.g. in <code>on_initialize</code> this data may be stale.</p>
 <p>This data is also absent from the genesis.</p>
 <h5 id="python_41">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'RelevantMessagingState', []
 )
 </code></pre>
@@ -3142,7 +3142,7 @@ if the appropriate time has come.</p>
  before processing of the inherent, e.g. in <code>on_initialize</code> this data may be stale.</p>
 <p>This data is also absent from the genesis.</p>
 <h5 id="python_42">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HostConfiguration', []
 )
 </code></pre>
@@ -3165,7 +3165,7 @@ if the appropriate time has come.</p>
 <p>This value is loaded before and saved after processing inbound downward messages carried
  by the system inherent.</p>
 <h5 id="python_43">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastDmqMqcHead', []
 )
 </code></pre>
@@ -3178,7 +3178,7 @@ if the appropriate time has come.</p>
 <p>This value is loaded before and saved after processing inbound downward messages carried
  by the system inherent.</p>
 <h5 id="python_44">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastHrmpMqcHeads', []
 )
 </code></pre>
@@ -3190,7 +3190,7 @@ if the appropriate time has come.</p>
 <p>Number of downward messages processed in a block.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block.</p>
 <h5 id="python_45">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ProcessedDownwardMessages', []
 )
 </code></pre>
@@ -3202,7 +3202,7 @@ if the appropriate time has come.</p>
 <p>HRMP watermark that was set in a block.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block.</p>
 <h5 id="python_46">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HrmpWatermark', []
 )
 </code></pre>
@@ -3214,7 +3214,7 @@ if the appropriate time has come.</p>
 <p>HRMP messages that were sent in a block.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block.</p>
 <h5 id="python_47">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HrmpOutboundMessages', []
 )
 </code></pre>
@@ -3226,7 +3226,7 @@ if the appropriate time has come.</p>
 <p>Upward messages that were sent in a block.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block.</p>
 <h5 id="python_48">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'UpwardMessages', []
 )
 </code></pre>
@@ -3237,7 +3237,7 @@ if the appropriate time has come.</p>
 <h4 id="pendingupwardmessages">PendingUpwardMessages</h4>
 <p>Upward messages that are still pending and not yet send to the relay chain.</p>
 <h5 id="python_49">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'PendingUpwardMessages', []
 )
 </code></pre>
@@ -3249,7 +3249,7 @@ if the appropriate time has come.</p>
 <p>The number of HRMP messages we observed in <code>on_initialize</code> and thus used that number for
  announcing the weight of <code>on_initialize</code> and <code>on_finalize</code>.</p>
 <h5 id="python_50">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'AnnouncedHrmpMessagesPerCandidate', []
 )
 </code></pre>
@@ -3261,7 +3261,7 @@ if the appropriate time has come.</p>
 <p>The weight we reserve at the beginning of the block for processing XCMP messages. This
  overrides the amount set in the Config trait.</p>
 <h5 id="python_51">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ReservedXcmpWeightOverride', []
 )
 </code></pre>
@@ -3273,7 +3273,7 @@ if the appropriate time has come.</p>
 <p>The weight we reserve at the beginning of the block for processing DMP messages. This
  overrides the amount set in the Config trait.</p>
 <h5 id="python_52">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ReservedDmpWeightOverride', []
 )
 </code></pre>
@@ -3284,7 +3284,7 @@ if the appropriate time has come.</p>
 <h4 id="authorizedupgrade">AuthorizedUpgrade</h4>
 <p>The next authorized upgrade, if there is one.</p>
 <h5 id="python_53">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'AuthorizedUpgrade', []
 )
 </code></pre>
@@ -3296,7 +3296,7 @@ if the appropriate time has come.</p>
 <p>A custom head data that should be returned as result of <code>validate_block</code>.</p>
 <p>See [<code>Pallet::set_custom_validation_head_data</code>] for more information.</p>
 <h5 id="python_54">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'CustomValidationHeadData', []
 )
 </code></pre>
@@ -3374,7 +3374,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <h4 id="now">Now</h4>
 <p>Current time for the current block.</p>
 <h5 id="python_56">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Timestamp', 'Now', []
 )
 </code></pre>
@@ -3385,7 +3385,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <h4 id="didupdate">DidUpdate</h4>
 <p>Did the timestamp get updated in this block?</p>
 <h5 id="python_57">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Timestamp', 'DidUpdate', []
 )
 </code></pre>
@@ -3413,7 +3413,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <hr />
 <h4 id="parachainid">ParachainId</h4>
 <h5 id="python_59">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'ParachainInfo', 'ParachainId', []
 )
 </code></pre>
@@ -3638,7 +3638,7 @@ a given account.</p>
 <h4 id="key">Key</h4>
 <p>The <code>AccountId</code> of the sudo key.</p>
 <h5 id="python_64">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Sudo', 'Key', []
 )
 </code></pre>
@@ -4022,7 +4022,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 <h4 id="agenda">Agenda</h4>
 <p>Items to be executed, indexed by the block number that they should be executed on.</p>
 <h5 id="python_71">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Scheduler', 'Agenda', ['u32']
 )
 </code></pre>
@@ -4035,14 +4035,14 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::52',
                     'Xcm': 'scale_info::52',
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },
@@ -4053,7 +4053,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 <h4 id="lookup">Lookup</h4>
 <p>Lookup from identity to the block number and index of the task.</p>
 <h5 id="python_72">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Scheduler', 'Lookup', ['Bytes']
 )
 </code></pre>
@@ -4240,6 +4240,10 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -5098,17 +5102,13 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
                 'parents': 'u8',
             },
         },
+        'Void': (),
+        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
-        'Void': (),
     },
     'call': 'Call',
 }
@@ -5416,7 +5416,7 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <h4 id="statusfor">StatusFor</h4>
 <p>The request status of a given hash.</p>
 <h5 id="python_85">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Preimage', 'StatusFor', ['[u8; 32]']
 )
 </code></pre>
@@ -5427,7 +5427,7 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <h4 id="preimagefor">PreimageFor</h4>
 <p>The preimages stored by this pallet.</p>
 <h5 id="python_86">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Preimage', 'PreimageFor', ['[u8; 32]']
 )
 </code></pre>
@@ -5464,7 +5464,7 @@ a user may have paid, and take the control of the preimage out of their hands.</
  is arranged as a ring buffer with <code>block_number % 81</code> being the index into the <code>Vec</code> of
  the oldest hash.</p>
 <h5 id="python_87">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'RandomnessCollectiveFlip', 'RandomMaterial', []
 )
 </code></pre>
@@ -6038,7 +6038,7 @@ Final argument indicates the destination balance type.</p>
 <h4 id="totalissuance">TotalIssuance</h4>
 <p>The total units issued in the system.</p>
 <h5 id="python_94">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Balances', 'TotalIssuance', []
 )
 </code></pre>
@@ -6064,7 +6064,7 @@ Final argument indicates the destination balance type.</p>
  <code>Balances</code> pallet, which uses a <code>StorageMap</code> to store balances data only.
  NOTE: This is only used in the case that this pallet is used to store balances.</p>
 <h5 id="python_95">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Balances', 'Account', ['AccountId']
 )
 </code></pre>
@@ -6081,7 +6081,7 @@ Final argument indicates the destination balance type.</p>
 <p>Any liquidity locks on some account balances.
  NOTE: Should only be accessed when setting, changing and freeing a lock.</p>
 <h5 id="python_96">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Balances', 'Locks', ['AccountId']
 )
 </code></pre>
@@ -6092,7 +6092,7 @@ Final argument indicates the destination balance type.</p>
 <h4 id="reserves">Reserves</h4>
 <p>Named reserves on some account balances.</p>
 <h5 id="python_97">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Balances', 'Reserves', ['AccountId']
 )
 </code></pre>
@@ -6104,7 +6104,7 @@ Final argument indicates the destination balance type.</p>
 <p>Storage version of the pallet.</p>
 <p>This is set to v2.0.0 for new networks.</p>
 <h5 id="python_98">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Balances', 'StorageVersion', []
 )
 </code></pre>
@@ -6174,7 +6174,7 @@ Final argument indicates the destination balance type.</p>
 <hr />
 <h4 id="nextfeemultiplier">NextFeeMultiplier</h4>
 <h5 id="python_102">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'TransactionPayment', 'NextFeeMultiplier', []
 )
 </code></pre>
@@ -6184,7 +6184,7 @@ Final argument indicates the destination balance type.</p>
 <hr />
 <h4 id="storageversion_1">StorageVersion</h4>
 <h5 id="python_103">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'TransactionPayment', 'StorageVersion', []
 )
 </code></pre>
@@ -7989,7 +7989,7 @@ the approved <code>delegate</code>.</p>
 <h4 id="asset">Asset</h4>
 <p>Details of an asset.</p>
 <h5 id="python_130">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Assets', 'Asset', ['u32']
 )
 </code></pre>
@@ -8013,7 +8013,7 @@ the approved <code>delegate</code>.</p>
 <h4 id="account_2">Account</h4>
 <p>The holdings of a specific account for a specific asset.</p>
 <h5 id="python_131">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Assets', 'Account', ['u32', 'AccountId']
 )
 </code></pre>
@@ -8036,7 +8036,7 @@ the approved <code>delegate</code>.</p>
  is the amount of <code>T::Currency</code> reserved for storing this.
  First key is the asset ID, second key is the owner and third key is the delegate.</p>
 <h5 id="python_132">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Assets', 'Approvals', ['u32', 'AccountId', 'AccountId']
 )
 </code></pre>
@@ -8047,7 +8047,7 @@ the approved <code>delegate</code>.</p>
 <h4 id="metadata">Metadata</h4>
 <p>Metadata of an asset.</p>
 <h5 id="python_133">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Assets', 'Metadata', ['u32']
 )
 </code></pre>
@@ -8453,7 +8453,7 @@ The balance given is the amount which is left unvested (and thus locked).</p>
 <h4 id="vesting_1">Vesting</h4>
 <p>Information regarding the vesting of a given account.</p>
 <h5 id="python_145">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Vesting', 'Vesting', ['AccountId']
 )
 </code></pre>
@@ -8465,7 +8465,7 @@ The balance given is the amount which is left unvested (and thus locked).</p>
 <p>Storage version of the pallet.</p>
 <p>New networks start with latest version, as determined by the genesis build.</p>
 <h5 id="python_146">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Vesting', 'StorageVersion', []
 )
 </code></pre>
@@ -8539,12 +8539,12 @@ cannot add another one. Consider merging existing schedules in order to add anot
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -8572,7 +8572,7 @@ cannot add another one. Consider merging existing schedules in order to add anot
 <h4 id="uncles">Uncles</h4>
 <p>Uncles</p>
 <h5 id="python_150">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Authorship', 'Uncles', []
 )
 </code></pre>
@@ -8583,7 +8583,7 @@ cannot add another one. Consider merging existing schedules in order to add anot
 <h4 id="author">Author</h4>
 <p>Author of current block.</p>
 <h5 id="python_151">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Authorship', 'Author', []
 )
 </code></pre>
@@ -8594,7 +8594,7 @@ cannot add another one. Consider merging existing schedules in order to add anot
 <h4 id="didsetuncles">DidSetUncles</h4>
 <p>Whether uncles were already set in this block.</p>
 <h5 id="python_152">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Authorship', 'DidSetUncles', []
 )
 </code></pre>
@@ -8845,7 +8845,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <h4 id="invulnerables">Invulnerables</h4>
 <p>The invulnerable, fixed collators.</p>
 <h5 id="python_159">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'Invulnerables', []
 )
 </code></pre>
@@ -8856,7 +8856,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <h4 id="candidates">Candidates</h4>
 <p>The (community, limited) collation candidates.</p>
 <h5 id="python_160">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'Candidates', []
 )
 </code></pre>
@@ -8867,7 +8867,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <h4 id="lastauthoredblock">LastAuthoredBlock</h4>
 <p>Last block authored by collator.</p>
 <h5 id="python_161">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'LastAuthoredBlock', ['AccountId']
 )
 </code></pre>
@@ -8879,7 +8879,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <p>Desired number of candidates.</p>
 <p>This should ideally always be less than [<code>Config::MaxCandidates</code>] for weights to be correct.</p>
 <h5 id="python_162">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'DesiredCandidates', []
 )
 </code></pre>
@@ -8891,7 +8891,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <p>Fixed amount to deposit to become a collator.</p>
 <p>When a collator calls <code>leave_intent</code> they immediately receive the deposit back.</p>
 <h5 id="python_163">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'CandidacyBond', []
 )
 </code></pre>
@@ -9020,7 +9020,7 @@ block number as the type might suggest.</p>
 <h4 id="validators">Validators</h4>
 <p>The current set of validators.</p>
 <h5 id="python_166">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Session', 'Validators', []
 )
 </code></pre>
@@ -9031,7 +9031,7 @@ block number as the type might suggest.</p>
 <h4 id="currentindex">CurrentIndex</h4>
 <p>Current index of the session.</p>
 <h5 id="python_167">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Session', 'CurrentIndex', []
 )
 </code></pre>
@@ -9043,7 +9043,7 @@ block number as the type might suggest.</p>
 <p>True if the underlying economic identities or weighting behind the validators
  has changed in the queued validator set.</p>
 <h5 id="python_168">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Session', 'QueuedChanged', []
 )
 </code></pre>
@@ -9055,7 +9055,7 @@ block number as the type might suggest.</p>
 <p>The queued keys for the next session. When the next session begins, these keys
  will be used to determine the validator&#x27;s session keys.</p>
 <h5 id="python_169">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Session', 'QueuedKeys', []
 )
 </code></pre>
@@ -9069,7 +9069,7 @@ block number as the type might suggest.</p>
  disabled using binary search. It gets cleared when <code>on_session_ending</code> returns
  a new set of identities.</p>
 <h5 id="python_170">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Session', 'DisabledValidators', []
 )
 </code></pre>
@@ -9080,7 +9080,7 @@ block number as the type might suggest.</p>
 <h4 id="nextkeys">NextKeys</h4>
 <p>The next session keys for a validator.</p>
 <h5 id="python_171">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Session', 'NextKeys', ['AccountId']
 )
 </code></pre>
@@ -9091,7 +9091,7 @@ block number as the type might suggest.</p>
 <h4 id="keyowner">KeyOwner</h4>
 <p>The owner of a key. The key is the <code>KeyTypeId</code> + the encoded key.</p>
 <h5 id="python_172">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Session', 'KeyOwner', [('[u8; 4]', 'Bytes')]
 )
 </code></pre>
@@ -9123,7 +9123,7 @@ block number as the type might suggest.</p>
 <h4 id="authorities">Authorities</h4>
 <p>The current authority set.</p>
 <h5 id="python_173">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Aura', 'Authorities', []
 )
 </code></pre>
@@ -9135,7 +9135,7 @@ block number as the type might suggest.</p>
 <p>The current slot of this block.</p>
 <p>This will be set in <code>on_initialize</code>.</p>
 <h5 id="python_174">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'Aura', 'CurrentSlot', []
 )
 </code></pre>
@@ -9153,7 +9153,7 @@ block number as the type might suggest.</p>
  but we require the old authorities to verify the seal when validating a PoV. This will always
  be updated to the latest AuRa authorities in <code>on_finalize</code>.</p>
 <h5 id="python_175">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'AuraExt', 'Authorities', []
 )
 </code></pre>
@@ -9592,7 +9592,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <h4 id="inboundxcmpstatus">InboundXcmpStatus</h4>
 <p>Status of the inbound XCMP channels.</p>
 <h5 id="python_185">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'InboundXcmpStatus', []
 )
 </code></pre>
@@ -9618,7 +9618,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <h4 id="inboundxcmpmessages">InboundXcmpMessages</h4>
 <p>Inbound aggregate XCMP messages. It can only be one per ParaId/block.</p>
 <h5 id="python_186">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'InboundXcmpMessages', ['u32', 'u32']
 )
 </code></pre>
@@ -9634,7 +9634,7 @@ Messages above this weight go into the overweight queue and may only be serviced
  case of the need to send a high-priority signal message this block.
  The bool is true if there is a signal message waiting to be sent.</p>
 <h5 id="python_187">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'OutboundXcmpStatus', []
 )
 </code></pre>
@@ -9653,7 +9653,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <h4 id="outboundxcmpmessages">OutboundXcmpMessages</h4>
 <p>The messages outbound in a given XCMP channel.</p>
 <h5 id="python_188">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'OutboundXcmpMessages', ['u32', 'u16']
 )
 </code></pre>
@@ -9664,7 +9664,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <h4 id="signalmessages">SignalMessages</h4>
 <p>Any signal messages waiting to be sent.</p>
 <h5 id="python_189">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'SignalMessages', ['u32']
 )
 </code></pre>
@@ -9675,7 +9675,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <h4 id="queueconfig">QueueConfig</h4>
 <p>The configuration which controls the dynamics of the outbound queue.</p>
 <h5 id="python_190">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'QueueConfig', []
 )
 </code></pre>
@@ -9695,7 +9695,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <p>These message stay in this storage map until they are manually dispatched via
  <code>service_overweight</code>.</p>
 <h5 id="python_191">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'Overweight', ['u64']
 )
 </code></pre>
@@ -9707,7 +9707,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <p>The number of overweight messages ever recorded in <code>Overweight</code>. Also doubles as the next
  available free overweight index.</p>
 <h5 id="python_192">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'OverweightCount', []
 )
 </code></pre>
@@ -9718,7 +9718,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <h4 id="queuesuspended">QueueSuspended</h4>
 <p>Whether or not the XCMP queue is suspended from executing incoming XCMs or not.</p>
 <h5 id="python_193">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'QueueSuspended', []
 )
 </code></pre>
@@ -51913,7 +51913,7 @@ desired version of XCM).</p>
 <h4 id="configuration">Configuration</h4>
 <p>The configuration.</p>
 <h5 id="python_205">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'DmpQueue', 'Configuration', []
 )
 </code></pre>
@@ -51924,7 +51924,7 @@ desired version of XCM).</p>
 <h4 id="pageindex">PageIndex</h4>
 <p>The page index.</p>
 <h5 id="python_206">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'DmpQueue', 'PageIndex', []
 )
 </code></pre>
@@ -51935,7 +51935,7 @@ desired version of XCM).</p>
 <h4 id="pages">Pages</h4>
 <p>The queue pages.</p>
 <h5 id="python_207">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'DmpQueue', 'Pages', ['u32']
 )
 </code></pre>
@@ -51946,7 +51946,7 @@ desired version of XCM).</p>
 <h4 id="overweight_1">Overweight</h4>
 <p>The overweight messages.</p>
 <h5 id="python_208">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'DmpQueue', 'Overweight', ['u64']
 )
 </code></pre>
@@ -52558,7 +52558,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="dataid">DataId</h4>
 <h5 id="python_220">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'KylinOraclePallet', 'DataId', []
 )
 </code></pre>
@@ -52568,7 +52568,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="datarequests">DataRequests</h4>
 <h5 id="python_221">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'KylinOraclePallet', 'DataRequests', ['u64']
 )
 </code></pre>
@@ -52589,7 +52589,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="savedrequests">SavedRequests</h4>
 <h5 id="python_222">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'KylinOraclePallet', 'SavedRequests', ['u64']
 )
 </code></pre>
@@ -52610,7 +52610,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="apiqueue">ApiQueue</h4>
 <h5 id="python_223">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'KylinOraclePallet', 'ApiQueue', ['u64']
 )
 </code></pre>
@@ -52631,7 +52631,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="nextunsignedat">NextUnsignedAt</h4>
 <h5 id="python_224">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'KylinOraclePallet', 'NextUnsignedAt', []
 )
 </code></pre>
@@ -52641,7 +52641,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="feedaccountlookup">FeedAccountLookup</h4>
 <h5 id="python_225">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'KylinOraclePallet', 'FeedAccountLookup', ['Bytes']
 )
 </code></pre>
@@ -82964,7 +82964,7 @@ another account).</p>
 <h4 id="totalissuance_1">TotalIssuance</h4>
 <p>The total issuance of a token type.</p>
 <h5 id="python_236">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'OrmlTokens', 'TotalIssuance', [('DOT', 'KYL', 'ACA', 'LDOT', 'AUSD')]
 )
 </code></pre>
@@ -82976,7 +82976,7 @@ another account).</p>
 <p>Any liquidity locks of a token type under an account.
  NOTE: Should only be accessed when setting, changing and freeing a lock.</p>
 <h5 id="python_237">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'OrmlTokens', 'Locks', [
     'AccountId',
     (
@@ -82999,7 +82999,7 @@ another account).</p>
 <p>NOTE: This is only used in the case that this module is used to store
  balances.</p>
 <h5 id="python_238">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'OrmlTokens', 'Accounts', [
     'AccountId',
     (
@@ -83019,7 +83019,7 @@ another account).</p>
 <h4 id="reserves_1">Reserves</h4>
 <p>Named reserves on some account balances.</p>
 <h5 id="python_239">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'OrmlTokens', 'Reserves', [
     'AccountId',
     (
@@ -83141,7 +83141,7 @@ another account).</p>
  fungible id.</p>
 <p>double_map: who, asset_id =&gt; u128</p>
 <h5 id="python_242">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'OrmlUnknownTokens', 'ConcreteFungibleBalances', [
     {
         'interior': {
@@ -86961,7 +86961,7 @@ another account).</p>
  fungible id.</p>
 <p>double_map: who, asset_id =&gt; u128</p>
 <h5 id="python_243">Python</h5>
-<pre><code class="language-python">call = substrate.query(
+<pre><code class="language-python">result = substrate.query(
     'OrmlUnknownTokens', 'AbstractFungibleBalances', [
     {
         'interior': {

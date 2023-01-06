@@ -41,6 +41,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#how-to-read-the-type-information">How to read the type information</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#core-types">Core types</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#example-1-storage-function-parameters">Example 1: Storage function parameters</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#example-2-storage-function-return-value">Example 2: Storage function return value</a>
@@ -78,7 +80,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="bifrost_polkadot/">Bifrost Polkadot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="bitgreen-parachain/">Bitgreen</a>
+                  <li class="toctree-l1"><a class="reference internal" href="bitgreen/">Bitgreen</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="centrifuge/">Centrifuge</a>
                   </li>
@@ -221,6 +223,68 @@
                 <h1 id="pysubstrate-metadata-docs">PySubstrate Metadata docs</h1>
 <p>Documentation of Substrate metadata for well known runtimes and how to use it with <a href="https://github.com/polkascan/py-substrate-interface">py-substrate-interface</a>.</p>
 <h2 id="how-to-read-the-type-information">How to read the type information</h2>
+<h3 id="core-types">Core types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Type information example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>u8</code>, <code>u16</code>, <code>u32</code>, etc</td>
+<td>Unsigned 8/16/32/etc bit integer</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>bool</code></td>
+<td>Boolean</td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>[u8; 32]</code></td>
+<td>Fixed sized array with in this case 32 <code>u8</code> elements. Can also be written as hex-string</td>
+<td><code>0xe1781813275653a970b4260298b3858b36d38e072256dad674f7c786a0cae236</code></td>
+</tr>
+<tr>
+<td><code>Bytes</code></td>
+<td>Arbitrary length <code>str</code>. Internally same as a <code>Vec&lt;u8&gt;</code></td>
+<td><code>'test'</code></td>
+</tr>
+<tr>
+<td><code>AccountId</code></td>
+<td>SS58 encoded account</td>
+<td><code>'5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY'</code></td>
+</tr>
+<tr>
+<td><code>Call</code></td>
+<td>Substrate <code>RuntimeCall</code> to place into an extrinsic or nest in another call</td>
+<td>Result of <code>substrate.compose_call()</code></td>
+</tr>
+<tr>
+<td>Enum</td>
+<td>Enumeration of possible variants, represented as a <code>dict</code> with CamelCase variants</td>
+<td><code>{'Id': 'AccountId','Index': 'u32'}</code></td>
+</tr>
+<tr>
+<td>Option</td>
+<td>Special enumeration provided 'None' and 'Some' variants represented as a <code>tuple</code></td>
+<td><code>(None, 'u32')</code></td>
+</tr>
+<tr>
+<td>Struct</td>
+<td>Data structure, represented as a <code>dict</code> with snake_case properties</td>
+<td><code>{'account': 'AccountId', 'fee': 'u128', 'fields': 'u64'}</code></td>
+</tr>
+<tr>
+<td>Vec</td>
+<td>Variable size array containing a certain type, for example a <code>u32</code></td>
+<td><code>['u32']</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="example-1-storage-function-parameters">Example 1: Storage function parameters</h3>
 <pre><code class="language-python">call = substrate.query(
     'RmrkCore', 'Properties', ['u32', (None, 'u32'), 'Bytes']
@@ -307,7 +371,7 @@ possible variants are shown, and only one of those variants must be provided. Th
 <li><a href="ajuna/">Ajuna Polkadot</a></li>
 <li><a href="astar/">Astar</a></li>
 <li><a href="bifrost_polkadot/">Bifrost Polkadot</a></li>
-<li><a href="bitgreen-parachain/">Bitgreen</a></li>
+<li><a href="bitgreen/">Bitgreen</a></li>
 <li><a href="centrifuge/">Centrifuge</a></li>
 <li><a href="clover-mainnet/">Clover</a></li>
 <li><a href="composable/">Composable Finance</a></li>
@@ -416,5 +480,5 @@ possible variants are shown, and only one of those variants must be provided. Th
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2022-12-27 12:55:20.407656+00:00
+Build Date UTC : 2023-01-06 13:59:33.263532+00:00
 -->
