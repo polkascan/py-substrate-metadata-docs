@@ -123,7 +123,7 @@ So examples of valid input for `beneficiary` are:
 * [Ajuna Polkadot](ajuna.md)
 * [Astar](astar.md)
 * [Bifrost Polkadot](bifrost_polkadot.md)
-* [Bitgreen](bitgreen.md)
+* [Bitgreen](bitgreen-parachain.md)
 * [Centrifuge](centrifuge.md)
 * [Clover](clover-mainnet.md)
 * [Composable Finance](composable.md)

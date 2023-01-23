@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Spec name     | kintsugi-parachain     |
 | Implementation name     | kintsugi-parachain     |
-| Spec version     | 1020000     |
+| Spec version     | 1020001     |
 | SS58 Format     | 2092     |
 | Token symbol      | ['KINT', 'KBTC', 'KSM', 'INTR', 'IBTC', 'DOT']     |
 | Token decimals      | [12, 8, 12, 10, 8, 10]     |
@@ -377,9 +377,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -564,6 +564,44 @@ result = substrate.query(
                     'sub': 'AccountId',
                 },
             },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::38',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::38',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::30',
+                    'timepoint': 'scale_info::38',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Issue': {
                 'CancelIssue': {
                     'griefing_collateral': 'u128',
@@ -593,32 +631,6 @@ result = substrate.query(
                     'vault_address': 'scale_info::84',
                     'vault_id': 'scale_info::72',
                     'vault_public_key': '[u8; 33]',
-                },
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::38',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::38',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::30',
-                    'timepoint': 'scale_info::38',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
                 },
             },
             'Nomination': {
@@ -815,17 +827,6 @@ result = substrate.query(
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'Supply': {'Inflation': {'total_inflation': 'u128'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1178,7 +1179,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1389,7 +1389,7 @@ constant = substrate.get_constant('System', 'DbWeight')
     'impl_name': 'kintsugi-parachain',
     'impl_version': 1,
     'spec_name': 'kintsugi-parachain',
-    'spec_version': 1020000,
+    'spec_version': 1020001,
     'state_version': 0,
     'transaction_version': 3,
 }
@@ -1643,6 +1643,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
@@ -2511,12 +2517,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }
@@ -2945,19 +2945,19 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::62',
                     'Xcm': 'scale_info::62',
                 },
+                None: None,
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -15670,6 +15670,20 @@ result = substrate.query(
 ('V1', )
 ```
 ---------
+#### NextLaunchTimestamp
+
+##### Python
+```python
+result = substrate.query(
+    'Democracy', 'NextLaunchTimestamp', []
+)
+```
+
+##### Return value
+```python
+'u64'
+```
+---------
 ### Constants
 ---------
 #### EnactmentPeriod
@@ -15685,17 +15699,6 @@ result = substrate.query(
 ##### Python
 ```python
 constant = substrate.get_constant('Democracy', 'EnactmentPeriod')
-```
----------
-#### LaunchPeriod
- How often (in blocks) new public referenda are launched.
-##### Value
-```python
-50400
-```
-##### Python
-```python
-constant = substrate.get_constant('Democracy', 'LaunchPeriod')
 ```
 ---------
 #### VotingPeriod
@@ -15840,6 +15843,10 @@ Maximum number of votes reached.
 ---------
 #### TooManyProposals
 Maximum number of proposals reached.
+
+---------
+#### TryIntoIntError
+Unable to convert value.
 
 ---------
 
@@ -16952,12 +16959,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
                         'Other': 'Bytes',
-                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',

@@ -419,7 +419,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'u32',
@@ -739,6 +738,7 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -97759,6 +97759,7 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -98626,7 +98627,6 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        None: None,
         'Void': (),
         'system': {
             'None': None,

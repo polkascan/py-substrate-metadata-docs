@@ -409,6 +409,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -575,17 +587,6 @@ result = substrate.query(
                 'Sudid': {'sudo_result': 'scale_info::34'},
                 'SudoAsDone': {'sudo_result': 'scale_info::34'},
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'scale_info::60',
@@ -665,19 +666,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Unique': {
-                'AllowListAddressAdded': ('u32', 'scale_info::90'),
-                'AllowListAddressRemoved': ('u32', 'scale_info::90'),
-                'CollectionAdminAdded': ('u32', 'scale_info::90'),
-                'CollectionAdminRemoved': ('u32', 'scale_info::90'),
-                'CollectionLimitSet': 'u32',
-                'CollectionOwnedChanged': ('u32', 'AccountId'),
-                'CollectionPermissionSet': 'u32',
-                'CollectionSponsorRemoved': 'u32',
-                'CollectionSponsorSet': ('u32', 'AccountId'),
-                'SponsorshipConfirmed': ('u32', 'AccountId'),
-            },
-            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -695,6 +683,18 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
+            },
+            'Unique': {
+                'AllowListAddressAdded': ('u32', 'scale_info::90'),
+                'AllowListAddressRemoved': ('u32', 'scale_info::90'),
+                'CollectionAdminAdded': ('u32', 'scale_info::90'),
+                'CollectionAdminRemoved': ('u32', 'scale_info::90'),
+                'CollectionLimitSet': 'u32',
+                'CollectionOwnedChanged': ('u32', 'AccountId'),
+                'CollectionPermissionSet': 'u32',
+                'CollectionSponsorRemoved': 'u32',
+                'CollectionSponsorSet': ('u32', 'AccountId'),
+                'SponsorshipConfirmed': ('u32', 'AccountId'),
             },
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},

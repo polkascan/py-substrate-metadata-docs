@@ -394,6 +394,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Auctions': {
                 'AuctionClosed': {'auction_index': 'u32'},
                 'AuctionStarted': {
@@ -485,6 +497,36 @@ result = substrate.query(
                 },
             },
             'ConvictionVoting': {'Delegated': ('AccountId', 'AccountId'), 'Undelegated': 'AccountId'},
+            'Council': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::60',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::60',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
+                },
+            },
             'Crowdloan': {
                 'AddedToNewRaise': {'para_id': 'u32'},
                 'AllRefunded': {'para_id': 'u32'},
@@ -569,59 +611,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Grandpa': {
-                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
-                'Paused': None,
-                'Resumed': None,
-            },
-            'Hrmp': {
-                'ChannelClosed': ('u32', 'scale_info::373'),
-                'HrmpChannelForceOpened': ('u32', 'u32', 'u32', 'u32'),
-                'OpenChannelAccepted': ('u32', 'u32'),
-                'OpenChannelCanceled': ('u32', 'scale_info::373'),
-                'OpenChannelRequested': ('u32', 'u32', 'u32', 'u32'),
-            },
-            'ImOnline': {
-                'AllGood': None,
-                'HeartbeatReceived': {'authority_id': '[u8; 32]'},
-                'SomeOffline': {'offline': [('AccountId', 'scale_info::51')]},
-            },
-            'Indices': {
-                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
-                'IndexFreed': {'index': 'u32'},
-                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
-            },
-            None: None,
-            'Council': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
-                'Closed': {
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'yes': 'u32',
-                },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
-                'Executed': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::60',
-                },
-                'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::60',
-                },
-                'Proposed': {
-                    'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
-                    'proposal_index': 'u32',
-                    'threshold': 'u32',
-                },
-                'Voted': {
-                    'account': 'AccountId',
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'voted': 'bool',
-                    'yes': 'u32',
-                },
-            },
             'FellowshipReferenda': {
                 'Approved': {'index': 'u32'},
                 'Cancelled': {'index': 'u32', 'tally': 'scale_info::441'},
@@ -659,6 +648,18 @@ result = substrate.query(
                 },
                 'TimedOut': {'index': 'u32', 'tally': 'scale_info::441'},
             },
+            'Grandpa': {
+                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
+                'Paused': None,
+                'Resumed': None,
+            },
+            'Hrmp': {
+                'ChannelClosed': ('u32', 'scale_info::373'),
+                'HrmpChannelForceOpened': ('u32', 'u32', 'u32', 'u32'),
+                'OpenChannelAccepted': ('u32', 'u32'),
+                'OpenChannelCanceled': ('u32', 'scale_info::373'),
+                'OpenChannelRequested': ('u32', 'u32', 'u32', 'u32'),
+            },
             'Identity': {
                 'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
                 'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
@@ -691,6 +692,16 @@ result = substrate.query(
                     'main': 'AccountId',
                     'sub': 'AccountId',
                 },
+            },
+            'ImOnline': {
+                'AllGood': None,
+                'HeartbeatReceived': {'authority_id': '[u8; 32]'},
+                'SomeOffline': {'offline': [('AccountId', 'scale_info::51')]},
+            },
+            'Indices': {
+                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
+                'IndexFreed': {'index': 'u32'},
+                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
             },
             'Multisig': {
                 'MultisigApproval': {
@@ -1051,17 +1062,6 @@ result = substrate.query(
                     'stash': 'AccountId',
                 },
                 'Withdrawn': {'amount': 'u128', 'stash': 'AccountId'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -3036,12 +3036,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -9615,12 +9615,6 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -10522,6 +10516,12 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
 }
 )
@@ -10855,8 +10855,6 @@ result = substrate.query(
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
             'Origins': (
                 'StakingAdmin',
                 'Treasurer',
@@ -10886,17 +10884,19 @@ result = substrate.query(
                 'Fellowship8Dan',
                 'Fellowship9Dan',
             ),
-            'ParachainsOrigin': {'Parachain': 'u32'},
             'TechnicalCommittee': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
+            None: None,
+            'ParachainsOrigin': {'Parachain': 'u32'},
             'Void': (),
             'XcmPallet': {
                 'Response': {'interior': 'scale_info::158', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::158', 'parents': 'u8'},
             },
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -11838,6 +11838,12 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -12739,12 +12745,6 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
 }
 )
@@ -13107,19 +13107,19 @@ result = substrate.query(
                 'Fellowship8Dan',
                 'Fellowship9Dan',
             ),
+            'Void': (),
+            None: None,
             'ParachainsOrigin': {'Parachain': 'u32'},
             'TechnicalCommittee': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
-            'Void': (),
             'XcmPallet': {
                 'Response': {'interior': 'scale_info::158', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::158', 'parents': 'u8'},
             },
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -14115,7 +14115,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -15022,6 +15021,7 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }
@@ -18357,7 +18357,6 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -18404,6 +18403,7 @@ result = substrate.query(
                     'Response': 'scale_info::157',
                     'Xcm': 'scale_info::157',
                 },
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },

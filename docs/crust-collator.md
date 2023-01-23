@@ -377,9 +377,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -409,38 +409,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'AssetManager': {
-                'AssetRegistered': {
-                    'asset': 'scale_info::120',
-                    'asset_id': 'u128',
-                    'metadata': 'scale_info::121',
-                },
-                'AssetRemoved': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::120',
-                },
-                'AssetTypeChanged': {
-                    'asset_id': 'u128',
-                    'new_asset_type': 'scale_info::120',
-                },
-                'SupportedAssetRemoved': {'asset_type': 'scale_info::120'},
-                'UnitsPerSecondChanged': {
-                    'asset_type': 'scale_info::120',
-                    'units_per_second': 'u128',
-                },
-            },
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
@@ -502,6 +470,45 @@ result = substrate.query(
                     'delegate': 'AccountId',
                     'destination': 'AccountId',
                     'owner': 'AccountId',
+                },
+            },
+            'CollatorSelection': {
+                'CandidateAdded': ('AccountId', 'u128'),
+                'CandidateRemoved': 'AccountId',
+                'NewCandidacyBond': 'u128',
+                'NewDesiredCandidates': 'u32',
+                'NewInvulnerables': ['AccountId'],
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'AssetManager': {
+                'AssetRegistered': {
+                    'asset': 'scale_info::120',
+                    'asset_id': 'u128',
+                    'metadata': 'scale_info::121',
+                },
+                'AssetRemoved': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::120',
+                },
+                'AssetTypeChanged': {
+                    'asset_id': 'u128',
+                    'new_asset_type': 'scale_info::120',
+                },
+                'SupportedAssetRemoved': {'asset_type': 'scale_info::120'},
+                'UnitsPerSecondChanged': {
+                    'asset_type': 'scale_info::120',
+                    'units_per_second': 'u128',
                 },
             },
             'Balances': {
@@ -566,13 +573,6 @@ result = substrate.query(
                 'MintSuccess': ('[u8; 32]', '[u8; 20]', 'u128'),
                 'SetLimitSuccess': 'u128',
                 'SuperiorChanged': 'AccountId',
-            },
-            'CollatorSelection': {
-                'CandidateAdded': ('AccountId', 'u128'),
-                'CandidateRemoved': 'AccountId',
-                'NewCandidacyBond': 'u128',
-                'NewDesiredCandidates': 'u32',
-                'NewInvulnerables': ['AccountId'],
             },
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -2775,6 +2775,8 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'PolkadotXcm': {
                     'Response': 'scale_info::47',
                     'Xcm': 'scale_info::47',
@@ -2785,8 +2787,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },

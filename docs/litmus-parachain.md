@@ -377,9 +377,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -409,6 +409,44 @@ result = substrate.query(
 [
     {
         'event': {
+            'Scheduler': {
+                'CallLookupFailed': {
+                    'error': 'scale_info::33',
+                    'id': (None, 'Bytes'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, 'Bytes'),
+                    'result': 'scale_info::31',
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
+            None: None,
+            'AssetManager': {
+                'ForeignAssetMetadataUpdated': {
+                    'asset_id': 'u128',
+                    'metadata': 'scale_info::118',
+                },
+                'ForeignAssetTrackerUpdated': {
+                    'new_asset_tracker': 'u128',
+                    'old_asset_tracker': 'u128',
+                },
+                'ForeignAssetTypeRegistered': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::119',
+                },
+                'ForeignAssetTypeRemoved': {
+                    'asset_id': 'u128',
+                    'default_asset_type': 'scale_info::119',
+                    'removed_asset_type': 'scale_info::119',
+                },
+                'UnitsPerSecondChanged': {
+                    'asset_id': 'u128',
+                    'units_per_second': 'u128',
+                },
+            },
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -697,49 +735,6 @@ result = substrate.query(
                 'UserShieldingKeySetPlain': {'account': 'AccountId'},
                 'VerifyIdentityRequested': {'shard': '[u8; 32]'},
             },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
-            'Scheduler': {
-                'CallLookupFailed': {
-                    'error': 'scale_info::33',
-                    'id': (None, 'Bytes'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, 'Bytes'),
-                    'result': 'scale_info::31',
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            None: None,
-            'AssetManager': {
-                'ForeignAssetMetadataUpdated': {
-                    'asset_id': 'u128',
-                    'metadata': 'scale_info::118',
-                },
-                'ForeignAssetTrackerUpdated': {
-                    'new_asset_tracker': 'u128',
-                    'old_asset_tracker': 'u128',
-                },
-                'ForeignAssetTypeRegistered': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::119',
-                },
-                'ForeignAssetTypeRemoved': {
-                    'asset_id': 'u128',
-                    'default_asset_type': 'scale_info::119',
-                    'removed_asset_type': 'scale_info::119',
-                },
-                'UnitsPerSecondChanged': {
-                    'asset_id': 'u128',
-                    'units_per_second': 'u128',
-                },
-            },
             'Multisig': {
                 'MultisigApproval': {
                     'approving': 'AccountId',
@@ -820,6 +815,11 @@ result = substrate.query(
                 'SupportedVersionChanged': ('scale_info::66', 'u32'),
                 'UnexpectedResponse': ('scale_info::66', 'u64'),
                 'VersionChangeNotified': ('scale_info::66', 'u32'),
+            },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
             },
             'Proxy': {
                 'Announced': {
@@ -1642,6 +1642,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -1659,7 +1660,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -1842,6 +1842,11 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
         None: None,
         'Council': {
             'Member': 'AccountId',
@@ -2716,11 +2721,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
     'call': 'Call',
 }

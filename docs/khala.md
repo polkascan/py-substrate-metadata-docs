@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Spec name     | khala     |
 | Implementation name     | khala     |
-| Spec version     | 1204     |
+| Spec version     | 1207     |
 | SS58 Format     | 30     |
 | Token symbol      | PHA     |
 | Token decimals      | 12     |
@@ -377,9 +377,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -409,6 +409,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -1310,17 +1322,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1533,6 +1534,13 @@ result = substrate.query(
                     'who': 'scale_info::52',
                 },
             },
+            'XcmBridge': {
+                'AssetTransfered': {
+                    'asset': 'scale_info::67',
+                    'dest': 'scale_info::52',
+                    'origin': 'scale_info::52',
+                },
+            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -1554,14 +1562,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'XcmBridge': {
-                'AssetTransfered': {
-                    'asset': 'scale_info::67',
-                    'dest': 'scale_info::52',
-                    'origin': 'scale_info::52',
-                },
             },
         },
         'phase': {
@@ -1766,7 +1766,7 @@ constant = substrate.get_constant('System', 'DbWeight')
     'impl_name': 'khala',
     'impl_version': 0,
     'spec_name': 'khala',
-    'spec_version': 1204,
+    'spec_version': 1207,
     'state_version': 0,
     'transaction_version': 6,
 }
@@ -4614,6 +4614,8 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::52',
@@ -4625,8 +4627,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -5268,7 +5268,7 @@ result = substrate.query(
 
 ##### Return value
 ```python
-'scale_info::417'
+'scale_info::422'
 ```
 ---------
 #### ProcessedDownwardMessages
@@ -57198,12 +57198,11 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -57213,6 +57212,7 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
@@ -69052,6 +69052,7 @@ call = substrate.compose_call(
 result = substrate.query(
     'PhalaMq', 'OffchainIngress', [
     {
+        None: None,
         'AccountId': '[u8; 32]',
         'Cluster': '[u8; 32]',
         'Contract': '[u8; 32]',
@@ -69060,7 +69061,6 @@ result = substrate.query(
         'Pallet': 'Bytes',
         'Reserved': None,
         'Worker': '[u8; 32]',
-        None: None,
     },
 ]
 )
@@ -78893,6 +78893,39 @@ call = substrate.compose_call(
 ```
 
 ---------
+#### claim_legacy_rewards
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pid | `u64` | 
+| target | `T::AccountId` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'PhalaStakePoolv2', 'claim_legacy_rewards', {'pid': 'u64', 'target': 'AccountId'}
+)
+```
+
+---------
+#### backfill_add_missing_reward
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| input | `Vec<(T::AccountId, u64, BalanceOf<T>)>` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'PhalaStakePoolv2', 'backfill_add_missing_reward', {
+    'input': [
+        ('AccountId', 'u64', 'u128'),
+    ],
+}
+)
+```
+
+---------
 #### claim_owner_rewards
 Claims pool-owner&\#x27;s pending rewards of the sender and send to the `target`
 
@@ -79298,6 +79331,20 @@ The amount of stakes for a worker to start computing
 ---------
 ### Storage functions
 ---------
+#### LegacyRewards
+
+##### Python
+```python
+result = substrate.query(
+    'PhalaStakePoolv2', 'LegacyRewards', [('AccountId', 'u64')]
+)
+```
+
+##### Return value
+```python
+'u128'
+```
+---------
 #### WorkerAssignments
  Mapping from workers to the pool they belong to
 
@@ -79546,6 +79593,9 @@ The target worker is not reclaimed and can not be removed from a pool.
 
 ---------
 #### LockAccountStakeError
+
+---------
+#### NoLegacyRewardToClaim
 
 ---------
 
@@ -80111,19 +80161,19 @@ call = substrate.compose_call(
 ```
 
 ---------
-#### reset_iter_pos
+#### reset_lock_iter_pos
 ##### Attributes
 No attributes
 
 ##### Python
 ```python
 call = substrate.compose_call(
-    'PhalaBasePool', 'reset_iter_pos', {}
+    'PhalaBasePool', 'reset_lock_iter_pos', {}
 )
 ```
 
 ---------
-#### remove_unused_property
+#### remove_unused_lock
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -80132,7 +80182,7 @@ call = substrate.compose_call(
 ##### Python
 ```python
 call = substrate.compose_call(
-    'PhalaBasePool', 'remove_unused_property', {'max_iterations': 'u32'}
+    'PhalaBasePool', 'remove_unused_lock', {'max_iterations': 'u32'}
 )
 ```
 
@@ -80152,6 +80202,30 @@ If the last staker in the whitelist is removed, the pool will return back to a n
 ```python
 call = substrate.compose_call(
     'PhalaBasePool', 'remove_staker_from_whitelist', {'pid': 'u64', 'staker': 'AccountId'}
+)
+```
+
+---------
+#### backfill_transfer_shares
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| input | `Vec<ShareTransferProxy<T>>` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'PhalaBasePool', 'backfill_transfer_shares', {
+    'input': [
+        (
+            'AccountId',
+            'AccountId',
+            'u64',
+            'u128',
+            ('StakePool', 'Vault'),
+        ),
+    ],
+}
 )
 ```
 
@@ -80259,18 +80333,18 @@ result = substrate.query(
 'u32'
 ```
 ---------
-#### PropertyIterateStartPos
+#### LockIterateStartPos
 
 ##### Python
 ```python
 result = substrate.query(
-    'PhalaBasePool', 'PropertyIterateStartPos', []
+    'PhalaBasePool', 'LockIterateStartPos', []
 )
 ```
 
 ##### Return value
 ```python
-(None, ('u32', (None, 'u32'), 'Bytes'))
+(None, ('u32', 'u32'))
 ```
 ---------
 #### PoolCount
@@ -80496,6 +80570,9 @@ Migration root not authorized
 ---------
 #### BurnNftFailed
 Burn nft failed
+
+---------
+#### TransferSharesAmountInvalid
 
 ---------
 
@@ -85600,7 +85677,7 @@ result = substrate.query(
 
 ##### Return value
 ```python
-{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::637'}
+{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::642'}
 ```
 ---------
 #### OriginOfShellFoodStats

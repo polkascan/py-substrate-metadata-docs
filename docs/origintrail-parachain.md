@@ -405,7 +405,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
@@ -664,10 +663,6 @@ result = substrate.query(
                 },
                 'Spending': {'budget_remaining': 'u128'},
             },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
-            },
             'XcAssetConfig': {
                 'AssetLocationChanged': {
                     'asset_id': 'u128',
@@ -687,6 +682,11 @@ result = substrate.query(
                     'asset_location': 'scale_info::36',
                     'units_per_second': 'u128',
                 },
+            },
+            None: None,
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -66620,9 +66620,9 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'Ethereum': {'EthereumTransaction': '[u8; 20]'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::47',

@@ -409,7 +409,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Attestation': {
                 'AttestationCreated': (
                     'AccountId',
@@ -476,27 +475,10 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Ctype': {'CTypeCreated': ('AccountId', '[u8; 32]')},
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::76'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
-            },
-            'Delegation': {
-                'DelegationCreated': (
-                    'AccountId',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    'AccountId',
-                    'scale_info::64',
-                ),
-                'DelegationRemoved': ('AccountId', '[u8; 32]'),
-                'DelegationRevoked': ('AccountId', '[u8; 32]'),
-                'DepositReclaimed': ('AccountId', '[u8; 32]'),
-                'HierarchyCreated': ('AccountId', '[u8; 32]', '[u8; 32]'),
-                'HierarchyRemoved': ('AccountId', '[u8; 32]'),
-                'HierarchyRevoked': ('AccountId', '[u8; 32]'),
             },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
@@ -551,6 +533,29 @@ result = substrate.query(
                     'voter': 'AccountId',
                 },
             },
+            'Indices': {
+                'IndexAssigned': {'index': 'u64', 'who': 'AccountId'},
+                'IndexFreed': {'index': 'u64'},
+                'IndexFrozen': {'index': 'u64', 'who': 'AccountId'},
+            },
+            None: None,
+            'Ctype': {'CTypeCreated': ('AccountId', '[u8; 32]')},
+            'Delegation': {
+                'DelegationCreated': (
+                    'AccountId',
+                    '[u8; 32]',
+                    '[u8; 32]',
+                    '[u8; 32]',
+                    'AccountId',
+                    'scale_info::64',
+                ),
+                'DelegationRemoved': ('AccountId', '[u8; 32]'),
+                'DelegationRevoked': ('AccountId', '[u8; 32]'),
+                'DepositReclaimed': ('AccountId', '[u8; 32]'),
+                'HierarchyCreated': ('AccountId', '[u8; 32]', '[u8; 32]'),
+                'HierarchyRemoved': ('AccountId', '[u8; 32]'),
+                'HierarchyRevoked': ('AccountId', '[u8; 32]'),
+            },
             'Did': {
                 'DidCallDispatched': ('AccountId', 'scale_info::38'),
                 'DidCreated': ('AccountId', 'AccountId'),
@@ -582,11 +587,6 @@ result = substrate.query(
                     'remaining_weight': 'scale_info::9',
                     'required_weight': 'scale_info::9',
                 },
-            },
-            'Indices': {
-                'IndexAssigned': {'index': 'u64', 'who': 'AccountId'},
-                'IndexFreed': {'index': 'u64'},
-                'IndexFrozen': {'index': 'u64', 'who': 'AccountId'},
             },
             'ParachainStaking': {
                 'BlocksPerRoundSet': ('u32', 'u64', 'u64', 'u64'),
@@ -7892,18 +7892,18 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        'Void': (),
-        None: None,
         'TechnicalCommittee': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
+        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }
@@ -8535,13 +8535,14 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u64', 'u32')),
             'origin': {
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+                'Void': (),
+                None: None,
                 'Did': {'id': 'AccountId', 'submitter': 'AccountId'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::77',
@@ -8552,7 +8553,6 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',

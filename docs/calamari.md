@@ -405,6 +405,34 @@ result = substrate.query(
 [
     {
         'event': {
+            'AssetManager': {
+                'AssetLocationUpdated': {
+                    'asset_id': 'u32',
+                    'location': 'scale_info::101',
+                },
+                'AssetMetadataUpdated': {
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::111',
+                },
+                'AssetMinted': {
+                    'amount': 'u128',
+                    'asset_id': 'u32',
+                    'beneficiary': 'AccountId',
+                },
+                'AssetRegistered': {
+                    'asset_address': 'scale_info::101',
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::111',
+                },
+                'MinXcmFeeUpdated': {
+                    'min_xcm_fee': 'u128',
+                    'reserve_chain': 'scale_info::101',
+                },
+                'UnitsPerSecondUpdated': {
+                    'asset_id': 'u32',
+                    'units_per_second': 'u128',
+                },
+            },
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -466,35 +494,6 @@ result = substrate.query(
                     'delegate': 'AccountId',
                     'destination': 'AccountId',
                     'owner': 'AccountId',
-                },
-            },
-            None: None,
-            'AssetManager': {
-                'AssetLocationUpdated': {
-                    'asset_id': 'u32',
-                    'location': 'scale_info::101',
-                },
-                'AssetMetadataUpdated': {
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::111',
-                },
-                'AssetMinted': {
-                    'amount': 'u128',
-                    'asset_id': 'u32',
-                    'beneficiary': 'AccountId',
-                },
-                'AssetRegistered': {
-                    'asset_address': 'scale_info::101',
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::111',
-                },
-                'MinXcmFeeUpdated': {
-                    'min_xcm_fee': 'u128',
-                    'reserve_chain': 'scale_info::101',
-                },
-                'UnitsPerSecondUpdated': {
-                    'asset_id': 'u32',
-                    'units_per_second': 'u128',
                 },
             },
             'Balances': {
@@ -826,17 +825,6 @@ result = substrate.query(
                 },
                 'TotalSelectedSet': {'new': 'u32', 'old': 'u32'},
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'u64',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsTrapped': (
                     '[u8; 32]',
@@ -895,17 +883,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -972,6 +949,29 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
+            },
+            None: None,
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'u64',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'Utility': {
                 'BatchCompleted': None,
@@ -6844,12 +6844,11 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -6859,6 +6858,7 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },

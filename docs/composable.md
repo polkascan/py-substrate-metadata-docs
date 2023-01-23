@@ -634,6 +634,12 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::58', 'u64'),
                 'VersionChangeNotified': ('scale_info::58', 'u32'),
             },
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::28'},
+                'SudoAsDone': {'sudo_result': 'scale_info::28'},
+            },
+            None: None,
             'Scheduler': {
                 'CallLookupFailed': {
                     'error': 'scale_info::49',
@@ -649,11 +655,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::28'},
-                'SudoAsDone': {'sudo_result': 'scale_info::28'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -747,17 +748,6 @@ result = substrate.query(
                 'Rollover': {'rollover_balance': 'u128'},
                 'Spending': {'budget_remaining': 'u128'},
             },
-            'XcmpQueue': {
-                'BadFormat': (None, '[u8; 32]'),
-                'BadVersion': (None, '[u8; 32]'),
-                'Fail': ((None, '[u8; 32]'), 'scale_info::54'),
-                'OverweightEnqueued': ('u32', 'u32', 'u64', 'u64'),
-                'OverweightServiced': ('u64', 'u64'),
-                'Success': (None, '[u8; 32]'),
-                'UpwardMessageSent': (None, '[u8; 32]'),
-                'XcmpMessageSent': (None, '[u8; 32]'),
-            },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -768,6 +758,16 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::28'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::22'},
+            },
+            'XcmpQueue': {
+                'BadFormat': (None, '[u8; 32]'),
+                'BadVersion': (None, '[u8; 32]'),
+                'Fail': ((None, '[u8; 32]'), 'scale_info::54'),
+                'OverweightEnqueued': ('u32', 'u32', 'u64', 'u64'),
+                'OverweightServiced': ('u64', 'u64'),
+                'Success': (None, '[u8; 32]'),
+                'UpwardMessageSent': (None, '[u8; 32]'),
+                'XcmpMessageSent': (None, '[u8; 32]'),
             },
         },
         'phase': {
@@ -2735,12 +2735,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -5921,19 +5921,19 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
-                None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'RelayerXcm': {
                     'Response': 'scale_info::58',
                     'Xcm': 'scale_info::58',
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'Void': (),
             },
             'priority': 'u8',
         },

@@ -1038,6 +1038,39 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::65'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::22'},
+            },
+            'Valve': {
+                'PalletGateClosed': {'pallet_name_bytes': 'Bytes'},
+                'PalletGateOpen': {'pallet_name_bytes': 'Bytes'},
+                'PalletGatesClosed': {'count': 'u8'},
+                'ScheduledTasksResumed': None,
+                'ScheduledTasksStopped': None,
+                'ValveClosed': None,
+                'ValveOpen': None,
+            },
+            'XcmpHandler': {
+                'XcmDataAdded': {'currency_id': 'u32', 'para_id': 'u32'},
+                'XcmDataRemoved': {'currency_id': 'u32', 'para_id': 'u32'},
+                'XcmFeesFailed': {
+                    'dest': 'AccountId',
+                    'error': 'scale_info::22',
+                    'source': 'AccountId',
+                },
+                'XcmFeesPaid': {'dest': 'AccountId', 'source': 'AccountId'},
+                'XcmSent': {'para_id': 'u32'},
+                'XcmTransactedLocally': None,
+            },
+            None: None,
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1073,26 +1106,6 @@ result = substrate.query(
                     'who': 'scale_info::51',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::65'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
-            },
-            'Valve': {
-                'PalletGateClosed': {'pallet_name_bytes': 'Bytes'},
-                'PalletGateOpen': {'pallet_name_bytes': 'Bytes'},
-                'PalletGatesClosed': {'count': 'u8'},
-                'ScheduledTasksResumed': None,
-                'ScheduledTasksStopped': None,
-                'ValveClosed': None,
-                'ValveOpen': None,
-            },
             'Vesting': {
                 'VestFailed': {
                     'account': 'AccountId',
@@ -1108,18 +1121,6 @@ result = substrate.query(
                     'fee': 'scale_info::81',
                     'sender': 'AccountId',
                 },
-            },
-            'XcmpHandler': {
-                'XcmDataAdded': {'currency_id': 'u32', 'para_id': 'u32'},
-                'XcmDataRemoved': {'currency_id': 'u32', 'para_id': 'u32'},
-                'XcmFeesFailed': {
-                    'dest': 'AccountId',
-                    'error': 'scale_info::22',
-                    'source': 'AccountId',
-                },
-                'XcmFeesPaid': {'dest': 'AccountId', 'source': 'AccountId'},
-                'XcmSent': {'para_id': 'u32'},
-                'XcmTransactedLocally': None,
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -1140,7 +1141,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -10197,10 +10197,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
         'system': {
             'None': None,
             'Root': None,
@@ -10211,6 +10207,10 @@ call = substrate.compose_call(
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
+        },
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
         },
         'PolkadotXcm': {
             'Response': {
@@ -85038,6 +85038,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -85055,7 +85056,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },

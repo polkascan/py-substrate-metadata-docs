@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Spec name     | hydradx     |
 | Implementation name     | hydradx     |
-| Spec version     | 123     |
+| Spec version     | 126     |
 | SS58 Format     | 63     |
 | Token symbol      | HDX     |
 | Token decimals      | 12     |
@@ -377,9 +377,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -746,6 +746,7 @@ result = substrate.query(
                     'asset_out': 'u32',
                     'who': 'AccountId',
                 },
+                'TVLCapUpdated': {'cap': 'u128'},
                 'TokenAdded': {
                     'asset_id': 'u32',
                     'initial_amount': 'u128',
@@ -1389,7 +1390,7 @@ constant = substrate.get_constant('System', 'DbWeight')
     'impl_name': 'hydradx',
     'impl_version': 0,
     'spec_name': 'hydradx',
-    'spec_version': 123,
+    'spec_version': 126,
     'state_version': 0,
     'transaction_version': 1,
 }
@@ -1753,7 +1754,6 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -1771,6 +1771,7 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },
@@ -2843,6 +2844,7 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -3716,7 +3718,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        None: None,
         'system': {
             'None': None,
             'Root': None,
@@ -13483,7 +13484,7 @@ A refund is needed when a token is refused to be added to Omnipool, and initial 
 
 Transfer is performed only when asset is not in Omnipool and pool&\#x27;s balance has sufficient amount.
 
-Only `AddTokenOrigin` can perform this operition -same as `add_token`o
+Only `AuthorityOrigin` can perform this operition -same as `add_token`o
 
 Emits `AssetRefunded`
 ##### Attributes
@@ -13524,6 +13525,27 @@ Emits `AssetWeightCapUpdated` event when successful.
 ```python
 call = substrate.compose_call(
     'Omnipool', 'set_asset_weight_cap', {'asset_id': 'u32', 'cap': 'u32'}
+)
+```
+
+---------
+#### set_tvl_cap
+Update TVL cap
+
+Parameters:
+- `cap`: new tvl cap
+
+Emits `TVLCapUpdated` event when successful.
+
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| cap | `Balance` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'Omnipool', 'set_tvl_cap', {'cap': 'u128'}
 )
 ```
 
@@ -13649,6 +13671,14 @@ Asset&\#x27;s weight cap has been updated.
 | cap | `Permill` | ```u32```
 
 ---------
+#### TVLCapUpdated
+TVL cap has been updated.
+##### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| cap | `Balance` | ```u128```
+
+---------
 ### Storage functions
 ---------
 #### Assets
@@ -13732,6 +13762,21 @@ result = substrate.query(
 'u128'
 ```
 ---------
+#### TvlCap
+ TVL cap
+
+##### Python
+```python
+result = substrate.query(
+    'Omnipool', 'TvlCap', []
+)
+```
+
+##### Return value
+```python
+'u128'
+```
+---------
 ### Constants
 ---------
 #### HdxAssetId
@@ -13787,17 +13832,6 @@ constant = substrate.get_constant('Omnipool', 'ProtocolFee')
 ##### Python
 ```python
 constant = substrate.get_constant('Omnipool', 'AssetFee')
-```
----------
-#### TVLCap
- TVL cap
-##### Value
-```python
-222222000000000000000000
-```
-##### Python
-```python
-constant = substrate.get_constant('Omnipool', 'TVLCap')
 ```
 ---------
 #### MinimumTradingLimit
