@@ -60,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost Polkadot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen/">Bitgreen</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Centrifuge</a>
     <ul class="current">
@@ -3813,17 +3813,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'scale_info::70',
@@ -3837,6 +3826,18 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
+            },
+            None: None,
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TransactionPayment': {
                 'TransactionFeePaid': {
@@ -3908,7 +3909,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -9135,14 +9135,14 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'PolkadotXcm': {
                     'Response': 'scale_info::79',
                     'Xcm': 'scale_info::79',
@@ -94427,7 +94427,7 @@ interpreted.</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../bitgreen/" class="btn btn-neutral float-left" title="Bitgreen"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../bitgreen-parachain/" class="btn btn-neutral float-left" title="Bitgreen"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../clover-mainnet/" class="btn btn-neutral float-right" title="Clover">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -94455,7 +94455,7 @@ interpreted.</p>
         </span>
     
     
-      <span><a href="../bitgreen/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../bitgreen-parachain/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../clover-mainnet/" style="color: #fcfcfc">Next &raquo;</a></span>

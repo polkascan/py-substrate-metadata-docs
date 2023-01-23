@@ -60,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost Polkadot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen/">Bitgreen</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
                   </li>
@@ -3219,6 +3219,10 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#set_payout_pref">set_payout_pref</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#claim_legacy_rewards">claim_legacy_rewards</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#backfill_add_missing_reward">backfill_add_missing_reward</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#claim_owner_rewards">claim_owner_rewards</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#check_and_maybe_force_withdraw">check_and_maybe_force_withdraw</a>
@@ -3279,6 +3283,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#storage-functions_38">Storage functions</a>
         <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#legacyrewards">LegacyRewards</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#workerassignments_1">WorkerAssignments</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#subaccountassignments_1">SubAccountAssignments</a>
@@ -3366,6 +3372,8 @@
     <li class="toctree-l4"><a class="reference internal" href="#workerisnotready">WorkerIsNotReady</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#lockaccountstakeerror">LockAccountStakeError</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#nolegacyrewardtoclaim">NoLegacyRewardToClaim</a>
     </li>
         </ul>
     </li>
@@ -3509,11 +3517,13 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#set_pool_description">set_pool_description</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#reset_iter_pos_1">reset_iter_pos</a>
+    <li class="toctree-l4"><a class="reference internal" href="#reset_lock_iter_pos">reset_lock_iter_pos</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#remove_unused_property">remove_unused_property</a>
+    <li class="toctree-l4"><a class="reference internal" href="#remove_unused_lock">remove_unused_lock</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#remove_staker_from_whitelist">remove_staker_from_whitelist</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#backfill_transfer_shares">backfill_transfer_shares</a>
     </li>
         </ul>
     </li>
@@ -3539,7 +3549,7 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#nextnftid">NextNftId</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#propertyiteratestartpos">PropertyIterateStartPos</a>
+    <li class="toctree-l4"><a class="reference internal" href="#lockiteratestartpos">LockIterateStartPos</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#poolcount_1">PoolCount</a>
     </li>
@@ -3594,6 +3604,8 @@
     <li class="toctree-l4"><a class="reference internal" href="#notmigrationroot_2">NotMigrationRoot</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#burnnftfailed">BurnNftFailed</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#transfersharesamountinvalid">TransferSharesAmountInvalid</a>
     </li>
         </ul>
     </li>
@@ -4651,7 +4663,7 @@
 </tr>
 <tr>
 <td>Spec version</td>
-<td>1204</td>
+<td>1207</td>
 </tr>
 <tr>
 <td>SS58 Format</td>
@@ -5137,9 +5149,9 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">{
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -5163,6 +5175,18 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">[
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -6064,17 +6088,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -6287,6 +6300,13 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'who': 'scale_info::52',
                 },
             },
+            'XcmBridge': {
+                'AssetTransfered': {
+                    'asset': 'scale_info::67',
+                    'dest': 'scale_info::52',
+                    'origin': 'scale_info::52',
+                },
+            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -6308,14 +6328,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'XcmBridge': {
-                'AssetTransfered': {
-                    'asset': 'scale_info::67',
-                    'dest': 'scale_info::52',
-                    'origin': 'scale_info::52',
-                },
             },
         },
         'phase': {
@@ -6485,7 +6497,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
     'impl_name': 'khala',
     'impl_version': 0,
     'spec_name': 'khala',
-    'spec_version': 1204,
+    'spec_version': 1207,
     'state_version': 0,
     'transaction_version': 6,
 }
@@ -9902,6 +9914,8 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::52',
@@ -9913,8 +9927,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -10608,7 +10620,7 @@ if the appropriate time has come.</p>
 )
 </code></pre>
 <h5 id="return-value_40">Return value</h5>
-<pre><code class="language-python">'scale_info::417'
+<pre><code class="language-python">'scale_info::422'
 </code></pre>
 <hr />
 <h4 id="processeddownwardmessages">ProcessedDownwardMessages</h4>
@@ -63331,12 +63343,11 @@ has been paid by <code>who</code>.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -63346,6 +63357,7 @@ has been paid by <code>who</code>.</p>
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
@@ -76824,6 +76836,7 @@ will be updated accordingly.</p>
 <pre><code class="language-python">result = substrate.query(
     'PhalaMq', 'OffchainIngress', [
     {
+        None: None,
         'AccountId': '[u8; 32]',
         'Cluster': '[u8; 32]',
         'Contract': '[u8; 32]',
@@ -76832,7 +76845,6 @@ will be updated accordingly.</p>
         'Pallet': 'Bytes',
         'Reserved': None,
         'Worker': '[u8; 32]',
-        None: None,
     },
 ]
 )
@@ -87696,11 +87708,7 @@ Requires:
 )
 </code></pre>
 <hr />
-<h4 id="claim_owner_rewards">claim_owner_rewards</h4>
-<p>Claims pool-owner&amp;#x27;s pending rewards of the sender and send to the <code>target</code></p>
-<p>The rewards associate to sender&amp;#x27;s &quot;staker role&quot; will not be claimed</p>
-<p>Requires:
-1. The sender is a pool owner</p>
+<h4 id="claim_legacy_rewards">claim_legacy_rewards</h4>
 <h5 id="attributes_483">Attributes</h5>
 <table>
 <thead>
@@ -87722,6 +87730,62 @@ Requires:
 </table>
 <h5 id="python_554">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
+    'PhalaStakePoolv2', 'claim_legacy_rewards', {'pid': 'u64', 'target': 'AccountId'}
+)
+</code></pre>
+<hr />
+<h4 id="backfill_add_missing_reward">backfill_add_missing_reward</h4>
+<h5 id="attributes_484">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td><code>Vec&lt;(T::AccountId, u64, BalanceOf&lt;T&gt;)&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_555">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'PhalaStakePoolv2', 'backfill_add_missing_reward', {
+    'input': [
+        ('AccountId', 'u64', 'u128'),
+    ],
+}
+)
+</code></pre>
+<hr />
+<h4 id="claim_owner_rewards">claim_owner_rewards</h4>
+<p>Claims pool-owner&amp;#x27;s pending rewards of the sender and send to the <code>target</code></p>
+<p>The rewards associate to sender&amp;#x27;s &quot;staker role&quot; will not be claimed</p>
+<p>Requires:
+1. The sender is a pool owner</p>
+<h5 id="attributes_485">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pid</td>
+<td><code>u64</code></td>
+</tr>
+<tr>
+<td>target</td>
+<td><code>T::AccountId</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_556">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
     'PhalaStakePoolv2', 'claim_owner_rewards', {'pid': 'u64', 'target': 'AccountId'}
 )
 </code></pre>
@@ -87731,7 +87795,7 @@ Requires:
 <p>If the shutdown condition is met, all workers in the pool will be forced shutdown.
 Note: This function doesn&amp;#x27;t guarantee no-op when there&amp;#x27;s error.
 TODO(mingxuan): add more detail comment later.</p>
-<h5 id="attributes_484">Attributes</h5>
+<h5 id="attributes_486">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -87746,7 +87810,7 @@ TODO(mingxuan): add more detail comment later.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_555">Python</h5>
+<h5 id="python_557">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaStakePoolv2', 'check_and_maybe_force_withdraw', {'pid': 'u64'}
 )
@@ -87757,7 +87821,7 @@ TODO(mingxuan): add more detail comment later.</p>
 <p>Requires:
 1. The pool exists
 2. After the deposit, the pool doesn&amp;#x27;t reach the cap</p>
-<h5 id="attributes_485">Attributes</h5>
+<h5 id="attributes_487">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -87780,7 +87844,7 @@ TODO(mingxuan): add more detail comment later.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_556">Python</h5>
+<h5 id="python_558">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaStakePoolv2', 'contribute', {
     'amount': 'u128',
@@ -87796,7 +87860,7 @@ TODO(mingxuan): add more detail comment later.</p>
 <p>Once a withdraw request is proceeded successfully, The withdrawal would be queued and waiting to be dealed.
 Afer the withdrawal is queued, The withdraw queue will be automaticly consumed util there are not enough free stakes to fullfill withdrawals.
 Everytime the free stakes in the pools increases (except for rewards distributing), the withdraw queue will be consumed as it describes above.</p>
-<h5 id="attributes_486">Attributes</h5>
+<h5 id="attributes_488">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -87819,7 +87883,7 @@ Everytime the free stakes in the pools increases (except for rewards distributin
 </tr>
 </tbody>
 </table>
-<h5 id="python_557">Python</h5>
+<h5 id="python_559">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaStakePoolv2', 'withdraw', {
     'as_vault': (None, 'u64'),
@@ -87830,16 +87894,16 @@ Everytime the free stakes in the pools increases (except for rewards distributin
 </code></pre>
 <hr />
 <h4 id="reset_iter_pos">reset_iter_pos</h4>
-<h5 id="attributes_487">Attributes</h5>
+<h5 id="attributes_489">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_558">Python</h5>
+<h5 id="python_560">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaStakePoolv2', 'reset_iter_pos', {}
 )
 </code></pre>
 <hr />
 <h4 id="fix_missing_worker_lock">fix_missing_worker_lock</h4>
-<h5 id="attributes_488">Attributes</h5>
+<h5 id="attributes_490">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -87854,7 +87918,7 @@ Everytime the free stakes in the pools increases (except for rewards distributin
 </tr>
 </tbody>
 </table>
-<h5 id="python_559">Python</h5>
+<h5 id="python_561">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaStakePoolv2', 'fix_missing_worker_lock', {'max_iterations': 'u32'}
 )
@@ -87865,71 +87929,6 @@ Everytime the free stakes in the pools increases (except for rewards distributin
 <p>Requires:
 1. The worker is bound to the pool and is in Ready state
 2. The remaining stake in the pool can cover the minimal stake required</p>
-<h5 id="attributes_489">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pid</td>
-<td><code>u64</code></td>
-</tr>
-<tr>
-<td>worker</td>
-<td><code>WorkerPublicKey</code></td>
-</tr>
-<tr>
-<td>stake</td>
-<td><code>BalanceOf&lt;T&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_560">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'PhalaStakePoolv2', 'start_computing', {
-    'pid': 'u64',
-    'stake': 'u128',
-    'worker': '[u8; 32]',
-}
-)
-</code></pre>
-<hr />
-<h4 id="stop_computing">stop_computing</h4>
-<p>Stops a worker on behalf of the stake pool
-Note: this would let worker enter CoolingDown if everything is good</p>
-<p>Requires:
-1. There worker is bound to the pool and is in a stoppable state</p>
-<h5 id="attributes_490">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pid</td>
-<td><code>u64</code></td>
-</tr>
-<tr>
-<td>worker</td>
-<td><code>WorkerPublicKey</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_561">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'PhalaStakePoolv2', 'stop_computing', {'pid': 'u64', 'worker': '[u8; 32]'}
-)
-</code></pre>
-<hr />
-<h4 id="reclaim_pool_worker">reclaim_pool_worker</h4>
-<p>Reclaims the releasing stake of a worker in a pool.</p>
 <h5 id="attributes_491">Attributes</h5>
 <table>
 <thead>
@@ -87947,9 +87946,74 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <td>worker</td>
 <td><code>WorkerPublicKey</code></td>
 </tr>
+<tr>
+<td>stake</td>
+<td><code>BalanceOf&lt;T&gt;</code></td>
+</tr>
 </tbody>
 </table>
 <h5 id="python_562">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'PhalaStakePoolv2', 'start_computing', {
+    'pid': 'u64',
+    'stake': 'u128',
+    'worker': '[u8; 32]',
+}
+)
+</code></pre>
+<hr />
+<h4 id="stop_computing">stop_computing</h4>
+<p>Stops a worker on behalf of the stake pool
+Note: this would let worker enter CoolingDown if everything is good</p>
+<p>Requires:
+1. There worker is bound to the pool and is in a stoppable state</p>
+<h5 id="attributes_492">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pid</td>
+<td><code>u64</code></td>
+</tr>
+<tr>
+<td>worker</td>
+<td><code>WorkerPublicKey</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_563">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'PhalaStakePoolv2', 'stop_computing', {'pid': 'u64', 'worker': '[u8; 32]'}
+)
+</code></pre>
+<hr />
+<h4 id="reclaim_pool_worker">reclaim_pool_worker</h4>
+<p>Reclaims the releasing stake of a worker in a pool.</p>
+<h5 id="attributes_493">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pid</td>
+<td><code>u64</code></td>
+</tr>
+<tr>
+<td>worker</td>
+<td><code>WorkerPublicKey</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_564">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaStakePoolv2', 'reclaim_pool_worker', {'pid': 'u64', 'worker': '[u8; 32]'}
 )
@@ -87957,7 +88021,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <hr />
 <h4 id="set_working_enabled">set_working_enabled</h4>
 <p>Enables or disables computing. Must be called with the council or root permission.</p>
-<h5 id="attributes_492">Attributes</h5>
+<h5 id="attributes_494">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -87972,7 +88036,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_563">Python</h5>
+<h5 id="python_565">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaStakePoolv2', 'set_working_enabled', {'enable': 'bool'}
 )
@@ -87980,7 +88044,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <hr />
 <h4 id="restart_computing">restart_computing</h4>
 <p>Restarts the worker with a higher stake</p>
-<h5 id="attributes_493">Attributes</h5>
+<h5 id="attributes_495">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88003,7 +88067,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_564">Python</h5>
+<h5 id="python_566">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaStakePoolv2', 'restart_computing', {
     'pid': 'u64',
@@ -88019,7 +88083,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <p>A stake pool is created by <code>owner</code></p>
 <p>Affected states:
 - a new entry in [<code>Pools</code>] with the pid</p>
-<h5 id="attributes_494">Attributes</h5>
+<h5 id="attributes_496">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88058,7 +88122,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <code>commission / 1_000_000u32</code>.</p>
 <p>Affected states:
 - the <code>payout_commission</code> field in [<code>Pools</code>] is updated</p>
-<h5 id="attributes_495">Attributes</h5>
+<h5 id="attributes_497">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88085,7 +88149,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <p>The stake capacity of the pool is updated</p>
 <p>Affected states:
 - the <code>cap</code> field in [<code>Pools</code>] is updated</p>
-<h5 id="attributes_496">Attributes</h5>
+<h5 id="attributes_498">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88115,7 +88179,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 - the worker in the [<code>WorkerAssignments</code>] is pointed to <code>pid</code>
 - the worker-session binding is updated in <code>computation</code> pallet (<a href="computation::pallet::WorkerBindings"><code>WorkerBindings</code></a>,
   <a href="computation::pallet::SessionBindings"><code>SessionBindings</code></a>)</p>
-<h5 id="attributes_497">Attributes</h5>
+<h5 id="attributes_499">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88151,7 +88215,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 - the user recive ad share NFT once contribution succeeded
 - when there was any request in the withdraw queue, the action may trigger withdrawals
   (<a href="#variant.Withdrawal"><code>Withdrawal</code></a> event)</p>
-<h5 id="attributes_498">Attributes</h5>
+<h5 id="attributes_500">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88194,7 +88258,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <p>Affected states:
 - the stake related fields in [<code>Pools</code>]
 - the owner asset account</p>
-<h5 id="attributes_499">Attributes</h5>
+<h5 id="attributes_501">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88225,7 +88289,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <h4 id="poolslashed">PoolSlashed</h4>
 <p>The pool received a slash event from one of its workers (currently disabled)</p>
 <p>The slash is accured to the pending slash accumulator.</p>
-<h5 id="attributes_500">Attributes</h5>
+<h5 id="attributes_502">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88250,7 +88314,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <hr />
 <h4 id="slashsettled">SlashSettled</h4>
 <p>Some slash is actually settled to a contributor (currently disabled)</p>
-<h5 id="attributes_501">Attributes</h5>
+<h5 id="attributes_503">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88281,7 +88345,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <h4 id="rewarddismissednotinpool">RewardDismissedNotInPool</h4>
 <p>Some reward is dismissed because the worker is no longer bound to a pool</p>
 <p>There&amp;#x27;s no affected state.</p>
-<h5 id="attributes_502">Attributes</h5>
+<h5 id="attributes_504">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88307,7 +88371,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <h4 id="rewarddismissednoshare">RewardDismissedNoShare</h4>
 <p>Some reward is dismissed because the pool doesn&amp;#x27;t have any share</p>
 <p>There&amp;#x27;s no affected state.</p>
-<h5 id="attributes_503">Attributes</h5>
+<h5 id="attributes_505">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88333,7 +88397,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <h4 id="rewarddismisseddust">RewardDismissedDust</h4>
 <p>Some reward is dismissed because the amount is too tiny (dust)</p>
 <p>There&amp;#x27;s no affected state.</p>
-<h5 id="attributes_504">Attributes</h5>
+<h5 id="attributes_506">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88361,7 +88425,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <p>Affected states:
 - the worker item in [<code>WorkerAssignments</code>] is removed
 - the worker is removed from the [<code>Pools</code>] item</p>
-<h5 id="attributes_505">Attributes</h5>
+<h5 id="attributes_507">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88386,7 +88450,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <hr />
 <h4 id="workerreclaimed_1">WorkerReclaimed</h4>
 <p>A worker is reclaimed from the pool</p>
-<h5 id="attributes_506">Attributes</h5>
+<h5 id="attributes_508">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88411,7 +88475,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <hr />
 <h4 id="rewardreceived">RewardReceived</h4>
 <p>The amount of reward that distributed to owner and stakers</p>
-<h5 id="attributes_507">Attributes</h5>
+<h5 id="attributes_509">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88441,7 +88505,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <hr />
 <h4 id="workingstarted">WorkingStarted</h4>
 <p>The amount of stakes for a worker to start computing</p>
-<h5 id="attributes_508">Attributes</h5>
+<h5 id="attributes_510">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88471,58 +88535,68 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <hr />
 <h3 id="storage-functions_38">Storage functions</h3>
 <hr />
-<h4 id="workerassignments_1">WorkerAssignments</h4>
-<p>Mapping from workers to the pool they belong to</p>
-<p>The map entry lasts from <code>add_worker()</code> to <code>remove_worker()</code> or force unbinding.</p>
-<h5 id="python_565">Python</h5>
+<h4 id="legacyrewards">LegacyRewards</h4>
+<h5 id="python_567">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PhalaStakePoolv2', 'WorkerAssignments', ['[u8; 32]']
+    'PhalaStakePoolv2', 'LegacyRewards', [('AccountId', 'u64')]
 )
 </code></pre>
 <h5 id="return-value_210">Return value</h5>
-<pre><code class="language-python">'u64'
+<pre><code class="language-python">'u128'
 </code></pre>
 <hr />
-<h4 id="subaccountassignments_1">SubAccountAssignments</h4>
-<p>(Deprecated)</p>
-<h5 id="python_566">Python</h5>
+<h4 id="workerassignments_1">WorkerAssignments</h4>
+<p>Mapping from workers to the pool they belong to</p>
+<p>The map entry lasts from <code>add_worker()</code> to <code>remove_worker()</code> or force unbinding.</p>
+<h5 id="python_568">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PhalaStakePoolv2', 'SubAccountAssignments', ['AccountId']
+    'PhalaStakePoolv2', 'WorkerAssignments', ['[u8; 32]']
 )
 </code></pre>
 <h5 id="return-value_211">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
+<h4 id="subaccountassignments_1">SubAccountAssignments</h4>
+<p>(Deprecated)</p>
+<h5 id="python_569">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'PhalaStakePoolv2', 'SubAccountAssignments', ['AccountId']
+)
+</code></pre>
+<h5 id="return-value_212">Return value</h5>
+<pre><code class="language-python">'u64'
+</code></pre>
+<hr />
 <h4 id="workingenabled">WorkingEnabled</h4>
 <p>Switch to enable the stake pool pallet (disabled by default)</p>
-<h5 id="python_567">Python</h5>
+<h5 id="python_570">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaStakePoolv2', 'WorkingEnabled', []
 )
 </code></pre>
-<h5 id="return-value_212">Return value</h5>
+<h5 id="return-value_213">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h4 id="subaccountpreimages_1">SubAccountPreimages</h4>
 <p>Helper storage to track the preimage of the computing sub-accounts. Not used in consensus.</p>
-<h5 id="python_568">Python</h5>
+<h5 id="python_571">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaStakePoolv2', 'SubAccountPreimages', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_213">Return value</h5>
+<h5 id="return-value_214">Return value</h5>
 <pre><code class="language-python">('u64', '[u8; 32]')
 </code></pre>
 <hr />
 <h4 id="stakepooliteratestartpos">StakepoolIterateStartPos</h4>
-<h5 id="python_569">Python</h5>
+<h5 id="python_572">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaStakePoolv2', 'StakepoolIterateStartPos', []
 )
 </code></pre>
-<h5 id="return-value_214">Return value</h5>
+<h5 id="return-value_215">Return value</h5>
 <pre><code class="language-python">(None, 'u64')
 </code></pre>
 <hr />
@@ -88532,7 +88606,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <h5 id="value_95">Value</h5>
 <pre><code class="language-python">10000000000
 </code></pre>
-<h5 id="python_570">Python</h5>
+<h5 id="python_573">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PhalaStakePoolv2', 'MinContribution')
 </code></pre>
 <hr />
@@ -88541,7 +88615,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <h5 id="value_96">Value</h5>
 <pre><code class="language-python">604800
 </code></pre>
-<h5 id="python_571">Python</h5>
+<h5 id="python_574">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PhalaStakePoolv2', 'GracePeriod')
 </code></pre>
 <hr />
@@ -88550,7 +88624,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <h5 id="value_97">Value</h5>
 <pre><code class="language-python">False
 </code></pre>
-<h5 id="python_572">Python</h5>
+<h5 id="python_575">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PhalaStakePoolv2', 'ComputingEnabledByDefault')
 </code></pre>
 <hr />
@@ -88559,7 +88633,7 @@ Note: this would let worker enter CoolingDown if everything is good</p>
 <h5 id="value_98">Value</h5>
 <pre><code class="language-python">200
 </code></pre>
-<h5 id="python_573">Python</h5>
+<h5 id="python_576">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PhalaStakePoolv2', 'MaxPoolWorkers')
 </code></pre>
 <hr />
@@ -88659,15 +88733,17 @@ has been resolved.</p>
 <hr />
 <h4 id="lockaccountstakeerror">LockAccountStakeError</h4>
 <hr />
+<h4 id="nolegacyrewardtoclaim">NoLegacyRewardToClaim</h4>
+<hr />
 <h2 id="phalavault">PhalaVault</h2>
 <hr />
 <h3 id="calls_35">Calls</h3>
 <hr />
 <h4 id="create_2">create</h4>
 <p>Creates a new vault</p>
-<h5 id="attributes_509">Attributes</h5>
+<h5 id="attributes_511">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_574">Python</h5>
+<h5 id="python_577">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaVault', 'create', {}
 )
@@ -88677,7 +88753,7 @@ has been resolved.</p>
 <p>Changes the vault commission rate</p>
 <p>Requires:
 1. The sender is the owner</p>
-<h5 id="attributes_510">Attributes</h5>
+<h5 id="attributes_512">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88696,7 +88772,7 @@ has been resolved.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_575">Python</h5>
+<h5 id="python_578">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaVault', 'set_payout_pref', {
     'payout_commission': (None, 'u32'),
@@ -88709,7 +88785,7 @@ has been resolved.</p>
 <p>Transfers some owner shares wrapped in a nft to the assigned account</p>
 <p>Requires:
 1. The sender is the owner</p>
-<h5 id="attributes_511">Attributes</h5>
+<h5 id="attributes_513">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88732,7 +88808,7 @@ has been resolved.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_576">Python</h5>
+<h5 id="python_579">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaVault', 'claim_owner_shares', {
     'shares': 'u128',
@@ -88747,7 +88823,7 @@ has been resolved.</p>
 <p>The mechanism of issuing shares to distribute owner reward is metioned in comments of struct <code>Vault</code> in poolproxy.rs</p>
 <p>Requires:
 1. The sender is the owner</p>
-<h5 id="attributes_512">Attributes</h5>
+<h5 id="attributes_514">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88762,7 +88838,7 @@ has been resolved.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_577">Python</h5>
+<h5 id="python_580">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaVault', 'maybe_gain_owner_shares', {'vault_pid': 'u64'}
 )
@@ -88773,7 +88849,7 @@ has been resolved.</p>
 <p>If the shutdown condition is met, all shares owned by the vault will be forced withdraw.
 Note: This function doesn&amp;#x27;t guarantee no-op when there&amp;#x27;s error.
 TODO(mingxuan): add more detail comment later.</p>
-<h5 id="attributes_513">Attributes</h5>
+<h5 id="attributes_515">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88788,7 +88864,7 @@ TODO(mingxuan): add more detail comment later.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_578">Python</h5>
+<h5 id="python_581">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaVault', 'check_and_maybe_force_withdraw', {'vault_pid': 'u64'}
 )
@@ -88799,7 +88875,7 @@ TODO(mingxuan): add more detail comment later.</p>
 <p>Requires:
 1. The pool exists
 2. After the deposit, the pool doesn&amp;#x27;t reach the cap</p>
-<h5 id="attributes_514">Attributes</h5>
+<h5 id="attributes_516">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88818,7 +88894,7 @@ TODO(mingxuan): add more detail comment later.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_579">Python</h5>
+<h5 id="python_582">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaVault', 'contribute', {'amount': 'u128', 'pid': 'u64'}
 )
@@ -88829,7 +88905,7 @@ TODO(mingxuan): add more detail comment later.</p>
 <p>Once a withdraw request is proceeded successfully, The withdrawal would be queued and waiting to be dealed.
 Afer the withdrawal is queued, The withdraw queue will be automaticly consumed util there are not enough free stakes to fullfill withdrawals.
 Everytime the free stakes in the pools increases, the withdraw queue will be consumed as it describes above.</p>
-<h5 id="attributes_515">Attributes</h5>
+<h5 id="attributes_517">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88848,7 +88924,7 @@ Everytime the free stakes in the pools increases, the withdraw queue will be con
 </tr>
 </tbody>
 </table>
-<h5 id="python_580">Python</h5>
+<h5 id="python_583">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaVault', 'withdraw', {'pid': 'u64', 'shares': 'u128'}
 )
@@ -88860,7 +88936,7 @@ Everytime the free stakes in the pools increases, the withdraw queue will be con
 <p>A vault is created by <code>owner</code></p>
 <p>Affected states:
 - a new entry in [<code>Pools</code>] with the pid</p>
-<h5 id="attributes_516">Attributes</h5>
+<h5 id="attributes_518">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88899,7 +88975,7 @@ Everytime the free stakes in the pools increases, the withdraw queue will be con
 <code>commission / 1_000_000u32</code>.</p>
 <p>Affected states:
 - the <code>commission</code> field in [<code>Pools</code>] is updated</p>
-<h5 id="attributes_517">Attributes</h5>
+<h5 id="attributes_519">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88927,7 +89003,7 @@ Everytime the free stakes in the pools increases, the withdraw queue will be con
 Affected states:
 - the shares related fields in [<code>Pools</code>]
 - the nft related storages in rmrk and pallet unique</p>
-<h5 id="attributes_518">Attributes</h5>
+<h5 id="attributes_520">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88960,7 +89036,7 @@ Affected states:
 <p>Affected states:
 - the shares related fields in [<code>Pools</code>]
 - last_share_price_checkpoint in [<code>Pools</code>]</p>
-<h5 id="attributes_519">Attributes</h5>
+<h5 id="attributes_521">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -88996,7 +89072,7 @@ Affected states:
 - the user recive ad share NFT once contribution succeeded
 - when there was any request in the withdraw queue, the action may trigger withdrawals
   (<a href="#variant.Withdrawal"><code>Withdrawal</code></a> event)</p>
-<h5 id="attributes_520">Attributes</h5>
+<h5 id="attributes_522">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89034,12 +89110,12 @@ Affected states:
 <h4 id="vaultlocks">VaultLocks</h4>
 <p>Mapping from the vault pid to its owner authority locking status</p>
 <p>Using to forbid vault&#x27;s owner to trigger an withdraw for the vault and override the withdraw request issued by <code>force shutdown</code>.</p>
-<h5 id="python_581">Python</h5>
+<h5 id="python_584">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaVault', 'VaultLocks', ['u64']
 )
 </code></pre>
-<h5 id="return-value_215">Return value</h5>
+<h5 id="return-value_216">Return value</h5>
 <pre><code class="language-python">()
 </code></pre>
 <hr />
@@ -89049,7 +89125,7 @@ Affected states:
 <h5 id="value_99">Value</h5>
 <pre><code class="language-python">1000000000000
 </code></pre>
-<h5 id="python_582">Python</h5>
+<h5 id="python_585">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PhalaVault', 'InitialPriceCheckPoint')
 </code></pre>
 <hr />
@@ -89083,41 +89159,6 @@ Affected states:
 <h4 id="wrap">wrap</h4>
 <p>Wraps some pha and gain equal amount of W-PHA</p>
 <p>The wrapped pha is stored in <code>WrappedBalancesAccountId</code>&amp;#x27;s wallet and can not be taken away</p>
-<h5 id="attributes_521">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>amount</td>
-<td><code>BalanceOf&lt;T&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_583">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'PhalaWrappedBalances', 'wrap', {'amount': 'u128'}
-)
-</code></pre>
-<hr />
-<h4 id="unwrap_all">unwrap_all</h4>
-<p>Burns the amount of all free W-PHA and unwraps equal amount of pha</p>
-<p>The unwrapped pha is transfered from <code>WrappedBalancesAccountId</code> to the user&amp;#x27;s wallet</p>
-<h5 id="attributes_522">Attributes</h5>
-<p>No attributes</p>
-<h5 id="python_584">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'PhalaWrappedBalances', 'unwrap_all', {}
-)
-</code></pre>
-<hr />
-<h4 id="unwrap">unwrap</h4>
-<p>Unwraps some pha by burning equal amount of W-PHA</p>
-<p>The unwrapped pha is transfered from <code>WrappedBalancesAccountId</code> to the user&amp;#x27;s wallet</p>
 <h5 id="attributes_523">Attributes</h5>
 <table>
 <thead>
@@ -89133,7 +89174,42 @@ Affected states:
 </tr>
 </tbody>
 </table>
-<h5 id="python_585">Python</h5>
+<h5 id="python_586">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'PhalaWrappedBalances', 'wrap', {'amount': 'u128'}
+)
+</code></pre>
+<hr />
+<h4 id="unwrap_all">unwrap_all</h4>
+<p>Burns the amount of all free W-PHA and unwraps equal amount of pha</p>
+<p>The unwrapped pha is transfered from <code>WrappedBalancesAccountId</code> to the user&amp;#x27;s wallet</p>
+<h5 id="attributes_524">Attributes</h5>
+<p>No attributes</p>
+<h5 id="python_587">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'PhalaWrappedBalances', 'unwrap_all', {}
+)
+</code></pre>
+<hr />
+<h4 id="unwrap">unwrap</h4>
+<p>Unwraps some pha by burning equal amount of W-PHA</p>
+<p>The unwrapped pha is transfered from <code>WrappedBalancesAccountId</code> to the user&amp;#x27;s wallet</p>
+<h5 id="attributes_525">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amount</td>
+<td><code>BalanceOf&lt;T&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_588">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaWrappedBalances', 'unwrap', {'amount': 'u128'}
 )
@@ -89143,7 +89219,7 @@ Affected states:
 <p>Uses some W-PHA to approve or oppose a vote</p>
 <p>Can both approve and oppose a vote at the same time
 The W-PHA used in vote will be locked until the vote is finished or canceled</p>
-<h5 id="attributes_524">Attributes</h5>
+<h5 id="attributes_526">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89166,7 +89242,7 @@ The W-PHA used in vote will be locked until the vote is finished or canceled</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_586">Python</h5>
+<h5 id="python_589">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaWrappedBalances', 'vote', {
     'aye_amount': 'u128',
@@ -89179,7 +89255,7 @@ The W-PHA used in vote will be locked until the vote is finished or canceled</p>
 <h4 id="unlock_1">unlock</h4>
 <p>Tries to unlock W-PHAs used in vote after the vote finished or canceled</p>
 <p>Must assign the max iterations to avoid computing complexity overwhelm</p>
-<h5 id="attributes_525">Attributes</h5>
+<h5 id="attributes_527">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89198,7 +89274,7 @@ The W-PHA used in vote will be locked until the vote is finished or canceled</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_587">Python</h5>
+<h5 id="python_590">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaWrappedBalances', 'unlock', {
     'max_iterations': 'u32',
@@ -89215,54 +89291,6 @@ The W-PHA used in vote will be locked until the vote is finished or canceled</p>
 <p>Affected states:
 - the balance of the locking ledger of the contributor at [<code>StakeLedger</code>] is set to 0
 - the user&amp;#x27;s dust stake is moved to treasury</p>
-<h5 id="attributes_526">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>user</td>
-<td><code>T::AccountId</code></td>
-<td><code>AccountId</code></td>
-</tr>
-<tr>
-<td>amount</td>
-<td><code>BalanceOf&lt;T&gt;</code></td>
-<td><code>u128</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="wrapped">Wrapped</h4>
-<h5 id="attributes_527">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>user</td>
-<td><code>T::AccountId</code></td>
-<td><code>AccountId</code></td>
-</tr>
-<tr>
-<td>amount</td>
-<td><code>BalanceOf&lt;T&gt;</code></td>
-<td><code>u128</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="unwrapped">Unwrapped</h4>
 <h5 id="attributes_528">Attributes</h5>
 <table>
 <thead>
@@ -89286,8 +89314,56 @@ The W-PHA used in vote will be locked until the vote is finished or canceled</p>
 </tbody>
 </table>
 <hr />
-<h4 id="voted_3">Voted</h4>
+<h4 id="wrapped">Wrapped</h4>
 <h5 id="attributes_529">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>BalanceOf&lt;T&gt;</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="unwrapped">Unwrapped</h4>
+<h5 id="attributes_530">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>BalanceOf&lt;T&gt;</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="voted_3">Voted</h4>
+<h5 id="attributes_531">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89324,34 +89400,34 @@ The W-PHA used in vote will be locked until the vote is finished or canceled</p>
 <hr />
 <h4 id="voteaccountmap">VoteAccountMap</h4>
 <p>Mapping from the vote ids and accounts to the amounts of W-PHA used to approve or oppose to the vote</p>
-<h5 id="python_588">Python</h5>
+<h5 id="python_591">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaWrappedBalances', 'VoteAccountMap', ['u32', 'AccountId']
 )
 </code></pre>
-<h5 id="return-value_216">Return value</h5>
+<h5 id="return-value_217">Return value</h5>
 <pre><code class="language-python">('u128', 'u128')
 </code></pre>
 <hr />
 <h4 id="accountvotemap">AccountVoteMap</h4>
 <p>Mapping from the accounts and vote ids to the amounts of W-PHA used to approve or oppose to the vote</p>
-<h5 id="python_589">Python</h5>
+<h5 id="python_592">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaWrappedBalances', 'AccountVoteMap', ['AccountId', 'u32']
 )
 </code></pre>
-<h5 id="return-value_217">Return value</h5>
+<h5 id="return-value_218">Return value</h5>
 <pre><code class="language-python">()
 </code></pre>
 <hr />
 <h4 id="stakeraccounts">StakerAccounts</h4>
 <p>Mapping for users to their asset status proxys</p>
-<h5 id="python_590">Python</h5>
+<h5 id="python_593">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaWrappedBalances', 'StakerAccounts', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_218">Return value</h5>
+<h5 id="return-value_219">Return value</h5>
 <pre><code class="language-python">{'invest_pools': [('u64', 'u32')], 'locked': 'u128'}
 </code></pre>
 <hr />
@@ -89362,7 +89438,7 @@ The W-PHA used in vote will be locked until the vote is finished or canceled</p>
 <h5 id="value_100">Value</h5>
 <pre><code class="language-python">10000
 </code></pre>
-<h5 id="python_591">Python</h5>
+<h5 id="python_594">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PhalaWrappedBalances', 'WPhaAssetId')
 </code></pre>
 <hr />
@@ -89371,7 +89447,7 @@ The W-PHA used in vote will be locked until the vote is finished or canceled</p>
 <h5 id="value_101">Value</h5>
 <pre><code class="language-python">'43KPr1BjWx1D8RWKAcWU6U4Ye6H6ip7Up1PM4prCWseC425G'
 </code></pre>
-<h5 id="python_592">Python</h5>
+<h5 id="python_595">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PhalaWrappedBalances', 'WrappedBalancesAccountId')
 </code></pre>
 <hr />
@@ -89405,7 +89481,7 @@ The W-PHA used in vote will be locked until the vote is finished or canceled</p>
 The caller must be the owner of the pool.
 If a pool hasn&amp;#x27;t registed in the wihtelist map, any staker could contribute as what they use to do.
 The whitelist has a lmit len of 100 stakers.</p>
-<h5 id="attributes_530">Attributes</h5>
+<h5 id="attributes_532">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89424,7 +89500,7 @@ The whitelist has a lmit len of 100 stakers.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_593">Python</h5>
+<h5 id="python_596">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaBasePool', 'add_staker_to_whitelist', {'pid': 'u64', 'staker': 'AccountId'}
 )
@@ -89433,7 +89509,7 @@ The whitelist has a lmit len of 100 stakers.</p>
 <h4 id="set_pool_description">set_pool_description</h4>
 <p>Adds a description to the pool</p>
 <p>The caller must be the owner of the pool.</p>
-<h5 id="attributes_531">Attributes</h5>
+<h5 id="attributes_533">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89452,23 +89528,23 @@ The whitelist has a lmit len of 100 stakers.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_594">Python</h5>
+<h5 id="python_597">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaBasePool', 'set_pool_description', {'description': 'Bytes', 'pid': 'u64'}
 )
 </code></pre>
 <hr />
-<h4 id="reset_iter_pos_1">reset_iter_pos</h4>
-<h5 id="attributes_532">Attributes</h5>
+<h4 id="reset_lock_iter_pos">reset_lock_iter_pos</h4>
+<h5 id="attributes_534">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_595">Python</h5>
+<h5 id="python_598">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'PhalaBasePool', 'reset_iter_pos', {}
+    'PhalaBasePool', 'reset_lock_iter_pos', {}
 )
 </code></pre>
 <hr />
-<h4 id="remove_unused_property">remove_unused_property</h4>
-<h5 id="attributes_533">Attributes</h5>
+<h4 id="remove_unused_lock">remove_unused_lock</h4>
+<h5 id="attributes_535">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89483,9 +89559,9 @@ The whitelist has a lmit len of 100 stakers.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_596">Python</h5>
+<h5 id="python_599">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'PhalaBasePool', 'remove_unused_property', {'max_iterations': 'u32'}
+    'PhalaBasePool', 'remove_unused_lock', {'max_iterations': 'u32'}
 )
 </code></pre>
 <hr />
@@ -89493,7 +89569,7 @@ The whitelist has a lmit len of 100 stakers.</p>
 <p>Removes a staker accountid to contribution whitelist.</p>
 <p>The caller must be the owner of the pool.
 If the last staker in the whitelist is removed, the pool will return back to a normal pool that allow anyone to contribute.</p>
-<h5 id="attributes_534">Attributes</h5>
+<h5 id="attributes_536">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89512,9 +89588,41 @@ If the last staker in the whitelist is removed, the pool will return back to a n
 </tr>
 </tbody>
 </table>
-<h5 id="python_597">Python</h5>
+<h5 id="python_600">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PhalaBasePool', 'remove_staker_from_whitelist', {'pid': 'u64', 'staker': 'AccountId'}
+)
+</code></pre>
+<hr />
+<h4 id="backfill_transfer_shares">backfill_transfer_shares</h4>
+<h5 id="attributes_537">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input</td>
+<td><code>Vec&lt;ShareTransferProxy&lt;T&gt;&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_601">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'PhalaBasePool', 'backfill_transfer_shares', {
+    'input': [
+        (
+            'AccountId',
+            'AccountId',
+            'u64',
+            'u128',
+            ('StakePool', 'Vault'),
+        ),
+    ],
+}
 )
 </code></pre>
 <hr />
@@ -89522,7 +89630,7 @@ If the last staker in the whitelist is removed, the pool will return back to a n
 <hr />
 <h4 id="nftcreated">NftCreated</h4>
 <p>A Nft is created to contain pool shares</p>
-<h5 id="attributes_535">Attributes</h5>
+<h5 id="attributes_538">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89565,7 +89673,7 @@ If the last staker in the whitelist is removed, the pool will return back to a n
 <p>Affected states:
 - a new item is inserted to or an old item is being replaced by the new item in the
   withdraw queue in [<code>Pools</code>]</p>
-<h5 id="attributes_536">Attributes</h5>
+<h5 id="attributes_539">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89610,7 +89718,7 @@ locked stake.</p>
 <p>Affected states:
 - the stake related fields in [<code>Pools</code>]
 - the user staking asset account</p>
-<h5 id="attributes_537">Attributes</h5>
+<h5 id="attributes_540">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89648,7 +89756,7 @@ locked stake.</p>
 <ul>
 <li>lazy operated when the first staker is added to the whitelist</li>
 </ul>
-<h5 id="attributes_538">Attributes</h5>
+<h5 id="attributes_541">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89671,7 +89779,7 @@ locked stake.</p>
 <ul>
 <li>lazy operated when the last staker is removed from the whitelist</li>
 </ul>
-<h5 id="attributes_539">Attributes</h5>
+<h5 id="attributes_542">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89691,7 +89799,7 @@ locked stake.</p>
 <hr />
 <h4 id="poolwhiteliststakeradded">PoolWhitelistStakerAdded</h4>
 <p>A staker is added to the pool contribution whitelist</p>
-<h5 id="attributes_540">Attributes</h5>
+<h5 id="attributes_543">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89716,7 +89824,7 @@ locked stake.</p>
 <hr />
 <h4 id="poolwhiteliststakerremoved">PoolWhitelistStakerRemoved</h4>
 <p>A staker is removed from the pool contribution whitelist</p>
-<h5 id="attributes_541">Attributes</h5>
+<h5 id="attributes_544">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89743,66 +89851,66 @@ locked stake.</p>
 <hr />
 <h4 id="nextnftid">NextNftId</h4>
 <p>Mapping from the next self-increased nft ids to collections</p>
-<h5 id="python_598">Python</h5>
+<h5 id="python_602">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaBasePool', 'NextNftId', ['u32']
 )
 </code></pre>
-<h5 id="return-value_219">Return value</h5>
+<h5 id="return-value_220">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
-<h4 id="propertyiteratestartpos">PropertyIterateStartPos</h4>
-<h5 id="python_599">Python</h5>
+<h4 id="lockiteratestartpos">LockIterateStartPos</h4>
+<h5 id="python_603">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PhalaBasePool', 'PropertyIterateStartPos', []
+    'PhalaBasePool', 'LockIterateStartPos', []
 )
 </code></pre>
-<h5 id="return-value_220">Return value</h5>
-<pre><code class="language-python">(None, ('u32', (None, 'u32'), 'Bytes'))
+<h5 id="return-value_221">Return value</h5>
+<pre><code class="language-python">(None, ('u32', 'u32'))
 </code></pre>
 <hr />
 <h4 id="poolcount_1">PoolCount</h4>
 <p>The number of total pools</p>
-<h5 id="python_600">Python</h5>
+<h5 id="python_604">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaBasePool', 'PoolCount', []
-)
-</code></pre>
-<h5 id="return-value_221">Return value</h5>
-<pre><code class="language-python">'u64'
-</code></pre>
-<hr />
-<h4 id="poolcollections">PoolCollections</h4>
-<p>Mapping from collectionids to pids</p>
-<h5 id="python_601">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'PhalaBasePool', 'PoolCollections', ['u32']
 )
 </code></pre>
 <h5 id="return-value_222">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
+<h4 id="poolcollections">PoolCollections</h4>
+<p>Mapping from collectionids to pids</p>
+<h5 id="python_605">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'PhalaBasePool', 'PoolCollections', ['u32']
+)
+</code></pre>
+<h5 id="return-value_223">Return value</h5>
+<pre><code class="language-python">'u64'
+</code></pre>
+<hr />
 <h4 id="collectionindex">CollectionIndex</h4>
 <p>The Next available collectionid to be created</p>
-<h5 id="python_602">Python</h5>
+<h5 id="python_606">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaBasePool', 'CollectionIndex', []
 )
 </code></pre>
-<h5 id="return-value_223">Return value</h5>
+<h5 id="return-value_224">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="pools">Pools</h4>
 <p>Mapping from pids to pools (including stake pools and vaults)</p>
-<h5 id="python_603">Python</h5>
+<h5 id="python_607">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaBasePool', 'Pools', ['u64']
 )
 </code></pre>
-<h5 id="return-value_224">Return value</h5>
+<h5 id="return-value_225">Return value</h5>
 <pre><code class="language-python">{
     'StakePool': {
         'basepool': {
@@ -89848,34 +89956,34 @@ locked stake.</p>
 <h4 id="nftlocks">NftLocks</h4>
 <p>Mapping from the NftId to its internal locking status</p>
 <p>Used to ensure nft attributes can&#x27;t be read and override when it has already be accessed and haven&#x27;t updated yet.</p>
-<h5 id="python_604">Python</h5>
+<h5 id="python_608">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaBasePool', 'NftLocks', [('u32', 'u32')]
 )
 </code></pre>
-<h5 id="return-value_225">Return value</h5>
+<h5 id="return-value_226">Return value</h5>
 <pre><code class="language-python">()
 </code></pre>
 <hr />
 <h4 id="poolcontributionwhitelists_1">PoolContributionWhitelists</h4>
 <p>Mapping for pools that specify certain stakers to contribute stakes</p>
-<h5 id="python_605">Python</h5>
+<h5 id="python_609">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaBasePool', 'PoolContributionWhitelists', ['u64']
 )
 </code></pre>
-<h5 id="return-value_226">Return value</h5>
+<h5 id="return-value_227">Return value</h5>
 <pre><code class="language-python">['AccountId']
 </code></pre>
 <hr />
 <h4 id="pooldescriptions_1">PoolDescriptions</h4>
 <p>Mapping for pools that store their descriptions set by owner</p>
-<h5 id="python_606">Python</h5>
+<h5 id="python_610">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PhalaBasePool', 'PoolDescriptions', ['u64']
 )
 </code></pre>
-<h5 id="return-value_227">Return value</h5>
+<h5 id="return-value_228">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
@@ -89938,6 +90046,8 @@ has been resolved.</p>
 <h4 id="burnnftfailed">BurnNftFailed</h4>
 <p>Burn nft failed</p>
 <hr />
+<h4 id="transfersharesamountinvalid">TransferSharesAmountInvalid</h4>
+<hr />
 <h2 id="uniques">Uniques</h2>
 <hr />
 <h3 id="calls_38">Calls</h3>
@@ -89953,7 +90063,7 @@ has been resolved.</p>
 member of the collection&amp;#x27;s admin team.</p>
 <p>Emits <code>Created</code> event when successful.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_542">Attributes</h5>
+<h5 id="attributes_545">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -89972,7 +90082,7 @@ member of the collection&amp;#x27;s admin team.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_607">Python</h5>
+<h5 id="python_611">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'create', {
     'admin': {
@@ -90001,7 +90111,7 @@ over this item, but may later change and configure the permissions using
 </ul>
 <p>Emits <code>ForceCreated</code> event when successful.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_543">Attributes</h5>
+<h5 id="attributes_546">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90024,7 +90134,7 @@ over this item, but may later change and configure the permissions using
 </tr>
 </tbody>
 </table>
-<h5 id="python_608">Python</h5>
+<h5 id="python_612">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'force_create', {
     'collection': 'u32',
@@ -90054,7 +90164,7 @@ correct.</li>
 - <code>n = witness.items</code>
 - <code>m = witness.item_metadatas</code>
 - <code>a = witness.attributes</code></p>
-<h5 id="attributes_544">Attributes</h5>
+<h5 id="attributes_547">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90073,7 +90183,7 @@ correct.</li>
 </tr>
 </tbody>
 </table>
-<h5 id="python_609">Python</h5>
+<h5 id="python_613">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'destroy', {
     'collection': 'u32',
@@ -90096,7 +90206,7 @@ correct.</li>
 </ul>
 <p>Emits <code>Issued</code> event when successful.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_545">Attributes</h5>
+<h5 id="attributes_548">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90119,7 +90229,7 @@ correct.</li>
 </tr>
 </tbody>
 </table>
-<h5 id="python_610">Python</h5>
+<h5 id="python_614">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'mint', {
     'collection': 'u32',
@@ -90147,7 +90257,7 @@ correct.</li>
 <p>Emits <code>Burned</code> with the actual amount burned.</p>
 <p>Weight: <code>O(1)</code>
 Modes: <code>check_owner.is_some()</code>.</p>
-<h5 id="attributes_546">Attributes</h5>
+<h5 id="attributes_549">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90170,7 +90280,7 @@ Modes: <code>check_owner.is_some()</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_611">Python</h5>
+<h5 id="python_615">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'burn', {
     'check_owner': (
@@ -90202,7 +90312,7 @@ Modes: <code>check_owner.is_some()</code>.</p>
 - <code>dest</code>: The account to receive ownership of the item.</p>
 <p>Emits <code>Transferred</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_547">Attributes</h5>
+<h5 id="attributes_550">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90225,7 +90335,7 @@ Modes: <code>check_owner.is_some()</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_612">Python</h5>
+<h5 id="python_616">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'transfer', {
     'collection': 'u32',
@@ -90256,7 +90366,7 @@ so it&amp;#x27;s of little consequence.</p>
 <p>It will still return an error in the case that the collection is unknown of the signer
 is not permitted to call it.</p>
 <p>Weight: <code>O(items.len())</code></p>
-<h5 id="attributes_548">Attributes</h5>
+<h5 id="attributes_551">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90275,7 +90385,7 @@ is not permitted to call it.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_613">Python</h5>
+<h5 id="python_617">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'redeposit', {'collection': 'u32', 'items': ['u32']}
 )
@@ -90290,7 +90400,7 @@ is not permitted to call it.</p>
 </ul>
 <p>Emits <code>Frozen</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_549">Attributes</h5>
+<h5 id="attributes_552">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90309,7 +90419,7 @@ is not permitted to call it.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_614">Python</h5>
+<h5 id="python_618">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'freeze', {'collection': 'u32', 'item': 'u32'}
 )
@@ -90324,7 +90434,7 @@ is not permitted to call it.</p>
 </ul>
 <p>Emits <code>Thawed</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_550">Attributes</h5>
+<h5 id="attributes_553">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90343,7 +90453,7 @@ is not permitted to call it.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_615">Python</h5>
+<h5 id="python_619">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'thaw', {'collection': 'u32', 'item': 'u32'}
 )
@@ -90357,7 +90467,7 @@ is not permitted to call it.</p>
 </ul>
 <p>Emits <code>CollectionFrozen</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_551">Attributes</h5>
+<h5 id="attributes_554">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90372,7 +90482,7 @@ is not permitted to call it.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_616">Python</h5>
+<h5 id="python_620">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'freeze_collection', {'collection': 'u32'}
 )
@@ -90386,7 +90496,7 @@ is not permitted to call it.</p>
 </ul>
 <p>Emits <code>CollectionThawed</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_552">Attributes</h5>
+<h5 id="attributes_555">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90401,7 +90511,7 @@ is not permitted to call it.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_617">Python</h5>
+<h5 id="python_621">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'thaw_collection', {'collection': 'u32'}
 )
@@ -90417,7 +90527,7 @@ is not permitted to call it.</p>
 </ul>
 <p>Emits <code>OwnerChanged</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_553">Attributes</h5>
+<h5 id="attributes_556">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90436,7 +90546,7 @@ is not permitted to call it.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_618">Python</h5>
+<h5 id="python_622">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'transfer_ownership', {
     'collection': 'u32',
@@ -90462,7 +90572,7 @@ is not permitted to call it.</p>
 </ul>
 <p>Emits <code>TeamChanged</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_554">Attributes</h5>
+<h5 id="attributes_557">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90489,7 +90599,7 @@ is not permitted to call it.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_619">Python</h5>
+<h5 id="python_623">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'set_team', {
     'admin': {
@@ -90530,7 +90640,7 @@ either the owner of the <code>item</code> or the admin of the collection.</p>
 <p>Important NOTE: The <code>approved</code> account gets reset after each transfer.</p>
 <p>Emits <code>ApprovedTransfer</code> on success.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_555">Attributes</h5>
+<h5 id="attributes_558">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90553,7 +90663,7 @@ either the owner of the <code>item</code> or the admin of the collection.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_620">Python</h5>
+<h5 id="python_624">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'approve_transfer', {
     'collection': 'u32',
@@ -90582,7 +90692,7 @@ either the owner of the <code>item</code> or the admin of the collection.</p>
   which permission of transfer is delegated.</p>
 <p>Emits <code>ApprovalCancelled</code> on success.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_556">Attributes</h5>
+<h5 id="attributes_559">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90605,7 +90715,7 @@ either the owner of the <code>item</code> or the admin of the collection.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_621">Python</h5>
+<h5 id="python_625">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'cancel_approval', {
     'collection': 'u32',
@@ -90639,7 +90749,7 @@ instructions.</li>
 </ul>
 <p>Emits <code>ItemStatusChanged</code> with the identity of the item.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_557">Attributes</h5>
+<h5 id="attributes_560">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90678,7 +90788,7 @@ instructions.</li>
 </tr>
 </tbody>
 </table>
-<h5 id="python_622">Python</h5>
+<h5 id="python_626">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'force_item_status', {
     'admin': {
@@ -90731,7 +90841,7 @@ account any already reserved funds.</p>
 </ul>
 <p>Emits <code>AttributeSet</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_558">Attributes</h5>
+<h5 id="attributes_561">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90758,7 +90868,7 @@ account any already reserved funds.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_623">Python</h5>
+<h5 id="python_627">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'set_attribute', {
     'collection': 'u32',
@@ -90781,7 +90891,7 @@ account any already reserved funds.</p>
 </ul>
 <p>Emits <code>AttributeCleared</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_559">Attributes</h5>
+<h5 id="attributes_562">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90804,7 +90914,7 @@ account any already reserved funds.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_624">Python</h5>
+<h5 id="python_628">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'clear_attribute', {
     'collection': 'u32',
@@ -90829,7 +90939,7 @@ account any already reserved funds.</p>
 </ul>
 <p>Emits <code>MetadataSet</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_560">Attributes</h5>
+<h5 id="attributes_563">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90856,7 +90966,7 @@ account any already reserved funds.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_625">Python</h5>
+<h5 id="python_629">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'set_metadata', {
     'collection': 'u32',
@@ -90878,7 +90988,7 @@ account any already reserved funds.</p>
 </ul>
 <p>Emits <code>MetadataCleared</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_561">Attributes</h5>
+<h5 id="attributes_564">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90897,7 +91007,7 @@ account any already reserved funds.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_626">Python</h5>
+<h5 id="python_630">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'clear_metadata', {'collection': 'u32', 'item': 'u32'}
 )
@@ -90917,7 +91027,7 @@ account any already reserved funds.</p>
 </ul>
 <p>Emits <code>CollectionMetadataSet</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_562">Attributes</h5>
+<h5 id="attributes_565">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90940,7 +91050,7 @@ account any already reserved funds.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_627">Python</h5>
+<h5 id="python_631">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'set_collection_metadata', {
     'collection': 'u32',
@@ -90960,7 +91070,7 @@ the <code>collection</code>.</p>
 </ul>
 <p>Emits <code>CollectionMetadataCleared</code>.</p>
 <p>Weight: <code>O(1)</code></p>
-<h5 id="attributes_563">Attributes</h5>
+<h5 id="attributes_566">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -90975,7 +91085,7 @@ the <code>collection</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_628">Python</h5>
+<h5 id="python_632">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'clear_collection_metadata', {'collection': 'u32'}
 )
@@ -90991,7 +91101,7 @@ provider reference.</p>
   ownership transferal.</li>
 </ul>
 <p>Emits <code>OwnershipAcceptanceChanged</code>.</p>
-<h5 id="attributes_564">Attributes</h5>
+<h5 id="attributes_567">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91006,7 +91116,7 @@ provider reference.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_629">Python</h5>
+<h5 id="python_633">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'set_accept_ownership', {'maybe_collection': (None, 'u32')}
 )
@@ -91022,7 +91132,7 @@ the <code>collection</code>.</p>
 <li><code>max_supply</code>: The maximum amount of items a collection could have.</li>
 </ul>
 <p>Emits <code>CollectionMaxSupplySet</code> event when successful.</p>
-<h5 id="attributes_565">Attributes</h5>
+<h5 id="attributes_568">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91041,7 +91151,7 @@ the <code>collection</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_630">Python</h5>
+<h5 id="python_634">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'set_collection_max_supply', {
     'collection': 'u32',
@@ -91061,7 +91171,7 @@ the <code>collection</code>.</p>
 </ul>
 <p>Emits <code>ItemPriceSet</code> on success if the price is not <code>None</code>.
 Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>.</p>
-<h5 id="attributes_566">Attributes</h5>
+<h5 id="attributes_569">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91088,7 +91198,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 </tr>
 </tbody>
 </table>
-<h5 id="python_631">Python</h5>
+<h5 id="python_635">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'set_price', {
     'collection': 'u32',
@@ -91117,7 +91227,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <li><code>bid_price</code>: The price the sender is willing to pay.</li>
 </ul>
 <p>Emits <code>ItemBought</code> on success.</p>
-<h5 id="attributes_567">Attributes</h5>
+<h5 id="attributes_570">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91140,7 +91250,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 </tr>
 </tbody>
 </table>
-<h5 id="python_632">Python</h5>
+<h5 id="python_636">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Uniques', 'buy_item', {
     'bid_price': 'u128',
@@ -91154,7 +91264,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="created_1">Created</h4>
 <p>A <code>collection</code> was created.</p>
-<h5 id="attributes_568">Attributes</h5>
+<h5 id="attributes_571">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91184,7 +91294,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="forcecreated_1">ForceCreated</h4>
 <p>A <code>collection</code> was force-created.</p>
-<h5 id="attributes_569">Attributes</h5>
+<h5 id="attributes_572">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91209,7 +91319,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="destroyed_1">Destroyed</h4>
 <p>A <code>collection</code> was destroyed.</p>
-<h5 id="attributes_570">Attributes</h5>
+<h5 id="attributes_573">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91229,7 +91339,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="issued_1">Issued</h4>
 <p>An <code>item</code> was issued.</p>
-<h5 id="attributes_571">Attributes</h5>
+<h5 id="attributes_574">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91259,7 +91369,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="transferred_1">Transferred</h4>
 <p>An <code>item</code> was transferred.</p>
-<h5 id="attributes_572">Attributes</h5>
+<h5 id="attributes_575">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91294,7 +91404,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="burned_1">Burned</h4>
 <p>An <code>item</code> was destroyed.</p>
-<h5 id="attributes_573">Attributes</h5>
+<h5 id="attributes_576">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91324,7 +91434,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="frozen_2">Frozen</h4>
 <p>Some <code>item</code> was frozen.</p>
-<h5 id="attributes_574">Attributes</h5>
+<h5 id="attributes_577">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91349,7 +91459,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="thawed_1">Thawed</h4>
 <p>Some <code>item</code> was thawed.</p>
-<h5 id="attributes_575">Attributes</h5>
+<h5 id="attributes_578">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91374,7 +91484,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="collectionfrozen">CollectionFrozen</h4>
 <p>Some <code>collection</code> was frozen.</p>
-<h5 id="attributes_576">Attributes</h5>
+<h5 id="attributes_579">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91394,7 +91504,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="collectionthawed">CollectionThawed</h4>
 <p>Some <code>collection</code> was thawed.</p>
-<h5 id="attributes_577">Attributes</h5>
+<h5 id="attributes_580">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91414,7 +91524,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="ownerchanged_1">OwnerChanged</h4>
 <p>The owner changed.</p>
-<h5 id="attributes_578">Attributes</h5>
+<h5 id="attributes_581">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91439,7 +91549,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <hr />
 <h4 id="teamchanged_1">TeamChanged</h4>
 <p>The management team changed.</p>
-<h5 id="attributes_579">Attributes</h5>
+<h5 id="attributes_582">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91475,7 +91585,7 @@ Emits <code>ItemPriceRemoved</code> on success if the price is <code>None</code>
 <h4 id="approvedtransfer_1">ApprovedTransfer</h4>
 <p>An <code>item</code> of a <code>collection</code> has been approved by the <code>owner</code> for transfer by
 a <code>delegate</code>.</p>
-<h5 id="attributes_580">Attributes</h5>
+<h5 id="attributes_583">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91511,7 +91621,7 @@ a <code>delegate</code>.</p>
 <h4 id="approvalcancelled_1">ApprovalCancelled</h4>
 <p>An approval for a <code>delegate</code> account to transfer the <code>item</code> of an item
 <code>collection</code> was cancelled by its <code>owner</code>.</p>
-<h5 id="attributes_581">Attributes</h5>
+<h5 id="attributes_584">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91546,7 +91656,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="itemstatuschanged">ItemStatusChanged</h4>
 <p>A <code>collection</code> has had its attributes changed by the <code>Force</code> origin.</p>
-<h5 id="attributes_582">Attributes</h5>
+<h5 id="attributes_585">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91566,7 +91676,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="collectionmetadataset">CollectionMetadataSet</h4>
 <p>New metadata has been set for a <code>collection</code>.</p>
-<h5 id="attributes_583">Attributes</h5>
+<h5 id="attributes_586">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91596,7 +91706,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="collectionmetadatacleared">CollectionMetadataCleared</h4>
 <p>Metadata has been cleared for a <code>collection</code>.</p>
-<h5 id="attributes_584">Attributes</h5>
+<h5 id="attributes_587">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91616,7 +91726,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="metadataset_1">MetadataSet</h4>
 <p>New metadata has been set for an item.</p>
-<h5 id="attributes_585">Attributes</h5>
+<h5 id="attributes_588">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91651,7 +91761,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="metadatacleared_1">MetadataCleared</h4>
 <p>Metadata has been cleared for an item.</p>
-<h5 id="attributes_586">Attributes</h5>
+<h5 id="attributes_589">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91676,7 +91786,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="redeposited">Redeposited</h4>
 <p>Metadata has been cleared for an item.</p>
-<h5 id="attributes_587">Attributes</h5>
+<h5 id="attributes_590">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91701,7 +91811,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="attributeset">AttributeSet</h4>
 <p>New attribute metadata has been set for a <code>collection</code> or <code>item</code>.</p>
-<h5 id="attributes_588">Attributes</h5>
+<h5 id="attributes_591">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91736,7 +91846,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="attributecleared">AttributeCleared</h4>
 <p>Attribute metadata has been cleared for a <code>collection</code> or <code>item</code>.</p>
-<h5 id="attributes_589">Attributes</h5>
+<h5 id="attributes_592">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91766,7 +91876,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="ownershipacceptancechanged">OwnershipAcceptanceChanged</h4>
 <p>Ownership acceptance has changed for an account.</p>
-<h5 id="attributes_590">Attributes</h5>
+<h5 id="attributes_593">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91791,7 +91901,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="collectionmaxsupplyset">CollectionMaxSupplySet</h4>
 <p>Max supply has been set for a collection.</p>
-<h5 id="attributes_591">Attributes</h5>
+<h5 id="attributes_594">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91816,7 +91926,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="itempriceset">ItemPriceSet</h4>
 <p>The price was set for the instance.</p>
-<h5 id="attributes_592">Attributes</h5>
+<h5 id="attributes_595">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91851,7 +91961,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="itempriceremoved">ItemPriceRemoved</h4>
 <p>The price for the instance was removed.</p>
-<h5 id="attributes_593">Attributes</h5>
+<h5 id="attributes_596">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91876,7 +91986,7 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="itembought">ItemBought</h4>
 <p>An item was bought.</p>
-<h5 id="attributes_594">Attributes</h5>
+<h5 id="attributes_597">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -91918,12 +92028,12 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="class">Class</h4>
 <p>Details of a collection.</p>
-<h5 id="python_633">Python</h5>
+<h5 id="python_637">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Uniques', 'Class', ['u32']
 )
 </code></pre>
-<h5 id="return-value_228">Return value</h5>
+<h5 id="return-value_229">Return value</h5>
 <pre><code class="language-python">{
     'admin': 'AccountId',
     'attributes': 'u32',
@@ -91940,102 +92050,102 @@ a <code>delegate</code>.</p>
 <hr />
 <h4 id="ownershipacceptance">OwnershipAcceptance</h4>
 <p>The collection, if any, of which an account is willing to take ownership.</p>
-<h5 id="python_634">Python</h5>
+<h5 id="python_638">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Uniques', 'OwnershipAcceptance', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_229">Return value</h5>
+<h5 id="return-value_230">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="account_3">Account</h4>
 <p>The items held by any given account; set out this way so that items owned by a single
  account can be enumerated.</p>
-<h5 id="python_635">Python</h5>
+<h5 id="python_639">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Uniques', 'Account', ['AccountId', 'u32', 'u32']
-)
-</code></pre>
-<h5 id="return-value_230">Return value</h5>
-<pre><code class="language-python">()
-</code></pre>
-<hr />
-<h4 id="classaccount">ClassAccount</h4>
-<p>The collections owned by any given account; set out this way so that collections owned by
- a single account can be enumerated.</p>
-<h5 id="python_636">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'Uniques', 'ClassAccount', ['AccountId', 'u32']
 )
 </code></pre>
 <h5 id="return-value_231">Return value</h5>
 <pre><code class="language-python">()
 </code></pre>
 <hr />
+<h4 id="classaccount">ClassAccount</h4>
+<p>The collections owned by any given account; set out this way so that collections owned by
+ a single account can be enumerated.</p>
+<h5 id="python_640">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'Uniques', 'ClassAccount', ['AccountId', 'u32']
+)
+</code></pre>
+<h5 id="return-value_232">Return value</h5>
+<pre><code class="language-python">()
+</code></pre>
+<hr />
 <h4 id="asset_1">Asset</h4>
 <p>The items in existence and their ownership details.</p>
-<h5 id="python_637">Python</h5>
+<h5 id="python_641">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Uniques', 'Asset', ['u32', 'u32']
 )
 </code></pre>
-<h5 id="return-value_232">Return value</h5>
+<h5 id="return-value_233">Return value</h5>
 <pre><code class="language-python">{'approved': (None, 'AccountId'), 'deposit': 'u128', 'is_frozen': 'bool', 'owner': 'AccountId'}
 </code></pre>
 <hr />
 <h4 id="classmetadataof">ClassMetadataOf</h4>
 <p>Metadata of a collection.</p>
-<h5 id="python_638">Python</h5>
+<h5 id="python_642">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Uniques', 'ClassMetadataOf', ['u32']
-)
-</code></pre>
-<h5 id="return-value_233">Return value</h5>
-<pre><code class="language-python">{'data': 'Bytes', 'deposit': 'u128', 'is_frozen': 'bool'}
-</code></pre>
-<hr />
-<h4 id="instancemetadataof">InstanceMetadataOf</h4>
-<p>Metadata of an item.</p>
-<h5 id="python_639">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'Uniques', 'InstanceMetadataOf', ['u32', 'u32']
 )
 </code></pre>
 <h5 id="return-value_234">Return value</h5>
 <pre><code class="language-python">{'data': 'Bytes', 'deposit': 'u128', 'is_frozen': 'bool'}
 </code></pre>
 <hr />
+<h4 id="instancemetadataof">InstanceMetadataOf</h4>
+<p>Metadata of an item.</p>
+<h5 id="python_643">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'Uniques', 'InstanceMetadataOf', ['u32', 'u32']
+)
+</code></pre>
+<h5 id="return-value_235">Return value</h5>
+<pre><code class="language-python">{'data': 'Bytes', 'deposit': 'u128', 'is_frozen': 'bool'}
+</code></pre>
+<hr />
 <h4 id="attribute">Attribute</h4>
 <p>Attributes of a collection.</p>
-<h5 id="python_640">Python</h5>
+<h5 id="python_644">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Uniques', 'Attribute', ['u32', (None, 'u32'), 'Bytes']
 )
 </code></pre>
-<h5 id="return-value_235">Return value</h5>
+<h5 id="return-value_236">Return value</h5>
 <pre><code class="language-python">('Bytes', 'u128')
 </code></pre>
 <hr />
 <h4 id="itempriceof">ItemPriceOf</h4>
 <p>Price of an asset instance.</p>
-<h5 id="python_641">Python</h5>
+<h5 id="python_645">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Uniques', 'ItemPriceOf', ['u32', 'u32']
 )
 </code></pre>
-<h5 id="return-value_236">Return value</h5>
+<h5 id="return-value_237">Return value</h5>
 <pre><code class="language-python">('u128', (None, 'AccountId'))
 </code></pre>
 <hr />
 <h4 id="collectionmaxsupply">CollectionMaxSupply</h4>
 <p>Keeps track of the number of items a collection might have.</p>
-<h5 id="python_642">Python</h5>
+<h5 id="python_646">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Uniques', 'CollectionMaxSupply', ['u32']
 )
 </code></pre>
-<h5 id="return-value_237">Return value</h5>
+<h5 id="return-value_238">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
@@ -92046,7 +92156,7 @@ a <code>delegate</code>.</p>
 <h5 id="value_102">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
-<h5 id="python_643">Python</h5>
+<h5 id="python_647">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'CollectionDeposit')
 </code></pre>
 <hr />
@@ -92055,7 +92165,7 @@ a <code>delegate</code>.</p>
 <h5 id="value_103">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
-<h5 id="python_644">Python</h5>
+<h5 id="python_648">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'ItemDeposit')
 </code></pre>
 <hr />
@@ -92064,7 +92174,7 @@ a <code>delegate</code>.</p>
 <h5 id="value_104">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
-<h5 id="python_645">Python</h5>
+<h5 id="python_649">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'MetadataDepositBase')
 </code></pre>
 <hr />
@@ -92073,7 +92183,7 @@ a <code>delegate</code>.</p>
 <h5 id="value_105">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
-<h5 id="python_646">Python</h5>
+<h5 id="python_650">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'AttributeDepositBase')
 </code></pre>
 <hr />
@@ -92083,7 +92193,7 @@ a <code>delegate</code>.</p>
 <h5 id="value_106">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
-<h5 id="python_647">Python</h5>
+<h5 id="python_651">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'DepositPerByte')
 </code></pre>
 <hr />
@@ -92092,7 +92202,7 @@ a <code>delegate</code>.</p>
 <h5 id="value_107">Value</h5>
 <pre><code class="language-python">50
 </code></pre>
-<h5 id="python_648">Python</h5>
+<h5 id="python_652">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'StringLimit')
 </code></pre>
 <hr />
@@ -92101,7 +92211,7 @@ a <code>delegate</code>.</p>
 <h5 id="value_108">Value</h5>
 <pre><code class="language-python">32
 </code></pre>
-<h5 id="python_649">Python</h5>
+<h5 id="python_653">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'KeyLimit')
 </code></pre>
 <hr />
@@ -92110,7 +92220,7 @@ a <code>delegate</code>.</p>
 <h5 id="value_109">Value</h5>
 <pre><code class="language-python">256
 </code></pre>
-<h5 id="python_650">Python</h5>
+<h5 id="python_654">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'ValueLimit')
 </code></pre>
 <hr />
@@ -92183,7 +92293,7 @@ Sets metadata and the royalty attribute</p>
 - <code>recipient</code>: Receiver of the royalty
 - <code>royalty</code>: Permillage reward from each trade for the Recipient
 - <code>metadata</code>: Arbitrary data about an nft, e.g. IPFS hash</p>
-<h5 id="attributes_595">Attributes</h5>
+<h5 id="attributes_598">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92226,7 +92336,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_651">Python</h5>
+<h5 id="python_655">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'mint_nft', {
     'collection_id': 'u32',
@@ -92290,7 +92400,7 @@ Sets metadata and the royalty attribute</p>
 - <code>recipient</code>: Receiver of the royalty
 - <code>royalty</code>: Permillage reward from each trade for the Recipient
 - <code>metadata</code>: Arbitrary data about an nft, e.g. IPFS hash</p>
-<h5 id="attributes_596">Attributes</h5>
+<h5 id="attributes_599">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92333,7 +92443,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_652">Python</h5>
+<h5 id="python_656">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'mint_nft_directly_to_nft', {
     'collection_id': 'u32',
@@ -92390,7 +92500,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="create_collection">create_collection</h4>
 <p>Create a collection</p>
-<h5 id="attributes_597">Attributes</h5>
+<h5 id="attributes_600">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92417,7 +92527,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_653">Python</h5>
+<h5 id="python_657">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'create_collection', {
     'collection_id': 'u32',
@@ -92430,7 +92540,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="burn_nft">burn_nft</h4>
 <p>burn nft</p>
-<h5 id="attributes_598">Attributes</h5>
+<h5 id="attributes_601">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92449,7 +92559,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_654">Python</h5>
+<h5 id="python_658">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'burn_nft', {
     'collection_id': 'u32',
@@ -92460,7 +92570,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="destroy_collection">destroy_collection</h4>
 <p>destroy collection</p>
-<h5 id="attributes_599">Attributes</h5>
+<h5 id="attributes_602">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92475,7 +92585,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_655">Python</h5>
+<h5 id="python_659">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'destroy_collection', {'collection_id': 'u32'}
 )
@@ -92488,7 +92598,7 @@ Sets metadata and the royalty attribute</p>
 - <code>collection_id</code>: collection id of the nft to be transferred
 - <code>nft_id</code>: nft id of the nft to be transferred
 - <code>new_owner</code>: new owner of the nft which can be either an account or a NFT</p>
-<h5 id="attributes_600">Attributes</h5>
+<h5 id="attributes_603">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92515,7 +92625,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_656">Python</h5>
+<h5 id="python_660">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'send', {
     'collection_id': 'u32',
@@ -92539,7 +92649,7 @@ Sets metadata and the royalty attribute</p>
 - <code>nft_id</code>: nft id of the nft to be accepted
 - <code>new_owner</code>: either origin&amp;#x27;s account ID or origin-owned NFT, whichever the NFT was
   sent to</p>
-<h5 id="attributes_601">Attributes</h5>
+<h5 id="attributes_604">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92566,7 +92676,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_657">Python</h5>
+<h5 id="python_661">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'accept_nft', {
     'collection_id': 'u32',
@@ -92588,7 +92698,7 @@ Sets metadata and the royalty attribute</p>
 - <code>origin</code>: sender of the transaction
 - <code>collection_id</code>: collection id of the nft to be accepted
 - <code>nft_id</code>: nft id of the nft to be accepted</p>
-<h5 id="attributes_602">Attributes</h5>
+<h5 id="attributes_605">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92607,7 +92717,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_658">Python</h5>
+<h5 id="python_662">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'reject_nft', {
     'collection_id': 'u32',
@@ -92622,7 +92732,7 @@ Sets metadata and the royalty attribute</p>
 - <code>origin</code>: sender of the transaction
 - <code>collection_id</code>: collection id of the nft to change issuer of
 - <code>new_issuer</code>: Collection&amp;#x27;s new issuer</p>
-<h5 id="attributes_603">Attributes</h5>
+<h5 id="attributes_606">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92641,7 +92751,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_659">Python</h5>
+<h5 id="python_663">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'change_collection_issuer', {
     'collection_id': 'u32',
@@ -92658,7 +92768,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="set_property">set_property</h4>
 <p>set a custom value on an NFT</p>
-<h5 id="attributes_604">Attributes</h5>
+<h5 id="attributes_607">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92685,7 +92795,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_660">Python</h5>
+<h5 id="python_664">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'set_property', {
     'collection_id': 'u32',
@@ -92698,7 +92808,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="lock_collection">lock_collection</h4>
 <p>lock collection</p>
-<h5 id="attributes_605">Attributes</h5>
+<h5 id="attributes_608">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92713,7 +92823,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_661">Python</h5>
+<h5 id="python_665">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'lock_collection', {'collection_id': 'u32'}
 )
@@ -92721,7 +92831,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="add_basic_resource">add_basic_resource</h4>
 <p>Create basic resource</p>
-<h5 id="attributes_606">Attributes</h5>
+<h5 id="attributes_609">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92748,7 +92858,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_662">Python</h5>
+<h5 id="python_666">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'add_basic_resource', {
     'collection_id': 'u32',
@@ -92761,7 +92871,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="add_composable_resource">add_composable_resource</h4>
 <p>Create composable resource</p>
-<h5 id="attributes_607">Attributes</h5>
+<h5 id="attributes_610">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92792,7 +92902,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_663">Python</h5>
+<h5 id="python_667">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'add_composable_resource', {
     'collection_id': 'u32',
@@ -92810,7 +92920,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="add_slot_resource">add_slot_resource</h4>
 <p>Create slot resource</p>
-<h5 id="attributes_608">Attributes</h5>
+<h5 id="attributes_611">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92837,7 +92947,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_664">Python</h5>
+<h5 id="python_668">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'add_slot_resource', {
     'collection_id': 'u32',
@@ -92854,7 +92964,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="replace_resource">replace_resource</h4>
 <p>Replace resource by id</p>
-<h5 id="attributes_609">Attributes</h5>
+<h5 id="attributes_612">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92881,7 +92991,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_665">Python</h5>
+<h5 id="python_669">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'replace_resource', {
     'collection_id': 'u32',
@@ -92916,7 +93026,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="accept_resource">accept_resource</h4>
 <p>accept the addition of a new resource to an existing NFT</p>
-<h5 id="attributes_610">Attributes</h5>
+<h5 id="attributes_613">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92939,7 +93049,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_666">Python</h5>
+<h5 id="python_670">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'accept_resource', {
     'collection_id': 'u32',
@@ -92951,7 +93061,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="remove_resource">remove_resource</h4>
 <p>remove resource</p>
-<h5 id="attributes_611">Attributes</h5>
+<h5 id="attributes_614">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -92974,7 +93084,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_667">Python</h5>
+<h5 id="python_671">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'remove_resource', {
     'collection_id': 'u32',
@@ -92986,7 +93096,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="accept_resource_removal">accept_resource_removal</h4>
 <p>accept the removal of a resource of an existing NFT</p>
-<h5 id="attributes_612">Attributes</h5>
+<h5 id="attributes_615">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93009,7 +93119,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_668">Python</h5>
+<h5 id="python_672">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'accept_resource_removal', {
     'collection_id': 'u32',
@@ -93021,7 +93131,7 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="set_priority">set_priority</h4>
 <p>set a different order of resource priority</p>
-<h5 id="attributes_613">Attributes</h5>
+<h5 id="attributes_616">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93044,7 +93154,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_669">Python</h5>
+<h5 id="python_673">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkCore', 'set_priority', {
     'collection_id': 'u32',
@@ -93057,7 +93167,7 @@ Sets metadata and the royalty attribute</p>
 <h3 id="events_40">Events</h3>
 <hr />
 <h4 id="collectioncreated">CollectionCreated</h4>
-<h5 id="attributes_614">Attributes</h5>
+<h5 id="attributes_617">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93081,7 +93191,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="nftminted">NftMinted</h4>
-<h5 id="attributes_615">Attributes</h5>
+<h5 id="attributes_618">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93115,7 +93225,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="nftburned">NFTBurned</h4>
-<h5 id="attributes_616">Attributes</h5>
+<h5 id="attributes_619">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93144,7 +93254,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="collectiondestroyed">CollectionDestroyed</h4>
-<h5 id="attributes_617">Attributes</h5>
+<h5 id="attributes_620">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93168,7 +93278,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="nftsent">NFTSent</h4>
-<h5 id="attributes_618">Attributes</h5>
+<h5 id="attributes_621">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93212,7 +93322,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="nftaccepted">NFTAccepted</h4>
-<h5 id="attributes_619">Attributes</h5>
+<h5 id="attributes_622">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93251,7 +93361,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="nftrejected">NFTRejected</h4>
-<h5 id="attributes_620">Attributes</h5>
+<h5 id="attributes_623">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93280,7 +93390,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="issuerchanged">IssuerChanged</h4>
-<h5 id="attributes_621">Attributes</h5>
+<h5 id="attributes_624">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93309,7 +93419,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="propertyset">PropertySet</h4>
-<h5 id="attributes_622">Attributes</h5>
+<h5 id="attributes_625">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93343,7 +93453,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="propertyremoved">PropertyRemoved</h4>
-<h5 id="attributes_623">Attributes</h5>
+<h5 id="attributes_626">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93372,7 +93482,7 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="collectionlocked">CollectionLocked</h4>
-<h5 id="attributes_624">Attributes</h5>
+<h5 id="attributes_627">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93396,93 +93506,6 @@ Sets metadata and the royalty attribute</p>
 </table>
 <hr />
 <h4 id="resourceadded">ResourceAdded</h4>
-<h5 id="attributes_625">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>nft_id</td>
-<td><code>T::ItemId</code></td>
-<td><code>u32</code></td>
-</tr>
-<tr>
-<td>resource_id</td>
-<td><code>ResourceId</code></td>
-<td><code>u32</code></td>
-</tr>
-<tr>
-<td>collection_id</td>
-<td><code>T::CollectionId</code></td>
-<td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="resourcereplaced">ResourceReplaced</h4>
-<h5 id="attributes_626">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>nft_id</td>
-<td><code>T::ItemId</code></td>
-<td><code>u32</code></td>
-</tr>
-<tr>
-<td>resource_id</td>
-<td><code>ResourceId</code></td>
-<td><code>u32</code></td>
-</tr>
-<tr>
-<td>collection_id</td>
-<td><code>T::CollectionId</code></td>
-<td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="resourceaccepted">ResourceAccepted</h4>
-<h5 id="attributes_627">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>nft_id</td>
-<td><code>T::ItemId</code></td>
-<td><code>u32</code></td>
-</tr>
-<tr>
-<td>resource_id</td>
-<td><code>ResourceId</code></td>
-<td><code>u32</code></td>
-</tr>
-<tr>
-<td>collection_id</td>
-<td><code>T::CollectionId</code></td>
-<td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="resourceremoval">ResourceRemoval</h4>
 <h5 id="attributes_628">Attributes</h5>
 <table>
 <thead>
@@ -93511,7 +93534,7 @@ Sets metadata and the royalty attribute</p>
 </tbody>
 </table>
 <hr />
-<h4 id="resourceremovalaccepted">ResourceRemovalAccepted</h4>
+<h4 id="resourcereplaced">ResourceReplaced</h4>
 <h5 id="attributes_629">Attributes</h5>
 <table>
 <thead>
@@ -93540,8 +93563,95 @@ Sets metadata and the royalty attribute</p>
 </tbody>
 </table>
 <hr />
-<h4 id="priorityset">PrioritySet</h4>
+<h4 id="resourceaccepted">ResourceAccepted</h4>
 <h5 id="attributes_630">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nft_id</td>
+<td><code>T::ItemId</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>resource_id</td>
+<td><code>ResourceId</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>collection_id</td>
+<td><code>T::CollectionId</code></td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="resourceremoval">ResourceRemoval</h4>
+<h5 id="attributes_631">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nft_id</td>
+<td><code>T::ItemId</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>resource_id</td>
+<td><code>ResourceId</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>collection_id</td>
+<td><code>T::CollectionId</code></td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="resourceremovalaccepted">ResourceRemovalAccepted</h4>
+<h5 id="attributes_632">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nft_id</td>
+<td><code>T::ItemId</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>resource_id</td>
+<td><code>ResourceId</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>collection_id</td>
+<td><code>T::CollectionId</code></td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="priorityset">PrioritySet</h4>
+<h5 id="attributes_633">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93568,12 +93678,12 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="collections">Collections</h4>
 <p>Stores collections info</p>
-<h5 id="python_670">Python</h5>
+<h5 id="python_674">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'Collections', ['u32']
 )
 </code></pre>
-<h5 id="return-value_238">Return value</h5>
+<h5 id="return-value_239">Return value</h5>
 <pre><code class="language-python">{
     'issuer': 'AccountId',
     'max': (None, 'u32'),
@@ -93585,12 +93695,12 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="nfts">Nfts</h4>
 <p>Stores nft info</p>
-<h5 id="python_671">Python</h5>
+<h5 id="python_675">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'Nfts', ['u32', 'u32']
 )
 </code></pre>
-<h5 id="return-value_239">Return value</h5>
+<h5 id="return-value_240">Return value</h5>
 <pre><code class="language-python">{
     'equipped': (None, ('u32', 'u32')),
     'metadata': 'Bytes',
@@ -93606,34 +93716,34 @@ Sets metadata and the royalty attribute</p>
 <hr />
 <h4 id="priorities">Priorities</h4>
 <p>Stores priority info</p>
-<h5 id="python_672">Python</h5>
+<h5 id="python_676">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'Priorities', ['u32', 'u32', 'u32']
 )
 </code></pre>
-<h5 id="return-value_240">Return value</h5>
+<h5 id="return-value_241">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="children">Children</h4>
 <p>Stores nft children info</p>
-<h5 id="python_673">Python</h5>
+<h5 id="python_677">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'Children', [('u32', 'u32'), ('u32', 'u32')]
 )
 </code></pre>
-<h5 id="return-value_241">Return value</h5>
+<h5 id="return-value_242">Return value</h5>
 <pre><code class="language-python">()
 </code></pre>
 <hr />
 <h4 id="resources">Resources</h4>
 <p>Stores resource info</p>
-<h5 id="python_674">Python</h5>
+<h5 id="python_678">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'Resources', ['u32', 'u32', 'u32']
 )
 </code></pre>
-<h5 id="return-value_242">Return value</h5>
+<h5 id="return-value_243">Return value</h5>
 <pre><code class="language-python">{
     'id': 'u32',
     'pending': 'bool',
@@ -93655,12 +93765,12 @@ Sets metadata and the royalty attribute</p>
 <p>Stores the existence of a base for a particular NFT
  This is populated on <code>add_composable_resource</code>, and is
  used in the rmrk-equip pallet when equipping a resource.</p>
-<h5 id="python_675">Python</h5>
+<h5 id="python_679">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'EquippableBases', ['u32', 'u32', 'u32']
 )
 </code></pre>
-<h5 id="return-value_243">Return value</h5>
+<h5 id="return-value_244">Return value</h5>
 <pre><code class="language-python">()
 </code></pre>
 <hr />
@@ -93669,34 +93779,34 @@ Sets metadata and the royalty attribute</p>
  NFT&#x27;s particular resource.  This is populated on
  <code>add_slot_resource</code>, and is used in the rmrk-equip
  pallet when equipping a resource.</p>
-<h5 id="python_676">Python</h5>
+<h5 id="python_680">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'EquippableSlots', ['u32', 'u32', 'u32', 'u32', 'u32']
 )
 </code></pre>
-<h5 id="return-value_244">Return value</h5>
+<h5 id="return-value_245">Return value</h5>
 <pre><code class="language-python">()
 </code></pre>
 <hr />
 <h4 id="properties">Properties</h4>
 <p>Arbitrary properties / metadata of an asset.</p>
-<h5 id="python_677">Python</h5>
+<h5 id="python_681">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'Properties', ['u32', (None, 'u32'), 'Bytes']
 )
 </code></pre>
-<h5 id="return-value_245">Return value</h5>
+<h5 id="return-value_246">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
 <h4 id="lock">Lock</h4>
 <p>Lock for NFTs</p>
-<h5 id="python_678">Python</h5>
+<h5 id="python_682">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'Lock', [('u32', 'u32')]
 )
 </code></pre>
-<h5 id="return-value_246">Return value</h5>
+<h5 id="return-value_247">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
@@ -93705,12 +93815,12 @@ Sets metadata and the royalty attribute</p>
  It is need only for PolkadotJS types generation.</p>
 <p>The stored types are use in the RPC interface only,
  PolkadotJS won&#x27;t generate TS types for them without this storage.</p>
-<h5 id="python_679">Python</h5>
+<h5 id="python_683">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkCore', 'DummyStorage', []
 )
 </code></pre>
-<h5 id="return-value_247">Return value</h5>
+<h5 id="return-value_248">Return value</h5>
 <pre><code class="language-python">({'collection_id': 'u32', 'nft_id': 'u32'}, &quot;[{'key': 'Bytes', 'value': 'Bytes'}; 0]&quot;)
 </code></pre>
 <hr />
@@ -93721,7 +93831,7 @@ Sets metadata and the royalty attribute</p>
 <h5 id="value_110">Value</h5>
 <pre><code class="language-python">10
 </code></pre>
-<h5 id="python_680">Python</h5>
+<h5 id="python_684">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('RmrkCore', 'ResourceSymbolLimit')
 </code></pre>
 <hr />
@@ -93730,7 +93840,7 @@ Sets metadata and the royalty attribute</p>
 <h5 id="value_111">Value</h5>
 <pre><code class="language-python">25
 </code></pre>
-<h5 id="python_681">Python</h5>
+<h5 id="python_685">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('RmrkCore', 'PartsLimit')
 </code></pre>
 <hr />
@@ -93739,7 +93849,7 @@ Sets metadata and the royalty attribute</p>
 <h5 id="value_112">Value</h5>
 <pre><code class="language-python">25
 </code></pre>
-<h5 id="python_682">Python</h5>
+<h5 id="python_686">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('RmrkCore', 'MaxPriorities')
 </code></pre>
 <hr />
@@ -93748,7 +93858,7 @@ Sets metadata and the royalty attribute</p>
 <h5 id="value_113">Value</h5>
 <pre><code class="language-python">200
 </code></pre>
-<h5 id="python_683">Python</h5>
+<h5 id="python_687">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('RmrkCore', 'NestingBudget')
 </code></pre>
 <hr />
@@ -93830,7 +93940,7 @@ Sets metadata and the royalty attribute</p>
 - <code>origin</code>: sender of the transaction
 - <code>base_id</code>: base_id to change issuer of
 - <code>new_issuer</code>: Base&amp;#x27;s new issuer</p>
-<h5 id="attributes_631">Attributes</h5>
+<h5 id="attributes_634">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93849,7 +93959,7 @@ Sets metadata and the royalty attribute</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_684">Python</h5>
+<h5 id="python_688">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkEquip', 'change_base_issuer', {
     'base_id': 'u32',
@@ -93874,7 +93984,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 - equipper: Parent NFT which will equip the item
 - base: ID of the base which the item and equipper must each have a resource referencing
 - slot: ID of the slot which the item and equipper must each have a resource referencing</p>
-<h5 id="attributes_632">Attributes</h5>
+<h5 id="attributes_635">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93905,7 +94015,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </tr>
 </tbody>
 </table>
-<h5 id="python_685">Python</h5>
+<h5 id="python_689">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkEquip', 'equip', {
     'base': 'u32',
@@ -93931,7 +94041,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 - unequipper: Parent NFT which will unequip the item
 - base: ID of the base which the item and equipper must each have a resource referencing
 - slot: ID of the slot which the item and equipper must each have a resource referencing</p>
-<h5 id="attributes_633">Attributes</h5>
+<h5 id="attributes_636">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -93958,7 +94068,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </tr>
 </tbody>
 </table>
-<h5 id="python_686">Python</h5>
+<h5 id="python_690">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkEquip', 'unequip', {
     'base': 'u32',
@@ -93977,7 +94087,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 - base_id: The Base containing the Slot Part to be updated
 - part_id: The Slot Part whose Equippable List is being updated
 - equippables: The list of equippables that will override the current Equippaables list</p>
-<h5 id="attributes_634">Attributes</h5>
+<h5 id="attributes_637">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94004,7 +94114,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </tr>
 </tbody>
 </table>
-<h5 id="python_687">Python</h5>
+<h5 id="python_691">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkEquip', 'equippable', {
     'base_id': 'u32',
@@ -94025,7 +94135,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 - base_id: The Base containing the Slot Part to be updated
 - part_id: The Slot Part whose Equippable List is being updated
 - equippable: The equippable that will be added to the current Equippaables list</p>
-<h5 id="attributes_635">Attributes</h5>
+<h5 id="attributes_638">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94048,7 +94158,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </tr>
 </tbody>
 </table>
-<h5 id="python_688">Python</h5>
+<h5 id="python_692">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkEquip', 'equippable_add', {
     'base_id': 'u32',
@@ -94065,7 +94175,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 - base_id: The Base containing the Slot Part to be updated
 - part_id: The Slot Part whose Equippable List is being updated
 - equippable: The equippable that will be removed from the current Equippaables list</p>
-<h5 id="attributes_636">Attributes</h5>
+<h5 id="attributes_639">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94088,7 +94198,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </tr>
 </tbody>
 </table>
-<h5 id="python_689">Python</h5>
+<h5 id="python_693">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkEquip', 'equippable_remove', {
     'base_id': 'u32',
@@ -94111,7 +94221,7 @@ A Theme named &quot;default&quot; is required prior to adding other Themes.</p>
   - key: arbitrary BoundedString, defined by client
   - value: arbitrary BoundedString, defined by client
   - inherit: optional bool</p>
-<h5 id="attributes_637">Attributes</h5>
+<h5 id="attributes_640">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94130,7 +94240,7 @@ A Theme named &quot;default&quot; is required prior to adding other Themes.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_690">Python</h5>
+<h5 id="python_694">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkEquip', 'theme_add', {
     'base_id': 'u32',
@@ -94157,7 +94267,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 - symbol: arbitrary client-chosen symbol, e.g. &quot;kanaria_superbird&quot;
 - parts: array of Fixed and Slot parts composing the base, confined in length by
   PartsLimit</p>
-<h5 id="attributes_638">Attributes</h5>
+<h5 id="attributes_641">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94184,7 +94294,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </tr>
 </tbody>
 </table>
-<h5 id="python_691">Python</h5>
+<h5 id="python_695">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkEquip', 'create_base', {
     'base_type': 'Bytes',
@@ -94215,7 +94325,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 <h3 id="events_41">Events</h3>
 <hr />
 <h4 id="basecreated">BaseCreated</h4>
-<h5 id="attributes_639">Attributes</h5>
+<h5 id="attributes_642">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94239,7 +94349,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </table>
 <hr />
 <h4 id="slotequipped">SlotEquipped</h4>
-<h5 id="attributes_640">Attributes</h5>
+<h5 id="attributes_643">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94273,7 +94383,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </table>
 <hr />
 <h4 id="slotunequipped">SlotUnequipped</h4>
-<h5 id="attributes_641">Attributes</h5>
+<h5 id="attributes_644">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94307,7 +94417,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </table>
 <hr />
 <h4 id="equippablesupdated">EquippablesUpdated</h4>
-<h5 id="attributes_642">Attributes</h5>
+<h5 id="attributes_645">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94331,7 +94441,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 </table>
 <hr />
 <h4 id="baseissuerchanged">BaseIssuerChanged</h4>
-<h5 id="attributes_643">Attributes</h5>
+<h5 id="attributes_646">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94365,12 +94475,12 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 <p>Stores Bases info (issuer, base_type, symbol, parts)
  TODO https://github.com/rmrk-team/rmrk-substrate/issues/98
  Delete Parts from Bases info, as it&#x27;s kept in Parts storage</p>
-<h5 id="python_692">Python</h5>
+<h5 id="python_696">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkEquip', 'Bases', ['u32']
 )
 </code></pre>
-<h5 id="return-value_248">Return value</h5>
+<h5 id="return-value_249">Return value</h5>
 <pre><code class="language-python">{'base_type': 'Bytes', 'issuer': 'AccountId', 'symbol': 'Bytes'}
 </code></pre>
 <hr />
@@ -94378,12 +94488,12 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 <p>Stores Parts (either FixedPart or SlotPart)
  - SlotPart: id, equippable (list), src, z
  - FixedPart: id, src, z</p>
-<h5 id="python_693">Python</h5>
+<h5 id="python_697">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkEquip', 'Parts', ['u32', 'u32']
 )
 </code></pre>
-<h5 id="return-value_249">Return value</h5>
+<h5 id="return-value_250">Return value</h5>
 <pre><code class="language-python">{
     'FixedPart': {'id': 'u32', 'src': 'Bytes', 'z': 'u32'},
     'SlotPart': {
@@ -94397,45 +94507,45 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 <hr />
 <h4 id="nextbaseid">NextBaseId</h4>
 <p>Stores the incrementing NextBaseId</p>
-<h5 id="python_694">Python</h5>
+<h5 id="python_698">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkEquip', 'NextBaseId', []
-)
-</code></pre>
-<h5 id="return-value_250">Return value</h5>
-<pre><code class="language-python">'u32'
-</code></pre>
-<hr />
-<h4 id="nextpartid">NextPartId</h4>
-<p>Stores the incrementing NextPartId</p>
-<h5 id="python_695">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'RmrkEquip', 'NextPartId', ['u32']
 )
 </code></pre>
 <h5 id="return-value_251">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
-<h4 id="equippings">Equippings</h4>
-<p>Stores Equippings info ((equipper, base, slot), equipped_resource)</p>
-<h5 id="python_696">Python</h5>
+<h4 id="nextpartid">NextPartId</h4>
+<p>Stores the incrementing NextPartId</p>
+<h5 id="python_699">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'RmrkEquip', 'Equippings', [('u32', 'u32'), 'u32', 'u32']
+    'RmrkEquip', 'NextPartId', ['u32']
 )
 </code></pre>
 <h5 id="return-value_252">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
+<h4 id="equippings">Equippings</h4>
+<p>Stores Equippings info ((equipper, base, slot), equipped_resource)</p>
+<h5 id="python_700">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'RmrkEquip', 'Equippings', [('u32', 'u32'), 'u32', 'u32']
+)
+</code></pre>
+<h5 id="return-value_253">Return value</h5>
+<pre><code class="language-python">'u32'
+</code></pre>
+<hr />
 <h4 id="themes">Themes</h4>
 <p>Stores Theme info ((base, theme name, property key), property value)</p>
-<h5 id="python_697">Python</h5>
+<h5 id="python_701">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkEquip', 'Themes', ['u32', 'Bytes', 'Bytes']
 )
 </code></pre>
-<h5 id="return-value_253">Return value</h5>
+<h5 id="return-value_254">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
@@ -94446,7 +94556,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 <h5 id="value_114">Value</h5>
 <pre><code class="language-python">100
 </code></pre>
-<h5 id="python_698">Python</h5>
+<h5 id="python_702">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('RmrkEquip', 'MaxPropertiesPerTheme')
 </code></pre>
 <hr />
@@ -94455,7 +94565,7 @@ Modeled after <a href="https://github.com/rmrk-team/rmrk-spec/blob/master/standa
 <h5 id="value_115">Value</h5>
 <pre><code class="language-python">100
 </code></pre>
-<h5 id="python_699">Python</h5>
+<h5 id="python_703">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('RmrkEquip', 'MaxCollectionsEquippablePerPart')
 </code></pre>
 <hr />
@@ -94523,7 +94633,7 @@ been purchased, sent, or burned.</p>
     - <code>collection_id</code> - Collection id of the RMRK NFT
     - <code>nft_id</code> - NFT id of the RMRK NFT
     - <code>amount</code> - Optional price at which buyer purchased at</p>
-<h5 id="attributes_644">Attributes</h5>
+<h5 id="attributes_647">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94546,7 +94656,7 @@ been purchased, sent, or burned.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_700">Python</h5>
+<h5 id="python_704">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkMarket', 'buy', {
     'amount': (None, 'u128'),
@@ -94567,132 +94677,6 @@ first be sent to an account before being listed.</p>
     - <code>nft_id</code> - NFT id of the RMRK NFT
     - <code>amount</code> - Price of the RMRK NFT
     - <code>expires</code> - Optional BlockNumber for when the listing expires</p>
-<h5 id="attributes_645">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>collection_id</td>
-<td><code>T::CollectionId</code></td>
-</tr>
-<tr>
-<td>nft_id</td>
-<td><code>T::ItemId</code></td>
-</tr>
-<tr>
-<td>amount</td>
-<td><code>BalanceOf&lt;T&gt;</code></td>
-</tr>
-<tr>
-<td>expires</td>
-<td><code>Option&lt;T::BlockNumber&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_701">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'RmrkMarket', 'list', {
-    'amount': 'u128',
-    'collection_id': 'u32',
-    'expires': (None, 'u32'),
-    'nft_id': 'u32',
-}
-)
-</code></pre>
-<hr />
-<h4 id="unlist">unlist</h4>
-<p>Unlist a RMRK NFT on the Marketplace and remove from storage in <code>Listings</code>.</p>
-<p>Parameters:
-- <code>origin</code> - Account owner of the listed RMRK NFT
-- <code>collection_id</code> - Collection id of the RMRK NFT
-- <code>nft_id</code> - NFT id of the RMRK NFT</p>
-<h5 id="attributes_646">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>collection_id</td>
-<td><code>T::CollectionId</code></td>
-</tr>
-<tr>
-<td>nft_id</td>
-<td><code>T::ItemId</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_702">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'RmrkMarket', 'unlist', {
-    'collection_id': 'u32',
-    'nft_id': 'u32',
-}
-)
-</code></pre>
-<hr />
-<h4 id="make_offer">make_offer</h4>
-<p>Make an offer on a RMRK NFT for purchase. An offer can be set with an expiration where
-the offer can no longer be accepted by the RMRK NFT owner</p>
-<p>Parameters:
-- <code>origin</code> - Account of the potential buyer
-- <code>collection_id</code> - Collection id of the RMRK NFT
-- <code>nft_id</code> - NFT id of the RMRK NFT
-- <code>amount</code> - Price of the RMRK NFT
-- <code>expiration</code> - Expiration of the offer</p>
-<h5 id="attributes_647">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>collection_id</td>
-<td><code>T::CollectionId</code></td>
-</tr>
-<tr>
-<td>nft_id</td>
-<td><code>T::ItemId</code></td>
-</tr>
-<tr>
-<td>amount</td>
-<td><code>BalanceOf&lt;T&gt;</code></td>
-</tr>
-<tr>
-<td>expires</td>
-<td><code>Option&lt;T::BlockNumber&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_703">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'RmrkMarket', 'make_offer', {
-    'amount': 'u128',
-    'collection_id': 'u32',
-    'expires': (None, 'u32'),
-    'nft_id': 'u32',
-}
-)
-</code></pre>
-<hr />
-<h4 id="withdraw_offer">withdraw_offer</h4>
-<p>Withdraw an offer on a RMRK NFT, such that it is no longer available to be accepted by
-the NFT owner</p>
-<p>Parameters:
-- <code>origin</code> - Account that wants to withdraw their offer
-- <code>collection_id</code> - Collection id of the RMRK NFT
-- <code>nft_id</code> - NFT id of the RMRK NFT</p>
 <h5 id="attributes_648">Attributes</h5>
 <table>
 <thead>
@@ -94710,9 +94694,135 @@ the NFT owner</p>
 <td>nft_id</td>
 <td><code>T::ItemId</code></td>
 </tr>
+<tr>
+<td>amount</td>
+<td><code>BalanceOf&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td>expires</td>
+<td><code>Option&lt;T::BlockNumber&gt;</code></td>
+</tr>
 </tbody>
 </table>
-<h5 id="python_704">Python</h5>
+<h5 id="python_705">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'RmrkMarket', 'list', {
+    'amount': 'u128',
+    'collection_id': 'u32',
+    'expires': (None, 'u32'),
+    'nft_id': 'u32',
+}
+)
+</code></pre>
+<hr />
+<h4 id="unlist">unlist</h4>
+<p>Unlist a RMRK NFT on the Marketplace and remove from storage in <code>Listings</code>.</p>
+<p>Parameters:
+- <code>origin</code> - Account owner of the listed RMRK NFT
+- <code>collection_id</code> - Collection id of the RMRK NFT
+- <code>nft_id</code> - NFT id of the RMRK NFT</p>
+<h5 id="attributes_649">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>collection_id</td>
+<td><code>T::CollectionId</code></td>
+</tr>
+<tr>
+<td>nft_id</td>
+<td><code>T::ItemId</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_706">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'RmrkMarket', 'unlist', {
+    'collection_id': 'u32',
+    'nft_id': 'u32',
+}
+)
+</code></pre>
+<hr />
+<h4 id="make_offer">make_offer</h4>
+<p>Make an offer on a RMRK NFT for purchase. An offer can be set with an expiration where
+the offer can no longer be accepted by the RMRK NFT owner</p>
+<p>Parameters:
+- <code>origin</code> - Account of the potential buyer
+- <code>collection_id</code> - Collection id of the RMRK NFT
+- <code>nft_id</code> - NFT id of the RMRK NFT
+- <code>amount</code> - Price of the RMRK NFT
+- <code>expiration</code> - Expiration of the offer</p>
+<h5 id="attributes_650">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>collection_id</td>
+<td><code>T::CollectionId</code></td>
+</tr>
+<tr>
+<td>nft_id</td>
+<td><code>T::ItemId</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>BalanceOf&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td>expires</td>
+<td><code>Option&lt;T::BlockNumber&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_707">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'RmrkMarket', 'make_offer', {
+    'amount': 'u128',
+    'collection_id': 'u32',
+    'expires': (None, 'u32'),
+    'nft_id': 'u32',
+}
+)
+</code></pre>
+<hr />
+<h4 id="withdraw_offer">withdraw_offer</h4>
+<p>Withdraw an offer on a RMRK NFT, such that it is no longer available to be accepted by
+the NFT owner</p>
+<p>Parameters:
+- <code>origin</code> - Account that wants to withdraw their offer
+- <code>collection_id</code> - Collection id of the RMRK NFT
+- <code>nft_id</code> - NFT id of the RMRK NFT</p>
+<h5 id="attributes_651">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>collection_id</td>
+<td><code>T::CollectionId</code></td>
+</tr>
+<tr>
+<td>nft_id</td>
+<td><code>T::ItemId</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_708">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkMarket', 'withdraw_offer', {
     'collection_id': 'u32',
@@ -94722,7 +94832,7 @@ the NFT owner</p>
 </code></pre>
 <hr />
 <h4 id="accept_offer">accept_offer</h4>
-<h5 id="attributes_649">Attributes</h5>
+<h5 id="attributes_652">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94745,7 +94855,7 @@ the NFT owner</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_705">Python</h5>
+<h5 id="python_709">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'RmrkMarket', 'accept_offer', {
     'collection_id': 'u32',
@@ -94759,7 +94869,7 @@ the NFT owner</p>
 <hr />
 <h4 id="tokenpriceupdated">TokenPriceUpdated</h4>
 <p>The price for a token was updated</p>
-<h5 id="attributes_650">Attributes</h5>
+<h5 id="attributes_653">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94794,7 +94904,7 @@ the NFT owner</p>
 <hr />
 <h4 id="tokensold">TokenSold</h4>
 <p>Token was sold to a new owner</p>
-<h5 id="attributes_651">Attributes</h5>
+<h5 id="attributes_654">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94834,7 +94944,7 @@ the NFT owner</p>
 <hr />
 <h4 id="tokenlisted">TokenListed</h4>
 <p>Token listed on Marketplace</p>
-<h5 id="attributes_652">Attributes</h5>
+<h5 id="attributes_655">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94869,7 +94979,7 @@ the NFT owner</p>
 <hr />
 <h4 id="tokenunlisted">TokenUnlisted</h4>
 <p>Token unlisted on Marketplace</p>
-<h5 id="attributes_653">Attributes</h5>
+<h5 id="attributes_656">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94899,7 +95009,7 @@ the NFT owner</p>
 <hr />
 <h4 id="offerplaced">OfferPlaced</h4>
 <p>Offer was placed on a token</p>
-<h5 id="attributes_654">Attributes</h5>
+<h5 id="attributes_657">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94934,7 +95044,7 @@ the NFT owner</p>
 <hr />
 <h4 id="offerwithdrawn">OfferWithdrawn</h4>
 <p>Offer was withdrawn</p>
-<h5 id="attributes_655">Attributes</h5>
+<h5 id="attributes_658">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -94964,7 +95074,7 @@ the NFT owner</p>
 <hr />
 <h4 id="offeraccepted">OfferAccepted</h4>
 <p>Offer was accepted</p>
-<h5 id="attributes_656">Attributes</h5>
+<h5 id="attributes_659">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95001,23 +95111,23 @@ the NFT owner</p>
 <hr />
 <h4 id="listednfts">ListedNfts</h4>
 <p>Stores listed NFT price info</p>
-<h5 id="python_706">Python</h5>
+<h5 id="python_710">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkMarket', 'ListedNfts', ['u32', 'u32']
 )
 </code></pre>
-<h5 id="return-value_254">Return value</h5>
+<h5 id="return-value_255">Return value</h5>
 <pre><code class="language-python">{'amount': 'u128', 'expires': (None, 'u32'), 'listed_by': 'AccountId'}
 </code></pre>
 <hr />
 <h4 id="offers">Offers</h4>
 <p>Stores offer on a NFT info</p>
-<h5 id="python_707">Python</h5>
+<h5 id="python_711">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'RmrkMarket', 'Offers', [('u32', 'u32'), 'AccountId']
 )
 </code></pre>
-<h5 id="return-value_255">Return value</h5>
+<h5 id="return-value_256">Return value</h5>
 <pre><code class="language-python">{'amount': 'u128', 'expires': (None, 'u32'), 'maker': 'AccountId'}
 </code></pre>
 <hr />
@@ -95028,7 +95138,7 @@ the NFT owner</p>
 <h5 id="value_116">Value</h5>
 <pre><code class="language-python">100000000
 </code></pre>
-<h5 id="python_708">Python</h5>
+<h5 id="python_712">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('RmrkMarket', 'MinimumOfferAmount')
 </code></pre>
 <hr />
@@ -95087,9 +95197,9 @@ the NFT owner</p>
 <p>Claim a spirit for any account with at least 10 PHA in their account</p>
 <p>Parameters:
 - origin: The origin of the extrinsic.</p>
-<h5 id="attributes_657">Attributes</h5>
+<h5 id="attributes_660">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_709">Python</h5>
+<h5 id="python_713">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'claim_spirit', {}
 )
@@ -95101,7 +95211,7 @@ an account to acquire a Spirit NFT without the 10 PHA minimum requirement, such 
 the account has a valid <code>SpiritClaimTicket</code> signed by the Overlord admin account.</p>
 <p>Parameters:
 - origin: The origin of the extrinsic.</p>
-<h5 id="attributes_658">Attributes</h5>
+<h5 id="attributes_661">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95116,7 +95226,7 @@ the account has a valid <code>SpiritClaimTicket</code> signed by the Overlord ad
 </tr>
 </tbody>
 </table>
-<h5 id="python_710">Python</h5>
+<h5 id="python_714">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'redeem_spirit', {'signature': '[u8; 64]'}
 )
@@ -95132,7 +95242,7 @@ serve basis.</p>
 - race: The race of the origin_of_shell chosen by the user.
 - career: The career of the origin_of_shell chosen by the user or auto-generated based
   on metadata</p>
-<h5 id="attributes_659">Attributes</h5>
+<h5 id="attributes_662">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95155,7 +95265,7 @@ serve basis.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_711">Python</h5>
+<h5 id="python_715">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'buy_rare_origin_of_shell', {
     'career': (
@@ -95189,7 +95299,7 @@ Shell type available for this purchase are Prime</p>
 - signature: The signature of the account that is claiming the spirit.
 - race: The race that the user has chosen (limited # of races)
 - career: The career that the user has chosen (unlimited careers)</p>
-<h5 id="attributes_660">Attributes</h5>
+<h5 id="attributes_663">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95212,7 +95322,7 @@ Shell type available for this purchase are Prime</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_712">Python</h5>
+<h5 id="python_716">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'buy_prime_origin_of_shell', {
     'career': (
@@ -95242,7 +95352,7 @@ based on their choice of race and career as they will have a limited quantity.</
 - origin: The origin of the extrinsic preordering the origin_of_shell
 - race: The race that the user has chosen (limited # of races)
 - career: The career that the user has chosen (limited # of careers)</p>
-<h5 id="attributes_661">Attributes</h5>
+<h5 id="attributes_664">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95261,7 +95371,7 @@ based on their choice of race and career as they will have a limited quantity.</
 </tr>
 </tbody>
 </table>
-<h5 id="python_713">Python</h5>
+<h5 id="python_717">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'preorder_origin_of_shell', {
     'career': (
@@ -95287,7 +95397,7 @@ mint the Origin of Shell NFT to the preorder owner.</p>
 <p>Parameters:
 <code>origin</code>: Expected to come from Overlord admin account
 <code>preorders</code>: Vec of Preorder IDs that were <code>Chosen</code></p>
-<h5 id="attributes_662">Attributes</h5>
+<h5 id="attributes_665">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95302,7 +95412,7 @@ mint the Origin of Shell NFT to the preorder owner.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_714">Python</h5>
+<h5 id="python_718">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'mint_chosen_preorders', {'preorders': ['u32']}
 )
@@ -95314,7 +95424,7 @@ selected during the preorders drawing.</p>
 <p>Parameters:
 <code>origin</code>: Expected to come from Overlord admin account
 <code>preorders</code>: Preorder ids of the not chosen preorders</p>
-<h5 id="attributes_663">Attributes</h5>
+<h5 id="attributes_666">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95329,7 +95439,7 @@ selected during the preorders drawing.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_715">Python</h5>
+<h5 id="python_719">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'refund_not_chosen_preorders', {'preorders': ['u32']}
 )
@@ -95345,7 +95455,7 @@ selected during the preorders drawing.</p>
 - <code>career</code>: The career of the origin_of_shell chosen by the user or auto-generated based
   on metadata
 - <code>nft_sale_type</code>: Either a <code>NftSaleType::Giveaway</code> or <code>NftSaleType::Reserved</code></p>
-<h5 id="attributes_664">Attributes</h5>
+<h5 id="attributes_667">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95376,7 +95486,7 @@ selected during the preorders drawing.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_716">Python</h5>
+<h5 id="python_720">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'mint_gift_origin_of_shell', {
     'career': (
@@ -95412,7 +95522,7 @@ selected during the preorders drawing.</p>
 <p>Parameters:
 - origin: Expected to be called by <code>GovernanceOrigin</code>
 - new_overlord: T::AccountId</p>
-<h5 id="attributes_665">Attributes</h5>
+<h5 id="attributes_668">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95427,7 +95537,7 @@ selected during the preorders drawing.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_717">Python</h5>
+<h5 id="python_721">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'set_overlord', {'new_overlord': 'AccountId'}
 )
@@ -95438,9 +95548,9 @@ selected during the preorders drawing.</p>
 current timestamp when <code>initialize_world_clock</code> is called by the <code>Overlord</code></p>
 <p>Parameters:
 <code>origin</code>: Expected to be called by <code>Overlord</code> admin account</p>
-<h5 id="attributes_666">Attributes</h5>
+<h5 id="attributes_669">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_718">Python</h5>
+<h5 id="python_722">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'initialize_world_clock', {}
 )
@@ -95454,7 +95564,7 @@ functionality in Phala World</p>
 - <code>origin</code> - Expected Overlord admin account to set the status
 - <code>status</code> - <code>bool</code> to set the status to
 - <code>status_type</code> - <code>StatusType</code> to set the status for</p>
-<h5 id="attributes_667">Attributes</h5>
+<h5 id="attributes_670">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95473,7 +95583,7 @@ functionality in Phala World</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_719">Python</h5>
+<h5 id="python_723">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'set_status_type', {
     'status': 'bool',
@@ -95495,9 +95605,9 @@ only be executed by the Overlord account. This will call the helper function
 <code>set_initial_origin_of_shell_inventory</code></p>
 <p>Parameters:
 - <code>origin</code> - Expected Overlord admin account</p>
-<h5 id="attributes_668">Attributes</h5>
+<h5 id="attributes_671">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_720">Python</h5>
+<h5 id="python_724">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'init_rarity_type_counts', {}
 )
@@ -95514,7 +95624,7 @@ the defined counts</p>
 - <code>for_sale_count</code> - Number of Origin of Shells for sale
 - <code>giveaway_count</code> - Number of Origin of Shells for giveaways
 - <code>reserve_count</code> - Number of Origin of Shells to be reserved</p>
-<h5 id="attributes_669">Attributes</h5>
+<h5 id="attributes_672">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95537,7 +95647,7 @@ the defined counts</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_721">Python</h5>
+<h5 id="python_725">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'update_rarity_type_counts', {
     'for_sale_count': 'u32',
@@ -95556,7 +95666,7 @@ the defined counts</p>
 <p>Parameters:
 - <code>origin</code> - Expected Overlord admin account to set the Spirit Collection ID
 - <code>collection_id</code> - Collection ID of the Spirit Collection</p>
-<h5 id="attributes_670">Attributes</h5>
+<h5 id="attributes_673">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95571,7 +95681,7 @@ the defined counts</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_722">Python</h5>
+<h5 id="python_726">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'set_spirit_collection_id', {'collection_id': 'u32'}
 )
@@ -95582,7 +95692,7 @@ the defined counts</p>
 <p>Parameters:
 - <code>origin</code> - Expected Overlord admin account to set the Origin of Shell Collection ID
 - <code>collection_id</code> - Collection ID of the Origin of Shell Collection</p>
-<h5 id="attributes_671">Attributes</h5>
+<h5 id="attributes_674">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95597,7 +95707,7 @@ the defined counts</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_723">Python</h5>
+<h5 id="python_727">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'set_origin_of_shell_collection_id', {'collection_id': 'u32'}
 )
@@ -95612,7 +95722,7 @@ prevents other users from calling the RMRK Core <code>create_collection</code> f
 - <code>metadata</code>: Metadata pertaining to the collection
 - <code>max</code>: Optional max u32 for the size of the collection
 - <code>symbol</code>: BoundedString of the collection&amp;#x27;s symbol i.e &amp;#x27;OVRLD&amp;#x27;</p>
-<h5 id="attributes_672">Attributes</h5>
+<h5 id="attributes_675">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95635,7 +95745,7 @@ prevents other users from calling the RMRK Core <code>create_collection</code> f
 </tr>
 </tbody>
 </table>
-<h5 id="python_724">Python</h5>
+<h5 id="python_728">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'pw_create_collection', {
     'max': (None, 'u32'),
@@ -95651,7 +95761,7 @@ prevents other users from calling the RMRK Core <code>create_collection</code> f
 <p>Parameters:
 - <code>origin</code>: Expected to be called from the Overlord account
 - <code>spirits_metadata</code>: <code>BoundedVec&amp;lt;u8, T::StringLimit&amp;gt;</code> to be added in storage</p>
-<h5 id="attributes_673">Attributes</h5>
+<h5 id="attributes_676">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95666,7 +95776,7 @@ prevents other users from calling the RMRK Core <code>create_collection</code> f
 </tr>
 </tbody>
 </table>
-<h5 id="python_725">Python</h5>
+<h5 id="python_729">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'set_spirits_metadata', {'spirits_metadata': 'Bytes'}
 )
@@ -95679,7 +95789,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <p>Parameters:
 - <code>origin</code>: Expected to be called from the Overlord account
 - <code>origin_of_shells_metadata</code>: A Vec of <code>((RaceType, CareerType), BoundedVec&amp;lt;u8, T::StringLimit&amp;gt;&amp;gt;)</code> to be added in storage</p>
-<h5 id="attributes_674">Attributes</h5>
+<h5 id="attributes_677">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95694,7 +95804,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_726">Python</h5>
+<h5 id="python_730">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'set_origin_of_shells_metadata', {
     'origin_of_shells_metadata': [
@@ -95717,7 +95827,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <p>Parameters:
 - origin: Expected to be called by <code>Overlord</code>.
 - new_payee: T::AccountId of the Payee account.</p>
-<h5 id="attributes_675">Attributes</h5>
+<h5 id="attributes_678">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95732,7 +95842,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_727">Python</h5>
+<h5 id="python_731">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'set_payee', {'new_payee': 'AccountId'}
 )
@@ -95743,7 +95853,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <p>Parameters:
 - origin: Expected to be called by <code>Overlord</code>.
 - new_signer: T::AccountId of the Signer.</p>
-<h5 id="attributes_676">Attributes</h5>
+<h5 id="attributes_679">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95758,7 +95868,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_728">Python</h5>
+<h5 id="python_732">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWNftSale', 'set_signer', {'new_signer': 'AccountId'}
 )
@@ -95768,7 +95878,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="worldclockstarted">WorldClockStarted</h4>
 <p>Phala World clock zero day started</p>
-<h5 id="attributes_677">Attributes</h5>
+<h5 id="attributes_680">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95788,7 +95898,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="newera">NewEra</h4>
 <p>Start of a new era</p>
-<h5 id="attributes_678">Attributes</h5>
+<h5 id="attributes_681">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95813,7 +95923,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="spiritclaimed">SpiritClaimed</h4>
 <p>Spirit has been claimed</p>
-<h5 id="attributes_679">Attributes</h5>
+<h5 id="attributes_682">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95843,7 +95953,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="originofshellpreordered">OriginOfShellPreordered</h4>
 <p>A chance to get an Origin of Shell through preorder</p>
-<h5 id="attributes_680">Attributes</h5>
+<h5 id="attributes_683">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95878,7 +95988,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="originofshellminted">OriginOfShellMinted</h4>
 <p>Origin of Shell minted from the preorder</p>
-<h5 id="attributes_681">Attributes</h5>
+<h5 id="attributes_684">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95928,7 +96038,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="spiritcollectionidset">SpiritCollectionIdSet</h4>
 <p>Spirit collection id was set</p>
-<h5 id="attributes_682">Attributes</h5>
+<h5 id="attributes_685">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95948,7 +96058,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="originofshellcollectionidset">OriginOfShellCollectionIdSet</h4>
 <p>Origin of Shell collection id was set</p>
-<h5 id="attributes_683">Attributes</h5>
+<h5 id="attributes_686">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95968,7 +96078,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="originofshellinventoryupdated">OriginOfShellInventoryUpdated</h4>
 <p>Origin of Shell inventory updated</p>
-<h5 id="attributes_684">Attributes</h5>
+<h5 id="attributes_687">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -95988,7 +96098,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="claimspiritstatuschanged">ClaimSpiritStatusChanged</h4>
 <p>Spirit Claims status has changed</p>
-<h5 id="attributes_685">Attributes</h5>
+<h5 id="attributes_688">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96008,7 +96118,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="purchaserareoriginofshellsstatuschanged">PurchaseRareOriginOfShellsStatusChanged</h4>
 <p>Purchase Rare Origin of Shells status has changed</p>
-<h5 id="attributes_686">Attributes</h5>
+<h5 id="attributes_689">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96028,7 +96138,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="purchaseprimeoriginofshellsstatuschanged">PurchasePrimeOriginOfShellsStatusChanged</h4>
 <p>Purchase Prime Origin of Shells status changed</p>
-<h5 id="attributes_687">Attributes</h5>
+<h5 id="attributes_690">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96048,7 +96158,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="preorderoriginofshellsstatuschanged">PreorderOriginOfShellsStatusChanged</h4>
 <p>Preorder Origin of Shells status has changed</p>
-<h5 id="attributes_688">Attributes</h5>
+<h5 id="attributes_691">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96068,7 +96178,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="chosenpreorderminted">ChosenPreorderMinted</h4>
 <p>Chosen preorder was minted to owner</p>
-<h5 id="attributes_689">Attributes</h5>
+<h5 id="attributes_692">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96098,7 +96208,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="notchosenpreorderrefunded">NotChosenPreorderRefunded</h4>
 <p>Not chosen preorder was refunded to owner</p>
-<h5 id="attributes_690">Attributes</h5>
+<h5 id="attributes_693">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96123,7 +96233,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="lastdayofsalestatuschanged">LastDayOfSaleStatusChanged</h4>
 <p>Last Day of Sale status has changed</p>
-<h5 id="attributes_691">Attributes</h5>
+<h5 id="attributes_694">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96142,7 +96252,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 </table>
 <hr />
 <h4 id="overlordchanged">OverlordChanged</h4>
-<h5 id="attributes_692">Attributes</h5>
+<h5 id="attributes_695">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96167,7 +96277,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="originofshellsinventorywasset">OriginOfShellsInventoryWasSet</h4>
 <p>Origin of Shells Inventory was set</p>
-<h5 id="attributes_693">Attributes</h5>
+<h5 id="attributes_696">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96187,7 +96297,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="originofshellgiftedtoowner">OriginOfShellGiftedToOwner</h4>
 <p>Gift a Origin of Shell for giveaway or reserved NFT to owner</p>
-<h5 id="attributes_694">Attributes</h5>
+<h5 id="attributes_697">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96212,7 +96322,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="spiritsmetadataset">SpiritsMetadataSet</h4>
 <p>Spirits Metadata was set</p>
-<h5 id="attributes_695">Attributes</h5>
+<h5 id="attributes_698">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96232,7 +96342,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="originofshellsmetadataset">OriginOfShellsMetadataSet</h4>
 <p>Origin of Shells Metadata was set</p>
-<h5 id="attributes_696">Attributes</h5>
+<h5 id="attributes_699">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96252,7 +96362,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="payeechanged">PayeeChanged</h4>
 <p>Payee changed to new account</p>
-<h5 id="attributes_697">Attributes</h5>
+<h5 id="attributes_700">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96277,7 +96387,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="signerchanged">SignerChanged</h4>
 <p>Signer changed to new account</p>
-<h5 id="attributes_698">Attributes</h5>
+<h5 id="attributes_701">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96304,56 +96414,56 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="nextcollectionid">NextCollectionId</h4>
 <p>Next available Collection ID</p>
-<h5 id="python_729">Python</h5>
+<h5 id="python_733">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'NextCollectionId', []
-)
-</code></pre>
-<h5 id="return-value_256">Return value</h5>
-<pre><code class="language-python">'u32'
-</code></pre>
-<hr />
-<h4 id="nextnftid_1">NextNftId</h4>
-<p>Next available NFT ID</p>
-<h5 id="python_730">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'NextNftId', ['u32']
 )
 </code></pre>
 <h5 id="return-value_257">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
-<h4 id="nextresourceid">NextResourceId</h4>
-<p>Next available Resource ID</p>
-<h5 id="python_731">Python</h5>
+<h4 id="nextnftid_1">NextNftId</h4>
+<p>Next available NFT ID</p>
+<h5 id="python_734">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'NextResourceId', ['u32', 'u32']
+    'PWNftSale', 'NextNftId', ['u32']
 )
 </code></pre>
 <h5 id="return-value_258">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
-<h4 id="preorderindex">PreorderIndex</h4>
-<p>Preorder index that is the key to the Preorders StorageMap</p>
-<h5 id="python_732">Python</h5>
+<h4 id="nextresourceid">NextResourceId</h4>
+<p>Next available Resource ID</p>
+<h5 id="python_735">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'PreorderIndex', []
+    'PWNftSale', 'NextResourceId', ['u32', 'u32']
 )
 </code></pre>
 <h5 id="return-value_259">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
+<h4 id="preorderindex">PreorderIndex</h4>
+<p>Preorder index that is the key to the Preorders StorageMap</p>
+<h5 id="python_736">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'PWNftSale', 'PreorderIndex', []
+)
+</code></pre>
+<h5 id="return-value_260">Return value</h5>
+<pre><code class="language-python">'u32'
+</code></pre>
+<hr />
 <h4 id="preorders">Preorders</h4>
 <p>Preorder info map for user preorders</p>
-<h5 id="python_733">Python</h5>
+<h5 id="python_737">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'Preorders', ['u32']
 )
 </code></pre>
-<h5 id="return-value_260">Return value</h5>
+<h5 id="return-value_261">Return value</h5>
 <pre><code class="language-python">{
     'career': (
         'HackerWizard',
@@ -96370,18 +96480,18 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="ownerhaspreorder">OwnerHasPreorder</h4>
 <p>Owners that have made a preorder during intial preorder phase</p>
-<h5 id="python_734">Python</h5>
+<h5 id="python_738">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'OwnerHasPreorder', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_261">Return value</h5>
+<h5 id="return-value_262">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h4 id="originofshellsinventory">OriginOfShellsInventory</h4>
 <p>Origin of Shells inventory</p>
-<h5 id="python_735">Python</h5>
+<h5 id="python_739">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'OriginOfShellsInventory', [
     ('Prime', 'Magic', 'Legendary'),
@@ -96394,7 +96504,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 ]
 )
 </code></pre>
-<h5 id="return-value_262">Return value</h5>
+<h5 id="return-value_263">Return value</h5>
 <pre><code class="language-python">{
     'race_count': 'u32',
     'race_for_sale_count': 'u32',
@@ -96405,106 +96515,106 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <hr />
 <h4 id="zeroday">ZeroDay</h4>
 <p>Phala World Zero Day <code>BlockNumber</code> this will be used to determine Eras</p>
-<h5 id="python_736">Python</h5>
+<h5 id="python_740">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'ZeroDay', []
-)
-</code></pre>
-<h5 id="return-value_263">Return value</h5>
-<pre><code class="language-python">'u64'
-</code></pre>
-<hr />
-<h4 id="era">Era</h4>
-<p>The current Era from the initial ZeroDay BlockNumber</p>
-<h5 id="python_737">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'Era', []
 )
 </code></pre>
 <h5 id="return-value_264">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
-<h4 id="canclaimspirits">CanClaimSpirits</h4>
-<p>Spirits can be claimed</p>
-<h5 id="python_738">Python</h5>
+<h4 id="era">Era</h4>
+<p>The current Era from the initial ZeroDay BlockNumber</p>
+<h5 id="python_741">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'CanClaimSpirits', []
+    'PWNftSale', 'Era', []
 )
 </code></pre>
 <h5 id="return-value_265">Return value</h5>
-<pre><code class="language-python">'bool'
+<pre><code class="language-python">'u64'
 </code></pre>
 <hr />
-<h4 id="canpurchaserareoriginofshells">CanPurchaseRareOriginOfShells</h4>
-<p>Rare Origin of Shells can be purchased</p>
-<h5 id="python_739">Python</h5>
+<h4 id="canclaimspirits">CanClaimSpirits</h4>
+<p>Spirits can be claimed</p>
+<h5 id="python_742">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'CanPurchaseRareOriginOfShells', []
+    'PWNftSale', 'CanClaimSpirits', []
 )
 </code></pre>
 <h5 id="return-value_266">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
-<h4 id="canpurchaseprimeoriginofshells">CanPurchasePrimeOriginOfShells</h4>
-<p>Origin of Shells can be purchased by whitelist</p>
-<h5 id="python_740">Python</h5>
+<h4 id="canpurchaserareoriginofshells">CanPurchaseRareOriginOfShells</h4>
+<p>Rare Origin of Shells can be purchased</p>
+<h5 id="python_743">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'CanPurchasePrimeOriginOfShells', []
+    'PWNftSale', 'CanPurchaseRareOriginOfShells', []
 )
 </code></pre>
 <h5 id="return-value_267">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
-<h4 id="canpreorderoriginofshells">CanPreorderOriginOfShells</h4>
-<p>Origin of Shells can be preordered</p>
-<h5 id="python_741">Python</h5>
+<h4 id="canpurchaseprimeoriginofshells">CanPurchasePrimeOriginOfShells</h4>
+<p>Origin of Shells can be purchased by whitelist</p>
+<h5 id="python_744">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'CanPreorderOriginOfShells', []
+    'PWNftSale', 'CanPurchasePrimeOriginOfShells', []
 )
 </code></pre>
 <h5 id="return-value_268">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
-<h4 id="lastdayofsale">LastDayOfSale</h4>
-<p>Last Day of Sale any Origin of Shell can be purchased</p>
-<h5 id="python_742">Python</h5>
+<h4 id="canpreorderoriginofshells">CanPreorderOriginOfShells</h4>
+<p>Origin of Shells can be preordered</p>
+<h5 id="python_745">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'LastDayOfSale', []
+    'PWNftSale', 'CanPreorderOriginOfShells', []
 )
 </code></pre>
 <h5 id="return-value_269">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
-<h4 id="spiritcollectionid">SpiritCollectionId</h4>
-<p>Spirit Collection ID</p>
-<h5 id="python_743">Python</h5>
+<h4 id="lastdayofsale">LastDayOfSale</h4>
+<p>Last Day of Sale any Origin of Shell can be purchased</p>
+<h5 id="python_746">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'SpiritCollectionId', []
+    'PWNftSale', 'LastDayOfSale', []
 )
 </code></pre>
 <h5 id="return-value_270">Return value</h5>
-<pre><code class="language-python">'u32'
+<pre><code class="language-python">'bool'
 </code></pre>
 <hr />
-<h4 id="originofshellcollectionid">OriginOfShellCollectionId</h4>
-<p>Origin of Shell Collection ID</p>
-<h5 id="python_744">Python</h5>
+<h4 id="spiritcollectionid">SpiritCollectionId</h4>
+<p>Spirit Collection ID</p>
+<h5 id="python_747">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'OriginOfShellCollectionId', []
+    'PWNftSale', 'SpiritCollectionId', []
 )
 </code></pre>
 <h5 id="return-value_271">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
+<h4 id="originofshellcollectionid">OriginOfShellCollectionId</h4>
+<p>Origin of Shell Collection ID</p>
+<h5 id="python_748">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'PWNftSale', 'OriginOfShellCollectionId', []
+)
+</code></pre>
+<h5 id="return-value_272">Return value</h5>
+<pre><code class="language-python">'u32'
+</code></pre>
+<hr />
 <h4 id="careertypecount">CareerTypeCount</h4>
 <p>Career StorageMap count</p>
-<h5 id="python_745">Python</h5>
+<h5 id="python_749">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'CareerTypeCount', [
     (
@@ -96517,35 +96627,35 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 ]
 )
 </code></pre>
-<h5 id="return-value_272">Return value</h5>
+<h5 id="return-value_273">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="isoriginofshellsinventoryset">IsOriginOfShellsInventorySet</h4>
 <p>Origin of Shells Inventory has been initialized</p>
-<h5 id="python_746">Python</h5>
+<h5 id="python_750">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'IsOriginOfShellsInventorySet', []
 )
 </code></pre>
-<h5 id="return-value_273">Return value</h5>
+<h5 id="return-value_274">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h4 id="spiritsmetadata">SpiritsMetadata</h4>
 <p>Spirits Metadata</p>
-<h5 id="python_747">Python</h5>
+<h5 id="python_751">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'SpiritsMetadata', []
 )
 </code></pre>
-<h5 id="return-value_274">Return value</h5>
+<h5 id="return-value_275">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
 <h4 id="originofshellsmetadata">OriginOfShellsMetadata</h4>
 <p>Origin of Shells Metadata</p>
-<h5 id="python_748">Python</h5>
+<h5 id="python_752">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'OriginOfShellsMetadata', [
     (
@@ -96557,40 +96667,40 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 ]
 )
 </code></pre>
-<h5 id="return-value_275">Return value</h5>
+<h5 id="return-value_276">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
 <h4 id="overlord">Overlord</h4>
 <p>Overlord Admin account of PhalaWorld</p>
-<h5 id="python_749">Python</h5>
+<h5 id="python_753">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'Overlord', []
-)
-</code></pre>
-<h5 id="return-value_276">Return value</h5>
-<pre><code class="language-python">'AccountId'
-</code></pre>
-<hr />
-<h4 id="payee">Payee</h4>
-<p>Payee Multi-Sig account for payables in PhalaWorld</p>
-<h5 id="python_750">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'PWNftSale', 'Payee', []
 )
 </code></pre>
 <h5 id="return-value_277">Return value</h5>
 <pre><code class="language-python">'AccountId'
 </code></pre>
 <hr />
+<h4 id="payee">Payee</h4>
+<p>Payee Multi-Sig account for payables in PhalaWorld</p>
+<h5 id="python_754">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'PWNftSale', 'Payee', []
+)
+</code></pre>
+<h5 id="return-value_278">Return value</h5>
+<pre><code class="language-python">'AccountId'
+</code></pre>
+<hr />
 <h4 id="signer">Signer</h4>
 <p>Signer account of PhalaWorld</p>
-<h5 id="python_751">Python</h5>
+<h5 id="python_755">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWNftSale', 'Signer', []
 )
 </code></pre>
-<h5 id="return-value_278">Return value</h5>
+<h5 id="return-value_279">Return value</h5>
 <pre><code class="language-python">'AccountId'
 </code></pre>
 <hr />
@@ -96601,7 +96711,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <h5 id="value_117">Value</h5>
 <pre><code class="language-python">86400
 </code></pre>
-<h5 id="python_752">Python</h5>
+<h5 id="python_756">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PWNftSale', 'SecondsPerEra')
 </code></pre>
 <hr />
@@ -96610,7 +96720,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <h5 id="value_118">Value</h5>
 <pre><code class="language-python">10000000000000
 </code></pre>
-<h5 id="python_753">Python</h5>
+<h5 id="python_757">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PWNftSale', 'MinBalanceToClaimSpirit')
 </code></pre>
 <hr />
@@ -96619,7 +96729,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <h5 id="value_119">Value</h5>
 <pre><code class="language-python">15000000000000000
 </code></pre>
-<h5 id="python_754">Python</h5>
+<h5 id="python_758">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PWNftSale', 'LegendaryOriginOfShellPrice')
 </code></pre>
 <hr />
@@ -96628,7 +96738,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <h5 id="value_120">Value</h5>
 <pre><code class="language-python">10000000000000000
 </code></pre>
-<h5 id="python_755">Python</h5>
+<h5 id="python_759">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PWNftSale', 'MagicOriginOfShellPrice')
 </code></pre>
 <hr />
@@ -96637,7 +96747,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <h5 id="value_121">Value</h5>
 <pre><code class="language-python">500000000000000
 </code></pre>
-<h5 id="python_756">Python</h5>
+<h5 id="python_760">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PWNftSale', 'PrimeOriginOfShellPrice')
 </code></pre>
 <hr />
@@ -96646,7 +96756,7 @@ value of a <code>BoundedVec&amp;lt;u8, T::StringLimit</code>.</p>
 <h5 id="value_122">Value</h5>
 <pre><code class="language-python">1000
 </code></pre>
-<h5 id="python_757">Python</h5>
+<h5 id="python_761">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PWNftSale', 'IterLimit')
 </code></pre>
 <hr />
@@ -96751,7 +96861,7 @@ by being in the top 10 of origin_of_shell&amp;#x27;s fed per era.</p>
 - origin: The origin of the extrinsic starting the incubation process
 - collection_id: The collection id of the Origin of Shell RMRK NFT
 - nft_id: The NFT id of the Origin of Shell RMRK NFT</p>
-<h5 id="attributes_699">Attributes</h5>
+<h5 id="attributes_702">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96770,7 +96880,7 @@ by being in the top 10 of origin_of_shell&amp;#x27;s fed per era.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_758">Python</h5>
+<h5 id="python_762">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWIncubation', 'start_incubation', {
     'collection_id': 'u32',
@@ -96789,7 +96899,7 @@ current Era.</p>
 - origin: The origin of the extrinsic feeding the target Origin of Shell.
 - collection_id: The collection id of the Origin of Shell.
 - nft_id: The NFT id of the Origin of Shell.</p>
-<h5 id="attributes_700">Attributes</h5>
+<h5 id="attributes_703">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96808,7 +96918,7 @@ current Era.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_759">Python</h5>
+<h5 id="python_763">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWIncubation', 'feed_origin_of_shell', {
     'collection_id': 'u32',
@@ -96828,7 +96938,7 @@ NFT.</p>
 - <code>nft_id</code>: The NFT id of the Origin of Shell RMRK NFT
 - <code>default_shell_metadata</code>: File resource URI in decentralized storage for Shell NFT
     parts that render the Shell NFT</p>
-<h5 id="attributes_701">Attributes</h5>
+<h5 id="attributes_704">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96851,7 +96961,7 @@ NFT.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_760">Python</h5>
+<h5 id="python_764">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWIncubation', 'hatch_origin_of_shell', {
     'collection_id': 'u32',
@@ -96867,7 +96977,7 @@ process for their Origin of Shells.</p>
 <p>Parameters:
 <code>origin</code>: Expected to be the <code>Overlord</code> account
 <code>status</code>: <code>bool</code> value to set for the status in storage</p>
-<h5 id="attributes_702">Attributes</h5>
+<h5 id="attributes_705">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96882,7 +96992,7 @@ process for their Origin of Shells.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_761">Python</h5>
+<h5 id="python_765">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWIncubation', 'set_can_start_incubation_status', {'status': 'bool'}
 )
@@ -96893,7 +97003,7 @@ process for their Origin of Shells.</p>
 <p>Parameters:
 - <code>origin</code> - Expected Overlord admin account to set the Shell Collection ID
 - <code>collection_id</code> - Collection ID of the Shell Collection</p>
-<h5 id="attributes_703">Attributes</h5>
+<h5 id="attributes_706">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96908,7 +97018,7 @@ process for their Origin of Shells.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_762">Python</h5>
+<h5 id="python_766">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWIncubation', 'set_shell_collection_id', {'collection_id': 'u32'}
 )
@@ -96919,7 +97029,7 @@ process for their Origin of Shells.</p>
 <p>Parameters:
 - <code>origin</code> - Expected Overlord admin account to set the Shell Parts Collection ID
 - <code>collection_id</code> - Collection ID of the Shell Parts Collection</p>
-<h5 id="attributes_704">Attributes</h5>
+<h5 id="attributes_707">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96934,7 +97044,7 @@ process for their Origin of Shells.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_763">Python</h5>
+<h5 id="python_767">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWIncubation', 'set_shell_parts_collection_id', {'collection_id': 'u32'}
 )
@@ -96947,7 +97057,7 @@ process for their Origin of Shells.</p>
 - <code>collection_id</code> - Collection ID of Origin of Shell
 - <code>nft_id</code> - NFT ID of the Origin of Shell
 - <code>chosen_parts</code> - Shell parts to be stored in Storage</p>
-<h5 id="attributes_705">Attributes</h5>
+<h5 id="attributes_708">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -96970,7 +97080,7 @@ process for their Origin of Shells.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_764">Python</h5>
+<h5 id="python_768">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PWIncubation', 'set_origin_of_shell_chosen_parts', {
     'chosen_parts': {
@@ -96986,7 +97096,7 @@ process for their Origin of Shells.</p>
 <hr />
 <h4 id="canstartincubationstatuschanged">CanStartIncubationStatusChanged</h4>
 <p>CanStartIncubation status changed and set official hatch time.</p>
-<h5 id="attributes_706">Attributes</h5>
+<h5 id="attributes_709">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -97016,7 +97126,7 @@ process for their Origin of Shells.</p>
 <hr />
 <h4 id="startedincubation">StartedIncubation</h4>
 <p>Origin of Shell owner has initiated the incubation sequence.</p>
-<h5 id="attributes_707">Attributes</h5>
+<h5 id="attributes_710">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -97056,7 +97166,7 @@ process for their Origin of Shells.</p>
 <hr />
 <h4 id="originofshellreceivedfood">OriginOfShellReceivedFood</h4>
 <p>Origin of Shell received food from an account.</p>
-<h5 id="attributes_708">Attributes</h5>
+<h5 id="attributes_711">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -97091,7 +97201,7 @@ process for their Origin of Shells.</p>
 <hr />
 <h4 id="originofshellchosenpartsupdated">OriginOfShellChosenPartsUpdated</h4>
 <p>Origin of Shell updated chosen parts.</p>
-<h5 id="attributes_709">Attributes</h5>
+<h5 id="attributes_712">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -97126,7 +97236,7 @@ process for their Origin of Shells.</p>
 <hr />
 <h4 id="shellcollectionidset">ShellCollectionIdSet</h4>
 <p>Shell Collection ID is set.</p>
-<h5 id="attributes_710">Attributes</h5>
+<h5 id="attributes_713">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -97146,7 +97256,7 @@ process for their Origin of Shells.</p>
 <hr />
 <h4 id="shellpartscollectionidset">ShellPartsCollectionIdSet</h4>
 <p>Shell Parts Collection ID is set.</p>
-<h5 id="attributes_711">Attributes</h5>
+<h5 id="attributes_714">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -97166,7 +97276,7 @@ process for their Origin of Shells.</p>
 <hr />
 <h4 id="shellpartminted">ShellPartMinted</h4>
 <p>Shell Part minted.</p>
-<h5 id="attributes_712">Attributes</h5>
+<h5 id="attributes_715">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -97206,7 +97316,7 @@ process for their Origin of Shells.</p>
 <hr />
 <h4 id="shellawakened">ShellAwakened</h4>
 <p>Shell has been awakened from an origin_of_shell being hatched and burned.</p>
-<h5 id="attributes_713">Attributes</h5>
+<h5 id="attributes_716">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -97269,89 +97379,89 @@ process for their Origin of Shells.</p>
 <h4 id="foodbyowners">FoodByOwners</h4>
 <p>Info on Origin of Shells that the Owner has fed and the number of food left to feed other
  Origin of Shells.</p>
-<h5 id="python_765">Python</h5>
+<h5 id="python_769">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWIncubation', 'FoodByOwners', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_279">Return value</h5>
-<pre><code class="language-python">{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::637'}
+<h5 id="return-value_280">Return value</h5>
+<pre><code class="language-python">{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::642'}
 </code></pre>
 <hr />
 <h4 id="originofshellfoodstats">OriginOfShellFoodStats</h4>
 <p>Total food fed to an Origin of Shell per Era.</p>
-<h5 id="python_766">Python</h5>
+<h5 id="python_770">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWIncubation', 'OriginOfShellFoodStats', ['u64', ('u32', 'u32')]
 )
 </code></pre>
-<h5 id="return-value_280">Return value</h5>
+<h5 id="return-value_281">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="officialhatchtime">OfficialHatchTime</h4>
 <p>Official hatch time for all Origin of Shells.</p>
-<h5 id="python_767">Python</h5>
+<h5 id="python_771">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWIncubation', 'OfficialHatchTime', []
 )
 </code></pre>
-<h5 id="return-value_281">Return value</h5>
+<h5 id="return-value_282">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
 <h4 id="canstartincubation">CanStartIncubation</h4>
 <p>A bool value to determine if accounts can start incubation of Origin of Shells.</p>
-<h5 id="python_768">Python</h5>
+<h5 id="python_772">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWIncubation', 'CanStartIncubation', []
-)
-</code></pre>
-<h5 id="return-value_282">Return value</h5>
-<pre><code class="language-python">'bool'
-</code></pre>
-<hr />
-<h4 id="hasoriginofshellstartedincubation">HasOriginOfShellStartedIncubation</h4>
-<p>A bool value to determine if an Origin of Shell has started the incubation process.</p>
-<h5 id="python_769">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'PWIncubation', 'HasOriginOfShellStartedIncubation', [('u32', 'u32')]
 )
 </code></pre>
 <h5 id="return-value_283">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
-<h4 id="shellcollectionid">ShellCollectionId</h4>
-<p>Collection ID of the Shell NFT.</p>
-<h5 id="python_770">Python</h5>
+<h4 id="hasoriginofshellstartedincubation">HasOriginOfShellStartedIncubation</h4>
+<p>A bool value to determine if an Origin of Shell has started the incubation process.</p>
+<h5 id="python_773">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWIncubation', 'ShellCollectionId', []
+    'PWIncubation', 'HasOriginOfShellStartedIncubation', [('u32', 'u32')]
 )
 </code></pre>
 <h5 id="return-value_284">Return value</h5>
-<pre><code class="language-python">'u32'
+<pre><code class="language-python">'bool'
 </code></pre>
 <hr />
-<h4 id="shellpartscollectionid">ShellPartsCollectionId</h4>
-<p>Collection ID of the Shell Parts NFTs.</p>
-<h5 id="python_771">Python</h5>
+<h4 id="shellcollectionid">ShellCollectionId</h4>
+<p>Collection ID of the Shell NFT.</p>
+<h5 id="python_774">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'PWIncubation', 'ShellPartsCollectionId', []
+    'PWIncubation', 'ShellCollectionId', []
 )
 </code></pre>
 <h5 id="return-value_285">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
+<h4 id="shellpartscollectionid">ShellPartsCollectionId</h4>
+<p>Collection ID of the Shell Parts NFTs.</p>
+<h5 id="python_775">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'PWIncubation', 'ShellPartsCollectionId', []
+)
+</code></pre>
+<h5 id="return-value_286">Return value</h5>
+<pre><code class="language-python">'u32'
+</code></pre>
+<hr />
 <h4 id="originofshellschosenparts">OriginOfShellsChosenParts</h4>
 <p>Storage of an account&#x27;s selected parts during the incubation process.</p>
-<h5 id="python_772">Python</h5>
+<h5 id="python_776">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PWIncubation', 'OriginOfShellsChosenParts', [('u32', 'u32')]
 )
 </code></pre>
-<h5 id="return-value_286">Return value</h5>
+<h5 id="return-value_287">Return value</h5>
 <pre><code class="language-python">{'parts': 'scale_info::165'}
 </code></pre>
 <hr />
@@ -97362,7 +97472,7 @@ process for their Origin of Shells.</p>
 <h5 id="value_123">Value</h5>
 <pre><code class="language-python">5
 </code></pre>
-<h5 id="python_773">Python</h5>
+<h5 id="python_777">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PWIncubation', 'FoodPerEra')
 </code></pre>
 <hr />
@@ -97371,7 +97481,7 @@ process for their Origin of Shells.</p>
 <h5 id="value_124">Value</h5>
 <pre><code class="language-python">2
 </code></pre>
-<h5 id="python_774">Python</h5>
+<h5 id="python_778">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PWIncubation', 'MaxFoodFeedSelf')
 </code></pre>
 <hr />
@@ -97380,7 +97490,7 @@ process for their Origin of Shells.</p>
 <h5 id="value_125">Value</h5>
 <pre><code class="language-python">691200
 </code></pre>
-<h5 id="python_775">Python</h5>
+<h5 id="python_779">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('PWIncubation', 'IncubationDurationSec')
 </code></pre>
 <hr />

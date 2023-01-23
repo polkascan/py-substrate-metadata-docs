@@ -60,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost Polkadot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen/">Bitgreen</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
                   </li>
@@ -111,8 +111,6 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#calls">Calls</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#fill_block">fill_block</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#remark">remark</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#set_heap_pages">set_heap_pages</a>
@@ -395,13 +393,13 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#totalissuance">TotalIssuance</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#inactiveissuance">InactiveIssuance</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#account_1">Account</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#locks">Locks</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#reserves">Reserves</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#storageversion">StorageVersion</a>
     </li>
         </ul>
     </li>
@@ -449,7 +447,7 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#nextfeemultiplier">NextFeeMultiplier</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#storageversion_1">StorageVersion</a>
+    <li class="toctree-l4"><a class="reference internal" href="#storageversion">StorageVersion</a>
     </li>
         </ul>
     </li>
@@ -930,6 +928,8 @@
     <li class="toctree-l4"><a class="reference internal" href="#dispatch_as">dispatch_as</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#force_batch">force_batch</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#with_weight">with_weight</a>
     </li>
         </ul>
     </li>
@@ -1625,7 +1625,7 @@
 </tr>
 <tr>
 <td>Spec version</td>
-<td>9330</td>
+<td>9360</td>
 </tr>
 <tr>
 <td>SS58 Format</td>
@@ -1645,35 +1645,12 @@
 <hr />
 <h3 id="calls">Calls</h3>
 <hr />
-<h4 id="fill_block">fill_block</h4>
-<p>A dispatch that will fill the block weight up to the given ratio.</p>
-<h5 id="attributes">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ratio</td>
-<td><code>Perbill</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-</code></pre>
-<hr />
 <h4 id="remark">remark</h4>
 <p>Make some on-chain remark.</p>
 <p># &lt;weight&gt;
 - <code>O(1)</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_1">Attributes</h5>
+<h5 id="attributes">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1688,7 +1665,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_1">Python</h5>
+<h5 id="python">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'remark', {'remark': 'Bytes'}
 )
@@ -1696,7 +1673,7 @@
 <hr />
 <h4 id="set_heap_pages">set_heap_pages</h4>
 <p>Set the number of pages in the WebAssembly environment&amp;#x27;s heap.</p>
-<h5 id="attributes_2">Attributes</h5>
+<h5 id="attributes_1">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1711,7 +1688,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_2">Python</h5>
+<h5 id="python_1">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_heap_pages', {'pages': 'u64'}
 )
@@ -1729,6 +1706,36 @@
 The weight of this function is dependent on the runtime, but generally this is very
 expensive. We will treat this as a full block.
 # &lt;/weight&gt;</p>
+<h5 id="attributes_2">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td><code>Vec&lt;u8&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_2">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'System', 'set_code', {'code': 'Bytes'}
+)
+</code></pre>
+<hr />
+<h4 id="set_code_without_checks">set_code_without_checks</h4>
+<p>Set the new runtime code without doing any checks of the given <code>code</code>.</p>
+<p># &lt;weight&gt;
+- <code>O(C)</code> where <code>C</code> length of <code>code</code>
+- 1 storage write (codec <code>O(C)</code>).
+- 1 digest item.
+- 1 event.
+The weight of this function is dependent on the runtime. We will treat this as a full
+block. # &lt;/weight&gt;</p>
 <h5 id="attributes_3">Attributes</h5>
 <table>
 <thead>
@@ -1746,43 +1753,13 @@ expensive. We will treat this as a full block.
 </table>
 <h5 id="python_3">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'System', 'set_code', {'code': 'Bytes'}
-)
-</code></pre>
-<hr />
-<h4 id="set_code_without_checks">set_code_without_checks</h4>
-<p>Set the new runtime code without doing any checks of the given <code>code</code>.</p>
-<p># &lt;weight&gt;
-- <code>O(C)</code> where <code>C</code> length of <code>code</code>
-- 1 storage write (codec <code>O(C)</code>).
-- 1 digest item.
-- 1 event.
-The weight of this function is dependent on the runtime. We will treat this as a full
-block. # &lt;/weight&gt;</p>
-<h5 id="attributes_4">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_4">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_code_without_checks', {'code': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="set_storage">set_storage</h4>
 <p>Set some items of storage.</p>
-<h5 id="attributes_5">Attributes</h5>
+<h5 id="attributes_4">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1797,7 +1774,7 @@ block. # &lt;/weight&gt;</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_5">Python</h5>
+<h5 id="python_4">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_storage', {'items': [('Bytes', 'Bytes')]}
 )
@@ -1805,7 +1782,7 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="kill_storage">kill_storage</h4>
 <p>Kill some items from storage.</p>
-<h5 id="attributes_6">Attributes</h5>
+<h5 id="attributes_5">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1820,7 +1797,7 @@ block. # &lt;/weight&gt;</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_6">Python</h5>
+<h5 id="python_5">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'kill_storage', {'keys': ['Bytes']}
 )
@@ -1830,7 +1807,7 @@ block. # &lt;/weight&gt;</p>
 <p>Kill all storage items with a key that starts with the given prefix.</p>
 <p><strong>NOTE:</strong> We rely on the Root origin to provide us the number of subkeys under
 the prefix we are removing to accurately calculate the weight of this function.</p>
-<h5 id="attributes_7">Attributes</h5>
+<h5 id="attributes_6">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1849,7 +1826,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </tr>
 </tbody>
 </table>
-<h5 id="python_7">Python</h5>
+<h5 id="python_6">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'kill_prefix', {'prefix': 'Bytes', 'subkeys': 'u32'}
 )
@@ -1857,7 +1834,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="remark_with_event">remark_with_event</h4>
 <p>Make some on-chain remark and emit event.</p>
-<h5 id="attributes_8">Attributes</h5>
+<h5 id="attributes_7">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1872,7 +1849,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </tr>
 </tbody>
 </table>
-<h5 id="python_8">Python</h5>
+<h5 id="python_7">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'remark_with_event', {'remark': 'Bytes'}
 )
@@ -1882,7 +1859,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="extrinsicsuccess">ExtrinsicSuccess</h4>
 <p>An extrinsic completed successfully.</p>
-<h5 id="attributes_9">Attributes</h5>
+<h5 id="attributes_8">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1902,7 +1879,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="extrinsicfailed">ExtrinsicFailed</h4>
 <p>An extrinsic failed.</p>
-<h5 id="attributes_10">Attributes</h5>
+<h5 id="attributes_9">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1927,12 +1904,12 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="codeupdated">CodeUpdated</h4>
 <p><code>:code</code> was updated.</p>
-<h5 id="attributes_11">Attributes</h5>
+<h5 id="attributes_10">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="newaccount">NewAccount</h4>
 <p>A new account was created.</p>
-<h5 id="attributes_12">Attributes</h5>
+<h5 id="attributes_11">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1952,7 +1929,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="killedaccount">KilledAccount</h4>
 <p>An account was reaped.</p>
-<h5 id="attributes_13">Attributes</h5>
+<h5 id="attributes_12">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1972,7 +1949,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="remarked">Remarked</h4>
 <p>On on-chain remark happened.</p>
-<h5 id="attributes_14">Attributes</h5>
+<h5 id="attributes_13">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -1999,7 +1976,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="account">Account</h4>
 <p>The full account information for a particular account ID.</p>
-<h5 id="python_9">Python</h5>
+<h5 id="python_8">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Account', ['AccountId']
 )
@@ -2021,7 +1998,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="extrinsiccount">ExtrinsicCount</h4>
 <p>Total extrinsics count for the current block.</p>
-<h5 id="python_10">Python</h5>
+<h5 id="python_9">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicCount', []
 )
@@ -2032,7 +2009,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="blockweight">BlockWeight</h4>
 <p>The current weight for the block.</p>
-<h5 id="python_11">Python</h5>
+<h5 id="python_10">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockWeight', []
 )
@@ -2047,7 +2024,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="allextrinsicslen">AllExtrinsicsLen</h4>
 <p>Total length (in bytes) for all extrinsics put together, for the current block.</p>
-<h5 id="python_12">Python</h5>
+<h5 id="python_11">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'AllExtrinsicsLen', []
 )
@@ -2058,7 +2035,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="blockhash">BlockHash</h4>
 <p>Map of block numbers to block hashes.</p>
-<h5 id="python_13">Python</h5>
+<h5 id="python_12">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockHash', ['u32']
 )
@@ -2069,7 +2046,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="extrinsicdata">ExtrinsicData</h4>
 <p>Extrinsics data for the current block (maps an extrinsic&#x27;s index to its data).</p>
-<h5 id="python_14">Python</h5>
+<h5 id="python_13">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicData', ['u32']
 )
@@ -2080,7 +2057,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="number">Number</h4>
 <p>The current block number being processed. Set by <code>execute_block</code>.</p>
-<h5 id="python_15">Python</h5>
+<h5 id="python_14">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Number', []
 )
@@ -2091,7 +2068,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="parenthash">ParentHash</h4>
 <p>Hash of the previous block.</p>
-<h5 id="python_16">Python</h5>
+<h5 id="python_15">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ParentHash', []
 )
@@ -2102,7 +2079,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="digest">Digest</h4>
 <p>Digest of the current block, also part of the block header.</p>
-<h5 id="python_17">Python</h5>
+<h5 id="python_16">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Digest', []
 )
@@ -2111,9 +2088,9 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">{
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -2128,7 +2105,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
  It could otherwise inflate the PoV size of a block.</p>
 <p>Events have a large in-memory size. Box the events to not go out-of-memory
  just in case someone still reads them from within the runtime.</p>
-<h5 id="python_18">Python</h5>
+<h5 id="python_17">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Events', []
 )
@@ -2561,7 +2538,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="eventcount">EventCount</h4>
 <p>The number of events in the <code>Events&amp;lt;T&amp;gt;</code> list.</p>
-<h5 id="python_19">Python</h5>
+<h5 id="python_18">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventCount', []
 )
@@ -2579,7 +2556,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <p>The value has the type <code>(T::BlockNumber, EventIndex)</code> because if we used only just
  the <code>EventIndex</code> then in case if the topic has the same contents on the next block
  no notification will be triggered thus the event might be lost.</p>
-<h5 id="python_20">Python</h5>
+<h5 id="python_19">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventTopics', ['[u8; 32]']
 )
@@ -2590,7 +2567,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="lastruntimeupgrade">LastRuntimeUpgrade</h4>
 <p>Stores the <code>spec_version</code> and <code>spec_name</code> of when the last runtime upgrade happened.</p>
-<h5 id="python_21">Python</h5>
+<h5 id="python_20">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'LastRuntimeUpgrade', []
 )
@@ -2601,7 +2578,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="upgradedtou32refcount">UpgradedToU32RefCount</h4>
 <p>True if we have upgraded so that <code>type RefCount</code> is <code>u32</code>. False (default) if not.</p>
-<h5 id="python_22">Python</h5>
+<h5 id="python_21">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToU32RefCount', []
 )
@@ -2613,7 +2590,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h4 id="upgradedtotriplerefcount">UpgradedToTripleRefCount</h4>
 <p>True if we have upgraded so that AccountInfo contains three types of <code>RefCount</code>. False
  (default) if not.</p>
-<h5 id="python_23">Python</h5>
+<h5 id="python_22">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToTripleRefCount', []
 )
@@ -2624,7 +2601,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="executionphase">ExecutionPhase</h4>
 <p>The execution phase of the block.</p>
-<h5 id="python_24">Python</h5>
+<h5 id="python_23">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExecutionPhase', []
 )
@@ -2663,7 +2640,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
     },
 }
 </code></pre>
-<h5 id="python_25">Python</h5>
+<h5 id="python_24">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockWeights')
 </code></pre>
 <hr />
@@ -2672,7 +2649,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h5 id="value_1">Value</h5>
 <pre><code class="language-python">{'max': {'mandatory': 5242880, 'normal': 3932160, 'operational': 5242880}}
 </code></pre>
-<h5 id="python_26">Python</h5>
+<h5 id="python_25">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockLength')
 </code></pre>
 <hr />
@@ -2681,7 +2658,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h5 id="value_2">Value</h5>
 <pre><code class="language-python">4096
 </code></pre>
-<h5 id="python_27">Python</h5>
+<h5 id="python_26">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockHashCount')
 </code></pre>
 <hr />
@@ -2690,7 +2667,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h5 id="value_3">Value</h5>
 <pre><code class="language-python">{'read': 25000000, 'write': 100000000}
 </code></pre>
-<h5 id="python_28">Python</h5>
+<h5 id="python_27">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'DbWeight')
 </code></pre>
 <hr />
@@ -2715,12 +2692,12 @@ the prefix we are removing to accurately calculate the weight of this function.<
     'impl_name': 'statemine',
     'impl_version': 0,
     'spec_name': 'statemine',
-    'spec_version': 9330,
+    'spec_version': 9360,
     'state_version': 0,
-    'transaction_version': 10,
+    'transaction_version': 11,
 }
 </code></pre>
-<h5 id="python_29">Python</h5>
+<h5 id="python_28">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'Version')
 </code></pre>
 <hr />
@@ -2732,7 +2709,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h5 id="value_5">Value</h5>
 <pre><code class="language-python">2
 </code></pre>
-<h5 id="python_30">Python</h5>
+<h5 id="python_29">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'SS58Prefix')
 </code></pre>
 <hr />
@@ -2770,7 +2747,7 @@ phase if the call was not invoked.</p>
 <p>The dispatch origin for this call must be <code>Inherent</code></p>
 <p>As a side effect, this function upgrades the current validation function
 if the appropriate time has come.</p>
-<h5 id="attributes_15">Attributes</h5>
+<h5 id="attributes_14">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2785,7 +2762,7 @@ if the appropriate time has come.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_31">Python</h5>
+<h5 id="python_30">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainSystem', 'set_validation_data', {
     'data': {
@@ -2795,9 +2772,9 @@ if the appropriate time has come.</p>
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::143',
+        'horizontal_messages': 'scale_info::142',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::127',
+            'trie_nodes': 'scale_info::126',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -2811,7 +2788,7 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="sudo_send_upward_message">sudo_send_upward_message</h4>
-<h5 id="attributes_16">Attributes</h5>
+<h5 id="attributes_15">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2826,14 +2803,14 @@ if the appropriate time has come.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_32">Python</h5>
+<h5 id="python_31">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainSystem', 'sudo_send_upward_message', {'message': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="authorize_upgrade">authorize_upgrade</h4>
-<h5 id="attributes_17">Attributes</h5>
+<h5 id="attributes_16">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2848,14 +2825,14 @@ if the appropriate time has come.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_33">Python</h5>
+<h5 id="python_32">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainSystem', 'authorize_upgrade', {'code_hash': '[u8; 32]'}
 )
 </code></pre>
 <hr />
 <h4 id="enact_authorized_upgrade">enact_authorized_upgrade</h4>
-<h5 id="attributes_18">Attributes</h5>
+<h5 id="attributes_17">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2870,7 +2847,7 @@ if the appropriate time has come.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_34">Python</h5>
+<h5 id="python_33">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainSystem', 'enact_authorized_upgrade', {'code': 'Bytes'}
 )
@@ -2880,12 +2857,12 @@ if the appropriate time has come.</p>
 <hr />
 <h4 id="validationfunctionstored">ValidationFunctionStored</h4>
 <p>The validation function has been scheduled to apply.</p>
-<h5 id="attributes_19">Attributes</h5>
+<h5 id="attributes_18">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="validationfunctionapplied">ValidationFunctionApplied</h4>
 <p>The validation function was applied as of the contained relay chain block number.</p>
-<h5 id="attributes_20">Attributes</h5>
+<h5 id="attributes_19">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2905,12 +2882,12 @@ if the appropriate time has come.</p>
 <hr />
 <h4 id="validationfunctiondiscarded">ValidationFunctionDiscarded</h4>
 <p>The relay-chain aborted the upgrade process.</p>
-<h5 id="attributes_21">Attributes</h5>
+<h5 id="attributes_20">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="upgradeauthorized">UpgradeAuthorized</h4>
 <p>An upgrade has been authorized.</p>
-<h5 id="attributes_22">Attributes</h5>
+<h5 id="attributes_21">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2930,7 +2907,7 @@ if the appropriate time has come.</p>
 <hr />
 <h4 id="downwardmessagesreceived">DownwardMessagesReceived</h4>
 <p>Some downward messages have been received and will be processed.</p>
-<h5 id="attributes_23">Attributes</h5>
+<h5 id="attributes_22">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2950,7 +2927,7 @@ if the appropriate time has come.</p>
 <hr />
 <h4 id="downwardmessagesprocessed">DownwardMessagesProcessed</h4>
 <p>Downward messages were processed using the given weight.</p>
-<h5 id="attributes_24">Attributes</h5>
+<h5 id="attributes_23">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2979,7 +2956,7 @@ if the appropriate time has come.</p>
 <p>In case of a scheduled upgrade, this storage field contains the validation code to be applied.</p>
 <p>As soon as the relay chain gives us the go-ahead signal, we will overwrite the <a href="sp_core::storage::well_known_keys::CODE"><code>:code</code></a>
  which will result the next block process with the new validation code. This concludes the upgrade process.</p>
-<h5 id="python_35">Python</h5>
+<h5 id="python_34">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'PendingValidationCode', []
 )
@@ -2993,7 +2970,7 @@ if the appropriate time has come.</p>
  consequently the relay-chain.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block if no other pallet already set
  the value.</p>
-<h5 id="python_36">Python</h5>
+<h5 id="python_35">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'NewValidationCode', []
 )
@@ -3006,7 +2983,7 @@ if the appropriate time has come.</p>
 <p>The [<code>PersistedValidationData</code>] set for this block.
  This value is expected to be set only once per block and it&#x27;s never stored
  in the trie.</p>
-<h5 id="python_37">Python</h5>
+<h5 id="python_36">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ValidationData', []
 )
@@ -3022,7 +2999,7 @@ if the appropriate time has come.</p>
 <hr />
 <h4 id="didsetvalidationcode">DidSetValidationCode</h4>
 <p>Were the validation data set to notify the relay chain?</p>
-<h5 id="python_38">Python</h5>
+<h5 id="python_37">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'DidSetValidationCode', []
 )
@@ -3033,7 +3010,7 @@ if the appropriate time has come.</p>
 <hr />
 <h4 id="lastrelaychainblocknumber">LastRelayChainBlockNumber</h4>
 <p>The relay chain block number associated with the last parachain block.</p>
-<h5 id="python_39">Python</h5>
+<h5 id="python_38">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastRelayChainBlockNumber', []
 )
@@ -3049,7 +3026,7 @@ if the appropriate time has come.</p>
 <p>This storage item is a mirror of the corresponding value for the current parachain from the
  relay-chain. This value is ephemeral which means it doesn&#x27;t hit the storage. This value is
  set after the inherent.</p>
-<h5 id="python_40">Python</h5>
+<h5 id="python_39">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'UpgradeRestrictionSignal', []
 )
@@ -3063,13 +3040,13 @@ if the appropriate time has come.</p>
 <p>This field is meant to be updated each block with the validation data inherent. Therefore,
  before processing of the inherent, e.g. in <code>on_initialize</code> this data may be stale.</p>
 <p>This data is also absent from the genesis.</p>
-<h5 id="python_41">Python</h5>
+<h5 id="python_40">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'RelayStateProof', []
 )
 </code></pre>
 <h5 id="return-value_22">Return value</h5>
-<pre><code class="language-python">{'trie_nodes': 'scale_info::127'}
+<pre><code class="language-python">{'trie_nodes': 'scale_info::126'}
 </code></pre>
 <hr />
 <h4 id="relevantmessagingstate">RelevantMessagingState</h4>
@@ -3078,7 +3055,7 @@ if the appropriate time has come.</p>
 <p>This field is meant to be updated each block with the validation data inherent. Therefore,
  before processing of the inherent, e.g. in <code>on_initialize</code> this data may be stale.</p>
 <p>This data is also absent from the genesis.</p>
-<h5 id="python_42">Python</h5>
+<h5 id="python_41">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'RelevantMessagingState', []
 )
@@ -3121,7 +3098,7 @@ if the appropriate time has come.</p>
 <p>This field is meant to be updated each block with the validation data inherent. Therefore,
  before processing of the inherent, e.g. in <code>on_initialize</code> this data may be stale.</p>
 <p>This data is also absent from the genesis.</p>
-<h5 id="python_43">Python</h5>
+<h5 id="python_42">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HostConfiguration', []
 )
@@ -3144,7 +3121,7 @@ if the appropriate time has come.</p>
 <p>The last downward message queue chain head we have observed.</p>
 <p>This value is loaded before and saved after processing inbound downward messages carried
  by the system inherent.</p>
-<h5 id="python_44">Python</h5>
+<h5 id="python_43">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastDmqMqcHead', []
 )
@@ -3157,19 +3134,19 @@ if the appropriate time has come.</p>
 <p>The message queue chain heads we have observed per each channel incoming channel.</p>
 <p>This value is loaded before and saved after processing inbound downward messages carried
  by the system inherent.</p>
-<h5 id="python_45">Python</h5>
+<h5 id="python_44">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastHrmpMqcHeads', []
 )
 </code></pre>
 <h5 id="return-value_26">Return value</h5>
-<pre><code class="language-python">'scale_info::134'
+<pre><code class="language-python">'scale_info::133'
 </code></pre>
 <hr />
 <h4 id="processeddownwardmessages">ProcessedDownwardMessages</h4>
 <p>Number of downward messages processed in a block.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block.</p>
-<h5 id="python_46">Python</h5>
+<h5 id="python_45">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ProcessedDownwardMessages', []
 )
@@ -3181,7 +3158,7 @@ if the appropriate time has come.</p>
 <h4 id="hrmpwatermark">HrmpWatermark</h4>
 <p>HRMP watermark that was set in a block.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block.</p>
-<h5 id="python_47">Python</h5>
+<h5 id="python_46">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HrmpWatermark', []
 )
@@ -3193,7 +3170,7 @@ if the appropriate time has come.</p>
 <h4 id="hrmpoutboundmessages">HrmpOutboundMessages</h4>
 <p>HRMP messages that were sent in a block.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block.</p>
-<h5 id="python_48">Python</h5>
+<h5 id="python_47">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HrmpOutboundMessages', []
 )
@@ -3205,7 +3182,7 @@ if the appropriate time has come.</p>
 <h4 id="upwardmessages">UpwardMessages</h4>
 <p>Upward messages that were sent in a block.</p>
 <p>This will be cleared in <code>on_initialize</code> of each new block.</p>
-<h5 id="python_49">Python</h5>
+<h5 id="python_48">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'UpwardMessages', []
 )
@@ -3216,7 +3193,7 @@ if the appropriate time has come.</p>
 <hr />
 <h4 id="pendingupwardmessages">PendingUpwardMessages</h4>
 <p>Upward messages that are still pending and not yet send to the relay chain.</p>
-<h5 id="python_50">Python</h5>
+<h5 id="python_49">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'PendingUpwardMessages', []
 )
@@ -3228,7 +3205,7 @@ if the appropriate time has come.</p>
 <h4 id="announcedhrmpmessagespercandidate">AnnouncedHrmpMessagesPerCandidate</h4>
 <p>The number of HRMP messages we observed in <code>on_initialize</code> and thus used that number for
  announcing the weight of <code>on_initialize</code> and <code>on_finalize</code>.</p>
-<h5 id="python_51">Python</h5>
+<h5 id="python_50">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'AnnouncedHrmpMessagesPerCandidate', []
 )
@@ -3240,7 +3217,7 @@ if the appropriate time has come.</p>
 <h4 id="reservedxcmpweightoverride">ReservedXcmpWeightOverride</h4>
 <p>The weight we reserve at the beginning of the block for processing XCMP messages. This
  overrides the amount set in the Config trait.</p>
-<h5 id="python_52">Python</h5>
+<h5 id="python_51">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ReservedXcmpWeightOverride', []
 )
@@ -3252,7 +3229,7 @@ if the appropriate time has come.</p>
 <h4 id="reserveddmpweightoverride">ReservedDmpWeightOverride</h4>
 <p>The weight we reserve at the beginning of the block for processing DMP messages. This
  overrides the amount set in the Config trait.</p>
-<h5 id="python_53">Python</h5>
+<h5 id="python_52">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ReservedDmpWeightOverride', []
 )
@@ -3263,7 +3240,7 @@ if the appropriate time has come.</p>
 <hr />
 <h4 id="authorizedupgrade">AuthorizedUpgrade</h4>
 <p>The next authorized upgrade, if there is one.</p>
-<h5 id="python_54">Python</h5>
+<h5 id="python_53">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'AuthorizedUpgrade', []
 )
@@ -3275,7 +3252,7 @@ if the appropriate time has come.</p>
 <h4 id="customvalidationheaddata">CustomValidationHeadData</h4>
 <p>A custom head data that should be returned as result of <code>validate_block</code>.</p>
 <p>See [<code>Pallet::set_custom_validation_head_data</code>] for more information.</p>
-<h5 id="python_55">Python</h5>
+<h5 id="python_54">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'CustomValidationHeadData', []
 )
@@ -3328,7 +3305,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
   <code>on_finalize</code>)
 - 1 event handler <code>on_timestamp_set</code>. Must be <code>O(1)</code>.
 # &lt;/weight&gt;</p>
-<h5 id="attributes_25">Attributes</h5>
+<h5 id="attributes_24">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3343,7 +3320,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_56">Python</h5>
+<h5 id="python_55">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Timestamp', 'set', {'now': 'u64'}
 )
@@ -3353,7 +3330,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <hr />
 <h4 id="now">Now</h4>
 <p>Current time for the current block.</p>
-<h5 id="python_57">Python</h5>
+<h5 id="python_56">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Timestamp', 'Now', []
 )
@@ -3364,7 +3341,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <hr />
 <h4 id="didupdate">DidUpdate</h4>
 <p>Did the timestamp get updated in this block?</p>
-<h5 id="python_58">Python</h5>
+<h5 id="python_57">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Timestamp', 'DidUpdate', []
 )
@@ -3383,7 +3360,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <h5 id="value_6">Value</h5>
 <pre><code class="language-python">6000
 </code></pre>
-<h5 id="python_59">Python</h5>
+<h5 id="python_58">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Timestamp', 'MinimumPeriod')
 </code></pre>
 <hr />
@@ -3392,7 +3369,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <h3 id="storage-functions_3">Storage functions</h3>
 <hr />
 <h4 id="parachainid">ParachainId</h4>
-<h5 id="python_60">Python</h5>
+<h5 id="python_59">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainInfo', 'ParachainId', []
 )
@@ -3430,7 +3407,7 @@ of the transfer, the account will be reaped.</p>
 <li>Origin account is already in memory, so no DB operations for them.
 # &lt;/weight&gt;</li>
 </ul>
-<h5 id="attributes_26">Attributes</h5>
+<h5 id="attributes_25">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3449,7 +3426,7 @@ of the transfer, the account will be reaped.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_61">Python</h5>
+<h5 id="python_60">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Balances', 'transfer', {
     'dest': {
@@ -3471,7 +3448,7 @@ also alter the total issuance of the system (<code>TotalIssuance</code>) appropr
 If the new free or reserved balance is below the existential deposit,
 it will reset the account nonce (<code>frame_system::AccountNonce</code>).</p>
 <p>The dispatch origin for this call is <code>root</code>.</p>
-<h5 id="attributes_27">Attributes</h5>
+<h5 id="attributes_26">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3494,7 +3471,7 @@ it will reset the account nonce (<code>frame_system::AccountNonce</code>).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_62">Python</h5>
+<h5 id="python_61">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Balances', 'set_balance', {
     'new_free': 'u128',
@@ -3517,7 +3494,7 @@ specified.
 - Same as transfer, but additional read and write because the source account is not
   assumed to be in the overlay.
 # &lt;/weight&gt;</p>
-<h5 id="attributes_28">Attributes</h5>
+<h5 id="attributes_27">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3540,7 +3517,7 @@ specified.
 </tr>
 </tbody>
 </table>
-<h5 id="python_63">Python</h5>
+<h5 id="python_62">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Balances', 'force_transfer', {
     'dest': {
@@ -3566,7 +3543,7 @@ specified.
 <p>Same as the [<code>transfer</code>] call, but with a check that the transfer will not kill the
 origin account.</p>
 <p>99% of the time you want [<code>transfer</code>] instead.</p>
-<h5 id="attributes_29">Attributes</h5>
+<h5 id="attributes_28">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3585,7 +3562,7 @@ origin account.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_64">Python</h5>
+<h5 id="python_63">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Balances', 'transfer_keep_alive', {
     'dest': {
@@ -3617,7 +3594,7 @@ deposits, etc...</p>
 <li>O(1). Just like transfer, but reading the user&amp;#x27;s transferable balance first.
   #&lt;/weight&gt;</li>
 </ul>
-<h5 id="attributes_30">Attributes</h5>
+<h5 id="attributes_29">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3636,7 +3613,7 @@ deposits, etc...</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_65">Python</h5>
+<h5 id="python_64">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Balances', 'transfer_all', {
     'dest': {
@@ -3654,7 +3631,7 @@ deposits, etc...</p>
 <h4 id="force_unreserve">force_unreserve</h4>
 <p>Unreserve some balance from a user by force.</p>
 <p>Can only be called by ROOT.</p>
-<h5 id="attributes_31">Attributes</h5>
+<h5 id="attributes_30">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3673,7 +3650,7 @@ deposits, etc...</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_66">Python</h5>
+<h5 id="python_65">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Balances', 'force_unreserve', {
     'amount': 'u128',
@@ -3692,7 +3669,7 @@ deposits, etc...</p>
 <hr />
 <h4 id="endowed">Endowed</h4>
 <p>An account was created with some free balance.</p>
-<h5 id="attributes_32">Attributes</h5>
+<h5 id="attributes_31">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3718,7 +3695,7 @@ deposits, etc...</p>
 <h4 id="dustlost">DustLost</h4>
 <p>An account was removed whose balance was non-zero but below ExistentialDeposit,
 resulting in an outright loss.</p>
-<h5 id="attributes_33">Attributes</h5>
+<h5 id="attributes_32">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3743,7 +3720,7 @@ resulting in an outright loss.</p>
 <hr />
 <h4 id="transfer_1">Transfer</h4>
 <p>Transfer succeeded.</p>
-<h5 id="attributes_34">Attributes</h5>
+<h5 id="attributes_33">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3773,7 +3750,7 @@ resulting in an outright loss.</p>
 <hr />
 <h4 id="balanceset">BalanceSet</h4>
 <p>A balance was set by root.</p>
-<h5 id="attributes_35">Attributes</h5>
+<h5 id="attributes_34">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3803,7 +3780,7 @@ resulting in an outright loss.</p>
 <hr />
 <h4 id="reserved">Reserved</h4>
 <p>Some balance was reserved (moved from free to reserved).</p>
-<h5 id="attributes_36">Attributes</h5>
+<h5 id="attributes_35">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3828,7 +3805,7 @@ resulting in an outright loss.</p>
 <hr />
 <h4 id="unreserved">Unreserved</h4>
 <p>Some balance was unreserved (moved from reserved to free).</p>
-<h5 id="attributes_37">Attributes</h5>
+<h5 id="attributes_36">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3854,7 +3831,7 @@ resulting in an outright loss.</p>
 <h4 id="reserverepatriated">ReserveRepatriated</h4>
 <p>Some balance was moved from the reserve of the first account to the second account.
 Final argument indicates the destination balance type.</p>
-<h5 id="attributes_38">Attributes</h5>
+<h5 id="attributes_37">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3889,7 +3866,7 @@ Final argument indicates the destination balance type.</p>
 <hr />
 <h4 id="deposit">Deposit</h4>
 <p>Some amount was deposited (e.g. for transaction fees).</p>
-<h5 id="attributes_39">Attributes</h5>
+<h5 id="attributes_38">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3914,7 +3891,7 @@ Final argument indicates the destination balance type.</p>
 <hr />
 <h4 id="withdraw">Withdraw</h4>
 <p>Some amount was withdrawn from the account (e.g. for transaction fees).</p>
-<h5 id="attributes_40">Attributes</h5>
+<h5 id="attributes_39">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3939,7 +3916,7 @@ Final argument indicates the destination balance type.</p>
 <hr />
 <h4 id="slashed">Slashed</h4>
 <p>Some amount was removed from the account (e.g. for misbehavior).</p>
-<h5 id="attributes_41">Attributes</h5>
+<h5 id="attributes_40">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3966,12 +3943,23 @@ Final argument indicates the destination balance type.</p>
 <hr />
 <h4 id="totalissuance">TotalIssuance</h4>
 <p>The total units issued in the system.</p>
-<h5 id="python_67">Python</h5>
+<h5 id="python_66">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Balances', 'TotalIssuance', []
 )
 </code></pre>
 <h5 id="return-value_40">Return value</h5>
+<pre><code class="language-python">'u128'
+</code></pre>
+<hr />
+<h4 id="inactiveissuance">InactiveIssuance</h4>
+<p>The total units of outstanding deactivated balance in the system.</p>
+<h5 id="python_67">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'Balances', 'InactiveIssuance', []
+)
+</code></pre>
+<h5 id="return-value_41">Return value</h5>
 <pre><code class="language-python">'u128'
 </code></pre>
 <hr />
@@ -3997,7 +3985,7 @@ Final argument indicates the destination balance type.</p>
     'Balances', 'Account', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_41">Return value</h5>
+<h5 id="return-value_42">Return value</h5>
 <pre><code class="language-python">{
     'fee_frozen': 'u128',
     'free': 'u128',
@@ -4014,7 +4002,7 @@ Final argument indicates the destination balance type.</p>
     'Balances', 'Locks', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_42">Return value</h5>
+<h5 id="return-value_43">Return value</h5>
 <pre><code class="language-python">[{'amount': 'u128', 'id': '[u8; 8]', 'reasons': ('Fee', 'Misc', 'All')}]
 </code></pre>
 <hr />
@@ -4025,20 +4013,8 @@ Final argument indicates the destination balance type.</p>
     'Balances', 'Reserves', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_43">Return value</h5>
-<pre><code class="language-python">[{'amount': 'u128', 'id': '[u8; 8]'}]
-</code></pre>
-<hr />
-<h4 id="storageversion">StorageVersion</h4>
-<p>Storage version of the pallet.</p>
-<p>This is set to v2.0.0 for new networks.</p>
-<h5 id="python_71">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'Balances', 'StorageVersion', []
-)
-</code></pre>
 <h5 id="return-value_44">Return value</h5>
-<pre><code class="language-python">('V1_0_0', 'V2_0_0')
+<pre><code class="language-python">[{'amount': 'u128', 'id': '[u8; 8]'}]
 </code></pre>
 <hr />
 <h3 id="constants_2">Constants</h3>
@@ -4046,9 +4022,9 @@ Final argument indicates the destination balance type.</p>
 <h4 id="existentialdeposit">ExistentialDeposit</h4>
 <p>The minimum amount required to keep an account open.</p>
 <h5 id="value_7">Value</h5>
-<pre><code class="language-python">3333333
+<pre><code class="language-python">33333333
 </code></pre>
-<h5 id="python_72">Python</h5>
+<h5 id="python_71">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Balances', 'ExistentialDeposit')
 </code></pre>
 <hr />
@@ -4058,7 +4034,7 @@ Final argument indicates the destination balance type.</p>
 <h5 id="value_8">Value</h5>
 <pre><code class="language-python">50
 </code></pre>
-<h5 id="python_73">Python</h5>
+<h5 id="python_72">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Balances', 'MaxLocks')
 </code></pre>
 <hr />
@@ -4067,7 +4043,7 @@ Final argument indicates the destination balance type.</p>
 <h5 id="value_9">Value</h5>
 <pre><code class="language-python">50
 </code></pre>
-<h5 id="python_74">Python</h5>
+<h5 id="python_73">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Balances', 'MaxReserves')
 </code></pre>
 <hr />
@@ -4104,7 +4080,7 @@ Final argument indicates the destination balance type.</p>
 <h4 id="transactionfeepaid">TransactionFeePaid</h4>
 <p>A transaction fee <code>actual_fee</code>, of which <code>tip</code> was added to the minimum inclusion fee,
 has been paid by <code>who</code>.</p>
-<h5 id="attributes_42">Attributes</h5>
+<h5 id="attributes_41">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4135,7 +4111,7 @@ has been paid by <code>who</code>.</p>
 <h3 id="storage-functions_5">Storage functions</h3>
 <hr />
 <h4 id="nextfeemultiplier">NextFeeMultiplier</h4>
-<h5 id="python_75">Python</h5>
+<h5 id="python_74">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TransactionPayment', 'NextFeeMultiplier', []
 )
@@ -4144,8 +4120,8 @@ has been paid by <code>who</code>.</p>
 <pre><code class="language-python">'u128'
 </code></pre>
 <hr />
-<h4 id="storageversion_1">StorageVersion</h4>
-<h5 id="python_76">Python</h5>
+<h4 id="storageversion">StorageVersion</h4>
+<h5 id="python_75">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TransactionPayment', 'StorageVersion', []
 )
@@ -4177,7 +4153,7 @@ has been paid by <code>who</code>.</p>
 <h5 id="value_10">Value</h5>
 <pre><code class="language-python">5
 </code></pre>
-<h5 id="python_77">Python</h5>
+<h5 id="python_76">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('TransactionPayment', 'OperationalFeeMultiplier')
 </code></pre>
 <hr />
@@ -4188,7 +4164,7 @@ has been paid by <code>who</code>.</p>
 <h4 id="assettxfeepaid">AssetTxFeePaid</h4>
 <p>A transaction fee <code>actual_fee</code>, of which <code>tip</code> was added to the minimum inclusion fee,
 has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
-<h5 id="attributes_43">Attributes</h5>
+<h5 id="attributes_42">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4227,7 +4203,7 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
 <hr />
 <h4 id="set_uncles">set_uncles</h4>
 <p>Provide a set of uncles.</p>
-<h5 id="attributes_44">Attributes</h5>
+<h5 id="attributes_43">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4242,7 +4218,7 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_78">Python</h5>
+<h5 id="python_77">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Authorship', 'set_uncles', {
     'new_uncles': [
@@ -4282,7 +4258,7 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
 <hr />
 <h4 id="uncles">Uncles</h4>
 <p>Uncles</p>
-<h5 id="python_79">Python</h5>
+<h5 id="python_78">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Authorship', 'Uncles', []
 )
@@ -4293,7 +4269,7 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
 <hr />
 <h4 id="author">Author</h4>
 <p>Author of current block.</p>
-<h5 id="python_80">Python</h5>
+<h5 id="python_79">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Authorship', 'Author', []
 )
@@ -4304,7 +4280,7 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
 <hr />
 <h4 id="didsetuncles">DidSetUncles</h4>
 <p>Whether uncles were already set in this block.</p>
-<h5 id="python_81">Python</h5>
+<h5 id="python_80">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Authorship', 'DidSetUncles', []
 )
@@ -4322,7 +4298,7 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
 <h5 id="value_11">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
-<h5 id="python_82">Python</h5>
+<h5 id="python_81">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Authorship', 'UncleGenerations')
 </code></pre>
 <hr />
@@ -4355,7 +4331,7 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
 <hr />
 <h4 id="set_invulnerables">set_invulnerables</h4>
 <p>Set the list of invulnerable (fixed) collators.</p>
-<h5 id="attributes_45">Attributes</h5>
+<h5 id="attributes_44">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4370,7 +4346,7 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_83">Python</h5>
+<h5 id="python_82">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'set_invulnerables', {'new': ['AccountId']}
 )
@@ -4380,7 +4356,7 @@ has been paid by <code>who</code> in an asset <code>asset_id</code>.</p>
 <p>Set the ideal number of collators (not including the invulnerables).
 If lowering this number, then the number of running collators could be higher than this figure.
 Aside from that edge case, there should be no other way to have more collators than the desired number.</p>
-<h5 id="attributes_46">Attributes</h5>
+<h5 id="attributes_45">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4395,7 +4371,7 @@ Aside from that edge case, there should be no other way to have more collators t
 </tr>
 </tbody>
 </table>
-<h5 id="python_84">Python</h5>
+<h5 id="python_83">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'set_desired_candidates', {'max': 'u32'}
 )
@@ -4403,7 +4379,7 @@ Aside from that edge case, there should be no other way to have more collators t
 <hr />
 <h4 id="set_candidacy_bond">set_candidacy_bond</h4>
 <p>Set the candidacy bond amount.</p>
-<h5 id="attributes_47">Attributes</h5>
+<h5 id="attributes_46">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4418,7 +4394,7 @@ Aside from that edge case, there should be no other way to have more collators t
 </tr>
 </tbody>
 </table>
-<h5 id="python_85">Python</h5>
+<h5 id="python_84">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'set_candidacy_bond', {'bond': 'u128'}
 )
@@ -4428,9 +4404,9 @@ Aside from that edge case, there should be no other way to have more collators t
 <p>Register this account as a collator candidate. The account must (a) already have
 registered session keys and (b) be able to reserve the <code>CandidacyBond</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
-<h5 id="attributes_48">Attributes</h5>
+<h5 id="attributes_47">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_86">Python</h5>
+<h5 id="python_85">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'register_as_candidate', {}
 )
@@ -4441,9 +4417,9 @@ registered session keys and (b) be able to reserve the <code>CandidacyBond</code
 session change. The <code>CandidacyBond</code> will be unreserved immediately.</p>
 <p>This call will fail if the total number of candidates would drop below <code>MinCandidates</code>.</p>
 <p>This call is not available to <code>Invulnerable</code> collators.</p>
-<h5 id="attributes_49">Attributes</h5>
+<h5 id="attributes_48">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_87">Python</h5>
+<h5 id="python_86">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'CollatorSelection', 'leave_intent', {}
 )
@@ -4452,7 +4428,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <h3 id="events_6">Events</h3>
 <hr />
 <h4 id="newinvulnerables">NewInvulnerables</h4>
-<h5 id="attributes_50">Attributes</h5>
+<h5 id="attributes_49">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4471,7 +4447,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 </table>
 <hr />
 <h4 id="newdesiredcandidates">NewDesiredCandidates</h4>
-<h5 id="attributes_51">Attributes</h5>
+<h5 id="attributes_50">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4490,7 +4466,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 </table>
 <hr />
 <h4 id="newcandidacybond">NewCandidacyBond</h4>
-<h5 id="attributes_52">Attributes</h5>
+<h5 id="attributes_51">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4509,7 +4485,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 </table>
 <hr />
 <h4 id="candidateadded">CandidateAdded</h4>
-<h5 id="attributes_53">Attributes</h5>
+<h5 id="attributes_52">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4533,7 +4509,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 </table>
 <hr />
 <h4 id="candidateremoved">CandidateRemoved</h4>
-<h5 id="attributes_54">Attributes</h5>
+<h5 id="attributes_53">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4555,7 +4531,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <hr />
 <h4 id="invulnerables">Invulnerables</h4>
 <p>The invulnerable, fixed collators.</p>
-<h5 id="python_88">Python</h5>
+<h5 id="python_87">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'Invulnerables', []
 )
@@ -4566,7 +4542,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <hr />
 <h4 id="candidates">Candidates</h4>
 <p>The (community, limited) collation candidates.</p>
-<h5 id="python_89">Python</h5>
+<h5 id="python_88">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'Candidates', []
 )
@@ -4577,7 +4553,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <hr />
 <h4 id="lastauthoredblock">LastAuthoredBlock</h4>
 <p>Last block authored by collator.</p>
-<h5 id="python_90">Python</h5>
+<h5 id="python_89">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'LastAuthoredBlock', ['AccountId']
 )
@@ -4589,7 +4565,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <h4 id="desiredcandidates">DesiredCandidates</h4>
 <p>Desired number of candidates.</p>
 <p>This should ideally always be less than [<code>Config::MaxCandidates</code>] for weights to be correct.</p>
-<h5 id="python_91">Python</h5>
+<h5 id="python_90">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'DesiredCandidates', []
 )
@@ -4601,7 +4577,7 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <h4 id="candidacybond">CandidacyBond</h4>
 <p>Fixed amount to deposit to become a collator.</p>
 <p>When a collator calls <code>leave_intent</code> they immediately receive the deposit back.</p>
-<h5 id="python_92">Python</h5>
+<h5 id="python_91">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'CandidacyBond', []
 )
@@ -4659,7 +4635,7 @@ This doesn&amp;#x27;t take effect until the next session.</p>
 - DbReads per key id: <code>KeyOwner</code>
 - DbWrites per key id: <code>KeyOwner</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_55">Attributes</h5>
+<h5 id="attributes_54">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4678,7 +4654,7 @@ This doesn&amp;#x27;t take effect until the next session.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_93">Python</h5>
+<h5 id="python_92">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'set_keys', {'keys': {'aura': '[u8; 32]'}, 'proof': 'Bytes'}
 )
@@ -4698,9 +4674,9 @@ usually means being a stash account).</p>
 - DbWrites: <code>NextKeys</code>, <code>origin account</code>
 - DbWrites per key id: <code>KeyOwner</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_56">Attributes</h5>
+<h5 id="attributes_55">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_94">Python</h5>
+<h5 id="python_93">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'purge_keys', {}
 )
@@ -4711,7 +4687,7 @@ usually means being a stash account).</p>
 <h4 id="newsession">NewSession</h4>
 <p>New session has happened. Note that the argument is the session index, not the
 block number as the type might suggest.</p>
-<h5 id="attributes_57">Attributes</h5>
+<h5 id="attributes_56">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4733,7 +4709,7 @@ block number as the type might suggest.</p>
 <hr />
 <h4 id="validators">Validators</h4>
 <p>The current set of validators.</p>
-<h5 id="python_95">Python</h5>
+<h5 id="python_94">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'Validators', []
 )
@@ -4744,7 +4720,7 @@ block number as the type might suggest.</p>
 <hr />
 <h4 id="currentindex">CurrentIndex</h4>
 <p>Current index of the session.</p>
-<h5 id="python_96">Python</h5>
+<h5 id="python_95">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'CurrentIndex', []
 )
@@ -4756,7 +4732,7 @@ block number as the type might suggest.</p>
 <h4 id="queuedchanged">QueuedChanged</h4>
 <p>True if the underlying economic identities or weighting behind the validators
  has changed in the queued validator set.</p>
-<h5 id="python_97">Python</h5>
+<h5 id="python_96">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'QueuedChanged', []
 )
@@ -4768,7 +4744,7 @@ block number as the type might suggest.</p>
 <h4 id="queuedkeys">QueuedKeys</h4>
 <p>The queued keys for the next session. When the next session begins, these keys
  will be used to determine the validator&#x27;s session keys.</p>
-<h5 id="python_98">Python</h5>
+<h5 id="python_97">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'QueuedKeys', []
 )
@@ -4782,7 +4758,7 @@ block number as the type might suggest.</p>
 <p>The vec is always kept sorted so that we can find whether a given validator is
  disabled using binary search. It gets cleared when <code>on_session_ending</code> returns
  a new set of identities.</p>
-<h5 id="python_99">Python</h5>
+<h5 id="python_98">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'DisabledValidators', []
 )
@@ -4793,7 +4769,7 @@ block number as the type might suggest.</p>
 <hr />
 <h4 id="nextkeys">NextKeys</h4>
 <p>The next session keys for a validator.</p>
-<h5 id="python_100">Python</h5>
+<h5 id="python_99">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'NextKeys', ['AccountId']
 )
@@ -4804,7 +4780,7 @@ block number as the type might suggest.</p>
 <hr />
 <h4 id="keyowner">KeyOwner</h4>
 <p>The owner of a key. The key is the <code>KeyTypeId</code> + the encoded key.</p>
-<h5 id="python_101">Python</h5>
+<h5 id="python_100">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'KeyOwner', [('[u8; 4]', 'Bytes')]
 )
@@ -4836,7 +4812,7 @@ block number as the type might suggest.</p>
 <hr />
 <h4 id="authorities">Authorities</h4>
 <p>The current authority set.</p>
-<h5 id="python_102">Python</h5>
+<h5 id="python_101">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Aura', 'Authorities', []
 )
@@ -4848,7 +4824,7 @@ block number as the type might suggest.</p>
 <h4 id="currentslot">CurrentSlot</h4>
 <p>The current slot of this block.</p>
 <p>This will be set in <code>on_initialize</code>.</p>
-<h5 id="python_103">Python</h5>
+<h5 id="python_102">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Aura', 'CurrentSlot', []
 )
@@ -4866,7 +4842,7 @@ block number as the type might suggest.</p>
 <p>The authorities in AuRa are overwritten in <code>on_initialize</code> when we switch to a new session,
  but we require the old authorities to verify the seal when validating a PoV. This will always
  be updated to the latest AuRa authorities in <code>on_finalize</code>.</p>
-<h5 id="python_104">Python</h5>
+<h5 id="python_103">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'AuraExt', 'Authorities', []
 )
@@ -4892,7 +4868,7 @@ block number as the type might suggest.</p>
 - <code>WeightOverLimit</code>: XCM execution may use greater <code>weight_limit</code>.</p>
 <p>Events:
 - <code>OverweightServiced</code>: On success.</p>
-<h5 id="attributes_58">Attributes</h5>
+<h5 id="attributes_57">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4911,7 +4887,7 @@ block number as the type might suggest.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_105">Python</h5>
+<h5 id="python_104">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'service_overweight', {
     'index': 'u64',
@@ -4925,9 +4901,9 @@ block number as the type might suggest.</p>
 <ul>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
-<h5 id="attributes_59">Attributes</h5>
+<h5 id="attributes_58">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_106">Python</h5>
+<h5 id="python_105">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'suspend_xcm_execution', {}
 )
@@ -4939,9 +4915,9 @@ block number as the type might suggest.</p>
 <ul>
 <li><code>origin</code>: Must pass <code>ControllerOrigin</code>.</li>
 </ul>
-<h5 id="attributes_60">Attributes</h5>
+<h5 id="attributes_59">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_107">Python</h5>
+<h5 id="python_106">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'resume_xcm_execution', {}
 )
@@ -4953,6 +4929,34 @@ suspend their sending.</p>
 <ul>
 <li><code>origin</code>: Must pass <code>Root</code>.</li>
 <li><code>new</code>: Desired value for <code>QueueConfigData.suspend_value</code></li>
+</ul>
+<h5 id="attributes_60">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_107">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'XcmpQueue', 'update_suspend_threshold', {'new': 'u32'}
+)
+</code></pre>
+<hr />
+<h4 id="update_drop_threshold">update_drop_threshold</h4>
+<p>Overwrites the number of pages of messages which must be in the queue after which we drop any further
+messages from the channel.</p>
+<ul>
+<li><code>origin</code>: Must pass <code>Root</code>.</li>
+<li><code>new</code>: Desired value for <code>QueueConfigData.drop_threshold</code></li>
 </ul>
 <h5 id="attributes_61">Attributes</h5>
 <table>
@@ -4971,16 +4975,16 @@ suspend their sending.</p>
 </table>
 <h5 id="python_108">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'XcmpQueue', 'update_suspend_threshold', {'new': 'u32'}
+    'XcmpQueue', 'update_drop_threshold', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h4 id="update_drop_threshold">update_drop_threshold</h4>
-<p>Overwrites the number of pages of messages which must be in the queue after which we drop any further
-messages from the channel.</p>
+<h4 id="update_resume_threshold">update_resume_threshold</h4>
+<p>Overwrites the number of pages of messages which the queue must be reduced to before it signals that
+message sending may recommence after it has been suspended.</p>
 <ul>
 <li><code>origin</code>: Must pass <code>Root</code>.</li>
-<li><code>new</code>: Desired value for <code>QueueConfigData.drop_threshold</code></li>
+<li><code>new</code>: Desired value for <code>QueueConfigData.resume_threshold</code></li>
 </ul>
 <h5 id="attributes_62">Attributes</h5>
 <table>
@@ -4999,16 +5003,15 @@ messages from the channel.</p>
 </table>
 <h5 id="python_109">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'XcmpQueue', 'update_drop_threshold', {'new': 'u32'}
+    'XcmpQueue', 'update_resume_threshold', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h4 id="update_resume_threshold">update_resume_threshold</h4>
-<p>Overwrites the number of pages of messages which the queue must be reduced to before it signals that
-message sending may recommence after it has been suspended.</p>
+<h4 id="update_threshold_weight">update_threshold_weight</h4>
+<p>Overwrites the amount of remaining weight under which we stop processing messages.</p>
 <ul>
 <li><code>origin</code>: Must pass <code>Root</code>.</li>
-<li><code>new</code>: Desired value for <code>QueueConfigData.resume_threshold</code></li>
+<li><code>new</code>: Desired value for <code>QueueConfigData.threshold_weight</code></li>
 </ul>
 <h5 id="attributes_63">Attributes</h5>
 <table>
@@ -5021,21 +5024,22 @@ message sending may recommence after it has been suspended.</p>
 <tbody>
 <tr>
 <td>new</td>
-<td><code>u32</code></td>
+<td><code>XcmWeight</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="python_110">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'XcmpQueue', 'update_resume_threshold', {'new': 'u32'}
+    'XcmpQueue', 'update_threshold_weight', {'new': 'u64'}
 )
 </code></pre>
 <hr />
-<h4 id="update_threshold_weight">update_threshold_weight</h4>
-<p>Overwrites the amount of remaining weight under which we stop processing messages.</p>
+<h4 id="update_weight_restrict_decay">update_weight_restrict_decay</h4>
+<p>Overwrites the speed to which the available weight approaches the maximum weight.
+A lower number results in a faster progression. A value of 1 makes the entire weight available initially.</p>
 <ul>
 <li><code>origin</code>: Must pass <code>Root</code>.</li>
-<li><code>new</code>: Desired value for <code>QueueConfigData.threshold_weight</code></li>
+<li><code>new</code>: Desired value for <code>QueueConfigData.weight_restrict_decay</code>.</li>
 </ul>
 <h5 id="attributes_64">Attributes</h5>
 <table>
@@ -5054,16 +5058,16 @@ message sending may recommence after it has been suspended.</p>
 </table>
 <h5 id="python_111">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'XcmpQueue', 'update_threshold_weight', {'new': 'u64'}
+    'XcmpQueue', 'update_weight_restrict_decay', {'new': 'u64'}
 )
 </code></pre>
 <hr />
-<h4 id="update_weight_restrict_decay">update_weight_restrict_decay</h4>
-<p>Overwrites the speed to which the available weight approaches the maximum weight.
-A lower number results in a faster progression. A value of 1 makes the entire weight available initially.</p>
+<h4 id="update_xcmp_max_individual_weight">update_xcmp_max_individual_weight</h4>
+<p>Overwrite the maximum amount of weight any individual message may consume.
+Messages above this weight go into the overweight queue and may only be serviced explicitly.</p>
 <ul>
 <li><code>origin</code>: Must pass <code>Root</code>.</li>
-<li><code>new</code>: Desired value for <code>QueueConfigData.weight_restrict_decay</code>.</li>
+<li><code>new</code>: Desired value for <code>QueueConfigData.xcmp_max_individual_weight</code>.</li>
 </ul>
 <h5 id="attributes_65">Attributes</h5>
 <table>
@@ -5082,34 +5086,6 @@ A lower number results in a faster progression. A value of 1 makes the entire we
 </table>
 <h5 id="python_112">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'XcmpQueue', 'update_weight_restrict_decay', {'new': 'u64'}
-)
-</code></pre>
-<hr />
-<h4 id="update_xcmp_max_individual_weight">update_xcmp_max_individual_weight</h4>
-<p>Overwrite the maximum amount of weight any individual message may consume.
-Messages above this weight go into the overweight queue and may only be serviced explicitly.</p>
-<ul>
-<li><code>origin</code>: Must pass <code>Root</code>.</li>
-<li><code>new</code>: Desired value for <code>QueueConfigData.xcmp_max_individual_weight</code>.</li>
-</ul>
-<h5 id="attributes_66">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>XcmWeight</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_113">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
     'XcmpQueue', 'update_xcmp_max_individual_weight', {'new': 'u64'}
 )
 </code></pre>
@@ -5118,7 +5094,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="success">Success</h4>
 <p>Some XCM was executed ok.</p>
-<h5 id="attributes_67">Attributes</h5>
+<h5 id="attributes_66">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5143,7 +5119,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="fail">Fail</h4>
 <p>Some XCM failed.</p>
-<h5 id="attributes_68">Attributes</h5>
+<h5 id="attributes_67">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5173,7 +5149,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="badversion">BadVersion</h4>
 <p>Bad XCM version used.</p>
-<h5 id="attributes_69">Attributes</h5>
+<h5 id="attributes_68">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5193,7 +5169,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="badformat">BadFormat</h4>
 <p>Bad XCM format used.</p>
-<h5 id="attributes_70">Attributes</h5>
+<h5 id="attributes_69">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5213,7 +5189,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="upwardmessagesent">UpwardMessageSent</h4>
 <p>An upward message was sent to the relay chain.</p>
-<h5 id="attributes_71">Attributes</h5>
+<h5 id="attributes_70">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5233,7 +5209,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="xcmpmessagesent">XcmpMessageSent</h4>
 <p>An HRMP message was sent to a sibling parachain.</p>
-<h5 id="attributes_72">Attributes</h5>
+<h5 id="attributes_71">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5253,7 +5229,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="overweightenqueued">OverweightEnqueued</h4>
 <p>An XCM exceeded the individual message weight budget.</p>
-<h5 id="attributes_73">Attributes</h5>
+<h5 id="attributes_72">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5288,7 +5264,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="overweightserviced">OverweightServiced</h4>
 <p>An XCM from the overweight queue was executed with the given actual weight used.</p>
-<h5 id="attributes_74">Attributes</h5>
+<h5 id="attributes_73">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5315,7 +5291,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="inboundxcmpstatus">InboundXcmpStatus</h4>
 <p>Status of the inbound XCMP channels.</p>
-<h5 id="python_114">Python</h5>
+<h5 id="python_113">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'InboundXcmpStatus', []
 )
@@ -5341,7 +5317,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="inboundxcmpmessages">InboundXcmpMessages</h4>
 <p>Inbound aggregate XCMP messages. It can only be one per ParaId/block.</p>
-<h5 id="python_115">Python</h5>
+<h5 id="python_114">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'InboundXcmpMessages', ['u32', 'u32']
 )
@@ -5357,7 +5333,7 @@ Messages above this weight go into the overweight queue and may only be serviced
  than 65535 items. Queue indices for normal messages begin at one; zero is reserved in
  case of the need to send a high-priority signal message this block.
  The bool is true if there is a signal message waiting to be sent.</p>
-<h5 id="python_116">Python</h5>
+<h5 id="python_115">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'OutboundXcmpStatus', []
 )
@@ -5376,7 +5352,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="outboundxcmpmessages">OutboundXcmpMessages</h4>
 <p>The messages outbound in a given XCMP channel.</p>
-<h5 id="python_117">Python</h5>
+<h5 id="python_116">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'OutboundXcmpMessages', ['u32', 'u16']
 )
@@ -5387,7 +5363,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="signalmessages">SignalMessages</h4>
 <p>Any signal messages waiting to be sent.</p>
-<h5 id="python_118">Python</h5>
+<h5 id="python_117">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'SignalMessages', ['u32']
 )
@@ -5398,7 +5374,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="queueconfig">QueueConfig</h4>
 <p>The configuration which controls the dynamics of the outbound queue.</p>
-<h5 id="python_119">Python</h5>
+<h5 id="python_118">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'QueueConfig', []
 )
@@ -5418,7 +5394,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <p>The messages that exceeded max individual message weight budget.</p>
 <p>These message stay in this storage map until they are manually dispatched via
  <code>service_overweight</code>.</p>
-<h5 id="python_120">Python</h5>
+<h5 id="python_119">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'Overweight', ['u64']
 )
@@ -5430,7 +5406,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <h4 id="overweightcount">OverweightCount</h4>
 <p>The number of overweight messages ever recorded in <code>Overweight</code>. Also doubles as the next
  available free overweight index.</p>
-<h5 id="python_121">Python</h5>
+<h5 id="python_120">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'OverweightCount', []
 )
@@ -5441,7 +5417,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <hr />
 <h4 id="queuesuspended">QueueSuspended</h4>
 <p>Whether or not the XCMP queue is suspended from executing incoming XCMs or not.</p>
-<h5 id="python_122">Python</h5>
+<h5 id="python_121">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmpQueue', 'QueueSuspended', []
 )
@@ -5472,7 +5448,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 <h3 id="calls_8">Calls</h3>
 <hr />
 <h4 id="send">send</h4>
-<h5 id="attributes_75">Attributes</h5>
+<h5 id="attributes_74">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5491,7 +5467,7 @@ Messages above this weight go into the overweight queue and may only be serviced
 </tr>
 </tbody>
 </table>
-<h5 id="python_123">Python</h5>
+<h5 id="python_122">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'send', {
     'dest': {
@@ -8441,7 +8417,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'scale_info::77',
                         ],
                         'effects': [
-                            'scale_info::222',
+                            'scale_info::220',
                         ],
                     },
                     'TeleportAsset': {
@@ -8449,7 +8425,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'scale_info::77',
                         ],
                         'effects': [
-                            'scale_info::222',
+                            'scale_info::220',
                         ],
                     },
                     'Transact': {
@@ -8580,7 +8556,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             ),
                         },
                         'effects': [
-                            'scale_info::222',
+                            'scale_info::220',
                         ],
                     },
                     'WithdrawAsset': {
@@ -8588,7 +8564,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'scale_info::77',
                         ],
                         'effects': [
-                            'scale_info::222',
+                            'scale_info::220',
                         ],
                     },
                 },
@@ -9099,7 +9075,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::220',
+                                'scale_info::218',
                             ],
                         },
                         'DepositAsset': {
@@ -9114,7 +9090,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'ExchangeAsset': {
@@ -9130,7 +9106,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                                 'scale_info::77',
                             ],
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                             'reserve': 'scale_info::78',
                         },
@@ -9140,7 +9116,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'Null': None,
@@ -9199,7 +9175,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::220',
+                                'scale_info::218',
                             ],
                         },
                         'DepositAsset': {
@@ -9214,7 +9190,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'ExchangeAsset': {
@@ -9230,7 +9206,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                                 'scale_info::77',
                             ],
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                             'reserve': 'scale_info::78',
                         },
@@ -9240,7 +9216,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'Null': None,
@@ -10271,7 +10247,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::220',
+                                'scale_info::218',
                             ],
                         },
                         'DepositAsset': {
@@ -10286,7 +10262,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'ExchangeAsset': {
@@ -10302,7 +10278,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                                 'scale_info::77',
                             ],
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                             'reserve': 'scale_info::78',
                         },
@@ -10312,7 +10288,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'Null': None,
@@ -10371,7 +10347,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::220',
+                                'scale_info::218',
                             ],
                         },
                         'DepositAsset': {
@@ -10386,7 +10362,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'ExchangeAsset': {
@@ -10402,7 +10378,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                                 'scale_info::77',
                             ],
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                             'reserve': 'scale_info::78',
                         },
@@ -10412,7 +10388,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'Null': None,
@@ -10464,7 +10440,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'fees': 'scale_info::59',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::224',
+                                'scale_info::222',
                             ],
                             'weight': 'u64',
                         },
@@ -10477,7 +10453,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'max_assets': 'u32',
                         },
@@ -10490,7 +10466,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::70',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'reserve': 'scale_info::44',
                         },
@@ -10498,7 +10474,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                         },
                         'Noop': None,
@@ -10539,7 +10515,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'scale_info::59',
                         ],
                         'effects': [
-                            'scale_info::226',
+                            'scale_info::224',
                         ],
                     },
                     'RelayedFrom': {
@@ -10617,7 +10593,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'scale_info::59',
                         ],
                         'effects': [
-                            'scale_info::226',
+                            'scale_info::224',
                         ],
                     },
                     'SubscribeVersion': {
@@ -10654,7 +10630,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'parents': 'u8',
                         },
                         'effects': [
-                            'scale_info::226',
+                            'scale_info::224',
                         ],
                     },
                     'UnsubscribeVersion': None,
@@ -10663,7 +10639,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'scale_info::59',
                         ],
                         'effects': [
-                            'scale_info::226',
+                            'scale_info::224',
                         ],
                     },
                 },
@@ -11107,7 +11083,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'fees': 'scale_info::59',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::224',
+                                'scale_info::222',
                             ],
                             'weight': 'u64',
                         },
@@ -11120,7 +11096,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'max_assets': 'u32',
                         },
@@ -11133,7 +11109,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::70',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'reserve': 'scale_info::44',
                         },
@@ -11141,7 +11117,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                         },
                         'Noop': None,
@@ -11323,7 +11299,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'fees': 'scale_info::59',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::224',
+                                'scale_info::222',
                             ],
                             'weight': 'u64',
                         },
@@ -11336,7 +11312,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'max_assets': 'u32',
                         },
@@ -11349,7 +11325,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::70',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'reserve': 'scale_info::44',
                         },
@@ -11357,7 +11333,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                         },
                         'Noop': None,
@@ -11384,7 +11360,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'fees': 'scale_info::59',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::224',
+                                'scale_info::222',
                             ],
                             'weight': 'u64',
                         },
@@ -11397,7 +11373,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'max_assets': 'u32',
                         },
@@ -11410,7 +11386,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::70',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'reserve': 'scale_info::44',
                         },
@@ -11418,7 +11394,7 @@ Messages above this weight go into the overweight queue and may only be serviced
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                         },
                         'Noop': None,
@@ -11718,7 +11694,7 @@ with all fees taken as needed from the asset.</p>
 <li><code>fee_asset_item</code>: The index into <code>assets</code> of the item which should be used to pay
   fees.</li>
 </ul>
-<h5 id="attributes_76">Attributes</h5>
+<h5 id="attributes_75">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -11745,7 +11721,7 @@ with all fees taken as needed from the asset.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_124">Python</h5>
+<h5 id="python_123">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'teleport_assets', {
     'assets': {
@@ -17729,7 +17705,7 @@ with all fees taken as needed from the asset.</p>
 <li><code>fee_asset_item</code>: The index into <code>assets</code> of the item which should be used to pay
   fees.</li>
 </ul>
-<h5 id="attributes_77">Attributes</h5>
+<h5 id="attributes_76">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -17756,7 +17732,7 @@ with all fees taken as needed from the asset.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_125">Python</h5>
+<h5 id="python_124">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'reserve_transfer_assets', {
     'assets': {
@@ -23732,7 +23708,7 @@ maximum amount of weight that the message could take to be executed, then no exe
 attempt will be made.</p>
 <p>NOTE: A successful return to this does <em>not</em> imply that the <code>msg</code> was executed successfully
 to completion; only that <em>some</em> of it was executed.</p>
-<h5 id="attributes_78">Attributes</h5>
+<h5 id="attributes_77">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -23751,7 +23727,7 @@ to completion; only that <em>some</em> of it was executed.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_126">Python</h5>
+<h5 id="python_125">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'execute', {
     'max_weight': 'u64',
@@ -23887,7 +23863,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'scale_info::77',
                         ],
                         'effects': [
-                            'scale_info::231',
+                            'scale_info::229',
                         ],
                     },
                     'TeleportAsset': {
@@ -23895,7 +23871,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'scale_info::77',
                         ],
                         'effects': [
-                            'scale_info::231',
+                            'scale_info::229',
                         ],
                     },
                     'Transact': {
@@ -24026,7 +24002,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             ),
                         },
                         'effects': [
-                            'scale_info::222',
+                            'scale_info::220',
                         ],
                     },
                     'WithdrawAsset': {
@@ -24034,7 +24010,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'scale_info::77',
                         ],
                         'effects': [
-                            'scale_info::231',
+                            'scale_info::229',
                         ],
                     },
                 },
@@ -24545,7 +24521,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::229',
+                                'scale_info::227',
                             ],
                         },
                         'DepositAsset': {
@@ -24560,7 +24536,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'ExchangeAsset': {
@@ -24576,7 +24552,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                                 'scale_info::77',
                             ],
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                             'reserve': 'scale_info::78',
                         },
@@ -24586,7 +24562,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'Null': None,
@@ -24645,7 +24621,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::229',
+                                'scale_info::227',
                             ],
                         },
                         'DepositAsset': {
@@ -24660,7 +24636,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'ExchangeAsset': {
@@ -24676,7 +24652,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                                 'scale_info::77',
                             ],
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                             'reserve': 'scale_info::78',
                         },
@@ -24686,7 +24662,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'Null': None,
@@ -25717,7 +25693,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::220',
+                                'scale_info::218',
                             ],
                         },
                         'DepositAsset': {
@@ -25732,7 +25708,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'ExchangeAsset': {
@@ -25748,7 +25724,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                                 'scale_info::77',
                             ],
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                             'reserve': 'scale_info::78',
                         },
@@ -25758,7 +25734,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'Null': None,
@@ -25817,7 +25793,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::229',
+                                'scale_info::227',
                             ],
                         },
                         'DepositAsset': {
@@ -25832,7 +25808,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'ExchangeAsset': {
@@ -25848,7 +25824,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                                 'scale_info::77',
                             ],
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                             'reserve': 'scale_info::78',
                         },
@@ -25858,7 +25834,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             ],
                             'dest': 'scale_info::78',
                             'effects': [
-                                'scale_info::222',
+                                'scale_info::220',
                             ],
                         },
                         'Null': None,
@@ -25910,7 +25886,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'fees': 'scale_info::59',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::234',
+                                'scale_info::232',
                             ],
                             'weight': 'u64',
                         },
@@ -25923,7 +25899,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'max_assets': 'u32',
                         },
@@ -25936,7 +25912,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::70',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'reserve': 'scale_info::44',
                         },
@@ -25944,7 +25920,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                         },
                         'Noop': None,
@@ -25985,7 +25961,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'scale_info::59',
                         ],
                         'effects': [
-                            'scale_info::236',
+                            'scale_info::234',
                         ],
                     },
                     'RelayedFrom': {
@@ -26063,7 +26039,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'scale_info::59',
                         ],
                         'effects': [
-                            'scale_info::236',
+                            'scale_info::234',
                         ],
                     },
                     'SubscribeVersion': {
@@ -26100,7 +26076,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'parents': 'u8',
                         },
                         'effects': [
-                            'scale_info::226',
+                            'scale_info::224',
                         ],
                     },
                     'UnsubscribeVersion': None,
@@ -26109,7 +26085,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'scale_info::59',
                         ],
                         'effects': [
-                            'scale_info::236',
+                            'scale_info::234',
                         ],
                     },
                 },
@@ -26553,7 +26529,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'fees': 'scale_info::59',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::234',
+                                'scale_info::232',
                             ],
                             'weight': 'u64',
                         },
@@ -26566,7 +26542,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'max_assets': 'u32',
                         },
@@ -26579,7 +26555,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::70',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'reserve': 'scale_info::44',
                         },
@@ -26587,7 +26563,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                         },
                         'Noop': None,
@@ -26769,7 +26745,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'fees': 'scale_info::59',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::224',
+                                'scale_info::222',
                             ],
                             'weight': 'u64',
                         },
@@ -26782,7 +26758,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'max_assets': 'u32',
                         },
@@ -26795,7 +26771,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::70',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'reserve': 'scale_info::44',
                         },
@@ -26803,7 +26779,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                         },
                         'Noop': None,
@@ -26830,7 +26806,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'fees': 'scale_info::59',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::234',
+                                'scale_info::232',
                             ],
                             'weight': 'u64',
                         },
@@ -26843,7 +26819,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'max_assets': 'u32',
                         },
@@ -26856,7 +26832,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::70',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                             'reserve': 'scale_info::44',
                         },
@@ -26864,7 +26840,7 @@ to completion; only that <em>some</em> of it was executed.</p>
                             'assets': 'scale_info::70',
                             'dest': 'scale_info::44',
                             'effects': [
-                                'scale_info::226',
+                                'scale_info::224',
                             ],
                         },
                         'Noop': None,
@@ -27094,10 +27070,10 @@ to completion; only that <em>some</em> of it was executed.</p>
                     'scale_info::59',
                 ],
                 'SetAppendix': [
-                    'scale_info::240',
+                    'scale_info::238',
                 ],
                 'SetErrorHandler': [
-                    'scale_info::240',
+                    'scale_info::238',
                 ],
                 'SubscribeVersion': {
                     'max_response_weight': 'u64',
@@ -27156,7 +27132,7 @@ version of XCM.</p>
 <li><code>location</code>: The destination that is being described.</li>
 <li><code>xcm_version</code>: The latest version of XCM that <code>location</code> supports.</li>
 </ul>
-<h5 id="attributes_79">Attributes</h5>
+<h5 id="attributes_78">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27175,7 +27151,7 @@ version of XCM.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_127">Python</h5>
+<h5 id="python_126">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'force_xcm_version', {
     'location': {
@@ -29093,7 +29069,7 @@ version a destination can accept is unknown).</p>
 <li><code>origin</code>: Must be Root.</li>
 <li><code>maybe_xcm_version</code>: The default XCM encoding version, or <code>None</code> to disable.</li>
 </ul>
-<h5 id="attributes_80">Attributes</h5>
+<h5 id="attributes_79">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -29108,7 +29084,7 @@ version a destination can accept is unknown).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_128">Python</h5>
+<h5 id="python_127">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'force_default_xcm_version', {'maybe_xcm_version': (None, 'u32')}
 )
@@ -29120,7 +29096,7 @@ version a destination can accept is unknown).</p>
 <li><code>origin</code>: Must be Root.</li>
 <li><code>location</code>: The location to which we should subscribe for XCM version notifications.</li>
 </ul>
-<h5 id="attributes_81">Attributes</h5>
+<h5 id="attributes_80">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -29135,7 +29111,7 @@ version a destination can accept is unknown).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_129">Python</h5>
+<h5 id="python_128">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'force_subscribe_version_notify', {
     'location': {
@@ -31965,7 +31941,7 @@ version changes.</p>
 <li><code>location</code>: The location to which we are currently subscribed for XCM version
   notifications which we no longer desire.</li>
 </ul>
-<h5 id="attributes_82">Attributes</h5>
+<h5 id="attributes_81">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -31980,7 +31956,7 @@ version changes.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_130">Python</h5>
+<h5 id="python_129">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'force_unsubscribe_version_notify', {
     'location': {
@@ -34821,7 +34797,7 @@ at risk.</p>
   fees.</li>
 <li><code>weight_limit</code>: The remote-side weight limit, if any, for the XCM fee purchase.</li>
 </ul>
-<h5 id="attributes_83">Attributes</h5>
+<h5 id="attributes_82">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -34852,7 +34828,7 @@ at risk.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_131">Python</h5>
+<h5 id="python_130">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'limited_reserve_transfer_assets', {
     'assets': {
@@ -40841,7 +40817,7 @@ at risk.</p>
   fees.</li>
 <li><code>weight_limit</code>: The remote-side weight limit, if any, for the XCM fee purchase.</li>
 </ul>
-<h5 id="attributes_84">Attributes</h5>
+<h5 id="attributes_83">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -40872,7 +40848,7 @@ at risk.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_132">Python</h5>
+<h5 id="python_131">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'PolkadotXcm', 'limited_teleport_assets', {
     'assets': {
@@ -46848,7 +46824,7 @@ at risk.</p>
 <h4 id="attempted">Attempted</h4>
 <p>Execution of an XCM message was attempted.</p>
 <p>[ outcome ]</p>
-<h5 id="attributes_85">Attributes</h5>
+<h5 id="attributes_84">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -46869,7 +46845,7 @@ at risk.</p>
 <h4 id="sent">Sent</h4>
 <p>A XCM message was sent.</p>
 <p>[ origin, destination, message ]</p>
-<h5 id="attributes_86">Attributes</h5>
+<h5 id="attributes_85">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -46902,7 +46878,7 @@ at risk.</p>
 matching query was never registered, it may be because it is a duplicate response, or
 because the query timed out.</p>
 <p>[ origin location, id ]</p>
-<h5 id="attributes_87">Attributes</h5>
+<h5 id="attributes_86">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -46929,7 +46905,7 @@ because the query timed out.</p>
 <p>Query response has been received and is ready for taking with <code>take_response</code>. There is
 no registered notification call.</p>
 <p>[ id, response ]</p>
-<h5 id="attributes_88">Attributes</h5>
+<h5 id="attributes_87">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -46956,7 +46932,7 @@ no registered notification call.</p>
 <p>Query response has been received and query is removed. The registered notification has
 been dispatched and executed successfully.</p>
 <p>[ id, pallet index, call index ]</p>
-<h5 id="attributes_89">Attributes</h5>
+<h5 id="attributes_88">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -46989,7 +46965,7 @@ been dispatched and executed successfully.</p>
 not be dispatched because the dispatch weight is greater than the maximum weight
 originally budgeted by this runtime for the query result.</p>
 <p>[ id, pallet index, call index, actual weight, max budgeted weight ]</p>
-<h5 id="attributes_90">Attributes</h5>
+<h5 id="attributes_89">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47031,7 +47007,7 @@ originally budgeted by this runtime for the query result.</p>
 <p>Query response has been received and query is removed. There was a general error with
 dispatching the notification call.</p>
 <p>[ id, pallet index, call index ]</p>
-<h5 id="attributes_91">Attributes</h5>
+<h5 id="attributes_90">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47064,7 +47040,7 @@ dispatching the notification call.</p>
 decoded into a <code>Call</code>; this might be due to dispatch function having a signature which
 is not <code>(origin, QueryId, Response)</code>.</p>
 <p>[ id, pallet index, call index ]</p>
-<h5 id="attributes_92">Attributes</h5>
+<h5 id="attributes_91">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47097,7 +47073,7 @@ is not <code>(origin, QueryId, Response)</code>.</p>
 not match that expected. The query remains registered for a later, valid, response to
 be received and acted upon.</p>
 <p>[ origin location, id, expected location ]</p>
-<h5 id="attributes_93">Attributes</h5>
+<h5 id="attributes_92">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47133,7 +47109,7 @@ runtime should be readable prior to query timeout) and dangerous since the possi
 valid response will be dropped. Manual governance intervention is probably going to be
 needed.</p>
 <p>[ origin location, id ]</p>
-<h5 id="attributes_94">Attributes</h5>
+<h5 id="attributes_93">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47159,7 +47135,7 @@ needed.</p>
 <h4 id="responsetaken">ResponseTaken</h4>
 <p>Received query response has been read and removed.</p>
 <p>[ id ]</p>
-<h5 id="attributes_95">Attributes</h5>
+<h5 id="attributes_94">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47180,7 +47156,7 @@ needed.</p>
 <h4 id="assetstrapped">AssetsTrapped</h4>
 <p>Some assets have been placed in an asset trap.</p>
 <p>[ hash, origin, assets ]</p>
-<h5 id="attributes_96">Attributes</h5>
+<h5 id="attributes_95">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47211,7 +47187,7 @@ needed.</p>
 <h4 id="versionchangenotified">VersionChangeNotified</h4>
 <p>An XCM version change notification message has been attempted to be sent.</p>
 <p>[ destination, result ]</p>
-<h5 id="attributes_97">Attributes</h5>
+<h5 id="attributes_96">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47238,7 +47214,7 @@ needed.</p>
 <p>The supported version of a location has been changed. This might be through an
 automatic notification or a manual intervention.</p>
 <p>[ location, XCM version ]</p>
-<h5 id="attributes_98">Attributes</h5>
+<h5 id="attributes_97">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47265,7 +47241,7 @@ automatic notification or a manual intervention.</p>
 <p>A given location which had a version change subscription was dropped owing to an error
 sending the notification to it.</p>
 <p>[ location, query ID, error ]</p>
-<h5 id="attributes_99">Attributes</h5>
+<h5 id="attributes_98">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47297,7 +47273,7 @@ sending the notification to it.</p>
 <p>A given location which had a version change subscription was dropped owing to an error
 migrating the location to our new XCM format.</p>
 <p>[ location, query ID ]</p>
-<h5 id="attributes_100">Attributes</h5>
+<h5 id="attributes_99">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47323,7 +47299,7 @@ migrating the location to our new XCM format.</p>
 <h4 id="assetsclaimed">AssetsClaimed</h4>
 <p>Some assets have been claimed from an asset trap</p>
 <p>[ hash, origin, assets ]</p>
-<h5 id="attributes_101">Attributes</h5>
+<h5 id="attributes_100">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -47355,7 +47331,7 @@ migrating the location to our new XCM format.</p>
 <hr />
 <h4 id="querycounter">QueryCounter</h4>
 <p>The latest available query index.</p>
-<h5 id="python_133">Python</h5>
+<h5 id="python_132">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PolkadotXcm', 'QueryCounter', []
 )
@@ -47366,7 +47342,7 @@ migrating the location to our new XCM format.</p>
 <hr />
 <h4 id="queries">Queries</h4>
 <p>The ongoing queries.</p>
-<h5 id="python_134">Python</h5>
+<h5 id="python_133">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PolkadotXcm', 'Queries', ['u64']
 )
@@ -47624,7 +47600,7 @@ migrating the location to our new XCM format.</p>
 <p>The existing asset traps.</p>
 <p>Key is the blake2 256 hash of (origin, versioned <code>MultiAssets</code>) pair. Value is the number of
  times this pair has been trapped (usually just 1 if it exists at all).</p>
-<h5 id="python_135">Python</h5>
+<h5 id="python_134">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PolkadotXcm', 'AssetTraps', ['[u8; 32]']
 )
@@ -47636,7 +47612,7 @@ migrating the location to our new XCM format.</p>
 <h4 id="safexcmversion">SafeXcmVersion</h4>
 <p>Default version to encode XCM when latest version of destination is unknown. If <code>None</code>,
  then the destinations whose XCM version is unknown are considered unreachable.</p>
-<h5 id="python_136">Python</h5>
+<h5 id="python_135">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PolkadotXcm', 'SafeXcmVersion', []
 )
@@ -47647,7 +47623,7 @@ migrating the location to our new XCM format.</p>
 <hr />
 <h4 id="supportedversion">SupportedVersion</h4>
 <p>The Latest versions that we know various locations support.</p>
-<h5 id="python_137">Python</h5>
+<h5 id="python_136">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PolkadotXcm', 'SupportedVersion', [
     'u32',
@@ -50475,7 +50451,7 @@ migrating the location to our new XCM format.</p>
 <hr />
 <h4 id="versionnotifiers">VersionNotifiers</h4>
 <p>All locations that we have requested version notifications from.</p>
-<h5 id="python_138">Python</h5>
+<h5 id="python_137">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PolkadotXcm', 'VersionNotifiers', [
     'u32',
@@ -53304,7 +53280,7 @@ migrating the location to our new XCM format.</p>
 <h4 id="versionnotifytargets">VersionNotifyTargets</h4>
 <p>The target locations that are subscribed to our version changes, as well as the most recent
  of our versions we informed them of.</p>
-<h5 id="python_139">Python</h5>
+<h5 id="python_138">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PolkadotXcm', 'VersionNotifyTargets', [
     'u32',
@@ -56134,7 +56110,7 @@ migrating the location to our new XCM format.</p>
 <p>Destinations whose latest XCM version we would like to know. Duplicates not allowed, and
  the <code>u32</code> counter is the number of times that a send to the destination has been attempted,
  which is used as a prioritization.</p>
-<h5 id="python_140">Python</h5>
+<h5 id="python_139">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PolkadotXcm', 'VersionDiscoveryQueue', []
 )
@@ -56261,7 +56237,7 @@ migrating the location to our new XCM format.</p>
 <hr />
 <h4 id="currentmigration">CurrentMigration</h4>
 <p>The current migration&#x27;s stage, if any.</p>
-<h5 id="python_141">Python</h5>
+<h5 id="python_140">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'PolkadotXcm', 'CurrentMigration', []
 )
@@ -56326,7 +56302,7 @@ desired version of XCM).</p>
 <h4 id="invalidformat">InvalidFormat</h4>
 <p>Downward message is invalid XCM.
 [ id ]</p>
-<h5 id="attributes_102">Attributes</h5>
+<h5 id="attributes_101">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56347,7 +56323,7 @@ desired version of XCM).</p>
 <h4 id="unsupportedversion">UnsupportedVersion</h4>
 <p>Downward message is unsupported version of XCM.
 [ id ]</p>
-<h5 id="attributes_103">Attributes</h5>
+<h5 id="attributes_102">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56368,7 +56344,7 @@ desired version of XCM).</p>
 <h4 id="executeddownward">ExecutedDownward</h4>
 <p>Downward message executed with the given outcome.
 [ id, outcome ]</p>
-<h5 id="attributes_104">Attributes</h5>
+<h5 id="attributes_103">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56407,7 +56383,7 @@ desired version of XCM).</p>
 - <code>OverLimit</code>: Message execution may use greater than <code>weight_limit</code>.</p>
 <p>Events:
 - <code>OverweightServiced</code>: On success.</p>
-<h5 id="attributes_105">Attributes</h5>
+<h5 id="attributes_104">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56426,7 +56402,7 @@ desired version of XCM).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_142">Python</h5>
+<h5 id="python_141">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'DmpQueue', 'service_overweight', {
     'index': 'u64',
@@ -56439,7 +56415,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="invalidformat_1">InvalidFormat</h4>
 <p>Downward message is invalid XCM.</p>
-<h5 id="attributes_106">Attributes</h5>
+<h5 id="attributes_105">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56459,7 +56435,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="unsupportedversion_1">UnsupportedVersion</h4>
 <p>Downward message is unsupported version of XCM.</p>
-<h5 id="attributes_107">Attributes</h5>
+<h5 id="attributes_106">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56479,7 +56455,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="executeddownward_1">ExecutedDownward</h4>
 <p>Downward message executed with the given outcome.</p>
-<h5 id="attributes_108">Attributes</h5>
+<h5 id="attributes_107">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56504,7 +56480,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="weightexhausted">WeightExhausted</h4>
 <p>The weight limit for handling downward messages was reached.</p>
-<h5 id="attributes_109">Attributes</h5>
+<h5 id="attributes_108">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56534,7 +56510,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="overweightenqueued_1">OverweightEnqueued</h4>
 <p>Downward message is overweight and was placed in the overweight queue.</p>
-<h5 id="attributes_110">Attributes</h5>
+<h5 id="attributes_109">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56564,7 +56540,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="overweightserviced_1">OverweightServiced</h4>
 <p>Downward message from the overweight queue was executed.</p>
-<h5 id="attributes_111">Attributes</h5>
+<h5 id="attributes_110">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56591,7 +56567,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="configuration">Configuration</h4>
 <p>The configuration.</p>
-<h5 id="python_143">Python</h5>
+<h5 id="python_142">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'DmpQueue', 'Configuration', []
 )
@@ -56602,7 +56578,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="pageindex">PageIndex</h4>
 <p>The page index.</p>
-<h5 id="python_144">Python</h5>
+<h5 id="python_143">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'DmpQueue', 'PageIndex', []
 )
@@ -56613,7 +56589,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="pages">Pages</h4>
 <p>The queue pages.</p>
-<h5 id="python_145">Python</h5>
+<h5 id="python_144">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'DmpQueue', 'Pages', ['u32']
 )
@@ -56624,7 +56600,7 @@ desired version of XCM).</p>
 <hr />
 <h4 id="overweight_1">Overweight</h4>
 <p>The overweight messages.</p>
-<h5 id="python_146">Python</h5>
+<h5 id="python_145">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'DmpQueue', 'Overweight', ['u64']
 )
@@ -56662,7 +56638,7 @@ event is deposited. If a call failed and the batch was interrupted, then the
 <code>BatchInterrupted</code> event is deposited, along with the number of successful calls made
 and the error of the failed call. If all were successful, then the <code>BatchCompleted</code>
 event is deposited.</p>
-<h5 id="attributes_112">Attributes</h5>
+<h5 id="attributes_111">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56677,7 +56653,7 @@ event is deposited.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_147">Python</h5>
+<h5 id="python_146">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'batch', {'calls': ['Call']}
 )
@@ -56693,7 +56669,7 @@ the call restrictions to apply to any sub-accounts), then use <code>as_multi_thr
 in the Multisig pallet instead.</p>
 <p>NOTE: Prior to version *12, this was called <code>as_limited_sub</code>.</p>
 <p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<h5 id="attributes_113">Attributes</h5>
+<h5 id="attributes_112">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56712,7 +56688,7 @@ in the Multisig pallet instead.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_148">Python</h5>
+<h5 id="python_147">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'as_derivative', {'call': 'Call', 'index': 'u16'}
 )
@@ -56731,7 +56707,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <p># &lt;weight&gt;
 - Complexity: O(C) where C is the number of calls to be batched.
 # &lt;/weight&gt;</p>
-<h5 id="attributes_114">Attributes</h5>
+<h5 id="attributes_113">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56746,7 +56722,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_149">Python</h5>
+<h5 id="python_148">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'batch_all', {'calls': ['Call']}
 )
@@ -56761,7 +56737,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 - One DB write (event).
 - Weight of derivative <code>call</code> execution + T::WeightInfo::dispatch_as().
 # &lt;/weight&gt;</p>
-<h5 id="attributes_115">Attributes</h5>
+<h5 id="attributes_114">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -56780,10 +56756,11 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_150">Python</h5>
+<h5 id="python_149">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
@@ -57646,13 +57623,12 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
                 'parents': 'u8',
             },
         },
+        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
-        'Void': (),
     },
     'call': 'Call',
 }
@@ -57672,7 +57648,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <p># &lt;weight&gt;
 - Complexity: O(C) where C is the number of calls to be batched.
 # &lt;/weight&gt;</p>
-<h5 id="attributes_116">Attributes</h5>
+<h5 id="attributes_115">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -57687,9 +57663,45 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_151">Python</h5>
+<h5 id="python_150">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'force_batch', {'calls': ['Call']}
+)
+</code></pre>
+<hr />
+<h4 id="with_weight">with_weight</h4>
+<p>Dispatch a function call with a specified weight.</p>
+<p>This function does not check the weight of the call, and instead allows the
+Root origin to specify the weight of the call.</p>
+<p>The dispatch origin for this call must be <em>Root</em>.</p>
+<h5 id="attributes_116">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>call</td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
+</tr>
+<tr>
+<td>weight</td>
+<td><code>Weight</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_151">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Utility', 'with_weight', {
+    'call': 'Call',
+    'weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
 )
 </code></pre>
 <hr />
@@ -58267,7 +58279,7 @@ transaction for this dispatch.</li>
  <code>4 + sizeof((BlockNumber, Balance, AccountId))</code> bytes and whose key size is
  <code>32 + sizeof(AccountId)</code> bytes.</p>
 <h5 id="value_13">Value</h5>
-<pre><code class="language-python">669599964
+<pre><code class="language-python">6695999964
 </code></pre>
 <h5 id="python_158">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Multisig', 'DepositBase')
@@ -58277,7 +58289,7 @@ transaction for this dispatch.</li>
 <p>The amount of currency needed per unit threshold when creating a multisig execution.</p>
 <p>This is held for adding 32 bytes more into a pre-existing storage value.</p>
 <h5 id="value_14">Value</h5>
-<pre><code class="language-python">1066656
+<pre><code class="language-python">10666656
 </code></pre>
 <h5 id="python_159">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Multisig', 'DepositFactor')
@@ -59056,7 +59068,7 @@ disambiguation index and proxy type.</p>
 <p>This is held for an additional storage item whose value size is
  <code>sizeof(Balance)</code> bytes and whose key size is <code>sizeof(AccountId)</code> bytes.</p>
 <h5 id="value_16">Value</h5>
-<pre><code class="language-python">667999980
+<pre><code class="language-python">6679999980
 </code></pre>
 <h5 id="python_173">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Proxy', 'ProxyDepositBase')
@@ -59068,7 +59080,7 @@ disambiguation index and proxy type.</p>
  pre-existing storage value. Thus, when configuring <code>ProxyDepositFactor</code> one should take
  into account <code>32 + proxy_type.encode().len()</code> bytes of data.</p>
 <h5 id="value_17">Value</h5>
-<pre><code class="language-python">1099989
+<pre><code class="language-python">10999989
 </code></pre>
 <h5 id="python_174">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Proxy', 'ProxyDepositFactor')
@@ -59097,7 +59109,7 @@ disambiguation index and proxy type.</p>
 <p>This is held when a new storage item holding a <code>Balance</code> is created (typically 16
  bytes).</p>
 <h5 id="value_20">Value</h5>
-<pre><code class="language-python">668266644
+<pre><code class="language-python">6682666644
 </code></pre>
 <h5 id="python_177">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Proxy', 'AnnouncementDepositBase')
@@ -59108,7 +59120,7 @@ disambiguation index and proxy type.</p>
 <p>This is held for adding an <code>AccountId</code>, <code>Hash</code> and <code>BlockNumber</code> (typically 68 bytes)
  into a pre-existing storage value.</p>
 <h5 id="value_21">Value</h5>
-<pre><code class="language-python">2199978
+<pre><code class="language-python">21999978
 </code></pre>
 <h5 id="python_178">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Proxy', 'AnnouncementDepositFactor')
@@ -59169,7 +59181,7 @@ have. If an account&amp;#x27;s balance is reduced below this, then it collapses 
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>admin</td>
@@ -59224,7 +59236,7 @@ have. If an account&amp;#x27;s balance is reduced below this, then it collapses 
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>owner</td>
@@ -59258,16 +59270,15 @@ have. If an account&amp;#x27;s balance is reduced below this, then it collapses 
 </code></pre>
 <hr />
 <h4 id="start_destroy">start_destroy</h4>
-<p>Start the process of destroying a class of fungible asset
-start_destroy is the first in a series of extrinsics that should be called, to allow
-destroying an asset.</p>
-<p>The origin must conform to <code>ForceOrigin</code> or must be Signed and the sender must be the
-owner of the asset <code>id</code>.</p>
+<p>Start the process of destroying a fungible asset class.</p>
+<p><code>start_destroy</code> is the first in a series of extrinsics that should be called, to allow
+destruction of an asset class.</p>
+<p>The origin must conform to <code>ForceOrigin</code> or must be <code>Signed</code> by the asset&amp;#x27;s <code>owner</code>.</p>
 <ul>
 <li><code>id</code>: The identifier of the asset to be destroyed. This must identify an existing
   asset.</li>
 </ul>
-<p>Assets must be freezed before calling start_destroy.</p>
+<p>The asset class must be frozen before calling <code>start_destroy</code>.</p>
 <h5 id="attributes_148">Attributes</h5>
 <table>
 <thead>
@@ -59279,7 +59290,7 @@ owner of the asset <code>id</code>.</p>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 </tbody>
 </table>
@@ -59290,17 +59301,16 @@ owner of the asset <code>id</code>.</p>
 </code></pre>
 <hr />
 <h4 id="destroy_accounts">destroy_accounts</h4>
-<p>Destroy all accounts associated with a given asset.
-<code>destroy_accounts</code> should only be called after <code>start_destroy</code> has been called, and the
-asset is in a <code>Destroying</code> state</p>
-<p>Due to weight restrictions, this function may need to be called multiple
-times to fully destroy all accounts. It will destroy <code>RemoveItemsLimit</code> accounts at a
-time.</p>
+<p>Destroy all accounts associated with a given asset.</p>
+<p><code>destroy_accounts</code> should only be called after <code>start_destroy</code> has been called, and the
+asset is in a <code>Destroying</code> state.</p>
+<p>Due to weight restrictions, this function may need to be called multiple times to fully
+destroy all accounts. It will destroy <code>RemoveItemsLimit</code> accounts at a time.</p>
 <ul>
 <li><code>id</code>: The identifier of the asset to be destroyed. This must identify an existing
   asset.</li>
 </ul>
-<p>Each call Emits the <code>Event::DestroyedAccounts</code> event.</p>
+<p>Each call emits the <code>Event::DestroyedAccounts</code> event.</p>
 <h5 id="attributes_149">Attributes</h5>
 <table>
 <thead>
@@ -59312,7 +59322,7 @@ time.</p>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 </tbody>
 </table>
@@ -59323,17 +59333,16 @@ time.</p>
 </code></pre>
 <hr />
 <h4 id="destroy_approvals">destroy_approvals</h4>
-<p>Destroy all approvals associated with a given asset up to the max (T::RemoveItemsLimit),
-<code>destroy_approvals</code> should only be called after <code>start_destroy</code> has been called, and the
-asset is in a <code>Destroying</code> state</p>
-<p>Due to weight restrictions, this function may need to be called multiple
-times to fully destroy all approvals. It will destroy <code>RemoveItemsLimit</code> approvals at a
-time.</p>
+<p>Destroy all approvals associated with a given asset up to the max (T::RemoveItemsLimit).</p>
+<p><code>destroy_approvals</code> should only be called after <code>start_destroy</code> has been called, and the
+asset is in a <code>Destroying</code> state.</p>
+<p>Due to weight restrictions, this function may need to be called multiple times to fully
+destroy all approvals. It will destroy <code>RemoveItemsLimit</code> approvals at a time.</p>
 <ul>
 <li><code>id</code>: The identifier of the asset to be destroyed. This must identify an existing
   asset.</li>
 </ul>
-<p>Each call Emits the <code>Event::DestroyedApprovals</code> event.</p>
+<p>Each call emits the <code>Event::DestroyedApprovals</code> event.</p>
 <h5 id="attributes_150">Attributes</h5>
 <table>
 <thead>
@@ -59345,7 +59354,7 @@ time.</p>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 </tbody>
 </table>
@@ -59356,15 +59365,15 @@ time.</p>
 </code></pre>
 <hr />
 <h4 id="finish_destroy">finish_destroy</h4>
-<p>Complete destroying asset and unreserve currency.
-<code>finish_destroy</code> should only be called after <code>start_destroy</code> has been called, and the
+<p>Complete destroying asset and unreserve currency.</p>
+<p><code>finish_destroy</code> should only be called after <code>start_destroy</code> has been called, and the
 asset is in a <code>Destroying</code> state. All accounts or approvals should be destroyed before
 hand.</p>
 <ul>
 <li><code>id</code>: The identifier of the asset to be destroyed. This must identify an existing
   asset.</li>
 </ul>
-<p>Each successful call Emits the <code>Event::Destroyed</code> event.</p>
+<p>Each successful call emits the <code>Event::Destroyed</code> event.</p>
 <h5 id="attributes_151">Attributes</h5>
 <table>
 <thead>
@@ -59376,7 +59385,7 @@ hand.</p>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 </tbody>
 </table>
@@ -59408,7 +59417,7 @@ Modes: Pre-existing balance of <code>beneficiary</code>; Account pre-existence o
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>beneficiary</td>
@@ -59460,7 +59469,7 @@ Modes: Post-existence of <code>who</code>; Pre &amp; post Zombie-status of <code
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>who</td>
@@ -59516,7 +59525,7 @@ Modes: Pre-existence of <code>target</code>; Post-existence of sender; Account p
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>target</td>
@@ -59572,7 +59581,7 @@ Modes: Pre-existence of <code>target</code>; Post-existence of sender; Account p
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>target</td>
@@ -59629,7 +59638,7 @@ Modes: Pre-existence of <code>dest</code>; Post-existence of <code>source</code>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>source</td>
@@ -59688,7 +59697,7 @@ Modes: Pre-existence of <code>dest</code>; Post-existence of <code>source</code>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>who</td>
@@ -59731,7 +59740,7 @@ Modes: Pre-existence of <code>dest</code>; Post-existence of <code>source</code>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>who</td>
@@ -59773,7 +59782,7 @@ Modes: Pre-existence of <code>dest</code>; Post-existence of <code>source</code>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 </tbody>
 </table>
@@ -59802,7 +59811,7 @@ Modes: Pre-existence of <code>dest</code>; Post-existence of <code>source</code>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 </tbody>
 </table>
@@ -59832,7 +59841,7 @@ Modes: Pre-existence of <code>dest</code>; Post-existence of <code>source</code>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>owner</td>
@@ -59877,7 +59886,7 @@ Modes: Pre-existence of <code>dest</code>; Post-existence of <code>source</code>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>issuer</td>
@@ -59947,7 +59956,7 @@ account any already reserved funds.</p>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>name</td>
@@ -59994,7 +60003,7 @@ account any already reserved funds.</p>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 </tbody>
 </table>
@@ -60027,7 +60036,7 @@ account any already reserved funds.</p>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>name</td>
@@ -60079,7 +60088,7 @@ account any already reserved funds.</p>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 </tbody>
 </table>
@@ -60121,7 +60130,7 @@ instructions.</li>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>owner</td>
@@ -60220,7 +60229,7 @@ already an approval in place, then this acts additively.</li>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>delegate</td>
@@ -60270,7 +60279,7 @@ already an approval in place, then this acts additively.</li>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>delegate</td>
@@ -60315,7 +60324,7 @@ account of the asset <code>id</code>.</p>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>owner</td>
@@ -60376,7 +60385,7 @@ from which the asset balance will be withdrawn.</li>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>owner</td>
@@ -60435,7 +60444,7 @@ from which the asset balance will be withdrawn.</li>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 </tbody>
 </table>
@@ -60464,7 +60473,7 @@ from which the asset balance will be withdrawn.</li>
 <tbody>
 <tr>
 <td>id</td>
-<td><code>T::AssetId</code></td>
+<td><code>T::AssetIdParameter</code></td>
 </tr>
 <tr>
 <td>allow_burn</td>
@@ -61168,7 +61177,7 @@ the approved <code>delegate</code>.</p>
 <p>The amount of funds that must be reserved for a non-provider asset account to be
  maintained.</p>
 <h5 id="value_24">Value</h5>
-<pre><code class="language-python">667199988
+<pre><code class="language-python">6671999988
 </code></pre>
 <h5 id="python_213">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Assets', 'AssetAccountDeposit')
@@ -61177,7 +61186,7 @@ the approved <code>delegate</code>.</p>
 <h4 id="metadatadepositbase">MetadataDepositBase</h4>
 <p>The basic amount of funds that must be reserved when adding metadata to your asset.</p>
 <h5 id="value_25">Value</h5>
-<pre><code class="language-python">668933304
+<pre><code class="language-python">6689333304
 </code></pre>
 <h5 id="python_214">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Assets', 'MetadataDepositBase')
@@ -61187,7 +61196,7 @@ the approved <code>delegate</code>.</p>
 <p>The additional funds that must be reserved for the number of bytes you store in your
  metadata.</p>
 <h5 id="value_26">Value</h5>
-<pre><code class="language-python">33333
+<pre><code class="language-python">333333
 </code></pre>
 <h5 id="python_215">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Assets', 'MetadataDepositPerByte')
@@ -61196,7 +61205,7 @@ the approved <code>delegate</code>.</p>
 <h4 id="approvaldeposit">ApprovalDeposit</h4>
 <p>The amount of funds that must be reserved when creating a new approval.</p>
 <h5 id="value_27">Value</h5>
-<pre><code class="language-python">3333333
+<pre><code class="language-python">33333333
 </code></pre>
 <h5 id="python_216">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Assets', 'ApprovalDeposit')
@@ -63397,7 +63406,7 @@ a <code>delegate</code>.</p>
 <h4 id="metadatadepositbase_1">MetadataDepositBase</h4>
 <p>The basic amount of funds that must be reserved when adding metadata to your item.</p>
 <h5 id="value_31">Value</h5>
-<pre><code class="language-python">670966617
+<pre><code class="language-python">6709666617
 </code></pre>
 <h5 id="python_256">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'MetadataDepositBase')
@@ -63406,7 +63415,7 @@ a <code>delegate</code>.</p>
 <h4 id="attributedepositbase">AttributeDepositBase</h4>
 <p>The basic amount of funds that must be reserved when adding an attribute to an item.</p>
 <h5 id="value_32">Value</h5>
-<pre><code class="language-python">666666660
+<pre><code class="language-python">6666666660
 </code></pre>
 <h5 id="python_257">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'AttributeDepositBase')
@@ -63416,7 +63425,7 @@ a <code>delegate</code>.</p>
 <p>The additional funds that must be reserved for the number of bytes store in metadata,
  either &quot;normal&quot; metadata or attribute metadata.</p>
 <h5 id="value_33">Value</h5>
-<pre><code class="language-python">33333
+<pre><code class="language-python">333333
 </code></pre>
 <h5 id="python_258">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Uniques', 'DepositPerByte')

@@ -60,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost Polkadot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen/">Bitgreen</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
                   </li>
@@ -2391,9 +2391,9 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">{
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -2703,12 +2703,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::30'},
-                'SudoAsDone': {'sudo_result': 'scale_info::30'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -2719,6 +2713,22 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'Vesting': {
+                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
+                'VestingScheduleAdded': {
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                    'vesting_schedule': 'scale_info::46',
+                },
+                'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            None: None,
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::30'},
+                'SudoAsDone': {'sudo_result': 'scale_info::30'},
             },
             'TransactionPayment': {
                 'TransactionFeePaid': {
@@ -2755,16 +2765,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'DispatchedAs': {'result': 'scale_info::30'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::22'},
-            },
-            None: None,
-            'Vesting': {
-                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
-                'VestingScheduleAdded': {
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                    'vesting_schedule': 'scale_info::46',
-                },
-                'VestingSchedulesUpdated': {'who': 'AccountId'},
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -9001,12 +9001,12 @@ has been paid by <code>who</code>.</p>
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
-                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',

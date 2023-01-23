@@ -60,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost Polkadot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen/">Bitgreen</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
                   </li>
@@ -2163,7 +2163,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">[
     {
         'event': {
-            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
@@ -2422,10 +2421,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 },
                 'Spending': {'budget_remaining': 'u128'},
             },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
-            },
             'XcAssetConfig': {
                 'AssetLocationChanged': {
                     'asset_id': 'u128',
@@ -2445,6 +2440,11 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'asset_location': 'scale_info::36',
                     'units_per_second': 'u128',
                 },
+            },
+            None: None,
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -70350,9 +70350,9 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'Ethereum': {'EthereumTransaction': '[u8; 20]'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::47',

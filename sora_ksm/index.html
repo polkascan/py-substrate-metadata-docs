@@ -60,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost Polkadot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen/">Bitgreen</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
                   </li>
@@ -1610,7 +1610,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'NewAccount': 'AccountId',
                 'Remarked': ('AccountId', '[u8; 32]'),
             },
-            None: None,
             'XcmpQueue': {
                 'BadFormat': (None, '[u8; 32]'),
                 'BadVersion': (None, '[u8; 32]'),
@@ -1619,6 +1618,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'UpwardMessageSent': (None, '[u8; 32]'),
                 'XcmpMessageSent': (None, '[u8; 32]'),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -3216,12 +3216,12 @@ Final argument indicates the destination balance type.</p>
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
-                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',

@@ -60,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../bifrost_polkadot/">Bifrost Polkadot</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen/">Bitgreen</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../bitgreen-parachain/">Bitgreen</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../centrifuge/">Centrifuge</a>
                   </li>
@@ -1380,6 +1380,8 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#payloadsignatureregistry">PayloadSignatureRegistry</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#payloadsignaturebucketcount">PayloadSignatureBucketCount</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#constants_10">Constants</a>
@@ -1395,6 +1397,8 @@
     <li class="toctree-l4"><a class="reference internal" href="#maxsignaturesperbucket">MaxSignaturesPerBucket</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#numberofbuckets">NumberOfBuckets</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#maxsignaturesstored">MaxSignaturesStored</a>
     </li>
         </ul>
     </li>
@@ -1454,6 +1458,8 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#cannotpredictvaliditypastcurrentblock">CannotPredictValidityPastCurrentBlock</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#signatureregistrylimitexceeded">SignatureRegistryLimitExceeded</a>
+    </li>
         </ul>
     </li>
         </ul>
@@ -1476,9 +1482,9 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#storage-functions_20">Storage functions</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#blockmessages">BlockMessages</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#messages_1">Messages</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#blockmessageindex">BlockMessageIndex</a>
     </li>
         </ul>
     </li>
@@ -1711,7 +1717,7 @@
 </tr>
 <tr>
 <td>Spec version</td>
-<td>1</td>
+<td>5</td>
 </tr>
 <tr>
 <td>SS58 Format</td>
@@ -1732,7 +1738,6 @@
 <h3 id="calls">Calls</h3>
 <hr />
 <h4 id="fill_block">fill_block</h4>
-<p>A dispatch that will fill the block weight up to the given ratio.</p>
 <h5 id="attributes">Attributes</h5>
 <table>
 <thead>
@@ -1755,10 +1760,6 @@
 </code></pre>
 <hr />
 <h4 id="remark">remark</h4>
-<p>Make some on-chain remark.</p>
-<p># &lt;weight&gt;
-- <code>O(1)</code>
-# &lt;/weight&gt;</p>
 <h5 id="attributes_1">Attributes</h5>
 <table>
 <thead>
@@ -1781,7 +1782,6 @@
 </code></pre>
 <hr />
 <h4 id="set_heap_pages">set_heap_pages</h4>
-<p>Set the number of pages in the WebAssembly environment&amp;#x27;s heap.</p>
 <h5 id="attributes_2">Attributes</h5>
 <table>
 <thead>
@@ -1804,17 +1804,6 @@
 </code></pre>
 <hr />
 <h4 id="set_code">set_code</h4>
-<p>Set the new runtime code.</p>
-<p># &lt;weight&gt;
-- <code>O(C + S)</code> where <code>C</code> length of <code>code</code> and <code>S</code> complexity of <code>can_set_code</code>
-- 1 call to <code>can_set_code</code>: <code>O(S)</code> (calls <code>sp_io::misc::runtime_version</code> which is
-  expensive).
-- 1 storage write (codec <code>O(C)</code>).
-- 1 digest item.
-- 1 event.
-The weight of this function is dependent on the runtime, but generally this is very
-expensive. We will treat this as a full block.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_3">Attributes</h5>
 <table>
 <thead>
@@ -1837,14 +1826,6 @@ expensive. We will treat this as a full block.
 </code></pre>
 <hr />
 <h4 id="set_code_without_checks">set_code_without_checks</h4>
-<p>Set the new runtime code without doing any checks of the given <code>code</code>.</p>
-<p># &lt;weight&gt;
-- <code>O(C)</code> where <code>C</code> length of <code>code</code>
-- 1 storage write (codec <code>O(C)</code>).
-- 1 digest item.
-- 1 event.
-The weight of this function is dependent on the runtime. We will treat this as a full
-block. # &lt;/weight&gt;</p>
 <h5 id="attributes_4">Attributes</h5>
 <table>
 <thead>
@@ -1867,7 +1848,6 @@ block. # &lt;/weight&gt;</p>
 </code></pre>
 <hr />
 <h4 id="set_storage">set_storage</h4>
-<p>Set some items of storage.</p>
 <h5 id="attributes_5">Attributes</h5>
 <table>
 <thead>
@@ -1890,7 +1870,6 @@ block. # &lt;/weight&gt;</p>
 </code></pre>
 <hr />
 <h4 id="kill_storage">kill_storage</h4>
-<p>Kill some items from storage.</p>
 <h5 id="attributes_6">Attributes</h5>
 <table>
 <thead>
@@ -1913,9 +1892,6 @@ block. # &lt;/weight&gt;</p>
 </code></pre>
 <hr />
 <h4 id="kill_prefix">kill_prefix</h4>
-<p>Kill all storage items with a key that starts with the given prefix.</p>
-<p><strong>NOTE:</strong> We rely on the Root origin to provide us the number of subkeys under
-the prefix we are removing to accurately calculate the weight of this function.</p>
 <h5 id="attributes_7">Attributes</h5>
 <table>
 <thead>
@@ -1942,7 +1918,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="remark_with_event">remark_with_event</h4>
-<p>Make some on-chain remark and emit event.</p>
 <h5 id="attributes_8">Attributes</h5>
 <table>
 <thead>
@@ -1967,7 +1942,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h3 id="events">Events</h3>
 <hr />
 <h4 id="extrinsicsuccess">ExtrinsicSuccess</h4>
-<p>An extrinsic completed successfully.</p>
 <h5 id="attributes_9">Attributes</h5>
 <table>
 <thead>
@@ -1987,7 +1961,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </table>
 <hr />
 <h4 id="extrinsicfailed">ExtrinsicFailed</h4>
-<p>An extrinsic failed.</p>
 <h5 id="attributes_10">Attributes</h5>
 <table>
 <thead>
@@ -2012,12 +1985,10 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </table>
 <hr />
 <h4 id="codeupdated">CodeUpdated</h4>
-<p><code>:code</code> was updated.</p>
 <h5 id="attributes_11">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="newaccount">NewAccount</h4>
-<p>A new account was created.</p>
 <h5 id="attributes_12">Attributes</h5>
 <table>
 <thead>
@@ -2037,7 +2008,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </table>
 <hr />
 <h4 id="killedaccount">KilledAccount</h4>
-<p>An account was reaped.</p>
 <h5 id="attributes_13">Attributes</h5>
 <table>
 <thead>
@@ -2057,7 +2027,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </table>
 <hr />
 <h4 id="remarked">Remarked</h4>
-<p>On on-chain remark happened.</p>
 <h5 id="attributes_14">Attributes</h5>
 <table>
 <thead>
@@ -2084,7 +2053,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h3 id="storage-functions">Storage functions</h3>
 <hr />
 <h4 id="account">Account</h4>
-<p>The full account information for a particular account ID.</p>
 <h5 id="python_9">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Account', ['AccountId']
@@ -2106,7 +2074,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="extrinsiccount">ExtrinsicCount</h4>
-<p>Total extrinsics count for the current block.</p>
 <h5 id="python_10">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicCount', []
@@ -2117,7 +2084,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="blockweight">BlockWeight</h4>
-<p>The current weight for the block.</p>
 <h5 id="python_11">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockWeight', []
@@ -2132,7 +2098,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="allextrinsicslen">AllExtrinsicsLen</h4>
-<p>Total length (in bytes) for all extrinsics put together, for the current block.</p>
 <h5 id="python_12">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'AllExtrinsicsLen', []
@@ -2143,7 +2108,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="blockhash">BlockHash</h4>
-<p>Map of block numbers to block hashes.</p>
 <h5 id="python_13">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockHash', ['u32']
@@ -2154,7 +2118,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="extrinsicdata">ExtrinsicData</h4>
-<p>Extrinsics data for the current block (maps an extrinsic&#x27;s index to its data).</p>
 <h5 id="python_14">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicData', ['u32']
@@ -2165,7 +2128,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="number">Number</h4>
-<p>The current block number being processed. Set by <code>execute_block</code>.</p>
 <h5 id="python_15">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Number', []
@@ -2176,7 +2138,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="parenthash">ParentHash</h4>
-<p>Hash of the previous block.</p>
 <h5 id="python_16">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ParentHash', []
@@ -2187,7 +2148,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="digest">Digest</h4>
-<p>Digest of the current block, also part of the block header.</p>
 <h5 id="python_17">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Digest', []
@@ -2209,11 +2169,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="events_1">Events</h4>
-<p>Events deposited for the current block.</p>
-<p>NOTE: The item is unbound and should therefore never be read on chain.
- It could otherwise inflate the PoV size of a block.</p>
-<p>Events have a large in-memory size. Box the events to not go out-of-memory
- just in case someone still reads them from within the runtime.</p>
 <h5 id="python_18">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Events', []
@@ -2223,7 +2178,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">[
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -2405,17 +2359,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'Sudid': {'sudo_result': 'scale_info::30'},
                 'SudoAsDone': {'sudo_result': 'scale_info::30'},
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -2491,6 +2434,18 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
             },
+            None: None,
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -2503,7 +2458,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="eventcount">EventCount</h4>
-<p>The number of events in the <code>Events&amp;lt;T&amp;gt;</code> list.</p>
 <h5 id="python_19">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventCount', []
@@ -2514,14 +2468,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="eventtopics">EventTopics</h4>
-<p>Mapping between a topic (represented by T::Hash) and a vector of indexes
- of events in the <code>&amp;lt;Events&amp;lt;T&amp;gt;&amp;gt;</code> list.</p>
-<p>All topic vectors have deterministic storage locations depending on the topic. This
- allows light-clients to leverage the changes trie storage tracking mechanism and
- in case of changes fetch the list of events of interest.</p>
-<p>The value has the type <code>(T::BlockNumber, EventIndex)</code> because if we used only just
- the <code>EventIndex</code> then in case if the topic has the same contents on the next block
- no notification will be triggered thus the event might be lost.</p>
 <h5 id="python_20">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventTopics', ['[u8; 32]']
@@ -2532,7 +2478,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="lastruntimeupgrade">LastRuntimeUpgrade</h4>
-<p>Stores the <code>spec_version</code> and <code>spec_name</code> of when the last runtime upgrade happened.</p>
 <h5 id="python_21">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'LastRuntimeUpgrade', []
@@ -2543,7 +2488,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="upgradedtou32refcount">UpgradedToU32RefCount</h4>
-<p>True if we have upgraded so that <code>type RefCount</code> is <code>u32</code>. False (default) if not.</p>
 <h5 id="python_22">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToU32RefCount', []
@@ -2554,8 +2498,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="upgradedtotriplerefcount">UpgradedToTripleRefCount</h4>
-<p>True if we have upgraded so that AccountInfo contains three types of <code>RefCount</code>. False
- (default) if not.</p>
 <h5 id="python_23">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToTripleRefCount', []
@@ -2566,7 +2508,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="executionphase">ExecutionPhase</h4>
-<p>The execution phase of the block.</p>
 <h5 id="python_24">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExecutionPhase', []
@@ -2579,7 +2520,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h3 id="constants">Constants</h3>
 <hr />
 <h4 id="blockweights">BlockWeights</h4>
-<p>Block &amp; extrinsics weights: base values and limits.</p>
 <h5 id="value">Value</h5>
 <pre><code class="language-python">{
     'base_block': {'ref_time': 5000000000},
@@ -2611,7 +2551,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="blocklength">BlockLength</h4>
-<p>The maximum length of a block (in bytes).</p>
 <h5 id="value_1">Value</h5>
 <pre><code class="language-python">{'max': {'mandatory': 5242880, 'normal': 3932160, 'operational': 5242880}}
 </code></pre>
@@ -2620,16 +2559,14 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="blockhashcount">BlockHashCount</h4>
-<p>Maximum number of block number to block hash mappings to keep (oldest pruned first).</p>
 <h5 id="value_2">Value</h5>
-<pre><code class="language-python">2400
+<pre><code class="language-python">4096
 </code></pre>
 <h5 id="python_27">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockHashCount')
 </code></pre>
 <hr />
 <h4 id="dbweight">DbWeight</h4>
-<p>The weight of runtime database operations the runtime can invoke.</p>
 <h5 id="value_3">Value</h5>
 <pre><code class="language-python">{'read': 25000000, 'write': 100000000}
 </code></pre>
@@ -2638,7 +2575,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="version">Version</h4>
-<p>Get the chain&#x27;s current version.</p>
 <h5 id="value_4">Value</h5>
 <pre><code class="language-python">{
     'apis': [
@@ -2660,7 +2596,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
     'impl_name': 'frequency',
     'impl_version': 0,
     'spec_name': 'frequency',
-    'spec_version': 1,
+    'spec_version': 5,
     'state_version': 1,
     'transaction_version': 1,
 }
@@ -2670,10 +2606,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h4 id="ss58prefix">SS58Prefix</h4>
-<p>The designated SS58 prefix of this chain.</p>
-<p>This replaces the &quot;ss58Format&quot; property declared in the chain spec. Reason is
- that the runtime should know about the prefix in order to make use of it as
- an identifier of the chain.</p>
 <h5 id="value_5">Value</h5>
 <pre><code class="language-python">90
 </code></pre>
@@ -2684,37 +2616,22 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <h3 id="errors">Errors</h3>
 <hr />
 <h4 id="invalidspecname">InvalidSpecName</h4>
-<p>The name of specification does not match between the current runtime
-and the new runtime.</p>
 <hr />
 <h4 id="specversionneedstoincrease">SpecVersionNeedsToIncrease</h4>
-<p>The specification version is not allowed to decrease between the current runtime
-and the new runtime.</p>
 <hr />
 <h4 id="failedtoextractruntimeversion">FailedToExtractRuntimeVersion</h4>
-<p>Failed to extract the runtime version from the new runtime.</p>
-<p>Either calling <code>Core_version</code> or decoding <code>RuntimeVersion</code> failed.</p>
 <hr />
 <h4 id="nondefaultcomposite">NonDefaultComposite</h4>
-<p>Suicide called when the account has non-default composite data.</p>
 <hr />
 <h4 id="nonzerorefcount">NonZeroRefCount</h4>
-<p>There is a non-zero reference count preventing the account from being purged.</p>
 <hr />
 <h4 id="callfiltered">CallFiltered</h4>
-<p>The origin filter prevent the call to be dispatched.</p>
 <hr />
 <h2 id="parachainsystem">ParachainSystem</h2>
 <hr />
 <h3 id="calls_1">Calls</h3>
 <hr />
 <h4 id="set_validation_data">set_validation_data</h4>
-<p>Set the current validation data.</p>
-<p>This should be invoked exactly once per block. It will panic at the finalization
-phase if the call was not invoked.</p>
-<p>The dispatch origin for this call must be <code>Inherent</code></p>
-<p>As a side effect, this function upgrades the current validation function
-if the appropriate time has come.</p>
 <h5 id="attributes_15">Attributes</h5>
 <table>
 <thead>
@@ -2824,12 +2741,10 @@ if the appropriate time has come.</p>
 <h3 id="events_2">Events</h3>
 <hr />
 <h4 id="validationfunctionstored">ValidationFunctionStored</h4>
-<p>The validation function has been scheduled to apply.</p>
 <h5 id="attributes_19">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="validationfunctionapplied">ValidationFunctionApplied</h4>
-<p>The validation function was applied as of the contained relay chain block number.</p>
 <h5 id="attributes_20">Attributes</h5>
 <table>
 <thead>
@@ -2849,12 +2764,10 @@ if the appropriate time has come.</p>
 </table>
 <hr />
 <h4 id="validationfunctiondiscarded">ValidationFunctionDiscarded</h4>
-<p>The relay-chain aborted the upgrade process.</p>
 <h5 id="attributes_21">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="upgradeauthorized">UpgradeAuthorized</h4>
-<p>An upgrade has been authorized.</p>
 <h5 id="attributes_22">Attributes</h5>
 <table>
 <thead>
@@ -2874,7 +2787,6 @@ if the appropriate time has come.</p>
 </table>
 <hr />
 <h4 id="downwardmessagesreceived">DownwardMessagesReceived</h4>
-<p>Some downward messages have been received and will be processed.</p>
 <h5 id="attributes_23">Attributes</h5>
 <table>
 <thead>
@@ -2894,7 +2806,6 @@ if the appropriate time has come.</p>
 </table>
 <hr />
 <h4 id="downwardmessagesprocessed">DownwardMessagesProcessed</h4>
-<p>Downward messages were processed using the given weight.</p>
 <h5 id="attributes_24">Attributes</h5>
 <table>
 <thead>
@@ -2921,9 +2832,6 @@ if the appropriate time has come.</p>
 <h3 id="storage-functions_1">Storage functions</h3>
 <hr />
 <h4 id="pendingvalidationcode">PendingValidationCode</h4>
-<p>In case of a scheduled upgrade, this storage field contains the validation code to be applied.</p>
-<p>As soon as the relay chain gives us the go-ahead signal, we will overwrite the <a href="sp_core::storage::well_known_keys::CODE"><code>:code</code></a>
- which will result the next block process with the new validation code. This concludes the upgrade process.</p>
 <h5 id="python_35">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'PendingValidationCode', []
@@ -2934,10 +2842,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="newvalidationcode">NewValidationCode</h4>
-<p>Validation code that is set by the parachain and is to be communicated to collator and
- consequently the relay-chain.</p>
-<p>This will be cleared in <code>on_initialize</code> of each new block if no other pallet already set
- the value.</p>
 <h5 id="python_36">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'NewValidationCode', []
@@ -2948,9 +2852,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="validationdata">ValidationData</h4>
-<p>The [<code>PersistedValidationData</code>] set for this block.
- This value is expected to be set only once per block and it&#x27;s never stored
- in the trie.</p>
 <h5 id="python_37">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ValidationData', []
@@ -2966,7 +2867,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="didsetvalidationcode">DidSetValidationCode</h4>
-<p>Were the validation data set to notify the relay chain?</p>
 <h5 id="python_38">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'DidSetValidationCode', []
@@ -2977,7 +2877,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="lastrelaychainblocknumber">LastRelayChainBlockNumber</h4>
-<p>The relay chain block number associated with the last parachain block.</p>
 <h5 id="python_39">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastRelayChainBlockNumber', []
@@ -2988,12 +2887,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="upgraderestrictionsignal">UpgradeRestrictionSignal</h4>
-<p>An option which indicates if the relay-chain restricts signalling a validation code upgrade.
- In other words, if this is <code>Some</code> and [<code>NewValidationCode</code>] is <code>Some</code> then the produced
- candidate will be invalid.</p>
-<p>This storage item is a mirror of the corresponding value for the current parachain from the
- relay-chain. This value is ephemeral which means it doesn&#x27;t hit the storage. This value is
- set after the inherent.</p>
 <h5 id="python_40">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'UpgradeRestrictionSignal', []
@@ -3004,10 +2897,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="relaystateproof">RelayStateProof</h4>
-<p>The state proof for the last relay parent block.</p>
-<p>This field is meant to be updated each block with the validation data inherent. Therefore,
- before processing of the inherent, e.g. in <code>on_initialize</code> this data may be stale.</p>
-<p>This data is also absent from the genesis.</p>
 <h5 id="python_41">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'RelayStateProof', []
@@ -3018,11 +2907,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="relevantmessagingstate">RelevantMessagingState</h4>
-<p>The snapshot of some state related to messaging relevant to the current parachain as per
- the relay parent.</p>
-<p>This field is meant to be updated each block with the validation data inherent. Therefore,
- before processing of the inherent, e.g. in <code>on_initialize</code> this data may be stale.</p>
-<p>This data is also absent from the genesis.</p>
 <h5 id="python_42">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'RelevantMessagingState', []
@@ -3062,10 +2946,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="hostconfiguration">HostConfiguration</h4>
-<p>The parachain host configuration that was obtained from the relay parent.</p>
-<p>This field is meant to be updated each block with the validation data inherent. Therefore,
- before processing of the inherent, e.g. in <code>on_initialize</code> this data may be stale.</p>
-<p>This data is also absent from the genesis.</p>
 <h5 id="python_43">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HostConfiguration', []
@@ -3086,9 +2966,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="lastdmqmqchead">LastDmqMqcHead</h4>
-<p>The last downward message queue chain head we have observed.</p>
-<p>This value is loaded before and saved after processing inbound downward messages carried
- by the system inherent.</p>
 <h5 id="python_44">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastDmqMqcHead', []
@@ -3099,9 +2976,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="lasthrmpmqcheads">LastHrmpMqcHeads</h4>
-<p>The message queue chain heads we have observed per each channel incoming channel.</p>
-<p>This value is loaded before and saved after processing inbound downward messages carried
- by the system inherent.</p>
 <h5 id="python_45">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastHrmpMqcHeads', []
@@ -3112,8 +2986,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="processeddownwardmessages">ProcessedDownwardMessages</h4>
-<p>Number of downward messages processed in a block.</p>
-<p>This will be cleared in <code>on_initialize</code> of each new block.</p>
 <h5 id="python_46">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ProcessedDownwardMessages', []
@@ -3124,8 +2996,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="hrmpwatermark">HrmpWatermark</h4>
-<p>HRMP watermark that was set in a block.</p>
-<p>This will be cleared in <code>on_initialize</code> of each new block.</p>
 <h5 id="python_47">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HrmpWatermark', []
@@ -3136,8 +3006,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="hrmpoutboundmessages">HrmpOutboundMessages</h4>
-<p>HRMP messages that were sent in a block.</p>
-<p>This will be cleared in <code>on_initialize</code> of each new block.</p>
 <h5 id="python_48">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HrmpOutboundMessages', []
@@ -3148,8 +3016,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="upwardmessages">UpwardMessages</h4>
-<p>Upward messages that were sent in a block.</p>
-<p>This will be cleared in <code>on_initialize</code> of each new block.</p>
 <h5 id="python_49">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'UpwardMessages', []
@@ -3160,7 +3026,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="pendingupwardmessages">PendingUpwardMessages</h4>
-<p>Upward messages that are still pending and not yet send to the relay chain.</p>
 <h5 id="python_50">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'PendingUpwardMessages', []
@@ -3171,8 +3036,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="announcedhrmpmessagespercandidate">AnnouncedHrmpMessagesPerCandidate</h4>
-<p>The number of HRMP messages we observed in <code>on_initialize</code> and thus used that number for
- announcing the weight of <code>on_initialize</code> and <code>on_finalize</code>.</p>
 <h5 id="python_51">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'AnnouncedHrmpMessagesPerCandidate', []
@@ -3183,8 +3046,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="reservedxcmpweightoverride">ReservedXcmpWeightOverride</h4>
-<p>The weight we reserve at the beginning of the block for processing XCMP messages. This
- overrides the amount set in the Config trait.</p>
 <h5 id="python_52">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ReservedXcmpWeightOverride', []
@@ -3195,8 +3056,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="reserveddmpweightoverride">ReservedDmpWeightOverride</h4>
-<p>The weight we reserve at the beginning of the block for processing DMP messages. This
- overrides the amount set in the Config trait.</p>
 <h5 id="python_53">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ReservedDmpWeightOverride', []
@@ -3207,7 +3066,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="authorizedupgrade">AuthorizedUpgrade</h4>
-<p>The next authorized upgrade, if there is one.</p>
 <h5 id="python_54">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'AuthorizedUpgrade', []
@@ -3218,8 +3076,6 @@ if the appropriate time has come.</p>
 </code></pre>
 <hr />
 <h4 id="customvalidationheaddata">CustomValidationHeadData</h4>
-<p>A custom head data that should be returned as result of <code>validate_block</code>.</p>
-<p>See [<code>Pallet::set_custom_validation_head_data</code>] for more information.</p>
 <h5 id="python_55">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'CustomValidationHeadData', []
@@ -3232,47 +3088,26 @@ if the appropriate time has come.</p>
 <h3 id="errors_1">Errors</h3>
 <hr />
 <h4 id="overlappingupgrades">OverlappingUpgrades</h4>
-<p>Attempt to upgrade validation function while existing upgrade pending</p>
 <hr />
 <h4 id="prohibitedbypolkadot">ProhibitedByPolkadot</h4>
-<p>Polkadot currently prohibits this parachain from upgrading its validation function</p>
 <hr />
 <h4 id="toobig">TooBig</h4>
-<p>The supplied validation function has compiled into a blob larger than Polkadot is
-willing to run</p>
 <hr />
 <h4 id="validationdatanotavailable">ValidationDataNotAvailable</h4>
-<p>The inherent which supplies the validation data did not run this block</p>
 <hr />
 <h4 id="hostconfigurationnotavailable">HostConfigurationNotAvailable</h4>
-<p>The inherent which supplies the host configuration did not run this block</p>
 <hr />
 <h4 id="notscheduled">NotScheduled</h4>
-<p>No validation function upgrade is currently scheduled.</p>
 <hr />
 <h4 id="nothingauthorized">NothingAuthorized</h4>
-<p>No code upgrade has been authorized.</p>
 <hr />
 <h4 id="unauthorized">Unauthorized</h4>
-<p>The given code upgrade has not been authorized.</p>
 <hr />
 <h2 id="timestamp">Timestamp</h2>
 <hr />
 <h3 id="calls_2">Calls</h3>
 <hr />
 <h4 id="set">set</h4>
-<p>Set the current time.</p>
-<p>This call should be invoked exactly once per block. It will panic at the finalization
-phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
-<p>The timestamp should be greater than the previous one by the amount specified by
-<code>MinimumPeriod</code>.</p>
-<p>The dispatch origin for this call must be <code>Inherent</code>.</p>
-<p># &lt;weight&gt;
-- <code>O(1)</code> (Note that implementations of <code>OnTimestampSet</code> must also be <code>O(1)</code>)
-- 1 storage read and 1 storage mutation (codec <code>O(1)</code>). (because of <code>DidUpdate::take</code> in
-  <code>on_finalize</code>)
-- 1 event handler <code>on_timestamp_set</code>. Must be <code>O(1)</code>.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_25">Attributes</h5>
 <table>
 <thead>
@@ -3297,7 +3132,6 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <h3 id="storage-functions_2">Storage functions</h3>
 <hr />
 <h4 id="now">Now</h4>
-<p>Current time for the current block.</p>
 <h5 id="python_57">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Timestamp', 'Now', []
@@ -3308,7 +3142,6 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 </code></pre>
 <hr />
 <h4 id="didupdate">DidUpdate</h4>
-<p>Did the timestamp get updated in this block?</p>
 <h5 id="python_58">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Timestamp', 'DidUpdate', []
@@ -3321,10 +3154,6 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <h3 id="constants_1">Constants</h3>
 <hr />
 <h4 id="minimumperiod">MinimumPeriod</h4>
-<p>The minimum period between blocks. Beware that this is different to the <em>expected</em>
- period that the block production apparatus provides. Your chosen consensus system will
- generally work with this to determine a sensible block time. e.g. For Aura, it will be
- double this period on default settings.</p>
 <h5 id="value_6">Value</h5>
 <pre><code class="language-python">6000
 </code></pre>
@@ -3351,14 +3180,6 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <h3 id="calls_3">Calls</h3>
 <hr />
 <h4 id="sudo_1">sudo</h4>
-<p>Authenticates the sudo key and dispatches a function call with <code>Root</code> origin.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<p># &lt;weight&gt;
-- O(1).
-- Limited storage reads.
-- One DB write (event).
-- Weight of derivative <code>call</code> execution + 10,000.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_26">Attributes</h5>
 <table>
 <thead>
@@ -3370,7 +3191,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <tbody>
 <tr>
 <td>call</td>
-<td><code>Box&lt;&lt;T as Config&gt;::Call&gt;</code></td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -3381,14 +3202,6 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 </code></pre>
 <hr />
 <h4 id="sudo_unchecked_weight">sudo_unchecked_weight</h4>
-<p>Authenticates the sudo key and dispatches a function call with <code>Root</code> origin.
-This function does not check the weight of the call, and instead allows the
-Sudo user to specify the weight of the call.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<p># &lt;weight&gt;
-- O(1).
-- The weight of this call is defined by the caller.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_27">Attributes</h5>
 <table>
 <thead>
@@ -3400,7 +3213,7 @@ Sudo user to specify the weight of the call.</p>
 <tbody>
 <tr>
 <td>call</td>
-<td><code>Box&lt;&lt;T as Config&gt;::Call&gt;</code></td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 <tr>
 <td>weight</td>
@@ -3418,14 +3231,6 @@ Sudo user to specify the weight of the call.</p>
 </code></pre>
 <hr />
 <h4 id="set_key">set_key</h4>
-<p>Authenticates the current sudo key and sets the given AccountId (<code>new</code>) as the new sudo
-key.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<p># &lt;weight&gt;
-- O(1).
-- Limited storage reads.
-- One DB change.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_28">Attributes</h5>
 <table>
 <thead>
@@ -3456,15 +3261,6 @@ key.</p>
 </code></pre>
 <hr />
 <h4 id="sudo_as">sudo_as</h4>
-<p>Authenticates the sudo key and dispatches a function call with <code>Signed</code> origin from
-a given account.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<p># &lt;weight&gt;
-- O(1).
-- Limited storage reads.
-- One DB write (event).
-- Weight of derivative <code>call</code> execution + 10,000.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_29">Attributes</h5>
 <table>
 <thead>
@@ -3480,7 +3276,7 @@ a given account.</p>
 </tr>
 <tr>
 <td>call</td>
-<td><code>Box&lt;&lt;T as Config&gt;::Call&gt;</code></td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -3502,7 +3298,6 @@ a given account.</p>
 <h3 id="events_3">Events</h3>
 <hr />
 <h4 id="sudid">Sudid</h4>
-<p>A sudo just took place. [result]</p>
 <h5 id="attributes_30">Attributes</h5>
 <table>
 <thead>
@@ -3522,7 +3317,6 @@ a given account.</p>
 </table>
 <hr />
 <h4 id="keychanged">KeyChanged</h4>
-<p>The [sudoer] just switched identity; the old key is supplied if one existed.</p>
 <h5 id="attributes_31">Attributes</h5>
 <table>
 <thead>
@@ -3542,7 +3336,6 @@ a given account.</p>
 </table>
 <hr />
 <h4 id="sudoasdone">SudoAsDone</h4>
-<p>A sudo just took place. [result]</p>
 <h5 id="attributes_32">Attributes</h5>
 <table>
 <thead>
@@ -3564,7 +3357,6 @@ a given account.</p>
 <h3 id="storage-functions_4">Storage functions</h3>
 <hr />
 <h4 id="key">Key</h4>
-<p>The <code>AccountId</code> of the sudo key.</p>
 <h5 id="python_65">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Sudo', 'Key', []
@@ -3577,16 +3369,12 @@ a given account.</p>
 <h3 id="errors_2">Errors</h3>
 <hr />
 <h4 id="requiresudo">RequireSudo</h4>
-<p>Sender must be the Sudo account</p>
 <hr />
 <h2 id="preimage">Preimage</h2>
 <hr />
 <h3 id="calls_4">Calls</h3>
 <hr />
 <h4 id="note_preimage">note_preimage</h4>
-<p>Register a preimage on-chain.</p>
-<p>If the preimage was previously requested, no fees or deposits are taken for providing
-the preimage. Otherwise, a deposit is taken proportional to the size of the preimage.</p>
 <h5 id="attributes_33">Attributes</h5>
 <table>
 <thead>
@@ -3609,7 +3397,6 @@ the preimage. Otherwise, a deposit is taken proportional to the size of the prei
 </code></pre>
 <hr />
 <h4 id="unnote_preimage">unnote_preimage</h4>
-<p>Clear an unrequested preimage from the runtime storage.</p>
 <h5 id="attributes_34">Attributes</h5>
 <table>
 <thead>
@@ -3632,9 +3419,6 @@ the preimage. Otherwise, a deposit is taken proportional to the size of the prei
 </code></pre>
 <hr />
 <h4 id="request_preimage">request_preimage</h4>
-<p>Request a preimage be uploaded to the chain without paying any fees or deposits.</p>
-<p>If the preimage requests has already been provided on-chain, we unreserve any deposit
-a user may have paid, and take the control of the preimage out of their hands.</p>
 <h5 id="attributes_35">Attributes</h5>
 <table>
 <thead>
@@ -3657,8 +3441,6 @@ a user may have paid, and take the control of the preimage out of their hands.</
 </code></pre>
 <hr />
 <h4 id="unrequest_preimage">unrequest_preimage</h4>
-<p>Clear a previously made request for a preimage.</p>
-<p>NOTE: THIS MUST NOT BE CALLED ON <code>hash</code> MORE TIMES THAN <code>request_preimage</code>.</p>
 <h5 id="attributes_36">Attributes</h5>
 <table>
 <thead>
@@ -3683,7 +3465,6 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <h3 id="events_4">Events</h3>
 <hr />
 <h4 id="noted">Noted</h4>
-<p>A preimage has been noted.</p>
 <h5 id="attributes_37">Attributes</h5>
 <table>
 <thead>
@@ -3703,7 +3484,6 @@ a user may have paid, and take the control of the preimage out of their hands.</
 </table>
 <hr />
 <h4 id="requested">Requested</h4>
-<p>A preimage has been requested.</p>
 <h5 id="attributes_38">Attributes</h5>
 <table>
 <thead>
@@ -3723,7 +3503,6 @@ a user may have paid, and take the control of the preimage out of their hands.</
 </table>
 <hr />
 <h4 id="cleared">Cleared</h4>
-<p>A preimage has ben cleared.</p>
 <h5 id="attributes_39">Attributes</h5>
 <table>
 <thead>
@@ -3745,7 +3524,6 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <h3 id="storage-functions_5">Storage functions</h3>
 <hr />
 <h4 id="statusfor">StatusFor</h4>
-<p>The request status of a given hash.</p>
 <h5 id="python_70">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Preimage', 'StatusFor', ['[u8; 32]']
@@ -3756,7 +3534,6 @@ a user may have paid, and take the control of the preimage out of their hands.</
 </code></pre>
 <hr />
 <h4 id="preimagefor">PreimageFor</h4>
-<p>The preimages stored by this pallet.</p>
 <h5 id="python_71">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Preimage', 'PreimageFor', ['[u8; 32]']
@@ -3769,37 +3546,22 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <h3 id="errors_3">Errors</h3>
 <hr />
 <h4 id="toolarge">TooLarge</h4>
-<p>Preimage is too large to store on-chain.</p>
 <hr />
 <h4 id="alreadynoted">AlreadyNoted</h4>
-<p>Preimage has already been noted on-chain.</p>
 <hr />
 <h4 id="notauthorized">NotAuthorized</h4>
-<p>The user is not authorized to perform this action.</p>
 <hr />
 <h4 id="notnoted">NotNoted</h4>
-<p>The preimage cannot be removed since it has not yet been noted.</p>
 <hr />
 <h4 id="requested_1">Requested</h4>
-<p>A preimage may not be removed when there are outstanding requests.</p>
 <hr />
 <h4 id="notrequested">NotRequested</h4>
-<p>The preimage request cannot be removed since no outstanding requests exist.</p>
 <hr />
 <h2 id="democracy">Democracy</h2>
 <hr />
 <h3 id="calls_5">Calls</h3>
 <hr />
 <h4 id="propose">propose</h4>
-<p>Propose a sensitive action to be taken.</p>
-<p>The dispatch origin of this call must be <em>Signed</em> and the sender must
-have funds to cover the deposit.</p>
-<ul>
-<li><code>proposal_hash</code>: The hash of the proposal preimage.</li>
-<li><code>value</code>: The amount of deposit (must be at least <code>MinimumDeposit</code>).</li>
-</ul>
-<p>Emits <code>Proposed</code>.</p>
-<p>Weight: <code>O(p)</code></p>
 <h5 id="attributes_40">Attributes</h5>
 <table>
 <thead>
@@ -3829,15 +3591,6 @@ have funds to cover the deposit.</p>
 </code></pre>
 <hr />
 <h4 id="second">second</h4>
-<p>Signals agreement with a particular proposal.</p>
-<p>The dispatch origin of this call must be <em>Signed</em> and the sender
-must have funds to cover the deposit, equal to the original deposit.</p>
-<ul>
-<li><code>proposal</code>: The index of the proposal to second.</li>
-<li><code>seconds_upper_bound</code>: an upper bound on the current number of seconds on this
-  proposal. Extrinsic is weighted according to this value with no refund.</li>
-</ul>
-<p>Weight: <code>O(S)</code> where S is the number of seconds a proposal already has.</p>
 <h5 id="attributes_41">Attributes</h5>
 <table>
 <thead>
@@ -3867,14 +3620,6 @@ must have funds to cover the deposit, equal to the original deposit.</p>
 </code></pre>
 <hr />
 <h4 id="vote">vote</h4>
-<p>Vote in a referendum. If <code>vote.is_aye()</code>, the vote is to enact the proposal;
-otherwise it is a vote to keep the status quo.</p>
-<p>The dispatch origin of this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>ref_index</code>: The index of the referendum to vote for.</li>
-<li><code>vote</code>: The vote configuration.</li>
-</ul>
-<p>Weight: <code>O(R)</code> where R is the number of referendums the voter has voted on.</p>
 <h5 id="attributes_42">Attributes</h5>
 <table>
 <thead>
@@ -3924,11 +3669,6 @@ otherwise it is a vote to keep the status quo.</p>
 </code></pre>
 <hr />
 <h4 id="emergency_cancel">emergency_cancel</h4>
-<p>Schedule an emergency cancellation of a referendum. Cannot happen twice to the same
-referendum.</p>
-<p>The dispatch origin of this call must be <code>CancellationOrigin</code>.</p>
-<p>-<code>ref_index</code>: The index of the referendum to cancel.</p>
-<p>Weight: <code>O(1)</code>.</p>
 <h5 id="attributes_43">Attributes</h5>
 <table>
 <thead>
@@ -3951,14 +3691,6 @@ referendum.</p>
 </code></pre>
 <hr />
 <h4 id="external_propose">external_propose</h4>
-<p>Schedule a referendum to be tabled once it is legal to schedule an external
-referendum.</p>
-<p>The dispatch origin of this call must be <code>ExternalOrigin</code>.</p>
-<ul>
-<li><code>proposal_hash</code>: The preimage hash of the proposal.</li>
-</ul>
-<p>Weight: <code>O(V)</code> with V number of vetoers in the blacklist of proposal.
-  Decoding vec of length V. Charged as maximum</p>
 <h5 id="attributes_44">Attributes</h5>
 <table>
 <thead>
@@ -3981,15 +3713,6 @@ referendum.</p>
 </code></pre>
 <hr />
 <h4 id="external_propose_majority">external_propose_majority</h4>
-<p>Schedule a majority-carries referendum to be tabled next once it is legal to schedule
-an external referendum.</p>
-<p>The dispatch of this call must be <code>ExternalMajorityOrigin</code>.</p>
-<ul>
-<li><code>proposal_hash</code>: The preimage hash of the proposal.</li>
-</ul>
-<p>Unlike <code>external_propose</code>, blacklisting has no effect on this and it may replace a
-pre-scheduled <code>external_propose</code> call.</p>
-<p>Weight: <code>O(1)</code></p>
 <h5 id="attributes_45">Attributes</h5>
 <table>
 <thead>
@@ -4012,15 +3735,6 @@ pre-scheduled <code>external_propose</code> call.</p>
 </code></pre>
 <hr />
 <h4 id="external_propose_default">external_propose_default</h4>
-<p>Schedule a negative-turnout-bias referendum to be tabled next once it is legal to
-schedule an external referendum.</p>
-<p>The dispatch of this call must be <code>ExternalDefaultOrigin</code>.</p>
-<ul>
-<li><code>proposal_hash</code>: The preimage hash of the proposal.</li>
-</ul>
-<p>Unlike <code>external_propose</code>, blacklisting has no effect on this and it may replace a
-pre-scheduled <code>external_propose</code> call.</p>
-<p>Weight: <code>O(1)</code></p>
 <h5 id="attributes_46">Attributes</h5>
 <table>
 <thead>
@@ -4043,20 +3757,6 @@ pre-scheduled <code>external_propose</code> call.</p>
 </code></pre>
 <hr />
 <h4 id="fast_track">fast_track</h4>
-<p>Schedule the currently externally-proposed majority-carries referendum to be tabled
-immediately. If there is no externally-proposed referendum currently, or if there is one
-but it is not a majority-carries referendum then it fails.</p>
-<p>The dispatch of this call must be <code>FastTrackOrigin</code>.</p>
-<ul>
-<li><code>proposal_hash</code>: The hash of the current external proposal.</li>
-<li><code>voting_period</code>: The period that is allowed for voting on this proposal.
-    Must be always greater than zero.
-    For <code>FastTrackOrigin</code> must be equal or greater than <code>FastTrackVotingPeriod</code>.</li>
-<li><code>delay</code>: The number of block after voting has ended in approval and this should be
-  enacted. This doesn&amp;#x27;t have a minimum amount.</li>
-</ul>
-<p>Emits <code>Started</code>.</p>
-<p>Weight: <code>O(1)</code></p>
 <h5 id="attributes_47">Attributes</h5>
 <table>
 <thead>
@@ -4091,13 +3791,6 @@ but it is not a majority-carries referendum then it fails.</p>
 </code></pre>
 <hr />
 <h4 id="veto_external">veto_external</h4>
-<p>Veto and blacklist the external proposal hash.</p>
-<p>The dispatch origin of this call must be <code>VetoOrigin</code>.</p>
-<ul>
-<li><code>proposal_hash</code>: The preimage hash of the proposal to veto and blacklist.</li>
-</ul>
-<p>Emits <code>Vetoed</code>.</p>
-<p>Weight: <code>O(V + log(V))</code> where V is number of <code>existing vetoers</code></p>
 <h5 id="attributes_48">Attributes</h5>
 <table>
 <thead>
@@ -4120,12 +3813,6 @@ but it is not a majority-carries referendum then it fails.</p>
 </code></pre>
 <hr />
 <h4 id="cancel_referendum">cancel_referendum</h4>
-<p>Remove a referendum.</p>
-<p>The dispatch origin of this call must be <em>Root</em>.</p>
-<ul>
-<li><code>ref_index</code>: The index of the referendum to cancel.</li>
-</ul>
-<p># Weight: <code>O(1)</code>.</p>
 <h5 id="attributes_49">Attributes</h5>
 <table>
 <thead>
@@ -4148,12 +3835,6 @@ but it is not a majority-carries referendum then it fails.</p>
 </code></pre>
 <hr />
 <h4 id="cancel_queued">cancel_queued</h4>
-<p>Cancel a proposal queued for enactment.</p>
-<p>The dispatch origin of this call must be <em>Root</em>.</p>
-<ul>
-<li><code>which</code>: The index of the referendum to cancel.</li>
-</ul>
-<p>Weight: <code>O(D)</code> where <code>D</code> is the items in the dispatch queue. Weighted as <code>D = 10</code>.</p>
 <h5 id="attributes_50">Attributes</h5>
 <table>
 <thead>
@@ -4176,23 +3857,6 @@ but it is not a majority-carries referendum then it fails.</p>
 </code></pre>
 <hr />
 <h4 id="delegate">delegate</h4>
-<p>Delegate the voting power (with some given conviction) of the sending account.</p>
-<p>The balance delegated is locked for as long as it&amp;#x27;s delegated, and thereafter for the
-time appropriate for the conviction&amp;#x27;s lock period.</p>
-<p>The dispatch origin of this call must be <em>Signed</em>, and the signing account must either:
-  - be delegating already; or
-  - have no voting activity (if there is, then it will need to be removed/consolidated
-    through <code>reap_vote</code> or <code>unvote</code>).</p>
-<ul>
-<li><code>to</code>: The account whose voting the <code>target</code> account&amp;#x27;s voting power will follow.</li>
-<li><code>conviction</code>: The conviction that will be attached to the delegated votes. When the
-  account is undelegated, the funds will be locked for the corresponding period.</li>
-<li><code>balance</code>: The amount of the account&amp;#x27;s balance to be used in delegating. This must not
-  be more than the account&amp;#x27;s current balance.</li>
-</ul>
-<p>Emits <code>Delegated</code>.</p>
-<p>Weight: <code>O(R)</code> where R is the number of referendums the voter delegating to has
-  voted on. Weight is charged as if maximum votes.</p>
 <h5 id="attributes_51">Attributes</h5>
 <table>
 <thead>
@@ -4241,14 +3905,6 @@ time appropriate for the conviction&amp;#x27;s lock period.</p>
 </code></pre>
 <hr />
 <h4 id="undelegate">undelegate</h4>
-<p>Undelegate the voting power of the sending account.</p>
-<p>Tokens may be unlocked following once an amount of time consistent with the lock period
-of the conviction with which the delegation was issued.</p>
-<p>The dispatch origin of this call must be <em>Signed</em> and the signing account must be
-currently delegating.</p>
-<p>Emits <code>Undelegated</code>.</p>
-<p>Weight: <code>O(R)</code> where R is the number of referendums the voter delegating to has
-  voted on. Weight is charged as if maximum votes.</p>
 <h5 id="attributes_52">Attributes</h5>
 <p>No attributes</p>
 <h5 id="python_84">Python</h5>
@@ -4258,9 +3914,6 @@ currently delegating.</p>
 </code></pre>
 <hr />
 <h4 id="clear_public_proposals">clear_public_proposals</h4>
-<p>Clears all public proposals.</p>
-<p>The dispatch origin of this call must be <em>Root</em>.</p>
-<p>Weight: <code>O(1)</code>.</p>
 <h5 id="attributes_53">Attributes</h5>
 <p>No attributes</p>
 <h5 id="python_85">Python</h5>
@@ -4270,14 +3923,6 @@ currently delegating.</p>
 </code></pre>
 <hr />
 <h4 id="note_preimage_1">note_preimage</h4>
-<p>Register the preimage for an upcoming proposal. This doesn&amp;#x27;t require the proposal to be
-in the dispatch queue but does require a deposit, returned once enacted.</p>
-<p>The dispatch origin of this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>encoded_proposal</code>: The preimage of a proposal.</li>
-</ul>
-<p>Emits <code>PreimageNoted</code>.</p>
-<p>Weight: <code>O(E)</code> with E size of <code>encoded_proposal</code> (protected by a required deposit).</p>
 <h5 id="attributes_54">Attributes</h5>
 <table>
 <thead>
@@ -4300,7 +3945,6 @@ in the dispatch queue but does require a deposit, returned once enacted.</p>
 </code></pre>
 <hr />
 <h4 id="note_preimage_operational">note_preimage_operational</h4>
-<p>Same as <code>note_preimage</code> but origin is <code>OperationalPreimageOrigin</code>.</p>
 <h5 id="attributes_55">Attributes</h5>
 <table>
 <thead>
@@ -4323,16 +3967,6 @@ in the dispatch queue but does require a deposit, returned once enacted.</p>
 </code></pre>
 <hr />
 <h4 id="note_imminent_preimage">note_imminent_preimage</h4>
-<p>Register the preimage for an upcoming proposal. This requires the proposal to be
-in the dispatch queue. No deposit is needed. When this call is successful, i.e.
-the preimage has not been uploaded before and matches some imminent proposal,
-no fee is paid.</p>
-<p>The dispatch origin of this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>encoded_proposal</code>: The preimage of a proposal.</li>
-</ul>
-<p>Emits <code>PreimageNoted</code>.</p>
-<p>Weight: <code>O(E)</code> with E size of <code>encoded_proposal</code> (protected by a required deposit).</p>
 <h5 id="attributes_56">Attributes</h5>
 <table>
 <thead>
@@ -4355,7 +3989,6 @@ no fee is paid.</p>
 </code></pre>
 <hr />
 <h4 id="note_imminent_preimage_operational">note_imminent_preimage_operational</h4>
-<p>Same as <code>note_imminent_preimage</code> but origin is <code>OperationalPreimageOrigin</code>.</p>
 <h5 id="attributes_57">Attributes</h5>
 <table>
 <thead>
@@ -4378,18 +4011,6 @@ no fee is paid.</p>
 </code></pre>
 <hr />
 <h4 id="reap_preimage">reap_preimage</h4>
-<p>Remove an expired proposal preimage and collect the deposit.</p>
-<p>The dispatch origin of this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>proposal_hash</code>: The preimage hash of a proposal.</li>
-<li><code>proposal_length_upper_bound</code>: an upper bound on length of the proposal. Extrinsic is
-  weighted according to this value with no refund.</li>
-</ul>
-<p>This will only work after <code>VotingPeriod</code> blocks from the time that the preimage was
-noted, if it&amp;#x27;s the same account doing it. If it&amp;#x27;s a different account, then it&amp;#x27;ll only
-work an additional <code>EnactmentPeriod</code> later.</p>
-<p>Emits <code>PreimageReaped</code>.</p>
-<p>Weight: <code>O(D)</code> where D is length of proposal.</p>
 <h5 id="attributes_58">Attributes</h5>
 <table>
 <thead>
@@ -4419,12 +4040,6 @@ work an additional <code>EnactmentPeriod</code> later.</p>
 </code></pre>
 <hr />
 <h4 id="unlock">unlock</h4>
-<p>Unlock tokens that have an expired lock.</p>
-<p>The dispatch origin of this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>target</code>: The account to remove the lock on.</li>
-</ul>
-<p>Weight: <code>O(R)</code> with R number of vote of target.</p>
 <h5 id="attributes_59">Attributes</h5>
 <table>
 <thead>
@@ -4455,30 +4070,6 @@ work an additional <code>EnactmentPeriod</code> later.</p>
 </code></pre>
 <hr />
 <h4 id="remove_vote">remove_vote</h4>
-<p>Remove a vote for a referendum.</p>
-<p>If:
-- the referendum was cancelled, or
-- the referendum is ongoing, or
-- the referendum has ended such that
-  - the vote of the account was in opposition to the result; or
-  - there was no conviction to the account&amp;#x27;s vote; or
-  - the account made a split vote
-...then the vote is removed cleanly and a following call to <code>unlock</code> may result in more
-funds being available.</p>
-<p>If, however, the referendum has ended and:
-- it finished corresponding to the vote of the account, and
-- the account made a standard vote with conviction, and
-- the lock period of the conviction is not over
-...then the lock will be aggregated into the overall account&amp;#x27;s lock, which may involve
-<em>overlocking</em> (where the two locks are combined into a single lock that is the maximum
-of both the amount locked and the time is it locked for).</p>
-<p>The dispatch origin of this call must be <em>Signed</em>, and the signer must have a vote
-registered for referendum <code>index</code>.</p>
-<ul>
-<li><code>index</code>: The index of referendum of the vote to be removed.</li>
-</ul>
-<p>Weight: <code>O(R + log R)</code> where R is the number of referenda that <code>target</code> has voted on.
-  Weight is calculated for the maximum number of vote.</p>
 <h5 id="attributes_60">Attributes</h5>
 <table>
 <thead>
@@ -4501,19 +4092,6 @@ registered for referendum <code>index</code>.</p>
 </code></pre>
 <hr />
 <h4 id="remove_other_vote">remove_other_vote</h4>
-<p>Remove a vote for a referendum.</p>
-<p>If the <code>target</code> is equal to the signer, then this function is exactly equivalent to
-<code>remove_vote</code>. If not equal to the signer, then the vote must have expired,
-either because the referendum was cancelled, because the voter lost the referendum or
-because the conviction period is over.</p>
-<p>The dispatch origin of this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>target</code>: The account of the vote to be removed; this account must have voted for
-  referendum <code>index</code>.</li>
-<li><code>index</code>: The index of referendum of the vote to be removed.</li>
-</ul>
-<p>Weight: <code>O(R + log R)</code> where R is the number of referenda that <code>target</code> has voted on.
-  Weight is calculated for the maximum number of vote.</p>
 <h5 id="attributes_61">Attributes</h5>
 <table>
 <thead>
@@ -4549,7 +4127,6 @@ because the conviction period is over.</p>
 </code></pre>
 <hr />
 <h4 id="enact_proposal">enact_proposal</h4>
-<p>Enact a proposal from a referendum. For now we just make the weight be the maximum.</p>
 <h5 id="attributes_62">Attributes</h5>
 <table>
 <thead>
@@ -4579,19 +4156,6 @@ because the conviction period is over.</p>
 </code></pre>
 <hr />
 <h4 id="blacklist">blacklist</h4>
-<p>Permanently place a proposal into the blacklist. This prevents it from ever being
-proposed again.</p>
-<p>If called on a queued public or external proposal, then this will result in it being
-removed. If the <code>ref_index</code> supplied is an active referendum with the proposal hash,
-then it will be cancelled.</p>
-<p>The dispatch origin of this call must be <code>BlacklistOrigin</code>.</p>
-<ul>
-<li><code>proposal_hash</code>: The proposal hash to blacklist permanently.</li>
-<li><code>ref_index</code>: An ongoing referendum whose hash is <code>proposal_hash</code>, which will be
-cancelled.</li>
-</ul>
-<p>Weight: <code>O(p)</code> (though as this is an high-privilege dispatch, we assume it has a
-  reasonable value).</p>
 <h5 id="attributes_63">Attributes</h5>
 <table>
 <thead>
@@ -4621,12 +4185,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="cancel_proposal">cancel_proposal</h4>
-<p>Remove a proposal.</p>
-<p>The dispatch origin of this call must be <code>CancelProposalOrigin</code>.</p>
-<ul>
-<li><code>prop_index</code>: The index of the proposal to cancel.</li>
-</ul>
-<p>Weight: <code>O(p)</code> where <code>p = PublicProps::&amp;lt;T&amp;gt;::decode_len()</code></p>
 <h5 id="attributes_64">Attributes</h5>
 <table>
 <thead>
@@ -4651,7 +4209,6 @@ cancelled.</li>
 <h3 id="events_5">Events</h3>
 <hr />
 <h4 id="proposed">Proposed</h4>
-<p>A motion has been proposed by a public account.</p>
 <h5 id="attributes_65">Attributes</h5>
 <table>
 <thead>
@@ -4676,7 +4233,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="tabled">Tabled</h4>
-<p>A public proposal has been tabled for referendum vote.</p>
 <h5 id="attributes_66">Attributes</h5>
 <table>
 <thead>
@@ -4706,12 +4262,10 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="externaltabled">ExternalTabled</h4>
-<p>An external proposal has been tabled.</p>
 <h5 id="attributes_67">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="started">Started</h4>
-<p>A referendum has begun.</p>
 <h5 id="attributes_68">Attributes</h5>
 <table>
 <thead>
@@ -4736,7 +4290,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="passed">Passed</h4>
-<p>A proposal has been approved by referendum.</p>
 <h5 id="attributes_69">Attributes</h5>
 <table>
 <thead>
@@ -4756,7 +4309,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="notpassed">NotPassed</h4>
-<p>A proposal has been rejected by referendum.</p>
 <h5 id="attributes_70">Attributes</h5>
 <table>
 <thead>
@@ -4776,7 +4328,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="cancelled">Cancelled</h4>
-<p>A referendum has been cancelled.</p>
 <h5 id="attributes_71">Attributes</h5>
 <table>
 <thead>
@@ -4796,7 +4347,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="executed">Executed</h4>
-<p>A proposal has been enacted.</p>
 <h5 id="attributes_72">Attributes</h5>
 <table>
 <thead>
@@ -4821,7 +4371,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="delegated">Delegated</h4>
-<p>An account has delegated their vote to another account.</p>
 <h5 id="attributes_73">Attributes</h5>
 <table>
 <thead>
@@ -4846,7 +4395,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="undelegated">Undelegated</h4>
-<p>An account has cancelled a previous delegation operation.</p>
 <h5 id="attributes_74">Attributes</h5>
 <table>
 <thead>
@@ -4866,7 +4414,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="vetoed">Vetoed</h4>
-<p>An external proposal has been vetoed.</p>
 <h5 id="attributes_75">Attributes</h5>
 <table>
 <thead>
@@ -4896,7 +4443,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="preimagenoted">PreimageNoted</h4>
-<p>A proposal&amp;#x27;s preimage was noted, and the deposit taken.</p>
 <h5 id="attributes_76">Attributes</h5>
 <table>
 <thead>
@@ -4926,7 +4472,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="preimageused">PreimageUsed</h4>
-<p>A proposal preimage was removed and used (the deposit was returned).</p>
 <h5 id="attributes_77">Attributes</h5>
 <table>
 <thead>
@@ -4956,7 +4501,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="preimageinvalid">PreimageInvalid</h4>
-<p>A proposal could not be executed because its preimage was invalid.</p>
 <h5 id="attributes_78">Attributes</h5>
 <table>
 <thead>
@@ -4981,7 +4525,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="preimagemissing">PreimageMissing</h4>
-<p>A proposal could not be executed because its preimage was missing.</p>
 <h5 id="attributes_79">Attributes</h5>
 <table>
 <thead>
@@ -5006,7 +4549,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="preimagereaped">PreimageReaped</h4>
-<p>A registered preimage was removed and the deposit collected by the reaper.</p>
 <h5 id="attributes_80">Attributes</h5>
 <table>
 <thead>
@@ -5041,7 +4583,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="blacklisted">Blacklisted</h4>
-<p>A proposal_hash has been blacklisted permanently.</p>
 <h5 id="attributes_81">Attributes</h5>
 <table>
 <thead>
@@ -5061,7 +4602,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="voted">Voted</h4>
-<p>An account has voted in a referendum</p>
 <h5 id="attributes_82">Attributes</h5>
 <table>
 <thead>
@@ -5091,7 +4631,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="seconded">Seconded</h4>
-<p>An account has secconded a proposal</p>
 <h5 id="attributes_83">Attributes</h5>
 <table>
 <thead>
@@ -5116,7 +4655,6 @@ cancelled.</li>
 </table>
 <hr />
 <h4 id="proposalcanceled">ProposalCanceled</h4>
-<p>A proposal got canceled.</p>
 <h5 id="attributes_84">Attributes</h5>
 <table>
 <thead>
@@ -5138,7 +4676,6 @@ cancelled.</li>
 <h3 id="storage-functions_6">Storage functions</h3>
 <hr />
 <h4 id="publicpropcount">PublicPropCount</h4>
-<p>The number of (public) proposals that have been made so far.</p>
 <h5 id="python_97">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'PublicPropCount', []
@@ -5149,7 +4686,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="publicprops">PublicProps</h4>
-<p>The public proposals. Unsorted. The second item is the proposal&#x27;s hash.</p>
 <h5 id="python_98">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'PublicProps', []
@@ -5160,8 +4696,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="depositof">DepositOf</h4>
-<p>Those who have locked a deposit.</p>
-<p>TWOX-NOTE: Safe, as increasing integer keys are safe.</p>
 <h5 id="python_99">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'DepositOf', ['u32']
@@ -5172,8 +4706,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="preimages">Preimages</h4>
-<p>Map of hashes to the proposal preimage, along with who registered it and their deposit.
- The block number is the block at which it was deposited.</p>
 <h5 id="python_100">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'Preimages', ['[u8; 32]']
@@ -5193,7 +4725,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="referendumcount">ReferendumCount</h4>
-<p>The next free referendum index, aka the number of referenda started so far.</p>
 <h5 id="python_101">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'ReferendumCount', []
@@ -5204,8 +4735,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="lowestunbaked">LowestUnbaked</h4>
-<p>The lowest referendum index representing an unbaked referendum. Equal to
- <code>ReferendumCount</code> if there isn&#x27;t a unbaked referendum.</p>
 <h5 id="python_102">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'LowestUnbaked', []
@@ -5216,8 +4745,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="referenduminfoof">ReferendumInfoOf</h4>
-<p>Information concerning any given referendum.</p>
-<p>TWOX-NOTE: SAFE as indexes are not under an attacker’s control.</p>
 <h5 id="python_103">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'ReferendumInfoOf', ['u32']
@@ -5241,9 +4768,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="votingof">VotingOf</h4>
-<p>All votes for a particular voter. We store the balance for the number of votes that we
- have recorded. The second item is the total amount of delegations, that will be added.</p>
-<p>TWOX-NOTE: SAFE as <code>AccountId</code>s are crypto hashes anyway.</p>
 <h5 id="python_104">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'VotingOf', ['AccountId']
@@ -5275,8 +4799,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="lasttabledwasexternal">LastTabledWasExternal</h4>
-<p>True if the last referendum tabled was submitted externally. False if it was a public
- proposal.</p>
 <h5 id="python_105">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'LastTabledWasExternal', []
@@ -5287,10 +4809,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="nextexternal">NextExternal</h4>
-<p>The referendum to be tabled whenever it would be valid to table an external proposal.
- This happens when a referendum needs to be tabled and one of two conditions are met:
- - <code>LastTabledWasExternal</code> is <code>false</code>; or
- - <code>PublicProps</code> is empty.</p>
 <h5 id="python_106">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'NextExternal', []
@@ -5304,8 +4822,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="blacklist_1">Blacklist</h4>
-<p>A record of who vetoed what. Maps proposal hash to a possible existent block number
- (until when it may not be resubmitted) and who vetoed it.</p>
 <h5 id="python_107">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'Blacklist', ['[u8; 32]']
@@ -5316,7 +4832,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="cancellations">Cancellations</h4>
-<p>Record of all proposals that have been subject to emergency cancellation.</p>
 <h5 id="python_108">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'Cancellations', ['[u8; 32]']
@@ -5327,8 +4842,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="storageversion">StorageVersion</h4>
-<p>Storage version of the pallet.</p>
-<p>New networks start with last version.</p>
 <h5 id="python_109">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'StorageVersion', []
@@ -5341,10 +4854,6 @@ cancelled.</li>
 <h3 id="constants_2">Constants</h3>
 <hr />
 <h4 id="enactmentperiod">EnactmentPeriod</h4>
-<p>The period between a proposal being approved and enacted.</p>
-<p>It should generally be a little more than the unstake period to ensure that
- voting stakers have an opportunity to remove themselves from the system in the case
- where they are on the losing side of a vote.</p>
 <h5 id="value_7">Value</h5>
 <pre><code class="language-python">57600
 </code></pre>
@@ -5353,7 +4862,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="launchperiod">LaunchPeriod</h4>
-<p>How often (in blocks) new public referenda are launched.</p>
 <h5 id="value_8">Value</h5>
 <pre><code class="language-python">50400
 </code></pre>
@@ -5362,7 +4870,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="votingperiod">VotingPeriod</h4>
-<p>How often (in blocks) to check for new votes.</p>
 <h5 id="value_9">Value</h5>
 <pre><code class="language-python">50400
 </code></pre>
@@ -5371,9 +4878,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="votelockingperiod">VoteLockingPeriod</h4>
-<p>The minimum period of vote locking.</p>
-<p>It should be no shorter than enactment period to ensure that in the case of an approval,
- those successful voters are locked into the consequences that their votes entail.</p>
 <h5 id="value_10">Value</h5>
 <pre><code class="language-python">57600
 </code></pre>
@@ -5382,7 +4886,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="minimumdeposit">MinimumDeposit</h4>
-<p>The minimum amount to be used as a deposit for a public referendum proposal.</p>
 <h5 id="value_11">Value</h5>
 <pre><code class="language-python">10000000000
 </code></pre>
@@ -5391,9 +4894,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="instantallowed">InstantAllowed</h4>
-<p>Indicator for whether an emergency origin is even allowed to happen. Some chains may
- want to set this permanently to <code>false</code>, others may want to condition it on things such
- as an upgrade having happened recently.</p>
 <h5 id="value_12">Value</h5>
 <pre><code class="language-python">True
 </code></pre>
@@ -5402,7 +4902,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="fasttrackvotingperiod">FastTrackVotingPeriod</h4>
-<p>Minimum voting period allowed for a fast-track referendum.</p>
 <h5 id="value_13">Value</h5>
 <pre><code class="language-python">900
 </code></pre>
@@ -5411,7 +4910,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="cooloffperiod">CooloffPeriod</h4>
-<p>Period in blocks where an external proposal may not be re-submitted after being vetoed.</p>
 <h5 id="value_14">Value</h5>
 <pre><code class="language-python">50400
 </code></pre>
@@ -5420,7 +4918,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="preimagebytedeposit">PreimageByteDeposit</h4>
-<p>The amount of balance that must be deposited per byte of preimage stored.</p>
 <h5 id="value_15">Value</h5>
 <pre><code class="language-python">100000
 </code></pre>
@@ -5429,9 +4926,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="maxvotes">MaxVotes</h4>
-<p>The maximum number of votes for an account.</p>
-<p>Also used to compute weight, an overly big value can
- lead to extrinsic with very big weight: see <code>delegate</code> for instance.</p>
 <h5 id="value_16">Value</h5>
 <pre><code class="language-python">100
 </code></pre>
@@ -5440,7 +4934,6 @@ cancelled.</li>
 </code></pre>
 <hr />
 <h4 id="maxproposals">MaxProposals</h4>
-<p>The maximum number of public proposals that can exist at any time.</p>
 <h5 id="value_17">Value</h5>
 <pre><code class="language-python">100
 </code></pre>
@@ -5451,99 +4944,68 @@ cancelled.</li>
 <h3 id="errors_4">Errors</h3>
 <hr />
 <h4 id="valuelow">ValueLow</h4>
-<p>Value too low</p>
 <hr />
 <h4 id="proposalmissing">ProposalMissing</h4>
-<p>Proposal does not exist</p>
 <hr />
 <h4 id="alreadycanceled">AlreadyCanceled</h4>
-<p>Cannot cancel the same proposal twice</p>
 <hr />
 <h4 id="duplicateproposal">DuplicateProposal</h4>
-<p>Proposal already made</p>
 <hr />
 <h4 id="proposalblacklisted">ProposalBlacklisted</h4>
-<p>Proposal still blacklisted</p>
 <hr />
 <h4 id="notsimplemajority">NotSimpleMajority</h4>
-<p>Next external proposal not simple majority</p>
 <hr />
 <h4 id="invalidhash">InvalidHash</h4>
-<p>Invalid hash</p>
 <hr />
 <h4 id="noproposal">NoProposal</h4>
-<p>No external proposal</p>
 <hr />
 <h4 id="alreadyvetoed">AlreadyVetoed</h4>
-<p>Identity may not veto a proposal twice</p>
 <hr />
 <h4 id="duplicatepreimage">DuplicatePreimage</h4>
-<p>Preimage already noted</p>
 <hr />
 <h4 id="notimminent">NotImminent</h4>
-<p>Not imminent</p>
 <hr />
 <h4 id="tooearly">TooEarly</h4>
-<p>Too early</p>
 <hr />
 <h4 id="imminent">Imminent</h4>
-<p>Imminent</p>
 <hr />
 <h4 id="preimagemissing_1">PreimageMissing</h4>
-<p>Preimage not found</p>
 <hr />
 <h4 id="referenduminvalid">ReferendumInvalid</h4>
-<p>Vote given for invalid referendum</p>
 <hr />
 <h4 id="preimageinvalid_1">PreimageInvalid</h4>
-<p>Invalid preimage</p>
 <hr />
 <h4 id="nonewaiting">NoneWaiting</h4>
-<p>No proposals waiting</p>
 <hr />
 <h4 id="notvoter">NotVoter</h4>
-<p>The given account did not vote on the referendum.</p>
 <hr />
 <h4 id="nopermission">NoPermission</h4>
-<p>The actor has no permission to conduct the action.</p>
 <hr />
 <h4 id="alreadydelegating">AlreadyDelegating</h4>
-<p>The account is already delegating.</p>
 <hr />
 <h4 id="insufficientfunds">InsufficientFunds</h4>
-<p>Too high a balance was provided that the account cannot afford.</p>
 <hr />
 <h4 id="notdelegating">NotDelegating</h4>
-<p>The account is not currently delegating.</p>
 <hr />
 <h4 id="votesexist">VotesExist</h4>
-<p>The account currently has votes attached to it and the operation cannot succeed until
-these are removed, either through <code>unvote</code> or <code>reap_vote</code>.</p>
 <hr />
 <h4 id="instantnotallowed">InstantNotAllowed</h4>
-<p>The instant referendum origin is currently disallowed.</p>
 <hr />
 <h4 id="nonsense">Nonsense</h4>
-<p>Delegation to oneself makes no sense.</p>
 <hr />
 <h4 id="wrongupperbound">WrongUpperBound</h4>
-<p>Invalid upper bound.</p>
 <hr />
 <h4 id="maxvotesreached">MaxVotesReached</h4>
-<p>Maximum number of votes reached.</p>
 <hr />
 <h4 id="toomanyproposals">TooManyProposals</h4>
-<p>Maximum number of proposals reached.</p>
 <hr />
 <h4 id="votingperiodlow">VotingPeriodLow</h4>
-<p>Voting period too low</p>
 <hr />
 <h2 id="scheduler">Scheduler</h2>
 <hr />
 <h3 id="calls_6">Calls</h3>
 <hr />
 <h4 id="schedule">schedule</h4>
-<p>Anonymously schedule a task.</p>
 <h5 id="attributes_85">Attributes</h5>
 <table>
 <thead>
@@ -5589,7 +5051,6 @@ these are removed, either through <code>unvote</code> or <code>reap_vote</code>.
 </code></pre>
 <hr />
 <h4 id="cancel">cancel</h4>
-<p>Cancel an anonymously scheduled task.</p>
 <h5 id="attributes_86">Attributes</h5>
 <table>
 <thead>
@@ -5616,7 +5077,6 @@ these are removed, either through <code>unvote</code> or <code>reap_vote</code>.
 </code></pre>
 <hr />
 <h4 id="schedule_named">schedule_named</h4>
-<p>Schedule a named task.</p>
 <h5 id="attributes_87">Attributes</h5>
 <table>
 <thead>
@@ -5667,7 +5127,6 @@ these are removed, either through <code>unvote</code> or <code>reap_vote</code>.
 </code></pre>
 <hr />
 <h4 id="cancel_named">cancel_named</h4>
-<p>Cancel a named scheduled task.</p>
 <h5 id="attributes_88">Attributes</h5>
 <table>
 <thead>
@@ -5690,10 +5149,6 @@ these are removed, either through <code>unvote</code> or <code>reap_vote</code>.
 </code></pre>
 <hr />
 <h4 id="schedule_after">schedule_after</h4>
-<p>Anonymously schedule a task after a delay.</p>
-<p># &lt;weight&gt;
-Same as [<code>schedule</code>].
-# &lt;/weight&gt;</p>
 <h5 id="attributes_89">Attributes</h5>
 <table>
 <thead>
@@ -5739,10 +5194,6 @@ Same as [<code>schedule</code>].
 </code></pre>
 <hr />
 <h4 id="schedule_named_after">schedule_named_after</h4>
-<p>Schedule a named task after a delay.</p>
-<p># &lt;weight&gt;
-Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_90">Attributes</h5>
 <table>
 <thead>
@@ -5795,7 +5246,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 <h3 id="events_6">Events</h3>
 <hr />
 <h4 id="scheduled">Scheduled</h4>
-<p>Scheduled some task.</p>
 <h5 id="attributes_91">Attributes</h5>
 <table>
 <thead>
@@ -5820,7 +5270,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 </table>
 <hr />
 <h4 id="canceled">Canceled</h4>
-<p>Canceled some task.</p>
 <h5 id="attributes_92">Attributes</h5>
 <table>
 <thead>
@@ -5845,7 +5294,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 </table>
 <hr />
 <h4 id="dispatched">Dispatched</h4>
-<p>Dispatched some task.</p>
 <h5 id="attributes_93">Attributes</h5>
 <table>
 <thead>
@@ -5875,7 +5323,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 </table>
 <hr />
 <h4 id="calllookupfailed">CallLookupFailed</h4>
-<p>The call for the provided hash was not found so the task has been aborted.</p>
 <h5 id="attributes_94">Attributes</h5>
 <table>
 <thead>
@@ -5907,7 +5354,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 <h3 id="storage-functions_7">Storage functions</h3>
 <hr />
 <h4 id="agenda">Agenda</h4>
-<p>Items to be executed, indexed by the block number that they should be executed on.</p>
 <h5 id="python_127">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Scheduler', 'Agenda', ['u32']
@@ -5922,6 +5368,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -5934,7 +5381,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -5943,7 +5389,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 </code></pre>
 <hr />
 <h4 id="lookup">Lookup</h4>
-<p>Lookup from identity to the block number and index of the task.</p>
 <h5 id="python_128">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Scheduler', 'Lookup', ['Bytes']
@@ -5956,8 +5401,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 <h3 id="constants_3">Constants</h3>
 <hr />
 <h4 id="maximumweight">MaximumWeight</h4>
-<p>The maximum weight that may be scheduled per block for any dispatchables of less
- priority than <code>schedule::HARD_DEADLINE</code>.</p>
 <h5 id="value_18">Value</h5>
 <pre><code class="language-python">{'ref_time': 50000000000}
 </code></pre>
@@ -5966,8 +5409,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 </code></pre>
 <hr />
 <h4 id="maxscheduledperblock">MaxScheduledPerBlock</h4>
-<p>The maximum number of scheduled calls in the queue for a single block.
- Not strictly enforced, but used for weight estimation.</p>
 <h5 id="value_19">Value</h5>
 <pre><code class="language-python">50
 </code></pre>
@@ -5978,38 +5419,18 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
 <h3 id="errors_5">Errors</h3>
 <hr />
 <h4 id="failedtoschedule">FailedToSchedule</h4>
-<p>Failed to schedule a call</p>
 <hr />
 <h4 id="notfound">NotFound</h4>
-<p>Cannot find the scheduled call.</p>
 <hr />
 <h4 id="targetblocknumberinpast">TargetBlockNumberInPast</h4>
-<p>Given target block number is in the past.</p>
 <hr />
 <h4 id="reschedulenochange">RescheduleNoChange</h4>
-<p>Reschedule failed because it does not change scheduled time.</p>
 <hr />
 <h2 id="utility">Utility</h2>
 <hr />
 <h3 id="calls_7">Calls</h3>
 <hr />
 <h4 id="batch">batch</h4>
-<p>Send a batch of dispatch calls.</p>
-<p>May be called from any origin.</p>
-<ul>
-<li><code>calls</code>: The calls to be dispatched from the same origin. The number of call must not
-  exceed the constant: <code>batched_calls_limit</code> (available in constant metadata).</li>
-</ul>
-<p>If origin is root then call are dispatch without checking origin filter. (This includes
-bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
-<p># &lt;weight&gt;
-- Complexity: O(C) where C is the number of calls to be batched.
-# &lt;/weight&gt;</p>
-<p>This will return <code>Ok</code> in all circumstances. To determine the success of the batch, an
-event is deposited. If a call failed and the batch was interrupted, then the
-<code>BatchInterrupted</code> event is deposited, along with the number of successful calls made
-and the error of the failed call. If all were successful, then the <code>BatchCompleted</code>
-event is deposited.</p>
 <h5 id="attributes_95">Attributes</h5>
 <table>
 <thead>
@@ -6021,7 +5442,7 @@ event is deposited.</p>
 <tbody>
 <tr>
 <td>calls</td>
-<td><code>Vec&lt;&lt;T as Config&gt;::Call&gt;</code></td>
+<td><code>Vec&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -6032,15 +5453,6 @@ event is deposited.</p>
 </code></pre>
 <hr />
 <h4 id="as_derivative">as_derivative</h4>
-<p>Send a call through an indexed pseudonym of the sender.</p>
-<p>Filter from origin are passed along. The call will be dispatched with an origin which
-use the same filter as the origin of this call.</p>
-<p>NOTE: If you need to ensure that any account-based filtering is not honored (i.e.
-because you expect <code>proxy</code> to have been used prior in the call stack and you do not want
-the call restrictions to apply to any sub-accounts), then use <code>as_multi_threshold_1</code>
-in the Multisig pallet instead.</p>
-<p>NOTE: Prior to version *12, this was called <code>as_limited_sub</code>.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
 <h5 id="attributes_96">Attributes</h5>
 <table>
 <thead>
@@ -6056,7 +5468,7 @@ in the Multisig pallet instead.</p>
 </tr>
 <tr>
 <td>call</td>
-<td><code>Box&lt;&lt;T as Config&gt;::Call&gt;</code></td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -6067,18 +5479,6 @@ in the Multisig pallet instead.</p>
 </code></pre>
 <hr />
 <h4 id="batch_all">batch_all</h4>
-<p>Send a batch of dispatch calls and atomically execute them.
-The whole transaction will rollback and fail if any of the calls failed.</p>
-<p>May be called from any origin.</p>
-<ul>
-<li><code>calls</code>: The calls to be dispatched from the same origin. The number of call must not
-  exceed the constant: <code>batched_calls_limit</code> (available in constant metadata).</li>
-</ul>
-<p>If origin is root then call are dispatch without checking origin filter. (This includes
-bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
-<p># &lt;weight&gt;
-- Complexity: O(C) where C is the number of calls to be batched.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_97">Attributes</h5>
 <table>
 <thead>
@@ -6090,7 +5490,7 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <tbody>
 <tr>
 <td>calls</td>
-<td><code>Vec&lt;&lt;T as Config&gt;::Call&gt;</code></td>
+<td><code>Vec&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -6101,14 +5501,6 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </code></pre>
 <hr />
 <h4 id="dispatch_as">dispatch_as</h4>
-<p>Dispatches a function call with a provided origin.</p>
-<p>The dispatch origin for this call must be <em>Root</em>.</p>
-<p># &lt;weight&gt;
-- O(1).
-- Limited storage reads.
-- One DB write (event).
-- Weight of derivative <code>call</code> execution + T::WeightInfo::dispatch_as().
-# &lt;/weight&gt;</p>
 <h5 id="attributes_98">Attributes</h5>
 <table>
 <thead>
@@ -6124,7 +5516,7 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </tr>
 <tr>
 <td>call</td>
-<td><code>Box&lt;&lt;T as Config&gt;::Call&gt;</code></td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -6156,18 +5548,6 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </code></pre>
 <hr />
 <h4 id="force_batch">force_batch</h4>
-<p>Send a batch of dispatch calls.
-Unlike <code>batch</code>, it allows errors and won&amp;#x27;t interrupt.</p>
-<p>May be called from any origin.</p>
-<ul>
-<li><code>calls</code>: The calls to be dispatched from the same origin. The number of call must not
-  exceed the constant: <code>batched_calls_limit</code> (available in constant metadata).</li>
-</ul>
-<p>If origin is root then call are dispatch without checking origin filter. (This includes
-bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
-<p># &lt;weight&gt;
-- Complexity: O(C) where C is the number of calls to be batched.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_99">Attributes</h5>
 <table>
 <thead>
@@ -6179,7 +5559,7 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <tbody>
 <tr>
 <td>calls</td>
-<td><code>Vec&lt;&lt;T as Config&gt;::Call&gt;</code></td>
+<td><code>Vec&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -6192,8 +5572,6 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <h3 id="events_7">Events</h3>
 <hr />
 <h4 id="batchinterrupted">BatchInterrupted</h4>
-<p>Batch of dispatches did not complete fully. Index of first failing dispatch given, as
-well as the error.</p>
 <h5 id="attributes_100">Attributes</h5>
 <table>
 <thead>
@@ -6218,22 +5596,18 @@ well as the error.</p>
 </table>
 <hr />
 <h4 id="batchcompleted">BatchCompleted</h4>
-<p>Batch of dispatches completed fully with no error.</p>
 <h5 id="attributes_101">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="batchcompletedwitherrors">BatchCompletedWithErrors</h4>
-<p>Batch of dispatches completed but has errors.</p>
 <h5 id="attributes_102">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="itemcompleted">ItemCompleted</h4>
-<p>A single item within a Batch of dispatches has completed with no error.</p>
 <h5 id="attributes_103">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="itemfailed">ItemFailed</h4>
-<p>A single item within a Batch of dispatches has completed with error.</p>
 <h5 id="attributes_104">Attributes</h5>
 <table>
 <thead>
@@ -6253,7 +5627,6 @@ well as the error.</p>
 </table>
 <hr />
 <h4 id="dispatchedas">DispatchedAs</h4>
-<p>A call was dispatched.</p>
 <h5 id="attributes_105">Attributes</h5>
 <table>
 <thead>
@@ -6275,7 +5648,6 @@ well as the error.</p>
 <h3 id="constants_4">Constants</h3>
 <hr />
 <h4 id="batched_calls_limit">batched_calls_limit</h4>
-<p>The limit on the number of batched calls.</p>
 <h5 id="value_20">Value</h5>
 <pre><code class="language-python">10922
 </code></pre>
@@ -6286,37 +5658,12 @@ well as the error.</p>
 <h3 id="errors_6">Errors</h3>
 <hr />
 <h4 id="toomanycalls">TooManyCalls</h4>
-<p>Too many calls batched.</p>
 <hr />
 <h2 id="balances">Balances</h2>
 <hr />
 <h3 id="calls_8">Calls</h3>
 <hr />
 <h4 id="transfer">transfer</h4>
-<p>Transfer some liquid free balance to another account.</p>
-<p><code>transfer</code> will set the <code>FreeBalance</code> of the sender and receiver.
-If the sender&amp;#x27;s account is below the existential deposit as a result
-of the transfer, the account will be reaped.</p>
-<p>The dispatch origin for this call must be <code>Signed</code> by the transactor.</p>
-<p># &lt;weight&gt;
-- Dependent on arguments but not critical, given proper implementations for input config
-  types. See related functions below.
-- It contains a limited number of reads and writes internally and no complex
-  computation.</p>
-<p>Related functions:</p>
-<ul>
-<li><code>ensure_can_withdraw</code> is always called internally but has a bounded complexity.</li>
-<li>Transferring balances to accounts that did not exist before will cause
-    <code>T::OnNewAccount::on_new_account</code> to be called.</li>
-<li>Removing enough funds from an account will trigger <code>T::DustRemoval::on_unbalanced</code>.</li>
-<li><code>transfer_keep_alive</code> works the same way as <code>transfer</code>, but has an additional check
-    that the transfer will not kill the origin account.</li>
-</ul>
-<hr />
-<ul>
-<li>Origin account is already in memory, so no DB operations for them.
-# &lt;/weight&gt;</li>
-</ul>
 <h5 id="attributes_106">Attributes</h5>
 <table>
 <thead>
@@ -6352,12 +5699,6 @@ of the transfer, the account will be reaped.</p>
 </code></pre>
 <hr />
 <h4 id="set_balance">set_balance</h4>
-<p>Set the balances of a given account.</p>
-<p>This will alter <code>FreeBalance</code> and <code>ReservedBalance</code> in storage. it will
-also alter the total issuance of the system (<code>TotalIssuance</code>) appropriately.
-If the new free or reserved balance is below the existential deposit,
-it will reset the account nonce (<code>frame_system::AccountNonce</code>).</p>
-<p>The dispatch origin for this call is <code>root</code>.</p>
 <h5 id="attributes_107">Attributes</h5>
 <table>
 <thead>
@@ -6398,12 +5739,6 @@ it will reset the account nonce (<code>frame_system::AccountNonce</code>).</p>
 </code></pre>
 <hr />
 <h4 id="force_transfer">force_transfer</h4>
-<p>Exactly as <code>transfer</code>, except the origin must be root and the source account may be
-specified.
-# &lt;weight&gt;
-- Same as transfer, but additional read and write because the source account is not
-  assumed to be in the overlay.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_108">Attributes</h5>
 <table>
 <thead>
@@ -6450,9 +5785,6 @@ specified.
 </code></pre>
 <hr />
 <h4 id="transfer_keep_alive">transfer_keep_alive</h4>
-<p>Same as the [<code>transfer</code>] call, but with a check that the transfer will not kill the
-origin account.</p>
-<p>99% of the time you want [<code>transfer</code>] instead.</p>
 <h5 id="attributes_109">Attributes</h5>
 <table>
 <thead>
@@ -6488,22 +5820,6 @@ origin account.</p>
 </code></pre>
 <hr />
 <h4 id="transfer_all">transfer_all</h4>
-<p>Transfer the entire transferable balance from the caller account.</p>
-<p>NOTE: This function only attempts to transfer <em>transferable</em> balances. This means that
-any locked, reserved, or existential deposits (when <code>keep_alive</code> is <code>true</code>), will not be
-transferred by this function. To ensure that this function results in a killed account,
-you might need to prepare the account by removing any reference counters, storage
-deposits, etc...</p>
-<p>The dispatch origin of this call must be Signed.</p>
-<ul>
-<li><code>dest</code>: The recipient of the transfer.</li>
-<li><code>keep_alive</code>: A boolean to determine if the <code>transfer_all</code> operation should send all
-  of the funds the account has, causing the sender account to be killed (false), or
-  transfer everything except at least the existential deposit, which will guarantee to
-  keep the sender account alive (true). # &lt;weight&gt;</li>
-<li>O(1). Just like transfer, but reading the user&amp;#x27;s transferable balance first.
-  #&lt;/weight&gt;</li>
-</ul>
 <h5 id="attributes_110">Attributes</h5>
 <table>
 <thead>
@@ -6539,8 +5855,6 @@ deposits, etc...</p>
 </code></pre>
 <hr />
 <h4 id="force_unreserve">force_unreserve</h4>
-<p>Unreserve some balance from a user by force.</p>
-<p>Can only be called by ROOT.</p>
 <h5 id="attributes_111">Attributes</h5>
 <table>
 <thead>
@@ -6578,7 +5892,6 @@ deposits, etc...</p>
 <h3 id="events_8">Events</h3>
 <hr />
 <h4 id="endowed">Endowed</h4>
-<p>An account was created with some free balance.</p>
 <h5 id="attributes_112">Attributes</h5>
 <table>
 <thead>
@@ -6603,8 +5916,6 @@ deposits, etc...</p>
 </table>
 <hr />
 <h4 id="dustlost">DustLost</h4>
-<p>An account was removed whose balance was non-zero but below ExistentialDeposit,
-resulting in an outright loss.</p>
 <h5 id="attributes_113">Attributes</h5>
 <table>
 <thead>
@@ -6629,7 +5940,6 @@ resulting in an outright loss.</p>
 </table>
 <hr />
 <h4 id="transfer_1">Transfer</h4>
-<p>Transfer succeeded.</p>
 <h5 id="attributes_114">Attributes</h5>
 <table>
 <thead>
@@ -6659,7 +5969,6 @@ resulting in an outright loss.</p>
 </table>
 <hr />
 <h4 id="balanceset">BalanceSet</h4>
-<p>A balance was set by root.</p>
 <h5 id="attributes_115">Attributes</h5>
 <table>
 <thead>
@@ -6689,7 +5998,6 @@ resulting in an outright loss.</p>
 </table>
 <hr />
 <h4 id="reserved">Reserved</h4>
-<p>Some balance was reserved (moved from free to reserved).</p>
 <h5 id="attributes_116">Attributes</h5>
 <table>
 <thead>
@@ -6714,7 +6022,6 @@ resulting in an outright loss.</p>
 </table>
 <hr />
 <h4 id="unreserved">Unreserved</h4>
-<p>Some balance was unreserved (moved from reserved to free).</p>
 <h5 id="attributes_117">Attributes</h5>
 <table>
 <thead>
@@ -6739,8 +6046,6 @@ resulting in an outright loss.</p>
 </table>
 <hr />
 <h4 id="reserverepatriated">ReserveRepatriated</h4>
-<p>Some balance was moved from the reserve of the first account to the second account.
-Final argument indicates the destination balance type.</p>
 <h5 id="attributes_118">Attributes</h5>
 <table>
 <thead>
@@ -6775,7 +6080,6 @@ Final argument indicates the destination balance type.</p>
 </table>
 <hr />
 <h4 id="deposit">Deposit</h4>
-<p>Some amount was deposited (e.g. for transaction fees).</p>
 <h5 id="attributes_119">Attributes</h5>
 <table>
 <thead>
@@ -6800,7 +6104,6 @@ Final argument indicates the destination balance type.</p>
 </table>
 <hr />
 <h4 id="withdraw">Withdraw</h4>
-<p>Some amount was withdrawn from the account (e.g. for transaction fees).</p>
 <h5 id="attributes_120">Attributes</h5>
 <table>
 <thead>
@@ -6825,7 +6128,6 @@ Final argument indicates the destination balance type.</p>
 </table>
 <hr />
 <h4 id="slashed">Slashed</h4>
-<p>Some amount was removed from the account (e.g. for misbehavior).</p>
 <h5 id="attributes_121">Attributes</h5>
 <table>
 <thead>
@@ -6852,7 +6154,6 @@ Final argument indicates the destination balance type.</p>
 <h3 id="storage-functions_8">Storage functions</h3>
 <hr />
 <h4 id="totalissuance">TotalIssuance</h4>
-<p>The total units issued in the system.</p>
 <h5 id="python_143">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Balances', 'TotalIssuance', []
@@ -6863,22 +6164,6 @@ Final argument indicates the destination balance type.</p>
 </code></pre>
 <hr />
 <h4 id="account_1">Account</h4>
-<p>The Balances pallet example of storing the balance of an account.</p>
-<p># Example</p>
-<p><code>nocompile
-  impl pallet_balances::Config for Runtime {
-    type AccountStore = StorageMapShim&amp;lt;Self::Account&amp;lt;Runtime&amp;gt;, frame_system::Provider&amp;lt;Runtime&amp;gt;, AccountId, Self::AccountData&amp;lt;Balance&amp;gt;&amp;gt;
-  }</code></p>
-<p>You can also store the balance of an account in the <code>System</code> pallet.</p>
-<p># Example</p>
-<p><code>nocompile
-  impl pallet_balances::Config for Runtime {
-   type AccountStore = System
-  }</code></p>
-<p>But this comes with tradeoffs, storing account balances in the system pallet stores
- <code>frame_system</code> data alongside the account data contrary to storing account balances in the
- <code>Balances</code> pallet, which uses a <code>StorageMap</code> to store balances data only.
- NOTE: This is only used in the case that this pallet is used to store balances.</p>
 <h5 id="python_144">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Balances', 'Account', ['AccountId']
@@ -6894,8 +6179,6 @@ Final argument indicates the destination balance type.</p>
 </code></pre>
 <hr />
 <h4 id="locks">Locks</h4>
-<p>Any liquidity locks on some account balances.
- NOTE: Should only be accessed when setting, changing and freeing a lock.</p>
 <h5 id="python_145">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Balances', 'Locks', ['AccountId']
@@ -6906,7 +6189,6 @@ Final argument indicates the destination balance type.</p>
 </code></pre>
 <hr />
 <h4 id="reserves">Reserves</h4>
-<p>Named reserves on some account balances.</p>
 <h5 id="python_146">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Balances', 'Reserves', ['AccountId']
@@ -6917,8 +6199,6 @@ Final argument indicates the destination balance type.</p>
 </code></pre>
 <hr />
 <h4 id="storageversion_1">StorageVersion</h4>
-<p>Storage version of the pallet.</p>
-<p>This is set to v2.0.0 for new networks.</p>
 <h5 id="python_147">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Balances', 'StorageVersion', []
@@ -6931,7 +6211,6 @@ Final argument indicates the destination balance type.</p>
 <h3 id="constants_5">Constants</h3>
 <hr />
 <h4 id="existentialdeposit">ExistentialDeposit</h4>
-<p>The minimum amount required to keep an account open.</p>
 <h5 id="value_21">Value</h5>
 <pre><code class="language-python">1000000
 </code></pre>
@@ -6940,8 +6219,6 @@ Final argument indicates the destination balance type.</p>
 </code></pre>
 <hr />
 <h4 id="maxlocks">MaxLocks</h4>
-<p>The maximum number of locks that should exist on an account.
- Not strictly enforced, but used for weight estimation.</p>
 <h5 id="value_22">Value</h5>
 <pre><code class="language-python">50
 </code></pre>
@@ -6950,7 +6227,6 @@ Final argument indicates the destination balance type.</p>
 </code></pre>
 <hr />
 <h4 id="maxreserves">MaxReserves</h4>
-<p>The maximum number of named reserves that can exist on an account.</p>
 <h5 id="value_23">Value</h5>
 <pre><code class="language-python">50
 </code></pre>
@@ -6961,36 +6237,26 @@ Final argument indicates the destination balance type.</p>
 <h3 id="errors_7">Errors</h3>
 <hr />
 <h4 id="vestingbalance">VestingBalance</h4>
-<p>Vesting balance too high to send value</p>
 <hr />
 <h4 id="liquidityrestrictions">LiquidityRestrictions</h4>
-<p>Account liquidity restrictions prevent withdrawal</p>
 <hr />
 <h4 id="insufficientbalance">InsufficientBalance</h4>
-<p>Balance too low to send value</p>
 <hr />
 <h4 id="existentialdeposit_1">ExistentialDeposit</h4>
-<p>Value too low to create account due to existential deposit</p>
 <hr />
 <h4 id="keepalive">KeepAlive</h4>
-<p>Transfer/payment would kill account</p>
 <hr />
 <h4 id="existingvestingschedule">ExistingVestingSchedule</h4>
-<p>A vesting schedule already exists for this account</p>
 <hr />
 <h4 id="deadaccount">DeadAccount</h4>
-<p>Beneficiary account must pre-exist</p>
 <hr />
 <h4 id="toomanyreserves">TooManyReserves</h4>
-<p>Number of named reserves exceed MaxReserves</p>
 <hr />
 <h2 id="transactionpayment">TransactionPayment</h2>
 <hr />
 <h3 id="events_9">Events</h3>
 <hr />
 <h4 id="transactionfeepaid">TransactionFeePaid</h4>
-<p>A transaction fee <code>actual_fee</code>, of which <code>tip</code> was added to the minimum inclusion fee,
-has been paid by <code>who</code>.</p>
 <h5 id="attributes_122">Attributes</h5>
 <table>
 <thead>
@@ -7044,23 +6310,6 @@ has been paid by <code>who</code>.</p>
 <h3 id="constants_6">Constants</h3>
 <hr />
 <h4 id="operationalfeemultiplier">OperationalFeeMultiplier</h4>
-<p>A fee mulitplier for <code>Operational</code> extrinsics to compute &quot;virtual tip&quot; to boost their
- <code>priority</code></p>
-<p>This value is multipled by the <code>final_fee</code> to obtain a &quot;virtual tip&quot; that is later
- added to a tip component in regular <code>priority</code> calculations.
- It means that a <code>Normal</code> transaction can front-run a similarly-sized <code>Operational</code>
- extrinsic (with no tip), by including a tip value greater than the virtual tip.</p>
-<p><code>``rust,ignore
- // For</code>Normal`
- let priority = priority_calc(tip);</p>
-<p>// For <code>Operational</code>
- let virtual_tip = (inclusion_fee + tip) * OperationalFeeMultiplier;
- let priority = priority_calc(tip + virtual_tip);
- ```</p>
-<p>Note that since we use <code>final_fee</code> the multiplier applies also to the regular <code>tip</code>
- sent with the transaction. So, not only does the transaction get a priority bump based
- on the <code>inclusion_fee</code>, but we also amplify the impact of tips applied to <code>Operational</code>
- transactions.</p>
 <h5 id="value_24">Value</h5>
 <pre><code class="language-python">5
 </code></pre>
@@ -7073,34 +6322,6 @@ has been paid by <code>who</code>.</p>
 <h3 id="calls_9">Calls</h3>
 <hr />
 <h4 id="set_members">set_members</h4>
-<p>Set the collective&amp;#x27;s membership.</p>
-<ul>
-<li><code>new_members</code>: The new member list. Be nice to the chain and provide it sorted.</li>
-<li><code>prime</code>: The prime member whose vote sets the default.</li>
-<li><code>old_count</code>: The upper bound for the previous number of members in storage. Used for
-  weight estimation.</li>
-</ul>
-<p>Requires root origin.</p>
-<p>NOTE: Does not enforce the expected <code>MaxMembers</code> limit on the amount of members, but
-      the weight estimations rely on it to estimate dispatchable weight.</p>
-<p># WARNING:</p>
-<p>The <code>pallet-collective</code> can also be managed by logic outside of the pallet through the
-implementation of the trait [<code>ChangeMembers</code>].
-Any call to <code>set_members</code> must be careful that the member set doesn&amp;#x27;t get out of sync
-with other logic managing the member set.</p>
-<p># &lt;weight&gt;
-## Weight
-- <code>O(MP + N)</code> where:
-  - <code>M</code> old-members-count (code- and governance-bounded)
-  - <code>N</code> new-members-count (code- and governance-bounded)
-  - <code>P</code> proposals-count (code-bounded)
-- DB:
-  - 1 storage mutation (codec <code>O(M)</code> read, <code>O(N)</code> write) for reading and writing the
-    members
-  - 1 storage read (codec <code>O(P)</code>) for reading the proposals
-  - <code>P</code> storage mutations (codec <code>O(M)</code>) for updating the votes for each proposal
-  - 1 storage write (codec <code>O(1)</code>) for deleting the old <code>prime</code> and setting the new one
-# &lt;/weight&gt;</p>
 <h5 id="attributes_123">Attributes</h5>
 <table>
 <thead>
@@ -7135,15 +6356,6 @@ with other logic managing the member set.</p>
 </code></pre>
 <hr />
 <h4 id="execute">execute</h4>
-<p>Dispatch a proposal from a member using the <code>Member</code> origin.</p>
-<p>Origin must be a member of the collective.</p>
-<p># &lt;weight&gt;
-## Weight
-- <code>O(M + P)</code> where <code>M</code> members-count (code-bounded) and <code>P</code> complexity of dispatching
-  <code>proposal</code>
-- DB: 1 read (codec <code>O(M)</code>) + DB access of <code>proposal</code>
-- 1 event
-# &lt;/weight&gt;</p>
 <h5 id="attributes_124">Attributes</h5>
 <table>
 <thead>
@@ -7173,30 +6385,6 @@ with other logic managing the member set.</p>
 </code></pre>
 <hr />
 <h4 id="propose_1">propose</h4>
-<p>Add a new proposal to either be voted on or executed directly.</p>
-<p>Requires the sender to be member.</p>
-<p><code>threshold</code> determines whether <code>proposal</code> is executed directly (<code>threshold &amp;lt; 2</code>)
-or put up for voting.</p>
-<p># &lt;weight&gt;
-## Weight
-- <code>O(B + M + P1)</code> or <code>O(B + M + P2)</code> where:
-  - <code>B</code> is <code>proposal</code> size in bytes (length-fee-bounded)
-  - <code>M</code> is members-count (code- and governance-bounded)
-  - branching is influenced by <code>threshold</code> where:
-    - <code>P1</code> is proposal execution complexity (<code>threshold &amp;lt; 2</code>)
-    - <code>P2</code> is proposals-count (code-bounded) (<code>threshold &amp;gt;= 2</code>)
-- DB:
-  - 1 storage read <code>is_member</code> (codec <code>O(M)</code>)
-  - 1 storage read <code>ProposalOf::contains_key</code> (codec <code>O(1)</code>)
-  - DB accesses influenced by <code>threshold</code>:
-    - EITHER storage accesses done by <code>proposal</code> (<code>threshold &amp;lt; 2</code>)
-    - OR proposal insertion (<code>threshold &amp;lt;= 2</code>)
-      - 1 storage mutation <code>Proposals</code> (codec <code>O(P2)</code>)
-      - 1 storage mutation <code>ProposalCount</code> (codec <code>O(1)</code>)
-      - 1 storage write <code>ProposalOf</code> (codec <code>O(B)</code>)
-      - 1 storage write <code>Voting</code> (codec <code>O(M)</code>)
-  - 1 event
-# &lt;/weight&gt;</p>
 <h5 id="attributes_125">Attributes</h5>
 <table>
 <thead>
@@ -7231,19 +6419,6 @@ or put up for voting.</p>
 </code></pre>
 <hr />
 <h4 id="vote_1">vote</h4>
-<p>Add an aye or nay vote for the sender to the given proposal.</p>
-<p>Requires the sender to be a member.</p>
-<p>Transaction fees will be waived if the member is voting on any particular proposal
-for the first time and the call is successful. Subsequent vote changes will charge a
-fee.
-# &lt;weight&gt;
-## Weight
-- <code>O(M)</code> where <code>M</code> is members-count (code- and governance-bounded)
-- DB:
-  - 1 storage read <code>Members</code> (codec <code>O(M)</code>)
-  - 1 storage mutation <code>Voting</code> (codec <code>O(M)</code>)
-- 1 event
-# &lt;/weight&gt;</p>
 <h5 id="attributes_126">Attributes</h5>
 <table>
 <thead>
@@ -7278,34 +6453,6 @@ fee.
 </code></pre>
 <hr />
 <h4 id="close">close</h4>
-<p>Close a vote that is either approved, disapproved or whose voting period has ended.</p>
-<p>May be called by any signed account in order to finish voting and close the proposal.</p>
-<p>If called before the end of the voting period it will only close the vote if it is
-has enough votes to be approved or disapproved.</p>
-<p>If called after the end of the voting period abstentions are counted as rejections
-unless there is a prime member set and the prime member cast an approval.</p>
-<p>If the close operation completes successfully with disapproval, the transaction fee will
-be waived. Otherwise execution of the approved operation will be charged to the caller.</p>
-<ul>
-<li><code>proposal_weight_bound</code>: The maximum amount of weight consumed by executing the closed
-proposal.</li>
-<li><code>length_bound</code>: The upper bound for the length of the proposal in storage. Checked via
-<code>storage::read</code> so it is <code>size_of::&amp;lt;u32&amp;gt;() == 4</code> larger than the pure length.</li>
-</ul>
-<p># &lt;weight&gt;
-## Weight
-- <code>O(B + M + P1 + P2)</code> where:
-  - <code>B</code> is <code>proposal</code> size in bytes (length-fee-bounded)
-  - <code>M</code> is members-count (code- and governance-bounded)
-  - <code>P1</code> is the complexity of <code>proposal</code> preimage.
-  - <code>P2</code> is proposal-count (code-bounded)
-- DB:
- - 2 storage reads (<code>Members</code>: codec <code>O(M)</code>, <code>Prime</code>: codec <code>O(1)</code>)
- - 3 mutations (<code>Voting</code>: codec <code>O(M)</code>, <code>ProposalOf</code>: codec <code>O(B)</code>, <code>Proposals</code>: codec
-   <code>O(P2)</code>)
- - any mutations done while executing <code>proposal</code> (<code>P1</code>)
-- up to 3 events
-# &lt;/weight&gt;</p>
 <h5 id="attributes_127">Attributes</h5>
 <table>
 <thead>
@@ -7347,17 +6494,6 @@ proposal.</li>
 </code></pre>
 <hr />
 <h4 id="disapprove_proposal">disapprove_proposal</h4>
-<p>Disapprove a proposal, close, and remove it from the system, regardless of its current
-state.</p>
-<p>Must be called by the Root origin.</p>
-<p>Parameters:
-* <code>proposal_hash</code>: The hash of the proposal that should be disapproved.</p>
-<p># &lt;weight&gt;
-Complexity: O(P) where P is the number of max proposals
-DB Weight:
-* Reads: Proposals
-* Writes: Voting, Proposals, ProposalOf
-# &lt;/weight&gt;</p>
 <h5 id="attributes_128">Attributes</h5>
 <table>
 <thead>
@@ -7382,8 +6518,6 @@ DB Weight:
 <h3 id="events_10">Events</h3>
 <hr />
 <h4 id="proposed_1">Proposed</h4>
-<p>A motion (given hash) has been proposed (by given account) with a threshold (given
-<code>MemberCount</code>).</p>
 <h5 id="attributes_129">Attributes</h5>
 <table>
 <thead>
@@ -7418,8 +6552,6 @@ DB Weight:
 </table>
 <hr />
 <h4 id="voted_1">Voted</h4>
-<p>A motion (given hash) has been voted on by given account, leaving
-a tally (yes votes and no votes given respectively as <code>MemberCount</code>).</p>
 <h5 id="attributes_130">Attributes</h5>
 <table>
 <thead>
@@ -7459,7 +6591,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="approved">Approved</h4>
-<p>A motion was approved by the required threshold.</p>
 <h5 id="attributes_131">Attributes</h5>
 <table>
 <thead>
@@ -7479,7 +6610,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="disapproved">Disapproved</h4>
-<p>A motion was not approved by the required threshold.</p>
 <h5 id="attributes_132">Attributes</h5>
 <table>
 <thead>
@@ -7499,7 +6629,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="executed_1">Executed</h4>
-<p>A motion was executed; result will be <code>Ok</code> if it returned without error.</p>
 <h5 id="attributes_133">Attributes</h5>
 <table>
 <thead>
@@ -7524,7 +6653,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="memberexecuted">MemberExecuted</h4>
-<p>A single member did some action; result will be <code>Ok</code> if it returned without error.</p>
 <h5 id="attributes_134">Attributes</h5>
 <table>
 <thead>
@@ -7549,7 +6677,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="closed">Closed</h4>
-<p>A proposal was closed because its threshold was reached or after its duration was up.</p>
 <h5 id="attributes_135">Attributes</h5>
 <table>
 <thead>
@@ -7581,7 +6708,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <h3 id="storage-functions_10">Storage functions</h3>
 <hr />
 <h4 id="proposals">Proposals</h4>
-<p>The hashes of the active proposals.</p>
 <h5 id="python_160">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'Proposals', []
@@ -7592,7 +6718,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="proposalof">ProposalOf</h4>
-<p>Actual proposal for a given hash, if it&#x27;s current.</p>
 <h5 id="python_161">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'ProposalOf', ['[u8; 32]']
@@ -7603,7 +6728,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="voting">Voting</h4>
-<p>Votes on a given proposal, if it is ongoing.</p>
 <h5 id="python_162">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'Voting', ['[u8; 32]']
@@ -7614,7 +6738,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="proposalcount">ProposalCount</h4>
-<p>Proposals so far.</p>
 <h5 id="python_163">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'ProposalCount', []
@@ -7625,7 +6748,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="members">Members</h4>
-<p>The current members of the collective. This is stored sorted (just by value).</p>
 <h5 id="python_164">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'Members', []
@@ -7636,7 +6758,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="prime">Prime</h4>
-<p>The prime member that helps determine the default vote behavior in case of absentations.</p>
 <h5 id="python_165">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'Prime', []
@@ -7649,68 +6770,30 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <h3 id="errors_8">Errors</h3>
 <hr />
 <h4 id="notmember">NotMember</h4>
-<p>Account is not a member</p>
 <hr />
 <h4 id="duplicateproposal_1">DuplicateProposal</h4>
-<p>Duplicate proposals not allowed</p>
 <hr />
 <h4 id="proposalmissing_1">ProposalMissing</h4>
-<p>Proposal must exist</p>
 <hr />
 <h4 id="wrongindex">WrongIndex</h4>
-<p>Mismatched index</p>
 <hr />
 <h4 id="duplicatevote">DuplicateVote</h4>
-<p>Duplicate vote ignored</p>
 <hr />
 <h4 id="alreadyinitialized">AlreadyInitialized</h4>
-<p>Members are already initialized!</p>
 <hr />
 <h4 id="tooearly_1">TooEarly</h4>
-<p>The close call was made too early, before the end of the voting.</p>
 <hr />
 <h4 id="toomanyproposals_1">TooManyProposals</h4>
-<p>There can only be a maximum of <code>MaxProposals</code> active proposals.</p>
 <hr />
 <h4 id="wrongproposalweight">WrongProposalWeight</h4>
-<p>The given weight bound for the proposal was too low.</p>
 <hr />
 <h4 id="wrongproposallength">WrongProposalLength</h4>
-<p>The given length bound for the proposal was too low.</p>
 <hr />
 <h2 id="technicalcommittee">TechnicalCommittee</h2>
 <hr />
 <h3 id="calls_10">Calls</h3>
 <hr />
 <h4 id="set_members_1">set_members</h4>
-<p>Set the collective&amp;#x27;s membership.</p>
-<ul>
-<li><code>new_members</code>: The new member list. Be nice to the chain and provide it sorted.</li>
-<li><code>prime</code>: The prime member whose vote sets the default.</li>
-<li><code>old_count</code>: The upper bound for the previous number of members in storage. Used for
-  weight estimation.</li>
-</ul>
-<p>Requires root origin.</p>
-<p>NOTE: Does not enforce the expected <code>MaxMembers</code> limit on the amount of members, but
-      the weight estimations rely on it to estimate dispatchable weight.</p>
-<p># WARNING:</p>
-<p>The <code>pallet-collective</code> can also be managed by logic outside of the pallet through the
-implementation of the trait [<code>ChangeMembers</code>].
-Any call to <code>set_members</code> must be careful that the member set doesn&amp;#x27;t get out of sync
-with other logic managing the member set.</p>
-<p># &lt;weight&gt;
-## Weight
-- <code>O(MP + N)</code> where:
-  - <code>M</code> old-members-count (code- and governance-bounded)
-  - <code>N</code> new-members-count (code- and governance-bounded)
-  - <code>P</code> proposals-count (code-bounded)
-- DB:
-  - 1 storage mutation (codec <code>O(M)</code> read, <code>O(N)</code> write) for reading and writing the
-    members
-  - 1 storage read (codec <code>O(P)</code>) for reading the proposals
-  - <code>P</code> storage mutations (codec <code>O(M)</code>) for updating the votes for each proposal
-  - 1 storage write (codec <code>O(1)</code>) for deleting the old <code>prime</code> and setting the new one
-# &lt;/weight&gt;</p>
 <h5 id="attributes_136">Attributes</h5>
 <table>
 <thead>
@@ -7745,15 +6828,6 @@ with other logic managing the member set.</p>
 </code></pre>
 <hr />
 <h4 id="execute_1">execute</h4>
-<p>Dispatch a proposal from a member using the <code>Member</code> origin.</p>
-<p>Origin must be a member of the collective.</p>
-<p># &lt;weight&gt;
-## Weight
-- <code>O(M + P)</code> where <code>M</code> members-count (code-bounded) and <code>P</code> complexity of dispatching
-  <code>proposal</code>
-- DB: 1 read (codec <code>O(M)</code>) + DB access of <code>proposal</code>
-- 1 event
-# &lt;/weight&gt;</p>
 <h5 id="attributes_137">Attributes</h5>
 <table>
 <thead>
@@ -7783,30 +6857,6 @@ with other logic managing the member set.</p>
 </code></pre>
 <hr />
 <h4 id="propose_2">propose</h4>
-<p>Add a new proposal to either be voted on or executed directly.</p>
-<p>Requires the sender to be member.</p>
-<p><code>threshold</code> determines whether <code>proposal</code> is executed directly (<code>threshold &amp;lt; 2</code>)
-or put up for voting.</p>
-<p># &lt;weight&gt;
-## Weight
-- <code>O(B + M + P1)</code> or <code>O(B + M + P2)</code> where:
-  - <code>B</code> is <code>proposal</code> size in bytes (length-fee-bounded)
-  - <code>M</code> is members-count (code- and governance-bounded)
-  - branching is influenced by <code>threshold</code> where:
-    - <code>P1</code> is proposal execution complexity (<code>threshold &amp;lt; 2</code>)
-    - <code>P2</code> is proposals-count (code-bounded) (<code>threshold &amp;gt;= 2</code>)
-- DB:
-  - 1 storage read <code>is_member</code> (codec <code>O(M)</code>)
-  - 1 storage read <code>ProposalOf::contains_key</code> (codec <code>O(1)</code>)
-  - DB accesses influenced by <code>threshold</code>:
-    - EITHER storage accesses done by <code>proposal</code> (<code>threshold &amp;lt; 2</code>)
-    - OR proposal insertion (<code>threshold &amp;lt;= 2</code>)
-      - 1 storage mutation <code>Proposals</code> (codec <code>O(P2)</code>)
-      - 1 storage mutation <code>ProposalCount</code> (codec <code>O(1)</code>)
-      - 1 storage write <code>ProposalOf</code> (codec <code>O(B)</code>)
-      - 1 storage write <code>Voting</code> (codec <code>O(M)</code>)
-  - 1 event
-# &lt;/weight&gt;</p>
 <h5 id="attributes_138">Attributes</h5>
 <table>
 <thead>
@@ -7841,19 +6891,6 @@ or put up for voting.</p>
 </code></pre>
 <hr />
 <h4 id="vote_2">vote</h4>
-<p>Add an aye or nay vote for the sender to the given proposal.</p>
-<p>Requires the sender to be a member.</p>
-<p>Transaction fees will be waived if the member is voting on any particular proposal
-for the first time and the call is successful. Subsequent vote changes will charge a
-fee.
-# &lt;weight&gt;
-## Weight
-- <code>O(M)</code> where <code>M</code> is members-count (code- and governance-bounded)
-- DB:
-  - 1 storage read <code>Members</code> (codec <code>O(M)</code>)
-  - 1 storage mutation <code>Voting</code> (codec <code>O(M)</code>)
-- 1 event
-# &lt;/weight&gt;</p>
 <h5 id="attributes_139">Attributes</h5>
 <table>
 <thead>
@@ -7888,34 +6925,6 @@ fee.
 </code></pre>
 <hr />
 <h4 id="close_1">close</h4>
-<p>Close a vote that is either approved, disapproved or whose voting period has ended.</p>
-<p>May be called by any signed account in order to finish voting and close the proposal.</p>
-<p>If called before the end of the voting period it will only close the vote if it is
-has enough votes to be approved or disapproved.</p>
-<p>If called after the end of the voting period abstentions are counted as rejections
-unless there is a prime member set and the prime member cast an approval.</p>
-<p>If the close operation completes successfully with disapproval, the transaction fee will
-be waived. Otherwise execution of the approved operation will be charged to the caller.</p>
-<ul>
-<li><code>proposal_weight_bound</code>: The maximum amount of weight consumed by executing the closed
-proposal.</li>
-<li><code>length_bound</code>: The upper bound for the length of the proposal in storage. Checked via
-<code>storage::read</code> so it is <code>size_of::&amp;lt;u32&amp;gt;() == 4</code> larger than the pure length.</li>
-</ul>
-<p># &lt;weight&gt;
-## Weight
-- <code>O(B + M + P1 + P2)</code> where:
-  - <code>B</code> is <code>proposal</code> size in bytes (length-fee-bounded)
-  - <code>M</code> is members-count (code- and governance-bounded)
-  - <code>P1</code> is the complexity of <code>proposal</code> preimage.
-  - <code>P2</code> is proposal-count (code-bounded)
-- DB:
- - 2 storage reads (<code>Members</code>: codec <code>O(M)</code>, <code>Prime</code>: codec <code>O(1)</code>)
- - 3 mutations (<code>Voting</code>: codec <code>O(M)</code>, <code>ProposalOf</code>: codec <code>O(B)</code>, <code>Proposals</code>: codec
-   <code>O(P2)</code>)
- - any mutations done while executing <code>proposal</code> (<code>P1</code>)
-- up to 3 events
-# &lt;/weight&gt;</p>
 <h5 id="attributes_140">Attributes</h5>
 <table>
 <thead>
@@ -7957,17 +6966,6 @@ proposal.</li>
 </code></pre>
 <hr />
 <h4 id="disapprove_proposal_1">disapprove_proposal</h4>
-<p>Disapprove a proposal, close, and remove it from the system, regardless of its current
-state.</p>
-<p>Must be called by the Root origin.</p>
-<p>Parameters:
-* <code>proposal_hash</code>: The hash of the proposal that should be disapproved.</p>
-<p># &lt;weight&gt;
-Complexity: O(P) where P is the number of max proposals
-DB Weight:
-* Reads: Proposals
-* Writes: Voting, Proposals, ProposalOf
-# &lt;/weight&gt;</p>
 <h5 id="attributes_141">Attributes</h5>
 <table>
 <thead>
@@ -7992,8 +6990,6 @@ DB Weight:
 <h3 id="events_11">Events</h3>
 <hr />
 <h4 id="proposed_2">Proposed</h4>
-<p>A motion (given hash) has been proposed (by given account) with a threshold (given
-<code>MemberCount</code>).</p>
 <h5 id="attributes_142">Attributes</h5>
 <table>
 <thead>
@@ -8028,8 +7024,6 @@ DB Weight:
 </table>
 <hr />
 <h4 id="voted_2">Voted</h4>
-<p>A motion (given hash) has been voted on by given account, leaving
-a tally (yes votes and no votes given respectively as <code>MemberCount</code>).</p>
 <h5 id="attributes_143">Attributes</h5>
 <table>
 <thead>
@@ -8069,7 +7063,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="approved_1">Approved</h4>
-<p>A motion was approved by the required threshold.</p>
 <h5 id="attributes_144">Attributes</h5>
 <table>
 <thead>
@@ -8089,7 +7082,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="disapproved_1">Disapproved</h4>
-<p>A motion was not approved by the required threshold.</p>
 <h5 id="attributes_145">Attributes</h5>
 <table>
 <thead>
@@ -8109,7 +7101,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="executed_2">Executed</h4>
-<p>A motion was executed; result will be <code>Ok</code> if it returned without error.</p>
 <h5 id="attributes_146">Attributes</h5>
 <table>
 <thead>
@@ -8134,7 +7125,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="memberexecuted_1">MemberExecuted</h4>
-<p>A single member did some action; result will be <code>Ok</code> if it returned without error.</p>
 <h5 id="attributes_147">Attributes</h5>
 <table>
 <thead>
@@ -8159,7 +7149,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </table>
 <hr />
 <h4 id="closed_1">Closed</h4>
-<p>A proposal was closed because its threshold was reached or after its duration was up.</p>
 <h5 id="attributes_148">Attributes</h5>
 <table>
 <thead>
@@ -8191,7 +7180,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <h3 id="storage-functions_11">Storage functions</h3>
 <hr />
 <h4 id="proposals_1">Proposals</h4>
-<p>The hashes of the active proposals.</p>
 <h5 id="python_172">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Proposals', []
@@ -8202,7 +7190,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="proposalof_1">ProposalOf</h4>
-<p>Actual proposal for a given hash, if it&#x27;s current.</p>
 <h5 id="python_173">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'ProposalOf', ['[u8; 32]']
@@ -8213,7 +7200,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="voting_1">Voting</h4>
-<p>Votes on a given proposal, if it is ongoing.</p>
 <h5 id="python_174">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Voting', ['[u8; 32]']
@@ -8224,7 +7210,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="proposalcount_1">ProposalCount</h4>
-<p>Proposals so far.</p>
 <h5 id="python_175">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'ProposalCount', []
@@ -8235,7 +7220,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="members_1">Members</h4>
-<p>The current members of the collective. This is stored sorted (just by value).</p>
 <h5 id="python_176">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Members', []
@@ -8246,7 +7230,6 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </code></pre>
 <hr />
 <h4 id="prime_1">Prime</h4>
-<p>The prime member that helps determine the default vote behavior in case of absentations.</p>
 <h5 id="python_177">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Prime', []
@@ -8259,48 +7242,30 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <h3 id="errors_9">Errors</h3>
 <hr />
 <h4 id="notmember_1">NotMember</h4>
-<p>Account is not a member</p>
 <hr />
 <h4 id="duplicateproposal_2">DuplicateProposal</h4>
-<p>Duplicate proposals not allowed</p>
 <hr />
 <h4 id="proposalmissing_2">ProposalMissing</h4>
-<p>Proposal must exist</p>
 <hr />
 <h4 id="wrongindex_1">WrongIndex</h4>
-<p>Mismatched index</p>
 <hr />
 <h4 id="duplicatevote_1">DuplicateVote</h4>
-<p>Duplicate vote ignored</p>
 <hr />
 <h4 id="alreadyinitialized_1">AlreadyInitialized</h4>
-<p>Members are already initialized!</p>
 <hr />
 <h4 id="tooearly_2">TooEarly</h4>
-<p>The close call was made too early, before the end of the voting.</p>
 <hr />
 <h4 id="toomanyproposals_2">TooManyProposals</h4>
-<p>There can only be a maximum of <code>MaxProposals</code> active proposals.</p>
 <hr />
 <h4 id="wrongproposalweight_1">WrongProposalWeight</h4>
-<p>The given weight bound for the proposal was too low.</p>
 <hr />
 <h4 id="wrongproposallength_1">WrongProposalLength</h4>
-<p>The given length bound for the proposal was too low.</p>
 <hr />
 <h2 id="treasury">Treasury</h2>
 <hr />
 <h3 id="calls_11">Calls</h3>
 <hr />
 <h4 id="propose_spend">propose_spend</h4>
-<p>Put forward a suggestion for spending. A deposit proportional to the value
-is reserved and slashed if the proposal is rejected. It is returned once the
-proposal is awarded.</p>
-<p># &lt;weight&gt;
-- Complexity: O(1)
-- DbReads: <code>ProposalCount</code>, <code>origin account</code>
-- DbWrites: <code>ProposalCount</code>, <code>Proposals</code>, <code>origin account</code>
-# &lt;/weight&gt;</p>
 <h5 id="attributes_149">Attributes</h5>
 <table>
 <thead>
@@ -8336,13 +7301,6 @@ proposal is awarded.</p>
 </code></pre>
 <hr />
 <h4 id="reject_proposal">reject_proposal</h4>
-<p>Reject a proposed spend. The original deposit will be slashed.</p>
-<p>May only be called from <code>T::RejectOrigin</code>.</p>
-<p># &lt;weight&gt;
-- Complexity: O(1)
-- DbReads: <code>Proposals</code>, <code>rejected proposer account</code>
-- DbWrites: <code>Proposals</code>, <code>rejected proposer account</code>
-# &lt;/weight&gt;</p>
 <h5 id="attributes_150">Attributes</h5>
 <table>
 <thead>
@@ -8365,14 +7323,6 @@ proposal is awarded.</p>
 </code></pre>
 <hr />
 <h4 id="approve_proposal">approve_proposal</h4>
-<p>Approve a proposal. At a later time, the proposal will be allocated to the beneficiary
-and the original deposit will be returned.</p>
-<p>May only be called from <code>T::ApproveOrigin</code>.</p>
-<p># &lt;weight&gt;
-- Complexity: O(1).
-- DbReads: <code>Proposals</code>, <code>Approvals</code>
-- DbWrite: <code>Approvals</code>
-# &lt;/weight&gt;</p>
 <h5 id="attributes_151">Attributes</h5>
 <table>
 <thead>
@@ -8395,14 +7345,6 @@ and the original deposit will be returned.</p>
 </code></pre>
 <hr />
 <h4 id="spend">spend</h4>
-<p>Propose and approve a spend of treasury funds.</p>
-<ul>
-<li><code>origin</code>: Must be <code>SpendOrigin</code> with the <code>Success</code> value being at least <code>amount</code>.</li>
-<li><code>amount</code>: The amount to be transferred from the treasury to the <code>beneficiary</code>.</li>
-<li><code>beneficiary</code>: The destination account for the transfer.</li>
-</ul>
-<p>NOTE: For record-keeping purposes, the proposer is deemed to be equivalent to the
-beneficiary.</p>
 <h5 id="attributes_152">Attributes</h5>
 <table>
 <thead>
@@ -8438,18 +7380,6 @@ beneficiary.</p>
 </code></pre>
 <hr />
 <h4 id="remove_approval">remove_approval</h4>
-<p>Force a previously approved proposal to be removed from the approval queue.
-The original deposit will no longer be returned.</p>
-<p>May only be called from <code>T::RejectOrigin</code>.
-- <code>proposal_id</code>: The index of a proposal</p>
-<p># &lt;weight&gt;
-- Complexity: O(A) where <code>A</code> is the number of approvals
-- Db reads and writes: <code>Approvals</code>
-# &lt;/weight&gt;</p>
-<p>Errors:
-- <code>ProposalNotApproved</code>: The <code>proposal_id</code> supplied was not found in the approval queue,
-i.e., the proposal has not been approved. This could also mean the proposal does not
-exist altogether, thus there is no way it would have been approved in the first place.</p>
 <h5 id="attributes_153">Attributes</h5>
 <table>
 <thead>
@@ -8474,7 +7404,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 <h3 id="events_12">Events</h3>
 <hr />
 <h4 id="proposed_3">Proposed</h4>
-<p>New proposal.</p>
 <h5 id="attributes_154">Attributes</h5>
 <table>
 <thead>
@@ -8494,7 +7423,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </table>
 <hr />
 <h4 id="spending">Spending</h4>
-<p>We have ended a spend period and will now allocate funds.</p>
 <h5 id="attributes_155">Attributes</h5>
 <table>
 <thead>
@@ -8514,7 +7442,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </table>
 <hr />
 <h4 id="awarded">Awarded</h4>
-<p>Some funds have been allocated.</p>
 <h5 id="attributes_156">Attributes</h5>
 <table>
 <thead>
@@ -8544,7 +7471,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </table>
 <hr />
 <h4 id="rejected">Rejected</h4>
-<p>A proposal was rejected; funds were slashed.</p>
 <h5 id="attributes_157">Attributes</h5>
 <table>
 <thead>
@@ -8569,7 +7495,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </table>
 <hr />
 <h4 id="burnt">Burnt</h4>
-<p>Some of our funds have been burnt.</p>
 <h5 id="attributes_158">Attributes</h5>
 <table>
 <thead>
@@ -8589,7 +7514,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </table>
 <hr />
 <h4 id="rollover">Rollover</h4>
-<p>Spending has finished; this is the amount that rolls over until next spend.</p>
 <h5 id="attributes_159">Attributes</h5>
 <table>
 <thead>
@@ -8609,7 +7533,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </table>
 <hr />
 <h4 id="deposit_1">Deposit</h4>
-<p>Some funds have been deposited.</p>
 <h5 id="attributes_160">Attributes</h5>
 <table>
 <thead>
@@ -8629,7 +7552,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </table>
 <hr />
 <h4 id="spendapproved">SpendApproved</h4>
-<p>A new spend proposal has been approved.</p>
 <h5 id="attributes_161">Attributes</h5>
 <table>
 <thead>
@@ -8661,7 +7583,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 <h3 id="storage-functions_12">Storage functions</h3>
 <hr />
 <h4 id="proposalcount_2">ProposalCount</h4>
-<p>Number of proposals that have been made.</p>
 <h5 id="python_183">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'ProposalCount', []
@@ -8672,7 +7593,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </code></pre>
 <hr />
 <h4 id="proposals_2">Proposals</h4>
-<p>Proposals that have been made.</p>
 <h5 id="python_184">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'Proposals', ['u32']
@@ -8688,7 +7608,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </code></pre>
 <hr />
 <h4 id="approvals">Approvals</h4>
-<p>Proposal indices that have been approved but not yet awarded.</p>
 <h5 id="python_185">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'Approvals', []
@@ -8701,8 +7620,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 <h3 id="constants_7">Constants</h3>
 <hr />
 <h4 id="proposalbond">ProposalBond</h4>
-<p>Fraction of a proposal&#x27;s value that should be bonded in order to place the proposal.
- An accepted proposal gets these back. A rejected proposal does not.</p>
 <h5 id="value_25">Value</h5>
 <pre><code class="language-python">50000
 </code></pre>
@@ -8711,7 +7628,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </code></pre>
 <hr />
 <h4 id="proposalbondminimum">ProposalBondMinimum</h4>
-<p>Minimum amount of funds that should be placed in a deposit for making a proposal.</p>
 <h5 id="value_26">Value</h5>
 <pre><code class="language-python">10000000000
 </code></pre>
@@ -8720,7 +7636,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </code></pre>
 <hr />
 <h4 id="proposalbondmaximum">ProposalBondMaximum</h4>
-<p>Maximum amount of funds that should be placed in a deposit for making a proposal.</p>
 <h5 id="value_27">Value</h5>
 <pre><code class="language-python">100000000000
 </code></pre>
@@ -8729,7 +7644,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </code></pre>
 <hr />
 <h4 id="spendperiod">SpendPeriod</h4>
-<p>Period between successive spends.</p>
 <h5 id="value_28">Value</h5>
 <pre><code class="language-python">50400
 </code></pre>
@@ -8738,7 +7652,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </code></pre>
 <hr />
 <h4 id="burn">Burn</h4>
-<p>Percentage of spare funds (if any) that are burnt per spend period.</p>
 <h5 id="value_29">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
@@ -8747,7 +7660,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </code></pre>
 <hr />
 <h4 id="palletid">PalletId</h4>
-<p>The treasury&#x27;s pallet id, used for deriving its sovereign account ID.</p>
 <h5 id="value_30">Value</h5>
 <pre><code class="language-python">'0x70792f7472737279'
 </code></pre>
@@ -8756,8 +7668,6 @@ exist altogether, thus there is no way it would have been approved in the first 
 </code></pre>
 <hr />
 <h4 id="maxapprovals">MaxApprovals</h4>
-<p>The maximum number of approvals that can wait in the spending queue.</p>
-<p>NOTE: This parameter is also used within the Bounties Pallet extension if enabled.</p>
 <h5 id="value_31">Value</h5>
 <pre><code class="language-python">64
 </code></pre>
@@ -8768,27 +7678,20 @@ exist altogether, thus there is no way it would have been approved in the first 
 <h3 id="errors_10">Errors</h3>
 <hr />
 <h4 id="insufficientproposersbalance">InsufficientProposersBalance</h4>
-<p>Proposer&amp;#x27;s balance is too low.</p>
 <hr />
 <h4 id="invalidindex">InvalidIndex</h4>
-<p>No proposal or bounty at that index.</p>
 <hr />
 <h4 id="toomanyapprovals">TooManyApprovals</h4>
-<p>Too many approvals in the queue.</p>
 <hr />
 <h4 id="insufficientpermission">InsufficientPermission</h4>
-<p>The spend origin is valid but the amount it is allowed to spend is lower than the
-amount to be spent.</p>
 <hr />
 <h4 id="proposalnotapproved">ProposalNotApproved</h4>
-<p>Proposal has not been approved.</p>
 <hr />
 <h2 id="authorship">Authorship</h2>
 <hr />
 <h3 id="calls_12">Calls</h3>
 <hr />
 <h4 id="set_uncles">set_uncles</h4>
-<p>Provide a set of uncles.</p>
 <h5 id="attributes_162">Attributes</h5>
 <table>
 <thead>
@@ -8843,7 +7746,6 @@ amount to be spent.</p>
 <h3 id="storage-functions_13">Storage functions</h3>
 <hr />
 <h4 id="uncles">Uncles</h4>
-<p>Uncles</p>
 <h5 id="python_194">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Authorship', 'Uncles', []
@@ -8854,7 +7756,6 @@ amount to be spent.</p>
 </code></pre>
 <hr />
 <h4 id="author">Author</h4>
-<p>Author of current block.</p>
 <h5 id="python_195">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Authorship', 'Author', []
@@ -8865,7 +7766,6 @@ amount to be spent.</p>
 </code></pre>
 <hr />
 <h4 id="didsetuncles">DidSetUncles</h4>
-<p>Whether uncles were already set in this block.</p>
 <h5 id="python_196">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Authorship', 'DidSetUncles', []
@@ -8878,9 +7778,6 @@ amount to be spent.</p>
 <h3 id="constants_8">Constants</h3>
 <hr />
 <h4 id="unclegenerations">UncleGenerations</h4>
-<p>The number of blocks back we should accept uncles.
- This means that we will deal with uncle-parents that are
- <code>UncleGenerations + 1</code> before <code>now</code>.</p>
 <h5 id="value_32">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
@@ -8891,32 +7788,24 @@ amount to be spent.</p>
 <h3 id="errors_11">Errors</h3>
 <hr />
 <h4 id="invaliduncleparent">InvalidUncleParent</h4>
-<p>The uncle parent not in the chain.</p>
 <hr />
 <h4 id="unclesalreadyset">UnclesAlreadySet</h4>
-<p>Uncles already set in the block.</p>
 <hr />
 <h4 id="toomanyuncles">TooManyUncles</h4>
-<p>Too many uncles.</p>
 <hr />
 <h4 id="genesisuncle">GenesisUncle</h4>
-<p>The uncle is genesis.</p>
 <hr />
 <h4 id="toohighuncle">TooHighUncle</h4>
-<p>The uncle is too high in chain.</p>
 <hr />
 <h4 id="unclealreadyincluded">UncleAlreadyIncluded</h4>
-<p>The uncle is already included.</p>
 <hr />
 <h4 id="olduncle">OldUncle</h4>
-<p>The uncle isn&amp;#x27;t recent enough to be included.</p>
 <hr />
 <h2 id="collatorselection">CollatorSelection</h2>
 <hr />
 <h3 id="calls_13">Calls</h3>
 <hr />
 <h4 id="set_invulnerables">set_invulnerables</h4>
-<p>Set the list of invulnerable (fixed) collators.</p>
 <h5 id="attributes_163">Attributes</h5>
 <table>
 <thead>
@@ -8939,9 +7828,6 @@ amount to be spent.</p>
 </code></pre>
 <hr />
 <h4 id="set_desired_candidates">set_desired_candidates</h4>
-<p>Set the ideal number of collators (not including the invulnerables).
-If lowering this number, then the number of running collators could be higher than this figure.
-Aside from that edge case, there should be no other way to have more collators than the desired number.</p>
 <h5 id="attributes_164">Attributes</h5>
 <table>
 <thead>
@@ -8964,7 +7850,6 @@ Aside from that edge case, there should be no other way to have more collators t
 </code></pre>
 <hr />
 <h4 id="set_candidacy_bond">set_candidacy_bond</h4>
-<p>Set the candidacy bond amount.</p>
 <h5 id="attributes_165">Attributes</h5>
 <table>
 <thead>
@@ -8987,9 +7872,6 @@ Aside from that edge case, there should be no other way to have more collators t
 </code></pre>
 <hr />
 <h4 id="register_as_candidate">register_as_candidate</h4>
-<p>Register this account as a collator candidate. The account must (a) already have
-registered session keys and (b) be able to reserve the <code>CandidacyBond</code>.</p>
-<p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_166">Attributes</h5>
 <p>No attributes</p>
 <h5 id="python_201">Python</h5>
@@ -8999,10 +7881,6 @@ registered session keys and (b) be able to reserve the <code>CandidacyBond</code
 </code></pre>
 <hr />
 <h4 id="leave_intent">leave_intent</h4>
-<p>Deregister <code>origin</code> as a collator candidate. Note that the collator can only leave on
-session change. The <code>CandidacyBond</code> will be unreserved immediately.</p>
-<p>This call will fail if the total number of candidates would drop below <code>MinCandidates</code>.</p>
-<p>This call is not available to <code>Invulnerable</code> collators.</p>
 <h5 id="attributes_167">Attributes</h5>
 <p>No attributes</p>
 <h5 id="python_202">Python</h5>
@@ -9116,7 +7994,6 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <h3 id="storage-functions_14">Storage functions</h3>
 <hr />
 <h4 id="invulnerables">Invulnerables</h4>
-<p>The invulnerable, fixed collators.</p>
 <h5 id="python_203">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'Invulnerables', []
@@ -9127,7 +8004,6 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 </code></pre>
 <hr />
 <h4 id="candidates">Candidates</h4>
-<p>The (community, limited) collation candidates.</p>
 <h5 id="python_204">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'Candidates', []
@@ -9138,7 +8014,6 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 </code></pre>
 <hr />
 <h4 id="lastauthoredblock">LastAuthoredBlock</h4>
-<p>Last block authored by collator.</p>
 <h5 id="python_205">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'LastAuthoredBlock', ['AccountId']
@@ -9149,8 +8024,6 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 </code></pre>
 <hr />
 <h4 id="desiredcandidates">DesiredCandidates</h4>
-<p>Desired number of candidates.</p>
-<p>This should ideally always be less than [<code>Config::MaxCandidates</code>] for weights to be correct.</p>
 <h5 id="python_206">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'DesiredCandidates', []
@@ -9161,8 +8034,6 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 </code></pre>
 <hr />
 <h4 id="candidacybond">CandidacyBond</h4>
-<p>Fixed amount to deposit to become a collator.</p>
-<p>When a collator calls <code>leave_intent</code> they immediately receive the deposit back.</p>
 <h5 id="python_207">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'CollatorSelection', 'CandidacyBond', []
@@ -9175,52 +8046,30 @@ session change. The <code>CandidacyBond</code> will be unreserved immediately.</
 <h3 id="errors_12">Errors</h3>
 <hr />
 <h4 id="toomanycandidates">TooManyCandidates</h4>
-<p>Too many candidates</p>
 <hr />
 <h4 id="toofewcandidates">TooFewCandidates</h4>
-<p>Too few candidates</p>
 <hr />
 <h4 id="unknown">Unknown</h4>
-<p>Unknown error</p>
 <hr />
 <h4 id="permission">Permission</h4>
-<p>Permission issue</p>
 <hr />
 <h4 id="alreadycandidate">AlreadyCandidate</h4>
-<p>User is already a candidate</p>
 <hr />
 <h4 id="notcandidate">NotCandidate</h4>
-<p>User is not a candidate</p>
 <hr />
 <h4 id="toomanyinvulnerables">TooManyInvulnerables</h4>
-<p>Too many invulnerables</p>
 <hr />
 <h4 id="alreadyinvulnerable">AlreadyInvulnerable</h4>
-<p>User is already an Invulnerable</p>
 <hr />
 <h4 id="noassociatedvalidatorid">NoAssociatedValidatorId</h4>
-<p>Account has no associated validator ID</p>
 <hr />
 <h4 id="validatornotregistered">ValidatorNotRegistered</h4>
-<p>Validator ID is not yet registered</p>
 <hr />
 <h2 id="session">Session</h2>
 <hr />
 <h3 id="calls_14">Calls</h3>
 <hr />
 <h4 id="set_keys">set_keys</h4>
-<p>Sets the session key(s) of the function caller to <code>keys</code>.
-Allows an account to set its session key prior to becoming a validator.
-This doesn&amp;#x27;t take effect until the next session.</p>
-<p>The dispatch origin of this function must be signed.</p>
-<p># &lt;weight&gt;
-- Complexity: <code>O(1)</code>. Actual cost depends on the number of length of
-  <code>T::Keys::key_ids()</code> which is fixed.
-- DbReads: <code>origin account</code>, <code>T::ValidatorIdOf</code>, <code>NextKeys</code>
-- DbWrites: <code>origin account</code>, <code>NextKeys</code>
-- DbReads per key id: <code>KeyOwner</code>
-- DbWrites per key id: <code>KeyOwner</code>
-# &lt;/weight&gt;</p>
 <h5 id="attributes_173">Attributes</h5>
 <table>
 <thead>
@@ -9247,19 +8096,6 @@ This doesn&amp;#x27;t take effect until the next session.</p>
 </code></pre>
 <hr />
 <h4 id="purge_keys">purge_keys</h4>
-<p>Removes any session key(s) of the function caller.</p>
-<p>This doesn&amp;#x27;t take effect until the next session.</p>
-<p>The dispatch origin of this function must be Signed and the account must be either be
-convertible to a validator ID using the chain&amp;#x27;s typical addressing system (this usually
-means being a controller account) or directly convertible into a validator ID (which
-usually means being a stash account).</p>
-<p># &lt;weight&gt;
-- Complexity: <code>O(1)</code> in number of key types. Actual cost depends on the number of length
-  of <code>T::Keys::key_ids()</code> which is fixed.
-- DbReads: <code>T::ValidatorIdOf</code>, <code>NextKeys</code>, <code>origin account</code>
-- DbWrites: <code>NextKeys</code>, <code>origin account</code>
-- DbWrites per key id: <code>KeyOwner</code>
-# &lt;/weight&gt;</p>
 <h5 id="attributes_174">Attributes</h5>
 <p>No attributes</p>
 <h5 id="python_209">Python</h5>
@@ -9271,8 +8107,6 @@ usually means being a stash account).</p>
 <h3 id="events_14">Events</h3>
 <hr />
 <h4 id="newsession">NewSession</h4>
-<p>New session has happened. Note that the argument is the session index, not the
-block number as the type might suggest.</p>
 <h5 id="attributes_175">Attributes</h5>
 <table>
 <thead>
@@ -9294,7 +8128,6 @@ block number as the type might suggest.</p>
 <h3 id="storage-functions_15">Storage functions</h3>
 <hr />
 <h4 id="validators">Validators</h4>
-<p>The current set of validators.</p>
 <h5 id="python_210">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'Validators', []
@@ -9305,7 +8138,6 @@ block number as the type might suggest.</p>
 </code></pre>
 <hr />
 <h4 id="currentindex">CurrentIndex</h4>
-<p>Current index of the session.</p>
 <h5 id="python_211">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'CurrentIndex', []
@@ -9316,8 +8148,6 @@ block number as the type might suggest.</p>
 </code></pre>
 <hr />
 <h4 id="queuedchanged">QueuedChanged</h4>
-<p>True if the underlying economic identities or weighting behind the validators
- has changed in the queued validator set.</p>
 <h5 id="python_212">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'QueuedChanged', []
@@ -9328,8 +8158,6 @@ block number as the type might suggest.</p>
 </code></pre>
 <hr />
 <h4 id="queuedkeys">QueuedKeys</h4>
-<p>The queued keys for the next session. When the next session begins, these keys
- will be used to determine the validator&#x27;s session keys.</p>
 <h5 id="python_213">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'QueuedKeys', []
@@ -9340,10 +8168,6 @@ block number as the type might suggest.</p>
 </code></pre>
 <hr />
 <h4 id="disabledvalidators">DisabledValidators</h4>
-<p>Indices of disabled validators.</p>
-<p>The vec is always kept sorted so that we can find whether a given validator is
- disabled using binary search. It gets cleared when <code>on_session_ending</code> returns
- a new set of identities.</p>
 <h5 id="python_214">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'DisabledValidators', []
@@ -9354,7 +8178,6 @@ block number as the type might suggest.</p>
 </code></pre>
 <hr />
 <h4 id="nextkeys">NextKeys</h4>
-<p>The next session keys for a validator.</p>
 <h5 id="python_215">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'NextKeys', ['AccountId']
@@ -9365,7 +8188,6 @@ block number as the type might suggest.</p>
 </code></pre>
 <hr />
 <h4 id="keyowner">KeyOwner</h4>
-<p>The owner of a key. The key is the <code>KeyTypeId</code> + the encoded key.</p>
 <h5 id="python_216">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'KeyOwner', [('[u8; 4]', 'Bytes')]
@@ -9378,26 +8200,20 @@ block number as the type might suggest.</p>
 <h3 id="errors_13">Errors</h3>
 <hr />
 <h4 id="invalidproof">InvalidProof</h4>
-<p>Invalid ownership proof.</p>
 <hr />
 <h4 id="noassociatedvalidatorid_1">NoAssociatedValidatorId</h4>
-<p>No associated validator ID for account.</p>
 <hr />
 <h4 id="duplicatedkey">DuplicatedKey</h4>
-<p>Registered duplicate key.</p>
 <hr />
 <h4 id="nokeys">NoKeys</h4>
-<p>No keys are associated with this account.</p>
 <hr />
 <h4 id="noaccount">NoAccount</h4>
-<p>Key setting account is not live, so it&amp;#x27;s impossible to associate keys.</p>
 <hr />
 <h2 id="aura">Aura</h2>
 <hr />
 <h3 id="storage-functions_16">Storage functions</h3>
 <hr />
 <h4 id="authorities">Authorities</h4>
-<p>The current authority set.</p>
 <h5 id="python_217">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Aura', 'Authorities', []
@@ -9408,8 +8224,6 @@ block number as the type might suggest.</p>
 </code></pre>
 <hr />
 <h4 id="currentslot">CurrentSlot</h4>
-<p>The current slot of this block.</p>
-<p>This will be set in <code>on_initialize</code>.</p>
 <h5 id="python_218">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Aura', 'CurrentSlot', []
@@ -9424,10 +8238,6 @@ block number as the type might suggest.</p>
 <h3 id="storage-functions_17">Storage functions</h3>
 <hr />
 <h4 id="authorities_1">Authorities</h4>
-<p>Serves as cache for the authorities.</p>
-<p>The authorities in AuRa are overwritten in <code>on_initialize</code> when we switch to a new session,
- but we require the old authorities to verify the seal when validating a PoV. This will always
- be updated to the latest AuRa authorities in <code>on_finalize</code>.</p>
 <h5 id="python_219">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'AuraExt', 'Authorities', []
@@ -9565,7 +8375,6 @@ block number as the type might suggest.</p>
 <h3 id="events_15">Events</h3>
 <hr />
 <h4 id="vestingscheduleadded">VestingScheduleAdded</h4>
-<p>Added new vesting schedule.</p>
 <h5 id="attributes_180">Attributes</h5>
 <table>
 <thead>
@@ -9595,7 +8404,6 @@ block number as the type might suggest.</p>
 </table>
 <hr />
 <h4 id="claimed">Claimed</h4>
-<p>Claimed vesting.</p>
 <h5 id="attributes_181">Attributes</h5>
 <table>
 <thead>
@@ -9620,7 +8428,6 @@ block number as the type might suggest.</p>
 </table>
 <hr />
 <h4 id="vestingschedulesupdated">VestingSchedulesUpdated</h4>
-<p>Updated vesting schedules.</p>
 <h5 id="attributes_182">Attributes</h5>
 <table>
 <thead>
@@ -9642,8 +8449,6 @@ block number as the type might suggest.</p>
 <h3 id="storage-functions_18">Storage functions</h3>
 <hr />
 <h4 id="vestingschedules">VestingSchedules</h4>
-<p>Vesting schedules of an account.</p>
-<p>VestingSchedules: map AccountId =&gt; Vec&lt;VestingSchedule&gt;</p>
 <h5 id="python_224">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Vesting', 'VestingSchedules', ['AccountId']
@@ -9663,7 +8468,6 @@ block number as the type might suggest.</p>
 <h3 id="constants_9">Constants</h3>
 <hr />
 <h4 id="minvestedtransfer">MinVestedTransfer</h4>
-<p>The minimum amount transferred to call <code>vested_transfer</code>.</p>
 <h5 id="value_33">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
@@ -9674,35 +8478,22 @@ block number as the type might suggest.</p>
 <h3 id="errors_14">Errors</h3>
 <hr />
 <h4 id="zerovestingperiod">ZeroVestingPeriod</h4>
-<p>Vesting period is zero</p>
 <hr />
 <h4 id="zerovestingperiodcount">ZeroVestingPeriodCount</h4>
-<p>Number of vests is zero</p>
 <hr />
 <h4 id="insufficientbalancetolock">InsufficientBalanceToLock</h4>
-<p>Insufficient amount of balance to lock</p>
 <hr />
 <h4 id="toomanyvestingschedules">TooManyVestingSchedules</h4>
-<p>This account have too many vesting schedules</p>
 <hr />
 <h4 id="amountlow">AmountLow</h4>
-<p>The vested transfer amount is too low</p>
 <hr />
 <h4 id="maxvestingschedulesexceeded">MaxVestingSchedulesExceeded</h4>
-<p>Failed because the maximum vesting schedules was exceeded</p>
 <hr />
 <h2 id="msa">Msa</h2>
 <hr />
 <h3 id="calls_16">Calls</h3>
 <hr />
 <h4 id="create">create</h4>
-<p>Creates an MSA for the Origin (sender of the transaction).  Origin is assigned an MSA ID.</p>
-<p># Events
-* [<code>Event::MsaCreated</code>]</p>
-<p># Errors</p>
-<ul>
-<li>[<code>Error::KeyAlreadyRegistered</code>] - MSA is already registered to the Origin.</li>
-</ul>
 <h5 id="attributes_183">Attributes</h5>
 <p>No attributes</p>
 <h5 id="python_226">Python</h5>
@@ -9712,24 +8503,6 @@ block number as the type might suggest.</p>
 </code></pre>
 <hr />
 <h4 id="create_sponsored_account_with_delegation">create_sponsored_account_with_delegation</h4>
-<p><code>Origin</code> MSA creates an MSA on behalf of <code>delegator_key</code>, creates a Delegation with the <code>delegator_key</code>&amp;#x27;s MSA as the Delegator and <code>origin</code> as <code>Provider</code>. Deposits events <a href="Event::MsaCreated"><code>MsaCreated</code></a> and <a href="Event::DelegationGranted"><code>DelegationGranted</code></a>.</p>
-<p># Remarks
-* Origin MUST be the provider
-* Signatures should be over the [<code>AddProvider</code>] struct</p>
-<p># Events
-* [<code>Event::MsaCreated</code>]
-* [<code>Event::DelegationGranted</code>]</p>
-<p># Errors</p>
-<ul>
-<li>[<code>Error::UnauthorizedProvider</code>] - payload&amp;#x27;s MSA does not match given provider MSA.</li>
-<li>[<code>Error::InvalidSignature</code>] - <code>proof</code> verification fails; <code>delegator_key</code> must have signed <code>add_provider_payload</code></li>
-<li>[<code>Error::NoKeyExists</code>] - there is no MSA for <code>origin</code>.</li>
-<li>[<code>Error::KeyAlreadyRegistered</code>] - there is already an MSA for <code>delegator_key</code>.</li>
-<li>[<code>Error::ProviderNotRegistered</code>] - the a non-provider MSA is used as the provider</li>
-<li>[<code>Error::ProofNotYetValid</code>] - <code>add_provider_payload</code> expiration is too far in the future</li>
-<li>[<code>Error::ProofHasExpired</code>] - <code>add_provider_payload</code> expiration is in the past</li>
-<li>[<code>Error::SignatureAlreadySubmitted</code>] - signature has already been used</li>
-</ul>
 <h5 id="attributes_184">Attributes</h5>
 <table>
 <thead>
@@ -9772,14 +8545,6 @@ block number as the type might suggest.</p>
 </code></pre>
 <hr />
 <h4 id="create_provider">create_provider</h4>
-<p>Adds an association between MSA id and ProviderRegistryEntry. As of now, the
-only piece of metadata we are recording is provider name.</p>
-<p># Events
-* [<code>Event::ProviderCreated</code>]</p>
-<p># Errors
-* [<code>Error::NoKeyExists</code>] - origin does not have an MSA
-* [<code>Error::ExceedsMaxProviderNameSize</code>] - Too long of a provider name
-* [<code>Error::DuplicateProviderRegistryEntry</code>] - a ProviderRegistryEntry associated with the given MSA id already exists.</p>
 <h5 id="attributes_185">Attributes</h5>
 <table>
 <thead>
@@ -9802,22 +8567,6 @@ only piece of metadata we are recording is provider name.</p>
 </code></pre>
 <hr />
 <h4 id="grant_delegation">grant_delegation</h4>
-<p>Creates a new Delegation for an existing MSA, with <code>origin</code> as the Provider and <code>delegator_key</code> is the delegator.
-Since it is being sent on the Delegator&amp;#x27;s behalf, it requires the Delegator to authorize the new Delegation.</p>
-<p># Remarks
-* Origin MUST be the provider
-* Signatures should be over the [<code>AddProvider</code>] struct</p>
-<p># Events
-* [<code>Event::DelegationGranted</code>]</p>
-<p># Errors
-* [<code>Error::AddProviderSignatureVerificationFailed</code>] - <code>origin</code>&amp;#x27;s MSA ID does not equal <code>add_provider_payload.authorized_msa_id</code>.
-* [<code>Error::DuplicateProvider</code>] - there is already a Delegation for <code>origin</code> MSA and <code>delegator_key</code> MSA.
-* [<code>Error::UnauthorizedProvider</code>] - <code>add_provider_payload.authorized_msa_id</code>  does not match MSA ID of <code>delegator_key</code>.
-* [<code>Error::InvalidSelfProvider</code>] - Cannot delegate to the same MSA
-* [<code>Error::InvalidSignature</code>] - <code>proof</code> verification fails; <code>delegator_key</code> must have signed <code>add_provider_payload</code>
-* [<code>Error::NoKeyExists</code>] - there is no MSA for <code>origin</code> or <code>delegator_key</code>.
-* [<code>Error::ProviderNotRegistered</code>] - the a non-provider MSA is used as the provider
-* [<code>Error::UnauthorizedDelegator</code>] - Origin attempted to add a delegate for someone else&amp;#x27;s MSA</p>
 <h5 id="attributes_186">Attributes</h5>
 <table>
 <thead>
@@ -9860,15 +8609,6 @@ Since it is being sent on the Delegator&amp;#x27;s behalf, it requires the Deleg
 </code></pre>
 <hr />
 <h4 id="revoke_delegation_by_delegator">revoke_delegation_by_delegator</h4>
-<p>Delegator (Origin) MSA terminates a delegation relationship with the <code>Provider</code> MSA. Deposits event<a href="Event::DelegationRevoked"><code>DelegationRevoked</code></a>.</p>
-<p># Events
-* [<code>Event::DelegationRevoked</code>]</p>
-<p># Errors</p>
-<ul>
-<li>[<code>Error::NoKeyExists</code>] - origin does not have an MSA</li>
-<li>[<code>Error::DelegationRevoked</code>] - the delegation has already been revoked.</li>
-<li>[<code>Error::DelegationNotFound</code>] - there is not delegation relationship between Origin and Delegator or Origin and Delegator are the same.</li>
-</ul>
 <h5 id="attributes_187">Attributes</h5>
 <table>
 <thead>
@@ -9891,23 +8631,6 @@ Since it is being sent on the Delegator&amp;#x27;s behalf, it requires the Deleg
 </code></pre>
 <hr />
 <h4 id="add_public_key_to_msa">add_public_key_to_msa</h4>
-<p>Adds a given <code>new_key</code> to <code>msa_id</code> of the account signing <code>msa_owner_proof</code>, which must match the MSA in <code>add_key_payload</code>.
-The <code>new_key</code> must sign the <code>add_key_payload</code> to authorize the addition.</p>
-<p># Remarks
-* Origin can be same as msa owner.
-* Signatures should be over the [<code>AddKeyData</code>] struct</p>
-<p># Events
-* [<code>Event::PublicKeyAdded</code>]</p>
-<p># Errors</p>
-<ul>
-<li>[<code>Error::MsaOwnershipInvalidSignature</code>] - <code>key</code> is not a valid signer of the provided <code>add_key_payload</code>.</li>
-<li>[<code>Error::NewKeyOwnershipInvalidSignature</code>] - <code>key</code> is not a valid signer of the provided <code>add_key_payload</code>.</li>
-<li>[<code>Error::NoKeyExists</code>] - the MSA id for the account in <code>add_key_payload</code> does not exist.</li>
-<li>[<code>Error::NotMsaOwner</code>] - Origin&amp;#x27;s MSA is not the same as &amp;#x27;add_key_payload` MSA. Essentially you can only add a key to your own MSA.</li>
-<li>[<code>Error::ProofHasExpired</code>] - the current block is less than the <code>expired</code> bock number set in <code>AddKeyData</code>.</li>
-<li>[<code>Error::ProofNotYetValid</code>] - the <code>expired</code> block number set in <code>AddKeyData</code> is greater than the current block number plus mortality_block_limit().</li>
-<li>[<code>Error::SignatureAlreadySubmitted</code>] - signature has already been used.</li>
-</ul>
 <h5 id="attributes_188">Attributes</h5>
 <table>
 <thead>
@@ -9959,16 +8682,6 @@ The <code>new_key</code> must sign the <code>add_key_payload</code> to authorize
 </code></pre>
 <hr />
 <h4 id="delete_msa_public_key">delete_msa_public_key</h4>
-<p>Remove a key associated with an MSA by expiring it at the current block.</p>
-<p># Remarks
-* Removal of key deletes the association of the key with the MSA.
-* The key can be re-added to same or another MSA if needed.</p>
-<p># Events
-* [<code>Event::PublicKeyDeleted</code>]</p>
-<p># Errors
-* [<code>Error::InvalidSelfRemoval</code>] - <code>origin</code> and <code>key</code> are the same.
-* [<code>Error::NotKeyOwner</code>] - <code>origin</code> does not own the MSA ID associated with <code>key</code>.
-* [<code>Error::NoKeyExists</code>] - <code>origin</code> or <code>key</code> are not associated with <code>origin</code>&amp;#x27;s MSA ID.</p>
 <h5 id="attributes_189">Attributes</h5>
 <table>
 <thead>
@@ -9991,15 +8704,6 @@ The <code>new_key</code> must sign the <code>add_key_payload</code> to authorize
 </code></pre>
 <hr />
 <h4 id="revoke_delegation_by_provider">revoke_delegation_by_provider</h4>
-<p>Provider MSA terminates Delegation with a Delegator MSA by expiring the Delegation at the current block.</p>
-<p># Events
-* [<code>Event::DelegationRevoked</code>]</p>
-<p># Errors</p>
-<ul>
-<li>[<code>Error::NoKeyExists</code>] - <code>provider_key</code> does not have an MSA key.</li>
-<li>[<code>Error::DelegationRevoked</code>] - delegation is already revoked</li>
-<li>[<code>Error::DelegationNotFound</code>] - no Delegation found between origin MSA and delegator MSA.</li>
-</ul>
 <h5 id="attributes_190">Attributes</h5>
 <table>
 <thead>
@@ -10022,14 +8726,6 @@ The <code>new_key</code> must sign the <code>add_key_payload</code> to authorize
 </code></pre>
 <hr />
 <h4 id="grant_schema_permissions">grant_schema_permissions</h4>
-<p>Grants a list of schema permissions to a provider. Schemas that have already
-been granted are ignored. Schemas that are revoked are re-granted.</p>
-<p># Events
-* [<code>Event::DelegationUpdated</code>]</p>
-<p># Errors
-* [<code>Error::NoKeyExists</code>] no MSA for <code>origin</code>.
-* [<code>Error::DelegationNotFound</code>] no delegation relationship between Origin and Delegator or Origin and Delegator are the same.
-* [<code>Error::ExceedsMaxSchemaGrantsPerDelegation</code>] the limit of maximum allowed grants per delegation relationship has been exceeded.</p>
 <h5 id="attributes_191">Attributes</h5>
 <table>
 <thead>
@@ -10059,14 +8755,6 @@ been granted are ignored. Schemas that are revoked are re-granted.</p>
 </code></pre>
 <hr />
 <h4 id="revoke_schema_permissions">revoke_schema_permissions</h4>
-<p>Revokes a list of schema permissions to a provider. Attempting to revoke a Schemas that have already
-been revoked are ignored.</p>
-<p># Events
-- <a href="Event::DelegationUpdated">DelegationUpdated</a></p>
-<p># Errors
-- <a href="Error::NoKeyExists"><code>NoKeyExists</code></a> - If there is not MSA for <code>origin</code>.
-- <a href="Error::DelegationNotFound"><code>DelegationNotFound</code></a> - If there is not delegation relationship between Origin and Delegator or Origin and Delegator are the same.
-- <a href="Error::SchemaNotGranted"><code>SchemaNotGranted</code></a> - If attempting to revoke a schema that has not previously been granted.</p>
 <h5 id="attributes_192">Attributes</h5>
 <table>
 <thead>
@@ -10096,17 +8784,6 @@ been revoked are ignored.</p>
 </code></pre>
 <hr />
 <h4 id="retire_msa">retire_msa</h4>
-<p>Retires an MSA</p>
-<p>When a user wants to disassociate themselves from Frequency, they can retire their MSA for free provided that:
- (1) They own the MSA
- (2) There is only one account key
- (3) The MSA is not a registered provider.</p>
-<p>This does not currently remove any messages related to the MSA.</p>
-<p># Events
-* [<code>Event::PublicKeyDeleted</code>]
-* [<code>Event::MsaRetired</code>]</p>
-<p># Errors
-* [<code>Error::NoKeyExists</code>] - <code>delegator</code> does not have an MSA key.</p>
 <h5 id="attributes_193">Attributes</h5>
 <p>No attributes</p>
 <h5 id="python_236">Python</h5>
@@ -10118,7 +8795,6 @@ been revoked are ignored.</p>
 <h3 id="events_16">Events</h3>
 <hr />
 <h4 id="msacreated">MsaCreated</h4>
-<p>A new Message Service Account was created with a new MessageSourceId</p>
 <h5 id="attributes_194">Attributes</h5>
 <table>
 <thead>
@@ -10143,7 +8819,6 @@ been revoked are ignored.</p>
 </table>
 <hr />
 <h4 id="publickeyadded">PublicKeyAdded</h4>
-<p>An AccountId has been associated with a MessageSourceId</p>
 <h5 id="attributes_195">Attributes</h5>
 <table>
 <thead>
@@ -10168,7 +8843,6 @@ been revoked are ignored.</p>
 </table>
 <hr />
 <h4 id="publickeydeleted">PublicKeyDeleted</h4>
-<p>An AccountId had all permissions revoked from its MessageSourceId</p>
 <h5 id="attributes_196">Attributes</h5>
 <table>
 <thead>
@@ -10188,7 +8862,6 @@ been revoked are ignored.</p>
 </table>
 <hr />
 <h4 id="delegationgranted">DelegationGranted</h4>
-<p>A delegation relationship was added with the given provider and delegator</p>
 <h5 id="attributes_197">Attributes</h5>
 <table>
 <thead>
@@ -10213,7 +8886,6 @@ been revoked are ignored.</p>
 </table>
 <hr />
 <h4 id="providercreated">ProviderCreated</h4>
-<p>A Provider-MSA relationship was registered</p>
 <h5 id="attributes_198">Attributes</h5>
 <table>
 <thead>
@@ -10233,7 +8905,6 @@ been revoked are ignored.</p>
 </table>
 <hr />
 <h4 id="delegationrevoked">DelegationRevoked</h4>
-<p>The Delegator revoked its delegation to the Provider</p>
 <h5 id="attributes_199">Attributes</h5>
 <table>
 <thead>
@@ -10258,7 +8929,6 @@ been revoked are ignored.</p>
 </table>
 <hr />
 <h4 id="msaretired">MsaRetired</h4>
-<p>The MSA has been retired.</p>
 <h5 id="attributes_200">Attributes</h5>
 <table>
 <thead>
@@ -10278,7 +8948,6 @@ been revoked are ignored.</p>
 </table>
 <hr />
 <h4 id="delegationupdated">DelegationUpdated</h4>
-<p>A an update to the delegation occurred (ex. schema permissions where updated).</p>
 <h5 id="attributes_201">Attributes</h5>
 <table>
 <thead>
@@ -10305,10 +8974,6 @@ been revoked are ignored.</p>
 <h3 id="storage-functions_19">Storage functions</h3>
 <hr />
 <h4 id="currentmsaidentifiermaximum">CurrentMsaIdentifierMaximum</h4>
-<p>Storage type for the current MSA identifier maximum.
- We need to track this value because the identifier maximum
- is incremented each time a new identifier is created.
- - Value: The current maximum MSA Id</p>
 <h5 id="python_237">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'CurrentMsaIdentifierMaximum', []
@@ -10319,9 +8984,6 @@ been revoked are ignored.</p>
 </code></pre>
 <hr />
 <h4 id="delegatorandprovidertodelegation">DelegatorAndProviderToDelegation</h4>
-<p>Storage type for mapping the relationship between a Delegator and its Provider.
- - Keys: Delegator MSA, Provider MSA
- - Value: <a href="common_primitives::msa::Delegation"><code>Delegation</code></a></p>
 <h5 id="python_238">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'DelegatorAndProviderToDelegation', ['u64', 'u64']
@@ -10332,9 +8994,6 @@ been revoked are ignored.</p>
 </code></pre>
 <hr />
 <h4 id="providertoregistryentry">ProviderToRegistryEntry</h4>
-<p>Provider registration information
- - Key: Provider MSA Id
- - Value: <a href="common_primitives::msa::ProviderRegistryEntry"><code>ProviderRegistryEntry</code></a></p>
 <h5 id="python_239">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'ProviderToRegistryEntry', ['u64']
@@ -10345,9 +9004,6 @@ been revoked are ignored.</p>
 </code></pre>
 <hr />
 <h4 id="publickeytomsaid">PublicKeyToMsaId</h4>
-<p>Storage type for key to MSA information
- - Key: AccountId
- - Value: [<code>MessageSourceId</code>]</p>
 <h5 id="python_240">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'PublicKeyToMsaId', ['AccountId']
@@ -10358,9 +9014,6 @@ been revoked are ignored.</p>
 </code></pre>
 <hr />
 <h4 id="publickeycountformsaid">PublicKeyCountForMsaId</h4>
-<p>Storage type for a reference counter of the number of keys associated to an MSA
- - Key: MSA Id
- - Value: [<code>u8</code>] Counter of Keys associated with the MSA</p>
 <h5 id="python_241">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'PublicKeyCountForMsaId', ['u64']
@@ -10371,10 +9024,6 @@ been revoked are ignored.</p>
 </code></pre>
 <hr />
 <h4 id="payloadsignatureregistry">PayloadSignatureRegistry</h4>
-<p>PayloadSignatureRegistry is used to prevent replay attacks for extrinsics
- that take an externally-signed payload.
- For this to work, the payload must include a mortality block number, which
- is used in lieu of a monotonically increasing nonce.</p>
 <h5 id="python_242">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'PayloadSignatureRegistry', [
@@ -10391,169 +9040,137 @@ been revoked are ignored.</p>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
+<h4 id="payloadsignaturebucketcount">PayloadSignatureBucketCount</h4>
+<h5 id="python_243">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'Msa', 'PayloadSignatureBucketCount', ['u32']
+)
+</code></pre>
+<h5 id="return-value_105">Return value</h5>
+<pre><code class="language-python">'u32'
+</code></pre>
+<hr />
 <h3 id="constants_10">Constants</h3>
 <hr />
 <h4 id="maxpublickeyspermsa">MaxPublicKeysPerMsa</h4>
-<p>Maximum count of keys allowed per MSA</p>
 <h5 id="value_34">Value</h5>
 <pre><code class="language-python">25
 </code></pre>
-<h5 id="python_243">Python</h5>
+<h5 id="python_244">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxPublicKeysPerMsa')
 </code></pre>
 <hr />
 <h4 id="maxschemagrantsperdelegation">MaxSchemaGrantsPerDelegation</h4>
-<p>Maximum count of schemas granted for publishing data per Provider</p>
 <h5 id="value_35">Value</h5>
 <pre><code class="language-python">30
 </code></pre>
-<h5 id="python_244">Python</h5>
+<h5 id="python_245">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxSchemaGrantsPerDelegation')
 </code></pre>
 <hr />
 <h4 id="maxprovidernamesize">MaxProviderNameSize</h4>
-<p>Maximum provider name size allowed per MSA association</p>
 <h5 id="value_36">Value</h5>
 <pre><code class="language-python">16
 </code></pre>
-<h5 id="python_245">Python</h5>
+<h5 id="python_246">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxProviderNameSize')
 </code></pre>
 <hr />
 <h4 id="mortalitywindowsize">MortalityWindowSize</h4>
-<p>The number of blocks per virtual &quot;bucket&quot; in the PayloadSignatureRegistry
- Virtual buckets are the first part of the double key in the PayloadSignatureRegistry
- StorageDoubleMap.  This permits a key grouping that enables mass removal
- of stale signatures which are no longer at risk of replay.</p>
 <h5 id="value_37">Value</h5>
 <pre><code class="language-python">100
 </code></pre>
-<h5 id="python_246">Python</h5>
+<h5 id="python_247">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MortalityWindowSize')
 </code></pre>
 <hr />
 <h4 id="maxsignaturesperbucket">MaxSignaturesPerBucket</h4>
-<p>The maximum number of signatures that can be assigned to a virtual bucket. In other
- words, no more than this many signatures can be assigned a specific first-key value.</p>
 <h5 id="value_38">Value</h5>
 <pre><code class="language-python">50000
 </code></pre>
-<h5 id="python_247">Python</h5>
+<h5 id="python_248">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxSignaturesPerBucket')
 </code></pre>
 <hr />
 <h4 id="numberofbuckets">NumberOfBuckets</h4>
-<p>The total number of virtual buckets
- There are exactly NumberOfBuckets first-key values in PayloadSignatureRegistry.</p>
 <h5 id="value_39">Value</h5>
 <pre><code class="language-python">2
 </code></pre>
-<h5 id="python_248">Python</h5>
+<h5 id="python_249">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'NumberOfBuckets')
+</code></pre>
+<hr />
+<h4 id="maxsignaturesstored">MaxSignaturesStored</h4>
+<h5 id="value_40">Value</h5>
+<pre><code class="language-python">100000
+</code></pre>
+<h5 id="python_250">Python</h5>
+<pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxSignaturesStored')
 </code></pre>
 <hr />
 <h3 id="errors_15">Errors</h3>
 <hr />
 <h4 id="keyalreadyregistered">KeyAlreadyRegistered</h4>
-<p>Tried to add a key that was already registered to an MSA</p>
 <hr />
 <h4 id="msaidoverflow">MsaIdOverflow</h4>
-<p>MsaId values have reached the maximum</p>
 <hr />
 <h4 id="msaownershipinvalidsignature">MsaOwnershipInvalidSignature</h4>
-<p>Cryptographic signature verification failed for adding a key to MSA</p>
 <hr />
 <h4 id="notmsaowner">NotMsaOwner</h4>
-<p>Ony the MSA Owner may perform the operation</p>
 <hr />
 <h4 id="invalidsignature">InvalidSignature</h4>
-<p>Cryptographic signature failed verification</p>
 <hr />
 <h4 id="notkeyowner">NotKeyOwner</h4>
-<p>Only the KeyOwner may perform the operation</p>
 <hr />
 <h4 id="nokeyexists">NoKeyExists</h4>
-<p>An operation was attempted with an unknown Key</p>
 <hr />
 <h4 id="keylimitexceeded">KeyLimitExceeded</h4>
-<p>The number of key values has reached its maximum</p>
 <hr />
 <h4 id="invalidselfremoval">InvalidSelfRemoval</h4>
-<p>A transaction&amp;#x27;s Origin (AccountId) may not remove itself</p>
 <hr />
 <h4 id="invalidselfprovider">InvalidSelfProvider</h4>
-<p>An MSA may not be its own delegate</p>
 <hr />
 <h4 id="invalidschemaid">InvalidSchemaId</h4>
-<p>An invalid schema Id was provided</p>
 <hr />
 <h4 id="duplicateprovider">DuplicateProvider</h4>
-<p>The delegation relationship already exists for the given MSA Ids</p>
 <hr />
 <h4 id="addprovidersignatureverificationfailed">AddProviderSignatureVerificationFailed</h4>
-<p>Cryptographic signature verification failed for adding the Provider as delegate</p>
 <hr />
 <h4 id="unauthorizeddelegator">UnauthorizedDelegator</h4>
-<p>Origin attempted to add a delegate for someone else&amp;#x27;s MSA</p>
 <hr />
 <h4 id="unauthorizedprovider">UnauthorizedProvider</h4>
-<p>Origin attempted to add a different delegate than what was in the payload</p>
 <hr />
 <h4 id="delegationrevoked_1">DelegationRevoked</h4>
-<p>The operation was attempted with a revoked delegation</p>
 <hr />
 <h4 id="delegationnotfound">DelegationNotFound</h4>
-<p>The operation was attempted with an unknown delegation</p>
 <hr />
 <h4 id="duplicateproviderregistryentry">DuplicateProviderRegistryEntry</h4>
-<p>The MSA id submitted for provider creation has already been associated with a provider</p>
 <hr />
 <h4 id="exceedsmaxprovidernamesize">ExceedsMaxProviderNameSize</h4>
-<p>The maximum length for a provider name has been exceeded</p>
 <hr />
 <h4 id="exceedsmaxschemagrantsperdelegation">ExceedsMaxSchemaGrantsPerDelegation</h4>
-<p>The maximum number of schema grants has been exceeded</p>
 <hr />
 <h4 id="schemanotgranted">SchemaNotGranted</h4>
-<p>Provider is not permitted to publish for given schema_id</p>
 <hr />
 <h4 id="providernotregistered">ProviderNotRegistered</h4>
-<p>The operation was attempted with a non-provider MSA</p>
 <hr />
 <h4 id="proofhasexpired">ProofHasExpired</h4>
-<p>The submitted proof has expired; the current block is less the expiration block</p>
 <hr />
 <h4 id="proofnotyetvalid">ProofNotYetValid</h4>
-<p>The submitted proof expiration block is too far in the future</p>
 <hr />
 <h4 id="signaturealreadysubmitted">SignatureAlreadySubmitted</h4>
-<p>Attempted to add a signature when the signature is already in the registry</p>
 <hr />
 <h4 id="newkeyownershipinvalidsignature">NewKeyOwnershipInvalidSignature</h4>
-<p>Cryptographic signature verification failed for proving ownership of new public-key.</p>
 <hr />
 <h4 id="cannotpredictvaliditypastcurrentblock">CannotPredictValidityPastCurrentBlock</h4>
-<p>Attempted to request validity of schema permission or delegation in the future.</p>
+<hr />
+<h4 id="signatureregistrylimitexceeded">SignatureRegistryLimitExceeded</h4>
 <hr />
 <h2 id="messages">Messages</h2>
 <hr />
 <h3 id="calls_17">Calls</h3>
 <hr />
 <h4 id="add_ipfs_message">add_ipfs_message</h4>
-<p>Adds a message for a resource hosted on IPFS. The payload storage will
-contain both a
-<a href="https://docs.ipfs.io/concepts/content-addressing/#identifier-formats">CID</a>
-as well as a 32-bit payload length.
-The actual payload will be on IPFS</p>
-<p># Events
-* [<code>Event::MessagesStored</code>] - In the next block</p>
-<p># Errors
-* [<code>Error::ExceedsMaxMessagePayloadSizeBytes</code>] - Payload is too large
-* [<code>Error::InvalidSchemaId</code>] - Schema not found
-* [<code>Error::InvalidPayloadLocation</code>] - The schema is not an IPFS payload location
-* [<code>Error::InvalidMessageSourceAccount</code>] - Origin must be from an MSA
-* [<code>Error::TooManyMessagesInBlock</code>] - Block is full of messages already
-* [<code>Error::TypeConversionOverflow</code>] - Failed to add the message to storage as it is very full</p>
 <h5 id="attributes_202">Attributes</h5>
 <table>
 <thead>
@@ -10577,7 +9194,7 @@ The actual payload will be on IPFS</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_249">Python</h5>
+<h5 id="python_251">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Messages', 'add_ipfs_message', {
     'cid': 'Bytes',
@@ -10588,17 +9205,6 @@ The actual payload will be on IPFS</p>
 </code></pre>
 <hr />
 <h4 id="add_onchain_message">add_onchain_message</h4>
-<p>Add an on-chain message for a given schema id.</p>
-<p># Events
-* [<code>Event::MessagesStored</code>] - In the next block</p>
-<p># Errors
-* [<code>Error::ExceedsMaxMessagePayloadSizeBytes</code>] - Payload is too large
-* [<code>Error::InvalidSchemaId</code>] - Schema not found
-* [<code>Error::InvalidPayloadLocation</code>] - The schema is not an IPFS payload location
-* [<code>Error::InvalidMessageSourceAccount</code>] - Origin must be from an MSA
-* [<code>Error::UnAuthorizedDelegate</code>] - Trying to add a message without a proper delegation between the origin and the on_behalf_of MSA
-* [<code>Error::TooManyMessagesInBlock</code>] - Block is full of messages already
-* [<code>Error::TypeConversionOverflow</code>] - Failed to add the message to storage as it is very full</p>
 <h5 id="attributes_203">Attributes</h5>
 <table>
 <thead>
@@ -10622,7 +9228,7 @@ The actual payload will be on IPFS</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_250">Python</h5>
+<h5 id="python_252">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Messages', 'add_onchain_message', {
     'on_behalf_of': (None, 'u64'),
@@ -10635,7 +9241,6 @@ The actual payload will be on IPFS</p>
 <h3 id="events_17">Events</h3>
 <hr />
 <h4 id="messagesstored">MessagesStored</h4>
-<p>Messages are stored for a specified schema id and block number</p>
 <h5 id="attributes_204">Attributes</h5>
 <table>
 <thead>
@@ -10666,34 +9271,8 @@ The actual payload will be on IPFS</p>
 <hr />
 <h3 id="storage-functions_20">Storage functions</h3>
 <hr />
-<h4 id="blockmessages">BlockMessages</h4>
-<p>A temporary storage of messages, given a schema id, for a duration of block period.
- At the start of the next block this storage is cleared and moved into Messages storage.
- - Value: List of Messages</p>
-<h5 id="python_251">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'Messages', 'BlockMessages', []
-)
-</code></pre>
-<h5 id="return-value_105">Return value</h5>
-<pre><code class="language-python">[
-    (
-        {
-            'index': 'u16',
-            'msa_id': (None, 'u64'),
-            'payload': 'Bytes',
-            'provider_msa_id': 'u64',
-        },
-        'u16',
-    ),
-]
-</code></pre>
-<hr />
 <h4 id="messages_1">Messages</h4>
-<p>A permanent storage for messages mapped by block number and schema id.
- - Keys: BlockNumber, Schema Id
- - Value: List of Messages</p>
-<h5 id="python_252">Python</h5>
+<h5 id="python_253">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Messages', 'Messages', ['u32', 'u16']
 )
@@ -10709,66 +9288,55 @@ The actual payload will be on IPFS</p>
 ]
 </code></pre>
 <hr />
+<h4 id="blockmessageindex">BlockMessageIndex</h4>
+<h5 id="python_254">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'Messages', 'BlockMessageIndex', []
+)
+</code></pre>
+<h5 id="return-value_107">Return value</h5>
+<pre><code class="language-python">'u16'
+</code></pre>
+<hr />
 <h3 id="constants_11">Constants</h3>
 <hr />
 <h4 id="maxmessagesperblock">MaxMessagesPerBlock</h4>
-<p>The maximum number of messages in a block.</p>
-<h5 id="value_40">Value</h5>
+<h5 id="value_41">Value</h5>
 <pre><code class="language-python">7000
 </code></pre>
-<h5 id="python_253">Python</h5>
+<h5 id="python_255">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Messages', 'MaxMessagesPerBlock')
 </code></pre>
 <hr />
 <h4 id="maxmessagepayloadsizebytes">MaxMessagePayloadSizeBytes</h4>
-<p>The maximum size of a message payload bytes.</p>
-<h5 id="value_41">Value</h5>
+<h5 id="value_42">Value</h5>
 <pre><code class="language-python">51200
 </code></pre>
-<h5 id="python_254">Python</h5>
+<h5 id="python_256">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Messages', 'MaxMessagePayloadSizeBytes')
 </code></pre>
 <hr />
 <h3 id="errors_16">Errors</h3>
 <hr />
 <h4 id="toomanymessagesinblock">TooManyMessagesInBlock</h4>
-<p>Too many messages are added to existing block</p>
 <hr />
 <h4 id="exceedsmaxmessagepayloadsizebytes">ExceedsMaxMessagePayloadSizeBytes</h4>
-<p>Message payload size is too large</p>
 <hr />
 <h4 id="typeconversionoverflow">TypeConversionOverflow</h4>
-<p>Type Conversion Overflow</p>
 <hr />
 <h4 id="invalidmessagesourceaccount">InvalidMessageSourceAccount</h4>
-<p>Invalid Message Source Account</p>
 <hr />
 <h4 id="invalidschemaid_1">InvalidSchemaId</h4>
-<p>Invalid SchemaId or Schema not found</p>
 <hr />
 <h4 id="unauthorizeddelegate">UnAuthorizedDelegate</h4>
-<p>UnAuthorizedDelegate</p>
 <hr />
 <h4 id="invalidpayloadlocation">InvalidPayloadLocation</h4>
-<p>Invalid payload location</p>
 <hr />
 <h2 id="schemas">Schemas</h2>
 <hr />
 <h3 id="calls_18">Calls</h3>
 <hr />
 <h4 id="create_schema">create_schema</h4>
-<p>Adds a given schema to storage. The schema in question must be of length
-between the min and max model size allowed for schemas (see pallet
-constants above). If the pallet&amp;#x27;s maximum schema limit has been
-fulfilled by the time this extrinsic is called, a SchemaCountOverflow error
-will be thrown.</p>
-<p># Events
-* [<code>Event::SchemaCreated</code>]</p>
-<p># Errors
-* [<code>Error::LessThanMinSchemaModelBytes</code>] - The schema&amp;#x27;s length is less than the minimum schema length
-* [<code>Error::ExceedsMaxSchemaModelBytes</code>] - The schema&amp;#x27;s length is greater than the maximum schema length
-* [<code>Error::InvalidSchema</code>] - Schema is malformed in some way
-* [<code>Error::SchemaCountOverflow</code>] - The schema count has exceeded its bounds</p>
 <h5 id="attributes_205">Attributes</h5>
 <table>
 <thead>
@@ -10792,7 +9360,7 @@ will be thrown.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_255">Python</h5>
+<h5 id="python_257">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Schemas', 'create_schema', {
     'model': 'Bytes',
@@ -10809,14 +9377,6 @@ will be thrown.</p>
 </code></pre>
 <hr />
 <h4 id="set_max_schema_model_bytes">set_max_schema_model_bytes</h4>
-<p>Root and Governance can set a new max value for Schema bytes.
-Must be &lt;= the limit of the Schema BoundedVec used for registration.</p>
-<p># Requires
-* Root Origin</p>
-<p># Events
-* [<code>Event::SchemaMaxSizeChanged</code>]</p>
-<p># Errors
-* [<code>Error::ExceedsMaxSchemaModelBytes</code>] - Cannot set to above the hard coded maximum [<code>Config::SchemaModelMaxBytesBoundedVecLimit</code>]</p>
 <h5 id="attributes_206">Attributes</h5>
 <table>
 <thead>
@@ -10832,7 +9392,7 @@ Must be &lt;= the limit of the Schema BoundedVec used for registration.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_256">Python</h5>
+<h5 id="python_258">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Schemas', 'set_max_schema_model_bytes', {'max_size': 'u32'}
 )
@@ -10841,7 +9401,6 @@ Must be &lt;= the limit of the Schema BoundedVec used for registration.</p>
 <h3 id="events_18">Events</h3>
 <hr />
 <h4 id="schemacreated">SchemaCreated</h4>
-<p>Emitted when a schema is registered. [who, schemas id]</p>
 <h5 id="attributes_207">Attributes</h5>
 <table>
 <thead>
@@ -10866,7 +9425,6 @@ Must be &lt;= the limit of the Schema BoundedVec used for registration.</p>
 </table>
 <hr />
 <h4 id="schemamaxsizechanged">SchemaMaxSizeChanged</h4>
-<p>Emitted when maximum size for schema model is changed.</p>
 <h5 id="attributes_208">Attributes</h5>
 <table>
 <thead>
@@ -10888,41 +9446,32 @@ Must be &lt;= the limit of the Schema BoundedVec used for registration.</p>
 <h3 id="storage-functions_21">Storage functions</h3>
 <hr />
 <h4 id="governanceschemamodelmaxbytes">GovernanceSchemaModelMaxBytes</h4>
-<p>Storage for the Governance managed max bytes for schema model
- Allows for altering the max bytes without a full chain upgrade
- - Value: Max Bytes</p>
-<h5 id="python_257">Python</h5>
+<h5 id="python_259">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Schemas', 'GovernanceSchemaModelMaxBytes', []
 )
 </code></pre>
-<h5 id="return-value_107">Return value</h5>
+<h5 id="return-value_108">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="currentschemaidentifiermaximum">CurrentSchemaIdentifierMaximum</h4>
-<p>Storage type for current number of schemas
- Useful for retrieving latest schema id
- - Value: Last Schema Id</p>
-<h5 id="python_258">Python</h5>
+<h5 id="python_260">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Schemas', 'CurrentSchemaIdentifierMaximum', []
 )
 </code></pre>
-<h5 id="return-value_108">Return value</h5>
+<h5 id="return-value_109">Return value</h5>
 <pre><code class="language-python">'u16'
 </code></pre>
 <hr />
 <h4 id="schemas_1">Schemas</h4>
-<p>Storage for message schema struct data
- - Key: Schema Id
- - Value: <a href="Schema"><code>Schema</code></a></p>
-<h5 id="python_259">Python</h5>
+<h5 id="python_261">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Schemas', 'Schemas', ['u16']
 )
 </code></pre>
-<h5 id="return-value_109">Return value</h5>
+<h5 id="return-value_110">Return value</h5>
 <pre><code class="language-python">{
     'model': 'Bytes',
     'model_type': ('AvroBinary', 'Parquet'),
@@ -10933,45 +9482,38 @@ Must be &lt;= the limit of the Schema BoundedVec used for registration.</p>
 <h3 id="constants_12">Constants</h3>
 <hr />
 <h4 id="minschemamodelsizebytes">MinSchemaModelSizeBytes</h4>
-<p>Minimum length of Schema model size in bytes</p>
-<h5 id="value_42">Value</h5>
+<h5 id="value_43">Value</h5>
 <pre><code class="language-python">8
 </code></pre>
-<h5 id="python_260">Python</h5>
+<h5 id="python_262">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Schemas', 'MinSchemaModelSizeBytes')
 </code></pre>
 <hr />
 <h4 id="schemamodelmaxbytesboundedveclimit">SchemaModelMaxBytesBoundedVecLimit</h4>
-<p>Maximum length of a Schema model Bounded Vec</p>
-<h5 id="value_43">Value</h5>
+<h5 id="value_44">Value</h5>
 <pre><code class="language-python">65500
 </code></pre>
-<h5 id="python_261">Python</h5>
+<h5 id="python_263">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Schemas', 'SchemaModelMaxBytesBoundedVecLimit')
 </code></pre>
 <hr />
 <h4 id="maxschemaregistrations">MaxSchemaRegistrations</h4>
-<p>Maximum number of schemas that can be registered</p>
-<h5 id="value_44">Value</h5>
+<h5 id="value_45">Value</h5>
 <pre><code class="language-python">65000
 </code></pre>
-<h5 id="python_262">Python</h5>
+<h5 id="python_264">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Schemas', 'MaxSchemaRegistrations')
 </code></pre>
 <hr />
 <h3 id="errors_17">Errors</h3>
 <hr />
 <h4 id="invalidschema">InvalidSchema</h4>
-<p>Schema is malformed</p>
 <hr />
 <h4 id="exceedsmaxschemamodelbytes">ExceedsMaxSchemaModelBytes</h4>
-<p>The schema model exceeds the maximum length allowed</p>
 <hr />
 <h4 id="lessthanminschemamodelbytes">LessThanMinSchemaModelBytes</h4>
-<p>The schema is less than the minimum length allowed</p>
 <hr />
 <h4 id="schemacountoverflow">SchemaCountOverflow</h4>
-<p>CurrentSchemaIdentifierMaximum was attempted to overflow max, means MaxSchemaRegistrations is too big</p>
 <hr />
               
             </div>
