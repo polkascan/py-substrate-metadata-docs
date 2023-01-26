@@ -2579,12 +2579,12 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">{
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -12704,7 +12704,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::62',
@@ -12717,6 +12716,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },

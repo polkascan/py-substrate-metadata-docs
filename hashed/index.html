@@ -3733,7 +3733,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">[
     {
         'event': {
-            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -4344,6 +4343,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
+            None: None,
             'Whitelist': {
                 'CallWhitelisted': {'call_hash': '[u8; 32]'},
                 'WhitelistedCallDispatched': {
