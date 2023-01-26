@@ -405,7 +405,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -1016,6 +1015,7 @@ result = substrate.query(
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
+            None: None,
             'Whitelist': {
                 'CallWhitelisted': {'call_hash': '[u8; 32]'},
                 'WhitelistedCallDispatched': {

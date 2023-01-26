@@ -17,7 +17,6 @@
 import html
 import logging
 import os
-from time import strftime
 
 import yaml
 from pprintpp import pformat
@@ -25,6 +24,7 @@ from scalecodec import ScaleBytes
 from scalecodec.exceptions import RemainingScaleBytesNotEmptyException
 
 from substrateinterface import SubstrateInterface
+from websocket import WebSocketBadStatusException
 
 logging.basicConfig(level=logging.INFO)
 
@@ -54,7 +54,10 @@ def generate_docs(node_url: str):
         doc += [f"| Token symbol      | {substrate.token_symbol}     |"]
         doc += [f"| Token decimals      | {substrate.token_decimals}     |"]
 
-        for pallet in substrate.get_metadata().pallets:
+        pallets = substrate.get_metadata().pallets
+        pallets.sort(key=lambda x: x.name)
+
+        for pallet in pallets:
 
             doc.append(f'\n## {pallet.name}')
             doc += ['---------']
@@ -65,7 +68,11 @@ def generate_docs(node_url: str):
                 doc.append(f'### Calls')
                 doc += ['---------']
 
-                for call_function in pallet.calls:
+                # Sort by name
+                call_functions = pallet.calls.elements
+                call_functions.sort(key=lambda x: x.name)
+
+                for call_function in call_functions:
 
                     doc.append(f"#### {call_function.value['name']}")
 
@@ -96,7 +103,11 @@ def generate_docs(node_url: str):
                 doc.append(f'### Events')
                 doc += ['---------']
 
-                for event in pallet.events:
+                # Sort by name
+                events = pallet.events.elements
+                events.sort(key=lambda x: x.name)
+
+                for event in events:
 
                     doc.append(f"#### {event.name}")
 
@@ -133,7 +144,12 @@ def generate_docs(node_url: str):
 
                 doc.append(f'### Storage functions')
                 doc += ['---------']
-                for storage_function in pallet.storage:
+
+                # Sort by name
+                storage_functions = pallet.storage
+                storage_functions.sort(key=lambda x: x.name)
+
+                for storage_function in storage_functions:
 
                     doc.append(f"#### {storage_function.value['name']}")
 
@@ -162,7 +178,11 @@ def generate_docs(node_url: str):
                 doc += [f'### Constants']
                 doc += ['---------']
 
-                for constant in pallet.constants:
+                # Sort by name
+                constants = pallet.constants
+                constants.sort(key=lambda x: x.name)
+
+                for constant in constants:
 
                     # Decode constant value
                     try:
@@ -196,7 +216,10 @@ def generate_docs(node_url: str):
                 doc += [f'### Errors']
                 doc += ['---------']
 
-                for error in pallet.errors:
+                errors = pallet.errors.elements
+                errors.sort(key=lambda x: x.name)
+
+                for error in errors:
                     doc += [f'#### {error.name}']
 
                     for d in error.docs:
@@ -220,8 +243,11 @@ if __name__ == "__main__":
 
     for network in config["networks"]:
         logging.info(f"Generating docs for {network}")
-        info = generate_docs(network)
-        network_info.append(info)
+        try:
+            info = generate_docs(network)
+            network_info.append(info)
+        except WebSocketBadStatusException:
+            logging.error(f"Failed to generate docs for {network}")
 
     print('---- Nav items -------------')
     for name, doc_file in network_info:
