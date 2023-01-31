@@ -90,12 +90,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -43862,9 +43862,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -43930,6 +43930,14 @@ result = substrate.query(
 [
     {
         'event': {
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
+                'DownwardMessagesReceived': 'u32',
+                'UpgradeAuthorized': '[u8; 32]',
+                'ValidationFunctionApplied': 'u32',
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
             None: None,
             'Balances': {
                 'BalanceSet': {
@@ -43975,14 +43983,6 @@ result = substrate.query(
                 'OverweightServiced': ('u64', 'u64'),
                 'UnsupportedVersion': '[u8; 32]',
                 'WeightExhausted': ('[u8; 32]', 'u64', 'u64'),
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
-                'DownwardMessagesReceived': 'u32',
-                'UpgradeAuthorized': '[u8; 32]',
-                'ValidationFunctionApplied': 'u32',
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
             },
             'PolkadotXcm': {
                 'AssetsTrapped': (

@@ -3339,12 +3339,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -61511,8 +61511,6 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::62',
@@ -61524,6 +61522,8 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },
@@ -62403,9 +62403,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -62474,6 +62474,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'u32',
@@ -62850,6 +62862,27 @@ result = substrate.query(
                     'withdrawn_tokens': 'u128',
                 },
             },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::30',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
             'Security': {
                 'RecoverFromErrors': {
                     'cleared_errors': ['scale_info::80'],
@@ -62857,18 +62890,8 @@ result = substrate.query(
                 },
                 'UpdateActiveBlock': {'block_number': 'u32'},
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'Supply': {'Inflation': {'total_inflation': 'u128'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -62899,6 +62922,14 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'scale_info::41',
@@ -62978,38 +63009,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'VaultAnnuity': {'BlockReward': 'u128'},
-            None: None,
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::30',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -63049,6 +63048,7 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
             },
+            'VaultAnnuity': {'BlockReward': 'u128'},
             'VaultRegistry': {
                 'BanVault': {
                     'banned_until': 'u32',
@@ -71226,10 +71226,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -72093,8 +72089,12 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        'Void': (),
         None: None,
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
+        'Void': (),
         'system': {
             'None': None,
             'Root': None,

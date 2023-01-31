@@ -55598,6 +55598,7 @@ result = substrate.query(
                 'StakingRecalculation': ('AccountId', 'u128', 'u128'),
                 'Unstake': ('AccountId', 'u128'),
             },
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -55943,7 +55944,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

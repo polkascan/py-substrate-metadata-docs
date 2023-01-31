@@ -72389,18 +72389,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'AssetManager': {
                 'AssetRegistered': {
                     'asset': 'scale_info::120',
@@ -72509,7 +72497,6 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
-            'BridgeTransfer': {'FeeUpdated': ('u8', 'u128', 'u32')},
             'ChainBridge': {
                 'ChainWhitelisted': 'u8',
                 'FungibleTransfer': (
@@ -72589,6 +72576,70 @@ result = substrate.query(
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
             },
+            'DmpQueue': {
+                'ExecutedDownward': {
+                    'message_id': '[u8; 32]',
+                    'outcome': 'scale_info::46',
+                },
+                'InvalidFormat': {'message_id': '[u8; 32]'},
+                'OverweightEnqueued': {
+                    'message_id': '[u8; 32]',
+                    'overweight_index': 'u64',
+                    'required_weight': 'scale_info::8',
+                },
+                'OverweightServiced': {
+                    'overweight_index': 'u64',
+                    'weight_used': 'scale_info::8',
+                },
+                'UnsupportedVersion': {'message_id': '[u8; 32]'},
+                'WeightExhausted': {
+                    'message_id': '[u8; 32]',
+                    'remaining_weight': 'scale_info::8',
+                    'required_weight': 'scale_info::8',
+                },
+            },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::93',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::93',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::35',
+                    'timepoint': 'scale_info::93',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
+            'OrmlXcm': {
+                'Sent': {'message': ['scale_info::60'], 'to': 'scale_info::47'},
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
+            'BridgeTransfer': {'FeeUpdated': ('u8', 'u128', 'u32')},
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -72645,28 +72696,6 @@ result = substrate.query(
                     'voter': 'AccountId',
                 },
             },
-            'DmpQueue': {
-                'ExecutedDownward': {
-                    'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::46',
-                },
-                'InvalidFormat': {'message_id': '[u8; 32]'},
-                'OverweightEnqueued': {
-                    'message_id': '[u8; 32]',
-                    'overweight_index': 'u64',
-                    'required_weight': 'scale_info::8',
-                },
-                'OverweightServiced': {
-                    'overweight_index': 'u64',
-                    'weight_used': 'scale_info::8',
-                },
-                'UnsupportedVersion': {'message_id': '[u8; 32]'},
-                'WeightExhausted': {
-                    'message_id': '[u8; 32]',
-                    'remaining_weight': 'scale_info::8',
-                    'required_weight': 'scale_info::8',
-                },
-            },
             'Identity': {
                 'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
                 'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
@@ -72699,46 +72728,6 @@ result = substrate.query(
                     'main': 'AccountId',
                     'sub': 'AccountId',
                 },
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::93',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::93',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::35',
-                    'timepoint': 'scale_info::93',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
-            'OrmlXcm': {
-                'Sent': {'message': ['scale_info::60'], 'to': 'scale_info::47'},
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
             },
             'PhragmenElection': {
                 'CandidateSlashed': {
@@ -72848,6 +72837,17 @@ result = substrate.query(
                 'PongSent': ('u32', 'u32', 'Bytes'),
                 'Ponged': ('u32', 'u32', 'Bytes', 'u32'),
                 'UnknownPong': ('u32', 'u32', 'Bytes'),
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -75026,6 +75026,11 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
         None: None,
         'Council': {
             'Member': 'AccountId',
@@ -75900,11 +75905,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
     'call': 'Call',
 }

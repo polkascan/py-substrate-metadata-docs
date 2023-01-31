@@ -63418,8 +63418,8 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -64292,31 +64292,6 @@ result = substrate.query(
                     'units_per_second': 'u128',
                 },
             },
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::42',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
             'Bounties': {
                 'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
                 'BountyBecameActive': {'index': 'u32'},
@@ -64433,6 +64408,51 @@ result = substrate.query(
                     'message_id': '[u8; 32]',
                     'remaining_weight': 'scale_info::8',
                     'required_weight': 'scale_info::8',
+                },
+            },
+            'Drop3': {
+                'AdminChanged': {'old_admin': (None, 'AccountId')},
+                'BalanceSlashed': {'amount': 'u128', 'who': 'AccountId'},
+                'RewardPoolApproved': {'id': 'u64'},
+                'RewardPoolProposed': {
+                    'id': 'u64',
+                    'name': 'Bytes',
+                    'owner': 'AccountId',
+                },
+                'RewardPoolRejected': {'id': 'u64'},
+                'RewardPoolRemoved': {
+                    'id': 'u64',
+                    'name': 'Bytes',
+                    'owner': 'AccountId',
+                },
+                'RewardPoolStarted': {'id': 'u64'},
+                'RewardPoolStopped': {'id': 'u64'},
+                'RewardSent': {'amount': 'u128', 'to': 'AccountId'},
+            },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::36',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::36',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::32',
+                    'timepoint': 'scale_info::36',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
                 },
             },
             'ParachainStaking': {
@@ -64594,7 +64614,48 @@ result = substrate.query(
                 },
                 'TotalSelectedSet': {'new': 'u32', 'old': 'u32'},
             },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             None: None,
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::42',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
             'CouncilMembership': (
                 'MemberAdded',
                 'MemberRemoved',
@@ -64603,25 +64664,6 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
-            'Drop3': {
-                'AdminChanged': {'old_admin': (None, 'AccountId')},
-                'BalanceSlashed': {'amount': 'u128', 'who': 'AccountId'},
-                'RewardPoolApproved': {'id': 'u64'},
-                'RewardPoolProposed': {
-                    'id': 'u64',
-                    'name': 'Bytes',
-                    'owner': 'AccountId',
-                },
-                'RewardPoolRejected': {'id': 'u64'},
-                'RewardPoolRemoved': {
-                    'id': 'u64',
-                    'name': 'Bytes',
-                    'owner': 'AccountId',
-                },
-                'RewardPoolStarted': {'id': 'u64'},
-                'RewardPoolStopped': {'id': 'u64'},
-                'RewardSent': {'amount': 'u128', 'to': 'AccountId'},
-            },
             'ExtrinsicFilter': {
                 'ExtrinsicsBlocked': {
                     'function_name_bytes': (None, 'Bytes'),
@@ -64632,32 +64674,6 @@ result = substrate.query(
                     'pallet_name_bytes': 'Bytes',
                 },
                 'ModeSet': {'new_mode': 'scale_info::116'},
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::36',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::36',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::32',
-                    'timepoint': 'scale_info::36',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
             },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
@@ -64719,11 +64735,6 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::70', 'u64'),
                 'VersionChangeNotified': ('scale_info::70', 'u32'),
             },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -64776,17 +64787,6 @@ result = substrate.query(
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::32'},
                 'SudoAsDone': {'sudo_result': 'scale_info::32'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -67133,12 +67133,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -68012,6 +68006,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
     'call': 'Call',
 }

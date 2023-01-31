@@ -2507,11 +2507,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -2521,7 +2522,6 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        None: None,
                     },
                 ],
             },
@@ -66838,8 +66838,8 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -67494,6 +67494,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AssetRegistry': {
                 'LocationSet': {
                     'asset_id': 'u32',
@@ -67930,6 +67931,12 @@ result = substrate.query(
                     'proxy_type': 'scale_info::54',
                 },
             },
+            'RelayChainInfo': {
+                'CurrentBlockNumbers': {
+                    'parachain_block_number': 'u32',
+                    'relaychain_block_number': 'u32',
+                },
+            },
             'Scheduler': {
                 'CallLookupFailed': {
                     'error': 'scale_info::33',
@@ -67984,42 +67991,6 @@ result = substrate.query(
                     'proposal_hash': '[u8; 32]',
                     'voted': 'bool',
                     'yes': 'u32',
-                },
-            },
-            'TransactionPause': {
-                'TransactionPaused': {
-                    'function_name_bytes': 'Bytes',
-                    'pallet_name_bytes': 'Bytes',
-                },
-                'TransactionUnpaused': {
-                    'function_name_bytes': 'Bytes',
-                    'pallet_name_bytes': 'Bytes',
-                },
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::23',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::31'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::23'},
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::103'],
-                    'dest': 'scale_info::69',
-                    'fee': 'scale_info::103',
-                    'sender': 'AccountId',
-                },
-            },
-            None: None,
-            'RelayChainInfo': {
-                'CurrentBlockNumbers': {
-                    'parachain_block_number': 'u32',
-                    'relaychain_block_number': 'u32',
                 },
             },
             'Tips': {
@@ -68104,6 +68075,16 @@ result = substrate.query(
                     'amount': 'u128',
                     'currency_id': 'u32',
                     'who': 'AccountId',
+                },
+            },
+            'TransactionPause': {
+                'TransactionPaused': {
+                    'function_name_bytes': 'Bytes',
+                    'pallet_name_bytes': 'Bytes',
+                },
+                'TransactionUnpaused': {
+                    'function_name_bytes': 'Bytes',
+                    'pallet_name_bytes': 'Bytes',
                 },
             },
             'TransactionPayment': {
@@ -68243,6 +68224,17 @@ result = substrate.query(
                     'who': 'scale_info::69',
                 },
             },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::23',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::31'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::23'},
+            },
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},
                 'VestingScheduleAdded': {
@@ -68251,6 +68243,14 @@ result = substrate.query(
                     'vesting_schedule': 'scale_info::93',
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::103'],
+                    'dest': 'scale_info::69',
+                    'fee': 'scale_info::103',
+                    'sender': 'AccountId',
+                },
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -77785,6 +77785,7 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -78663,7 +78664,6 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
     'call': 'Call',
 }

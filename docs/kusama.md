@@ -596,21 +596,21 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'RuntimeEnvironmentUpdated': None,
                         'Seal': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
+                        'RuntimeEnvironmentUpdated': None,
                     },
                 ],
             },
@@ -624,12 +624,11 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -639,6 +638,7 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
@@ -8207,15 +8207,17 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        'ParachainsOrigin': {
-            'Parachain': 'u32',
-        },
-        None: None,
         'Origins': (
             'StakingAdmin',
             'Treasurer',
@@ -8245,6 +8247,9 @@ call = substrate.compose_call(
             'Fellowship8Dan',
             'Fellowship9Dan',
         ),
+        'ParachainsOrigin': {
+            'Parachain': 'u32',
+        },
         'TechnicalCommittee': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -9109,11 +9114,6 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
 }
 )
@@ -9312,7 +9312,6 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             None: None,
             'Council': {
                 'Member': 'AccountId',
@@ -9359,6 +9358,7 @@ result = substrate.query(
                 'Response': {'interior': 'scale_info::159', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::159', 'parents': 'u8'},
             },
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -19450,12 +19450,12 @@ result = substrate.query(
                 '_Phantom': None,
             },
             'Void': (),
+            None: None,
             'XcmPallet': {
                 'Response': {'interior': 'scale_info::159', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::159', 'parents': 'u8'},
             },
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -20603,13 +20603,13 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Origins': (
                     'StakingAdmin',
                     'Treasurer',
@@ -24372,6 +24372,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Auctions': {
                 'AuctionClosed': {'auction_index': 'u32'},
                 'AuctionStarted': {
@@ -25034,48 +25046,6 @@ result = substrate.query(
                 },
                 'Withdrawn': {'amount': 'u128', 'stash': 'AccountId'},
             },
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            'Ump': {
-                'ExecutedUpward': ('[u8; 32]', 'scale_info::479'),
-                'InvalidFormat': '[u8; 32]',
-                'OverweightEnqueued': (
-                    'u32',
-                    '[u8; 32]',
-                    'u64',
-                    'scale_info::8',
-                ),
-                'OverweightServiced': ('u64', 'scale_info::8'),
-                'UnsupportedVersion': '[u8; 32]',
-                'UpwardMessagesReceived': ('u32', 'u32', 'u32'),
-                'WeightExhausted': (
-                    '[u8; 32]',
-                    'scale_info::8',
-                    'scale_info::8',
-                ),
-            },
-            'VoterList': {
-                'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
-                'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
-            },
-            None: None,
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -25106,6 +25076,14 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'Tips': {
                 'NewTip': {'tip_hash': '[u8; 32]'},
                 'TipClosed': {
@@ -25150,6 +25128,24 @@ result = substrate.query(
                     'reactivated': 'u128',
                 },
             },
+            'Ump': {
+                'ExecutedUpward': ('[u8; 32]', 'scale_info::479'),
+                'InvalidFormat': '[u8; 32]',
+                'OverweightEnqueued': (
+                    'u32',
+                    '[u8; 32]',
+                    'u64',
+                    'scale_info::8',
+                ),
+                'OverweightServiced': ('u64', 'scale_info::8'),
+                'UnsupportedVersion': '[u8; 32]',
+                'UpwardMessagesReceived': ('u32', 'u32', 'u32'),
+                'WeightExhausted': (
+                    '[u8; 32]',
+                    'scale_info::8',
+                    'scale_info::8',
+                ),
+            },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -25164,6 +25160,10 @@ result = substrate.query(
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
+            'VoterList': {
+                'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
+                'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
             },
             'Whitelist': {
                 'CallWhitelisted': {'call_hash': '[u8; 32]'},
@@ -27617,17 +27617,17 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'Council': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
         None: None,
+        'Council': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
         'Origins': (
             'StakingAdmin',
             'Treasurer',

@@ -48300,7 +48300,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -48577,7 +48576,6 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'Supersig': {
                 'CallExecutionAttempted': (
                     'AccountId',
@@ -48614,6 +48612,19 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::31'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::22'},
+            },
+            None: None,
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -48631,17 +48642,6 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::31'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -49592,11 +49592,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
         None: None,
         'CumulusXcm': {
             'Relay': None,
@@ -50461,6 +50456,11 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }

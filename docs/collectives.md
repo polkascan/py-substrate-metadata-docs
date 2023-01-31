@@ -55367,17 +55367,6 @@ result = substrate.query(
                 },
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -55419,6 +55408,17 @@ result = substrate.query(
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             None: None,
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -55975,21 +55975,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'AllianceMotion': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -56848,7 +56833,22 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        None: None,
+        'AllianceMotion': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }

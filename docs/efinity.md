@@ -71128,7 +71128,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -71713,6 +71712,25 @@ result = substrate.query(
                 'Sudid': {'sudo_result': 'scale_info::31'},
                 'SudoAsDone': {'sudo_result': 'scale_info::31'},
             },
+            'UnknownTokens': {
+                'Deposited': {
+                    'asset': 'scale_info::80',
+                    'who': 'scale_info::66',
+                },
+                'Withdrawn': {
+                    'asset': 'scale_info::80',
+                    'who': 'scale_info::66',
+                },
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::80'],
+                    'dest': 'scale_info::66',
+                    'fee': 'scale_info::80',
+                    'sender': 'AccountId',
+                },
+            },
+            None: None,
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -71769,16 +71787,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'UnknownTokens': {
-                'Deposited': {
-                    'asset': 'scale_info::80',
-                    'who': 'scale_info::66',
-                },
-                'Withdrawn': {
-                    'asset': 'scale_info::80',
-                    'who': 'scale_info::66',
-                },
-            },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -71798,14 +71806,6 @@ result = substrate.query(
                     'vesting_schedule': 'scale_info::43',
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::80'],
-                    'dest': 'scale_info::66',
-                    'fee': 'scale_info::80',
-                    'sender': 'AccountId',
-                },
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},

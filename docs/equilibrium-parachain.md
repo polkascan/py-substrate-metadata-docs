@@ -65466,6 +65466,8 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -65475,14 +65477,12 @@ result = substrate.query(
                     'Response': 'scale_info::48',
                     'Xcm': 'scale_info::48',
                 },
-                None: None,
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -66251,9 +66251,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
-            None: None,
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -66323,6 +66323,7 @@ result = substrate.query(
     {
         'event': {
             'Bailsman': {'UnregisteredBailsman': 'AccountId'},
+            None: None,
             'ChainBridge': {
                 'ChainToggled': ('u8', 'bool'),
                 'ChainWhitelisted': 'u8',
@@ -66737,6 +66738,32 @@ result = substrate.query(
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
             },
+            'Proxy': {
+                'Announced': {
+                    'call_hash': '[u8; 32]',
+                    'proxy': 'AccountId',
+                    'real': 'AccountId',
+                },
+                'AnonymousCreated': {
+                    'anonymous': 'AccountId',
+                    'disambiguation_index': 'u16',
+                    'proxy_type': 'scale_info::109',
+                    'who': 'AccountId',
+                },
+                'ProxyAdded': {
+                    'delay': 'u32',
+                    'delegatee': 'AccountId',
+                    'delegator': 'AccountId',
+                    'proxy_type': 'scale_info::109',
+                },
+                'ProxyExecuted': {'result': 'scale_info::35'},
+                'ProxyRemoved': {
+                    'delay': 'u32',
+                    'delegatee': 'AccountId',
+                    'delegator': 'AccountId',
+                    'proxy_type': 'scale_info::109',
+                },
+            },
             'Scheduler': {
                 'CallLookupFailed': {
                     'error': 'scale_info::145',
@@ -66816,55 +66843,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::74',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::14',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::14',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::14',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::14'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'Proxy': {
-                'Announced': {
-                    'call_hash': '[u8; 32]',
-                    'proxy': 'AccountId',
-                    'real': 'AccountId',
-                },
-                'AnonymousCreated': {
-                    'anonymous': 'AccountId',
-                    'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::109',
-                    'who': 'AccountId',
-                },
-                'ProxyAdded': {
-                    'delay': 'u32',
-                    'delegatee': 'AccountId',
-                    'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::109',
-                },
-                'ProxyExecuted': {'result': 'scale_info::35'},
-                'ProxyRemoved': {
-                    'delay': 'u32',
-                    'delegatee': 'AccountId',
-                    'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::109',
-                },
-            },
             'Treasury': {
                 'Buyout': {
                     'asset': 'u64',
@@ -66895,6 +66873,28 @@ result = substrate.query(
             'Whitelists': {
                 'AddedToWhitelist': 'AccountId',
                 'RemovedFromWhitelist': 'AccountId',
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::74',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::14',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::14',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::14',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::14'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             'Xdot': {
                 'Burned': ('AccountId', 'u32', 'u128', 'u128', 'u128'),
@@ -69245,13 +69245,13 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
+        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
         None: None,
-        'Void': (),
     },
     'call': 'Call',
 }

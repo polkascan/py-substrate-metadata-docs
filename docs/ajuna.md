@@ -44674,15 +44674,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
-                'DownwardMessagesReceived': 'u32',
-                'UpgradeAuthorized': '[u8; 32]',
-                'ValidationFunctionApplied': 'u32',
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -44765,6 +44756,14 @@ result = substrate.query(
                 'OverweightServiced': ('u64', 'u64'),
                 'UnsupportedVersion': '[u8; 32]',
                 'WeightExhausted': ('[u8; 32]', 'u64', 'u64'),
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
+                'DownwardMessagesReceived': 'u32',
+                'UpgradeAuthorized': '[u8; 32]',
+                'ValidationFunctionApplied': 'u32',
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
             },
             'PolkadotXcm': {
                 'AssetsTrapped': (
@@ -44853,6 +44852,7 @@ result = substrate.query(
                 'UpwardMessageSent': (None, '[u8; 32]'),
                 'XcmpMessageSent': (None, '[u8; 32]'),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

@@ -69265,6 +69265,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'Void': (),
                 None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
@@ -69276,7 +69277,6 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
@@ -69720,39 +69720,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'Identity': {
-                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentitySet': {'who': 'AccountId'},
-                'JudgementGiven': {
-                    'registrar_index': 'u32',
-                    'target': 'AccountId',
-                },
-                'JudgementRequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'JudgementUnrequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'RegistrarAdded': {'registrar_index': 'u32'},
-                'SubIdentityAdded': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRemoved': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRevoked': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-            },
             None: None,
             'Assets': {
                 'ApprovalCancelled': {
@@ -69929,6 +69896,39 @@ result = substrate.query(
                     'message_id': '[u8; 32]',
                     'remaining_weight': 'u64',
                     'required_weight': 'u64',
+                },
+            },
+            'Identity': {
+                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentitySet': {'who': 'AccountId'},
+                'JudgementGiven': {
+                    'registrar_index': 'u32',
+                    'target': 'AccountId',
+                },
+                'JudgementRequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'JudgementUnrequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'RegistrarAdded': {'registrar_index': 'u32'},
+                'SubIdentityAdded': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRemoved': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRevoked': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
                 },
             },
             'Launch': {'NewLaunch': ('AccountId', 'AccountId', '[u8; 32]')},

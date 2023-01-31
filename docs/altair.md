@@ -346,6 +346,7 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
@@ -360,7 +361,6 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        None: None,
                     },
                 ],
             },
@@ -62078,6 +62078,8 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -62089,8 +62091,6 @@ result = substrate.query(
                     'Xcm': 'scale_info::135',
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -66226,12 +66226,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -67100,6 +67094,12 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
     'call': 'Call',
 }

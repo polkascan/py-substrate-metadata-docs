@@ -68544,14 +68544,13 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::59',
                     'Xcm': 'scale_info::59',
@@ -68562,6 +68561,7 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -69382,6 +69382,26 @@ result = substrate.query(
 [
     {
         'event': {
+            'AssetManager': {
+                'AssetRegistered': {
+                    'asset_id': 'scale_info::133',
+                    'metadata': 'scale_info::132',
+                },
+                'AssetUpdated': {
+                    'asset_id': 'scale_info::44',
+                    'metadata': 'scale_info::132',
+                },
+                'ForeignAssetRegistered': {
+                    'asset_address': 'scale_info::59',
+                    'asset_id': 'u64',
+                    'metadata': 'scale_info::132',
+                },
+                'ForeignAssetUpdated': {
+                    'asset_address': 'scale_info::59',
+                    'asset_id': 'u64',
+                    'metadata': 'scale_info::132',
+                },
+            },
             'Auction': {
                 'AuctionCancelled': 'u64',
                 'AuctionExtended': ('u64', 'u32'),
@@ -69403,6 +69423,19 @@ result = substrate.query(
                 'NftOfferMade': ('u32', 'u64', 'AccountId', 'u128'),
                 'NftOfferWithdrawn': ('u32', 'u64', 'AccountId'),
             },
+            'Bounties': {
+                'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
+                'BountyBecameActive': {'index': 'u32'},
+                'BountyCanceled': {'index': 'u32'},
+                'BountyClaimed': {
+                    'beneficiary': 'AccountId',
+                    'index': 'u32',
+                    'payout': 'u128',
+                },
+                'BountyExtended': {'index': 'u32'},
+                'BountyProposed': {'index': 'u32'},
+                'BountyRejected': {'bond': 'u128', 'index': 'u32'},
+            },
             'Scheduler': {
                 'CallLookupFailed': {
                     'error': 'scale_info::33',
@@ -69418,26 +69451,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             None: None,
-            'AssetManager': {
-                'AssetRegistered': {
-                    'asset_id': 'scale_info::133',
-                    'metadata': 'scale_info::132',
-                },
-                'AssetUpdated': {
-                    'asset_id': 'scale_info::44',
-                    'metadata': 'scale_info::132',
-                },
-                'ForeignAssetRegistered': {
-                    'asset_address': 'scale_info::59',
-                    'asset_id': 'u64',
-                    'metadata': 'scale_info::132',
-                },
-                'ForeignAssetUpdated': {
-                    'asset_address': 'scale_info::59',
-                    'asset_id': 'u64',
-                    'metadata': 'scale_info::132',
-                },
-            },
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -69462,19 +69475,6 @@ result = substrate.query(
                 },
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'Bounties': {
-                'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
-                'BountyBecameActive': {'index': 'u32'},
-                'BountyCanceled': {'index': 'u32'},
-                'BountyClaimed': {
-                    'beneficiary': 'AccountId',
-                    'index': 'u32',
-                    'payout': 'u128',
-                },
-                'BountyExtended': {'index': 'u32'},
-                'BountyProposed': {'index': 'u32'},
-                'BountyRejected': {'bond': 'u128', 'index': 'u32'},
             },
             'CollatorSelection': {
                 'CandidateAdded': {
@@ -77578,7 +77578,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -78457,6 +78456,7 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }

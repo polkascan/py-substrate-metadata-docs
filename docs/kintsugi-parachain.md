@@ -3339,11 +3339,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -3353,7 +3354,6 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        None: None,
                     },
                 ],
             },
@@ -61511,6 +61511,9 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::62',
                     'Xcm': 'scale_info::62',
@@ -61520,10 +61523,7 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                None: None,
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -62403,12 +62403,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -63204,23 +63204,6 @@ result = substrate.query(
                     'vault_id': 'scale_info::72',
                 },
             },
-            'Vesting': {
-                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
-                'VestingScheduleAdded': {
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                    'vesting_schedule': 'scale_info::47',
-                },
-                'VestingSchedulesUpdated': {'who': 'AccountId'},
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::123'],
-                    'dest': 'scale_info::62',
-                    'fee': 'scale_info::123',
-                    'sender': 'AccountId',
-                },
-            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -63244,6 +63227,23 @@ result = substrate.query(
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             None: None,
+            'Vesting': {
+                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
+                'VestingScheduleAdded': {
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                    'vesting_schedule': 'scale_info::47',
+                },
+                'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::123'],
+                    'dest': 'scale_info::62',
+                    'fee': 'scale_info::123',
+                    'sender': 'AccountId',
+                },
+            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -71226,6 +71226,10 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -72084,22 +72088,18 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
         'TechnicalCommittee': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
     'call': 'Call',
 }

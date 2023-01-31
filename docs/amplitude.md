@@ -90,6 +90,7 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
@@ -104,7 +105,6 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        None: None,
                     },
                 ],
             },
@@ -48309,6 +48309,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
@@ -48316,7 +48317,6 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::63',
                     'Xcm': 'scale_info::63',
@@ -49154,7 +49154,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -49208,6 +49207,7 @@ result = substrate.query(
                     'payout': 'u128',
                 },
             },
+            None: None,
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {

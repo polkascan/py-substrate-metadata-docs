@@ -5143,12 +5143,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -63375,9 +63375,9 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
-                'Void': (),
             },
             'priority': 'u8',
         },
@@ -64198,6 +64198,12 @@ result = substrate.query(
 [
     {
         'event': {
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::28'},
+                'SudoAsDone': {'sudo_result': 'scale_info::28'},
+            },
+            None: None,
             'AssetsRegistry': {
                 'AssetRegistered': {
                     'asset_id': 'u128',
@@ -64597,11 +64603,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::28'},
-                'SudoAsDone': {'sudo_result': 'scale_info::28'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -64811,7 +64812,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -72670,17 +72670,17 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'Council': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
         None: None,
-        'Council': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',

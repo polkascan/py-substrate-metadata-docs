@@ -35,12 +35,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -57955,6 +57955,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -57972,7 +57973,6 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -58793,6 +58793,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -58866,6 +58867,11 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 8]', 'scale_info::63'),
+                'InvalidFormat': '[u8; 8]',
+                'UnsupportedVersion': '[u8; 8]',
+            },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -58918,12 +58924,6 @@ result = substrate.query(
                     'vote': 'scale_info::40',
                     'voter': 'AccountId',
                 },
-            },
-            None: None,
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::63'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
             },
             'DmpQueue': {
                 'ExecutedDownward': {

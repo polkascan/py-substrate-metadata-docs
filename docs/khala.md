@@ -8055,11 +8055,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -8069,7 +8070,6 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        None: None,
                     },
                 ],
             },
@@ -17756,9 +17756,9 @@ call = substrate.compose_call(
                 'Cluster': '[u8; 32]',
                 'Contract': '[u8; 32]',
                 'Gatekeeper': None,
-                None: None,
                 'MultiLocation': 'Bytes',
                 'Pallet': 'Bytes',
+                None: None,
                 'Reserved': None,
                 'Worker': '[u8; 32]',
             },
@@ -17781,7 +17781,6 @@ call = substrate.compose_call(
 result = substrate.query(
     'PhalaMq', 'OffchainIngress', [
     {
-        None: None,
         'AccountId': '[u8; 32]',
         'Cluster': '[u8; 32]',
         'Contract': '[u8; 32]',
@@ -17790,6 +17789,7 @@ result = substrate.query(
         'Pallet': 'Bytes',
         'Reserved': None,
         'Worker': '[u8; 32]',
+        None: None,
     },
 ]
 )
@@ -17820,6 +17820,7 @@ result = substrate.query(
         'payload': 'Bytes',
         'sender': {
             'AccountId': '[u8; 32]',
+            None: None,
             'Cluster': '[u8; 32]',
             'Contract': '[u8; 32]',
             'Gatekeeper': None,
@@ -17827,7 +17828,6 @@ result = substrate.query(
             'Pallet': 'Bytes',
             'Reserved': None,
             'Worker': '[u8; 32]',
-            None: None,
         },
     },
 ]
@@ -17851,11 +17851,11 @@ result = substrate.query(
         'sender': {
             'AccountId': '[u8; 32]',
             'Cluster': '[u8; 32]',
+            None: None,
             'Contract': '[u8; 32]',
             'Gatekeeper': None,
             'MultiLocation': 'Bytes',
             'Pallet': 'Bytes',
-            None: None,
             'Reserved': None,
             'Worker': '[u8; 32]',
         },
@@ -74275,13 +74275,12 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::52',
@@ -74293,6 +74292,7 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -74895,9 +74895,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -74966,6 +74966,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -75210,6 +75222,93 @@ result = substrate.query(
                     'voter': 'AccountId',
                 },
             },
+            'DmpQueue': {
+                'ExecutedDownward': {
+                    'message_id': '[u8; 32]',
+                    'outcome': 'scale_info::49',
+                },
+                'InvalidFormat': {'message_id': '[u8; 32]'},
+                'OverweightEnqueued': {
+                    'message_id': '[u8; 32]',
+                    'overweight_index': 'u64',
+                    'required_weight': 'scale_info::8',
+                },
+                'OverweightServiced': {
+                    'overweight_index': 'u64',
+                    'weight_used': 'scale_info::8',
+                },
+                'UnsupportedVersion': {'message_id': '[u8; 32]'},
+                'WeightExhausted': {
+                    'message_id': '[u8; 32]',
+                    'remaining_weight': 'scale_info::8',
+                    'required_weight': 'scale_info::8',
+                },
+            },
+            'Identity': {
+                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentitySet': {'who': 'AccountId'},
+                'JudgementGiven': {
+                    'registrar_index': 'u32',
+                    'target': 'AccountId',
+                },
+                'JudgementRequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'JudgementUnrequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'RegistrarAdded': {'registrar_index': 'u32'},
+                'SubIdentityAdded': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRemoved': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRevoked': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+            },
+            'Lottery': {
+                'CallsUpdated': None,
+                'LotteryStarted': None,
+                'TicketBought': {'call_index': ('u8', 'u8'), 'who': 'AccountId'},
+                'Winner': {'lottery_balance': 'u128', 'winner': 'AccountId'},
+            },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::33',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::33',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::30',
+                    'timepoint': 'scale_info::33',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
             'PWIncubation': {
                 'CanStartIncubationStatusChanged': {
                     'official_hatch_time': 'u64',
@@ -75320,144 +75419,6 @@ result = substrate.query(
                 'SpiritsMetadataSet': {'spirits_metadata': 'Bytes'},
                 'WorldClockStarted': {'start_time': 'u64'},
             },
-            'PhalaComputation': {
-                'BenchmarkUpdated': {
-                    'p_instant': 'u32',
-                    'session': 'AccountId',
-                },
-                'CoolDownExpirationChanged': {'period': 'u64'},
-                'InternalErrorWorkerSettleFailed': {'worker': '[u8; 32]'},
-                'InternalErrorWrongHalvingConfigured': None,
-                'SessionBound': {'session': 'AccountId', 'worker': '[u8; 32]'},
-                'SessionSettled': {
-                    'payout_bits': 'u128',
-                    'session': 'AccountId',
-                    'v_bits': 'u128',
-                },
-                'SessionSettlementDropped': {
-                    'payout': 'u128',
-                    'session': 'AccountId',
-                    'v': 'u128',
-                },
-                'SessionUnbound': {
-                    'session': 'AccountId',
-                    'worker': '[u8; 32]',
-                },
-                'SubsidyBudgetHalved': None,
-                'TokenomicParametersChanged': None,
-                'WorkerEnterUnresponsive': {'session': 'AccountId'},
-                'WorkerExitUnresponsive': {'session': 'AccountId'},
-                'WorkerReclaimed': {
-                    'original_stake': 'u128',
-                    'session': 'AccountId',
-                    'slashed': 'u128',
-                },
-                'WorkerStarted': {
-                    'init_p': 'u32',
-                    'init_v': 'u128',
-                    'session': 'AccountId',
-                },
-                'WorkerStopped': {'session': 'AccountId'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'DmpQueue': {
-                'ExecutedDownward': {
-                    'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::49',
-                },
-                'InvalidFormat': {'message_id': '[u8; 32]'},
-                'OverweightEnqueued': {
-                    'message_id': '[u8; 32]',
-                    'overweight_index': 'u64',
-                    'required_weight': 'scale_info::8',
-                },
-                'OverweightServiced': {
-                    'overweight_index': 'u64',
-                    'weight_used': 'scale_info::8',
-                },
-                'UnsupportedVersion': {'message_id': '[u8; 32]'},
-                'WeightExhausted': {
-                    'message_id': '[u8; 32]',
-                    'remaining_weight': 'scale_info::8',
-                    'required_weight': 'scale_info::8',
-                },
-            },
-            'Identity': {
-                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentitySet': {'who': 'AccountId'},
-                'JudgementGiven': {
-                    'registrar_index': 'u32',
-                    'target': 'AccountId',
-                },
-                'JudgementRequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'JudgementUnrequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'RegistrarAdded': {'registrar_index': 'u32'},
-                'SubIdentityAdded': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRemoved': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRevoked': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-            },
-            'Lottery': {
-                'CallsUpdated': None,
-                'LotteryStarted': None,
-                'TicketBought': {'call_index': ('u8', 'u8'), 'who': 'AccountId'},
-                'Winner': {'lottery_balance': 'u128', 'winner': 'AccountId'},
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::33',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::33',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::30',
-                    'timepoint': 'scale_info::33',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
                     'dmq_head': '[u8; 32]',
@@ -75500,6 +75461,45 @@ result = substrate.query(
                     'shares': 'u128',
                     'user': 'AccountId',
                 },
+            },
+            'PhalaComputation': {
+                'BenchmarkUpdated': {
+                    'p_instant': 'u32',
+                    'session': 'AccountId',
+                },
+                'CoolDownExpirationChanged': {'period': 'u64'},
+                'InternalErrorWorkerSettleFailed': {'worker': '[u8; 32]'},
+                'InternalErrorWrongHalvingConfigured': None,
+                'SessionBound': {'session': 'AccountId', 'worker': '[u8; 32]'},
+                'SessionSettled': {
+                    'payout_bits': 'u128',
+                    'session': 'AccountId',
+                    'v_bits': 'u128',
+                },
+                'SessionSettlementDropped': {
+                    'payout': 'u128',
+                    'session': 'AccountId',
+                    'v': 'u128',
+                },
+                'SessionUnbound': {
+                    'session': 'AccountId',
+                    'worker': '[u8; 32]',
+                },
+                'SubsidyBudgetHalved': None,
+                'TokenomicParametersChanged': None,
+                'WorkerEnterUnresponsive': {'session': 'AccountId'},
+                'WorkerExitUnresponsive': {'session': 'AccountId'},
+                'WorkerReclaimed': {
+                    'original_stake': 'u128',
+                    'session': 'AccountId',
+                    'slashed': 'u128',
+                },
+                'WorkerStarted': {
+                    'init_p': 'u32',
+                    'init_v': 'u128',
+                    'session': 'AccountId',
+                },
+                'WorkerStopped': {'session': 'AccountId'},
             },
             'PhalaRegistry': {
                 'GatekeeperAdded': {'pubkey': '[u8; 32]'},

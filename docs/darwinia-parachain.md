@@ -90,12 +90,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -54124,6 +54124,17 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::81'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::22'},
+            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -54144,17 +54155,6 @@ result = substrate.query(
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             None: None,
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::81'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
-            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -54710,6 +54710,10 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -55568,17 +55572,13 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        None: None,
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
         'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }

@@ -52572,7 +52572,6 @@ result = substrate.query(
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'Ethereum': {'EthereumTransaction': '[u8; 20]'},
-                None: None,
                 'PolkadotXcm': {
                     'Response': 'scale_info::97',
                     'Xcm': 'scale_info::97',
@@ -52584,6 +52583,7 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },
@@ -53446,7 +53446,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Airdrop': {
                 'AirdropStateUpdated': {
                     'new_state': 'scale_info::43',
@@ -54047,6 +54046,7 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -56096,6 +56096,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -56972,12 +56978,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        None: None,
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
     'call': 'Call',
 }

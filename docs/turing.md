@@ -53763,13 +53763,14 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'PolkadotXcm': {
                     'Response': 'scale_info::51',
                     'Xcm': 'scale_info::51',
@@ -53780,7 +53781,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -54360,9 +54360,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -54851,7 +54851,6 @@ result = substrate.query(
                 },
                 'TotalSelectedSet': {'new': 'u32', 'old': 'u32'},
             },
-            None: None,
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
                     'dmq_head': '[u8; 32]',
@@ -54996,6 +54995,7 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
+            None: None,
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'u32',
@@ -62821,6 +62821,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -63694,12 +63700,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }

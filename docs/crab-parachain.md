@@ -967,11 +967,12 @@ call = substrate.compose_call(
                 'digest': {
                     'logs': [
                         {
+                            'Other': 'Bytes',
+                            None: None,
                             'Consensus': (
                                 '[u8; 4]',
                                 'Bytes',
                             ),
-                            'Other': 'Bytes',
                             'PreRuntime': (
                                 '[u8; 4]',
                                 'Bytes',
@@ -981,7 +982,6 @@ call = substrate.compose_call(
                                 '[u8; 4]',
                                 'Bytes',
                             ),
-                            None: None,
                         },
                     ],
                 },
@@ -63323,6 +63323,7 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -63353,7 +63354,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -63909,7 +63909,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
@@ -64773,6 +64772,7 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
+        None: None,
         'system': {
             'None': None,
             'Root': None,
