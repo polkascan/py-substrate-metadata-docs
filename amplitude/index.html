@@ -2397,6 +2397,7 @@
             'digest': {
                 'logs': [
                     {
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
@@ -2411,7 +2412,6 @@
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        None: None,
                     },
                 ],
             },
@@ -52681,6 +52681,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
@@ -52688,7 +52689,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::63',
                     'Xcm': 'scale_info::63',
@@ -53655,7 +53655,6 @@ block. # &lt;/weight&gt;</p>
 <pre><code class="language-python">[
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -53709,6 +53708,7 @@ block. # &lt;/weight&gt;</p>
                     'payout': 'u128',
                 },
             },
+            None: None,
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {

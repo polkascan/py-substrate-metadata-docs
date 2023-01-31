@@ -58745,7 +58745,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'Ethereum': {'EthereumTransaction': '[u8; 20]'},
-                None: None,
                 'PolkadotXcm': {
                     'Response': 'scale_info::97',
                     'Xcm': 'scale_info::97',
@@ -58757,6 +58756,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },
@@ -59751,7 +59751,6 @@ block. # &lt;/weight&gt;</p>
 <pre><code class="language-python">[
     {
         'event': {
-            None: None,
             'Airdrop': {
                 'AirdropStateUpdated': {
                     'new_state': 'scale_info::43',
@@ -60352,6 +60351,7 @@ block. # &lt;/weight&gt;</p>
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -62762,6 +62762,12 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -63638,12 +63644,6 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             '_Phantom': None,
         },
         'Void': (),
-        None: None,
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
     'call': 'Call',
 }

@@ -2538,12 +2538,12 @@
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -63041,6 +63041,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -63058,7 +63059,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -64008,6 +64008,7 @@ block. # &lt;/weight&gt;</p>
 <pre><code class="language-python">[
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -64081,6 +64082,11 @@ block. # &lt;/weight&gt;</p>
                 'KeyChanged',
                 'Dummy',
             ),
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 8]', 'scale_info::63'),
+                'InvalidFormat': '[u8; 8]',
+                'UnsupportedVersion': '[u8; 8]',
+            },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -64133,12 +64139,6 @@ block. # &lt;/weight&gt;</p>
                     'vote': 'scale_info::40',
                     'voter': 'AccountId',
                 },
-            },
-            None: None,
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::63'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
             },
             'DmpQueue': {
                 'ExecutedDownward': {

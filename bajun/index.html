@@ -50610,6 +50610,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -50622,7 +50623,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -52972,6 +52972,12 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             'Relay': None,
             'SiblingParachain': 'u32',
         },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -53831,12 +53837,6 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             },
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }

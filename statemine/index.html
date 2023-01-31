@@ -61878,16 +61878,6 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -62745,6 +62735,16 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
                 },
                 'parents': 'u8',
             },
+        },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
         },
         'Void': (),
     },
