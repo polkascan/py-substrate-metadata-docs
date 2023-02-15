@@ -43862,9 +43862,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -43930,15 +43930,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
-                'DownwardMessagesReceived': 'u32',
-                'UpgradeAuthorized': '[u8; 32]',
-                'ValidationFunctionApplied': 'u32',
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -43984,6 +43975,14 @@ result = substrate.query(
                 'UnsupportedVersion': '[u8; 32]',
                 'WeightExhausted': ('[u8; 32]', 'u64', 'u64'),
             },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
+                'DownwardMessagesReceived': 'u32',
+                'UpgradeAuthorized': '[u8; 32]',
+                'ValidationFunctionApplied': 'u32',
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
             'PolkadotXcm': {
                 'AssetsTrapped': (
                     '[u8; 32]',
@@ -44022,12 +44021,6 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::36', 'u64'),
                 'VersionChangeNotified': ('scale_info::36', 'u32'),
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'new_sudoer': 'AccountId'},
-                'Sudid': {'sudo_result': 'scale_info::76'},
-                'SudoAsDone': {'sudo_result': 'scale_info::76'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': ('scale_info::22', 'scale_info::19'),
@@ -44039,6 +44032,13 @@ result = substrate.query(
                 'KilledAccount': 'AccountId',
                 'NewAccount': 'AccountId',
                 'Remarked': ('AccountId', '[u8; 32]'),
+            },
+            None: None,
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'Sudo': {
+                'KeyChanged': {'new_sudoer': 'AccountId'},
+                'Sudid': {'sudo_result': 'scale_info::76'},
+                'SudoAsDone': {'sudo_result': 'scale_info::76'},
             },
             'XcmpQueue': {
                 'BadFormat': (None, '[u8; 32]'),

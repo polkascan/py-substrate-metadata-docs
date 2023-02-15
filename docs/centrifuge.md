@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Spec name     | centrifuge     |
 | Implementation name     | centrifuge     |
-| Spec version     | 1016     |
+| Spec version     | 1017     |
 | SS58 Format     | 36     |
 | Token symbol      | CFG     |
 | Token decimals      | 18     |
@@ -5044,7 +5044,7 @@ constant = substrate.get_constant('Elections', 'DesiredRunnersUp')
  candidates are accepted in the election.
 ##### Value
 ```python
-1000
+100
 ```
 ##### Python
 ```python
@@ -5058,7 +5058,7 @@ constant = substrate.get_constant('Elections', 'MaxCandidates')
  When the limit is reached the new voters are ignored.
 ##### Value
 ```python
-10000
+1000
 ```
 ##### Python
 ```python
@@ -60130,7 +60130,6 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -60143,6 +60142,7 @@ result = substrate.query(
                     'Xcm': 'scale_info::79',
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -61300,6 +61300,13 @@ result = substrate.query(
                     'to': 'AccountId',
                 },
             },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -61328,6 +61335,10 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::38'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
+            },
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
             'XTokens': {
                 'TransferredMultiAssets': {
@@ -61360,17 +61371,6 @@ result = substrate.query(
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             None: None,
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
-            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -61609,7 +61609,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'centrifuge',
     'impl_version': 1,
     'spec_name': 'centrifuge',
-    'spec_version': 1016,
+    'spec_version': 1017,
     'state_version': 0,
     'transaction_version': 1,
 }

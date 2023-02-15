@@ -47053,12 +47053,6 @@ result = substrate.query(
                 'IndexFreed': {'index': 'u32'},
                 'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
             },
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::31'},
-                'SudoAsDone': {'sudo_result': 'scale_info::31'},
-            },
-            None: None,
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
                     'dmq_head': '[u8; 32]',
@@ -47120,17 +47114,6 @@ result = substrate.query(
                 'VersionChangeNotified': ('scale_info::48', 'u32'),
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -47148,6 +47131,23 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::31'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
+            },
+            None: None,
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::31'},
+                'SudoAsDone': {'sudo_result': 'scale_info::31'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -47407,7 +47407,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     ],
     'authoring_version': 1,
     'impl_name': 'totem-parachain',
-    'impl_version': 1,
+    'impl_version': 3,
     'spec_name': 'totem-parachain',
     'spec_version': 4,
     'state_version': 1,
@@ -47727,12 +47727,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
@@ -48596,6 +48590,12 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
+        None: None,
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }

@@ -1478,12 +1478,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -48838,13 +48838,13 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::43',
                     'Xcm': 'scale_info::43',
                 },
                 'Void': (),
+                None: None,
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
@@ -49624,9 +49624,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -50017,40 +50017,6 @@ result = substrate.query(
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
             },
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::86',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -50077,82 +50043,43 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::86',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'Sudo': {
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::86'},
                 'SudoAsDone': {'sudo_result': 'scale_info::86'},
             },
-            'Tokens': {
-                'BalanceSet': {
-                    'currency_id': 'scale_info::83',
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
                 },
-                'Deposited': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                    'who': 'AccountId',
-                },
-                'DustLost': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                    'who': 'AccountId',
-                },
-                'Endowed': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                    'who': 'AccountId',
-                },
-                'LockRemoved': {
-                    'currency_id': 'scale_info::83',
-                    'lock_id': '[u8; 8]',
-                    'who': 'AccountId',
-                },
-                'LockSet': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                    'lock_id': '[u8; 8]',
-                    'who': 'AccountId',
-                },
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                    'from': 'AccountId',
-                    'status': 'scale_info::31',
-                    'to': 'AccountId',
-                },
-                'Reserved': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                    'who': 'AccountId',
-                },
-                'Slashed': {
-                    'currency_id': 'scale_info::83',
-                    'free_amount': 'u128',
-                    'reserved_amount': 'u128',
-                    'who': 'AccountId',
-                },
-                'TotalIssuanceSet': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                },
-                'Transfer': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                    'who': 'AccountId',
-                },
-                'Withdrawn': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::83',
-                    'who': 'AccountId',
-                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TransactionPause': {
                 'TransactionPaused': {
@@ -50170,24 +50097,6 @@ result = substrate.query(
                     'tip': 'u128',
                     'who': 'AccountId',
                 },
-            },
-            'Treasury': {
-                'Awarded': {
-                    'account': 'AccountId',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'SpendApproved': {
-                    'amount': 'u128',
-                    'beneficiary': 'AccountId',
-                    'proposal_index': 'u32',
-                },
-                'Spending': {'budget_remaining': 'u128'},
             },
             'Uniques': {
                 'ApprovalCancelled': {
@@ -50290,6 +50199,97 @@ result = substrate.query(
                     'item': 'u32',
                     'to': 'AccountId',
                 },
+            },
+            None: None,
+            'Tokens': {
+                'BalanceSet': {
+                    'currency_id': 'scale_info::83',
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposited': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                    'who': 'AccountId',
+                },
+                'DustLost': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                    'who': 'AccountId',
+                },
+                'Endowed': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                    'who': 'AccountId',
+                },
+                'LockRemoved': {
+                    'currency_id': 'scale_info::83',
+                    'lock_id': '[u8; 8]',
+                    'who': 'AccountId',
+                },
+                'LockSet': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                    'lock_id': '[u8; 8]',
+                    'who': 'AccountId',
+                },
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                    'from': 'AccountId',
+                    'status': 'scale_info::31',
+                    'to': 'AccountId',
+                },
+                'Reserved': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                    'who': 'AccountId',
+                },
+                'Slashed': {
+                    'currency_id': 'scale_info::83',
+                    'free_amount': 'u128',
+                    'reserved_amount': 'u128',
+                    'who': 'AccountId',
+                },
+                'TotalIssuanceSet': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                },
+                'Transfer': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                    'who': 'AccountId',
+                },
+                'Withdrawn': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::83',
+                    'who': 'AccountId',
+                },
+            },
+            'Treasury': {
+                'Awarded': {
+                    'account': 'AccountId',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'SpendApproved': {
+                    'amount': 'u128',
+                    'beneficiary': 'AccountId',
+                    'proposal_index': 'u32',
+                },
+                'Spending': {'budget_remaining': 'u128'},
             },
             'Utility': {
                 'BatchCompleted': None,

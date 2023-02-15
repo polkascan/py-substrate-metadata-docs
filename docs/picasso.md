@@ -64198,12 +64198,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::28'},
-                'SudoAsDone': {'sudo_result': 'scale_info::28'},
-            },
-            None: None,
             'AssetsRegistry': {
                 'AssetRegistered': {
                     'asset_id': 'u128',
@@ -64445,11 +64439,6 @@ result = substrate.query(
                     'sub': 'AccountId',
                 },
             },
-            'Indices': {
-                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
-                'IndexFreed': {'index': 'u32'},
-                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
-            },
             'Multisig': {
                 'MultisigApproval': {
                     'approving': 'AccountId',
@@ -64603,6 +64592,11 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::28'},
+                'SudoAsDone': {'sudo_result': 'scale_info::28'},
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -64613,6 +64607,30 @@ result = substrate.query(
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'Treasury': {
+                'Awarded': {
+                    'account': 'AccountId',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'SpendApproved': {
+                    'amount': 'u128',
+                    'beneficiary': 'AccountId',
+                    'proposal_index': 'u32',
+                },
+                'Spending': {'budget_remaining': 'u128'},
+            },
+            None: None,
+            'Indices': {
+                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
+                'IndexFreed': {'index': 'u32'},
+                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -64727,24 +64745,6 @@ result = substrate.query(
                     'tip': 'u128',
                     'who': 'AccountId',
                 },
-            },
-            'Treasury': {
-                'Awarded': {
-                    'account': 'AccountId',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'SpendApproved': {
-                    'amount': 'u128',
-                    'beneficiary': 'AccountId',
-                    'proposal_index': 'u32',
-                },
-                'Spending': {'budget_remaining': 'u128'},
             },
             'UnknownTokens': {
                 'Deposited': {
@@ -72670,17 +72670,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
@@ -73549,6 +73544,11 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }

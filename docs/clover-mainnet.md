@@ -3723,12 +3723,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -68971,6 +68971,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -68989,7 +68990,6 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -69961,6 +69961,47 @@ result = substrate.query(
                 'NewBaseFeePerGas': '[u64; 4]',
                 'NewElasticity': 'u32',
             },
+            'CollatorSelection': {
+                'CandidateAdded': {
+                    'account_id': 'AccountId',
+                    'deposit': 'u128',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'NewCandidacyBond': {'bond_amount': 'u128'},
+                'NewDesiredCandidates': {'desired_candidates': 'u32'},
+                'NewInvulnerables': {'invulnerables': ['AccountId']},
+            },
+            'Contracts': {
+                'CodeRemoved': {'code_hash': '[u8; 32]'},
+                'CodeStored': {'code_hash': '[u8; 32]'},
+                'ContractCodeUpdated': {
+                    'contract': 'AccountId',
+                    'new_code_hash': '[u8; 32]',
+                    'old_code_hash': '[u8; 32]',
+                },
+                'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
+                'Instantiated': {
+                    'contract': 'AccountId',
+                    'deployer': 'AccountId',
+                },
+                'Terminated': {
+                    'beneficiary': 'AccountId',
+                    'contract': 'AccountId',
+                },
+            },
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Bounties': {
                 'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
                 'BountyBecameActive': {'index': 'u32'},
@@ -70003,34 +70044,6 @@ result = substrate.query(
                 ),
                 'MintFeeUpdated': 'u128',
                 'MintSuccess': ('[u8; 32]', '[u8; 20]', 'u128'),
-            },
-            'CollatorSelection': {
-                'CandidateAdded': {
-                    'account_id': 'AccountId',
-                    'deposit': 'u128',
-                },
-                'CandidateRemoved': {'account_id': 'AccountId'},
-                'NewCandidacyBond': {'bond_amount': 'u128'},
-                'NewDesiredCandidates': {'desired_candidates': 'u32'},
-                'NewInvulnerables': {'invulnerables': ['AccountId']},
-            },
-            'Contracts': {
-                'CodeRemoved': {'code_hash': '[u8; 32]'},
-                'CodeStored': {'code_hash': '[u8; 32]'},
-                'ContractCodeUpdated': {
-                    'contract': 'AccountId',
-                    'new_code_hash': '[u8; 32]',
-                    'old_code_hash': '[u8; 32]',
-                },
-                'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
-                'Instantiated': {
-                    'contract': 'AccountId',
-                    'deployer': 'AccountId',
-                },
-                'Terminated': {
-                    'beneficiary': 'AccountId',
-                    'contract': 'AccountId',
-                },
             },
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -70309,7 +70322,6 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'Spambot': {
                 'ErrorSendingPing': ('scale_info::136', 'u32', 'u32', 'Bytes'),
                 'ErrorSendingPong': ('scale_info::136', 'u32', 'u32', 'Bytes'),
@@ -70318,17 +70330,6 @@ result = substrate.query(
                 'PongSent': ('u32', 'u32', 'Bytes'),
                 'Ponged': ('u32', 'u32', 'Bytes', 'u32'),
                 'UnknownPong': ('u32', 'u32', 'Bytes'),
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -70450,7 +70451,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -73318,13 +73318,13 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
+        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
         None: None,
-        'Void': (),
     },
     'call': 'Call',
 }

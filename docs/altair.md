@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Spec name     | altair     |
 | Implementation name     | altair     |
-| Spec version     | 1024     |
+| Spec version     | 1025     |
 | SS58 Format     | 136     |
 | Token symbol      | AIR     |
 | Token decimals      | 18     |
@@ -346,12 +346,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -4195,7 +4195,7 @@ constant = substrate.get_constant('Elections', 'DesiredRunnersUp')
  candidates are accepted in the election.
 ##### Value
 ```python
-1000
+100
 ```
 ##### Python
 ```python
@@ -4209,7 +4209,7 @@ constant = substrate.get_constant('Elections', 'MaxCandidates')
  When the limit is reached the new voters are ignored.
 ##### Value
 ```python
-10000
+1000
 ```
 ##### Python
 ```python
@@ -62078,8 +62078,6 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -62091,6 +62089,8 @@ result = substrate.query(
                     'Xcm': 'scale_info::135',
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },
@@ -63792,7 +63792,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'altair',
     'impl_version': 1,
     'spec_name': 'altair',
-    'spec_version': 1024,
+    'spec_version': 1025,
     'state_version': 0,
     'transaction_version': 1,
 }
@@ -66226,6 +66226,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -67094,12 +67100,6 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }

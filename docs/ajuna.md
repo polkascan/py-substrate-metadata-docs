@@ -44757,14 +44757,6 @@ result = substrate.query(
                 'UnsupportedVersion': '[u8; 32]',
                 'WeightExhausted': ('[u8; 32]', 'u64', 'u64'),
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
-                'DownwardMessagesReceived': 'u32',
-                'UpgradeAuthorized': '[u8; 32]',
-                'ValidationFunctionApplied': 'u32',
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsTrapped': (
                     '[u8; 32]',
@@ -44803,22 +44795,10 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::42', 'u64'),
                 'VersionChangeNotified': ('scale_info::42', 'u32'),
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'Sudo': {
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::81'},
                 'SudoAsDone': {'sudo_result': 'scale_info::81'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'Treasury': {
                 'Awarded': {
@@ -44832,6 +44812,27 @@ result = substrate.query(
                 'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
                 'Rollover': {'rollover_balance': 'u128'},
                 'Spending': {'budget_remaining': 'u128'},
+            },
+            None: None,
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
+                'DownwardMessagesReceived': 'u32',
+                'UpgradeAuthorized': '[u8; 32]',
+                'ValidationFunctionApplied': 'u32',
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},
@@ -44852,7 +44853,6 @@ result = substrate.query(
                 'UpwardMessageSent': (None, '[u8; 32]'),
                 'XcmpMessageSent': (None, '[u8; 32]'),
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

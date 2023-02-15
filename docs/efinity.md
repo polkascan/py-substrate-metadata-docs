@@ -70255,8 +70255,6 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -70273,6 +70271,8 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },
@@ -71707,41 +71707,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::31'},
-                'SudoAsDone': {'sudo_result': 'scale_info::31'},
-            },
-            'UnknownTokens': {
-                'Deposited': {
-                    'asset': 'scale_info::80',
-                    'who': 'scale_info::66',
-                },
-                'Withdrawn': {
-                    'asset': 'scale_info::80',
-                    'who': 'scale_info::66',
-                },
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::80'],
-                    'dest': 'scale_info::66',
-                    'fee': 'scale_info::80',
-                    'sender': 'AccountId',
-                },
-            },
-            None: None,
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -71798,6 +71763,33 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
             },
+            None: None,
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::31'},
+                'SudoAsDone': {'sudo_result': 'scale_info::31'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'UnknownTokens': {
+                'Deposited': {
+                    'asset': 'scale_info::80',
+                    'who': 'scale_info::66',
+                },
+                'Withdrawn': {
+                    'asset': 'scale_info::80',
+                    'who': 'scale_info::66',
+                },
+            },
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},
                 'VestingScheduleAdded': {
@@ -71806,6 +71798,14 @@ result = substrate.query(
                     'vesting_schedule': 'scale_info::43',
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::80'],
+                    'dest': 'scale_info::66',
+                    'fee': 'scale_info::80',
+                    'sender': 'AccountId',
+                },
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -73211,20 +73211,10 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
-        },
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
         },
         'PolkadotXcm': {
             'Response': {
@@ -74084,12 +74074,22 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        'Void': (),
+        None: None,
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
         'TechnicalCommittee': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }

@@ -1817,12 +1817,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
-                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -53446,6 +53446,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Airdrop': {
                 'AirdropStateUpdated': {
                     'new_state': 'scale_info::43',
@@ -53920,17 +53932,6 @@ result = substrate.query(
                 'Sudid': {'sudo_result': 'scale_info::30'},
                 'SudoAsDone': {'sudo_result': 'scale_info::30'},
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -54046,7 +54047,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -56096,12 +56096,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -56978,6 +56972,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
     'call': 'Call',
 }

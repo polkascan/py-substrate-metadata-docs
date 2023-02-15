@@ -2507,12 +2507,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -66822,6 +66822,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -66838,7 +66839,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                None: None,
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
@@ -67423,9 +67423,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -67494,28 +67494,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
-            'AssetRegistry': {
-                'LocationSet': {
-                    'asset_id': 'u32',
-                    'location': 'scale_info::69',
-                },
-                'MetadataSet': {
-                    'asset_id': 'u32',
-                    'decimals': 'u8',
-                    'symbol': 'Bytes',
-                },
-                'Registered': {
-                    'asset_id': 'u32',
-                    'asset_name': 'Bytes',
-                    'asset_type': 'scale_info::67',
-                },
-                'Updated': {
-                    'asset_id': 'u32',
-                    'asset_name': 'Bytes',
-                    'asset_type': 'scale_info::67',
-                },
-            },
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -67540,6 +67518,81 @@ result = substrate.query(
                 },
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'Democracy': {
+                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Cancelled': {'ref_index': 'u32'},
+                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
+                'Executed': {'ref_index': 'u32', 'result': 'scale_info::31'},
+                'ExternalTabled': None,
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'PreimageInvalid': {
+                    'proposal_hash': '[u8; 32]',
+                    'ref_index': 'u32',
+                },
+                'PreimageMissing': {
+                    'proposal_hash': '[u8; 32]',
+                    'ref_index': 'u32',
+                },
+                'PreimageNoted': {
+                    'deposit': 'u128',
+                    'proposal_hash': '[u8; 32]',
+                    'who': 'AccountId',
+                },
+                'PreimageReaped': {
+                    'deposit': 'u128',
+                    'proposal_hash': '[u8; 32]',
+                    'provider': 'AccountId',
+                    'reaper': 'AccountId',
+                },
+                'PreimageUsed': {
+                    'deposit': 'u128',
+                    'proposal_hash': '[u8; 32]',
+                    'provider': 'AccountId',
+                },
+                'ProposalCanceled': {'prop_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::43'},
+                'Tabled': {
+                    'deposit': 'u128',
+                    'depositors': ['AccountId'],
+                    'proposal_index': 'u32',
+                },
+                'Undelegated': {'account': 'AccountId'},
+                'Vetoed': {
+                    'proposal_hash': '[u8; 32]',
+                    'until': 'u32',
+                    'who': 'AccountId',
+                },
+                'Voted': {
+                    'ref_index': 'u32',
+                    'vote': 'scale_info::44',
+                    'voter': 'AccountId',
+                },
+            },
+            None: None,
+            'AssetRegistry': {
+                'LocationSet': {
+                    'asset_id': 'u32',
+                    'location': 'scale_info::69',
+                },
+                'MetadataSet': {
+                    'asset_id': 'u32',
+                    'decimals': 'u8',
+                    'symbol': 'Bytes',
+                },
+                'Registered': {
+                    'asset_id': 'u32',
+                    'asset_name': 'Bytes',
+                    'asset_type': 'scale_info::67',
+                },
+                'Updated': {
+                    'asset_id': 'u32',
+                    'asset_name': 'Bytes',
+                    'asset_type': 'scale_info::67',
+                },
             },
             'Claims': {'Claim': ('AccountId', '[u8; 20]', 'u128')},
             'CollatorRewards': {
@@ -67615,59 +67668,6 @@ result = substrate.query(
                     'amount': 'u128',
                     'currency_id': 'u32',
                     'who': 'AccountId',
-                },
-            },
-            'Democracy': {
-                'Blacklisted': {'proposal_hash': '[u8; 32]'},
-                'Cancelled': {'ref_index': 'u32'},
-                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
-                'Executed': {'ref_index': 'u32', 'result': 'scale_info::31'},
-                'ExternalTabled': None,
-                'NotPassed': {'ref_index': 'u32'},
-                'Passed': {'ref_index': 'u32'},
-                'PreimageInvalid': {
-                    'proposal_hash': '[u8; 32]',
-                    'ref_index': 'u32',
-                },
-                'PreimageMissing': {
-                    'proposal_hash': '[u8; 32]',
-                    'ref_index': 'u32',
-                },
-                'PreimageNoted': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'who': 'AccountId',
-                },
-                'PreimageReaped': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'provider': 'AccountId',
-                    'reaper': 'AccountId',
-                },
-                'PreimageUsed': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'provider': 'AccountId',
-                },
-                'ProposalCanceled': {'prop_index': 'u32'},
-                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::43'},
-                'Tabled': {
-                    'deposit': 'u128',
-                    'depositors': ['AccountId'],
-                    'proposal_index': 'u32',
-                },
-                'Undelegated': {'account': 'AccountId'},
-                'Vetoed': {
-                    'proposal_hash': '[u8; 32]',
-                    'until': 'u32',
-                    'who': 'AccountId',
-                },
-                'Voted': {
-                    'ref_index': 'u32',
-                    'vote': 'scale_info::44',
-                    'voter': 'AccountId',
                 },
             },
             'DmpQueue': {

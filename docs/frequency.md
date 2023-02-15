@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Spec name     | frequency     |
 | Implementation name     | frequency     |
-| Spec version     | 5     |
+| Spec version     | 11     |
 | SS58 Format     | 90     |
 | Token symbol      | FRQCY     |
 | Token decimals      | 8     |
@@ -80,12 +80,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -454,6 +454,20 @@ result = substrate.query(
 }
 ```
 ---------
+#### InactiveIssuance
+
+##### Python
+```python
+result = substrate.query(
+    'Balances', 'InactiveIssuance', []
+)
+```
+
+##### Return value
+```python
+'u128'
+```
+---------
 #### Locks
 
 ##### Python
@@ -480,20 +494,6 @@ result = substrate.query(
 ##### Return value
 ```python
 [{'amount': 'u128', 'id': '[u8; 8]'}]
-```
----------
-#### StorageVersion
-
-##### Python
-```python
-result = substrate.query(
-    'Balances', 'StorageVersion', []
-)
-```
-
-##### Return value
-```python
-('V1_0_0', 'V2_0_0')
 ```
 ---------
 #### TotalIssuance
@@ -803,8 +803,31 @@ call = substrate.compose_call(
     'length_bound': 'u32',
     'proposal_hash': '[u8; 32]',
     'proposal_weight_bound': {
+        'proof_size': 'u64',
         'ref_time': 'u64',
     },
+}
+)
+```
+
+---------
+#### close_old_weight
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| proposal_hash | `T::Hash` | 
+| index | `ProposalIndex` | 
+| proposal_weight_bound | `OldWeight` | 
+| length_bound | `u32` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'Council', 'close_old_weight', {
+    'index': 'u32',
+    'length_bound': 'u32',
+    'proposal_hash': '[u8; 32]',
+    'proposal_weight_bound': 'u64',
 }
 )
 ```
@@ -932,7 +955,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 #### MemberExecuted
@@ -940,7 +963,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 #### Proposed
@@ -1091,7 +1114,7 @@ result = substrate.query(
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal_hash | `H256` | 
 | maybe_ref_index | `Option<ReferendumIndex>` | 
 
 ##### Python
@@ -1115,20 +1138,6 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'Democracy', 'cancel_proposal', {'prop_index': 'u32'}
-)
-```
-
----------
-#### cancel_queued
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| which | `ReferendumIndex` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'cancel_queued', {'which': 'u32'}
 )
 ```
 
@@ -1207,34 +1216,25 @@ call = substrate.compose_call(
 ```
 
 ---------
-#### enact_proposal
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| proposal_hash | `T::Hash` | 
-| index | `ReferendumIndex` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'enact_proposal', {
-    'index': 'u32',
-    'proposal_hash': '[u8; 32]',
-}
-)
-```
-
----------
 #### external_propose
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal | `BoundedCallOf<T>` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'external_propose', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose', {
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
+}
 )
 ```
 
@@ -1243,12 +1243,21 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal | `BoundedCallOf<T>` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'external_propose_default', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose_default', {
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
+}
 )
 ```
 
@@ -1257,12 +1266,21 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal | `BoundedCallOf<T>` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'external_propose_majority', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose_majority', {
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
+}
 )
 ```
 
@@ -1271,7 +1289,7 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal_hash | `H256` | 
 | voting_period | `T::BlockNumber` | 
 | delay | `T::BlockNumber` | 
 
@@ -1287,93 +1305,26 @@ call = substrate.compose_call(
 ```
 
 ---------
-#### note_imminent_preimage
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_imminent_preimage', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
-#### note_imminent_preimage_operational
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_imminent_preimage_operational', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
-#### note_preimage
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_preimage', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
-#### note_preimage_operational
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_preimage_operational', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
 #### propose
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal | `BoundedCallOf<T>` | 
 | value | `BalanceOf<T>` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
     'Democracy', 'propose', {
-    'proposal_hash': '[u8; 32]',
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
     'value': 'u128',
-}
-)
-```
-
----------
-#### reap_preimage
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| proposal_hash | `T::Hash` | 
-| proposal_len_upper_bound | `u32` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'reap_preimage', {
-    'proposal_hash': '[u8; 32]',
-    'proposal_len_upper_bound': 'u32',
 }
 )
 ```
@@ -1422,15 +1373,11 @@ call = substrate.compose_call(
 | Name | Type |
 | -------- | -------- | 
 | proposal | `PropIndex` | 
-| seconds_upper_bound | `u32` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'second', {
-    'proposal': 'u32',
-    'seconds_upper_bound': 'u32',
-}
+    'Democracy', 'second', {'proposal': 'u32'}
 )
 ```
 
@@ -1473,7 +1420,7 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal_hash | `H256` | 
 
 ##### Python
 ```python
@@ -1527,7 +1474,7 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `H256` | ```[u8; 32]```
 
 ---------
 #### Cancelled
@@ -1543,14 +1490,6 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | target | `T::AccountId` | ```AccountId```
-
----------
-#### Executed
-##### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| ref_index | `ReferendumIndex` | ```u32```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
 
 ---------
 #### ExternalTabled
@@ -1570,50 +1509,6 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | ref_index | `ReferendumIndex` | ```u32```
-
----------
-#### PreimageInvalid
-##### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| ref_index | `ReferendumIndex` | ```u32```
-
----------
-#### PreimageMissing
-##### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| ref_index | `ReferendumIndex` | ```u32```
-
----------
-#### PreimageNoted
-##### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| who | `T::AccountId` | ```AccountId```
-| deposit | `BalanceOf<T>` | ```u128```
-
----------
-#### PreimageReaped
-##### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| provider | `T::AccountId` | ```AccountId```
-| deposit | `BalanceOf<T>` | ```u128```
-| reaper | `T::AccountId` | ```AccountId```
-
----------
-#### PreimageUsed
-##### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| provider | `T::AccountId` | ```AccountId```
-| deposit | `BalanceOf<T>` | ```u128```
 
 ---------
 #### ProposalCanceled
@@ -1653,7 +1548,6 @@ No attributes
 | -------- | -------- | -------- |
 | proposal_index | `PropIndex` | ```u32```
 | deposit | `BalanceOf<T>` | ```u128```
-| depositors | `Vec<T::AccountId>` | ```['AccountId']```
 
 ---------
 #### Undelegated
@@ -1668,7 +1562,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `H256` | ```[u8; 32]```
 | until | `T::BlockNumber` | ```u32```
 
 ---------
@@ -1765,32 +1659,13 @@ result = substrate.query(
 ##### Return value
 ```python
 (
-    '[u8; 32]',
+    {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+    },
     ('SuperMajorityApprove', 'SuperMajorityAgainst', 'SimpleMajority'),
 )
-```
----------
-#### Preimages
-
-##### Python
-```python
-result = substrate.query(
-    'Democracy', 'Preimages', ['[u8; 32]']
-)
-```
-
-##### Return value
-```python
-{
-    'Available': {
-        'data': 'Bytes',
-        'deposit': 'u128',
-        'expiry': (None, 'u32'),
-        'provider': 'AccountId',
-        'since': 'u32',
-    },
-    'Missing': 'u32',
-}
 ```
 ---------
 #### PublicPropCount
@@ -1818,7 +1693,17 @@ result = substrate.query(
 
 ##### Return value
 ```python
-[('u32', '[u8; 32]', 'AccountId')]
+[
+    (
+        'u32',
+        {
+            'Inline': 'Bytes',
+            'Legacy': {'hash': '[u8; 32]'},
+            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        },
+        'AccountId',
+    ),
+]
 ```
 ---------
 #### ReferendumCount
@@ -1851,7 +1736,11 @@ result = substrate.query(
     'Ongoing': {
         'delay': 'u32',
         'end': 'u32',
-        'proposal_hash': '[u8; 32]',
+        'proposal': {
+            'Inline': 'Bytes',
+            'Legacy': {'hash': '[u8; 32]'},
+            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        },
         'tally': {'ayes': 'u128', 'nays': 'u128', 'turnout': 'u128'},
         'threshold': (
             'SuperMajorityApprove',
@@ -1860,20 +1749,6 @@ result = substrate.query(
         ),
     },
 }
-```
----------
-#### StorageVersion
-
-##### Python
-```python
-result = substrate.query(
-    'Democracy', 'StorageVersion', []
-)
-```
-
-##### Return value
-```python
-('V1', )
 ```
 ---------
 #### VotingOf
@@ -1963,6 +1838,26 @@ constant = substrate.get_constant('Democracy', 'InstantAllowed')
 constant = substrate.get_constant('Democracy', 'LaunchPeriod')
 ```
 ---------
+#### MaxBlacklisted
+##### Value
+```python
+100
+```
+##### Python
+```python
+constant = substrate.get_constant('Democracy', 'MaxBlacklisted')
+```
+---------
+#### MaxDeposits
+##### Value
+```python
+100
+```
+##### Python
+```python
+constant = substrate.get_constant('Democracy', 'MaxDeposits')
+```
+---------
 #### MaxProposals
 ##### Value
 ```python
@@ -1991,16 +1886,6 @@ constant = substrate.get_constant('Democracy', 'MaxVotes')
 ##### Python
 ```python
 constant = substrate.get_constant('Democracy', 'MinimumDeposit')
-```
----------
-#### PreimageByteDeposit
-##### Value
-```python
-100000
-```
-##### Python
-```python
-constant = substrate.get_constant('Democracy', 'PreimageByteDeposit')
 ```
 ---------
 #### VoteLockingPeriod
@@ -2034,13 +1919,7 @@ constant = substrate.get_constant('Democracy', 'VotingPeriod')
 #### AlreadyVetoed
 
 ---------
-#### DuplicatePreimage
-
----------
 #### DuplicateProposal
-
----------
-#### Imminent
 
 ---------
 #### InstantNotAllowed
@@ -2070,19 +1949,10 @@ constant = substrate.get_constant('Democracy', 'VotingPeriod')
 #### NotDelegating
 
 ---------
-#### NotImminent
-
----------
 #### NotSimpleMajority
 
 ---------
 #### NotVoter
-
----------
-#### PreimageInvalid
-
----------
-#### PreimageMissing
 
 ---------
 #### ProposalBlacklisted
@@ -2094,10 +1964,7 @@ constant = substrate.get_constant('Democracy', 'VotingPeriod')
 #### ReferendumInvalid
 
 ---------
-#### TooEarly
-
----------
-#### TooManyProposals
+#### TooMany
 
 ---------
 #### ValueLow
@@ -2232,6 +2099,9 @@ constant = substrate.get_constant('Messages', 'MaxMessagesPerBlock')
 #### ExceedsMaxMessagePayloadSizeBytes
 
 ---------
+#### InvalidCid
+
+---------
 #### InvalidMessageSourceAccount
 
 ---------
@@ -2248,6 +2118,9 @@ constant = substrate.get_constant('Messages', 'MaxMessagesPerBlock')
 
 ---------
 #### UnAuthorizedDelegate
+
+---------
+#### UnsupportedCidVersion
 
 ---------
 
@@ -2551,7 +2424,7 @@ result = substrate.query(
 
 ##### Return value
 ```python
-{'revoked_at': 'u32', 'schema_permissions': 'scale_info::240'}
+{'revoked_at': 'u32', 'schema_permissions': 'scale_info::239'}
 ```
 ---------
 #### PayloadSignatureBucketCount
@@ -2858,9 +2731,9 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::109',
+        'horizontal_messages': 'scale_info::106',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::91',
+            'trie_nodes': 'scale_info::88',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -2894,7 +2767,7 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| weight_used | `Weight` | ```{'ref_time': 'u64'}```
+| weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 | dmq_head | `relay_chain::Hash` | ```[u8; 32]```
 
 ---------
@@ -3064,7 +2937,7 @@ result = substrate.query(
 
 ##### Return value
 ```python
-'scale_info::100'
+'scale_info::97'
 ```
 ---------
 #### LastRelayChainBlockNumber
@@ -3148,7 +3021,7 @@ result = substrate.query(
 
 ##### Return value
 ```python
-{'trie_nodes': 'scale_info::91'}
+{'trie_nodes': 'scale_info::88'}
 ```
 ---------
 #### RelevantMessagingState
@@ -3205,7 +3078,7 @@ result = substrate.query(
 
 ##### Return value
 ```python
-{'ref_time': 'u64'}
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 #### ReservedXcmpWeightOverride
@@ -3219,7 +3092,7 @@ result = substrate.query(
 
 ##### Return value
 ```python
-{'ref_time': 'u64'}
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 #### UpgradeRestrictionSignal
@@ -3386,7 +3259,7 @@ call = substrate.compose_call(
 ##### Python
 ```python
 result = substrate.query(
-    'Preimage', 'PreimageFor', ['[u8; 32]']
+    'Preimage', 'PreimageFor', [('[u8; 32]', 'u32')]
 )
 ```
 
@@ -3406,7 +3279,14 @@ result = substrate.query(
 
 ##### Return value
 ```python
-{'Requested': 'u32', 'Unrequested': (None, ('AccountId', 'u128'))}
+{
+    'Requested': {
+        'count': 'u32',
+        'deposit': (None, ('AccountId', 'u128')),
+        'len': (None, 'u32'),
+    },
+    'Unrequested': {'deposit': ('AccountId', 'u128'), 'len': 'u32'},
+}
 ```
 ---------
 ### Errors
@@ -3426,7 +3306,7 @@ result = substrate.query(
 #### Requested
 
 ---------
-#### TooLarge
+#### TooBig
 
 ---------
 
@@ -3453,12 +3333,12 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `Vec<u8>` | 
+| id | `TaskName` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
-    'Scheduler', 'cancel_named', {'id': 'Bytes'}
+    'Scheduler', 'cancel_named', {'id': '[u8; 32]'}
 )
 ```
 
@@ -3470,16 +3350,13 @@ call = substrate.compose_call(
 | when | `T::BlockNumber` | 
 | maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
 | priority | `schedule::Priority` | 
-| call | `Box<CallOrHashOf<T>>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
     'Scheduler', 'schedule', {
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
+    'call': 'Call',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -3498,17 +3375,14 @@ call = substrate.compose_call(
 | after | `T::BlockNumber` | 
 | maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
 | priority | `schedule::Priority` | 
-| call | `Box<CallOrHashOf<T>>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
     'Scheduler', 'schedule_after', {
     'after': 'u32',
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
+    'call': 'Call',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -3523,21 +3397,18 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `Vec<u8>` | 
+| id | `TaskName` | 
 | when | `T::BlockNumber` | 
 | maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
 | priority | `schedule::Priority` | 
-| call | `Box<CallOrHashOf<T>>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
     'Scheduler', 'schedule_named', {
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
-    'id': 'Bytes',
+    'call': 'Call',
+    'id': '[u8; 32]',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -3553,22 +3424,19 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `Vec<u8>` | 
+| id | `TaskName` | 
 | after | `T::BlockNumber` | 
 | maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
 | priority | `schedule::Priority` | 
-| call | `Box<CallOrHashOf<T>>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 ##### Python
 ```python
 call = substrate.compose_call(
     'Scheduler', 'schedule_named_after', {
     'after': 'u32',
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
-    'id': 'Bytes',
+    'call': 'Call',
+    'id': '[u8; 32]',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -3581,13 +3449,12 @@ call = substrate.compose_call(
 ---------
 ### Events
 ---------
-#### CallLookupFailed
+#### CallUnavailable
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
-| id | `Option<Vec<u8>>` | ```(None, 'Bytes')```
-| error | `LookupError` | ```('Unknown', 'BadFormat')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
 #### Canceled
@@ -3603,8 +3470,24 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
-| id | `Option<Vec<u8>>` | ```(None, 'Bytes')```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+
+---------
+#### PeriodicFailed
+##### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
+
+---------
+#### PermanentlyOverweight
+##### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
 #### Scheduled
@@ -3632,8 +3515,12 @@ result = substrate.query(
     (
         None,
         {
-            'call': {'Hash': '[u8; 32]', 'Value': 'Call'},
-            'maybe_id': (None, 'Bytes'),
+            'call': {
+                'Inline': 'Bytes',
+                'Legacy': {'hash': '[u8; 32]'},
+                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            },
+            'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
                 'Council': {
@@ -3641,14 +3528,14 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'Void': (),
+                None: None,
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -3656,12 +3543,26 @@ result = substrate.query(
 ]
 ```
 ---------
+#### IncompleteSince
+
+##### Python
+```python
+result = substrate.query(
+    'Scheduler', 'IncompleteSince', []
+)
+```
+
+##### Return value
+```python
+'u32'
+```
+---------
 #### Lookup
 
 ##### Python
 ```python
 result = substrate.query(
-    'Scheduler', 'Lookup', ['Bytes']
+    'Scheduler', 'Lookup', ['[u8; 32]']
 )
 ```
 
@@ -3685,7 +3586,7 @@ constant = substrate.get_constant('Scheduler', 'MaxScheduledPerBlock')
 #### MaximumWeight
 ##### Value
 ```python
-{'ref_time': 50000000000}
+{'proof_size': 524288, 'ref_time': 50000000000}
 ```
 ##### Python
 ```python
@@ -3695,6 +3596,9 @@ constant = substrate.get_constant('Scheduler', 'MaximumWeight')
 ### Errors
 ---------
 #### FailedToSchedule
+
+---------
+#### Named
 
 ---------
 #### NotFound
@@ -3757,15 +3661,15 @@ call = substrate.compose_call(
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `SchemaId` | ```u16```
+| key | `T::AccountId` | ```AccountId```
+| schema_id | `SchemaId` | ```u16```
 
 ---------
 #### SchemaMaxSizeChanged
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `u32` | ```u32```
+| max_size | `u32` | ```u32```
 
 ---------
 ### Storage functions
@@ -4021,150 +3925,9 @@ result = substrate.query(
 
 ---------
 
-## Sudo
----------
-### Calls
----------
-#### set_key
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| new | `AccountIdLookupOf<T>` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Sudo', 'set_key', {
-    'new': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-}
-)
-```
-
----------
-#### sudo
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| call | `Box<<T as Config>::RuntimeCall>` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Sudo', 'sudo', {'call': 'Call'}
-)
-```
-
----------
-#### sudo_as
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| who | `AccountIdLookupOf<T>` | 
-| call | `Box<<T as Config>::RuntimeCall>` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Sudo', 'sudo_as', {
-    'call': 'Call',
-    'who': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-}
-)
-```
-
----------
-#### sudo_unchecked_weight
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| call | `Box<<T as Config>::RuntimeCall>` | 
-| weight | `Weight` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'Sudo', 'sudo_unchecked_weight', {
-    'call': 'Call',
-    'weight': {'ref_time': 'u64'},
-}
-)
-```
-
----------
-### Events
----------
-#### KeyChanged
-##### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| old_sudoer | `Option<T::AccountId>` | ```(None, 'AccountId')```
-
----------
-#### Sudid
-##### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
-
----------
-#### SudoAsDone
-##### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
-
----------
-### Storage functions
----------
-#### Key
-
-##### Python
-```python
-result = substrate.query(
-    'Sudo', 'Key', []
-)
-```
-
-##### Return value
-```python
-'AccountId'
-```
----------
-### Errors
----------
-#### RequireSudo
-
----------
-
 ## System
 ---------
 ### Calls
----------
-#### fill_block
-##### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ratio | `Perbill` | 
-
-##### Python
-```python
-call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-```
-
 ---------
 #### kill_prefix
 ##### Attributes
@@ -4290,15 +4053,15 @@ No attributes
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| dispatch_error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}```
-| dispatch_info | `DispatchInfo` | ```{'weight': {'ref_time': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
+| dispatch_error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| dispatch_info | `DispatchInfo` | ```{'weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
 
 ---------
 #### ExtrinsicSuccess
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| dispatch_info | `DispatchInfo` | ```{'weight': {'ref_time': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
+| dispatch_info | `DispatchInfo` | ```{'weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
 
 ---------
 #### KilledAccount
@@ -4390,9 +4153,9 @@ result = substrate.query(
 ##### Return value
 ```python
 {
-    'mandatory': {'ref_time': 'u64'},
-    'normal': {'ref_time': 'u64'},
-    'operational': {'ref_time': 'u64'},
+    'mandatory': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'normal': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'operational': {'proof_size': 'u64', 'ref_time': 'u64'},
 }
 ```
 ---------
@@ -4474,7 +4237,7 @@ result = substrate.query(
                 'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'destination_status': 'scale_info::45',
+                    'destination_status': 'scale_info::42',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
@@ -4508,11 +4271,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
+                    'result': 'scale_info::38',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
+                    'result': 'scale_info::38',
                 },
                 'Proposed': {
                     'account': 'AccountId',
@@ -4532,43 +4295,14 @@ result = substrate.query(
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
                 'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
-                'Executed': {'ref_index': 'u32', 'result': 'scale_info::30'},
                 'ExternalTabled': None,
                 'NotPassed': {'ref_index': 'u32'},
                 'Passed': {'ref_index': 'u32'},
-                'PreimageInvalid': {
-                    'proposal_hash': '[u8; 32]',
-                    'ref_index': 'u32',
-                },
-                'PreimageMissing': {
-                    'proposal_hash': '[u8; 32]',
-                    'ref_index': 'u32',
-                },
-                'PreimageNoted': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'who': 'AccountId',
-                },
-                'PreimageReaped': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'provider': 'AccountId',
-                    'reaper': 'AccountId',
-                },
-                'PreimageUsed': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'provider': 'AccountId',
-                },
                 'ProposalCanceled': {'prop_index': 'u32'},
                 'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::36'},
-                'Tabled': {
-                    'deposit': 'u128',
-                    'depositors': ['AccountId'],
-                    'proposal_index': 'u32',
-                },
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::32'},
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Undelegated': {'account': 'AccountId'},
                 'Vetoed': {
                     'proposal_hash': '[u8; 32]',
@@ -4577,7 +4311,7 @@ result = substrate.query(
                 },
                 'Voted': {
                     'ref_index': 'u32',
-                    'vote': 'scale_info::37',
+                    'vote': 'scale_info::33',
                     'voter': 'AccountId',
                 },
             },
@@ -4623,39 +4357,44 @@ result = substrate.query(
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
             },
-            'Scheduler': {
-                'CallLookupFailed': {
-                    'error': 'scale_info::42',
-                    'id': (None, 'Bytes'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, 'Bytes'),
-                    'result': 'scale_info::30',
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            'Schemas': {
+                'SchemaCreated': {'key': 'AccountId', 'schema_id': 'u16'},
+                'SchemaMaxSizeChanged': {'max_size': 'u32'},
             },
-            'Schemas': {'SchemaCreated': ('AccountId', 'u16'), 'SchemaMaxSizeChanged': 'u32'},
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::30'},
-                'SudoAsDone': {'sudo_result': 'scale_info::30'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
                 },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             None: None,
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::38',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -4666,11 +4405,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
+                    'result': 'scale_info::38',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
+                    'result': 'scale_info::38',
                 },
                 'Proposed': {
                     'account': 'AccountId',
@@ -4715,19 +4454,19 @@ result = substrate.query(
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
                 'BatchInterrupted': {
-                    'error': 'scale_info::23',
+                    'error': 'scale_info::24',
                     'index': 'u32',
                 },
-                'DispatchedAs': {'result': 'scale_info::30'},
+                'DispatchedAs': {'result': 'scale_info::38'},
                 'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::23'},
+                'ItemFailed': {'error': 'scale_info::24'},
             },
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},
                 'VestingScheduleAdded': {
                     'from': 'AccountId',
                     'to': 'AccountId',
-                    'vesting_schedule': 'scale_info::54',
+                    'vesting_schedule': 'scale_info::52',
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
             },
@@ -4880,26 +4619,26 @@ constant = substrate.get_constant('System', 'BlockLength')
 ##### Value
 ```python
 {
-    'base_block': {'ref_time': 5000000000},
-    'max_block': {'ref_time': 500000000000},
+    'base_block': {'proof_size': 0, 'ref_time': 5000000000},
+    'max_block': {'proof_size': 5242880, 'ref_time': 500000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'ref_time': 125000000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 125000000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': {'ref_time': 125000000},
-            'max_extrinsic': {'ref_time': 349875000000},
-            'max_total': {'ref_time': 375000000000},
-            'reserved': {'ref_time': 0},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 125000000},
+            'max_extrinsic': {'proof_size': 3670016, 'ref_time': 349875000000},
+            'max_total': {'proof_size': 3932160, 'ref_time': 375000000000},
+            'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'ref_time': 125000000},
-            'max_extrinsic': {'ref_time': 474875000000},
-            'max_total': {'ref_time': 500000000000},
-            'reserved': {'ref_time': 125000000000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 125000000},
+            'max_extrinsic': {'proof_size': 4980736, 'ref_time': 474875000000},
+            'max_total': {'proof_size': 5242880, 'ref_time': 500000000000},
+            'reserved': {'proof_size': 1310720, 'ref_time': 125000000000},
         },
     },
 }
@@ -4942,7 +4681,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0xf78b278be53f454c', 2),
         ('0xab3c0572291feb8b', 1),
         ('0xbc9d89904f5b923f', 1),
-        ('0x37c8bb1350a9a2a8', 1),
+        ('0x37c8bb1350a9a2a8', 2),
         ('0xea93e3f16f3d6962', 2),
         ('0x54bef602b989d121', 1),
         ('0x02fadd88517cc081', 1),
@@ -4952,7 +4691,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'frequency',
     'impl_version': 0,
     'spec_name': 'frequency',
-    'spec_version': 5,
+    'spec_version': 11,
     'state_version': 1,
     'transaction_version': 1,
 }
@@ -5004,8 +4743,31 @@ call = substrate.compose_call(
     'length_bound': 'u32',
     'proposal_hash': '[u8; 32]',
     'proposal_weight_bound': {
+        'proof_size': 'u64',
         'ref_time': 'u64',
     },
+}
+)
+```
+
+---------
+#### close_old_weight
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| proposal_hash | `T::Hash` | 
+| index | `ProposalIndex` | 
+| proposal_weight_bound | `OldWeight` | 
+| length_bound | `u32` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'TechnicalCommittee', 'close_old_weight', {
+    'index': 'u32',
+    'length_bound': 'u32',
+    'proposal_hash': '[u8; 32]',
+    'proposal_weight_bound': 'u64',
 }
 )
 ```
@@ -5133,7 +4895,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 #### MemberExecuted
@@ -5141,7 +4903,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 #### Proposed
@@ -5574,6 +5336,20 @@ result = substrate.query(
 ['u32']
 ```
 ---------
+#### Inactive
+
+##### Python
+```python
+result = substrate.query(
+    'Treasury', 'Inactive', []
+)
+```
+
+##### Return value
+```python
+'u128'
+```
+---------
 #### ProposalCount
 
 ##### Python
@@ -5756,6 +5532,12 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -5767,12 +5549,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }
@@ -5794,6 +5570,27 @@ call = substrate.compose_call(
 ```
 
 ---------
+#### with_weight
+##### Attributes
+| Name | Type |
+| -------- | -------- | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
+| weight | `Weight` | 
+
+##### Python
+```python
+call = substrate.compose_call(
+    'Utility', 'with_weight', {
+    'call': 'Call',
+    'weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
+)
+```
+
+---------
 ### Events
 ---------
 #### BatchCompleted
@@ -5811,14 +5608,14 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | index | `u32` | ```u32```
-| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
 #### DispatchedAs
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 #### ItemCompleted
@@ -5830,7 +5627,7 @@ No attributes
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
 ### Constants

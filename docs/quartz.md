@@ -55521,12 +55521,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -55592,13 +55592,24 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'AppPromotion': {
                 'SetAdmin': 'AccountId',
                 'Stake': ('AccountId', 'u128'),
                 'StakingRecalculation': ('AccountId', 'u128', 'u128'),
                 'Unstake': ('AccountId', 'u128'),
             },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -55784,17 +55795,6 @@ result = substrate.query(
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::34'},
                 'SudoAsDone': {'sudo_result': 'scale_info::34'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'Tokens': {
                 'BalanceSet': {

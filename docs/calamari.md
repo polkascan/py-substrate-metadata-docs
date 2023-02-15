@@ -66413,6 +66413,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AssetManager': {
                 'AssetLocationUpdated': {
                     'asset_id': 'u32',
@@ -67018,7 +67019,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -68714,12 +68714,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -69593,6 +69587,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
     'call': 'Call',
 }

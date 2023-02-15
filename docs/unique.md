@@ -45471,6 +45471,11 @@ result = substrate.query(
 [
     {
         'event': {
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 8]', 'scale_info::67'),
+                'InvalidFormat': '[u8; 8]',
+                'UnsupportedVersion': '[u8; 8]',
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -45532,11 +45537,6 @@ result = substrate.query(
                     'scale_info::90',
                     'u128',
                 ),
-            },
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::67'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
             },
             'DmpQueue': {
                 'ExecutedDownward': {

@@ -61511,6 +61511,8 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::62',
@@ -61522,8 +61524,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -62474,18 +62474,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'u32',
@@ -62564,6 +62552,15 @@ result = substrate.query(
                 'Started': ('u32', 'scale_info::105'),
                 'Tabled': ('u32', 'u128', ['AccountId']),
             },
+            'Escrow': {
+                'Deposit': {
+                    'amount': 'u128',
+                    'unlock_height': 'u32',
+                    'who': 'AccountId',
+                },
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            None: None,
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -62585,14 +62582,6 @@ result = substrate.query(
                     'remaining_weight': 'scale_info::8',
                     'required_weight': 'scale_info::8',
                 },
-            },
-            'Escrow': {
-                'Deposit': {
-                    'amount': 'u128',
-                    'unlock_height': 'u32',
-                    'who': 'AccountId',
-                },
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
             'EscrowAnnuity': {'BlockReward': 'u128'},
             'EscrowRewards': {
@@ -62892,6 +62881,17 @@ result = substrate.query(
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'Supply': {'Inflation': {'total_inflation': 'u128'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -71226,6 +71226,11 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        None: None,
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -72088,11 +72093,6 @@ call = substrate.compose_call(
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
-        },
-        None: None,
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
         },
         'Void': (),
         'system': {

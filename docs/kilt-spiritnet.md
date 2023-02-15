@@ -49901,6 +49901,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u64', 'u32')),
             'origin': {
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -49918,7 +49919,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                None: None,
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
@@ -50574,6 +50574,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Attestation': {
                 'AttestationCreated': (
                     'AccountId',
@@ -50585,18 +50586,6 @@ result = substrate.query(
                 'AttestationRevoked': ('AccountId', '[u8; 32]'),
                 'DepositReclaimed': ('AccountId', '[u8; 32]'),
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -50910,6 +50899,17 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u64'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -53346,6 +53346,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -54223,12 +54229,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        None: None,
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
     'call': 'Call',
 }

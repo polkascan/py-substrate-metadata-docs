@@ -63194,6 +63194,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -63211,7 +63212,6 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -63976,7 +63976,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AssetManager': {
                 'ForeignAssetMetadataUpdated': {
                     'asset_id': 'u128',
@@ -64025,20 +64024,6 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
-            'Bounties': {
-                'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
-                'BountyBecameActive': {'index': 'u32'},
-                'BountyCanceled': {'index': 'u32'},
-                'BountyClaimed': {
-                    'beneficiary': 'AccountId',
-                    'index': 'u32',
-                    'payout': 'u128',
-                },
-                'BountyExtended': {'index': 'u32'},
-                'BountyProposed': {'index': 'u32'},
-                'BountyRejected': {'bond': 'u128', 'index': 'u32'},
-            },
-            'BridgeTransfer': {'MaximumIssuanceChanged': {'old_value': 'u128'}},
             'ChainBridge': {
                 'ChainWhitelisted': 'u8',
                 'FeeUpdated': {'dest_id': 'u8', 'fee': 'u128'},
@@ -64061,16 +64046,6 @@ result = substrate.query(
                 'RelayerThresholdChanged': 'u32',
                 'VoteAgainst': ('u8', 'u64', 'AccountId'),
                 'VoteFor': ('u8', 'u64', 'AccountId'),
-            },
-            'CollatorSelection': {
-                'CandidateAdded': {
-                    'account_id': 'AccountId',
-                    'deposit': 'u128',
-                },
-                'CandidateRemoved': {'account_id': 'AccountId'},
-                'NewCandidacyBond': {'bond_amount': 'u128'},
-                'NewDesiredCandidates': {'desired_candidates': 'u32'},
-                'NewInvulnerables': {'invulnerables': ['AccountId']},
             },
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -64110,6 +64085,42 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'Bounties': {
+                'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
+                'BountyBecameActive': {'index': 'u32'},
+                'BountyCanceled': {'index': 'u32'},
+                'BountyClaimed': {
+                    'beneficiary': 'AccountId',
+                    'index': 'u32',
+                    'payout': 'u128',
+                },
+                'BountyExtended': {'index': 'u32'},
+                'BountyProposed': {'index': 'u32'},
+                'BountyRejected': {'bond': 'u128', 'index': 'u32'},
+            },
+            'BridgeTransfer': {'MaximumIssuanceChanged': {'old_value': 'u128'}},
+            'CollatorSelection': {
+                'CandidateAdded': {
+                    'account_id': 'AccountId',
+                    'deposit': 'u128',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'NewCandidacyBond': {'bond_amount': 'u128'},
+                'NewDesiredCandidates': {'desired_candidates': 'u32'},
+                'NewInvulnerables': {'invulnerables': ['AccountId']},
+            },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::65'),
                 'InvalidFormat': '[u8; 8]',
@@ -64418,17 +64429,6 @@ result = substrate.query(
             'Sidechain': {
                 'FinalizedSidechainBlock': ('AccountId', '[u8; 32]'),
                 'ProposedSidechainBlock': ('AccountId', '[u8; 32]'),
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},

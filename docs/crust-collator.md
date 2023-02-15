@@ -71494,7 +71494,10 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'PolkadotXcm': {
+                    'Response': 'scale_info::47',
+                    'Xcm': 'scale_info::47',
+                },
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -71502,16 +71505,13 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'PolkadotXcm': {
-                    'Response': 'scale_info::47',
-                    'Xcm': 'scale_info::47',
-                },
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -72318,9 +72318,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -72497,6 +72497,7 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
+            'BridgeTransfer': {'FeeUpdated': ('u8', 'u128', 'u32')},
             'ChainBridge': {
                 'ChainWhitelisted': 'u8',
                 'FungibleTransfer': (
@@ -72576,70 +72577,6 @@ result = substrate.query(
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
             },
-            'DmpQueue': {
-                'ExecutedDownward': {
-                    'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::46',
-                },
-                'InvalidFormat': {'message_id': '[u8; 32]'},
-                'OverweightEnqueued': {
-                    'message_id': '[u8; 32]',
-                    'overweight_index': 'u64',
-                    'required_weight': 'scale_info::8',
-                },
-                'OverweightServiced': {
-                    'overweight_index': 'u64',
-                    'weight_used': 'scale_info::8',
-                },
-                'UnsupportedVersion': {'message_id': '[u8; 32]'},
-                'WeightExhausted': {
-                    'message_id': '[u8; 32]',
-                    'remaining_weight': 'scale_info::8',
-                    'required_weight': 'scale_info::8',
-                },
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::93',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::93',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::35',
-                    'timepoint': 'scale_info::93',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
-            'OrmlXcm': {
-                'Sent': {'message': ['scale_info::60'], 'to': 'scale_info::47'},
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
-            None: None,
-            'BridgeTransfer': {'FeeUpdated': ('u8', 'u128', 'u32')},
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -72696,6 +72633,28 @@ result = substrate.query(
                     'voter': 'AccountId',
                 },
             },
+            'DmpQueue': {
+                'ExecutedDownward': {
+                    'message_id': '[u8; 32]',
+                    'outcome': 'scale_info::46',
+                },
+                'InvalidFormat': {'message_id': '[u8; 32]'},
+                'OverweightEnqueued': {
+                    'message_id': '[u8; 32]',
+                    'overweight_index': 'u64',
+                    'required_weight': 'scale_info::8',
+                },
+                'OverweightServiced': {
+                    'overweight_index': 'u64',
+                    'weight_used': 'scale_info::8',
+                },
+                'UnsupportedVersion': {'message_id': '[u8; 32]'},
+                'WeightExhausted': {
+                    'message_id': '[u8; 32]',
+                    'remaining_weight': 'scale_info::8',
+                    'required_weight': 'scale_info::8',
+                },
+            },
             'Identity': {
                 'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
                 'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
@@ -72728,6 +72687,46 @@ result = substrate.query(
                     'main': 'AccountId',
                     'sub': 'AccountId',
                 },
+            },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::93',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::93',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::35',
+                    'timepoint': 'scale_info::93',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
+            'OrmlXcm': {
+                'Sent': {'message': ['scale_info::60'], 'to': 'scale_info::47'},
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
             },
             'PhragmenElection': {
                 'CandidateSlashed': {
@@ -72938,14 +72937,6 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::23'},
             },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::63'],
-                    'dest': 'scale_info::47',
-                    'fee': 'scale_info::63',
-                    'sender': 'AccountId',
-                },
-            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -72967,6 +72958,15 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::63'],
+                    'dest': 'scale_info::47',
+                    'fee': 'scale_info::63',
+                    'sender': 'AccountId',
+                },
             },
             'Xstorage': {
                 'FileSuccess': {

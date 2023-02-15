@@ -3339,12 +3339,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -61511,19 +61511,19 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'TechnicalCommittee': {
+                    'Member': 'AccountId',
+                    'Members': ('u32', 'u32'),
+                    '_Phantom': None,
+                },
                 None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::62',
                     'Xcm': 'scale_info::62',
                 },
-                'TechnicalCommittee': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -62403,12 +62403,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -62891,6 +62891,22 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            None: None,
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -62921,14 +62937,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'scale_info::41',
@@ -62998,13 +63006,6 @@ result = substrate.query(
                 'Withdrawn': {
                     'amount': 'u128',
                     'currency_id': 'scale_info::41',
-                    'who': 'AccountId',
-                },
-            },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
                     'who': 'AccountId',
                 },
             },
@@ -63204,6 +63205,23 @@ result = substrate.query(
                     'vault_id': 'scale_info::72',
                 },
             },
+            'Vesting': {
+                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
+                'VestingScheduleAdded': {
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                    'vesting_schedule': 'scale_info::47',
+                },
+                'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::123'],
+                    'dest': 'scale_info::62',
+                    'fee': 'scale_info::123',
+                    'sender': 'AccountId',
+                },
+            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -63225,24 +63243,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'Vesting': {
-                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
-                'VestingScheduleAdded': {
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                    'vesting_schedule': 'scale_info::47',
-                },
-                'VestingSchedulesUpdated': {'who': 'AccountId'},
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::123'],
-                    'dest': 'scale_info::62',
-                    'fee': 'scale_info::123',
-                    'sender': 'AccountId',
-                },
             },
         },
         'phase': {
@@ -71226,6 +71226,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
@@ -72094,12 +72100,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }

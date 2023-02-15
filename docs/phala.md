@@ -66821,14 +66821,13 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'Void': (),
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                None: None,
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::51',
                     'Xcm': 'scale_info::51',
@@ -66838,6 +66837,7 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
@@ -67418,9 +67418,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -67918,24 +67918,21 @@ result = substrate.query(
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
+            'Scheduler': {
+                'CallLookupFailed': {
+                    'error': 'scale_info::39',
+                    'id': (None, 'Bytes'),
+                    'task': ('u32', 'u32'),
                 },
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, 'Bytes'),
+                    'result': 'scale_info::28',
+                    'task': ('u32', 'u32'),
                 },
-                'DispatchedAs': {'result': 'scale_info::28'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -67982,21 +67979,6 @@ result = substrate.query(
                     'proxy_type': 'scale_info::33',
                 },
             },
-            'Scheduler': {
-                'CallLookupFailed': {
-                    'error': 'scale_info::39',
-                    'id': (None, 'Bytes'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, 'Bytes'),
-                    'result': 'scale_info::28',
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -68061,6 +68043,13 @@ result = substrate.query(
                     'tip_hash': '[u8; 32]',
                 },
             },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -68078,6 +68067,17 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::28'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::22'},
             },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
@@ -70125,11 +70125,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
         None: None,
         'Council': {
             'Member': 'AccountId',
@@ -71004,6 +70999,11 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }

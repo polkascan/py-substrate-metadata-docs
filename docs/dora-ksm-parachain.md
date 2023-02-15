@@ -90,12 +90,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -61910,6 +61910,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -61927,7 +61928,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -62748,7 +62748,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -63195,6 +63194,7 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -70484,20 +70484,15 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
         },
         None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
-        },
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
         },
         'PolkadotXcm': {
             'Response': {
@@ -71363,6 +71358,11 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }

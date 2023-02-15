@@ -46748,6 +46748,7 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -46760,7 +46761,6 @@ result = substrate.query(
                     'Xcm': 'scale_info::58',
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -47810,8 +47810,6 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::58', 'u64'),
                 'VersionChangeNotified': ('scale_info::58', 'u32'),
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            None: None,
             'Scheduler': {
                 'CallLookupFailed': {
                     'error': 'scale_info::49',
@@ -47826,6 +47824,7 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'Sudo': {
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::28'},
@@ -47924,6 +47923,7 @@ result = substrate.query(
                 'Rollover': {'rollover_balance': 'u128'},
                 'Spending': {'budget_remaining': 'u128'},
             },
+            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,

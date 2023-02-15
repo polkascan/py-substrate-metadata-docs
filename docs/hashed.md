@@ -54729,6 +54729,10 @@ result = substrate.query(
                     'to': 'AccountId',
                 },
             },
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
             'Whitelist': {
                 'CallWhitelisted': {'call_hash': '[u8; 32]'},
                 'WhitelistedCallDispatched': {
@@ -54757,10 +54761,6 @@ result = substrate.query(
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             None: None,
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
-            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

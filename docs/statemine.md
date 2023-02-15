@@ -55303,12 +55303,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -55374,6 +55374,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AssetTxPayment': {
                 'AssetTxFeePaid': {
                     'actual_fee': 'u128',
@@ -55642,6 +55643,13 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Uniques': {
                 'ApprovalCancelled': {
                     'collection': 'u32',
@@ -55776,14 +55784,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
             },
         },
         'phase': {
@@ -57876,6 +57876,10 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -58734,17 +58738,13 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
         None: None,
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
-        'Void': (),
     },
     'call': 'Call',
 }

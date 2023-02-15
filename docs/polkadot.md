@@ -4,7 +4,7 @@
 | -------- | -------- |
 | Spec name     | polkadot     |
 | Implementation name     | parity-polkadot     |
-| Spec version     | 9340     |
+| Spec version     | 9360     |
 | SS58 Format     | 0     |
 | Token symbol      | DOT     |
 | Token decimals      | 10     |
@@ -596,17 +596,17 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
+                        'RuntimeEnvironmentUpdated': None,
+                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'RuntimeEnvironmentUpdated': None,
                         'Seal': (
                             '[u8; 4]',
                             'Bytes',
@@ -624,12 +624,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
+                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -1563,7 +1563,7 @@ call = substrate.compose_call(
 Approve a bounty proposal. At a later time, the bounty will be funded and become active
 and the original deposit will be returned.
 
-May only be called from `T::ApproveOrigin`.
+May only be called from `T::SpendOrigin`.
 
 \# &lt;weight&gt;
 - O(1).
@@ -1724,7 +1724,7 @@ call = substrate.compose_call(
 #### propose_curator
 Assign a curator to a funded bounty.
 
-May only be called from `T::ApproveOrigin`.
+May only be called from `T::SpendOrigin`.
 
 \# &lt;weight&gt;
 - O(1).
@@ -6726,7 +6726,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxVotesPe
 #### MinerMaxWeight
 ##### Value
 ```python
-{'proof_size': 3879731, 'ref_time': 1474064881000}
+{'proof_size': 3879731, 'ref_time': 1473839298000}
 ```
 ##### Python
 ```python
@@ -6827,7 +6827,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxSubmis
  this value.
 ##### Value
 ```python
-{'proof_size': 3879731, 'ref_time': 1474064881000}
+{'proof_size': 3879731, 'ref_time': 1473839298000}
 ```
 ##### Python
 ```python
@@ -10391,9 +10391,12 @@ account).
 \# Note
 
 If there are too many unlocking chunks to unbond with the pool account,
-[`Call::pool_withdraw_unbonded`] can be called to try and minimize unlocking chunks. If
-there are too many unlocking chunks, the result of this call will likely be the
-`NoMoreChunks` error from the staking system.
+[`Call::pool_withdraw_unbonded`] can be called to try and minimize unlocking chunks.
+The [`StakingInterface::unbond`] will implicitly call [`Call::pool_withdraw_unbonded`]
+to try to free chunks if necessary (ie. if unbound was called and no unlocking chunks
+are available). However, it may not be possible to release the current unlocking chunks,
+in which case, the result of this call will likely be the `NoMoreChunks` error from the
+staking system.
 ##### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -14648,24 +14651,24 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
-                None: None,
                 'ParachainsOrigin': {'Parachain': 'u32'},
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'Void': (),
                 'XcmPallet': {
                     'Response': 'scale_info::122',
                     'Xcm': 'scale_info::122',
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -15832,8 +15835,8 @@ Once the unlock period is done, you can call `withdraw_unbonded` to actually mov
 the funds out of management ready for transfer.
 
 No more than a limited number of unlocking chunks (see `MaxUnlockingChunks`)
-can co-exists at the same time. In that case, [`Call::withdraw_unbonded`] need
-to be called first to remove some of the chunks (if possible).
+can co-exists at the same time. If there are no unlocking chunks slots available
+[`Call::withdraw_unbonded`] is called to remove some of the chunks (if possible).
 
 If a user encounters the `InsufficientBond` error when calling this extrinsic,
 they should call `chill` first in order to free up their bonded funds.
@@ -15976,8 +15979,19 @@ The nominator has been rewarded by this amount.
 | amount | `BalanceOf<T>` | ```u128```
 
 ---------
+#### SlashReported
+A slash for the given validator, for the given percentage of their stake, at the given
+era as been reported.
+##### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| validator | `T::AccountId` | ```AccountId```
+| fraction | `Perbill` | ```u32```
+| slash_era | `EraIndex` | ```u32```
+
+---------
 #### Slashed
-One staker (and potentially its nominators) has been slashed by the given amount.
+A staker (validator or nominator) has been slashed by the given amount.
 ##### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -16433,6 +16447,21 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'Staking', 'MinValidatorBond', []
+)
+```
+
+##### Return value
+```python
+'u128'
+```
+---------
+#### MinimumActiveStake
+ The minimum active nominator stake of the last successful election.
+
+##### Python
+```python
+result = substrate.query(
+    'Staking', 'MinimumActiveStake', []
 )
 ```
 
@@ -17616,6 +17645,12 @@ result = substrate.query(
                 'PvfCheckRejected': ('[u8; 32]', 'u32'),
                 'PvfCheckStarted': ('[u8; 32]', 'u32'),
             },
+            'ParasDisputes': {
+                'DisputeConcluded': ('[u8; 32]', 'scale_info::116'),
+                'DisputeInitiated': ('[u8; 32]', 'scale_info::115'),
+                'DisputeTimedOut': '[u8; 32]',
+                'Revert': 'u32',
+            },
             'PhragmenElection': {
                 'CandidateSlashed': {
                     'amount': 'u128',
@@ -17635,45 +17670,6 @@ result = substrate.query(
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
-            },
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::32',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'ParasDisputes': {
-                'DisputeConcluded': ('[u8; 32]', 'scale_info::116'),
-                'DisputeInitiated': ('[u8; 32]', 'scale_info::115'),
-                'DisputeTimedOut': '[u8; 32]',
-                'Revert': 'u32',
             },
             'Proxy': {
                 'Announced': {
@@ -17706,6 +17702,27 @@ result = substrate.query(
                 'Registered': {'manager': 'AccountId', 'para_id': 'u32'},
                 'Reserved': {'para_id': 'u32', 'who': 'AccountId'},
             },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::32',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'Slots': {
                 'Leased': {
@@ -17733,15 +17750,31 @@ result = substrate.query(
                     'validator_stash': 'AccountId',
                 },
                 'Rewarded': {'amount': 'u128', 'stash': 'AccountId'},
+                'SlashReported': {
+                    'fraction': 'u32',
+                    'slash_era': 'u32',
+                    'validator': 'AccountId',
+                },
                 'Slashed': {'amount': 'u128', 'staker': 'AccountId'},
                 'StakersElected': None,
                 'StakingElectionFailed': None,
                 'Unbonded': {'amount': 'u128', 'stash': 'AccountId'},
                 'ValidatorPrefsSet': {
-                    'prefs': 'scale_info::40',
+                    'prefs': 'scale_info::41',
                     'stash': 'AccountId',
                 },
                 'Withdrawn': {'amount': 'u128', 'stash': 'AccountId'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -17803,24 +17836,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Treasury': {
-                'Awarded': {
-                    'account': 'AccountId',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'SpendApproved': {
-                    'amount': 'u128',
-                    'beneficiary': 'AccountId',
-                    'proposal_index': 'u32',
-                },
-                'Spending': {'budget_remaining': 'u128'},
-            },
             'Ump': {
                 'ExecutedUpward': ('[u8; 32]', 'scale_info::109'),
                 'InvalidFormat': '[u8; 32]',
@@ -17853,6 +17868,25 @@ result = substrate.query(
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
+            None: None,
+            'Treasury': {
+                'Awarded': {
+                    'account': 'AccountId',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'SpendApproved': {
+                    'amount': 'u128',
+                    'beneficiary': 'AccountId',
+                    'proposal_index': 'u32',
+                },
+                'Spending': {'budget_remaining': 'u128'},
             },
             'VoterList': {
                 'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
@@ -18068,29 +18102,29 @@ constant = substrate.get_constant('System', 'BlockLength')
 ##### Value
 ```python
 {
-    'base_block': {'proof_size': 0, 'ref_time': 5849907000},
+    'base_block': {'proof_size': 0, 'ref_time': 6062818000},
     'max_block': {'proof_size': 5242880, 'ref_time': 2000000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 85212000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 97884000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 85212000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 97884000},
             'max_extrinsic': {
                 'proof_size': 3879731,
-                'ref_time': 1479914788000,
+                'ref_time': 1479902116000,
             },
             'max_total': {'proof_size': 3932160, 'ref_time': 1500000000000},
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 85212000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 97884000},
             'max_extrinsic': {
                 'proof_size': 5190451,
-                'ref_time': 1979914788000,
+                'ref_time': 1979902116000,
             },
             'max_total': {'proof_size': 5242880, 'ref_time': 2000000000000},
             'reserved': {'proof_size': 1310720, 'ref_time': 500000000000},
@@ -18156,9 +18190,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'parity-polkadot',
     'impl_version': 0,
     'spec_name': 'polkadot',
-    'spec_version': 9340,
+    'spec_version': 9360,
     'state_version': 0,
-    'transaction_version': 18,
+    'transaction_version': 19,
 }
 ```
 ##### Python
@@ -20281,6 +20315,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -20294,6 +20334,7 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
+        'Void': (),
         'XcmPallet': {
             'Response': {
                 'interior': {
@@ -21152,13 +21193,6 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
-        'Void': (),
     },
     'call': 'Call',
 }

@@ -836,12 +836,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
+                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -63051,6 +63051,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -63323,7 +63324,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -64772,12 +64772,12 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
-        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }

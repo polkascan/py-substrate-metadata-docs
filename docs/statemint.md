@@ -55649,18 +55649,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::24',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::84'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::24'},
-            },
-            None: None,
             'Uniques': {
                 'ApprovalCancelled': {
                     'collection': 'u32',
@@ -55763,6 +55751,17 @@ result = substrate.query(
                     'to': 'AccountId',
                 },
             },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::24',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::84'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::24'},
+            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -55785,6 +55784,7 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
