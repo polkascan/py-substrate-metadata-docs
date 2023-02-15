@@ -186,11 +186,11 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#account">Account</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#inactiveissuance">InactiveIssuance</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#locks">Locks</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#reserves">Reserves</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#storageversion">StorageVersion</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#totalissuance">TotalIssuance</a>
     </li>
@@ -304,6 +304,8 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#close">close</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#close_old_weight">close_old_weight</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#disapprove_proposal">disapprove_proposal</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#execute">execute</a>
@@ -384,8 +386,6 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#cancel_proposal">cancel_proposal</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#cancel_queued">cancel_queued</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#cancel_referendum">cancel_referendum</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#clear_public_proposals">clear_public_proposals</a>
@@ -393,8 +393,6 @@
     <li class="toctree-l4"><a class="reference internal" href="#delegate">delegate</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#emergency_cancel">emergency_cancel</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#enact_proposal">enact_proposal</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#external_propose">external_propose</a>
     </li>
@@ -404,17 +402,7 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#fast_track">fast_track</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#note_imminent_preimage">note_imminent_preimage</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#note_imminent_preimage_operational">note_imminent_preimage_operational</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#note_preimage">note_preimage</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#note_preimage_operational">note_preimage_operational</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#propose_1">propose</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#reap_preimage">reap_preimage</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#remove_other_vote">remove_other_vote</a>
     </li>
@@ -440,23 +428,11 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#delegated">Delegated</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#executed_1">Executed</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#externaltabled">ExternalTabled</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#notpassed">NotPassed</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#passed">Passed</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#preimageinvalid">PreimageInvalid</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#preimagemissing">PreimageMissing</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#preimagenoted">PreimageNoted</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#preimagereaped">PreimageReaped</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#preimageused">PreimageUsed</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#proposalcanceled">ProposalCanceled</a>
     </li>
@@ -490,8 +466,6 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#nextexternal">NextExternal</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#preimages">Preimages</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#publicpropcount">PublicPropCount</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#publicprops">PublicProps</a>
@@ -499,8 +473,6 @@
     <li class="toctree-l4"><a class="reference internal" href="#referendumcount">ReferendumCount</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#referenduminfoof">ReferendumInfoOf</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#storageversion_1">StorageVersion</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#votingof">VotingOf</a>
     </li>
@@ -518,13 +490,15 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#launchperiod">LaunchPeriod</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#maxblacklisted">MaxBlacklisted</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#maxdeposits">MaxDeposits</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#maxproposals">MaxProposals</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#maxvotes">MaxVotes</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#minimumdeposit">MinimumDeposit</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#preimagebytedeposit">PreimageByteDeposit</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#votelockingperiod">VoteLockingPeriod</a>
     </li>
@@ -540,11 +514,7 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#alreadyvetoed">AlreadyVetoed</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#duplicatepreimage">DuplicatePreimage</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#duplicateproposal_1">DuplicateProposal</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#imminent">Imminent</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#instantnotallowed">InstantNotAllowed</a>
     </li>
@@ -564,15 +534,9 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#notdelegating">NotDelegating</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#notimminent">NotImminent</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#notsimplemajority">NotSimpleMajority</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#notvoter">NotVoter</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#preimageinvalid_1">PreimageInvalid</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#preimagemissing_1">PreimageMissing</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#proposalblacklisted">ProposalBlacklisted</a>
     </li>
@@ -580,9 +544,7 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#referenduminvalid">ReferendumInvalid</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#tooearly_1">TooEarly</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#toomanyproposals_1">TooManyProposals</a>
+    <li class="toctree-l4"><a class="reference internal" href="#toomany">TooMany</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#valuelow">ValueLow</a>
     </li>
@@ -632,6 +594,8 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#exceedsmaxmessagepayloadsizebytes">ExceedsMaxMessagePayloadSizeBytes</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#invalidcid">InvalidCid</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#invalidmessagesourceaccount">InvalidMessageSourceAccount</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#invalidpayloadlocation">InvalidPayloadLocation</a>
@@ -643,6 +607,8 @@
     <li class="toctree-l4"><a class="reference internal" href="#typeconversionoverflow">TypeConversionOverflow</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#unauthorizeddelegate">UnAuthorizedDelegate</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#unsupportedcidversion">UnsupportedCidVersion</a>
     </li>
         </ul>
     </li>
@@ -906,7 +872,7 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#calls_8">Calls</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#note_preimage_1">note_preimage</a>
+    <li class="toctree-l4"><a class="reference internal" href="#note_preimage">note_preimage</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#request_preimage">request_preimage</a>
     </li>
@@ -946,7 +912,7 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#requested_1">Requested</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#toolarge">TooLarge</a>
+    <li class="toctree-l4"><a class="reference internal" href="#toobig_1">TooBig</a>
     </li>
         </ul>
     </li>
@@ -972,11 +938,15 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#events_8">Events</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#calllookupfailed">CallLookupFailed</a>
+    <li class="toctree-l4"><a class="reference internal" href="#callunavailable">CallUnavailable</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#canceled">Canceled</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#dispatched">Dispatched</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#periodicfailed">PeriodicFailed</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#permanentlyoverweight">PermanentlyOverweight</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#scheduled">Scheduled</a>
     </li>
@@ -985,6 +955,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#storage-functions_12">Storage functions</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#agenda">Agenda</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#incompletesince">IncompleteSince</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#lookup">Lookup</a>
     </li>
@@ -1001,6 +973,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#errors_9">Errors</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#failedtoschedule">FailedToSchedule</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#named">Named</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#notfound">NotFound</a>
     </li>
@@ -1114,50 +1088,10 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#sudo">Sudo</a>
+    <li class="toctree-l2"><a class="reference internal" href="#system">System</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#calls_12">Calls</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#set_key">set_key</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#sudo_1">sudo</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#sudo_as">sudo_as</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#sudo_unchecked_weight">sudo_unchecked_weight</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#events_11">Events</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#keychanged">KeyChanged</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#sudid">Sudid</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#sudoasdone">SudoAsDone</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_15">Storage functions</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#key">Key</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#errors_12">Errors</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#requiresudo">RequireSudo</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#system">System</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#calls_13">Calls</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#fill_block">fill_block</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#kill_prefix">kill_prefix</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#kill_storage">kill_storage</a>
@@ -1176,7 +1110,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#events_12">Events</a>
+    <li class="toctree-l3"><a class="reference internal" href="#events_11">Events</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#codeupdated">CodeUpdated</a>
     </li>
@@ -1192,7 +1126,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_16">Storage functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_15">Storage functions</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#account_1">Account</a>
     </li>
@@ -1208,7 +1142,7 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#eventtopics">EventTopics</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#events_13">Events</a>
+    <li class="toctree-l4"><a class="reference internal" href="#events_12">Events</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#executionphase">ExecutionPhase</a>
     </li>
@@ -1244,7 +1178,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#errors_13">Errors</a>
+    <li class="toctree-l3"><a class="reference internal" href="#errors_12">Errors</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#callfiltered">CallFiltered</a>
     </li>
@@ -1264,9 +1198,11 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#technicalcommittee">TechnicalCommittee</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#calls_14">Calls</a>
+    <li class="toctree-l3"><a class="reference internal" href="#calls_13">Calls</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#close_1">close</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#close_old_weight_1">close_old_weight</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#disapprove_proposal_1">disapprove_proposal</a>
     </li>
@@ -1280,7 +1216,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#events_14">Events</a>
+    <li class="toctree-l3"><a class="reference internal" href="#events_13">Events</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#approved_1">Approved</a>
     </li>
@@ -1288,7 +1224,7 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#disapproved_1">Disapproved</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#executed_2">Executed</a>
+    <li class="toctree-l4"><a class="reference internal" href="#executed_1">Executed</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#memberexecuted_1">MemberExecuted</a>
     </li>
@@ -1298,7 +1234,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_17">Storage functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_16">Storage functions</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#members_1">Members</a>
     </li>
@@ -1314,7 +1250,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#errors_14">Errors</a>
+    <li class="toctree-l3"><a class="reference internal" href="#errors_13">Errors</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#alreadyinitialized_1">AlreadyInitialized</a>
     </li>
@@ -1326,9 +1262,9 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#proposalmissing_2">ProposalMissing</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#tooearly_2">TooEarly</a>
+    <li class="toctree-l4"><a class="reference internal" href="#tooearly_1">TooEarly</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#toomanyproposals_2">TooManyProposals</a>
+    <li class="toctree-l4"><a class="reference internal" href="#toomanyproposals_1">TooManyProposals</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#wrongindex_1">WrongIndex</a>
     </li>
@@ -1342,13 +1278,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#timestamp">Timestamp</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#calls_15">Calls</a>
+    <li class="toctree-l3"><a class="reference internal" href="#calls_14">Calls</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#set">set</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_18">Storage functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_17">Storage functions</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#didupdate">DidUpdate</a>
     </li>
@@ -1366,17 +1302,17 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#transactionpayment">TransactionPayment</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#events_15">Events</a>
+    <li class="toctree-l3"><a class="reference internal" href="#events_14">Events</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#transactionfeepaid">TransactionFeePaid</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_19">Storage functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_18">Storage functions</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#nextfeemultiplier">NextFeeMultiplier</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#storageversion_2">StorageVersion</a>
+    <li class="toctree-l4"><a class="reference internal" href="#storageversion">StorageVersion</a>
     </li>
         </ul>
     </li>
@@ -1390,7 +1326,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#treasury">Treasury</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#calls_16">Calls</a>
+    <li class="toctree-l3"><a class="reference internal" href="#calls_15">Calls</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#approve_proposal">approve_proposal</a>
     </li>
@@ -1404,7 +1340,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#events_16">Events</a>
+    <li class="toctree-l3"><a class="reference internal" href="#events_15">Events</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#awarded">Awarded</a>
     </li>
@@ -1424,9 +1360,11 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_20">Storage functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_19">Storage functions</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#approvals">Approvals</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#inactive">Inactive</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#proposalcount_2">ProposalCount</a>
     </li>
@@ -1452,7 +1390,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#errors_15">Errors</a>
+    <li class="toctree-l3"><a class="reference internal" href="#errors_14">Errors</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#insufficientpermission">InsufficientPermission</a>
     </li>
@@ -1470,7 +1408,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#utility">Utility</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#calls_17">Calls</a>
+    <li class="toctree-l3"><a class="reference internal" href="#calls_16">Calls</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#as_derivative">as_derivative</a>
     </li>
@@ -1482,9 +1420,11 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#force_batch">force_batch</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#with_weight">with_weight</a>
+    </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#events_17">Events</a>
+    <li class="toctree-l3"><a class="reference internal" href="#events_16">Events</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#batchcompleted">BatchCompleted</a>
     </li>
@@ -1506,7 +1446,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#errors_16">Errors</a>
+    <li class="toctree-l3"><a class="reference internal" href="#errors_15">Errors</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#toomanycalls">TooManyCalls</a>
     </li>
@@ -1516,7 +1456,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#vesting">Vesting</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#calls_18">Calls</a>
+    <li class="toctree-l3"><a class="reference internal" href="#calls_17">Calls</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#claim">claim</a>
     </li>
@@ -1528,7 +1468,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#events_18">Events</a>
+    <li class="toctree-l3"><a class="reference internal" href="#events_17">Events</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#claimed">Claimed</a>
     </li>
@@ -1538,7 +1478,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_21">Storage functions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-functions_20">Storage functions</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#vestingschedules">VestingSchedules</a>
     </li>
@@ -1550,7 +1490,7 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#errors_17">Errors</a>
+    <li class="toctree-l3"><a class="reference internal" href="#errors_16">Errors</a>
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#amountlow">AmountLow</a>
     </li>
@@ -1717,7 +1657,7 @@
 </tr>
 <tr>
 <td>Spec version</td>
-<td>5</td>
+<td>11</td>
 </tr>
 <tr>
 <td>SS58 Format</td>
@@ -1799,12 +1739,12 @@
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -2394,34 +2334,34 @@
 }
 </code></pre>
 <hr />
-<h4 id="locks">Locks</h4>
+<h4 id="inactiveissuance">InactiveIssuance</h4>
 <h5 id="python_15">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'Balances', 'InactiveIssuance', []
+)
+</code></pre>
+<h5 id="return-value_7">Return value</h5>
+<pre><code class="language-python">'u128'
+</code></pre>
+<hr />
+<h4 id="locks">Locks</h4>
+<h5 id="python_16">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Balances', 'Locks', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_7">Return value</h5>
+<h5 id="return-value_8">Return value</h5>
 <pre><code class="language-python">[{'amount': 'u128', 'id': '[u8; 8]', 'reasons': ('Fee', 'Misc', 'All')}]
 </code></pre>
 <hr />
 <h4 id="reserves">Reserves</h4>
-<h5 id="python_16">Python</h5>
+<h5 id="python_17">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Balances', 'Reserves', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_8">Return value</h5>
-<pre><code class="language-python">[{'amount': 'u128', 'id': '[u8; 8]'}]
-</code></pre>
-<hr />
-<h4 id="storageversion">StorageVersion</h4>
-<h5 id="python_17">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'Balances', 'StorageVersion', []
-)
-</code></pre>
 <h5 id="return-value_9">Return value</h5>
-<pre><code class="language-python">('V1_0_0', 'V2_0_0')
+<pre><code class="language-python">[{'amount': 'u128', 'id': '[u8; 8]'}]
 </code></pre>
 <hr />
 <h4 id="totalissuance">TotalIssuance</h4>
@@ -2781,14 +2721,54 @@
     'length_bound': 'u32',
     'proposal_hash': '[u8; 32]',
     'proposal_weight_bound': {
+        'proof_size': 'u64',
         'ref_time': 'u64',
     },
 }
 )
 </code></pre>
 <hr />
-<h4 id="disapprove_proposal">disapprove_proposal</h4>
+<h4 id="close_old_weight">close_old_weight</h4>
 <h5 id="attributes_28">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proposal_hash</td>
+<td><code>T::Hash</code></td>
+</tr>
+<tr>
+<td>index</td>
+<td><code>ProposalIndex</code></td>
+</tr>
+<tr>
+<td>proposal_weight_bound</td>
+<td><code>OldWeight</code></td>
+</tr>
+<tr>
+<td>length_bound</td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_33">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Council', 'close_old_weight', {
+    'index': 'u32',
+    'length_bound': 'u32',
+    'proposal_hash': '[u8; 32]',
+    'proposal_weight_bound': 'u64',
+}
+)
+</code></pre>
+<hr />
+<h4 id="disapprove_proposal">disapprove_proposal</h4>
+<h5 id="attributes_29">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2803,14 +2783,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_33">Python</h5>
+<h5 id="python_34">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Council', 'disapprove_proposal', {'proposal_hash': '[u8; 32]'}
 )
 </code></pre>
 <hr />
 <h4 id="execute">execute</h4>
-<h5 id="attributes_29">Attributes</h5>
+<h5 id="attributes_30">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2829,7 +2809,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_34">Python</h5>
+<h5 id="python_35">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Council', 'execute', {
     'length_bound': 'u32',
@@ -2839,7 +2819,7 @@
 </code></pre>
 <hr />
 <h4 id="propose">propose</h4>
-<h5 id="attributes_30">Attributes</h5>
+<h5 id="attributes_31">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2862,7 +2842,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_35">Python</h5>
+<h5 id="python_36">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Council', 'propose', {
     'length_bound': 'u32',
@@ -2873,7 +2853,7 @@
 </code></pre>
 <hr />
 <h4 id="set_members">set_members</h4>
-<h5 id="attributes_31">Attributes</h5>
+<h5 id="attributes_32">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2896,7 +2876,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_36">Python</h5>
+<h5 id="python_37">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Council', 'set_members', {
     'new_members': ['AccountId'],
@@ -2907,7 +2887,7 @@
 </code></pre>
 <hr />
 <h4 id="vote">vote</h4>
-<h5 id="attributes_32">Attributes</h5>
+<h5 id="attributes_33">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2930,7 +2910,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_37">Python</h5>
+<h5 id="python_38">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Council', 'vote', {
     'approve': 'bool',
@@ -2943,7 +2923,7 @@
 <h3 id="events_2">Events</h3>
 <hr />
 <h4 id="approved">Approved</h4>
-<h5 id="attributes_33">Attributes</h5>
+<h5 id="attributes_34">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2962,7 +2942,7 @@
 </table>
 <hr />
 <h4 id="closed">Closed</h4>
-<h5 id="attributes_34">Attributes</h5>
+<h5 id="attributes_35">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -2991,7 +2971,7 @@
 </table>
 <hr />
 <h4 id="disapproved">Disapproved</h4>
-<h5 id="attributes_35">Attributes</h5>
+<h5 id="attributes_36">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3010,30 +2990,6 @@
 </table>
 <hr />
 <h4 id="executed">Executed</h4>
-<h5 id="attributes_36">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-<td><code>[u8; 32]</code></td>
-</tr>
-<tr>
-<td>result</td>
-<td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="memberexecuted">MemberExecuted</h4>
 <h5 id="attributes_37">Attributes</h5>
 <table>
 <thead>
@@ -3052,13 +3008,37 @@
 <tr>
 <td>result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="memberexecuted">MemberExecuted</h4>
+<h5 id="attributes_38">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proposal_hash</td>
+<td><code>T::Hash</code></td>
+<td><code>[u8; 32]</code></td>
+</tr>
+<tr>
+<td>result</td>
+<td><code>DispatchResult</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="proposed">Proposed</h4>
-<h5 id="attributes_38">Attributes</h5>
+<h5 id="attributes_39">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3092,7 +3072,7 @@
 </table>
 <hr />
 <h4 id="voted">Voted</h4>
-<h5 id="attributes_39">Attributes</h5>
+<h5 id="attributes_40">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3133,7 +3113,7 @@
 <h3 id="storage-functions_5">Storage functions</h3>
 <hr />
 <h4 id="members">Members</h4>
-<h5 id="python_38">Python</h5>
+<h5 id="python_39">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'Members', []
 )
@@ -3143,7 +3123,7 @@
 </code></pre>
 <hr />
 <h4 id="prime">Prime</h4>
-<h5 id="python_39">Python</h5>
+<h5 id="python_40">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'Prime', []
 )
@@ -3153,7 +3133,7 @@
 </code></pre>
 <hr />
 <h4 id="proposalcount">ProposalCount</h4>
-<h5 id="python_40">Python</h5>
+<h5 id="python_41">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'ProposalCount', []
 )
@@ -3163,7 +3143,7 @@
 </code></pre>
 <hr />
 <h4 id="proposalof">ProposalOf</h4>
-<h5 id="python_41">Python</h5>
+<h5 id="python_42">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'ProposalOf', ['[u8; 32]']
 )
@@ -3173,7 +3153,7 @@
 </code></pre>
 <hr />
 <h4 id="proposals">Proposals</h4>
-<h5 id="python_42">Python</h5>
+<h5 id="python_43">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'Proposals', []
 )
@@ -3183,7 +3163,7 @@
 </code></pre>
 <hr />
 <h4 id="voting">Voting</h4>
-<h5 id="python_43">Python</h5>
+<h5 id="python_44">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Council', 'Voting', ['[u8; 32]']
 )
@@ -3219,7 +3199,7 @@
 <h3 id="calls_4">Calls</h3>
 <hr />
 <h4 id="blacklist">blacklist</h4>
-<h5 id="attributes_40">Attributes</h5>
+<h5 id="attributes_41">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3230,7 +3210,7 @@
 <tbody>
 <tr>
 <td>proposal_hash</td>
-<td><code>T::Hash</code></td>
+<td><code>H256</code></td>
 </tr>
 <tr>
 <td>maybe_ref_index</td>
@@ -3238,7 +3218,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_44">Python</h5>
+<h5 id="python_45">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'blacklist', {
     'maybe_ref_index': (None, 'u32'),
@@ -3248,7 +3228,7 @@
 </code></pre>
 <hr />
 <h4 id="cancel_proposal">cancel_proposal</h4>
-<h5 id="attributes_41">Attributes</h5>
+<h5 id="attributes_42">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3263,31 +3243,9 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_45">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'cancel_proposal', {'prop_index': 'u32'}
-)
-</code></pre>
-<hr />
-<h4 id="cancel_queued">cancel_queued</h4>
-<h5 id="attributes_42">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>which</td>
-<td><code>ReferendumIndex</code></td>
-</tr>
-</tbody>
-</table>
 <h5 id="python_46">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'cancel_queued', {'which': 'u32'}
+    'Democracy', 'cancel_proposal', {'prop_index': 'u32'}
 )
 </code></pre>
 <hr />
@@ -3392,7 +3350,7 @@
 )
 </code></pre>
 <hr />
-<h4 id="enact_proposal">enact_proposal</h4>
+<h4 id="external_propose">external_propose</h4>
 <h5 id="attributes_47">Attributes</h5>
 <table>
 <thead>
@@ -3403,25 +3361,27 @@
 </thead>
 <tbody>
 <tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-</tr>
-<tr>
-<td>index</td>
-<td><code>ReferendumIndex</code></td>
+<td>proposal</td>
+<td><code>BoundedCallOf&lt;T&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="python_51">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'enact_proposal', {
-    'index': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'Democracy', 'external_propose', {
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
 }
 )
 </code></pre>
 <hr />
-<h4 id="external_propose">external_propose</h4>
+<h4 id="external_propose_default">external_propose_default</h4>
 <h5 id="attributes_48">Attributes</h5>
 <table>
 <thead>
@@ -3432,18 +3392,27 @@
 </thead>
 <tbody>
 <tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
+<td>proposal</td>
+<td><code>BoundedCallOf&lt;T&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="python_52">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'external_propose', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose_default', {
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
+}
 )
 </code></pre>
 <hr />
-<h4 id="external_propose_default">external_propose_default</h4>
+<h4 id="external_propose_majority">external_propose_majority</h4>
 <h5 id="attributes_49">Attributes</h5>
 <table>
 <thead>
@@ -3454,18 +3423,27 @@
 </thead>
 <tbody>
 <tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
+<td>proposal</td>
+<td><code>BoundedCallOf&lt;T&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <h5 id="python_53">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'external_propose_default', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose_majority', {
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
+}
 )
 </code></pre>
 <hr />
-<h4 id="external_propose_majority">external_propose_majority</h4>
+<h4 id="fast_track">fast_track</h4>
 <h5 id="attributes_50">Attributes</h5>
 <table>
 <thead>
@@ -3477,29 +3455,7 @@
 <tbody>
 <tr>
 <td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_54">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'external_propose_majority', {'proposal_hash': '[u8; 32]'}
-)
-</code></pre>
-<hr />
-<h4 id="fast_track">fast_track</h4>
-<h5 id="attributes_51">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
+<td><code>H256</code></td>
 </tr>
 <tr>
 <td>voting_period</td>
@@ -3511,7 +3467,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_55">Python</h5>
+<h5 id="python_54">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'fast_track', {
     'delay': 'u32',
@@ -3521,96 +3477,8 @@
 )
 </code></pre>
 <hr />
-<h4 id="note_imminent_preimage">note_imminent_preimage</h4>
-<h5 id="attributes_52">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>encoded_proposal</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_56">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'note_imminent_preimage', {'encoded_proposal': 'Bytes'}
-)
-</code></pre>
-<hr />
-<h4 id="note_imminent_preimage_operational">note_imminent_preimage_operational</h4>
-<h5 id="attributes_53">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>encoded_proposal</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_57">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'note_imminent_preimage_operational', {'encoded_proposal': 'Bytes'}
-)
-</code></pre>
-<hr />
-<h4 id="note_preimage">note_preimage</h4>
-<h5 id="attributes_54">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>encoded_proposal</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_58">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'note_preimage', {'encoded_proposal': 'Bytes'}
-)
-</code></pre>
-<hr />
-<h4 id="note_preimage_operational">note_preimage_operational</h4>
-<h5 id="attributes_55">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>encoded_proposal</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_59">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'note_preimage_operational', {'encoded_proposal': 'Bytes'}
-)
-</code></pre>
-<hr />
 <h4 id="propose_1">propose</h4>
-<h5 id="attributes_56">Attributes</h5>
+<h5 id="attributes_51">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3620,8 +3488,8 @@
 </thead>
 <tbody>
 <tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
+<td>proposal</td>
+<td><code>BoundedCallOf&lt;T&gt;</code></td>
 </tr>
 <tr>
 <td>value</td>
@@ -3629,46 +3497,24 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_60">Python</h5>
+<h5 id="python_55">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'propose', {
-    'proposal_hash': '[u8; 32]',
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
     'value': 'u128',
 }
 )
 </code></pre>
 <hr />
-<h4 id="reap_preimage">reap_preimage</h4>
-<h5 id="attributes_57">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-</tr>
-<tr>
-<td>proposal_len_upper_bound</td>
-<td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_61">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'reap_preimage', {
-    'proposal_hash': '[u8; 32]',
-    'proposal_len_upper_bound': 'u32',
-}
-)
-</code></pre>
-<hr />
 <h4 id="remove_other_vote">remove_other_vote</h4>
-<h5 id="attributes_58">Attributes</h5>
+<h5 id="attributes_52">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3687,7 +3533,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_62">Python</h5>
+<h5 id="python_56">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'remove_other_vote', {
     'index': 'u32',
@@ -3703,7 +3549,7 @@
 </code></pre>
 <hr />
 <h4 id="remove_vote">remove_vote</h4>
-<h5 id="attributes_59">Attributes</h5>
+<h5 id="attributes_53">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3718,14 +3564,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_63">Python</h5>
+<h5 id="python_57">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'remove_vote', {'index': 'u32'}
 )
 </code></pre>
 <hr />
 <h4 id="second">second</h4>
-<h5 id="attributes_60">Attributes</h5>
+<h5 id="attributes_54">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3738,32 +3584,25 @@
 <td>proposal</td>
 <td><code>PropIndex</code></td>
 </tr>
-<tr>
-<td>seconds_upper_bound</td>
-<td><code>u32</code></td>
-</tr>
 </tbody>
 </table>
-<h5 id="python_64">Python</h5>
+<h5 id="python_58">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Democracy', 'second', {
-    'proposal': 'u32',
-    'seconds_upper_bound': 'u32',
-}
+    'Democracy', 'second', {'proposal': 'u32'}
 )
 </code></pre>
 <hr />
 <h4 id="undelegate">undelegate</h4>
-<h5 id="attributes_61">Attributes</h5>
+<h5 id="attributes_55">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_65">Python</h5>
+<h5 id="python_59">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'undelegate', {}
 )
 </code></pre>
 <hr />
 <h4 id="unlock">unlock</h4>
-<h5 id="attributes_62">Attributes</h5>
+<h5 id="attributes_56">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3778,7 +3617,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_66">Python</h5>
+<h5 id="python_60">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'unlock', {
     'target': {
@@ -3793,7 +3632,7 @@
 </code></pre>
 <hr />
 <h4 id="veto_external">veto_external</h4>
-<h5 id="attributes_63">Attributes</h5>
+<h5 id="attributes_57">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3804,18 +3643,18 @@
 <tbody>
 <tr>
 <td>proposal_hash</td>
-<td><code>T::Hash</code></td>
+<td><code>H256</code></td>
 </tr>
 </tbody>
 </table>
-<h5 id="python_67">Python</h5>
+<h5 id="python_61">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'veto_external', {'proposal_hash': '[u8; 32]'}
 )
 </code></pre>
 <hr />
 <h4 id="vote_1">vote</h4>
-<h5 id="attributes_64">Attributes</h5>
+<h5 id="attributes_58">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3834,7 +3673,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_68">Python</h5>
+<h5 id="python_62">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Democracy', 'vote', {
     'ref_index': 'u32',
@@ -3866,7 +3705,7 @@
 <h3 id="events_3">Events</h3>
 <hr />
 <h4 id="blacklisted">Blacklisted</h4>
-<h5 id="attributes_65">Attributes</h5>
+<h5 id="attributes_59">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3878,14 +3717,14 @@
 <tbody>
 <tr>
 <td>proposal_hash</td>
-<td><code>T::Hash</code></td>
+<td><code>H256</code></td>
 <td><code>[u8; 32]</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="cancelled">Cancelled</h4>
-<h5 id="attributes_66">Attributes</h5>
+<h5 id="attributes_60">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3904,7 +3743,7 @@
 </table>
 <hr />
 <h4 id="delegated">Delegated</h4>
-<h5 id="attributes_67">Attributes</h5>
+<h5 id="attributes_61">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3927,36 +3766,12 @@
 </tbody>
 </table>
 <hr />
-<h4 id="executed_1">Executed</h4>
-<h5 id="attributes_68">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ref_index</td>
-<td><code>ReferendumIndex</code></td>
-<td><code>u32</code></td>
-</tr>
-<tr>
-<td>result</td>
-<td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
 <h4 id="externaltabled">ExternalTabled</h4>
-<h5 id="attributes_69">Attributes</h5>
+<h5 id="attributes_62">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="notpassed">NotPassed</h4>
-<h5 id="attributes_70">Attributes</h5>
+<h5 id="attributes_63">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3975,7 +3790,7 @@
 </table>
 <hr />
 <h4 id="passed">Passed</h4>
-<h5 id="attributes_71">Attributes</h5>
+<h5 id="attributes_64">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -3989,152 +3804,12 @@
 <td>ref_index</td>
 <td><code>ReferendumIndex</code></td>
 <td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="preimageinvalid">PreimageInvalid</h4>
-<h5 id="attributes_72">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-<td><code>[u8; 32]</code></td>
-</tr>
-<tr>
-<td>ref_index</td>
-<td><code>ReferendumIndex</code></td>
-<td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="preimagemissing">PreimageMissing</h4>
-<h5 id="attributes_73">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-<td><code>[u8; 32]</code></td>
-</tr>
-<tr>
-<td>ref_index</td>
-<td><code>ReferendumIndex</code></td>
-<td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="preimagenoted">PreimageNoted</h4>
-<h5 id="attributes_74">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-<td><code>[u8; 32]</code></td>
-</tr>
-<tr>
-<td>who</td>
-<td><code>T::AccountId</code></td>
-<td><code>AccountId</code></td>
-</tr>
-<tr>
-<td>deposit</td>
-<td><code>BalanceOf&lt;T&gt;</code></td>
-<td><code>u128</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="preimagereaped">PreimageReaped</h4>
-<h5 id="attributes_75">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-<td><code>[u8; 32]</code></td>
-</tr>
-<tr>
-<td>provider</td>
-<td><code>T::AccountId</code></td>
-<td><code>AccountId</code></td>
-</tr>
-<tr>
-<td>deposit</td>
-<td><code>BalanceOf&lt;T&gt;</code></td>
-<td><code>u128</code></td>
-</tr>
-<tr>
-<td>reaper</td>
-<td><code>T::AccountId</code></td>
-<td><code>AccountId</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="preimageused">PreimageUsed</h4>
-<h5 id="attributes_76">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-<td><code>[u8; 32]</code></td>
-</tr>
-<tr>
-<td>provider</td>
-<td><code>T::AccountId</code></td>
-<td><code>AccountId</code></td>
-</tr>
-<tr>
-<td>deposit</td>
-<td><code>BalanceOf&lt;T&gt;</code></td>
-<td><code>u128</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="proposalcanceled">ProposalCanceled</h4>
-<h5 id="attributes_77">Attributes</h5>
+<h5 id="attributes_65">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4153,7 +3828,7 @@
 </table>
 <hr />
 <h4 id="proposed_1">Proposed</h4>
-<h5 id="attributes_78">Attributes</h5>
+<h5 id="attributes_66">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4177,7 +3852,7 @@
 </table>
 <hr />
 <h4 id="seconded">Seconded</h4>
-<h5 id="attributes_79">Attributes</h5>
+<h5 id="attributes_67">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4201,7 +3876,7 @@
 </table>
 <hr />
 <h4 id="started">Started</h4>
-<h5 id="attributes_80">Attributes</h5>
+<h5 id="attributes_68">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4225,7 +3900,7 @@
 </table>
 <hr />
 <h4 id="tabled">Tabled</h4>
-<h5 id="attributes_81">Attributes</h5>
+<h5 id="attributes_69">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4245,16 +3920,11 @@
 <td><code>BalanceOf&lt;T&gt;</code></td>
 <td><code>u128</code></td>
 </tr>
-<tr>
-<td>depositors</td>
-<td><code>Vec&lt;T::AccountId&gt;</code></td>
-<td><code>['AccountId']</code></td>
-</tr>
 </tbody>
 </table>
 <hr />
 <h4 id="undelegated">Undelegated</h4>
-<h5 id="attributes_82">Attributes</h5>
+<h5 id="attributes_70">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4273,7 +3943,7 @@
 </table>
 <hr />
 <h4 id="vetoed">Vetoed</h4>
-<h5 id="attributes_83">Attributes</h5>
+<h5 id="attributes_71">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4290,7 +3960,7 @@
 </tr>
 <tr>
 <td>proposal_hash</td>
-<td><code>T::Hash</code></td>
+<td><code>H256</code></td>
 <td><code>[u8; 32]</code></td>
 </tr>
 <tr>
@@ -4302,7 +3972,7 @@
 </table>
 <hr />
 <h4 id="voted_1">Voted</h4>
-<h5 id="attributes_84">Attributes</h5>
+<h5 id="attributes_72">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4333,7 +4003,7 @@
 <h3 id="storage-functions_6">Storage functions</h3>
 <hr />
 <h4 id="blacklist_1">Blacklist</h4>
-<h5 id="python_69">Python</h5>
+<h5 id="python_63">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'Blacklist', ['[u8; 32]']
 )
@@ -4343,7 +4013,7 @@
 </code></pre>
 <hr />
 <h4 id="cancellations">Cancellations</h4>
-<h5 id="python_70">Python</h5>
+<h5 id="python_64">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'Cancellations', ['[u8; 32]']
 )
@@ -4353,7 +4023,7 @@
 </code></pre>
 <hr />
 <h4 id="depositof">DepositOf</h4>
-<h5 id="python_71">Python</h5>
+<h5 id="python_65">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'DepositOf', ['u32']
 )
@@ -4363,7 +4033,7 @@
 </code></pre>
 <hr />
 <h4 id="lasttabledwasexternal">LastTabledWasExternal</h4>
-<h5 id="python_72">Python</h5>
+<h5 id="python_66">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'LastTabledWasExternal', []
 )
@@ -4373,7 +4043,7 @@
 </code></pre>
 <hr />
 <h4 id="lowestunbaked">LowestUnbaked</h4>
-<h5 id="python_73">Python</h5>
+<h5 id="python_67">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'LowestUnbaked', []
 )
@@ -4383,80 +4053,79 @@
 </code></pre>
 <hr />
 <h4 id="nextexternal">NextExternal</h4>
-<h5 id="python_74">Python</h5>
+<h5 id="python_68">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'NextExternal', []
 )
 </code></pre>
 <h5 id="return-value_27">Return value</h5>
 <pre><code class="language-python">(
-    '[u8; 32]',
+    {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+    },
     ('SuperMajorityApprove', 'SuperMajorityAgainst', 'SimpleMajority'),
 )
 </code></pre>
 <hr />
-<h4 id="preimages">Preimages</h4>
-<h5 id="python_75">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'Democracy', 'Preimages', ['[u8; 32]']
-)
-</code></pre>
-<h5 id="return-value_28">Return value</h5>
-<pre><code class="language-python">{
-    'Available': {
-        'data': 'Bytes',
-        'deposit': 'u128',
-        'expiry': (None, 'u32'),
-        'provider': 'AccountId',
-        'since': 'u32',
-    },
-    'Missing': 'u32',
-}
-</code></pre>
-<hr />
 <h4 id="publicpropcount">PublicPropCount</h4>
-<h5 id="python_76">Python</h5>
+<h5 id="python_69">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'PublicPropCount', []
 )
 </code></pre>
-<h5 id="return-value_29">Return value</h5>
+<h5 id="return-value_28">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="publicprops">PublicProps</h4>
-<h5 id="python_77">Python</h5>
+<h5 id="python_70">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'PublicProps', []
 )
 </code></pre>
-<h5 id="return-value_30">Return value</h5>
-<pre><code class="language-python">[('u32', '[u8; 32]', 'AccountId')]
+<h5 id="return-value_29">Return value</h5>
+<pre><code class="language-python">[
+    (
+        'u32',
+        {
+            'Inline': 'Bytes',
+            'Legacy': {'hash': '[u8; 32]'},
+            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        },
+        'AccountId',
+    ),
+]
 </code></pre>
 <hr />
 <h4 id="referendumcount">ReferendumCount</h4>
-<h5 id="python_78">Python</h5>
+<h5 id="python_71">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'ReferendumCount', []
 )
 </code></pre>
-<h5 id="return-value_31">Return value</h5>
+<h5 id="return-value_30">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="referenduminfoof">ReferendumInfoOf</h4>
-<h5 id="python_79">Python</h5>
+<h5 id="python_72">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'ReferendumInfoOf', ['u32']
 )
 </code></pre>
-<h5 id="return-value_32">Return value</h5>
+<h5 id="return-value_31">Return value</h5>
 <pre><code class="language-python">{
     'Finished': {'approved': 'bool', 'end': 'u32'},
     'Ongoing': {
         'delay': 'u32',
         'end': 'u32',
-        'proposal_hash': '[u8; 32]',
+        'proposal': {
+            'Inline': 'Bytes',
+            'Legacy': {'hash': '[u8; 32]'},
+            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        },
         'tally': {'ayes': 'u128', 'nays': 'u128', 'turnout': 'u128'},
         'threshold': (
             'SuperMajorityApprove',
@@ -4467,23 +4136,13 @@
 }
 </code></pre>
 <hr />
-<h4 id="storageversion_1">StorageVersion</h4>
-<h5 id="python_80">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'Democracy', 'StorageVersion', []
-)
-</code></pre>
-<h5 id="return-value_33">Return value</h5>
-<pre><code class="language-python">('V1', )
-</code></pre>
-<hr />
 <h4 id="votingof">VotingOf</h4>
-<h5 id="python_81">Python</h5>
+<h5 id="python_73">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Democracy', 'VotingOf', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_34">Return value</h5>
+<h5 id="return-value_32">Return value</h5>
 <pre><code class="language-python">{
     'Delegating': {
         'balance': 'u128',
@@ -4514,7 +4173,7 @@
 <h5 id="value_4">Value</h5>
 <pre><code class="language-python">50400
 </code></pre>
-<h5 id="python_82">Python</h5>
+<h5 id="python_74">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'CooloffPeriod')
 </code></pre>
 <hr />
@@ -4522,7 +4181,7 @@
 <h5 id="value_5">Value</h5>
 <pre><code class="language-python">57600
 </code></pre>
-<h5 id="python_83">Python</h5>
+<h5 id="python_75">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'EnactmentPeriod')
 </code></pre>
 <hr />
@@ -4530,7 +4189,7 @@
 <h5 id="value_6">Value</h5>
 <pre><code class="language-python">900
 </code></pre>
-<h5 id="python_84">Python</h5>
+<h5 id="python_76">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'FastTrackVotingPeriod')
 </code></pre>
 <hr />
@@ -4538,7 +4197,7 @@
 <h5 id="value_7">Value</h5>
 <pre><code class="language-python">True
 </code></pre>
-<h5 id="python_85">Python</h5>
+<h5 id="python_77">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'InstantAllowed')
 </code></pre>
 <hr />
@@ -4546,55 +4205,63 @@
 <h5 id="value_8">Value</h5>
 <pre><code class="language-python">50400
 </code></pre>
-<h5 id="python_86">Python</h5>
+<h5 id="python_78">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'LaunchPeriod')
 </code></pre>
 <hr />
-<h4 id="maxproposals">MaxProposals</h4>
+<h4 id="maxblacklisted">MaxBlacklisted</h4>
 <h5 id="value_9">Value</h5>
 <pre><code class="language-python">100
 </code></pre>
-<h5 id="python_87">Python</h5>
+<h5 id="python_79">Python</h5>
+<pre><code class="language-python">constant = substrate.get_constant('Democracy', 'MaxBlacklisted')
+</code></pre>
+<hr />
+<h4 id="maxdeposits">MaxDeposits</h4>
+<h5 id="value_10">Value</h5>
+<pre><code class="language-python">100
+</code></pre>
+<h5 id="python_80">Python</h5>
+<pre><code class="language-python">constant = substrate.get_constant('Democracy', 'MaxDeposits')
+</code></pre>
+<hr />
+<h4 id="maxproposals">MaxProposals</h4>
+<h5 id="value_11">Value</h5>
+<pre><code class="language-python">100
+</code></pre>
+<h5 id="python_81">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'MaxProposals')
 </code></pre>
 <hr />
 <h4 id="maxvotes">MaxVotes</h4>
-<h5 id="value_10">Value</h5>
+<h5 id="value_12">Value</h5>
 <pre><code class="language-python">100
 </code></pre>
-<h5 id="python_88">Python</h5>
+<h5 id="python_82">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'MaxVotes')
 </code></pre>
 <hr />
 <h4 id="minimumdeposit">MinimumDeposit</h4>
-<h5 id="value_11">Value</h5>
+<h5 id="value_13">Value</h5>
 <pre><code class="language-python">10000000000
 </code></pre>
-<h5 id="python_89">Python</h5>
+<h5 id="python_83">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'MinimumDeposit')
 </code></pre>
 <hr />
-<h4 id="preimagebytedeposit">PreimageByteDeposit</h4>
-<h5 id="value_12">Value</h5>
-<pre><code class="language-python">100000
-</code></pre>
-<h5 id="python_90">Python</h5>
-<pre><code class="language-python">constant = substrate.get_constant('Democracy', 'PreimageByteDeposit')
-</code></pre>
-<hr />
 <h4 id="votelockingperiod">VoteLockingPeriod</h4>
-<h5 id="value_13">Value</h5>
+<h5 id="value_14">Value</h5>
 <pre><code class="language-python">57600
 </code></pre>
-<h5 id="python_91">Python</h5>
+<h5 id="python_84">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'VoteLockingPeriod')
 </code></pre>
 <hr />
 <h4 id="votingperiod">VotingPeriod</h4>
-<h5 id="value_14">Value</h5>
+<h5 id="value_15">Value</h5>
 <pre><code class="language-python">50400
 </code></pre>
-<h5 id="python_92">Python</h5>
+<h5 id="python_85">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Democracy', 'VotingPeriod')
 </code></pre>
 <hr />
@@ -4606,11 +4273,7 @@
 <hr />
 <h4 id="alreadyvetoed">AlreadyVetoed</h4>
 <hr />
-<h4 id="duplicatepreimage">DuplicatePreimage</h4>
-<hr />
 <h4 id="duplicateproposal_1">DuplicateProposal</h4>
-<hr />
-<h4 id="imminent">Imminent</h4>
 <hr />
 <h4 id="instantnotallowed">InstantNotAllowed</h4>
 <hr />
@@ -4630,15 +4293,9 @@
 <hr />
 <h4 id="notdelegating">NotDelegating</h4>
 <hr />
-<h4 id="notimminent">NotImminent</h4>
-<hr />
 <h4 id="notsimplemajority">NotSimpleMajority</h4>
 <hr />
 <h4 id="notvoter">NotVoter</h4>
-<hr />
-<h4 id="preimageinvalid_1">PreimageInvalid</h4>
-<hr />
-<h4 id="preimagemissing_1">PreimageMissing</h4>
 <hr />
 <h4 id="proposalblacklisted">ProposalBlacklisted</h4>
 <hr />
@@ -4646,9 +4303,7 @@
 <hr />
 <h4 id="referenduminvalid">ReferendumInvalid</h4>
 <hr />
-<h4 id="tooearly_1">TooEarly</h4>
-<hr />
-<h4 id="toomanyproposals_1">TooManyProposals</h4>
+<h4 id="toomany">TooMany</h4>
 <hr />
 <h4 id="valuelow">ValueLow</h4>
 <hr />
@@ -4663,7 +4318,7 @@
 <h3 id="calls_5">Calls</h3>
 <hr />
 <h4 id="add_ipfs_message">add_ipfs_message</h4>
-<h5 id="attributes_85">Attributes</h5>
+<h5 id="attributes_73">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4686,7 +4341,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_93">Python</h5>
+<h5 id="python_86">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Messages', 'add_ipfs_message', {
     'cid': 'Bytes',
@@ -4697,7 +4352,7 @@
 </code></pre>
 <hr />
 <h4 id="add_onchain_message">add_onchain_message</h4>
-<h5 id="attributes_86">Attributes</h5>
+<h5 id="attributes_74">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4720,7 +4375,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_94">Python</h5>
+<h5 id="python_87">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Messages', 'add_onchain_message', {
     'on_behalf_of': (None, 'u64'),
@@ -4733,7 +4388,7 @@
 <h3 id="events_4">Events</h3>
 <hr />
 <h4 id="messagesstored">MessagesStored</h4>
-<h5 id="attributes_87">Attributes</h5>
+<h5 id="attributes_75">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4764,22 +4419,22 @@
 <h3 id="storage-functions_7">Storage functions</h3>
 <hr />
 <h4 id="blockmessageindex">BlockMessageIndex</h4>
-<h5 id="python_95">Python</h5>
+<h5 id="python_88">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Messages', 'BlockMessageIndex', []
 )
 </code></pre>
-<h5 id="return-value_35">Return value</h5>
+<h5 id="return-value_33">Return value</h5>
 <pre><code class="language-python">'u16'
 </code></pre>
 <hr />
 <h4 id="messages_1">Messages</h4>
-<h5 id="python_96">Python</h5>
+<h5 id="python_89">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Messages', 'Messages', ['u32', 'u16']
 )
 </code></pre>
-<h5 id="return-value_36">Return value</h5>
+<h5 id="return-value_34">Return value</h5>
 <pre><code class="language-python">[
     {
         'index': 'u16',
@@ -4793,24 +4448,26 @@
 <h3 id="constants_3">Constants</h3>
 <hr />
 <h4 id="maxmessagepayloadsizebytes">MaxMessagePayloadSizeBytes</h4>
-<h5 id="value_15">Value</h5>
+<h5 id="value_16">Value</h5>
 <pre><code class="language-python">51200
 </code></pre>
-<h5 id="python_97">Python</h5>
+<h5 id="python_90">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Messages', 'MaxMessagePayloadSizeBytes')
 </code></pre>
 <hr />
 <h4 id="maxmessagesperblock">MaxMessagesPerBlock</h4>
-<h5 id="value_16">Value</h5>
+<h5 id="value_17">Value</h5>
 <pre><code class="language-python">7000
 </code></pre>
-<h5 id="python_98">Python</h5>
+<h5 id="python_91">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Messages', 'MaxMessagesPerBlock')
 </code></pre>
 <hr />
 <h3 id="errors_5">Errors</h3>
 <hr />
 <h4 id="exceedsmaxmessagepayloadsizebytes">ExceedsMaxMessagePayloadSizeBytes</h4>
+<hr />
+<h4 id="invalidcid">InvalidCid</h4>
 <hr />
 <h4 id="invalidmessagesourceaccount">InvalidMessageSourceAccount</h4>
 <hr />
@@ -4824,12 +4481,14 @@
 <hr />
 <h4 id="unauthorizeddelegate">UnAuthorizedDelegate</h4>
 <hr />
+<h4 id="unsupportedcidversion">UnsupportedCidVersion</h4>
+<hr />
 <h2 id="msa">Msa</h2>
 <hr />
 <h3 id="calls_6">Calls</h3>
 <hr />
 <h4 id="add_public_key_to_msa">add_public_key_to_msa</h4>
-<h5 id="attributes_88">Attributes</h5>
+<h5 id="attributes_76">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4856,7 +4515,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_99">Python</h5>
+<h5 id="python_92">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'add_public_key_to_msa', {
     'add_key_payload': {
@@ -4880,16 +4539,16 @@
 </code></pre>
 <hr />
 <h4 id="create">create</h4>
-<h5 id="attributes_89">Attributes</h5>
+<h5 id="attributes_77">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_100">Python</h5>
+<h5 id="python_93">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'create', {}
 )
 </code></pre>
 <hr />
 <h4 id="create_provider">create_provider</h4>
-<h5 id="attributes_90">Attributes</h5>
+<h5 id="attributes_78">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4904,14 +4563,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_101">Python</h5>
+<h5 id="python_94">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'create_provider', {'provider_name': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="create_sponsored_account_with_delegation">create_sponsored_account_with_delegation</h4>
-<h5 id="attributes_91">Attributes</h5>
+<h5 id="attributes_79">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4934,7 +4593,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_102">Python</h5>
+<h5 id="python_95">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'create_sponsored_account_with_delegation', {
     'add_provider_payload': {
@@ -4953,7 +4612,7 @@
 </code></pre>
 <hr />
 <h4 id="delete_msa_public_key">delete_msa_public_key</h4>
-<h5 id="attributes_92">Attributes</h5>
+<h5 id="attributes_80">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4968,14 +4627,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_103">Python</h5>
+<h5 id="python_96">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'delete_msa_public_key', {'public_key_to_delete': 'AccountId'}
 )
 </code></pre>
 <hr />
 <h4 id="grant_delegation">grant_delegation</h4>
-<h5 id="attributes_93">Attributes</h5>
+<h5 id="attributes_81">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -4998,7 +4657,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_104">Python</h5>
+<h5 id="python_97">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'grant_delegation', {
     'add_provider_payload': {
@@ -5017,7 +4676,7 @@
 </code></pre>
 <hr />
 <h4 id="grant_schema_permissions">grant_schema_permissions</h4>
-<h5 id="attributes_94">Attributes</h5>
+<h5 id="attributes_82">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5036,7 +4695,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_105">Python</h5>
+<h5 id="python_98">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'grant_schema_permissions', {
     'provider_msa_id': 'u64',
@@ -5046,16 +4705,16 @@
 </code></pre>
 <hr />
 <h4 id="retire_msa">retire_msa</h4>
-<h5 id="attributes_95">Attributes</h5>
+<h5 id="attributes_83">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_106">Python</h5>
+<h5 id="python_99">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'retire_msa', {}
 )
 </code></pre>
 <hr />
 <h4 id="revoke_delegation_by_delegator">revoke_delegation_by_delegator</h4>
-<h5 id="attributes_96">Attributes</h5>
+<h5 id="attributes_84">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5070,14 +4729,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_107">Python</h5>
+<h5 id="python_100">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'revoke_delegation_by_delegator', {'provider_msa_id': 'u64'}
 )
 </code></pre>
 <hr />
 <h4 id="revoke_delegation_by_provider">revoke_delegation_by_provider</h4>
-<h5 id="attributes_97">Attributes</h5>
+<h5 id="attributes_85">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5092,14 +4751,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_108">Python</h5>
+<h5 id="python_101">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'revoke_delegation_by_provider', {'delegator': 'u64'}
 )
 </code></pre>
 <hr />
 <h4 id="revoke_schema_permissions">revoke_schema_permissions</h4>
-<h5 id="attributes_98">Attributes</h5>
+<h5 id="attributes_86">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5118,7 +4777,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_109">Python</h5>
+<h5 id="python_102">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Msa', 'revoke_schema_permissions', {
     'provider_msa_id': 'u64',
@@ -5130,7 +4789,7 @@
 <h3 id="events_5">Events</h3>
 <hr />
 <h4 id="delegationgranted">DelegationGranted</h4>
-<h5 id="attributes_99">Attributes</h5>
+<h5 id="attributes_87">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5154,7 +4813,7 @@
 </table>
 <hr />
 <h4 id="delegationrevoked">DelegationRevoked</h4>
-<h5 id="attributes_100">Attributes</h5>
+<h5 id="attributes_88">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5178,7 +4837,7 @@
 </table>
 <hr />
 <h4 id="delegationupdated">DelegationUpdated</h4>
-<h5 id="attributes_101">Attributes</h5>
+<h5 id="attributes_89">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5202,7 +4861,7 @@
 </table>
 <hr />
 <h4 id="msacreated">MsaCreated</h4>
-<h5 id="attributes_102">Attributes</h5>
+<h5 id="attributes_90">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5226,7 +4885,7 @@
 </table>
 <hr />
 <h4 id="msaretired">MsaRetired</h4>
-<h5 id="attributes_103">Attributes</h5>
+<h5 id="attributes_91">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5245,7 +4904,7 @@
 </table>
 <hr />
 <h4 id="providercreated">ProviderCreated</h4>
-<h5 id="attributes_104">Attributes</h5>
+<h5 id="attributes_92">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5264,7 +4923,7 @@
 </table>
 <hr />
 <h4 id="publickeyadded">PublicKeyAdded</h4>
-<h5 id="attributes_105">Attributes</h5>
+<h5 id="attributes_93">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5288,7 +4947,7 @@
 </table>
 <hr />
 <h4 id="publickeydeleted">PublicKeyDeleted</h4>
-<h5 id="attributes_106">Attributes</h5>
+<h5 id="attributes_94">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5309,37 +4968,37 @@
 <h3 id="storage-functions_8">Storage functions</h3>
 <hr />
 <h4 id="currentmsaidentifiermaximum">CurrentMsaIdentifierMaximum</h4>
-<h5 id="python_110">Python</h5>
+<h5 id="python_103">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'CurrentMsaIdentifierMaximum', []
 )
 </code></pre>
-<h5 id="return-value_37">Return value</h5>
+<h5 id="return-value_35">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
 <h4 id="delegatorandprovidertodelegation">DelegatorAndProviderToDelegation</h4>
-<h5 id="python_111">Python</h5>
+<h5 id="python_104">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'DelegatorAndProviderToDelegation', ['u64', 'u64']
 )
 </code></pre>
-<h5 id="return-value_38">Return value</h5>
-<pre><code class="language-python">{'revoked_at': 'u32', 'schema_permissions': 'scale_info::240'}
+<h5 id="return-value_36">Return value</h5>
+<pre><code class="language-python">{'revoked_at': 'u32', 'schema_permissions': 'scale_info::239'}
 </code></pre>
 <hr />
 <h4 id="payloadsignaturebucketcount">PayloadSignatureBucketCount</h4>
-<h5 id="python_112">Python</h5>
+<h5 id="python_105">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'PayloadSignatureBucketCount', ['u32']
 )
 </code></pre>
-<h5 id="return-value_39">Return value</h5>
+<h5 id="return-value_37">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="payloadsignatureregistry">PayloadSignatureRegistry</h4>
-<h5 id="python_113">Python</h5>
+<h5 id="python_106">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'PayloadSignatureRegistry', [
     'u32',
@@ -5351,95 +5010,95 @@
 ]
 )
 </code></pre>
-<h5 id="return-value_40">Return value</h5>
+<h5 id="return-value_38">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="providertoregistryentry">ProviderToRegistryEntry</h4>
-<h5 id="python_114">Python</h5>
+<h5 id="python_107">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'ProviderToRegistryEntry', ['u64']
 )
 </code></pre>
-<h5 id="return-value_41">Return value</h5>
+<h5 id="return-value_39">Return value</h5>
 <pre><code class="language-python">{'provider_name': 'Bytes'}
 </code></pre>
 <hr />
 <h4 id="publickeycountformsaid">PublicKeyCountForMsaId</h4>
-<h5 id="python_115">Python</h5>
+<h5 id="python_108">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'PublicKeyCountForMsaId', ['u64']
 )
 </code></pre>
-<h5 id="return-value_42">Return value</h5>
+<h5 id="return-value_40">Return value</h5>
 <pre><code class="language-python">'u8'
 </code></pre>
 <hr />
 <h4 id="publickeytomsaid">PublicKeyToMsaId</h4>
-<h5 id="python_116">Python</h5>
+<h5 id="python_109">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Msa', 'PublicKeyToMsaId', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_43">Return value</h5>
+<h5 id="return-value_41">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
 <h3 id="constants_4">Constants</h3>
 <hr />
 <h4 id="maxprovidernamesize">MaxProviderNameSize</h4>
-<h5 id="value_17">Value</h5>
+<h5 id="value_18">Value</h5>
 <pre><code class="language-python">16
 </code></pre>
-<h5 id="python_117">Python</h5>
+<h5 id="python_110">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxProviderNameSize')
 </code></pre>
 <hr />
 <h4 id="maxpublickeyspermsa">MaxPublicKeysPerMsa</h4>
-<h5 id="value_18">Value</h5>
+<h5 id="value_19">Value</h5>
 <pre><code class="language-python">25
 </code></pre>
-<h5 id="python_118">Python</h5>
+<h5 id="python_111">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxPublicKeysPerMsa')
 </code></pre>
 <hr />
 <h4 id="maxschemagrantsperdelegation">MaxSchemaGrantsPerDelegation</h4>
-<h5 id="value_19">Value</h5>
+<h5 id="value_20">Value</h5>
 <pre><code class="language-python">30
 </code></pre>
-<h5 id="python_119">Python</h5>
+<h5 id="python_112">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxSchemaGrantsPerDelegation')
 </code></pre>
 <hr />
 <h4 id="maxsignaturesperbucket">MaxSignaturesPerBucket</h4>
-<h5 id="value_20">Value</h5>
+<h5 id="value_21">Value</h5>
 <pre><code class="language-python">50000
 </code></pre>
-<h5 id="python_120">Python</h5>
+<h5 id="python_113">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxSignaturesPerBucket')
 </code></pre>
 <hr />
 <h4 id="maxsignaturesstored">MaxSignaturesStored</h4>
-<h5 id="value_21">Value</h5>
+<h5 id="value_22">Value</h5>
 <pre><code class="language-python">100000
 </code></pre>
-<h5 id="python_121">Python</h5>
+<h5 id="python_114">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MaxSignaturesStored')
 </code></pre>
 <hr />
 <h4 id="mortalitywindowsize">MortalityWindowSize</h4>
-<h5 id="value_22">Value</h5>
+<h5 id="value_23">Value</h5>
 <pre><code class="language-python">100
 </code></pre>
-<h5 id="python_122">Python</h5>
+<h5 id="python_115">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'MortalityWindowSize')
 </code></pre>
 <hr />
 <h4 id="numberofbuckets">NumberOfBuckets</h4>
-<h5 id="value_23">Value</h5>
+<h5 id="value_24">Value</h5>
 <pre><code class="language-python">2
 </code></pre>
-<h5 id="python_123">Python</h5>
+<h5 id="python_116">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Msa', 'NumberOfBuckets')
 </code></pre>
 <hr />
@@ -5506,12 +5165,12 @@
 <h3 id="storage-functions_9">Storage functions</h3>
 <hr />
 <h4 id="parachainid">ParachainId</h4>
-<h5 id="python_124">Python</h5>
+<h5 id="python_117">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainInfo', 'ParachainId', []
 )
 </code></pre>
-<h5 id="return-value_44">Return value</h5>
+<h5 id="return-value_42">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
@@ -5520,7 +5179,7 @@
 <h3 id="calls_7">Calls</h3>
 <hr />
 <h4 id="authorize_upgrade">authorize_upgrade</h4>
-<h5 id="attributes_107">Attributes</h5>
+<h5 id="attributes_95">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5535,14 +5194,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_125">Python</h5>
+<h5 id="python_118">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainSystem', 'authorize_upgrade', {'code_hash': '[u8; 32]'}
 )
 </code></pre>
 <hr />
 <h4 id="enact_authorized_upgrade">enact_authorized_upgrade</h4>
-<h5 id="attributes_108">Attributes</h5>
+<h5 id="attributes_96">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5557,14 +5216,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_126">Python</h5>
+<h5 id="python_119">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainSystem', 'enact_authorized_upgrade', {'code': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="set_validation_data">set_validation_data</h4>
-<h5 id="attributes_109">Attributes</h5>
+<h5 id="attributes_97">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5579,7 +5238,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_127">Python</h5>
+<h5 id="python_120">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainSystem', 'set_validation_data', {
     'data': {
@@ -5589,9 +5248,9 @@
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::109',
+        'horizontal_messages': 'scale_info::106',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::91',
+            'trie_nodes': 'scale_info::88',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -5605,7 +5264,7 @@
 </code></pre>
 <hr />
 <h4 id="sudo_send_upward_message">sudo_send_upward_message</h4>
-<h5 id="attributes_110">Attributes</h5>
+<h5 id="attributes_98">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5620,7 +5279,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_128">Python</h5>
+<h5 id="python_121">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'ParachainSystem', 'sudo_send_upward_message', {'message': 'Bytes'}
 )
@@ -5629,7 +5288,7 @@
 <h3 id="events_6">Events</h3>
 <hr />
 <h4 id="downwardmessagesprocessed">DownwardMessagesProcessed</h4>
-<h5 id="attributes_111">Attributes</h5>
+<h5 id="attributes_99">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5642,7 +5301,7 @@
 <tr>
 <td>weight_used</td>
 <td><code>Weight</code></td>
-<td><code>{'ref_time': 'u64'}</code></td>
+<td><code>{'ref_time': 'u64', 'proof_size': 'u64'}</code></td>
 </tr>
 <tr>
 <td>dmq_head</td>
@@ -5653,7 +5312,7 @@
 </table>
 <hr />
 <h4 id="downwardmessagesreceived">DownwardMessagesReceived</h4>
-<h5 id="attributes_112">Attributes</h5>
+<h5 id="attributes_100">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5672,7 +5331,7 @@
 </table>
 <hr />
 <h4 id="upgradeauthorized">UpgradeAuthorized</h4>
-<h5 id="attributes_113">Attributes</h5>
+<h5 id="attributes_101">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5691,7 +5350,7 @@
 </table>
 <hr />
 <h4 id="validationfunctionapplied">ValidationFunctionApplied</h4>
-<h5 id="attributes_114">Attributes</h5>
+<h5 id="attributes_102">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -5710,62 +5369,62 @@
 </table>
 <hr />
 <h4 id="validationfunctiondiscarded">ValidationFunctionDiscarded</h4>
-<h5 id="attributes_115">Attributes</h5>
+<h5 id="attributes_103">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="validationfunctionstored">ValidationFunctionStored</h4>
-<h5 id="attributes_116">Attributes</h5>
+<h5 id="attributes_104">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h3 id="storage-functions_10">Storage functions</h3>
 <hr />
 <h4 id="announcedhrmpmessagespercandidate">AnnouncedHrmpMessagesPerCandidate</h4>
-<h5 id="python_129">Python</h5>
+<h5 id="python_122">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'AnnouncedHrmpMessagesPerCandidate', []
 )
 </code></pre>
-<h5 id="return-value_45">Return value</h5>
+<h5 id="return-value_43">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="authorizedupgrade">AuthorizedUpgrade</h4>
-<h5 id="python_130">Python</h5>
+<h5 id="python_123">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'AuthorizedUpgrade', []
 )
 </code></pre>
-<h5 id="return-value_46">Return value</h5>
+<h5 id="return-value_44">Return value</h5>
 <pre><code class="language-python">'[u8; 32]'
 </code></pre>
 <hr />
 <h4 id="customvalidationheaddata">CustomValidationHeadData</h4>
-<h5 id="python_131">Python</h5>
+<h5 id="python_124">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'CustomValidationHeadData', []
 )
 </code></pre>
-<h5 id="return-value_47">Return value</h5>
+<h5 id="return-value_45">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
 <h4 id="didsetvalidationcode">DidSetValidationCode</h4>
-<h5 id="python_132">Python</h5>
+<h5 id="python_125">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'DidSetValidationCode', []
 )
 </code></pre>
-<h5 id="return-value_48">Return value</h5>
+<h5 id="return-value_46">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h4 id="hostconfiguration">HostConfiguration</h4>
-<h5 id="python_133">Python</h5>
+<h5 id="python_126">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HostConfiguration', []
 )
 </code></pre>
-<h5 id="return-value_49">Return value</h5>
+<h5 id="return-value_47">Return value</h5>
 <pre><code class="language-python">{
     'hrmp_max_message_num_per_candidate': 'u32',
     'max_code_size': 'u32',
@@ -5780,112 +5439,112 @@
 </code></pre>
 <hr />
 <h4 id="hrmpoutboundmessages">HrmpOutboundMessages</h4>
-<h5 id="python_134">Python</h5>
+<h5 id="python_127">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HrmpOutboundMessages', []
 )
 </code></pre>
-<h5 id="return-value_50">Return value</h5>
+<h5 id="return-value_48">Return value</h5>
 <pre><code class="language-python">[{'data': 'Bytes', 'recipient': 'u32'}]
 </code></pre>
 <hr />
 <h4 id="hrmpwatermark">HrmpWatermark</h4>
-<h5 id="python_135">Python</h5>
+<h5 id="python_128">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'HrmpWatermark', []
 )
 </code></pre>
-<h5 id="return-value_51">Return value</h5>
+<h5 id="return-value_49">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="lastdmqmqchead">LastDmqMqcHead</h4>
-<h5 id="python_136">Python</h5>
+<h5 id="python_129">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastDmqMqcHead', []
 )
 </code></pre>
-<h5 id="return-value_52">Return value</h5>
+<h5 id="return-value_50">Return value</h5>
 <pre><code class="language-python">'[u8; 32]'
 </code></pre>
 <hr />
 <h4 id="lasthrmpmqcheads">LastHrmpMqcHeads</h4>
-<h5 id="python_137">Python</h5>
+<h5 id="python_130">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastHrmpMqcHeads', []
 )
 </code></pre>
-<h5 id="return-value_53">Return value</h5>
-<pre><code class="language-python">'scale_info::100'
+<h5 id="return-value_51">Return value</h5>
+<pre><code class="language-python">'scale_info::97'
 </code></pre>
 <hr />
 <h4 id="lastrelaychainblocknumber">LastRelayChainBlockNumber</h4>
-<h5 id="python_138">Python</h5>
+<h5 id="python_131">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'LastRelayChainBlockNumber', []
 )
 </code></pre>
-<h5 id="return-value_54">Return value</h5>
+<h5 id="return-value_52">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="newvalidationcode">NewValidationCode</h4>
-<h5 id="python_139">Python</h5>
+<h5 id="python_132">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'NewValidationCode', []
+)
+</code></pre>
+<h5 id="return-value_53">Return value</h5>
+<pre><code class="language-python">'Bytes'
+</code></pre>
+<hr />
+<h4 id="pendingupwardmessages">PendingUpwardMessages</h4>
+<h5 id="python_133">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'ParachainSystem', 'PendingUpwardMessages', []
+)
+</code></pre>
+<h5 id="return-value_54">Return value</h5>
+<pre><code class="language-python">['Bytes']
+</code></pre>
+<hr />
+<h4 id="pendingvalidationcode">PendingValidationCode</h4>
+<h5 id="python_134">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'ParachainSystem', 'PendingValidationCode', []
 )
 </code></pre>
 <h5 id="return-value_55">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
-<h4 id="pendingupwardmessages">PendingUpwardMessages</h4>
-<h5 id="python_140">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'ParachainSystem', 'PendingUpwardMessages', []
-)
-</code></pre>
-<h5 id="return-value_56">Return value</h5>
-<pre><code class="language-python">['Bytes']
-</code></pre>
-<hr />
-<h4 id="pendingvalidationcode">PendingValidationCode</h4>
-<h5 id="python_141">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'ParachainSystem', 'PendingValidationCode', []
-)
-</code></pre>
-<h5 id="return-value_57">Return value</h5>
-<pre><code class="language-python">'Bytes'
-</code></pre>
-<hr />
 <h4 id="processeddownwardmessages">ProcessedDownwardMessages</h4>
-<h5 id="python_142">Python</h5>
+<h5 id="python_135">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ProcessedDownwardMessages', []
 )
 </code></pre>
-<h5 id="return-value_58">Return value</h5>
+<h5 id="return-value_56">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="relaystateproof">RelayStateProof</h4>
-<h5 id="python_143">Python</h5>
+<h5 id="python_136">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'RelayStateProof', []
 )
 </code></pre>
-<h5 id="return-value_59">Return value</h5>
-<pre><code class="language-python">{'trie_nodes': 'scale_info::91'}
+<h5 id="return-value_57">Return value</h5>
+<pre><code class="language-python">{'trie_nodes': 'scale_info::88'}
 </code></pre>
 <hr />
 <h4 id="relevantmessagingstate">RelevantMessagingState</h4>
-<h5 id="python_144">Python</h5>
+<h5 id="python_137">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'RelevantMessagingState', []
 )
 </code></pre>
-<h5 id="return-value_60">Return value</h5>
+<h5 id="return-value_58">Return value</h5>
 <pre><code class="language-python">{
     'dmq_mqc_head': '[u8; 32]',
     'egress_channels': [
@@ -5919,52 +5578,52 @@
 </code></pre>
 <hr />
 <h4 id="reserveddmpweightoverride">ReservedDmpWeightOverride</h4>
-<h5 id="python_145">Python</h5>
+<h5 id="python_138">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ReservedDmpWeightOverride', []
 )
 </code></pre>
-<h5 id="return-value_61">Return value</h5>
-<pre><code class="language-python">{'ref_time': 'u64'}
+<h5 id="return-value_59">Return value</h5>
+<pre><code class="language-python">{'proof_size': 'u64', 'ref_time': 'u64'}
 </code></pre>
 <hr />
 <h4 id="reservedxcmpweightoverride">ReservedXcmpWeightOverride</h4>
-<h5 id="python_146">Python</h5>
+<h5 id="python_139">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ReservedXcmpWeightOverride', []
 )
 </code></pre>
-<h5 id="return-value_62">Return value</h5>
-<pre><code class="language-python">{'ref_time': 'u64'}
+<h5 id="return-value_60">Return value</h5>
+<pre><code class="language-python">{'proof_size': 'u64', 'ref_time': 'u64'}
 </code></pre>
 <hr />
 <h4 id="upgraderestrictionsignal">UpgradeRestrictionSignal</h4>
-<h5 id="python_147">Python</h5>
+<h5 id="python_140">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'UpgradeRestrictionSignal', []
 )
 </code></pre>
-<h5 id="return-value_63">Return value</h5>
+<h5 id="return-value_61">Return value</h5>
 <pre><code class="language-python">(None, ('Present', ))
 </code></pre>
 <hr />
 <h4 id="upwardmessages">UpwardMessages</h4>
-<h5 id="python_148">Python</h5>
+<h5 id="python_141">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'UpwardMessages', []
 )
 </code></pre>
-<h5 id="return-value_64">Return value</h5>
+<h5 id="return-value_62">Return value</h5>
 <pre><code class="language-python">['Bytes']
 </code></pre>
 <hr />
 <h4 id="validationdata">ValidationData</h4>
-<h5 id="python_149">Python</h5>
+<h5 id="python_142">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'ParachainSystem', 'ValidationData', []
 )
 </code></pre>
-<h5 id="return-value_65">Return value</h5>
+<h5 id="return-value_63">Return value</h5>
 <pre><code class="language-python">{
     'max_pov_size': 'u32',
     'parent_head': 'Bytes',
@@ -5995,8 +5654,8 @@
 <hr />
 <h3 id="calls_8">Calls</h3>
 <hr />
-<h4 id="note_preimage_1">note_preimage</h4>
-<h5 id="attributes_117">Attributes</h5>
+<h4 id="note_preimage">note_preimage</h4>
+<h5 id="attributes_105">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6011,14 +5670,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_150">Python</h5>
+<h5 id="python_143">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Preimage', 'note_preimage', {'bytes': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="request_preimage">request_preimage</h4>
-<h5 id="attributes_118">Attributes</h5>
+<h5 id="attributes_106">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6033,14 +5692,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_151">Python</h5>
+<h5 id="python_144">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Preimage', 'request_preimage', {'hash': '[u8; 32]'}
 )
 </code></pre>
 <hr />
 <h4 id="unnote_preimage">unnote_preimage</h4>
-<h5 id="attributes_119">Attributes</h5>
+<h5 id="attributes_107">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6055,14 +5714,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_152">Python</h5>
+<h5 id="python_145">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Preimage', 'unnote_preimage', {'hash': '[u8; 32]'}
 )
 </code></pre>
 <hr />
 <h4 id="unrequest_preimage">unrequest_preimage</h4>
-<h5 id="attributes_120">Attributes</h5>
+<h5 id="attributes_108">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6077,7 +5736,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_153">Python</h5>
+<h5 id="python_146">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Preimage', 'unrequest_preimage', {'hash': '[u8; 32]'}
 )
@@ -6086,7 +5745,7 @@
 <h3 id="events_7">Events</h3>
 <hr />
 <h4 id="cleared">Cleared</h4>
-<h5 id="attributes_121">Attributes</h5>
+<h5 id="attributes_109">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6105,7 +5764,7 @@
 </table>
 <hr />
 <h4 id="noted">Noted</h4>
-<h5 id="attributes_122">Attributes</h5>
+<h5 id="attributes_110">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6124,7 +5783,7 @@
 </table>
 <hr />
 <h4 id="requested">Requested</h4>
-<h5 id="attributes_123">Attributes</h5>
+<h5 id="attributes_111">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6145,23 +5804,30 @@
 <h3 id="storage-functions_11">Storage functions</h3>
 <hr />
 <h4 id="preimagefor">PreimageFor</h4>
-<h5 id="python_154">Python</h5>
+<h5 id="python_147">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'Preimage', 'PreimageFor', ['[u8; 32]']
+    'Preimage', 'PreimageFor', [('[u8; 32]', 'u32')]
 )
 </code></pre>
-<h5 id="return-value_66">Return value</h5>
+<h5 id="return-value_64">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
 <h4 id="statusfor">StatusFor</h4>
-<h5 id="python_155">Python</h5>
+<h5 id="python_148">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Preimage', 'StatusFor', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_67">Return value</h5>
-<pre><code class="language-python">{'Requested': 'u32', 'Unrequested': (None, ('AccountId', 'u128'))}
+<h5 id="return-value_65">Return value</h5>
+<pre><code class="language-python">{
+    'Requested': {
+        'count': 'u32',
+        'deposit': (None, ('AccountId', 'u128')),
+        'len': (None, 'u32'),
+    },
+    'Unrequested': {'deposit': ('AccountId', 'u128'), 'len': 'u32'},
+}
 </code></pre>
 <hr />
 <h3 id="errors_8">Errors</h3>
@@ -6176,14 +5842,14 @@
 <hr />
 <h4 id="requested_1">Requested</h4>
 <hr />
-<h4 id="toolarge">TooLarge</h4>
+<h4 id="toobig_1">TooBig</h4>
 <hr />
 <h2 id="scheduler">Scheduler</h2>
 <hr />
 <h3 id="calls_9">Calls</h3>
 <hr />
 <h4 id="cancel">cancel</h4>
-<h5 id="attributes_124">Attributes</h5>
+<h5 id="attributes_112">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6202,14 +5868,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_156">Python</h5>
+<h5 id="python_149">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Scheduler', 'cancel', {'index': 'u32', 'when': 'u32'}
 )
 </code></pre>
 <hr />
 <h4 id="cancel_named">cancel_named</h4>
-<h5 id="attributes_125">Attributes</h5>
+<h5 id="attributes_113">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6220,18 +5886,18 @@
 <tbody>
 <tr>
 <td>id</td>
-<td><code>Vec&lt;u8&gt;</code></td>
+<td><code>TaskName</code></td>
 </tr>
 </tbody>
 </table>
-<h5 id="python_157">Python</h5>
+<h5 id="python_150">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Scheduler', 'cancel_named', {'id': 'Bytes'}
+    'Scheduler', 'cancel_named', {'id': '[u8; 32]'}
 )
 </code></pre>
 <hr />
 <h4 id="schedule">schedule</h4>
-<h5 id="attributes_126">Attributes</h5>
+<h5 id="attributes_114">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6254,17 +5920,14 @@
 </tr>
 <tr>
 <td>call</td>
-<td><code>Box&lt;CallOrHashOf&lt;T&gt;&gt;</code></td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h5 id="python_158">Python</h5>
+<h5 id="python_151">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Scheduler', 'schedule', {
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
+    'call': 'Call',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -6276,7 +5939,7 @@
 </code></pre>
 <hr />
 <h4 id="schedule_after">schedule_after</h4>
-<h5 id="attributes_127">Attributes</h5>
+<h5 id="attributes_115">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6299,18 +5962,15 @@
 </tr>
 <tr>
 <td>call</td>
-<td><code>Box&lt;CallOrHashOf&lt;T&gt;&gt;</code></td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h5 id="python_159">Python</h5>
+<h5 id="python_152">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Scheduler', 'schedule_after', {
     'after': 'u32',
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
+    'call': 'Call',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -6321,7 +5981,7 @@
 </code></pre>
 <hr />
 <h4 id="schedule_named">schedule_named</h4>
-<h5 id="attributes_128">Attributes</h5>
+<h5 id="attributes_116">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6332,7 +5992,7 @@
 <tbody>
 <tr>
 <td>id</td>
-<td><code>Vec&lt;u8&gt;</code></td>
+<td><code>TaskName</code></td>
 </tr>
 <tr>
 <td>when</td>
@@ -6348,18 +6008,15 @@
 </tr>
 <tr>
 <td>call</td>
-<td><code>Box&lt;CallOrHashOf&lt;T&gt;&gt;</code></td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h5 id="python_160">Python</h5>
+<h5 id="python_153">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Scheduler', 'schedule_named', {
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
-    'id': 'Bytes',
+    'call': 'Call',
+    'id': '[u8; 32]',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -6371,7 +6028,7 @@
 </code></pre>
 <hr />
 <h4 id="schedule_named_after">schedule_named_after</h4>
-<h5 id="attributes_129">Attributes</h5>
+<h5 id="attributes_117">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6382,7 +6039,7 @@
 <tbody>
 <tr>
 <td>id</td>
-<td><code>Vec&lt;u8&gt;</code></td>
+<td><code>TaskName</code></td>
 </tr>
 <tr>
 <td>after</td>
@@ -6398,19 +6055,16 @@
 </tr>
 <tr>
 <td>call</td>
-<td><code>Box&lt;CallOrHashOf&lt;T&gt;&gt;</code></td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h5 id="python_161">Python</h5>
+<h5 id="python_154">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Scheduler', 'schedule_named_after', {
     'after': 'u32',
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
-    'id': 'Bytes',
+    'call': 'Call',
+    'id': '[u8; 32]',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -6422,8 +6076,8 @@
 <hr />
 <h3 id="events_8">Events</h3>
 <hr />
-<h4 id="calllookupfailed">CallLookupFailed</h4>
-<h5 id="attributes_130">Attributes</h5>
+<h4 id="callunavailable">CallUnavailable</h4>
+<h5 id="attributes_118">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6440,19 +6094,14 @@
 </tr>
 <tr>
 <td>id</td>
-<td><code>Option&lt;Vec&lt;u8&gt;&gt;</code></td>
-<td><code>(None, 'Bytes')</code></td>
-</tr>
-<tr>
-<td>error</td>
-<td><code>LookupError</code></td>
-<td><code>('Unknown', 'BadFormat')</code></td>
+<td><code>Option&lt;TaskName&gt;</code></td>
+<td><code>(None, '[u8; 32]')</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="canceled">Canceled</h4>
-<h5 id="attributes_131">Attributes</h5>
+<h5 id="attributes_119">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6476,7 +6125,7 @@
 </table>
 <hr />
 <h4 id="dispatched">Dispatched</h4>
-<h5 id="attributes_132">Attributes</h5>
+<h5 id="attributes_120">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6493,19 +6142,67 @@
 </tr>
 <tr>
 <td>id</td>
-<td><code>Option&lt;Vec&lt;u8&gt;&gt;</code></td>
-<td><code>(None, 'Bytes')</code></td>
+<td><code>Option&lt;TaskName&gt;</code></td>
+<td><code>(None, '[u8; 32]')</code></td>
 </tr>
 <tr>
 <td>result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="periodicfailed">PeriodicFailed</h4>
+<h5 id="attributes_121">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task</td>
+<td><code>TaskAddress&lt;T::BlockNumber&gt;</code></td>
+<td><code>('u32', 'u32')</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td><code>Option&lt;TaskName&gt;</code></td>
+<td><code>(None, '[u8; 32]')</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="permanentlyoverweight">PermanentlyOverweight</h4>
+<h5 id="attributes_122">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>task</td>
+<td><code>TaskAddress&lt;T::BlockNumber&gt;</code></td>
+<td><code>('u32', 'u32')</code></td>
+</tr>
+<tr>
+<td>id</td>
+<td><code>Option&lt;TaskName&gt;</code></td>
+<td><code>(None, '[u8; 32]')</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="scheduled">Scheduled</h4>
-<h5 id="attributes_133">Attributes</h5>
+<h5 id="attributes_123">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6531,18 +6228,22 @@
 <h3 id="storage-functions_12">Storage functions</h3>
 <hr />
 <h4 id="agenda">Agenda</h4>
-<h5 id="python_162">Python</h5>
+<h5 id="python_155">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Scheduler', 'Agenda', ['u32']
 )
 </code></pre>
-<h5 id="return-value_68">Return value</h5>
+<h5 id="return-value_66">Return value</h5>
 <pre><code class="language-python">[
     (
         None,
         {
-            'call': {'Hash': '[u8; 32]', 'Value': 'Call'},
-            'maybe_id': (None, 'Bytes'),
+            'call': {
+                'Inline': 'Bytes',
+                'Legacy': {'hash': '[u8; 32]'},
+                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            },
+            'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
                 'Council': {
@@ -6550,14 +6251,14 @@
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'Void': (),
+                None: None,
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -6565,37 +6266,49 @@
 ]
 </code></pre>
 <hr />
-<h4 id="lookup">Lookup</h4>
-<h5 id="python_163">Python</h5>
+<h4 id="incompletesince">IncompleteSince</h4>
+<h5 id="python_156">Python</h5>
 <pre><code class="language-python">result = substrate.query(
-    'Scheduler', 'Lookup', ['Bytes']
+    'Scheduler', 'IncompleteSince', []
 )
 </code></pre>
-<h5 id="return-value_69">Return value</h5>
+<h5 id="return-value_67">Return value</h5>
+<pre><code class="language-python">'u32'
+</code></pre>
+<hr />
+<h4 id="lookup">Lookup</h4>
+<h5 id="python_157">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'Scheduler', 'Lookup', ['[u8; 32]']
+)
+</code></pre>
+<h5 id="return-value_68">Return value</h5>
 <pre><code class="language-python">('u32', 'u32')
 </code></pre>
 <hr />
 <h3 id="constants_5">Constants</h3>
 <hr />
 <h4 id="maxscheduledperblock">MaxScheduledPerBlock</h4>
-<h5 id="value_24">Value</h5>
+<h5 id="value_25">Value</h5>
 <pre><code class="language-python">50
 </code></pre>
-<h5 id="python_164">Python</h5>
+<h5 id="python_158">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Scheduler', 'MaxScheduledPerBlock')
 </code></pre>
 <hr />
 <h4 id="maximumweight">MaximumWeight</h4>
-<h5 id="value_25">Value</h5>
-<pre><code class="language-python">{'ref_time': 50000000000}
+<h5 id="value_26">Value</h5>
+<pre><code class="language-python">{'proof_size': 524288, 'ref_time': 50000000000}
 </code></pre>
-<h5 id="python_165">Python</h5>
+<h5 id="python_159">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Scheduler', 'MaximumWeight')
 </code></pre>
 <hr />
 <h3 id="errors_9">Errors</h3>
 <hr />
 <h4 id="failedtoschedule">FailedToSchedule</h4>
+<hr />
+<h4 id="named">Named</h4>
 <hr />
 <h4 id="notfound">NotFound</h4>
 <hr />
@@ -6608,7 +6321,7 @@
 <h3 id="calls_10">Calls</h3>
 <hr />
 <h4 id="create_schema">create_schema</h4>
-<h5 id="attributes_134">Attributes</h5>
+<h5 id="attributes_124">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6631,7 +6344,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_166">Python</h5>
+<h5 id="python_160">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Schemas', 'create_schema', {
     'model': 'Bytes',
@@ -6648,7 +6361,7 @@
 </code></pre>
 <hr />
 <h4 id="set_max_schema_model_bytes">set_max_schema_model_bytes</h4>
-<h5 id="attributes_135">Attributes</h5>
+<h5 id="attributes_125">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6663,7 +6376,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_167">Python</h5>
+<h5 id="python_161">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Schemas', 'set_max_schema_model_bytes', {'max_size': 'u32'}
 )
@@ -6672,7 +6385,7 @@
 <h3 id="events_9">Events</h3>
 <hr />
 <h4 id="schemacreated">SchemaCreated</h4>
-<h5 id="attributes_136">Attributes</h5>
+<h5 id="attributes_126">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6683,12 +6396,12 @@
 </thead>
 <tbody>
 <tr>
-<td>None</td>
+<td>key</td>
 <td><code>T::AccountId</code></td>
 <td><code>AccountId</code></td>
 </tr>
 <tr>
-<td>None</td>
+<td>schema_id</td>
 <td><code>SchemaId</code></td>
 <td><code>u16</code></td>
 </tr>
@@ -6696,7 +6409,7 @@
 </table>
 <hr />
 <h4 id="schemamaxsizechanged">SchemaMaxSizeChanged</h4>
-<h5 id="attributes_137">Attributes</h5>
+<h5 id="attributes_127">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6707,7 +6420,7 @@
 </thead>
 <tbody>
 <tr>
-<td>None</td>
+<td>max_size</td>
 <td><code>u32</code></td>
 <td><code>u32</code></td>
 </tr>
@@ -6717,32 +6430,32 @@
 <h3 id="storage-functions_13">Storage functions</h3>
 <hr />
 <h4 id="currentschemaidentifiermaximum">CurrentSchemaIdentifierMaximum</h4>
-<h5 id="python_168">Python</h5>
+<h5 id="python_162">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Schemas', 'CurrentSchemaIdentifierMaximum', []
 )
 </code></pre>
-<h5 id="return-value_70">Return value</h5>
+<h5 id="return-value_69">Return value</h5>
 <pre><code class="language-python">'u16'
 </code></pre>
 <hr />
 <h4 id="governanceschemamodelmaxbytes">GovernanceSchemaModelMaxBytes</h4>
-<h5 id="python_169">Python</h5>
+<h5 id="python_163">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Schemas', 'GovernanceSchemaModelMaxBytes', []
 )
 </code></pre>
-<h5 id="return-value_71">Return value</h5>
+<h5 id="return-value_70">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="schemas_1">Schemas</h4>
-<h5 id="python_170">Python</h5>
+<h5 id="python_164">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Schemas', 'Schemas', ['u16']
 )
 </code></pre>
-<h5 id="return-value_72">Return value</h5>
+<h5 id="return-value_71">Return value</h5>
 <pre><code class="language-python">{
     'model': 'Bytes',
     'model_type': ('AvroBinary', 'Parquet'),
@@ -6753,26 +6466,26 @@
 <h3 id="constants_6">Constants</h3>
 <hr />
 <h4 id="maxschemaregistrations">MaxSchemaRegistrations</h4>
-<h5 id="value_26">Value</h5>
+<h5 id="value_27">Value</h5>
 <pre><code class="language-python">65000
 </code></pre>
-<h5 id="python_171">Python</h5>
+<h5 id="python_165">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Schemas', 'MaxSchemaRegistrations')
 </code></pre>
 <hr />
 <h4 id="minschemamodelsizebytes">MinSchemaModelSizeBytes</h4>
-<h5 id="value_27">Value</h5>
+<h5 id="value_28">Value</h5>
 <pre><code class="language-python">8
 </code></pre>
-<h5 id="python_172">Python</h5>
+<h5 id="python_166">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Schemas', 'MinSchemaModelSizeBytes')
 </code></pre>
 <hr />
 <h4 id="schemamodelmaxbytesboundedveclimit">SchemaModelMaxBytesBoundedVecLimit</h4>
-<h5 id="value_28">Value</h5>
+<h5 id="value_29">Value</h5>
 <pre><code class="language-python">65500
 </code></pre>
-<h5 id="python_173">Python</h5>
+<h5 id="python_167">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Schemas', 'SchemaModelMaxBytesBoundedVecLimit')
 </code></pre>
 <hr />
@@ -6791,16 +6504,16 @@
 <h3 id="calls_11">Calls</h3>
 <hr />
 <h4 id="purge_keys">purge_keys</h4>
-<h5 id="attributes_138">Attributes</h5>
+<h5 id="attributes_128">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_174">Python</h5>
+<h5 id="python_168">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'purge_keys', {}
 )
 </code></pre>
 <hr />
 <h4 id="set_keys">set_keys</h4>
-<h5 id="attributes_139">Attributes</h5>
+<h5 id="attributes_129">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6819,7 +6532,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_175">Python</h5>
+<h5 id="python_169">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Session', 'set_keys', {'keys': {'aura': '[u8; 32]'}, 'proof': 'Bytes'}
 )
@@ -6828,7 +6541,7 @@
 <h3 id="events_10">Events</h3>
 <hr />
 <h4 id="newsession">NewSession</h4>
-<h5 id="attributes_140">Attributes</h5>
+<h5 id="attributes_130">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -6849,72 +6562,72 @@
 <h3 id="storage-functions_14">Storage functions</h3>
 <hr />
 <h4 id="currentindex">CurrentIndex</h4>
-<h5 id="python_176">Python</h5>
+<h5 id="python_170">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'CurrentIndex', []
 )
 </code></pre>
-<h5 id="return-value_73">Return value</h5>
+<h5 id="return-value_72">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="disabledvalidators">DisabledValidators</h4>
-<h5 id="python_177">Python</h5>
+<h5 id="python_171">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'DisabledValidators', []
 )
 </code></pre>
-<h5 id="return-value_74">Return value</h5>
+<h5 id="return-value_73">Return value</h5>
 <pre><code class="language-python">['u32']
 </code></pre>
 <hr />
 <h4 id="keyowner">KeyOwner</h4>
-<h5 id="python_178">Python</h5>
+<h5 id="python_172">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'KeyOwner', [('[u8; 4]', 'Bytes')]
 )
 </code></pre>
-<h5 id="return-value_75">Return value</h5>
+<h5 id="return-value_74">Return value</h5>
 <pre><code class="language-python">'AccountId'
 </code></pre>
 <hr />
 <h4 id="nextkeys">NextKeys</h4>
-<h5 id="python_179">Python</h5>
+<h5 id="python_173">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'NextKeys', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_76">Return value</h5>
+<h5 id="return-value_75">Return value</h5>
 <pre><code class="language-python">{'aura': '[u8; 32]'}
 </code></pre>
 <hr />
 <h4 id="queuedchanged">QueuedChanged</h4>
-<h5 id="python_180">Python</h5>
+<h5 id="python_174">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'QueuedChanged', []
 )
 </code></pre>
-<h5 id="return-value_77">Return value</h5>
+<h5 id="return-value_76">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h4 id="queuedkeys">QueuedKeys</h4>
-<h5 id="python_181">Python</h5>
+<h5 id="python_175">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'QueuedKeys', []
 )
 </code></pre>
-<h5 id="return-value_78">Return value</h5>
+<h5 id="return-value_77">Return value</h5>
 <pre><code class="language-python">[('AccountId', {'aura': '[u8; 32]'})]
 </code></pre>
 <hr />
 <h4 id="validators">Validators</h4>
-<h5 id="python_182">Python</h5>
+<h5 id="python_176">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Session', 'Validators', []
 )
 </code></pre>
-<h5 id="return-value_79">Return value</h5>
+<h5 id="return-value_78">Return value</h5>
 <pre><code class="language-python">['AccountId']
 </code></pre>
 <hr />
@@ -6930,229 +6643,12 @@
 <hr />
 <h4 id="nokeys">NoKeys</h4>
 <hr />
-<h2 id="sudo">Sudo</h2>
+<h2 id="system">System</h2>
 <hr />
 <h3 id="calls_12">Calls</h3>
 <hr />
-<h4 id="set_key">set_key</h4>
-<h5 id="attributes_141">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>AccountIdLookupOf&lt;T&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_183">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Sudo', 'set_key', {
-    'new': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-}
-)
-</code></pre>
-<hr />
-<h4 id="sudo_1">sudo</h4>
-<h5 id="attributes_142">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>call</td>
-<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_184">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Sudo', 'sudo', {'call': 'Call'}
-)
-</code></pre>
-<hr />
-<h4 id="sudo_as">sudo_as</h4>
-<h5 id="attributes_143">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>who</td>
-<td><code>AccountIdLookupOf&lt;T&gt;</code></td>
-</tr>
-<tr>
-<td>call</td>
-<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_185">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Sudo', 'sudo_as', {
-    'call': 'Call',
-    'who': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-}
-)
-</code></pre>
-<hr />
-<h4 id="sudo_unchecked_weight">sudo_unchecked_weight</h4>
-<h5 id="attributes_144">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>call</td>
-<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
-</tr>
-<tr>
-<td>weight</td>
-<td><code>Weight</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_186">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Sudo', 'sudo_unchecked_weight', {
-    'call': 'Call',
-    'weight': {'ref_time': 'u64'},
-}
-)
-</code></pre>
-<hr />
-<h3 id="events_11">Events</h3>
-<hr />
-<h4 id="keychanged">KeyChanged</h4>
-<h5 id="attributes_145">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>old_sudoer</td>
-<td><code>Option&lt;T::AccountId&gt;</code></td>
-<td><code>(None, 'AccountId')</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="sudid">Sudid</h4>
-<h5 id="attributes_146">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>sudo_result</td>
-<td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="sudoasdone">SudoAsDone</h4>
-<h5 id="attributes_147">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>sudo_result</td>
-<td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="storage-functions_15">Storage functions</h3>
-<hr />
-<h4 id="key">Key</h4>
-<h5 id="python_187">Python</h5>
-<pre><code class="language-python">result = substrate.query(
-    'Sudo', 'Key', []
-)
-</code></pre>
-<h5 id="return-value_80">Return value</h5>
-<pre><code class="language-python">'AccountId'
-</code></pre>
-<hr />
-<h3 id="errors_12">Errors</h3>
-<hr />
-<h4 id="requiresudo">RequireSudo</h4>
-<hr />
-<h2 id="system">System</h2>
-<hr />
-<h3 id="calls_13">Calls</h3>
-<hr />
-<h4 id="fill_block">fill_block</h4>
-<h5 id="attributes_148">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ratio</td>
-<td><code>Perbill</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_188">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-</code></pre>
-<hr />
 <h4 id="kill_prefix">kill_prefix</h4>
-<h5 id="attributes_149">Attributes</h5>
+<h5 id="attributes_131">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7171,14 +6667,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_189">Python</h5>
+<h5 id="python_177">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'kill_prefix', {'prefix': 'Bytes', 'subkeys': 'u32'}
 )
 </code></pre>
 <hr />
 <h4 id="kill_storage">kill_storage</h4>
-<h5 id="attributes_150">Attributes</h5>
+<h5 id="attributes_132">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7193,14 +6689,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_190">Python</h5>
+<h5 id="python_178">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'kill_storage', {'keys': ['Bytes']}
 )
 </code></pre>
 <hr />
 <h4 id="remark">remark</h4>
-<h5 id="attributes_151">Attributes</h5>
+<h5 id="attributes_133">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7215,14 +6711,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_191">Python</h5>
+<h5 id="python_179">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'remark', {'remark': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="remark_with_event">remark_with_event</h4>
-<h5 id="attributes_152">Attributes</h5>
+<h5 id="attributes_134">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7237,14 +6733,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_192">Python</h5>
+<h5 id="python_180">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'remark_with_event', {'remark': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="set_code">set_code</h4>
-<h5 id="attributes_153">Attributes</h5>
+<h5 id="attributes_135">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7259,14 +6755,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_193">Python</h5>
+<h5 id="python_181">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_code', {'code': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="set_code_without_checks">set_code_without_checks</h4>
-<h5 id="attributes_154">Attributes</h5>
+<h5 id="attributes_136">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7281,14 +6777,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_194">Python</h5>
+<h5 id="python_182">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_code_without_checks', {'code': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="set_heap_pages">set_heap_pages</h4>
-<h5 id="attributes_155">Attributes</h5>
+<h5 id="attributes_137">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7303,14 +6799,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_195">Python</h5>
+<h5 id="python_183">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_heap_pages', {'pages': 'u64'}
 )
 </code></pre>
 <hr />
 <h4 id="set_storage">set_storage</h4>
-<h5 id="attributes_156">Attributes</h5>
+<h5 id="attributes_138">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7325,20 +6821,20 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_196">Python</h5>
+<h5 id="python_184">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_storage', {'items': [('Bytes', 'Bytes')]}
 )
 </code></pre>
 <hr />
-<h3 id="events_12">Events</h3>
+<h3 id="events_11">Events</h3>
 <hr />
 <h4 id="codeupdated">CodeUpdated</h4>
-<h5 id="attributes_157">Attributes</h5>
+<h5 id="attributes_139">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="extrinsicfailed">ExtrinsicFailed</h4>
-<h5 id="attributes_158">Attributes</h5>
+<h5 id="attributes_140">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7351,18 +6847,18 @@
 <tr>
 <td>dispatch_error</td>
 <td><code>DispatchError</code></td>
-<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}</code></td>
+<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}</code></td>
 </tr>
 <tr>
 <td>dispatch_info</td>
 <td><code>DispatchInfo</code></td>
-<td><code>{'weight': {'ref_time': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}</code></td>
+<td><code>{'weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="extrinsicsuccess">ExtrinsicSuccess</h4>
-<h5 id="attributes_159">Attributes</h5>
+<h5 id="attributes_141">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7375,13 +6871,13 @@
 <tr>
 <td>dispatch_info</td>
 <td><code>DispatchInfo</code></td>
-<td><code>{'weight': {'ref_time': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}</code></td>
+<td><code>{'weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="killedaccount">KilledAccount</h4>
-<h5 id="attributes_160">Attributes</h5>
+<h5 id="attributes_142">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7400,7 +6896,7 @@
 </table>
 <hr />
 <h4 id="newaccount">NewAccount</h4>
-<h5 id="attributes_161">Attributes</h5>
+<h5 id="attributes_143">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7419,7 +6915,7 @@
 </table>
 <hr />
 <h4 id="remarked">Remarked</h4>
-<h5 id="attributes_162">Attributes</h5>
+<h5 id="attributes_144">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -7442,15 +6938,15 @@
 </tbody>
 </table>
 <hr />
-<h3 id="storage-functions_16">Storage functions</h3>
+<h3 id="storage-functions_15">Storage functions</h3>
 <hr />
 <h4 id="account_1">Account</h4>
-<h5 id="python_197">Python</h5>
+<h5 id="python_185">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Account', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_81">Return value</h5>
+<h5 id="return-value_79">Return value</h5>
 <pre><code class="language-python">{
     'consumers': 'u32',
     'data': {
@@ -7466,46 +6962,46 @@
 </code></pre>
 <hr />
 <h4 id="allextrinsicslen">AllExtrinsicsLen</h4>
-<h5 id="python_198">Python</h5>
+<h5 id="python_186">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'AllExtrinsicsLen', []
 )
 </code></pre>
-<h5 id="return-value_82">Return value</h5>
+<h5 id="return-value_80">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="blockhash">BlockHash</h4>
-<h5 id="python_199">Python</h5>
+<h5 id="python_187">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockHash', ['u32']
 )
 </code></pre>
-<h5 id="return-value_83">Return value</h5>
+<h5 id="return-value_81">Return value</h5>
 <pre><code class="language-python">'[u8; 32]'
 </code></pre>
 <hr />
 <h4 id="blockweight">BlockWeight</h4>
-<h5 id="python_200">Python</h5>
+<h5 id="python_188">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockWeight', []
 )
 </code></pre>
-<h5 id="return-value_84">Return value</h5>
+<h5 id="return-value_82">Return value</h5>
 <pre><code class="language-python">{
-    'mandatory': {'ref_time': 'u64'},
-    'normal': {'ref_time': 'u64'},
-    'operational': {'ref_time': 'u64'},
+    'mandatory': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'normal': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'operational': {'proof_size': 'u64', 'ref_time': 'u64'},
 }
 </code></pre>
 <hr />
 <h4 id="digest">Digest</h4>
-<h5 id="python_201">Python</h5>
+<h5 id="python_189">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Digest', []
 )
 </code></pre>
-<h5 id="return-value_85">Return value</h5>
+<h5 id="return-value_83">Return value</h5>
 <pre><code class="language-python">{
     'logs': [
         {
@@ -7521,32 +7017,32 @@
 </code></pre>
 <hr />
 <h4 id="eventcount">EventCount</h4>
-<h5 id="python_202">Python</h5>
+<h5 id="python_190">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventCount', []
 )
 </code></pre>
-<h5 id="return-value_86">Return value</h5>
+<h5 id="return-value_84">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="eventtopics">EventTopics</h4>
-<h5 id="python_203">Python</h5>
+<h5 id="python_191">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventTopics', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_87">Return value</h5>
+<h5 id="return-value_85">Return value</h5>
 <pre><code class="language-python">[('u32', 'u32')]
 </code></pre>
 <hr />
-<h4 id="events_13">Events</h4>
-<h5 id="python_204">Python</h5>
+<h4 id="events_12">Events</h4>
+<h5 id="python_192">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Events', []
 )
 </code></pre>
-<h5 id="return-value_88">Return value</h5>
+<h5 id="return-value_86">Return value</h5>
 <pre><code class="language-python">[
     {
         'event': {
@@ -7561,7 +7057,7 @@
                 'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'destination_status': 'scale_info::45',
+                    'destination_status': 'scale_info::42',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
@@ -7595,11 +7091,11 @@
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
+                    'result': 'scale_info::38',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
+                    'result': 'scale_info::38',
                 },
                 'Proposed': {
                     'account': 'AccountId',
@@ -7619,43 +7115,14 @@
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
                 'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
-                'Executed': {'ref_index': 'u32', 'result': 'scale_info::30'},
                 'ExternalTabled': None,
                 'NotPassed': {'ref_index': 'u32'},
                 'Passed': {'ref_index': 'u32'},
-                'PreimageInvalid': {
-                    'proposal_hash': '[u8; 32]',
-                    'ref_index': 'u32',
-                },
-                'PreimageMissing': {
-                    'proposal_hash': '[u8; 32]',
-                    'ref_index': 'u32',
-                },
-                'PreimageNoted': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'who': 'AccountId',
-                },
-                'PreimageReaped': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'provider': 'AccountId',
-                    'reaper': 'AccountId',
-                },
-                'PreimageUsed': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'provider': 'AccountId',
-                },
                 'ProposalCanceled': {'prop_index': 'u32'},
                 'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::36'},
-                'Tabled': {
-                    'deposit': 'u128',
-                    'depositors': ['AccountId'],
-                    'proposal_index': 'u32',
-                },
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::32'},
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Undelegated': {'account': 'AccountId'},
                 'Vetoed': {
                     'proposal_hash': '[u8; 32]',
@@ -7664,7 +7131,7 @@
                 },
                 'Voted': {
                     'ref_index': 'u32',
-                    'vote': 'scale_info::37',
+                    'vote': 'scale_info::33',
                     'voter': 'AccountId',
                 },
             },
@@ -7710,39 +7177,44 @@
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
             },
-            'Scheduler': {
-                'CallLookupFailed': {
-                    'error': 'scale_info::42',
-                    'id': (None, 'Bytes'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, 'Bytes'),
-                    'result': 'scale_info::30',
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            'Schemas': {
+                'SchemaCreated': {'key': 'AccountId', 'schema_id': 'u16'},
+                'SchemaMaxSizeChanged': {'max_size': 'u32'},
             },
-            'Schemas': {'SchemaCreated': ('AccountId', 'u16'), 'SchemaMaxSizeChanged': 'u32'},
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::30'},
-                'SudoAsDone': {'sudo_result': 'scale_info::30'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
                 },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             None: None,
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::38',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -7753,11 +7225,11 @@
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
+                    'result': 'scale_info::38',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
+                    'result': 'scale_info::38',
                 },
                 'Proposed': {
                     'account': 'AccountId',
@@ -7802,19 +7274,19 @@
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
                 'BatchInterrupted': {
-                    'error': 'scale_info::23',
+                    'error': 'scale_info::24',
                     'index': 'u32',
                 },
-                'DispatchedAs': {'result': 'scale_info::30'},
+                'DispatchedAs': {'result': 'scale_info::38'},
                 'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::23'},
+                'ItemFailed': {'error': 'scale_info::24'},
             },
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},
                 'VestingScheduleAdded': {
                     'from': 'AccountId',
                     'to': 'AccountId',
-                    'vesting_schedule': 'scale_info::54',
+                    'vesting_schedule': 'scale_info::52',
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
             },
@@ -7830,152 +7302,152 @@
 </code></pre>
 <hr />
 <h4 id="executionphase">ExecutionPhase</h4>
-<h5 id="python_205">Python</h5>
+<h5 id="python_193">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExecutionPhase', []
 )
 </code></pre>
-<h5 id="return-value_89">Return value</h5>
+<h5 id="return-value_87">Return value</h5>
 <pre><code class="language-python">{'ApplyExtrinsic': 'u32', 'Finalization': None, 'Initialization': None}
 </code></pre>
 <hr />
 <h4 id="extrinsiccount">ExtrinsicCount</h4>
-<h5 id="python_206">Python</h5>
+<h5 id="python_194">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicCount', []
 )
 </code></pre>
-<h5 id="return-value_90">Return value</h5>
+<h5 id="return-value_88">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="extrinsicdata">ExtrinsicData</h4>
-<h5 id="python_207">Python</h5>
+<h5 id="python_195">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicData', ['u32']
 )
 </code></pre>
-<h5 id="return-value_91">Return value</h5>
+<h5 id="return-value_89">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
 <h4 id="lastruntimeupgrade">LastRuntimeUpgrade</h4>
-<h5 id="python_208">Python</h5>
+<h5 id="python_196">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'LastRuntimeUpgrade', []
 )
 </code></pre>
-<h5 id="return-value_92">Return value</h5>
+<h5 id="return-value_90">Return value</h5>
 <pre><code class="language-python">{'spec_name': 'Str', 'spec_version': 'u32'}
 </code></pre>
 <hr />
 <h4 id="number">Number</h4>
-<h5 id="python_209">Python</h5>
+<h5 id="python_197">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Number', []
 )
 </code></pre>
-<h5 id="return-value_93">Return value</h5>
+<h5 id="return-value_91">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="parenthash">ParentHash</h4>
-<h5 id="python_210">Python</h5>
+<h5 id="python_198">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ParentHash', []
 )
 </code></pre>
-<h5 id="return-value_94">Return value</h5>
+<h5 id="return-value_92">Return value</h5>
 <pre><code class="language-python">'[u8; 32]'
 </code></pre>
 <hr />
 <h4 id="upgradedtotriplerefcount">UpgradedToTripleRefCount</h4>
-<h5 id="python_211">Python</h5>
+<h5 id="python_199">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToTripleRefCount', []
 )
 </code></pre>
-<h5 id="return-value_95">Return value</h5>
+<h5 id="return-value_93">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h4 id="upgradedtou32refcount">UpgradedToU32RefCount</h4>
-<h5 id="python_212">Python</h5>
+<h5 id="python_200">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToU32RefCount', []
 )
 </code></pre>
-<h5 id="return-value_96">Return value</h5>
+<h5 id="return-value_94">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h3 id="constants_7">Constants</h3>
 <hr />
 <h4 id="blockhashcount">BlockHashCount</h4>
-<h5 id="value_29">Value</h5>
+<h5 id="value_30">Value</h5>
 <pre><code class="language-python">4096
 </code></pre>
-<h5 id="python_213">Python</h5>
+<h5 id="python_201">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockHashCount')
 </code></pre>
 <hr />
 <h4 id="blocklength">BlockLength</h4>
-<h5 id="value_30">Value</h5>
+<h5 id="value_31">Value</h5>
 <pre><code class="language-python">{'max': {'mandatory': 5242880, 'normal': 3932160, 'operational': 5242880}}
 </code></pre>
-<h5 id="python_214">Python</h5>
+<h5 id="python_202">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockLength')
 </code></pre>
 <hr />
 <h4 id="blockweights">BlockWeights</h4>
-<h5 id="value_31">Value</h5>
+<h5 id="value_32">Value</h5>
 <pre><code class="language-python">{
-    'base_block': {'ref_time': 5000000000},
-    'max_block': {'ref_time': 500000000000},
+    'base_block': {'proof_size': 0, 'ref_time': 5000000000},
+    'max_block': {'proof_size': 5242880, 'ref_time': 500000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'ref_time': 125000000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 125000000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': {'ref_time': 125000000},
-            'max_extrinsic': {'ref_time': 349875000000},
-            'max_total': {'ref_time': 375000000000},
-            'reserved': {'ref_time': 0},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 125000000},
+            'max_extrinsic': {'proof_size': 3670016, 'ref_time': 349875000000},
+            'max_total': {'proof_size': 3932160, 'ref_time': 375000000000},
+            'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'ref_time': 125000000},
-            'max_extrinsic': {'ref_time': 474875000000},
-            'max_total': {'ref_time': 500000000000},
-            'reserved': {'ref_time': 125000000000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 125000000},
+            'max_extrinsic': {'proof_size': 4980736, 'ref_time': 474875000000},
+            'max_total': {'proof_size': 5242880, 'ref_time': 500000000000},
+            'reserved': {'proof_size': 1310720, 'ref_time': 125000000000},
         },
     },
 }
 </code></pre>
-<h5 id="python_215">Python</h5>
+<h5 id="python_203">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockWeights')
 </code></pre>
 <hr />
 <h4 id="dbweight">DbWeight</h4>
-<h5 id="value_32">Value</h5>
+<h5 id="value_33">Value</h5>
 <pre><code class="language-python">{'read': 25000000, 'write': 100000000}
 </code></pre>
-<h5 id="python_216">Python</h5>
+<h5 id="python_204">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'DbWeight')
 </code></pre>
 <hr />
 <h4 id="ss58prefix">SS58Prefix</h4>
-<h5 id="value_33">Value</h5>
+<h5 id="value_34">Value</h5>
 <pre><code class="language-python">90
 </code></pre>
-<h5 id="python_217">Python</h5>
+<h5 id="python_205">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'SS58Prefix')
 </code></pre>
 <hr />
 <h4 id="version">Version</h4>
-<h5 id="value_34">Value</h5>
+<h5 id="value_35">Value</h5>
 <pre><code class="language-python">{
     'apis': [
         ('0xdd718d5cc53262d4', 1),
@@ -7986,7 +7458,7 @@
         ('0xf78b278be53f454c', 2),
         ('0xab3c0572291feb8b', 1),
         ('0xbc9d89904f5b923f', 1),
-        ('0x37c8bb1350a9a2a8', 1),
+        ('0x37c8bb1350a9a2a8', 2),
         ('0xea93e3f16f3d6962', 2),
         ('0x54bef602b989d121', 1),
         ('0x02fadd88517cc081', 1),
@@ -7996,16 +7468,16 @@
     'impl_name': 'frequency',
     'impl_version': 0,
     'spec_name': 'frequency',
-    'spec_version': 5,
+    'spec_version': 11,
     'state_version': 1,
     'transaction_version': 1,
 }
 </code></pre>
-<h5 id="python_218">Python</h5>
+<h5 id="python_206">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'Version')
 </code></pre>
 <hr />
-<h3 id="errors_13">Errors</h3>
+<h3 id="errors_12">Errors</h3>
 <hr />
 <h4 id="callfiltered">CallFiltered</h4>
 <hr />
@@ -8021,10 +7493,10 @@
 <hr />
 <h2 id="technicalcommittee">TechnicalCommittee</h2>
 <hr />
-<h3 id="calls_14">Calls</h3>
+<h3 id="calls_13">Calls</h3>
 <hr />
 <h4 id="close_1">close</h4>
-<h5 id="attributes_163">Attributes</h5>
+<h5 id="attributes_145">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8051,21 +7523,61 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_219">Python</h5>
+<h5 id="python_207">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'close', {
     'index': 'u32',
     'length_bound': 'u32',
     'proposal_hash': '[u8; 32]',
     'proposal_weight_bound': {
+        'proof_size': 'u64',
         'ref_time': 'u64',
     },
 }
 )
 </code></pre>
 <hr />
+<h4 id="close_old_weight_1">close_old_weight</h4>
+<h5 id="attributes_146">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proposal_hash</td>
+<td><code>T::Hash</code></td>
+</tr>
+<tr>
+<td>index</td>
+<td><code>ProposalIndex</code></td>
+</tr>
+<tr>
+<td>proposal_weight_bound</td>
+<td><code>OldWeight</code></td>
+</tr>
+<tr>
+<td>length_bound</td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_208">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'TechnicalCommittee', 'close_old_weight', {
+    'index': 'u32',
+    'length_bound': 'u32',
+    'proposal_hash': '[u8; 32]',
+    'proposal_weight_bound': 'u64',
+}
+)
+</code></pre>
+<hr />
 <h4 id="disapprove_proposal_1">disapprove_proposal</h4>
-<h5 id="attributes_164">Attributes</h5>
+<h5 id="attributes_147">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8080,14 +7592,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_220">Python</h5>
+<h5 id="python_209">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'disapprove_proposal', {'proposal_hash': '[u8; 32]'}
 )
 </code></pre>
 <hr />
 <h4 id="execute_1">execute</h4>
-<h5 id="attributes_165">Attributes</h5>
+<h5 id="attributes_148">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8106,7 +7618,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_221">Python</h5>
+<h5 id="python_210">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'execute', {
     'length_bound': 'u32',
@@ -8116,7 +7628,7 @@
 </code></pre>
 <hr />
 <h4 id="propose_2">propose</h4>
-<h5 id="attributes_166">Attributes</h5>
+<h5 id="attributes_149">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8139,7 +7651,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_222">Python</h5>
+<h5 id="python_211">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'propose', {
     'length_bound': 'u32',
@@ -8150,7 +7662,7 @@
 </code></pre>
 <hr />
 <h4 id="set_members_1">set_members</h4>
-<h5 id="attributes_167">Attributes</h5>
+<h5 id="attributes_150">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8173,7 +7685,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_223">Python</h5>
+<h5 id="python_212">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'set_members', {
     'new_members': ['AccountId'],
@@ -8184,7 +7696,7 @@
 </code></pre>
 <hr />
 <h4 id="vote_2">vote</h4>
-<h5 id="attributes_168">Attributes</h5>
+<h5 id="attributes_151">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8207,7 +7719,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_224">Python</h5>
+<h5 id="python_213">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'vote', {
     'approve': 'bool',
@@ -8217,10 +7729,10 @@
 )
 </code></pre>
 <hr />
-<h3 id="events_14">Events</h3>
+<h3 id="events_13">Events</h3>
 <hr />
 <h4 id="approved_1">Approved</h4>
-<h5 id="attributes_169">Attributes</h5>
+<h5 id="attributes_152">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8239,7 +7751,7 @@
 </table>
 <hr />
 <h4 id="closed_1">Closed</h4>
-<h5 id="attributes_170">Attributes</h5>
+<h5 id="attributes_153">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8268,7 +7780,7 @@
 </table>
 <hr />
 <h4 id="disapproved_1">Disapproved</h4>
-<h5 id="attributes_171">Attributes</h5>
+<h5 id="attributes_154">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8286,8 +7798,8 @@
 </tbody>
 </table>
 <hr />
-<h4 id="executed_2">Executed</h4>
-<h5 id="attributes_172">Attributes</h5>
+<h4 id="executed_1">Executed</h4>
+<h5 id="attributes_155">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8305,13 +7817,13 @@
 <tr>
 <td>result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="memberexecuted_1">MemberExecuted</h4>
-<h5 id="attributes_173">Attributes</h5>
+<h5 id="attributes_156">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8329,13 +7841,13 @@
 <tr>
 <td>result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="proposed_2">Proposed</h4>
-<h5 id="attributes_174">Attributes</h5>
+<h5 id="attributes_157">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8369,7 +7881,7 @@
 </table>
 <hr />
 <h4 id="voted_2">Voted</h4>
-<h5 id="attributes_175">Attributes</h5>
+<h5 id="attributes_158">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8407,69 +7919,69 @@
 </tbody>
 </table>
 <hr />
-<h3 id="storage-functions_17">Storage functions</h3>
+<h3 id="storage-functions_16">Storage functions</h3>
 <hr />
 <h4 id="members_1">Members</h4>
-<h5 id="python_225">Python</h5>
+<h5 id="python_214">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Members', []
 )
 </code></pre>
-<h5 id="return-value_97">Return value</h5>
+<h5 id="return-value_95">Return value</h5>
 <pre><code class="language-python">['AccountId']
 </code></pre>
 <hr />
 <h4 id="prime_1">Prime</h4>
-<h5 id="python_226">Python</h5>
+<h5 id="python_215">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Prime', []
 )
 </code></pre>
-<h5 id="return-value_98">Return value</h5>
+<h5 id="return-value_96">Return value</h5>
 <pre><code class="language-python">'AccountId'
 </code></pre>
 <hr />
 <h4 id="proposalcount_1">ProposalCount</h4>
-<h5 id="python_227">Python</h5>
+<h5 id="python_216">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'ProposalCount', []
 )
 </code></pre>
-<h5 id="return-value_99">Return value</h5>
+<h5 id="return-value_97">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="proposalof_1">ProposalOf</h4>
-<h5 id="python_228">Python</h5>
+<h5 id="python_217">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'ProposalOf', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_100">Return value</h5>
+<h5 id="return-value_98">Return value</h5>
 <pre><code class="language-python">'Call'
 </code></pre>
 <hr />
 <h4 id="proposals_1">Proposals</h4>
-<h5 id="python_229">Python</h5>
+<h5 id="python_218">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Proposals', []
 )
 </code></pre>
-<h5 id="return-value_101">Return value</h5>
+<h5 id="return-value_99">Return value</h5>
 <pre><code class="language-python">['[u8; 32]']
 </code></pre>
 <hr />
 <h4 id="voting_1">Voting</h4>
-<h5 id="python_230">Python</h5>
+<h5 id="python_219">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Voting', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_102">Return value</h5>
+<h5 id="return-value_100">Return value</h5>
 <pre><code class="language-python">{'ayes': ['AccountId'], 'end': 'u32', 'index': 'u32', 'nays': ['AccountId'], 'threshold': 'u32'}
 </code></pre>
 <hr />
-<h3 id="errors_14">Errors</h3>
+<h3 id="errors_13">Errors</h3>
 <hr />
 <h4 id="alreadyinitialized_1">AlreadyInitialized</h4>
 <hr />
@@ -8481,9 +7993,9 @@
 <hr />
 <h4 id="proposalmissing_2">ProposalMissing</h4>
 <hr />
-<h4 id="tooearly_2">TooEarly</h4>
+<h4 id="tooearly_1">TooEarly</h4>
 <hr />
-<h4 id="toomanyproposals_2">TooManyProposals</h4>
+<h4 id="toomanyproposals_1">TooManyProposals</h4>
 <hr />
 <h4 id="wrongindex_1">WrongIndex</h4>
 <hr />
@@ -8493,10 +8005,10 @@
 <hr />
 <h2 id="timestamp">Timestamp</h2>
 <hr />
-<h3 id="calls_15">Calls</h3>
+<h3 id="calls_14">Calls</h3>
 <hr />
 <h4 id="set">set</h4>
-<h5 id="attributes_176">Attributes</h5>
+<h5 id="attributes_159">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8511,50 +8023,50 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_231">Python</h5>
+<h5 id="python_220">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Timestamp', 'set', {'now': 'u64'}
 )
 </code></pre>
 <hr />
-<h3 id="storage-functions_18">Storage functions</h3>
+<h3 id="storage-functions_17">Storage functions</h3>
 <hr />
 <h4 id="didupdate">DidUpdate</h4>
-<h5 id="python_232">Python</h5>
+<h5 id="python_221">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Timestamp', 'DidUpdate', []
 )
 </code></pre>
-<h5 id="return-value_103">Return value</h5>
+<h5 id="return-value_101">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h4 id="now">Now</h4>
-<h5 id="python_233">Python</h5>
+<h5 id="python_222">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Timestamp', 'Now', []
 )
 </code></pre>
-<h5 id="return-value_104">Return value</h5>
+<h5 id="return-value_102">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
 <h3 id="constants_8">Constants</h3>
 <hr />
 <h4 id="minimumperiod">MinimumPeriod</h4>
-<h5 id="value_35">Value</h5>
+<h5 id="value_36">Value</h5>
 <pre><code class="language-python">6000
 </code></pre>
-<h5 id="python_234">Python</h5>
+<h5 id="python_223">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Timestamp', 'MinimumPeriod')
 </code></pre>
 <hr />
 <h2 id="transactionpayment">TransactionPayment</h2>
 <hr />
-<h3 id="events_15">Events</h3>
+<h3 id="events_14">Events</h3>
 <hr />
 <h4 id="transactionfeepaid">TransactionFeePaid</h4>
-<h5 id="attributes_177">Attributes</h5>
+<h5 id="attributes_160">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8582,44 +8094,44 @@
 </tbody>
 </table>
 <hr />
-<h3 id="storage-functions_19">Storage functions</h3>
+<h3 id="storage-functions_18">Storage functions</h3>
 <hr />
 <h4 id="nextfeemultiplier">NextFeeMultiplier</h4>
-<h5 id="python_235">Python</h5>
+<h5 id="python_224">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TransactionPayment', 'NextFeeMultiplier', []
 )
 </code></pre>
-<h5 id="return-value_105">Return value</h5>
+<h5 id="return-value_103">Return value</h5>
 <pre><code class="language-python">'u128'
 </code></pre>
 <hr />
-<h4 id="storageversion_2">StorageVersion</h4>
-<h5 id="python_236">Python</h5>
+<h4 id="storageversion">StorageVersion</h4>
+<h5 id="python_225">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TransactionPayment', 'StorageVersion', []
 )
 </code></pre>
-<h5 id="return-value_106">Return value</h5>
+<h5 id="return-value_104">Return value</h5>
 <pre><code class="language-python">('V1Ancient', 'V2')
 </code></pre>
 <hr />
 <h3 id="constants_9">Constants</h3>
 <hr />
 <h4 id="operationalfeemultiplier">OperationalFeeMultiplier</h4>
-<h5 id="value_36">Value</h5>
+<h5 id="value_37">Value</h5>
 <pre><code class="language-python">5
 </code></pre>
-<h5 id="python_237">Python</h5>
+<h5 id="python_226">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('TransactionPayment', 'OperationalFeeMultiplier')
 </code></pre>
 <hr />
 <h2 id="treasury">Treasury</h2>
 <hr />
-<h3 id="calls_16">Calls</h3>
+<h3 id="calls_15">Calls</h3>
 <hr />
 <h4 id="approve_proposal">approve_proposal</h4>
-<h5 id="attributes_178">Attributes</h5>
+<h5 id="attributes_161">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8634,14 +8146,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_238">Python</h5>
+<h5 id="python_227">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'approve_proposal', {'proposal_id': 'u32'}
 )
 </code></pre>
 <hr />
 <h4 id="propose_spend">propose_spend</h4>
-<h5 id="attributes_179">Attributes</h5>
+<h5 id="attributes_162">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8660,7 +8172,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_239">Python</h5>
+<h5 id="python_228">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'propose_spend', {
     'beneficiary': {
@@ -8676,7 +8188,7 @@
 </code></pre>
 <hr />
 <h4 id="reject_proposal">reject_proposal</h4>
-<h5 id="attributes_180">Attributes</h5>
+<h5 id="attributes_163">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8691,14 +8203,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_240">Python</h5>
+<h5 id="python_229">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'reject_proposal', {'proposal_id': 'u32'}
 )
 </code></pre>
 <hr />
 <h4 id="remove_approval">remove_approval</h4>
-<h5 id="attributes_181">Attributes</h5>
+<h5 id="attributes_164">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8713,14 +8225,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_241">Python</h5>
+<h5 id="python_230">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'remove_approval', {'proposal_id': 'u32'}
 )
 </code></pre>
 <hr />
 <h4 id="spend">spend</h4>
-<h5 id="attributes_182">Attributes</h5>
+<h5 id="attributes_165">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8739,7 +8251,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_242">Python</h5>
+<h5 id="python_231">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'spend', {
     'amount': 'u128',
@@ -8754,10 +8266,10 @@
 )
 </code></pre>
 <hr />
-<h3 id="events_16">Events</h3>
+<h3 id="events_15">Events</h3>
 <hr />
 <h4 id="awarded">Awarded</h4>
-<h5 id="attributes_183">Attributes</h5>
+<h5 id="attributes_166">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8786,7 +8298,7 @@
 </table>
 <hr />
 <h4 id="burnt">Burnt</h4>
-<h5 id="attributes_184">Attributes</h5>
+<h5 id="attributes_167">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8805,7 +8317,7 @@
 </table>
 <hr />
 <h4 id="deposit_1">Deposit</h4>
-<h5 id="attributes_185">Attributes</h5>
+<h5 id="attributes_168">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8824,7 +8336,7 @@
 </table>
 <hr />
 <h4 id="proposed_3">Proposed</h4>
-<h5 id="attributes_186">Attributes</h5>
+<h5 id="attributes_169">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8843,7 +8355,7 @@
 </table>
 <hr />
 <h4 id="rejected">Rejected</h4>
-<h5 id="attributes_187">Attributes</h5>
+<h5 id="attributes_170">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8867,7 +8379,7 @@
 </table>
 <hr />
 <h4 id="rollover">Rollover</h4>
-<h5 id="attributes_188">Attributes</h5>
+<h5 id="attributes_171">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8886,7 +8398,7 @@
 </table>
 <hr />
 <h4 id="spendapproved">SpendApproved</h4>
-<h5 id="attributes_189">Attributes</h5>
+<h5 id="attributes_172">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8915,7 +8427,7 @@
 </table>
 <hr />
 <h4 id="spending">Spending</h4>
-<h5 id="attributes_190">Attributes</h5>
+<h5 id="attributes_173">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -8933,35 +8445,45 @@
 </tbody>
 </table>
 <hr />
-<h3 id="storage-functions_20">Storage functions</h3>
+<h3 id="storage-functions_19">Storage functions</h3>
 <hr />
 <h4 id="approvals">Approvals</h4>
-<h5 id="python_243">Python</h5>
+<h5 id="python_232">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'Approvals', []
 )
 </code></pre>
-<h5 id="return-value_107">Return value</h5>
+<h5 id="return-value_105">Return value</h5>
 <pre><code class="language-python">['u32']
 </code></pre>
 <hr />
+<h4 id="inactive">Inactive</h4>
+<h5 id="python_233">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'Treasury', 'Inactive', []
+)
+</code></pre>
+<h5 id="return-value_106">Return value</h5>
+<pre><code class="language-python">'u128'
+</code></pre>
+<hr />
 <h4 id="proposalcount_2">ProposalCount</h4>
-<h5 id="python_244">Python</h5>
+<h5 id="python_234">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'ProposalCount', []
 )
 </code></pre>
-<h5 id="return-value_108">Return value</h5>
+<h5 id="return-value_107">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="proposals_2">Proposals</h4>
-<h5 id="python_245">Python</h5>
+<h5 id="python_235">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'Proposals', ['u32']
 )
 </code></pre>
-<h5 id="return-value_109">Return value</h5>
+<h5 id="return-value_108">Return value</h5>
 <pre><code class="language-python">{
     'beneficiary': 'AccountId',
     'bond': 'u128',
@@ -8973,62 +8495,62 @@
 <h3 id="constants_10">Constants</h3>
 <hr />
 <h4 id="burn">Burn</h4>
-<h5 id="value_37">Value</h5>
+<h5 id="value_38">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
-<h5 id="python_246">Python</h5>
+<h5 id="python_236">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'Burn')
 </code></pre>
 <hr />
 <h4 id="maxapprovals">MaxApprovals</h4>
-<h5 id="value_38">Value</h5>
+<h5 id="value_39">Value</h5>
 <pre><code class="language-python">64
 </code></pre>
-<h5 id="python_247">Python</h5>
+<h5 id="python_237">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'MaxApprovals')
 </code></pre>
 <hr />
 <h4 id="palletid">PalletId</h4>
-<h5 id="value_39">Value</h5>
+<h5 id="value_40">Value</h5>
 <pre><code class="language-python">'0x70792f7472737279'
 </code></pre>
-<h5 id="python_248">Python</h5>
+<h5 id="python_238">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'PalletId')
 </code></pre>
 <hr />
 <h4 id="proposalbond">ProposalBond</h4>
-<h5 id="value_40">Value</h5>
+<h5 id="value_41">Value</h5>
 <pre><code class="language-python">50000
 </code></pre>
-<h5 id="python_249">Python</h5>
+<h5 id="python_239">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'ProposalBond')
 </code></pre>
 <hr />
 <h4 id="proposalbondmaximum">ProposalBondMaximum</h4>
-<h5 id="value_41">Value</h5>
+<h5 id="value_42">Value</h5>
 <pre><code class="language-python">100000000000
 </code></pre>
-<h5 id="python_250">Python</h5>
+<h5 id="python_240">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'ProposalBondMaximum')
 </code></pre>
 <hr />
 <h4 id="proposalbondminimum">ProposalBondMinimum</h4>
-<h5 id="value_42">Value</h5>
+<h5 id="value_43">Value</h5>
 <pre><code class="language-python">10000000000
 </code></pre>
-<h5 id="python_251">Python</h5>
+<h5 id="python_241">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'ProposalBondMinimum')
 </code></pre>
 <hr />
 <h4 id="spendperiod">SpendPeriod</h4>
-<h5 id="value_43">Value</h5>
+<h5 id="value_44">Value</h5>
 <pre><code class="language-python">50400
 </code></pre>
-<h5 id="python_252">Python</h5>
+<h5 id="python_242">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'SpendPeriod')
 </code></pre>
 <hr />
-<h3 id="errors_15">Errors</h3>
+<h3 id="errors_14">Errors</h3>
 <hr />
 <h4 id="insufficientpermission">InsufficientPermission</h4>
 <hr />
@@ -9042,10 +8564,10 @@
 <hr />
 <h2 id="utility">Utility</h2>
 <hr />
-<h3 id="calls_17">Calls</h3>
+<h3 id="calls_16">Calls</h3>
 <hr />
 <h4 id="as_derivative">as_derivative</h4>
-<h5 id="attributes_191">Attributes</h5>
+<h5 id="attributes_174">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9064,14 +8586,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_253">Python</h5>
+<h5 id="python_243">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'as_derivative', {'call': 'Call', 'index': 'u16'}
 )
 </code></pre>
 <hr />
 <h4 id="batch">batch</h4>
-<h5 id="attributes_192">Attributes</h5>
+<h5 id="attributes_175">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9086,14 +8608,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_254">Python</h5>
+<h5 id="python_244">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'batch', {'calls': ['Call']}
 )
 </code></pre>
 <hr />
 <h4 id="batch_all">batch_all</h4>
-<h5 id="attributes_193">Attributes</h5>
+<h5 id="attributes_176">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9108,14 +8630,14 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_255">Python</h5>
+<h5 id="python_245">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'batch_all', {'calls': ['Call']}
 )
 </code></pre>
 <hr />
 <h4 id="dispatch_as">dispatch_as</h4>
-<h5 id="attributes_194">Attributes</h5>
+<h5 id="attributes_177">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9134,10 +8656,16 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_256">Python</h5>
+<h5 id="python_246">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -9149,12 +8677,6 @@
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }
@@ -9162,7 +8684,7 @@
 </code></pre>
 <hr />
 <h4 id="force_batch">force_batch</h4>
-<h5 id="attributes_195">Attributes</h5>
+<h5 id="attributes_178">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9177,24 +8699,56 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_257">Python</h5>
+<h5 id="python_247">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'force_batch', {'calls': ['Call']}
 )
 </code></pre>
 <hr />
-<h3 id="events_17">Events</h3>
+<h4 id="with_weight">with_weight</h4>
+<h5 id="attributes_179">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>call</td>
+<td><code>Box&lt;&lt;T as Config&gt;::RuntimeCall&gt;</code></td>
+</tr>
+<tr>
+<td>weight</td>
+<td><code>Weight</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_248">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Utility', 'with_weight', {
+    'call': 'Call',
+    'weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="events_16">Events</h3>
 <hr />
 <h4 id="batchcompleted">BatchCompleted</h4>
-<h5 id="attributes_196">Attributes</h5>
+<h5 id="attributes_180">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="batchcompletedwitherrors">BatchCompletedWithErrors</h4>
-<h5 id="attributes_197">Attributes</h5>
+<h5 id="attributes_181">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="batchinterrupted">BatchInterrupted</h4>
-<h5 id="attributes_198">Attributes</h5>
+<h5 id="attributes_182">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9212,13 +8766,13 @@
 <tr>
 <td>error</td>
 <td><code>DispatchError</code></td>
-<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}</code></td>
+<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="dispatchedas">DispatchedAs</h4>
-<h5 id="attributes_199">Attributes</h5>
+<h5 id="attributes_183">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9231,17 +8785,17 @@
 <tr>
 <td>result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h4 id="itemcompleted">ItemCompleted</h4>
-<h5 id="attributes_200">Attributes</h5>
+<h5 id="attributes_184">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="itemfailed">ItemFailed</h4>
-<h5 id="attributes_201">Attributes</h5>
+<h5 id="attributes_185">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9254,7 +8808,7 @@
 <tr>
 <td>error</td>
 <td><code>DispatchError</code></td>
-<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}</code></td>
+<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}</code></td>
 </tr>
 </tbody>
 </table>
@@ -9262,32 +8816,32 @@
 <h3 id="constants_11">Constants</h3>
 <hr />
 <h4 id="batched_calls_limit">batched_calls_limit</h4>
-<h5 id="value_44">Value</h5>
+<h5 id="value_45">Value</h5>
 <pre><code class="language-python">10922
 </code></pre>
-<h5 id="python_258">Python</h5>
+<h5 id="python_249">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Utility', 'batched_calls_limit')
 </code></pre>
 <hr />
-<h3 id="errors_16">Errors</h3>
+<h3 id="errors_15">Errors</h3>
 <hr />
 <h4 id="toomanycalls">TooManyCalls</h4>
 <hr />
 <h2 id="vesting">Vesting</h2>
 <hr />
-<h3 id="calls_18">Calls</h3>
+<h3 id="calls_17">Calls</h3>
 <hr />
 <h4 id="claim">claim</h4>
-<h5 id="attributes_202">Attributes</h5>
+<h5 id="attributes_186">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_259">Python</h5>
+<h5 id="python_250">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'claim', {}
 )
 </code></pre>
 <hr />
 <h4 id="claim_for">claim_for</h4>
-<h5 id="attributes_203">Attributes</h5>
+<h5 id="attributes_187">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9302,7 +8856,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_260">Python</h5>
+<h5 id="python_251">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'claim_for', {
     'dest': {
@@ -9317,7 +8871,7 @@
 </code></pre>
 <hr />
 <h4 id="update_vesting_schedules">update_vesting_schedules</h4>
-<h5 id="attributes_204">Attributes</h5>
+<h5 id="attributes_188">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9336,7 +8890,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_261">Python</h5>
+<h5 id="python_252">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'update_vesting_schedules', {
     'vesting_schedules': [
@@ -9359,7 +8913,7 @@
 </code></pre>
 <hr />
 <h4 id="vested_transfer">vested_transfer</h4>
-<h5 id="attributes_205">Attributes</h5>
+<h5 id="attributes_189">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9378,7 +8932,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="python_262">Python</h5>
+<h5 id="python_253">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vested_transfer', {
     'dest': {
@@ -9398,10 +8952,10 @@
 )
 </code></pre>
 <hr />
-<h3 id="events_18">Events</h3>
+<h3 id="events_17">Events</h3>
 <hr />
 <h4 id="claimed">Claimed</h4>
-<h5 id="attributes_206">Attributes</h5>
+<h5 id="attributes_190">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9425,7 +8979,7 @@
 </table>
 <hr />
 <h4 id="vestingscheduleadded">VestingScheduleAdded</h4>
-<h5 id="attributes_207">Attributes</h5>
+<h5 id="attributes_191">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9454,7 +9008,7 @@
 </table>
 <hr />
 <h4 id="vestingschedulesupdated">VestingSchedulesUpdated</h4>
-<h5 id="attributes_208">Attributes</h5>
+<h5 id="attributes_192">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -9472,15 +9026,15 @@
 </tbody>
 </table>
 <hr />
-<h3 id="storage-functions_21">Storage functions</h3>
+<h3 id="storage-functions_20">Storage functions</h3>
 <hr />
 <h4 id="vestingschedules">VestingSchedules</h4>
-<h5 id="python_263">Python</h5>
+<h5 id="python_254">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Vesting', 'VestingSchedules', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_110">Return value</h5>
+<h5 id="return-value_109">Return value</h5>
 <pre><code class="language-python">[
     {
         'per_period': 'u128',
@@ -9494,14 +9048,14 @@
 <h3 id="constants_12">Constants</h3>
 <hr />
 <h4 id="minvestedtransfer">MinVestedTransfer</h4>
-<h5 id="value_45">Value</h5>
+<h5 id="value_46">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
-<h5 id="python_264">Python</h5>
+<h5 id="python_255">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Vesting', 'MinVestedTransfer')
 </code></pre>
 <hr />
-<h3 id="errors_17">Errors</h3>
+<h3 id="errors_16">Errors</h3>
 <hr />
 <h4 id="amountlow">AmountLow</h4>
 <hr />

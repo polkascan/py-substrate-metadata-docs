@@ -2852,6 +2852,8 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#rewarded_1">Rewarded</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#slashreported">SlashReported</a>
+    </li>
     <li class="toctree-l4"><a class="reference internal" href="#slashed_3">Slashed</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#stakerselected">StakersElected</a>
@@ -2915,6 +2917,8 @@
     <li class="toctree-l4"><a class="reference internal" href="#minnominatorbond">MinNominatorBond</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#minvalidatorbond">MinValidatorBond</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#minimumactivestake">MinimumActiveStake</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#minimumvalidatorcount">MinimumValidatorCount</a>
     </li>
@@ -3959,7 +3963,7 @@
 </tr>
 <tr>
 <td>Spec version</td>
-<td>9340</td>
+<td>9360</td>
 </tr>
 <tr>
 <td>SS58 Format</td>
@@ -4702,17 +4706,17 @@ reporter.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
+                        'RuntimeEnvironmentUpdated': None,
+                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'RuntimeEnvironmentUpdated': None,
                         'Seal': (
                             '[u8; 4]',
                             'Bytes',
@@ -4730,12 +4734,12 @@ reporter.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
+                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -5789,7 +5793,7 @@ A deposit will be reserved from curator and refund upon successful payout.</p>
 <h4 id="approve_bounty">approve_bounty</h4>
 <p>Approve a bounty proposal. At a later time, the bounty will be funded and become active
 and the original deposit will be returned.</p>
-<p>May only be called from <code>T::ApproveOrigin</code>.</p>
+<p>May only be called from <code>T::SpendOrigin</code>.</p>
 <p># &lt;weight&gt;
 - O(1).
 # &lt;/weight&gt;</p>
@@ -6000,7 +6004,7 @@ or slashed when rejected.</p>
 <hr />
 <h4 id="propose_curator">propose_curator</h4>
 <p>Assign a curator to a funded bounty.</p>
-<p>May only be called from <code>T::ApproveOrigin</code>.</p>
+<p>May only be called from <code>T::SpendOrigin</code>.</p>
 <p># &lt;weight&gt;
 - O(1).
 # &lt;/weight&gt;</p>
@@ -12184,7 +12188,7 @@ solution is unsigned, this means that it has also been processed.</p>
 <hr />
 <h4 id="minermaxweight">MinerMaxWeight</h4>
 <h5 id="value_45">Value</h5>
-<pre><code class="language-python">{'proof_size': 3879731, 'ref_time': 1474064881000}
+<pre><code class="language-python">{'proof_size': 3879731, 'ref_time': 1473839298000}
 </code></pre>
 <h5 id="python_241">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxWeight')
@@ -12266,7 +12270,7 @@ solution is unsigned, this means that it has also been processed.</p>
  this pallet), then [<code>MinerConfig::solution_weight</code>] is used to compare against
  this value.</p>
 <h5 id="value_53">Value</h5>
-<pre><code class="language-python">{'proof_size': 3879731, 'ref_time': 1474064881000}
+<pre><code class="language-python">{'proof_size': 3879731, 'ref_time': 1473839298000}
 </code></pre>
 <h5 id="python_249">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxWeight')
@@ -16451,9 +16455,12 @@ account).</p>
 </ul>
 <p># Note</p>
 <p>If there are too many unlocking chunks to unbond with the pool account,
-[<code>Call::pool_withdraw_unbonded</code>] can be called to try and minimize unlocking chunks. If
-there are too many unlocking chunks, the result of this call will likely be the
-<code>NoMoreChunks</code> error from the staking system.</p>
+[<code>Call::pool_withdraw_unbonded</code>] can be called to try and minimize unlocking chunks.
+The [<code>StakingInterface::unbond</code>] will implicitly call [<code>Call::pool_withdraw_unbonded</code>]
+to try to free chunks if necessary (ie. if unbound was called and no unlocking chunks
+are available). However, it may not be possible to release the current unlocking chunks,
+in which case, the result of this call will likely be the <code>NoMoreChunks</code> error from the
+staking system.</p>
 <h5 id="attributes_269">Attributes</h5>
 <table>
 <thead>
@@ -21423,24 +21430,24 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
-                None: None,
                 'ParachainsOrigin': {'Parachain': 'u32'},
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'Void': (),
                 'XcmPallet': {
                     'Response': 'scale_info::122',
                     'Xcm': 'scale_info::122',
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -22740,8 +22747,8 @@ T::Currency::minimum_balance(), then it is increased to the full amount.</p>
 <p>Once the unlock period is done, you can call <code>withdraw_unbonded</code> to actually move
 the funds out of management ready for transfer.</p>
 <p>No more than a limited number of unlocking chunks (see <code>MaxUnlockingChunks</code>)
-can co-exists at the same time. In that case, [<code>Call::withdraw_unbonded</code>] need
-to be called first to remove some of the chunks (if possible).</p>
+can co-exists at the same time. If there are no unlocking chunks slots available
+[<code>Call::withdraw_unbonded</code>] is called to remove some of the chunks (if possible).</p>
 <p>If a user encounters the <code>InsufficientBond</code> error when calling this extrinsic,
 they should call <code>chill</code> first in order to free up their bonded funds.</p>
 <p>Emits <code>Unbonded</code>.</p>
@@ -23005,9 +23012,40 @@ not be processed.</p>
 </tbody>
 </table>
 <hr />
-<h4 id="slashed_3">Slashed</h4>
-<p>One staker (and potentially its nominators) has been slashed by the given amount.</p>
+<h4 id="slashreported">SlashReported</h4>
+<p>A slash for the given validator, for the given percentage of their stake, at the given
+era as been reported.</p>
 <h5 id="attributes_408">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>validator</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>fraction</td>
+<td><code>Perbill</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>slash_era</td>
+<td><code>EraIndex</code></td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="slashed_3">Slashed</h4>
+<p>A staker (validator or nominator) has been slashed by the given amount.</p>
+<h5 id="attributes_409">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -23032,17 +23070,17 @@ not be processed.</p>
 <hr />
 <h4 id="stakerselected">StakersElected</h4>
 <p>A new set of stakers was elected.</p>
-<h5 id="attributes_409">Attributes</h5>
+<h5 id="attributes_410">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="stakingelectionfailed">StakingElectionFailed</h4>
 <p>The election failed. No new era is planned.</p>
-<h5 id="attributes_410">Attributes</h5>
+<h5 id="attributes_411">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="unbonded_1">Unbonded</h4>
 <p>An account has unbonded this amount.</p>
-<h5 id="attributes_411">Attributes</h5>
+<h5 id="attributes_412">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -23067,7 +23105,7 @@ not be processed.</p>
 <hr />
 <h4 id="validatorprefsset">ValidatorPrefsSet</h4>
 <p>A validator has set their preferences.</p>
-<h5 id="attributes_412">Attributes</h5>
+<h5 id="attributes_413">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -23093,7 +23131,7 @@ not be processed.</p>
 <h4 id="withdrawn_1">Withdrawn</h4>
 <p>An account has called <code>withdraw_unbonded</code> and removed unbonding chunks worth <code>Balance</code>
 from the unlocking queue.</p>
-<h5 id="attributes_413">Attributes</h5>
+<h5 id="attributes_414">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -23420,25 +23458,36 @@ from the unlocking queue.</p>
 <pre><code class="language-python">'u128'
 </code></pre>
 <hr />
+<h4 id="minimumactivestake">MinimumActiveStake</h4>
+<p>The minimum active nominator stake of the last successful election.</p>
+<h5 id="python_563">Python</h5>
+<pre><code class="language-python">result = substrate.query(
+    'Staking', 'MinimumActiveStake', []
+)
+</code></pre>
+<h5 id="return-value_222">Return value</h5>
+<pre><code class="language-python">'u128'
+</code></pre>
+<hr />
 <h4 id="minimumvalidatorcount">MinimumValidatorCount</h4>
 <p>Minimum number of staking participants before emergency conditions are imposed.</p>
-<h5 id="python_563">Python</h5>
+<h5 id="python_564">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'MinimumValidatorCount', []
 )
 </code></pre>
-<h5 id="return-value_222">Return value</h5>
+<h5 id="return-value_223">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="nominatorslashinera">NominatorSlashInEra</h4>
 <p>All slashing events on nominators, mapped by era to the highest slash value of the era.</p>
-<h5 id="python_564">Python</h5>
+<h5 id="python_565">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'NominatorSlashInEra', ['u32', 'AccountId']
 )
 </code></pre>
-<h5 id="return-value_223">Return value</h5>
+<h5 id="return-value_224">Return value</h5>
 <pre><code class="language-python">'u128'
 </code></pre>
 <hr />
@@ -23456,12 +23505,12 @@ from the unlocking queue.</p>
  number of keys that exist.</p>
 <p>Lastly, if any of the nominators become non-decodable, they can be chilled immediately via
  [<code>Call::chill_other</code>] dispatchable by anyone.</p>
-<h5 id="python_565">Python</h5>
+<h5 id="python_566">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'Nominators', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_224">Return value</h5>
+<h5 id="return-value_225">Return value</h5>
 <pre><code class="language-python">{'submitted_in': 'u32', 'suppressed': 'bool', 'targets': ['AccountId']}
 </code></pre>
 <hr />
@@ -23474,23 +23523,23 @@ from the unlocking queue.</p>
  <code>OffendingValidatorsThreshold</code> is reached. The vec is always kept sorted so that we can find
  whether a given validator has previously offended using binary search. It gets cleared when
  the era ends.</p>
-<h5 id="python_566">Python</h5>
+<h5 id="python_567">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'OffendingValidators', []
 )
 </code></pre>
-<h5 id="return-value_225">Return value</h5>
+<h5 id="return-value_226">Return value</h5>
 <pre><code class="language-python">[('u32', 'bool')]
 </code></pre>
 <hr />
 <h4 id="payee">Payee</h4>
 <p>Where the reward payment should be made. Keyed by stash.</p>
-<h5 id="python_567">Python</h5>
+<h5 id="python_568">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'Payee', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_226">Return value</h5>
+<h5 id="return-value_227">Return value</h5>
 <pre><code class="language-python">{
     'Account': 'AccountId',
     'Controller': None,
@@ -23503,23 +23552,23 @@ from the unlocking queue.</p>
 <h4 id="slashrewardfraction">SlashRewardFraction</h4>
 <p>The percentage of the slash that is distributed to reporters.</p>
 <p>The rest of the slashed value is handled by the <code>Slash</code>.</p>
-<h5 id="python_568">Python</h5>
+<h5 id="python_569">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'SlashRewardFraction', []
 )
 </code></pre>
-<h5 id="return-value_227">Return value</h5>
+<h5 id="return-value_228">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="slashingspans">SlashingSpans</h4>
 <p>Slashing spans for stash accounts.</p>
-<h5 id="python_569">Python</h5>
+<h5 id="python_570">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'SlashingSpans', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_228">Return value</h5>
+<h5 id="return-value_229">Return value</h5>
 <pre><code class="language-python">{
     'last_nonzero_slash': 'u32',
     'last_start': 'u32',
@@ -23531,12 +23580,12 @@ from the unlocking queue.</p>
 <h4 id="spanslash">SpanSlash</h4>
 <p>Records information about the maximum slash of a stash within a slashing span,
  as well as how much reward has been paid out.</p>
-<h5 id="python_570">Python</h5>
+<h5 id="python_571">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'SpanSlash', [('AccountId', 'u32')]
 )
 </code></pre>
-<h5 id="return-value_229">Return value</h5>
+<h5 id="return-value_230">Return value</h5>
 <pre><code class="language-python">{'paid_out': 'u128', 'slashed': 'u128'}
 </code></pre>
 <hr />
@@ -23544,12 +23593,12 @@ from the unlocking queue.</p>
 <p>True if network has been upgraded to this version.
  Storage version of the pallet.</p>
 <p>This is set to v7.0.0 for new networks.</p>
-<h5 id="python_571">Python</h5>
+<h5 id="python_572">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'StorageVersion', []
 )
 </code></pre>
-<h5 id="return-value_230">Return value</h5>
+<h5 id="return-value_231">Return value</h5>
 <pre><code class="language-python">(
     'V1_0_0Ancient',
     'V2_0_0',
@@ -23568,12 +23617,12 @@ from the unlocking queue.</p>
 <hr />
 <h4 id="unappliedslashes">UnappliedSlashes</h4>
 <p>All unapplied slashes that are queued for later.</p>
-<h5 id="python_572">Python</h5>
+<h5 id="python_573">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'UnappliedSlashes', ['u32']
 )
 </code></pre>
-<h5 id="return-value_231">Return value</h5>
+<h5 id="return-value_232">Return value</h5>
 <pre><code class="language-python">[
     {
         'others': [('AccountId', 'u128')],
@@ -23587,35 +23636,35 @@ from the unlocking queue.</p>
 <hr />
 <h4 id="validatorcount">ValidatorCount</h4>
 <p>The ideal number of active validators.</p>
-<h5 id="python_573">Python</h5>
+<h5 id="python_574">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'ValidatorCount', []
 )
 </code></pre>
-<h5 id="return-value_232">Return value</h5>
+<h5 id="return-value_233">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="validatorslashinera">ValidatorSlashInEra</h4>
 <p>All slashing events on validators, mapped by era to the highest slash proportion
  and slash value of the era.</p>
-<h5 id="python_574">Python</h5>
+<h5 id="python_575">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'ValidatorSlashInEra', ['u32', 'AccountId']
 )
 </code></pre>
-<h5 id="return-value_233">Return value</h5>
+<h5 id="return-value_234">Return value</h5>
 <pre><code class="language-python">('u32', 'u128')
 </code></pre>
 <hr />
 <h4 id="validators_1">Validators</h4>
 <p>The map from (wannabe) validator stash key to the preferences of that validator.</p>
-<h5 id="python_575">Python</h5>
+<h5 id="python_576">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Staking', 'Validators', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_234">Return value</h5>
+<h5 id="return-value_235">Return value</h5>
 <pre><code class="language-python">{'blocked': 'bool', 'commission': 'u32'}
 </code></pre>
 <hr />
@@ -23626,7 +23675,7 @@ from the unlocking queue.</p>
 <h5 id="value_94">Value</h5>
 <pre><code class="language-python">28
 </code></pre>
-<h5 id="python_576">Python</h5>
+<h5 id="python_577">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Staking', 'BondingDuration')
 </code></pre>
 <hr />
@@ -23650,7 +23699,7 @@ from the unlocking queue.</p>
 <h5 id="value_95">Value</h5>
 <pre><code class="language-python">84
 </code></pre>
-<h5 id="python_577">Python</h5>
+<h5 id="python_578">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Staking', 'HistoryDepth')
 </code></pre>
 <hr />
@@ -23659,7 +23708,7 @@ from the unlocking queue.</p>
 <h5 id="value_96">Value</h5>
 <pre><code class="language-python">16
 </code></pre>
-<h5 id="python_578">Python</h5>
+<h5 id="python_579">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Staking', 'MaxNominations')
 </code></pre>
 <hr />
@@ -23670,7 +23719,7 @@ from the unlocking queue.</p>
 <h5 id="value_97">Value</h5>
 <pre><code class="language-python">512
 </code></pre>
-<h5 id="python_579">Python</h5>
+<h5 id="python_580">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Staking', 'MaxNominatorRewardedPerValidator')
 </code></pre>
 <hr />
@@ -23687,7 +23736,7 @@ from the unlocking queue.</p>
 <h5 id="value_98">Value</h5>
 <pre><code class="language-python">32
 </code></pre>
-<h5 id="python_580">Python</h5>
+<h5 id="python_581">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Staking', 'MaxUnlockingChunks')
 </code></pre>
 <hr />
@@ -23696,7 +23745,7 @@ from the unlocking queue.</p>
 <h5 id="value_99">Value</h5>
 <pre><code class="language-python">6
 </code></pre>
-<h5 id="python_581">Python</h5>
+<h5 id="python_582">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Staking', 'SessionsPerEra')
 </code></pre>
 <hr />
@@ -23707,7 +23756,7 @@ from the unlocking queue.</p>
 <h5 id="value_100">Value</h5>
 <pre><code class="language-python">27
 </code></pre>
-<h5 id="python_582">Python</h5>
+<h5 id="python_583">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Staking', 'SlashDeferDuration')
 </code></pre>
 <hr />
@@ -23800,7 +23849,7 @@ staking settings to keep things safe for the runtime.</p>
 <p>Kill all storage items with a key that starts with the given prefix.</p>
 <p><strong>NOTE:</strong> We rely on the Root origin to provide us the number of subkeys under
 the prefix we are removing to accurately calculate the weight of this function.</p>
-<h5 id="attributes_414">Attributes</h5>
+<h5 id="attributes_415">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -23819,7 +23868,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </tr>
 </tbody>
 </table>
-<h5 id="python_583">Python</h5>
+<h5 id="python_584">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'kill_prefix', {'prefix': 'Bytes', 'subkeys': 'u32'}
 )
@@ -23827,7 +23876,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <hr />
 <h4 id="kill_storage">kill_storage</h4>
 <p>Kill some items from storage.</p>
-<h5 id="attributes_415">Attributes</h5>
+<h5 id="attributes_416">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -23842,7 +23891,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </tr>
 </tbody>
 </table>
-<h5 id="python_584">Python</h5>
+<h5 id="python_585">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'kill_storage', {'keys': ['Bytes']}
 )
@@ -23853,29 +23902,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <p># &lt;weight&gt;
 - <code>O(1)</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_416">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>remark</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_585">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'System', 'remark', {'remark': 'Bytes'}
-)
-</code></pre>
-<hr />
-<h4 id="remark_with_event">remark_with_event</h4>
-<p>Make some on-chain remark and emit event.</p>
 <h5 id="attributes_417">Attributes</h5>
 <table>
 <thead>
@@ -23893,6 +23919,29 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </table>
 <h5 id="python_586">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
+    'System', 'remark', {'remark': 'Bytes'}
+)
+</code></pre>
+<hr />
+<h4 id="remark_with_event">remark_with_event</h4>
+<p>Make some on-chain remark and emit event.</p>
+<h5 id="attributes_418">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>remark</td>
+<td><code>Vec&lt;u8&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_587">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
     'System', 'remark_with_event', {'remark': 'Bytes'}
 )
 </code></pre>
@@ -23909,36 +23958,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 The weight of this function is dependent on the runtime, but generally this is very
 expensive. We will treat this as a full block.
 # &lt;/weight&gt;</p>
-<h5 id="attributes_418">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_587">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'System', 'set_code', {'code': 'Bytes'}
-)
-</code></pre>
-<hr />
-<h4 id="set_code_without_checks">set_code_without_checks</h4>
-<p>Set the new runtime code without doing any checks of the given <code>code</code>.</p>
-<p># &lt;weight&gt;
-- <code>O(C)</code> where <code>C</code> length of <code>code</code>
-- 1 storage write (codec <code>O(C)</code>).
-- 1 digest item.
-- 1 event.
-The weight of this function is dependent on the runtime. We will treat this as a full
-block. # &lt;/weight&gt;</p>
 <h5 id="attributes_419">Attributes</h5>
 <table>
 <thead>
@@ -23956,13 +23975,43 @@ block. # &lt;/weight&gt;</p>
 </table>
 <h5 id="python_588">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
+    'System', 'set_code', {'code': 'Bytes'}
+)
+</code></pre>
+<hr />
+<h4 id="set_code_without_checks">set_code_without_checks</h4>
+<p>Set the new runtime code without doing any checks of the given <code>code</code>.</p>
+<p># &lt;weight&gt;
+- <code>O(C)</code> where <code>C</code> length of <code>code</code>
+- 1 storage write (codec <code>O(C)</code>).
+- 1 digest item.
+- 1 event.
+The weight of this function is dependent on the runtime. We will treat this as a full
+block. # &lt;/weight&gt;</p>
+<h5 id="attributes_420">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td><code>Vec&lt;u8&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_589">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_code_without_checks', {'code': 'Bytes'}
 )
 </code></pre>
 <hr />
 <h4 id="set_heap_pages">set_heap_pages</h4>
 <p>Set the number of pages in the WebAssembly environment&amp;#x27;s heap.</p>
-<h5 id="attributes_420">Attributes</h5>
+<h5 id="attributes_421">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -23977,7 +24026,7 @@ block. # &lt;/weight&gt;</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_589">Python</h5>
+<h5 id="python_590">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_heap_pages', {'pages': 'u64'}
 )
@@ -23985,7 +24034,7 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="set_storage">set_storage</h4>
 <p>Set some items of storage.</p>
-<h5 id="attributes_421">Attributes</h5>
+<h5 id="attributes_422">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -24000,7 +24049,7 @@ block. # &lt;/weight&gt;</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_590">Python</h5>
+<h5 id="python_591">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_storage', {'items': [('Bytes', 'Bytes')]}
 )
@@ -24010,12 +24059,12 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="codeupdated">CodeUpdated</h4>
 <p><code>:code</code> was updated.</p>
-<h5 id="attributes_422">Attributes</h5>
+<h5 id="attributes_423">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="extrinsicfailed">ExtrinsicFailed</h4>
 <p>An extrinsic failed.</p>
-<h5 id="attributes_423">Attributes</h5>
+<h5 id="attributes_424">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -24040,7 +24089,7 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="extrinsicsuccess">ExtrinsicSuccess</h4>
 <p>An extrinsic completed successfully.</p>
-<h5 id="attributes_424">Attributes</h5>
+<h5 id="attributes_425">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -24060,7 +24109,7 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="killedaccount">KilledAccount</h4>
 <p>An account was reaped.</p>
-<h5 id="attributes_425">Attributes</h5>
+<h5 id="attributes_426">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -24080,7 +24129,7 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="newaccount">NewAccount</h4>
 <p>A new account was created.</p>
-<h5 id="attributes_426">Attributes</h5>
+<h5 id="attributes_427">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -24100,7 +24149,7 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="remarked">Remarked</h4>
 <p>On on-chain remark happened.</p>
-<h5 id="attributes_427">Attributes</h5>
+<h5 id="attributes_428">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -24127,12 +24176,12 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="account_1">Account</h4>
 <p>The full account information for a particular account ID.</p>
-<h5 id="python_591">Python</h5>
+<h5 id="python_592">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Account', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_235">Return value</h5>
+<h5 id="return-value_236">Return value</h5>
 <pre><code class="language-python">{
     'consumers': 'u32',
     'data': {
@@ -24149,34 +24198,34 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="allextrinsicslen">AllExtrinsicsLen</h4>
 <p>Total length (in bytes) for all extrinsics put together, for the current block.</p>
-<h5 id="python_592">Python</h5>
+<h5 id="python_593">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'AllExtrinsicsLen', []
 )
 </code></pre>
-<h5 id="return-value_236">Return value</h5>
+<h5 id="return-value_237">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="blockhash">BlockHash</h4>
 <p>Map of block numbers to block hashes.</p>
-<h5 id="python_593">Python</h5>
+<h5 id="python_594">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockHash', ['u32']
 )
 </code></pre>
-<h5 id="return-value_237">Return value</h5>
+<h5 id="return-value_238">Return value</h5>
 <pre><code class="language-python">'[u8; 32]'
 </code></pre>
 <hr />
 <h4 id="blockweight">BlockWeight</h4>
 <p>The current weight for the block.</p>
-<h5 id="python_594">Python</h5>
+<h5 id="python_595">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockWeight', []
 )
 </code></pre>
-<h5 id="return-value_238">Return value</h5>
+<h5 id="return-value_239">Return value</h5>
 <pre><code class="language-python">{
     'mandatory': {'proof_size': 'u64', 'ref_time': 'u64'},
     'normal': {'proof_size': 'u64', 'ref_time': 'u64'},
@@ -24186,12 +24235,12 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="digest">Digest</h4>
 <p>Digest of the current block, also part of the block header.</p>
-<h5 id="python_595">Python</h5>
+<h5 id="python_596">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Digest', []
 )
 </code></pre>
-<h5 id="return-value_239">Return value</h5>
+<h5 id="return-value_240">Return value</h5>
 <pre><code class="language-python">{
     'logs': [
         {
@@ -24208,12 +24257,12 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="eventcount">EventCount</h4>
 <p>The number of events in the <code>Events&amp;lt;T&amp;gt;</code> list.</p>
-<h5 id="python_596">Python</h5>
+<h5 id="python_597">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventCount', []
 )
 </code></pre>
-<h5 id="return-value_240">Return value</h5>
+<h5 id="return-value_241">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
@@ -24226,12 +24275,12 @@ block. # &lt;/weight&gt;</p>
 <p>The value has the type <code>(T::BlockNumber, EventIndex)</code> because if we used only just
  the <code>EventIndex</code> then in case if the topic has the same contents on the next block
  no notification will be triggered thus the event might be lost.</p>
-<h5 id="python_597">Python</h5>
+<h5 id="python_598">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventTopics', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_241">Return value</h5>
+<h5 id="return-value_242">Return value</h5>
 <pre><code class="language-python">[('u32', 'u32')]
 </code></pre>
 <hr />
@@ -24241,12 +24290,12 @@ block. # &lt;/weight&gt;</p>
  It could otherwise inflate the PoV size of a block.</p>
 <p>Events have a large in-memory size. Box the events to not go out-of-memory
  just in case someone still reads them from within the runtime.</p>
-<h5 id="python_598">Python</h5>
+<h5 id="python_599">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Events', []
 )
 </code></pre>
-<h5 id="return-value_242">Return value</h5>
+<h5 id="return-value_243">Return value</h5>
 <pre><code class="language-python">[
     {
         'event': {
@@ -24584,6 +24633,12 @@ block. # &lt;/weight&gt;</p>
                 'PvfCheckRejected': ('[u8; 32]', 'u32'),
                 'PvfCheckStarted': ('[u8; 32]', 'u32'),
             },
+            'ParasDisputes': {
+                'DisputeConcluded': ('[u8; 32]', 'scale_info::116'),
+                'DisputeInitiated': ('[u8; 32]', 'scale_info::115'),
+                'DisputeTimedOut': '[u8; 32]',
+                'Revert': 'u32',
+            },
             'PhragmenElection': {
                 'CandidateSlashed': {
                     'amount': 'u128',
@@ -24603,45 +24658,6 @@ block. # &lt;/weight&gt;</p>
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
-            },
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::32',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'ParasDisputes': {
-                'DisputeConcluded': ('[u8; 32]', 'scale_info::116'),
-                'DisputeInitiated': ('[u8; 32]', 'scale_info::115'),
-                'DisputeTimedOut': '[u8; 32]',
-                'Revert': 'u32',
             },
             'Proxy': {
                 'Announced': {
@@ -24674,6 +24690,27 @@ block. # &lt;/weight&gt;</p>
                 'Registered': {'manager': 'AccountId', 'para_id': 'u32'},
                 'Reserved': {'para_id': 'u32', 'who': 'AccountId'},
             },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::32',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'Slots': {
                 'Leased': {
@@ -24701,15 +24738,31 @@ block. # &lt;/weight&gt;</p>
                     'validator_stash': 'AccountId',
                 },
                 'Rewarded': {'amount': 'u128', 'stash': 'AccountId'},
+                'SlashReported': {
+                    'fraction': 'u32',
+                    'slash_era': 'u32',
+                    'validator': 'AccountId',
+                },
                 'Slashed': {'amount': 'u128', 'staker': 'AccountId'},
                 'StakersElected': None,
                 'StakingElectionFailed': None,
                 'Unbonded': {'amount': 'u128', 'stash': 'AccountId'},
                 'ValidatorPrefsSet': {
-                    'prefs': 'scale_info::40',
+                    'prefs': 'scale_info::41',
                     'stash': 'AccountId',
                 },
                 'Withdrawn': {'amount': 'u128', 'stash': 'AccountId'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -24771,24 +24824,6 @@ block. # &lt;/weight&gt;</p>
                     'who': 'AccountId',
                 },
             },
-            'Treasury': {
-                'Awarded': {
-                    'account': 'AccountId',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'SpendApproved': {
-                    'amount': 'u128',
-                    'beneficiary': 'AccountId',
-                    'proposal_index': 'u32',
-                },
-                'Spending': {'budget_remaining': 'u128'},
-            },
             'Ump': {
                 'ExecutedUpward': ('[u8; 32]', 'scale_info::109'),
                 'InvalidFormat': '[u8; 32]',
@@ -24821,6 +24856,25 @@ block. # &lt;/weight&gt;</p>
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
+            None: None,
+            'Treasury': {
+                'Awarded': {
+                    'account': 'AccountId',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'SpendApproved': {
+                    'amount': 'u128',
+                    'beneficiary': 'AccountId',
+                    'proposal_index': 'u32',
+                },
+                'Spending': {'budget_remaining': 'u128'},
             },
             'VoterList': {
                 'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
@@ -24888,90 +24942,90 @@ block. # &lt;/weight&gt;</p>
 <hr />
 <h4 id="executionphase">ExecutionPhase</h4>
 <p>The execution phase of the block.</p>
-<h5 id="python_599">Python</h5>
+<h5 id="python_600">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExecutionPhase', []
 )
 </code></pre>
-<h5 id="return-value_243">Return value</h5>
+<h5 id="return-value_244">Return value</h5>
 <pre><code class="language-python">{'ApplyExtrinsic': 'u32', 'Finalization': None, 'Initialization': None}
 </code></pre>
 <hr />
 <h4 id="extrinsiccount">ExtrinsicCount</h4>
 <p>Total extrinsics count for the current block.</p>
-<h5 id="python_600">Python</h5>
+<h5 id="python_601">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicCount', []
 )
 </code></pre>
-<h5 id="return-value_244">Return value</h5>
+<h5 id="return-value_245">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="extrinsicdata">ExtrinsicData</h4>
 <p>Extrinsics data for the current block (maps an extrinsic&#x27;s index to its data).</p>
-<h5 id="python_601">Python</h5>
+<h5 id="python_602">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicData', ['u32']
 )
 </code></pre>
-<h5 id="return-value_245">Return value</h5>
+<h5 id="return-value_246">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
 <h4 id="lastruntimeupgrade">LastRuntimeUpgrade</h4>
 <p>Stores the <code>spec_version</code> and <code>spec_name</code> of when the last runtime upgrade happened.</p>
-<h5 id="python_602">Python</h5>
+<h5 id="python_603">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'LastRuntimeUpgrade', []
 )
 </code></pre>
-<h5 id="return-value_246">Return value</h5>
+<h5 id="return-value_247">Return value</h5>
 <pre><code class="language-python">{'spec_name': 'Str', 'spec_version': 'u32'}
 </code></pre>
 <hr />
 <h4 id="number">Number</h4>
 <p>The current block number being processed. Set by <code>execute_block</code>.</p>
-<h5 id="python_603">Python</h5>
+<h5 id="python_604">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Number', []
 )
 </code></pre>
-<h5 id="return-value_247">Return value</h5>
+<h5 id="return-value_248">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="parenthash">ParentHash</h4>
 <p>Hash of the previous block.</p>
-<h5 id="python_604">Python</h5>
+<h5 id="python_605">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ParentHash', []
 )
 </code></pre>
-<h5 id="return-value_248">Return value</h5>
+<h5 id="return-value_249">Return value</h5>
 <pre><code class="language-python">'[u8; 32]'
 </code></pre>
 <hr />
 <h4 id="upgradedtotriplerefcount">UpgradedToTripleRefCount</h4>
 <p>True if we have upgraded so that AccountInfo contains three types of <code>RefCount</code>. False
  (default) if not.</p>
-<h5 id="python_605">Python</h5>
+<h5 id="python_606">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToTripleRefCount', []
 )
 </code></pre>
-<h5 id="return-value_249">Return value</h5>
+<h5 id="return-value_250">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h4 id="upgradedtou32refcount">UpgradedToU32RefCount</h4>
 <p>True if we have upgraded so that <code>type RefCount</code> is <code>u32</code>. False (default) if not.</p>
-<h5 id="python_606">Python</h5>
+<h5 id="python_607">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToU32RefCount', []
 )
 </code></pre>
-<h5 id="return-value_250">Return value</h5>
+<h5 id="return-value_251">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
@@ -24982,7 +25036,7 @@ block. # &lt;/weight&gt;</p>
 <h5 id="value_101">Value</h5>
 <pre><code class="language-python">4096
 </code></pre>
-<h5 id="python_607">Python</h5>
+<h5 id="python_608">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockHashCount')
 </code></pre>
 <hr />
@@ -24991,7 +25045,7 @@ block. # &lt;/weight&gt;</p>
 <h5 id="value_102">Value</h5>
 <pre><code class="language-python">{'max': {'mandatory': 5242880, 'normal': 3932160, 'operational': 5242880}}
 </code></pre>
-<h5 id="python_608">Python</h5>
+<h5 id="python_609">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockLength')
 </code></pre>
 <hr />
@@ -24999,29 +25053,29 @@ block. # &lt;/weight&gt;</p>
 <p>Block &amp; extrinsics weights: base values and limits.</p>
 <h5 id="value_103">Value</h5>
 <pre><code class="language-python">{
-    'base_block': {'proof_size': 0, 'ref_time': 5849907000},
+    'base_block': {'proof_size': 0, 'ref_time': 6062818000},
     'max_block': {'proof_size': 5242880, 'ref_time': 2000000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 85212000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 97884000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 85212000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 97884000},
             'max_extrinsic': {
                 'proof_size': 3879731,
-                'ref_time': 1479914788000,
+                'ref_time': 1479902116000,
             },
             'max_total': {'proof_size': 3932160, 'ref_time': 1500000000000},
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 85212000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 97884000},
             'max_extrinsic': {
                 'proof_size': 5190451,
-                'ref_time': 1979914788000,
+                'ref_time': 1979902116000,
             },
             'max_total': {'proof_size': 5242880, 'ref_time': 2000000000000},
             'reserved': {'proof_size': 1310720, 'ref_time': 500000000000},
@@ -25029,7 +25083,7 @@ block. # &lt;/weight&gt;</p>
     },
 }
 </code></pre>
-<h5 id="python_609">Python</h5>
+<h5 id="python_610">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockWeights')
 </code></pre>
 <hr />
@@ -25038,7 +25092,7 @@ block. # &lt;/weight&gt;</p>
 <h5 id="value_104">Value</h5>
 <pre><code class="language-python">{'read': 20499000, 'write': 83471000}
 </code></pre>
-<h5 id="python_610">Python</h5>
+<h5 id="python_611">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'DbWeight')
 </code></pre>
 <hr />
@@ -25050,7 +25104,7 @@ block. # &lt;/weight&gt;</p>
 <h5 id="value_105">Value</h5>
 <pre><code class="language-python">0
 </code></pre>
-<h5 id="python_611">Python</h5>
+<h5 id="python_612">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'SS58Prefix')
 </code></pre>
 <hr />
@@ -25080,12 +25134,12 @@ block. # &lt;/weight&gt;</p>
     'impl_name': 'parity-polkadot',
     'impl_version': 0,
     'spec_name': 'polkadot',
-    'spec_version': 9340,
+    'spec_version': 9360,
     'state_version': 0,
-    'transaction_version': 18,
+    'transaction_version': 19,
 }
 </code></pre>
-<h5 id="python_612">Python</h5>
+<h5 id="python_613">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'Version')
 </code></pre>
 <hr />
@@ -25145,7 +25199,7 @@ proposal.</li>
  - any mutations done while executing <code>proposal</code> (<code>P1</code>)
 - up to 3 events
 # &lt;/weight&gt;</p>
-<h5 id="attributes_428">Attributes</h5>
+<h5 id="attributes_429">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25172,7 +25226,7 @@ proposal.</li>
 </tr>
 </tbody>
 </table>
-<h5 id="python_613">Python</h5>
+<h5 id="python_614">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'close', {
     'index': 'u32',
@@ -25215,7 +25269,7 @@ proposal.</li>
  - any mutations done while executing <code>proposal</code> (<code>P1</code>)
 - up to 3 events
 # &lt;/weight&gt;</p>
-<h5 id="attributes_429">Attributes</h5>
+<h5 id="attributes_430">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25242,7 +25296,7 @@ proposal.</li>
 </tr>
 </tbody>
 </table>
-<h5 id="python_614">Python</h5>
+<h5 id="python_615">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'close_old_weight', {
     'index': 'u32',
@@ -25265,7 +25319,7 @@ DB Weight:
 * Reads: Proposals
 * Writes: Voting, Proposals, ProposalOf
 # &lt;/weight&gt;</p>
-<h5 id="attributes_430">Attributes</h5>
+<h5 id="attributes_431">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25280,7 +25334,7 @@ DB Weight:
 </tr>
 </tbody>
 </table>
-<h5 id="python_615">Python</h5>
+<h5 id="python_616">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'disapprove_proposal', {'proposal_hash': '[u8; 32]'}
 )
@@ -25296,7 +25350,7 @@ DB Weight:
 - DB: 1 read (codec <code>O(M)</code>) + DB access of <code>proposal</code>
 - 1 event
 # &lt;/weight&gt;</p>
-<h5 id="attributes_431">Attributes</h5>
+<h5 id="attributes_432">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25315,7 +25369,7 @@ DB Weight:
 </tr>
 </tbody>
 </table>
-<h5 id="python_616">Python</h5>
+<h5 id="python_617">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'execute', {
     'length_bound': 'u32',
@@ -25349,7 +25403,7 @@ or put up for voting.</p>
       - 1 storage write <code>Voting</code> (codec <code>O(M)</code>)
   - 1 event
 # &lt;/weight&gt;</p>
-<h5 id="attributes_432">Attributes</h5>
+<h5 id="attributes_433">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25372,7 +25426,7 @@ or put up for voting.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_617">Python</h5>
+<h5 id="python_618">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'propose', {
     'length_bound': 'u32',
@@ -25411,7 +25465,7 @@ with other logic managing the member set.</p>
   - <code>P</code> storage mutations (codec <code>O(M)</code>) for updating the votes for each proposal
   - 1 storage write (codec <code>O(1)</code>) for deleting the old <code>prime</code> and setting the new one
 # &lt;/weight&gt;</p>
-<h5 id="attributes_433">Attributes</h5>
+<h5 id="attributes_434">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25434,7 +25488,7 @@ with other logic managing the member set.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_618">Python</h5>
+<h5 id="python_619">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'set_members', {
     'new_members': ['AccountId'],
@@ -25458,7 +25512,7 @@ fee.
   - 1 storage mutation <code>Voting</code> (codec <code>O(M)</code>)
 - 1 event
 # &lt;/weight&gt;</p>
-<h5 id="attributes_434">Attributes</h5>
+<h5 id="attributes_435">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25481,7 +25535,7 @@ fee.
 </tr>
 </tbody>
 </table>
-<h5 id="python_619">Python</h5>
+<h5 id="python_620">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalCommittee', 'vote', {
     'approve': 'bool',
@@ -25495,7 +25549,7 @@ fee.
 <hr />
 <h4 id="approved_1">Approved</h4>
 <p>A motion was approved by the required threshold.</p>
-<h5 id="attributes_435">Attributes</h5>
+<h5 id="attributes_436">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25515,7 +25569,7 @@ fee.
 <hr />
 <h4 id="closed_1">Closed</h4>
 <p>A proposal was closed because its threshold was reached or after its duration was up.</p>
-<h5 id="attributes_436">Attributes</h5>
+<h5 id="attributes_437">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25545,7 +25599,7 @@ fee.
 <hr />
 <h4 id="disapproved_1">Disapproved</h4>
 <p>A motion was not approved by the required threshold.</p>
-<h5 id="attributes_437">Attributes</h5>
+<h5 id="attributes_438">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25565,7 +25619,7 @@ fee.
 <hr />
 <h4 id="executed_1">Executed</h4>
 <p>A motion was executed; result will be <code>Ok</code> if it returned without error.</p>
-<h5 id="attributes_438">Attributes</h5>
+<h5 id="attributes_439">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25590,7 +25644,7 @@ fee.
 <hr />
 <h4 id="memberexecuted_1">MemberExecuted</h4>
 <p>A single member did some action; result will be <code>Ok</code> if it returned without error.</p>
-<h5 id="attributes_439">Attributes</h5>
+<h5 id="attributes_440">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25616,7 +25670,7 @@ fee.
 <h4 id="proposed_2">Proposed</h4>
 <p>A motion (given hash) has been proposed (by given account) with a threshold (given
 <code>MemberCount</code>).</p>
-<h5 id="attributes_440">Attributes</h5>
+<h5 id="attributes_441">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25652,7 +25706,7 @@ fee.
 <h4 id="voted_2">Voted</h4>
 <p>A motion (given hash) has been voted on by given account, leaving
 a tally (yes votes and no votes given respectively as <code>MemberCount</code>).</p>
-<h5 id="attributes_441">Attributes</h5>
+<h5 id="attributes_442">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25694,67 +25748,67 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <hr />
 <h4 id="members_2">Members</h4>
 <p>The current members of the collective. This is stored sorted (just by value).</p>
-<h5 id="python_620">Python</h5>
+<h5 id="python_621">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Members', []
 )
 </code></pre>
-<h5 id="return-value_251">Return value</h5>
+<h5 id="return-value_252">Return value</h5>
 <pre><code class="language-python">['AccountId']
 </code></pre>
 <hr />
 <h4 id="prime_1">Prime</h4>
 <p>The prime member that helps determine the default vote behavior in case of absentations.</p>
-<h5 id="python_621">Python</h5>
+<h5 id="python_622">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Prime', []
 )
 </code></pre>
-<h5 id="return-value_252">Return value</h5>
+<h5 id="return-value_253">Return value</h5>
 <pre><code class="language-python">'AccountId'
 </code></pre>
 <hr />
 <h4 id="proposalcount_1">ProposalCount</h4>
 <p>Proposals so far.</p>
-<h5 id="python_622">Python</h5>
+<h5 id="python_623">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'ProposalCount', []
 )
 </code></pre>
-<h5 id="return-value_253">Return value</h5>
+<h5 id="return-value_254">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="proposalof_1">ProposalOf</h4>
 <p>Actual proposal for a given hash, if it&#x27;s current.</p>
-<h5 id="python_623">Python</h5>
+<h5 id="python_624">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'ProposalOf', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_254">Return value</h5>
+<h5 id="return-value_255">Return value</h5>
 <pre><code class="language-python">'Call'
 </code></pre>
 <hr />
 <h4 id="proposals_1">Proposals</h4>
 <p>The hashes of the active proposals.</p>
-<h5 id="python_624">Python</h5>
+<h5 id="python_625">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Proposals', []
 )
 </code></pre>
-<h5 id="return-value_255">Return value</h5>
+<h5 id="return-value_256">Return value</h5>
 <pre><code class="language-python">['[u8; 32]']
 </code></pre>
 <hr />
 <h4 id="voting_2">Voting</h4>
 <p>Votes on a given proposal, if it is ongoing.</p>
-<h5 id="python_625">Python</h5>
+<h5 id="python_626">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalCommittee', 'Voting', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_256">Return value</h5>
+<h5 id="return-value_257">Return value</h5>
 <pre><code class="language-python">{'ayes': ['AccountId'], 'end': 'u32', 'index': 'u32', 'nays': ['AccountId'], 'threshold': 'u32'}
 </code></pre>
 <hr />
@@ -25797,7 +25851,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <h4 id="add_member">add_member</h4>
 <p>Add a member <code>who</code> to the set.</p>
 <p>May only be called from <code>T::AddOrigin</code>.</p>
-<h5 id="attributes_442">Attributes</h5>
+<h5 id="attributes_443">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25812,7 +25866,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </tr>
 </tbody>
 </table>
-<h5 id="python_626">Python</h5>
+<h5 id="python_627">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalMembership', 'add_member', {
     'who': {
@@ -25830,7 +25884,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <p>Swap out the sending member for some other key <code>new</code>.</p>
 <p>May only be called from <code>Signed</code> origin of a current member.</p>
 <p>Prime membership is passed from the origin account to <code>new</code>, if extant.</p>
-<h5 id="attributes_443">Attributes</h5>
+<h5 id="attributes_444">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25845,7 +25899,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </tr>
 </tbody>
 </table>
-<h5 id="python_627">Python</h5>
+<h5 id="python_628">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalMembership', 'change_key', {
     'new': {
@@ -25862,9 +25916,9 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <h4 id="clear_prime">clear_prime</h4>
 <p>Remove the prime member if it exists.</p>
 <p>May only be called from <code>T::PrimeOrigin</code>.</p>
-<h5 id="attributes_444">Attributes</h5>
+<h5 id="attributes_445">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_628">Python</h5>
+<h5 id="python_629">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalMembership', 'clear_prime', {}
 )
@@ -25873,7 +25927,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <h4 id="remove_member_1">remove_member</h4>
 <p>Remove a member <code>who</code> from the set.</p>
 <p>May only be called from <code>T::RemoveOrigin</code>.</p>
-<h5 id="attributes_445">Attributes</h5>
+<h5 id="attributes_446">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25888,7 +25942,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 </tr>
 </tbody>
 </table>
-<h5 id="python_629">Python</h5>
+<h5 id="python_630">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalMembership', 'remove_member', {
     'who': {
@@ -25906,7 +25960,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <p>Change the membership to a new set, disregarding the existing membership. Be nice and
 pass <code>members</code> pre-sorted.</p>
 <p>May only be called from <code>T::ResetOrigin</code>.</p>
-<h5 id="attributes_446">Attributes</h5>
+<h5 id="attributes_447">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25921,7 +25975,7 @@ pass <code>members</code> pre-sorted.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_630">Python</h5>
+<h5 id="python_631">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalMembership', 'reset_members', {'members': ['AccountId']}
 )
@@ -25930,7 +25984,7 @@ pass <code>members</code> pre-sorted.</p>
 <h4 id="set_prime">set_prime</h4>
 <p>Set the prime member. Must be a current member.</p>
 <p>May only be called from <code>T::PrimeOrigin</code>.</p>
-<h5 id="attributes_447">Attributes</h5>
+<h5 id="attributes_448">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25945,7 +25999,7 @@ pass <code>members</code> pre-sorted.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_631">Python</h5>
+<h5 id="python_632">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalMembership', 'set_prime', {
     'who': {
@@ -25963,7 +26017,7 @@ pass <code>members</code> pre-sorted.</p>
 <p>Swap out one member <code>remove</code> for another <code>add</code>.</p>
 <p>May only be called from <code>T::SwapOrigin</code>.</p>
 <p>Prime membership is <em>not</em> passed from <code>remove</code> to <code>add</code>, if extant.</p>
-<h5 id="attributes_448">Attributes</h5>
+<h5 id="attributes_449">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -25982,7 +26036,7 @@ pass <code>members</code> pre-sorted.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_632">Python</h5>
+<h5 id="python_633">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'TechnicalMembership', 'swap_member', {
     'add': {
@@ -26007,55 +26061,55 @@ pass <code>members</code> pre-sorted.</p>
 <hr />
 <h4 id="dummy">Dummy</h4>
 <p>Phantom member, never used.</p>
-<h5 id="attributes_449">Attributes</h5>
+<h5 id="attributes_450">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="keychanged">KeyChanged</h4>
 <p>One of the members&amp;#x27; keys changed.</p>
-<h5 id="attributes_450">Attributes</h5>
+<h5 id="attributes_451">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="memberadded">MemberAdded</h4>
 <p>The given member was added; see the transaction for who.</p>
-<h5 id="attributes_451">Attributes</h5>
+<h5 id="attributes_452">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="memberremoved_1">MemberRemoved</h4>
 <p>The given member was removed; see the transaction for who.</p>
-<h5 id="attributes_452">Attributes</h5>
+<h5 id="attributes_453">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="membersreset">MembersReset</h4>
 <p>The membership was reset; see the transaction for who the new set is.</p>
-<h5 id="attributes_453">Attributes</h5>
+<h5 id="attributes_454">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="membersswapped">MembersSwapped</h4>
 <p>Two members were swapped; see the transaction for who.</p>
-<h5 id="attributes_454">Attributes</h5>
+<h5 id="attributes_455">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h3 id="storage-functions_40">Storage functions</h3>
 <hr />
 <h4 id="members_3">Members</h4>
 <p>The current membership, stored as an ordered Vec.</p>
-<h5 id="python_633">Python</h5>
+<h5 id="python_634">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalMembership', 'Members', []
 )
 </code></pre>
-<h5 id="return-value_257">Return value</h5>
+<h5 id="return-value_258">Return value</h5>
 <pre><code class="language-python">['AccountId']
 </code></pre>
 <hr />
 <h4 id="prime_2">Prime</h4>
 <p>The current prime member, if one exists.</p>
-<h5 id="python_634">Python</h5>
+<h5 id="python_635">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TechnicalMembership', 'Prime', []
 )
 </code></pre>
-<h5 id="return-value_258">Return value</h5>
+<h5 id="return-value_259">Return value</h5>
 <pre><code class="language-python">'AccountId'
 </code></pre>
 <hr />
@@ -26087,7 +26141,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
   <code>on_finalize</code>)
 - 1 event handler <code>on_timestamp_set</code>. Must be <code>O(1)</code>.
 # &lt;/weight&gt;</p>
-<h5 id="attributes_455">Attributes</h5>
+<h5 id="attributes_456">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26102,7 +26156,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_635">Python</h5>
+<h5 id="python_636">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Timestamp', 'set', {'now': 'u64'}
 )
@@ -26112,23 +26166,23 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <hr />
 <h4 id="didupdate">DidUpdate</h4>
 <p>Did the timestamp get updated in this block?</p>
-<h5 id="python_636">Python</h5>
+<h5 id="python_637">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Timestamp', 'DidUpdate', []
 )
 </code></pre>
-<h5 id="return-value_259">Return value</h5>
+<h5 id="return-value_260">Return value</h5>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h4 id="now">Now</h4>
 <p>Current time for the current block.</p>
-<h5 id="python_637">Python</h5>
+<h5 id="python_638">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Timestamp', 'Now', []
 )
 </code></pre>
-<h5 id="return-value_260">Return value</h5>
+<h5 id="return-value_261">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
@@ -26142,7 +26196,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 <h5 id="value_107">Value</h5>
 <pre><code class="language-python">3000
 </code></pre>
-<h5 id="python_638">Python</h5>
+<h5 id="python_639">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Timestamp', 'MinimumPeriod')
 </code></pre>
 <hr />
@@ -26165,7 +26219,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 - DbReads: <code>Tips</code>, <code>Tippers</code>, <code>tip finder</code>
 - DbWrites: <code>Reasons</code>, <code>Tips</code>, <code>Tippers</code>, <code>tip finder</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_456">Attributes</h5>
+<h5 id="attributes_457">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26180,7 +26234,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_639">Python</h5>
+<h5 id="python_640">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Tips', 'close_tip', {'hash': '[u8; 32]'}
 )
@@ -26203,7 +26257,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 - DbReads: <code>Reasons</code>, <code>Tips</code>
 - DbWrites: <code>Reasons</code>, <code>Tips</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_457">Attributes</h5>
+<h5 id="attributes_458">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26222,7 +26276,7 @@ phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_640">Python</h5>
+<h5 id="python_641">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Tips', 'report_awesome', {
     'reason': 'Bytes',
@@ -26254,36 +26308,6 @@ through <code>tip_new</code>).</p>
 - DbReads: <code>Tips</code>, <code>origin account</code>
 - DbWrites: <code>Reasons</code>, <code>Tips</code>, <code>origin account</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_458">Attributes</h5>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>hash</td>
-<td><code>T::Hash</code></td>
-</tr>
-</tbody>
-</table>
-<h5 id="python_641">Python</h5>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Tips', 'retract_tip', {'hash': '[u8; 32]'}
-)
-</code></pre>
-<hr />
-<h4 id="slash_tip">slash_tip</h4>
-<p>Remove and slash an already-open tip.</p>
-<p>May only be called from <code>T::RejectOrigin</code>.</p>
-<p>As a result, the finder is slashed and the deposits are lost.</p>
-<p>Emits <code>TipSlashed</code> if successful.</p>
-<p># &lt;weight&gt;
-  <code>T</code> is charged as upper bound given by <code>ContainsLengthBound</code>.
-  The actual cost depends on the implementation of <code>T::Tippers</code>.
-# &lt;/weight&gt;</p>
 <h5 id="attributes_459">Attributes</h5>
 <table>
 <thead>
@@ -26300,6 +26324,36 @@ through <code>tip_new</code>).</p>
 </tbody>
 </table>
 <h5 id="python_642">Python</h5>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Tips', 'retract_tip', {'hash': '[u8; 32]'}
+)
+</code></pre>
+<hr />
+<h4 id="slash_tip">slash_tip</h4>
+<p>Remove and slash an already-open tip.</p>
+<p>May only be called from <code>T::RejectOrigin</code>.</p>
+<p>As a result, the finder is slashed and the deposits are lost.</p>
+<p>Emits <code>TipSlashed</code> if successful.</p>
+<p># &lt;weight&gt;
+  <code>T</code> is charged as upper bound given by <code>ContainsLengthBound</code>.
+  The actual cost depends on the implementation of <code>T::Tippers</code>.
+# &lt;/weight&gt;</p>
+<h5 id="attributes_460">Attributes</h5>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hash</td>
+<td><code>T::Hash</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="python_643">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Tips', 'slash_tip', {'hash': '[u8; 32]'}
 )
@@ -26327,7 +26381,7 @@ has started.</p>
 - DbReads: <code>Tippers</code>, <code>Tips</code>
 - DbWrites: <code>Tips</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_460">Attributes</h5>
+<h5 id="attributes_461">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26346,7 +26400,7 @@ has started.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_643">Python</h5>
+<h5 id="python_644">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Tips', 'tip', {
     'hash': '[u8; 32]',
@@ -26376,7 +26430,7 @@ member of the <code>Tippers</code> set.</p>
 - DbReads: <code>Tippers</code>, <code>Reasons</code>
 - DbWrites: <code>Reasons</code>, <code>Tips</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_461">Attributes</h5>
+<h5 id="attributes_462">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26399,7 +26453,7 @@ member of the <code>Tippers</code> set.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_644">Python</h5>
+<h5 id="python_645">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Tips', 'tip_new', {
     'reason': 'Bytes',
@@ -26419,7 +26473,7 @@ member of the <code>Tippers</code> set.</p>
 <hr />
 <h4 id="newtip">NewTip</h4>
 <p>A new tip suggestion has been opened.</p>
-<h5 id="attributes_462">Attributes</h5>
+<h5 id="attributes_463">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26439,7 +26493,7 @@ member of the <code>Tippers</code> set.</p>
 <hr />
 <h4 id="tipclosed">TipClosed</h4>
 <p>A tip suggestion has been closed.</p>
-<h5 id="attributes_463">Attributes</h5>
+<h5 id="attributes_464">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26469,7 +26523,7 @@ member of the <code>Tippers</code> set.</p>
 <hr />
 <h4 id="tipclosing">TipClosing</h4>
 <p>A tip suggestion has reached threshold and is closing.</p>
-<h5 id="attributes_464">Attributes</h5>
+<h5 id="attributes_465">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26489,7 +26543,7 @@ member of the <code>Tippers</code> set.</p>
 <hr />
 <h4 id="tipretracted">TipRetracted</h4>
 <p>A tip suggestion has been retracted.</p>
-<h5 id="attributes_465">Attributes</h5>
+<h5 id="attributes_466">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26509,7 +26563,7 @@ member of the <code>Tippers</code> set.</p>
 <hr />
 <h4 id="tipslashed">TipSlashed</h4>
 <p>A tip suggestion has been slashed.</p>
-<h5 id="attributes_466">Attributes</h5>
+<h5 id="attributes_467">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26542,12 +26596,12 @@ member of the <code>Tippers</code> set.</p>
 <h4 id="reasons">Reasons</h4>
 <p>Simple preimage lookup from the reason&#x27;s hash to the original data. Again, has an
  insecure enumerable hash since the key is guaranteed to be the result of a secure hash.</p>
-<h5 id="python_645">Python</h5>
+<h5 id="python_646">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Tips', 'Reasons', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_261">Return value</h5>
+<h5 id="return-value_262">Return value</h5>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
@@ -26555,12 +26609,12 @@ member of the <code>Tippers</code> set.</p>
 <p>TipsMap that are not yet completed. Keyed by the hash of <code>(reason, who)</code> from the value.
  This has the insecure enumerable hash function since the key itself is already
  guaranteed to be a secure hash.</p>
-<h5 id="python_646">Python</h5>
+<h5 id="python_647">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Tips', 'Tips', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_262">Return value</h5>
+<h5 id="return-value_263">Return value</h5>
 <pre><code class="language-python">{
     'closes': (None, 'u32'),
     'deposit': 'u128',
@@ -26579,7 +26633,7 @@ member of the <code>Tippers</code> set.</p>
 <h5 id="value_108">Value</h5>
 <pre><code class="language-python">100000000
 </code></pre>
-<h5 id="python_647">Python</h5>
+<h5 id="python_648">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Tips', 'DataDepositPerByte')
 </code></pre>
 <hr />
@@ -26589,7 +26643,7 @@ member of the <code>Tippers</code> set.</p>
 <h5 id="value_109">Value</h5>
 <pre><code class="language-python">16384
 </code></pre>
-<h5 id="python_648">Python</h5>
+<h5 id="python_649">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Tips', 'MaximumReasonLength')
 </code></pre>
 <hr />
@@ -26598,7 +26652,7 @@ member of the <code>Tippers</code> set.</p>
 <h5 id="value_110">Value</h5>
 <pre><code class="language-python">14400
 </code></pre>
-<h5 id="python_649">Python</h5>
+<h5 id="python_650">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Tips', 'TipCountdown')
 </code></pre>
 <hr />
@@ -26607,7 +26661,7 @@ member of the <code>Tippers</code> set.</p>
 <h5 id="value_111">Value</h5>
 <pre><code class="language-python">20
 </code></pre>
-<h5 id="python_650">Python</h5>
+<h5 id="python_651">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Tips', 'TipFindersFee')
 </code></pre>
 <hr />
@@ -26616,7 +26670,7 @@ member of the <code>Tippers</code> set.</p>
 <h5 id="value_112">Value</h5>
 <pre><code class="language-python">10000000000
 </code></pre>
-<h5 id="python_651">Python</h5>
+<h5 id="python_652">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Tips', 'TipReportDepositBase')
 </code></pre>
 <hr />
@@ -26647,7 +26701,7 @@ member of the <code>Tippers</code> set.</p>
 <h4 id="transactionfeepaid">TransactionFeePaid</h4>
 <p>A transaction fee <code>actual_fee</code>, of which <code>tip</code> was added to the minimum inclusion fee,
 has been paid by <code>who</code>.</p>
-<h5 id="attributes_467">Attributes</h5>
+<h5 id="attributes_468">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26678,22 +26732,22 @@ has been paid by <code>who</code>.</p>
 <h3 id="storage-functions_43">Storage functions</h3>
 <hr />
 <h4 id="nextfeemultiplier">NextFeeMultiplier</h4>
-<h5 id="python_652">Python</h5>
+<h5 id="python_653">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TransactionPayment', 'NextFeeMultiplier', []
 )
 </code></pre>
-<h5 id="return-value_263">Return value</h5>
+<h5 id="return-value_264">Return value</h5>
 <pre><code class="language-python">'u128'
 </code></pre>
 <hr />
 <h4 id="storageversion_1">StorageVersion</h4>
-<h5 id="python_653">Python</h5>
+<h5 id="python_654">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'TransactionPayment', 'StorageVersion', []
 )
 </code></pre>
-<h5 id="return-value_264">Return value</h5>
+<h5 id="return-value_265">Return value</h5>
 <pre><code class="language-python">('V1Ancient', 'V2')
 </code></pre>
 <hr />
@@ -26720,7 +26774,7 @@ has been paid by <code>who</code>.</p>
 <h5 id="value_113">Value</h5>
 <pre><code class="language-python">5
 </code></pre>
-<h5 id="python_654">Python</h5>
+<h5 id="python_655">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('TransactionPayment', 'OperationalFeeMultiplier')
 </code></pre>
 <hr />
@@ -26737,7 +26791,7 @@ and the original deposit will be returned.</p>
 - DbReads: <code>Proposals</code>, <code>Approvals</code>
 - DbWrite: <code>Approvals</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_468">Attributes</h5>
+<h5 id="attributes_469">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26752,7 +26806,7 @@ and the original deposit will be returned.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_655">Python</h5>
+<h5 id="python_656">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'approve_proposal', {'proposal_id': 'u32'}
 )
@@ -26767,7 +26821,7 @@ proposal is awarded.</p>
 - DbReads: <code>ProposalCount</code>, <code>origin account</code>
 - DbWrites: <code>ProposalCount</code>, <code>Proposals</code>, <code>origin account</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_469">Attributes</h5>
+<h5 id="attributes_470">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26786,7 +26840,7 @@ proposal is awarded.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_656">Python</h5>
+<h5 id="python_657">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'propose_spend', {
     'beneficiary': {
@@ -26809,7 +26863,7 @@ proposal is awarded.</p>
 - DbReads: <code>Proposals</code>, <code>rejected proposer account</code>
 - DbWrites: <code>Proposals</code>, <code>rejected proposer account</code>
 # &lt;/weight&gt;</p>
-<h5 id="attributes_470">Attributes</h5>
+<h5 id="attributes_471">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26824,7 +26878,7 @@ proposal is awarded.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_657">Python</h5>
+<h5 id="python_658">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'reject_proposal', {'proposal_id': 'u32'}
 )
@@ -26843,7 +26897,7 @@ The original deposit will no longer be returned.</p>
 - <code>ProposalNotApproved</code>: The <code>proposal_id</code> supplied was not found in the approval queue,
 i.e., the proposal has not been approved. This could also mean the proposal does not
 exist altogether, thus there is no way it would have been approved in the first place.</p>
-<h5 id="attributes_471">Attributes</h5>
+<h5 id="attributes_472">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26858,7 +26912,7 @@ exist altogether, thus there is no way it would have been approved in the first 
 </tr>
 </tbody>
 </table>
-<h5 id="python_658">Python</h5>
+<h5 id="python_659">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'remove_approval', {'proposal_id': 'u32'}
 )
@@ -26873,7 +26927,7 @@ exist altogether, thus there is no way it would have been approved in the first 
 </ul>
 <p>NOTE: For record-keeping purposes, the proposer is deemed to be equivalent to the
 beneficiary.</p>
-<h5 id="attributes_472">Attributes</h5>
+<h5 id="attributes_473">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26892,7 +26946,7 @@ beneficiary.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_659">Python</h5>
+<h5 id="python_660">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Treasury', 'spend', {
     'amount': 'u128',
@@ -26911,7 +26965,7 @@ beneficiary.</p>
 <hr />
 <h4 id="awarded_1">Awarded</h4>
 <p>Some funds have been allocated.</p>
-<h5 id="attributes_473">Attributes</h5>
+<h5 id="attributes_474">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26941,7 +26995,7 @@ beneficiary.</p>
 <hr />
 <h4 id="burnt">Burnt</h4>
 <p>Some of our funds have been burnt.</p>
-<h5 id="attributes_474">Attributes</h5>
+<h5 id="attributes_475">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26961,7 +27015,7 @@ beneficiary.</p>
 <hr />
 <h4 id="deposit_3">Deposit</h4>
 <p>Some funds have been deposited.</p>
-<h5 id="attributes_475">Attributes</h5>
+<h5 id="attributes_476">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -26981,7 +27035,7 @@ beneficiary.</p>
 <hr />
 <h4 id="proposed_3">Proposed</h4>
 <p>New proposal.</p>
-<h5 id="attributes_476">Attributes</h5>
+<h5 id="attributes_477">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27001,7 +27055,7 @@ beneficiary.</p>
 <hr />
 <h4 id="rejected">Rejected</h4>
 <p>A proposal was rejected; funds were slashed.</p>
-<h5 id="attributes_477">Attributes</h5>
+<h5 id="attributes_478">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27026,7 +27080,7 @@ beneficiary.</p>
 <hr />
 <h4 id="rollover">Rollover</h4>
 <p>Spending has finished; this is the amount that rolls over until next spend.</p>
-<h5 id="attributes_478">Attributes</h5>
+<h5 id="attributes_479">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27046,7 +27100,7 @@ beneficiary.</p>
 <hr />
 <h4 id="spendapproved">SpendApproved</h4>
 <p>A new spend proposal has been approved.</p>
-<h5 id="attributes_479">Attributes</h5>
+<h5 id="attributes_480">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27076,7 +27130,7 @@ beneficiary.</p>
 <hr />
 <h4 id="spending">Spending</h4>
 <p>We have ended a spend period and will now allocate funds.</p>
-<h5 id="attributes_480">Attributes</h5>
+<h5 id="attributes_481">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27098,45 +27152,45 @@ beneficiary.</p>
 <hr />
 <h4 id="approvals">Approvals</h4>
 <p>Proposal indices that have been approved but not yet awarded.</p>
-<h5 id="python_660">Python</h5>
+<h5 id="python_661">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'Approvals', []
 )
 </code></pre>
-<h5 id="return-value_265">Return value</h5>
+<h5 id="return-value_266">Return value</h5>
 <pre><code class="language-python">['u32']
 </code></pre>
 <hr />
 <h4 id="inactive">Inactive</h4>
 <p>The amount which has been reported as inactive to Currency.</p>
-<h5 id="python_661">Python</h5>
+<h5 id="python_662">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'Inactive', []
 )
 </code></pre>
-<h5 id="return-value_266">Return value</h5>
+<h5 id="return-value_267">Return value</h5>
 <pre><code class="language-python">'u128'
 </code></pre>
 <hr />
 <h4 id="proposalcount_2">ProposalCount</h4>
 <p>Number of proposals that have been made.</p>
-<h5 id="python_662">Python</h5>
+<h5 id="python_663">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'ProposalCount', []
 )
 </code></pre>
-<h5 id="return-value_267">Return value</h5>
+<h5 id="return-value_268">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="proposals_2">Proposals</h4>
 <p>Proposals that have been made.</p>
-<h5 id="python_663">Python</h5>
+<h5 id="python_664">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Treasury', 'Proposals', ['u32']
 )
 </code></pre>
-<h5 id="return-value_268">Return value</h5>
+<h5 id="return-value_269">Return value</h5>
 <pre><code class="language-python">{
     'beneficiary': 'AccountId',
     'bond': 'u128',
@@ -27152,7 +27206,7 @@ beneficiary.</p>
 <h5 id="value_114">Value</h5>
 <pre><code class="language-python">10000
 </code></pre>
-<h5 id="python_664">Python</h5>
+<h5 id="python_665">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'Burn')
 </code></pre>
 <hr />
@@ -27162,7 +27216,7 @@ beneficiary.</p>
 <h5 id="value_115">Value</h5>
 <pre><code class="language-python">100
 </code></pre>
-<h5 id="python_665">Python</h5>
+<h5 id="python_666">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'MaxApprovals')
 </code></pre>
 <hr />
@@ -27171,7 +27225,7 @@ beneficiary.</p>
 <h5 id="value_116">Value</h5>
 <pre><code class="language-python">'0x70792f7472737279'
 </code></pre>
-<h5 id="python_666">Python</h5>
+<h5 id="python_667">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'PalletId')
 </code></pre>
 <hr />
@@ -27181,7 +27235,7 @@ beneficiary.</p>
 <h5 id="value_117">Value</h5>
 <pre><code class="language-python">50000
 </code></pre>
-<h5 id="python_667">Python</h5>
+<h5 id="python_668">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'ProposalBond')
 </code></pre>
 <hr />
@@ -27190,7 +27244,7 @@ beneficiary.</p>
 <h5 id="value_118">Value</h5>
 <pre><code class="language-python">5000000000000
 </code></pre>
-<h5 id="python_668">Python</h5>
+<h5 id="python_669">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'ProposalBondMaximum')
 </code></pre>
 <hr />
@@ -27199,7 +27253,7 @@ beneficiary.</p>
 <h5 id="value_119">Value</h5>
 <pre><code class="language-python">1000000000000
 </code></pre>
-<h5 id="python_669">Python</h5>
+<h5 id="python_670">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'ProposalBondMinimum')
 </code></pre>
 <hr />
@@ -27208,7 +27262,7 @@ beneficiary.</p>
 <h5 id="value_120">Value</h5>
 <pre><code class="language-python">345600
 </code></pre>
-<h5 id="python_670">Python</h5>
+<h5 id="python_671">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Treasury', 'SpendPeriod')
 </code></pre>
 <hr />
@@ -27246,7 +27300,7 @@ amount to be spent.</p>
 - <code>WeightOverLimit</code>: Message execution may use greater than <code>weight_limit</code>.</p>
 <p>Events:
 - <code>OverweightServiced</code>: On success.</p>
-<h5 id="attributes_481">Attributes</h5>
+<h5 id="attributes_482">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27265,7 +27319,7 @@ amount to be spent.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_671">Python</h5>
+<h5 id="python_672">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Ump', 'service_overweight', {
     'index': 'u64',
@@ -27282,7 +27336,7 @@ amount to be spent.</p>
 <h4 id="executedupward">ExecutedUpward</h4>
 <p>Upward message executed with the given outcome.
 [ id, outcome ]</p>
-<h5 id="attributes_482">Attributes</h5>
+<h5 id="attributes_483">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27308,7 +27362,7 @@ amount to be spent.</p>
 <h4 id="invalidformat">InvalidFormat</h4>
 <p>Upward message is invalid XCM.
 [ id ]</p>
-<h5 id="attributes_483">Attributes</h5>
+<h5 id="attributes_484">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27331,7 +27385,7 @@ amount to be spent.</p>
 <p>This message can be later dispatched manually using <code>service_overweight</code> dispatchable
 using the assigned <code>overweight_index</code>.</p>
 <p>[ para, id, overweight_index, required ]</p>
-<h5 id="attributes_484">Attributes</h5>
+<h5 id="attributes_485">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27368,7 +27422,7 @@ using the assigned <code>overweight_index</code>.</p>
 <p>Upward message from the overweight queue was executed with the given actual weight
 used.</p>
 <p>[ overweight_index, used ]</p>
-<h5 id="attributes_485">Attributes</h5>
+<h5 id="attributes_486">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27394,7 +27448,7 @@ used.</p>
 <h4 id="unsupportedversion">UnsupportedVersion</h4>
 <p>Upward message is unsupported version of XCM.
 [ id ]</p>
-<h5 id="attributes_486">Attributes</h5>
+<h5 id="attributes_487">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27415,7 +27469,7 @@ used.</p>
 <h4 id="upwardmessagesreceived">UpwardMessagesReceived</h4>
 <p>Some upward messages have been received and will be processed.
 [ para, count, size ]</p>
-<h5 id="attributes_487">Attributes</h5>
+<h5 id="attributes_488">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27446,7 +27500,7 @@ used.</p>
 <h4 id="weightexhausted">WeightExhausted</h4>
 <p>The weight limit for handling upward messages was reached.
 [ id, remaining, required ]</p>
-<h5 id="attributes_488">Attributes</h5>
+<h5 id="attributes_489">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27481,12 +27535,12 @@ used.</p>
 <p>Invariant:
  - The set of items from this vector should be exactly the set of the keys in
    <code>RelayDispatchQueues</code> and <code>RelayDispatchQueueSize</code>.</p>
-<h5 id="python_672">Python</h5>
+<h5 id="python_673">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Ump', 'NeedsDispatch', []
 )
 </code></pre>
-<h5 id="return-value_269">Return value</h5>
+<h5 id="return-value_270">Return value</h5>
 <pre><code class="language-python">['u32']
 </code></pre>
 <hr />
@@ -27495,36 +27549,36 @@ used.</p>
  execution round.</p>
 <p>Invariant:
  - If <code>Some(para)</code>, then <code>para</code> must be present in <code>NeedsDispatch</code>.</p>
-<h5 id="python_673">Python</h5>
+<h5 id="python_674">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Ump', 'NextDispatchRoundStartWith', []
 )
 </code></pre>
-<h5 id="return-value_270">Return value</h5>
+<h5 id="return-value_271">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="overweight">Overweight</h4>
 <p>The messages that exceeded max individual message weight budget.</p>
 <p>These messages stay there until manually dispatched.</p>
-<h5 id="python_674">Python</h5>
+<h5 id="python_675">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Ump', 'Overweight', ['u64']
 )
 </code></pre>
-<h5 id="return-value_271">Return value</h5>
+<h5 id="return-value_272">Return value</h5>
 <pre><code class="language-python">('u32', 'Bytes')
 </code></pre>
 <hr />
 <h4 id="overweightcount">OverweightCount</h4>
 <p>The number of overweight messages ever recorded in <code>Overweight</code> (and thus the lowest free
  index).</p>
-<h5 id="python_675">Python</h5>
+<h5 id="python_676">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Ump', 'OverweightCount', []
 )
 </code></pre>
-<h5 id="return-value_272">Return value</h5>
+<h5 id="return-value_273">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
@@ -27537,12 +27591,12 @@ used.</p>
  loading the whole message queue if only the total size and count are required.</p>
 <p>Invariant:
  - The set of keys should exactly match the set of keys of <code>RelayDispatchQueues</code>.</p>
-<h5 id="python_676">Python</h5>
+<h5 id="python_677">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Ump', 'RelayDispatchQueueSize', ['u32']
 )
 </code></pre>
-<h5 id="return-value_273">Return value</h5>
+<h5 id="return-value_274">Return value</h5>
 <pre><code class="language-python">('u32', 'u32')
 </code></pre>
 <hr />
@@ -27551,12 +27605,12 @@ used.</p>
 <p>Note that some upward messages might have been already processed by the inclusion logic. E.g.
  channel management messages.</p>
 <p>The messages are processed in FIFO order.</p>
-<h5 id="python_677">Python</h5>
+<h5 id="python_678">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Ump', 'RelayDispatchQueues', ['u32']
 )
 </code></pre>
-<h5 id="return-value_274">Return value</h5>
+<h5 id="return-value_275">Return value</h5>
 <pre><code class="language-python">['Bytes']
 </code></pre>
 <hr />
@@ -27582,7 +27636,7 @@ the call restrictions to apply to any sub-accounts), then use <code>as_multi_thr
 in the Multisig pallet instead.</p>
 <p>NOTE: Prior to version *12, this was called <code>as_limited_sub</code>.</p>
 <p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<h5 id="attributes_489">Attributes</h5>
+<h5 id="attributes_490">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27601,7 +27655,7 @@ in the Multisig pallet instead.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_678">Python</h5>
+<h5 id="python_679">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'as_derivative', {'call': 'Call', 'index': 'u16'}
 )
@@ -27624,7 +27678,7 @@ event is deposited. If a call failed and the batch was interrupted, then the
 <code>BatchInterrupted</code> event is deposited, along with the number of successful calls made
 and the error of the failed call. If all were successful, then the <code>BatchCompleted</code>
 event is deposited.</p>
-<h5 id="attributes_490">Attributes</h5>
+<h5 id="attributes_491">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27639,7 +27693,7 @@ event is deposited.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_679">Python</h5>
+<h5 id="python_680">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'batch', {'calls': ['Call']}
 )
@@ -27658,7 +27712,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <p># &lt;weight&gt;
 - Complexity: O(C) where C is the number of calls to be batched.
 # &lt;/weight&gt;</p>
-<h5 id="attributes_491">Attributes</h5>
+<h5 id="attributes_492">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27673,7 +27727,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_680">Python</h5>
+<h5 id="python_681">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'batch_all', {'calls': ['Call']}
 )
@@ -27688,7 +27742,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 - One DB write (event).
 - Weight of derivative <code>call</code> execution + T::WeightInfo::dispatch_as().
 # &lt;/weight&gt;</p>
-<h5 id="attributes_492">Attributes</h5>
+<h5 id="attributes_493">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -27707,10 +27761,16 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_681">Python</h5>
+<h5 id="python_682">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -27724,6 +27784,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
+        'Void': (),
         'XcmPallet': {
             'Response': {
                 'interior': {
@@ -28582,13 +28643,6 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
                 'parents': 'u8',
             },
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
-        'Void': (),
     },
     'call': 'Call',
 }
@@ -28608,7 +28662,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <p># &lt;weight&gt;
 - Complexity: O(C) where C is the number of calls to be batched.
 # &lt;/weight&gt;</p>
-<h5 id="attributes_493">Attributes</h5>
+<h5 id="attributes_494">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -28623,7 +28677,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_682">Python</h5>
+<h5 id="python_683">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'force_batch', {'calls': ['Call']}
 )
@@ -28634,7 +28688,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <p>This function does not check the weight of the call, and instead allows the
 Root origin to specify the weight of the call.</p>
 <p>The dispatch origin for this call must be <em>Root</em>.</p>
-<h5 id="attributes_494">Attributes</h5>
+<h5 id="attributes_495">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -28653,7 +28707,7 @@ Root origin to specify the weight of the call.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_683">Python</h5>
+<h5 id="python_684">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'with_weight', {
     'call': 'Call',
@@ -28669,18 +28723,18 @@ Root origin to specify the weight of the call.</p>
 <hr />
 <h4 id="batchcompleted">BatchCompleted</h4>
 <p>Batch of dispatches completed fully with no error.</p>
-<h5 id="attributes_495">Attributes</h5>
+<h5 id="attributes_496">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="batchcompletedwitherrors">BatchCompletedWithErrors</h4>
 <p>Batch of dispatches completed but has errors.</p>
-<h5 id="attributes_496">Attributes</h5>
+<h5 id="attributes_497">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="batchinterrupted">BatchInterrupted</h4>
 <p>Batch of dispatches did not complete fully. Index of first failing dispatch given, as
 well as the error.</p>
-<h5 id="attributes_497">Attributes</h5>
+<h5 id="attributes_498">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -28705,7 +28759,7 @@ well as the error.</p>
 <hr />
 <h4 id="dispatchedas">DispatchedAs</h4>
 <p>A call was dispatched.</p>
-<h5 id="attributes_498">Attributes</h5>
+<h5 id="attributes_499">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -28725,12 +28779,12 @@ well as the error.</p>
 <hr />
 <h4 id="itemcompleted">ItemCompleted</h4>
 <p>A single item within a Batch of dispatches has completed with no error.</p>
-<h5 id="attributes_499">Attributes</h5>
+<h5 id="attributes_500">Attributes</h5>
 <p>No attributes</p>
 <hr />
 <h4 id="itemfailed">ItemFailed</h4>
 <p>A single item within a Batch of dispatches has completed with error.</p>
-<h5 id="attributes_500">Attributes</h5>
+<h5 id="attributes_501">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -28755,7 +28809,7 @@ well as the error.</p>
 <h5 id="value_121">Value</h5>
 <pre><code class="language-python">10922
 </code></pre>
-<h5 id="python_684">Python</h5>
+<h5 id="python_685">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Utility', 'batched_calls_limit')
 </code></pre>
 <hr />
@@ -28784,7 +28838,7 @@ well as the error.</p>
     - Reads: Vesting Storage, Balances Locks, Target Account, Source Account
     - Writes: Vesting Storage, Balances Locks, Target Account, Source Account
 # &lt;/weight&gt;</p>
-<h5 id="attributes_501">Attributes</h5>
+<h5 id="attributes_502">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -28807,7 +28861,7 @@ well as the error.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_685">Python</h5>
+<h5 id="python_686">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'force_vested_transfer', {
     'schedule': {
@@ -28853,7 +28907,7 @@ and both will be removed.</p>
 <li><code>schedule1_index</code>: index of the first schedule to merge.</li>
 <li><code>schedule2_index</code>: index of the second schedule to merge.</li>
 </ul>
-<h5 id="attributes_502">Attributes</h5>
+<h5 id="attributes_503">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -28872,7 +28926,7 @@ and both will be removed.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_686">Python</h5>
+<h5 id="python_687">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'merge_schedules', {
     'schedule1_index': 'u32',
@@ -28892,9 +28946,9 @@ locked under this pallet.</p>
     - Reads: Vesting Storage, Balances Locks, [Sender Account]
     - Writes: Vesting Storage, Balances Locks, [Sender Account]
 # &lt;/weight&gt;</p>
-<h5 id="attributes_503">Attributes</h5>
+<h5 id="attributes_504">Attributes</h5>
 <p>No attributes</p>
-<h5 id="python_687">Python</h5>
+<h5 id="python_688">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vest', {}
 )
@@ -28914,7 +28968,7 @@ locked under this pallet.</li>
     - Reads: Vesting Storage, Balances Locks, Target Account
     - Writes: Vesting Storage, Balances Locks, Target Account
 # &lt;/weight&gt;</p>
-<h5 id="attributes_504">Attributes</h5>
+<h5 id="attributes_505">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -28929,7 +28983,7 @@ locked under this pallet.</li>
 </tr>
 </tbody>
 </table>
-<h5 id="python_688">Python</h5>
+<h5 id="python_689">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vest_other', {
     'target': {
@@ -28958,7 +29012,7 @@ locked under this pallet.</li>
     - Reads: Vesting Storage, Balances Locks, Target Account, [Sender Account]
     - Writes: Vesting Storage, Balances Locks, Target Account, [Sender Account]
 # &lt;/weight&gt;</p>
-<h5 id="attributes_505">Attributes</h5>
+<h5 id="attributes_506">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -28977,7 +29031,7 @@ locked under this pallet.</li>
 </tr>
 </tbody>
 </table>
-<h5 id="python_689">Python</h5>
+<h5 id="python_690">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vested_transfer', {
     'schedule': {
@@ -29000,7 +29054,7 @@ locked under this pallet.</li>
 <hr />
 <h4 id="vestingcompleted">VestingCompleted</h4>
 <p>An [account] has become fully vested.</p>
-<h5 id="attributes_506">Attributes</h5>
+<h5 id="attributes_507">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -29021,7 +29075,7 @@ locked under this pallet.</li>
 <h4 id="vestingupdated">VestingUpdated</h4>
 <p>The amount vested has been updated. This could indicate a change in funds available.
 The balance given is the amount which is left unvested (and thus locked).</p>
-<h5 id="attributes_507">Attributes</h5>
+<h5 id="attributes_508">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -29049,23 +29103,23 @@ The balance given is the amount which is left unvested (and thus locked).</p>
 <h4 id="storageversion_2">StorageVersion</h4>
 <p>Storage version of the pallet.</p>
 <p>New networks start with latest version, as determined by the genesis build.</p>
-<h5 id="python_690">Python</h5>
+<h5 id="python_691">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Vesting', 'StorageVersion', []
 )
 </code></pre>
-<h5 id="return-value_275">Return value</h5>
+<h5 id="return-value_276">Return value</h5>
 <pre><code class="language-python">('V0', 'V1')
 </code></pre>
 <hr />
 <h4 id="vesting_2">Vesting</h4>
 <p>Information regarding the vesting of a given account.</p>
-<h5 id="python_691">Python</h5>
+<h5 id="python_692">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'Vesting', 'Vesting', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_276">Return value</h5>
+<h5 id="return-value_277">Return value</h5>
 <pre><code class="language-python">[{'locked': 'u128', 'per_block': 'u128', 'starting_block': 'u32'}]
 </code></pre>
 <hr />
@@ -29075,7 +29129,7 @@ The balance given is the amount which is left unvested (and thus locked).</p>
 <h5 id="value_122">Value</h5>
 <pre><code class="language-python">28
 </code></pre>
-<h5 id="python_692">Python</h5>
+<h5 id="python_693">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Vesting', 'MaxVestingSchedules')
 </code></pre>
 <hr />
@@ -29084,7 +29138,7 @@ The balance given is the amount which is left unvested (and thus locked).</p>
 <h5 id="value_123">Value</h5>
 <pre><code class="language-python">10000000000
 </code></pre>
-<h5 id="python_693">Python</h5>
+<h5 id="python_694">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Vesting', 'MinVestedTransfer')
 </code></pre>
 <hr />
@@ -29117,7 +29171,7 @@ the account going in front of <code>lighter</code>.</p>
 <p>Only works if
 - both nodes are within the same bag,
 - and <code>origin</code> has a greater <code>Score</code> than <code>lighter</code>.</p>
-<h5 id="attributes_508">Attributes</h5>
+<h5 id="attributes_509">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -29132,7 +29186,7 @@ the account going in front of <code>lighter</code>.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_694">Python</h5>
+<h5 id="python_695">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'VoterList', 'put_in_front_of', {
     'lighter': {
@@ -29154,7 +29208,7 @@ one.</p>
 <p>Will always update the stored score of <code>dislocated</code> to the correct score, based on
 <code>ScoreProvider</code>.</p>
 <p>If <code>dislocated</code> does not exists, it returns an error.</p>
-<h5 id="attributes_509">Attributes</h5>
+<h5 id="attributes_510">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -29169,7 +29223,7 @@ one.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_695">Python</h5>
+<h5 id="python_696">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'VoterList', 'rebag', {
     'dislocated': {
@@ -29187,7 +29241,7 @@ one.</p>
 <hr />
 <h4 id="rebagged">Rebagged</h4>
 <p>Moved an account from one bag to another.</p>
-<h5 id="attributes_510">Attributes</h5>
+<h5 id="attributes_511">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -29217,7 +29271,7 @@ one.</p>
 <hr />
 <h4 id="scoreupdated">ScoreUpdated</h4>
 <p>Updated the score of some account to the given amount.</p>
-<h5 id="attributes_511">Attributes</h5>
+<h5 id="attributes_512">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -29244,36 +29298,36 @@ one.</p>
 <hr />
 <h4 id="counterforlistnodes">CounterForListNodes</h4>
 <p>Counter for the related counted storage map</p>
-<h5 id="python_696">Python</h5>
+<h5 id="python_697">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'VoterList', 'CounterForListNodes', []
 )
 </code></pre>
-<h5 id="return-value_277">Return value</h5>
+<h5 id="return-value_278">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="listbags">ListBags</h4>
 <p>A bag stored in storage.</p>
 <p>Stores a <code>Bag</code> struct, which stores head and tail pointers to itself.</p>
-<h5 id="python_697">Python</h5>
+<h5 id="python_698">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'VoterList', 'ListBags', ['u64']
 )
 </code></pre>
-<h5 id="return-value_278">Return value</h5>
+<h5 id="return-value_279">Return value</h5>
 <pre><code class="language-python">{'head': (None, 'AccountId'), 'tail': (None, 'AccountId')}
 </code></pre>
 <hr />
 <h4 id="listnodes">ListNodes</h4>
 <p>A single node, within some bag.</p>
 <p>Nodes store links forward and back within their respective bags.</p>
-<h5 id="python_698">Python</h5>
+<h5 id="python_699">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'VoterList', 'ListNodes', ['AccountId']
 )
 </code></pre>
-<h5 id="return-value_279">Return value</h5>
+<h5 id="return-value_280">Return value</h5>
 <pre><code class="language-python">{
     'bag_upper': 'u64',
     'id': 'AccountId',
@@ -29523,7 +29577,7 @@ one.</p>
     18446744073709551615,
 ]
 </code></pre>
-<h5 id="python_699">Python</h5>
+<h5 id="python_700">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('VoterList', 'BagThresholds')
 </code></pre>
 <hr />
@@ -29545,7 +29599,7 @@ maximum amount of weight that the message could take to be executed, then no exe
 attempt will be made.</p>
 <p>NOTE: A successful return to this does <em>not</em> imply that the <code>msg</code> was executed successfully
 to completion; only that <em>some</em> of it was executed.</p>
-<h5 id="attributes_512">Attributes</h5>
+<h5 id="attributes_513">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -29564,7 +29618,7 @@ to completion; only that <em>some</em> of it was executed.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_700">Python</h5>
+<h5 id="python_701">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'execute', {
     'max_weight': 'u64',
@@ -32968,7 +33022,7 @@ version a destination can accept is unknown).</p>
 <li><code>origin</code>: Must be Root.</li>
 <li><code>maybe_xcm_version</code>: The default XCM encoding version, or <code>None</code> to disable.</li>
 </ul>
-<h5 id="attributes_513">Attributes</h5>
+<h5 id="attributes_514">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -32983,7 +33037,7 @@ version a destination can accept is unknown).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_701">Python</h5>
+<h5 id="python_702">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'force_default_xcm_version', {'maybe_xcm_version': (None, 'u32')}
 )
@@ -32995,7 +33049,7 @@ version a destination can accept is unknown).</p>
 <li><code>origin</code>: Must be Root.</li>
 <li><code>location</code>: The location to which we should subscribe for XCM version notifications.</li>
 </ul>
-<h5 id="attributes_514">Attributes</h5>
+<h5 id="attributes_515">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -33010,7 +33064,7 @@ version a destination can accept is unknown).</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_702">Python</h5>
+<h5 id="python_703">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'force_subscribe_version_notify', {
     'location': {
@@ -35840,7 +35894,7 @@ version changes.</p>
 <li><code>location</code>: The location to which we are currently subscribed for XCM version
   notifications which we no longer desire.</li>
 </ul>
-<h5 id="attributes_515">Attributes</h5>
+<h5 id="attributes_516">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -35855,7 +35909,7 @@ version changes.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_703">Python</h5>
+<h5 id="python_704">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'force_unsubscribe_version_notify', {
     'location': {
@@ -38685,7 +38739,7 @@ version of XCM.</p>
 <li><code>location</code>: The destination that is being described.</li>
 <li><code>xcm_version</code>: The latest version of XCM that <code>location</code> supports.</li>
 </ul>
-<h5 id="attributes_516">Attributes</h5>
+<h5 id="attributes_517">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -38704,7 +38758,7 @@ version of XCM.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_704">Python</h5>
+<h5 id="python_705">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'force_xcm_version', {
     'location': {
@@ -40634,7 +40688,7 @@ at risk.</p>
   fees.</li>
 <li><code>weight_limit</code>: The remote-side weight limit, if any, for the XCM fee purchase.</li>
 </ul>
-<h5 id="attributes_517">Attributes</h5>
+<h5 id="attributes_518">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -40665,7 +40719,7 @@ at risk.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_705">Python</h5>
+<h5 id="python_706">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'limited_reserve_transfer_assets', {
     'assets': {
@@ -46654,7 +46708,7 @@ at risk.</p>
   fees.</li>
 <li><code>weight_limit</code>: The remote-side weight limit, if any, for the XCM fee purchase.</li>
 </ul>
-<h5 id="attributes_518">Attributes</h5>
+<h5 id="attributes_519">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -46685,7 +46739,7 @@ at risk.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_706">Python</h5>
+<h5 id="python_707">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'limited_teleport_assets', {
     'assets': {
@@ -52673,7 +52727,7 @@ with all fees taken as needed from the asset.</p>
 <li><code>fee_asset_item</code>: The index into <code>assets</code> of the item which should be used to pay
   fees.</li>
 </ul>
-<h5 id="attributes_519">Attributes</h5>
+<h5 id="attributes_520">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -52700,7 +52754,7 @@ with all fees taken as needed from the asset.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_707">Python</h5>
+<h5 id="python_708">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'reserve_transfer_assets', {
     'assets': {
@@ -58668,7 +58722,7 @@ with all fees taken as needed from the asset.</p>
 </code></pre>
 <hr />
 <h4 id="send">send</h4>
-<h5 id="attributes_520">Attributes</h5>
+<h5 id="attributes_521">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -58687,7 +58741,7 @@ with all fees taken as needed from the asset.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_708">Python</h5>
+<h5 id="python_709">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'send', {
     'dest': {
@@ -64914,7 +64968,7 @@ with all fees taken as needed from the asset.</p>
 <li><code>fee_asset_item</code>: The index into <code>assets</code> of the item which should be used to pay
   fees.</li>
 </ul>
-<h5 id="attributes_521">Attributes</h5>
+<h5 id="attributes_522">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -64941,7 +64995,7 @@ with all fees taken as needed from the asset.</p>
 </tr>
 </tbody>
 </table>
-<h5 id="python_709">Python</h5>
+<h5 id="python_710">Python</h5>
 <pre><code class="language-python">call = substrate.compose_call(
     'XcmPallet', 'teleport_assets', {
     'assets': {
@@ -70913,7 +70967,7 @@ with all fees taken as needed from the asset.</p>
 <h4 id="assetsclaimed">AssetsClaimed</h4>
 <p>Some assets have been claimed from an asset trap</p>
 <p>[ hash, origin, assets ]</p>
-<h5 id="attributes_522">Attributes</h5>
+<h5 id="attributes_523">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -70944,7 +70998,7 @@ with all fees taken as needed from the asset.</p>
 <h4 id="assetstrapped">AssetsTrapped</h4>
 <p>Some assets have been placed in an asset trap.</p>
 <p>[ hash, origin, assets ]</p>
-<h5 id="attributes_523">Attributes</h5>
+<h5 id="attributes_524">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -70975,7 +71029,7 @@ with all fees taken as needed from the asset.</p>
 <h4 id="attempted">Attempted</h4>
 <p>Execution of an XCM message was attempted.</p>
 <p>[ outcome ]</p>
-<h5 id="attributes_524">Attributes</h5>
+<h5 id="attributes_525">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -70998,7 +71052,7 @@ with all fees taken as needed from the asset.</p>
 not match that expected. The query remains registered for a later, valid, response to
 be received and acted upon.</p>
 <p>[ origin location, id, expected location ]</p>
-<h5 id="attributes_525">Attributes</h5>
+<h5 id="attributes_526">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71034,7 +71088,7 @@ runtime should be readable prior to query timeout) and dangerous since the possi
 valid response will be dropped. Manual governance intervention is probably going to be
 needed.</p>
 <p>[ origin location, id ]</p>
-<h5 id="attributes_526">Attributes</h5>
+<h5 id="attributes_527">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71061,7 +71115,7 @@ needed.</p>
 <p>Query response has been received and query is removed. The registered notification has
 been dispatched and executed successfully.</p>
 <p>[ id, pallet index, call index ]</p>
-<h5 id="attributes_527">Attributes</h5>
+<h5 id="attributes_528">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71094,7 +71148,7 @@ been dispatched and executed successfully.</p>
 decoded into a <code>Call</code>; this might be due to dispatch function having a signature which
 is not <code>(origin, QueryId, Response)</code>.</p>
 <p>[ id, pallet index, call index ]</p>
-<h5 id="attributes_528">Attributes</h5>
+<h5 id="attributes_529">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71126,7 +71180,7 @@ is not <code>(origin, QueryId, Response)</code>.</p>
 <p>Query response has been received and query is removed. There was a general error with
 dispatching the notification call.</p>
 <p>[ id, pallet index, call index ]</p>
-<h5 id="attributes_529">Attributes</h5>
+<h5 id="attributes_530">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71159,7 +71213,7 @@ dispatching the notification call.</p>
 not be dispatched because the dispatch weight is greater than the maximum weight
 originally budgeted by this runtime for the query result.</p>
 <p>[ id, pallet index, call index, actual weight, max budgeted weight ]</p>
-<h5 id="attributes_530">Attributes</h5>
+<h5 id="attributes_531">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71201,7 +71255,7 @@ originally budgeted by this runtime for the query result.</p>
 <p>A given location which had a version change subscription was dropped owing to an error
 migrating the location to our new XCM format.</p>
 <p>[ location, query ID ]</p>
-<h5 id="attributes_531">Attributes</h5>
+<h5 id="attributes_532">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71228,7 +71282,7 @@ migrating the location to our new XCM format.</p>
 <p>A given location which had a version change subscription was dropped owing to an error
 sending the notification to it.</p>
 <p>[ location, query ID, error ]</p>
-<h5 id="attributes_532">Attributes</h5>
+<h5 id="attributes_533">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71260,7 +71314,7 @@ sending the notification to it.</p>
 <p>Query response has been received and is ready for taking with <code>take_response</code>. There is
 no registered notification call.</p>
 <p>[ id, response ]</p>
-<h5 id="attributes_533">Attributes</h5>
+<h5 id="attributes_534">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71286,7 +71340,7 @@ no registered notification call.</p>
 <h4 id="responsetaken">ResponseTaken</h4>
 <p>Received query response has been read and removed.</p>
 <p>[ id ]</p>
-<h5 id="attributes_534">Attributes</h5>
+<h5 id="attributes_535">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71307,7 +71361,7 @@ no registered notification call.</p>
 <h4 id="sent">Sent</h4>
 <p>A XCM message was sent.</p>
 <p>[ origin, destination, message ]</p>
-<h5 id="attributes_535">Attributes</h5>
+<h5 id="attributes_536">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71339,7 +71393,7 @@ no registered notification call.</p>
 <p>The supported version of a location has been changed. This might be through an
 automatic notification or a manual intervention.</p>
 <p>[ location, XCM version ]</p>
-<h5 id="attributes_536">Attributes</h5>
+<h5 id="attributes_537">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71367,7 +71421,7 @@ automatic notification or a manual intervention.</p>
 matching query was never registered, it may be because it is a duplicate response, or
 because the query timed out.</p>
 <p>[ origin location, id ]</p>
-<h5 id="attributes_537">Attributes</h5>
+<h5 id="attributes_538">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71393,7 +71447,7 @@ because the query timed out.</p>
 <h4 id="versionchangenotified">VersionChangeNotified</h4>
 <p>An XCM version change notification message has been attempted to be sent.</p>
 <p>[ destination, result ]</p>
-<h5 id="attributes_538">Attributes</h5>
+<h5 id="attributes_539">Attributes</h5>
 <table>
 <thead>
 <tr>
@@ -71422,23 +71476,23 @@ because the query timed out.</p>
 <p>The existing asset traps.</p>
 <p>Key is the blake2 256 hash of (origin, versioned <code>MultiAssets</code>) pair. Value is the number of
  times this pair has been trapped (usually just 1 if it exists at all).</p>
-<h5 id="python_710">Python</h5>
+<h5 id="python_711">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmPallet', 'AssetTraps', ['[u8; 32]']
 )
 </code></pre>
-<h5 id="return-value_280">Return value</h5>
+<h5 id="return-value_281">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="currentmigration">CurrentMigration</h4>
 <p>The current migration&#x27;s stage, if any.</p>
-<h5 id="python_711">Python</h5>
+<h5 id="python_712">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmPallet', 'CurrentMigration', []
 )
 </code></pre>
-<h5 id="return-value_281">Return value</h5>
+<h5 id="return-value_282">Return value</h5>
 <pre><code class="language-python">{
     'MigrateAndNotifyOldTargets': None,
     'MigrateSupportedVersion': None,
@@ -71449,12 +71503,12 @@ because the query timed out.</p>
 <hr />
 <h4 id="queries">Queries</h4>
 <p>The ongoing queries.</p>
-<h5 id="python_712">Python</h5>
+<h5 id="python_713">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmPallet', 'Queries', ['u64']
 )
 </code></pre>
-<h5 id="return-value_282">Return value</h5>
+<h5 id="return-value_283">Return value</h5>
 <pre><code class="language-python">{
     'Pending': {
         'maybe_notify': (None, ('u8', 'u8')),
@@ -71713,30 +71767,30 @@ because the query timed out.</p>
 <hr />
 <h4 id="querycounter">QueryCounter</h4>
 <p>The latest available query index.</p>
-<h5 id="python_713">Python</h5>
+<h5 id="python_714">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmPallet', 'QueryCounter', []
 )
 </code></pre>
-<h5 id="return-value_283">Return value</h5>
+<h5 id="return-value_284">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
 <h4 id="safexcmversion">SafeXcmVersion</h4>
 <p>Default version to encode XCM when latest version of destination is unknown. If <code>None</code>,
  then the destinations whose XCM version is unknown are considered unreachable.</p>
-<h5 id="python_714">Python</h5>
+<h5 id="python_715">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmPallet', 'SafeXcmVersion', []
 )
 </code></pre>
-<h5 id="return-value_284">Return value</h5>
+<h5 id="return-value_285">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h4 id="supportedversion">SupportedVersion</h4>
 <p>The Latest versions that we know various locations support.</p>
-<h5 id="python_715">Python</h5>
+<h5 id="python_716">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmPallet', 'SupportedVersion', [
     'u32',
@@ -74558,7 +74612,7 @@ because the query timed out.</p>
 ]
 )
 </code></pre>
-<h5 id="return-value_285">Return value</h5>
+<h5 id="return-value_286">Return value</h5>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
@@ -74566,12 +74620,12 @@ because the query timed out.</p>
 <p>Destinations whose latest XCM version we would like to know. Duplicates not allowed, and
  the <code>u32</code> counter is the number of times that a send to the destination has been attempted,
  which is used as a prioritization.</p>
-<h5 id="python_716">Python</h5>
+<h5 id="python_717">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmPallet', 'VersionDiscoveryQueue', []
 )
 </code></pre>
-<h5 id="return-value_286">Return value</h5>
+<h5 id="return-value_287">Return value</h5>
 <pre><code class="language-python">[
     (
         {
@@ -74697,7 +74751,7 @@ because the query timed out.</p>
 <hr />
 <h4 id="versionnotifiers">VersionNotifiers</h4>
 <p>All locations that we have requested version notifications from.</p>
-<h5 id="python_717">Python</h5>
+<h5 id="python_718">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmPallet', 'VersionNotifiers', [
     'u32',
@@ -77519,14 +77573,14 @@ because the query timed out.</p>
 ]
 )
 </code></pre>
-<h5 id="return-value_287">Return value</h5>
+<h5 id="return-value_288">Return value</h5>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
 <h4 id="versionnotifytargets">VersionNotifyTargets</h4>
 <p>The target locations that are subscribed to our version changes, as well as the most recent
  of our versions we informed them of.</p>
-<h5 id="python_718">Python</h5>
+<h5 id="python_719">Python</h5>
 <pre><code class="language-python">result = substrate.query(
     'XcmPallet', 'VersionNotifyTargets', [
     'u32',
@@ -80348,7 +80402,7 @@ because the query timed out.</p>
 ]
 )
 </code></pre>
-<h5 id="return-value_288">Return value</h5>
+<h5 id="return-value_289">Return value</h5>
 <pre><code class="language-python">('u64', 'u64', 'u32')
 </code></pre>
 <hr />

@@ -3359,7 +3359,7 @@
 </tr>
 <tr>
 <td>Spec version</td>
-<td>1024</td>
+<td>1025</td>
 </tr>
 <tr>
 <td>SS58 Format</td>
@@ -3701,12 +3701,12 @@ For a more detailed explanation refer section 3.4 of
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -8553,7 +8553,7 @@ begin with.</p>
  the size of the election. When this limit is reached no more
  candidates are accepted in the election.</p>
 <h5 id="value_21">Value</h5>
-<pre><code class="language-python">1000
+<pre><code class="language-python">100
 </code></pre>
 <h5 id="python_143">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Elections', 'MaxCandidates')
@@ -8564,7 +8564,7 @@ begin with.</p>
 <p>Warning: This impacts the size of the election which is run onchain.
  When the limit is reached the new voters are ignored.</p>
 <h5 id="value_22">Value</h5>
-<pre><code class="language-python">10000
+<pre><code class="language-python">1000
 </code></pre>
 <h5 id="python_144">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Elections', 'MaxVoters')
@@ -68858,8 +68858,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -68871,6 +68869,8 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     'Xcm': 'scale_info::135',
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },
@@ -70591,7 +70591,7 @@ block. # &lt;/weight&gt;</p>
     'impl_name': 'altair',
     'impl_version': 1,
     'spec_name': 'altair',
-    'spec_version': 1024,
+    'spec_version': 1025,
     'state_version': 0,
     'transaction_version': 1,
 }
@@ -73982,6 +73982,12 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -74850,12 +74856,6 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             },
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }

@@ -2247,12 +2247,12 @@
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -65906,6 +65906,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -65923,7 +65924,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -66873,7 +66873,6 @@ block. # &lt;/weight&gt;</p>
 <pre><code class="language-python">[
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -67320,6 +67319,7 @@ block. # &lt;/weight&gt;</p>
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -75023,20 +75023,15 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
         },
         None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
-        },
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
         },
         'PolkadotXcm': {
             'Response': {
@@ -75902,6 +75897,11 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }

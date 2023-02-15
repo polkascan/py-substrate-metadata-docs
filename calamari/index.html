@@ -72050,6 +72050,7 @@ block. # &lt;/weight&gt;</p>
 <pre><code class="language-python">[
     {
         'event': {
+            None: None,
             'AssetManager': {
                 'AssetLocationUpdated': {
                     'asset_id': 'u32',
@@ -72655,7 +72656,6 @@ block. # &lt;/weight&gt;</p>
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -74665,12 +74665,6 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -75544,6 +75538,12 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
     'call': 'Call',
 }

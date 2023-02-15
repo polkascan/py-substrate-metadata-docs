@@ -2887,12 +2887,12 @@ you ensure that valid data is being passed in.</p>
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
+                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -66454,6 +66454,7 @@ block. # &lt;/weight&gt;</p>
 <pre><code class="language-python">[
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -66726,7 +66727,6 @@ block. # &lt;/weight&gt;</p>
                     'who': 'AccountId',
                 },
             },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -68148,12 +68148,12 @@ bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             },
         },
         'Void': (),
-        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }

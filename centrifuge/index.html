@@ -2797,7 +2797,7 @@
 </tr>
 <tr>
 <td>Spec version</td>
-<td>1016</td>
+<td>1017</td>
 </tr>
 <tr>
 <td>SS58 Format</td>
@@ -9191,7 +9191,7 @@ begin with.</p>
  the size of the election. When this limit is reached no more
  candidates are accepted in the election.</p>
 <h5 id="value_30">Value</h5>
-<pre><code class="language-python">1000
+<pre><code class="language-python">100
 </code></pre>
 <h5 id="python_176">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Elections', 'MaxCandidates')
@@ -9202,7 +9202,7 @@ begin with.</p>
 <p>Warning: This impacts the size of the election which is run onchain.
  When the limit is reached the new voters are ignored.</p>
 <h5 id="value_31">Value</h5>
-<pre><code class="language-python">10000
+<pre><code class="language-python">1000
 </code></pre>
 <h5 id="python_177">Python</h5>
 <pre><code class="language-python">constant = substrate.get_constant('Elections', 'MaxVoters')
@@ -65936,7 +65936,6 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'Council': {
                     'Member': 'AccountId',
@@ -65949,6 +65948,7 @@ Same as <a href="Self::schedule_named"><code>schedule_named</code></a>.
                     'Xcm': 'scale_info::79',
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },
@@ -67169,6 +67169,13 @@ block. # &lt;/weight&gt;</p>
                     'to': 'AccountId',
                 },
             },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -67197,6 +67204,10 @@ block. # &lt;/weight&gt;</p>
                 'DispatchedAs': {'result': 'scale_info::38'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
+            },
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
             'XTokens': {
                 'TransferredMultiAssets': {
@@ -67229,17 +67240,6 @@ block. # &lt;/weight&gt;</p>
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             None: None,
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
-            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -67434,7 +67434,7 @@ block. # &lt;/weight&gt;</p>
     'impl_name': 'centrifuge',
     'impl_version': 1,
     'spec_name': 'centrifuge',
-    'spec_version': 1016,
+    'spec_version': 1017,
     'state_version': 0,
     'transaction_version': 1,
 }
