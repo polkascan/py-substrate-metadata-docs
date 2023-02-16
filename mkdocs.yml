@@ -1,11 +1,10 @@
 site_name: PySubstrate metadata docs
-site_url: https://polkascan.github.io/py-substrate-interface/
-repo_url: https://github.com/polkascan/py-substrate-metadata-docs
-edit_uri: edit/main/docs/
+repo_url: https://github.com/polkascan/py-substrate-interface
 
 nav:
-    - Overview: index.md
+    - Usage: index.md
     - Polkadot Ecosystem Runtimes:
+      - Overview: polkadot-runtimes.md
       - Polkadot: polkadot.md
       - Statemint: statemint.md
       - Collectives: collectives.md
@@ -37,6 +36,7 @@ nav:
       - UNIQUE: unique.md
 
     - Kusama Ecosystem Runtimes:
+      - Overview: kusama-runtimes.md
       - Kusama: kusama.md
       - Statemine: statemine.md
       - Altair: altair.md
@@ -73,8 +73,54 @@ nav:
       - SubsocialX: subsocial-parachain.md
       - Turing Network: turing.md
       - Zeitgeist: zeitgeist.md
+    - Libary documentation: https://polkascan.github.io/py-substrate-interface/
 
 theme:
-    name: readthedocs
+  name: "material"
+  logo: https://avatars.githubusercontent.com/u/43450475
+  highlightjs: true
+  hljs_languages:
+    - python
+  features:
+    # - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.prune
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+#    - toc.integrate
 
-plugins: []
+plugins:
+  - autorefs
+
+extra:
+  social:
+  - icon: fontawesome/brands/github
+    link: https://github.com/polkascan/py-substrate-interface
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/polkascan
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 4
+  - pymdownx.highlight
+#  - pymdownx.inlinehilite
+#  - pymdownx.snippets
+#  - pymdownx.superfences
