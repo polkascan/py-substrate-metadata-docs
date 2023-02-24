@@ -16,7 +16,7 @@ networks:
   - wss://rpc.efinity.io
   - wss://node.pol.equilibrium.io/
   - wss://0.rpc.frequency.xyz
-  - wss://c1.hashed.network
+#  - wss://c1.hashed.network
   - wss://rpc.hydradx.cloud
   - wss://polkadot.api.integritee.network
   - wss://api.interlay.io/parachain

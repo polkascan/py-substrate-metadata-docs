@@ -1,0 +1,324 @@
+
+# Issue
+
+---------
+## Calls
+
+---------
+### cancel_issue
+Cancel the issuance of tokens if expired
+
+\# Arguments
+
+* `origin` - sender of the transaction
+* `issue_id` - identifier of issue request as output from request_issue
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| issue_id | `H256` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Issue', 'cancel_issue', {'issue_id': '[u8; 32]'}
+)
+```
+
+---------
+### execute_issue
+Finalize the issuance of tokens
+
+\# Arguments
+
+* `origin` - sender of the transaction
+* `issue_id` - identifier of issue request as output from request_issue
+* `tx_block_height` - block number of collateral chain
+* `merkle_proof` - raw bytes
+* `raw_tx` - raw bytes
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| issue_id | `H256` | 
+| merkle_proof | `Vec<u8>` | 
+| raw_tx | `Vec<u8>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Issue', 'execute_issue', {
+    'issue_id': '[u8; 32]',
+    'merkle_proof': 'Bytes',
+    'raw_tx': 'Bytes',
+}
+)
+```
+
+---------
+### request_issue
+Request the issuance of tokens
+
+\# Arguments
+
+* `origin` - sender of the transaction
+* `amount` - amount of BTC the user wants to convert to issued tokens. Note that the
+amount of issued tokens received will be less, because a fee is subtracted.
+* `vault` - address of the vault
+* `griefing_collateral` - amount of collateral
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| amount | `BalanceOf<T>` | 
+| vault_id | `DefaultVaultId<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Issue', 'request_issue', {
+    'amount': 'u128',
+    'vault_id': {
+        'account_id': 'AccountId',
+        'currencies': {
+            'collateral': {
+                'ForeignAsset': 'u32',
+                'LendToken': 'u32',
+                'Token': (
+                    'DOT',
+                    'IBTC',
+                    'INTR',
+                    'KSM',
+                    'KBTC',
+                    'KINT',
+                ),
+            },
+            'wrapped': {
+                'ForeignAsset': 'u32',
+                'LendToken': 'u32',
+                'Token': (
+                    'DOT',
+                    'IBTC',
+                    'INTR',
+                    'KSM',
+                    'KBTC',
+                    'KINT',
+                ),
+            },
+        },
+    },
+}
+)
+```
+
+---------
+### set_issue_period
+Set the default issue period for tx verification.
+
+\# Arguments
+
+* `origin` - the dispatch origin of this call (must be _Root_)
+* `period` - default period for new requests
+
+\# Weight: `O(1)`
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| period | `T::BlockNumber` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Issue', 'set_issue_period', {'period': 'u32'}
+)
+```
+
+---------
+## Events
+
+---------
+### CancelIssue
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| issue_id | `H256` | ```[u8; 32]```
+| requester | `T::AccountId` | ```AccountId```
+| griefing_collateral | `BalanceOf<T>` | ```u128```
+
+---------
+### ExecuteIssue
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| issue_id | `H256` | ```[u8; 32]```
+| requester | `T::AccountId` | ```AccountId```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}}}```
+| amount | `BalanceOf<T>` | ```u128```
+| fee | `BalanceOf<T>` | ```u128```
+
+---------
+### IssueAmountChange
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| issue_id | `H256` | ```[u8; 32]```
+| amount | `BalanceOf<T>` | ```u128```
+| fee | `BalanceOf<T>` | ```u128```
+| confiscated_griefing_collateral | `BalanceOf<T>` | ```u128```
+
+---------
+### IssuePeriodChange
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| period | `T::BlockNumber` | ```u32```
+
+---------
+### RequestIssue
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| issue_id | `H256` | ```[u8; 32]```
+| requester | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
+| fee | `BalanceOf<T>` | ```u128```
+| griefing_collateral | `BalanceOf<T>` | ```u128```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}}}```
+| vault_address | `BtcAddress` | ```{'P2PKH': '[u8; 20]', 'P2SH': '[u8; 20]', 'P2WPKHv0': '[u8; 20]', 'P2WSHv0': '[u8; 32]'}```
+| vault_public_key | `BtcPublicKey` | ```[u8; 33]```
+
+---------
+## Storage functions
+
+---------
+### IssueBtcDustValue
+ The minimum amount of btc that is required for issue requests; lower values would
+ risk the rejection of payment on Bitcoin.
+
+#### Python
+```python
+result = substrate.query(
+    'Issue', 'IssueBtcDustValue', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### IssuePeriod
+ The time difference in number of blocks between an issue request is created
+ and required completion time by a user. The issue period has an upper limit
+ to prevent griefing of vault collateral.
+
+#### Python
+```python
+result = substrate.query(
+    'Issue', 'IssuePeriod', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### IssueRequests
+ Users create issue requests to issue tokens. This mapping provides access
+ from a unique hash `IssueId` to an `IssueRequest` struct.
+
+#### Python
+```python
+result = substrate.query(
+    'Issue', 'IssueRequests', ['[u8; 32]']
+)
+```
+
+#### Return value
+```python
+{
+    'amount': 'u128',
+    'btc_address': {
+        'P2PKH': '[u8; 20]',
+        'P2SH': '[u8; 20]',
+        'P2WPKHv0': '[u8; 20]',
+        'P2WSHv0': '[u8; 32]',
+    },
+    'btc_height': 'u32',
+    'btc_public_key': '[u8; 33]',
+    'fee': 'u128',
+    'griefing_collateral': 'u128',
+    'opentime': 'u32',
+    'period': 'u32',
+    'requester': 'AccountId',
+    'status': ('Pending', 'Completed', 'Cancelled'),
+    'vault': {
+        'account_id': 'AccountId',
+        'currencies': {
+            'collateral': {
+                'ForeignAsset': 'u32',
+                'LendToken': 'u32',
+                'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'),
+            },
+            'wrapped': {
+                'ForeignAsset': 'u32',
+                'LendToken': 'u32',
+                'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'),
+            },
+        },
+    },
+}
+```
+---------
+### StorageVersion
+ Build storage at V1 (requires default 0).
+
+#### Python
+```python
+result = substrate.query(
+    'Issue', 'StorageVersion', []
+)
+```
+
+#### Return value
+```python
+('V0', 'V1', 'V2', 'V3', 'V4')
+```
+---------
+## Errors
+
+---------
+### AmountBelowDustAmount
+Issue amount is too small.
+
+---------
+### CommitPeriodExpired
+Issue request has expired.
+
+---------
+### InvalidExecutor
+Not expected origin.
+
+---------
+### IssueCancelled
+Issue request already cancelled.
+
+---------
+### IssueCompleted
+Issue request already completed.
+
+---------
+### IssueIdNotFound
+Issue request not found.
+
+---------
+### TimeNotExpired
+Issue request has not expired.
+
+---------
+### VaultNotAcceptingNewIssues
+Vault is not active.
+
+---------
+### WaitingForRelayerInitialization
+Relay is not initialized.
+
+---------

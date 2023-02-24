@@ -36,16 +36,26 @@ def generate_docs(node_url: str):
         version_info = substrate.get_constant('System', 'Version')
         runtime_name = version_info['spec_name'].value
 
-        doc_file_name = os.path.join(
-            os.path.dirname(__file__), 'docs', f'{runtime_name.replace(" ", "-").lower()}.md'
+        doc_dir_name = os.path.join(
+            os.path.dirname(__file__), 'docs', runtime_name.replace(" ", "-").lower()
         )
 
-        doc = [f"# {runtime_name}"]
-        doc += ['---------']
+        doc_file_name = os.path.join(
+            doc_dir_name, 'index.md'
+        )
+
+        result = {'name': substrate.chain, 'file': f'{runtime_name.replace(" ", "-").lower()}/index.md', 'pallets': []}
+
+        os.makedirs(doc_dir_name, exist_ok=True)
+
+        doc = [f"# {substrate.chain}"]
+        doc += ['\n---------\n']
 
         # doc += [f"Document generated: {strftime('%Y-%m-%d %H:%M:%S')}"]
 
-        doc += ["| Properties |  |"]
+        doc += [f"## Properties"]
+
+        doc += ["| Name | Value |"]
         doc += ["| -------- | -------- |"]
         doc += [f"| Spec name     | {version_info['spec_name']}     |"]
         doc += [f"| Implementation name     | {version_info['impl_name']}     |"]
@@ -57,16 +67,27 @@ def generate_docs(node_url: str):
         pallets = substrate.get_metadata().pallets
         pallets.sort(key=lambda x: x.name)
 
+        if len(pallets) > 0:
+            doc += [f"\n## Pallets"]
+
+            doc += ["| Name | Calls | Events | Storage functions | Constants | Errors"]
+            doc += ["| -------- | -------- | -------- | -------- | -------- | -------- |"]
+
         for pallet in pallets:
 
-            doc.append(f'\n## {pallet.name}')
-            doc += ['---------']
+            pallet_file_name = os.path.join(doc_dir_name, f'{pallet.name.lower()}.md')
+            rel_link = f'{runtime_name.replace(" ", "-").lower()}/{pallet.name.lower()}.md'
+
+            result['pallets'].append({'name': pallet.name, 'file': rel_link})
+
+            pallet_doc = [f'\n# {pallet.name}']
+            pallet_doc += ['\n---------']
 
             # Call functions
             if pallet.calls:
 
-                doc.append(f'### Calls')
-                doc += ['---------']
+                pallet_doc.append(f'## Calls')
+                pallet_doc += ['\n---------']
 
                 # Sort by name
                 call_functions = pallet.calls.elements
@@ -74,34 +95,34 @@ def generate_docs(node_url: str):
 
                 for call_function in call_functions:
 
-                    doc.append(f"#### {call_function.value['name']}")
+                    pallet_doc.append(f"### {call_function.value['name']}")
 
                     for d in call_function.value['docs']:
                         d = html.escape(d)
-                        doc.append(d.replace('#', '\\#'))
+                        pallet_doc.append(d.replace('#', '\\#'))
 
-                    doc += [f'##### Attributes']
+                    pallet_doc += [f'#### Attributes']
 
                     if call_function.args:
-                        doc += [f'| Name | Type |']
-                        doc += [f'| -------- | -------- | ']
+                        pallet_doc += [f'| Name | Type |']
+                        pallet_doc += [f'| -------- | -------- | ']
 
                         for arg in call_function.args:
-                            doc += [f'| {arg.name} | `{arg.value["typeName"]}` | ']
+                            pallet_doc += [f'| {arg.name} | `{arg.value["typeName"]}` | ']
                     else:
-                        doc += ['No attributes']
+                        pallet_doc += ['No attributes']
 
-                    doc += ['', f'##### Python']
-                    doc += [f'```python']
-                    doc += [f"call = substrate.compose_call(\n    '{pallet.name}', '{call_function.name}', {pformat(call_function.get_param_info(max_recursion=5), indent=4, width=40)}\n)"]
-                    doc += [f'```']
-                    doc += ['\n---------']
+                    pallet_doc += ['', f'#### Python']
+                    pallet_doc += [f'```python']
+                    pallet_doc += [f"call = substrate.compose_call(\n    '{pallet.name}', '{call_function.name}', {pformat(call_function.get_param_info(max_recursion=5), indent=4, width=40)}\n)"]
+                    pallet_doc += [f'```']
+                    pallet_doc += ['\n---------']
 
             # Events
             if pallet.events:
 
-                doc.append(f'### Events')
-                doc += ['---------']
+                pallet_doc.append(f'## Events')
+                pallet_doc += ['\n---------']
 
                 # Sort by name
                 events = pallet.events.elements
@@ -109,18 +130,18 @@ def generate_docs(node_url: str):
 
                 for event in events:
 
-                    doc.append(f"#### {event.name}")
+                    pallet_doc.append(f"### {event.name}")
 
                     for d in event.docs:
                         d = html.escape(d).replace('#', '\\#')
-                        doc.append(d)
+                        pallet_doc.append(d)
 
-                    doc += [f'##### Attributes']
+                    pallet_doc += [f'#### Attributes']
 
                     if event.args:
 
-                        doc += [f'| Name | Type | Composition']
-                        doc += [f'| -------- | -------- | -------- |']
+                        pallet_doc += [f'| Name | Type | Composition']
+                        pallet_doc += [f'| -------- | -------- | -------- |']
 
                         for arg in event.args:
                             if type(arg.value) is str:
@@ -132,18 +153,18 @@ def generate_docs(node_url: str):
 
                             scale_cls = substrate.runtime_config.get_decoder_class(arg.type)
 
-                            doc += [f'| {arg.name} | `{scale_type}` | ```{scale_cls.generate_type_decomposition(max_recursion=4)}```']
+                            pallet_doc += [f'| {arg.name} | `{scale_type}` | ```{scale_cls.generate_type_decomposition(max_recursion=4)}```']
 
                     else:
-                        doc += ['No attributes']
+                        pallet_doc += ['No attributes']
 
-                    doc += ['\n---------']
+                    pallet_doc += ['\n---------']
 
             # Storage functions
             if pallet.storage:
 
-                doc.append(f'### Storage functions')
-                doc += ['---------']
+                pallet_doc.append(f'## Storage functions')
+                pallet_doc += ['\n---------']
 
                 # Sort by name
                 storage_functions = pallet.storage
@@ -151,32 +172,32 @@ def generate_docs(node_url: str):
 
                 for storage_function in storage_functions:
 
-                    doc.append(f"#### {storage_function.value['name']}")
+                    pallet_doc.append(f"### {storage_function.value['name']}")
 
                     for d in storage_function.docs:
                         d = html.escape(d.replace('#', '\\#'))
-                        doc.append(d)
+                        pallet_doc.append(d)
 
-                    doc += ['', f'##### Python']
-                    doc += [f'```python']
-                    doc += [
+                    pallet_doc += ['', f'#### Python']
+                    pallet_doc += [f'```python']
+                    pallet_doc += [
                         f"result = substrate.query(\n    '{pallet.name}', '{storage_function.name}', {pformat(storage_function.get_param_info(max_recursion=5), indent=4, width=40)}\n)"]
-                    doc += [f'```']
+                    pallet_doc += [f'```']
 
                     return_obj = substrate.runtime_config.create_scale_object(storage_function.get_value_type_string())
 
-                    doc += ['', f'##### Return value']
-                    doc += [f'```python']
-                    doc += [pformat(return_obj.generate_type_decomposition(max_recursion=4))]
-                    doc += [f'```']
+                    pallet_doc += ['', f'#### Return value']
+                    pallet_doc += [f'```python']
+                    pallet_doc += [pformat(return_obj.generate_type_decomposition(max_recursion=4))]
+                    pallet_doc += [f'```']
 
-                    doc += ['---------']
+                    pallet_doc += ['---------']
 
             # Constants
             if len(pallet.constants or []) > 0:
 
-                doc += [f'### Constants']
-                doc += ['---------']
+                pallet_doc += [f'## Constants']
+                pallet_doc += ['\n---------']
 
                 # Sort by name
                 constants = pallet.constants
@@ -192,46 +213,52 @@ def generate_docs(node_url: str):
                     except (ValueError, RemainingScaleBytesNotEmptyException, NotImplementedError):
                         value = constant.constant_value
 
-                    doc += [f'#### {constant.name}']
+                    pallet_doc += [f'### {constant.name}']
 
                     for d in constant.docs:
                         d = html.escape(d.replace('#', '\\#'))
-                        doc.append(d)
+                        pallet_doc.append(d)
 
-                    doc += [f'##### Value']
-                    doc += [f'```python']
-                    doc += [pformat(value)]
-                    doc += [f'```']
+                    pallet_doc += [f'#### Value']
+                    pallet_doc += [f'```python']
+                    pallet_doc += [pformat(value)]
+                    pallet_doc += [f'```']
 
-                    doc += [f'##### Python']
-                    doc += [f'```python']
-                    doc += [f"constant = substrate.get_constant('{pallet.name}', '{constant.name}')"]
-                    doc += [f'```']
+                    pallet_doc += [f'#### Python']
+                    pallet_doc += [f'```python']
+                    pallet_doc += [f"constant = substrate.get_constant('{pallet.name}', '{constant.name}')"]
+                    pallet_doc += [f'```']
 
-                    doc += ['---------']
+                    pallet_doc += ['---------']
 
             # Errors
             if len(pallet.errors or []) > 0:
 
-                doc += [f'### Errors']
-                doc += ['---------']
+                pallet_doc += [f'## Errors']
+                pallet_doc += ['\n---------']
 
                 errors = pallet.errors.elements
                 errors.sort(key=lambda x: x.name)
 
                 for error in errors:
-                    doc += [f'#### {error.name}']
+                    pallet_doc += [f'### {error.name}']
 
                     for d in error.docs:
                         d = html.escape(d).replace('#', '\\#')
-                        doc.append(d)
+                        pallet_doc.append(d)
 
-                    doc += ['\n---------']
+                    pallet_doc += ['\n---------']
+
+            doc += [f"| [{pallet.name}]({pallet.name.lower()}.md) | [{len(pallet.calls or [])}]({pallet.name.lower()}.md#calls) | [{len(pallet.events or [])}]({pallet.name.lower()}.md#events) | [{len(pallet.storage or [])}]({pallet.name.lower()}.md#storage-functions) | [{len(pallet.constants or [])}]({pallet.name.lower()}.md#constants) | [{len(pallet.errors or [])}]({pallet.name.lower()}.md#errors)"]
+
+            # Write pallet doc
+            with open(pallet_file_name, "w") as file:
+                file.write('\n'.join(pallet_doc))
 
         with open(doc_file_name, "w") as file:
             file.write('\n'.join(doc))
 
-        return substrate.chain, f'{runtime_name.replace(" ", "-").lower()}.md'
+        return result
 
 
 if __name__ == "__main__":
@@ -250,10 +277,14 @@ if __name__ == "__main__":
             logging.error(f"Failed to generate docs for {network}")
 
     print('---- Nav items -------------')
-    for name, doc_file in network_info:
-        print(f'- {name}: {doc_file}')
+    for item in network_info:
+        print(f'- {item["name"]}: ')
+        print(f'  - {item["file"]}')
+        for pallet in item["pallets"]:
+            print(f'  - {pallet["name"]}: {pallet["file"]}')
 
-    print('---- Index items -------------')
-    for name, doc_file in network_info:
-        print(f'* [{name}]({doc_file})')
+
+    # print('---- Index items -------------')
+    # for name, doc_file in network_info:
+    #     print(f'* [{name}]({doc_file})')
 

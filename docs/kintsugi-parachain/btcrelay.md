@@ -1,0 +1,668 @@
+
+# BTCRelay
+
+---------
+## Calls
+
+---------
+### initialize
+One time function to initialize the BTC-Relay with the first block
+
+\# Arguments
+
+* `block_header_bytes` - 80 byte raw Bitcoin block header.
+* `block_height` - starting Bitcoin block height of the submitted block header.
+
+\# &lt;weight&gt;
+- Storage Reads:
+	- One storage read to check that parachain is not shutdown. O(1)
+	- One storage read to check if relayer authorization is disabled. O(1)
+	- One storage read to check if relayer is authorized. O(1)
+- Storage Writes:
+    - One storage write to store block hash. O(1)
+    - One storage write to store block header. O(1)
+	- One storage write to initialize main chain. O(1)
+    - One storage write to store best block hash. O(1)
+    - One storage write to store best block height. O(1)
+- Events:
+	- One event for initialization.
+
+Total Complexity: O(1)
+\# &lt;/weight&gt;
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| raw_block_header | `RawBlockHeader` | 
+| block_height | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BTCRelay', 'initialize', {
+    'block_height': 'u32',
+    'raw_block_header': '[u8; 80]',
+}
+)
+```
+
+---------
+### store_block_header
+Stores a single new block header
+
+\# Arguments
+
+* `raw_block_header` - 80 byte raw Bitcoin block header.
+
+\# &lt;weight&gt;
+Key: C (len of chains), P (len of positions)
+- Storage Reads:
+	- One storage read to check that parachain is not shutdown. O(1)
+	- One storage read to check if relayer authorization is disabled. O(1)
+	- One storage read to check if relayer is authorized. O(1)
+	- One storage read to check if block header is stored. O(1)
+	- One storage read to retrieve parent block hash. O(1)
+	- One storage read to check if difficulty check is disabled. O(1)
+	- One storage read to retrieve last re-target. O(1)
+	- One storage read to retrieve all Chains. O(C)
+- Storage Writes:
+    - One storage write to store block hash. O(1)
+    - One storage write to store block header. O(1)
+	- One storage mutate to extend main chain. O(1)
+    - One storage write to store best block hash. O(1)
+    - One storage write to store best block height. O(1)
+- Notable Computation:
+	- O(P) sort to reorg chains.
+- Events:
+	- One event for block stored (fork or extension).
+
+Total Complexity: O(C + P)
+\# &lt;/weight&gt;
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| raw_block_header | `RawBlockHeader` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BTCRelay', 'store_block_header', {'raw_block_header': '[u8; 80]'}
+)
+```
+
+---------
+### validate_transaction
+Validates a given raw Bitcoin transaction, according to the supported transaction
+format (see &lt;https://spec.interlay.io/intro/accepted-format.html&gt;)
+This DOES NOT check if the transaction is included in a block, nor does it guarantee that the
+transaction is fully valid according to the consensus (needs full node).
+
+\# Arguments
+* `raw_tx` - raw Bitcoin transaction
+* `expected_btc` - expected amount of BTC (satoshis) sent to the recipient
+* `recipient_btc_address` - expected Bitcoin address of recipient (p2sh, p2pkh, p2wpkh)
+* `op_return_id` - 32 byte hash identifier expected in OP_RETURN (replay protection)
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| raw_tx | `Vec<u8>` | 
+| expected_btc | `Value` | 
+| recipient_btc_address | `BtcAddress` | 
+| op_return_id | `Option<H256>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BTCRelay', 'validate_transaction', {
+    'expected_btc': 'i64',
+    'op_return_id': (None, '[u8; 32]'),
+    'raw_tx': 'Bytes',
+    'recipient_btc_address': {
+        'P2PKH': '[u8; 20]',
+        'P2SH': '[u8; 20]',
+        'P2WPKHv0': '[u8; 20]',
+        'P2WSHv0': '[u8; 32]',
+    },
+}
+)
+```
+
+---------
+### verify_and_validate_transaction
+Verifies the inclusion of `tx_id` into the relay, and validates the given raw Bitcoin transaction, according
+to the supported transaction format (see &lt;https://spec.interlay.io/intro/accepted-format.html&gt;)
+
+\# Arguments
+
+* `raw_merkle_proof` - The raw merkle proof as returned by bitcoin `gettxoutproof`
+* `confirmations` - The number of confirmations needed to accept the proof. If `none`, the value stored in
+  the StableBitcoinConfirmations storage item is used.
+* `raw_tx` - raw Bitcoin transaction
+* `expected_btc` - expected amount of BTC (satoshis) sent to the recipient
+* `recipient_btc_address` - 20 byte Bitcoin address of recipient of the BTC in the 1st  / payment UTXO
+* `op_return_id` - 32 byte hash identifier expected in OP_RETURN (replay protection)
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| raw_merkle_proof | `Vec<u8>` | 
+| confirmations | `Option<u32>` | 
+| raw_tx | `Vec<u8>` | 
+| expected_btc | `Value` | 
+| recipient_btc_address | `BtcAddress` | 
+| op_return_id | `Option<H256>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BTCRelay', 'verify_and_validate_transaction', {
+    'confirmations': (None, 'u32'),
+    'expected_btc': 'i64',
+    'op_return_id': (None, '[u8; 32]'),
+    'raw_merkle_proof': 'Bytes',
+    'raw_tx': 'Bytes',
+    'recipient_btc_address': {
+        'P2PKH': '[u8; 20]',
+        'P2SH': '[u8; 20]',
+        'P2WPKHv0': '[u8; 20]',
+        'P2WSHv0': '[u8; 32]',
+    },
+}
+)
+```
+
+---------
+### verify_transaction_inclusion
+Verifies the inclusion of `tx_id`
+
+\# Arguments
+
+* `tx_id` - The hash of the transaction to check for
+* `raw_merkle_proof` - The raw merkle proof as returned by bitcoin `gettxoutproof`
+* `confirmations` - The number of confirmations needed to accept the proof. If `none`, the value stored in
+  the `StableBitcoinConfirmations` storage item is used.
+
+\# &lt;weight&gt;
+Key: C (len of chains), P (len of positions)
+- Storage Reads:
+	- One storage read to check if inclusion check is disabled. O(1)
+	- One storage read to retrieve best block height. O(1)
+	- One storage read to check if transaction is in active fork. O(1)
+	- One storage read to retrieve block header. O(1)
+	- One storage read to check that parachain is not shutdown. O(1)
+	- One storage read to check stable bitcoin confirmations. O(1)
+	- One storage read to check stable parachain confirmations. O(1)
+\# &lt;/weight&gt;
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| tx_id | `H256Le` | 
+| raw_merkle_proof | `Vec<u8>` | 
+| confirmations | `Option<u32>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BTCRelay', 'verify_transaction_inclusion', {
+    'confirmations': (None, 'u32'),
+    'raw_merkle_proof': 'Bytes',
+    'tx_id': {'content': '[u8; 32]'},
+}
+)
+```
+
+---------
+## Events
+
+---------
+### ChainReorg
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| new_chain_tip_hash | `H256Le` | ```{'content': '[u8; 32]'}```
+| new_chain_tip_height | `u32` | ```u32```
+| fork_depth | `u32` | ```u32```
+
+---------
+### ForkAheadOfMainChain
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| main_chain_height | `u32` | ```u32```
+| fork_height | `u32` | ```u32```
+| fork_id | `u32` | ```u32```
+
+---------
+### Initialized
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| block_height | `u32` | ```u32```
+| block_hash | `H256Le` | ```{'content': '[u8; 32]'}```
+| relayer_id | `T::AccountId` | ```AccountId```
+
+---------
+### StoreForkHeader
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| chain_id | `u32` | ```u32```
+| fork_height | `u32` | ```u32```
+| block_hash | `H256Le` | ```{'content': '[u8; 32]'}```
+| relayer_id | `T::AccountId` | ```AccountId```
+
+---------
+### StoreMainChainHeader
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| block_height | `u32` | ```u32```
+| block_hash | `H256Le` | ```{'content': '[u8; 32]'}```
+| relayer_id | `T::AccountId` | ```AccountId```
+
+---------
+## Storage functions
+
+---------
+### BestBlock
+ Store the current blockchain tip
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'BestBlock', []
+)
+```
+
+#### Return value
+```python
+{'content': '[u8; 32]'}
+```
+---------
+### BestBlockHeight
+ Store the height of the best block
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'BestBlockHeight', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### BlockHeaders
+ Store Bitcoin block headers
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'BlockHeaders', [{'content': '[u8; 32]'}]
+)
+```
+
+#### Return value
+```python
+{
+    'block_header': {
+        'hash': {'content': '[u8; 32]'},
+        'hash_prev_block': {'content': '[u8; 32]'},
+        'merkle_root': {'content': '[u8; 32]'},
+        'nonce': 'u32',
+        'target': '[u64; 4]',
+        'timestamp': 'u32',
+        'version': 'i32',
+    },
+    'block_height': 'u32',
+    'chain_id': 'u32',
+    'para_height': 'u32',
+}
+```
+---------
+### ChainCounter
+ Increment-only counter used to track new BlockChain entries
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'ChainCounter', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### Chains
+ Priority queue of BlockChain elements, ordered by the maximum height (descending).
+ The first index into this mapping (0) is considered to be the longest chain. The value
+ of the entry is the index into `ChainsIndex` to retrieve the `BlockChain`.
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'Chains', ['u32']
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### ChainsHashes
+ Stores a mapping from (chain_index, block_height) to block hash
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'ChainsHashes', ['u32', 'u32']
+)
+```
+
+#### Return value
+```python
+{'content': '[u8; 32]'}
+```
+---------
+### ChainsIndex
+ Auxiliary mapping of chains ids to `BlockChain` entries. The first index into this
+ mapping (0) is considered to be the Bitcoin main chain.
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'ChainsIndex', ['u32']
+)
+```
+
+#### Return value
+```python
+{'chain_id': 'u32', 'max_height': 'u32', 'start_height': 'u32'}
+```
+---------
+### DisableDifficultyCheck
+ Whether the module should perform difficulty checks.
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'DisableDifficultyCheck', []
+)
+```
+
+#### Return value
+```python
+'bool'
+```
+---------
+### DisableInclusionCheck
+ Whether the module should perform inclusion checks.
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'DisableInclusionCheck', []
+)
+```
+
+#### Return value
+```python
+'bool'
+```
+---------
+### StableBitcoinConfirmations
+ Global security parameter k for stable Bitcoin transactions
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'StableBitcoinConfirmations', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### StableParachainConfirmations
+ Global security parameter k for stable Parachain transactions
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'StableParachainConfirmations', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### StartBlockHeight
+ BTC height when the relay was initialized
+
+#### Python
+```python
+result = substrate.query(
+    'BTCRelay', 'StartBlockHeight', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+## Constants
+
+---------
+### ParachainBlocksPerBitcoinBlock
+#### Value
+```python
+50
+```
+#### Python
+```python
+constant = substrate.get_constant('BTCRelay', 'ParachainBlocksPerBitcoinBlock')
+```
+---------
+## Errors
+
+---------
+### AlreadyInitialized
+Already initialized
+
+---------
+### AlreadyReported
+Error code already reported
+
+---------
+### ArithmeticOverflow
+Arithmetic overflow
+
+---------
+### ArithmeticUnderflow
+Arithmetic underflow
+
+---------
+### BitcoinConfirmations
+Transaction has less confirmations of Bitcoin blocks than required
+
+---------
+### BlockHeightOverflow
+Overflow of block height
+
+---------
+### BlockNotFound
+Block header not found for given hash
+
+---------
+### ChainCounterOverflow
+Overflow of chain counter
+
+---------
+### ChainsUnderflow
+Underflow of stored blockchains counter
+
+---------
+### DiffTargetHeader
+Incorrect difficulty target specified in block header
+
+---------
+### DuplicateBlock
+Block already stored
+
+---------
+### EndOfFile
+EndOfFile reached while parsing
+
+---------
+### ForkIdNotFound
+Blockchain with requested ID not found
+
+---------
+### InvalidBlockVersion
+Invalid block header version
+
+---------
+### InvalidBtcAddress
+Specified invalid Bitcoin address
+
+---------
+### InvalidBtcHash
+User supplied an invalid address
+
+---------
+### InvalidChainID
+Invalid chain ID
+
+---------
+### InvalidCompact
+Invalid compact value in header
+
+---------
+### InvalidHeaderSize
+Invalid block header size
+
+---------
+### InvalidMerkleProof
+Invalid merkle proof
+
+---------
+### InvalidOpReturn
+Incorrect identifier in OP_RETURN field
+
+---------
+### InvalidOpReturnTransaction
+Transaction does meet the requirements to be a valid op-return payment
+
+---------
+### InvalidOutputFormat
+Incorrect transaction output format
+
+---------
+### InvalidPayment
+Incorrect recipient Bitcoin address
+
+---------
+### InvalidPaymentAmount
+Invalid payment amount
+
+---------
+### InvalidScript
+User supplied an invalid script
+
+---------
+### InvalidStartHeight
+Start height must be start of difficulty period
+
+---------
+### InvalidTransaction
+Transaction does meet the requirements to be considered valid
+
+---------
+### InvalidTxVersion
+Invalid transaction version
+
+---------
+### InvalidTxid
+Transaction hash does not match given txid
+
+---------
+### LowDiff
+PoW hash does not meet difficulty target of header
+
+---------
+### MalformedHeader
+Format of the header is invalid
+
+---------
+### MalformedMerkleProof
+Merkle proof is malformed
+
+---------
+### MalformedOpReturnOutput
+Format of the OP_RETURN transaction output is invalid
+
+---------
+### MalformedP2PKHOutput
+
+---------
+### MalformedP2SHOutput
+
+---------
+### MalformedTransaction
+Transaction has incorrect format
+
+---------
+### MalformedTxid
+Malformed transaction identifier
+
+---------
+### MalformedWitnessOutput
+Format of the BIP141 witness transaction output is invalid
+
+---------
+### MissingBlockHeight
+Missing the block at this height
+
+---------
+### OngoingFork
+Current fork ongoing
+
+---------
+### ParachainConfirmations
+Transaction has less confirmations of Parachain blocks than required
+
+---------
+### PrevBlock
+Previous block hash not found
+
+---------
+### Shutdown
+BTC Parachain has shut down
+
+---------
+### TryIntoIntError
+TryInto failed on integer
+
+---------
+### UnauthorizedRelayer
+Unauthorized staked relayer
+
+---------
+### UnknownErrorcode
+Error code not applicable to blocks
+
+---------
+### UnsupportedInputFormat
+
+---------
+### UnsupportedOutputFormat
+
+---------
