@@ -2,6 +2,12 @@
 
 Documentation of Substrate metadata for well known runtimes and how to use it with [py-substrate-interface](https://github.com/polkascan/py-substrate-interface).
 
+## Overview of available runtimes
+
+* [Polkadot Ecosystem Runtimes](polkadot-runtimes.md)
+* [Kusama Ecosystem Runtimes](kusama-runtimes.md)
+* [Standalone Runtimes](standalone-runtimes.md)
+
 ## How to read the type information
 
 ### Core types

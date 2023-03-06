@@ -1,4 +1,5 @@
 networks:
+  # == Polkadot ecosystem ==
   - wss://rpc.polkadot.io
   - wss://statemint-rpc.polkadot.io
   - wss://polkadot-collectives-rpc.polkadot.io
@@ -27,6 +28,7 @@ networks:
   - wss://rpc.parallel.fi
   - wss://api.phala.network/ws
   - wss://eu-ws.unique.network/
+  # == Kusama ecosystem ==
   - wss://kusama-rpc.polkadot.io
   - wss://statemine-rpc.polkadot.io
   - wss://fullnode.altair.centrifuge.io
@@ -62,3 +64,12 @@ networks:
   - wss://ws.parachain-collator-1.c1.sora2.soramitsu.co.jp
   - wss://turing-rpc.dwellir.com
   - wss://zeitgeist-rpc.dwellir.com
+  # == Standalone networks ==
+  - wss://odyssey.aresprotocol.io
+  - wss://archivelb.nakamoto.opentensor.ai:9943
+  - wss://mainnet.chainx.org/ws
+  - wss://rpc.darwinia.network
+  - wss://crab-rpc.darwinia.network
+  - wss://mainnet2.edgewa.re
+  - wss://rpc.joystream.org
+  - wss://mainnet-rpc.polymesh.network
