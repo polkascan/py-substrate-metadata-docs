@@ -70,7 +70,7 @@ def generate_docs(node_url: str):
         if len(pallets) > 0:
             doc += [f"\n## Pallets"]
 
-            doc += ["| Name | Calls | Events | Storage functions | Constants | Errors"]
+            doc += ["| Name | Calls | Events | Storage functions | Constants | Errors |"]
             doc += ["| -------- | -------- | -------- | -------- | -------- | -------- |"]
 
         for pallet in pallets:
@@ -249,7 +249,7 @@ def generate_docs(node_url: str):
 
                     pallet_doc += ['\n---------']
 
-            doc += [f"| [{pallet.name}]({pallet.name.lower()}.md) | [{len(pallet.calls or [])}]({pallet.name.lower()}.md#calls) | [{len(pallet.events or [])}]({pallet.name.lower()}.md#events) | [{len(pallet.storage or [])}]({pallet.name.lower()}.md#storage-functions) | [{len(pallet.constants or [])}]({pallet.name.lower()}.md#constants) | [{len(pallet.errors or [])}]({pallet.name.lower()}.md#errors)"]
+            doc += [f"| [{pallet.name}]({pallet.name.lower()}.md) | [{len(pallet.calls or [])}]({pallet.name.lower()}.md#calls) | [{len(pallet.events or [])}]({pallet.name.lower()}.md#events) | [{len(pallet.storage or [])}]({pallet.name.lower()}.md#storage-functions) | [{len(pallet.constants or [])}]({pallet.name.lower()}.md#constants) | [{len(pallet.errors or [])}]({pallet.name.lower()}.md#errors) |"]
 
             # Write pallet doc
             with open(pallet_file_name, "w") as file:
