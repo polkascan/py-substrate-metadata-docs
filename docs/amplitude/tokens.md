@@ -30,25 +30,18 @@ call = substrate.compose_call(
     'amount': 'u128',
     'currency_id': {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
     'dest': {
         'Address20': '[u8; 20]',
@@ -92,25 +85,18 @@ call = substrate.compose_call(
     'Tokens', 'set_balance', {
     'currency_id': {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
     'new_free': 'u128',
     'new_reserved': 'u128',
@@ -154,25 +140,18 @@ call = substrate.compose_call(
     'amount': 'u128',
     'currency_id': {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
     'dest': {
         'Address20': '[u8; 20]',
@@ -219,25 +198,18 @@ call = substrate.compose_call(
     'Tokens', 'transfer_all', {
     'currency_id': {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
     'dest': {
         'Address20': '[u8; 20]',
@@ -278,25 +250,18 @@ call = substrate.compose_call(
     'amount': 'u128',
     'currency_id': {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
     'dest': {
         'Address20': '[u8; 20]',
@@ -318,7 +283,7 @@ A balance was set by root.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 | free | `T::Balance` | ```u128```
 | reserved | `T::Balance` | ```u128```
@@ -329,7 +294,7 @@ Deposited some balance into an account
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 
@@ -340,7 +305,7 @@ ExistentialDeposit, resulting in an outright loss.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 
@@ -350,7 +315,7 @@ An account was created with some free balance.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 
@@ -361,7 +326,7 @@ Some locked funds were unlocked
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | lock_id | `LockIdentifier` | ```[u8; 8]```
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 
 ---------
@@ -371,7 +336,7 @@ Some funds are locked
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | lock_id | `LockIdentifier` | ```[u8; 8]```
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 
@@ -382,7 +347,7 @@ another account).
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
@@ -394,7 +359,7 @@ Some balance was reserved (moved from free to reserved).
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 
@@ -404,7 +369,7 @@ Some balances were slashed (e.g. due to mis-behavior)
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 | free_amount | `T::Balance` | ```u128```
 | reserved_amount | `T::Balance` | ```u128```
@@ -415,7 +380,7 @@ The total issuance of an currency has been set
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | amount | `T::Balance` | ```u128```
 
 ---------
@@ -424,7 +389,7 @@ Transfer succeeded.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
@@ -435,7 +400,7 @@ Some balance was unreserved (moved from reserved to free).
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 
@@ -445,7 +410,7 @@ Some balances were withdrawn (e.g. pay for transaction fee)
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': ('KSM', 'KAR', 'AUSD', 'BNC', 'VsKSM', 'HKO', 'MOVR', 'SDN', 'KINT', 'KBTC', 'GENS', 'XOR', 'TEER', 'KILT', 'PHA', 'ZTG', 'USD')}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
 | who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 
@@ -468,25 +433,18 @@ result = substrate.query(
     'AccountId',
     {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
 ]
 )
@@ -508,25 +466,18 @@ result = substrate.query(
     'AccountId',
     {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
 ]
 )
@@ -547,25 +498,18 @@ result = substrate.query(
     'AccountId',
     {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
 ]
 )
@@ -585,25 +529,18 @@ result = substrate.query(
     'Tokens', 'TotalIssuance', [
     {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
 ]
 )

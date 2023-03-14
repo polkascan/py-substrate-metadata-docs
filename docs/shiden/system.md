@@ -5,21 +5,6 @@
 ## Calls
 
 ---------
-### fill_block
-A dispatch that will fill the block weight up to the given ratio.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ratio | `Perbill` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-```
-
----------
 ### kill_prefix
 Kill all storage items with a key that starts with the given prefix.
 
@@ -311,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -382,23 +367,22 @@ result = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             None: None,
             'Assets': {
+                'AccountsDestroyed': {
+                    'accounts_destroyed': 'u32',
+                    'accounts_remaining': 'u32',
+                    'asset_id': 'u128',
+                },
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
                     'delegate': 'AccountId',
                     'owner': 'AccountId',
+                },
+                'ApprovalsDestroyed': {
+                    'approvals_destroyed': 'u32',
+                    'approvals_remaining': 'u32',
+                    'asset_id': 'u128',
                 },
                 'ApprovedTransfer': {
                     'amount': 'u128',
@@ -420,6 +404,7 @@ result = substrate.query(
                     'owner': 'AccountId',
                 },
                 'Destroyed': {'asset_id': 'u128'},
+                'DestructionStarted': {'asset_id': 'u128'},
                 'ForceCreated': {'asset_id': 'u128', 'owner': 'AccountId'},
                 'Frozen': {'asset_id': 'u128', 'who': 'AccountId'},
                 'Issued': {
@@ -746,6 +731,17 @@ result = substrate.query(
                 'Sudid': {'sudo_result': 'scale_info::30'},
                 'SudoAsDone': {'sudo_result': 'scale_info::30'},
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1052,7 +1048,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'shiden',
     'impl_version': 0,
     'spec_name': 'shiden',
-    'spec_version': 86,
+    'spec_version': 90,
     'state_version': 1,
     'transaction_version': 2,
 }

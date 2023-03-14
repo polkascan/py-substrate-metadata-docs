@@ -300,7 +300,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::639'}
+{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::640'}
 ```
 ---------
 ### HasOriginOfShellStartedIncubation

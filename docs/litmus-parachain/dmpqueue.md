@@ -22,16 +22,14 @@ Events:
 | Name | Type |
 | -------- | -------- | 
 | index | `OverweightIndex` | 
-| weight_limit | `Weight` | 
+| weight_limit | `XcmWeight` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'DmpQueue', 'service_overweight', {
     'index': 'u64',
-    'weight_limit': {
-        'ref_time': 'u64',
-    },
+    'weight_limit': 'u64',
 }
 )
 ```
@@ -64,7 +62,7 @@ Downward message is overweight and was placed in the overweight queue.
 | -------- | -------- | -------- |
 | message_id | `MessageId` | ```[u8; 32]```
 | overweight_index | `OverweightIndex` | ```u64```
-| required_weight | `Weight` | ```{'ref_time': 'u64'}```
+| required_weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### OverweightServiced
@@ -73,7 +71,7 @@ Downward message from the overweight queue was executed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | overweight_index | `OverweightIndex` | ```u64```
-| weight_used | `Weight` | ```{'ref_time': 'u64'}```
+| weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### UnsupportedVersion
@@ -90,8 +88,8 @@ The weight limit for handling downward messages was reached.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | message_id | `MessageId` | ```[u8; 32]```
-| remaining_weight | `Weight` | ```{'ref_time': 'u64'}```
-| required_weight | `Weight` | ```{'ref_time': 'u64'}```
+| remaining_weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
+| required_weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ## Storage functions
@@ -109,7 +107,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'max_individual': {'ref_time': 'u64'}}
+{'max_individual': {'proof_size': 'u64', 'ref_time': 'u64'}}
 ```
 ---------
 ### Overweight

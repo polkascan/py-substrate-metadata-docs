@@ -417,6 +417,16 @@ Bridge limit has been updated.
 | None | `BlockNumber` | ```u32```
 
 ---------
+### BridgeTxFailed
+Bridge Tx failed.  Recipient missing CDD or limit reached.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': '[u8; 32]'}```
+| None | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}```
+
+---------
 ### BridgeTxScheduleFailed
 Failed to schedule Bridge Tx.
 #### Attributes

@@ -684,6 +684,14 @@ call = substrate.compose_call(
 | nft_id | `T::ItemId` | ```u32```
 
 ---------
+### PropertiesRemoved
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| collection_id | `T::CollectionId` | ```u32```
+| maybe_nft_id | `Option<T::ItemId>` | ```(None, 'u32')```
+
+---------
 ### PropertyRemoved
 #### Attributes
 | Name | Type | Composition
@@ -974,6 +982,17 @@ constant = substrate.get_constant('RmrkCore', 'NestingBudget')
 #### Python
 ```python
 constant = substrate.get_constant('RmrkCore', 'PartsLimit')
+```
+---------
+### PropertiesLimit
+ The maximum number of properties each can have
+#### Value
+```python
+15
+```
+#### Python
+```python
+constant = substrate.get_constant('RmrkCore', 'PropertiesLimit')
 ```
 ---------
 ### ResourceSymbolLimit

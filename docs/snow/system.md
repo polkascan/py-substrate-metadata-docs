@@ -311,12 +311,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -382,6 +382,35 @@ result = substrate.query(
 [
     {
         'event': {
+            'Airdrop': {
+                'AirdropStateUpdated': {
+                    'new_state': 'scale_info::43',
+                    'old_state': 'scale_info::43',
+                },
+                'ClaimPartialSuccess': '[u8; 20]',
+                'ClaimSuccess': '[u8; 20]',
+                'CreditorBalanceLow': None,
+                'MerkleRootUpdated': {
+                    'new_root': '[u8; 32]',
+                    'old_root': (None, '[u8; 32]'),
+                },
+                'ServerAccountChanged': {
+                    'new_account': 'AccountId',
+                    'old_account': (None, 'AccountId'),
+                },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
@@ -443,35 +472,6 @@ result = substrate.query(
                     'delegate': 'AccountId',
                     'destination': 'AccountId',
                     'owner': 'AccountId',
-                },
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'Airdrop': {
-                'AirdropStateUpdated': {
-                    'new_state': 'scale_info::43',
-                    'old_state': 'scale_info::43',
-                },
-                'ClaimPartialSuccess': '[u8; 20]',
-                'ClaimSuccess': '[u8; 20]',
-                'CreditorBalanceLow': None,
-                'MerkleRootUpdated': {
-                    'new_root': '[u8; 32]',
-                    'old_root': (None, '[u8; 32]'),
-                },
-                'ServerAccountChanged': {
-                    'new_account': 'AccountId',
-                    'old_account': (None, 'AccountId'),
                 },
             },
             'Balances': {

@@ -428,7 +428,6 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
-            None: None,
             'CollatorSelection': {
                 'CandidateAdded': {
                     'account_id': 'AccountId',
@@ -1373,6 +1372,7 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

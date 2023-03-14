@@ -394,6 +394,16 @@ The election has been finalized, with the given computation and score.
 | score | `ElectionScore` | ```{'minimal_stake': 'u128', 'sum_stake': 'u128', 'sum_stake_squared': 'u128'}```
 
 ---------
+### PhaseTransitioned
+There was a phase transition in a given round.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| from | `Phase<T::BlockNumber>` | ```{'Off': None, 'Signed': None, 'Unsigned': ('bool', 'u32'), 'Emergency': None}```
+| to | `Phase<T::BlockNumber>` | ```{'Off': None, 'Signed': None, 'Unsigned': ('bool', 'u32'), 'Emergency': None}```
+| round | `u32` | ```u32```
+
+---------
 ### Rewarded
 An account has been rewarded for their signed submission being finalized.
 #### Attributes
@@ -401,14 +411,6 @@ An account has been rewarded for their signed submission being finalized.
 | -------- | -------- | -------- |
 | account | `<T as frame_system::Config>::AccountId` | ```AccountId```
 | value | `BalanceOf<T>` | ```u128```
-
----------
-### SignedPhaseStarted
-The signed phase of the given round has started.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| round | `u32` | ```u32```
 
 ---------
 ### Slashed
@@ -423,23 +425,17 @@ An account has been slashed for submitting an invalid signed submission.
 ### SolutionStored
 A solution was stored with the given compute.
 
-If the solution is signed, this means that it hasn&\#x27;t yet been processed. If the
-solution is unsigned, this means that it has also been processed.
-
-The `bool` is `true` when a previous solution was ejected to make room for this one.
+The `origin` indicates the origin of the solution. If `origin` is `Some(AccountId)`,
+the stored solution was submited in the signed phase by a miner with the `AccountId`.
+Otherwise, the solution was stored either during the unsigned phase or by
+`T::ForceOrigin`. The `bool` is `true` when a previous solution was ejected to make
+room for this one.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | compute | `ElectionCompute` | ```('OnChain', 'Signed', 'Unsigned', 'Fallback', 'Emergency')```
+| origin | `Option<T::AccountId>` | ```(None, 'AccountId')```
 | prev_ejected | `bool` | ```bool```
-
----------
-### UnsignedPhaseStarted
-The unsigned phase of the given round has started.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| round | `u32` | ```u32```
 
 ---------
 ## Storage functions
@@ -766,7 +762,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxVotesPe
 ### MinerMaxWeight
 #### Value
 ```python
-{'proof_size': 3879731, 'ref_time': 1473839298000}
+{'proof_size': 13650590614545068195, 'ref_time': 1471949528000}
 ```
 #### Python
 ```python
@@ -867,7 +863,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxSubmis
  this value.
 #### Value
 ```python
-{'proof_size': 3879731, 'ref_time': 1473839298000}
+{'proof_size': 13650590614545068195, 'ref_time': 1471949528000}
 ```
 #### Python
 ```python

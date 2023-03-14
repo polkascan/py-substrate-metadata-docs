@@ -318,14 +318,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'IdleScheduler': {
-                'TaskAdded': {'task': 'scale_info::44', 'task_id': 'u32'},
-                'TaskDispatched': {
-                    'result': 'scale_info::32',
-                    'task_id': 'u32',
-                },
-            },
-            None: None,
             'AcalaOracle': {
                 'NewFeedData': {
                     'sender': 'AccountId',
@@ -873,6 +865,13 @@ result = substrate.query(
                 },
                 'UnAuthorizationAll': {'authorizer': 'AccountId'},
             },
+            'IdleScheduler': {
+                'TaskAdded': {'task': 'scale_info::44', 'task_id': 'u32'},
+                'TaskDispatched': {
+                    'result': 'scale_info::32',
+                    'task_id': 'u32',
+                },
+            },
             'Incentives': {
                 'ClaimRewardDeductionRateUpdated': {
                     'deduction_rate': 'u128',
@@ -1269,6 +1268,18 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::24',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::32'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::24'},
+            },
+            None: None,
             'Tips': {
                 'NewTip': {'tip_hash': '[u8; 32]'},
                 'TipClosed': {
@@ -1423,17 +1434,6 @@ result = substrate.query(
                     'asset': 'scale_info::87',
                     'who': 'scale_info::74',
                 },
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::24',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::32'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::24'},
             },
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},

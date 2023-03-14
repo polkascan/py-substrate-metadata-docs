@@ -57,7 +57,7 @@ call = substrate.compose_call(
         ),
         'op': ('Count', 'Balance'),
     },
-    'values': 'scale_info::506',
+    'values': 'scale_info::507',
 }
 )
 ```
@@ -90,7 +90,7 @@ Set the active asset stat_types.
 call = substrate.compose_call(
     'Statistics', 'set_active_asset_stats', {
     'asset': {'Ticker': '[u8; 12]'},
-    'stat_types': 'scale_info::505',
+    'stat_types': 'scale_info::506',
 }
 )
 ```
@@ -123,7 +123,7 @@ Set asset transfer compliance rules.
 call = substrate.compose_call(
     'Statistics', 'set_asset_transfer_compliance', {
     'asset': {'Ticker': '[u8; 12]'},
-    'transfer_conditions': 'scale_info::507',
+    'transfer_conditions': 'scale_info::508',
 }
 )
 ```
@@ -155,7 +155,7 @@ Set/unset entities exempt from an asset&\#x27;s transfer compliance rules.
 ```python
 call = substrate.compose_call(
     'Statistics', 'set_entities_exempt', {
-    'entities': 'scale_info::508',
+    'entities': 'scale_info::509',
     'exempt_key': {
         'asset': {
             'Ticker': '[u8; 12]',
@@ -277,7 +277,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::505'
+'scale_info::506'
 ```
 ---------
 ### AssetStats
@@ -599,7 +599,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'paused': 'bool', 'requirements': 'scale_info::507'}
+{'paused': 'bool', 'requirements': 'scale_info::508'}
 ```
 ---------
 ### StorageVersion

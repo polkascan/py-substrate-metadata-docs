@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bifrost     |
 | Implementation name     | bifrost     |
-| Spec version     | 969     |
+| Spec version     | 970     |
 | SS58 Format     | 6     |
 | Token symbol      | ['BNC', 'KUSD', 'DOT', 'KSM', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR']     |
 | Token decimals      | [12, 12, 10, 12, 12, 18, 12, 10, 18]     |
@@ -32,7 +32,7 @@
 | [Farming](farming.md) | [14](farming.md#calls) | [16](farming.md#events) | [7](farming.md#storage-functions) | [3](farming.md#constants) | [11](farming.md#errors)
 | [FeeShare](feeshare.md) | [5](feeshare.md#calls) | [6](feeshare.md#events) | [3](feeshare.md#storage-functions) | [1](feeshare.md#constants) | [5](feeshare.md#errors)
 | [FlexibleFee](flexiblefee.md) | [1](flexiblefee.md#calls) | [3](flexiblefee.md#events) | [1](flexiblefee.md#storage-functions) | [4](flexiblefee.md#constants) | [4](flexiblefee.md#errors)
-| [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [17](identity.md#errors)
+| [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors)
 | [Indices](indices.md) | [5](indices.md#calls) | [3](indices.md#events) | [1](indices.md#storage-functions) | [1](indices.md#constants) | [5](indices.md#errors)
 | [LighteningRedeem](lighteningredeem.md) | [5](lighteningredeem.md#calls) | [5](lighteningredeem.md#events) | [4](lighteningredeem.md#storage-functions) | [1](lighteningredeem.md#constants) | [7](lighteningredeem.md#errors)
 | [LiquidityMining](liquiditymining.md) | [16](liquiditymining.md#calls) | [12](liquiditymining.md#events) | [5](liquiditymining.md#storage-functions) | [8](liquiditymining.md#constants) | [24](liquiditymining.md#errors)
@@ -51,8 +51,8 @@
 | [SalpLite](salplite.md) | [13](salplite.md#calls) | [14](salplite.md#events) | [5](salplite.md#storage-functions) | [8](salplite.md#constants) | [21](salplite.md#errors)
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors)
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors)
-| [Slp](slp.md) | [40](slp.md#calls) | [40](slp.md#events) | [21](slp.md#storage-functions) | [2](slp.md#constants) | [68](slp.md#errors)
-| [System](system.md) | [9](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors)
+| [Slp](slp.md) | [41](slp.md#calls) | [41](slp.md#events) | [21](slp.md#storage-functions) | [2](slp.md#constants) | [75](slp.md#errors)
+| [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors)
 | [SystemMaker](systemmaker.md) | [4](systemmaker.md#calls) | [5](systemmaker.md#events) | [1](systemmaker.md#storage-functions) | [3](systemmaker.md#constants) | [3](systemmaker.md#errors)
 | [SystemStaking](systemstaking.md) | [4](systemstaking.md#calls) | [12](systemstaking.md#events) | [3](systemstaking.md#storage-functions) | [5](systemstaking.md#constants) | [5](systemstaking.md#errors)
 | [TechnicalCommittee](technicalcommittee.md) | [7](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [0](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors)
@@ -62,9 +62,9 @@
 | [TokenIssuer](tokenissuer.md) | [6](tokenissuer.md#calls) | [6](tokenissuer.md#events) | [2](tokenissuer.md#storage-functions) | [0](tokenissuer.md#constants) | [3](tokenissuer.md#errors)
 | [Tokens](tokens.md) | [5](tokens.md#calls) | [13](tokens.md#events) | [4](tokens.md#storage-functions) | [2](tokens.md#constants) | [8](tokens.md#errors)
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors)
-| [Treasury](treasury.md) | [5](treasury.md#calls) | [8](treasury.md#events) | [3](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors)
+| [Treasury](treasury.md) | [5](treasury.md#calls) | [9](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors)
 | [UnknownTokens](unknowntokens.md) | [0](unknowntokens.md#calls) | [2](unknowntokens.md#events) | [2](unknowntokens.md#storage-functions) | [0](unknowntokens.md#constants) | [3](unknowntokens.md#errors)
-| [Utility](utility.md) | [5](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors)
+| [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors)
 | [VSBondAuction](vsbondauction.md) | [6](vsbondauction.md#calls) | [4](vsbondauction.md#events) | [4](vsbondauction.md#storage-functions) | [5](vsbondauction.md#constants) | [13](vsbondauction.md#errors)
 | [Vesting](vesting.md) | [8](vesting.md#calls) | [2](vesting.md#events) | [3](vesting.md#storage-functions) | [1](vesting.md#constants) | [7](vesting.md#errors)
 | [VstokenConversion](vstokenconversion.md) | [5](vstokenconversion.md#calls) | [9](vstokenconversion.md#events) | [3](vstokenconversion.md#storage-functions) | [3](vstokenconversion.md#constants) | [3](vstokenconversion.md#errors)

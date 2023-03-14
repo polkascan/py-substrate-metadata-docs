@@ -309,10 +309,10 @@ result = substrate.query(
         {
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
-            None: None,
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -378,7 +378,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AssetManager': {
                 'AssetRegistered': {
                     'asset_id': 'scale_info::133',
@@ -1032,24 +1031,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Treasury': {
-                'Awarded': {
-                    'account': 'AccountId',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'SpendApproved': {
-                    'amount': 'u128',
-                    'beneficiary': 'AccountId',
-                    'proposal_index': 'u32',
-                },
-                'Spending': {'budget_remaining': 'u128'},
-            },
             'UnknownTokens': {
                 'Deposited': {
                     'asset': 'scale_info::75',
@@ -1070,6 +1051,25 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::31'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::22'},
+            },
+            None: None,
+            'Treasury': {
+                'Awarded': {
+                    'account': 'AccountId',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'SpendApproved': {
+                    'amount': 'u128',
+                    'beneficiary': 'AccountId',
+                    'proposal_index': 'u32',
+                },
+                'Spending': {'budget_remaining': 'u128'},
             },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},

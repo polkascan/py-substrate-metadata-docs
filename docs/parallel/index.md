@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | parallel     |
 | Implementation name     | parallel     |
-| Spec version     | 194     |
+| Spec version     | 195     |
 | SS58 Format     | 172     |
 | Token symbol      | PARA     |
 | Token decimals      | 12     |
@@ -23,6 +23,7 @@
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors)
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors)
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors)
+| [BaseFee](basefee.md) | [2](basefee.md#calls) | [3](basefee.md#events) | [2](basefee.md#storage-functions) | [0](basefee.md#constants) | [0](basefee.md#errors)
 | [Bridge](bridge.md) | [10](bridge.md#calls) | [16](bridge.md#events) | [6](bridge.md#storage-functions) | [8](bridge.md#constants) | [14](bridge.md#errors)
 | [BridgeMembership](bridgemembership.md) | [7](bridgemembership.md#calls) | [6](bridgemembership.md#events) | [2](bridgemembership.md#storage-functions) | [0](bridgemembership.md#constants) | [3](bridgemembership.md#errors)
 | [CollatorSelection](collatorselection.md) | [5](collatorselection.md#calls) | [5](collatorselection.md#events) | [5](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [10](collatorselection.md#errors)
@@ -32,12 +33,15 @@
 | [CurrencyAdapter](currencyadapter.md) | [2](currencyadapter.md#calls) | [0](currencyadapter.md#events) | [0](currencyadapter.md#storage-functions) | [1](currencyadapter.md#constants) | [1](currencyadapter.md#errors)
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors)
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors)
+| [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [2](evm.md#storage-functions) | [0](evm.md#constants) | [10](evm.md#errors)
+| [EVMSignatureCall](evmsignaturecall.md) | [2](evmsignaturecall.md#calls) | [1](evmsignaturecall.md#events) | [0](evmsignaturecall.md#storage-functions) | [4](evmsignaturecall.md#constants) | [3](evmsignaturecall.md#errors)
 | [EmergencyShutdown](emergencyshutdown.md) | [2](emergencyshutdown.md#calls) | [2](emergencyshutdown.md#events) | [2](emergencyshutdown.md#storage-functions) | [0](emergencyshutdown.md#constants) | [0](emergencyshutdown.md#errors)
+| [Ethereum](ethereum.md) | [1](ethereum.md#calls) | [1](ethereum.md#events) | [5](ethereum.md#storage-functions) | [0](ethereum.md#constants) | [2](ethereum.md#errors)
 | [Farming](farming.md) | [9](farming.md#calls) | [9](farming.md#events) | [2](farming.md#storage-functions) | [4](farming.md#constants) | [14](farming.md#errors)
 | [GeneralCouncil](generalcouncil.md) | [7](generalcouncil.md#calls) | [7](generalcouncil.md#events) | [6](generalcouncil.md#storage-functions) | [0](generalcouncil.md#constants) | [10](generalcouncil.md#errors)
 | [GeneralCouncilMembership](generalcouncilmembership.md) | [7](generalcouncilmembership.md#calls) | [6](generalcouncilmembership.md#events) | [2](generalcouncilmembership.md#storage-functions) | [0](generalcouncilmembership.md#constants) | [3](generalcouncilmembership.md#errors)
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [17](identity.md#errors)
-| [LiquidStaking](liquidstaking.md) | [23](liquidstaking.md#calls) | [20](liquidstaking.md#events) | [16](liquidstaking.md#storage-functions) | [18](liquidstaking.md#constants) | [20](liquidstaking.md#errors)
+| [LiquidStaking](liquidstaking.md) | [24](liquidstaking.md#calls) | [21](liquidstaking.md#events) | [17](liquidstaking.md#storage-functions) | [19](liquidstaking.md#constants) | [20](liquidstaking.md#errors)
 | [LiquidStakingAgentsMembership](liquidstakingagentsmembership.md) | [7](liquidstakingagentsmembership.md#calls) | [6](liquidstakingagentsmembership.md#events) | [2](liquidstakingagentsmembership.md#storage-functions) | [0](liquidstakingagentsmembership.md#constants) | [3](liquidstakingagentsmembership.md#errors)
 | [Loans](loans.md) | [22](loans.md#calls) | [20](loans.md#events) | [23](loans.md#storage-functions) | [3](loans.md#constants) | [29](loans.md#errors)
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors)

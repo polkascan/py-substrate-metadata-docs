@@ -367,12 +367,12 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AwesomeAvatars': {
                 'AvatarForged': {
                     'avatar_id': '[u8; 32]',
                     'upgraded_components': 'u8',
                 },
+                'AvatarLocked': {'asset_id': 'u128', 'avatar_id': '[u8; 32]'},
                 'AvatarPriceSet': {'avatar_id': '[u8; 32]', 'price': 'u128'},
                 'AvatarPriceUnset': {'avatar_id': '[u8; 32]'},
                 'AvatarTraded': {
@@ -380,8 +380,14 @@ result = substrate.query(
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
+                'AvatarTransferred': {
+                    'avatar_id': '[u8; 32]',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'AvatarUnlocked': {'avatar_id': '[u8; 32]'},
                 'AvatarsMinted': {'avatar_ids': ['[u8; 32]']},
-                'FreeMintsIssued': {'how_many': 'u16', 'to': 'AccountId'},
+                'FreeMintsSet': {'how_many': 'u16', 'target': 'AccountId'},
                 'FreeMintsTransferred': {
                     'from': 'AccountId',
                     'how_many': 'u16',
@@ -391,15 +397,21 @@ result = substrate.query(
                 'SeasonFinished': 'u16',
                 'SeasonStarted': 'u16',
                 'StorageTierUpgraded': None,
-                'TreasurerSet': {'treasurer': 'AccountId'},
+                'TreasurerSet': {'season_id': 'u16', 'treasurer': 'AccountId'},
+                'TreasuryClaimed': {
+                    'amount': 'u128',
+                    'season_id': 'u16',
+                    'treasurer': 'AccountId',
+                },
                 'UpdatedGlobalConfig': {
-                    'account': 'scale_info::121',
-                    'forge': 'scale_info::119',
-                    'mint': 'scale_info::117',
-                    'trade': 'scale_info::120',
+                    'account': 'scale_info::116',
+                    'forge': 'scale_info::113',
+                    'mint': 'scale_info::111',
+                    'trade': 'scale_info::115',
+                    'transfer': 'scale_info::114',
                 },
                 'UpdatedSeason': {
-                    'season': 'scale_info::109',
+                    'season': 'scale_info::103',
                     'season_id': 'u16',
                 },
             },
@@ -414,7 +426,7 @@ result = substrate.query(
                 'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'destination_status': 'scale_info::52',
+                    'destination_status': 'scale_info::44',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
@@ -477,14 +489,14 @@ result = substrate.query(
                 'Dummy',
             ),
             'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::65'),
+                'ExecutedDownward': ('[u8; 8]', 'scale_info::57'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
             },
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::65',
+                    'outcome': 'scale_info::57',
                 },
                 'InvalidFormat': {'message_id': '[u8; 32]'},
                 'OverweightEnqueued': {
@@ -562,6 +574,204 @@ result = substrate.query(
                     'multisig': 'AccountId',
                 },
             },
+            'Nft': {
+                'AllApprovalsCancelled': {
+                    'collection': 'u32',
+                    'item': 'u128',
+                    'owner': 'AccountId',
+                },
+                'ApprovalCancelled': {
+                    'collection': 'u32',
+                    'delegate': 'AccountId',
+                    'item': 'u128',
+                    'owner': 'AccountId',
+                },
+                'AttributeCleared': {
+                    'collection': 'u32',
+                    'key': 'Bytes',
+                    'maybe_item': (None, 'u128'),
+                    'namespace': 'scale_info::125',
+                },
+                'AttributeSet': {
+                    'collection': 'u32',
+                    'key': 'Bytes',
+                    'maybe_item': (None, 'u128'),
+                    'namespace': 'scale_info::125',
+                    'value': 'Bytes',
+                },
+                'Burned': {
+                    'collection': 'u32',
+                    'item': 'u128',
+                    'owner': 'AccountId',
+                },
+                'CollectionConfigChanged': {'collection': 'u32'},
+                'CollectionLocked': {'collection': 'u32'},
+                'CollectionMaxSupplySet': {
+                    'collection': 'u32',
+                    'max_supply': 'u32',
+                },
+                'CollectionMetadataCleared': {'collection': 'u32'},
+                'CollectionMetadataSet': {
+                    'collection': 'u32',
+                    'data': 'Bytes',
+                },
+                'CollectionMintSettingsUpdated': {'collection': 'u32'},
+                'Created': {
+                    'collection': 'u32',
+                    'creator': 'AccountId',
+                    'owner': 'AccountId',
+                },
+                'Destroyed': {'collection': 'u32'},
+                'ForceCreated': {'collection': 'u32', 'owner': 'AccountId'},
+                'Issued': {
+                    'collection': 'u32',
+                    'item': 'u128',
+                    'owner': 'AccountId',
+                },
+                'ItemAttributesApprovalAdded': {
+                    'collection': 'u32',
+                    'delegate': 'AccountId',
+                    'item': 'u128',
+                },
+                'ItemAttributesApprovalRemoved': {
+                    'collection': 'u32',
+                    'delegate': 'AccountId',
+                    'item': 'u128',
+                },
+                'ItemBought': {
+                    'buyer': 'AccountId',
+                    'collection': 'u32',
+                    'item': 'u128',
+                    'price': 'u128',
+                    'seller': 'AccountId',
+                },
+                'ItemMetadataCleared': {'collection': 'u32', 'item': 'u128'},
+                'ItemMetadataSet': {
+                    'collection': 'u32',
+                    'data': 'Bytes',
+                    'item': 'u128',
+                },
+                'ItemPriceRemoved': {'collection': 'u32', 'item': 'u128'},
+                'ItemPriceSet': {
+                    'collection': 'u32',
+                    'item': 'u128',
+                    'price': 'u128',
+                    'whitelisted_buyer': (None, 'AccountId'),
+                },
+                'ItemPropertiesLocked': {
+                    'collection': 'u32',
+                    'item': 'u128',
+                    'lock_attributes': 'bool',
+                    'lock_metadata': 'bool',
+                },
+                'ItemTransferLocked': {'collection': 'u32', 'item': 'u128'},
+                'ItemTransferUnlocked': {'collection': 'u32', 'item': 'u128'},
+                'NextCollectionIdIncremented': {'next_id': 'u32'},
+                'OwnerChanged': {
+                    'collection': 'u32',
+                    'new_owner': 'AccountId',
+                },
+                'OwnershipAcceptanceChanged': {
+                    'maybe_collection': (None, 'u32'),
+                    'who': 'AccountId',
+                },
+                'Redeposited': {
+                    'collection': 'u32',
+                    'successful_items': ['u128'],
+                },
+                'SwapCancelled': {
+                    'deadline': 'u32',
+                    'desired_collection': 'u32',
+                    'desired_item': (None, 'u128'),
+                    'offered_collection': 'u32',
+                    'offered_item': 'u128',
+                    'price': (None, 'scale_info::127'),
+                },
+                'SwapClaimed': {
+                    'deadline': 'u32',
+                    'price': (None, 'scale_info::127'),
+                    'received_collection': 'u32',
+                    'received_item': 'u128',
+                    'received_item_owner': 'AccountId',
+                    'sent_collection': 'u32',
+                    'sent_item': 'u128',
+                    'sent_item_owner': 'AccountId',
+                },
+                'SwapCreated': {
+                    'deadline': 'u32',
+                    'desired_collection': 'u32',
+                    'desired_item': (None, 'u128'),
+                    'offered_collection': 'u32',
+                    'offered_item': 'u128',
+                    'price': (None, 'scale_info::127'),
+                },
+                'TeamChanged': {
+                    'admin': 'AccountId',
+                    'collection': 'u32',
+                    'freezer': 'AccountId',
+                    'issuer': 'AccountId',
+                },
+                'TipSent': {
+                    'amount': 'u128',
+                    'collection': 'u32',
+                    'item': 'u128',
+                    'receiver': 'AccountId',
+                    'sender': 'AccountId',
+                },
+                'TransferApproved': {
+                    'collection': 'u32',
+                    'deadline': (None, 'u32'),
+                    'delegate': 'AccountId',
+                    'item': 'u128',
+                    'owner': 'AccountId',
+                },
+                'Transferred': {
+                    'collection': 'u32',
+                    'from': 'AccountId',
+                    'item': 'u128',
+                    'to': 'AccountId',
+                },
+            },
+            'NftStake': {
+                'LockedStateSet': {'locked_state': 'scale_info::132'},
+                'OrganizerSet': {'organizer': 'AccountId'},
+                'StakingContractCreated': {
+                    'contract': 'u128',
+                    'creator': 'AccountId',
+                },
+                'StakingContractRedeemed': {
+                    'contract': 'u128',
+                    'redeemed_by': 'AccountId',
+                    'reward': 'scale_info::133',
+                },
+                'StakingContractTaken': {
+                    'contract': 'u128',
+                    'taken_by': 'AccountId',
+                },
+                'TreasuryFunded': {
+                    'funding_account': 'AccountId',
+                    'funds': 'u128',
+                },
+            },
+            'NftTransfer': {
+                'AssetRestored': {
+                    'asset_id': 'u128',
+                    'collection_id': 'u32',
+                    'owner': 'AccountId',
+                },
+                'AssetStored': {
+                    'asset_id': 'u128',
+                    'collection_id': 'u32',
+                    'owner': 'AccountId',
+                },
+                'AssetTransferred': {
+                    'asset_id': 'u128',
+                    'collection_id': 'u32',
+                    'owner': 'AccountId',
+                },
+                'LockedStateSet': {'locked_state': 'scale_info::130'},
+                'OrganizerSet': {'organizer': 'AccountId'},
+            },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
                     'dmq_head': '[u8; 32]',
@@ -576,25 +786,25 @@ result = substrate.query(
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
-                    'scale_info::66',
-                    'scale_info::96',
+                    'scale_info::58',
+                    'scale_info::88',
                 ),
                 'AssetsTrapped': (
                     '[u8; 32]',
-                    'scale_info::66',
-                    'scale_info::96',
+                    'scale_info::58',
+                    'scale_info::88',
                 ),
                 'Attempted': {
                     'Complete': 'u64',
-                    'Error': 'scale_info::62',
-                    'Incomplete': ('u64', 'scale_info::62'),
+                    'Error': 'scale_info::54',
+                    'Incomplete': ('u64', 'scale_info::54'),
                 },
                 'InvalidResponder': (
-                    'scale_info::66',
+                    'scale_info::58',
                     'u64',
-                    (None, 'scale_info::66'),
+                    (None, 'scale_info::58'),
                 ),
-                'InvalidResponderVersion': ('scale_info::66', 'u64'),
+                'InvalidResponderVersion': ('scale_info::58', 'u64'),
                 'Notified': ('u64', 'u8', 'u8'),
                 'NotifyDecodeFailed': ('u64', 'u8', 'u8'),
                 'NotifyDispatchError': ('u64', 'u8', 'u8'),
@@ -605,24 +815,24 @@ result = substrate.query(
                     'scale_info::8',
                     'scale_info::8',
                 ),
-                'NotifyTargetMigrationFail': ('scale_info::101', 'u64'),
+                'NotifyTargetMigrationFail': ('scale_info::93', 'u64'),
                 'NotifyTargetSendFail': (
-                    'scale_info::66',
+                    'scale_info::58',
                     'u64',
-                    'scale_info::62',
+                    'scale_info::54',
                 ),
-                'ResponseReady': ('u64', 'scale_info::86'),
+                'ResponseReady': ('u64', 'scale_info::78'),
                 'ResponseTaken': 'u64',
                 'Sent': (
-                    'scale_info::66',
-                    'scale_info::66',
-                    ['scale_info::77'],
+                    'scale_info::58',
+                    'scale_info::58',
+                    ['scale_info::69'],
                 ),
-                'SupportedVersionChanged': ('scale_info::66', 'u32'),
-                'UnexpectedResponse': ('scale_info::66', 'u64'),
-                'VersionChangeNotified': ('scale_info::66', 'u32'),
+                'SupportedVersionChanged': ('scale_info::58', 'u32'),
+                'UnexpectedResponse': ('scale_info::58', 'u64'),
+                'VersionChangeNotified': ('scale_info::58', 'u32'),
             },
-            'PreImage': {
+            'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
@@ -674,12 +884,6 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::32'},
-                'SudoAsDone': {'sudo_result': 'scale_info::32'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -690,6 +894,22 @@ result = substrate.query(
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'Vesting': {
+                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
+                'VestingScheduleAdded': {
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                    'vesting_schedule': 'scale_info::47',
+                },
+                'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            None: None,
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::32'},
+                'SudoAsDone': {'sudo_result': 'scale_info::32'},
             },
             'TransactionPayment': {
                 'TransactionFeePaid': {
@@ -715,107 +935,9 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
-            },
-            'Uniques': {
-                'ApprovalCancelled': {
-                    'collection': 'u32',
-                    'delegate': 'AccountId',
-                    'item': 'u32',
-                    'owner': 'AccountId',
-                },
-                'ApprovedTransfer': {
-                    'collection': 'u32',
-                    'delegate': 'AccountId',
-                    'item': 'u32',
-                    'owner': 'AccountId',
-                },
-                'AttributeCleared': {
-                    'collection': 'u32',
-                    'key': 'Bytes',
-                    'maybe_item': (None, 'u32'),
-                },
-                'AttributeSet': {
-                    'collection': 'u32',
-                    'key': 'Bytes',
-                    'maybe_item': (None, 'u32'),
-                    'value': 'Bytes',
-                },
-                'Burned': {
-                    'collection': 'u32',
-                    'item': 'u32',
-                    'owner': 'AccountId',
-                },
-                'CollectionFrozen': {'collection': 'u32'},
-                'CollectionMaxSupplySet': {
-                    'collection': 'u32',
-                    'max_supply': 'u32',
-                },
-                'CollectionMetadataCleared': {'collection': 'u32'},
-                'CollectionMetadataSet': {
-                    'collection': 'u32',
-                    'data': 'Bytes',
-                    'is_frozen': 'bool',
-                },
-                'CollectionThawed': {'collection': 'u32'},
-                'Created': {
-                    'collection': 'u32',
-                    'creator': 'AccountId',
-                    'owner': 'AccountId',
-                },
-                'Destroyed': {'collection': 'u32'},
-                'ForceCreated': {'collection': 'u32', 'owner': 'AccountId'},
-                'Frozen': {'collection': 'u32', 'item': 'u32'},
-                'Issued': {
-                    'collection': 'u32',
-                    'item': 'u32',
-                    'owner': 'AccountId',
-                },
-                'ItemBought': {
-                    'buyer': 'AccountId',
-                    'collection': 'u32',
-                    'item': 'u32',
-                    'price': 'u128',
-                    'seller': 'AccountId',
-                },
-                'ItemPriceRemoved': {'collection': 'u32', 'item': 'u32'},
-                'ItemPriceSet': {
-                    'collection': 'u32',
-                    'item': 'u32',
-                    'price': 'u128',
-                    'whitelisted_buyer': (None, 'AccountId'),
-                },
-                'ItemStatusChanged': {'collection': 'u32'},
-                'MetadataCleared': {'collection': 'u32', 'item': 'u32'},
-                'MetadataSet': {
-                    'collection': 'u32',
-                    'data': 'Bytes',
-                    'is_frozen': 'bool',
-                    'item': 'u32',
-                },
-                'OwnerChanged': {
-                    'collection': 'u32',
-                    'new_owner': 'AccountId',
-                },
-                'OwnershipAcceptanceChanged': {
-                    'maybe_collection': (None, 'u32'),
-                    'who': 'AccountId',
-                },
-                'Redeposited': {
-                    'collection': 'u32',
-                    'successful_items': ['u32'],
-                },
-                'TeamChanged': {
-                    'admin': 'AccountId',
-                    'collection': 'u32',
-                    'freezer': 'AccountId',
-                    'issuer': 'AccountId',
-                },
-                'Thawed': {'collection': 'u32', 'item': 'u32'},
-                'Transferred': {
-                    'collection': 'u32',
-                    'from': 'AccountId',
-                    'item': 'u32',
-                    'to': 'AccountId',
+                'UpdatedInactive': {
+                    'deactivated': 'u128',
+                    'reactivated': 'u128',
                 },
             },
             'Utility': {
@@ -829,20 +951,11 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
             },
-            'Vesting': {
-                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
-                'VestingScheduleAdded': {
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                    'vesting_schedule': 'scale_info::55',
-                },
-                'VestingSchedulesUpdated': {'who': 'AccountId'},
-            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
                 'Fail': {
-                    'error': 'scale_info::62',
+                    'error': 'scale_info::54',
                     'message_hash': (None, '[u8; 32]'),
                     'weight': 'scale_info::8',
                 },
@@ -1098,7 +1211,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'bajun',
     'impl_version': 0,
     'spec_name': 'bajun',
-    'spec_version': 110,
+    'spec_version': 114,
     'state_version': 1,
     'transaction_version': 1,
 }

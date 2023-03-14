@@ -96,6 +96,7 @@ result = substrate.query(
 ```
 ---------
 ### SelfSponsoring
+ Deprecated: this storage is deprecated
 
 #### Python
 ```python
@@ -161,7 +162,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::422'
+'scale_info::413'
 ```
 ---------
 ### SponsoringMode
@@ -201,6 +202,20 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
+```
+---------
+## Constants
+
+---------
+### ContractAddress
+ Address, under which magic contract will be available
+#### Value
+```python
+'0x842899ecf380553e8a4de75bf534cdf6fbf64049'
+```
+#### Python
+```python
+constant = substrate.get_constant('EvmContractHelpers', 'ContractAddress')
 ```
 ---------
 ## Errors

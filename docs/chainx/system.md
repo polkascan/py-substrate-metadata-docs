@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
+            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -580,11 +580,6 @@ result = substrate.query(
                 'HeartbeatReceived': {'authority_id': '[u8; 32]'},
                 'SomeOffline': {'offline': [('AccountId', 'AccountId')]},
             },
-            'Indices': {
-                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
-                'IndexFreed': {'index': 'u32'},
-                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
-            },
             'Multisig': {
                 'MultisigApproval': {
                     'approving': 'AccountId',
@@ -631,20 +626,6 @@ result = substrate.query(
                     'proxy_type': 'scale_info::105',
                 },
                 'ProxyExecuted': {'result': 'scale_info::29'},
-            },
-            'Scheduler': {
-                'CallLookupFailed': {
-                    'error': 'scale_info::31',
-                    'id': (None, 'Bytes'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, 'Bytes'),
-                    'result': 'scale_info::29',
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
@@ -723,15 +704,6 @@ result = substrate.query(
                 'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
                 'Rollover': {'rollover_balance': 'u128'},
                 'Spending': {'budget_remaining': 'u128'},
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::29'},
-                'ItemCompleted': None,
             },
             'XAssets': {
                 'BalanceSet': ('u32', 'AccountId', 'scale_info::68', 'u128'),
@@ -938,10 +910,38 @@ result = substrate.query(
                 'Blacklisted': 'AccountId',
                 'Unblacklisted': 'AccountId',
             },
+            None: None,
+            'Indices': {
+                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
+                'IndexFreed': {'index': 'u32'},
+                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
+            },
+            'Scheduler': {
+                'CallLookupFailed': {
+                    'error': 'scale_info::31',
+                    'id': (None, 'Bytes'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, 'Bytes'),
+                    'result': 'scale_info::29',
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::29'},
+                'ItemCompleted': None,
+            },
             'XTransactionFee': {
                 'FeePaid': ('AccountId', 'u128', 'AccountId', 'u128'),
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

@@ -158,6 +158,10 @@ result = substrate.query(
 ## Errors
 
 ---------
+### DmpMsgProcessingBlockedByMaintenanceMode
+Dmp message processing is blocked by maintenance mode
+
+---------
 ### OverLimit
 The amount of weight given is possibly not enough for executing the message.
 

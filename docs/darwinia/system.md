@@ -380,6 +380,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -975,7 +976,6 @@ result = substrate.query(
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

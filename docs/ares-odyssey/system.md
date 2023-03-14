@@ -889,6 +889,14 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            None: None,
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -919,13 +927,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -944,7 +945,6 @@ result = substrate.query(
                 },
                 'Spending': {'budget_remaining': 'u128'},
             },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,

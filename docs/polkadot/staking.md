@@ -86,7 +86,7 @@ call = substrate.compose_call(
 ### cancel_deferred_slash
 Cancel enactment of a deferred slash.
 
-Can be called by the `T::SlashCancelOrigin`.
+Can be called by the `T::AdminOrigin`.
 
 Parameters: era and indices of the slashes for that era to kill.
 #### Attributes
@@ -544,6 +544,24 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_min_commission
+Sets the minimum amount of commission that each validators must maintain.
+
+This call has lower privilege requirements than `set_staking_config` and can be called
+by the `T::AdminOrigin`. Root can always call this.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| new | `Perbill` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Staking', 'set_min_commission', {'new': 'u32'}
+)
+```
+
+---------
 ### set_payee
 (Re-)set the payment target for a controller.
 
@@ -791,6 +809,14 @@ the remainder from the maximum amount of reward.
 | remainder | `BalanceOf<T>` | ```u128```
 
 ---------
+### ForceEra
+A new force era mode was set.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| mode | `Forcing` | ```('NotForcing', 'ForceNew', 'ForceNone', 'ForceAlways')```
+
+---------
 ### Kicked
 A nominator has been kicked from a validator.
 #### Attributes
@@ -910,6 +936,8 @@ result = substrate.query(
 ---------
 ### Bonded
  Map from all locked &quot;stash&quot; accounts to the controller account.
+
+ TWOX-NOTE: SAFE since `AccountId` is a secure hash.
 
 #### Python
 ```python
@@ -1052,7 +1080,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'individual': 'scale_info::495', 'total': 'u32'}
+{'individual': 'scale_info::498', 'total': 'u32'}
 ```
 ---------
 ### ErasStakers
@@ -1367,6 +1395,8 @@ result = substrate.query(
  Lastly, if any of the nominators become non-decodable, they can be chilled immediately via
  [`Call::chill_other`] dispatchable by anyone.
 
+ TWOX-NOTE: SAFE since `AccountId` is a secure hash.
+
 #### Python
 ```python
 result = substrate.query(
@@ -1404,6 +1434,8 @@ result = substrate.query(
 ---------
 ### Payee
  Where the reward payment should be made. Keyed by stash.
+
+ TWOX-NOTE: SAFE since `AccountId` is a secure hash.
 
 #### Python
 ```python
@@ -1476,37 +1508,6 @@ result = substrate.query(
 {'paid_out': 'u128', 'slashed': 'u128'}
 ```
 ---------
-### StorageVersion
- True if network has been upgraded to this version.
- Storage version of the pallet.
-
- This is set to v7.0.0 for new networks.
-
-#### Python
-```python
-result = substrate.query(
-    'Staking', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-(
-    'V1_0_0Ancient',
-    'V2_0_0',
-    'V3_0_0',
-    'V4_0_0',
-    'V5_0_0',
-    'V6_0_0',
-    'V7_0_0',
-    'V8_0_0',
-    'V9_0_0',
-    'V10_0_0',
-    'V11_0_0',
-    'V12_0_0',
-)
-```
----------
 ### UnappliedSlashes
  All unapplied slashes that are queued for later.
 
@@ -1563,6 +1564,8 @@ result = substrate.query(
 ---------
 ### Validators
  The map from (wannabe) validator stash key to the preferences of that validator.
+
+ TWOX-NOTE: SAFE since `AccountId` is a secure hash.
 
 #### Python
 ```python

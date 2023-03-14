@@ -132,25 +132,6 @@ result = substrate.query(
 'u32'
 ```
 ---------
-### SpamSlots
- Maps session indices to a vector indicating the number of potentially-spam disputes
- each validator is participating in. Potentially-spam disputes are remote disputes which have
- fewer than `byzantine_threshold + 1` validators.
-
- The i&#x27;th entry of the vector corresponds to the i&#x27;th validator in the session.
-
-#### Python
-```python
-result = substrate.query(
-    'ParasDisputes', 'SpamSlots', ['u32']
-)
-```
-
-#### Return value
-```python
-['u32']
-```
----------
 ## Errors
 
 ---------
@@ -170,12 +151,12 @@ Validator vote submitted more than once to dispute.
 Invalid signature on statement.
 
 ---------
-### PotentialSpam
-Too many spam slots used by some specific validator.
-
----------
 ### SingleSidedDispute
 A dispute where there are only votes on one side.
+
+---------
+### UnconfirmedDispute
+Unconfirmed dispute statement sets provided
 
 ---------
 ### ValidatorIndexOutOfBounds

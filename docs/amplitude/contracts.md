@@ -648,7 +648,7 @@ constant = substrate.get_constant('Contracts', 'DepositPerItem')
  a wasm binary below this maximum size.
 #### Value
 ```python
-131072
+125952
 ```
 #### Python
 ```python

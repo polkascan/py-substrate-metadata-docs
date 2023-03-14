@@ -60,15 +60,14 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Authority': {
             'delay': 'u32',
             'origin': {
+                'CumulusXcm': {
+                    'Relay': None,
+                    'SiblingParachain': 'u32',
+                },
+                None: None,
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
@@ -124,10 +123,6 @@ call = substrate.compose_call(
                             'Signed': 'AccountId',
                         },
                     },
-                },
-                'CumulusXcm': {
-                    'Relay': None,
-                    'SiblingParachain': 'u32',
                 },
                 'FinancialCouncil': {
                     'Member': 'AccountId',
@@ -281,7 +276,6 @@ call = substrate.compose_call(
                     'Root': None,
                     'Signed': 'AccountId',
                 },
-                None: None,
             },
         },
         'CumulusXcm': {
@@ -1167,6 +1161,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
     'call': 'Call',
 }

@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -397,6 +397,11 @@ result = substrate.query(
                     '[u8; 32]',
                 ),
                 'AssetRenamed': ('[u8; 32]', '[u8; 12]', 'Bytes'),
+                'AssetTypeChanged': (
+                    '[u8; 32]',
+                    '[u8; 12]',
+                    'scale_info::122',
+                ),
                 'AssetUnfrozen': ('[u8; 32]', '[u8; 12]'),
                 'ClassicTickerClaimed': ('[u8; 32]', '[u8; 12]', '[u8; 20]'),
                 'ControllerTransfer': (
@@ -473,6 +478,7 @@ result = substrate.query(
                     'Bytes',
                 ),
             },
+            None: None,
             'Balances': {
                 'AccountBalanceBurned': ('[u8; 32]', 'AccountId', 'u128'),
                 'BalanceSet': ('[u8; 32]', 'AccountId', 'u128', 'u128'),
@@ -498,6 +504,11 @@ result = substrate.query(
             'Bridge': {
                 'AdminChanged': ('[u8; 32]', 'AccountId'),
                 'BridgeLimitUpdated': ('[u8; 32]', 'u128', 'u32'),
+                'BridgeTxFailed': (
+                    '[u8; 32]',
+                    'scale_info::94',
+                    'scale_info::22',
+                ),
                 'BridgeTxScheduleFailed': (
                     '[u8; 32]',
                     'scale_info::94',
@@ -747,6 +758,11 @@ result = substrate.query(
                 'HeartbeatReceived': {'authority_id': '[u8; 32]'},
                 'SomeOffline': {'offline': [('AccountId', 'scale_info::115')]},
             },
+            'Indices': {
+                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
+                'IndexFreed': {'index': 'u32'},
+                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
+            },
             'MultiSig': {
                 'MultiSigCreated': (
                     '[u8; 32]',
@@ -949,6 +965,7 @@ result = substrate.query(
             'Session': {'NewSession': {'session_index': 'u32'}},
             'Settlement': {
                 'AffirmationWithdrawn': ('[u8; 32]', 'scale_info::53', 'u64'),
+                'FailedToExecuteInstruction': ('u64', 'scale_info::22'),
                 'InstructionAffirmed': ('[u8; 32]', 'scale_info::53', 'u64'),
                 'InstructionCreated': (
                     '[u8; 32]',
@@ -998,6 +1015,7 @@ result = substrate.query(
                     'TooManyConsumers': None,
                     'Transactional': 'scale_info::26',
                 },
+                'SettlementManuallyExecuted': ('[u8; 32]', 'u64'),
                 'VenueCreated': (
                     '[u8; 32]',
                     'u64',
@@ -1144,12 +1162,6 @@ result = substrate.query(
                     'u32',
                     'u32',
                 ),
-            },
-            None: None,
-            'Indices': {
-                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
-                'IndexFreed': {'index': 'u32'},
-                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
             },
             'TechnicalCommitteeMembership': {
                 'ActiveLimitChanged': ('[u8; 32]', 'u32', 'u32'),
@@ -1354,7 +1366,7 @@ result = substrate.query(
  Maximum number of block number to block hash mappings to keep (oldest pruned first).
 #### Value
 ```python
-250
+4096
 ```
 #### Python
 ```python
@@ -1462,7 +1474,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'polymesh_mainnet',
     'impl_version': 0,
     'spec_name': 'polymesh_mainnet',
-    'spec_version': 5001040,
+    'spec_version': 5002001,
     'state_version': 1,
     'transaction_version': 3,
 }

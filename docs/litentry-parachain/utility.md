@@ -125,8 +125,6 @@ call = substrate.compose_call(
             'Relay': None,
             'SiblingParachain': 'u32',
         },
-        'Void': (),
-        None: None,
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -995,6 +993,8 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
+        'Void': (),
     },
     'call': 'Call',
 }

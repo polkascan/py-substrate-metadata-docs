@@ -367,6 +367,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Alliance': {
                 'AllianceDisbanded': {
                     'ally_members': 'u32',
@@ -615,6 +616,13 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -647,14 +655,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
             },
         },
         'phase': {
@@ -895,7 +895,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'collectives',
     'impl_version': 0,
     'spec_name': 'collectives',
-    'spec_version': 9360,
+    'spec_version': 9370,
     'state_version': 0,
     'transaction_version': 2,
 }

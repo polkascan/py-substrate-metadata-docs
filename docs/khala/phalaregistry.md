@@ -658,6 +658,21 @@ result = substrate.query(
 'Bytes'
 ```
 ---------
+### WorkerAddedAt
+ The first time registered block number for each worker.
+
+#### Python
+```python
+result = substrate.query(
+    'PhalaRegistry', 'WorkerAddedAt', ['[u8; 32]']
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
 ### Workers
  Mapping from worker pubkey to WorkerInfo
 

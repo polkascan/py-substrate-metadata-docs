@@ -6,6 +6,13 @@
 
 ---------
 ### accept_offer
+Accept an offer on a RMRK NFT from a potential buyer.
+
+Parameters:
+- `origin` - Account of the current owner that is accepting the offerer&\#x27;s offer
+- `collection_id` - Collection id of the RMRK NFT
+- `nft_id` - NFT id of the RMRK NFT
+- `offerer` - Account that made the offer
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -169,6 +176,18 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### MarketFeePaid
+Market fee paid to marketplace owner
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `T::AccountId` | ```AccountId```
+| marketplace_owner | `T::AccountId` | ```AccountId```
+| collection_id | `T::CollectionId` | ```u32```
+| nft_id | `T::ItemId` | ```u32```
+| amount | `BalanceOf<T>` | ```u128```
+
+---------
 ### OfferAccepted
 Offer was accepted
 #### Attributes
@@ -199,6 +218,18 @@ Offer was withdrawn
 | sender | `T::AccountId` | ```AccountId```
 | collection_id | `T::CollectionId` | ```u32```
 | nft_id | `T::ItemId` | ```u32```
+
+---------
+### RoyaltyFeePaid
+Royalty fee paid to royalty owner
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `T::AccountId` | ```AccountId```
+| royalty_owner | `T::AccountId` | ```AccountId```
+| collection_id | `T::CollectionId` | ```u32```
+| nft_id | `T::ItemId` | ```u32```
+| amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ### TokenListed
@@ -263,6 +294,21 @@ result = substrate.query(
 {'amount': 'u128', 'expires': (None, 'u32'), 'listed_by': 'AccountId'}
 ```
 ---------
+### MarketplaceOwner
+ Stores the marketplace owner account
+
+#### Python
+```python
+result = substrate.query(
+    'RmrkMarket', 'MarketplaceOwner', []
+)
+```
+
+#### Return value
+```python
+'AccountId'
+```
+---------
 ### Offers
  Stores offer on a NFT info
 
@@ -280,6 +326,17 @@ result = substrate.query(
 ---------
 ## Constants
 
+---------
+### MarketFee
+ Market fee to be implemented downstream.
+#### Value
+```python
+5000
+```
+#### Python
+```python
+constant = substrate.get_constant('RmrkMarket', 'MarketFee')
+```
 ---------
 ### MinimumOfferAmount
  Minimum offer amount as a valid offer
@@ -303,6 +360,10 @@ Account cannot offer on a NFT again with an active offer
 Cannot buy NFT that is already owned
 
 ---------
+### CannotListNft
+Cannot list NFT based on downstream logic implemented for MarketplaceHooks trait
+
+---------
 ### CannotListNftOwnedByNft
 Cannot list NFT owned by a NFT
 
@@ -321,6 +382,10 @@ Offer already accepted and cannot withdraw
 ---------
 ### ListingHasExpired
 Listing has expired and cannot be bought
+
+---------
+### MarketplaceOwnerNotSet
+Marketplace owner not configured
 
 ---------
 ### NoPermission

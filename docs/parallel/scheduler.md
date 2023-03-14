@@ -240,6 +240,7 @@ result = substrate.query(
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+                'Ethereum': {'EthereumTransaction': '[u8; 20]'},
                 'GeneralCouncil': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),

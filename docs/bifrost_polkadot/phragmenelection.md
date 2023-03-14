@@ -365,7 +365,7 @@ result = substrate.query(
  How much should be locked up in order to submit one&#x27;s candidacy.
 #### Value
 ```python
-100000000000000
+10000000000000000
 ```
 #### Python
 ```python
@@ -402,7 +402,7 @@ constant = substrate.get_constant('PhragmenElection', 'DesiredRunnersUp')
  candidates are accepted in the election.
 #### Value
 ```python
-1000
+64
 ```
 #### Python
 ```python
@@ -416,7 +416,7 @@ constant = substrate.get_constant('PhragmenElection', 'MaxCandidates')
  When the limit is reached the new voters are ignored.
 #### Value
 ```python
-10000
+512
 ```
 #### Python
 ```python

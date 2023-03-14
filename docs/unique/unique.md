@@ -114,6 +114,52 @@ call = substrate.compose_call(
 ```
 
 ---------
+### approve_from
+Allow a non-permissioned address to transfer or burn an item from owner&\#x27;s eth mirror.
+
+\# Permissions
+
+* Collection owner
+* Collection admin
+* Current item owner
+
+\# Arguments
+
+* `from`: Owner&\#x27;s account eth mirror
+* `to`: Account to be approved to make specific transactions on non-owned tokens.
+* `collection_id`: ID of the collection the item belongs to.
+* `item_id`: ID of the item transactions on which are now approved.
+* `amount`: Number of pieces of the item approved for a transaction (maximum of 1 for NFTs).
+Set to 0 to revoke the approval.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| from | `T::CrossAccountId` | 
+| to | `T::CrossAccountId` | 
+| collection_id | `CollectionId` | 
+| item_id | `TokenId` | 
+| amount | `u128` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Unique', 'approve_from', {
+    'amount': 'u128',
+    'collection_id': 'u32',
+    'from': {
+        'Ethereum': '[u8; 20]',
+        'Substrate': 'AccountId',
+    },
+    'item_id': 'u32',
+    'to': {
+        'Ethereum': '[u8; 20]',
+        'Substrate': 'AccountId',
+    },
+}
+)
+```
+
+---------
 ### burn_from
 Destroy a token on behalf of the owner as a non-owner account.
 
@@ -275,6 +321,10 @@ Prefer the more advanced [`create_collection_ex`][`Pallet::create_collection_ex`
 * `token_prefix`: Byte string containing the token prefix to mark a collection
 to which a token belongs (limit [`MAX_TOKEN_PREFIX_LENGTH`]).
 * `mode`: Type of items stored in the collection and type dependent data.
+
+returns collection ID
+
+Deprecated: `create_collection_ex` is more up-to-date and advanced, prefer it instead.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -401,7 +451,7 @@ call = substrate.compose_call(
                         'collection_admin': 'bool',
                         'restricted': (
                             None,
-                            'scale_info::247',
+                            'scale_info::246',
                         ),
                         'token_owner': 'bool',
                     },
@@ -583,7 +633,7 @@ call = substrate.compose_call(
     'Unique', 'create_multiple_items_ex', {
     'collection_id': 'u32',
     'data': {
-        'Fungible': 'scale_info::268',
+        'Fungible': 'scale_info::267',
         'NFT': [
             {
                 'owner': {
@@ -620,7 +670,7 @@ call = substrate.compose_call(
                     'value': 'Bytes',
                 },
             ],
-            'users': 'scale_info::268',
+            'users': 'scale_info::267',
         },
     },
 }
@@ -712,6 +762,49 @@ Destroy a collection if no tokens exist within.
 ```python
 call = substrate.compose_call(
     'Unique', 'destroy_collection', {'collection_id': 'u32'}
+)
+```
+
+---------
+### force_repair_collection
+Repairs a collection if the data was somehow corrupted.
+
+\# Arguments
+
+* `collection_id`: ID of the collection to repair.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| collection_id | `CollectionId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Unique', 'force_repair_collection', {'collection_id': 'u32'}
+)
+```
+
+---------
+### force_repair_item
+Repairs a token if the data was somehow corrupted.
+
+\# Arguments
+
+* `collection_id`: ID of the collection the item belongs to.
+* `item_id`: ID of the item.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| collection_id | `CollectionId` | 
+| item_id | `TokenId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Unique', 'force_repair_item', {
+    'collection_id': 'u32',
+    'item_id': 'u32',
+}
 )
 ```
 
@@ -837,6 +930,38 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_allowance_for_all
+Sets or unsets the approval of a given operator.
+
+The `operator` is allowed to transfer all tokens of the `owner` on their behalf.
+
+\# Arguments
+
+* `owner`: Token owner
+* `operator`: Operator
+* `approve`: Should operator status be granted or revoked?
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| collection_id | `CollectionId` | 
+| operator | `T::CrossAccountId` | 
+| approve | `bool` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Unique', 'set_allowance_for_all', {
+    'approve': 'bool',
+    'collection_id': 'u32',
+    'operator': {
+        'Ethereum': '[u8; 20]',
+        'Substrate': 'AccountId',
+    },
+}
+)
+```
+
+---------
 ### set_collection_limits
 Set specific limits of a collection. Empty, or None fields mean chain default.
 
@@ -940,7 +1065,7 @@ call = substrate.compose_call(
                 'collection_admin': 'bool',
                 'restricted': (
                     None,
-                    'scale_info::247',
+                    'scale_info::246',
                 ),
                 'token_owner': 'bool',
             },
@@ -1230,133 +1355,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-## Events
-
----------
-### AllowListAddressAdded
-Address was added to the allow list
-
-\# Arguments
-* collection_id: ID of the affected collection.
-* user: Address of the added account.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-| None | `CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
-
----------
-### AllowListAddressRemoved
-Address was removed from the allow list
-
-\# Arguments
-* collection_id: ID of the affected collection.
-* user: Address of the removed account.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-| None | `CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
-
----------
-### CollectionAdminAdded
-Collection admin was added
-
-\# Arguments
-* collection_id: ID of the affected collection.
-* admin: Admin address.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-| None | `CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
-
----------
-### CollectionAdminRemoved
-Collection admin was removed
-
-\# Arguments
-* collection_id: ID of the affected collection.
-* admin: Removed admin address.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-| None | `CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
-
----------
-### CollectionLimitSet
-Collection limits were set
-
-\# Arguments
-* collection_id: ID of the affected collection.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-
----------
-### CollectionOwnedChanged
-Collection owned was changed
-
-\# Arguments
-* collection_id: ID of the affected collection.
-* owner: New owner address.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-| None | `AccountId` | ```AccountId```
-
----------
-### CollectionPermissionSet
-Collection permissions were set
-
-\# Arguments
-* collection_id: ID of the affected collection.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-
----------
-### CollectionSponsorRemoved
-Collection sponsor was removed
-
-\# Arguments
-* collection_id: ID of the affected collection.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-
----------
-### CollectionSponsorSet
-Collection sponsor was set
-
-\# Arguments
-* collection_id: ID of the affected collection.
-* owner: New sponsor address.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-| None | `AccountId` | ```AccountId```
-
----------
-### SponsorshipConfirmed
-New sponsor was confirm
-
-\# Arguments
-* collection_id: ID of the affected collection.
-* sponsor: New sponsor address.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CollectionId` | ```u32```
-| None | `AccountId` | ```AccountId```
-
----------
 ## Storage functions
 
 ---------
@@ -1512,15 +1510,187 @@ result = substrate.query(
 'u32'
 ```
 ---------
+## Constants
+
+---------
+### COLLECTION_ADMINS_LIMIT
+Maximum admins per collection.
+#### Value
+```python
+5
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'COLLECTION_ADMINS_LIMIT')
+```
+---------
+### FT_DEFAULT_COLLECTION_LIMITS
+Default FT collection limit.
+#### Value
+```python
+{
+    'account_token_ownership_limit': 1000000,
+    'owner_can_destroy': True,
+    'owner_can_transfer': False,
+    'sponsor_approve_timeout': 5,
+    'sponsor_transfer_timeout': 5,
+    'sponsored_data_rate_limit': 'SponsoringDisabled',
+    'sponsored_data_size': 2048,
+    'token_limit': 4294967295,
+    'transfers_enabled': True,
+}
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'FT_DEFAULT_COLLECTION_LIMITS')
+```
+---------
+### MAX_COLLECTION_DESCRIPTION_LENGTH
+Maximal length of a collection description.
+#### Value
+```python
+256
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'MAX_COLLECTION_DESCRIPTION_LENGTH')
+```
+---------
+### MAX_COLLECTION_NAME_LENGTH
+Maximal length of a collection name.
+#### Value
+```python
+64
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'MAX_COLLECTION_NAME_LENGTH')
+```
+---------
+### MAX_COLLECTION_PROPERTIES_SIZE
+Maximum size for all collection properties.
+#### Value
+```python
+40960
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'MAX_COLLECTION_PROPERTIES_SIZE')
+```
+---------
+### MAX_PROPERTIES_PER_ITEM
+A maximum number of token properties.
+#### Value
+```python
+64
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'MAX_PROPERTIES_PER_ITEM')
+```
+---------
+### MAX_PROPERTY_KEY_LENGTH
+Maximal length of a property key.
+#### Value
+```python
+256
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'MAX_PROPERTY_KEY_LENGTH')
+```
+---------
+### MAX_PROPERTY_VALUE_LENGTH
+Maximal length of a property value.
+#### Value
+```python
+32768
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'MAX_PROPERTY_VALUE_LENGTH')
+```
+---------
+### MAX_TOKEN_PREFIX_LENGTH
+Maximal length of a token prefix.
+#### Value
+```python
+16
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'MAX_TOKEN_PREFIX_LENGTH')
+```
+---------
+### MAX_TOKEN_PROPERTIES_SIZE
+Maximum size of all token properties.
+#### Value
+```python
+32768
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'MAX_TOKEN_PROPERTIES_SIZE')
+```
+---------
+### NESTING_BUDGET
+A maximum number of levels of depth in the token nesting tree.
+#### Value
+```python
+5
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'NESTING_BUDGET')
+```
+---------
+### NFT_DEFAULT_COLLECTION_LIMITS
+Default NFT collection limit.
+#### Value
+```python
+{
+    'account_token_ownership_limit': 1000000,
+    'owner_can_destroy': True,
+    'owner_can_transfer': False,
+    'sponsor_approve_timeout': 5,
+    'sponsor_transfer_timeout': 5,
+    'sponsored_data_rate_limit': 'SponsoringDisabled',
+    'sponsored_data_size': 2048,
+    'token_limit': 4294967295,
+    'transfers_enabled': True,
+}
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'NFT_DEFAULT_COLLECTION_LIMITS')
+```
+---------
+### RFT_DEFAULT_COLLECTION_LIMITS
+Default RFT collection limit.
+#### Value
+```python
+{
+    'account_token_ownership_limit': 1000000,
+    'owner_can_destroy': True,
+    'owner_can_transfer': False,
+    'sponsor_approve_timeout': 5,
+    'sponsor_transfer_timeout': 5,
+    'sponsored_data_rate_limit': 'SponsoringDisabled',
+    'sponsored_data_size': 2048,
+    'token_limit': 4294967295,
+    'transfers_enabled': True,
+}
+```
+#### Python
+```python
+constant = substrate.get_constant('Unique', 'RFT_DEFAULT_COLLECTION_LIMITS')
+```
+---------
 ## Errors
 
 ---------
 ### CollectionDecimalPointLimitExceeded
 Decimal_points parameter must be lower than [`up_data_structs::MAX_DECIMAL_POINTS`].
-
----------
-### ConfirmUnsetSponsorFail
-This address is not set as sponsor, use setCollectionSponsor first.
 
 ---------
 ### EmptyArgument

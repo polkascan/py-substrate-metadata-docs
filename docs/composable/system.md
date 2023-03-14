@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -469,23 +469,6 @@ result = substrate.query(
                 'UnsupportedVersion': '[u8; 8]',
             },
             'CurrencyFactory': {'RangeCreated': {'range': 'scale_info::100'}},
-            'GovernanceRegistry': {
-                'GrantRoot': {'asset_id': 'u128'},
-                'Remove': {'asset_id': 'u128'},
-                'Set': {'asset_id': 'u128', 'value': 'AccountId'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -559,6 +542,11 @@ result = substrate.query(
                     'remaining_weight': 'u64',
                     'required_weight': 'u64',
                 },
+            },
+            'GovernanceRegistry': {
+                'GrantRoot': {'asset_id': 'u128'},
+                'Remove': {'asset_id': 'u128'},
+                'Set': {'asset_id': 'u128', 'value': 'AccountId'},
             },
             'Indices': {
                 'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
@@ -639,6 +627,17 @@ result = substrate.query(
                 'Sudid': {'sudo_result': 'scale_info::28'},
                 'SudoAsDone': {'sudo_result': 'scale_info::28'},
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'u128',
@@ -708,6 +707,7 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',

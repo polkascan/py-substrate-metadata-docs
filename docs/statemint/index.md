@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | statemint     |
 | Implementation name     | statemint     |
-| Spec version     | 9360     |
+| Spec version     | 9370     |
 | SS58 Format     | 0     |
 | Token symbol      | DOT     |
 | Token decimals      | 10     |

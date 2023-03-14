@@ -43,6 +43,7 @@ call = substrate.compose_call(
         'Streaming',
         'Governance',
         'AMM',
+        'EVM',
     ),
 }
 )
@@ -129,6 +130,7 @@ call = substrate.compose_call(
         'Streaming',
         'Governance',
         'AMM',
+        'EVM',
     ),
 }
 )
@@ -177,6 +179,7 @@ call = substrate.compose_call(
         'Streaming',
         'Governance',
         'AMM',
+        'EVM',
     ),
     'spawner': {
         'Address20': '[u8; 20]',
@@ -225,6 +228,7 @@ call = substrate.compose_call(
             'Streaming',
             'Governance',
             'AMM',
+            'EVM',
         ),
     ),
     'real': {
@@ -282,6 +286,7 @@ call = substrate.compose_call(
             'Streaming',
             'Governance',
             'AMM',
+            'EVM',
         ),
     ),
     'real': {
@@ -418,6 +423,7 @@ call = substrate.compose_call(
         'Streaming',
         'Governance',
         'AMM',
+        'EVM',
     ),
 }
 )
@@ -444,7 +450,7 @@ A proxy was added.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'Loans', 'Staking', 'Crowdloans', 'Farming', 'Streaming', 'Governance', 'AMM')```
+| proxy_type | `T::ProxyType` | ```('Any', 'Loans', 'Staking', 'Crowdloans', 'Farming', 'Streaming', 'Governance', 'AMM', 'EVM')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -463,7 +469,7 @@ A proxy was removed.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'Loans', 'Staking', 'Crowdloans', 'Farming', 'Streaming', 'Governance', 'AMM')```
+| proxy_type | `T::ProxyType` | ```('Any', 'Loans', 'Staking', 'Crowdloans', 'Farming', 'Streaming', 'Governance', 'AMM', 'EVM')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -475,7 +481,7 @@ disambiguation index and proxy type.
 | -------- | -------- | -------- |
 | pure | `T::AccountId` | ```AccountId```
 | who | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'Loans', 'Staking', 'Crowdloans', 'Farming', 'Streaming', 'Governance', 'AMM')```
+| proxy_type | `T::ProxyType` | ```('Any', 'Loans', 'Staking', 'Crowdloans', 'Farming', 'Streaming', 'Governance', 'AMM', 'EVM')```
 | disambiguation_index | `u16` | ```u16```
 
 ---------
@@ -524,6 +530,7 @@ result = substrate.query(
                 'Streaming',
                 'Governance',
                 'AMM',
+                'EVM',
             ),
         },
     ],

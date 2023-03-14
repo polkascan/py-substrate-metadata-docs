@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -716,7 +716,6 @@ result = substrate.query(
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
-            None: None,
             'XcmpQueue': {
                 'BadFormat': (None, '[u8; 32]'),
                 'BadVersion': (None, '[u8; 32]'),
@@ -727,6 +726,7 @@ result = substrate.query(
                 'UpwardMessageSent': (None, '[u8; 32]'),
                 'XcmpMessageSent': (None, '[u8; 32]'),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

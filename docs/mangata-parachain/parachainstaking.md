@@ -872,7 +872,7 @@ result = substrate.query(
         {'amount': 'u128', 'liquidity_token': 'u32', 'owner': 'AccountId'},
     ],
     'id': 'AccountId',
-    'requests': {'requests': 'scale_info::255'},
+    'requests': {'requests': 'scale_info::256'},
     'status': {'Active': None, 'Leaving': 'u32'},
 }
 ```
@@ -934,7 +934,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::265'
+'scale_info::266'
 ```
 ---------
 ### Total

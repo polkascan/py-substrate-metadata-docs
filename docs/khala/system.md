@@ -5,21 +5,6 @@
 ## Calls
 
 ---------
-### fill_block
-A dispatch that will fill the block weight up to the given ratio.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ratio | `Perbill` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-```
-
----------
 ### kill_prefix
 Kill all storage items with a key that starts with the given prefix.
 
@@ -311,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -383,10 +368,20 @@ result = substrate.query(
     {
         'event': {
             'Assets': {
+                'AccountsDestroyed': {
+                    'accounts_destroyed': 'u32',
+                    'accounts_remaining': 'u32',
+                    'asset_id': 'u32',
+                },
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
                     'delegate': 'AccountId',
                     'owner': 'AccountId',
+                },
+                'ApprovalsDestroyed': {
+                    'approvals_destroyed': 'u32',
+                    'approvals_remaining': 'u32',
+                    'asset_id': 'u32',
                 },
                 'ApprovedTransfer': {
                     'amount': 'u128',
@@ -408,6 +403,7 @@ result = substrate.query(
                     'owner': 'AccountId',
                 },
                 'Destroyed': {'asset_id': 'u32'},
+                'DestructionStarted': {'asset_id': 'u32'},
                 'ForceCreated': {'asset_id': 'u32', 'owner': 'AccountId'},
                 'Frozen': {'asset_id': 'u32', 'who': 'AccountId'},
                 'Issued': {
@@ -757,6 +753,18 @@ result = substrate.query(
                     'nft_id': 'u32',
                     'owner': 'AccountId',
                     'start_time': 'u64',
+                },
+            },
+            'PWMarketplace': {
+                'MarketplaceOwnerSet': {
+                    'new_marketplace_owner': 'AccountId',
+                    'old_marketplace_owner': (None, 'AccountId'),
+                },
+                'RoyaltyInfoUpdated': {
+                    'collection_id': 'u32',
+                    'new_royalty_info': 'scale_info::170',
+                    'nft_id': 'u32',
+                    'old_royalty_info': (None, 'scale_info::170'),
                 },
             },
             'PWNftSale': {
@@ -1160,6 +1168,10 @@ result = substrate.query(
                     'owner': 'scale_info::138',
                 },
                 'PrioritySet': {'collection_id': 'u32', 'nft_id': 'u32'},
+                'PropertiesRemoved': {
+                    'collection_id': 'u32',
+                    'maybe_nft_id': (None, 'u32'),
+                },
                 'PropertyRemoved': {
                     'collection_id': 'u32',
                     'key': 'Bytes',
@@ -1219,6 +1231,13 @@ result = substrate.query(
                 },
             },
             'RmrkMarket': {
+                'MarketFeePaid': {
+                    'amount': 'u128',
+                    'collection_id': 'u32',
+                    'marketplace_owner': 'AccountId',
+                    'nft_id': 'u32',
+                    'sender': 'AccountId',
+                },
                 'OfferAccepted': {
                     'buyer': 'AccountId',
                     'collection_id': 'u32',
@@ -1234,6 +1253,13 @@ result = substrate.query(
                 'OfferWithdrawn': {
                     'collection_id': 'u32',
                     'nft_id': 'u32',
+                    'sender': 'AccountId',
+                },
+                'RoyaltyFeePaid': {
+                    'amount': 'u128',
+                    'collection_id': 'u32',
+                    'nft_id': 'u32',
+                    'royalty_owner': 'AccountId',
                     'sender': 'AccountId',
                 },
                 'TokenListed': {
@@ -1283,17 +1309,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1347,13 +1362,6 @@ result = substrate.query(
                     'tip_hash': '[u8; 32]',
                 },
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1371,6 +1379,10 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
+                'UpdatedInactive': {
+                    'deactivated': 'u128',
+                    'reactivated': 'u128',
+                },
             },
             'Utility': {
                 'BatchCompleted': None,
@@ -1384,6 +1396,24 @@ result = substrate.query(
                 'ItemFailed': {'error': 'scale_info::24'},
             },
             None: None,
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Uniques': {
                 'ApprovalCancelled': {
                     'collection': 'u32',
@@ -1776,7 +1806,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'khala',
     'impl_version': 0,
     'spec_name': 'khala',
-    'spec_version': 1208,
+    'spec_version': 1210,
     'state_version': 0,
     'transaction_version': 6,
 }

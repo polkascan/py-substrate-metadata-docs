@@ -311,9 +311,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -382,36 +382,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'AssetManager': {
-                'ForeignAssetDestroyed': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::281',
-                },
-                'ForeignAssetRegistered': {
-                    'asset': 'scale_info::281',
-                    'asset_id': 'u128',
-                    'metadata': 'scale_info::282',
-                },
-                'ForeignAssetRemoved': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::281',
-                },
-                'ForeignAssetTypeChanged': {
-                    'asset_id': 'u128',
-                    'new_asset_type': 'scale_info::281',
-                },
-                'LocalAssetDestroyed': {'asset_id': 'u128'},
-                'LocalAssetRegistered': {
-                    'asset_id': 'u128',
-                    'creator': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-                'SupportedAssetRemoved': {'asset_type': 'scale_info::281'},
-                'UnitsPerSecondChanged': {
-                    'asset_type': 'scale_info::281',
-                    'units_per_second': 'u128',
-                },
-            },
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
@@ -475,6 +445,7 @@ result = substrate.query(
                     'owner': '[u8; 20]',
                 },
             },
+            'AuthorFilter': {'EligibleUpdated': 'u32'},
             'AuthorMapping': {
                 'KeysRegistered': {
                     'account_id': '[u8; 20]',
@@ -490,6 +461,61 @@ result = substrate.query(
                     'account_id': '[u8; 20]',
                     'new_keys': '[u8; 32]',
                     'new_nimbus_id': '[u8; 32]',
+                },
+            },
+            'Democracy': {
+                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Cancelled': {'ref_index': 'u32'},
+                'Delegated': {'target': '[u8; 20]', 'who': '[u8; 20]'},
+                'ExternalTabled': None,
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'ProposalCanceled': {'prop_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Seconded': {'prop_index': 'u32', 'seconder': '[u8; 20]'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::75'},
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Undelegated': {'account': '[u8; 20]'},
+                'Vetoed': {
+                    'proposal_hash': '[u8; 32]',
+                    'until': 'u32',
+                    'who': '[u8; 20]',
+                },
+                'Voted': {
+                    'ref_index': 'u32',
+                    'vote': 'scale_info::76',
+                    'voter': '[u8; 20]',
+                },
+            },
+            None: None,
+            'AssetManager': {
+                'ForeignAssetDestroyed': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::281',
+                },
+                'ForeignAssetRegistered': {
+                    'asset': 'scale_info::281',
+                    'asset_id': 'u128',
+                    'metadata': 'scale_info::282',
+                },
+                'ForeignAssetRemoved': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::281',
+                },
+                'ForeignAssetTypeChanged': {
+                    'asset_id': 'u128',
+                    'new_asset_type': 'scale_info::281',
+                },
+                'LocalAssetDestroyed': {'asset_id': 'u128'},
+                'LocalAssetRegistered': {
+                    'asset_id': 'u128',
+                    'creator': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+                'SupportedAssetRemoved': {'asset_type': 'scale_info::281'},
+                'UnitsPerSecondChanged': {
+                    'asset_type': 'scale_info::281',
+                    'units_per_second': 'u128',
                 },
             },
             'Balances': {
@@ -569,30 +595,6 @@ result = substrate.query(
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
             },
-            'Democracy': {
-                'Blacklisted': {'proposal_hash': '[u8; 32]'},
-                'Cancelled': {'ref_index': 'u32'},
-                'Delegated': {'target': '[u8; 20]', 'who': '[u8; 20]'},
-                'ExternalTabled': None,
-                'NotPassed': {'ref_index': 'u32'},
-                'Passed': {'ref_index': 'u32'},
-                'ProposalCanceled': {'prop_index': 'u32'},
-                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Seconded': {'prop_index': 'u32', 'seconder': '[u8; 20]'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::75'},
-                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Undelegated': {'account': '[u8; 20]'},
-                'Vetoed': {
-                    'proposal_hash': '[u8; 32]',
-                    'until': 'u32',
-                    'who': '[u8; 20]',
-                },
-                'Voted': {
-                    'ref_index': 'u32',
-                    'vote': 'scale_info::76',
-                    'voter': '[u8; 20]',
-                },
-            },
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -621,6 +623,14 @@ result = substrate.query(
                 'Executed': {'address': '[u8; 20]'},
                 'ExecutedFailed': {'address': '[u8; 20]'},
                 'Log': {'log': 'scale_info::59'},
+            },
+            'Ethereum': {
+                'Executed': {
+                    'exit_reason': 'scale_info::63',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                    'transaction_hash': '[u8; 32]',
+                },
             },
             'Identity': {
                 'IdentityCleared': {'deposit': 'u128', 'who': '[u8; 20]'},
@@ -653,43 +663,6 @@ result = substrate.query(
                     'deposit': 'u128',
                     'main': '[u8; 20]',
                     'sub': '[u8; 20]',
-                },
-            },
-            'MaintenanceMode': {
-                'EnteredMaintenanceMode': None,
-                'FailedToResumeIdleXcmExecution': {'error': 'scale_info::25'},
-                'FailedToSuspendIdleXcmExecution': {'error': 'scale_info::25'},
-                'NormalOperationResumed': None,
-            },
-            'MoonbeamOrbiters': {
-                'OrbiterJoinCollatorPool': {
-                    'collator': '[u8; 20]',
-                    'orbiter': '[u8; 20]',
-                },
-                'OrbiterLeaveCollatorPool': {
-                    'collator': '[u8; 20]',
-                    'orbiter': '[u8; 20]',
-                },
-                'OrbiterRegistered': {
-                    'account': '[u8; 20]',
-                    'deposit': 'u128',
-                },
-                'OrbiterRewarded': {'account': '[u8; 20]', 'rewards': 'u128'},
-                'OrbiterRotation': {
-                    'collator': '[u8; 20]',
-                    'new_orbiter': (None, '[u8; 20]'),
-                    'old_orbiter': (None, '[u8; 20]'),
-                },
-                'OrbiterUnregistered': {'account': '[u8; 20]'},
-            },
-            None: None,
-            'AuthorFilter': {'EligibleUpdated': 'u32'},
-            'Ethereum': {
-                'Executed': {
-                    'exit_reason': 'scale_info::63',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                    'transaction_hash': '[u8; 32]',
                 },
             },
             'LocalAssets': {
@@ -755,6 +728,12 @@ result = substrate.query(
                     'owner': '[u8; 20]',
                 },
             },
+            'MaintenanceMode': {
+                'EnteredMaintenanceMode': None,
+                'FailedToResumeIdleXcmExecution': {'error': 'scale_info::25'},
+                'FailedToSuspendIdleXcmExecution': {'error': 'scale_info::25'},
+                'NormalOperationResumed': None,
+            },
             'Migrations': {
                 'FailedToResumeIdleXcmExecution': {'error': 'scale_info::25'},
                 'FailedToSuspendIdleXcmExecution': {'error': 'scale_info::25'},
@@ -765,6 +744,27 @@ result = substrate.query(
                 'MigrationStarted': {'migration_name': 'Bytes'},
                 'RuntimeUpgradeCompleted': {'weight': 'scale_info::8'},
                 'RuntimeUpgradeStarted': None,
+            },
+            'MoonbeamOrbiters': {
+                'OrbiterJoinCollatorPool': {
+                    'collator': '[u8; 20]',
+                    'orbiter': '[u8; 20]',
+                },
+                'OrbiterLeaveCollatorPool': {
+                    'collator': '[u8; 20]',
+                    'orbiter': '[u8; 20]',
+                },
+                'OrbiterRegistered': {
+                    'account': '[u8; 20]',
+                    'deposit': 'u128',
+                },
+                'OrbiterRewarded': {'account': '[u8; 20]', 'rewards': 'u128'},
+                'OrbiterRotation': {
+                    'collator': '[u8; 20]',
+                    'new_orbiter': (None, '[u8; 20]'),
+                    'old_orbiter': (None, '[u8; 20]'),
+                },
+                'OrbiterUnregistered': {'account': '[u8; 20]'},
             },
             'OpenTechCommitteeCollective': {
                 'Approved': {'proposal_hash': '[u8; 32]'},

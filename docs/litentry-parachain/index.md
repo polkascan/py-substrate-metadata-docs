@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | litentry-parachain     |
 | Implementation name     | litentry-parachain     |
-| Spec version     | 9150     |
+| Spec version     | 9151     |
 | SS58 Format     | 31     |
 | Token symbol      | LIT     |
 | Token decimals      | 12     |

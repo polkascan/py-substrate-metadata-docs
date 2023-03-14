@@ -41,6 +41,31 @@ result = substrate.query(
 {'Ethereum': '[u8; 20]', 'Substrate': 'AccountId'}
 ```
 ---------
+### CollectionAllowance
+ Operator set by a wallet owner that could perform certain transactions on all tokens in the wallet.
+
+#### Python
+```python
+result = substrate.query(
+    'Nonfungible', 'CollectionAllowance', [
+    'u32',
+    {
+        'Ethereum': '[u8; 20]',
+        'Substrate': 'AccountId',
+    },
+    {
+        'Ethereum': '[u8; 20]',
+        'Substrate': 'AccountId',
+    },
+]
+)
+```
+
+#### Return value
+```python
+'bool'
+```
+---------
 ### Owned
  Used to enumerate tokens owned by account.
 
@@ -72,7 +97,7 @@ result = substrate.query(
  usual [`TokenProperties`] due to an unlimited number
  and separately stored and written-to key-value pairs.
 
- Currently used to store RMRK data.
+ Currently unused.
 
 #### Python
 ```python
@@ -128,7 +153,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'consumed_space': 'u32', 'map': 'scale_info::342', 'space_limit': 'u32'}
+{'consumed_space': 'u32', 'map': 'scale_info::352', 'space_limit': 'u32'}
 ```
 ---------
 ### TokensBurnt

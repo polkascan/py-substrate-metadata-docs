@@ -367,6 +367,23 @@ result = substrate.query(
 [
     {
         'event': {
+            'AssetsRegistry': {
+                'AssetRegistered': {
+                    'asset_id': 'u128',
+                    'decimals': (None, 'u8'),
+                    'location': 'scale_info::68',
+                },
+                'AssetUpdated': {
+                    'asset_id': 'u128',
+                    'decimals': (None, 'u8'),
+                    'location': 'scale_info::68',
+                },
+                'MinFeeUpdated': {
+                    'amount': (None, 'u128'),
+                    'foreign_asset_id': 'scale_info::68',
+                    'target_parachain_id': 'u32',
+                },
+            },
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -391,24 +408,6 @@ result = substrate.query(
                 },
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            None: None,
-            'AssetsRegistry': {
-                'AssetRegistered': {
-                    'asset_id': 'u128',
-                    'decimals': (None, 'u8'),
-                    'location': 'scale_info::68',
-                },
-                'AssetUpdated': {
-                    'asset_id': 'u128',
-                    'decimals': (None, 'u8'),
-                    'location': 'scale_info::68',
-                },
-                'MinFeeUpdated': {
-                    'amount': (None, 'u128'),
-                    'foreign_asset_id': 'scale_info::68',
-                    'target_parachain_id': 'u32',
-                },
             },
             'BondedFinance': {
                 'NewBond': {
@@ -974,6 +973,7 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

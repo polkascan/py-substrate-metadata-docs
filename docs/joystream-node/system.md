@@ -378,7 +378,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AppWorkingGroup': {
                 'ApplicationWithdrawn': 'u64',
                 'AppliedOnOpening': ('scale_info::217', 'u64'),
@@ -412,6 +411,29 @@ result = substrate.query(
                 'WorkerStartedLeaving': ('u64', (None, 'Bytes')),
                 'WorkingGroupBudgetFunded': ('u64', 'u128', 'Bytes'),
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::28'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::22'},
+            },
+            None: None,
             'BagsList': {
                 'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
                 'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
@@ -1284,28 +1306,6 @@ result = substrate.query(
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::28'},
                 'SudoAsDone': {'sudo_result': 'scale_info::28'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::28'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
             },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},

@@ -311,9 +311,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
-            None: None,
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -382,6 +382,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -852,6 +853,27 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            'Tokens': {
+                'BalanceSet': {
+                    'currency_id': 'scale_info::70',
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Transfer': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::70',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -880,28 +902,6 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::38'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
-            },
-            None: None,
-            'Tokens': {
-                'BalanceSet': {
-                    'currency_id': 'scale_info::70',
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Transfer': {
-                    'amount': 'u128',
-                    'currency_id': 'scale_info::70',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-            },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
             },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},

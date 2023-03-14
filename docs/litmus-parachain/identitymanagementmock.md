@@ -5,8 +5,8 @@
 ## Calls
 
 ---------
-### add_to_whitelist
-add an account to the whitelist
+### add_delegatee
+add an account to the delegatees
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -15,55 +15,57 @@ add an account to the whitelist
 #### Python
 ```python
 call = substrate.compose_call(
-    'IdentityManagementMock', 'add_to_whitelist', {'account': 'AccountId'}
+    'IdentityManagementMock', 'add_delegatee', {'account': 'AccountId'}
 )
 ```
 
 ---------
-### challenge_code_generated
+### create_identity
+Create an identity
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| account | `AesOutput` | 
-| identity | `AesOutput` | 
-| code | `AesOutput` | 
+| shard | `ShardIdentifier` | 
+| user | `T::AccountId` | 
+| encrypted_identity | `Vec<u8>` | 
+| encrypted_metadata | `Option<Vec<u8>>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'IdentityManagementMock', 'challenge_code_generated', {
-    'account': {
-        'aad': 'Bytes',
-        'ciphertext': 'Bytes',
-        'nonce': '[u8; 12]',
-    },
+    'IdentityManagementMock', 'create_identity', {
+    'encrypted_identity': 'Bytes',
+    'encrypted_metadata': (
+        None,
+        'Bytes',
+    ),
+    'shard': '[u8; 32]',
+    'user': 'AccountId',
+}
+)
+```
+
+---------
+### identity_created
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| account | `T::AccountId` | 
+| identity | `AesOutput` | 
+| code | `AesOutput` | 
+| id_graph | `AesOutput` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'IdentityManagementMock', 'identity_created', {
+    'account': 'AccountId',
     'code': {
         'aad': 'Bytes',
         'ciphertext': 'Bytes',
         'nonce': '[u8; 12]',
     },
-    'identity': {
-        'aad': 'Bytes',
-        'ciphertext': 'Bytes',
-        'nonce': '[u8; 12]',
-    },
-}
-)
-```
-
----------
-### identity_linked
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| account | `AesOutput` | 
-| identity | `AesOutput` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'IdentityManagementMock', 'identity_linked', {
-    'account': {
+    'id_graph': {
         'aad': 'Bytes',
         'ciphertext': 'Bytes',
         'nonce': '[u8; 12]',
@@ -78,18 +80,20 @@ call = substrate.compose_call(
 ```
 
 ---------
-### identity_unlinked
+### identity_removed
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| account | `AesOutput` | 
+| account | `T::AccountId` | 
 | identity | `AesOutput` | 
+| id_graph | `AesOutput` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'IdentityManagementMock', 'identity_unlinked', {
-    'account': {
+    'IdentityManagementMock', 'identity_removed', {
+    'account': 'AccountId',
+    'id_graph': {
         'aad': 'Bytes',
         'ciphertext': 'Bytes',
         'nonce': '[u8; 12]',
@@ -108,14 +112,16 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| account | `AesOutput` | 
+| account | `T::AccountId` | 
 | identity | `AesOutput` | 
+| id_graph | `AesOutput` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'IdentityManagementMock', 'identity_verified', {
-    'account': {
+    'account': 'AccountId',
+    'id_graph': {
         'aad': 'Bytes',
         'ciphertext': 'Bytes',
         'nonce': '[u8; 12]',
@@ -130,32 +136,8 @@ call = substrate.compose_call(
 ```
 
 ---------
-### link_identity
-Link an identity
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| shard | `ShardIdentifier` | 
-| encrypted_identity | `Vec<u8>` | 
-| encrypted_metadata | `Option<Vec<u8>>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'IdentityManagementMock', 'link_identity', {
-    'encrypted_identity': 'Bytes',
-    'encrypted_metadata': (
-        None,
-        'Bytes',
-    ),
-    'shard': '[u8; 32]',
-}
-)
-```
-
----------
-### remove_from_whitelist
-remove an account from the whitelist
+### remove_delegatee
+remove an account from the delegatees
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -164,7 +146,26 @@ remove an account from the whitelist
 #### Python
 ```python
 call = substrate.compose_call(
-    'IdentityManagementMock', 'remove_from_whitelist', {'account': 'AccountId'}
+    'IdentityManagementMock', 'remove_delegatee', {'account': 'AccountId'}
+)
+```
+
+---------
+### remove_identity
+Remove an identity
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| shard | `ShardIdentifier` | 
+| encrypted_identity | `Vec<u8>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'IdentityManagementMock', 'remove_identity', {
+    'encrypted_identity': 'Bytes',
+    'shard': '[u8; 32]',
+}
 )
 ```
 
@@ -203,47 +204,22 @@ call = substrate.compose_call(
 ```
 
 ---------
-### unlink_identity
-Unlink an identity
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| shard | `ShardIdentifier` | 
-| encrypted_identity | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'IdentityManagementMock', 'unlink_identity', {
-    'encrypted_identity': 'Bytes',
-    'shard': '[u8; 32]',
-}
-)
-```
-
----------
 ### user_shielding_key_set
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| account | `AesOutput` | 
+| account | `T::AccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'IdentityManagementMock', 'user_shielding_key_set', {
-    'account': {
-        'aad': 'Bytes',
-        'ciphertext': 'Bytes',
-        'nonce': '[u8; 12]',
-    },
-}
+    'IdentityManagementMock', 'user_shielding_key_set', {'account': 'AccountId'}
 )
 ```
 
 ---------
 ### verify_identity
-Verify a linked identity
+Verify a created identity
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -266,62 +242,72 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### ChallengeCodeGenerated
+### CreateIdentityRequested
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| account | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
+| shard | `ShardIdentifier` | ```[u8; 32]```
+
+---------
+### DelegateeAdded
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account | `T::AccountId` | ```AccountId```
+
+---------
+### DelegateeRemoved
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account | `T::AccountId` | ```AccountId```
+
+---------
+### IdentityCreated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account | `T::AccountId` | ```AccountId```
 | identity | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
 | code | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
+| id_graph | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
 
 ---------
-### ChallengeCodeGeneratedPlain
+### IdentityCreatedPlain
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| identity | `Identity` | ```{'web_type': {'Web2': ('Twitter', 'Discord', 'Github'), 'Web3': {'Substrate': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'Evm': ('Ethereum', 'BSC')}}, 'handle': {'Address32': '[u8; 32]', 'Address20': '[u8; 20]', 'String': 'Bytes'}}```
+| identity | `Identity` | ```{'Substrate': {'network': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'address': '[u8; 32]'}, 'Evm': {'network': ('Ethereum', 'BSC'), 'address': '[u8; 20]'}, 'Web2': {'network': ('Twitter', 'Discord', 'Github'), 'address': 'Bytes'}}```
 | code | `ChallengeCode` | ```[u8; 16]```
+| id_graph | `Vec<(Identity, IdentityContext<T>)>` | ```[({'Substrate': {'network': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'address': '[u8; 32]'}, 'Evm': {'network': ('Ethereum', 'BSC'), 'address': '[u8; 20]'}, 'Web2': {'network': ('Twitter', 'Discord', 'Github'), 'address': 'Bytes'}}, {'metadata': (None, 'Bytes'), 'creation_request_block': (None, 'u32'), 'verification_request_block': (None, 'u32'), 'is_verified': 'bool'})]```
 
 ---------
-### IdentityLinked
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| account | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
-| identity | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
-
----------
-### IdentityLinkedPlain
+### IdentityRemoved
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| identity | `Identity` | ```{'web_type': {'Web2': ('Twitter', 'Discord', 'Github'), 'Web3': {'Substrate': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'Evm': ('Ethereum', 'BSC')}}, 'handle': {'Address32': '[u8; 32]', 'Address20': '[u8; 20]', 'String': 'Bytes'}}```
-
----------
-### IdentityUnlinked
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| account | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
 | identity | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
+| id_graph | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
 
 ---------
-### IdentityUnlinkedPlain
+### IdentityRemovedPlain
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| identity | `Identity` | ```{'web_type': {'Web2': ('Twitter', 'Discord', 'Github'), 'Web3': {'Substrate': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'Evm': ('Ethereum', 'BSC')}}, 'handle': {'Address32': '[u8; 32]', 'Address20': '[u8; 20]', 'String': 'Bytes'}}```
+| identity | `Identity` | ```{'Substrate': {'network': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'address': '[u8; 32]'}, 'Evm': {'network': ('Ethereum', 'BSC'), 'address': '[u8; 20]'}, 'Web2': {'network': ('Twitter', 'Discord', 'Github'), 'address': 'Bytes'}}```
+| id_graph | `Vec<(Identity, IdentityContext<T>)>` | ```[({'Substrate': {'network': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'address': '[u8; 32]'}, 'Evm': {'network': ('Ethereum', 'BSC'), 'address': '[u8; 20]'}, 'Web2': {'network': ('Twitter', 'Discord', 'Github'), 'address': 'Bytes'}}, {'metadata': (None, 'Bytes'), 'creation_request_block': (None, 'u32'), 'verification_request_block': (None, 'u32'), 'is_verified': 'bool'})]```
 
 ---------
 ### IdentityVerified
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| account | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
+| account | `T::AccountId` | ```AccountId```
 | identity | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
+| id_graph | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
 
 ---------
 ### IdentityVerifiedPlain
@@ -329,10 +315,11 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| identity | `Identity` | ```{'web_type': {'Web2': ('Twitter', 'Discord', 'Github'), 'Web3': {'Substrate': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'Evm': ('Ethereum', 'BSC')}}, 'handle': {'Address32': '[u8; 32]', 'Address20': '[u8; 20]', 'String': 'Bytes'}}```
+| identity | `Identity` | ```{'Substrate': {'network': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'address': '[u8; 32]'}, 'Evm': {'network': ('Ethereum', 'BSC'), 'address': '[u8; 20]'}, 'Web2': {'network': ('Twitter', 'Discord', 'Github'), 'address': 'Bytes'}}```
+| id_graph | `Vec<(Identity, IdentityContext<T>)>` | ```[({'Substrate': {'network': ('Polkadot', 'Kusama', 'Litentry', 'Litmus'), 'address': '[u8; 32]'}, 'Evm': {'network': ('Ethereum', 'BSC'), 'address': '[u8; 20]'}, 'Web2': {'network': ('Twitter', 'Discord', 'Github'), 'address': 'Bytes'}}, {'metadata': (None, 'Bytes'), 'creation_request_block': (None, 'u32'), 'verification_request_block': (None, 'u32'), 'is_verified': 'bool'})]```
 
 ---------
-### LinkIdentityRequested
+### RemoveIdentityRequested
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -354,18 +341,11 @@ call = substrate.compose_call(
 | error | `Vec<u8>` | ```Bytes```
 
 ---------
-### UnlinkIdentityRequested
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
-
----------
 ### UserShieldingKeySet
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| account | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
+| account | `T::AccountId` | ```AccountId```
 
 ---------
 ### UserShieldingKeySetPlain
@@ -394,29 +374,29 @@ result = substrate.query(
     'IdentityManagementMock', 'ChallengeCodes', [
     'AccountId',
     {
-        'handle': {
-            'Address20': '[u8; 20]',
-            'Address32': '[u8; 32]',
-            'String': 'Bytes',
+        'Evm': {
+            'address': '[u8; 20]',
+            'network': (
+                'Ethereum',
+                'BSC',
+            ),
         },
-        'web_type': {
-            'Web2': (
+        'Substrate': {
+            'address': '[u8; 32]',
+            'network': (
+                'Polkadot',
+                'Kusama',
+                'Litentry',
+                'Litmus',
+            ),
+        },
+        'Web2': {
+            'address': 'Bytes',
+            'network': (
                 'Twitter',
                 'Discord',
                 'Github',
             ),
-            'Web3': {
-                'Evm': (
-                    'Ethereum',
-                    'BSC',
-                ),
-                'Substrate': (
-                    'Polkadot',
-                    'Kusama',
-                    'Litentry',
-                    'Litmus',
-                ),
-            },
         },
     },
 ]
@@ -428,6 +408,22 @@ result = substrate.query(
 '[u8; 16]'
 ```
 ---------
+### Delegatee
+ delegatees who are authorised to send extrinsics(currently only `create_identity`)
+ on behalf of the users
+
+#### Python
+```python
+result = substrate.query(
+    'IdentityManagementMock', 'Delegatee', ['AccountId']
+)
+```
+
+#### Return value
+```python
+()
+```
+---------
 ### IDGraphs
  ID graph is per Litentry account + identity
 
@@ -437,29 +433,29 @@ result = substrate.query(
     'IdentityManagementMock', 'IDGraphs', [
     'AccountId',
     {
-        'handle': {
-            'Address20': '[u8; 20]',
-            'Address32': '[u8; 32]',
-            'String': 'Bytes',
+        'Evm': {
+            'address': '[u8; 20]',
+            'network': (
+                'Ethereum',
+                'BSC',
+            ),
         },
-        'web_type': {
-            'Web2': (
+        'Substrate': {
+            'address': '[u8; 32]',
+            'network': (
+                'Polkadot',
+                'Kusama',
+                'Litentry',
+                'Litmus',
+            ),
+        },
+        'Web2': {
+            'address': 'Bytes',
+            'network': (
                 'Twitter',
                 'Discord',
                 'Github',
             ),
-            'Web3': {
-                'Evm': (
-                    'Ethereum',
-                    'BSC',
-                ),
-                'Substrate': (
-                    'Polkadot',
-                    'Kusama',
-                    'Litentry',
-                    'Litmus',
-                ),
-            },
         },
     },
 ]
@@ -469,8 +465,8 @@ result = substrate.query(
 #### Return value
 ```python
 {
+    'creation_request_block': (None, 'u32'),
     'is_verified': 'bool',
-    'linking_request_block': (None, 'u32'),
     'metadata': (None, 'Bytes'),
     'verification_request_block': (None, 'u32'),
 }
@@ -491,27 +487,13 @@ result = substrate.query(
 '[u8; 32]'
 ```
 ---------
-### WhitelistedCallers
-
-#### Python
-```python
-result = substrate.query(
-    'IdentityManagementMock', 'WhitelistedCallers', ['AccountId']
-)
-```
-
-#### Return value
-```python
-()
-```
----------
 ## Constants
 
 ---------
 ### MaxVerificationDelay
 #### Value
 ```python
-10
+150
 ```
 #### Python
 ```python
@@ -521,24 +503,28 @@ constant = substrate.get_constant('IdentityManagementMock', 'MaxVerificationDela
 ## Errors
 
 ---------
-### CallerNotWhitelisted
-caller is not in whitelist (therefore disallowed to call some extrinsics)
-
----------
 ### ChallengeCodeNotExist
 the challenge code doesn&\#x27;t exist
 
 ---------
-### IdentityAlreadyExist
-identity already exists when linking an identity
+### CreationRequestBlockZero
+the creation request block is zero
+
+---------
+### DelegateeNotExist
+a delegatee doesn&\#x27;t exist
+
+---------
+### IdentityAlreadyVerified
+identity already verified when creating an identity
 
 ---------
 ### IdentityNotExist
-identity not exist when unlinking an identity
+identity not exist when removing an identity
 
 ---------
-### LinkingRequestBlockZero
-the linking request block is zero
+### IdentityShouldBeDisallowed
+identity should be disallowed
 
 ---------
 ### RecoverEvmAddressFailed
@@ -555,6 +541,10 @@ Error when decrypting using TEE&\#x27;shielding key
 ---------
 ### ShieldingKeyNotExist
 no shielding key for a given AccountId
+
+---------
+### UnauthorisedUser
+a `create_identity` request from unauthorised user
 
 ---------
 ### UnexpectedMessage
@@ -581,15 +571,11 @@ verify substrate signature failed
 unexpected decoded type
 
 ---------
-### WrongIdentityHanldeType
-wrong identity handle type
+### WrongIdentityType
+wrong identity type
 
 ---------
 ### WrongSignatureType
 wrong signature type
-
----------
-### WrongWeb3NetworkType
-wrong web3 network type
 
 ---------

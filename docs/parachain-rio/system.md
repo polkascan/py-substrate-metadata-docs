@@ -309,10 +309,10 @@ result = substrate.query(
         {
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }

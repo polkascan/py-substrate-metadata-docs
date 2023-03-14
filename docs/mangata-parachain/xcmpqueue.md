@@ -455,3 +455,7 @@ Failed to send XCM message.
 Provided weight is possibly not enough to execute the message.
 
 ---------
+### XcmMsgProcessingBlockedByMaintenanceMode
+Xcm message processing is blocked by maintenance mode
+
+---------

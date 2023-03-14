@@ -31,7 +31,7 @@ call = substrate.compose_call(
 Approve a bounty proposal. At a later time, the bounty will be funded and become active
 and the original deposit will be returned.
 
-May only be called from `T::ApproveOrigin`.
+May only be called from `T::SpendOrigin`.
 
 \# &lt;weight&gt;
 - O(1).
@@ -192,7 +192,7 @@ call = substrate.compose_call(
 ### propose_curator
 Assign a curator to a funded bounty.
 
-May only be called from `T::ApproveOrigin`.
+May only be called from `T::SpendOrigin`.
 
 \# &lt;weight&gt;
 - O(1).

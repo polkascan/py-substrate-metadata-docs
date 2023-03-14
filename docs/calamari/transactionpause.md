@@ -5,6 +5,22 @@
 ## Calls
 
 ---------
+### pause_pallets
+Pause all the calls of the listed pallets in `pallet_names`.
+This logic is in its own extrinsic in order to not have to pause calls 1 by 1.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pallet_names | `Vec<Vec<u8>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'TransactionPause', 'pause_pallets', {'pallet_names': ['Bytes']}
+)
+```
+
+---------
 ### pause_transaction
 Pause an extrinsic by passing the extrinsic and corresponding pallet names.
 Use names as they are written in the source code of the pallet.
@@ -21,6 +37,42 @@ call = substrate.compose_call(
     'function_name': 'Bytes',
     'pallet_name': 'Bytes',
 }
+)
+```
+
+---------
+### pause_transactions
+Pause extrinsics by passing the extrinsic and corresponding pallet names.
+Use names as they are written in the source code of the pallet.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pallet_and_funcs | `Vec<(Vec<u8>, Vec<Vec<u8>>)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'TransactionPause', 'pause_transactions', {
+    'pallet_and_funcs': [
+        ('Bytes', ['Bytes']),
+    ],
+}
+)
+```
+
+---------
+### unpause_pallets
+Unpause all the calls of the listed pallets in `pallet_names`.
+This logic is in its own extrinsic in order to not have to pause calls 1 by 1.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pallet_names | `Vec<Vec<u8>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'TransactionPause', 'unpause_pallets', {'pallet_names': ['Bytes']}
 )
 ```
 
@@ -45,7 +97,43 @@ call = substrate.compose_call(
 ```
 
 ---------
+### unpause_transactions
+Unpause extrinsics by passing the extrinsic and corresponding pallet names.
+Use names as they are written in the source code of the pallet.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pallet_and_funcs | `Vec<(Vec<u8>, Vec<Vec<u8>>)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'TransactionPause', 'unpause_transactions', {
+    'pallet_and_funcs': [
+        ('Bytes', ['Bytes']),
+    ],
+}
+)
+```
+
+---------
 ## Events
+
+---------
+### PalletPaused
+Paused pallet
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `Vec<u8>` | ```Bytes```
+
+---------
+### PalletUnpaused
+Unpaused pallet
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `Vec<u8>` | ```Bytes```
 
 ---------
 ### TransactionPaused
@@ -95,5 +183,9 @@ can not pause
 ---------
 ### InvalidCharacter
 invalid character encoding
+
+---------
+### TooManyCalls
+call of pallet too many
 
 ---------

@@ -66,21 +66,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_dispute_max_spam_slots
-Set the maximum number of dispute spam slots.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| new | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Configuration', 'set_dispute_max_spam_slots', {'new': 'u32'}
-)
-```
-
----------
 ### set_dispute_period
 Set the dispute period, in number of sessions to keep for disputes.
 #### Attributes
@@ -715,7 +700,6 @@ result = substrate.query(
     'chain_availability_period': 'u32',
     'code_retention_period': 'u32',
     'dispute_conclusion_by_time_out_period': 'u32',
-    'dispute_max_spam_slots': 'u32',
     'dispute_period': 'u32',
     'dispute_post_conclusion_acceptance_period': 'u32',
     'group_rotation_frequency': 'u32',
@@ -799,7 +783,6 @@ result = substrate.query(
             'chain_availability_period': 'u32',
             'code_retention_period': 'u32',
             'dispute_conclusion_by_time_out_period': 'u32',
-            'dispute_max_spam_slots': 'u32',
             'dispute_period': 'u32',
             'dispute_post_conclusion_acceptance_period': 'u32',
             'group_rotation_frequency': 'u32',

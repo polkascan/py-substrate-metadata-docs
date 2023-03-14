@@ -173,6 +173,8 @@ result = substrate.query(
 
  Keeps track of `AccountId` wishing to unstake and it&#x27;s corresponding deposit.
 
+ TWOX-NOTE: SAFE since `AccountId` is a secure hash.
+
 #### Python
 ```python
 result = substrate.query(

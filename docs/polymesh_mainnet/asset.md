@@ -858,6 +858,48 @@ call = substrate.compose_call(
 ```
 
 ---------
+### update_asset_type
+Updates the type of an asset.
+
+\# Arguments
+* `origin` - the secondary key of the sender.
+* `ticker` - the ticker of the token.
+* `asset_type` - the new type of the token.
+
+\#\# Errors
+- `InvalidCustomAssetTypeId` if `asset_type` is of type custom and has an invalid type id.
+
+\# Permissions
+* Asset
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+| asset_type | `AssetType` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Asset', 'update_asset_type', {
+    'asset_type': {
+        'Commodity': None,
+        'Custom': 'u32',
+        'Derivative': None,
+        'EquityCommon': None,
+        'EquityPreferred': None,
+        'FixedIncome': None,
+        'Fund': None,
+        'REIT': None,
+        'RevenueShareAgreement': None,
+        'StableCoin': None,
+        'StructuredProduct': None,
+    },
+    'ticker': '[u8; 12]',
+}
+)
+```
+
+---------
 ### update_identifiers
 Updates the asset identifiers.
 
@@ -947,6 +989,17 @@ Parameters: caller DID, ticker, new token name.
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
 | None | `AssetName` | ```Bytes```
+
+---------
+### AssetTypeChanged
+An event emitted when the type of an asset changed.
+Parameters: caller DID, ticker, new token type.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `Ticker` | ```[u8; 12]```
+| None | `AssetType` | ```{'EquityCommon': None, 'EquityPreferred': None, 'Commodity': None, 'FixedIncome': None, 'REIT': None, 'Fund': None, 'RevenueShareAgreement': None, 'StructuredProduct': None, 'Derivative': None, 'Custom': 'u32', 'StableCoin': None}```
 
 ---------
 ### AssetUnfrozen
@@ -1908,6 +1961,10 @@ Transfers to self are not allowed
 ---------
 ### TickerAlreadyRegistered
 The ticker is already registered to someone else.
+
+---------
+### TickerFirstByteNotValid
+Tickers should start with at least one valid byte.
 
 ---------
 ### TickerNotAscii

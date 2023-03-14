@@ -904,6 +904,7 @@ call = substrate.compose_call(
     'VtokenMinting', 'set_min_time_unit', {
     'time_unit': {
         'Era': 'u32',
+        'Hour': 'u32',
         'Kblock': 'u32',
         'Round': 'u32',
         'SlashingSpan': 'u32',
@@ -1464,6 +1465,7 @@ call = substrate.compose_call(
     },
     'unlock_duration': {
         'Era': 'u32',
+        'Hour': 'u32',
         'Kblock': 'u32',
         'Round': 'u32',
         'SlashingSpan': 'u32',
@@ -1640,7 +1642,7 @@ Several fees has been set.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | token_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32'}```
-| time_unit | `TimeUnit` | ```{'Era': 'u32', 'SlashingSpan': 'u32', 'Round': 'u32', 'Kblock': 'u32'}```
+| time_unit | `TimeUnit` | ```{'Era': 'u32', 'SlashingSpan': 'u32', 'Round': 'u32', 'Kblock': 'u32', 'Hour': 'u32'}```
 
 ---------
 ### MinimumMintSet
@@ -1732,7 +1734,7 @@ Several fees has been set.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | token_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32'}```
-| unlock_duration | `TimeUnit` | ```{'Era': 'u32', 'SlashingSpan': 'u32', 'Round': 'u32', 'Kblock': 'u32'}```
+| unlock_duration | `TimeUnit` | ```{'Era': 'u32', 'SlashingSpan': 'u32', 'Round': 'u32', 'Kblock': 'u32', 'Hour': 'u32'}```
 
 ---------
 ### UnlockingTotalSet
@@ -1912,7 +1914,13 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'Era': 'u32', 'Kblock': 'u32', 'Round': 'u32', 'SlashingSpan': 'u32'}
+{
+    'Era': 'u32',
+    'Hour': 'u32',
+    'Kblock': 'u32',
+    'Round': 'u32',
+    'SlashingSpan': 'u32',
+}
 ```
 ---------
 ### MinimumMint
@@ -2335,7 +2343,13 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'Era': 'u32', 'Kblock': 'u32', 'Round': 'u32', 'SlashingSpan': 'u32'}
+{
+    'Era': 'u32',
+    'Hour': 'u32',
+    'Kblock': 'u32',
+    'Round': 'u32',
+    'SlashingSpan': 'u32',
+}
 ```
 ---------
 ### TimeUnitUnlockLedger
@@ -2346,6 +2360,7 @@ result = substrate.query(
     'VtokenMinting', 'TimeUnitUnlockLedger', [
     {
         'Era': 'u32',
+        'Hour': 'u32',
         'Kblock': 'u32',
         'Round': 'u32',
         'SlashingSpan': 'u32',
@@ -3033,7 +3048,13 @@ result = substrate.query(
 (
     'AccountId',
     'u128',
-    {'Era': 'u32', 'Kblock': 'u32', 'Round': 'u32', 'SlashingSpan': 'u32'},
+    {
+        'Era': 'u32',
+        'Hour': 'u32',
+        'Kblock': 'u32',
+        'Round': 'u32',
+        'SlashingSpan': 'u32',
+    },
 )
 ```
 ---------
@@ -3316,7 +3337,13 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'Era': 'u32', 'Kblock': 'u32', 'Round': 'u32', 'SlashingSpan': 'u32'}
+{
+    'Era': 'u32',
+    'Hour': 'u32',
+    'Kblock': 'u32',
+    'Round': 'u32',
+    'SlashingSpan': 'u32',
+}
 ```
 ---------
 ### UnlockingTotal

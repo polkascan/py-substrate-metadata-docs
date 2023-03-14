@@ -228,6 +228,8 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'Void': (),
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -243,9 +245,7 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },

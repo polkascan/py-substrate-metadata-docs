@@ -382,6 +382,17 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
+            'AssetRegistry': {
+                'RegisteredAsset': {
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::35',
+                },
+                'UpdatedAsset': {
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::35',
+                },
+            },
             'AutomationPrice': {
                 'AssetCreated': {'asset': 'Bytes'},
                 'AssetDeleted': {'asset': 'Bytes'},
@@ -472,6 +483,19 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
+            'Bounties': {
+                'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
+                'BountyBecameActive': {'index': 'u32'},
+                'BountyCanceled': {'index': 'u32'},
+                'BountyClaimed': {
+                    'beneficiary': 'AccountId',
+                    'index': 'u32',
+                    'payout': 'u128',
+                },
+                'BountyExtended': {'index': 'u32'},
+                'BountyProposed': {'index': 'u32'},
+                'BountyRejected': {'bond': 'u128', 'index': 'u32'},
+            },
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -506,52 +530,6 @@ result = substrate.query(
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::76'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
-            },
-            'DmpQueue': {
-                'ExecutedDownward': {
-                    'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::76',
-                },
-                'InvalidFormat': {'message_id': '[u8; 32]'},
-                'OverweightEnqueued': {
-                    'message_id': '[u8; 32]',
-                    'overweight_index': 'u64',
-                    'required_weight': 'scale_info::8',
-                },
-                'OverweightServiced': {
-                    'overweight_index': 'u64',
-                    'weight_used': 'scale_info::8',
-                },
-                'UnsupportedVersion': {'message_id': '[u8; 32]'},
-                'WeightExhausted': {
-                    'message_id': '[u8; 32]',
-                    'remaining_weight': 'scale_info::8',
-                    'required_weight': 'scale_info::8',
-                },
-            },
-            None: None,
-            'AssetRegistry': {
-                'RegisteredAsset': {
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::35',
-                },
-                'UpdatedAsset': {
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::35',
-                },
-            },
-            'Bounties': {
-                'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
-                'BountyBecameActive': {'index': 'u32'},
-                'BountyCanceled': {'index': 'u32'},
-                'BountyClaimed': {
-                    'beneficiary': 'AccountId',
-                    'index': 'u32',
-                    'payout': 'u128',
-                },
-                'BountyExtended': {'index': 'u32'},
-                'BountyProposed': {'index': 'u32'},
-                'BountyRejected': {'bond': 'u128', 'index': 'u32'},
             },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
@@ -607,6 +585,28 @@ result = substrate.query(
                     'ref_index': 'u32',
                     'vote': 'scale_info::117',
                     'voter': 'AccountId',
+                },
+            },
+            'DmpQueue': {
+                'ExecutedDownward': {
+                    'message_id': '[u8; 32]',
+                    'outcome': 'scale_info::76',
+                },
+                'InvalidFormat': {'message_id': '[u8; 32]'},
+                'OverweightEnqueued': {
+                    'message_id': '[u8; 32]',
+                    'overweight_index': 'u64',
+                    'required_weight': 'scale_info::8',
+                },
+                'OverweightServiced': {
+                    'overweight_index': 'u64',
+                    'weight_used': 'scale_info::8',
+                },
+                'UnsupportedVersion': {'message_id': '[u8; 32]'},
+                'WeightExhausted': {
+                    'message_id': '[u8; 32]',
+                    'remaining_weight': 'scale_info::8',
+                    'required_weight': 'scale_info::8',
                 },
             },
             'Identity': {

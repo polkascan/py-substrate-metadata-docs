@@ -1293,9 +1293,6 @@ claims.
 - `target_account` (primary key of the new Identity) can be linked to just one and only
 one identity.
 - External secondary keys can be linked to just one identity.
-
-\# Weight
-`7_000_000_000 + 600_000 * secondary_keys.len()`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1306,6 +1303,55 @@ one identity.
 ```python
 call = substrate.compose_call(
     'Identity', 'cdd_register_did', {
+    'secondary_keys': [
+        {
+            'key': 'AccountId',
+            'permissions': {
+                'asset': {
+                    'Except': 'scale_info::41',
+                    'These': 'scale_info::41',
+                    'Whole': None,
+                },
+                'extrinsic': {
+                    'Except': 'scale_info::50',
+                    'These': 'scale_info::50',
+                    'Whole': None,
+                },
+                'portfolio': {
+                    'Except': 'scale_info::56',
+                    'These': 'scale_info::56',
+                    'Whole': None,
+                },
+            },
+        },
+    ],
+    'target_account': 'AccountId',
+}
+)
+```
+
+---------
+### cdd_register_did_with_cdd
+Register `target_account` with a new Identity and issue a CDD claim with a blank CddId
+
+\# Failure
+- `origin` has to be a active CDD provider. Inactive CDD providers cannot add new
+claims.
+- `target_account` (primary key of the new Identity) can be linked to just one and only
+one identity.
+- External secondary keys can be linked to just one identity.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| target_account | `T::AccountId` | 
+| secondary_keys | `Vec<SecondaryKey<T::AccountId>>` | 
+| expiry | `Option<T::Moment>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'cdd_register_did_with_cdd', {
+    'expiry': (None, 'u64'),
     'secondary_keys': [
         {
             'key': 'AccountId',
@@ -3045,6 +3091,10 @@ Cannot convert a `T::AccountId` to `AnySignature::Signer::AccountId`.
 ---------
 ### ClaimAndProofVersionsDoNotMatch
 Claim and Proof versions are different.
+
+---------
+### ClaimDoesNotExist
+Claim does not exist.
 
 ---------
 ### ClaimVariantNotAllowed

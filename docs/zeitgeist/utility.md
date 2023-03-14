@@ -121,7 +121,11 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
         None: None,
         'Council': {
             'Member': 'AccountId',
@@ -995,11 +999,7 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
+        'Void': (),
     },
     'call': 'Call',
 }

@@ -5,6 +5,24 @@
 ## Events
 
 ---------
+### AllowListAddressAdded
+Address was added to the allow list.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+| None | `T::CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
+
+---------
+### AllowListAddressRemoved
+Address was removed from the allow list.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+| None | `T::CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
+
+---------
 ### Approved
 Amount pieces of token owned by `sender` was approved for `spender`.
 #### Attributes
@@ -15,6 +33,35 @@ Amount pieces of token owned by `sender` was approved for `spender`.
 | None | `T::CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
 | None | `T::CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
 | None | `u128` | ```u128```
+
+---------
+### ApprovedForAll
+A `sender` approves operations on all owned tokens for `spender`.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+| None | `T::CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
+| None | `T::CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
+| None | `bool` | ```bool```
+
+---------
+### CollectionAdminAdded
+Collection admin was added.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+| None | `T::CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
+
+---------
+### CollectionAdminRemoved
+Collection admin was removed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+| None | `T::CrossAccountId` | ```{'Substrate': 'AccountId', 'Ethereum': '[u8; 20]'}```
 
 ---------
 ### CollectionCreated
@@ -29,6 +76,31 @@ New collection was created
 ---------
 ### CollectionDestroyed
 New collection was destroyed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+
+---------
+### CollectionLimitSet
+Collection limits were set.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+
+---------
+### CollectionOwnerChanged
+Collection owned was changed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+| None | `T::AccountId` | ```AccountId```
+
+---------
+### CollectionPermissionSet
+Collection permissions were set.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -51,6 +123,23 @@ The colletion property has been added or edited.
 | -------- | -------- | -------- |
 | None | `CollectionId` | ```u32```
 | None | `PropertyKey` | ```Bytes```
+
+---------
+### CollectionSponsorRemoved
+Collection sponsor was removed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+
+---------
+### CollectionSponsorSet
+Collection sponsor was set.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+| None | `T::AccountId` | ```AccountId```
 
 ---------
 ### ItemCreated
@@ -82,6 +171,15 @@ The token property permission of a collection has been set.
 | -------- | -------- | -------- |
 | None | `CollectionId` | ```u32```
 | None | `PropertyKey` | ```Bytes```
+
+---------
+### SponsorshipConfirmed
+New sponsor was confirm.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `CollectionId` | ```u32```
+| None | `T::AccountId` | ```AccountId```
 
 ---------
 ### TokenPropertyDeleted
@@ -194,7 +292,7 @@ result = substrate.query(
             None,
             {
                 'collection_admin': 'bool',
-                'restricted': (None, 'scale_info::247'),
+                'restricted': (None, 'scale_info::246'),
                 'token_owner': 'bool',
             },
         ),
@@ -220,7 +318,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'consumed_space': 'u32', 'map': 'scale_info::342', 'space_limit': 'u32'}
+{'consumed_space': 'u32', 'map': 'scale_info::352', 'space_limit': 'u32'}
 ```
 ---------
 ### CollectionPropertyPermissions
@@ -235,7 +333,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::347'
+'scale_info::357'
 ```
 ---------
 ### CreatedCollectionCount
@@ -285,7 +383,7 @@ result = substrate.query(
     'u32',
     'u32',
     {'collection': 'u32', 'token': 'u32'},
-    "[({'properties': ['scale_info::254'], 'owner': (None, 'scale_info::90'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::231', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::337', 'limits': 'scale_info::236', 'permissions': 'scale_info::241', 'token_property_permissions': ['scale_info::250'], 'properties': ['scale_info::254'], 'read_only': 'bool', 'flags': 'scale_info::359'}, {'issuer': 'AccountId', 'metadata': 'Bytes', 'max': (None, 'u32'), 'symbol': 'Bytes', 'nfts_count': 'u32'}, {'owner': 'scale_info::364', 'royalty': (None, 'scale_info::366'), 'metadata': 'Bytes', 'equipped': 'bool', 'pending': 'bool'}, {'id': 'u32', 'resource': 'scale_info::369', 'pending': 'bool', 'pending_removal': 'bool'}, {'key': 'Bytes', 'value': 'Bytes'}, {'issuer': 'AccountId', 'base_type': 'Bytes', 'symbol': 'Bytes'}, {'FixedPart': 'scale_info::380', 'SlotPart': 'scale_info::381'}, {'name': 'Bytes', 'properties': ['scale_info::385'], 'inherit': 'bool'}, {'collection_id': 'u32', 'nft_id': 'u32'}); 0]",
+    "[({'properties': ['scale_info::253'], 'owner': (None, 'scale_info::95'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::230', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::347', 'limits': 'scale_info::235', 'permissions': 'scale_info::240', 'token_property_permissions': ['scale_info::249'], 'properties': ['scale_info::253'], 'read_only': 'bool', 'flags': 'scale_info::369'}, {'proof_size': 'u64', 'compact_proof_size': 'u64', 'compressed_proof_size': 'u64', 'results': ['scale_info::372'], 'key_values': ['scale_info::377']}); 0]",
 )
 ```
 ---------
@@ -324,6 +422,17 @@ result = substrate.query(
 constant = substrate.get_constant('Common', 'CollectionCreationPrice')
 ```
 ---------
+### ContractAddress
+ Address under which the CollectionHelper contract would be available.
+#### Value
+```python
+'0x6c4e9fe1ae37a41e93cee429e8e1881abdcbb54f'
+```
+#### Python
+```python
+constant = substrate.get_constant('Common', 'ContractAddress')
+```
+---------
 ### collection_admins_limit
  Maximum admins per collection.
 #### Value
@@ -340,6 +449,10 @@ constant = substrate.get_constant('Common', 'collection_admins_limit')
 ---------
 ### AccountTokenLimitExceeded
 Account token limit exceeded per collection
+
+---------
+### AddressIsNotEthMirror
+Only spending from eth mirror could be approved
 
 ---------
 ### AddressIsZero
@@ -400,6 +513,10 @@ Collection token limit exceeded
 ---------
 ### CollectionTokenPrefixLimitExceeded
 Token prefix can not be longer than 15 char.
+
+---------
+### ConfirmSponsorshipFail
+This address is not set as sponsor, use setCollectionSponsor first.
 
 ---------
 ### EmptyPropertyKey
@@ -472,5 +589,9 @@ The operation is not supported
 ---------
 ### UserIsNotAllowedToNest
 User does not satisfy the nesting rule
+
+---------
+### UserIsNotCollectionAdmin
+The user is not an administrator.
 
 ---------

@@ -1211,7 +1211,7 @@ constant = substrate.get_constant('ParachainStaking', 'MinCandidateStk')
  Minimum stake required for any candidate to be in `SelectedCandidates` for the round
 #### Value
 ```python
-400000000000000000
+4000000000000000000
 ```
 #### Python
 ```python

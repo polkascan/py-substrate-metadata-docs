@@ -402,18 +402,6 @@ result = substrate.query(
                     'units_per_second': 'u128',
                 },
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
@@ -540,6 +528,7 @@ result = substrate.query(
                 'SetLimitSuccess': 'u128',
                 'SuperiorChanged': 'AccountId',
             },
+            None: None,
             'CollatorSelection': {
                 'CandidateAdded': ('AccountId', 'u128'),
                 'CandidateRemoved': 'AccountId',
@@ -841,6 +830,17 @@ result = substrate.query(
                 'PongSent': ('u32', 'u32', 'Bytes'),
                 'Ponged': ('u32', 'u32', 'Bytes', 'u32'),
                 'UnknownPong': ('u32', 'u32', 'Bytes'),
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},

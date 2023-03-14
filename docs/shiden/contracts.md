@@ -642,131 +642,178 @@ constant = substrate.get_constant('Contracts', 'DepositPerByte')
 constant = substrate.get_constant('Contracts', 'DepositPerItem')
 ```
 ---------
+### MaxCodeLen
+ The maximum length of a contract code in bytes. This limit applies to the instrumented
+ version of the code. Therefore `instantiate_with_code` can fail even when supplying
+ a wasm binary below this maximum size.
+
+ The value should be chosen carefully taking into the account the overall memory limit
+ your runtime has, as well as the [maximum allowed callstack
+ depth](\#associatedtype.CallStack). Look into the `integrity_test()` for some insights.
+#### Value
+```python
+125952
+```
+#### Python
+```python
+constant = substrate.get_constant('Contracts', 'MaxCodeLen')
+```
+---------
+### MaxDebugBufferLen
+ The maximum length of the debug buffer in bytes.
+#### Value
+```python
+2097152
+```
+#### Python
+```python
+constant = substrate.get_constant('Contracts', 'MaxDebugBufferLen')
+```
+---------
+### MaxStorageKeyLen
+ The maximum allowable length in bytes for storage keys.
+#### Value
+```python
+128
+```
+#### Python
+```python
+constant = substrate.get_constant('Contracts', 'MaxStorageKeyLen')
+```
+---------
 ### Schedule
  Cost schedule and limits.
 #### Value
 ```python
 {
     'host_fn_weights': {
-        'address': 438552,
-        'balance': 1371093,
-        'block_number': 427192,
-        'call': 465686910,
-        'call_per_cloned_byte': 121420,
-        'call_transfer_surcharge': 142105165,
-        'caller': 437525,
-        'caller_is_origin': 189417,
-        'clear_storage': 130191577,
-        'clear_storage_per_byte': 11543,
-        'code_hash': 28341759,
-        'contains_storage': 29075118,
-        'contains_storage_per_byte': 2943,
-        'debug_message': 334808,
-        'delegate_call': 354142127,
-        'deposit_event': 2944448,
-        'deposit_event_per_byte': 806,
-        'deposit_event_per_topic': 127171040,
-        'ecdsa_recover': 37050908,
-        'ecdsa_to_eth_address': 26178065,
-        'gas': 198695,
-        'gas_left': 434552,
-        'get_storage': 29367674,
-        'get_storage_per_byte': 4017,
-        'hash_blake2_128': 598623,
-        'hash_blake2_128_per_byte': 1206,
-        'hash_blake2_256': 619229,
-        'hash_blake2_256_per_byte': 1208,
-        'hash_keccak_256': 884095,
-        'hash_keccak_256_per_byte': 3008,
-        'hash_sha2_256': 719712,
-        'hash_sha2_256_per_byte': 3928,
-        'input': 410880,
-        'input_per_byte': 116,
-        'instantiate': 904289872,
-        'instantiate_per_salt_byte': 1471,
-        'instantiate_transfer_surcharge': 1525,
-        'is_contract': 27637871,
-        'minimum_balance': 429153,
-        'now': 428814,
-        'own_code_hash': 482244,
-        'r#return': 2052714,
-        'random': 1680675,
-        'return_per_byte': 181,
-        'set_code_hash': 275189366,
-        'set_storage': 130376107,
-        'set_storage_per_new_byte': 11829,
-        'set_storage_per_old_byte': 11519,
-        'take_storage': 130482174,
-        'take_storage_per_byte': 12653,
-        'terminate': 779264722,
-        'transfer': 142083960,
-        'value_transferred': 431949,
-        'weight_to_fee': 1338945,
+        'account_reentrance_count': {'proof_size': 198, 'ref_time': 229590},
+        'address': {'proof_size': 30, 'ref_time': 218594},
+        'balance': {'proof_size': 30, 'ref_time': 1190338},
+        'block_number': {'proof_size': 30, 'ref_time': 213279},
+        'call': {'proof_size': 6233, 'ref_time': 610918689},
+        'call_per_cloned_byte': {'proof_size': 0, 'ref_time': 119},
+        'call_transfer_surcharge': {'proof_size': 3466, 'ref_time': 143975680},
+        'caller': {'proof_size': 30, 'ref_time': 219419},
+        'caller_is_origin': {'proof_size': 15, 'ref_time': 140927},
+        'clear_storage': {'proof_size': 288, 'ref_time': 130817072},
+        'clear_storage_per_byte': {'proof_size': 2, 'ref_time': 11510},
+        'code_hash': {'proof_size': 3696, 'ref_time': 28743491},
+        'contains_storage': {'proof_size': 288, 'ref_time': 29624817},
+        'contains_storage_per_byte': {'proof_size': 2, 'ref_time': 2910},
+        'debug_message': {'proof_size': 35, 'ref_time': 181218},
+        'debug_message_per_byte': {'proof_size': 0, 'ref_time': 795},
+        'delegate_call': {'proof_size': 8249, 'ref_time': 497733930},
+        'deposit_event': {'proof_size': 50, 'ref_time': 2866951},
+        'deposit_event_per_byte': {'proof_size': 0, 'ref_time': 872},
+        'deposit_event_per_topic': {'proof_size': 2637, 'ref_time': 127226601},
+        'ecdsa_recover': {'proof_size': 380, 'ref_time': 37772512},
+        'ecdsa_to_eth_address': {'proof_size': 210, 'ref_time': 9428224},
+        'gas': {'proof_size': 0, 'ref_time': 101800},
+        'gas_left': {'proof_size': 30, 'ref_time': 215333},
+        'get_storage': {'proof_size': 296, 'ref_time': 29771730},
+        'get_storage_per_byte': {'proof_size': 2, 'ref_time': 4105},
+        'hash_blake2_128': {'proof_size': 42, 'ref_time': 485714},
+        'hash_blake2_128_per_byte': {'proof_size': 0, 'ref_time': 1259},
+        'hash_blake2_256': {'proof_size': 40, 'ref_time': 410542},
+        'hash_blake2_256_per_byte': {'proof_size': 0, 'ref_time': 1260},
+        'hash_keccak_256': {'proof_size': 40, 'ref_time': 720094},
+        'hash_keccak_256_per_byte': {'proof_size': 0, 'ref_time': 3193},
+        'hash_sha2_256': {'proof_size': 40, 'ref_time': 533102},
+        'hash_sha2_256_per_byte': {'proof_size': 0, 'ref_time': 3961},
+        'input': {'proof_size': 30, 'ref_time': 191975},
+        'input_per_byte': {'proof_size': 0, 'ref_time': 117},
+        'instantiate': {'proof_size': 14613, 'ref_time': 951639686},
+        'instantiate_per_input_byte': {'proof_size': 0, 'ref_time': 1539},
+        'instantiate_per_salt_byte': {'proof_size': 0, 'ref_time': 1543},
+        'instantiate_transfer_surcharge': {
+            'proof_size': 34,
+            'ref_time': 6443518,
+        },
+        'instantiation_nonce': {'proof_size': 18, 'ref_time': 116940},
+        'is_contract': {'proof_size': 3676, 'ref_time': 28146036},
+        'minimum_balance': {'proof_size': 30, 'ref_time': 213889},
+        'now': {'proof_size': 30, 'ref_time': 227408},
+        'own_code_hash': {'proof_size': 30, 'ref_time': 273403},
+        'r#return': {'proof_size': 225, 'ref_time': 0},
+        'random': {'proof_size': 60, 'ref_time': 1412165},
+        'reentrance_count': {'proof_size': 15, 'ref_time': 145081},
+        'return_per_byte': {'proof_size': 0, 'ref_time': 225},
+        'set_code_hash': {'proof_size': 11786, 'ref_time': 277223570},
+        'set_storage': {'proof_size': 292, 'ref_time': 130974996},
+        'set_storage_per_new_byte': {'proof_size': 0, 'ref_time': 11882},
+        'set_storage_per_old_byte': {'proof_size': 2, 'ref_time': 11483},
+        'take_storage': {'proof_size': 296, 'ref_time': 130979683},
+        'take_storage_per_byte': {'proof_size': 2, 'ref_time': 12710},
+        'terminate': {'proof_size': 11465, 'ref_time': 782035310},
+        'transfer': {'proof_size': 2701, 'ref_time': 142617701},
+        'value_transferred': {'proof_size': 30, 'ref_time': 216458},
+        'weight_to_fee': {'proof_size': 60, 'ref_time': 1101249},
     },
     'instruction_weights': {
-        'br': 5442,
-        'br_if': 6329,
-        'br_table': 8380,
-        'br_table_per_entry': 38,
-        'call': 57072,
-        'call_indirect': 70640,
-        'call_indirect_per_param': 927,
+        'br': 2318,
+        'br_if': 3415,
+        'br_table': 5518,
+        'br_table_per_entry': 44,
+        'call': 19705,
+        'call_indirect': 23239,
+        'call_indirect_per_param': 2176,
+        'call_per_local': 916,
         'fallback': 0,
-        'global_get': 10279,
-        'global_set': 10940,
-        'i32wrapi64': 4436,
-        'i64add': 5146,
-        'i64and': 5485,
-        'i64clz': 4363,
-        'i64const': 4438,
-        'i64ctz': 4467,
-        'i64divs': 11575,
-        'i64divu': 11252,
-        'i64eq': 5439,
-        'i64eqz': 4591,
-        'i64extendsi32': 4301,
-        'i64extendui32': 4263,
-        'i64ges': 5407,
-        'i64geu': 5374,
-        'i64gts': 5318,
-        'i64gtu': 5407,
-        'i64les': 5376,
-        'i64leu': 5536,
-        'i64load': 18715,
-        'i64lts': 5386,
-        'i64ltu': 5436,
-        'i64mul': 5133,
-        'i64ne': 5360,
-        'i64or': 5156,
-        'i64popcnt': 4472,
-        'i64rems': 11929,
-        'i64remu': 10985,
-        'i64rotl': 5385,
-        'i64rotr': 5359,
-        'i64shl': 5352,
-        'i64shrs': 5425,
-        'i64shru': 5361,
-        'i64store': 18657,
-        'i64sub': 5199,
-        'i64xor': 5106,
-        'local_get': 4580,
-        'local_set': 5080,
-        'local_tee': 4817,
-        'memory_current': 4900,
-        'memory_grow': 11465995,
-        'r#if': 11584,
-        'select': 5821,
-        'version': 3,
+        'global_get': 6896,
+        'global_set': 7127,
+        'i32wrapi64': 2087,
+        'i64add': 2829,
+        'i64and': 2867,
+        'i64clz': 2240,
+        'i64const': 2049,
+        'i64ctz': 2228,
+        'i64divs': 9062,
+        'i64divu': 8436,
+        'i64eq': 2921,
+        'i64eqz': 2765,
+        'i64extendsi32': 2083,
+        'i64extendui32': 2075,
+        'i64ges': 2964,
+        'i64geu': 2955,
+        'i64gts': 2924,
+        'i64gtu': 3031,
+        'i64les': 2960,
+        'i64leu': 3043,
+        'i64load': 6747,
+        'i64lts': 2885,
+        'i64ltu': 2934,
+        'i64mul': 2708,
+        'i64ne': 3569,
+        'i64or': 2828,
+        'i64popcnt': 2252,
+        'i64rems': 9329,
+        'i64remu': 8347,
+        'i64rotl': 2886,
+        'i64rotr': 2882,
+        'i64shl': 2890,
+        'i64shrs': 2887,
+        'i64shru': 2885,
+        'i64store': 5969,
+        'i64sub': 2731,
+        'i64xor': 2826,
+        'local_get': 2551,
+        'local_set': 2809,
+        'local_tee': 2504,
+        'memory_current': 6130,
+        'memory_grow': 14968705,
+        'r#if': 6952,
+        'select': 3301,
+        'version': 4,
     },
     'limits': {
         'br_table_size': 256,
-        'call_depth': 32,
         'event_topics': 4,
         'globals': 256,
+        'locals': 1024,
         'memory_pages': 16,
         'parameters': 128,
         'payload_len': 16384,
-        'stack_height': None,
         'subject_len': 32,
         'table_size': 4096,
     },
@@ -775,6 +822,25 @@ constant = substrate.get_constant('Contracts', 'DepositPerItem')
 #### Python
 ```python
 constant = substrate.get_constant('Contracts', 'Schedule')
+```
+---------
+### UnsafeUnstableInterface
+ Make contract callable functions marked as `\#[unstable]` available.
+
+ Contracts that use `\#[unstable]` functions won&#x27;t be able to be uploaded unless
+ this is set to `true`. This is only meant for testnets and dev nodes in order to
+ experiment with new features.
+
+ \# Warning
+
+ Do **not** set to `true` on productions chains.
+#### Value
+```python
+False
+```
+#### Python
+```python
+constant = substrate.get_constant('Contracts', 'UnsafeUnstableInterface')
 ```
 ---------
 ## Errors
@@ -790,8 +856,13 @@ No code could be found at the supplied code hash.
 ---------
 ### CodeRejected
 The contract&\#x27;s code was found to be invalid during validation or instrumentation.
+
+The most likely cause of this is that an API was used which is not supported by the
+node. This hapens if an older node is used with a new version of ink!. Try updating
+your node to the newest available version.
+
 A more detailed error can be found on the node console if debug messages are enabled
-or in the debug buffer which is returned to RPC clients.
+by supplying `-lruntime::contracts=debug`.
 
 ---------
 ### CodeTooLarge
@@ -814,10 +885,6 @@ to determine whether a reversion has taken place.
 Contract trapped during execution.
 
 ---------
-### DebugMessageInvalidUTF8
-The debug message specified to `seal_debug_message` does contain invalid UTF-8.
-
----------
 ### DecodingFailed
 Input passed to a contract API function failed to decode as expected type.
 
@@ -832,10 +899,6 @@ Trying again during another block is the only way to resolve this issue.
 ---------
 ### DuplicateContract
 A contract with the same AccountId already exists.
-
----------
-### DuplicateTopics
-The topics passed to `seal_deposit_events` contains at least one duplicate.
 
 ---------
 ### Indeterministic

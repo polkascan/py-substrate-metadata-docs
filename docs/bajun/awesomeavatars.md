@@ -29,6 +29,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### claim_treasury
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| season_id | `SeasonId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'claim_treasury', {'season_id': 'u16'}
+)
+```
+
+---------
 ### forge
 Forge an avatar.
 
@@ -56,24 +70,16 @@ call = substrate.compose_call(
 ```
 
 ---------
-### issue_free_mints
-Issue free mints.
-
-It can only be called by an organizer account.
-
-Emits `FreeMintsIssued` event when successful.
-
-Weight: `O(1)`
+### lock_avatar
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| to | `T::AccountId` | 
-| how_many | `MintCount` | 
+| avatar_id | `AvatarIdOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'AwesomeAvatars', 'issue_free_mints', {'how_many': 'u16', 'to': 'AccountId'}
+    'AwesomeAvatars', 'lock_avatar', {'avatar_id': '[u8; 32]'}
 )
 ```
 
@@ -127,6 +133,31 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'AwesomeAvatars', 'remove_price', {'avatar_id': '[u8; 32]'}
+)
+```
+
+---------
+### set_free_mints
+Set free mints.
+
+It can only be called by an organizer account.
+
+Emits `FreeMintSet` event when successful.
+
+Weight: `O(1)`
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| target | `T::AccountId` | 
+| how_many | `MintCount` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'set_free_mints', {
+    'how_many': 'u16',
+    'target': 'AccountId',
+}
 )
 ```
 
@@ -247,12 +278,34 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
+| season_id | `SeasonId` | 
 | treasurer | `T::AccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'AwesomeAvatars', 'set_treasurer', {'treasurer': 'AccountId'}
+    'AwesomeAvatars', 'set_treasurer', {
+    'season_id': 'u16',
+    'treasurer': 'AccountId',
+}
+)
+```
+
+---------
+### transfer_avatar
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| to | `T::AccountId` | 
+| avatar_id | `AvatarIdOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'transfer_avatar', {
+    'avatar_id': '[u8; 32]',
+    'to': 'AccountId',
+}
 )
 ```
 
@@ -273,6 +326,20 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'AwesomeAvatars', 'transfer_free_mints', {'how_many': 'u16', 'to': 'AccountId'}
+)
+```
+
+---------
+### unlock_avatar
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| avatar_id | `AvatarIdOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'unlock_avatar', {'avatar_id': '[u8; 32]'}
 )
 ```
 
@@ -307,14 +374,18 @@ call = substrate.compose_call(
                 'three': 'u128',
             },
             'free_mint_fee_multiplier': 'u16',
-            'free_mint_transfer_fee': 'u16',
-            'min_free_mint_transfer': 'u16',
             'open': 'bool',
         },
         'trade': {
             'min_fee': 'u128',
             'open': 'bool',
             'percent_fee': 'u8',
+        },
+        'transfer': {
+            'avatar_transfer_fee': 'u128',
+            'free_mint_transfer_fee': 'u16',
+            'min_free_mint_transfer': 'u16',
+            'open': 'bool',
         },
     },
 }
@@ -351,6 +422,15 @@ Avatar forged.
 | upgraded_components | `u8` | ```u8```
 
 ---------
+### AvatarLocked
+Avatar locked.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+| asset_id | `AssetIdOf<T>` | ```u128```
+
+---------
 ### AvatarPriceSet
 Avatar has price set for trade.
 #### Attributes
@@ -378,6 +458,24 @@ Avatar has been traded.
 | to | `T::AccountId` | ```AccountId```
 
 ---------
+### AvatarTransferred
+Avatar transferred.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| from | `T::AccountId` | ```AccountId```
+| to | `T::AccountId` | ```AccountId```
+| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+
+---------
+### AvatarUnlocked
+Avatar unlocked.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+
+---------
 ### AvatarsMinted
 Avatars minted.
 #### Attributes
@@ -386,12 +484,12 @@ Avatars minted.
 | avatar_ids | `Vec<AvatarIdOf<T>>` | ```['[u8; 32]']```
 
 ---------
-### FreeMintsIssued
-Free mints issued to account.
+### FreeMintsSet
+Free mints set for target account.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| to | `T::AccountId` | ```AccountId```
+| target | `T::AccountId` | ```AccountId```
 | how_many | `MintCount` | ```u16```
 
 ---------
@@ -436,11 +534,22 @@ No attributes
 
 ---------
 ### TreasurerSet
-A treasurer has been set.
+A treasurer has been set for a season.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
+| season_id | `SeasonId` | ```u16```
 | treasurer | `T::AccountId` | ```AccountId```
+
+---------
+### TreasuryClaimed
+A season&\#x27;s treasury has been claimed by a treasurer.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| season_id | `SeasonId` | ```u16```
+| treasurer | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ### UpdatedGlobalConfig
@@ -448,7 +557,7 @@ Global configuration updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `GlobalConfigOf<T>` | ```{'mint': {'open': 'bool', 'fees': {'one': 'u128', 'three': 'u128', 'six': 'u128'}, 'cooldown': 'u32', 'free_mint_fee_multiplier': 'u16', 'free_mint_transfer_fee': 'u16', 'min_free_mint_transfer': 'u16'}, 'forge': {'open': 'bool'}, 'trade': {'open': 'bool', 'min_fee': 'u128', 'percent_fee': 'u8'}, 'account': {'storage_upgrade_fee': 'u128'}}```
+| None | `GlobalConfigOf<T>` | ```{'mint': {'open': 'bool', 'fees': {'one': 'u128', 'three': 'u128', 'six': 'u128'}, 'cooldown': 'u32', 'free_mint_fee_multiplier': 'u16'}, 'forge': {'open': 'bool'}, 'transfer': {'open': 'bool', 'free_mint_transfer_fee': 'u16', 'min_free_mint_transfer': 'u16', 'avatar_transfer_fee': 'u128'}, 'trade': {'open': 'bool', 'min_fee': 'u128', 'percent_fee': 'u8'}, 'account': {'storage_upgrade_fee': 'u128'}}```
 
 ---------
 ### UpdatedSeason
@@ -480,12 +589,12 @@ result = substrate.query(
         'forge': {
             'first': 'u32',
             'last': 'u32',
-            'seasons_participated': 'scale_info::401',
+            'seasons_participated': 'scale_info::425',
         },
         'mint': {
             'first': 'u32',
             'last': 'u32',
-            'seasons_participated': 'scale_info::401',
+            'seasons_participated': 'scale_info::425',
         },
         'trade': {'bought': 'u32', 'sold': 'u32'},
     },
@@ -559,12 +668,30 @@ result = substrate.query(
         'cooldown': 'u32',
         'fees': {'one': 'u128', 'six': 'u128', 'three': 'u128'},
         'free_mint_fee_multiplier': 'u16',
+        'open': 'bool',
+    },
+    'trade': {'min_fee': 'u128', 'open': 'bool', 'percent_fee': 'u8'},
+    'transfer': {
+        'avatar_transfer_fee': 'u128',
         'free_mint_transfer_fee': 'u16',
         'min_free_mint_transfer': 'u16',
         'open': 'bool',
     },
-    'trade': {'min_fee': 'u128', 'open': 'bool', 'percent_fee': 'u8'},
 }
+```
+---------
+### LockedAvatars
+
+#### Python
+```python
+result = substrate.query(
+    'AwesomeAvatars', 'LockedAvatars', ['[u8; 32]']
+)
+```
+
+#### Return value
+```python
+'u128'
 ```
 ---------
 ### Organizer
@@ -660,7 +787,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'AwesomeAvatars', 'Treasurer', []
+    'AwesomeAvatars', 'Treasurer', ['u16']
 )
 ```
 
@@ -683,6 +810,19 @@ result = substrate.query(
 'u128'
 ```
 ---------
+## Constants
+
+---------
+### NftCollectionId
+#### Value
+```python
+0
+```
+#### Python
+```python
+constant = substrate.get_constant('AwesomeAvatars', 'NftCollectionId')
+```
+---------
 ## Errors
 
 ---------
@@ -694,8 +834,24 @@ Attempt to buy his or her own avatar.
 An avatar listed for trade is used to forge.
 
 ---------
-### CannotSendToSelf
-Tried sending free mints to his or her own account.
+### AvatarLocked
+The avatar is currently locked and cannot be used.
+
+---------
+### AvatarUnlocked
+The avatar is currently unlocked and cannot be locked again.
+
+---------
+### CannotClaimDuringSeason
+Tried claiming treasury during a season.
+
+---------
+### CannotClaimZero
+Tried claiming treasury which is zero.
+
+---------
+### CannotTransferToSelf
+Tried transferring to his or her own account.
 
 ---------
 ### DuplicatedRarityTier
@@ -814,8 +970,8 @@ The season start date is newer than its end date.
 Less than minimum allowed sacrifices are used for forging.
 
 ---------
-### TooLowFreeMintTransfer
-Attempt to transfer free mints lower than the minimum allowed.
+### TooLowFreeMints
+Attempt to transfer, issue or withdraw free mints lower than the minimum allowed.
 
 ---------
 ### TooManyRarityPercentages
@@ -829,6 +985,10 @@ More than maximum allowed sacrifices are used for forging.
 ---------
 ### TradeClosed
 Trading is not available at the moment.
+
+---------
+### TransferClosed
+Transfer is not available at the moment.
 
 ---------
 ### UnknownAvatar
@@ -845,5 +1005,9 @@ The season doesn&\#x27;t exist.
 ---------
 ### UnknownTier
 The tier doesn&\#x27;t exist.
+
+---------
+### UnknownTreasurer
+The treasurer doesn&\#x27;t exist.
 
 ---------

@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -378,6 +378,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -615,6 +616,11 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::50', 'u64'),
                 'VersionChangeNotified': ('scale_info::50', 'u32'),
             },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
             'QuadraticFunding': {
                 'DonateSucceed': ('u32', 'AccountId', 'u128'),
                 'ProjectRegistered': ('[u8; 32]', 'AccountId'),
@@ -622,31 +628,6 @@ result = substrate.query(
                 'RoundStarted': 'u32',
                 'VoteCost': ('[u8; 32]', 'u128'),
                 'VoteSucceed': ('[u8; 32]', 'AccountId', 'u128'),
-            },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            None: None,
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
             },
             'Scheduler': {
                 'CallLookupFailed': {
@@ -662,10 +643,22 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'Sudo': {
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::29'},
                 'SudoAsDone': {'sudo_result': 'scale_info::29'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -774,6 +767,13 @@ result = substrate.query(
                 'Withdrawn': {
                     'amount': 'u128',
                     'currency_id': 'scale_info::92',
+                    'who': 'AccountId',
+                },
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
                     'who': 'AccountId',
                 },
             },

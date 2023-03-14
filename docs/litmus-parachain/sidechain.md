@@ -12,6 +12,7 @@ The integritee worker calls this function for every imported sidechain_block.
 | -------- | -------- | 
 | shard_id | `ShardIdentifier` | 
 | block_number | `u64` | 
+| next_finalization_candidate_block_number | `u64` | 
 | block_header_hash | `H256` | 
 
 #### Python
@@ -20,6 +21,7 @@ call = substrate.compose_call(
     'Sidechain', 'confirm_imported_sidechain_block', {
     'block_header_hash': '[u8; 32]',
     'block_number': 'u64',
+    'next_finalization_candidate_block_number': 'u64',
     'shard_id': '[u8; 32]',
 }
 )
@@ -62,18 +64,18 @@ result = substrate.query(
 {'block_header_hash': '[u8; 32]', 'block_number': 'u64'}
 ```
 ---------
-### SidechainBlockConfirmationQueue
+### SidechainBlockFinalizationCandidate
 
 #### Python
 ```python
 result = substrate.query(
-    'Sidechain', 'SidechainBlockConfirmationQueue', [('[u8; 32]', 'u64')]
+    'Sidechain', 'SidechainBlockFinalizationCandidate', ['[u8; 32]']
 )
 ```
 
 #### Return value
 ```python
-{'block_header_hash': '[u8; 32]', 'block_number': 'u64'}
+'u64'
 ```
 ---------
 ### WorkerForShard
@@ -90,27 +92,14 @@ result = substrate.query(
 'u64'
 ```
 ---------
-## Constants
-
----------
-### EarlyBlockProposalLenience
-#### Value
-```python
-100
-```
-#### Python
-```python
-constant = substrate.get_constant('Sidechain', 'EarlyBlockProposalLenience')
-```
----------
 ## Errors
 
 ---------
-### BlockNumberTooHigh
-A proposed block is too early.
+### InvalidNextFinalizationCandidateBlockNumber
+The value for the next finalization candidate is invalid.
 
 ---------
-### OutdatedBlockNumber
-A propsed block is too late and already outdated.
+### ReceivedUnexpectedSidechainBlock
+A proposed block is unexpected.
 
 ---------

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | polkadot     |
 | Implementation name     | parity-polkadot     |
-| Spec version     | 9360     |
+| Spec version     | 9370     |
 | SS58 Format     | 0     |
 | Token symbol      | DOT     |
 | Token decimals      | 10     |
@@ -23,12 +23,12 @@
 | [Bounties](bounties.md) | [9](bounties.md#calls) | [7](bounties.md#events) | [4](bounties.md#storage-functions) | [9](bounties.md#constants) | [11](bounties.md#errors)
 | [ChildBounties](childbounties.md) | [7](childbounties.md#calls) | [4](childbounties.md#events) | [5](childbounties.md#storage-functions) | [2](childbounties.md#constants) | [3](childbounties.md#errors)
 | [Claims](claims.md) | [5](claims.md#calls) | [1](claims.md#events) | [5](claims.md#storage-functions) | [1](claims.md#constants) | [6](claims.md#errors)
-| [Configuration](configuration.md) | [45](configuration.md#calls) | [0](configuration.md#events) | [3](configuration.md#storage-functions) | [0](configuration.md#constants) | [1](configuration.md#errors)
+| [Configuration](configuration.md) | [44](configuration.md#calls) | [0](configuration.md#events) | [3](configuration.md#storage-functions) | [0](configuration.md#constants) | [1](configuration.md#errors)
 | [Council](council.md) | [7](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors)
 | [Crowdloan](crowdloan.md) | [9](crowdloan.md#calls) | [10](crowdloan.md#events) | [4](crowdloan.md#storage-functions) | [3](crowdloan.md#constants) | [23](crowdloan.md#errors)
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors)
 | [Dmp](dmp.md) | [0](dmp.md#calls) | [0](dmp.md#events) | [2](dmp.md#storage-functions) | [0](dmp.md#constants) | [0](dmp.md#errors)
-| [ElectionProviderMultiPhase](electionprovidermultiphase.md) | [5](electionprovidermultiphase.md#calls) | [7](electionprovidermultiphase.md#events) | [10](electionprovidermultiphase.md#storage-functions) | [19](electionprovidermultiphase.md#constants) | [14](electionprovidermultiphase.md#errors)
+| [ElectionProviderMultiPhase](electionprovidermultiphase.md) | [5](electionprovidermultiphase.md#calls) | [6](electionprovidermultiphase.md#events) | [10](electionprovidermultiphase.md#storage-functions) | [19](electionprovidermultiphase.md#constants) | [14](electionprovidermultiphase.md#errors)
 | [FastUnstake](fastunstake.md) | [3](fastunstake.md#calls) | [5](fastunstake.md#events) | [4](fastunstake.md#storage-functions) | [1](fastunstake.md#constants) | [6](fastunstake.md#errors)
 | [Grandpa](grandpa.md) | [3](grandpa.md#calls) | [3](grandpa.md#events) | [6](grandpa.md#storage-functions) | [1](grandpa.md#constants) | [7](grandpa.md#errors)
 | [Historical](historical.md) | [0](historical.md#calls) | [0](historical.md#events) | [0](historical.md#storage-functions) | [0](historical.md#constants) | [0](historical.md#errors)
@@ -46,7 +46,7 @@
 | [ParaSessionInfo](parasessioninfo.md) | [0](parasessioninfo.md#calls) | [0](parasessioninfo.md#events) | [4](parasessioninfo.md#storage-functions) | [0](parasessioninfo.md#constants) | [0](parasessioninfo.md#errors)
 | [ParachainsOrigin](parachainsorigin.md) | [0](parachainsorigin.md#calls) | [0](parachainsorigin.md#events) | [0](parachainsorigin.md#storage-functions) | [0](parachainsorigin.md#constants) | [0](parachainsorigin.md#errors)
 | [Paras](paras.md) | [8](paras.md#calls) | [8](paras.md#events) | [19](paras.md#storage-functions) | [1](paras.md#constants) | [13](paras.md#errors)
-| [ParasDisputes](parasdisputes.md) | [1](parasdisputes.md#calls) | [4](parasdisputes.md#events) | [5](parasdisputes.md#storage-functions) | [0](parasdisputes.md#constants) | [7](parasdisputes.md#errors)
+| [ParasDisputes](parasdisputes.md) | [1](parasdisputes.md#calls) | [4](parasdisputes.md#events) | [4](parasdisputes.md#storage-functions) | [0](parasdisputes.md#constants) | [7](parasdisputes.md#errors)
 | [ParasShared](parasshared.md) | [0](parasshared.md#calls) | [0](parasshared.md#events) | [3](parasshared.md#storage-functions) | [0](parasshared.md#constants) | [0](parasshared.md#errors)
 | [PhragmenElection](phragmenelection.md) | [6](phragmenelection.md#calls) | [7](phragmenelection.md#events) | [5](phragmenelection.md#storage-functions) | [9](phragmenelection.md#constants) | [17](phragmenelection.md#errors)
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors)
@@ -55,14 +55,14 @@
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors)
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors)
 | [Slots](slots.md) | [3](slots.md#calls) | [2](slots.md#events) | [1](slots.md#storage-functions) | [2](slots.md#constants) | [2](slots.md#errors)
-| [Staking](staking.md) | [25](staking.md#calls) | [14](staking.md#events) | [38](staking.md#storage-functions) | [7](staking.md#constants) | [25](staking.md#errors)
+| [Staking](staking.md) | [26](staking.md#calls) | [15](staking.md#events) | [37](staking.md#storage-functions) | [7](staking.md#constants) | [25](staking.md#errors)
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors)
 | [TechnicalCommittee](technicalcommittee.md) | [7](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [0](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors)
 | [TechnicalMembership](technicalmembership.md) | [7](technicalmembership.md#calls) | [6](technicalmembership.md#events) | [2](technicalmembership.md#storage-functions) | [0](technicalmembership.md#constants) | [3](technicalmembership.md#errors)
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors)
 | [Tips](tips.md) | [6](tips.md#calls) | [5](tips.md#events) | [2](tips.md#storage-functions) | [5](tips.md#constants) | [6](tips.md#errors)
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors)
-| [Treasury](treasury.md) | [5](treasury.md#calls) | [8](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors)
+| [Treasury](treasury.md) | [5](treasury.md#calls) | [9](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors)
 | [Ump](ump.md) | [1](ump.md#calls) | [7](ump.md#events) | [6](ump.md#storage-functions) | [0](ump.md#constants) | [2](ump.md#errors)
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors)
 | [Vesting](vesting.md) | [5](vesting.md#calls) | [2](vesting.md#events) | [2](vesting.md#storage-functions) | [2](vesting.md#constants) | [5](vesting.md#errors)

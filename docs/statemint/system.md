@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -367,14 +367,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'AssetTxPayment': {
-                'AssetTxFeePaid': {
-                    'actual_fee': 'u128',
-                    'asset_id': (None, 'u32'),
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Assets': {
                 'AccountsDestroyed': {
                     'accounts_destroyed': 'u32',
@@ -447,6 +439,26 @@ result = substrate.query(
                     'delegate': 'AccountId',
                     'destination': 'AccountId',
                     'owner': 'AccountId',
+                },
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
+            'AssetTxPayment': {
+                'AssetTxFeePaid': {
+                    'actual_fee': 'u128',
+                    'asset_id': (None, 'u32'),
+                    'tip': 'u128',
+                    'who': 'AccountId',
                 },
             },
             'Balances': {
@@ -537,17 +549,6 @@ result = substrate.query(
                     'multisig': 'AccountId',
                 },
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
@@ -597,18 +598,6 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::44', 'u64'),
                 'VersionChangeNotified': ('scale_info::44', 'u32'),
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -636,6 +625,17 @@ result = substrate.query(
                 },
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1017,7 +1017,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'statemint',
     'impl_version': 0,
     'spec_name': 'statemint',
-    'spec_version': 9360,
+    'spec_version': 9370,
     'state_version': 0,
     'transaction_version': 11,
 }

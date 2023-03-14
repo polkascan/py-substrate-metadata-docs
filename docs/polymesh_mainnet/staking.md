@@ -204,6 +204,38 @@ call = substrate.compose_call(
 ```
 
 ---------
+### chill_from_governance
+GC forcefully chills a validator.
+Effects will be felt at the beginning of the next era.
+And, it can be only called when [`EraElectionStatus`] is `Closed`.
+
+\# Arguments
+* origin which must be a GC.
+* identity must be permissioned to run operator/validator nodes.
+* stash_keys contains the secondary keys of the permissioned identity
+
+\# Errors
+* `BadOrigin` The origin was not a GC member.
+* `CallNotAllowed` The call is not allowed at the given time due to restrictions of election period.
+* `NotExists` Permissioned validator doesn&\#x27;t exist.
+* `NotStash` Not a stash account for the permissioned identity.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| identity | `IdentityId` | 
+| stash_keys | `Vec<T::AccountId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Staking', 'chill_from_governance', {
+    'identity': '[u8; 32]',
+    'stash_keys': ['AccountId'],
+}
+)
+```
+
+---------
 ### force_new_era
 Force there to be a new era at the end of the next session. After this, it will be
 reset to normal (non-forced) behaviour.
@@ -1525,7 +1557,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'individual': 'scale_info::557', 'total': 'u32'}
+{'individual': 'scale_info::561', 'total': 'u32'}
 ```
 ---------
 ### ErasStakers
@@ -1844,6 +1876,21 @@ result = substrate.query(
 #### Return value
 ```python
 {'intended_count': 'u32', 'running_count': 'u32'}
+```
+---------
+### PolymeshStorageVersion
+ Polymesh Storage version.
+
+#### Python
+```python
+result = substrate.query(
+    'Staking', 'PolymeshStorageVersion', []
+)
+```
+
+#### Return value
+```python
+'u8'
 ```
 ---------
 ### QueuedElected
@@ -2311,6 +2358,10 @@ Validator prefs are not in valid range.
 ---------
 ### InvalidValidatorIdentity
 Given potential validator identity is invalid.
+
+---------
+### InvalidValidatorUnbondAmount
+Validator should have minimum 50k POLYX bonded.
 
 ---------
 ### NoChange

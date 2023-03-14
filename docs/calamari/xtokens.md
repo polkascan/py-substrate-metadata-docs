@@ -32,7 +32,7 @@ call = substrate.compose_call(
     'XTokens', 'transfer', {
     'amount': 'u128',
     'currency_id': {
-        'MantaCurrency': 'u32',
+        'MantaCurrency': 'u128',
     },
     'dest': {
         'V0': {
@@ -17688,7 +17688,7 @@ messages correctly.
 call = substrate.compose_call(
     'XTokens', 'transfer_multicurrencies', {
     'currencies': [
-        ({'MantaCurrency': 'u32'}, 'u128'),
+        ({'MantaCurrency': 'u128'}, 'u128'),
     ],
     'dest': {
         'V0': {
@@ -20549,7 +20549,7 @@ call = substrate.compose_call(
     'XTokens', 'transfer_with_fee', {
     'amount': 'u128',
     'currency_id': {
-        'MantaCurrency': 'u32',
+        'MantaCurrency': 'u128',
     },
     'dest': {
         'V0': {

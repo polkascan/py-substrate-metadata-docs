@@ -382,7 +382,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -427,27 +426,6 @@ result = substrate.query(
                     'ethereum_address': '[u8; 20]',
                     'who': 'AccountId',
                 },
-            },
-            'CollatorStaking': {
-                'CandidateJoined': {
-                    'account_id': 'AccountId',
-                    'amount': 'u128',
-                    'rewards_cut': 'u32',
-                },
-                'CandidateRemoved': {'account_id': 'AccountId'},
-                'CollatorSelected': {'account_id': 'AccountId'},
-                'NewInvulnerables': {'new': ['AccountId']},
-                'Nominated': {
-                    'account_id': 'AccountId',
-                    'amount': 'u128',
-                    'collator_id': 'AccountId',
-                },
-                'NominationRemoved': {
-                    'account_id': 'AccountId',
-                    'amount': 'u128',
-                    'collator_id': 'AccountId',
-                },
-                'RoundFinalized': {'number': 'u32'},
             },
             'CommunityPool': {
                 'Awarded': {
@@ -553,12 +531,6 @@ result = substrate.query(
                 'BatchFailed': {'error': 'scale_info::24', 'index': 'u32'},
                 'BatchPartiallyDispatched': [('u32', 'scale_info::24')],
             },
-            'EfinityXcm': {
-                'MinimumWeightUpdated': {
-                    'fee': 'u128',
-                    'minimum_weight': 'scale_info::8',
-                },
-            },
             'ExtrinsicPause': {
                 'ExtrinsicPaused': {
                     'extrinsic_name': 'Bytes',
@@ -570,6 +542,96 @@ result = substrate.query(
                 },
                 'PalletPaused': {'pallet_name': 'Bytes'},
                 'PalletResumed': {'pallet_name': 'Bytes'},
+            },
+            'Marketplace': {
+                'AuctionFinalized': {
+                    'listing_id': '[u8; 32]',
+                    'protocol_fee': 'u128',
+                    'royalty': 'u128',
+                    'winning_bid': (None, 'scale_info::214'),
+                },
+                'BidPlaced': {
+                    'bid': 'scale_info::214',
+                    'listing_id': '[u8; 32]',
+                },
+                'ListingCancelled': {'listing_id': '[u8; 32]'},
+                'ListingCreated': {
+                    'listing': 'scale_info::206',
+                    'listing_id': '[u8; 32]',
+                },
+                'ListingFilled': {
+                    'amount_filled': 'u128',
+                    'amount_remaining': 'u128',
+                    'buyer': 'AccountId',
+                    'listing_id': '[u8; 32]',
+                    'protocol_fee': 'u128',
+                    'royalty': 'u128',
+                },
+                'ProtocolFeeSet': {'protocol_fee': 'u32'},
+            },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::55',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::55',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::31',
+                    'timepoint': 'scale_info::55',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::31'},
+                'SudoAsDone': {'sudo_result': 'scale_info::31'},
+            },
+            None: None,
+            'CollatorStaking': {
+                'CandidateJoined': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                    'rewards_cut': 'u32',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'CollatorSelected': {'account_id': 'AccountId'},
+                'NewInvulnerables': {'new': ['AccountId']},
+                'Nominated': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                    'collator_id': 'AccountId',
+                },
+                'NominationRemoved': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                    'collator_id': 'AccountId',
+                },
+                'RoundFinalized': {'number': 'u32'},
+            },
+            'EfinityXcm': {
+                'MinimumWeightUpdated': {
+                    'fee': 'u128',
+                    'minimum_weight': 'scale_info::8',
+                },
             },
             'FuelTanks': {
                 'AccountAdded': {
@@ -631,32 +693,6 @@ result = substrate.query(
                     'rule_set_id': (None, 'u32'),
                     'tank_id': 'AccountId',
                 },
-            },
-            'Marketplace': {
-                'AuctionFinalized': {
-                    'listing_id': '[u8; 32]',
-                    'protocol_fee': 'u128',
-                    'royalty': 'u128',
-                    'winning_bid': (None, 'scale_info::214'),
-                },
-                'BidPlaced': {
-                    'bid': 'scale_info::214',
-                    'listing_id': '[u8; 32]',
-                },
-                'ListingCancelled': {'listing_id': '[u8; 32]'},
-                'ListingCreated': {
-                    'listing': 'scale_info::206',
-                    'listing_id': '[u8; 32]',
-                },
-                'ListingFilled': {
-                    'amount_filled': 'u128',
-                    'amount_remaining': 'u128',
-                    'buyer': 'AccountId',
-                    'listing_id': '[u8; 32]',
-                    'protocol_fee': 'u128',
-                    'royalty': 'u128',
-                },
-                'ProtocolFeeSet': {'protocol_fee': 'u32'},
             },
             'MultiTokens': {
                 'Approved': {
@@ -838,32 +874,6 @@ result = substrate.query(
                     'token_id': 'u128',
                 },
             },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::55',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::55',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::31',
-                    'timepoint': 'scale_info::55',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
             'OrmlXcm': {
                 'Sent': {'message': ['scale_info::77'], 'to': 'scale_info::66'},
             },
@@ -935,11 +945,6 @@ result = substrate.query(
                     'price_discovery': 'scale_info::184',
                 },
             },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
             'Scheduler': {
                 'CallUnavailable': {
                     'id': (None, '[u8; 32]'),
@@ -962,11 +967,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::31'},
-                'SudoAsDone': {'sudo_result': 'scale_info::31'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {

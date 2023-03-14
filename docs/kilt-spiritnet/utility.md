@@ -993,12 +993,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
     'call': 'Call',
 }

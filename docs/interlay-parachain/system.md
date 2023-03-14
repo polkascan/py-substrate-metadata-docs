@@ -504,39 +504,6 @@ result = substrate.query(
                 },
                 'WithdrawStake': {'amount': 'i128', 'reward_id': 'AccountId'},
             },
-            'Identity': {
-                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentitySet': {'who': 'AccountId'},
-                'JudgementGiven': {
-                    'registrar_index': 'u32',
-                    'target': 'AccountId',
-                },
-                'JudgementRequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'JudgementUnrequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'RegistrarAdded': {'registrar_index': 'u32'},
-                'SubIdentityAdded': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRemoved': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRevoked': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-            },
             'Issue': {
                 'CancelIssue': {
                     'griefing_collateral': 'u128',
@@ -592,6 +559,56 @@ result = substrate.query(
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
+                },
+            },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'Identity': {
+                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentitySet': {'who': 'AccountId'},
+                'JudgementGiven': {
+                    'registrar_index': 'u32',
+                    'target': 'AccountId',
+                },
+                'JudgementRequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'JudgementUnrequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'RegistrarAdded': {'registrar_index': 'u32'},
+                'SubIdentityAdded': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRemoved': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRevoked': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
                 },
             },
             'Nomination': {
@@ -678,11 +695,6 @@ result = substrate.query(
                 'SupportedVersionChanged': ('scale_info::62', 'u32'),
                 'UnexpectedResponse': ('scale_info::62', 'u64'),
                 'VersionChangeNotified': ('scale_info::62', 'u32'),
-            },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
             },
             'Redeem': {
                 'CancelRedeem': {
@@ -1072,35 +1084,6 @@ result = substrate.query(
                     'reward_id': 'scale_info::72',
                 },
             },
-            'Vesting': {
-                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
-                'VestingScheduleAdded': {
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                    'vesting_schedule': 'scale_info::47',
-                },
-                'VestingSchedulesUpdated': {'who': 'AccountId'},
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::123'],
-                    'dest': 'scale_info::62',
-                    'fee': 'scale_info::123',
-                    'sender': 'AccountId',
-                },
-            },
-            None: None,
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'VaultStaking': {
                 'DepositStake': {
                     'amount': 'i128',
@@ -1128,6 +1111,23 @@ result = substrate.query(
                     'amount': 'i128',
                     'nominator_id': 'AccountId',
                     'vault_id': 'scale_info::72',
+                },
+            },
+            'Vesting': {
+                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
+                'VestingScheduleAdded': {
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                    'vesting_schedule': 'scale_info::47',
+                },
+                'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::123'],
+                    'dest': 'scale_info::62',
+                    'fee': 'scale_info::123',
+                    'sender': 'AccountId',
                 },
             },
             'XcmpQueue': {

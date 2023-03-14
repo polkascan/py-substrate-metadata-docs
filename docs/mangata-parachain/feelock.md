@@ -93,7 +93,7 @@ result = substrate.query(
     'fee_lock_amount': 'u128',
     'period_length': 'u32',
     'swap_value_threshold': 'u128',
-    'whitelisted_tokens': 'scale_info::203',
+    'whitelisted_tokens': 'scale_info::205',
 }
 ```
 ---------

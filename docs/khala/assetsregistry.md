@@ -133,12 +133,15 @@ call = substrate.compose_call(
                 'Parachain': 'u32',
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -197,12 +200,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -249,12 +255,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -303,12 +312,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -355,12 +367,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -407,12 +422,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -461,12 +479,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -513,12 +534,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -565,12 +589,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -617,12 +644,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -671,12 +701,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -723,12 +756,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -775,12 +811,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -827,12 +866,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -879,12 +921,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -933,12 +978,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -985,12 +1033,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1037,12 +1088,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1089,12 +1143,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1141,12 +1198,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1193,12 +1253,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1247,12 +1310,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1299,12 +1365,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1351,12 +1420,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1403,12 +1475,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1455,12 +1530,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1507,12 +1585,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1559,12 +1640,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1613,12 +1697,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1665,12 +1752,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1717,12 +1807,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1769,12 +1862,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1821,12 +1917,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1873,12 +1972,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1925,12 +2027,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1977,12 +2082,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2058,12 +2166,15 @@ call = substrate.compose_call(
                 'Parachain': 'u32',
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -2122,12 +2233,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2174,12 +2288,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2228,12 +2345,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2280,12 +2400,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2332,12 +2455,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2386,12 +2512,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2438,12 +2567,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2490,12 +2622,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2542,12 +2677,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2596,12 +2734,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2648,12 +2789,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2700,12 +2844,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2752,12 +2899,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2804,12 +2954,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2858,12 +3011,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2910,12 +3066,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2962,12 +3121,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3014,12 +3176,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3066,12 +3231,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3118,12 +3286,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3172,12 +3343,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3224,12 +3398,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3276,12 +3453,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3328,12 +3508,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3380,12 +3563,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3432,12 +3618,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3484,12 +3673,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3538,12 +3730,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3590,12 +3785,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3642,12 +3840,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3694,12 +3895,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3746,12 +3950,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3798,12 +4005,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3850,12 +4060,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3902,12 +4115,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4017,7 +4233,7 @@ Asset is registerd.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | asset_id | `<T as pallet_assets::Config>::AssetId` | ```u32```
-| location | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'id': '[u8; 32]'}, 'AccountIndex64': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'index': 'u64'}, 'AccountKey20': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Named': 'Bytes', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}})}}```
+| location | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'id': '[u8; 32]'}, 'AccountIndex64': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'index': 'u64'}, 'AccountKey20': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Named': 'Bytes', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None, 'Defense': None, 'Administration': None, 'Treasury': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}})}}```
 
 ---------
 ### AssetUnregistered
@@ -4026,7 +4242,7 @@ Asset is unregisterd.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | asset_id | `<T as pallet_assets::Config>::AssetId` | ```u32```
-| location | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'id': '[u8; 32]'}, 'AccountIndex64': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'index': 'u64'}, 'AccountKey20': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Named': 'Bytes', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}})}}```
+| location | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'id': '[u8; 32]'}, 'AccountIndex64': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'index': 'u64'}, 'AccountKey20': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Named': 'Bytes', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None, 'Defense': None, 'Administration': None, 'Treasury': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::56', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::56', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::56', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::60', 'part': 'scale_info::61'}})}}```
 
 ---------
 ### ChainbridgeDisabled
@@ -4117,12 +4333,15 @@ result = substrate.query(
                 'Parachain': 'u32',
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -4181,12 +4400,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4233,12 +4455,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4287,12 +4512,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4339,12 +4567,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4391,12 +4622,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4445,12 +4679,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4497,12 +4734,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4549,12 +4789,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4601,12 +4844,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4655,12 +4901,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4707,12 +4956,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4759,12 +5011,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4811,12 +5066,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4863,12 +5121,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4917,12 +5178,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4969,12 +5233,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5021,12 +5288,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5073,12 +5343,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5125,12 +5398,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5177,12 +5453,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5231,12 +5510,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5283,12 +5565,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5335,12 +5620,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5387,12 +5675,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5439,12 +5730,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5491,12 +5785,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5543,12 +5840,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5597,12 +5897,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5649,12 +5952,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5701,12 +6007,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5753,12 +6062,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5805,12 +6117,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5857,12 +6172,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5909,12 +6227,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5961,12 +6282,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {

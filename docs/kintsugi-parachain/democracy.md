@@ -716,6 +716,17 @@ constant = substrate.get_constant('Democracy', 'EnactmentPeriod')
 constant = substrate.get_constant('Democracy', 'FastTrackVotingPeriod')
 ```
 ---------
+### MaxDeposits
+ The maximum number of deposits a public proposal may have at any time.
+#### Value
+```python
+100
+```
+#### Python
+```python
+constant = substrate.get_constant('Democracy', 'MaxDeposits')
+```
+---------
 ### MaxProposals
  The maximum number of public proposals that can exist at any time.
 #### Value
@@ -838,8 +849,8 @@ Vote given for invalid referendum
 Too early
 
 ---------
-### TooManyProposals
-Maximum number of proposals reached.
+### TooMany
+Maximum number of items reached.
 
 ---------
 ### TryIntoIntError

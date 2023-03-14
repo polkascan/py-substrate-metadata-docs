@@ -1,3 +1,7 @@
+# Frequency
+
+---------
+
 ## Properties
 | Name | Value |
 | -------- | -------- |

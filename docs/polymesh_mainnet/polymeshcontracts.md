@@ -150,6 +150,43 @@ call = substrate.compose_call(
 ```
 
 ---------
+### update_call_runtime_whitelist
+Update CallRuntime whitelist.
+
+\# Arguments
+
+\# Errors
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| updates | `Vec<(ExtrinsicId, bool)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'PolymeshContracts', 'update_call_runtime_whitelist', {'updates': [(('u8', 'u8'), 'bool')]}
+)
+```
+
+---------
+## Storage functions
+
+---------
+### CallRuntimeWhitelist
+ Whitelist of extrinsics allowed to be called from contracts.
+
+#### Python
+```python
+result = substrate.query(
+    'PolymeshContracts', 'CallRuntimeWhitelist', [('u8', 'u8')]
+)
+```
+
+#### Return value
+```python
+'bool'
+```
+---------
 ## Errors
 
 ---------
@@ -158,7 +195,7 @@ Data left in input when decoding arguments of a call.
 
 ---------
 ### InLenTooLarge
-Input data that a contract passed when making a runtime call was too large.
+Input data that a contract passed when using the ChainExtension was too large.
 
 ---------
 ### InstantiatorWithNoIdentity
@@ -166,7 +203,23 @@ A contract was attempted to be instantiated,
 but no identity was given to associate the new contract&\#x27;s key with.
 
 ---------
-### RuntimeCallNotFound
-The given `func_id: u32` did not translate into a known runtime call.
+### InvalidFuncId
+Invalid `func_id` provided from contract.
+
+---------
+### InvalidRuntimeCall
+Failed to decode a valid `RuntimeCall`.
+
+---------
+### OutLenTooLarge
+Output data returned from the ChainExtension was too large.
+
+---------
+### ReadStorageFailed
+`ReadStorage` failed to write value into the contract&\#x27;s buffer.
+
+---------
+### RuntimeCallDenied
+Extrinsic is not allowed to be called by contracts.
 
 ---------

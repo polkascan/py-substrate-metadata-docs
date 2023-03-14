@@ -558,6 +558,10 @@ Bootstarap phases cannot lasts 0 blocks
 Bootstraped pool already exists
 
 ---------
+### ProvisioningBlockedByMaintenanceMode
+Bootstrap provisioning blocked by maintenance mode
+
+---------
 ### SameToken
 Tokens used in bootstrap cannot be the same
 

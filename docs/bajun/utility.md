@@ -116,6 +116,15 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'Council': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -123,15 +132,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::70',
+                            'network': 'scale_info::62',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::70',
+                            'network': 'scale_info::62',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::70',
+                            'network': 'scale_info::62',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -139,8 +148,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::73',
-                            'part': 'scale_info::74',
+                            'id': 'scale_info::65',
+                            'part': 'scale_info::66',
                         },
                     },
                     'X2': (
@@ -551,15 +560,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::70',
+                            'network': 'scale_info::62',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::70',
+                            'network': 'scale_info::62',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::70',
+                            'network': 'scale_info::62',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -567,8 +576,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::73',
-                            'part': 'scale_info::74',
+                            'id': 'scale_info::65',
+                            'part': 'scale_info::66',
                         },
                     },
                     'X2': (
@@ -974,22 +983,13 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        None: None,
-        'Council': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
         'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }

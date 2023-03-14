@@ -140,56 +140,36 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### BalanceDeposit
-A deposit has been made at a given address. \[sender, address, value\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `H160` | ```[u8; 20]```
-| None | `U256` | ```[u64; 4]```
-
----------
-### BalanceWithdraw
-A withdrawal has been made from a given address. \[sender, address, value\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `H160` | ```[u8; 20]```
-| None | `U256` | ```[u64; 4]```
-
----------
 ### Created
-A contract has been created at given \[address\].
+A contract has been created at given address.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H160` | ```[u8; 20]```
+| address | `H160` | ```[u8; 20]```
 
 ---------
 ### CreatedFailed
-A \[contract\] was attempted to be created, but the execution failed.
+A contract was attempted to be created, but the execution failed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H160` | ```[u8; 20]```
+| address | `H160` | ```[u8; 20]```
 
 ---------
 ### Executed
-A \[contract\] has been executed successfully with states applied.
+A contract has been executed successfully with states applied.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H160` | ```[u8; 20]```
+| address | `H160` | ```[u8; 20]```
 
 ---------
 ### ExecutedFailed
-A \[contract\] has been executed with errors. States are reverted with only gas fees applied.
+A contract has been executed with errors. States are reverted with only gas fees applied.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H160` | ```[u8; 20]```
+| address | `H160` | ```[u8; 20]```
 
 ---------
 ### Log
@@ -197,7 +177,7 @@ Ethereum events from contracts.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Log` | ```{'address': '[u8; 20]', 'topics': ['[u8; 32]'], 'data': 'Bytes'}```
+| log | `Log` | ```{'address': '[u8; 20]', 'topics': ['[u8; 32]'], 'data': 'Bytes'}```
 
 ---------
 ## Storage functions
@@ -258,6 +238,14 @@ Not enough balance to perform action
 Calculating total fee overflowed
 
 ---------
+### GasLimitTooHigh
+Gas limit is too high.
+
+---------
+### GasLimitTooLow
+Gas limit is too low.
+
+---------
 ### GasPriceTooLow
 Gas price is too low.
 
@@ -268,6 +256,18 @@ Nonce is invalid
 ---------
 ### PaymentOverflow
 Calculating total payment overflowed
+
+---------
+### Reentrancy
+EVM reentrancy
+
+---------
+### TransactionMustComeFromEOA
+EIP-3607,
+
+---------
+### Undefined
+Undefined error.
 
 ---------
 ### WithdrawFailed

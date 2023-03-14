@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -367,6 +367,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -503,7 +504,6 @@ result = substrate.query(
             'OrmlXcm': {
                 'Sent': {'message': ['scale_info::72'], 'to': 'scale_info::60'},
             },
-            None: None,
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
                     'dmq_head': '[u8; 32]',

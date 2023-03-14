@@ -45,7 +45,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'id': 'u32',
+    'id': 'u128',
 }
 )
 ```
@@ -79,7 +79,7 @@ Modes: Post-existence of `who`; Pre &amp; post Zombie-status of `who`.
 call = substrate.compose_call(
     'Assets', 'burn', {
     'amount': 'u128',
-    'id': 'u32',
+    'id': 'u128',
     'who': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -123,7 +123,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'id': 'u32',
+    'id': 'u128',
 }
 )
 ```
@@ -149,7 +149,7 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Assets', 'clear_metadata', {'id': 'u32'}
+    'Assets', 'clear_metadata', {'id': 'u128'}
 )
 ```
 
@@ -192,7 +192,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'id': 'u32',
+    'id': 'u128',
     'min_balance': 'u128',
 }
 )
@@ -228,7 +228,7 @@ Weight: `O(c + p + a)` where:
 ```python
 call = substrate.compose_call(
     'Assets', 'destroy', {
-    'id': 'u32',
+    'id': 'u128',
     'witness': {
         'accounts': 'u32',
         'approvals': 'u32',
@@ -292,7 +292,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'id': 'u32',
+    'id': 'u128',
     'is_frozen': 'bool',
     'is_sufficient': 'bool',
     'issuer': {
@@ -347,7 +347,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'id': 'u32',
+    'id': 'u128',
     'owner': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -380,7 +380,7 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Assets', 'force_clear_metadata', {'id': 'u32'}
+    'Assets', 'force_clear_metadata', {'id': 'u128'}
 )
 ```
 
@@ -417,7 +417,7 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'Assets', 'force_create', {
-    'id': 'u32',
+    'id': 'u128',
     'is_sufficient': 'bool',
     'min_balance': 'u128',
     'owner': {
@@ -461,7 +461,7 @@ Weight: `O(N + S)` where N and S are the length of the name and symbol respectiv
 call = substrate.compose_call(
     'Assets', 'force_set_metadata', {
     'decimals': 'u8',
-    'id': 'u32',
+    'id': 'u128',
     'is_frozen': 'bool',
     'name': 'Bytes',
     'symbol': 'Bytes',
@@ -510,7 +510,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'id': 'u32',
+    'id': 'u128',
     'source': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -544,7 +544,7 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'Assets', 'freeze', {
-    'id': 'u32',
+    'id': 'u128',
     'who': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -575,7 +575,7 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Assets', 'freeze_asset', {'id': 'u32'}
+    'Assets', 'freeze_asset', {'id': 'u128'}
 )
 ```
 
@@ -612,7 +612,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'id': 'u32',
+    'id': 'u128',
 }
 )
 ```
@@ -636,7 +636,7 @@ Emits `Refunded` event when successful.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Assets', 'refund', {'allow_burn': 'bool', 'id': 'u32'}
+    'Assets', 'refund', {'allow_burn': 'bool', 'id': 'u128'}
 )
 ```
 
@@ -671,7 +671,7 @@ Weight: `O(1)`
 call = substrate.compose_call(
     'Assets', 'set_metadata', {
     'decimals': 'u8',
-    'id': 'u32',
+    'id': 'u128',
     'name': 'Bytes',
     'symbol': 'Bytes',
 }
@@ -718,7 +718,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'id': 'u32',
+    'id': 'u128',
     'issuer': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -752,7 +752,7 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'Assets', 'thaw', {
-    'id': 'u32',
+    'id': 'u128',
     'who': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -783,7 +783,7 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Assets', 'thaw_asset', {'id': 'u32'}
+    'Assets', 'thaw_asset', {'id': 'u128'}
 )
 ```
 
@@ -806,7 +806,7 @@ Emits `Touched` event when successful.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Assets', 'touch', {'id': 'u32'}
+    'Assets', 'touch', {'id': 'u128'}
 )
 ```
 
@@ -842,7 +842,7 @@ Modes: Pre-existence of `target`; Post-existence of sender; Account pre-existenc
 call = substrate.compose_call(
     'Assets', 'transfer', {
     'amount': 'u128',
-    'id': 'u32',
+    'id': 'u128',
     'target': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -894,7 +894,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'id': 'u32',
+    'id': 'u128',
     'owner': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -938,7 +938,7 @@ Modes: Pre-existence of `target`; Post-existence of sender; Account pre-existenc
 call = substrate.compose_call(
     'Assets', 'transfer_keep_alive', {
     'amount': 'u128',
-    'id': 'u32',
+    'id': 'u128',
     'target': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -972,7 +972,7 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'Assets', 'transfer_ownership', {
-    'id': 'u32',
+    'id': 'u128',
     'owner': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -993,7 +993,7 @@ An approval for account `delegate` was cancelled by `owner`.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
 | delegate | `T::AccountId` | ```AccountId```
 
@@ -1003,7 +1003,7 @@ An approval for account `delegate` was cancelled by `owner`.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | source | `T::AccountId` | ```AccountId```
 | delegate | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
@@ -1014,7 +1014,7 @@ Some asset `asset_id` was frozen.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 
 ---------
 ### AssetStatusChanged
@@ -1022,7 +1022,7 @@ An asset has had its attributes changed by the `Force` origin.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 
 ---------
 ### AssetThawed
@@ -1030,7 +1030,7 @@ Some asset `asset_id` was thawed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 
 ---------
 ### Burned
@@ -1038,7 +1038,7 @@ Some assets were destroyed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
 | balance | `T::Balance` | ```u128```
 
@@ -1048,7 +1048,7 @@ Some asset class was created.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | creator | `T::AccountId` | ```AccountId```
 | owner | `T::AccountId` | ```AccountId```
 
@@ -1058,7 +1058,7 @@ An asset class was destroyed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 
 ---------
 ### ForceCreated
@@ -1066,7 +1066,7 @@ Some asset class was force-created.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
 
 ---------
@@ -1075,7 +1075,7 @@ Some account `who` was frozen.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | who | `T::AccountId` | ```AccountId```
 
 ---------
@@ -1084,7 +1084,7 @@ Some assets were issued.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
 | total_supply | `T::Balance` | ```u128```
 
@@ -1094,7 +1094,7 @@ Metadata has been cleared for an asset.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 
 ---------
 ### MetadataSet
@@ -1102,7 +1102,7 @@ New metadata has been set for an asset.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | name | `Vec<u8>` | ```Bytes```
 | symbol | `Vec<u8>` | ```Bytes```
 | decimals | `u8` | ```u8```
@@ -1114,7 +1114,7 @@ The owner changed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
 
 ---------
@@ -1123,7 +1123,7 @@ The management team changed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | issuer | `T::AccountId` | ```AccountId```
 | admin | `T::AccountId` | ```AccountId```
 | freezer | `T::AccountId` | ```AccountId```
@@ -1134,7 +1134,7 @@ Some account `who` was thawed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | who | `T::AccountId` | ```AccountId```
 
 ---------
@@ -1143,7 +1143,7 @@ Some assets were transferred.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
@@ -1155,7 +1155,7 @@ the approved `delegate`.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```u32```
+| asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
 | delegate | `T::AccountId` | ```AccountId```
 | destination | `T::AccountId` | ```AccountId```
@@ -1171,7 +1171,7 @@ the approved `delegate`.
 #### Python
 ```python
 result = substrate.query(
-    'Assets', 'Account', ['u32', 'AccountId']
+    'Assets', 'Account', ['u128', 'AccountId']
 )
 ```
 
@@ -1198,7 +1198,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Assets', 'Approvals', ['u32', 'AccountId', 'AccountId']
+    'Assets', 'Approvals', ['u128', 'AccountId', 'AccountId']
 )
 ```
 
@@ -1213,7 +1213,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Assets', 'Asset', ['u32']
+    'Assets', 'Asset', ['u128']
 )
 ```
 
@@ -1241,7 +1241,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Assets', 'Metadata', ['u32']
+    'Assets', 'Metadata', ['u128']
 )
 ```
 

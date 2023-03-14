@@ -1,5 +1,5 @@
 
-# PreImage
+# Preimage
 
 ---------
 ## Calls
@@ -18,7 +18,7 @@ the preimage. Otherwise, a deposit is taken proportional to the size of the prei
 #### Python
 ```python
 call = substrate.compose_call(
-    'PreImage', 'note_preimage', {'bytes': 'Bytes'}
+    'Preimage', 'note_preimage', {'bytes': 'Bytes'}
 )
 ```
 
@@ -36,7 +36,7 @@ a user may have paid, and take the control of the preimage out of their hands.
 #### Python
 ```python
 call = substrate.compose_call(
-    'PreImage', 'request_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'request_preimage', {'hash': '[u8; 32]'}
 )
 ```
 
@@ -56,7 +56,7 @@ If `len` is provided, then it will be a much cheaper operation.
 #### Python
 ```python
 call = substrate.compose_call(
-    'PreImage', 'unnote_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unnote_preimage', {'hash': '[u8; 32]'}
 )
 ```
 
@@ -73,7 +73,7 @@ NOTE: THIS MUST NOT BE CALLED ON `hash` MORE TIMES THAN `request_preimage`.
 #### Python
 ```python
 call = substrate.compose_call(
-    'PreImage', 'unrequest_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unrequest_preimage', {'hash': '[u8; 32]'}
 )
 ```
 
@@ -113,7 +113,7 @@ A preimage has been requested.
 #### Python
 ```python
 result = substrate.query(
-    'PreImage', 'PreimageFor', [('[u8; 32]', 'u32')]
+    'Preimage', 'PreimageFor', [('[u8; 32]', 'u32')]
 )
 ```
 
@@ -128,7 +128,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'PreImage', 'StatusFor', ['[u8; 32]']
+    'Preimage', 'StatusFor', ['[u8; 32]']
 )
 ```
 

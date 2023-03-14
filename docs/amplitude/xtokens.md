@@ -33,25 +33,18 @@ call = substrate.compose_call(
     'amount': 'u128',
     'currency_id': {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
     'dest': {
         'V0': {
@@ -18166,25 +18159,18 @@ call = substrate.compose_call(
         (
             {
                 'Native': None,
-                'XCM': (
-                    'KSM',
-                    'KAR',
-                    'AUSD',
-                    'BNC',
-                    'VsKSM',
-                    'HKO',
-                    'MOVR',
-                    'SDN',
-                    'KINT',
-                    'KBTC',
-                    'GENS',
-                    'XOR',
-                    'TEER',
-                    'KILT',
-                    'PHA',
-                    'ZTG',
-                    'USD',
-                ),
+                'Stellar': {
+                    'AlphaNum12': {
+                        'code': '[u8; 12]',
+                        'issuer': '[u8; 32]',
+                    },
+                    'AlphaNum4': {
+                        'code': '[u8; 4]',
+                        'issuer': '[u8; 32]',
+                    },
+                    'StellarNative': None,
+                },
+                'XCM': 'u8',
             },
             'u128',
         ),
@@ -21163,25 +21149,18 @@ call = substrate.compose_call(
     'amount': 'u128',
     'currency_id': {
         'Native': None,
-        'XCM': (
-            'KSM',
-            'KAR',
-            'AUSD',
-            'BNC',
-            'VsKSM',
-            'HKO',
-            'MOVR',
-            'SDN',
-            'KINT',
-            'KBTC',
-            'GENS',
-            'XOR',
-            'TEER',
-            'KILT',
-            'PHA',
-            'ZTG',
-            'USD',
-        ),
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'XCM': 'u8',
     },
     'dest': {
         'V0': {

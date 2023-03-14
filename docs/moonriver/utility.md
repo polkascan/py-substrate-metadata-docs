@@ -119,6 +119,11 @@ call = substrate.compose_call(
         'Ethereum': {
             'EthereumTransaction': '[u8; 20]',
         },
+        'OpenTechCommitteeCollective': {
+            'Member': '[u8; 20]',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
         'system': {
             'None': None,
             'Root': None,
@@ -133,11 +138,6 @@ call = substrate.compose_call(
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
-        },
-        'OpenTechCommitteeCollective': {
-            'Member': '[u8; 20]',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
         },
         'Origins': (
             'WhitelistedCaller',

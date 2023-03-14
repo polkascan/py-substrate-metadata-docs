@@ -161,7 +161,7 @@ The call for the provided hash was not found so the task has been aborted.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
-| id | `Option<[u8; 32]>` | ```(None, '[u8; 32]')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
 ### Canceled
@@ -179,7 +179,7 @@ Dispatched some task.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
-| id | `Option<[u8; 32]>` | ```(None, '[u8; 32]')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 | result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
@@ -189,7 +189,7 @@ The given task was unable to be renewed since the agenda is full at that block.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
-| id | `Option<[u8; 32]>` | ```(None, '[u8; 32]')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
 ### PermanentlyOverweight
@@ -198,7 +198,7 @@ The given task can never be executed since it is overweight.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
-| id | `Option<[u8; 32]>` | ```(None, '[u8; 32]')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
 ### Scheduled
@@ -237,12 +237,11 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
-                    'Response': 'scale_info::62',
-                    'Xcm': 'scale_info::62',
+                    'Response': 'scale_info::72',
+                    'Xcm': 'scale_info::72',
                 },
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
@@ -250,6 +249,7 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },

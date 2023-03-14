@@ -382,36 +382,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'AssetManager': {
-                'ForeignAssetDestroyed': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::130',
-                },
-                'ForeignAssetRegistered': {
-                    'asset': 'scale_info::130',
-                    'asset_id': 'u128',
-                    'metadata': 'scale_info::131',
-                },
-                'ForeignAssetRemoved': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::130',
-                },
-                'ForeignAssetTypeChanged': {
-                    'asset_id': 'u128',
-                    'new_asset_type': 'scale_info::130',
-                },
-                'LocalAssetDestroyed': {'asset_id': 'u128'},
-                'LocalAssetRegistered': {
-                    'asset_id': 'u128',
-                    'creator': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-                'SupportedAssetRemoved': {'asset_type': 'scale_info::130'},
-                'UnitsPerSecondChanged': {
-                    'asset_type': 'scale_info::130',
-                    'units_per_second': 'u128',
-                },
-            },
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
@@ -473,6 +443,37 @@ result = substrate.query(
                     'delegate': '[u8; 20]',
                     'destination': '[u8; 20]',
                     'owner': '[u8; 20]',
+                },
+            },
+            None: None,
+            'AssetManager': {
+                'ForeignAssetDestroyed': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::130',
+                },
+                'ForeignAssetRegistered': {
+                    'asset': 'scale_info::130',
+                    'asset_id': 'u128',
+                    'metadata': 'scale_info::131',
+                },
+                'ForeignAssetRemoved': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::130',
+                },
+                'ForeignAssetTypeChanged': {
+                    'asset_id': 'u128',
+                    'new_asset_type': 'scale_info::130',
+                },
+                'LocalAssetDestroyed': {'asset_id': 'u128'},
+                'LocalAssetRegistered': {
+                    'asset_id': 'u128',
+                    'creator': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+                'SupportedAssetRemoved': {'asset_type': 'scale_info::130'},
+                'UnitsPerSecondChanged': {
+                    'asset_type': 'scale_info::130',
+                    'units_per_second': 'u128',
                 },
             },
             'AuthorFilter': {'EligibleUpdated': 'u32'},
@@ -981,6 +982,37 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::93', 'u64'),
                 'VersionChangeNotified': ('scale_info::93', 'u32'),
             },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
+            'Proxy': {
+                'Announced': {
+                    'call_hash': '[u8; 32]',
+                    'proxy': '[u8; 20]',
+                    'real': '[u8; 20]',
+                },
+                'ProxyAdded': {
+                    'delay': 'u32',
+                    'delegatee': '[u8; 20]',
+                    'delegator': '[u8; 20]',
+                    'proxy_type': 'scale_info::53',
+                },
+                'ProxyExecuted': {'result': 'scale_info::50'},
+                'ProxyRemoved': {
+                    'delay': 'u32',
+                    'delegatee': '[u8; 20]',
+                    'delegator': '[u8; 20]',
+                    'proxy_type': 'scale_info::53',
+                },
+                'PureCreated': {
+                    'disambiguation_index': 'u16',
+                    'proxy_type': 'scale_info::53',
+                    'pure': '[u8; 20]',
+                    'who': '[u8; 20]',
+                },
+            },
             'Randomness': {
                 'RandomnessRequestedBabeEpoch': {
                     'contract_address': '[u8; 20]',
@@ -1037,38 +1069,6 @@ result = substrate.query(
                 'KilledAccount': {'account': '[u8; 20]'},
                 'NewAccount': {'account': '[u8; 20]'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': '[u8; 20]'},
-            },
-            None: None,
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
-            'Proxy': {
-                'Announced': {
-                    'call_hash': '[u8; 32]',
-                    'proxy': '[u8; 20]',
-                    'real': '[u8; 20]',
-                },
-                'ProxyAdded': {
-                    'delay': 'u32',
-                    'delegatee': '[u8; 20]',
-                    'delegator': '[u8; 20]',
-                    'proxy_type': 'scale_info::53',
-                },
-                'ProxyExecuted': {'result': 'scale_info::50'},
-                'ProxyRemoved': {
-                    'delay': 'u32',
-                    'delegatee': '[u8; 20]',
-                    'delegator': '[u8; 20]',
-                    'proxy_type': 'scale_info::53',
-                },
-                'PureCreated': {
-                    'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::53',
-                    'pure': '[u8; 20]',
-                    'who': '[u8; 20]',
-                },
             },
             'TechCommitteeCollective': {
                 'Approved': {'proposal_hash': '[u8; 32]'},

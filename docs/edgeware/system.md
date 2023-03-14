@@ -441,13 +441,6 @@ result = substrate.query(
             'BagsList': {
                 'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
             },
-            'BaseFee': {
-                'BaseFeeOverflow': None,
-                'IsActive': 'bool',
-                'NewBaseFeePerGas': '[u64; 4]',
-                'NewElasticity': 'u32',
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -472,6 +465,12 @@ result = substrate.query(
                 },
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'BaseFee': {
+                'BaseFeeOverflow': None,
+                'IsActive': 'bool',
+                'NewBaseFeePerGas': '[u64; 4]',
+                'NewElasticity': 'u32',
             },
             'Bounties': {
                 'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
@@ -836,6 +835,11 @@ result = substrate.query(
                 'Spending': {'budget_remaining': 'u128'},
             },
             'TreasuryReward': {'TreasuryMinting': ('u128', 'u32', 'AccountId')},
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
+            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchInterrupted': {
@@ -844,10 +848,6 @@ result = substrate.query(
                 },
                 'DispatchedAs': {'result': 'scale_info::28'},
                 'ItemCompleted': None,
-            },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
         },
         'phase': {

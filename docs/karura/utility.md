@@ -60,10 +60,94 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        None: None,
         'Authority': {
             'delay': 'u32',
             'origin': {
+                None: None,
+                'Authority': {
+                    'delay': 'u32',
+                    'origin': {
+                        'Authority': {
+                            'delay': 'u32',
+                            'origin': 'scale_info::114',
+                        },
+                        'CumulusXcm': {
+                            'Relay': None,
+                            'SiblingParachain': 'u32',
+                        },
+                        'FinancialCouncil': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'GeneralCouncil': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'HomaCouncil': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'PolkadotXcm': {
+                            'Response': 'scale_info::74',
+                            'Xcm': 'scale_info::74',
+                        },
+                        'TechnicalCommittee': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'Void': (),
+                        'system': {
+                            'None': None,
+                            'Root': None,
+                            'Signed': 'AccountId',
+                        },
+                        None: None,
+                    },
+                },
+                'CumulusXcm': {
+                    'Relay': None,
+                    'SiblingParachain': 'u32',
+                },
+                'FinancialCouncil': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
+                'GeneralCouncil': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
+                'HomaCouncil': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
                 'PolkadotXcm': {
                     'Response': {
                         'interior': {
@@ -177,91 +261,6 @@ call = substrate.compose_call(
                         },
                         'parents': 'u8',
                     },
-                },
-                None: None,
-                'Authority': {
-                    'delay': 'u32',
-                    'origin': {
-                        'Authority': {
-                            'delay': 'u32',
-                            'origin': 'scale_info::114',
-                        },
-                        'CumulusXcm': {
-                            'Relay': None,
-                            'SiblingParachain': 'u32',
-                        },
-                        'FinancialCouncil': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'GeneralCouncil': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'HomaCouncil': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'PolkadotXcm': {
-                            'Response': 'scale_info::74',
-                            'Xcm': 'scale_info::74',
-                        },
-                        'TechnicalCommittee': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'Void': (),
-                        'system': {
-                            'None': None,
-                            'Root': None,
-                            'Signed': 'AccountId',
-                        },
-                        None: None,
-                    },
-                },
-                'CumulusXcm': {
-                    'Relay': None,
-                    'SiblingParachain': 'u32',
-                },
-                'FinancialCouncil': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
-                },
-                'GeneralCouncil': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
-                },
-                'HomaCouncil': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
                 },
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
@@ -1156,6 +1155,7 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        None: None,
         'TechnicalCommittee': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),

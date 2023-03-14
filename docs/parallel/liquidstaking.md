@@ -463,6 +463,21 @@ call = substrate.compose_call(
 ```
 
 ---------
+### update_incentive
+Update incentive amount
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| amount | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'LiquidStaking', 'update_incentive', {'amount': 'u128'}
+)
+```
+
+---------
 ### update_reserve_factor
 Update insurance pool&\#x27;s reserve_factor
 #### Attributes
@@ -570,6 +585,14 @@ Fast Unstake Matched
 | None | `T::AccountId` | ```AccountId```
 | None | `BalanceOf<T>` | ```u128```
 | None | `BalanceOf<T>` | ```u128```
+| None | `BalanceOf<T>` | ```u128```
+
+---------
+### IncentiveUpdated
+Incentive amount was updated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
 | None | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -778,6 +801,21 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'LiquidStaking', 'FastUnstakeRequests', ['AccountId']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### Incentive
+ Incentive for users who successfully update era/ledger
+
+#### Python
+```python
+result = substrate.query(
+    'LiquidStaking', 'Incentive', []
 )
 ```
 
@@ -1112,6 +1150,17 @@ constant = substrate.get_constant('LiquidStaking', 'MinStake')
 #### Python
 ```python
 constant = substrate.get_constant('LiquidStaking', 'MinUnstake')
+```
+---------
+### NativeCurrency
+ The asset id for native currency.
+#### Value
+```python
+1
+```
+#### Python
+```python
+constant = substrate.get_constant('LiquidStaking', 'NativeCurrency')
 ```
 ---------
 ### NumSlashingSpans

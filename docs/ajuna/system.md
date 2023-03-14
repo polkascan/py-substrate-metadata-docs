@@ -378,7 +378,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -404,6 +403,53 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
+                'DownwardMessagesReceived': 'u32',
+                'UpgradeAuthorized': '[u8; 32]',
+                'ValidationFunctionApplied': 'u32',
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'PolkadotXcm': {
+                'AssetsTrapped': (
+                    '[u8; 32]',
+                    'scale_info::42',
+                    'scale_info::72',
+                ),
+                'Attempted': {
+                    'Complete': 'u64',
+                    'Error': 'scale_info::38',
+                    'Incomplete': ('u64', 'scale_info::38'),
+                },
+                'InvalidResponder': (
+                    'scale_info::42',
+                    'u64',
+                    (None, 'scale_info::42'),
+                ),
+                'InvalidResponderVersion': ('scale_info::42', 'u64'),
+                'Notified': ('u64', 'u8', 'u8'),
+                'NotifyDecodeFailed': ('u64', 'u8', 'u8'),
+                'NotifyDispatchError': ('u64', 'u8', 'u8'),
+                'NotifyOverweight': ('u64', 'u8', 'u8', 'u64', 'u64'),
+                'NotifyTargetMigrationFail': ('scale_info::77', 'u64'),
+                'NotifyTargetSendFail': (
+                    'scale_info::42',
+                    'u64',
+                    'scale_info::38',
+                ),
+                'ResponseReady': ('u64', 'scale_info::62'),
+                'ResponseTaken': 'u64',
+                'Sent': (
+                    'scale_info::42',
+                    'scale_info::42',
+                    ['scale_info::53'],
+                ),
+                'SupportedVersionChanged': ('scale_info::42', 'u32'),
+                'UnexpectedResponse': ('scale_info::42', 'u64'),
+                'VersionChangeNotified': ('scale_info::42', 'u32'),
+            },
+            None: None,
             'CollatorSelection': {
                 'CandidateAdded': ('AccountId', 'u128'),
                 'CandidateRemoved': 'AccountId',
@@ -461,52 +507,6 @@ result = substrate.query(
                 'OverweightServiced': ('u64', 'u64'),
                 'UnsupportedVersion': '[u8; 32]',
                 'WeightExhausted': ('[u8; 32]', 'u64', 'u64'),
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
-                'DownwardMessagesReceived': 'u32',
-                'UpgradeAuthorized': '[u8; 32]',
-                'ValidationFunctionApplied': 'u32',
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
-            'PolkadotXcm': {
-                'AssetsTrapped': (
-                    '[u8; 32]',
-                    'scale_info::42',
-                    'scale_info::72',
-                ),
-                'Attempted': {
-                    'Complete': 'u64',
-                    'Error': 'scale_info::38',
-                    'Incomplete': ('u64', 'scale_info::38'),
-                },
-                'InvalidResponder': (
-                    'scale_info::42',
-                    'u64',
-                    (None, 'scale_info::42'),
-                ),
-                'InvalidResponderVersion': ('scale_info::42', 'u64'),
-                'Notified': ('u64', 'u8', 'u8'),
-                'NotifyDecodeFailed': ('u64', 'u8', 'u8'),
-                'NotifyDispatchError': ('u64', 'u8', 'u8'),
-                'NotifyOverweight': ('u64', 'u8', 'u8', 'u64', 'u64'),
-                'NotifyTargetMigrationFail': ('scale_info::77', 'u64'),
-                'NotifyTargetSendFail': (
-                    'scale_info::42',
-                    'u64',
-                    'scale_info::38',
-                ),
-                'ResponseReady': ('u64', 'scale_info::62'),
-                'ResponseTaken': 'u64',
-                'Sent': (
-                    'scale_info::42',
-                    'scale_info::42',
-                    ['scale_info::53'],
-                ),
-                'SupportedVersionChanged': ('scale_info::42', 'u32'),
-                'UnexpectedResponse': ('scale_info::42', 'u64'),
-                'VersionChangeNotified': ('scale_info::42', 'u32'),
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'Sudo': {

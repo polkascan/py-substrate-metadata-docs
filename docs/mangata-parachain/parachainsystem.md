@@ -59,9 +59,9 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::168',
+        'horizontal_messages': 'scale_info::170',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::152',
+            'trie_nodes': 'scale_info::154',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -300,7 +300,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::159'
+'scale_info::161'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -406,7 +406,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::152'}
+{'trie_nodes': 'scale_info::154'}
 ```
 ---------
 ### RelevantMessagingState
@@ -581,6 +581,10 @@ willing to run
 ---------
 ### Unauthorized
 The given code upgrade has not been authorized.
+
+---------
+### UpgradeBlockedByMaintenanceMode
+Upgrades are blocked due to maintenance mode
 
 ---------
 ### ValidationDataNotAvailable
