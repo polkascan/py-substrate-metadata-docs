@@ -24,27 +24,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### cancel_queued
-Cancel a proposal queued for enactment.
-
-The dispatch origin of this call must be _Root_.
-
-- `which`: The index of the referendum to cancel.
-
-Weight: `O(D)` where `D` is the items in the dispatch queue. Weighted as `D = 10`.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| which | `ReferendumIndex` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'cancel_queued', {'which': 'u32'}
-)
-```
-
----------
 ### cancel_referendum
 Remove a referendum.
 
@@ -83,25 +62,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### enact_proposal
-Enact a proposal from a referendum. For now we just make the weight be the maximum.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| proposal_hash | `T::Hash` | 
-| index | `ReferendumIndex` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'enact_proposal', {
-    'index': 'u32',
-    'proposal_hash': '[u8; 32]',
-}
-)
-```
-
----------
 ### fast_track
 Schedule a proposal to be tabled immediately with the `FastTrackVotingPeriod`.
 
@@ -123,31 +83,6 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'Democracy', 'fast_track', {'delay': 'u32', 'prop_index': 'u32'}
-)
-```
-
----------
-### fast_track_default
-Same as `fast_track` but with the default `VotingPeriod`.
-
-The dispatch of this call must be `FastTrackOrigin`.
-
-- `prop_index`: The index of the proposal.
-- `delay`: The number of blocks to wait after approval before execution.
-
-Emits `Started` and `FastTrack`.
-
-Weight: `O(1)`
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| prop_index | `PropIndex` | 
-| delay | `T::BlockNumber` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'fast_track_default', {'delay': 'u32', 'prop_index': 'u32'}
 )
 ```
 
@@ -175,56 +110,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### note_imminent_preimage
-Register the preimage for an upcoming proposal. This requires the proposal to be
-in the dispatch queue. No deposit is needed. When this call is successful, i.e.
-the preimage has not been uploaded before and matches some imminent proposal,
-no fee is paid.
-
-The dispatch origin of this call must be _Signed_.
-
-- `encoded_proposal`: The preimage of a proposal.
-
-Emits `PreimageNoted`.
-
-Weight: `O(E)` with E size of `encoded_proposal` (protected by a required deposit).
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_imminent_preimage', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
-### note_preimage
-Register the preimage for an upcoming proposal. This doesn&\#x27;t require the proposal to be
-in the dispatch queue but does require a deposit, returned once enacted.
-
-The dispatch origin of this call must be _Signed_.
-
-- `encoded_proposal`: The preimage of a proposal.
-
-Emits `PreimageNoted`.
-
-Weight: `O(E)` with E size of `encoded_proposal` (protected by a required deposit).
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_preimage', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
 ### propose
 Propose a sensitive action to be taken.
 
@@ -240,48 +125,22 @@ Weight: `O(p)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal | `BoundedCallOf<T>` | 
 | value | `BalanceOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Democracy', 'propose', {
-    'proposal_hash': '[u8; 32]',
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
     'value': 'u128',
-}
-)
-```
-
----------
-### reap_preimage
-Remove an expired proposal preimage and collect the deposit.
-
-The dispatch origin of this call must be _Signed_.
-
-- `proposal_hash`: The preimage hash of a proposal.
-- `proposal_length_upper_bound`: an upper bound on length of the proposal. Extrinsic is weighted according
-  to this value with no refund.
-
-This will only work after `VotingPeriod` blocks from the time that the preimage was
-noted, if it&\#x27;s the same account doing it. If it&\#x27;s a different account, then it&\#x27;ll only
-work an additional `EnactmentPeriod` later.
-
-Emits `PreimageReaped`.
-
-Weight: `O(D)` where D is length of proposal.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| proposal_hash | `T::Hash` | 
-| proposal_len_upper_bound | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'reap_preimage', {
-    'proposal_hash': '[u8; 32]',
-    'proposal_len_upper_bound': 'u32',
 }
 )
 ```
@@ -325,15 +184,36 @@ Weight: `O(S)` where S is the number of seconds a proposal already has.
 | Name | Type |
 | -------- | -------- | 
 | proposal | `PropIndex` | 
-| seconds_upper_bound | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'second', {
-    'proposal': 'u32',
-    'seconds_upper_bound': 'u32',
-}
+    'Democracy', 'second', {'proposal': 'u32'}
+)
+```
+
+---------
+### table_proposal
+Same as `fast_track` but with the default `VotingPeriod`.
+
+The dispatch of this call must be `FastTrackOrigin`.
+
+- `prop_index`: The index of the proposal.
+- `delay`: The number of blocks to wait after approval before execution.
+
+Emits `Started` and `FastTrack`.
+
+Weight: `O(1)`
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| prop_index | `PropIndex` | 
+| delay | `T::BlockNumber` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Democracy', 'table_proposal', {'delay': 'u32', 'prop_index': 'u32'}
 )
 ```
 
@@ -372,134 +252,70 @@ call = substrate.compose_call(
 
 ---------
 ### Cancelled
-A referendum has been cancelled. \[ref_index\]
+A referendum has been cancelled.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ReferendumIndex` | ```u32```
-
----------
-### Executed
-A proposal has been enacted. \[ref_index, result\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `ReferendumIndex` | ```u32```
-| None | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| ref_index | `ReferendumIndex` | ```u32```
 
 ---------
 ### FastTrack
-A proposal has been fast tracked. \[ref_index\]
+A proposal has been fast tracked.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ReferendumIndex` | ```u32```
+| ref_index | `ReferendumIndex` | ```u32```
 
 ---------
 ### FastTrackReferendum
-A referendum has been fast tracked. \[ref_index\]
+A referendum has been fast tracked.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ReferendumIndex` | ```u32```
+| ref_index | `ReferendumIndex` | ```u32```
 
 ---------
 ### NotPassed
-A proposal has been rejected by referendum. \[ref_index\]
+A proposal has been rejected by referendum.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ReferendumIndex` | ```u32```
+| ref_index | `ReferendumIndex` | ```u32```
 
 ---------
 ### Passed
-A proposal has been approved by referendum. \[ref_index\]
+A proposal has been approved by referendum.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ReferendumIndex` | ```u32```
-
----------
-### PreimageInvalid
-A proposal could not be executed because its preimage was invalid.
-\[proposal_hash, ref_index\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::Hash` | ```[u8; 32]```
-| None | `ReferendumIndex` | ```u32```
-
----------
-### PreimageMissing
-A proposal could not be executed because its preimage was missing.
-\[proposal_hash, ref_index\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::Hash` | ```[u8; 32]```
-| None | `ReferendumIndex` | ```u32```
-
----------
-### PreimageNoted
-A proposal&\#x27;s preimage was noted, and the deposit taken. \[proposal_hash, who, deposit\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::Hash` | ```[u8; 32]```
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
-
----------
-### PreimageReaped
-A registered preimage was removed and the deposit collected by the reaper.
-\[proposal_hash, provider, deposit, reaper\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::Hash` | ```[u8; 32]```
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
-| None | `T::AccountId` | ```AccountId```
-
----------
-### PreimageUsed
-A proposal preimage was removed and used (the deposit was returned).
-\[proposal_hash, provider, deposit\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::Hash` | ```[u8; 32]```
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
+| ref_index | `ReferendumIndex` | ```u32```
 
 ---------
 ### Proposed
-A motion has been proposed by a public account. \[proposal_index, deposit\]
+A motion has been proposed by a public account.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `PropIndex` | ```u32```
-| None | `BalanceOf<T>` | ```u128```
+| proposal_index | `PropIndex` | ```u32```
+| deposit | `BalanceOf<T>` | ```u128```
 
 ---------
 ### Started
-A referendum has begun. \[ref_index, threshold\]
+A referendum has begun.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ReferendumIndex` | ```u32```
-| None | `VoteThreshold` | ```('SuperMajorityApprove', 'SuperMajorityAgainst', 'SimpleMajority')```
+| ref_index | `ReferendumIndex` | ```u32```
+| threshold | `VoteThreshold` | ```('SuperMajorityApprove', 'SuperMajorityAgainst', 'SimpleMajority')```
 
 ---------
 ### Tabled
-A public proposal has been tabled for referendum vote. \[proposal_index, deposit,
-depositors\]
+A public proposal has been tabled for referendum vote.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `PropIndex` | ```u32```
-| None | `BalanceOf<T>` | ```u128```
-| None | `Vec<T::AccountId>` | ```['AccountId']```
+| proposal_index | `PropIndex` | ```u32```
+| deposit | `BalanceOf<T>` | ```u128```
 
 ---------
 ## Storage functions
@@ -552,31 +368,6 @@ result = substrate.query(
 'u64'
 ```
 ---------
-### Preimages
- Map of hashes to the proposal preimage, along with who registered it and their deposit.
- The block number is the block at which it was deposited.
-
-#### Python
-```python
-result = substrate.query(
-    'Democracy', 'Preimages', ['[u8; 32]']
-)
-```
-
-#### Return value
-```python
-{
-    'Available': {
-        'data': 'Bytes',
-        'deposit': 'u128',
-        'expiry': (None, 'u32'),
-        'provider': 'AccountId',
-        'since': 'u32',
-    },
-    'Missing': 'u32',
-}
-```
----------
 ### PublicPropCount
  The number of (public) proposals that have been made so far.
 
@@ -593,7 +384,7 @@ result = substrate.query(
 ```
 ---------
 ### PublicProps
- The public proposals. Unsorted. The second item is the proposal&#x27;s hash.
+ The public proposals. Unsorted. The second item is the proposal.
 
 #### Python
 ```python
@@ -604,7 +395,17 @@ result = substrate.query(
 
 #### Return value
 ```python
-[('u32', '[u8; 32]', 'AccountId')]
+[
+    (
+        'u32',
+        {
+            'Inline': 'Bytes',
+            'Legacy': {'hash': '[u8; 32]'},
+            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        },
+        'AccountId',
+    ),
+]
 ```
 ---------
 ### ReferendumCount
@@ -641,7 +442,11 @@ result = substrate.query(
     'Ongoing': {
         'delay': 'u32',
         'end': 'u32',
-        'proposal_hash': '[u8; 32]',
+        'proposal': {
+            'Inline': 'Bytes',
+            'Legacy': {'hash': '[u8; 32]'},
+            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        },
         'tally': {'ayes': 'u128', 'nays': 'u128', 'turnout': 'u128'},
         'threshold': (
             'SuperMajorityApprove',
@@ -650,23 +455,6 @@ result = substrate.query(
         ),
     },
 }
-```
----------
-### StorageVersion
- Storage version of the pallet.
-
- New networks start with last version.
-
-#### Python
-```python
-result = substrate.query(
-    'Democracy', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V1', )
 ```
 ---------
 ### VotingOf
@@ -763,17 +551,6 @@ constant = substrate.get_constant('Democracy', 'MaxVotes')
 constant = substrate.get_constant('Democracy', 'MinimumDeposit')
 ```
 ---------
-### PreimageByteDeposit
- The amount of balance that must be deposited per byte of preimage stored.
-#### Value
-```python
-333330
-```
-#### Python
-```python
-constant = substrate.get_constant('Democracy', 'PreimageByteDeposit')
-```
----------
 ### VotingPeriod
  How often (in blocks) to check for new votes.
 #### Value
@@ -786,14 +563,6 @@ constant = substrate.get_constant('Democracy', 'VotingPeriod')
 ```
 ---------
 ## Errors
-
----------
-### DuplicatePreimage
-Preimage already noted
-
----------
-### DuplicateProposal
-Proposal already made
 
 ---------
 ### Imminent
@@ -824,12 +593,8 @@ The given account did not make this proposal.
 The given account did not vote on the referendum.
 
 ---------
-### PreimageInvalid
-Invalid preimage
-
----------
 ### PreimageMissing
-Preimage not found
+Preimage does not exist
 
 ---------
 ### ProposalMissing

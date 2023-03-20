@@ -243,7 +243,7 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'Void': (),
                 None: None,
                 'PolkadotXcm': {
                     'Response': 'scale_info::60',
@@ -254,7 +254,7 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },

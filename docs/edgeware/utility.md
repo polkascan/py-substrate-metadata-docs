@@ -121,16 +121,16 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
+        'Void': (),
+        None: None,
         'Ethereum': {
             'EthereumTransaction': '[u8; 20]',
         },
-        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
     'call': 'Call',
 }

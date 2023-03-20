@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -375,6 +375,30 @@ result = substrate.query(
 [
     {
         'event': {
+            'Contracts': {
+                'CodeRemoved': {'code_hash': '[u8; 32]'},
+                'CodeStored': {'code_hash': '[u8; 32]'},
+                'ContractCodeUpdated': {
+                    'contract': 'AccountId',
+                    'new_code_hash': '[u8; 32]',
+                    'old_code_hash': '[u8; 32]',
+                },
+                'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
+                'Instantiated': {
+                    'contract': 'AccountId',
+                    'deployer': 'AccountId',
+                },
+                'Terminated': {
+                    'beneficiary': 'AccountId',
+                    'contract': 'AccountId',
+                },
+            },
+            'Indices': {
+                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
+                'IndexFreed': {'index': 'u32'},
+                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
+            },
+            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -484,24 +508,6 @@ result = substrate.query(
                 'BountyExtended': {'index': 'u32'},
                 'BountyProposed': {'index': 'u32'},
                 'BountyRejected': {'bond': 'u128', 'index': 'u32'},
-            },
-            'Contracts': {
-                'CodeRemoved': {'code_hash': '[u8; 32]'},
-                'CodeStored': {'code_hash': '[u8; 32]'},
-                'ContractCodeUpdated': {
-                    'contract': 'AccountId',
-                    'new_code_hash': '[u8; 32]',
-                    'old_code_hash': '[u8; 32]',
-                },
-                'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
-                'Instantiated': {
-                    'contract': 'AccountId',
-                    'deployer': 'AccountId',
-                },
-                'Terminated': {
-                    'beneficiary': 'AccountId',
-                    'contract': 'AccountId',
-                },
             },
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -661,11 +667,6 @@ result = substrate.query(
                 'AllGood': None,
                 'HeartbeatReceived': {'authority_id': '[u8; 32]'},
                 'SomeOffline': {'offline': [('AccountId', 'scale_info::58')]},
-            },
-            'Indices': {
-                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
-                'IndexFreed': {'index': 'u32'},
-                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
             },
             'Multisig': {
                 'MultisigApproval': {
@@ -835,11 +836,6 @@ result = substrate.query(
                 'Spending': {'budget_remaining': 'u128'},
             },
             'TreasuryReward': {'TreasuryMinting': ('u128', 'u32', 'AccountId')},
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
-            },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchInterrupted': {
@@ -848,6 +844,10 @@ result = substrate.query(
                 },
                 'DispatchedAs': {'result': 'scale_info::28'},
                 'ItemCompleted': None,
+            },
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
         },
         'phase': {

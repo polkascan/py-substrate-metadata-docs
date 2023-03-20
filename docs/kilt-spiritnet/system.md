@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -367,6 +367,17 @@ result = substrate.query(
 [
     {
         'event': {
+            'Attestation': {
+                'AttestationCreated': (
+                    'AccountId',
+                    '[u8; 32]',
+                    '[u8; 32]',
+                    (None, 'scale_info::61'),
+                ),
+                'AttestationRemoved': ('AccountId', '[u8; 32]'),
+                'AttestationRevoked': ('AccountId', '[u8; 32]'),
+                'DepositReclaimed': ('AccountId', '[u8; 32]'),
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -379,17 +390,6 @@ result = substrate.query(
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             None: None,
-            'Attestation': {
-                'AttestationCreated': (
-                    'AccountId',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    (None, 'scale_info::61'),
-                ),
-                'AttestationRemoved': ('AccountId', '[u8; 32]'),
-                'AttestationRevoked': ('AccountId', '[u8; 32]'),
-                'DepositReclaimed': ('AccountId', '[u8; 32]'),
-            },
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',

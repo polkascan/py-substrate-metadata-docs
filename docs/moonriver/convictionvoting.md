@@ -142,7 +142,7 @@ call = substrate.compose_call(
 Undelegate the voting power of the sending account for a particular class of polls.
 
 Tokens may be unlocked following once an amount of time consistent with the lock period
-of the conviction with which the delegation was issued.
+of the conviction with which the delegation was issued has passed.
 
 The dispatch origin of this call must be _Signed_ and the signing account must be
 currently delegating.
@@ -167,7 +167,7 @@ call = substrate.compose_call(
 
 ---------
 ### unlock
-Remove the lock caused prior voting/delegating which has expired within a particluar
+Remove the lock caused by prior voting/delegating which has expired within a particular
 class.
 
 The dispatch origin of this call must be _Signed_.
@@ -213,6 +213,11 @@ call = substrate.compose_call(
     'poll_index': 'u32',
     'vote': {
         'Split': {
+            'aye': 'u128',
+            'nay': 'u128',
+        },
+        'SplitAbstain': {
+            'abstain': 'u128',
             'aye': 'u128',
             'nay': 'u128',
         },
@@ -294,7 +299,16 @@ result = substrate.query(
     'Casting': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u32', 'u128'),
-        'votes': [('u32', {'Split': 'InnerStruct', 'Standard': 'InnerStruct'})],
+        'votes': [
+            (
+                'u32',
+                {
+                    'Split': 'InnerStruct',
+                    'SplitAbstain': 'InnerStruct',
+                    'Standard': 'InnerStruct',
+                },
+            ),
+        ],
     },
     'Delegating': {
         'balance': 'u128',
@@ -320,8 +334,8 @@ result = substrate.query(
 ### MaxVotes
  The maximum number of concurrent votes an account may have.
 
- Also used to compute weight, an overly large value can
- lead to extrinsic with large weight estimation: see `delegate` for instance.
+ Also used to compute weight, an overly large value can lead to extrinsics with large
+ weight estimation: see `delegate` for instance.
 #### Value
 ```python
 512
@@ -338,7 +352,7 @@ constant = substrate.get_constant('ConvictionVoting', 'MaxVotes')
  those successful voters are locked into the consequences that their votes entail.
 #### Value
 ```python
-50400
+7200
 ```
 #### Python
 ```python

@@ -292,7 +292,7 @@ result = substrate.query(
             None,
             {
                 'collection_admin': 'bool',
-                'restricted': (None, 'scale_info::321'),
+                'restricted': (None, 'scale_info::323'),
                 'token_owner': 'bool',
             },
         ),
@@ -318,7 +318,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'consumed_space': 'u32', 'map': 'scale_info::434', 'space_limit': 'u32'}
+{'consumed_space': 'u32', 'map': 'scale_info::442', 'space_limit': 'u32'}
 ```
 ---------
 ### CollectionPropertyPermissions
@@ -333,7 +333,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::439'
+'scale_info::447'
 ```
 ---------
 ### CreatedCollectionCount
@@ -383,7 +383,7 @@ result = substrate.query(
     'u32',
     'u32',
     {'collection': 'u32', 'token': 'u32'},
-    "[({'properties': ['scale_info::328'], 'owner': (None, 'scale_info::98'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::305', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::430', 'limits': 'scale_info::310', 'permissions': 'scale_info::315', 'token_property_permissions': ['scale_info::324'], 'properties': ['scale_info::328'], 'read_only': 'bool', 'flags': 'scale_info::451'}, {'proof_size': 'u64', 'compact_proof_size': 'u64', 'compressed_proof_size': 'u64', 'results': ['scale_info::454'], 'key_values': ['scale_info::459']}); 0]",
+    "[({'properties': ['scale_info::330'], 'owner': (None, 'scale_info::99'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::307', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::438', 'limits': 'scale_info::312', 'permissions': 'scale_info::317', 'token_property_permissions': ['scale_info::326'], 'properties': ['scale_info::330'], 'read_only': 'bool', 'flags': 'scale_info::459'}, {'proof_size': 'u64', 'compact_proof_size': 'u64', 'compressed_proof_size': 'u64', 'results': ['scale_info::462'], 'key_values': ['scale_info::467']}); 0]",
 )
 ```
 ---------

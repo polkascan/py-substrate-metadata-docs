@@ -350,12 +350,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -713,14 +713,17 @@ result = substrate.query(
                 },
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::117'},
-                'SudoAsDone': {'sudo_result': 'scale_info::117'},
-            },
-            'SudoOrigin': {
-                'SuOriginDid': {'Err': 'scale_info::31', 'Ok': ()},
-                'SuOriginDoAsDone': {'Err': 'scale_info::31', 'Ok': ()},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::31',
+                    'dispatch_info': 'scale_info::28',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::28'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+                'TxsEnqueued': {'count': 'u64'},
             },
             'Tokens': {
                 'BalanceSet': {
@@ -800,19 +803,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            None: None,
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::31',
-                    'dispatch_info': 'scale_info::28',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::28'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-                'TxsEnqueued': {'count': 'u64'},
-            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -830,6 +820,20 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
+            },
+            'Vesting': {
+                'VestingCompleted': ('AccountId', 'u32'),
+                'VestingUpdated': ('AccountId', 'u32', 'u128'),
+            },
+            None: None,
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::117'},
+                'SudoAsDone': {'sudo_result': 'scale_info::117'},
+            },
+            'SudoOrigin': {
+                'SuOriginDid': {'Err': 'scale_info::31', 'Ok': ()},
+                'SuOriginDoAsDone': {'Err': 'scale_info::31', 'Ok': ()},
             },
             'UnknownTokens': {
                 'Deposited': {
@@ -851,10 +855,6 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::117'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::31'},
-            },
-            'Vesting': {
-                'VestingCompleted': ('AccountId', 'u32'),
-                'VestingUpdated': ('AccountId', 'u32', 'u128'),
             },
             'XTokens': {
                 'TransferredMultiAssets': {

@@ -380,7 +380,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -897,6 +896,44 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            'Tips': {
+                'NewTip': {'tip_hash': '[u8; 32]'},
+                'TipClosed': {
+                    'payout': 'u128',
+                    'tip_hash': '[u8; 32]',
+                    'who': 'AccountId',
+                },
+                'TipClosing': {'tip_hash': '[u8; 32]'},
+                'TipRetracted': {'tip_hash': '[u8; 32]'},
+                'TipSlashed': {
+                    'deposit': 'u128',
+                    'finder': 'AccountId',
+                    'tip_hash': '[u8; 32]',
+                },
+            },
+            'Treasury': {
+                'Awarded': {
+                    'account': 'AccountId',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'Spending': {'budget_remaining': 'u128'},
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::63'},
+                'ItemCompleted': None,
+            },
+            None: None,
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -935,43 +972,6 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
-            'Tips': {
-                'NewTip': {'tip_hash': '[u8; 32]'},
-                'TipClosed': {
-                    'payout': 'u128',
-                    'tip_hash': '[u8; 32]',
-                    'who': 'AccountId',
-                },
-                'TipClosing': {'tip_hash': '[u8; 32]'},
-                'TipRetracted': {'tip_hash': '[u8; 32]'},
-                'TipSlashed': {
-                    'deposit': 'u128',
-                    'finder': 'AccountId',
-                    'tip_hash': '[u8; 32]',
-                },
-            },
-            'Treasury': {
-                'Awarded': {
-                    'account': 'AccountId',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'Spending': {'budget_remaining': 'u128'},
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::63'},
-                'ItemCompleted': None,
-            },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},

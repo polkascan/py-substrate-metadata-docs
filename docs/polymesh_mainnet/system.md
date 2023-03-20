@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
+            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -378,6 +378,45 @@ result = substrate.query(
 [
     {
         'event': {
+            'Bridge': {
+                'AdminChanged': ('[u8; 32]', 'AccountId'),
+                'BridgeLimitUpdated': ('[u8; 32]', 'u128', 'u32'),
+                'BridgeTxFailed': (
+                    '[u8; 32]',
+                    'scale_info::94',
+                    'scale_info::22',
+                ),
+                'BridgeTxScheduleFailed': (
+                    '[u8; 32]',
+                    'scale_info::94',
+                    'Bytes',
+                ),
+                'BridgeTxScheduled': ('[u8; 32]', 'scale_info::94', 'u32'),
+                'Bridged': ('[u8; 32]', 'scale_info::94'),
+                'ControllerChanged': ('[u8; 32]', 'AccountId'),
+                'ExemptedUpdated': ('[u8; 32]', '[u8; 32]', 'bool'),
+                'FreezeAdminAdded': ('[u8; 32]', 'AccountId'),
+                'FreezeAdminRemoved': ('[u8; 32]', 'AccountId'),
+                'Frozen': '[u8; 32]',
+                'FrozenTx': ('[u8; 32]', 'scale_info::94'),
+                'TimelockChanged': ('[u8; 32]', 'u32'),
+                'TxRemoved': ('[u8; 32]', 'scale_info::94'),
+                'TxsHandled': [('AccountId', 'u32', 'scale_info::97')],
+                'Unfrozen': '[u8; 32]',
+                'UnfrozenTx': ('[u8; 32]', 'scale_info::94'),
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'Asset': {
                 'AssetCreated': (
                     '[u8; 32]',
@@ -478,7 +517,6 @@ result = substrate.query(
                     'Bytes',
                 ),
             },
-            None: None,
             'Balances': {
                 'AccountBalanceBurned': ('[u8; 32]', 'AccountId', 'u128'),
                 'BalanceSet': ('[u8; 32]', 'AccountId', 'u128', 'u128'),
@@ -501,33 +539,6 @@ result = substrate.query(
                 'Unreserved': ('AccountId', 'u128'),
             },
             'Base': {'UnexpectedError': (None, 'scale_info::22')},
-            'Bridge': {
-                'AdminChanged': ('[u8; 32]', 'AccountId'),
-                'BridgeLimitUpdated': ('[u8; 32]', 'u128', 'u32'),
-                'BridgeTxFailed': (
-                    '[u8; 32]',
-                    'scale_info::94',
-                    'scale_info::22',
-                ),
-                'BridgeTxScheduleFailed': (
-                    '[u8; 32]',
-                    'scale_info::94',
-                    'Bytes',
-                ),
-                'BridgeTxScheduled': ('[u8; 32]', 'scale_info::94', 'u32'),
-                'Bridged': ('[u8; 32]', 'scale_info::94'),
-                'ControllerChanged': ('[u8; 32]', 'AccountId'),
-                'ExemptedUpdated': ('[u8; 32]', '[u8; 32]', 'bool'),
-                'FreezeAdminAdded': ('[u8; 32]', 'AccountId'),
-                'FreezeAdminRemoved': ('[u8; 32]', 'AccountId'),
-                'Frozen': '[u8; 32]',
-                'FrozenTx': ('[u8; 32]', 'scale_info::94'),
-                'TimelockChanged': ('[u8; 32]', 'u32'),
-                'TxRemoved': ('[u8; 32]', 'scale_info::94'),
-                'TxsHandled': [('AccountId', 'u32', 'scale_info::97')],
-                'Unfrozen': '[u8; 32]',
-                'UnfrozenTx': ('[u8; 32]', 'scale_info::94'),
-            },
             'CapitalDistribution': {
                 'BenefitClaimed': (
                     '[u8; 32]',
@@ -1125,17 +1136,6 @@ result = substrate.query(
                 'KeyChanged': 'AccountId',
                 'Sudid': {'Err': 'scale_info::22', 'Ok': ()},
                 'SudoAsDone': {'Err': 'scale_info::22', 'Ok': ()},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': ('[u8; 32]', '[u8; 32]', 'u32', 'u32', 'u32'),

@@ -21,12 +21,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
                         'Other': 'Bytes',
+                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',

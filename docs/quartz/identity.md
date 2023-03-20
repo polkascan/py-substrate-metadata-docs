@@ -164,8 +164,8 @@ call = substrate.compose_call(
                 'info': {
                     'additional': [
                         (
-                            'scale_info::225',
-                            'scale_info::225',
+                            'scale_info::226',
+                            'scale_info::226',
                         ),
                     ],
                     'display': {

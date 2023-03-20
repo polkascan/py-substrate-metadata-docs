@@ -451,7 +451,7 @@ call = substrate.compose_call(
                         'collection_admin': 'bool',
                         'restricted': (
                             None,
-                            'scale_info::321',
+                            'scale_info::323',
                         ),
                         'token_owner': 'bool',
                     },
@@ -633,7 +633,7 @@ call = substrate.compose_call(
     'Unique', 'create_multiple_items_ex', {
     'collection_id': 'u32',
     'data': {
-        'Fungible': 'scale_info::342',
+        'Fungible': 'scale_info::344',
         'NFT': [
             {
                 'owner': {
@@ -670,7 +670,7 @@ call = substrate.compose_call(
                     'value': 'Bytes',
                 },
             ],
-            'users': 'scale_info::342',
+            'users': 'scale_info::344',
         },
     },
 }
@@ -1065,7 +1065,7 @@ call = substrate.compose_call(
                 'collection_admin': 'bool',
                 'restricted': (
                     None,
-                    'scale_info::321',
+                    'scale_info::323',
                 ),
                 'token_owner': 'bool',
             },

@@ -1023,6 +1023,33 @@ call = substrate.compose_call(
 ```
 
 ---------
+### with_weight
+Dispatch a function call with a specified weight.
+
+This function does not check the weight of the call, and instead allows the
+Root origin to specify the weight of the call.
+
+The dispatch origin for this call must be _Root_.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
+| weight | `Weight` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Utility', 'with_weight', {
+    'call': 'Call',
+    'weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
+)
+```
+
+---------
 ## Events
 
 ---------

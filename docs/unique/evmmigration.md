@@ -80,6 +80,19 @@ call = substrate.compose_call(
 ```
 
 ---------
+### remove_rmrk_data
+Remove remark compatibility data leftovers
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'EvmMigration', 'remove_rmrk_data', {}
+)
+```
+
+---------
 ### set_data
 Insert items into contract storage, this method can be called
 multiple times

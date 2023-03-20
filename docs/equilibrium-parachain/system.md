@@ -377,6 +377,44 @@ result = substrate.query(
 [
     {
         'event': {
+            'EqAssets': {
+                'DeleteAsset': ('u64', 'Bytes'),
+                'NewAsset': ('u64', 'Bytes'),
+                'UpdateAsset': ('u64', 'Bytes'),
+            },
+            'EqBalances': {
+                'DeleteAccount': 'AccountId',
+                'Deposit': ('AccountId', 'u64', 'u128', 'scale_info::46'),
+                'Exchange': (
+                    'AccountId',
+                    'u64',
+                    'u128',
+                    'AccountId',
+                    'u64',
+                    'u128',
+                ),
+                'MigrationComplete': None,
+                'Transfer': (
+                    'AccountId',
+                    'AccountId',
+                    'u64',
+                    'u128',
+                    'scale_info::45',
+                ),
+                'Withdraw': ('AccountId', 'u64', 'u128', 'scale_info::47'),
+                'XcmMessageSendError': {
+                    'CannotReachDestination': (
+                        'scale_info::48',
+                        ['scale_info::62'],
+                    ),
+                    'DestinationUnsupported': None,
+                    'ExceedsMaxMessageSize': None,
+                    'Transport': None,
+                    'Unroutable': None,
+                },
+                'XcmTransfer': ('scale_info::48', 'scale_info::48'),
+            },
+            None: None,
             'Bailsman': {'UnregisteredBailsman': 'AccountId'},
             'ChainBridge': {
                 'ChainToggled': ('u8', 'bool'),
@@ -639,6 +677,10 @@ result = substrate.query(
                     (None, ('scale_info::89', 'AccountId')),
                 ),
             },
+            'EqMarketMaker': {
+                'AddedToWhitelist': 'AccountId',
+                'RemovedFromWhitelist': 'AccountId',
+            },
             'EqMultisigSudo': {
                 'Initialized': None,
                 'KeyAdded': 'AccountId',
@@ -653,48 +695,6 @@ result = substrate.query(
             'EqSessionManager': {
                 'ValidatorAdded': 'AccountId',
                 'ValidatorRemoved': 'AccountId',
-            },
-            None: None,
-            'EqAssets': {
-                'DeleteAsset': ('u64', 'Bytes'),
-                'NewAsset': ('u64', 'Bytes'),
-                'UpdateAsset': ('u64', 'Bytes'),
-            },
-            'EqBalances': {
-                'DeleteAccount': 'AccountId',
-                'Deposit': ('AccountId', 'u64', 'u128', 'scale_info::46'),
-                'Exchange': (
-                    'AccountId',
-                    'u64',
-                    'u128',
-                    'AccountId',
-                    'u64',
-                    'u128',
-                ),
-                'MigrationComplete': None,
-                'Transfer': (
-                    'AccountId',
-                    'AccountId',
-                    'u64',
-                    'u128',
-                    'scale_info::45',
-                ),
-                'Withdraw': ('AccountId', 'u64', 'u128', 'scale_info::47'),
-                'XcmMessageSendError': {
-                    'CannotReachDestination': (
-                        'scale_info::48',
-                        ['scale_info::62'],
-                    ),
-                    'DestinationUnsupported': None,
-                    'ExceedsMaxMessageSize': None,
-                    'Transport': None,
-                    'Unroutable': None,
-                },
-                'XcmTransfer': ('scale_info::48', 'scale_info::48'),
-            },
-            'EqMarketMaker': {
-                'AddedToWhitelist': 'AccountId',
-                'RemovedFromWhitelist': 'AccountId',
             },
             'EqStaking': {
                 'Distributed': 'u32',

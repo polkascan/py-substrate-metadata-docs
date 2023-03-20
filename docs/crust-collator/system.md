@@ -382,6 +382,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AssetManager': {
                 'AssetRegistered': {
                     'asset': 'scale_info::120',
@@ -528,7 +529,6 @@ result = substrate.query(
                 'SetLimitSuccess': 'u128',
                 'SuperiorChanged': 'AccountId',
             },
-            None: None,
             'CollatorSelection': {
                 'CandidateAdded': ('AccountId', 'u128'),
                 'CandidateRemoved': 'AccountId',

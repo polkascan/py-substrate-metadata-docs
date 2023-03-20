@@ -367,6 +367,40 @@ result = substrate.query(
 [
     {
         'event': {
+            'Identity': {
+                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentitySet': {'who': 'AccountId'},
+                'JudgementGiven': {
+                    'registrar_index': 'u32',
+                    'target': 'AccountId',
+                },
+                'JudgementRequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'JudgementUnrequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'RegistrarAdded': {'registrar_index': 'u32'},
+                'SubIdentityAdded': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRemoved': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRevoked': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+            },
+            None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'u32',
@@ -425,81 +459,18 @@ result = substrate.query(
                 'UnsupportedVersion': '[u8; 8]',
             },
             'Democracy': {
-                'Cancelled': 'u32',
-                'Executed': ('u32', 'scale_info::30'),
-                'FastTrack': 'u32',
-                'FastTrackReferendum': 'u32',
-                'NotPassed': 'u32',
-                'Passed': 'u32',
-                'PreimageInvalid': ('[u8; 32]', 'u32'),
-                'PreimageMissing': ('[u8; 32]', 'u32'),
-                'PreimageNoted': ('[u8; 32]', 'AccountId', 'u128'),
-                'PreimageReaped': (
-                    '[u8; 32]',
-                    'AccountId',
-                    'u128',
-                    'AccountId',
-                ),
-                'PreimageUsed': ('[u8; 32]', 'AccountId', 'u128'),
-                'Proposed': ('u32', 'u128'),
-                'Started': ('u32', 'scale_info::116'),
-                'Tabled': ('u32', 'u128', ['AccountId']),
+                'Cancelled': {'ref_index': 'u32'},
+                'FastTrack': {'ref_index': 'u32'},
+                'FastTrackReferendum': {'ref_index': 'u32'},
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Started': {
+                    'ref_index': 'u32',
+                    'threshold': 'scale_info::115',
+                },
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
             },
-            'Identity': {
-                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentitySet': {'who': 'AccountId'},
-                'JudgementGiven': {
-                    'registrar_index': 'u32',
-                    'target': 'AccountId',
-                },
-                'JudgementRequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'JudgementUnrequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'RegistrarAdded': {'registrar_index': 'u32'},
-                'SubIdentityAdded': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRemoved': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRevoked': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-            },
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::30',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            None: None,
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -799,6 +770,27 @@ result = substrate.query(
                     'withdrawn_griefing_collateral': 'u128',
                     'withdrawn_tokens': 'u128',
                 },
+            },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::30',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Security': {
                 'RecoverFromErrors': {
@@ -1459,7 +1451,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'kintsugi-parachain',
     'impl_version': 1,
     'spec_name': 'kintsugi-parachain',
-    'spec_version': 1021010,
+    'spec_version': 1022000,
     'state_version': 0,
     'transaction_version': 3,
 }

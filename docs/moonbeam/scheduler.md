@@ -237,6 +237,7 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'CouncilCollective': {
                     'Member': '[u8; 20]',
                     'Members': ('u32', 'u32'),
@@ -260,7 +261,6 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
-                None: None,
             },
             'priority': 'u8',
         },

@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -367,7 +367,12 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
+            'AppPromotion': {
+                'SetAdmin': 'AccountId',
+                'Stake': ('AccountId', 'u128'),
+                'StakingRecalculation': ('AccountId', 'u128', 'u128'),
+                'Unstake': ('AccountId', 'u128'),
+            },
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -471,11 +476,11 @@ result = substrate.query(
                 'CreatedFailed': {'address': '[u8; 20]'},
                 'Executed': {'address': '[u8; 20]'},
                 'ExecutedFailed': {'address': '[u8; 20]'},
-                'Log': {'log': 'scale_info::103'},
+                'Log': {'log': 'scale_info::104'},
             },
             'Ethereum': {
                 'Executed': {
-                    'exit_reason': 'scale_info::106',
+                    'exit_reason': 'scale_info::107',
                     'from': '[u8; 20]',
                     'to': '[u8; 20]',
                     'transaction_hash': '[u8; 32]',
@@ -490,21 +495,21 @@ result = substrate.query(
             'ForeignAssets': {
                 'AssetRegistered': {
                     'asset_id': 'scale_info::60',
-                    'metadata': 'scale_info::101',
+                    'metadata': 'scale_info::102',
                 },
                 'AssetUpdated': {
                     'asset_id': 'scale_info::60',
-                    'metadata': 'scale_info::101',
+                    'metadata': 'scale_info::102',
                 },
                 'ForeignAssetRegistered': {
                     'asset_address': 'scale_info::46',
                     'asset_id': 'u32',
-                    'metadata': 'scale_info::101',
+                    'metadata': 'scale_info::102',
                 },
                 'ForeignAssetUpdated': {
                     'asset_address': 'scale_info::46',
                     'asset_id': 'u32',
-                    'metadata': 'scale_info::101',
+                    'metadata': 'scale_info::102',
                 },
             },
             'Maintenance': ('MaintenanceEnabled', 'MaintenanceDisabled'),
@@ -573,17 +578,6 @@ result = substrate.query(
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::35'},
                 'SudoAsDone': {'sudo_result': 'scale_info::35'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'Tokens': {
                 'BalanceSet': {
@@ -663,6 +657,18 @@ result = substrate.query(
                     'tip': 'u128',
                     'who': 'AccountId',
                 },
+            },
+            None: None,
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'Treasury': {
                 'Awarded': {
@@ -968,7 +974,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'unique',
     'impl_version': 0,
     'spec_name': 'unique',
-    'spec_version': 937052,
+    'spec_version': 937053,
     'state_version': 0,
     'transaction_version': 3,
 }

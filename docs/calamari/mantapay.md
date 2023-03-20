@@ -68,6 +68,7 @@ call = substrate.compose_call(
                 'utxo_accumulator_output': '[u8; 32]',
             },
         ],
+        'sink_accounts': ['[u8; 32]'],
         'sinks': ['[u8; 16]'],
         'sources': ['[u8; 16]'],
     },
@@ -157,6 +158,7 @@ call = substrate.compose_call(
                 'utxo_accumulator_output': '[u8; 32]',
             },
         ],
+        'sink_accounts': ['[u8; 32]'],
         'sinks': ['[u8; 16]'],
         'sources': ['[u8; 16]'],
     },
@@ -224,6 +226,7 @@ call = substrate.compose_call(
                 'utxo_accumulator_output': '[u8; 32]',
             },
         ],
+        'sink_accounts': ['[u8; 32]'],
         'sinks': ['[u8; 16]'],
         'sources': ['[u8; 16]'],
     },
@@ -431,12 +434,6 @@ Asset Spent
 An asset present in this transfer has already been spent.
 
 ---------
-### BalanceLow
-Balance Low
-
-Attempted to withdraw from balance which was smaller than the withdrawal amount.
-
----------
 ### DuplicateRegister
 Duplicate Register
 
@@ -449,14 +446,8 @@ Duplicate Spend
 There were multiple spend entries for the same underlying asset in this transfer.
 
 ---------
-### EncodeError
-Encode Error
-
----------
-### InternalLedgerError
-Internal Ledger Error
-
-This is caused by some internal error in the ledger and should never occur.
+### FungibleLedgerEncodeError
+Fungible Ledger Encode Error
 
 ---------
 ### InvalidAssetId
@@ -505,6 +496,10 @@ Invalid UTXO Accumulator Output
 The sender was constructed on an invalid version of the ledger state.
 
 ---------
+### Marker
+Marker Error, this error exists for `PhantomData` should never happen
+
+---------
 ### PublicUpdateBelowMinimum
 [`BelowMinimum`](FungibleLedgerError::BelowMinimum) from [`FungibleLedgerError`]
 
@@ -541,10 +536,68 @@ The sender was constructed on an invalid version of the ledger state.
 [`UnknownAsset`](FungibleLedgerError::UnknownAsset) from [`FungibleLedgerError`]
 
 ---------
-### UninitializedSupply
-Uninitialized Supply
+### ReceiverLedgerChecksumError
+Receiver Ledger Wrong Checksum Error
 
-Supply of the given Asset Id has not yet been initialized.
+---------
+### ReceiverLedgerFpDecodeError
+Receiver Ledger Field Element Decoding Error
+
+---------
+### ReceiverLedgerFpEncodeError
+Receiver Ledger Field Element Encoding Error
+
+---------
+### ReceiverLedgerFullNoteDecodeError
+Receiver Ledger Full Incoming Note Decoding Error
+
+---------
+### ReceiverLedgerMTParametersDecodeError
+Receiver Ledger Merkle Tree Parameters Decoding Error
+
+---------
+### ReceiverLedgerMerkleTreeCapacityError
+Receiver Ledger Merkle Tree Out of Capacity Error
+
+---------
+### ReceiverLedgerPathDecodeError
+Receiver Ledger Path Decoding Error
+
+---------
+### ReceiverLedgerUtxoAccumulatorItemHashDecodeError
+Receiver Ledger Utxo Accumulator Item Hash Decoding Error
+
+---------
+### ReceiverLedgerUtxoDecodeFailed
+Reciever Ledger Utxo decode failed
+
+---------
+### SenderLedgerFpEncodeError
+Sender Ledger Fp Encoding failed.
+
+---------
+### SenderLedgerOutgoingNodeDecodeFailed
+Sender Ledger [`OutgoingNote`] failed to decode
+
+---------
+### TransferLedgerChecksumError
+Transfer Ledger Wrong Checksum Error
+
+---------
+### TransferLedgerFpEncodeError
+Transer Ledger Field Element Encoding Error
+
+---------
+### TransferLedgerProofSystemFailed
+Transfer Ledger Proof Error
+
+---------
+### TransferLedgerUnknownAsset
+Transfer Ledger Unknown Asset
+
+---------
+### TransferLedgerVerifyingContextDecodeError
+Transfer Ledger `VerifyingContext` cannont be decoded
 
 ---------
 ### ZeroTransfer

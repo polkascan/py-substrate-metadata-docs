@@ -5,21 +5,6 @@
 ## Calls
 
 ---------
-### fill_block
-A dispatch that will fill the block weight up to the given ratio.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ratio | `Perbill` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-```
-
----------
 ### kill_prefix
 Kill all storage items with a key that starts with the given prefix.
 
@@ -384,10 +369,20 @@ result = substrate.query(
         'event': {
             None: None,
             'Assets': {
+                'AccountsDestroyed': {
+                    'accounts_destroyed': 'u32',
+                    'accounts_remaining': 'u32',
+                    'asset_id': 'u128',
+                },
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
                     'delegate': 'AccountId',
                     'owner': 'AccountId',
+                },
+                'ApprovalsDestroyed': {
+                    'approvals_destroyed': 'u32',
+                    'approvals_remaining': 'u32',
+                    'asset_id': 'u128',
                 },
                 'ApprovedTransfer': {
                     'amount': 'u128',
@@ -409,6 +404,7 @@ result = substrate.query(
                     'owner': 'AccountId',
                 },
                 'Destroyed': {'asset_id': 'u128'},
+                'DestructionStarted': {'asset_id': 'u128'},
                 'ForceCreated': {'asset_id': 'u128', 'owner': 'AccountId'},
                 'Frozen': {'asset_id': 'u128', 'who': 'AccountId'},
                 'Issued': {
@@ -1001,7 +997,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'astar',
     'impl_version': 0,
     'spec_name': 'astar',
-    'spec_version': 49,
+    'spec_version': 52,
     'state_version': 1,
     'transaction_version': 2,
 }

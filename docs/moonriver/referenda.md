@@ -129,6 +129,27 @@ call = substrate.compose_call(
 ```
 
 ---------
+### refund_submission_deposit
+Refund the Submission Deposit for a closed referendum back to the depositor.
+
+- `origin`: must be `Signed` or `Root`.
+- `index`: The index of a closed referendum whose Submission Deposit has not yet been
+  refunded.
+
+Emits `SubmissionDepositRefunded`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `ReferendumIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Referenda', 'refund_submission_deposit', {'index': 'u32'}
+)
+```
+
+---------
 ### submit
 Propose a referendum on a privileged action.
 
@@ -193,15 +214,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::128',
+                            'network': 'scale_info::129',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::128',
+                            'network': 'scale_info::129',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::128',
+                            'network': 'scale_info::129',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -209,8 +230,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::130',
-                            'part': 'scale_info::131',
+                            'id': 'scale_info::131',
+                            'part': 'scale_info::132',
                         },
                     },
                     'X2': (
@@ -621,15 +642,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::128',
+                            'network': 'scale_info::129',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::128',
+                            'network': 'scale_info::129',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::128',
+                            'network': 'scale_info::129',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -637,8 +658,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::130',
-                            'part': 'scale_info::131',
+                            'id': 'scale_info::131',
+                            'part': 'scale_info::132',
                         },
                     },
                     'X2': (
@@ -1168,8 +1189,18 @@ A proposal has been rejected by referendum.
 | tally | `T::Tally` | ```{'ayes': 'u128', 'nays': 'u128', 'support': 'u128'}```
 
 ---------
+### SubmissionDepositRefunded
+The submission deposit has been refunded.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `ReferendumIndex` | ```u32```
+| who | `T::AccountId` | ```[u8; 20]```
+| amount | `BalanceOf<T, I>` | ```u128```
+
+---------
 ### Submitted
-A referendum has being submitted.
+A referendum has been submitted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1235,12 +1266,12 @@ result = substrate.query(
 {
     'Approved': (
         'u32',
-        {'amount': 'u128', 'who': '[u8; 20]'},
+        (None, {'amount': 'u128', 'who': '[u8; 20]'}),
         (None, {'amount': 'u128', 'who': '[u8; 20]'}),
     ),
     'Cancelled': (
         'u32',
-        {'amount': 'u128', 'who': '[u8; 20]'},
+        (None, {'amount': 'u128', 'who': '[u8; 20]'}),
         (None, {'amount': 'u128', 'who': '[u8; 20]'}),
     ),
     'Killed': 'u32',
@@ -1251,7 +1282,6 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
-            None: None,
             'CouncilCollective': {
                 'Member': '[u8; 20]',
                 'Members': ('u32', 'u32'),
@@ -1271,8 +1301,8 @@ result = substrate.query(
                 'ReferendumKiller',
             ),
             'PolkadotXcm': {
-                'Response': {'interior': 'scale_info::125', 'parents': 'u8'},
-                'Xcm': {'interior': 'scale_info::125', 'parents': 'u8'},
+                'Response': {'interior': 'scale_info::126', 'parents': 'u8'},
+                'Xcm': {'interior': 'scale_info::126', 'parents': 'u8'},
             },
             'TechCommitteeCollective': {
                 'Member': '[u8; 20]',
@@ -1286,6 +1316,7 @@ result = substrate.query(
             },
             'Void': (),
             'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
+            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -1299,12 +1330,12 @@ result = substrate.query(
     },
     'Rejected': (
         'u32',
-        {'amount': 'u128', 'who': '[u8; 20]'},
+        (None, {'amount': 'u128', 'who': '[u8; 20]'}),
         (None, {'amount': 'u128', 'who': '[u8; 20]'}),
     ),
     'TimedOut': (
         'u32',
-        {'amount': 'u128', 'who': '[u8; 20]'},
+        (None, {'amount': 'u128', 'who': '[u8; 20]'}),
         (None, {'amount': 'u128', 'who': '[u8; 20]'}),
     ),
 }
@@ -1359,7 +1390,7 @@ constant = substrate.get_constant('Referenda', 'MaxQueued')
  The minimum amount to be used as a deposit for a public referendum proposal.
 #### Value
 ```python
-100000000000000000000
+10000000000000000000
 ```
 #### Python
 ```python
@@ -1513,7 +1544,7 @@ constant = substrate.get_constant('Referenda', 'Tracks')
  Once this passes, then anyone may cancel the referendum.
 #### Value
 ```python
-201600
+100800
 ```
 #### Python
 ```python
@@ -1527,12 +1558,16 @@ constant = substrate.get_constant('Referenda', 'UndecidingTimeout')
 The referendum index provided is invalid in this context.
 
 ---------
+### BadStatus
+The referendum status is invalid for this operation.
+
+---------
 ### BadTrack
 The track identifier given was invalid.
 
 ---------
 ### Full
-There are already a full complement of referendums in progress for this track.
+There are already a full complement of referenda in progress for this track.
 
 ---------
 ### HasDeposit

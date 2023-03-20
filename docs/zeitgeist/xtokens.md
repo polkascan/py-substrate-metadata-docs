@@ -23446,7 +23446,7 @@ constant = substrate.get_constant('XTokens', 'BaseXcmWeight')
  Self chain location.
 #### Value
 ```python
-{'interior': {'X1': {'Parachain': 2101}}, 'parents': 1}
+{'interior': {'X1': {'Parachain': 2092}}, 'parents': 1}
 ```
 #### Python
 ```python

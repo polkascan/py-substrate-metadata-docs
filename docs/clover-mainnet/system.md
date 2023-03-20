@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -635,6 +635,31 @@ result = substrate.query(
                     'voter': 'AccountId',
                 },
             },
+            'EVM': {
+                'BalanceDeposit': ('AccountId', '[u8; 20]', '[u64; 4]'),
+                'BalanceWithdraw': ('AccountId', '[u8; 20]', '[u64; 4]'),
+                'Created': '[u8; 20]',
+                'CreatedFailed': '[u8; 20]',
+                'Executed': '[u8; 20]',
+                'ExecutedFailed': '[u8; 20]',
+                'Log': {
+                    'address': '[u8; 20]',
+                    'data': 'Bytes',
+                    'topics': ['[u8; 32]'],
+                },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -655,19 +680,6 @@ result = substrate.query(
                     'message_id': '[u8; 32]',
                     'remaining_weight': 'u64',
                     'required_weight': 'u64',
-                },
-            },
-            'EVM': {
-                'BalanceDeposit': ('AccountId', '[u8; 20]', '[u64; 4]'),
-                'BalanceWithdraw': ('AccountId', '[u8; 20]', '[u64; 4]'),
-                'Created': '[u8; 20]',
-                'CreatedFailed': '[u8; 20]',
-                'Executed': '[u8; 20]',
-                'ExecutedFailed': '[u8; 20]',
-                'Log': {
-                    'address': '[u8; 20]',
-                    'data': 'Bytes',
-                    'topics': ['[u8; 32]'],
                 },
             },
             'ElectionsPhragmen': {
@@ -834,17 +846,6 @@ result = substrate.query(
                 'Ponged': ('u32', 'u32', 'Bytes', 'u32'),
                 'UnknownPong': ('u32', 'u32', 'Bytes'),
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -898,7 +899,6 @@ result = substrate.query(
                     'tip_hash': '[u8; 32]',
                 },
             },
-            None: None,
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',

@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -1240,9 +1240,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'calamari',
     'impl_version': 1,
     'spec_name': 'calamari',
-    'spec_version': 4010,
+    'spec_version': 4030,
     'state_version': 0,
-    'transaction_version': 10,
+    'transaction_version': 11,
 }
 ```
 #### Python

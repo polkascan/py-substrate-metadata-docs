@@ -1332,12 +1332,12 @@ result = substrate.query(
                 '_Phantom': None,
             },
             'Void': (),
+            None: None,
             'XcmPallet': {
                 'Response': {'interior': 'scale_info::159', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::159', 'parents': 'u8'},
             },
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',

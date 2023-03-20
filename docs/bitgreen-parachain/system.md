@@ -311,9 +311,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -470,6 +470,57 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
+            'DmpQueue': {
+                'ExecutedDownward': {
+                    'message_id': '[u8; 32]',
+                    'outcome': 'scale_info::42',
+                },
+                'InvalidFormat': {'message_id': '[u8; 32]'},
+                'OverweightEnqueued': {
+                    'message_id': '[u8; 32]',
+                    'overweight_index': 'u64',
+                    'required_weight': 'scale_info::8',
+                },
+                'OverweightServiced': {
+                    'overweight_index': 'u64',
+                    'weight_used': 'scale_info::8',
+                },
+                'UnsupportedVersion': {'message_id': '[u8; 32]'},
+                'WeightExhausted': {
+                    'message_id': '[u8; 32]',
+                    'remaining_weight': 'scale_info::8',
+                    'required_weight': 'scale_info::8',
+                },
+            },
+            'ParachainStaking': {
+                'CandidateAdded': {
+                    'account_id': 'AccountId',
+                    'deposit': 'u128',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'CollatorRewardsTransferred': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                },
+                'DelegationRemoved': {
+                    'account_id': 'AccountId',
+                    'candidate': 'AccountId',
+                },
+                'DelegatorRewardsTransferred': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                },
+                'InflationAmountSet': {'amount': 'u128'},
+                'NewCandidacyBond': {'bond_amount': 'u128'},
+                'NewDelegation': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                    'candidate': 'AccountId',
+                },
+                'NewDesiredCandidates': {'desired_candidates': 'u32'},
+                'NewInvulnerables': {'invulnerables': ['AccountId']},
+            },
+            None: None,
             'CarbonCredits': {
                 'AuthorizedAccountAdded': {'account_id': 'AccountId'},
                 'AuthorizedAccountRemoved': {'account_id': 'AccountId'},
@@ -510,31 +561,49 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'Contracts': {
+                'Called': {'caller': 'AccountId', 'contract': 'AccountId'},
+                'CodeRemoved': {'code_hash': '[u8; 32]'},
+                'CodeStored': {'code_hash': '[u8; 32]'},
+                'ContractCodeUpdated': {
+                    'contract': 'AccountId',
+                    'new_code_hash': '[u8; 32]',
+                    'old_code_hash': '[u8; 32]',
+                },
+                'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
+                'DelegateCalled': {
+                    'code_hash': '[u8; 32]',
+                    'contract': 'AccountId',
+                },
+                'Instantiated': {
+                    'contract': 'AccountId',
+                    'deployer': 'AccountId',
+                },
+                'Terminated': {
+                    'beneficiary': 'AccountId',
+                    'contract': 'AccountId',
+                },
+            },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::42'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
             },
-            'DmpQueue': {
-                'ExecutedDownward': {
-                    'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::42',
+            'Dex': {
+                'BuyOrderFilled': {
+                    'buyer': 'AccountId',
+                    'order_id': 'u128',
+                    'price_per_unit': 'u128',
+                    'seller': 'AccountId',
+                    'units': 'u128',
                 },
-                'InvalidFormat': {'message_id': '[u8; 32]'},
-                'OverweightEnqueued': {
-                    'message_id': '[u8; 32]',
-                    'overweight_index': 'u64',
-                    'required_weight': 'scale_info::8',
-                },
-                'OverweightServiced': {
-                    'overweight_index': 'u64',
-                    'weight_used': 'scale_info::8',
-                },
-                'UnsupportedVersion': {'message_id': '[u8; 32]'},
-                'WeightExhausted': {
-                    'message_id': '[u8; 32]',
-                    'remaining_weight': 'scale_info::8',
-                    'required_weight': 'scale_info::8',
+                'SellOrderCancelled': {'order_id': 'u128'},
+                'SellOrderCreated': {
+                    'asset_id': 'u32',
+                    'order_id': 'u128',
+                    'owner': 'AccountId',
+                    'price_per_unit': 'u128',
+                    'units': 'u128',
                 },
             },
             'KYCMembership': (
@@ -545,33 +614,42 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
-            'ParachainStaking': {
-                'CandidateAdded': {
-                    'account_id': 'AccountId',
-                    'deposit': 'u128',
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::142',
                 },
-                'CandidateRemoved': {'account_id': 'AccountId'},
-                'CollatorRewardsTransferred': {
-                    'account_id': 'AccountId',
-                    'amount': 'u128',
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::142',
                 },
-                'DelegationRemoved': {
-                    'account_id': 'AccountId',
-                    'candidate': 'AccountId',
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::86',
+                    'timepoint': 'scale_info::142',
                 },
-                'DelegatorRewardsTransferred': {
-                    'account_id': 'AccountId',
-                    'amount': 'u128',
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
                 },
-                'InflationAmountSet': {'amount': 'u128'},
-                'NewCandidacyBond': {'bond_amount': 'u128'},
-                'NewDelegation': {
-                    'account_id': 'AccountId',
-                    'amount': 'u128',
-                    'candidate': 'AccountId',
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
                 },
-                'NewDesiredCandidates': {'desired_candidates': 'u32'},
-                'NewInvulnerables': {'invulnerables': ['AccountId']},
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
             },
             'PolkadotXcm': {
                 'AssetsClaimed': (
@@ -621,94 +699,6 @@ result = substrate.query(
                 'SupportedVersionChanged': ('scale_info::43', 'u32'),
                 'UnexpectedResponse': ('scale_info::43', 'u64'),
                 'VersionChangeNotified': ('scale_info::43', 'u32'),
-            },
-            'TransactionPause': {
-                'TransactionPaused': {
-                    'function_name_bytes': 'Bytes',
-                    'pallet_name_bytes': 'Bytes',
-                },
-                'TransactionUnpaused': {
-                    'function_name_bytes': 'Bytes',
-                    'pallet_name_bytes': 'Bytes',
-                },
-            },
-            None: None,
-            'Contracts': {
-                'Called': {'caller': 'AccountId', 'contract': 'AccountId'},
-                'CodeRemoved': {'code_hash': '[u8; 32]'},
-                'CodeStored': {'code_hash': '[u8; 32]'},
-                'ContractCodeUpdated': {
-                    'contract': 'AccountId',
-                    'new_code_hash': '[u8; 32]',
-                    'old_code_hash': '[u8; 32]',
-                },
-                'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
-                'DelegateCalled': {
-                    'code_hash': '[u8; 32]',
-                    'contract': 'AccountId',
-                },
-                'Instantiated': {
-                    'contract': 'AccountId',
-                    'deployer': 'AccountId',
-                },
-                'Terminated': {
-                    'beneficiary': 'AccountId',
-                    'contract': 'AccountId',
-                },
-            },
-            'Dex': {
-                'BuyOrderFilled': {
-                    'buyer': 'AccountId',
-                    'order_id': 'u128',
-                    'price_per_unit': 'u128',
-                    'seller': 'AccountId',
-                    'units': 'u128',
-                },
-                'SellOrderCancelled': {'order_id': 'u128'},
-                'SellOrderCreated': {
-                    'asset_id': 'u32',
-                    'order_id': 'u128',
-                    'owner': 'AccountId',
-                    'price_per_unit': 'u128',
-                    'units': 'u128',
-                },
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::142',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::142',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::86',
-                    'timepoint': 'scale_info::142',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
             },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
@@ -849,6 +839,16 @@ result = substrate.query(
                     'amount': 'u128',
                     'currency_id': 'scale_info::83',
                     'who': 'AccountId',
+                },
+            },
+            'TransactionPause': {
+                'TransactionPaused': {
+                    'function_name_bytes': 'Bytes',
+                    'pallet_name_bytes': 'Bytes',
+                },
+                'TransactionUnpaused': {
+                    'function_name_bytes': 'Bytes',
+                    'pallet_name_bytes': 'Bytes',
                 },
             },
             'TransactionPayment': {

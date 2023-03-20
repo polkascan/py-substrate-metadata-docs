@@ -382,26 +382,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'AdvisoryCommitteeMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'AdvisoryCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -432,6 +412,14 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'AdvisoryCommitteeMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'scale_info::61',
@@ -1083,6 +1071,17 @@ result = substrate.query(
                     'max_price': (None, 'u128'),
                 },
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1273,6 +1272,7 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1514,9 +1514,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'zeitgeist',
     'impl_version': 1,
     'spec_name': 'zeitgeist',
-    'spec_version': 42,
+    'spec_version': 45,
     'state_version': 1,
-    'transaction_version': 19,
+    'transaction_version': 20,
 }
 ```
 #### Python

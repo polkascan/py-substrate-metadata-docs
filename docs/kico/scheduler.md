@@ -233,16 +233,17 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'Dao': {
-                    'Member': ('u128', 'AccountId'),
-                    'Members': ('u128', 'u128'),
-                    '_Phantom': None,
-                },
                 'DaoCollective': {
                     'Member': 'u64',
                     'Members': ('u64', 'u32', 'u32'),
                     'Root': 'u64',
+                    '_Phantom': None,
+                },
+                None: None,
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+                'Dao': {
+                    'Member': ('u128', 'AccountId'),
+                    'Members': ('u128', 'u128'),
                     '_Phantom': None,
                 },
                 'PolkadotXcm': {
@@ -256,7 +257,6 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
