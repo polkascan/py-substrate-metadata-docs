@@ -87,6 +87,15 @@ MaximumIssuance was changed
 | old_value | `BalanceOf<T>` | ```u128```
 
 ---------
+### NativeTokenMinted
+A certain amount of native tokens was minted
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| to | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
+
+---------
 ## Storage functions
 
 ---------

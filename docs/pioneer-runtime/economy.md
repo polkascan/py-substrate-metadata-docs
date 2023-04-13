@@ -160,6 +160,55 @@ call = substrate.compose_call(
 ```
 
 ---------
+### unstake_new_estate_owner
+Unstake native token (staked by previous owner) from staking ledger.
+
+The dispatch origin for this call must be _Signed_. Works if the origin is the estate
+owner and the previous owner got staked funds
+
+`estate_id`: the estate ID which funds are going to be unstaked
+
+Emit `EstateStakingRemovedFromEconomy101` event if successful
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| estate_id | `EstateId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Economy', 'unstake_new_estate_owner', {'estate_id': 'u64'}
+)
+```
+
+---------
+### withdraw_estate_unreserved
+Withdraw unstaked token from estate unstaking queue. The unstaked amount will be
+unreserved and become transferrable
+
+The dispatch origin for this call must be _Signed_.
+
+`round_index`: the round index that user can redeem.
+`estate_id`: the estate id that user can redeem.
+
+Emit `UnstakedAmountWithdrew` event if successful
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| round_index | `RoundIndex` | 
+| estate_id | `EstateId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Economy', 'withdraw_estate_unreserved', {
+    'estate_id': 'u64',
+    'round_index': 'u32',
+}
+)
+```
+
+---------
 ### withdraw_unreserved
 Withdraw unstaked token from unstaking queue. The unstaked amount will be unreserved and
 become transferrable
@@ -299,6 +348,22 @@ result = substrate.query(
 'u128'
 ```
 ---------
+### EstateExitQueue
+ Estate self-staking exit estate queue info
+ This will keep track of staked estate exits queue, unstake only allows after 1 round
+
+#### Python
+```python
+result = substrate.query(
+    'Economy', 'EstateExitQueue', ['AccountId', 'u32', 'u64']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### EstateStakingInfo
  Estate-staking info
 
@@ -311,7 +376,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'u128'
+{'amount': 'u128', 'staker': 'AccountId'}
 ```
 ---------
 ### ExitQueue
@@ -404,6 +469,17 @@ result = substrate.query(
 constant = substrate.get_constant('Economy', 'EconomyTreasury')
 ```
 ---------
+### MaximumEstateStake
+ The maximum estate staked per land unit
+#### Value
+```python
+1000000000000000000000
+```
+#### Python
+```python
+constant = substrate.get_constant('Economy', 'MaximumEstateStake')
+```
+---------
 ### MinimumStake
  The minimum stake required for staking
 #### Value
@@ -444,6 +520,14 @@ constant = substrate.get_constant('Economy', 'PowerAmountPerBlock')
 Insufficient power balance
 
 ---------
+### EstateExitQueueAlreadyScheduled
+Has scheduled exit estate staking, only stake after queue exit
+
+---------
+### EstateExitQueueDoesNotExit
+Estate exit queue does not exist
+
+---------
 ### ExitQueueAlreadyScheduled
 Has scheduled exit staking, only stake after queue exit
 
@@ -472,6 +556,10 @@ NFT collection does not exist
 No authorization
 
 ---------
+### NoFundsStakedAtEstate
+No funds staked at estate
+
+---------
 ### NoPermission
 No permission
 
@@ -484,8 +572,16 @@ Order has not reach target
 Power amount is zero
 
 ---------
+### PreviousOwnerStillStakesAtEstate
+Previous owner still stakes at estate
+
+---------
 ### RequestAlreadyExist
 Request already exists
+
+---------
+### StakeAmountExceedMaximumAmount
+Stake amount exceed estate max amount
 
 ---------
 ### StakeBelowMinimum
@@ -498,6 +594,10 @@ Staking estate does not exist
 ---------
 ### StakerNotEstateOwner
 Staker is not estate owner
+
+---------
+### StakerNotPreviousOwner
+Stake is not previous owner
 
 ---------
 ### UnstakeAmountExceedStakedAmount

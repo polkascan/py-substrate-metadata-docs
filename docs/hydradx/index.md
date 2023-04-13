@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | hydradx     |
 | Implementation name     | hydradx     |
-| Spec version     | 127     |
+| Spec version     | 138     |
 | SS58 Format     | 63     |
 | Token symbol      | HDX     |
 | Token decimals      | 12     |
@@ -15,11 +15,12 @@
 ## Pallets
 | Name | Calls | Events | Storage functions | Constants | Errors |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| [AssetRegistry](assetregistry.md) | [4](assetregistry.md#calls) | [4](assetregistry.md#events) | [6](assetregistry.md#storage-functions) | [1](assetregistry.md#constants) | [7](assetregistry.md#errors) |
-| [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [0](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
-| [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [0](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
+| [AssetRegistry](assetregistry.md) | [4](assetregistry.md#calls) | [4](assetregistry.md#events) | [6](assetregistry.md#storage-functions) | [2](assetregistry.md#constants) | [8](assetregistry.md#errors) |
+| [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
+| [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
+| [CircuitBreaker](circuitbreaker.md) | [3](circuitbreaker.md#calls) | [3](circuitbreaker.md#events) | [6](circuitbreaker.md#storage-functions) | [3](circuitbreaker.md#constants) | [6](circuitbreaker.md#errors) |
 | [Claims](claims.md) | [1](claims.md#calls) | [1](claims.md#events) | [1](claims.md#storage-functions) | [0](claims.md#constants) | [3](claims.md#errors) |
 | [CollatorRewards](collatorrewards.md) | [0](collatorrewards.md#calls) | [1](collatorrewards.md#events) | [1](collatorrewards.md#storage-functions) | [2](collatorrewards.md#constants) | [0](collatorrewards.md#errors) |
 | [CollatorSelection](collatorselection.md) | [5](collatorselection.md#calls) | [5](collatorselection.md#events) | [5](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [10](collatorselection.md#errors) |
@@ -28,12 +29,17 @@
 | [Currencies](currencies.md) | [3](currencies.md#calls) | [4](currencies.md#events) | [0](currencies.md#storage-functions) | [1](currencies.md#constants) | [3](currencies.md#errors) |
 | [Democracy](democracy.md) | [25](democracy.md#calls) | [20](democracy.md#events) | [13](democracy.md#storage-functions) | [11](democracy.md#constants) | [29](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
+| [Duster](duster.md) | [3](duster.md#calls) | [3](duster.md#events) | [3](duster.md#storage-functions) | [2](duster.md#constants) | [6](duster.md#errors) |
 | [Elections](elections.md) | [6](elections.md#calls) | [7](elections.md#events) | [5](elections.md#storage-functions) | [9](elections.md#constants) | [17](elections.md#errors) |
+| [EmaOracle](emaoracle.md) | [0](emaoracle.md#calls) | [0](emaoracle.md#events) | [2](emaoracle.md#storage-functions) | [1](emaoracle.md#constants) | [2](emaoracle.md#errors) |
 | [GenesisHistory](genesishistory.md) | [0](genesishistory.md#calls) | [0](genesishistory.md#events) | [1](genesishistory.md#storage-functions) | [0](genesishistory.md#constants) | [0](genesishistory.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [16](identity.md#errors) |
 | [MultiTransactionPayment](multitransactionpayment.md) | [3](multitransactionpayment.md#calls) | [4](multitransactionpayment.md#events) | [3](multitransactionpayment.md#storage-functions) | [3](multitransactionpayment.md#constants) | [7](multitransactionpayment.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [2](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
-| [Omnipool](omnipool.md) | [11](omnipool.md#calls) | [12](omnipool.md#events) | [6](omnipool.md#storage-functions) | [10](omnipool.md#constants) | [26](omnipool.md#errors) |
+| [OTC](otc.md) | [4](otc.md#calls) | [4](otc.md#events) | [2](otc.md#storage-functions) | [1](otc.md#constants) | [7](otc.md#errors) |
+| [Omnipool](omnipool.md) | [11](omnipool.md#calls) | [12](omnipool.md#events) | [6](omnipool.md#storage-functions) | [10](omnipool.md#constants) | [27](omnipool.md#errors) |
+| [OmnipoolLiquidityMining](omnipoolliquiditymining.md) | [12](omnipoolliquiditymining.md#calls) | [13](omnipoolliquiditymining.md#events) | [1](omnipoolliquiditymining.md#storage-functions) | [1](omnipoolliquiditymining.md#constants) | [4](omnipoolliquiditymining.md#errors) |
+| [OmnipoolWarehouseLM](omnipoolwarehouselm.md) | [0](omnipoolwarehouselm.md#calls) | [3](omnipoolwarehouselm.md#events) | [6](omnipoolwarehouselm.md#storage-functions) | [5](omnipoolwarehouselm.md#constants) | [29](omnipoolwarehouselm.md#errors) |
 | [OrmlXcm](ormlxcm.md) | [1](ormlxcm.md#calls) | [1](ormlxcm.md#events) | [0](ormlxcm.md#storage-functions) | [0](ormlxcm.md#constants) | [3](ormlxcm.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |

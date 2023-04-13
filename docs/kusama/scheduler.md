@@ -242,6 +242,8 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Origins': (
                     'StakingAdmin',
                     'Treasurer',
@@ -279,11 +281,9 @@ result = substrate.query(
                 },
                 'Void': (),
                 'XcmPallet': {
-                    'Response': 'scale_info::158',
-                    'Xcm': 'scale_info::158',
+                    'Response': 'scale_info::156',
+                    'Xcm': 'scale_info::156',
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },

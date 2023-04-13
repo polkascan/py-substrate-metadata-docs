@@ -901,7 +901,7 @@ result = substrate.query(
  The amount held on deposit for a registered identity
 #### Value
 ```python
-10000000000000000000
+10516000000000000000
 ```
 #### Python
 ```python
@@ -912,7 +912,7 @@ constant = substrate.get_constant('Identity', 'BasicDeposit')
  The amount held on deposit per additional field for a registered identity.
 #### Value
 ```python
-25000000000000000
+132000000000000000
 ```
 #### Python
 ```python
@@ -960,7 +960,7 @@ constant = substrate.get_constant('Identity', 'MaxSubAccounts')
  be another trie item whose value is the size of an account ID plus 32 bytes.
 #### Value
 ```python
-2000000000000000000
+10106000000000000000
 ```
 #### Python
 ```python

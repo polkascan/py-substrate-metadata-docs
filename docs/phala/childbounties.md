@@ -104,7 +104,7 @@ completion.
 | -------- | -------- | 
 | parent_bounty_id | `BountyIndex` | 
 | child_bounty_id | `BountyIndex` | 
-| beneficiary | `<T::Lookup as StaticLookup>::Source` | 
+| beneficiary | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -219,7 +219,7 @@ call completion.
 | -------- | -------- | 
 | parent_bounty_id | `BountyIndex` | 
 | child_bounty_id | `BountyIndex` | 
-| curator | `<T::Lookup as StaticLookup>::Source` | 
+| curator | `AccountIdLookupOf<T>` | 
 | fee | `BalanceOf<T>` | 
 
 #### Python

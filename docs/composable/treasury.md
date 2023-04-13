@@ -43,7 +43,7 @@ proposal is awarded.
 | Name | Type |
 | -------- | -------- | 
 | value | `BalanceOf<T, I>` | 
-| beneficiary | `<T::Lookup as StaticLookup>::Source` | 
+| beneficiary | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -114,6 +114,38 @@ call = substrate.compose_call(
 ```
 
 ---------
+### spend
+Propose and approve a spend of treasury funds.
+
+- `origin`: Must be `SpendOrigin` with the `Success` value being at least `amount`.
+- `amount`: The amount to be transferred from the treasury to the `beneficiary`.
+- `beneficiary`: The destination account for the transfer.
+
+NOTE: For record-keeping purposes, the proposer is deemed to be equivalent to the
+beneficiary.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| amount | `BalanceOf<T, I>` | 
+| beneficiary | `AccountIdLookupOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Treasury', 'spend', {
+    'amount': 'u128',
+    'beneficiary': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': 'u32',
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
 ## Events
 
 ---------
@@ -168,6 +200,16 @@ Spending has finished; this is the amount that rolls over until next spend.
 | rollover_balance | `BalanceOf<T, I>` | ```u128```
 
 ---------
+### SpendApproved
+A new spend proposal has been approved.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| proposal_index | `ProposalIndex` | ```u32```
+| amount | `BalanceOf<T, I>` | ```u128```
+| beneficiary | `T::AccountId` | ```AccountId```
+
+---------
 ### Spending
 We have ended a spend period and will now allocate funds.
 #### Attributes
@@ -192,6 +234,21 @@ result = substrate.query(
 #### Return value
 ```python
 ['u32']
+```
+---------
+### Inactive
+ The amount which has been reported as inactive to Currency.
+
+#### Python
+```python
+result = substrate.query(
+    'Treasury', 'Inactive', []
+)
+```
+
+#### Return value
+```python
+'u128'
 ```
 ---------
 ### ProposalCount
@@ -260,7 +317,7 @@ constant = substrate.get_constant('Treasury', 'MaxApprovals')
  The treasury&#x27;s pallet id, used for deriving its sovereign account ID.
 #### Value
 ```python
-'0x7069636174727379'
+'0x6c79617274727379'
 ```
 #### Python
 ```python
@@ -283,7 +340,7 @@ constant = substrate.get_constant('Treasury', 'ProposalBond')
  Maximum amount of funds that should be placed in a deposit for making a proposal.
 #### Value
 ```python
-1000000000000000
+10000000000000000
 ```
 #### Python
 ```python
@@ -294,7 +351,7 @@ constant = substrate.get_constant('Treasury', 'ProposalBondMaximum')
  Minimum amount of funds that should be placed in a deposit for making a proposal.
 #### Value
 ```python
-5000000000000
+5000000000000000
 ```
 #### Python
 ```python
@@ -313,6 +370,11 @@ constant = substrate.get_constant('Treasury', 'SpendPeriod')
 ```
 ---------
 ## Errors
+
+---------
+### InsufficientPermission
+The spend origin is valid but the amount it is allowed to spend is lower than the
+amount to be spent.
 
 ---------
 ### InsufficientProposersBalance

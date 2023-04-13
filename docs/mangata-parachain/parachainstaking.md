@@ -1040,7 +1040,7 @@ constant = substrate.get_constant('ParachainStaking', 'LeaveDelegatorsDelay')
  Maximum collator candidates allowed
 #### Value
 ```python
-35
+50
 ```
 #### Python
 ```python
@@ -1084,7 +1084,7 @@ constant = substrate.get_constant('ParachainStaking', 'MaxTotalDelegatorsPerCand
  Minimum stake required for any account to be a collator candidate
 #### Value
 ```python
-1000000000000000000
+1500000000000000000000000
 ```
 #### Python
 ```python

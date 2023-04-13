@@ -1019,7 +1019,7 @@ Some assets were issued.
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u64```
 | owner | `T::AccountId` | ```[u8; 20]```
-| total_supply | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u128```
 
 ---------
 ### MetadataCleared

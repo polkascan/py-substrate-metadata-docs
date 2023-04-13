@@ -92,6 +92,25 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_collator_count
+Set collator count.
+
+This will apply to the incoming session.
+
+Require root origin.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| count | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'DarwiniaStaking', 'set_collator_count', {'count': 'u32'}
+)
+```
+
+---------
 ### stake
 Add stakes to the staking pool.
 
@@ -306,7 +325,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('u32', 'scale_info::310')
+('u32', 'scale_info::317')
 ```
 ---------
 ### RingPool
@@ -411,5 +430,9 @@ You are not a staker.
 ---------
 ### TargetNotCollator
 Target is not a collator.
+
+---------
+### ZeroCollatorCount
+Collator count mustn&\#x27;t be zero.
 
 ---------

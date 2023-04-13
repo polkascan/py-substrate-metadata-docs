@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | mangata-parachain     |
 | Implementation name     | mangata-parachain     |
-| Spec version     | 15     |
+| Spec version     | 2802     |
 | SS58 Format     | 42     |
 | Token symbol      | MGX     |
 | Token decimals      | 18     |

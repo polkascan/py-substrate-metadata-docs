@@ -20,7 +20,7 @@ This extrinsic must be called by a signed origin.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| call | `Box<<T as Config>::Call>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
@@ -40,7 +40,7 @@ This extrinsic must be called by the Manager origin.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| calls | `Vec<<T as Config>::Call>` | 
+| calls | `Vec<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python

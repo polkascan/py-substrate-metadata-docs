@@ -327,10 +327,6 @@ chain.
 The attestation has already been revoked.
 
 ---------
-### AttestationNotFound
-No attestation on chain matching the claim hash.
-
----------
 ### CTypeMismatch
 The attestation CType does not match the CType specified in the
 delegation hierarchy root.
@@ -342,7 +338,11 @@ reached for the corresponding delegation id such that another one
 cannot be added.
 
 ---------
-### Unauthorized
+### NotAuthorized
 The call origin is not authorized to change the attestation.
+
+---------
+### NotFound
+No attestation on chain matching the claim hash.
 
 ---------

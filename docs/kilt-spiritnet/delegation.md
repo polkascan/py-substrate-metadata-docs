@@ -397,7 +397,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'children': 'scale_info::405',
+    'children': 'scale_info::410',
     'deposit': {'amount': 'u128', 'owner': 'AccountId'},
     'details': {'owner': 'AccountId', 'permissions': {'bits': 'u32'}, 'revoked': 'bool'},
     'hierarchy_root_id': '[u8; 32]',
@@ -513,7 +513,7 @@ There is already a hierarchy with the same ID stored on chain.
 No hierarchy with the given ID stored on chain.
 
 ---------
-### InternalError
+### Internal
 An error that is not supposed to take place, yet it happened.
 
 ---------

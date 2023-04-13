@@ -47,7 +47,7 @@ networks:
   - wss://kabocha.jelliedowl.net
   - wss://karura-rpc-0.aca-api.network
   - wss://khala-api.phala.network/ws
-  - wss://rpc.kico.dico.io
+#  - wss://rpc.kico.dico.io
   - wss://api-kusama.interlay.io/parachain
   - wss://rpc.mainnet.listen.io
   - wss://rpc.litmus-parachain.litentry.io

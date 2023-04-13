@@ -60,12 +60,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -915,7 +918,6 @@ data
 | Name | Type |
 | -------- | -------- | 
 | asset_id | `T::AssetId` | 
-| destroy_asset_witness | `T::AssetDestroyWitness` | 
 | num_assets_weight_hint | `u32` | 
 
 #### Python
@@ -923,11 +925,6 @@ data
 call = substrate.compose_call(
     'AssetManager', 'destroy_foreign_asset', {
     'asset_id': 'u128',
-    'destroy_asset_witness': {
-        'accounts': 'u32',
-        'approvals': 'u32',
-        'sufficients': 'u32',
-    },
     'num_assets_weight_hint': 'u32',
 }
 )
@@ -943,19 +940,11 @@ to be counter here
 | Name | Type |
 | -------- | -------- | 
 | asset_id | `T::AssetId` | 
-| destroy_asset_witness | `T::AssetDestroyWitness` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'AssetManager', 'destroy_local_asset', {
-    'asset_id': 'u128',
-    'destroy_asset_witness': {
-        'accounts': 'u32',
-        'approvals': 'u32',
-        'sufficients': 'u32',
-    },
-}
+    'AssetManager', 'destroy_local_asset', {'asset_id': 'u128'}
 )
 ```
 
@@ -1013,12 +1002,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1962,12 +1954,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2861,12 +2856,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -4277,12 +4275,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5175,12 +5176,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {

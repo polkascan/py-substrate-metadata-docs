@@ -304,16 +304,37 @@ constant = substrate.get_constant('Web3Names', 'MinNameLength')
 ## Errors
 
 ---------
+### AlreadyBanned
+The specified name has already been previously banned.
+
+---------
+### AlreadyExists
+The specified name has already been previously claimed.
+
+---------
+### Banned
+The specified name has been banned and cannot be interacted
+with.
+
+---------
 ### InsufficientFunds
 The tx submitter does not have enough funds to pay for the deposit.
 
 ---------
-### InvalidWeb3NameCharacter
+### InvalidCharacter
 A name that contains not allowed characters is being claimed.
 
 ---------
 ### NotAuthorized
 The actor cannot performed the specified operation.
+
+---------
+### NotBanned
+The specified name is not currently banned.
+
+---------
+### NotFound
+The specified name does not exist.
 
 ---------
 ### OwnerAlreadyExists
@@ -324,36 +345,11 @@ The specified owner already owns a name.
 The specified owner does not own any names.
 
 ---------
-### Unauthorized
-The origin was not authorized to perform that action
-
----------
-### Web3NameAlreadyBanned
-The specified name has already been previously banned.
-
----------
-### Web3NameAlreadyClaimed
-The specified name has already been previously claimed.
-
----------
-### Web3NameBanned
-The specified name has been banned and cannot be interacted
-with.
-
----------
-### Web3NameNotBanned
-The specified name is not currently banned.
-
----------
-### Web3NameNotFound
-The specified name does not exist.
-
----------
-### Web3NameTooLong
+### TooLong
 A name that is too long is being claimed.
 
 ---------
-### Web3NameTooShort
+### TooShort
 A name that is too short is being claimed.
 
 ---------

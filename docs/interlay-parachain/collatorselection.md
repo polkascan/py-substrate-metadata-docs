@@ -238,6 +238,10 @@ Too few candidates
 Too many candidates
 
 ---------
+### TooManyInvulnerables
+Too many invulnerables
+
+---------
 ### Unknown
 Unknown error
 

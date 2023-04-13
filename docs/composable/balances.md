@@ -15,8 +15,8 @@ specified.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| source | `<T::Lookup as StaticLookup>::Source` | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| source | `AccountIdLookupOf<T>` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -50,7 +50,7 @@ Can only be called by ROOT.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| who | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -82,7 +82,7 @@ The dispatch origin for this call is `root`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| who | `AccountIdLookupOf<T>` | 
 | new_free | `T::Balance` | 
 | new_reserved | `T::Balance` | 
 
@@ -133,7 +133,7 @@ Related functions:
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -174,7 +174,7 @@ The dispatch origin of this call must be Signed.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | keep_alive | `bool` | 
 
 #### Python
@@ -204,7 +204,7 @@ origin account.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -369,6 +369,21 @@ result = substrate.query(
 }
 ```
 ---------
+### InactiveIssuance
+ The total units of outstanding deactivated balance in the system.
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'InactiveIssuance', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### Locks
  Any liquidity locks on some account balances.
  NOTE: Should only be accessed when setting, changing and freeing a lock.
@@ -398,23 +413,6 @@ result = substrate.query(
 #### Return value
 ```python
 [{'amount': 'u128', 'id': '[u8; 8]'}]
-```
----------
-### StorageVersion
- Storage version of the pallet.
-
- This is set to v2.0.0 for new networks.
-
-#### Python
-```python
-result = substrate.query(
-    'Balances', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V1_0_0', 'V2_0_0')
 ```
 ---------
 ### TotalIssuance
@@ -485,7 +483,7 @@ A vesting schedule already exists for this account
 
 ---------
 ### InsufficientBalance
-Balance too low to send value
+Balance too low to send value.
 
 ---------
 ### KeepAlive

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | kintsugi-parachain     |
 | Implementation name     | kintsugi-parachain     |
-| Spec version     | 1022000     |
+| Spec version     | 1023002     |
 | SS58 Format     | 2092     |
 | Token symbol      | ['KINT', 'KBTC', 'KSM', 'INTR', 'IBTC', 'DOT']     |
 | Token decimals      | [12, 8, 12, 10, 8, 10]     |
@@ -25,13 +25,19 @@
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [Currency](currency.md) | [0](currency.md#calls) | [0](currency.md#events) | [0](currency.md#storage-functions) | [3](currency.md#constants) | [2](currency.md#errors) |
 | [Democracy](democracy.md) | [10](democracy.md#calls) | [8](democracy.md#events) | [8](democracy.md#storage-functions) | [7](democracy.md#constants) | [16](democracy.md#errors) |
+| [DexGeneral](dexgeneral.md) | [16](dexgeneral.md#calls) | [13](dexgeneral.md#events) | [8](dexgeneral.md#storage-functions) | [1](dexgeneral.md#constants) | [34](dexgeneral.md#errors) |
+| [DexStable](dexstable.md) | [19](dexstable.md#calls) | [13](dexstable.md#events) | [3](dexstable.md#storage-functions) | [2](dexstable.md#constants) | [30](dexstable.md#errors) |
+| [DexSwapRouter](dexswaprouter.md) | [1](dexswaprouter.md#calls) | [0](dexswaprouter.md#events) | [0](dexswaprouter.md#storage-functions) | [1](dexswaprouter.md#constants) | [7](dexswaprouter.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [Escrow](escrow.md) | [6](escrow.md#calls) | [2](escrow.md#events) | [9](escrow.md#storage-functions) | [2](escrow.md#constants) | [12](escrow.md#errors) |
 | [EscrowAnnuity](escrowannuity.md) | [3](escrowannuity.md#calls) | [1](escrowannuity.md#events) | [2](escrowannuity.md#storage-functions) | [2](escrowannuity.md#constants) | [0](escrowannuity.md#errors) |
 | [EscrowRewards](escrowrewards.md) | [0](escrowrewards.md#calls) | [4](escrowrewards.md#events) | [6](escrowrewards.md#storage-functions) | [2](escrowrewards.md#constants) | [3](escrowrewards.md#errors) |
+| [Farming](farming.md) | [5](farming.md#calls) | [3](farming.md#events) | [1](farming.md#storage-functions) | [3](farming.md#constants) | [1](farming.md#errors) |
+| [FarmingRewards](farmingrewards.md) | [0](farmingrewards.md#calls) | [4](farmingrewards.md#events) | [6](farmingrewards.md#storage-functions) | [2](farmingrewards.md#constants) | [3](farmingrewards.md#errors) |
 | [Fee](fee.md) | [8](fee.md#calls) | [0](fee.md#events) | [8](fee.md#storage-functions) | [2](fee.md#constants) | [2](fee.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [Issue](issue.md) | [4](issue.md#calls) | [5](issue.md#events) | [4](issue.md#storage-functions) | [1](issue.md#constants) | [9](issue.md#errors) |
+| [Loans](loans.md) | [21](loans.md#calls) | [20](loans.md#events) | [22](loans.md#storage-functions) | [3](loans.md#constants) | [25](loans.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [Nomination](nomination.md) | [6](nomination.md#calls) | [4](nomination.md#events) | [3](nomination.md#storage-functions) | [0](nomination.md#constants) | [7](nomination.md#errors) |
 | [Oracle](oracle.md) | [3](oracle.md#calls) | [4](oracle.md#events) | [7](oracle.md#storage-functions) | [0](oracle.md#constants) | [3](oracle.md#errors) |

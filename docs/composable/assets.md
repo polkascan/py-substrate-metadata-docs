@@ -6,7 +6,7 @@
 
 ---------
 ### burn_from
-Mints `amount` of `asset_id` into the `dest` account.
+Burns `amount` of `asset_id` into the `dest` account.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -117,7 +117,7 @@ call = substrate.compose_call(
 
 ---------
 ### mint_initialize
-Creates a new asset, minting `amount` of funds into the `dest` account. Intented to be
+Creates a new asset, minting `amount` of funds into the `dest` account. Intended to be
 used for creating wrapped assets, not associated with any project.
 #### Attributes
 | Name | Type |
@@ -340,7 +340,7 @@ call = substrate.compose_call(
 ### NativeAssetId
 #### Value
 ```python
-1
+2
 ```
 #### Python
 ```python

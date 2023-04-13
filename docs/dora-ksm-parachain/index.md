@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | DORA KSM Parachain     |
 | Implementation name     | DORA KSM Parachain     |
-| Spec version     | 31     |
+| Spec version     | 33     |
 | SS58 Format     | 128     |
 | Token symbol      | DORA     |
 | Token decimals      | 12     |
@@ -18,7 +18,7 @@
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
-| [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
+| [Balances](balances.md) | [0](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
 | [CollatorSelection](collatorselection.md) | [5](collatorselection.md#calls) | [5](collatorselection.md#events) | [5](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [10](collatorselection.md#errors) |
 | [Council](council.md) | [6](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
@@ -26,7 +26,7 @@
 | [DaoCoreModule](daocoremodule.md) | [5](daocoremodule.md#calls) | [4](daocoremodule.md#events) | [4](daocoremodule.md#storage-functions) | [1](daocoremodule.md#constants) | [8](daocoremodule.md#errors) |
 | [Democracy](democracy.md) | [25](democracy.md#calls) | [20](democracy.md#events) | [13](democracy.md#storage-functions) | [11](democracy.md#constants) | [29](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
-| [DoraRewards](dorarewards.md) | [3](dorarewards.md#calls) | [3](dorarewards.md#events) | [5](dorarewards.md#storage-functions) | [1](dorarewards.md#constants) | [6](dorarewards.md#errors) |
+| [DoraRewards](dorarewards.md) | [4](dorarewards.md#calls) | [3](dorarewards.md#events) | [6](dorarewards.md#storage-functions) | [1](dorarewards.md#constants) | [6](dorarewards.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [2](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [OrmlXcm](ormlxcm.md) | [1](ormlxcm.md#calls) | [1](ormlxcm.md#events) | [0](ormlxcm.md#storage-functions) | [0](ormlxcm.md#constants) | [3](ormlxcm.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |

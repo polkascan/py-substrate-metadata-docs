@@ -69,6 +69,7 @@ A short memo can be added to to each token amount moved.
 * `DifferentIdentityPortfolios` if the sender and receiver portfolios belong to different identities
 * `UnauthorizedCustodian` if the caller is not the custodian of the from portfolio
 * `InsufficientPortfolioBalance` if the sender does not have enough free balance
+* `NoDuplicateAssetsAllowed` the same ticker can&\#x27;t be repeated in the items vector.
 
 \# Permissions
 * Portfolio
@@ -95,6 +96,70 @@ call = substrate.compose_call(
             'amount': 'u128',
             'memo': (None, '[u8; 32]'),
             'ticker': '[u8; 12]',
+        },
+    ],
+    'to': {
+        'did': '[u8; 32]',
+        'kind': {
+            'Default': None,
+            'User': 'u64',
+        },
+    },
+}
+)
+```
+
+---------
+### move_portfolio_funds_v2
+Moves fungigle an non-fungible tokens from one portfolio of an identity to another portfolio of the same
+identity. Must be called by the custodian of the sender.
+Funds from deleted portfolios can also be recovered via this method.
+
+A short memo can be added to to each token amount moved.
+
+\# Errors
+* `PortfolioDoesNotExist` if one or both of the portfolios reference an invalid portfolio.
+* `destination_is_same_portfolio` if both sender and receiver portfolio are the same
+* `DifferentIdentityPortfolios` if the sender and receiver portfolios belong to different identities
+* `UnauthorizedCustodian` if the caller is not the custodian of the from portfolio
+* `InsufficientPortfolioBalance` if the sender does not have enough free balance
+* `NoDuplicateAssetsAllowed` the same ticker can&\#x27;t be repeated in the items vector.
+* `InvalidTransferNFTNotOwned` if the caller is trying to move an NFT he doesn&\#x27;t own.
+* `InvalidTransferNFTIsLocked` if the caller is trying to move a locked NFT.
+
+\# Permissions
+* Portfolio
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| from | `PortfolioId` | 
+| to | `PortfolioId` | 
+| funds | `Vec<Fund>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Portfolio', 'move_portfolio_funds_v2', {
+    'from': {
+        'did': '[u8; 32]',
+        'kind': {
+            'Default': None,
+            'User': 'u64',
+        },
+    },
+    'funds': [
+        {
+            'description': {
+                'Fungible': {
+                    'amount': 'u128',
+                    'ticker': '[u8; 12]',
+                },
+                'NonFungible': {
+                    'ids': ['u64'],
+                    'ticker': '[u8; 12]',
+                },
+            },
+            'memo': (None, '[u8; 32]'),
         },
     ],
     'to': {
@@ -164,6 +229,26 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### FungibleTokensMovedBetweenPortfolios
+A token amount has been moved from one portfolio to another.
+
+\# Parameters
+* origin DID
+* source portfolio
+* destination portfolio
+* asset ticker
+* asset balance that was moved
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
+| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
+| None | `Ticker` | ```[u8; 12]```
+| None | `Balance` | ```u128```
+| None | `Option<PortfolioMemo>` | ```(None, '[u8; 32]')```
+
+---------
 ### MovedBetweenPortfolios
 A token amount has been moved from one portfolio to another.
 
@@ -182,6 +267,24 @@ A token amount has been moved from one portfolio to another.
 | None | `Ticker` | ```[u8; 12]```
 | None | `Balance` | ```u128```
 | None | `Option<Memo>` | ```(None, '[u8; 32]')```
+
+---------
+### NFTsMovedBetweenPortfolios
+NFTs have been moved from one portfolio to another.
+
+\# Parameters
+* origin DID
+* source portfolio
+* destination portfolio
+* NFTs
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
+| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
+| None | `NFTs` | ```{'ticker': '[u8; 12]', 'ids': ['u64']}```
+| None | `Option<PortfolioMemo>` | ```(None, '[u8; 32]')```
 
 ---------
 ### PortfolioCreated
@@ -384,6 +487,54 @@ result = substrate.query(
 'u128'
 ```
 ---------
+### PortfolioLockedNFT
+ All locked nft for a given portfolio.
+
+#### Python
+```python
+result = substrate.query(
+    'Portfolio', 'PortfolioLockedNFT', [
+    {
+        'did': '[u8; 32]',
+        'kind': {
+            'Default': None,
+            'User': 'u64',
+        },
+    },
+    ('[u8; 12]', 'u64'),
+]
+)
+```
+
+#### Return value
+```python
+'bool'
+```
+---------
+### PortfolioNFT
+ The nft associated to the portfolio.
+
+#### Python
+```python
+result = substrate.query(
+    'Portfolio', 'PortfolioNFT', [
+    {
+        'did': '[u8; 32]',
+        'kind': {
+            'Default': None,
+            'User': 'u64',
+        },
+    },
+    ('[u8; 12]', 'u64'),
+]
+)
+```
+
+#### Return value
+```python
+'bool'
+```
+---------
 ### Portfolios
  The set of existing portfolios with their names. If a certain pair of a DID and
  portfolio number maps to `None` then such a portfolio doesn&#x27;t exist. Conversely, if a
@@ -459,6 +610,26 @@ Insufficient balance for a transaction.
 ---------
 ### InsufficientTokensLocked
 Can not unlock more tokens than what are locked
+
+---------
+### InvalidTransferNFTIsLocked
+Locked NFTs can not be moved between portfolios.
+
+---------
+### InvalidTransferNFTNotOwned
+Only owned NFTs can be moved between portfolios.
+
+---------
+### NFTAlreadyLocked
+The NFT is already locked.
+
+---------
+### NFTNotFoundInPortfolio
+The NFT does not exist in the portfolio.
+
+---------
+### NFTNotLocked
+The NFT has never been locked.
 
 ---------
 ### NoDuplicateAssetsAllowed

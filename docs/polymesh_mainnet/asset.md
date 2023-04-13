@@ -217,6 +217,12 @@ call = substrate.compose_call(
         'EquityPreferred': None,
         'FixedIncome': None,
         'Fund': None,
+        'NonFungible': {
+            'Custom': 'u32',
+            'Derivative': None,
+            'FixedIncome': None,
+            'Invoice': None,
+        },
         'REIT': None,
         'RevenueShareAgreement': None,
         'StableCoin': None,
@@ -889,6 +895,12 @@ call = substrate.compose_call(
         'EquityPreferred': None,
         'FixedIncome': None,
         'Fund': None,
+        'NonFungible': {
+            'Custom': 'u32',
+            'Derivative': None,
+            'FixedIncome': None,
+            'Invoice': None,
+        },
         'REIT': None,
         'RevenueShareAgreement': None,
         'StableCoin': None,
@@ -951,7 +963,7 @@ caller DID/ owner DID, ticker, divisibility, asset type, beneficiary DID, disabl
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
 | None | `bool` | ```bool```
-| None | `AssetType` | ```{'EquityCommon': None, 'EquityPreferred': None, 'Commodity': None, 'FixedIncome': None, 'REIT': None, 'Fund': None, 'RevenueShareAgreement': None, 'StructuredProduct': None, 'Derivative': None, 'Custom': 'u32', 'StableCoin': None}```
+| None | `AssetType` | ```{'EquityCommon': None, 'EquityPreferred': None, 'Commodity': None, 'FixedIncome': None, 'REIT': None, 'Fund': None, 'RevenueShareAgreement': None, 'StructuredProduct': None, 'Derivative': None, 'Custom': 'u32', 'StableCoin': None, 'NonFungible': {'Derivative': None, 'FixedIncome': None, 'Invoice': None, 'Custom': 'u32'}}```
 | None | `IdentityId` | ```[u8; 32]```
 | None | `bool` | ```bool```
 | None | `AssetName` | ```Bytes```
@@ -999,7 +1011,7 @@ Parameters: caller DID, ticker, new token type.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
-| None | `AssetType` | ```{'EquityCommon': None, 'EquityPreferred': None, 'Commodity': None, 'FixedIncome': None, 'REIT': None, 'Fund': None, 'RevenueShareAgreement': None, 'StructuredProduct': None, 'Derivative': None, 'Custom': 'u32', 'StableCoin': None}```
+| None | `AssetType` | ```{'EquityCommon': None, 'EquityPreferred': None, 'Commodity': None, 'FixedIncome': None, 'REIT': None, 'Fund': None, 'RevenueShareAgreement': None, 'StructuredProduct': None, 'Derivative': None, 'Custom': 'u32', 'StableCoin': None, 'NonFungible': {'Derivative': None, 'FixedIncome': None, 'Invoice': None, 'Custom': 'u32'}}```
 
 ---------
 ### AssetUnfrozen
@@ -1788,6 +1800,12 @@ result = substrate.query(
         'EquityPreferred': None,
         'FixedIncome': None,
         'Fund': None,
+        'NonFungible': {
+            'Custom': 'u32',
+            'Derivative': None,
+            'FixedIncome': None,
+            'Invoice': None,
+        },
         'REIT': None,
         'RevenueShareAgreement': None,
         'StableCoin': None,
@@ -1903,6 +1921,10 @@ An overflow while calculating the balance.
 Maximum length of the funding round name has been exceeded.
 
 ---------
+### IncompatibleAssetTypeUpdate
+Attempt to update the type of a non fungible token to a fungible token or the other way around.
+
+---------
 ### InsufficientBalance
 The sender balance is not sufficient.
 
@@ -1929,6 +1951,10 @@ Transfer validation check failed.
 ---------
 ### InvestorUniquenessClaimNotAllowed
 Investor Uniqueness claims are not allowed for this asset.
+
+---------
+### InvestorUniquenessNotAllowed
+Investor Uniqueness not allowed.
 
 ---------
 ### MaxLengthOfAssetNameExceeded
@@ -1989,5 +2015,9 @@ An overflow while calculating the total supply.
 ---------
 ### Unauthorized
 The user is not authorized.
+
+---------
+### UnexpectedNonFungibleToken
+Attempt to call an extrinsic that is only permitted for fungible tokens.
 
 ---------

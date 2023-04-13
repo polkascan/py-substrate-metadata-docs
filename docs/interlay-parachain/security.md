@@ -76,13 +76,7 @@ Set the parachain status code.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Security', 'set_parachain_status', {
-    'status_code': (
-        'Running',
-        'Error',
-        'Shutdown',
-    ),
-}
+    'Security', 'set_parachain_status', {'status_code': ('Running', 'Error')}
 )
 ```
 
@@ -94,7 +88,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| new_status | `StatusCode` | ```('Running', 'Error', 'Shutdown')```
+| new_status | `StatusCode` | ```('Running', 'Error')```
 | cleared_errors | `Vec<ErrorCode>` | ```[('None', 'OracleOffline')]```
 
 ---------
@@ -139,7 +133,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::379'
+'scale_info::412'
 ```
 ---------
 ### Nonce
@@ -170,7 +164,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('Running', 'Error', 'Shutdown')
+('Running', 'Error')
 ```
 ---------
 ## Errors

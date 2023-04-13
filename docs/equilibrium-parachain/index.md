@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | Equilibrium-parachain     |
 | Implementation name     | Equilibrium-parachain     |
-| Spec version     | 22     |
+| Spec version     | 24     |
 | SS58 Format     | 68     |
 | Token symbol      | ['TOKEN']     |
 | Token decimals      | [9]     |
@@ -28,7 +28,7 @@
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [EqAggregates](eqaggregates.md) | [0](eqaggregates.md#calls) | [0](eqaggregates.md#events) | [2](eqaggregates.md#storage-functions) | [0](eqaggregates.md#constants) | [0](eqaggregates.md#errors) |
 | [EqAssets](eqassets.md) | [3](eqassets.md#calls) | [3](eqassets.md#events) | [2](eqassets.md#storage-functions) | [1](eqassets.md#constants) | [11](eqassets.md#errors) |
-| [EqBalances](eqbalances.md) | [15](eqbalances.md#calls) | [8](eqbalances.md#events) | [9](eqbalances.md#storage-functions) | [4](eqbalances.md#constants) | [21](eqbalances.md#errors) |
+| [EqBalances](eqbalances.md) | [17](eqbalances.md#calls) | [8](eqbalances.md#events) | [9](eqbalances.md#storage-functions) | [5](eqbalances.md#constants) | [21](eqbalances.md#errors) |
 | [EqBridge](eqbridge.md) | [8](eqbridge.md#calls) | [6](eqbridge.md#events) | [4](eqbridge.md#storage-functions) | [0](eqbridge.md#constants) | [9](eqbridge.md#errors) |
 | [EqDex](eqdex.md) | [4](eqdex.md#calls) | [3](eqdex.md#events) | [6](eqdex.md#storage-functions) | [3](eqdex.md#constants) | [13](eqdex.md#errors) |
 | [EqInvestors](eqinvestors.md) | [2](eqinvestors.md#calls) | [0](eqinvestors.md#events) | [1](eqinvestors.md#storage-functions) | [1](eqinvestors.md#constants) | [2](eqinvestors.md#errors) |

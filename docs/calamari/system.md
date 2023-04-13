@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -469,6 +469,31 @@ result = substrate.query(
                     'owner': 'AccountId',
                 },
             },
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::30',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
             'CalamariVesting': {
                 'VestingCompleted': 'AccountId',
                 'VestingScheduleUpdated': ['u64'],
@@ -612,6 +637,28 @@ result = substrate.query(
                     'asset': 'scale_info::114',
                     'sink': 'AccountId',
                     'source': 'AccountId',
+                },
+            },
+            'MantaSbt': {
+                'AllowlistEvmAddress': {
+                    'address': 'scale_info::117',
+                    'asset_id': 'u128',
+                },
+                'ChangeAllowlistAccount': {'account': (None, 'AccountId')},
+                'MintChainInfo': {
+                    'end_time': (None, 'u64'),
+                    'mint_type': 'scale_info::119',
+                    'start_time': 'u64',
+                },
+                'MintSbt': {'asset': 'u128', 'source': 'AccountId'},
+                'MintSbtEvm': {
+                    'address': 'scale_info::117',
+                    'asset_id': 'u128',
+                },
+                'SBTReserved': {
+                    'start_id': 'u128',
+                    'stop_id': 'u128',
+                    'who': 'AccountId',
                 },
             },
             'Multisig': {
@@ -866,47 +913,6 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            None: None,
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::30',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -937,11 +943,26 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'TransactionPause': {
                 'PalletPaused': 'Bytes',
                 'PalletUnpaused': 'Bytes',
                 'TransactionPaused': ('Bytes', 'Bytes'),
                 'TransactionUnpaused': ('Bytes', 'Bytes'),
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
             },
             'Treasury': {
                 'Awarded': {
@@ -999,6 +1020,7 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1234,13 +1256,14 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0xf3ff14d5ab527059', 1),
         ('0xea93e3f16f3d6962', 2),
         ('0x853dcae7bb59d2e2', 1),
+        ('0xddcc9d428f980d4f', 1),
         ('0x2aa62120049dd2d2', 1),
     ],
     'authoring_version': 2,
     'impl_name': 'calamari',
     'impl_version': 1,
     'spec_name': 'calamari',
-    'spec_version': 4030,
+    'spec_version': 4050,
     'state_version': 0,
     'transaction_version': 11,
 }

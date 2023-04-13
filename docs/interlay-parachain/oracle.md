@@ -27,6 +27,19 @@ call = substrate.compose_call(
                 'ExchangeRate': {
                     'ForeignAsset': 'u32',
                     'LendToken': 'u32',
+                    'LpToken': (
+                        {
+                            'ForeignAsset': 'u32',
+                            'StableLpToken': 'u32',
+                            'Token': 'scale_info::51',
+                        },
+                        {
+                            'ForeignAsset': 'u32',
+                            'StableLpToken': 'u32',
+                            'Token': 'scale_info::51',
+                        },
+                    ),
+                    'StableLpToken': 'u32',
                     'Token': (
                         'DOT',
                         'IBTC',
@@ -94,7 +107,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| values | `Vec<(OracleKey, Option<T::UnsignedFixedPoint>)>` | ```[({'ExchangeRate': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}, 'FeeEstimation': None}, (None, 'u128'))]```
+| values | `Vec<(OracleKey, Option<T::UnsignedFixedPoint>)>` | ```[({'ExchangeRate': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ('scale_info::52', 'scale_info::52'), 'StableLpToken': 'u32'}, 'FeeEstimation': None}, (None, 'u128'))]```
 
 ---------
 ### FeedValues
@@ -103,7 +116,7 @@ Event emitted when exchange rate is set
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | oracle_id | `T::AccountId` | ```AccountId```
-| values | `Vec<(OracleKey, T::UnsignedFixedPoint)>` | ```[({'ExchangeRate': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}, 'FeeEstimation': None}, 'u128')]```
+| values | `Vec<(OracleKey, T::UnsignedFixedPoint)>` | ```[({'ExchangeRate': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ('scale_info::52', 'scale_info::52'), 'StableLpToken': 'u32'}, 'FeeEstimation': None}, 'u128')]```
 
 ---------
 ### OracleAdded
@@ -135,6 +148,33 @@ result = substrate.query(
         'ExchangeRate': {
             'ForeignAsset': 'u32',
             'LendToken': 'u32',
+            'LpToken': (
+                {
+                    'ForeignAsset': 'u32',
+                    'StableLpToken': 'u32',
+                    'Token': (
+                        'DOT',
+                        'IBTC',
+                        'INTR',
+                        'KSM',
+                        'KBTC',
+                        'KINT',
+                    ),
+                },
+                {
+                    'ForeignAsset': 'u32',
+                    'StableLpToken': 'u32',
+                    'Token': (
+                        'DOT',
+                        'IBTC',
+                        'INTR',
+                        'KSM',
+                        'KBTC',
+                        'KINT',
+                    ),
+                },
+            ),
+            'StableLpToken': 'u32',
             'Token': (
                 'DOT',
                 'IBTC',
@@ -194,6 +234,33 @@ result = substrate.query(
         'ExchangeRate': {
             'ForeignAsset': 'u32',
             'LendToken': 'u32',
+            'LpToken': (
+                {
+                    'ForeignAsset': 'u32',
+                    'StableLpToken': 'u32',
+                    'Token': (
+                        'DOT',
+                        'IBTC',
+                        'INTR',
+                        'KSM',
+                        'KBTC',
+                        'KINT',
+                    ),
+                },
+                {
+                    'ForeignAsset': 'u32',
+                    'StableLpToken': 'u32',
+                    'Token': (
+                        'DOT',
+                        'IBTC',
+                        'INTR',
+                        'KSM',
+                        'KBTC',
+                        'KINT',
+                    ),
+                },
+            ),
+            'StableLpToken': 'u32',
             'Token': (
                 'DOT',
                 'IBTC',
@@ -226,6 +293,33 @@ result = substrate.query(
         'ExchangeRate': {
             'ForeignAsset': 'u32',
             'LendToken': 'u32',
+            'LpToken': (
+                {
+                    'ForeignAsset': 'u32',
+                    'StableLpToken': 'u32',
+                    'Token': (
+                        'DOT',
+                        'IBTC',
+                        'INTR',
+                        'KSM',
+                        'KBTC',
+                        'KINT',
+                    ),
+                },
+                {
+                    'ForeignAsset': 'u32',
+                    'StableLpToken': 'u32',
+                    'Token': (
+                        'DOT',
+                        'IBTC',
+                        'INTR',
+                        'KSM',
+                        'KBTC',
+                        'KINT',
+                    ),
+                },
+            ),
+            'StableLpToken': 'u32',
             'Token': (
                 'DOT',
                 'IBTC',
@@ -272,6 +366,33 @@ result = substrate.query(
         'ExchangeRate': {
             'ForeignAsset': 'u32',
             'LendToken': 'u32',
+            'LpToken': (
+                {
+                    'ForeignAsset': 'u32',
+                    'StableLpToken': 'u32',
+                    'Token': (
+                        'DOT',
+                        'IBTC',
+                        'INTR',
+                        'KSM',
+                        'KBTC',
+                        'KINT',
+                    ),
+                },
+                {
+                    'ForeignAsset': 'u32',
+                    'StableLpToken': 'u32',
+                    'Token': (
+                        'DOT',
+                        'IBTC',
+                        'INTR',
+                        'KSM',
+                        'KBTC',
+                        'KINT',
+                    ),
+                },
+            ),
+            'StableLpToken': 'u32',
             'Token': (
                 'DOT',
                 'IBTC',

@@ -377,44 +377,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'EqAssets': {
-                'DeleteAsset': ('u64', 'Bytes'),
-                'NewAsset': ('u64', 'Bytes'),
-                'UpdateAsset': ('u64', 'Bytes'),
-            },
-            'EqBalances': {
-                'DeleteAccount': 'AccountId',
-                'Deposit': ('AccountId', 'u64', 'u128', 'scale_info::46'),
-                'Exchange': (
-                    'AccountId',
-                    'u64',
-                    'u128',
-                    'AccountId',
-                    'u64',
-                    'u128',
-                ),
-                'MigrationComplete': None,
-                'Transfer': (
-                    'AccountId',
-                    'AccountId',
-                    'u64',
-                    'u128',
-                    'scale_info::45',
-                ),
-                'Withdraw': ('AccountId', 'u64', 'u128', 'scale_info::47'),
-                'XcmMessageSendError': {
-                    'CannotReachDestination': (
-                        'scale_info::48',
-                        ['scale_info::62'],
-                    ),
-                    'DestinationUnsupported': None,
-                    'ExceedsMaxMessageSize': None,
-                    'Transport': None,
-                    'Unroutable': None,
-                },
-                'XcmTransfer': ('scale_info::48', 'scale_info::48'),
-            },
-            None: None,
             'Bailsman': {'UnregisteredBailsman': 'AccountId'},
             'ChainBridge': {
                 'ChainToggled': ('u8', 'bool'),
@@ -611,6 +573,43 @@ result = substrate.query(
                     'remaining_weight': 'scale_info::14',
                     'required_weight': 'scale_info::14',
                 },
+            },
+            'EqAssets': {
+                'DeleteAsset': ('u64', 'Bytes'),
+                'NewAsset': ('u64', 'Bytes'),
+                'UpdateAsset': ('u64', 'Bytes'),
+            },
+            'EqBalances': {
+                'DeleteAccount': 'AccountId',
+                'Deposit': ('AccountId', 'u64', 'u128', 'scale_info::46'),
+                'Exchange': (
+                    'AccountId',
+                    'u64',
+                    'u128',
+                    'AccountId',
+                    'u64',
+                    'u128',
+                ),
+                'MigrationComplete': None,
+                'Transfer': (
+                    'AccountId',
+                    'AccountId',
+                    'u64',
+                    'u128',
+                    'scale_info::45',
+                ),
+                'Withdraw': ('AccountId', 'u64', 'u128', 'scale_info::47'),
+                'XcmMessageSendError': {
+                    'CannotReachDestination': (
+                        'scale_info::48',
+                        ['scale_info::62'],
+                    ),
+                    'DestinationUnsupported': None,
+                    'ExceedsMaxMessageSize': None,
+                    'Transport': None,
+                    'Unroutable': None,
+                },
+                'XcmTransfer': ('scale_info::48', 'scale_info::48'),
             },
             'EqBridge': {
                 'FromBridgeTransfer': ('AccountId', 'u64', 'u128'),
@@ -866,6 +865,15 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            'TechnicalCommitteeMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
+            None: None,
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -896,14 +904,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'TechnicalCommitteeMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1222,7 +1222,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'Equilibrium-parachain',
     'impl_version': 1,
     'spec_name': 'Equilibrium-parachain',
-    'spec_version': 22,
+    'spec_version': 24,
     'state_version': 0,
     'transaction_version': 1,
 }

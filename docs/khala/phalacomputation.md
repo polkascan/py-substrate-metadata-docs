@@ -58,6 +58,26 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_budget_per_block
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| nonce | `u64` | 
+| block_number | `T::BlockNumber` | 
+| budget | `u128` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'PhalaComputation', 'set_budget_per_block', {
+    'block_number': 'u32',
+    'budget': 'u128',
+    'nonce': 'u64',
+}
+)
+```
+
+---------
 ### set_cool_down_expiration
 Sets the cool down expiration time in seconds.
 
@@ -114,6 +134,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### update_contract_root
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| account_id | `AccountId32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'PhalaComputation', 'update_contract_root', {'account_id': 'AccountId'}
+)
+```
+
+---------
 ### update_tokenomic
 Updates the tokenomic parameters at the end of this block.
 
@@ -158,6 +192,14 @@ Benchmark Updated
 | -------- | -------- | -------- |
 | session | `T::AccountId` | ```AccountId```
 | p_instant | `u32` | ```u32```
+
+---------
+### BudgetUpdated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| nonce | `u64` | ```u64```
+| budget | `u128` | ```u128```
 
 ---------
 ### CoolDownExpirationChanged
@@ -319,6 +361,20 @@ Affected states:
 ## Storage functions
 
 ---------
+### BudgetUpdateNonce
+
+#### Python
+```python
+result = substrate.query(
+    'PhalaComputation', 'BudgetUpdateNonce', []
+)
+```
+
+#### Return value
+```python
+'u64'
+```
+---------
 ### ComputingHalvingInterval
  The interval of halving (75% decay) in block number.
 
@@ -347,6 +403,20 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
+```
+---------
+### ContractAccount
+
+#### Python
+```python
+result = substrate.query(
+    'PhalaComputation', 'ContractAccount', []
+)
+```
+
+#### Return value
+```python
+'AccountId'
 ```
 ---------
 ### CoolDownPeriod
@@ -392,6 +462,34 @@ result = substrate.query(
 #### Return value
 ```python
 'bool'
+```
+---------
+### LastBugdetUpdateBlock
+
+#### Python
+```python
+result = substrate.query(
+    'PhalaComputation', 'LastBugdetUpdateBlock', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### MaxBudgetLimit
+
+#### Python
+```python
+result = substrate.query(
+    'PhalaComputation', 'MaxBudgetLimit', []
+)
+```
+
+#### Return value
+```python
+'u128'
 ```
 ---------
 ### NextSessionId
@@ -586,6 +684,12 @@ There&\#x27;s no benchmark result on the blockchain.
 Indicating the initial benchmark score is too low to start computing.
 
 ---------
+### BudgetExceedMaxLimit
+
+---------
+### BudgetUpdateBlockInvalid
+
+---------
 ### CoolDownNotReady
 Cannot reclaim the worker because it&\#x27;s still in cooldown period.
 
@@ -608,6 +712,9 @@ Internal error. The tokenomic parameter is not set.
 ---------
 ### InternalErrorCannotStartWithExistingStake
 Internal error. A worker should never start with existing stake in the storage.
+
+---------
+### NonceIndexInvalid
 
 ---------
 ### NotMigrationRoot

@@ -13,9 +13,8 @@ This is an root function to be used only for cleaning the state.
 
 The dispatch origin of this call must be root.
 
-\# &lt;weight&gt;
-The total number of voters and those that are defunct must be provided as witness data.
-\# &lt;/weight&gt;
+\#\# Complexity
+- Check is_defunct_voter() details.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -38,27 +37,31 @@ Remove a particular member from the set. This is effective immediately and the b
 the outgoing member is slashed.
 
 If a runner-up is available, then the best runner-up will be removed and replaces the
-outgoing member. Otherwise, a new phragmen election is started.
+outgoing member. Otherwise, if `rerun_election` is `true`, a new phragmen election is
+started, else, nothing happens.
+
+If `slash_bond` is set to true, the bond of the member being removed is slashed. Else,
+it is returned.
 
 The dispatch origin of this call must be root.
 
 Note that this does not affect the designated block number of the next election.
 
-\# &lt;weight&gt;
-If we have a replacement, we use a small weight. Else, since this is a root call and
-will go into phragmen, we assume full block for now.
-\# &lt;/weight&gt;
+\#\# Complexity
+- Check details of remove_and_replace_member() and do_phragmen().
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
-| has_replacement | `bool` | 
+| who | `AccountIdLookupOf<T>` | 
+| slash_bond | `bool` | 
+| rerun_election | `bool` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'PhragmenElection', 'remove_member', {
-    'has_replacement': 'bool',
+    'rerun_election': 'bool',
+    'slash_bond': 'bool',
     'who': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -103,10 +106,12 @@ outcomes exist:
   next round.
 
 The dispatch origin of this call must be signed, and have one of the above roles.
-
-\# &lt;weight&gt;
 The type of renouncing must be provided as witness data.
-\# &lt;/weight&gt;
+
+\#\# Complexity
+  - Renouncing::Candidate(count): O(count + log(count))
+  - Renouncing::Member: O(1)
+  - Renouncing::RunnerUp: O(1)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -139,9 +144,9 @@ The dispatch origin of this call must be signed.
 Even if a candidate ends up being a member, they must call [`Call::renounce_candidacy`]
 to get their deposit back. Losing the spot in an election will always lead to a slash.
 
-\# &lt;weight&gt;
 The number of current candidates must be provided as witness data.
-\# &lt;/weight&gt;
+\#\# Complexity
+O(C + log(C)) where C is candidate_count.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -175,10 +180,6 @@ The dispatch origin of this call must be signed.
 
 It is the responsibility of the caller to **NOT** place all of their balance into the
 lock and keep some for further operations.
-
-\# &lt;weight&gt;
-We assume the maximum weight among all 3 cases: vote_equal, vote_more and vote_less.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -370,7 +371,7 @@ constant = substrate.get_constant('PhragmenElection', 'CandidacyBond')
  Number of members to elect.
 #### Value
 ```python
-5
+8
 ```
 #### Python
 ```python
@@ -381,11 +382,57 @@ constant = substrate.get_constant('PhragmenElection', 'DesiredMembers')
  Number of runners_up to keep.
 #### Value
 ```python
-5
+8
 ```
 #### Python
 ```python
 constant = substrate.get_constant('PhragmenElection', 'DesiredRunnersUp')
+```
+---------
+### MaxCandidates
+ The maximum number of candidates in a phragmen election.
+
+ Warning: This impacts the size of the election which is run onchain. Chose wisely, and
+ consider how it will impact `T::WeightInfo::election_phragmen`.
+
+ When this limit is reached no more candidates are accepted in the election.
+#### Value
+```python
+20
+```
+#### Python
+```python
+constant = substrate.get_constant('PhragmenElection', 'MaxCandidates')
+```
+---------
+### MaxVoters
+ The maximum number of voters to allow in a phragmen election.
+
+ Warning: This impacts the size of the election which is run onchain. Chose wisely, and
+ consider how it will impact `T::WeightInfo::election_phragmen`.
+
+ When the limit is reached the new voters are ignored.
+#### Value
+```python
+500
+```
+#### Python
+```python
+constant = substrate.get_constant('PhragmenElection', 'MaxVoters')
+```
+---------
+### MaxVotesPerVoter
+ Maximum numbers of votes per voter.
+
+ Warning: This impacts the size of the election which is run onchain. Chose wisely, and
+ consider how it will impact `T::WeightInfo::election_phragmen`.
+#### Value
+```python
+16
+```
+#### Python
+```python
+constant = substrate.get_constant('PhragmenElection', 'MaxVotesPerVoter')
 ```
 ---------
 ### PalletId
@@ -488,12 +535,12 @@ Must vote for at least one candidate.
 Not a member.
 
 ---------
-### ReportSelf
-Cannot report self.
-
----------
 ### RunnerUpSubmit
 Runner cannot re-submit candidacy.
+
+---------
+### TooManyCandidates
+Too many candidates have been created.
 
 ---------
 ### TooManyVotes

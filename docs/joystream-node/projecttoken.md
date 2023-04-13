@@ -336,7 +336,7 @@ Postconditions:
 call = substrate.compose_call(
     'ProjectToken', 'transfer', {
     'metadata': 'Bytes',
-    'outputs': 'scale_info::400',
+    'outputs': 'scale_info::399',
     'src_member_id': 'u64',
     'token_id': 'u64',
 }
@@ -459,7 +459,7 @@ Params:
 | -------- | -------- | -------- |
 | None | `TokenId` | ```u64```
 | None | `MemberId` | ```u64```
-| None | `ValidatedTransfers` | ```scale_info::190```
+| None | `ValidatedTransfers` | ```scale_info::191```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -477,7 +477,7 @@ Params:
 | -------- | -------- | -------- |
 | None | `TokenId` | ```u64```
 | None | `MemberId` | ```u64```
-| None | `ValidatedTransfers` | ```scale_info::190```
+| None | `ValidatedTransfers` | ```scale_info::191```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -500,7 +500,7 @@ Params:
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `TokenId` | ```u64```
-| None | `TokenIssuanceParameters` | ```{'initial_allocation': 'scale_info::180', 'symbol': '[u8; 32]', 'transfer_policy': {'Permissionless': None, 'Permissioned': {'commitment': '[u8; 32]', 'payload': (None, {'object_creation_params': 'scale_info::129', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'})}}, 'patronage_rate': 'u32', 'revenue_split_rate': 'u32'}```
+| None | `TokenIssuanceParameters` | ```{'initial_allocation': 'scale_info::181', 'symbol': '[u8; 32]', 'transfer_policy': {'Permissionless': None, 'Permissioned': {'commitment': '[u8; 32]', 'payload': (None, {'object_creation_params': 'scale_info::130', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'})}}, 'patronage_rate': 'u32', 'revenue_split_rate': 'u32'}```
 
 ---------
 ### TokenSaleFinalized
@@ -633,7 +633,7 @@ result = substrate.query(
     'last_sale_total_purchased_amount': (None, ('u32', 'u128')),
     'next_vesting_transfer_id': 'u64',
     'split_staking_status': (None, {'amount': 'u128', 'split_id': 'u32'}),
-    'vesting_schedules': 'scale_info::594',
+    'vesting_schedules': 'scale_info::592',
 }
 ```
 ---------
@@ -992,7 +992,7 @@ Symbol already in use
 
 ---------
 ### TransferDestinationMemberDoesNotExist
-Transfer destination member id invalid
+At least one of the transfer destinations is not an existing member id
 
 ---------
 ### UserAlreadyParticipating

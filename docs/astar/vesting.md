@@ -278,7 +278,7 @@ constant = substrate.get_constant('Vesting', 'MaxVestingSchedules')
  The minimum amount transferred to call `vested_transfer`.
 #### Value
 ```python
-1000000000000000000
+100000000000000000000
 ```
 #### Python
 ```python

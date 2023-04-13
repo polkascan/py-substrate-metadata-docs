@@ -98,11 +98,11 @@ result = substrate.query(
 ## Errors
 
 ---------
-### CTypeAlreadyExists
+### AlreadyExists
 The CType already exists.
 
 ---------
-### CTypeNotFound
+### NotFound
 There is no CType with the given hash.
 
 ---------

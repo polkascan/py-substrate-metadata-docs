@@ -204,11 +204,19 @@ Member makes a remark
 | -------- | -------- | 
 | member_id | `T::MemberId` | 
 | msg | `Vec<u8>` | 
+| payment | `Option<(T::AccountId, T::Balance)>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Members', 'member_remark', {'member_id': 'u64', 'msg': 'Bytes'}
+    'Members', 'member_remark', {
+    'member_id': 'u64',
+    'msg': 'Bytes',
+    'payment': (
+        None,
+        ('AccountId', 'u128'),
+    ),
+}
 )
 ```
 
@@ -535,6 +543,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | None | `MemberId` | ```u64```
 | None | `InviteMembershipParameters` | ```{'inviting_member_id': 'u64', 'root_account': 'AccountId', 'controller_account': 'AccountId', 'handle': (None, 'Bytes'), 'metadata': 'Bytes'}```
+| None | `Balance` | ```u128```
 
 ---------
 ### MemberProfileUpdated
@@ -552,6 +561,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | None | `MemberId` | ```u64```
 | None | `Vec<u8>` | ```Bytes```
+| None | `Option<(AccountId, Balance)>` | ```(None, ('AccountId', 'u128'))```
 
 ---------
 ### MemberVerificationStatusUpdated
@@ -850,6 +860,10 @@ Handle already registered.
 ---------
 ### HandleMustBeProvidedDuringRegistration
 Handle must be provided during registration.
+
+---------
+### InsufficientBalanceToCoverPayment
+Insufficient balance to cover payment.
 
 ---------
 ### InsufficientBalanceToCoverStake

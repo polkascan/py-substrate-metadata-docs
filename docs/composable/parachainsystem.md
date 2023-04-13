@@ -59,9 +59,9 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::142',
+        'horizontal_messages': 'scale_info::193',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::139',
+            'trie_nodes': 'scale_info::190',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -97,7 +97,7 @@ Downward messages were processed using the given weight.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| weight_used | `Weight` | ```u64```
+| weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 | dmq_head | `relay_chain::Hash` | ```[u8; 32]```
 
 ---------
@@ -300,7 +300,22 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::239'
+'scale_info::320'
+```
+---------
+### LastRelayChainBlockNumber
+ The relay chain block number associated with the last parachain block.
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainSystem', 'LastRelayChainBlockNumber', []
+)
+```
+
+#### Return value
+```python
+'u32'
 ```
 ---------
 ### NewValidationCode
@@ -391,7 +406,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::139'}
+{'trie_nodes': 'scale_info::190'}
 ```
 ---------
 ### RelevantMessagingState
@@ -457,7 +472,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'u64'
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 ### ReservedXcmpWeightOverride
@@ -473,7 +488,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'u64'
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 ### UpgradeRestrictionSignal

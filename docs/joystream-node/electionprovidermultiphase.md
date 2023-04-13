@@ -549,7 +549,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::458'
+'scale_info::457'
 ```
 ---------
 ### SignedSubmissionNextIndex

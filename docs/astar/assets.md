@@ -1364,7 +1364,7 @@ constant = substrate.get_constant('Assets', 'ApprovalDeposit')
  maintained.
 #### Value
 ```python
-19000000000
+10036000000000000000
 ```
 #### Python
 ```python
@@ -1375,7 +1375,7 @@ constant = substrate.get_constant('Assets', 'AssetAccountDeposit')
  The basic amount of funds that must be reserved for an asset.
 #### Value
 ```python
-1000000
+1000000000000000000000
 ```
 #### Python
 ```python
@@ -1386,7 +1386,7 @@ constant = substrate.get_constant('Assets', 'AssetDeposit')
  The basic amount of funds that must be reserved when adding metadata to your asset.
 #### Value
 ```python
-69000000000
+10136000000000000000
 ```
 #### Python
 ```python
@@ -1398,7 +1398,7 @@ constant = substrate.get_constant('Assets', 'MetadataDepositBase')
  metadata.
 #### Value
 ```python
-1000000000
+2000000000000000
 ```
 #### Python
 ```python

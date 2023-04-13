@@ -5,6 +5,21 @@
 ## Calls
 
 ---------
+### communify
+Make a private receipt communal and create fungible counterparts for its owner.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `ReceiptIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Nis', 'communify', {'index': 'u32'}
+)
+```
+
+---------
 ### fund_deficit
 Ensure we have sufficient funding for all potential payouts.
 
@@ -46,6 +61,21 @@ call = substrate.compose_call(
 ```
 
 ---------
+### privatize
+Make a communal receipt private and burn fungible counterparts from its owner.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `ReceiptIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Nis', 'privatize', {'index': 'u32'}
+)
+```
+
+---------
 ### retract_bid
 Retract a previously placed bid.
 
@@ -68,7 +98,27 @@ call = substrate.compose_call(
 ```
 
 ---------
-### thaw
+### thaw_communal
+Reduce or remove an outstanding receipt, placing the according proportion of funds into
+the account of the owner.
+
+- `origin`: Must be Signed and the account must be the owner of the fungible counterpart
+  for receipt `index`.
+- `index`: The index of the receipt.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `ReceiptIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Nis', 'thaw_communal', {'index': 'u32'}
+)
+```
+
+---------
+### thaw_private
 Reduce or remove an outstanding receipt, placing the according proportion of funds into
 the account of the owner.
 
@@ -81,15 +131,14 @@ the account of the owner.
 | Name | Type |
 | -------- | -------- | 
 | index | `ReceiptIndex` | 
-| portion | `Option<<T::Counterpart as FungibleInspect<T::AccountId>>::Balance
->` | 
+| maybe_proportion | `Option<Perquintill>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Nis', 'thaw', {
+    'Nis', 'thaw_private', {
     'index': 'u32',
-    'portion': (None, 'u128'),
+    'maybe_proportion': (None, 'u64'),
 }
 )
 ```
@@ -219,7 +268,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'expiry': 'u32', 'proportion': 'u64', 'who': 'AccountId'}
+{'expiry': 'u32', 'owner': (None, ('AccountId', 'u128')), 'proportion': 'u64'}
 ```
 ---------
 ### Summary
@@ -238,6 +287,7 @@ result = substrate.query(
     'index': 'u32',
     'last_period': 'u32',
     'proportion_owed': 'u64',
+    'receipts_on_hold': 'u128',
     'thawed': 'u64',
 }
 ```
@@ -361,6 +411,17 @@ constant = substrate.get_constant('Nis', 'PalletId')
 constant = substrate.get_constant('Nis', 'QueueCount')
 ```
 ---------
+### ReserveId
+ The name for the reserve ID.
+#### Value
+```python
+'0x70792f6e69732020'
+```
+#### Python
+```python
+constant = substrate.get_constant('Nis', 'ReserveId')
+```
+---------
 ### ThawThrottle
  The maximum proportion which may be thawed and the period over which it is reset.
 #### Value
@@ -373,6 +434,18 @@ constant = substrate.get_constant('Nis', 'ThawThrottle')
 ```
 ---------
 ## Errors
+
+---------
+### AlreadyCommunal
+The receipt is already communal.
+
+---------
+### AlreadyFunded
+There are enough funds for what is required.
+
+---------
+### AlreadyPrivate
+The receipt is already private.
 
 ---------
 ### AmountTooSmall
@@ -392,10 +465,6 @@ The duration is the bid is greater than the number of queues.
 The duration of the bid is less than one.
 
 ---------
-### Funded
-There are enough funds for what is required.
-
----------
 ### MakesDust
 The operation would result in a receipt worth an insignficant value.
 
@@ -404,27 +473,27 @@ The operation would result in a receipt worth an insignficant value.
 Bond not yet at expiry date.
 
 ---------
-### NotFound
-The given bid for retraction is not found.
-
----------
 ### NotOwner
 Not the owner of the receipt.
+
+---------
+### PortionTooBig
+The portion supplied is beyond the value of the receipt.
 
 ---------
 ### Throttled
 The thaw throttle has been reached for this period.
 
 ---------
-### TooMuch
-The portion supplied is beyond the value of the receipt.
-
----------
 ### Unfunded
 Not enough funds are held to pay out.
 
 ---------
-### Unknown
-Bond index is unknown.
+### UnknownBid
+The given bid for retraction is not found.
+
+---------
+### UnknownReceipt
+Receipt index is unknown.
 
 ---------

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | polymesh_mainnet     |
 | Implementation name     | polymesh_mainnet     |
-| Spec version     | 5002001     |
+| Spec version     | 5003001     |
 | SS58 Format     | 12     |
 | Token symbol      | POLYX     |
 | Token decimals      | 6     |
@@ -15,7 +15,7 @@
 ## Pallets
 | Name | Calls | Events | Storage functions | Constants | Errors |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| [Asset](asset.md) | [26](asset.md#calls) | [27](asset.md#events) | [31](asset.md#storage-functions) | [5](asset.md#constants) | [34](asset.md#errors) |
+| [Asset](asset.md) | [26](asset.md#calls) | [27](asset.md#events) | [31](asset.md#storage-functions) | [5](asset.md#constants) | [37](asset.md#errors) |
 | [AuthorityDiscovery](authoritydiscovery.md) | [0](authoritydiscovery.md#calls) | [0](authoritydiscovery.md#events) | [0](authoritydiscovery.md#storage-functions) | [0](authoritydiscovery.md#constants) | [0](authoritydiscovery.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
 | [Babe](babe.md) | [3](babe.md#calls) | [0](babe.md#events) | [16](babe.md#storage-functions) | [3](babe.md#constants) | [3](babe.md#errors) |
@@ -37,12 +37,13 @@
 | [ImOnline](imonline.md) | [1](imonline.md#calls) | [3](imonline.md#events) | [4](imonline.md#storage-functions) | [1](imonline.md#constants) | [2](imonline.md#errors) |
 | [Indices](indices.md) | [5](indices.md#calls) | [3](indices.md#events) | [1](indices.md#storage-functions) | [1](indices.md#constants) | [5](indices.md#errors) |
 | [MultiSig](multisig.md) | [19](multisig.md#calls) | [12](multisig.md#events) | [12](multisig.md#storage-functions) | [0](multisig.md#constants) | [25](multisig.md#errors) |
+| [Nft](nft.md) | [3](nft.md#calls) | [3](nft.md#events) | [7](nft.md#storage-functions) | [2](nft.md#constants) | [20](nft.md#errors) |
 | [Offences](offences.md) | [0](offences.md#calls) | [1](offences.md#events) | [3](offences.md#storage-functions) | [0](offences.md#constants) | [0](offences.md#errors) |
 | [Permissions](permissions.md) | [0](permissions.md#calls) | [0](permissions.md#events) | [0](permissions.md#storage-functions) | [0](permissions.md#constants) | [1](permissions.md#errors) |
 | [Pips](pips.md) | [17](pips.md#calls) | [20](pips.md#events) | [22](pips.md#storage-functions) | [0](pips.md#constants) | [18](pips.md#errors) |
 | [PolymeshCommittee](polymeshcommittee.md) | [5](polymeshcommittee.md#calls) | [10](polymeshcommittee.md#events) | [9](polymeshcommittee.md#storage-functions) | [0](polymeshcommittee.md#constants) | [9](polymeshcommittee.md#errors) |
 | [PolymeshContracts](polymeshcontracts.md) | [3](polymeshcontracts.md#calls) | [0](polymeshcontracts.md#events) | [1](polymeshcontracts.md#storage-functions) | [0](polymeshcontracts.md#constants) | [8](polymeshcontracts.md#errors) |
-| [Portfolio](portfolio.md) | [6](portfolio.md#calls) | [6](portfolio.md#events) | [9](portfolio.md#storage-functions) | [0](portfolio.md#constants) | [10](portfolio.md#errors) |
+| [Portfolio](portfolio.md) | [7](portfolio.md#calls) | [8](portfolio.md#events) | [11](portfolio.md#storage-functions) | [0](portfolio.md#constants) | [15](portfolio.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [ProtocolFee](protocolfee.md) | [2](protocolfee.md#calls) | [3](protocolfee.md#events) | [2](protocolfee.md#storage-functions) | [0](protocolfee.md#constants) | [3](protocolfee.md#errors) |
 | [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
@@ -50,7 +51,7 @@
 | [Rewards](rewards.md) | [2](rewards.md#calls) | [1](rewards.md#events) | [1](rewards.md#storage-functions) | [0](rewards.md#constants) | [4](rewards.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [4](scheduler.md#events) | [2](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [4](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
-| [Settlement](settlement.md) | [21](settlement.md#calls) | [22](settlement.md#events) | [18](settlement.md#storage-functions) | [0](settlement.md#constants) | [30](settlement.md#errors) |
+| [Settlement](settlement.md) | [27](settlement.md#calls) | [23](settlement.md#events) | [19](settlement.md#storage-functions) | [0](settlement.md#constants) | [36](settlement.md#errors) |
 | [Staking](staking.md) | [33](staking.md#calls) | [17](staking.md#events) | [41](staking.md#storage-functions) | [11](staking.md#constants) | [43](staking.md#errors) |
 | [Statistics](statistics.md) | [4](statistics.md#calls) | [6](statistics.md#events) | [5](statistics.md#storage-functions) | [2](statistics.md#constants) | [6](statistics.md#errors) |
 | [Sto](sto.md) | [6](sto.md#calls) | [6](sto.md#events) | [3](sto.md#storage-functions) | [0](sto.md#constants) | [12](sto.md#errors) |

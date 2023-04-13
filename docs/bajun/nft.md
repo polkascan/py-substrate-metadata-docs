@@ -34,7 +34,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'item': 'u128',
+    'item': '[u8; 32]',
 }
 )
 ```
@@ -75,7 +75,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'item': 'u128',
+    'item': '[u8; 32]',
     'maybe_deadline': (None, 'u32'),
 }
 )
@@ -120,7 +120,7 @@ call = substrate.compose_call(
         },
     ),
     'collection': 'u32',
-    'item': 'u128',
+    'item': '[u8; 32]',
 }
 )
 ```
@@ -149,7 +149,7 @@ call = substrate.compose_call(
     'Nft', 'buy_item', {
     'bid_price': 'u128',
     'collection': 'u32',
-    'item': 'u128',
+    'item': '[u8; 32]',
 }
 )
 ```
@@ -190,7 +190,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'item': 'u128',
+    'item': '[u8; 32]',
 }
 )
 ```
@@ -227,7 +227,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'item': 'u128',
+    'item': '[u8; 32]',
     'witness': {
         'account_attributes': 'u32',
     },
@@ -257,7 +257,7 @@ Emits `SwapCancelled` on success.
 call = substrate.compose_call(
     'Nft', 'cancel_swap', {
     'offered_collection': 'u32',
-    'offered_item': 'u128',
+    'offered_item': '[u8; 32]',
 }
 )
 ```
@@ -290,9 +290,9 @@ Emits `SwapClaimed` on success.
 call = substrate.compose_call(
     'Nft', 'claim_swap', {
     'receive_collection': 'u32',
-    'receive_item': 'u128',
+    'receive_item': '[u8; 32]',
     'send_collection': 'u32',
-    'send_item': 'u128',
+    'send_item': '[u8; 32]',
     'witness_price': (
         None,
         {
@@ -332,7 +332,10 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Nft', 'clear_all_transfer_approvals', {'collection': 'u32', 'item': 'u128'}
+    'Nft', 'clear_all_transfer_approvals', {
+    'collection': 'u32',
+    'item': '[u8; 32]',
+}
 )
 ```
 
@@ -367,7 +370,7 @@ call = substrate.compose_call(
     'Nft', 'clear_attribute', {
     'collection': 'u32',
     'key': 'Bytes',
-    'maybe_item': (None, 'u128'),
+    'maybe_item': (None, '[u8; 32]'),
     'namespace': {
         'Account': 'AccountId',
         'CollectionOwner': None,
@@ -428,7 +431,10 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Nft', 'clear_metadata', {'collection': 'u32', 'item': 'u128'}
+    'Nft', 'clear_metadata', {
+    'collection': 'u32',
+    'item': '[u8; 32]',
+}
 )
 ```
 
@@ -524,7 +530,7 @@ call = substrate.compose_call(
     'duration': 'u32',
     'maybe_desired_item': (
         None,
-        'u128',
+        '[u8; 32]',
     ),
     'maybe_price': (
         None,
@@ -537,7 +543,7 @@ call = substrate.compose_call(
         },
     ),
     'offered_collection': 'u32',
-    'offered_item': 'u128',
+    'offered_item': '[u8; 32]',
 }
 )
 ```
@@ -742,7 +748,7 @@ Weight: `O(1)`
 call = substrate.compose_call(
     'Nft', 'force_mint', {
     'collection': 'u32',
-    'item': 'u128',
+    'item': '[u8; 32]',
     'item_config': {'settings': 'u64'},
     'mint_to': {
         'Address20': '[u8; 20]',
@@ -790,7 +796,7 @@ call = substrate.compose_call(
     'Nft', 'force_set_attribute', {
     'collection': 'u32',
     'key': 'Bytes',
-    'maybe_item': (None, 'u128'),
+    'maybe_item': (None, '[u8; 32]'),
     'namespace': {
         'Account': 'AccountId',
         'CollectionOwner': None,
@@ -864,7 +870,7 @@ Weight: `O(1)`
 call = substrate.compose_call(
     'Nft', 'lock_item_properties', {
     'collection': 'u32',
-    'item': 'u128',
+    'item': '[u8; 32]',
     'lock_attributes': 'bool',
     'lock_metadata': 'bool',
 }
@@ -892,7 +898,10 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Nft', 'lock_item_transfer', {'collection': 'u32', 'item': 'u128'}
+    'Nft', 'lock_item_transfer', {
+    'collection': 'u32',
+    'item': '[u8; 32]',
+}
 )
 ```
 
@@ -926,7 +935,7 @@ Weight: `O(1)`
 call = substrate.compose_call(
     'Nft', 'mint', {
     'collection': 'u32',
-    'item': 'u128',
+    'item': '[u8; 32]',
     'mint_to': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -936,7 +945,7 @@ call = substrate.compose_call(
     },
     'witness_data': (
         None,
-        {'owner_of_item': 'u128'},
+        {'owner_of_item': '[u8; 32]'},
     ),
 }
 )
@@ -964,7 +973,7 @@ call = substrate.compose_call(
         {
             'amount': 'u128',
             'collection': 'u32',
-            'item': 'u128',
+            'item': '[u8; 32]',
             'receiver': 'AccountId',
         },
     ],
@@ -1002,7 +1011,7 @@ Weight: `O(items.len())`
 call = substrate.compose_call(
     'Nft', 'redeposit', {
     'collection': 'u32',
-    'items': ['u128'],
+    'items': ['[u8; 32]'],
 }
 )
 ```
@@ -1070,7 +1079,7 @@ call = substrate.compose_call(
     'Nft', 'set_attribute', {
     'collection': 'u32',
     'key': 'Bytes',
-    'maybe_item': (None, 'u128'),
+    'maybe_item': (None, '[u8; 32]'),
     'namespace': {
         'Account': 'AccountId',
         'CollectionOwner': None,
@@ -1170,7 +1179,7 @@ call = substrate.compose_call(
     'Nft', 'set_metadata', {
     'collection': 'u32',
     'data': 'Bytes',
-    'item': 'u128',
+    'item': '[u8; 32]',
 }
 )
 ```
@@ -1201,7 +1210,7 @@ Emits `ItemPriceRemoved` on success if the price is `None`.
 call = substrate.compose_call(
     'Nft', 'set_price', {
     'collection': 'u32',
-    'item': 'u128',
+    'item': '[u8; 32]',
     'price': (None, 'u128'),
     'whitelisted_buyer': (
         None,
@@ -1306,7 +1315,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'item': 'u128',
+    'item': '[u8; 32]',
 }
 )
 ```
@@ -1367,7 +1376,10 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Nft', 'unlock_item_transfer', {'collection': 'u32', 'item': 'u128'}
+    'Nft', 'unlock_item_transfer', {
+    'collection': 'u32',
+    'item': '[u8; 32]',
+}
 )
 ```
 
@@ -1419,7 +1431,7 @@ All approvals of an item got cancelled.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | owner | `T::AccountId` | ```AccountId```
 
 ---------
@@ -1430,7 +1442,7 @@ An approval for a `delegate` account to transfer the `item` of an item
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | owner | `T::AccountId` | ```AccountId```
 | delegate | `T::AccountId` | ```AccountId```
 
@@ -1441,7 +1453,7 @@ Attribute metadata has been cleared for a `collection` or `item`.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| maybe_item | `Option<T::ItemId>` | ```(None, 'u128')```
+| maybe_item | `Option<T::ItemId>` | ```(None, '[u8; 32]')```
 | key | `BoundedVec<u8, T::KeyLimit>` | ```Bytes```
 | namespace | `AttributeNamespace<T::AccountId>` | ```{'Pallet': None, 'CollectionOwner': None, 'ItemOwner': None, 'Account': 'AccountId'}```
 
@@ -1452,7 +1464,7 @@ New attribute metadata has been set for a `collection` or `item`.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| maybe_item | `Option<T::ItemId>` | ```(None, 'u128')```
+| maybe_item | `Option<T::ItemId>` | ```(None, '[u8; 32]')```
 | key | `BoundedVec<u8, T::KeyLimit>` | ```Bytes```
 | value | `BoundedVec<u8, T::ValueLimit>` | ```Bytes```
 | namespace | `AttributeNamespace<T::AccountId>` | ```{'Pallet': None, 'CollectionOwner': None, 'ItemOwner': None, 'Account': 'AccountId'}```
@@ -1464,7 +1476,7 @@ An `item` was destroyed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | owner | `T::AccountId` | ```AccountId```
 
 ---------
@@ -1551,7 +1563,7 @@ An `item` was issued.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | owner | `T::AccountId` | ```AccountId```
 
 ---------
@@ -1561,7 +1573,7 @@ A new approval to modify item attributes was added.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | delegate | `T::AccountId` | ```AccountId```
 
 ---------
@@ -1571,7 +1583,7 @@ A new approval to modify item attributes was removed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | delegate | `T::AccountId` | ```AccountId```
 
 ---------
@@ -1581,7 +1593,7 @@ An item was bought.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | price | `ItemPrice<T, I>` | ```u128```
 | seller | `T::AccountId` | ```AccountId```
 | buyer | `T::AccountId` | ```AccountId```
@@ -1593,7 +1605,7 @@ Metadata has been cleared for an item.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 
 ---------
 ### ItemMetadataSet
@@ -1602,7 +1614,7 @@ New metadata has been set for an item.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | data | `BoundedVec<u8, T::StringLimit>` | ```Bytes```
 
 ---------
@@ -1612,7 +1624,7 @@ The price for the item was removed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 
 ---------
 ### ItemPriceSet
@@ -1621,7 +1633,7 @@ The price was set for the item.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | price | `ItemPrice<T, I>` | ```u128```
 | whitelisted_buyer | `Option<T::AccountId>` | ```(None, 'AccountId')```
 
@@ -1632,7 +1644,7 @@ The price was set for the item.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | lock_metadata | `bool` | ```bool```
 | lock_attributes | `bool` | ```bool```
 
@@ -1643,7 +1655,7 @@ An `item` became non-transferable.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 
 ---------
 ### ItemTransferUnlocked
@@ -1652,7 +1664,7 @@ An `item` became transferable.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 
 ---------
 ### NextCollectionIdIncremented
@@ -1687,7 +1699,7 @@ The deposit for a set of `item`s within a `collection` has been updated.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| successful_items | `Vec<T::ItemId>` | ```['u128']```
+| successful_items | `Vec<T::ItemId>` | ```['[u8; 32]']```
 
 ---------
 ### SwapCancelled
@@ -1696,9 +1708,9 @@ The swap was cancelled.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | offered_collection | `T::CollectionId` | ```u32```
-| offered_item | `T::ItemId` | ```u128```
+| offered_item | `T::ItemId` | ```[u8; 32]```
 | desired_collection | `T::CollectionId` | ```u32```
-| desired_item | `Option<T::ItemId>` | ```(None, 'u128')```
+| desired_item | `Option<T::ItemId>` | ```(None, '[u8; 32]')```
 | price | `Option<PriceWithDirection<ItemPrice<T, I>>>` | ```(None, {'amount': 'u128', 'direction': ('Send', 'Receive')})```
 | deadline | `<T as SystemConfig>::BlockNumber` | ```u32```
 
@@ -1709,10 +1721,10 @@ The swap has been claimed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sent_collection | `T::CollectionId` | ```u32```
-| sent_item | `T::ItemId` | ```u128```
+| sent_item | `T::ItemId` | ```[u8; 32]```
 | sent_item_owner | `T::AccountId` | ```AccountId```
 | received_collection | `T::CollectionId` | ```u32```
-| received_item | `T::ItemId` | ```u128```
+| received_item | `T::ItemId` | ```[u8; 32]```
 | received_item_owner | `T::AccountId` | ```AccountId```
 | price | `Option<PriceWithDirection<ItemPrice<T, I>>>` | ```(None, {'amount': 'u128', 'direction': ('Send', 'Receive')})```
 | deadline | `<T as SystemConfig>::BlockNumber` | ```u32```
@@ -1724,9 +1736,9 @@ An `item` swap intent was created.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | offered_collection | `T::CollectionId` | ```u32```
-| offered_item | `T::ItemId` | ```u128```
+| offered_item | `T::ItemId` | ```[u8; 32]```
 | desired_collection | `T::CollectionId` | ```u32```
-| desired_item | `Option<T::ItemId>` | ```(None, 'u128')```
+| desired_item | `Option<T::ItemId>` | ```(None, '[u8; 32]')```
 | price | `Option<PriceWithDirection<ItemPrice<T, I>>>` | ```(None, {'amount': 'u128', 'direction': ('Send', 'Receive')})```
 | deadline | `<T as SystemConfig>::BlockNumber` | ```u32```
 
@@ -1748,7 +1760,7 @@ A tip was sent.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | sender | `T::AccountId` | ```AccountId```
 | receiver | `T::AccountId` | ```AccountId```
 | amount | `DepositBalanceOf<T, I>` | ```u128```
@@ -1761,7 +1773,7 @@ a `delegate`.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | owner | `T::AccountId` | ```AccountId```
 | delegate | `T::AccountId` | ```AccountId```
 | deadline | `Option<<T as SystemConfig>::BlockNumber>` | ```(None, 'u32')```
@@ -1773,7 +1785,7 @@ An `item` was transferred.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| item | `T::ItemId` | ```u128```
+| item | `T::ItemId` | ```[u8; 32]```
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
 
@@ -1788,7 +1800,7 @@ An `item` was transferred.
 #### Python
 ```python
 result = substrate.query(
-    'Nft', 'Account', ['AccountId', 'u32', 'u128']
+    'Nft', 'Account', ['AccountId', 'u32', '[u8; 32]']
 )
 ```
 
@@ -1805,7 +1817,7 @@ result = substrate.query(
 result = substrate.query(
     'Nft', 'Attribute', [
     'u32',
-    (None, 'u128'),
+    (None, '[u8; 32]'),
     {
         'Account': 'AccountId',
         'CollectionOwner': None,
@@ -1921,14 +1933,14 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Nft', 'Item', ['u32', 'u128']
+    'Nft', 'Item', ['u32', '[u8; 32]']
 )
 ```
 
 #### Return value
 ```python
 {
-    'approvals': 'scale_info::441',
+    'approvals': 'scale_info::429',
     'deposit': {'account': 'AccountId', 'amount': 'u128'},
     'owner': 'AccountId',
 }
@@ -1940,13 +1952,13 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Nft', 'ItemAttributesApprovalsOf', ['u32', 'u128']
+    'Nft', 'ItemAttributesApprovalsOf', ['u32', '[u8; 32]']
 )
 ```
 
 #### Return value
 ```python
-'scale_info::451'
+'scale_info::439'
 ```
 ---------
 ### ItemConfigOf
@@ -1955,7 +1967,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Nft', 'ItemConfigOf', ['u32', 'u128']
+    'Nft', 'ItemConfigOf', ['u32', '[u8; 32]']
 )
 ```
 
@@ -1970,7 +1982,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Nft', 'ItemMetadataOf', ['u32', 'u128']
+    'Nft', 'ItemMetadataOf', ['u32', '[u8; 32]']
 )
 ```
 
@@ -1985,7 +1997,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Nft', 'ItemPriceOf', ['u32', 'u128']
+    'Nft', 'ItemPriceOf', ['u32', '[u8; 32]']
 )
 ```
 
@@ -2031,7 +2043,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Nft', 'PendingSwapOf', ['u32', 'u128']
+    'Nft', 'PendingSwapOf', ['u32', '[u8; 32]']
 )
 ```
 
@@ -2040,7 +2052,7 @@ result = substrate.query(
 {
     'deadline': 'u32',
     'desired_collection': 'u32',
-    'desired_item': (None, 'u128'),
+    'desired_item': (None, '[u8; 32]'),
     'price': (None, {'amount': 'u128', 'direction': ('Send', 'Receive')}),
 }
 ```

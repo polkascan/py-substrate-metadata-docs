@@ -156,7 +156,7 @@ Require signed leader origin or the root (to fill opening for the leader positio
 call = substrate.compose_call(
     'OperationsWorkingGroupAlpha', 'fill_opening', {
     'opening_id': 'u64',
-    'successful_application_ids': 'scale_info::83',
+    'successful_application_ids': 'scale_info::84',
 }
 )
 ```
@@ -662,8 +662,8 @@ Params:
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `OpeningId` | ```u64```
-| None | `ApplicationIdToWorkerIdMap` | ```scale_info::213```
-| None | `BTreeSet<ApplicationId>` | ```scale_info::83```
+| None | `ApplicationIdToWorkerIdMap` | ```scale_info::214```
+| None | `BTreeSet<ApplicationId>` | ```scale_info::84```
 
 ---------
 ### RewardPaid

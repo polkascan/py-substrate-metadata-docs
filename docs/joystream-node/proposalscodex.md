@@ -200,7 +200,6 @@ call = substrate.compose_call(
                         'ipfs_content_id': 'Bytes',
                         'size': 'u64',
                     },
-                    'uploader_account': 'AccountId',
                 },
             ),
         },
@@ -245,7 +244,7 @@ Params:
 | -------- | -------- | -------- |
 | None | `ProposalId` | ```u32```
 | None | `GeneralProposalParameters` | ```{'member_id': 'u64', 'title': 'Bytes', 'description': 'Bytes', 'staking_account_id': (None, 'AccountId'), 'exact_execution_block': (None, 'u32')}```
-| None | `ProposalDetailsOf` | ```{'Signal': 'Bytes', 'RuntimeUpgrade': 'Bytes', 'FundingRequest': [{'account': 'AccountId', 'amount': 'u128'}], 'SetMaxValidatorCount': 'u32', 'CreateWorkingGroupLeadOpening': {'description': 'Bytes', 'stake_policy': {'stake_amount': 'u128', 'leaving_unstaking_period': 'u32'}, 'reward_per_block': (None, 'u128'), 'group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'FillWorkingGroupLeadOpening': {'opening_id': 'u64', 'application_id': 'u64', 'working_group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'UpdateWorkingGroupBudget': ('u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership'), ('Positive', 'Negative')), 'DecreaseWorkingGroupLeadStake': ('u64', 'u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SlashWorkingGroupLead': ('u64', 'u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SetWorkingGroupLeadReward': ('u64', (None, 'u128'), ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'TerminateWorkingGroupLead': {'worker_id': 'u64', 'slashing_amount': (None, 'u128'), 'group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'AmendConstitution': 'Bytes', 'CancelWorkingGroupLeadOpening': ('u64', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SetMembershipPrice': 'u128', 'SetCouncilBudgetIncrement': 'u128', 'SetCouncilorReward': 'u128', 'SetInitialInvitationBalance': 'u128', 'SetInitialInvitationCount': 'u32', 'SetMembershipLeadInvitationQuota': 'u32', 'SetReferralCut': 'u8', 'VetoProposal': 'u32', 'UpdateGlobalNftLimit': (('Daily', 'Weekly'), 'u64'), 'UpdateChannelPayouts': {'commitment': (None, '[u8; 32]'), 'payload': (None, {'uploader_account': 'AccountId', 'object_creation_params': {'size': 'u64', 'ipfs_content_id': 'Bytes'}, 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}), 'min_cashout_allowed': (None, 'u128'), 'max_cashout_allowed': (None, 'u128'), 'channel_cashouts_enabled': (None, 'bool')}}```
+| None | `ProposalDetailsOf` | ```{'Signal': 'Bytes', 'RuntimeUpgrade': 'Bytes', 'FundingRequest': [{'account': 'AccountId', 'amount': 'u128'}], 'SetMaxValidatorCount': 'u32', 'CreateWorkingGroupLeadOpening': {'description': 'Bytes', 'stake_policy': {'stake_amount': 'u128', 'leaving_unstaking_period': 'u32'}, 'reward_per_block': (None, 'u128'), 'group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'FillWorkingGroupLeadOpening': {'opening_id': 'u64', 'application_id': 'u64', 'working_group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'UpdateWorkingGroupBudget': ('u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership'), ('Positive', 'Negative')), 'DecreaseWorkingGroupLeadStake': ('u64', 'u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SlashWorkingGroupLead': ('u64', 'u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SetWorkingGroupLeadReward': ('u64', (None, 'u128'), ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'TerminateWorkingGroupLead': {'worker_id': 'u64', 'slashing_amount': (None, 'u128'), 'group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'AmendConstitution': 'Bytes', 'CancelWorkingGroupLeadOpening': ('u64', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SetMembershipPrice': 'u128', 'SetCouncilBudgetIncrement': 'u128', 'SetCouncilorReward': 'u128', 'SetInitialInvitationBalance': 'u128', 'SetInitialInvitationCount': 'u32', 'SetMembershipLeadInvitationQuota': 'u32', 'SetReferralCut': 'u8', 'VetoProposal': 'u32', 'UpdateGlobalNftLimit': (('Daily', 'Weekly'), 'u64'), 'UpdateChannelPayouts': {'commitment': (None, '[u8; 32]'), 'payload': (None, {'object_creation_params': {'size': 'u64', 'ipfs_content_id': 'Bytes'}, 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}), 'min_cashout_allowed': (None, 'u128'), 'max_cashout_allowed': (None, 'u128'), 'channel_cashouts_enabled': (None, 'bool')}}```
 | None | `ThreadId` | ```u64```
 
 ---------
@@ -419,7 +418,7 @@ constant = substrate.get_constant('ProposalsCodex', 'FundingRequestProposalParam
 {
     'approval_quorum_percentage': 100,
     'approval_threshold_percentage': 100,
-    'constitutionality': 4,
+    'constitutionality': 2,
     'grace_period': 72000,
     'required_stake': 1666666666660000,
     'slashing_quorum_percentage': 100,
@@ -439,7 +438,7 @@ constant = substrate.get_constant('ProposalsCodex', 'RuntimeUpgradeProposalParam
 {
     'approval_quorum_percentage': 100,
     'approval_threshold_percentage': 100,
-    'constitutionality': 3,
+    'constitutionality': 2,
     'grace_period': 72000,
     'required_stake': 333333333332000,
     'slashing_quorum_percentage': 100,
@@ -529,7 +528,7 @@ constant = substrate.get_constant('ProposalsCodex', 'SetMaxValidatorCountProposa
 {
     'approval_quorum_percentage': 100,
     'approval_threshold_percentage': 100,
-    'constitutionality': 3,
+    'constitutionality': 2,
     'grace_period': 72000,
     'required_stake': 1666666666660000,
     'slashing_quorum_percentage': 100,

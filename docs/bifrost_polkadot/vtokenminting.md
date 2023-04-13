@@ -1621,6 +1621,13 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### FastRedeemFailed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| err | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+
+---------
 ### FeeSet
 Several fees has been set.
 #### Attributes

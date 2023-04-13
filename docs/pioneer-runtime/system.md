@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -749,6 +749,7 @@ result = substrate.query(
             'Nft': {
                 'BurnedNft': ('u32', 'u64'),
                 'ClassFundsWithdrawn': 'u32',
+                'ClassRoyaltyFeeUpdated': ('u32', 'u32'),
                 'ClassTotalIssuanceUpdated': ('u32', 'u64'),
                 'CollectionLocked': 'u32',
                 'CollectionUnlocked': 'u32',
@@ -763,6 +764,7 @@ result = substrate.query(
                 'NewNftClassCreated': ('AccountId', 'u32'),
                 'NewNftCollectionCreated': 'u64',
                 'NewNftMinted': (('u32', 'u64'), ('u32', 'u64'), 'AccountId', 'u32', 'u32', 'u64'),
+                'NewStackableNftMinted': ('AccountId', 'u32', 'u64', 'u128'),
                 'NewTimeCapsuleMinted': (
                     ('u32', 'u64'),
                     'AccountId',
@@ -780,6 +782,12 @@ result = substrate.query(
                     'AccountId',
                     'u64',
                     ('u32', 'u64'),
+                ),
+                'TransferedStackableNft': (
+                    'AccountId',
+                    'AccountId',
+                    ('u32', 'u64'),
+                    'u128',
                 ),
             },
             'OracleMembership': (
@@ -879,11 +887,14 @@ result = substrate.query(
                 'RewardCampaignCanceled': 'u32',
                 'RewardCampaignClosed': 'u32',
                 'RewardCampaignEnded': 'u32',
+                'RewardCampaignRootClosed': 'u32',
                 'RewardClaimed': ('u32', 'AccountId', 'u128'),
                 'SetNftReward': ('u32', [('AccountId', [('u32', 'u64')])]),
+                'SetNftRewardRoot': ('u32', '[u8; 32]'),
                 'SetReward': ('u32', [('AccountId', 'u128')]),
                 'SetRewardOriginAdded': 'AccountId',
                 'SetRewardOriginRemoved': 'AccountId',
+                'SetRewardRoot': ('u32', 'u128', '[u8; 32]'),
             },
             'RewardOracle': {
                 'NewFeedData': {
@@ -905,6 +916,7 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -915,13 +927,6 @@ result = substrate.query(
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::31'},
-                'SudoAsDone': {'sudo_result': 'scale_info::31'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -952,6 +957,19 @@ result = substrate.query(
                     'voted': 'bool',
                     'yes': 'u32',
                 },
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            None: None,
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::31'},
+                'SudoAsDone': {'sudo_result': 'scale_info::31'},
             },
             'Tokens': {
                 'BalanceSet': {
@@ -1022,13 +1040,6 @@ result = substrate.query(
                 'Withdrawn': {
                     'amount': 'u128',
                     'currency_id': 'scale_info::44',
-                    'who': 'AccountId',
-                },
-            },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
                     'who': 'AccountId',
                 },
             },
@@ -1340,7 +1351,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'pioneer-runtime',
     'impl_version': 0,
     'spec_name': 'pioneer-runtime',
-    'spec_version': 17,
+    'spec_version': 19,
     'state_version': 0,
     'transaction_version': 1,
 }

@@ -1138,7 +1138,7 @@ constant = substrate.get_constant('Democracy', 'CooloffPeriod')
  where they are on the losing side of a vote.
 #### Value
 ```python
-21600
+50400
 ```
 #### Python
 ```python
@@ -1209,7 +1209,7 @@ constant = substrate.get_constant('Democracy', 'MaxVotes')
  The minimum amount to be used as a deposit for a public referendum proposal.
 #### Value
 ```python
-100000000000000000000
+10000000000000000000000
 ```
 #### Python
 ```python
@@ -1234,7 +1234,7 @@ constant = substrate.get_constant('Democracy', 'PreimageByteDeposit')
  those successful voters are locked into the consequences that their votes entail.
 #### Value
 ```python
-21600
+50400
 ```
 #### Python
 ```python

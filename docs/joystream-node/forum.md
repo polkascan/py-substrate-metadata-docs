@@ -166,7 +166,7 @@ where the last bool is whether you want to hide it apart from deleting it
 call = substrate.compose_call(
     'Forum', 'delete_posts', {
     'forum_user_id': 'u64',
-    'posts': 'scale_info::80',
+    'posts': 'scale_info::81',
     'rationale': 'Bytes',
 }
 )
@@ -411,7 +411,7 @@ call = substrate.compose_call(
         'Moderator': 'u64',
     },
     'category_id': 'u64',
-    'stickied_ids': 'scale_info::83',
+    'stickied_ids': 'scale_info::84',
 }
 )
 ```
@@ -608,7 +608,7 @@ Sticky thread updated for category
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CategoryId` | ```u64```
-| None | `BTreeSet<ThreadId>` | ```scale_info::83```
+| None | `BTreeSet<ThreadId>` | ```scale_info::84```
 | None | `PrivilegedActor` | ```{'Lead': None, 'Moderator': 'u64'}```
 
 ---------
@@ -643,7 +643,7 @@ Post with givne id was deleted.
 | -------- | -------- | -------- |
 | None | `Vec<u8>` | ```Bytes```
 | None | `ForumUserId` | ```u64```
-| None | `BTreeMap<ExtendedPostId, bool>` | ```scale_info::80```
+| None | `BTreeMap<ExtendedPostId, bool>` | ```scale_info::81```
 
 ---------
 ### PostModerated
@@ -763,7 +763,7 @@ result = substrate.query(
     'num_direct_subcategories': 'u32',
     'num_direct_threads': 'u32',
     'parent_category_id': (None, 'u64'),
-    'sticky_thread_ids': 'scale_info::83',
+    'sticky_thread_ids': 'scale_info::84',
     'title_hash': '[u8; 32]',
 }
 ```

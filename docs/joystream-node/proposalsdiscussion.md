@@ -61,7 +61,7 @@ call = substrate.compose_call(
     'ProposalsDiscussion', 'change_thread_mode', {
     'member_id': 'u64',
     'mode': {
-        'Closed': 'scale_info::83',
+        'Closed': 'scale_info::84',
         'Open': None,
     },
     'thread_id': 'u64',
@@ -184,7 +184,7 @@ Emits on thread mode change.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `ThreadId` | ```u64```
-| None | `ThreadMode<BTreeSet<MemberId>>` | ```{'Open': None, 'Closed': 'scale_info::83'}```
+| None | `ThreadMode<BTreeSet<MemberId>>` | ```{'Open': None, 'Closed': 'scale_info::84'}```
 | None | `MemberId` | ```u64```
 
 ---------
@@ -243,7 +243,7 @@ result = substrate.query(
 {
     'activated_at': 'u32',
     'author_id': 'u64',
-    'mode': {'Closed': 'scale_info::83', 'Open': None},
+    'mode': {'Closed': 'scale_info::84', 'Open': None},
 }
 ```
 ---------

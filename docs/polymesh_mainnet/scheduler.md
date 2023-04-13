@@ -228,11 +228,11 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'PolymeshCommittee': ('Endorsed', ),
                 'TechnicalCommittee': ('Endorsed', ),
                 'UpgradeCommittee': ('Endorsed', ),
                 'Void': (),
-                None: None,
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',

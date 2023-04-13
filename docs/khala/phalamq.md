@@ -63,9 +63,9 @@ call = substrate.compose_call(
                 'Gatekeeper': None,
                 'MultiLocation': 'Bytes',
                 'Pallet': 'Bytes',
+                None: None,
                 'Reserved': None,
                 'Worker': '[u8; 32]',
-                None: None,
             },
         },
         'sequence': 'u64',
@@ -87,8 +87,8 @@ call = substrate.compose_call(
 result = substrate.query(
     'PhalaMq', 'OffchainIngress', [
     {
-        None: None,
         'AccountId': '[u8; 32]',
+        None: None,
         'Cluster': '[u8; 32]',
         'Contract': '[u8; 32]',
         'Gatekeeper': None,
@@ -125,11 +125,11 @@ result = substrate.query(
         'destination': 'Bytes',
         'payload': 'Bytes',
         'sender': {
+            None: None,
             'AccountId': '[u8; 32]',
             'Cluster': '[u8; 32]',
             'Contract': '[u8; 32]',
             'Gatekeeper': None,
-            None: None,
             'MultiLocation': 'Bytes',
             'Pallet': 'Bytes',
             'Reserved': None,
@@ -161,9 +161,9 @@ result = substrate.query(
             'Gatekeeper': None,
             'MultiLocation': 'Bytes',
             'Pallet': 'Bytes',
-            None: None,
             'Reserved': None,
             'Worker': '[u8; 32]',
+            None: None,
         },
     },
 ]

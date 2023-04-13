@@ -244,10 +244,12 @@ result = substrate.query(
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'Ethereum': {'EthereumTransaction': '[u8; 20]'},
+                'Void': (),
+                None: None,
                 'MessageTransact': {'MessageTransact': '[u8; 20]'},
                 'PolkadotXcm': {
-                    'Response': 'scale_info::83',
-                    'Xcm': 'scale_info::83',
+                    'Response': 'scale_info::86',
+                    'Xcm': 'scale_info::86',
                 },
                 'TechnicalCommittee': {
                     'Member': '[u8; 20]',
@@ -255,8 +257,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
-                None: None,
-                'Void': (),
             },
             'priority': 'u8',
         },

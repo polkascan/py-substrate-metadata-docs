@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | calamari     |
 | Implementation name     | calamari     |
-| Spec version     | 4030     |
+| Spec version     | 4050     |
 | SS58 Format     | 78     |
 | Token symbol      | KMA     |
 | Token decimals      | 12     |
@@ -30,6 +30,7 @@
 | [Democracy](democracy.md) | [25](democracy.md#calls) | [20](democracy.md#events) | [13](democracy.md#storage-functions) | [11](democracy.md#constants) | [29](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [MantaPay](mantapay.md) | [4](mantapay.md#calls) | [4](mantapay.md#events) | [7](mantapay.md#storage-functions) | [0](mantapay.md#constants) | [40](mantapay.md#errors) |
+| [MantaSbt](mantasbt.md) | [6](mantasbt.md#calls) | [6](mantasbt.md#events) | [10](mantasbt.md#storage-functions) | [4](mantasbt.md#constants) | [50](mantasbt.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [2](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainStaking](parachainstaking.md) | [26](parachainstaking.md#calls) | [33](parachainstaking.md#events) | [18](parachainstaking.md#storage-functions) | [19](parachainstaking.md#constants) | [45](parachainstaking.md#errors) |

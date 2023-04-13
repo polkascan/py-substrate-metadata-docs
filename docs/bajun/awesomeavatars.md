@@ -43,6 +43,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### fix_variation
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| avatar_id | `AvatarIdOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'fix_variation', {'avatar_id': '[u8; 32]'}
+)
+```
+
+---------
 ### forge
 Forge an avatar.
 
@@ -116,6 +130,38 @@ call = substrate.compose_call(
 ```
 
 ---------
+### prepare_avatar
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| avatar_id | `AvatarIdOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'prepare_avatar', {'avatar_id': '[u8; 32]'}
+)
+```
+
+---------
+### prepare_ipfs
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| avatar_id | `AvatarIdOf<T>` | 
+| url | `IpfsUrl` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'prepare_ipfs', {
+    'avatar_id': '[u8; 32]',
+    'url': 'Bytes',
+}
+)
+```
+
+---------
 ### remove_price
 Remove the price of a given avatar.
 
@@ -133,6 +179,20 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'AwesomeAvatars', 'remove_price', {'avatar_id': '[u8; 32]'}
+)
+```
+
+---------
+### set_collection_id
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| collection_id | `CollectionIdOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'set_collection_id', {'collection_id': 'u32'}
 )
 ```
 
@@ -265,6 +325,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_service_account
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| service_account | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'set_service_account', {'service_account': 'AccountId'}
+)
+```
+
+---------
 ### set_treasurer
 Set treasurer.
 
@@ -344,6 +418,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### unprepare_avatar
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| avatar_id | `AvatarIdOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AwesomeAvatars', 'unprepare_avatar', {'avatar_id': '[u8; 32]'}
+)
+```
+
+---------
 ### update_global_config
 Update global configuration.
 
@@ -375,6 +463,10 @@ call = substrate.compose_call(
             },
             'free_mint_fee_multiplier': 'u16',
             'open': 'bool',
+        },
+        'nft_transfer': {
+            'open': 'bool',
+            'prepare_fee': 'u128',
         },
         'trade': {
             'min_fee': 'u128',
@@ -428,7 +520,6 @@ Avatar locked.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
-| asset_id | `AssetIdOf<T>` | ```u128```
 
 ---------
 ### AvatarPriceSet
@@ -484,6 +575,14 @@ Avatars minted.
 | avatar_ids | `Vec<AvatarIdOf<T>>` | ```['[u8; 32]']```
 
 ---------
+### CollectionIdSet
+A collection ID has been set.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| collection_id | `CollectionIdOf<T>` | ```u32```
+
+---------
 ### FreeMintsSet
 Free mints set for target account.
 #### Attributes
@@ -511,6 +610,22 @@ An organizer has been set.
 | organizer | `T::AccountId` | ```AccountId```
 
 ---------
+### PreparedAvatar
+Avatar prepared.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+
+---------
+### PreparedIpfsUrl
+IPFS URL prepared.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| url | `IpfsUrl` | ```Bytes```
+
+---------
 ### SeasonFinished
 A season has finished.
 #### Attributes
@@ -525,6 +640,14 @@ A season has started.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `SeasonId` | ```u16```
+
+---------
+### ServiceAccountSet
+A service account has been set.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| service_account | `T::AccountId` | ```AccountId```
 
 ---------
 ### StorageTierUpgraded
@@ -552,12 +675,20 @@ A season&\#x27;s treasury has been claimed by a treasurer.
 | amount | `BalanceOf<T>` | ```u128```
 
 ---------
+### UnpreparedAvatar
+Avatar unprepared.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+
+---------
 ### UpdatedGlobalConfig
 Global configuration updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `GlobalConfigOf<T>` | ```{'mint': {'open': 'bool', 'fees': {'one': 'u128', 'three': 'u128', 'six': 'u128'}, 'cooldown': 'u32', 'free_mint_fee_multiplier': 'u16'}, 'forge': {'open': 'bool'}, 'transfer': {'open': 'bool', 'free_mint_transfer_fee': 'u16', 'min_free_mint_transfer': 'u16', 'avatar_transfer_fee': 'u128'}, 'trade': {'open': 'bool', 'min_fee': 'u128', 'percent_fee': 'u8'}, 'account': {'storage_upgrade_fee': 'u128'}}```
+| None | `GlobalConfigOf<T>` | ```{'mint': {'open': 'bool', 'fees': {'one': 'u128', 'three': 'u128', 'six': 'u128'}, 'cooldown': 'u32', 'free_mint_fee_multiplier': 'u16'}, 'forge': {'open': 'bool'}, 'transfer': {'open': 'bool', 'free_mint_transfer_fee': 'u16', 'min_free_mint_transfer': 'u16', 'avatar_transfer_fee': 'u128'}, 'trade': {'open': 'bool', 'min_fee': 'u128', 'percent_fee': 'u8'}, 'account': {'storage_upgrade_fee': 'u128'}, 'nft_transfer': {'open': 'bool', 'prepare_fee': 'u128'}}```
 
 ---------
 ### UpdatedSeason
@@ -589,16 +720,16 @@ result = substrate.query(
         'forge': {
             'first': 'u32',
             'last': 'u32',
-            'seasons_participated': 'scale_info::425',
+            'seasons_participated': 'scale_info::413',
         },
         'mint': {
             'first': 'u32',
             'last': 'u32',
-            'seasons_participated': 'scale_info::425',
+            'seasons_participated': 'scale_info::413',
         },
         'trade': {'bought': 'u32', 'sold': 'u32'},
     },
-    'storage_tier': ('One', 'Two', 'Three', 'Four'),
+    'storage_tier': ('One', 'Two', 'Three', 'Four', 'Five', 'Max'),
 }
 ```
 ---------
@@ -614,6 +745,20 @@ result = substrate.query(
 #### Return value
 ```python
 ('AccountId', {'dna': 'Bytes', 'season_id': 'u16', 'souls': 'u32'})
+```
+---------
+### CollectionId
+
+#### Python
+```python
+result = substrate.query(
+    'AwesomeAvatars', 'CollectionId', []
+)
+```
+
+#### Return value
+```python
+'u32'
 ```
 ---------
 ### CurrentSeasonId
@@ -670,6 +815,7 @@ result = substrate.query(
         'free_mint_fee_multiplier': 'u16',
         'open': 'bool',
     },
+    'nft_transfer': {'open': 'bool', 'prepare_fee': 'u128'},
     'trade': {'min_fee': 'u128', 'open': 'bool', 'percent_fee': 'u8'},
     'transfer': {
         'avatar_transfer_fee': 'u128',
@@ -691,7 +837,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'u128'
+()
 ```
 ---------
 ### Organizer
@@ -720,6 +866,20 @@ result = substrate.query(
 #### Return value
 ```python
 ['[u8; 32]']
+```
+---------
+### Preparation
+
+#### Python
+```python
+result = substrate.query(
+    'AwesomeAvatars', 'Preparation', ['[u8; 32]']
+)
+```
+
+#### Return value
+```python
+'Bytes'
 ```
 ---------
 ### SeasonStats
@@ -768,6 +928,20 @@ result = substrate.query(
 }
 ```
 ---------
+### ServiceAccount
+
+#### Python
+```python
+result = substrate.query(
+    'AwesomeAvatars', 'ServiceAccount', []
+)
+```
+
+#### Return value
+```python
+'AccountId'
+```
+---------
 ### Trade
 
 #### Python
@@ -813,14 +987,14 @@ result = substrate.query(
 ## Constants
 
 ---------
-### NftCollectionId
+### PalletId
 #### Value
 ```python
-0
+'0x616a2f6161617472'
 ```
 #### Python
 ```python
-constant = substrate.get_constant('AwesomeAvatars', 'NftCollectionId')
+constant = substrate.get_constant('AwesomeAvatars', 'PalletId')
 ```
 ---------
 ## Errors
@@ -828,6 +1002,10 @@ constant = substrate.get_constant('AwesomeAvatars', 'NftCollectionId')
 ---------
 ### AlreadyOwned
 Attempt to buy his or her own avatar.
+
+---------
+### AlreadyPrepared
+Tried to prepare an already prepared avatar.
 
 ---------
 ### AvatarInTrade
@@ -854,6 +1032,10 @@ Tried claiming treasury which is zero.
 Tried transferring to his or her own account.
 
 ---------
+### CollectionIdNotSet
+There is no collection ID set for NFT handler.
+
+---------
 ### DuplicatedRarityTier
 Some rarity tier are duplicated.
 
@@ -866,6 +1048,10 @@ The season starts before the previous season has ended.
 The season season start later than its early access
 
 ---------
+### EmptyIpfsUrl
+Tried to prepare an IPFS URL for an avatar with an empty URL.
+
+---------
 ### ForgeClosed
 Forging is not available at the moment.
 
@@ -876,6 +1062,10 @@ Incorrect Avatar ID.
 ---------
 ### IncorrectAvatarSeason
 Tried to forge avatars from different seasons.
+
+---------
+### IncorrectData
+Incorrect data.
 
 ---------
 ### IncorrectDna
@@ -930,8 +1120,20 @@ Minting is not available at the moment.
 The player must wait cooldown period.
 
 ---------
+### NftTransferClosed
+NFT transfer is not available at the moment.
+
+---------
+### NoServiceAccount
+No service account has been set.
+
+---------
 ### NonSequentialSeasonId
 The season ID of a season to create is not sequential.
+
+---------
+### NotPrepared
+Tried to prepare an IPFS URL for an avatar, that is not yet prepared.
 
 ---------
 ### OrganizerNotSet
@@ -970,6 +1172,10 @@ The season start date is newer than its end date.
 Less than minimum allowed sacrifices are used for forging.
 
 ---------
+### TooLowFees
+Attempt to set fees lower than the existential deposit amount.
+
+---------
 ### TooLowFreeMints
 Attempt to transfer, issue or withdraw free mints lower than the minimum allowed.
 
@@ -997,6 +1203,10 @@ The avatar doesn&\#x27;t exist.
 ---------
 ### UnknownAvatarForSale
 The avatar for sale doesn&\#x27;t exist.
+
+---------
+### UnknownPreparation
+The preparation doesn&\#x27;t exist.
 
 ---------
 ### UnknownSeason

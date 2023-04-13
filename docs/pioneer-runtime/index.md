@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | pioneer-runtime     |
 | Implementation name     | pioneer-runtime     |
-| Spec version     | 17     |
+| Spec version     | 19     |
 | SS58 Format     | 268     |
 | Token symbol      | NEER     |
 | Token decimals      | 18     |
@@ -30,15 +30,15 @@
 | [Currencies](currencies.md) | [3](currencies.md#calls) | [4](currencies.md#events) | [0](currencies.md#storage-functions) | [1](currencies.md#constants) | [10](currencies.md#errors) |
 | [Democracy](democracy.md) | [25](democracy.md#calls) | [20](democracy.md#events) | [13](democracy.md#storage-functions) | [11](democracy.md#constants) | [29](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
-| [Economy](economy.md) | [7](economy.md#calls) | [9](economy.md#events) | [8](economy.md#storage-functions) | [4](economy.md#constants) | [18](economy.md#errors) |
+| [Economy](economy.md) | [9](economy.md#calls) | [9](economy.md#events) | [9](economy.md#storage-functions) | [5](economy.md#constants) | [24](economy.md#errors) |
 | [Emergency](emergency.md) | [4](emergency.md#calls) | [4](emergency.md#events) | [2](emergency.md#storage-functions) | [0](emergency.md#constants) | [4](emergency.md#errors) |
 | [Estate](estate.md) | [23](estate.md#calls) | [25](estate.md#events) | [15](estate.md#storage-functions) | [9](estate.md#constants) | [44](estate.md#errors) |
 | [Metaverse](metaverse.md) | [7](metaverse.md#calls) | [12](metaverse.md#events) | [10](metaverse.md#storage-functions) | [3](metaverse.md#constants) | [18](metaverse.md#errors) |
 | [Mining](mining.md) | [10](mining.md#calls) | [13](mining.md#events) | [5](mining.md#storage-functions) | [1](mining.md#constants) | [11](mining.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [2](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
-| [Nft](nft.md) | [15](nft.md#calls) | [17](nft.md#events) | [8](nft.md#storage-functions) | [8](nft.md#constants) | [31](nft.md#errors) |
+| [Nft](nft.md) | [18](nft.md#calls) | [20](nft.md#events) | [8](nft.md#storage-functions) | [8](nft.md#constants) | [34](nft.md#errors) |
 | [OracleMembership](oraclemembership.md) | [7](oraclemembership.md#calls) | [6](oraclemembership.md#events) | [2](oraclemembership.md#storage-functions) | [0](oraclemembership.md#constants) | [3](oraclemembership.md#errors) |
-| [OrmlNFT](ormlnft.md) | [0](ormlnft.md#calls) | [0](ormlnft.md#events) | [5](ormlnft.md#storage-functions) | [0](ormlnft.md#constants) | [7](ormlnft.md#errors) |
+| [OrmlNFT](ormlnft.md) | [0](ormlnft.md#calls) | [0](ormlnft.md#events) | [7](ormlnft.md#storage-functions) | [0](ormlnft.md#constants) | [12](ormlnft.md#errors) |
 | [OrmlXcm](ormlxcm.md) | [1](ormlxcm.md#calls) | [1](ormlxcm.md#events) | [0](ormlxcm.md#storage-functions) | [0](ormlxcm.md#constants) | [3](ormlxcm.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
@@ -46,7 +46,7 @@
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
-| [Reward](reward.md) | [12](reward.md#calls) | [10](reward.md#events) | [4](reward.md#storage-functions) | [7](reward.md#constants) | [23](reward.md#errors) |
+| [Reward](reward.md) | [16](reward.md#calls) | [13](reward.md#events) | [6](reward.md#storage-functions) | [8](reward.md#constants) | [28](reward.md#errors) |
 | [RewardOracle](rewardoracle.md) | [1](rewardoracle.md#calls) | [1](rewardoracle.md#events) | [3](rewardoracle.md#storage-functions) | [2](rewardoracle.md#constants) | [2](rewardoracle.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [4](scheduler.md#events) | [2](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [4](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |

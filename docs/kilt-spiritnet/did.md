@@ -144,7 +144,7 @@ call = substrate.compose_call(
                 'Sr25519': '[u8; 32]',
             },
         ),
-        'new_key_agreement_keys': 'scale_info::273',
+        'new_key_agreement_keys': 'scale_info::280',
         'new_service_details': [
             {
                 'id': 'Bytes',
@@ -601,9 +601,9 @@ result = substrate.query(
     'authentication_key': '[u8; 32]',
     'delegation_key': (None, '[u8; 32]'),
     'deposit': {'amount': 'u128', 'owner': 'AccountId'},
-    'key_agreement_keys': 'scale_info::405',
+    'key_agreement_keys': 'scale_info::410',
     'last_tx_counter': 'u64',
-    'public_keys': 'scale_info::414',
+    'public_keys': 'scale_info::419',
 }
 ```
 ---------
@@ -809,23 +809,19 @@ constant = substrate.get_constant('Did', 'MaxTotalKeyAgreementKeys')
 ## Errors
 
 ---------
+### AlreadyDeleted
+The DID has already been previously deleted.
+
+---------
+### AlreadyExists
+The DID with the given identifier is already present on chain.
+
+---------
 ### BadDidOrigin
 The DID call was submitted by the wrong account
 
 ---------
-### DidAlreadyDeleted
-The DID has already been previously deleted.
-
----------
-### DidAlreadyPresent
-The DID with the given identifier is already present on chain.
-
----------
-### DidNotPresent
-No DID with the given identifier is present on chain.
-
----------
-### InternalError
+### Internal
 An error that is not supposed to take place, yet it happened.
 
 ---------
@@ -852,12 +848,17 @@ The DID operation signature is not in the format the verification
 key expects.
 
 ---------
-### MaxKeyAgreementKeysLimitExceeded
+### MaxKeyAgreementKeysExceeded
+The maximum number of key agreements has been reached for the DID
+subject.
+
+---------
+### MaxNewKeyAgreementKeysLimitExceeded
 A number of new key agreement keys greater than the maximum allowed
 has been provided.
 
 ---------
-### MaxNumberOfServicesPerDidExceeded
+### MaxNumberOfServicesExceeded
 The maximum number of service endpoints for a DID has been exceeded.
 
 ---------
@@ -870,7 +871,7 @@ exceeded.
 The maximum number of URLs for a service endpoint has been exceeded.
 
 ---------
-### MaxPublicKeysPerDidExceeded
+### MaxPublicKeysExceeded
 The maximum number of public keys for this DID key identifier has
 been reached.
 
@@ -889,26 +890,25 @@ One of the service endpoint URLs exceeded the maximum allowed
 length.
 
 ---------
-### MaxTotalKeyAgreementKeysExceeded
-The maximum number of key agreements has been reached for the DID
-subject.
+### MaxStoredEndpointsCountExceeded
+The number of service endpoints stored under the DID is larger than
+the number of endpoints to delete.
+
+---------
+### NotFound
+No DID with the given identifier is present on chain.
 
 ---------
 ### NotOwnerOfDeposit
 Only the owner of the deposit can reclaim its reserved balance.
 
 ---------
-### ServiceAlreadyPresent
+### ServiceAlreadyExists
 A service with the provided ID is already present for the given DID.
 
 ---------
-### ServiceNotPresent
+### ServiceNotFound
 A service with the provided ID is not present under the given DID.
-
----------
-### StoredEndpointsCountTooLarge
-The number of service endpoints stored under the DID is larger than
-the number of endpoints to delete.
 
 ---------
 ### TransactionExpired
@@ -923,7 +923,7 @@ The origin is unable to reserve the deposit and pay the fee.
 The called extrinsic does not support DID authorisation.
 
 ---------
-### VerificationKeyNotPresent
+### VerificationKeyNotFound
 One or more verification keys referenced are not stored in the set
 of verification keys.
 

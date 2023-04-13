@@ -101,7 +101,7 @@ Collected enough authorities change signatures.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | operation | `Operation<T::AccountId>` | ```{'AddMember': {'new': '[u8; 20]'}, 'RemoveMember': {'pre': '[u8; 20]', 'old': '[u8; 20]'}, 'SwapMembers': {'pre': '[u8; 20]', 'old': '[u8; 20]', 'new': '[u8; 20]'}}```
-| new_threshold | `Option<u32>` | ```(None, 'u32')```
+| threshold | `Option<u32>` | ```(None, 'u32')```
 | message | `Hash` | ```[u8; 32]```
 | signatures | `Vec<(T::AccountId, Signature)>` | ```[('[u8; 20]', '[u8; 65]')]```
 
@@ -162,8 +162,9 @@ result = substrate.query(
 
 #### Return value
 ```python
-(
-    {
+{
+    'message': '[u8; 32]',
+    'operation': {
         'AddMember': {'new': '[u8; 20]'},
         'RemoveMember': {'old': '[u8; 20]', 'pre': '[u8; 20]'},
         'SwapMembers': {
@@ -172,29 +173,33 @@ result = substrate.query(
             'pre': '[u8; 20]',
         },
     },
-    (None, 'u32'),
-    '[u8; 32]',
-    [('[u8; 20]', '[u8; 65]')],
-)
+    'signatures': [('[u8; 20]', '[u8; 65]')],
+    'threshold': (None, 'u32'),
+}
 ```
 ---------
-### NewMessageRootToSign
- The new message root waiting for signing.
+### MessageRootToSign
+ The incoming message root waiting for signing.
 
 #### Python
 ```python
 result = substrate.query(
-    'EcdsaAuthority', 'NewMessageRootToSign', []
+    'EcdsaAuthority', 'MessageRootToSign', []
 )
 ```
 
 #### Return value
 ```python
-(
-    {'block_number': 'u32', 'message_root': '[u8; 32]', 'nonce': 'u32'},
-    '[u8; 32]',
-    [('[u8; 20]', '[u8; 65]')],
-)
+{
+    'authorized': 'bool',
+    'commitment': {
+        'block_number': 'u32',
+        'message_root': '[u8; 32]',
+        'nonce': 'u32',
+    },
+    'message': '[u8; 32]',
+    'signatures': [('[u8; 20]', '[u8; 65]')],
+}
 ```
 ---------
 ### NextAuthorities
@@ -225,24 +230,6 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
-```
----------
-### PreviousMessageRoot
- Record the previous message root.
-
- Use for checking if the message root getter get the same message root as the previous one.
- And if this is empty, it means the message root is require to be relayed.
-
-#### Python
-```python
-result = substrate.query(
-    'EcdsaAuthority', 'PreviousMessageRoot', []
-)
-```
-
-#### Return value
-```python
-('u32', '[u8; 32]')
 ```
 ---------
 ## Constants

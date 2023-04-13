@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | heiko     |
 | Implementation name     | heiko     |
-| Spec version     | 195     |
+| Spec version     | 196     |
 | SS58 Format     | 110     |
 | Token symbol      | HKO     |
 | Token decimals      | 12     |
@@ -18,7 +18,7 @@
 | [AMM](amm.md) | [5](amm.md#calls) | [6](amm.md#events) | [3](amm.md#storage-functions) | [6](amm.md#constants) | [11](amm.md#errors) |
 | [AMMRoute](ammroute.md) | [2](ammroute.md#calls) | [1](ammroute.md#events) | [0](ammroute.md#storage-functions) | [3](ammroute.md#constants) | [9](ammroute.md#errors) |
 | [AssetRegistry](assetregistry.md) | [5](assetregistry.md#calls) | [5](assetregistry.md#events) | [4](assetregistry.md#storage-functions) | [0](assetregistry.md#constants) | [2](assetregistry.md#errors) |
-| [Assets](assets.md) | [25](assets.md#calls) | [18](assets.md#events) | [4](assets.md#storage-functions) | [6](assets.md#constants) | [15](assets.md#errors) |
+| [Assets](assets.md) | [28](assets.md#calls) | [21](assets.md#events) | [4](assets.md#storage-functions) | [7](assets.md#constants) | [19](assets.md#errors) |
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
@@ -40,7 +40,7 @@
 | [Farming](farming.md) | [9](farming.md#calls) | [9](farming.md#events) | [2](farming.md#storage-functions) | [4](farming.md#constants) | [14](farming.md#errors) |
 | [GeneralCouncil](generalcouncil.md) | [7](generalcouncil.md#calls) | [7](generalcouncil.md#events) | [6](generalcouncil.md#storage-functions) | [0](generalcouncil.md#constants) | [10](generalcouncil.md#errors) |
 | [GeneralCouncilMembership](generalcouncilmembership.md) | [7](generalcouncilmembership.md#calls) | [6](generalcouncilmembership.md#events) | [2](generalcouncilmembership.md#storage-functions) | [0](generalcouncilmembership.md#constants) | [3](generalcouncilmembership.md#errors) |
-| [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [17](identity.md#errors) |
+| [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [LiquidStaking](liquidstaking.md) | [24](liquidstaking.md#calls) | [21](liquidstaking.md#events) | [17](liquidstaking.md#storage-functions) | [19](liquidstaking.md#constants) | [20](liquidstaking.md#errors) |
 | [LiquidStakingAgentsMembership](liquidstakingagentsmembership.md) | [7](liquidstakingagentsmembership.md#calls) | [6](liquidstakingagentsmembership.md#events) | [2](liquidstakingagentsmembership.md#storage-functions) | [0](liquidstakingagentsmembership.md#constants) | [3](liquidstakingagentsmembership.md#errors) |
 | [Loans](loans.md) | [22](loans.md#calls) | [20](loans.md#events) | [23](loans.md#storage-functions) | [3](loans.md#constants) | [29](loans.md#errors) |
@@ -57,13 +57,13 @@
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [Streaming](streaming.md) | [4](streaming.md#calls) | [4](streaming.md#events) | [4](streaming.md#storage-functions) | [5](streaming.md#constants) | [15](streaming.md#errors) |
-| [System](system.md) | [9](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
+| [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [TechnicalCommittee](technicalcommittee.md) | [7](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [0](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors) |
 | [TechnicalCommitteeMembership](technicalcommitteemembership.md) | [7](technicalcommitteemembership.md#calls) | [6](technicalcommitteemembership.md#events) | [2](technicalcommitteemembership.md#storage-functions) | [0](technicalcommitteemembership.md#constants) | [3](technicalcommitteemembership.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
-| [Treasury](treasury.md) | [5](treasury.md#calls) | [8](treasury.md#events) | [3](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
-| [Utility](utility.md) | [5](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
+| [Treasury](treasury.md) | [5](treasury.md#calls) | [8](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
+| [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [Vesting](vesting.md) | [4](vesting.md#calls) | [3](vesting.md#events) | [1](vesting.md#storage-functions) | [1](vesting.md#constants) | [6](vesting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
 | [XcmHelper](xcmhelper.md) | [1](xcmhelper.md#calls) | [1](xcmhelper.md#events) | [1](xcmhelper.md#storage-functions) | [5](xcmhelper.md#constants) | [6](xcmhelper.md#errors) |

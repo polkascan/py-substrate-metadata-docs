@@ -204,6 +204,31 @@ call = substrate.compose_call(
 ```
 
 ---------
+### force_update_royalty_fee
+Force update royalty fee of a given class
+
+The dispatch origin for this call must be _Root_.
+- `class_id`: the class ID of the collection
+- `new_royalty_fee: the new royalty fee of the collection
+
+Emits `ClassRoyaltyFeeUpdated` if successful.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| class_id | `ClassIdOf<T>` | 
+| new_royalty_fee | `Perbill` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Nft', 'force_update_royalty_fee', {
+    'class_id': 'u32',
+    'new_royalty_fee': 'u32',
+}
+)
+```
+
+---------
 ### force_update_total_issuance
 Force update the total issuance of a given class
 
@@ -259,6 +284,38 @@ call = substrate.compose_call(
     'class_id': 'u32',
     'metadata': 'Bytes',
     'quantity': 'u32',
+}
+)
+```
+
+---------
+### mint_stackable_nft
+Minting new stackable NFTs using provided class ID, metadata,
+attributes, and amount
+
+The dispatch origin for this call must be _Signed_.
+- `class_id`: class ID of the collection the NFT will be part of
+- `metadata`: NFT assets metadata as NFT metadata
+- `attributes`: NFTs&\#x27; attributes
+- `amount`: the balance of the minted stackable NFTs
+
+Emits `NewStackableNftMinted` if successful.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| class_id | `ClassIdOf<T>` | 
+| metadata | `NftMetadata` | 
+| attributes | `Attributes` | 
+| amount | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Nft', 'mint_stackable_nft', {
+    'amount': 'u128',
+    'attributes': 'scale_info::276',
+    'class_id': 'u32',
+    'metadata': 'Bytes',
 }
 )
 ```
@@ -358,6 +415,33 @@ call = substrate.compose_call(
 ```
 
 ---------
+### transfer_stackable_nft
+Transfer an existing NFT asset if it is not listed in an auction
+
+The dispatch origin for this call must be _Signed_.
+- `to`: account to transfer the NFT asset to
+- `asset_id`: the asset (class ID, token ID) that will be transferred
+
+Emits `TransferedStakcableNft` if successful.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| to | `T::AccountId` | 
+| asset_id | `(ClassIdOf<T>, TokenIdOf<T>)` | 
+| amount | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Nft', 'transfer_stackable_nft', {
+    'amount': 'u128',
+    'asset_id': ('u32', 'u64'),
+    'to': 'AccountId',
+}
+)
+```
+
+---------
 ### withdraw_funds_from_class_fund
 Withdraws funds from class fund
 
@@ -396,6 +480,15 @@ Class funds are withdrawn
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `ClassIdOf<T>` | ```u32```
+
+---------
+### ClassRoyaltyFeeUpdated
+Successfully updated royalty fee
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `ClassIdOf<T>` | ```u32```
+| None | `Perbill` | ```u32```
 
 ---------
 ### ClassTotalIssuanceUpdated
@@ -480,6 +573,17 @@ Emit event when new nft minted - show the first and last asset mint
 | None | `TokenIdOf<T>` | ```u64```
 
 ---------
+### NewStackableNftMinted
+Emit event when new nft minted - show the first and last asset mint
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
+| None | `ClassIdOf<T>` | ```u32```
+| None | `TokenIdOf<T>` | ```u64```
+| None | `BalanceOf<T>` | ```u128```
+
+---------
 ### NewTimeCapsuleMinted
 Emit event when new time capsule minted
 #### Attributes
@@ -538,6 +642,17 @@ Successfully transfer NFT
 | None | `<T as frame_system::Config>::AccountId` | ```AccountId```
 | None | `TokenIdOf<T>` | ```u64```
 | None | `(ClassIdOf<T>, TokenIdOf<T>)` | ```('u32', 'u64')```
+
+---------
+### TransferedStackableNft
+Successfully transfer NFT
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
+| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
+| None | `(ClassIdOf<T>, TokenIdOf<T>)` | ```('u32', 'u64')```
+| None | `BalanceOf<T>` | ```u128```
 
 ---------
 ## Storage functions
@@ -834,12 +949,25 @@ Hard limit is already set
 Insufficient Balance
 
 ---------
+### InvalidAssetType
+Extrisic is called using invalid NFT type
+
+---------
 ### InvalidCurrentTotalIssuance
+Invalid current total issuance
 Invalid current total issuance
 
 ---------
 ### InvalidQuantity
 Invalid quantity
+
+---------
+### InvalidStackableNftAmount
+Invalid stackable NFT amount
+
+---------
+### InvalidStackableNftTransfer
+Invalid stackable NFT transfer (stored value is equal to zero)
 
 ---------
 ### NoAvailableAssetId

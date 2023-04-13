@@ -81,6 +81,33 @@ call = substrate.compose_call(
             'collateral': {
                 'ForeignAsset': 'u32',
                 'LendToken': 'u32',
+                'LpToken': (
+                    {
+                        'ForeignAsset': 'u32',
+                        'StableLpToken': 'u32',
+                        'Token': (
+                            'DOT',
+                            'IBTC',
+                            'INTR',
+                            'KSM',
+                            'KBTC',
+                            'KINT',
+                        ),
+                    },
+                    {
+                        'ForeignAsset': 'u32',
+                        'StableLpToken': 'u32',
+                        'Token': (
+                            'DOT',
+                            'IBTC',
+                            'INTR',
+                            'KSM',
+                            'KBTC',
+                            'KINT',
+                        ),
+                    },
+                ),
+                'StableLpToken': 'u32',
                 'Token': (
                     'DOT',
                     'IBTC',
@@ -93,6 +120,33 @@ call = substrate.compose_call(
             'wrapped': {
                 'ForeignAsset': 'u32',
                 'LendToken': 'u32',
+                'LpToken': (
+                    {
+                        'ForeignAsset': 'u32',
+                        'StableLpToken': 'u32',
+                        'Token': (
+                            'DOT',
+                            'IBTC',
+                            'INTR',
+                            'KSM',
+                            'KBTC',
+                            'KINT',
+                        ),
+                    },
+                    {
+                        'ForeignAsset': 'u32',
+                        'StableLpToken': 'u32',
+                        'Token': (
+                            'DOT',
+                            'IBTC',
+                            'INTR',
+                            'KSM',
+                            'KBTC',
+                            'KINT',
+                        ),
+                    },
+                ),
+                'StableLpToken': 'u32',
                 'Token': (
                     'DOT',
                     'IBTC',
@@ -149,7 +203,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | issue_id | `H256` | ```[u8; 32]```
 | requester | `T::AccountId` | ```AccountId```
-| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}}}```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | amount | `BalanceOf<T>` | ```u128```
 | fee | `BalanceOf<T>` | ```u128```
 
@@ -180,7 +234,7 @@ call = substrate.compose_call(
 | amount | `BalanceOf<T>` | ```u128```
 | fee | `BalanceOf<T>` | ```u128```
 | griefing_collateral | `BalanceOf<T>` | ```u128```
-| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}}}```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | vault_address | `BtcAddress` | ```{'P2PKH': '[u8; 20]', 'P2SH': '[u8; 20]', 'P2WPKHv0': '[u8; 20]', 'P2WSHv0': '[u8; 32]'}```
 | vault_public_key | `BtcPublicKey` | ```[u8; 33]```
 
@@ -256,11 +310,15 @@ result = substrate.query(
             'collateral': {
                 'ForeignAsset': 'u32',
                 'LendToken': 'u32',
+                'LpToken': ('scale_info::52', 'scale_info::52'),
+                'StableLpToken': 'u32',
                 'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'),
             },
             'wrapped': {
                 'ForeignAsset': 'u32',
                 'LendToken': 'u32',
+                'LpToken': ('scale_info::52', 'scale_info::52'),
+                'StableLpToken': 'u32',
                 'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'),
             },
         },
@@ -281,6 +339,20 @@ result = substrate.query(
 #### Return value
 ```python
 ('V0', 'V1', 'V2', 'V3', 'V4')
+```
+---------
+## Constants
+
+---------
+### TreasuryPalletId
+ The treasury pallet account for slashed griefing collateral.
+#### Value
+```python
+'0x6d6f642f74727379'
+```
+#### Python
+```python
+constant = substrate.get_constant('Issue', 'TreasuryPalletId')
 ```
 ---------
 ## Errors

@@ -171,7 +171,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::541'
+'scale_info::542'
 ```
 ---------
 ### Rewards

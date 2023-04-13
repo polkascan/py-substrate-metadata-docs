@@ -26,20 +26,27 @@ Weight: O(1)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| account | `AccountIdOf<T>` | 
+| req | `AssociateAccountRequest` | 
 | expiration | `<T as frame_system::Config>::BlockNumber` | 
-| proof | `SignatureOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'DidLookup', 'associate_account', {
-    'account': 'AccountId',
     'expiration': 'u64',
-    'proof': {
-        'Ecdsa': '[u8; 65]',
-        'Ed25519': '[u8; 64]',
-        'Sr25519': '[u8; 64]',
+    'req': {
+        'Ethereum': (
+            '[u8; 20]',
+            '[u8; 65]',
+        ),
+        'Polkadot': (
+            'AccountId',
+            {
+                'Ecdsa': '[u8; 65]',
+                'Ed25519': '[u8; 64]',
+                'Sr25519': '[u8; 64]',
+            },
+        ),
     },
 }
 )
@@ -80,12 +87,37 @@ The sender of the call will be the new deposit owner.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| account | `AccountIdOf<T>` | 
+| account | `LinkableAccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'DidLookup', 'change_deposit_owner', {'account': 'AccountId'}
+    'DidLookup', 'change_deposit_owner', {
+    'account': {
+        'AccountId20': '[u8; 20]',
+        'AccountId32': 'AccountId',
+    },
+}
+)
+```
+
+---------
+### migrate
+Executes the key type migration of the `ConnectedDids` and
+`ConnectedAccounts` storages by converting the given `AccountId`
+into `LinkableAccountId(AccountId)`. Once all keys have been
+migrated, the migration is done and this call will be filtered.
+
+Can be called by any origin.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| limit | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'DidLookup', 'migrate', {'limit': 'u32'}
 )
 ```
 
@@ -105,12 +137,17 @@ Weight: O(1)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| account | `AccountIdOf<T>` | 
+| account | `LinkableAccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'DidLookup', 'reclaim_deposit', {'account': 'AccountId'}
+    'DidLookup', 'reclaim_deposit', {
+    'account': {
+        'AccountId20': '[u8; 20]',
+        'AccountId32': 'AccountId',
+    },
+}
 )
 ```
 
@@ -130,12 +167,17 @@ Weight: O(1)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| account | `AccountIdOf<T>` | 
+| account | `LinkableAccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'DidLookup', 'remove_account_association', {'account': 'AccountId'}
+    'DidLookup', 'remove_account_association', {
+    'account': {
+        'AccountId20': '[u8; 20]',
+        'AccountId32': 'AccountId',
+    },
+}
 )
 ```
 
@@ -169,12 +211,17 @@ The sender must be the deposit owner.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| account | `AccountIdOf<T>` | 
+| account | `LinkableAccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'DidLookup', 'update_deposit', {'account': 'AccountId'}
+    'DidLookup', 'update_deposit', {
+    'account': {
+        'AccountId20': '[u8; 20]',
+        'AccountId32': 'AccountId',
+    },
+}
 )
 ```
 
@@ -187,7 +234,7 @@ A new association between a DID and an account ID was created.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `AccountIdOf<T>` | ```AccountId```
+| None | `LinkableAccountId` | ```{'AccountId20': '[u8; 20]', 'AccountId32': 'AccountId'}```
 | None | `DidIdentifierOf<T>` | ```AccountId```
 
 ---------
@@ -196,8 +243,20 @@ An association between a DID and an account ID was removed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `AccountIdOf<T>` | ```AccountId```
+| None | `LinkableAccountId` | ```{'AccountId20': '[u8; 20]', 'AccountId32': 'AccountId'}```
 | None | `DidIdentifierOf<T>` | ```AccountId```
+
+---------
+### MigrationCompleted
+All AccountIds have been migrated to LinkableAccountId.
+#### Attributes
+No attributes
+
+---------
+### MigrationProgress
+There was some progress in the migration process.
+#### Attributes
+No attributes
 
 ---------
 ## Storage functions
@@ -211,7 +270,13 @@ An association between a DID and an account ID was removed.
 #### Python
 ```python
 result = substrate.query(
-    'DidLookup', 'ConnectedAccounts', ['AccountId', 'AccountId']
+    'DidLookup', 'ConnectedAccounts', [
+    'AccountId',
+    {
+        'AccountId20': '[u8; 20]',
+        'AccountId32': 'AccountId',
+    },
+]
 )
 ```
 
@@ -226,13 +291,39 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'DidLookup', 'ConnectedDids', ['AccountId']
+    'DidLookup', 'ConnectedDids', [
+    {
+        'AccountId20': '[u8; 20]',
+        'AccountId32': 'AccountId',
+    },
+]
 )
 ```
 
 #### Return value
 ```python
 {'deposit': {'amount': 'u128', 'owner': 'AccountId'}, 'did': 'AccountId'}
+```
+---------
+### MigrationStateStore
+
+#### Python
+```python
+result = substrate.query(
+    'DidLookup', 'MigrationStateStore', []
+)
+```
+
+#### Return value
+```python
+{
+    'Done': None,
+    'PreUpgrade': None,
+    'Upgrading': {
+        'V1': 'AccountId',
+        'V2': {'AccountId20': '[u8; 20]', 'AccountId32': 'AccountId'},
+    },
+}
 ```
 ---------
 ## Constants
@@ -254,18 +345,24 @@ constant = substrate.get_constant('DidLookup', 'Deposit')
 ## Errors
 
 ---------
-### AssociationNotFound
-The association does not exist.
-
----------
 ### InsufficientFunds
 The account has insufficient funds and can&\#x27;t pay the fees or reserve
 the deposit.
 
 ---------
+### Migration
+The ConnectedAccounts and ConnectedDids storage are out of sync.
+
+NOTE: this will only be returned if the storage has inconsistencies.
+
+---------
 ### NotAuthorized
 The origin was not allowed to manage the association between the DID
 and the account ID.
+
+---------
+### NotFound
+The association does not exist.
 
 ---------
 ### OutdatedProof

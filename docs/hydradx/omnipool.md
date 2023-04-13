@@ -778,6 +778,10 @@ Position has not been found.
 Imbalance results in positive value.
 
 ---------
+### PriceDifferenceTooHigh
+Max allowed price difference has been exceeded.
+
+---------
 ### SameAssetTradeNotAllowed
 Sell or buy with same asset ids is not allowed.
 

@@ -57,6 +57,115 @@ call = substrate.compose_call(
 ```
 
 ---------
+### confirm_contribution
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| query_id | `QueryId` | 
+| response | `Response` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Salp', 'confirm_contribution', {
+    'query_id': 'u64',
+    'response': {
+        'Assets': [
+            {
+                'fun': {
+                    'Fungible': 'u128',
+                    'NonFungible': {
+                        'Array16': '[u8; 16]',
+                        'Array32': '[u8; 32]',
+                        'Array4': '[u8; 4]',
+                        'Array8': '[u8; 8]',
+                        'Index': 'u128',
+                        'Undefined': None,
+                    },
+                },
+                'id': {
+                    'Abstract': '[u8; 32]',
+                    'Concrete': {
+                        'interior': 'scale_info::62',
+                        'parents': 'u8',
+                    },
+                },
+            },
+        ],
+        'DispatchResult': {
+            'Error': 'Bytes',
+            'Success': None,
+            'TruncatedError': 'Bytes',
+        },
+        'ExecutionResult': (
+            None,
+            (
+                'u32',
+                {
+                    'AssetNotFound': None,
+                    'BadOrigin': None,
+                    'Barrier': None,
+                    'DestinationUnsupported': None,
+                    'ExceedsMaxMessageSize': None,
+                    'ExceedsStackLimit': None,
+                    'ExpectationFalse': None,
+                    'ExportError': None,
+                    'FailedToDecode': None,
+                    'FailedToTransactAsset': None,
+                    'FeesNotMet': None,
+                    'HoldingWouldOverflow': None,
+                    'InvalidLocation': None,
+                    'LocationCannotHold': None,
+                    'LocationFull': None,
+                    'LocationNotInvertible': None,
+                    'LockError': None,
+                    'MaxWeightInvalid': None,
+                    'NameMismatch': None,
+                    'NoDeal': None,
+                    'NoPermission': None,
+                    'NotDepositable': None,
+                    'NotHoldingFees': None,
+                    'NotWithdrawable': None,
+                    'Overflow': None,
+                    'PalletNotFound': None,
+                    'ReanchorFailed': None,
+                    'TooExpensive': None,
+                    'Transport': None,
+                    'Trap': 'u64',
+                    'Unanchored': None,
+                    'UnhandledXcmVersion': None,
+                    'Unimplemented': None,
+                    'UnknownClaim': None,
+                    'Unroutable': None,
+                    'UntrustedReserveLocation': None,
+                    'UntrustedTeleportLocation': None,
+                    'VersionIncompatible': None,
+                    'WeightLimitReached': {
+                        'proof_size': 'u64',
+                        'ref_time': 'u64',
+                    },
+                    'WeightNotComputable': None,
+                },
+            ),
+        ),
+        'Null': None,
+        'PalletsInfo': [
+            {
+                'index': 'u32',
+                'major': 'u32',
+                'minor': 'u32',
+                'module_name': 'Bytes',
+                'name': 'Bytes',
+                'patch': 'u32',
+            },
+        ],
+        'Version': 'u32',
+    },
+}
+)
+```
+
+---------
 ### continue_fund
 #### Attributes
 | Name | Type |
@@ -533,7 +642,6 @@ Fail on contribute to crowd sale. [who, fund_index, amount]
 | None | `AccountIdOf<T>` | ```AccountId```
 | None | `ParaId` | ```u32```
 | None | `BalanceOf<T>` | ```u128```
-| None | `MessageId` | ```[u8; 32]```
 
 ---------
 ### Contributed
@@ -544,7 +652,6 @@ Contributed to a crowd sale. [who, fund_index, amount]
 | None | `AccountIdOf<T>` | ```AccountId```
 | None | `ParaId` | ```u32```
 | None | `BalanceOf<T>` | ```u128```
-| None | `MessageId` | ```[u8; 32]```
 
 ---------
 ### Contributing
@@ -785,6 +892,21 @@ result = substrate.query(
 'AccountId'
 ```
 ---------
+### QueryIdContributionInfo
+ Record contribution
+
+#### Python
+```python
+result = substrate.query(
+    'Salp', 'QueryIdContributionInfo', ['u64']
+)
+```
+
+#### Return value
+```python
+('u32', 'AccountId', 'u128')
+```
+---------
 ### RedeemPool
  The balance can be redeemed to users.
 
@@ -996,11 +1118,19 @@ Dont have enough vsToken/vsBond to redeem
 Don&\#x27;t have enough vsToken/vsBond to refund
 
 ---------
+### NotFindContributionValue
+No contribution record found
+
+---------
 ### NotSupportTokenType
 
 ---------
 ### Overflow
 There was an overflow.
+
+---------
+### ResponderNotRelayChain
+Responder is not a relay chain
 
 ---------
 ### UnRedeemableNow

@@ -29,7 +29,7 @@ call = substrate.compose_call(
     'Content', 'accept_channel_transfer', {
     'channel_id': 'u64',
     'commitment_params': {
-        'new_collaborators': 'scale_info::132',
+        'new_collaborators': 'scale_info::133',
         'price': 'u128',
         'transfer_id': 'u64',
     },
@@ -88,7 +88,7 @@ call = substrate.compose_call(
     'Content', 'add_curator_to_group', {
     'curator_group_id': 'u64',
     'curator_id': 'u64',
-    'permissions': 'scale_info::104',
+    'permissions': 'scale_info::105',
 }
 )
 ```
@@ -518,12 +518,12 @@ call = substrate.compose_call(
                 ],
             },
         ),
-        'collaborators': 'scale_info::132',
-        'distribution_buckets': 'scale_info::135',
+        'collaborators': 'scale_info::133',
+        'distribution_buckets': 'scale_info::136',
         'expected_channel_state_bloat_bond': 'u128',
         'expected_data_object_state_bloat_bond': 'u128',
         'meta': (None, 'Bytes'),
-        'storage_buckets': 'scale_info::83',
+        'storage_buckets': 'scale_info::84',
     },
 }
 )
@@ -552,7 +552,7 @@ Add new curator group to runtime storage
 call = substrate.compose_call(
     'Content', 'create_curator_group', {
     'is_active': 'bool',
-    'permissions_by_level': 'scale_info::142',
+    'permissions_by_level': 'scale_info::143',
 }
 )
 ```
@@ -618,7 +618,7 @@ call = substrate.compose_call(
                             None,
                             'u32',
                         ),
-                        'whitelist': 'scale_info::83',
+                        'whitelist': 'scale_info::84',
                     },
                     'Idle': None,
                     'InitiatedOfferToMember': (
@@ -636,7 +636,7 @@ call = substrate.compose_call(
                             None,
                             'u32',
                         ),
-                        'whitelist': 'scale_info::83',
+                        'whitelist': 'scale_info::84',
                     },
                 },
                 'nft_metadata': 'Bytes',
@@ -691,7 +691,7 @@ call = substrate.compose_call(
     },
     'channel_id': 'u64',
     'metadata': 'Bytes',
-    'outputs': 'scale_info::393',
+    'outputs': 'scale_info::392',
 }
 )
 ```
@@ -827,7 +827,7 @@ call = substrate.compose_call(
         'Lead': None,
         'Member': 'u64',
     },
-    'assets_to_remove': 'scale_info::83',
+    'assets_to_remove': 'scale_info::84',
     'channel_id': 'u64',
     'rationale': 'Bytes',
     'storage_buckets_num_witness': 'u32',
@@ -944,7 +944,7 @@ call = substrate.compose_call(
         'Lead': None,
         'Member': 'u64',
     },
-    'assets_to_remove': 'scale_info::83',
+    'assets_to_remove': 'scale_info::84',
     'rationale': 'Bytes',
     'storage_buckets_num_witness': 'u32',
     'video_id': 'u64',
@@ -1127,7 +1127,7 @@ call = substrate.compose_call(
     },
     'channel_id': 'u64',
     'transfer_params': {
-        'new_collaborators': 'scale_info::132',
+        'new_collaborators': 'scale_info::133',
         'new_owner': {
             'CuratorGroup': 'u64',
             'Member': 'u64',
@@ -1168,7 +1168,7 @@ call = substrate.compose_call(
     },
     'channel_id': 'u64',
     'params': {
-        'initial_allocation': 'scale_info::180',
+        'initial_allocation': 'scale_info::181',
         'patronage_rate': 'u32',
         'revenue_split_rate': 'u32',
         'symbol': '[u8; 32]',
@@ -1240,7 +1240,7 @@ call = substrate.compose_call(
                     None,
                     'u32',
                 ),
-                'whitelist': 'scale_info::83',
+                'whitelist': 'scale_info::84',
             },
             'Idle': None,
             'InitiatedOfferToMember': (
@@ -1258,7 +1258,7 @@ call = substrate.compose_call(
                     None,
                     'u32',
                 ),
-                'whitelist': 'scale_info::83',
+                'whitelist': 'scale_info::84',
             },
         },
         'nft_metadata': 'Bytes',
@@ -1621,7 +1621,7 @@ call = substrate.compose_call(
         'Member': 'u64',
     },
     'channel_id': 'u64',
-    'new_paused_features': 'scale_info::111',
+    'new_paused_features': 'scale_info::112',
     'rationale': 'Bytes',
 }
 )
@@ -1812,7 +1812,7 @@ call = substrate.compose_call(
         'min_bid_step': 'u128',
         'starting_price': 'u128',
         'starts_at': (None, 'u32'),
-        'whitelist': 'scale_info::83',
+        'whitelist': 'scale_info::84',
     },
     'owner_id': {
         'Curator': ('u64', 'u64'),
@@ -1854,7 +1854,7 @@ call = substrate.compose_call(
         ),
         'starting_price': 'u128',
         'starts_at': (None, 'u32'),
-        'whitelist': 'scale_info::83',
+        'whitelist': 'scale_info::84',
     },
     'owner_id': {
         'Curator': ('u64', 'u64'),
@@ -1953,7 +1953,7 @@ call = substrate.compose_call(
     },
     'channel_id': 'u64',
     'params': {
-        'assets_to_remove': 'scale_info::83',
+        'assets_to_remove': 'scale_info::84',
         'assets_to_upload': (
             None,
             {
@@ -1968,7 +1968,7 @@ call = substrate.compose_call(
         ),
         'collaborators': (
             None,
-            'scale_info::132',
+            'scale_info::133',
         ),
         'expected_data_object_state_bloat_bond': 'u128',
         'new_meta': (None, 'Bytes'),
@@ -2033,6 +2033,7 @@ Update channel payouts
 | Name | Type |
 | -------- | -------- | 
 | params | `UpdateChannelPayoutsParameters<T>` | 
+| uploader_account | `T::AccountId` | 
 
 #### Python
 ```python
@@ -2064,10 +2065,10 @@ call = substrate.compose_call(
                     'ipfs_content_id': 'Bytes',
                     'size': 'u64',
                 },
-                'uploader_account': 'AccountId',
             },
         ),
     },
+    'uploader_account': 'AccountId',
 }
 )
 ```
@@ -2148,7 +2149,7 @@ Update existing curator group&\#x27;s permissions
 call = substrate.compose_call(
     'Content', 'update_curator_group_permissions', {
     'curator_group_id': 'u64',
-    'permissions_by_level': 'scale_info::142',
+    'permissions_by_level': 'scale_info::143',
 }
 )
 ```
@@ -2248,7 +2249,7 @@ call = substrate.compose_call(
         'Member': 'u64',
     },
     'params': {
-        'assets_to_remove': 'scale_info::83',
+        'assets_to_remove': 'scale_info::84',
         'assets_to_upload': (
             None,
             {
@@ -2279,7 +2280,7 @@ call = substrate.compose_call(
                             None,
                             'u32',
                         ),
-                        'whitelist': 'scale_info::83',
+                        'whitelist': 'scale_info::84',
                     },
                     'Idle': None,
                     'InitiatedOfferToMember': (
@@ -2297,7 +2298,7 @@ call = substrate.compose_call(
                             None,
                             'u32',
                         ),
-                        'whitelist': 'scale_info::83',
+                        'whitelist': 'scale_info::84',
                     },
                 },
                 'nft_metadata': 'Bytes',
@@ -2459,7 +2460,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `ChannelId` | ```u64```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -2469,8 +2470,8 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `ChannelId` | ```u64```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
-| None | `Channel` | ```{'owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'num_videos': 'u64', 'collaborators': 'scale_info::106', 'cumulative_reward_claimed': 'u128', 'privilege_level': 'u8', 'paused_features': 'scale_info::111', 'transfer_status': {'NoActiveTransfer': None, 'PendingTransfer': {'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::106', 'price': 'u128', 'transfer_id': 'u64'}}}, 'data_objects': 'scale_info::83', 'daily_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'weekly_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'weekly_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'creator_token_id': (None, 'u64'), 'channel_state_bloat_bond': {'repayment_restricted_to': (None, 'AccountId'), 'amount': 'u128'}}```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
+| None | `Channel` | ```{'owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'num_videos': 'u64', 'collaborators': 'scale_info::107', 'cumulative_reward_claimed': 'u128', 'privilege_level': 'u8', 'paused_features': 'scale_info::112', 'transfer_status': {'NoActiveTransfer': None, 'PendingTransfer': {'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::107', 'price': 'u128', 'transfer_id': 'u64'}}}, 'data_objects': 'scale_info::84', 'daily_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'weekly_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'weekly_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'creator_token_id': (None, 'u64'), 'channel_state_bloat_bond': {'repayment_restricted_to': (None, 'AccountId'), 'amount': 'u128'}}```
 
 ---------
 ### ChannelCreated
@@ -2478,8 +2479,8 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `ChannelId` | ```u64```
-| None | `Channel` | ```{'owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'num_videos': 'u64', 'collaborators': 'scale_info::106', 'cumulative_reward_claimed': 'u128', 'privilege_level': 'u8', 'paused_features': 'scale_info::111', 'transfer_status': {'NoActiveTransfer': None, 'PendingTransfer': {'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::106', 'price': 'u128', 'transfer_id': 'u64'}}}, 'data_objects': 'scale_info::83', 'daily_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'weekly_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'weekly_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'creator_token_id': (None, 'u64'), 'channel_state_bloat_bond': {'repayment_restricted_to': (None, 'AccountId'), 'amount': 'u128'}}```
-| None | `ChannelCreationParameters` | ```{'assets': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'meta': (None, 'Bytes'), 'collaborators': 'scale_info::132', 'storage_buckets': 'scale_info::83', 'distribution_buckets': 'scale_info::135', 'expected_channel_state_bloat_bond': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}```
+| None | `Channel` | ```{'owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'num_videos': 'u64', 'collaborators': 'scale_info::107', 'cumulative_reward_claimed': 'u128', 'privilege_level': 'u8', 'paused_features': 'scale_info::112', 'transfer_status': {'NoActiveTransfer': None, 'PendingTransfer': {'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::107', 'price': 'u128', 'transfer_id': 'u64'}}}, 'data_objects': 'scale_info::84', 'daily_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'weekly_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'weekly_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'creator_token_id': (None, 'u64'), 'channel_state_bloat_bond': {'repayment_restricted_to': (None, 'AccountId'), 'amount': 'u128'}}```
+| None | `ChannelCreationParameters` | ```{'assets': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'meta': (None, 'Bytes'), 'collaborators': 'scale_info::133', 'storage_buckets': 'scale_info::84', 'distribution_buckets': 'scale_info::136', 'expected_channel_state_bloat_bond': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}```
 | None | `AccountId` | ```AccountId```
 
 ---------
@@ -2535,7 +2536,7 @@ Metaprotocols related event
 | -------- | -------- | -------- |
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `ChannelId` | ```u64```
-| None | `BTreeSet<PausableChannelFeature>` | ```scale_info::111```
+| None | `BTreeSet<PausableChannelFeature>` | ```scale_info::112```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -2543,8 +2544,9 @@ Metaprotocols related event
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `UpdateChannelPayoutsParameters` | ```{'commitment': (None, '[u8; 32]'), 'payload': (None, {'uploader_account': 'AccountId', 'object_creation_params': {'size': 'u64', 'ipfs_content_id': 'Bytes'}, 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}), 'min_cashout_allowed': (None, 'u128'), 'max_cashout_allowed': (None, 'u128'), 'channel_cashouts_enabled': (None, 'bool')}```
+| None | `UpdateChannelPayoutsParameters` | ```{'commitment': (None, '[u8; 32]'), 'payload': (None, {'object_creation_params': {'size': 'u64', 'ipfs_content_id': 'Bytes'}, 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}), 'min_cashout_allowed': (None, 'u128'), 'max_cashout_allowed': (None, 'u128'), 'channel_cashouts_enabled': (None, 'bool')}```
 | None | `Option<DataObjectId>` | ```(None, 'u64')```
+| None | `AccountId` | ```AccountId```
 
 ---------
 ### ChannelPrivilegeLevelUpdated
@@ -2570,6 +2572,7 @@ Metaprotocols related event
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `Balance` | ```u128```
+| None | `Balance` | ```u128```
 | None | `ChannelId` | ```u64```
 
 ---------
@@ -2585,7 +2588,7 @@ Metaprotocols related event
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `ChannelId` | ```u64```
-| None | `TransferCommitmentWitness` | ```{'new_collaborators': 'scale_info::132', 'price': 'u128', 'transfer_id': 'u64'}```
+| None | `TransferCommitmentWitness` | ```{'new_collaborators': 'scale_info::133', 'price': 'u128', 'transfer_id': 'u64'}```
 
 ---------
 ### ChannelUpdated
@@ -2594,8 +2597,8 @@ Metaprotocols related event
 | -------- | -------- | -------- |
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `ChannelId` | ```u64```
-| None | `ChannelUpdateParameters` | ```{'assets_to_upload': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'new_meta': (None, 'Bytes'), 'assets_to_remove': 'scale_info::83', 'collaborators': (None, 'scale_info::132'), 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': (None, 'u32')}```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `ChannelUpdateParameters` | ```{'assets_to_upload': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'new_meta': (None, 'Bytes'), 'assets_to_remove': 'scale_info::84', 'collaborators': (None, 'scale_info::133'), 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': (None, 'u32')}```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 
 ---------
 ### ChannelVisibilitySetByModerator
@@ -2606,14 +2609,6 @@ Metaprotocols related event
 | None | `ChannelId` | ```u64```
 | None | `bool` | ```bool```
 | None | `Vec<u8>` | ```Bytes```
-
----------
-### CouncilRewardClaimed
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `ChannelId` | ```u64```
-| None | `Balance` | ```u128```
 
 ---------
 ### CreatorTokenIssued
@@ -2631,7 +2626,7 @@ Metaprotocols related event
 | -------- | -------- | -------- |
 | None | `CuratorGroupId` | ```u64```
 | None | `CuratorId` | ```u64```
-| None | `ChannelAgentPermissions` | ```scale_info::104```
+| None | `ChannelAgentPermissions` | ```scale_info::105```
 
 ---------
 ### CuratorGroupCreated
@@ -2646,7 +2641,7 @@ Metaprotocols related event
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CuratorGroupId` | ```u64```
-| None | `ModerationPermissionsByLevel` | ```scale_info::142```
+| None | `ModerationPermissionsByLevel` | ```scale_info::143```
 
 ---------
 ### CuratorGroupStatusSet
@@ -2680,7 +2675,7 @@ Metaprotocols related event
 | -------- | -------- | -------- |
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `VideoId` | ```u64```
-| None | `EnglishAuctionParams` | ```{'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::83', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}```
+| None | `EnglishAuctionParams` | ```{'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::84', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}```
 
 ---------
 ### GlobalNftLimitUpdated
@@ -2697,7 +2692,7 @@ Metaprotocols related event
 | -------- | -------- | -------- |
 | None | `ChannelId` | ```u64```
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
-| None | `PendingTransfer` | ```{'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::106', 'price': 'u128', 'transfer_id': 'u64'}}```
+| None | `PendingTransfer` | ```{'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::107', 'price': 'u128', 'transfer_id': 'u64'}}```
 
 ---------
 ### NftBought
@@ -2722,7 +2717,7 @@ Metaprotocols related event
 | -------- | -------- | -------- |
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `VideoId` | ```u64```
-| None | `NftIssuanceParameters` | ```{'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::83', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::83', 'bid_lock_duration': 'u32'}}}```
+| None | `NftIssuanceParameters` | ```{'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::84', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::84', 'bid_lock_duration': 'u32'}}}```
 
 ---------
 ### NftOwnerRemarked
@@ -2792,7 +2787,7 @@ Metaprotocols related event
 | -------- | -------- | -------- |
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `VideoId` | ```u64```
-| None | `OpenAuctionParams` | ```{'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::83', 'bid_lock_duration': 'u32'}```
+| None | `OpenAuctionParams` | ```{'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::84', 'bid_lock_duration': 'u32'}```
 | None | `OpenAuctionId` | ```u64```
 
 ---------
@@ -2809,7 +2804,7 @@ Metaprotocols related event
 | -------- | -------- | -------- |
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `VideoId` | ```u64```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 | None | `bool` | ```bool```
 | None | `Vec<u8>` | ```Bytes```
 
@@ -2821,8 +2816,8 @@ Metaprotocols related event
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `ChannelId` | ```u64```
 | None | `VideoId` | ```u64```
-| None | `VideoCreationParameters` | ```{'assets': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'meta': (None, 'Bytes'), 'auto_issue_nft': (None, {'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::83', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::83', 'bid_lock_duration': 'u32'}}}), 'expected_video_state_bloat_bond': 'u128', 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': 'u32'}```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `VideoCreationParameters` | ```{'assets': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'meta': (None, 'Bytes'), 'auto_issue_nft': (None, {'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::84', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::84', 'bid_lock_duration': 'u32'}}}), 'expected_video_state_bloat_bond': 'u128', 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': 'u32'}```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 
 ---------
 ### VideoDeleted
@@ -2855,8 +2850,8 @@ Metaprotocols related event
 | -------- | -------- | -------- |
 | None | `ContentActor` | ```{'Curator': ('u64', 'u64'), 'Member': 'u64', 'Lead': None}```
 | None | `VideoId` | ```u64```
-| None | `VideoUpdateParameters` | ```{'assets_to_upload': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'new_meta': (None, 'Bytes'), 'assets_to_remove': 'scale_info::83', 'auto_issue_nft': (None, {'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::83', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::83', 'bid_lock_duration': 'u32'}}}), 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': (None, 'u32')}```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `VideoUpdateParameters` | ```{'assets_to_upload': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'new_meta': (None, 'Bytes'), 'assets_to_remove': 'scale_info::84', 'auto_issue_nft': (None, {'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::84', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::84', 'bid_lock_duration': 'u32'}}}), 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': (None, 'u32')}```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 
 ---------
 ### VideoVisibilitySetByModerator
@@ -2903,22 +2898,22 @@ result = substrate.query(
         'amount': 'u128',
         'repayment_restricted_to': (None, 'AccountId'),
     },
-    'collaborators': 'scale_info::106',
+    'collaborators': 'scale_info::107',
     'creator_token_id': (None, 'u64'),
     'cumulative_reward_claimed': 'u128',
     'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'},
     'daily_nft_limit': {'block_number_period': 'u32', 'limit': 'u64'},
-    'data_objects': 'scale_info::83',
+    'data_objects': 'scale_info::84',
     'num_videos': 'u64',
     'owner': {'CuratorGroup': 'u64', 'Member': 'u64'},
-    'paused_features': 'scale_info::111',
+    'paused_features': 'scale_info::112',
     'privilege_level': 'u8',
     'transfer_status': {
         'NoActiveTransfer': None,
         'PendingTransfer': {
             'new_owner': {'CuratorGroup': 'u64', 'Member': 'u64'},
             'transfer_params': {
-                'new_collaborators': 'scale_info::106',
+                'new_collaborators': 'scale_info::107',
                 'price': 'u128',
                 'transfer_id': 'u64',
             },
@@ -2985,8 +2980,8 @@ result = substrate.query(
 ```python
 {
     'active': 'bool',
-    'curators': 'scale_info::106',
-    'permissions_by_level': 'scale_info::570',
+    'curators': 'scale_info::107',
+    'permissions_by_level': 'scale_info::568',
 }
 ```
 ---------
@@ -3372,7 +3367,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'data_objects': 'scale_info::83',
+    'data_objects': 'scale_info::84',
     'in_channel': 'u64',
     'nft_status': (
         None,
@@ -3389,8 +3384,8 @@ result = substrate.query(
                     'min_bid_step': 'u128',
                     'start': 'u32',
                     'starting_price': 'u128',
-                    'top_bid': (None, 'scale_info::561'),
-                    'whitelist': 'scale_info::83',
+                    'top_bid': (None, 'scale_info::559'),
+                    'whitelist': 'scale_info::84',
                 },
                 'Idle': None,
                 'InitiatedOfferToMember': ('u64', (None, 'u128')),
@@ -3400,7 +3395,7 @@ result = substrate.query(
                     'buy_now_price': (None, 'u128'),
                     'start': 'u32',
                     'starting_price': 'u128',
-                    'whitelist': 'scale_info::83',
+                    'whitelist': 'scale_info::84',
                 },
             },
         },
@@ -3505,6 +3500,28 @@ constant = substrate.get_constant('Content', 'MaxNftAuctionWhitelistLength')
 #### Python
 ```python
 constant = substrate.get_constant('Content', 'MaxNumberOfCuratorsPerGroup')
+```
+---------
+### MaximumCashoutAllowedLimit
+ Export const - max cashout allowed limits
+#### Value
+```python
+16666666666600000
+```
+#### Python
+```python
+constant = substrate.get_constant('Content', 'MaximumCashoutAllowedLimit')
+```
+---------
+### MinimumCashoutAllowedLimit
+ Export const - min cashout allowed limits
+#### Value
+```python
+1666666666660
+```
+#### Python
+```python
+constant = substrate.get_constant('Content', 'MinimumCashoutAllowedLimit')
 ```
 ---------
 ## Errors

@@ -35,6 +35,8 @@ call = substrate.compose_call(
         'ContractsPutCode',
         'CorporateBallotAttachBallot',
         'CapitalDistributionDistribute',
+        'NFTCreateCollection',
+        'NFTMint',
     ),
 }
 )
@@ -113,6 +115,8 @@ result = substrate.query(
         'ContractsPutCode',
         'CorporateBallotAttachBallot',
         'CapitalDistributionDistribute',
+        'NFTCreateCollection',
+        'NFTMint',
     ),
 ]
 )

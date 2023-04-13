@@ -76,7 +76,7 @@ call = substrate.compose_call(
             ),
         },
     },
-    'data_objects': 'scale_info::83',
+    'data_objects': 'scale_info::84',
     'storage_bucket_id': 'u64',
     'worker_id': 'u64',
 }
@@ -567,7 +567,8 @@ call = substrate.compose_call(
 
 ---------
 ### storage_operator_remark
-Create a dynamic bag. Development mode.
+Deposit a StorageOperatorRemarked event
+containing a generic message.
 &lt;weight&gt;
 
 \#\# Weight
@@ -595,53 +596,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### sudo_upload_data_objects
-Upload new data objects. Development mode.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| params | `UploadParameters<T>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Storage', 'sudo_upload_data_objects', {
-    'params': {
-        'bag_id': {
-            'Dynamic': {
-                'Channel': 'u64',
-                'Member': 'u64',
-            },
-            'Static': {
-                'Council': None,
-                'WorkingGroup': (
-                    'Forum',
-                    'Storage',
-                    'Content',
-                    'OperationsAlpha',
-                    'App',
-                    'Distribution',
-                    'OperationsBeta',
-                    'OperationsGamma',
-                    'Membership',
-                ),
-            },
-        },
-        'expected_data_object_state_bloat_bond': 'u128',
-        'expected_data_size_fee': 'u128',
-        'object_creation_list': [
-            {
-                'ipfs_content_id': 'Bytes',
-                'size': 'u64',
-            },
-        ],
-        'state_bloat_bond_source_account_id': 'AccountId',
-    },
-}
-)
-```
-
----------
 ### update_blacklist
 Add and remove hashes to the current blacklist.
 &lt;weight&gt;
@@ -663,8 +617,8 @@ Add and remove hashes to the current blacklist.
 ```python
 call = substrate.compose_call(
     'Storage', 'update_blacklist', {
-    'add_hashes': 'scale_info::162',
-    'remove_hashes': 'scale_info::162',
+    'add_hashes': 'scale_info::163',
+    'remove_hashes': 'scale_info::163',
 }
 )
 ```
@@ -795,7 +749,7 @@ Updates distribution buckets for a bag.
 ```python
 call = substrate.compose_call(
     'Storage', 'update_distribution_buckets_for_bag', {
-    'add_buckets_indices': 'scale_info::83',
+    'add_buckets_indices': 'scale_info::84',
     'bag_id': {
         'Dynamic': {
             'Channel': 'u64',
@@ -817,7 +771,7 @@ call = substrate.compose_call(
         },
     },
     'family_id': 'u64',
-    'remove_buckets_indices': 'scale_info::83',
+    'remove_buckets_indices': 'scale_info::84',
 }
 )
 ```
@@ -870,7 +824,7 @@ call = substrate.compose_call(
         'Member',
         'Channel',
     ),
-    'families': 'scale_info::166',
+    'families': 'scale_info::167',
 }
 )
 ```
@@ -953,7 +907,7 @@ Updates storage buckets for a bag.
 ```python
 call = substrate.compose_call(
     'Storage', 'update_storage_buckets_for_bag', {
-    'add_buckets': 'scale_info::83',
+    'add_buckets': 'scale_info::84',
     'bag_id': {
         'Dynamic': {
             'Channel': 'u64',
@@ -974,7 +928,7 @@ call = substrate.compose_call(
             ),
         },
     },
-    'remove_buckets': 'scale_info::83',
+    'remove_buckets': 'scale_info::84',
 }
 )
 ```
@@ -1084,7 +1038,7 @@ Params
 | -------- | -------- | -------- |
 | None | `AccountId` | ```AccountId```
 | None | `BagId` | ```{'Static': {'Council': None, 'WorkingGroup': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'Dynamic': {'Member': 'u64', 'Channel': 'u64'}}```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 
 ---------
 ### DataObjectsMoved
@@ -1098,7 +1052,7 @@ Params
 | -------- | -------- | -------- |
 | None | `BagId` | ```{'Static': {'Council': None, 'WorkingGroup': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'Dynamic': {'Member': 'u64', 'Channel': 'u64'}}```
 | None | `BagId` | ```{'Static': {'Council': None, 'WorkingGroup': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'Dynamic': {'Member': 'u64', 'Channel': 'u64'}}```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 
 ---------
 ### DataObjectsUpdated
@@ -1111,8 +1065,8 @@ Params
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `UploadParameters` | ```{'bag_id': {'Static': {'Council': None, 'WorkingGroup': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'Dynamic': {'Member': 'u64', 'Channel': 'u64'}}, 'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'state_bloat_bond_source_account_id': 'AccountId', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 
 ---------
 ### DataObjectsUploaded
@@ -1124,7 +1078,7 @@ Params
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 | None | `UploadParameters` | ```{'bag_id': {'Static': {'Council': None, 'WorkingGroup': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'Dynamic': {'Member': 'u64', 'Channel': 'u64'}}, 'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'state_bloat_bond_source_account_id': 'AccountId', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}```
 | None | `Balance` | ```u128```
 
@@ -1292,8 +1246,8 @@ Params
 | -------- | -------- | -------- |
 | None | `BagId` | ```{'Static': {'Council': None, 'WorkingGroup': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'Dynamic': {'Member': 'u64', 'Channel': 'u64'}}```
 | None | `DistributionBucketFamilyId` | ```u64```
-| None | `BTreeSet<DistributionBucketIndex>` | ```scale_info::83```
-| None | `BTreeSet<DistributionBucketIndex>` | ```scale_info::83```
+| None | `BTreeSet<DistributionBucketIndex>` | ```scale_info::84```
+| None | `BTreeSet<DistributionBucketIndex>` | ```scale_info::84```
 
 ---------
 ### DistributionOperatorRemarked
@@ -1318,8 +1272,8 @@ Params
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `DynamicBagCreationParameters` | ```{'bag_id': {'Member': 'u64', 'Channel': 'u64'}, 'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'state_bloat_bond_source_account_id': 'AccountId', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets': 'scale_info::83', 'distribution_buckets': 'scale_info::135'}```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `DynamicBagCreationParameters` | ```{'bag_id': {'Member': 'u64', 'Channel': 'u64'}, 'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'state_bloat_bond_source_account_id': 'AccountId', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets': 'scale_info::84', 'distribution_buckets': 'scale_info::136'}```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 
 ---------
 ### DynamicBagDeleted
@@ -1341,7 +1295,7 @@ Params
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `DynamicBagType` | ```('Member', 'Channel')```
-| None | `BTreeMap<DistributionBucketFamilyId, u32>` | ```scale_info::166```
+| None | `BTreeMap<DistributionBucketFamilyId, u32>` | ```scale_info::167```
 
 ---------
 ### NumberOfStorageBucketsInDynamicBagCreationPolicyUpdated
@@ -1369,7 +1323,7 @@ Params
 | None | `StorageBucketId` | ```u64```
 | None | `WorkerId` | ```u64```
 | None | `BagId` | ```{'Static': {'Council': None, 'WorkingGroup': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'Dynamic': {'Member': 'u64', 'Channel': 'u64'}}```
-| None | `BTreeSet<DataObjectId>` | ```scale_info::83```
+| None | `BTreeSet<DataObjectId>` | ```scale_info::84```
 
 ---------
 ### StorageBucketCreated
@@ -1492,8 +1446,8 @@ Params
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `BagId` | ```{'Static': {'Council': None, 'WorkingGroup': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'Dynamic': {'Member': 'u64', 'Channel': 'u64'}}```
-| None | `BTreeSet<StorageBucketId>` | ```scale_info::83```
-| None | `BTreeSet<StorageBucketId>` | ```scale_info::83```
+| None | `BTreeSet<StorageBucketId>` | ```scale_info::84```
+| None | `BTreeSet<StorageBucketId>` | ```scale_info::84```
 
 ---------
 ### StorageBucketsVoucherMaxLimitsUpdated
@@ -1544,8 +1498,8 @@ Params
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `BTreeSet<Vec<u8>>` | ```scale_info::162```
-| None | `BTreeSet<Vec<u8>>` | ```scale_info::162```
+| None | `BTreeSet<Vec<u8>>` | ```scale_info::163```
+| None | `BTreeSet<Vec<u8>>` | ```scale_info::163```
 
 ---------
 ### UploadingBlockStatusUpdated
@@ -1607,10 +1561,10 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'distributed_by': 'scale_info::135',
+    'distributed_by': 'scale_info::136',
     'objects_number': 'u64',
     'objects_total_size': 'u64',
-    'stored_by': 'scale_info::83',
+    'stored_by': 'scale_info::84',
 }
 ```
 ---------
@@ -1735,8 +1689,8 @@ result = substrate.query(
     'accepting_new_bags': 'bool',
     'assigned_bags': 'u64',
     'distributing': 'bool',
-    'operators': 'scale_info::83',
-    'pending_invitations': 'scale_info::83',
+    'operators': 'scale_info::84',
+    'pending_invitations': 'scale_info::84',
 }
 ```
 ---------
@@ -1797,7 +1751,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'families': 'scale_info::166', 'number_of_storage_buckets': 'u32'}
+{'families': 'scale_info::167', 'number_of_storage_buckets': 'u32'}
 ```
 ---------
 ### NextDataObjectId

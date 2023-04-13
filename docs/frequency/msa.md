@@ -65,6 +65,24 @@ call = substrate.compose_call(
 ```
 
 ---------
+### create_provider_via_governance
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| provider_key | `T::AccountId` | 
+| provider_name | `Vec<u8>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Msa', 'create_provider_via_governance', {
+    'provider_key': 'AccountId',
+    'provider_name': 'Bytes',
+}
+)
+```
+
+---------
 ### create_sponsored_account_with_delegation
 #### Attributes
 | Name | Type |
@@ -135,20 +153,16 @@ call = substrate.compose_call(
 ```
 
 ---------
-### grant_schema_permissions
+### propose_to_be_provider
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| provider_msa_id | `MessageSourceId` | 
-| schema_ids | `Vec<SchemaId>` | 
+| provider_name | `Vec<u8>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Msa', 'grant_schema_permissions', {
-    'provider_msa_id': 'u64',
-    'schema_ids': ['u16'],
-}
+    'Msa', 'propose_to_be_provider', {'provider_name': 'Bytes'}
 )
 ```
 
@@ -303,30 +317,15 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'revoked_at': 'u32', 'schema_permissions': 'scale_info::239'}
+{'revoked_at': 'u32', 'schema_permissions': 'scale_info::247'}
 ```
 ---------
-### PayloadSignatureBucketCount
+### PayloadSignatureRegistryList
 
 #### Python
 ```python
 result = substrate.query(
-    'Msa', 'PayloadSignatureBucketCount', ['u32']
-)
-```
-
-#### Return value
-```python
-'u32'
-```
----------
-### PayloadSignatureRegistry
-
-#### Python
-```python
-result = substrate.query(
-    'Msa', 'PayloadSignatureRegistry', [
-    'u32',
+    'Msa', 'PayloadSignatureRegistryList', [
     {
         'Ecdsa': '[u8; 65]',
         'Ed25519': '[u8; 64]',
@@ -338,7 +337,34 @@ result = substrate.query(
 
 #### Return value
 ```python
-'u32'
+('u32', {'Ecdsa': '[u8; 65]', 'Ed25519': '[u8; 64]', 'Sr25519': '[u8; 64]'})
+```
+---------
+### PayloadSignatureRegistryPointer
+
+#### Python
+```python
+result = substrate.query(
+    'Msa', 'PayloadSignatureRegistryPointer', []
+)
+```
+
+#### Return value
+```python
+{
+    'count': 'u32',
+    'newest': {
+        'Ecdsa': '[u8; 65]',
+        'Ed25519': '[u8; 64]',
+        'Sr25519': '[u8; 64]',
+    },
+    'newest_expires_at': 'u32',
+    'oldest': {
+        'Ecdsa': '[u8; 65]',
+        'Ed25519': '[u8; 64]',
+        'Sr25519': '[u8; 64]',
+    },
+}
 ```
 ---------
 ### ProviderToRegistryEntry
@@ -416,20 +442,10 @@ constant = substrate.get_constant('Msa', 'MaxPublicKeysPerMsa')
 constant = substrate.get_constant('Msa', 'MaxSchemaGrantsPerDelegation')
 ```
 ---------
-### MaxSignaturesPerBucket
-#### Value
-```python
-50000
-```
-#### Python
-```python
-constant = substrate.get_constant('Msa', 'MaxSignaturesPerBucket')
-```
----------
 ### MaxSignaturesStored
 #### Value
 ```python
-100000
+50000
 ```
 #### Python
 ```python
@@ -444,16 +460,6 @@ constant = substrate.get_constant('Msa', 'MaxSignaturesStored')
 #### Python
 ```python
 constant = substrate.get_constant('Msa', 'MortalityWindowSize')
-```
----------
-### NumberOfBuckets
-#### Value
-```python
-2
-```
-#### Python
-```python
-constant = substrate.get_constant('Msa', 'NumberOfBuckets')
 ```
 ---------
 ## Errors
@@ -532,6 +538,9 @@ constant = substrate.get_constant('Msa', 'NumberOfBuckets')
 
 ---------
 ### SignatureAlreadySubmitted
+
+---------
+### SignatureRegistryCorrupted
 
 ---------
 ### SignatureRegistryLimitExceeded

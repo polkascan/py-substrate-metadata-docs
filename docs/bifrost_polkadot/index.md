@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bifrost_polkadot     |
 | Implementation name     | bifrost_polkadot     |
-| Spec version     | 970     |
+| Spec version     | 971     |
 | SS58 Format     | 6     |
 | Token symbol      | ['BNC']     |
 | Token decimals      | [12]     |
@@ -63,7 +63,7 @@
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [VeMinting](veminting.md) | [7](veminting.md#calls) | [10](veminting.md#events) | [11](veminting.md#storage-functions) | [7](veminting.md#constants) | [6](veminting.md#errors) |
 | [Vesting](vesting.md) | [8](vesting.md#calls) | [2](vesting.md#events) | [3](vesting.md#storage-functions) | [1](vesting.md#constants) | [7](vesting.md#errors) |
-| [VtokenMinting](vtokenminting.md) | [13](vtokenminting.md#calls) | [14](vtokenminting.md#events) | [14](vtokenminting.md#storage-functions) | [6](vtokenminting.md#constants) | [17](vtokenminting.md#errors) |
+| [VtokenMinting](vtokenminting.md) | [13](vtokenminting.md#calls) | [15](vtokenminting.md#events) | [14](vtokenminting.md#storage-functions) | [6](vtokenminting.md#constants) | [17](vtokenminting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
 | [XcmInterface](xcminterface.md) | [2](xcminterface.md#calls) | [3](xcminterface.md#events) | [2](xcminterface.md#storage-functions) | [7](xcminterface.md#constants) | [3](xcminterface.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [8](xcmpqueue.md#events) | [9](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

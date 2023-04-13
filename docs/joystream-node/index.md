@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | joystream-node     |
 | Implementation name     | joystream-node     |
-| Spec version     | 1001     |
+| Spec version     | 2001     |
 | SS58 Format     | 126     |
 | Token symbol      | JOY     |
 | Token decimals      | 10     |
@@ -23,7 +23,7 @@
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
 | [Bounty](bounty.md) | [15](bounty.md#calls) | [23](bounty.md#events) | [5](bounty.md#storage-functions) | [4](bounty.md#constants) | [35](bounty.md#errors) |
 | [Constitution](constitution.md) | [1](constitution.md#calls) | [1](constitution.md#events) | [1](constitution.md#storage-functions) | [0](constitution.md#constants) | [0](constitution.md#errors) |
-| [Content](content.md) | [64](content.md#calls) | [55](content.md#events) | [33](content.md#storage-functions) | [7](content.md#constants) | [128](content.md#errors) |
+| [Content](content.md) | [64](content.md#calls) | [54](content.md#events) | [33](content.md#storage-functions) | [9](content.md#constants) | [128](content.md#errors) |
 | [ContentWorkingGroup](contentworkinggroup.md) | [19](contentworkinggroup.md#calls) | [25](contentworkinggroup.md#events) | [10](contentworkinggroup.md#storage-functions) | [6](contentworkinggroup.md#constants) | [32](contentworkinggroup.md#errors) |
 | [Council](council.md) | [12](council.md#calls) | [19](council.md#events) | [9](council.md#storage-functions) | [9](council.md#constants) | [24](council.md#errors) |
 | [DistributionWorkingGroup](distributionworkinggroup.md) | [19](distributionworkinggroup.md#calls) | [25](distributionworkinggroup.md#events) | [10](distributionworkinggroup.md#storage-functions) | [6](distributionworkinggroup.md#constants) | [32](distributionworkinggroup.md#errors) |
@@ -34,7 +34,7 @@
 | [Historical](historical.md) | [0](historical.md#calls) | [0](historical.md#events) | [2](historical.md#storage-functions) | [0](historical.md#constants) | [0](historical.md#errors) |
 | [ImOnline](imonline.md) | [1](imonline.md#calls) | [3](imonline.md#events) | [4](imonline.md#storage-functions) | [1](imonline.md#constants) | [2](imonline.md#errors) |
 | [JoystreamUtility](joystreamutility.md) | [4](joystreamutility.md#calls) | [4](joystreamutility.md#events) | [0](joystreamutility.md#storage-functions) | [0](joystreamutility.md#constants) | [3](joystreamutility.md#errors) |
-| [Members](members.md) | [17](members.md#calls) | [17](members.md#events) | [8](members.md#storage-functions) | [6](members.md#constants) | [21](members.md#errors) |
+| [Members](members.md) | [17](members.md#calls) | [17](members.md#events) | [8](members.md#storage-functions) | [6](members.md#constants) | [22](members.md#errors) |
 | [MembershipWorkingGroup](membershipworkinggroup.md) | [19](membershipworkinggroup.md#calls) | [25](membershipworkinggroup.md#events) | [10](membershipworkinggroup.md#storage-functions) | [6](membershipworkinggroup.md#constants) | [32](membershipworkinggroup.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [2](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [Offences](offences.md) | [0](offences.md#calls) | [1](offences.md#events) | [3](offences.md#storage-functions) | [0](offences.md#constants) | [0](offences.md#errors) |
@@ -46,12 +46,11 @@
 | [ProposalsDiscussion](proposalsdiscussion.md) | [4](proposalsdiscussion.md#calls) | [5](proposalsdiscussion.md#events) | [4](proposalsdiscussion.md#storage-functions) | [3](proposalsdiscussion.md#constants) | [10](proposalsdiscussion.md#errors) |
 | [ProposalsEngine](proposalsengine.md) | [4](proposalsengine.md#calls) | [6](proposalsengine.md#events) | [5](proposalsengine.md#storage-functions) | [6](proposalsengine.md#constants) | [23](proposalsengine.md#errors) |
 | [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
-| [Referendum](referendum.md) | [3](referendum.md#calls) | [7](referendum.md#events) | [2](referendum.md#storage-functions) | [5](referendum.md#constants) | [13](referendum.md#errors) |
+| [Referendum](referendum.md) | [4](referendum.md#calls) | [8](referendum.md#events) | [3](referendum.md#storage-functions) | [5](referendum.md#constants) | [14](referendum.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [Staking](staking.md) | [26](staking.md#calls) | [13](staking.md#events) | [39](staking.md#storage-functions) | [6](staking.md#constants) | [25](staking.md#errors) |
-| [Storage](storage.md) | [36](storage.md#calls) | [42](storage.md#events) | [19](storage.md#storage-functions) | [11](storage.md#constants) | [65](storage.md#errors) |
+| [Storage](storage.md) | [35](storage.md#calls) | [42](storage.md#events) | [19](storage.md#storage-functions) | [11](storage.md#constants) | [65](storage.md#errors) |
 | [StorageWorkingGroup](storageworkinggroup.md) | [19](storageworkinggroup.md#calls) | [25](storageworkinggroup.md#events) | [10](storageworkinggroup.md#storage-functions) | [6](storageworkinggroup.md#constants) | [32](storageworkinggroup.md#errors) |
-| [Sudo](sudo.md) | [4](sudo.md#calls) | [3](sudo.md#events) | [1](sudo.md#storage-functions) | [0](sudo.md#constants) | [1](sudo.md#errors) |
 | [System](system.md) | [9](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [0](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |

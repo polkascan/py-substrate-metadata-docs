@@ -53,6 +53,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### register_eth_address
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| eth_address | `H160` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'DoraRewards', 'register_eth_address', {'eth_address': '[u8; 20]'}
+)
+```
+
+---------
 ## Events
 
 ---------
@@ -148,6 +162,20 @@ result = substrate.query(
 #### Return value
 ```python
 'bool'
+```
+---------
+### RegisterEthAddr
+
+#### Python
+```python
+result = substrate.query(
+    'DoraRewards', 'RegisterEthAddr', ['AccountId']
+)
+```
+
+#### Return value
+```python
+'[u8; 20]'
 ```
 ---------
 ### TotalContributors

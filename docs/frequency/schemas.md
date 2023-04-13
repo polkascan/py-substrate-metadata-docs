@@ -31,6 +31,60 @@ call = substrate.compose_call(
 ```
 
 ---------
+### create_schema_via_governance
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| creator_key | `T::AccountId` | 
+| model | `BoundedVec<u8, T::SchemaModelMaxBytesBoundedVecLimit>` | 
+| model_type | `ModelType` | 
+| payload_location | `PayloadLocation` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Schemas', 'create_schema_via_governance', {
+    'creator_key': 'AccountId',
+    'model': 'Bytes',
+    'model_type': (
+        'AvroBinary',
+        'Parquet',
+    ),
+    'payload_location': (
+        'OnChain',
+        'IPFS',
+    ),
+}
+)
+```
+
+---------
+### propose_to_create_schema
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| model | `BoundedVec<u8, T::SchemaModelMaxBytesBoundedVecLimit>` | 
+| model_type | `ModelType` | 
+| payload_location | `PayloadLocation` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Schemas', 'propose_to_create_schema', {
+    'model': 'Bytes',
+    'model_type': (
+        'AvroBinary',
+        'Parquet',
+    ),
+    'payload_location': (
+        'OnChain',
+        'IPFS',
+    ),
+}
+)
+```
+
+---------
 ### set_max_schema_model_bytes
 #### Attributes
 | Name | Type |

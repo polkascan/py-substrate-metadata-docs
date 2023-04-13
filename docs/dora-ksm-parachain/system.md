@@ -805,6 +805,7 @@ result = substrate.query(
                     'sender': 'AccountId',
                 },
             },
+            None: None,
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -824,7 +825,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1063,7 +1063,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'DORA KSM Parachain',
     'impl_version': 0,
     'spec_name': 'DORA KSM Parachain',
-    'spec_version': 31,
+    'spec_version': 33,
     'state_version': 1,
     'transaction_version': 1,
 }

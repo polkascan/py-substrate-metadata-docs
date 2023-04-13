@@ -33,8 +33,7 @@ Parameters:
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| updates | `Vec<
-(XcmInterfaceOperation, Option<XcmWeight>, Option<BalanceOf<T>>)>` | 
+| updates | `Vec<(XcmInterfaceOperation, Option<Weight>, Option<BalanceOf<T>>)>` | 
 
 #### Python
 ```python
@@ -46,7 +45,13 @@ call = substrate.compose_call(
                 'UmpContributeTransact',
                 'StatemineTransfer',
             ),
-            (None, 'u64'),
+            (
+                None,
+                {
+                    'proof_size': 'u64',
+                    'ref_time': 'u64',
+                },
+            ),
             (None, 'u128'),
         ),
     ],
@@ -72,7 +77,7 @@ Xcm dest weight has been updated. \[xcm_operation, new_xcm_dest_weight\]
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `XcmInterfaceOperation` | ```('UmpContributeTransact', 'StatemineTransfer')```
-| None | `XcmWeight` | ```u64```
+| None | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### XcmFeeUpdated
@@ -122,11 +127,21 @@ result = substrate.query(
 
 #### Return value
 ```python
-('u64', 'u128')
+({'proof_size': 'u64', 'ref_time': 'u64'}, 'u128')
 ```
 ---------
 ## Constants
 
+---------
+### CallBackTimeOut
+#### Value
+```python
+10
+```
+#### Python
+```python
+constant = substrate.get_constant('XcmInterface', 'CallBackTimeOut')
+```
 ---------
 ### ContributionFee
 #### Value
@@ -141,11 +156,21 @@ constant = substrate.get_constant('XcmInterface', 'ContributionFee')
 ### ContributionWeight
 #### Value
 ```python
-1000000000
+{'proof_size': 1000000, 'ref_time': 1000000000}
 ```
 #### Python
 ```python
 constant = substrate.get_constant('XcmInterface', 'ContributionWeight')
+```
+---------
+### ParachainId
+#### Value
+```python
+2001
+```
+#### Python
+```python
+constant = substrate.get_constant('XcmInterface', 'ParachainId')
 ```
 ---------
 ### ParachainSovereignAccount
@@ -193,7 +218,7 @@ constant = substrate.get_constant('XcmInterface', 'StatemineTransferFee')
 ### StatemineTransferWeight
 #### Value
 ```python
-4000000000
+{'proof_size': 0, 'ref_time': 4000000000}
 ```
 #### Python
 ```python

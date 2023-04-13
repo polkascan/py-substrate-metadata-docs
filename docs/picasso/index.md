@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | picasso     |
 | Implementation name     | picasso     |
-| Spec version     | 10009     |
+| Spec version     | 10015     |
 | SS58 Format     | 49     |
 | Token symbol      | PICA     |
 | Token decimals      | 12     |
@@ -17,7 +17,7 @@
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | [AssetTxPayment](assettxpayment.md) | [1](assettxpayment.md#calls) | [0](assettxpayment.md#events) | [1](assettxpayment.md#storage-functions) | [1](assettxpayment.md#constants) | [0](assettxpayment.md#errors) |
 | [Assets](assets.md) | [10](assets.md#calls) | [0](assets.md#events) | [0](assets.md#storage-functions) | [1](assets.md#constants) | [2](assets.md#errors) |
-| [AssetsRegistry](assetsregistry.md) | [3](assetsregistry.md#calls) | [3](assetsregistry.md#events) | [4](assetsregistry.md#storage-functions) | [0](assetsregistry.md#constants) | [2](assetsregistry.md#errors) |
+| [AssetsRegistry](assetsregistry.md) | [3](assetsregistry.md#calls) | [4](assetsregistry.md#events) | [8](assetsregistry.md#storage-functions) | [0](assetsregistry.md#constants) | [3](assetsregistry.md#errors) |
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
@@ -33,16 +33,20 @@
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [GovernanceRegistry](governanceregistry.md) | [3](governanceregistry.md#calls) | [3](governanceregistry.md#events) | [1](governanceregistry.md#storage-functions) | [0](governanceregistry.md#constants) | [1](governanceregistry.md#errors) |
+| [Ibc](ibc.md) | [4](ibc.md#calls) | [11](ibc.md#events) | [17](ibc.md#storage-functions) | [6](ibc.md#constants) | [37](ibc.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [Indices](indices.md) | [5](indices.md#calls) | [3](indices.md#events) | [1](indices.md#storage-functions) | [1](indices.md#constants) | [5](indices.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
-| [Pablo](pablo.md) | [6](pablo.md#calls) | [5](pablo.md#events) | [4](pablo.md#storage-functions) | [2](pablo.md#constants) | [30](pablo.md#errors) |
+| [Oracle](oracle.md) | [7](oracle.md#calls) | [11](oracle.md#events) | [11](oracle.md#storage-functions) | [5](oracle.md#constants) | [32](oracle.md#errors) |
+| [Pablo](pablo.md) | [6](pablo.md#calls) | [5](pablo.md#events) | [5](pablo.md#storage-functions) | [2](pablo.md#constants) | [30](pablo.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
 | [RelayerXcm](relayerxcm.md) | [10](relayerxcm.md#calls) | [17](relayerxcm.md#events) | [9](relayerxcm.md#storage-functions) | [0](relayerxcm.md#constants) | [13](relayerxcm.md#errors) |
+| [ReleaseCommittee](releasecommittee.md) | [7](releasecommittee.md#calls) | [7](releasecommittee.md#events) | [6](releasecommittee.md#storage-functions) | [0](releasecommittee.md#constants) | [10](releasecommittee.md#errors) |
+| [ReleaseMembership](releasemembership.md) | [7](releasemembership.md#calls) | [6](releasemembership.md#events) | [2](releasemembership.md#storage-functions) | [0](releasemembership.md#constants) | [3](releasemembership.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [Sudo](sudo.md) | [4](sudo.md#calls) | [3](sudo.md#events) | [1](sudo.md#storage-functions) | [0](sudo.md#constants) | [1](sudo.md#errors) |

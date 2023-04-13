@@ -318,7 +318,7 @@ result = substrate.query(
  `32 + sizeof(AccountId)` bytes.
 #### Value
 ```python
-89000000000
+10176000000000000000
 ```
 #### Python
 ```python
@@ -331,7 +331,7 @@ constant = substrate.get_constant('Multisig', 'DepositBase')
  This is held for adding 32 bytes more into a pre-existing storage value.
 #### Value
 ```python
-32000000000
+64000000000000000
 ```
 #### Python
 ```python

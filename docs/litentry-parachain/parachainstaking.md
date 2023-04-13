@@ -1508,7 +1508,7 @@ constant = substrate.get_constant('ParachainStaking', 'RewardPaymentDelay')
 ### PendingDelegationRevoke
 
 ---------
-### RoundLengthMustBeAtLeastTotalSelectedCollators
+### RoundLengthMustBeGreaterThanTotalSelectedCollators
 
 ---------
 ### TooLowCandidateCountWeightHintCancelLeaveCandidates

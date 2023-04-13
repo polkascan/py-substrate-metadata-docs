@@ -70,6 +70,36 @@ result = substrate.query(
 'u64'
 ```
 ---------
+### StackableCollection
+ Index stackable collections by (class ID, token ID)
+
+#### Python
+```python
+result = substrate.query(
+    'OrmlNFT', 'StackableCollection', [('u32', 'u64')]
+)
+```
+
+#### Return value
+```python
+()
+```
+---------
+### StackableCollectionsBalances
+ Index stackable collections balances
+
+#### Python
+```python
+result = substrate.query(
+    'OrmlNFT', 'StackableCollectionsBalances', ['u32', 'u64', 'AccountId']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### Tokens
  Store token info.
 
@@ -122,6 +152,14 @@ Total issuance is not 0
 Class not found
 
 ---------
+### InvalidStackableNftAmount
+Invalid stackable NFT balance
+
+---------
+### InvalidStackableNftTransfer
+Invalid stackable NFT transfer (stored value is equal to zero)
+
+---------
 ### MaxMetadataExceeded
 Failed because the Maximum amount of metadata was exceeded
 
@@ -136,6 +174,18 @@ No available token ID
 ---------
 ### NoPermission
 The operator is not the owner of the token and has no permission
+
+---------
+### StackableCollectionAlreadyExists
+The stackable collection already exists
+
+---------
+### TokenAlreadyExist
+Token already exists
+
+---------
+### TokenIdRequired
+This collection is not autoincrement id
 
 ---------
 ### TokenNotFound

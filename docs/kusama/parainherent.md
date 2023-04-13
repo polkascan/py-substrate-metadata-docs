@@ -23,7 +23,7 @@ call = substrate.compose_call(
                     'commitments': {
                         'head_data': 'Bytes',
                         'horizontal_messages': [
-                            'scale_info::354',
+                            'scale_info::353',
                         ],
                         'hrmp_watermark': 'u32',
                         'new_validation_code': (
@@ -71,8 +71,8 @@ call = substrate.compose_call(
                 'statements': [
                     (
                         {
-                            'Invalid': 'scale_info::367',
-                            'Valid': 'scale_info::366',
+                            'Invalid': 'scale_info::366',
+                            'Valid': 'scale_info::365',
                         },
                         'u32',
                         '[u8; 64]',
@@ -84,12 +84,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -165,14 +165,14 @@ result = substrate.query(
                     'validation_code_hash': '[u8; 32]',
                 },
             },
-            [('u32', 'scale_info::359')],
+            [('u32', 'scale_info::358')],
         ),
     ],
     'disputes': [
         {
             'candidate_hash': '[u8; 32]',
             'session': 'u32',
-            'statements': [('scale_info::365', 'u32', '[u8; 64]')],
+            'statements': [('scale_info::364', 'u32', '[u8; 64]')],
         },
     ],
     'session': 'u32',

@@ -202,7 +202,7 @@ Messages have been received from the bridged chain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Vec<ReceivedMessages<ReceivalResult>>` | ```[{'lane': '[u8; 4]', 'receive_results': [('u64', {'Dispatched': 'scale_info::142', 'InvalidNonce': None, 'TooManyUnrewardedRelayers': None, 'TooManyUnconfirmedMessages': None, 'PreDispatchValidateFailed': None})], 'skipped_for_not_enough_weight': ['u64']}]```
+| None | `Vec<ReceivedMessages<ReceivalResult>>` | ```[{'lane': '[u8; 4]', 'receive_results': [('u64', {'Dispatched': 'scale_info::159', 'InvalidNonce': None, 'TooManyUnrewardedRelayers': None, 'TooManyUnconfirmedMessages': None, 'PreDispatchValidateFailed': None})], 'skipped_for_not_enough_weight': ['u64']}]```
 
 ---------
 ### ParameterUpdated

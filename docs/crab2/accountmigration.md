@@ -61,11 +61,20 @@ The `_signature` should be provided by `who`.
 | threshold | `u16` | 
 | to | `AccountId20` | 
 | signature | `Signature` | 
+| new_multisig_params | `Option<MultisigParams>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'AccountMigration', 'migrate_multisig', {
+    'new_multisig_params': (
+        None,
+        {
+            'address': '[u8; 20]',
+            'members': ['[u8; 20]'],
+            'threshold': 'u16',
+        },
+    ),
     'others': ['AccountId'],
     'signature': '[u8; 64]',
     'submitter': 'AccountId',
@@ -86,6 +95,24 @@ An account has been migrated.
 | -------- | -------- | -------- |
 | from | `AccountId32` | ```AccountId```
 | to | `AccountId20` | ```[u8; 20]```
+
+---------
+### MultisigMigrated
+A multisig account has been migrated.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| from | `AccountId32` | ```AccountId```
+| detail | `MultisigMigrationDetail` | ```{'to': '[u8; 20]', 'members': [('AccountId', 'bool')], 'threshold': 'u16'}```
+
+---------
+### NewMultisigParamsNoted
+A new multisig account params was noted/recorded on-chain.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| from | `AccountId32` | ```AccountId```
+| to | `MultisigParams` | ```{'address': '[u8; 20]', 'members': ['[u8; 20]'], 'threshold': 'u16'}```
 
 ---------
 ## Storage functions
@@ -315,7 +342,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'members': [('AccountId', 'bool')], 'migrate_to': '[u8; 20]', 'threshold': 'u16'}
+{'members': [('AccountId', 'bool')], 'threshold': 'u16', 'to': '[u8; 20]'}
 ```
 ---------
 ### Vestings

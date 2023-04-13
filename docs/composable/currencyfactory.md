@@ -2,6 +2,45 @@
 # CurrencyFactory
 
 ---------
+## Calls
+
+---------
+### add_range
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| length | `u64` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CurrencyFactory', 'add_range', {'length': 'u64'}
+)
+```
+
+---------
+### set_metadata
+Sets metadata
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| asset_id | `T::AssetId` | 
+| metadata | `BasicAssetMetadata` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CurrencyFactory', 'set_metadata', {
+    'asset_id': 'u128',
+    'metadata': {
+        'name': {'inner': 'Bytes'},
+        'symbol': {'inner': 'Bytes'},
+    },
+}
+)
+```
+
+---------
 ## Events
 
 ---------

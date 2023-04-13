@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | astar     |
 | Implementation name     | astar     |
-| Spec version     | 52     |
+| Spec version     | 55     |
 | SS58 Format     | 5     |
 | Token symbol      | ASTR     |
 | Token decimals      | 18     |
@@ -23,6 +23,7 @@
 | [BaseFee](basefee.md) | [2](basefee.md#calls) | [3](basefee.md#events) | [2](basefee.md#storage-functions) | [0](basefee.md#constants) | [0](basefee.md#errors) |
 | [BlockReward](blockreward.md) | [1](blockreward.md#calls) | [1](blockreward.md#events) | [1](blockreward.md#storage-functions) | [1](blockreward.md#constants) | [1](blockreward.md#errors) |
 | [CollatorSelection](collatorselection.md) | [5](collatorselection.md#calls) | [6](collatorselection.md#events) | [6](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [9](collatorselection.md#errors) |
+| [Contracts](contracts.md) | [9](contracts.md#calls) | [8](contracts.md#events) | [6](contracts.md#storage-functions) | [9](contracts.md#constants) | [28](contracts.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [DappsStaking](dappsstaking.md) | [14](dappsstaking.md#calls) | [12](dappsstaking.md#events) | [12](dappsstaking.md#storage-functions) | [10](dappsstaking.md#constants) | [23](dappsstaking.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |

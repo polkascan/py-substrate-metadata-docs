@@ -1557,7 +1557,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'individual': 'scale_info::561', 'total': 'u32'}
+{'individual': 'scale_info::581', 'total': 'u32'}
 ```
 ---------
 ### ErasStakers

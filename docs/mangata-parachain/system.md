@@ -350,12 +350,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -421,6 +421,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'u32',
@@ -713,6 +714,15 @@ result = substrate.query(
                 },
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::117'},
+                'SudoAsDone': {'sudo_result': 'scale_info::117'},
+            },
+            'SudoOrigin': {
+                'SuOriginDid': {'Err': 'scale_info::31', 'Ok': ()},
+                'SuOriginDoAsDone': {'Err': 'scale_info::31', 'Ok': ()},
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -821,20 +831,6 @@ result = substrate.query(
                 },
                 'Spending': {'budget_remaining': 'u128'},
             },
-            'Vesting': {
-                'VestingCompleted': ('AccountId', 'u32'),
-                'VestingUpdated': ('AccountId', 'u32', 'u128'),
-            },
-            None: None,
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::117'},
-                'SudoAsDone': {'sudo_result': 'scale_info::117'},
-            },
-            'SudoOrigin': {
-                'SuOriginDid': {'Err': 'scale_info::31', 'Ok': ()},
-                'SuOriginDoAsDone': {'Err': 'scale_info::31', 'Ok': ()},
-            },
             'UnknownTokens': {
                 'Deposited': {
                     'asset': 'scale_info::81',
@@ -855,6 +851,10 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::117'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::31'},
+            },
+            'Vesting': {
+                'VestingCompleted': ('AccountId', 'u32'),
+                'VestingUpdated': ('AccountId', 'u32', 'u128'),
             },
             'XTokens': {
                 'TransferredMultiAssets': {
@@ -1153,10 +1153,7 @@ constant = substrate.get_constant('System', 'BlockLength')
 ```python
 {
     'base_block': {'proof_size': 0, 'ref_time': 25125903000},
-    'max_block': {
-        'proof_size': 18446744073709551615,
-        'ref_time': 2000000000000,
-    },
+    'max_block': {'proof_size': 5242880, 'ref_time': 250000000000},
     'per_class': {
         'mandatory': {
             'base_extrinsic': {'proof_size': 0, 'ref_time': 113696000},
@@ -1166,30 +1163,15 @@ constant = substrate.get_constant('System', 'BlockLength')
         },
         'normal': {
             'base_extrinsic': {'proof_size': 0, 'ref_time': 113696000},
-            'max_extrinsic': {
-                'proof_size': 12912720851596686130,
-                'ref_time': 1399886304000,
-            },
-            'max_total': {
-                'proof_size': 13835058055282163711,
-                'ref_time': 1500000000000,
-            },
+            'max_extrinsic': {'proof_size': 3670016, 'ref_time': 174886304000},
+            'max_total': {'proof_size': 3932160, 'ref_time': 187500000000},
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
             'base_extrinsic': {'proof_size': 0, 'ref_time': 113696000},
-            'max_extrinsic': {
-                'proof_size': 17524406870024074034,
-                'ref_time': 1899886304000,
-            },
-            'max_total': {
-                'proof_size': 18446744073709551615,
-                'ref_time': 2000000000000,
-            },
-            'reserved': {
-                'proof_size': 4611686018427387904,
-                'ref_time': 500000000000,
-            },
+            'max_extrinsic': {'proof_size': 4980736, 'ref_time': 237386304000},
+            'max_total': {'proof_size': 5242880, 'ref_time': 250000000000},
+            'reserved': {'proof_size': 1310720, 'ref_time': 62500000000},
         },
     },
 }
@@ -1250,9 +1232,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'mangata-parachain',
     'impl_version': 0,
     'spec_name': 'mangata-parachain',
-    'spec_version': 15,
+    'spec_version': 2802,
     'state_version': 0,
-    'transaction_version': 15,
+    'transaction_version': 2802,
 }
 ```
 #### Python

@@ -5,6 +5,27 @@
 ## Calls
 
 ---------
+### opt_out_of_voting
+Permanently opt out of voting from a given account.
+
+\# &lt;weight&gt;
+
+\#\# weight
+`O (1)`
+- db:
+   - `O(1)` doesn&\#x27;t depend on the state or parameters
+\# &lt;/weight&gt;
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Referendum', 'opt_out_of_voting', {}
+)
+```
+
+---------
 ### release_vote_stake
 Release a locked stake.
 \# &lt;weight&gt;
@@ -84,6 +105,14 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### AccountOptedOutOfVoting
+Account permanently opted out of voting in referendum.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `AccountId` | ```AccountId```
+
+---------
 ### ReferendumFinished
 Referendum ended and winning option was selected
 #### Attributes
@@ -148,6 +177,21 @@ User revealed his vote
 ---------
 ## Storage functions
 
+---------
+### AccountsOptedOut
+ Accounts that permanently opted out of voting in referendum.
+
+#### Python
+```python
+result = substrate.query(
+    'Referendum', 'AccountsOptedOut', ['AccountId']
+)
+```
+
+#### Return value
+```python
+()
+```
 ---------
 ### Stage
  Current referendum stage.
@@ -264,6 +308,10 @@ constant = substrate.get_constant('Referendum', 'VoteStageDuration')
 ```
 ---------
 ## Errors
+
+---------
+### AccountAlreadyOptedOutOfVoting
+A vote cannot be cast from an account that already opted out of voting.
 
 ---------
 ### AlreadyVotedThisCycle

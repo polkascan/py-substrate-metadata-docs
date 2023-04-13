@@ -160,7 +160,7 @@ call = substrate.compose_call(
                             'scale_info::90',
                         ],
                         'effects': [
-                            'scale_info::271',
+                            'scale_info::266',
                         ],
                     },
                     'TeleportAsset': {
@@ -168,7 +168,7 @@ call = substrate.compose_call(
                             'scale_info::90',
                         ],
                         'effects': [
-                            'scale_info::271',
+                            'scale_info::266',
                         ],
                     },
                     'Transact': {
@@ -299,7 +299,7 @@ call = substrate.compose_call(
                             ),
                         },
                         'effects': [
-                            'scale_info::260',
+                            'scale_info::255',
                         ],
                     },
                     'WithdrawAsset': {
@@ -307,7 +307,7 @@ call = substrate.compose_call(
                             'scale_info::90',
                         ],
                         'effects': [
-                            'scale_info::271',
+                            'scale_info::266',
                         ],
                     },
                 },
@@ -818,7 +818,7 @@ call = substrate.compose_call(
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::269',
+                                'scale_info::264',
                             ],
                         },
                         'DepositAsset': {
@@ -833,7 +833,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'ExchangeAsset': {
@@ -849,7 +849,7 @@ call = substrate.compose_call(
                                 'scale_info::90',
                             ],
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                             'reserve': 'scale_info::91',
                         },
@@ -859,7 +859,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'Null': None,
@@ -918,7 +918,7 @@ call = substrate.compose_call(
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::269',
+                                'scale_info::264',
                             ],
                         },
                         'DepositAsset': {
@@ -933,7 +933,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'ExchangeAsset': {
@@ -949,7 +949,7 @@ call = substrate.compose_call(
                                 'scale_info::90',
                             ],
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                             'reserve': 'scale_info::91',
                         },
@@ -959,7 +959,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'Null': None,
@@ -1990,7 +1990,7 @@ call = substrate.compose_call(
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::258',
+                                'scale_info::253',
                             ],
                         },
                         'DepositAsset': {
@@ -2005,7 +2005,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'ExchangeAsset': {
@@ -2021,7 +2021,7 @@ call = substrate.compose_call(
                                 'scale_info::90',
                             ],
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                             'reserve': 'scale_info::91',
                         },
@@ -2031,7 +2031,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'Null': None,
@@ -2090,7 +2090,7 @@ call = substrate.compose_call(
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::269',
+                                'scale_info::264',
                             ],
                         },
                         'DepositAsset': {
@@ -2105,7 +2105,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'ExchangeAsset': {
@@ -2121,7 +2121,7 @@ call = substrate.compose_call(
                                 'scale_info::90',
                             ],
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                             'reserve': 'scale_info::91',
                         },
@@ -2131,7 +2131,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'Null': None,
@@ -2183,7 +2183,7 @@ call = substrate.compose_call(
                             'fees': 'scale_info::72',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::274',
+                                'scale_info::269',
                             ],
                             'weight': 'u64',
                         },
@@ -2196,7 +2196,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'max_assets': 'u32',
                         },
@@ -2209,7 +2209,7 @@ call = substrate.compose_call(
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::83',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'reserve': 'scale_info::58',
                         },
@@ -2217,7 +2217,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                         },
                         'Noop': None,
@@ -2258,7 +2258,7 @@ call = substrate.compose_call(
                             'scale_info::72',
                         ],
                         'effects': [
-                            'scale_info::276',
+                            'scale_info::271',
                         ],
                     },
                     'RelayedFrom': {
@@ -2336,7 +2336,7 @@ call = substrate.compose_call(
                             'scale_info::72',
                         ],
                         'effects': [
-                            'scale_info::276',
+                            'scale_info::271',
                         ],
                     },
                     'SubscribeVersion': {
@@ -2373,7 +2373,7 @@ call = substrate.compose_call(
                             'parents': 'u8',
                         },
                         'effects': [
-                            'scale_info::265',
+                            'scale_info::260',
                         ],
                     },
                     'UnsubscribeVersion': None,
@@ -2382,7 +2382,7 @@ call = substrate.compose_call(
                             'scale_info::72',
                         ],
                         'effects': [
-                            'scale_info::276',
+                            'scale_info::271',
                         ],
                     },
                 },
@@ -2826,7 +2826,7 @@ call = substrate.compose_call(
                             'fees': 'scale_info::72',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::274',
+                                'scale_info::269',
                             ],
                             'weight': 'u64',
                         },
@@ -2839,7 +2839,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'max_assets': 'u32',
                         },
@@ -2852,7 +2852,7 @@ call = substrate.compose_call(
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::83',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'reserve': 'scale_info::58',
                         },
@@ -2860,7 +2860,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                         },
                         'Noop': None,
@@ -3042,7 +3042,7 @@ call = substrate.compose_call(
                             'fees': 'scale_info::72',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::263',
+                                'scale_info::258',
                             ],
                             'weight': 'u64',
                         },
@@ -3055,7 +3055,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'max_assets': 'u32',
                         },
@@ -3068,7 +3068,7 @@ call = substrate.compose_call(
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::83',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'reserve': 'scale_info::58',
                         },
@@ -3076,7 +3076,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                         },
                         'Noop': None,
@@ -3103,7 +3103,7 @@ call = substrate.compose_call(
                             'fees': 'scale_info::72',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::274',
+                                'scale_info::269',
                             ],
                             'weight': 'u64',
                         },
@@ -3116,7 +3116,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'max_assets': 'u32',
                         },
@@ -3129,7 +3129,7 @@ call = substrate.compose_call(
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::83',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'reserve': 'scale_info::58',
                         },
@@ -3137,7 +3137,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                         },
                         'Noop': None,
@@ -3367,10 +3367,10 @@ call = substrate.compose_call(
                     'scale_info::72',
                 ],
                 'SetAppendix': [
-                    'scale_info::280',
+                    'scale_info::275',
                 ],
                 'SetErrorHandler': [
-                    'scale_info::280',
+                    'scale_info::275',
                 ],
                 'SubscribeVersion': {
                     'max_response_weight': 'u64',
@@ -33097,7 +33097,7 @@ call = substrate.compose_call(
                             'scale_info::90',
                         ],
                         'effects': [
-                            'scale_info::260',
+                            'scale_info::255',
                         ],
                     },
                     'TeleportAsset': {
@@ -33105,7 +33105,7 @@ call = substrate.compose_call(
                             'scale_info::90',
                         ],
                         'effects': [
-                            'scale_info::260',
+                            'scale_info::255',
                         ],
                     },
                     'Transact': {
@@ -33236,7 +33236,7 @@ call = substrate.compose_call(
                             ),
                         },
                         'effects': [
-                            'scale_info::260',
+                            'scale_info::255',
                         ],
                     },
                     'WithdrawAsset': {
@@ -33244,7 +33244,7 @@ call = substrate.compose_call(
                             'scale_info::90',
                         ],
                         'effects': [
-                            'scale_info::260',
+                            'scale_info::255',
                         ],
                     },
                 },
@@ -33755,7 +33755,7 @@ call = substrate.compose_call(
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::258',
+                                'scale_info::253',
                             ],
                         },
                         'DepositAsset': {
@@ -33770,7 +33770,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'ExchangeAsset': {
@@ -33786,7 +33786,7 @@ call = substrate.compose_call(
                                 'scale_info::90',
                             ],
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                             'reserve': 'scale_info::91',
                         },
@@ -33796,7 +33796,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'Null': None,
@@ -33855,7 +33855,7 @@ call = substrate.compose_call(
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::258',
+                                'scale_info::253',
                             ],
                         },
                         'DepositAsset': {
@@ -33870,7 +33870,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'ExchangeAsset': {
@@ -33886,7 +33886,7 @@ call = substrate.compose_call(
                                 'scale_info::90',
                             ],
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                             'reserve': 'scale_info::91',
                         },
@@ -33896,7 +33896,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'Null': None,
@@ -34927,7 +34927,7 @@ call = substrate.compose_call(
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::258',
+                                'scale_info::253',
                             ],
                         },
                         'DepositAsset': {
@@ -34942,7 +34942,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'ExchangeAsset': {
@@ -34958,7 +34958,7 @@ call = substrate.compose_call(
                                 'scale_info::90',
                             ],
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                             'reserve': 'scale_info::91',
                         },
@@ -34968,7 +34968,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'Null': None,
@@ -35027,7 +35027,7 @@ call = substrate.compose_call(
                             'halt_on_error': 'bool',
                             'weight': 'u64',
                             'xcm': [
-                                'scale_info::258',
+                                'scale_info::253',
                             ],
                         },
                         'DepositAsset': {
@@ -35042,7 +35042,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'ExchangeAsset': {
@@ -35058,7 +35058,7 @@ call = substrate.compose_call(
                                 'scale_info::90',
                             ],
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                             'reserve': 'scale_info::91',
                         },
@@ -35068,7 +35068,7 @@ call = substrate.compose_call(
                             ],
                             'dest': 'scale_info::91',
                             'effects': [
-                                'scale_info::260',
+                                'scale_info::255',
                             ],
                         },
                         'Null': None,
@@ -35120,7 +35120,7 @@ call = substrate.compose_call(
                             'fees': 'scale_info::72',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::263',
+                                'scale_info::258',
                             ],
                             'weight': 'u64',
                         },
@@ -35133,7 +35133,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'max_assets': 'u32',
                         },
@@ -35146,7 +35146,7 @@ call = substrate.compose_call(
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::83',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'reserve': 'scale_info::58',
                         },
@@ -35154,7 +35154,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                         },
                         'Noop': None,
@@ -35195,7 +35195,7 @@ call = substrate.compose_call(
                             'scale_info::72',
                         ],
                         'effects': [
-                            'scale_info::265',
+                            'scale_info::260',
                         ],
                     },
                     'RelayedFrom': {
@@ -35273,7 +35273,7 @@ call = substrate.compose_call(
                             'scale_info::72',
                         ],
                         'effects': [
-                            'scale_info::265',
+                            'scale_info::260',
                         ],
                     },
                     'SubscribeVersion': {
@@ -35310,7 +35310,7 @@ call = substrate.compose_call(
                             'parents': 'u8',
                         },
                         'effects': [
-                            'scale_info::265',
+                            'scale_info::260',
                         ],
                     },
                     'UnsubscribeVersion': None,
@@ -35319,7 +35319,7 @@ call = substrate.compose_call(
                             'scale_info::72',
                         ],
                         'effects': [
-                            'scale_info::265',
+                            'scale_info::260',
                         ],
                     },
                 },
@@ -35763,7 +35763,7 @@ call = substrate.compose_call(
                             'fees': 'scale_info::72',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::263',
+                                'scale_info::258',
                             ],
                             'weight': 'u64',
                         },
@@ -35776,7 +35776,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'max_assets': 'u32',
                         },
@@ -35789,7 +35789,7 @@ call = substrate.compose_call(
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::83',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'reserve': 'scale_info::58',
                         },
@@ -35797,7 +35797,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                         },
                         'Noop': None,
@@ -35979,7 +35979,7 @@ call = substrate.compose_call(
                             'fees': 'scale_info::72',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::263',
+                                'scale_info::258',
                             ],
                             'weight': 'u64',
                         },
@@ -35992,7 +35992,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'max_assets': 'u32',
                         },
@@ -36005,7 +36005,7 @@ call = substrate.compose_call(
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::83',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'reserve': 'scale_info::58',
                         },
@@ -36013,7 +36013,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                         },
                         'Noop': None,
@@ -36040,7 +36040,7 @@ call = substrate.compose_call(
                             'fees': 'scale_info::72',
                             'halt_on_error': 'bool',
                             'instructions': [
-                                'scale_info::263',
+                                'scale_info::258',
                             ],
                             'weight': 'u64',
                         },
@@ -36053,7 +36053,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'max_assets': 'u32',
                         },
@@ -36066,7 +36066,7 @@ call = substrate.compose_call(
                         'InitiateReserveWithdraw': {
                             'assets': 'scale_info::83',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                             'reserve': 'scale_info::58',
                         },
@@ -36074,7 +36074,7 @@ call = substrate.compose_call(
                             'assets': 'scale_info::83',
                             'dest': 'scale_info::58',
                             'effects': [
-                                'scale_info::265',
+                                'scale_info::260',
                             ],
                         },
                         'Noop': None,

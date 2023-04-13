@@ -874,7 +874,7 @@ result = substrate.query(
     'last_recorded_reward_counter': 'u128',
     'points': 'u128',
     'pool_id': 'u32',
-    'unbonding_eras': 'scale_info::738',
+    'unbonding_eras': 'scale_info::743',
 }
 ```
 ---------
@@ -929,7 +929,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'no_era': {'balance': 'u128', 'points': 'u128'}, 'with_era': 'scale_info::745'}
+{'no_era': {'balance': 'u128', 'points': 'u128'}, 'with_era': 'scale_info::750'}
 ```
 ---------
 ## Constants

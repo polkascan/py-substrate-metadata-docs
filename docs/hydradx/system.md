@@ -311,9 +311,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -382,10 +382,11 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AssetRegistry': {
                 'LocationSet': {
                     'asset_id': 'u32',
-                    'location': 'scale_info::69',
+                    'location': 'scale_info::65',
                 },
                 'MetadataSet': {
                     'asset_id': 'u32',
@@ -395,12 +396,12 @@ result = substrate.query(
                 'Registered': {
                     'asset_id': 'u32',
                     'asset_name': 'Bytes',
-                    'asset_type': 'scale_info::67',
+                    'asset_type': 'scale_info::63',
                 },
                 'Updated': {
                     'asset_id': 'u32',
                     'asset_name': 'Bytes',
-                    'asset_type': 'scale_info::67',
+                    'asset_type': 'scale_info::63',
                 },
             },
             'Balances': {
@@ -414,7 +415,7 @@ result = substrate.query(
                 'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'destination_status': 'scale_info::35',
+                    'destination_status': 'scale_info::29',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
@@ -427,6 +428,20 @@ result = substrate.query(
                 },
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'CircuitBreaker': {
+                'AddLiquidityLimitChanged': {
+                    'asset_id': 'u32',
+                    'liquidity_limit': (None, ('u32', 'u32')),
+                },
+                'RemoveLiquidityLimitChanged': {
+                    'asset_id': 'u32',
+                    'liquidity_limit': (None, ('u32', 'u32')),
+                },
+                'TradeVolumeLimitChanged': {
+                    'asset_id': 'u32',
+                    'trade_volume_limit': ('u32', 'u32'),
+                },
             },
             'Claims': {'Claim': ('AccountId', '[u8; 20]', 'u128')},
             'CollatorRewards': {
@@ -456,11 +471,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::31',
+                    'result': 'scale_info::33',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::31',
+                    'result': 'scale_info::33',
                 },
                 'Proposed': {
                     'account': 'AccountId',
@@ -477,7 +492,7 @@ result = substrate.query(
                 },
             },
             'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::96'),
+                'ExecutedDownward': ('[u8; 8]', 'scale_info::105'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
             },
@@ -508,7 +523,7 @@ result = substrate.query(
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
                 'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
-                'Executed': {'ref_index': 'u32', 'result': 'scale_info::31'},
+                'Executed': {'ref_index': 'u32', 'result': 'scale_info::33'},
                 'ExternalTabled': None,
                 'NotPassed': {'ref_index': 'u32'},
                 'Passed': {'ref_index': 'u32'},
@@ -539,7 +554,7 @@ result = substrate.query(
                 'ProposalCanceled': {'prop_index': 'u32'},
                 'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::43'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::39'},
                 'Tabled': {
                     'deposit': 'u128',
                     'depositors': ['AccountId'],
@@ -553,14 +568,14 @@ result = substrate.query(
                 },
                 'Voted': {
                     'ref_index': 'u32',
-                    'vote': 'scale_info::44',
+                    'vote': 'scale_info::40',
                     'voter': 'AccountId',
                 },
             },
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::96',
+                    'outcome': 'scale_info::105',
                 },
                 'InvalidFormat': {'message_id': '[u8; 32]'},
                 'OverweightEnqueued': {
@@ -579,6 +594,11 @@ result = substrate.query(
                     'required_weight': 'scale_info::8',
                 },
             },
+            'Duster': {
+                'Added': {'who': 'AccountId'},
+                'Dusted': {'amount': 'u128', 'who': 'AccountId'},
+                'Removed': {'who': 'AccountId'},
+            },
             'Elections': {
                 'CandidateSlashed': {
                     'amount': 'u128',
@@ -594,6 +614,7 @@ result = substrate.query(
                     'seat_holder': 'AccountId',
                 },
             },
+            'EmaOracle': (),
             'Identity': {
                 'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
                 'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
@@ -644,25 +665,48 @@ result = substrate.query(
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::57',
+                    'timepoint': 'scale_info::53',
                 },
                 'MultisigCancelled': {
                     'call_hash': '[u8; 32]',
                     'cancelling': 'AccountId',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::57',
+                    'timepoint': 'scale_info::53',
                 },
                 'MultisigExecuted': {
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'result': 'scale_info::31',
-                    'timepoint': 'scale_info::57',
+                    'result': 'scale_info::33',
+                    'timepoint': 'scale_info::53',
                 },
                 'NewMultisig': {
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
+                },
+            },
+            'OTC': {
+                'Cancelled': {'order_id': 'u32'},
+                'Filled': {
+                    'amount_in': 'u128',
+                    'amount_out': 'u128',
+                    'order_id': 'u32',
+                    'who': 'AccountId',
+                },
+                'PartiallyFilled': {
+                    'amount_in': 'u128',
+                    'amount_out': 'u128',
+                    'order_id': 'u32',
+                    'who': 'AccountId',
+                },
+                'Placed': {
+                    'amount_in': 'u128',
+                    'amount_out': 'u128',
+                    'asset_in': 'u32',
+                    'asset_out': 'u32',
+                    'order_id': 'u32',
+                    'partially_fillable': 'bool',
                 },
             },
             'Omnipool': {
@@ -726,11 +770,116 @@ result = substrate.query(
                 },
                 'TradableStateUpdated': {
                     'asset_id': 'u32',
-                    'state': 'scale_info::85',
+                    'state': 'scale_info::81',
+                },
+            },
+            'OmnipoolLiquidityMining': {
+                'DepositDestroyed': {'deposit_id': 'u128', 'who': 'AccountId'},
+                'GlobalFarmCreated': {
+                    'blocks_per_period': 'u32',
+                    'id': 'u32',
+                    'lrna_price_adjustment': 'u128',
+                    'max_reward_per_period': 'u128',
+                    'min_deposit': 'u128',
+                    'owner': 'AccountId',
+                    'planned_yielding_periods': 'u32',
+                    'reward_currency': 'u32',
+                    'total_rewards': 'u128',
+                    'yield_per_period': 'u64',
+                },
+                'GlobalFarmTerminated': {
+                    'global_farm_id': 'u32',
+                    'reward_currency': 'u32',
+                    'undistributed_rewards': 'u128',
+                    'who': 'AccountId',
+                },
+                'GlobalFarmUpdated': {
+                    'id': 'u32',
+                    'lrna_price_adjustment': 'u128',
+                },
+                'RewardClaimed': {
+                    'claimed': 'u128',
+                    'deposit_id': 'u128',
+                    'global_farm_id': 'u32',
+                    'reward_currency': 'u32',
+                    'who': 'AccountId',
+                    'yield_farm_id': 'u32',
+                },
+                'SharesDeposited': {
+                    'asset_id': 'u32',
+                    'deposit_id': 'u128',
+                    'global_farm_id': 'u32',
+                    'position_id': 'u128',
+                    'shares_amount': 'u128',
+                    'who': 'AccountId',
+                    'yield_farm_id': 'u32',
+                },
+                'SharesRedeposited': {
+                    'asset_id': 'u32',
+                    'deposit_id': 'u128',
+                    'global_farm_id': 'u32',
+                    'position_id': 'u128',
+                    'shares_amount': 'u128',
+                    'who': 'AccountId',
+                    'yield_farm_id': 'u32',
+                },
+                'SharesWithdrawn': {
+                    'amount': 'u128',
+                    'deposit_id': 'u128',
+                    'global_farm_id': 'u32',
+                    'who': 'AccountId',
+                    'yield_farm_id': 'u32',
+                },
+                'YieldFarmCreated': {
+                    'asset_id': 'u32',
+                    'global_farm_id': 'u32',
+                    'loyalty_curve': (None, 'scale_info::89'),
+                    'multiplier': 'u128',
+                    'yield_farm_id': 'u32',
+                },
+                'YieldFarmResumed': {
+                    'asset_id': 'u32',
+                    'global_farm_id': 'u32',
+                    'multiplier': 'u128',
+                    'who': 'AccountId',
+                    'yield_farm_id': 'u32',
+                },
+                'YieldFarmStopped': {
+                    'asset_id': 'u32',
+                    'global_farm_id': 'u32',
+                    'who': 'AccountId',
+                    'yield_farm_id': 'u32',
+                },
+                'YieldFarmTerminated': {
+                    'asset_id': 'u32',
+                    'global_farm_id': 'u32',
+                    'who': 'AccountId',
+                    'yield_farm_id': 'u32',
+                },
+                'YieldFarmUpdated': {
+                    'asset_id': 'u32',
+                    'global_farm_id': 'u32',
+                    'multiplier': 'u128',
+                    'who': 'AccountId',
+                    'yield_farm_id': 'u32',
+                },
+            },
+            'OmnipoolWarehouseLM': {
+                'AllRewardsDistributed': {'global_farm_id': 'u32'},
+                'GlobalFarmAccRPZUpdated': {
+                    'accumulated_rpz': 'u128',
+                    'global_farm_id': 'u32',
+                    'total_shares_z': 'u128',
+                },
+                'YieldFarmAccRPVSUpdated': {
+                    'accumulated_rpvs': 'u128',
+                    'global_farm_id': 'u32',
+                    'total_valued_shares': 'u128',
+                    'yield_farm_id': 'u32',
                 },
             },
             'OrmlXcm': {
-                'Sent': {'message': ['scale_info::100'], 'to': 'scale_info::69'},
+                'Sent': {'message': ['scale_info::109'], 'to': 'scale_info::65'},
             },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
@@ -746,20 +895,20 @@ result = substrate.query(
             'PolkadotXcm': {
                 'AssetsTrapped': (
                     '[u8; 32]',
-                    'scale_info::69',
-                    'scale_info::118',
+                    'scale_info::65',
+                    'scale_info::127',
                 ),
                 'Attempted': {
                     'Complete': 'u64',
-                    'Error': 'scale_info::97',
-                    'Incomplete': ('u64', 'scale_info::97'),
+                    'Error': 'scale_info::106',
+                    'Incomplete': ('u64', 'scale_info::106'),
                 },
                 'InvalidResponder': (
-                    'scale_info::69',
+                    'scale_info::65',
                     'u64',
-                    (None, 'scale_info::69'),
+                    (None, 'scale_info::65'),
                 ),
-                'InvalidResponderVersion': ('scale_info::69', 'u64'),
+                'InvalidResponderVersion': ('scale_info::65', 'u64'),
                 'Notified': ('u64', 'u8', 'u8'),
                 'NotifyDecodeFailed': ('u64', 'u8', 'u8'),
                 'NotifyDispatchError': ('u64', 'u8', 'u8'),
@@ -770,22 +919,22 @@ result = substrate.query(
                     'scale_info::8',
                     'scale_info::8',
                 ),
-                'NotifyTargetMigrationFail': ('scale_info::123', 'u64'),
+                'NotifyTargetMigrationFail': ('scale_info::132', 'u64'),
                 'NotifyTargetSendFail': (
-                    'scale_info::69',
+                    'scale_info::65',
                     'u64',
-                    'scale_info::97',
+                    'scale_info::106',
                 ),
-                'ResponseReady': ('u64', 'scale_info::108'),
+                'ResponseReady': ('u64', 'scale_info::117'),
                 'ResponseTaken': 'u64',
                 'Sent': (
-                    'scale_info::69',
-                    'scale_info::69',
-                    ['scale_info::100'],
+                    'scale_info::65',
+                    'scale_info::65',
+                    ['scale_info::109'],
                 ),
-                'SupportedVersionChanged': ('scale_info::69', 'u32'),
-                'UnexpectedResponse': ('scale_info::69', 'u64'),
-                'VersionChangeNotified': ('scale_info::69', 'u32'),
+                'SupportedVersionChanged': ('scale_info::65', 'u32'),
+                'UnexpectedResponse': ('scale_info::65', 'u64'),
+                'VersionChangeNotified': ('scale_info::65', 'u32'),
             },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
@@ -801,21 +950,21 @@ result = substrate.query(
                 'AnonymousCreated': {
                     'anonymous': 'AccountId',
                     'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::54',
+                    'proxy_type': 'scale_info::50',
                     'who': 'AccountId',
                 },
                 'ProxyAdded': {
                     'delay': 'u32',
                     'delegatee': 'AccountId',
                     'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::54',
+                    'proxy_type': 'scale_info::50',
                 },
-                'ProxyExecuted': {'result': 'scale_info::31'},
+                'ProxyExecuted': {'result': 'scale_info::33'},
                 'ProxyRemoved': {
                     'delay': 'u32',
                     'delegatee': 'AccountId',
                     'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::54',
+                    'proxy_type': 'scale_info::50',
                 },
             },
             'RelayChainInfo': {
@@ -826,14 +975,14 @@ result = substrate.query(
             },
             'Scheduler': {
                 'CallLookupFailed': {
-                    'error': 'scale_info::33',
+                    'error': 'scale_info::103',
                     'id': (None, 'Bytes'),
                     'task': ('u32', 'u32'),
                 },
                 'Canceled': {'index': 'u32', 'when': 'u32'},
                 'Dispatched': {
                     'id': (None, 'Bytes'),
-                    'result': 'scale_info::31',
+                    'result': 'scale_info::33',
                     'task': ('u32', 'u32'),
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
@@ -860,11 +1009,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::31',
+                    'result': 'scale_info::33',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::31',
+                    'result': 'scale_info::33',
                 },
                 'Proposed': {
                     'account': 'AccountId',
@@ -932,7 +1081,7 @@ result = substrate.query(
                     'amount': 'u128',
                     'currency_id': 'u32',
                     'from': 'AccountId',
-                    'status': 'scale_info::35',
+                    'status': 'scale_info::29',
                     'to': 'AccountId',
                 },
                 'Reserved': {
@@ -1103,23 +1252,14 @@ result = substrate.query(
             },
             'UnknownTokens': {
                 'Deposited': {
-                    'asset': 'scale_info::103',
-                    'who': 'scale_info::69',
+                    'asset': 'scale_info::112',
+                    'who': 'scale_info::65',
                 },
                 'Withdrawn': {
-                    'asset': 'scale_info::103',
-                    'who': 'scale_info::69',
+                    'asset': 'scale_info::112',
+                    'who': 'scale_info::65',
                 },
             },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::103'],
-                    'dest': 'scale_info::69',
-                    'fee': 'scale_info::103',
-                    'sender': 'AccountId',
-                },
-            },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -1127,7 +1267,7 @@ result = substrate.query(
                     'error': 'scale_info::23',
                     'index': 'u32',
                 },
-                'DispatchedAs': {'result': 'scale_info::31'},
+                'DispatchedAs': {'result': 'scale_info::33'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::23'},
             },
@@ -1136,15 +1276,23 @@ result = substrate.query(
                 'VestingScheduleAdded': {
                     'from': 'AccountId',
                     'to': 'AccountId',
-                    'vesting_schedule': 'scale_info::93',
+                    'vesting_schedule': 'scale_info::99',
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::112'],
+                    'dest': 'scale_info::65',
+                    'fee': 'scale_info::112',
+                    'sender': 'AccountId',
+                },
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
                 'Fail': {
-                    'error': 'scale_info::97',
+                    'error': 'scale_info::106',
                     'message_hash': (None, '[u8; 32]'),
                     'weight': 'scale_info::8',
                 },
@@ -1400,7 +1548,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'hydradx',
     'impl_version': 0,
     'spec_name': 'hydradx',
-    'spec_version': 127,
+    'spec_version': 138,
     'state_version': 0,
     'transaction_version': 1,
 }

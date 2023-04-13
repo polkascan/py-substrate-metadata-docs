@@ -9,7 +9,8 @@
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| reward_id | `T::StakeId` | ```AccountId```
+| pool_id | `T::PoolId` | ```()```
+| stake_id | `T::StakeId` | ```AccountId```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
@@ -17,7 +18,7 @@
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}```
+| currency_id | `T::CurrencyId` | ```{'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
@@ -25,8 +26,9 @@
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| reward_id | `T::StakeId` | ```AccountId```
-| currency_id | `T::CurrencyId` | ```{'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32'}```
+| pool_id | `T::PoolId` | ```()```
+| stake_id | `T::StakeId` | ```AccountId```
+| currency_id | `T::CurrencyId` | ```{'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
@@ -34,12 +36,28 @@
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| reward_id | `T::StakeId` | ```AccountId```
+| pool_id | `T::PoolId` | ```()```
+| stake_id | `T::StakeId` | ```AccountId```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
 ## Storage functions
 
+---------
+### RewardCurrencies
+ Track the currencies used for rewards.
+
+#### Python
+```python
+result = substrate.query(
+    'EscrowRewards', 'RewardCurrencies', [()]
+)
+```
+
+#### Return value
+```python
+'scale_info::387'
+```
 ---------
 ### RewardPerToken
  Used to compute the rewards for a participant&#x27;s stake.
@@ -51,6 +69,33 @@ result = substrate.query(
     {
         'ForeignAsset': 'u32',
         'LendToken': 'u32',
+        'LpToken': (
+            {
+                'ForeignAsset': 'u32',
+                'StableLpToken': 'u32',
+                'Token': (
+                    'DOT',
+                    'IBTC',
+                    'INTR',
+                    'KSM',
+                    'KBTC',
+                    'KINT',
+                ),
+            },
+            {
+                'ForeignAsset': 'u32',
+                'StableLpToken': 'u32',
+                'Token': (
+                    'DOT',
+                    'IBTC',
+                    'INTR',
+                    'KSM',
+                    'KBTC',
+                    'KINT',
+                ),
+            },
+        ),
+        'StableLpToken': 'u32',
         'Token': (
             'DOT',
             'IBTC',
@@ -60,6 +105,7 @@ result = substrate.query(
             'KINT',
         ),
     },
+    (),
 ]
 )
 ```
@@ -79,6 +125,33 @@ result = substrate.query(
     {
         'ForeignAsset': 'u32',
         'LendToken': 'u32',
+        'LpToken': (
+            {
+                'ForeignAsset': 'u32',
+                'StableLpToken': 'u32',
+                'Token': (
+                    'DOT',
+                    'IBTC',
+                    'INTR',
+                    'KSM',
+                    'KBTC',
+                    'KINT',
+                ),
+            },
+            {
+                'ForeignAsset': 'u32',
+                'StableLpToken': 'u32',
+                'Token': (
+                    'DOT',
+                    'IBTC',
+                    'INTR',
+                    'KSM',
+                    'KBTC',
+                    'KINT',
+                ),
+            },
+        ),
+        'StableLpToken': 'u32',
         'Token': (
             'DOT',
             'IBTC',
@@ -88,7 +161,7 @@ result = substrate.query(
             'KINT',
         ),
     },
-    'AccountId',
+    ((), 'AccountId'),
 ]
 )
 ```
@@ -104,7 +177,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'EscrowRewards', 'Stake', ['AccountId']
+    'EscrowRewards', 'Stake', [((), 'AccountId')]
 )
 ```
 
@@ -124,6 +197,33 @@ result = substrate.query(
     {
         'ForeignAsset': 'u32',
         'LendToken': 'u32',
+        'LpToken': (
+            {
+                'ForeignAsset': 'u32',
+                'StableLpToken': 'u32',
+                'Token': (
+                    'DOT',
+                    'IBTC',
+                    'INTR',
+                    'KSM',
+                    'KBTC',
+                    'KINT',
+                ),
+            },
+            {
+                'ForeignAsset': 'u32',
+                'StableLpToken': 'u32',
+                'Token': (
+                    'DOT',
+                    'IBTC',
+                    'INTR',
+                    'KSM',
+                    'KBTC',
+                    'KINT',
+                ),
+            },
+        ),
+        'StableLpToken': 'u32',
         'Token': (
             'DOT',
             'IBTC',
@@ -148,7 +248,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'EscrowRewards', 'TotalStake', []
+    'EscrowRewards', 'TotalStake', [()]
 )
 ```
 

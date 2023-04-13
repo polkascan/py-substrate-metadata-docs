@@ -5,21 +5,6 @@
 ## Calls
 
 ---------
-### fill_block
-A dispatch that will fill the block weight up to the given ratio.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ratio | `Perbill` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-```
-
----------
 ### kill_prefix
 Kill all storage items with a key that starts with the given prefix.
 
@@ -382,100 +367,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'AssetManager': {
-                'ForeignAssetDestroyed': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::130',
-                },
-                'ForeignAssetRegistered': {
-                    'asset': 'scale_info::130',
-                    'asset_id': 'u128',
-                    'metadata': 'scale_info::131',
-                },
-                'ForeignAssetRemoved': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::130',
-                },
-                'ForeignAssetTypeChanged': {
-                    'asset_id': 'u128',
-                    'new_asset_type': 'scale_info::130',
-                },
-                'LocalAssetDestroyed': {'asset_id': 'u128'},
-                'LocalAssetRegistered': {
-                    'asset_id': 'u128',
-                    'creator': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-                'SupportedAssetRemoved': {'asset_type': 'scale_info::130'},
-                'UnitsPerSecondChanged': {
-                    'asset_type': 'scale_info::130',
-                    'units_per_second': 'u128',
-                },
-            },
-            'Assets': {
-                'ApprovalCancelled': {
-                    'asset_id': 'u128',
-                    'delegate': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-                'ApprovedTransfer': {
-                    'amount': 'u128',
-                    'asset_id': 'u128',
-                    'delegate': '[u8; 20]',
-                    'source': '[u8; 20]',
-                },
-                'AssetFrozen': {'asset_id': 'u128'},
-                'AssetStatusChanged': {'asset_id': 'u128'},
-                'AssetThawed': {'asset_id': 'u128'},
-                'Burned': {
-                    'asset_id': 'u128',
-                    'balance': 'u128',
-                    'owner': '[u8; 20]',
-                },
-                'Created': {
-                    'asset_id': 'u128',
-                    'creator': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-                'Destroyed': {'asset_id': 'u128'},
-                'ForceCreated': {'asset_id': 'u128', 'owner': '[u8; 20]'},
-                'Frozen': {'asset_id': 'u128', 'who': '[u8; 20]'},
-                'Issued': {
-                    'asset_id': 'u128',
-                    'owner': '[u8; 20]',
-                    'total_supply': 'u128',
-                },
-                'MetadataCleared': {'asset_id': 'u128'},
-                'MetadataSet': {
-                    'asset_id': 'u128',
-                    'decimals': 'u8',
-                    'is_frozen': 'bool',
-                    'name': 'Bytes',
-                    'symbol': 'Bytes',
-                },
-                'OwnerChanged': {'asset_id': 'u128', 'owner': '[u8; 20]'},
-                'TeamChanged': {
-                    'admin': '[u8; 20]',
-                    'asset_id': 'u128',
-                    'freezer': '[u8; 20]',
-                    'issuer': '[u8; 20]',
-                },
-                'Thawed': {'asset_id': 'u128', 'who': '[u8; 20]'},
-                'Transferred': {
-                    'amount': 'u128',
-                    'asset_id': 'u128',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                },
-                'TransferredApproved': {
-                    'amount': 'u128',
-                    'asset_id': 'u128',
-                    'delegate': '[u8; 20]',
-                    'destination': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-            },
-            'AuthorFilter': {'EligibleUpdated': 'u32'},
             'AuthorMapping': {
                 'KeysRegistered': {
                     'account_id': '[u8; 20]',
@@ -518,6 +409,136 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': '[u8; 20]'},
                 'Withdraw': {'amount': 'u128', 'who': '[u8; 20]'},
             },
+            'Democracy': {
+                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Cancelled': {'ref_index': 'u32'},
+                'Delegated': {'target': '[u8; 20]', 'who': '[u8; 20]'},
+                'ExternalTabled': None,
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'ProposalCanceled': {'prop_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Seconded': {'prop_index': 'u32', 'seconder': '[u8; 20]'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::75'},
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Undelegated': {'account': '[u8; 20]'},
+                'Vetoed': {
+                    'proposal_hash': '[u8; 32]',
+                    'until': 'u32',
+                    'who': '[u8; 20]',
+                },
+                'Voted': {
+                    'ref_index': 'u32',
+                    'vote': 'scale_info::76',
+                    'voter': '[u8; 20]',
+                },
+            },
+            None: None,
+            'AssetManager': {
+                'ForeignAssetDestroyed': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::130',
+                },
+                'ForeignAssetRegistered': {
+                    'asset': 'scale_info::130',
+                    'asset_id': 'u128',
+                    'metadata': 'scale_info::131',
+                },
+                'ForeignAssetRemoved': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::130',
+                },
+                'ForeignAssetTypeChanged': {
+                    'asset_id': 'u128',
+                    'new_asset_type': 'scale_info::130',
+                },
+                'LocalAssetDestroyed': {'asset_id': 'u128'},
+                'LocalAssetRegistered': {
+                    'asset_id': 'u128',
+                    'creator': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+                'SupportedAssetRemoved': {'asset_type': 'scale_info::130'},
+                'UnitsPerSecondChanged': {
+                    'asset_type': 'scale_info::130',
+                    'units_per_second': 'u128',
+                },
+            },
+            'Assets': {
+                'AccountsDestroyed': {
+                    'accounts_destroyed': 'u32',
+                    'accounts_remaining': 'u32',
+                    'asset_id': 'u128',
+                },
+                'ApprovalCancelled': {
+                    'asset_id': 'u128',
+                    'delegate': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+                'ApprovalsDestroyed': {
+                    'approvals_destroyed': 'u32',
+                    'approvals_remaining': 'u32',
+                    'asset_id': 'u128',
+                },
+                'ApprovedTransfer': {
+                    'amount': 'u128',
+                    'asset_id': 'u128',
+                    'delegate': '[u8; 20]',
+                    'source': '[u8; 20]',
+                },
+                'AssetFrozen': {'asset_id': 'u128'},
+                'AssetStatusChanged': {'asset_id': 'u128'},
+                'AssetThawed': {'asset_id': 'u128'},
+                'Burned': {
+                    'asset_id': 'u128',
+                    'balance': 'u128',
+                    'owner': '[u8; 20]',
+                },
+                'Created': {
+                    'asset_id': 'u128',
+                    'creator': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+                'Destroyed': {'asset_id': 'u128'},
+                'DestructionStarted': {'asset_id': 'u128'},
+                'ForceCreated': {'asset_id': 'u128', 'owner': '[u8; 20]'},
+                'Frozen': {'asset_id': 'u128', 'who': '[u8; 20]'},
+                'Issued': {
+                    'asset_id': 'u128',
+                    'owner': '[u8; 20]',
+                    'total_supply': 'u128',
+                },
+                'MetadataCleared': {'asset_id': 'u128'},
+                'MetadataSet': {
+                    'asset_id': 'u128',
+                    'decimals': 'u8',
+                    'is_frozen': 'bool',
+                    'name': 'Bytes',
+                    'symbol': 'Bytes',
+                },
+                'OwnerChanged': {'asset_id': 'u128', 'owner': '[u8; 20]'},
+                'TeamChanged': {
+                    'admin': '[u8; 20]',
+                    'asset_id': 'u128',
+                    'freezer': '[u8; 20]',
+                    'issuer': '[u8; 20]',
+                },
+                'Thawed': {'asset_id': 'u128', 'who': '[u8; 20]'},
+                'Transferred': {
+                    'amount': 'u128',
+                    'asset_id': 'u128',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                },
+                'TransferredApproved': {
+                    'amount': 'u128',
+                    'asset_id': 'u128',
+                    'delegate': '[u8; 20]',
+                    'destination': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+            },
+            'AuthorFilter': {'EligibleUpdated': 'u32'},
             'CouncilCollective': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -568,30 +589,6 @@ result = substrate.query(
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::90'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
-            },
-            'Democracy': {
-                'Blacklisted': {'proposal_hash': '[u8; 32]'},
-                'Cancelled': {'ref_index': 'u32'},
-                'Delegated': {'target': '[u8; 20]', 'who': '[u8; 20]'},
-                'ExternalTabled': None,
-                'NotPassed': {'ref_index': 'u32'},
-                'Passed': {'ref_index': 'u32'},
-                'ProposalCanceled': {'prop_index': 'u32'},
-                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Seconded': {'prop_index': 'u32', 'seconder': '[u8; 20]'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::75'},
-                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Undelegated': {'account': '[u8; 20]'},
-                'Vetoed': {
-                    'proposal_hash': '[u8; 32]',
-                    'until': 'u32',
-                    'who': '[u8; 20]',
-                },
-                'Voted': {
-                    'ref_index': 'u32',
-                    'vote': 'scale_info::76',
-                    'voter': '[u8; 20]',
-                },
             },
             'DmpQueue': {
                 'ExecutedDownward': {
@@ -664,10 +661,20 @@ result = substrate.query(
                 },
             },
             'LocalAssets': {
+                'AccountsDestroyed': {
+                    'accounts_destroyed': 'u32',
+                    'accounts_remaining': 'u32',
+                    'asset_id': 'u128',
+                },
                 'ApprovalCancelled': {
                     'asset_id': 'u128',
                     'delegate': '[u8; 20]',
                     'owner': '[u8; 20]',
+                },
+                'ApprovalsDestroyed': {
+                    'approvals_destroyed': 'u32',
+                    'approvals_remaining': 'u32',
+                    'asset_id': 'u128',
                 },
                 'ApprovedTransfer': {
                     'amount': 'u128',
@@ -689,6 +696,7 @@ result = substrate.query(
                     'owner': '[u8; 20]',
                 },
                 'Destroyed': {'asset_id': 'u128'},
+                'DestructionStarted': {'asset_id': 'u128'},
                 'ForceCreated': {'asset_id': 'u128', 'owner': '[u8; 20]'},
                 'Frozen': {'asset_id': 'u128', 'who': '[u8; 20]'},
                 'Issued': {
@@ -1123,6 +1131,10 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
+                'UpdatedInactive': {
+                    'deactivated': 'u128',
+                    'reactivated': 'u128',
+                },
             },
             'TreasuryCouncilCollective': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -1230,7 +1242,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1393,11 +1404,11 @@ constant = substrate.get_constant('System', 'BlockLength')
 #### Value
 ```python
 {
-    'base_block': {'proof_size': 0, 'ref_time': 5346284000},
+    'base_block': {'proof_size': 0, 'ref_time': 358523000},
     'max_block': {'proof_size': 5242880, 'ref_time': 500000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 86298000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
@@ -1409,8 +1420,8 @@ constant = substrate.get_constant('System', 'BlockLength')
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 86298000},
-            'max_extrinsic': {'proof_size': 4718592, 'ref_time': 449913702000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
+            'max_extrinsic': {'proof_size': 4718592, 'ref_time': 449901026000},
             'max_total': {'proof_size': 5242880, 'ref_time': 500000000000},
             'reserved': {'proof_size': 1310720, 'ref_time': 125000000000},
         },
@@ -1474,7 +1485,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'moonbeam',
     'impl_version': 0,
     'spec_name': 'moonbeam',
-    'spec_version': 2100,
+    'spec_version': 2201,
     'state_version': 0,
     'transaction_version': 2,
 }

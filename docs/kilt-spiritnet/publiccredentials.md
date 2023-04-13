@@ -357,7 +357,7 @@ result = substrate.query(
  The amount of tokens to reserve when attesting a public credential.
 #### Value
 ```python
-73750000000000
+76950000000000
 ```
 #### Python
 ```python
@@ -380,7 +380,7 @@ constant = substrate.get_constant('PublicCredentials', 'MaxEncodedClaimsLength')
  identifier.
 #### Value
 ```python
-204
+268
 ```
 #### Python
 ```python
@@ -390,17 +390,12 @@ constant = substrate.get_constant('PublicCredentials', 'MaxSubjectIdLength')
 ## Errors
 
 ---------
-### CredentialAlreadyIssued
+### AlreadyAttested
 A credential with the same root hash has already issued to the
 specified subject.
 
 ---------
-### CredentialNotFound
-No credential with the specified root hash has been issued to the
-specified subject.
-
----------
-### InternalError
+### Internal
 Catch-all for any other errors that should not happen, yet it
 happened.
 
@@ -409,11 +404,16 @@ happened.
 The credential input is invalid.
 
 ---------
-### UnableToPayFees
-Not enough tokens to pay for the fees or the deposit.
+### NotAuthorized
+The caller is not authorized to performed the operation.
 
 ---------
-### Unauthorized
-The caller is not authorized to performed the operation.
+### NotFound
+No credential with the specified root hash has been issued to the
+specified subject.
+
+---------
+### UnableToPayFees
+Not enough tokens to pay for the fees or the deposit.
 
 ---------

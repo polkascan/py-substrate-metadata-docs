@@ -952,7 +952,7 @@ constant = substrate.get_constant('Democracy', 'EnactmentPeriod')
  Minimum voting period allowed for a fast-track referendum.
 #### Value
 ```python
-300
+900
 ```
 #### Python
 ```python
@@ -1034,7 +1034,7 @@ constant = substrate.get_constant('Democracy', 'MaxVotes')
  The minimum amount to be used as a deposit for a public referendum proposal.
 #### Value
 ```python
-100000000000000
+500000000000000000
 ```
 #### Python
 ```python

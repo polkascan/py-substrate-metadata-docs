@@ -378,18 +378,6 @@ result = substrate.query(
                 'AttestationRevoked': ('AccountId', '[u8; 32]'),
                 'DepositReclaimed': ('AccountId', '[u8; 32]'),
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -447,9 +435,9 @@ result = substrate.query(
             },
             'Ctype': {'CTypeCreated': ('AccountId', '[u8; 32]'), 'CTypeUpdated': '[u8; 32]'},
             'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::104'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
+                'ExecutedDownward': ('[u8; 32]', 'scale_info::105'),
+                'InvalidFormat': '[u8; 32]',
+                'UnsupportedVersion': '[u8; 32]',
             },
             'Delegation': {
                 'DelegationCreated': (
@@ -498,13 +486,15 @@ result = substrate.query(
                 'DidUpdated': 'AccountId',
             },
             'DidLookup': {
-                'AssociationEstablished': ('AccountId', 'AccountId'),
-                'AssociationRemoved': ('AccountId', 'AccountId'),
+                'AssociationEstablished': ('scale_info::66', 'AccountId'),
+                'AssociationRemoved': ('scale_info::66', 'AccountId'),
+                'MigrationCompleted': None,
+                'MigrationProgress': None,
             },
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::104',
+                    'outcome': 'scale_info::105',
                 },
                 'InvalidFormat': {'message_id': '[u8; 32]'},
                 'OverweightEnqueued': {
@@ -580,6 +570,7 @@ result = substrate.query(
                 },
                 'DownwardMessagesReceived': {'count': 'u32'},
                 'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
@@ -587,25 +578,33 @@ result = substrate.query(
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
-                    'scale_info::105',
-                    'scale_info::134',
+                    'scale_info::106',
+                    'scale_info::140',
                 ),
                 'AssetsTrapped': (
                     '[u8; 32]',
-                    'scale_info::105',
-                    'scale_info::134',
+                    'scale_info::106',
+                    'scale_info::140',
                 ),
                 'Attempted': {
-                    'Complete': 'u64',
-                    'Error': 'scale_info::101',
-                    'Incomplete': ('u64', 'scale_info::101'),
+                    'Complete': 'scale_info::9',
+                    'Error': 'scale_info::102',
+                    'Incomplete': ('scale_info::9', 'scale_info::102'),
                 },
-                'InvalidResponder': (
-                    'scale_info::105',
+                'FeesPaid': ('scale_info::106', ['scale_info::120']),
+                'InvalidQuerier': (
+                    'scale_info::106',
                     'u64',
-                    (None, 'scale_info::105'),
+                    'scale_info::106',
+                    (None, 'scale_info::106'),
                 ),
-                'InvalidResponderVersion': ('scale_info::105', 'u64'),
+                'InvalidQuerierVersion': ('scale_info::106', 'u64'),
+                'InvalidResponder': (
+                    'scale_info::106',
+                    'u64',
+                    (None, 'scale_info::106'),
+                ),
+                'InvalidResponderVersion': ('scale_info::106', 'u64'),
                 'Notified': ('u64', 'u8', 'u8'),
                 'NotifyDecodeFailed': ('u64', 'u8', 'u8'),
                 'NotifyDispatchError': ('u64', 'u8', 'u8'),
@@ -616,22 +615,38 @@ result = substrate.query(
                     'scale_info::9',
                     'scale_info::9',
                 ),
-                'NotifyTargetMigrationFail': ('scale_info::139', 'u64'),
+                'NotifyTargetMigrationFail': ('scale_info::154', 'u64'),
                 'NotifyTargetSendFail': (
-                    'scale_info::105',
+                    'scale_info::106',
                     'u64',
-                    'scale_info::101',
+                    'scale_info::102',
                 ),
-                'ResponseReady': ('u64', 'scale_info::124'),
+                'ResponseReady': ('u64', 'scale_info::125'),
                 'ResponseTaken': 'u64',
                 'Sent': (
-                    'scale_info::105',
-                    'scale_info::105',
-                    ['scale_info::116'],
+                    'scale_info::106',
+                    'scale_info::106',
+                    ['scale_info::117'],
                 ),
-                'SupportedVersionChanged': ('scale_info::105', 'u32'),
-                'UnexpectedResponse': ('scale_info::105', 'u64'),
-                'VersionChangeNotified': ('scale_info::105', 'u32'),
+                'SupportedVersionChanged': ('scale_info::106', 'u32'),
+                'UnexpectedResponse': ('scale_info::106', 'u64'),
+                'VersionChangeNotified': (
+                    'scale_info::106',
+                    'u32',
+                    ['scale_info::120'],
+                ),
+                'VersionNotifyRequested': (
+                    'scale_info::106',
+                    ['scale_info::120'],
+                ),
+                'VersionNotifyStarted': (
+                    'scale_info::106',
+                    ['scale_info::120'],
+                ),
+                'VersionNotifyUnrequested': (
+                    'scale_info::106',
+                    ['scale_info::120'],
+                ),
             },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
@@ -667,12 +682,12 @@ result = substrate.query(
             'PublicCredentials': {
                 'CredentialRemoved': {
                     'credential_id': '[u8; 32]',
-                    'subject_id': 'scale_info::71',
+                    'subject_id': 'scale_info::74',
                 },
                 'CredentialRevoked': {'credential_id': '[u8; 32]'},
                 'CredentialStored': {
                     'credential_id': '[u8; 32]',
-                    'subject_id': 'scale_info::71',
+                    'subject_id': 'scale_info::74',
                 },
                 'CredentialUnrevoked': {'credential_id': '[u8; 32]'},
             },
@@ -698,6 +713,17 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u64'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -813,7 +839,7 @@ result = substrate.query(
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
                 'Fail': {
-                    'error': 'scale_info::101',
+                    'error': 'scale_info::102',
                     'message_hash': (None, '[u8; 32]'),
                     'weight': 'scale_info::9',
                 },
@@ -828,9 +854,9 @@ result = substrate.query(
                     'used': 'scale_info::9',
                 },
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -993,24 +1019,24 @@ constant = substrate.get_constant('System', 'BlockLength')
 #### Value
 ```python
 {
-    'base_block': {'proof_size': 0, 'ref_time': 358523000},
+    'base_block': {'proof_size': 0, 'ref_time': 381015000},
     'max_block': {'proof_size': 5242880, 'ref_time': 500000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
-            'max_extrinsic': {'proof_size': 3407872, 'ref_time': 324901026000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
+            'max_extrinsic': {'proof_size': 3407872, 'ref_time': 324900160000},
             'max_total': {'proof_size': 3932160, 'ref_time': 375000000000},
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
-            'max_extrinsic': {'proof_size': 4718592, 'ref_time': 449901026000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
+            'max_extrinsic': {'proof_size': 4718592, 'ref_time': 449900160000},
             'max_total': {'proof_size': 5242880, 'ref_time': 500000000000},
             'reserved': {'proof_size': 1310720, 'ref_time': 125000000000},
         },
@@ -1057,15 +1083,15 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0xdf6acb689907609b', 4),
         ('0x37e397fc7c91f5e4', 1),
         ('0xbc9d89904f5b923f', 1),
-        ('0x37c8bb1350a9a2a8', 2),
-        ('0xf3ff14d5ab527059', 2),
+        ('0x37c8bb1350a9a2a8', 3),
+        ('0xf3ff14d5ab527059', 3),
         ('0x40fe3ad401f8959a', 6),
         ('0xd2bc9897eed08f15', 3),
         ('0xf78b278be53f454c', 2),
         ('0xab3c0572291feb8b', 1),
         ('0xdd718d5cc53262d4', 1),
         ('0xea93e3f16f3d6962', 2),
-        ('0x26609555c0656603', 1),
+        ('0x26609555c0656603', 2),
         ('0xa47b7d544994c99b', 1),
         ('0x45bfba51a310b223', 1),
     ],
@@ -1073,9 +1099,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'kilt-spiritnet',
     'impl_version': 0,
     'spec_name': 'kilt-spiritnet',
-    'spec_version': 10890,
+    'spec_version': 11000,
     'state_version': 0,
-    'transaction_version': 4,
+    'transaction_version': 6,
 }
 ```
 #### Python

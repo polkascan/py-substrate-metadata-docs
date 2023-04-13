@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | litentry-parachain     |
 | Implementation name     | litentry-parachain     |
-| Spec version     | 9151     |
+| Spec version     | 9155     |
 | SS58 Format     | 31     |
 | Token symbol      | LIT     |
 | Token decimals      | 12     |
@@ -21,7 +21,7 @@
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
 | [Bounties](bounties.md) | [9](bounties.md#calls) | [7](bounties.md#events) | [4](bounties.md#storage-functions) | [9](bounties.md#constants) | [11](bounties.md#errors) |
-| [BridgeTransfer](bridgetransfer.md) | [4](bridgetransfer.md#calls) | [1](bridgetransfer.md#events) | [3](bridgetransfer.md#storage-functions) | [3](bridgetransfer.md#constants) | [4](bridgetransfer.md#errors) |
+| [BridgeTransfer](bridgetransfer.md) | [4](bridgetransfer.md#calls) | [2](bridgetransfer.md#events) | [3](bridgetransfer.md#storage-functions) | [3](bridgetransfer.md#constants) | [4](bridgetransfer.md#errors) |
 | [ChainBridge](chainbridge.md) | [10](chainbridge.md#calls) | [14](chainbridge.md#events) | [8](chainbridge.md#storage-functions) | [2](chainbridge.md#constants) | [20](chainbridge.md#errors) |
 | [Council](council.md) | [7](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
 | [CouncilMembership](councilmembership.md) | [7](councilmembership.md#calls) | [6](councilmembership.md#events) | [2](councilmembership.md#storage-functions) | [0](councilmembership.md#constants) | [3](councilmembership.md#errors) |
@@ -31,6 +31,7 @@
 | [Drop3](drop3.md) | [8](drop3.md#calls) | [9](drop3.md#events) | [4](drop3.md#storage-functions) | [2](drop3.md#constants) | [15](drop3.md#errors) |
 | [ExtrinsicFilter](extrinsicfilter.md) | [3](extrinsicfilter.md#calls) | [3](extrinsicfilter.md#events) | [2](extrinsicfilter.md#storage-functions) | [0](extrinsicfilter.md#constants) | [4](extrinsicfilter.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
+| [ParachainIdentity](parachainidentity.md) | [15](parachainidentity.md#calls) | [10](parachainidentity.md#events) | [4](parachainidentity.md#storage-functions) | [6](parachainidentity.md#constants) | [18](parachainidentity.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainStaking](parachainstaking.md) | [30](parachainstaking.md#calls) | [37](parachainstaking.md#events) | [20](parachainstaking.md#storage-functions) | [18](parachainstaking.md#constants) | [38](parachainstaking.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
