@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | khala     |
 | Implementation name     | khala     |
-| Spec version     | 1230     |
+| Spec version     | 1241     |
 | SS58 Format     | 30     |
 | Token symbol      | PHA     |
 | Token decimals      | 12     |
@@ -45,7 +45,7 @@
 | [PhalaStakePool](phalastakepool.md) | [0](phalastakepool.md#calls) | [0](phalastakepool.md#events) | [11](phalastakepool.md#storage-functions) | [0](phalastakepool.md#constants) | [0](phalastakepool.md#errors) |
 | [PhalaStakePoolv2](phalastakepoolv2.md) | [18](phalastakepoolv2.md#calls) | [15](phalastakepoolv2.md#events) | [6](phalastakepoolv2.md#storage-functions) | [4](phalastakepoolv2.md#constants) | [33](phalastakepoolv2.md#errors) |
 | [PhalaVault](phalavault.md) | [7](phalavault.md#calls) | [5](phalavault.md#events) | [1](phalavault.md#storage-functions) | [1](phalavault.md#constants) | [8](phalavault.md#errors) |
-| [PhalaWrappedBalances](phalawrappedbalances.md) | [5](phalawrappedbalances.md#calls) | [4](phalawrappedbalances.md#events) | [3](phalawrappedbalances.md#storage-functions) | [2](phalawrappedbalances.md#constants) | [6](phalawrappedbalances.md#errors) |
+| [PhalaWrappedBalances](phalawrappedbalances.md) | [6](phalawrappedbalances.md#calls) | [4](phalawrappedbalances.md#events) | [3](phalawrappedbalances.md#storage-functions) | [2](phalawrappedbalances.md#constants) | [6](phalawrappedbalances.md#errors) |
 | [PhragmenElection](phragmenelection.md) | [6](phragmenelection.md#calls) | [7](phragmenelection.md#events) | [5](phragmenelection.md#storage-functions) | [10](phragmenelection.md#constants) | [17](phragmenelection.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |

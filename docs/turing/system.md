@@ -311,12 +311,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -382,7 +382,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'u32',
@@ -1033,13 +1032,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1087,6 +1079,14 @@ result = substrate.query(
                 'ScheduledTasksStopped': None,
                 'ValveClosed': None,
                 'ValveOpen': None,
+            },
+            None: None,
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
             },
             'Vesting': {
                 'VestFailed': {
@@ -1378,7 +1378,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'turing',
     'impl_version': 1,
     'spec_name': 'turing',
-    'spec_version': 289,
+    'spec_version': 290,
     'state_version': 0,
     'transaction_version': 14,
 }

@@ -66,7 +66,7 @@ call = substrate.compose_call(
 Disapprove a proposal, close, and remove it from the system, regardless of its current
 state.
 
-Must be called by the Root origin.
+Must be called by the Root origin or a foundation account.
 
 Parameters:
 * `proposal_hash`: The hash of the proposal that should be disapproved.
@@ -464,6 +464,10 @@ Duplicate proposals not allowed
 Duplicate vote ignored
 
 ---------
+### NotFoundationAccountOrRoot
+Requires foundation account or root
+
+---------
 ### NotMember
 Account is not a member
 
@@ -476,9 +480,9 @@ Proposal must exist
 The close call was made too early, before the end of the voting.
 
 ---------
-### TooEarlyToClose
+### TooEarlyToCloseByNonFoundationAccount
 	To early to close the proposal, can only close ProposalCloseDelay blocks after proposal
-was proposed
+was proposed unless by a foundation account
 
 ---------
 ### TooManyProposals

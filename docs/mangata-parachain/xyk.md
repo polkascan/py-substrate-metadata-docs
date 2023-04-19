@@ -53,6 +53,20 @@ call = substrate.compose_call(
 
 ---------
 ### buy_asset
+Executes buy_asset swap.
+First the swap is prevalidated, if it is successful then the extrinsic is accepted. Beyond this point the exchange commission will be charged.
+The bought of the bought asset is used to determine the sold asset amount.
+If the sold asset amount is higher than the max_amount_in then it will fail on slippage.
+The percentage exchange commission is still charged even if the swap fails on slippage. Though the swap itself will be a no-op.
+The slippage is calculated based upon the sold asset amount.
+Upon slippage failure, the extrinsic is marked &quot;successful&quot;, but an event for the failure is emitted
+
+
+\# Args:
+- `sold_asset_id` - The token being sold
+- `bought_asset_id` - The token being bought
+- `bought_asset_amount`: The amount of the bought token being bought
+- `max_amount_in` - The maximum amount of sold asset that must be sold in order to not fail on slippage. Slippage failures still charge exchange commission.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -323,6 +337,20 @@ call = substrate.compose_call(
 
 ---------
 ### sell_asset
+Executes sell_asset swap.
+First the swap is prevalidated, if it is successful then the extrinsic is accepted. Beyond this point the exchange commission will be charged.
+The sold amount of the sold asset is used to determine the bought asset amount.
+If the bought asset amount is lower than the min_amount_out then it will fail on slippage.
+The percentage exchange commission is still charged even if the swap fails on slippage. Though the swap itself will be a no-op.
+The slippage is calculated based upon the sold_asset_amount.
+Upon slippage failure, the extrinsic is marked &quot;successful&quot;, but an event for the failure is emitted
+
+
+\# Args:
+- `sold_asset_id` - The token being sold
+- `bought_asset_id` - The token being bought
+- `sold_asset_amount`: The amount of the sold token being sold
+- `min_amount_out` - The minimum amount of bought asset that must be bought in order to not fail on slippage. Slippage failures still charge exchange commission.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -554,104 +582,6 @@ result = substrate.query(
 (None, 'u32')
 ```
 ---------
-### LiquidityMiningActivePool
-
-#### Python
-```python
-result = substrate.query(
-    'Xyk', 'LiquidityMiningActivePool', ['u32']
-)
-```
-
-#### Return value
-```python
-'u128'
-```
----------
-### LiquidityMiningActivePoolV2
-
-#### Python
-```python
-result = substrate.query(
-    'Xyk', 'LiquidityMiningActivePoolV2', ['u32']
-)
-```
-
-#### Return value
-```python
-'u128'
-```
----------
-### LiquidityMiningActiveUser
-
-#### Python
-```python
-result = substrate.query(
-    'Xyk', 'LiquidityMiningActiveUser', [('AccountId', 'u32')]
-)
-```
-
-#### Return value
-```python
-'u128'
-```
----------
-### LiquidityMiningPool
-
-#### Python
-```python
-result = substrate.query(
-    'Xyk', 'LiquidityMiningPool', ['u32']
-)
-```
-
-#### Return value
-```python
-('u32', '[u64; 4]', '[u64; 4]')
-```
----------
-### LiquidityMiningUser
-
-#### Python
-```python
-result = substrate.query(
-    'Xyk', 'LiquidityMiningUser', [('AccountId', 'u32')]
-)
-```
-
-#### Return value
-```python
-('u32', '[u64; 4]', '[u64; 4]')
-```
----------
-### LiquidityMiningUserClaimed
-
-#### Python
-```python
-result = substrate.query(
-    'Xyk', 'LiquidityMiningUserClaimed', [('AccountId', 'u32')]
-)
-```
-
-#### Return value
-```python
-'u128'
-```
----------
-### LiquidityMiningUserToBeClaimed
-
-#### Python
-```python
-result = substrate.query(
-    'Xyk', 'LiquidityMiningUserToBeClaimed', [('AccountId', 'u32')]
-)
-```
-
-#### Return value
-```python
-'u128'
-```
----------
 ### LiquidityPools
 
 #### Python
@@ -680,27 +610,6 @@ result = substrate.query(
 ('u128', 'u128')
 ```
 ---------
-### RewardsInfo
-
-#### Python
-```python
-result = substrate.query(
-    'Xyk', 'RewardsInfo', ['AccountId', 'u32']
-)
-```
-
-#### Return value
-```python
-{
-    'activated_amount': 'u128',
-    'last_checkpoint': 'u32',
-    'missing_at_last_checkpoint': '[u64; 4]',
-    'pool_ratio_at_last_checkpoint': '[u64; 4]',
-    'rewards_already_claimed': 'u128',
-    'rewards_not_yet_claimed': 'u128',
-}
-```
----------
 ## Constants
 
 ---------
@@ -714,17 +623,6 @@ result = substrate.query(
 constant = substrate.get_constant('Xyk', 'BuyAndBurnFeePercentage')
 ```
 ---------
-### LiquidityMiningIssuanceVault
- The account id that holds the liquidity mining issuance
-#### Value
-```python
-'5EYCAe5ijiYetuT4xrRZx2vbVopfJjhvfsZ4546K1Mmdexb1'
-```
-#### Python
-```python
-constant = substrate.get_constant('Xyk', 'LiquidityMiningIssuanceVault')
-```
----------
 ### PoolFeePercentage
 #### Value
 ```python
@@ -733,16 +631,6 @@ constant = substrate.get_constant('Xyk', 'LiquidityMiningIssuanceVault')
 #### Python
 ```python
 constant = substrate.get_constant('Xyk', 'PoolFeePercentage')
-```
----------
-### RewardsDistributionPeriod
-#### Value
-```python
-1200
-```
-#### Python
-```python
-constant = substrate.get_constant('Xyk', 'RewardsDistributionPeriod')
 ```
 ---------
 ### RewardsMigrateAccount

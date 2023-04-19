@@ -2100,7 +2100,6 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| from | `T::AccountId` | 
 | transfer | `(Asset, T::Balance)` | 
 | fee | `(Asset, T::Balance)` | 
 | to | `MultiLocation` | 
@@ -2110,7 +2109,6 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'EqBalances', 'transfer_xcm', {
     'fee': ('u64', 'u128'),
-    'from': 'AccountId',
     'to': {
         'interior': {
             'Here': None,
@@ -4024,7 +4022,6 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| from | `T::AccountId` | 
 | transfer | `(Asset, T::Balance)` | 
 | fee | `(Asset, T::Balance)` | 
 | to | `AccountType` | 
@@ -4034,7 +4031,6 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'EqBalances', 'transfer_xcm_native', {
     'fee': ('u64', 'u128'),
-    'from': 'AccountId',
     'to': {
         'Id32': '[u8; 32]',
         'Key20': '[u8; 20]',

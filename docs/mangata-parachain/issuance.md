@@ -166,7 +166,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::232'
+'scale_info::357'
 ```
 ---------
 ### SessionIssuance

@@ -611,14 +611,6 @@ result = substrate.query(
                 },
                 'XcmTransfer': ('scale_info::48', 'scale_info::48'),
             },
-            'EqBridge': {
-                'FromBridgeTransfer': ('AccountId', 'u64', 'u128'),
-                'FromBridgeTransferNext': ('Bytes', 'u64', 'u128'),
-                'MinimumTransferAmountChanged': ('u8', '[u8; 32]', 'u128'),
-                'Remark': '[u8; 32]',
-                'ToBridgeTransfer': ('AccountId', 'u64', 'u128'),
-                'WithdrawalsToggled': ('[u8; 32]', 'u8', 'bool'),
-            },
             'EqDex': {
                 'Match': (
                     'u64',
@@ -644,6 +636,52 @@ result = substrate.query(
                 ),
                 'OrderDeleted': ('AccountId', 'u64', 'u64', 'scale_info::103'),
             },
+            'EqMarginCall': {
+                'MaintenanceMarginCall': (
+                    'AccountId',
+                    (None, ('scale_info::89', 'AccountId')),
+                    'u64',
+                ),
+                'MarginCallExecuted': (
+                    'AccountId',
+                    (None, ('scale_info::89', 'AccountId')),
+                ),
+            },
+            'EqMultisigSudo': {
+                'Initialized': None,
+                'KeyAdded': 'AccountId',
+                'KeyRemoved': 'AccountId',
+                'MultisigSudid': ('[u8; 32]', 'scale_info::35'),
+                'NewProposal': ('AccountId', '[u8; 32]'),
+                'ProposalApproved': ('AccountId', '[u8; 32]'),
+                'ProposalCancelled': '[u8; 32]',
+                'SudoFailed': '[u8; 32]',
+                'ThresholdModified': 'u32',
+            },
+            'EqSessionManager': {
+                'ValidatorAdded': 'AccountId',
+                'ValidatorRemoved': 'AccountId',
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::14',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
+            'EqBridge': {
+                'FromBridgeTransfer': ('AccountId', 'u64', 'u128'),
+                'FromBridgeTransferNext': ('Bytes', 'u64', 'u128'),
+                'MinimumTransferAmountChanged': ('u8', '[u8; 32]', 'u128'),
+                'Remark': '[u8; 32]',
+                'ToBridgeTransfer': ('AccountId', 'u64', 'u128'),
+                'WithdrawalsToggled': ('[u8; 32]', 'u8', 'bool'),
+            },
             'EqLending': {
                 'Deposit': {
                     'asset': 'u64',
@@ -665,35 +703,9 @@ result = substrate.query(
                 'Lock': ('AccountId', 'u128'),
                 'Unlock': ('AccountId', 'u128'),
             },
-            'EqMarginCall': {
-                'MaintenanceMarginCall': (
-                    'AccountId',
-                    (None, ('scale_info::89', 'AccountId')),
-                    'u64',
-                ),
-                'MarginCallExecuted': (
-                    'AccountId',
-                    (None, ('scale_info::89', 'AccountId')),
-                ),
-            },
             'EqMarketMaker': {
                 'AddedToWhitelist': 'AccountId',
                 'RemovedFromWhitelist': 'AccountId',
-            },
-            'EqMultisigSudo': {
-                'Initialized': None,
-                'KeyAdded': 'AccountId',
-                'KeyRemoved': 'AccountId',
-                'MultisigSudid': ('[u8; 32]', 'scale_info::35'),
-                'NewProposal': ('AccountId', '[u8; 32]'),
-                'ProposalApproved': ('AccountId', '[u8; 32]'),
-                'ProposalCancelled': '[u8; 32]',
-                'SudoFailed': '[u8; 32]',
-                'ThresholdModified': 'u32',
-            },
-            'EqSessionManager': {
-                'ValidatorAdded': 'AccountId',
-                'ValidatorRemoved': 'AccountId',
             },
             'EqStaking': {
                 'Distributed': 'u32',
@@ -745,17 +757,6 @@ result = substrate.query(
                 },
             },
             'Oracle': {'NewPrice': ('u64', 'i64', 'i64', 'AccountId')},
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::14',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsTrapped': (
                     '[u8; 32]',
@@ -865,15 +866,6 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            'TechnicalCommitteeMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            None: None,
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -904,6 +896,14 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'TechnicalCommitteeMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1222,7 +1222,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'Equilibrium-parachain',
     'impl_version': 1,
     'spec_name': 'Equilibrium-parachain',
-    'spec_version': 24,
+    'spec_version': 25,
     'state_version': 0,
     'transaction_version': 1,
 }

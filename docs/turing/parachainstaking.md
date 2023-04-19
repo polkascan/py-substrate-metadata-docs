@@ -1185,7 +1185,7 @@ constant = substrate.get_constant('ParachainStaking', 'MinBlocksPerRound')
  Minimum stake required for any account to be a collator candidate
 #### Value
 ```python
-20000000000000000
+10000000000000000
 ```
 #### Python
 ```python

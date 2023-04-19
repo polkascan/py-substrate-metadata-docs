@@ -164,8 +164,8 @@ call = substrate.compose_call(
                 'info': {
                     'additional': [
                         (
-                            'scale_info::226',
-                            'scale_info::226',
+                            'scale_info::240',
+                            'scale_info::240',
                         ),
                     ],
                     'display': {
@@ -232,15 +232,7 @@ call = substrate.compose_call(
                 'judgements': [
                     (
                         'u32',
-                        {
-                            'Erroneous': None,
-                            'FeePaid': 'u128',
-                            'KnownGood': None,
-                            'LowQuality': None,
-                            'OutOfDate': None,
-                            'Reasonable': None,
-                            'Unknown': None,
-                        },
+                        'scale_info::275',
                     ),
                 ],
             },
@@ -296,14 +288,7 @@ call = substrate.compose_call(
                 [
                     (
                         'AccountId',
-                        {
-                            'BlakeTwo256': 'h256',
-                            'Keccak256': 'h256',
-                            'None': None,
-                            'Raw': 'Bytes',
-                            'Sha256': 'h256',
-                            'ShaThree256': 'h256',
-                        },
+                        'scale_info::240',
                     ),
                 ],
             ),
@@ -935,26 +920,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [
-            (
-                {
-                    'BlakeTwo256': 'h256',
-                    'Keccak256': 'h256',
-                    'None': None,
-                    'Raw': 'Bytes',
-                    'Sha256': 'h256',
-                    'ShaThree256': 'h256',
-                },
-                {
-                    'BlakeTwo256': 'h256',
-                    'Keccak256': 'h256',
-                    'None': None,
-                    'Raw': 'Bytes',
-                    'Sha256': 'h256',
-                    'ShaThree256': 'h256',
-                },
-            ),
-        ],
+        'additional': [('scale_info::240', 'scale_info::240')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',

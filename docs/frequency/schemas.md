@@ -25,6 +25,8 @@ call = substrate.compose_call(
     'payload_location': (
         'OnChain',
         'IPFS',
+        'Itemized',
+        'Paginated',
     ),
 }
 )
@@ -39,6 +41,7 @@ call = substrate.compose_call(
 | model | `BoundedVec<u8, T::SchemaModelMaxBytesBoundedVecLimit>` | 
 | model_type | `ModelType` | 
 | payload_location | `PayloadLocation` | 
+| settings | `BoundedVec<SchemaSetting, T::MaxSchemaSettingsPerSchema>` | 
 
 #### Python
 ```python
@@ -53,7 +56,15 @@ call = substrate.compose_call(
     'payload_location': (
         'OnChain',
         'IPFS',
+        'Itemized',
+        'Paginated',
     ),
+    'settings': [
+        (
+            'AppendOnly',
+            'SignatureRequired',
+        ),
+    ],
 }
 )
 ```
@@ -66,6 +77,7 @@ call = substrate.compose_call(
 | model | `BoundedVec<u8, T::SchemaModelMaxBytesBoundedVecLimit>` | 
 | model_type | `ModelType` | 
 | payload_location | `PayloadLocation` | 
+| settings | `BoundedVec<SchemaSetting, T::MaxSchemaSettingsPerSchema>` | 
 
 #### Python
 ```python
@@ -79,7 +91,15 @@ call = substrate.compose_call(
     'payload_location': (
         'OnChain',
         'IPFS',
+        'Itemized',
+        'Paginated',
     ),
+    'settings': [
+        (
+            'AppendOnly',
+            'SignatureRequired',
+        ),
+    ],
 }
 )
 ```
@@ -162,7 +182,8 @@ result = substrate.query(
 {
     'model': 'Bytes',
     'model_type': ('AvroBinary', 'Parquet'),
-    'payload_location': ('OnChain', 'IPFS'),
+    'payload_location': ('OnChain', 'IPFS', 'Itemized', 'Paginated'),
+    'settings': 'u16',
 }
 ```
 ---------
@@ -177,6 +198,16 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('Schemas', 'MaxSchemaRegistrations')
+```
+---------
+### MaxSchemaSettingsPerSchema
+#### Value
+```python
+2
+```
+#### Python
+```python
+constant = substrate.get_constant('Schemas', 'MaxSchemaSettingsPerSchema')
 ```
 ---------
 ### MinSchemaModelSizeBytes
@@ -206,6 +237,9 @@ constant = substrate.get_constant('Schemas', 'SchemaModelMaxBytesBoundedVecLimit
 
 ---------
 ### InvalidSchema
+
+---------
+### InvalidSetting
 
 ---------
 ### LessThanMinSchemaModelBytes

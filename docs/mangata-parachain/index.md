@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | mangata-parachain     |
 | Implementation name     | mangata-parachain     |
-| Spec version     | 2802     |
+| Spec version     | 2900     |
 | SS58 Format     | 42     |
 | Token symbol      | MGX     |
 | Token decimals      | 18     |
@@ -20,11 +20,12 @@
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
 | [Bootstrap](bootstrap.md) | [9](bootstrap.md#calls) | [7](bootstrap.md#events) | [12](bootstrap.md#storage-functions) | [3](bootstrap.md#constants) | [22](bootstrap.md#errors) |
-| [Council](council.md) | [6](council.md#calls) | [9](council.md#events) | [7](council.md#storage-functions) | [0](council.md#constants) | [11](council.md#errors) |
+| [Council](council.md) | [6](council.md#calls) | [9](council.md#events) | [7](council.md#storage-functions) | [0](council.md#constants) | [12](council.md#errors) |
 | [Crowdloan](crowdloan.md) | [7](crowdloan.md#calls) | [6](crowdloan.md#events) | [9](crowdloan.md#storage-functions) | [5](crowdloan.md#constants) | [16](crowdloan.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [3](dmpqueue.md#errors) |
-| [FeeLock](feelock.md) | [2](feelock.md#calls) | [2](feelock.md#events) | [2](feelock.md#storage-functions) | [2](feelock.md#constants) | [7](feelock.md#errors) |
+| [FeeLock](feelock.md) | [2](feelock.md#calls) | [3](feelock.md#events) | [6](feelock.md#storage-functions) | [2](feelock.md#constants) | [7](feelock.md#errors) |
+| [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [Issuance](issuance.md) | [3](issuance.md#calls) | [6](issuance.md#events) | [6](issuance.md#storage-functions) | [12](issuance.md#constants) | [7](issuance.md#errors) |
 | [Maintenance](maintenance.md) | [4](maintenance.md#calls) | [4](maintenance.md#events) | [1](maintenance.md#storage-functions) | [0](maintenance.md#constants) | [5](maintenance.md#errors) |
 | [MultiPurposeLiquidity](multipurposeliquidity.md) | [3](multipurposeliquidity.md#calls) | [2](multipurposeliquidity.md#events) | [2](multipurposeliquidity.md#storage-functions) | [0](multipurposeliquidity.md#constants) | [6](multipurposeliquidity.md#errors) |
@@ -33,6 +34,7 @@
 | [ParachainStaking](parachainstaking.md) | [23](parachainstaking.md#calls) | [30](parachainstaking.md#events) | [12](parachainstaking.md#storage-functions) | [18](parachainstaking.md#constants) | [43](parachainstaking.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [9](parachainsystem.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [17](polkadotxcm.md#events) | [9](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [13](polkadotxcm.md#errors) |
+| [ProofOfStake](proofofstake.md) | [6](proofofstake.md#calls) | [4](proofofstake.md#events) | [2](proofofstake.md#storage-functions) | [2](proofofstake.md#constants) | [10](proofofstake.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [Sudo](sudo.md) | [4](sudo.md#calls) | [3](sudo.md#events) | [1](sudo.md#storage-functions) | [0](sudo.md#constants) | [1](sudo.md#errors) |
@@ -47,4 +49,4 @@
 | [Vesting](vesting.md) | [5](vesting.md#calls) | [2](vesting.md#events) | [2](vesting.md#storage-functions) | [2](vesting.md#constants) | [9](vesting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [8](xcmpqueue.md#events) | [9](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [6](xcmpqueue.md#errors) |
-| [Xyk](xyk.md) | [16](xyk.md#calls) | [17](xyk.md#events) | [11](xyk.md#storage-functions) | [6](xyk.md#constants) | [36](xyk.md#errors) |
+| [Xyk](xyk.md) | [16](xyk.md#calls) | [17](xyk.md#events) | [3](xyk.md#storage-functions) | [4](xyk.md#constants) | [36](xyk.md#errors) |

@@ -329,6 +329,23 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
+            'Capacity': {
+                'CapacityWithdrawn': {'amount': 'u128', 'msa_id': 'u64'},
+                'EpochLengthUpdated': {'blocks': 'u32'},
+                'StakeWithdrawn': {'account': 'AccountId', 'amount': 'u128'},
+                'Staked': {
+                    'account': 'AccountId',
+                    'amount': 'u128',
+                    'capacity': 'u128',
+                    'target': 'u64',
+                },
+                'UnStaked': {
+                    'account': 'AccountId',
+                    'amount': 'u128',
+                    'capacity': 'u128',
+                    'target': 'u64',
+                },
+            },
             'CollatorSelection': {
                 'CandidateAdded': {
                     'account_id': 'AccountId',
@@ -393,6 +410,7 @@ result = substrate.query(
                     'voter': 'AccountId',
                 },
             },
+            'FrequencyTxPayment': (),
             'Messages': {
                 'MessagesStored': {
                     'block_number': 'u32',
@@ -487,6 +505,32 @@ result = substrate.query(
                 'SchemaMaxSizeChanged': {'max_size': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'StatefulStorage': {
+                'ItemizedPageDeleted': {
+                    'msa_id': 'u64',
+                    'prev_content_hash': 'u32',
+                    'schema_id': 'u16',
+                },
+                'ItemizedPageUpdated': {
+                    'curr_content_hash': 'u32',
+                    'msa_id': 'u64',
+                    'prev_content_hash': 'u32',
+                    'schema_id': 'u16',
+                },
+                'PaginatedPageDeleted': {
+                    'msa_id': 'u64',
+                    'page_id': 'u16',
+                    'prev_content_hash': 'u32',
+                    'schema_id': 'u16',
+                },
+                'PaginatedPageUpdated': {
+                    'curr_content_hash': 'u32',
+                    'msa_id': 'u64',
+                    'page_id': 'u16',
+                    'prev_content_hash': 'u32',
+                    'schema_id': 'u16',
+                },
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -544,18 +588,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::24',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::38'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::24'},
-            },
-            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -574,6 +606,18 @@ result = substrate.query(
                 },
                 'Spending': {'budget_remaining': 'u128'},
             },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::24',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::38'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::24'},
+            },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -724,24 +768,24 @@ constant = substrate.get_constant('System', 'BlockLength')
 #### Value
 ```python
 {
-    'base_block': {'proof_size': 0, 'ref_time': 5000000000},
+    'base_block': {'proof_size': 0, 'ref_time': 353208000},
     'max_block': {'proof_size': 5242880, 'ref_time': 500000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 125000000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 90853000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 125000000},
-            'max_extrinsic': {'proof_size': 3670016, 'ref_time': 349875000000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 90853000},
+            'max_extrinsic': {'proof_size': 3670016, 'ref_time': 349909147000},
             'max_total': {'proof_size': 3932160, 'ref_time': 375000000000},
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 125000000},
-            'max_extrinsic': {'proof_size': 4980736, 'ref_time': 474875000000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 90853000},
+            'max_extrinsic': {'proof_size': 4980736, 'ref_time': 474909147000},
             'max_total': {'proof_size': 5242880, 'ref_time': 500000000000},
             'reserved': {'proof_size': 1310720, 'ref_time': 125000000000},
         },
@@ -792,12 +836,13 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0x02fadd88517cc081', 1),
         ('0xc451b3fcf34859b4', 1),
         ('0x24d062f93a859f6f', 1),
+        ('0x4250010199fc50d3', 1),
     ],
     'authoring_version': 1,
     'impl_name': 'frequency',
     'impl_version': 0,
     'spec_name': 'frequency',
-    'spec_version': 24,
+    'spec_version': 26,
     'state_version': 1,
     'transaction_version': 1,
 }

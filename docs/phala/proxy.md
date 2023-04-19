@@ -40,6 +40,7 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Collator',
+        'StakePoolManager',
     ),
 }
 )
@@ -123,6 +124,7 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Collator',
+        'StakePoolManager',
     ),
 }
 )
@@ -168,6 +170,7 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Collator',
+        'StakePoolManager',
     ),
     'spawner': {
         'Address20': '[u8; 20]',
@@ -211,6 +214,7 @@ call = substrate.compose_call(
             'CancelProxy',
             'Governance',
             'Collator',
+            'StakePoolManager',
         ),
     ),
     'real': {
@@ -265,6 +269,7 @@ call = substrate.compose_call(
             'CancelProxy',
             'Governance',
             'Collator',
+            'StakePoolManager',
         ),
     ),
     'real': {
@@ -398,6 +403,7 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Collator',
+        'StakePoolManager',
     ),
 }
 )
@@ -424,7 +430,7 @@ A proxy was added.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Governance', 'Collator')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Governance', 'Collator', 'StakePoolManager')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -443,7 +449,7 @@ A proxy was removed.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Governance', 'Collator')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Governance', 'Collator', 'StakePoolManager')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -455,7 +461,7 @@ disambiguation index and proxy type.
 | -------- | -------- | -------- |
 | pure | `T::AccountId` | ```AccountId```
 | who | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Governance', 'Collator')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Governance', 'Collator', 'StakePoolManager')```
 | disambiguation_index | `u16` | ```u16```
 
 ---------
@@ -501,6 +507,7 @@ result = substrate.query(
                 'CancelProxy',
                 'Governance',
                 'Collator',
+                'StakePoolManager',
             ),
         },
     ],

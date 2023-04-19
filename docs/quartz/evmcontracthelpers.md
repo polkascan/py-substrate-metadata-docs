@@ -2,6 +2,24 @@
 # EvmContractHelpers
 
 ---------
+## Calls
+
+---------
+### migrate_from_self_sponsoring
+Migrate contract to use `SponsoringMode` storage instead of `SelfSponsoring`
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| addresses | `Vec<H160>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'EvmContractHelpers', 'migrate_from_self_sponsoring', {'addresses': ['[u8; 20]']}
+)
+```
+
+---------
 ## Events
 
 ---------
@@ -162,7 +180,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::511'
+'scale_info::540'
 ```
 ---------
 ### SponsoringMode

@@ -61,6 +61,15 @@ No attributes
 | None | `Balance` | ```u128```
 
 ---------
+### FeeLocked
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| lock_amount | `Balance` | ```u128```
+| total_locked | `Balance` | ```u128```
+
+---------
 ## Storage functions
 
 ---------
@@ -93,8 +102,64 @@ result = substrate.query(
     'fee_lock_amount': 'u128',
     'period_length': 'u32',
     'swap_value_threshold': 'u128',
-    'whitelisted_tokens': 'scale_info::205',
+    'whitelisted_tokens': 'scale_info::348',
 }
+```
+---------
+### FeeLockMetadataQeueuePosition
+
+#### Python
+```python
+result = substrate.query(
+    'FeeLock', 'FeeLockMetadataQeueuePosition', ['AccountId']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### UnlockQueue
+
+#### Python
+```python
+result = substrate.query(
+    'FeeLock', 'UnlockQueue', ['u128']
+)
+```
+
+#### Return value
+```python
+'AccountId'
+```
+---------
+### UnlockQueueBegin
+
+#### Python
+```python
+result = substrate.query(
+    'FeeLock', 'UnlockQueueBegin', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### UnlockQueueEnd
+
+#### Python
+```python
+result = substrate.query(
+    'FeeLock', 'UnlockQueueEnd', []
+)
+```
+
+#### Return value
+```python
+'u128'
 ```
 ---------
 ## Constants
