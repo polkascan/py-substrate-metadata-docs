@@ -2673,7 +2673,7 @@ nav:
                   - UpgradeCommitteeMembership: polymesh_mainnet/upgradecommitteemembership.md
                   - Utility: polymesh_mainnet/utility.md
 
-    - Libary documentation: https://polkascan.github.io/py-substrate-interface/
+    - Library documentation: https://polkascan.github.io/py-substrate-interface/
 
 theme:
   name: "material"
