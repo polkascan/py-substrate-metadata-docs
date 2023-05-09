@@ -1,0 +1,488 @@
+
+# BridgeKusamaGrandpa
+
+---------
+## Calls
+
+---------
+### initialize
+Bootstrap the bridge pallet with an initial header and authority set from which to sync.
+
+The initial configuration provided does not need to be the genesis header of the bridged
+chain, it can be any arbitrary header. You can also provide the next scheduled set
+change if it is already know.
+
+This function is only allowed to be called from a trusted origin and writes to storage
+with practically no checks in terms of the validity of the data. It is important that
+you ensure that valid data is being passed in.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| init_data | `super::InitializationData<BridgedHeader<T, I>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BridgeKusamaGrandpa', 'initialize', {
+    'init_data': {
+        'authority_list': [
+            ('[u8; 32]', 'u64'),
+        ],
+        'header': {
+            'digest': {
+                'logs': [
+                    {
+                        'Other': 'Bytes',
+                        None: None,
+                        'Consensus': (
+                            '[u8; 4]',
+                            'Bytes',
+                        ),
+                        'PreRuntime': (
+                            '[u8; 4]',
+                            'Bytes',
+                        ),
+                        'RuntimeEnvironmentUpdated': None,
+                        'Seal': (
+                            '[u8; 4]',
+                            'Bytes',
+                        ),
+                    },
+                ],
+            },
+            'extrinsics_root': '[u8; 32]',
+            'number': 'u32',
+            'parent_hash': '[u8; 32]',
+            'state_root': '[u8; 32]',
+        },
+        'operating_mode': (
+            'Normal',
+            'Halted',
+        ),
+        'set_id': 'u64',
+    },
+}
+)
+```
+
+---------
+### set_operating_mode
+Halt or resume all pallet operations.
+
+May only be called either by root, or by `PalletOwner`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| operating_mode | `BasicOperatingMode` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BridgeKusamaGrandpa', 'set_operating_mode', {
+    'operating_mode': (
+        'Normal',
+        'Halted',
+    ),
+}
+)
+```
+
+---------
+### set_owner
+Change `PalletOwner`.
+
+May only be called either by root, or by `PalletOwner`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| new_owner | `Option<T::AccountId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BridgeKusamaGrandpa', 'set_owner', {'new_owner': (None, '[u8; 20]')}
+)
+```
+
+---------
+### submit_finality_proof
+Verify a target header is finalized according to the given finality proof.
+
+It will use the underlying storage pallet to fetch information about the current
+authorities and best finalized header in order to verify that the header is finalized.
+
+If successful in verification, it will write the target header to the underlying storage
+pallet.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| finality_target | `Box<BridgedHeader<T, I>>` | 
+| justification | `GrandpaJustification<BridgedHeader<T, I>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BridgeKusamaGrandpa', 'submit_finality_proof', {
+    'finality_target': {
+        'digest': {
+            'logs': [
+                {
+                    'Other': 'Bytes',
+                    None: None,
+                    'Consensus': (
+                        '[u8; 4]',
+                        'Bytes',
+                    ),
+                    'PreRuntime': (
+                        '[u8; 4]',
+                        'Bytes',
+                    ),
+                    'RuntimeEnvironmentUpdated': None,
+                    'Seal': (
+                        '[u8; 4]',
+                        'Bytes',
+                    ),
+                },
+            ],
+        },
+        'extrinsics_root': '[u8; 32]',
+        'number': 'u32',
+        'parent_hash': '[u8; 32]',
+        'state_root': '[u8; 32]',
+    },
+    'justification': {
+        'commit': {
+            'precommits': [
+                {
+                    'id': '[u8; 32]',
+                    'precommit': {
+                        'target_hash': '[u8; 32]',
+                        'target_number': 'u32',
+                    },
+                    'signature': '[u8; 64]',
+                },
+            ],
+            'target_hash': '[u8; 32]',
+            'target_number': 'u32',
+        },
+        'round': 'u64',
+        'votes_ancestries': [
+            {
+                'digest': {
+                    'logs': [
+                        {
+                            'Other': 'Bytes',
+                            None: None,
+                            'Consensus': (
+                                '[u8; 4]',
+                                'Bytes',
+                            ),
+                            'PreRuntime': (
+                                '[u8; 4]',
+                                'Bytes',
+                            ),
+                            'RuntimeEnvironmentUpdated': None,
+                            'Seal': (
+                                '[u8; 4]',
+                                'Bytes',
+                            ),
+                        },
+                    ],
+                },
+                'extrinsics_root': '[u8; 32]',
+                'number': 'u32',
+                'parent_hash': '[u8; 32]',
+                'state_root': '[u8; 32]',
+            },
+        ],
+    },
+}
+)
+```
+
+---------
+## Storage functions
+
+---------
+### BestFinalized
+ Hash of the best finalized header.
+
+#### Python
+```python
+result = substrate.query(
+    'BridgeKusamaGrandpa', 'BestFinalized', []
+)
+```
+
+#### Return value
+```python
+('u32', '[u8; 32]')
+```
+---------
+### CurrentAuthoritySet
+ The current GRANDPA Authority set.
+
+#### Python
+```python
+result = substrate.query(
+    'BridgeKusamaGrandpa', 'CurrentAuthoritySet', []
+)
+```
+
+#### Return value
+```python
+{'authorities': [('[u8; 32]', 'u64')], 'set_id': 'u64'}
+```
+---------
+### ImportedHashes
+ A ring buffer of imported hashes. Ordered by the insertion time.
+
+#### Python
+```python
+result = substrate.query(
+    'BridgeKusamaGrandpa', 'ImportedHashes', ['u32']
+)
+```
+
+#### Return value
+```python
+'[u8; 32]'
+```
+---------
+### ImportedHashesPointer
+ Current ring buffer position.
+
+#### Python
+```python
+result = substrate.query(
+    'BridgeKusamaGrandpa', 'ImportedHashesPointer', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### ImportedHeaders
+ Headers which have been imported into the pallet.
+
+#### Python
+```python
+result = substrate.query(
+    'BridgeKusamaGrandpa', 'ImportedHeaders', ['[u8; 32]']
+)
+```
+
+#### Return value
+```python
+{
+    'digest': {
+        'logs': [
+            {
+                'Other': 'Bytes',
+                None: None,
+                'Consensus': ('[u8; 4]', 'Bytes'),
+                'PreRuntime': ('[u8; 4]', 'Bytes'),
+                'RuntimeEnvironmentUpdated': None,
+                'Seal': ('[u8; 4]', 'Bytes'),
+            },
+        ],
+    },
+    'extrinsics_root': '[u8; 32]',
+    'number': 'u32',
+    'parent_hash': '[u8; 32]',
+    'state_root': '[u8; 32]',
+}
+```
+---------
+### InitialHash
+ Hash of the header used to bootstrap the pallet.
+
+#### Python
+```python
+result = substrate.query(
+    'BridgeKusamaGrandpa', 'InitialHash', []
+)
+```
+
+#### Return value
+```python
+'[u8; 32]'
+```
+---------
+### PalletOperatingMode
+ The current operating mode of the pallet.
+
+ Depending on the mode either all, or no transactions will be allowed.
+
+#### Python
+```python
+result = substrate.query(
+    'BridgeKusamaGrandpa', 'PalletOperatingMode', []
+)
+```
+
+#### Return value
+```python
+('Normal', 'Halted')
+```
+---------
+### PalletOwner
+ Optional pallet owner.
+
+ Pallet owner has a right to halt all pallet operations and then resume it. If it is
+ `None`, then there are no direct ways to halt/resume pallet operations, but other
+ runtime methods may still be used to do that (i.e. democracy::referendum to update halt
+ flag directly or call the `halt_operations`).
+
+#### Python
+```python
+result = substrate.query(
+    'BridgeKusamaGrandpa', 'PalletOwner', []
+)
+```
+
+#### Return value
+```python
+'[u8; 20]'
+```
+---------
+### RequestCount
+ The current number of requests which have written to storage.
+
+ If the `RequestCount` hits `MaxRequests`, no more calls will be allowed to the pallet until
+ the request capacity is increased.
+
+ The `RequestCount` is decreased by one at the beginning of every block. This is to ensure
+ that the pallet can always make progress.
+
+#### Python
+```python
+result = substrate.query(
+    'BridgeKusamaGrandpa', 'RequestCount', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+## Constants
+
+---------
+### HeadersToKeep
+ Maximal number of finalized headers to keep in the storage.
+
+ The setting is there to prevent growing the on-chain state indefinitely. Note
+ the setting does not relate to block numbers - we will simply keep as much items
+ in the storage, so it doesn&#x27;t guarantee any fixed timeframe for finality headers.
+
+ Incautious change of this constant may lead to orphan entries in the runtime storage.
+#### Value
+```python
+500
+```
+#### Python
+```python
+constant = substrate.get_constant('BridgeKusamaGrandpa', 'HeadersToKeep')
+```
+---------
+### MaxBridgedAuthorities
+ Max number of authorities at the bridged chain.
+#### Value
+```python
+100000
+```
+#### Python
+```python
+constant = substrate.get_constant('BridgeKusamaGrandpa', 'MaxBridgedAuthorities')
+```
+---------
+### MaxBridgedHeaderSize
+ Maximal size (in bytes) of the SCALE-encoded bridged chain header.
+
+ This constant must be selected with care. The pallet requires mandatory headers to be
+ submitted to be able to proceed. Mandatory headers contain public keys of all GRANDPA
+ authorities. E.g. for 1024 authorities, the size of encoded keys will be at least 32 KB.
+ The same header may also contain other digest items as well, so some reserve here
+ is required.
+#### Value
+```python
+131072
+```
+#### Python
+```python
+constant = substrate.get_constant('BridgeKusamaGrandpa', 'MaxBridgedHeaderSize')
+```
+---------
+### MaxRequests
+ The upper bound on the number of requests allowed by the pallet.
+
+ A request refers to an action which writes a header to storage.
+
+ Once this bound is reached the pallet will not allow any dispatchables to be called
+ until the request count has decreased.
+#### Value
+```python
+50
+```
+#### Python
+```python
+constant = substrate.get_constant('BridgeKusamaGrandpa', 'MaxRequests')
+```
+---------
+## Errors
+
+---------
+### AlreadyInitialized
+The pallet has already been initialized.
+
+---------
+### BridgeModule
+Error generated by the `OwnedBridgeModule` trait.
+
+---------
+### InvalidAuthoritySet
+The authority set from the underlying header chain is invalid.
+
+---------
+### InvalidJustification
+The given justification is invalid for the given header.
+
+---------
+### NotInitialized
+The pallet is not yet initialized.
+
+---------
+### OldHeader
+The header being imported is older than the best finalized header known to the pallet.
+
+---------
+### StorageRootMismatch
+The storage proof doesn&\#x27;t contains storage root. So it is invalid for given header.
+
+---------
+### TooLargeHeader
+Too large header.
+
+---------
+### TooManyAuthoritiesInSet
+Too many authorities in the set.
+
+---------
+### TooManyRequests
+There are too many requests for the current window to handle.
+
+---------
+### UnknownHeader
+The header is unknown to the pallet.
+
+---------
+### UnsupportedScheduledChange
+The scheduled authority set change found in the header is unsupported by the pallet.
+
+This is the case for non-standard (e.g forced) authority set changes.
+
+---------

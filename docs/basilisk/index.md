@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | basilisk     |
 | Implementation name     | basilisk     |
-| Spec version     | 92     |
+| Spec version     | 94     |
 | SS58 Format     | 10041     |
 | Token symbol      | BSX     |
 | Token decimals      | 12     |
@@ -16,7 +16,7 @@
 | Name | Calls | Events | Storage functions | Constants | Errors |
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | [AssetRegistry](assetregistry.md) | [4](assetregistry.md#calls) | [4](assetregistry.md#events) | [6](assetregistry.md#storage-functions) | [2](assetregistry.md#constants) | [8](assetregistry.md#errors) |
-| [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [0](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
+| [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [0](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |

@@ -44,9 +44,9 @@ Initialize the claim pallet
 This administrative function is used to transfer the list of contributors
 and their respective contributions, stored as a child trie root hash in
 the relay chain&\#x27;s [`crowdloan`](https://github.com/paritytech/polkadot/blob/rococo-v1/runtime/common/src/crowdloan.rs)
-pallet, to [`Contributions`] storage item.
+pallet, to `Contributions` storage item.
 This transaction can only be called via a signed transactions.
-The [`contributions`] parameter contains the hash of the crowdloan pallet&\#x27;s child
+The `contributions` parameter contains the hash of the crowdloan pallet&\#x27;s child
 trie root. It is later used for proving that a contributor effectively contributed
 to the crowdloan campaign, and that the amount of the contribution is correct as
 well.

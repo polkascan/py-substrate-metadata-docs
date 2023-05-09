@@ -382,18 +382,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'AssetRegistry': {
                 'LocationSet': {
                     'asset_id': 'u32',
@@ -910,35 +898,16 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'TechnicalCommittee': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
-                'Closed': {
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'yes': 'u32',
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
                 },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
-                'Executed': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::33',
-                },
-                'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::33',
-                },
-                'Proposed': {
-                    'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
-                    'proposal_index': 'u32',
-                    'threshold': 'u32',
-                },
-                'Voted': {
-                    'account': 'AccountId',
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'voted': 'bool',
-                    'yes': 'u32',
-                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'Tips': {
                 'NewTip': {'tip_hash': '[u8; 32]'},
@@ -1039,6 +1008,91 @@ result = substrate.query(
                     'actual_fee': 'u128',
                     'tip': 'u128',
                     'who': 'AccountId',
+                },
+            },
+            'UnknownTokens': {
+                'Deposited': {
+                    'asset': 'scale_info::89',
+                    'who': 'scale_info::74',
+                },
+                'Withdrawn': {
+                    'asset': 'scale_info::89',
+                    'who': 'scale_info::74',
+                },
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::89'],
+                    'dest': 'scale_info::74',
+                    'fee': 'scale_info::89',
+                    'sender': 'AccountId',
+                },
+            },
+            'XYKWarehouseLM': {
+                'AllRewardsDistributed': {'global_farm_id': 'u32'},
+                'GlobalFarmAccRPZUpdated': {
+                    'accumulated_rpz': 'u128',
+                    'global_farm_id': 'u32',
+                    'total_shares_z': 'u128',
+                },
+                'YieldFarmAccRPVSUpdated': {
+                    'accumulated_rpvs': 'u128',
+                    'global_farm_id': 'u32',
+                    'total_valued_shares': 'u128',
+                    'yield_farm_id': 'u32',
+                },
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::73',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::8',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::8',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::8',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
+            'TechnicalCommittee': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::33',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::33',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
                 },
             },
             'Treasury': {
@@ -1161,16 +1215,6 @@ result = substrate.query(
                     'to': 'AccountId',
                 },
             },
-            'UnknownTokens': {
-                'Deposited': {
-                    'asset': 'scale_info::89',
-                    'who': 'scale_info::74',
-                },
-                'Withdrawn': {
-                    'asset': 'scale_info::89',
-                    'who': 'scale_info::74',
-                },
-            },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -1190,14 +1234,6 @@ result = substrate.query(
                     'vesting_schedule': 'scale_info::47',
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::89'],
-                    'dest': 'scale_info::74',
-                    'fee': 'scale_info::89',
-                    'sender': 'AccountId',
-                },
             },
             'XYK': {
                 'BuyExecuted': {
@@ -1336,42 +1372,6 @@ result = substrate.query(
                     'who': 'AccountId',
                     'yield_farm_id': 'u32',
                 },
-            },
-            'XYKWarehouseLM': {
-                'AllRewardsDistributed': {'global_farm_id': 'u32'},
-                'GlobalFarmAccRPZUpdated': {
-                    'accumulated_rpz': 'u128',
-                    'global_farm_id': 'u32',
-                    'total_shares_z': 'u128',
-                },
-                'YieldFarmAccRPVSUpdated': {
-                    'accumulated_rpvs': 'u128',
-                    'global_farm_id': 'u32',
-                    'total_valued_shares': 'u128',
-                    'yield_farm_id': 'u32',
-                },
-            },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::73',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::8',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::8',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::8',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
         },
         'phase': {
@@ -1611,7 +1611,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'basilisk',
     'impl_version': 0,
     'spec_name': 'basilisk',
-    'spec_version': 92,
+    'spec_version': 94,
     'state_version': 0,
     'transaction_version': 1,
 }

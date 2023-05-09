@@ -236,6 +236,21 @@ result = substrate.query(
 ['u32']
 ```
 ---------
+### Inactive
+ The amount which has been reported as inactive to Currency.
+
+#### Python
+```python
+result = substrate.query(
+    'Treasury', 'Inactive', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### ProposalCount
  Number of proposals that have been made.
 

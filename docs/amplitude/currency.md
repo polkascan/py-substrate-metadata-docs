@@ -25,6 +25,12 @@ constant = substrate.get_constant('Currency', 'GetRelayChainCurrencyId')
 ### BalanceConversionError
 
 ---------
+### CompatibleRoundingFailed
+
+---------
+### IncompatibleAmount
+
+---------
 ### InvalidCurrency
 
 ---------

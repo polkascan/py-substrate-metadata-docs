@@ -5,21 +5,6 @@
 ## Calls
 
 ---------
-### fill_block
-A dispatch that will fill the block weight up to the given ratio.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ratio | `Perbill` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-```
-
----------
 ### kill_prefix
 Kill all storage items with a key that starts with the given prefix.
 
@@ -311,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -451,10 +436,20 @@ result = substrate.query(
                 },
             },
             'Assets': {
+                'AccountsDestroyed': {
+                    'accounts_destroyed': 'u32',
+                    'accounts_remaining': 'u32',
+                    'asset_id': 'u32',
+                },
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
                     'delegate': 'AccountId',
                     'owner': 'AccountId',
+                },
+                'ApprovalsDestroyed': {
+                    'approvals_destroyed': 'u32',
+                    'approvals_remaining': 'u32',
+                    'asset_id': 'u32',
                 },
                 'ApprovedTransfer': {
                     'amount': 'u128',
@@ -476,6 +471,7 @@ result = substrate.query(
                     'owner': 'AccountId',
                 },
                 'Destroyed': {'asset_id': 'u32'},
+                'DestructionStarted': {'asset_id': 'u32'},
                 'ForceCreated': {'asset_id': 'u32', 'owner': 'AccountId'},
                 'Frozen': {'asset_id': 'u32', 'who': 'AccountId'},
                 'Issued': {
@@ -1393,24 +1389,24 @@ constant = substrate.get_constant('System', 'BlockLength')
 #### Value
 ```python
 {
-    'base_block': {'proof_size': 0, 'ref_time': 5346284000},
+    'base_block': {'proof_size': 0, 'ref_time': 358523000},
     'max_block': {'proof_size': 5242880, 'ref_time': 500000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 86298000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 86298000},
-            'max_extrinsic': {'proof_size': 3407872, 'ref_time': 324913702000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
+            'max_extrinsic': {'proof_size': 3407872, 'ref_time': 324901026000},
             'max_total': {'proof_size': 3932160, 'ref_time': 375000000000},
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 86298000},
-            'max_extrinsic': {'proof_size': 4718592, 'ref_time': 449913702000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
+            'max_extrinsic': {'proof_size': 4718592, 'ref_time': 449901026000},
             'max_total': {'proof_size': 5242880, 'ref_time': 500000000000},
             'reserved': {'proof_size': 1310720, 'ref_time': 125000000000},
         },
@@ -1474,7 +1470,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'parallel',
     'impl_version': 33,
     'spec_name': 'parallel',
-    'spec_version': 195,
+    'spec_version': 196,
     'state_version': 0,
     'transaction_version': 17,
 }

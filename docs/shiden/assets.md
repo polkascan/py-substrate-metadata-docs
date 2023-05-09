@@ -1175,7 +1175,7 @@ Some assets were issued.
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
-| total_supply | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u128```
 
 ---------
 ### MetadataCleared
@@ -1364,7 +1364,7 @@ constant = substrate.get_constant('Assets', 'ApprovalDeposit')
  maintained.
 #### Value
 ```python
-19000000000
+100360000000000000
 ```
 #### Python
 ```python
@@ -1375,7 +1375,7 @@ constant = substrate.get_constant('Assets', 'AssetAccountDeposit')
  The basic amount of funds that must be reserved for an asset.
 #### Value
 ```python
-1000000
+10000000000000000000
 ```
 #### Python
 ```python
@@ -1386,7 +1386,7 @@ constant = substrate.get_constant('Assets', 'AssetDeposit')
  The basic amount of funds that must be reserved when adding metadata to your asset.
 #### Value
 ```python
-69000000000
+101360000000000000
 ```
 #### Python
 ```python
@@ -1398,7 +1398,7 @@ constant = substrate.get_constant('Assets', 'MetadataDepositBase')
  metadata.
 #### Value
 ```python
-1000000000
+20000000000000
 ```
 #### Python
 ```python

@@ -5,6 +5,18 @@
 ## Calls
 
 ---------
+### backfill_vote_lock
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'PhalaWrappedBalances', 'backfill_vote_lock', {}
+)
+```
+
+---------
 ### unlock
 Tries to unlock W-PHAs used in vote after the vote finished or canceled
 

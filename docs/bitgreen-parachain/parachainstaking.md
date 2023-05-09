@@ -5,6 +5,19 @@
 ## Calls
 
 ---------
+### candidate_withdraw_unbonded
+Withdraw deposit and complete candidate exit
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ParachainStaking', 'candidate_withdraw_unbonded', {}
+)
+```
+
+---------
 ### delegate
 Delegate to an existing candidate, delegators stake a bond amount to support the
 selected candidate
@@ -112,12 +125,26 @@ Set the list of invulnerable (fixed) collators.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new | `Vec<T::AccountId>` | 
+| new | `Vec<CandidateInfoOf<T>>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'ParachainStaking', 'set_invulnerables', {'new': ['AccountId']}
+    'ParachainStaking', 'set_invulnerables', {
+    'new': [
+        {
+            'delegators': [
+                {
+                    'deposit': 'u128',
+                    'who': 'AccountId',
+                },
+            ],
+            'deposit': 'u128',
+            'total_stake': 'u128',
+            'who': 'AccountId',
+        },
+    ],
+}
 )
 ```
 
@@ -133,6 +160,19 @@ Undelegate and remove stake from an existing delegation
 ```python
 call = substrate.compose_call(
     'ParachainStaking', 'undelegate', {'candidate_id': 'AccountId'}
+)
+```
+
+---------
+### withdraw_unbonded
+Withdraw unbonded delegation after unbonding delay
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ParachainStaking', 'withdraw_unbonded', {}
 )
 ```
 
@@ -213,7 +253,15 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| invulnerables | `Vec<T::AccountId>` | ```['AccountId']```
+| invulnerables | `Vec<CandidateInfoOf<T>>` | ```[{'who': 'AccountId', 'deposit': 'u128', 'delegators': [{'who': 'AccountId', 'deposit': 'u128'}], 'total_stake': 'u128'}]```
+
+---------
+### UnbondedWithdrawn
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ## Storage functions
@@ -304,7 +352,14 @@ result = substrate.query(
 
 #### Return value
 ```python
-['AccountId']
+[
+    {
+        'delegators': [{'deposit': 'u128', 'who': 'AccountId'}],
+        'deposit': 'u128',
+        'total_stake': 'u128',
+        'who': 'AccountId',
+    },
+]
 ```
 ---------
 ### LastAuthoredBlock
@@ -322,6 +377,41 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### UnbondedCandidates
+ The delegates that have been removed
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainStaking', 'UnbondedCandidates', ['AccountId']
+)
+```
+
+#### Return value
+```python
+{
+    'delegators': [{'deposit': 'u128', 'who': 'AccountId'}],
+    'deposit': 'u128',
+    'total_stake': 'u128',
+    'unbonded_at': 'u32',
+}
+```
+---------
+### UnbondedDelegates
+ The delegates that have unbounded
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainStaking', 'UnbondedDelegates', ['AccountId']
+)
+```
+
+#### Return value
+```python
+{'deposit': 'u128', 'unbonded_at': 'u32'}
+```
+---------
 ## Errors
 
 ---------
@@ -329,8 +419,8 @@ result = substrate.query(
 User is already a candidate
 
 ---------
-### AlreadyInvulnerable
-User is already an Invulnerable
+### AlreadyDelegated
+Already delegated
 
 ---------
 ### ArithmeticOverflow
@@ -343,6 +433,10 @@ Below Minimum delegation amount
 ---------
 ### NoAssociatedValidatorId
 Account has no associated validator ID
+
+---------
+### NoUnbondingDelegation
+No unbonding delegation found for user
 
 ---------
 ### NotCandidate
@@ -371,6 +465,14 @@ Deledation limit is reached
 ---------
 ### TooManyInvulnerables
 Too many invulnerables
+
+---------
+### UnbondingDelayNotPassed
+The unbonding delay has not been reached
+
+---------
+### UnbondingInProgress
+User already has another unbonding in progress
 
 ---------
 ### Unknown

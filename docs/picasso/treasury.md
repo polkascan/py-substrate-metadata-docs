@@ -218,6 +218,15 @@ We have ended a spend period and will now allocate funds.
 | budget_remaining | `BalanceOf<T, I>` | ```u128```
 
 ---------
+### UpdatedInactive
+The inactive funds of the pallet have been updated.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| reactivated | `BalanceOf<T, I>` | ```u128```
+| deactivated | `BalanceOf<T, I>` | ```u128```
+
+---------
 ## Storage functions
 
 ---------
@@ -236,13 +245,13 @@ result = substrate.query(
 ['u32']
 ```
 ---------
-### Inactive
+### Deactivated
  The amount which has been reported as inactive to Currency.
 
 #### Python
 ```python
 result = substrate.query(
-    'Treasury', 'Inactive', []
+    'Treasury', 'Deactivated', []
 )
 ```
 
@@ -362,7 +371,7 @@ constant = substrate.get_constant('Treasury', 'ProposalBondMinimum')
  Period between successive spends.
 #### Value
 ```python
-50400
+21600
 ```
 #### Python
 ```python

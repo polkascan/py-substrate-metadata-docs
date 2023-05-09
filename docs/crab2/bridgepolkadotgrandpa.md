@@ -32,12 +32,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
+                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -171,12 +171,12 @@ call = substrate.compose_call(
                 'digest': {
                     'logs': [
                         {
-                            'Other': 'Bytes',
                             None: None,
                             'Consensus': (
                                 '[u8; 4]',
                                 'Bytes',
                             ),
+                            'Other': 'Bytes',
                             'PreRuntime': (
                                 '[u8; 4]',
                                 'Bytes',
@@ -280,9 +280,9 @@ result = substrate.query(
     'digest': {
         'logs': [
             {
+                'Other': 'Bytes',
                 None: None,
                 'Consensus': ('[u8; 4]', 'Bytes'),
-                'Other': 'Bytes',
                 'PreRuntime': ('[u8; 4]', 'Bytes'),
                 'RuntimeEnvironmentUpdated': None,
                 'Seal': ('[u8; 4]', 'Bytes'),

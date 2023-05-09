@@ -61,7 +61,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'beneficiary': {
                         'interior': 'scale_info::127',
@@ -74,7 +74,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'dest': {
                         'interior': 'scale_info::127',
@@ -82,7 +82,7 @@ call = substrate.compose_call(
                     },
                     'max_assets': 'u32',
                     'xcm': [
-                        'scale_info::384',
+                        'scale_info::383',
                     ],
                 },
                 'DescendOrigin': {
@@ -153,7 +153,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'receive': [
                         'scale_info::124',
@@ -177,14 +177,14 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'reserve': {
                         'interior': 'scale_info::127',
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::384',
+                        'scale_info::383',
                     ],
                 },
                 'InitiateTeleport': {
@@ -192,14 +192,14 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'dest': {
                         'interior': 'scale_info::127',
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::384',
+                        'scale_info::383',
                     ],
                 },
                 'QueryHolding': {
@@ -207,7 +207,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'dest': {
                         'interior': 'scale_info::127',
@@ -227,7 +227,7 @@ call = substrate.compose_call(
                             None,
                             (
                                 'u32',
-                                'scale_info::388',
+                                'scale_info::387',
                             ),
                         ),
                         'Null': None,
@@ -250,10 +250,10 @@ call = substrate.compose_call(
                     'scale_info::124',
                 ],
                 'SetAppendix': [
-                    'scale_info::396',
+                    'scale_info::395',
                 ],
                 'SetErrorHandler': [
-                    'scale_info::396',
+                    'scale_info::395',
                 ],
                 'SubscribeVersion': {
                     'max_response_weight': 'u64',
@@ -289,7 +289,7 @@ call = substrate.compose_call(
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::384',
+                        'scale_info::383',
                     ],
                 },
                 'Trap': 'u64',
@@ -738,10 +738,10 @@ call = substrate.compose_call(
                     'scale_info::100',
                 ],
                 'SetAppendix': [
-                    'scale_info::400',
+                    'scale_info::399',
                 ],
                 'SetErrorHandler': [
-                    'scale_info::400',
+                    'scale_info::399',
                 ],
                 'SetFeesMode': {
                     'jit_withdraw': 'bool',
@@ -27350,7 +27350,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'beneficiary': {
                         'interior': 'scale_info::127',
@@ -27363,7 +27363,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'dest': {
                         'interior': 'scale_info::127',
@@ -27371,7 +27371,7 @@ call = substrate.compose_call(
                     },
                     'max_assets': 'u32',
                     'xcm': [
-                        'scale_info::384',
+                        'scale_info::383',
                     ],
                 },
                 'DescendOrigin': {
@@ -27442,7 +27442,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'receive': [
                         'scale_info::124',
@@ -27466,14 +27466,14 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'reserve': {
                         'interior': 'scale_info::127',
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::384',
+                        'scale_info::383',
                     ],
                 },
                 'InitiateTeleport': {
@@ -27481,14 +27481,14 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'dest': {
                         'interior': 'scale_info::127',
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::384',
+                        'scale_info::383',
                     ],
                 },
                 'QueryHolding': {
@@ -27496,7 +27496,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::124',
                         ],
-                        'Wild': 'scale_info::390',
+                        'Wild': 'scale_info::389',
                     },
                     'dest': {
                         'interior': 'scale_info::127',
@@ -27516,7 +27516,7 @@ call = substrate.compose_call(
                             None,
                             (
                                 'u32',
-                                'scale_info::388',
+                                'scale_info::387',
                             ),
                         ),
                         'Null': None,
@@ -27539,10 +27539,10 @@ call = substrate.compose_call(
                     'scale_info::124',
                 ],
                 'SetAppendix': [
-                    'scale_info::384',
+                    'scale_info::383',
                 ],
                 'SetErrorHandler': [
-                    'scale_info::384',
+                    'scale_info::383',
                 ],
                 'SubscribeVersion': {
                     'max_response_weight': 'u64',
@@ -27578,7 +27578,7 @@ call = substrate.compose_call(
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::384',
+                        'scale_info::383',
                     ],
                 },
                 'Trap': 'u64',
@@ -34076,7 +34076,7 @@ result = substrate.query(
         'response': {
             'V2': {
                 'Assets': ['scale_info::124'],
-                'ExecutionResult': (None, ('u32', 'scale_info::388')),
+                'ExecutionResult': (None, ('u32', 'scale_info::387')),
                 'Null': None,
                 'Version': 'u32',
             },

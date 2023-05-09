@@ -23,7 +23,7 @@ Emits `DepositEvent` event when successful.
 | -------- | -------- | 
 | asset_id | `T::AssetId` | 
 | threshold | `Validated<Percent, ValidThreshold>` | 
-| min_answers | `Validated<u32, ValidMinAnswers>` | 
+| min_answers | `Validated<u32, ValidMinAnswers<T::MinAnswerBound>>` | 
 | max_answers | `Validated<u32, ValidMaxAnswer<T::MaxAnswerBound>>` | 
 | block_interval | `Validated<T::BlockNumber, ValidBlockInterval<T::StalePrice>>` | 
 | reward_weight | `BalanceOf<T>` | 

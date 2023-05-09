@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | frequency     |
 | Implementation name     | frequency     |
-| Spec version     | 26     |
+| Spec version     | 30     |
 | SS58 Format     | 90     |
 | Token symbol      | FRQCY     |
 | Token decimals      | 8     |
@@ -19,11 +19,12 @@
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
-| [Capacity](capacity.md) | [4](capacity.md#calls) | [5](capacity.md#events) | [6](capacity.md#storage-functions) | [5](capacity.md#constants) | [15](capacity.md#errors) |
+| [Capacity](capacity.md) | [4](capacity.md#calls) | [5](capacity.md#events) | [6](capacity.md#storage-functions) | [6](capacity.md#constants) | [15](capacity.md#errors) |
 | [CollatorSelection](collatorselection.md) | [5](collatorselection.md#calls) | [5](collatorselection.md#events) | [5](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [10](collatorselection.md#errors) |
 | [Council](council.md) | [7](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
 | [FrequencyTxPayment](frequencytxpayment.md) | [2](frequencytxpayment.md#calls) | [0](frequencytxpayment.md#events) | [0](frequencytxpayment.md#storage-functions) | [1](frequencytxpayment.md#constants) | [1](frequencytxpayment.md#errors) |
+| [Handles](handles.md) | [2](handles.md#calls) | [2](handles.md#events) | [3](handles.md#storage-functions) | [3](handles.md#constants) | [15](handles.md#errors) |
 | [Messages](messages.md) | [2](messages.md#calls) | [1](messages.md#events) | [2](messages.md#storage-functions) | [2](messages.md#constants) | [9](messages.md#errors) |
 | [Msa](msa.md) | [12](msa.md#calls) | [8](msa.md#events) | [7](msa.md#storage-functions) | [5](msa.md#constants) | [29](msa.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |

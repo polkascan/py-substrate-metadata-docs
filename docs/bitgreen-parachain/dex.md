@@ -5,29 +5,6 @@
 ## Calls
 
 ---------
-### buy_order
-Buy `units` of `asset_id` from the given `order_id`
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| order_id | `OrderId` | 
-| asset_id | `AssetIdOf<T>` | 
-| units | `AssetBalanceOf<T>` | 
-| max_fee | `CurrencyBalanceOf<T>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Dex', 'buy_order', {
-    'asset_id': 'u32',
-    'max_fee': 'u128',
-    'order_id': 'u128',
-    'units': 'u128',
-}
-)
-```
-
----------
 ### cancel_sell_order
 Cancel an existing sell order with `order_id`
 #### Attributes
@@ -39,6 +16,30 @@ Cancel an existing sell order with `order_id`
 ```python
 call = substrate.compose_call(
     'Dex', 'cancel_sell_order', {'order_id': 'u128'}
+)
+```
+
+---------
+### create_buy_order
+Buy `units` of `asset_id` from the given `order_id`
+This will be called by one of the approved validators when an order is created
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| order_id | `OrderId` | 
+| asset_id | `AssetIdOf<T>` | 
+| units | `AssetBalanceOf<T>` | 
+| max_fee | `CurrencyBalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Dex', 'create_buy_order', {
+    'asset_id': 'u32',
+    'max_fee': 'u128',
+    'order_id': 'u128',
+    'units': 'u128',
+}
 )
 ```
 
@@ -60,6 +61,37 @@ call = substrate.compose_call(
     'price_per_unit': 'u128',
     'units': 'u128',
 }
+)
+```
+
+---------
+### force_add_validator_account
+Add a new account to the list of authorised Accounts
+The caller must be from a permitted origin
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| account_id | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Dex', 'force_add_validator_account', {'account_id': 'AccountId'}
+)
+```
+
+---------
+### force_remove_validator_account
+Remove an account from the list of authorised accounts
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| account_id | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Dex', 'force_remove_validator_account', {'account_id': 'AccountId'}
 )
 ```
 
@@ -96,19 +128,63 @@ call = substrate.compose_call(
 ```
 
 ---------
+### validate_buy_order
+Buy `units` of `asset_id` from the given `order_id`
+This will be called by one of the approved validators when an order is created
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| order_id | `BuyOrderId` | 
+| chain_id | `u32` | 
+| tx_proof | `BoundedVec<u8, T::MaxTxHashLen>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Dex', 'validate_buy_order', {
+    'chain_id': 'u32',
+    'order_id': 'u128',
+    'tx_proof': 'Bytes',
+}
+)
+```
+
+---------
 ## Events
 
 ---------
-### BuyOrderFilled
+### BuyOrderCompleted
+A buy order was completed successfully
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| order_id | `BuyOrderId` | ```u128```
+
+---------
+### BuyOrderCreated
 A buy order was processed successfully
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | order_id | `OrderId` | ```u128```
 | units | `AssetBalanceOf<T>` | ```u128```
+| project_id | `ProjectIdOf<T>` | ```u32```
+| group_id | `GroupIdOf<T>` | ```u32```
 | price_per_unit | `CurrencyBalanceOf<T>` | ```u128```
+| fees_paid | `CurrencyBalanceOf<T>` | ```u128```
+| total_amount | `CurrencyBalanceOf<T>` | ```u128```
 | seller | `T::AccountId` | ```AccountId```
 | buyer | `T::AccountId` | ```AccountId```
+
+---------
+### BuyOrderPaymentValidated
+A buy order payment was validated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| order_id | `BuyOrderId` | ```u128```
+| chain_id | `u32` | ```u32```
+| validator | `T::AccountId` | ```AccountId```
 
 ---------
 ### SellOrderCancelled
@@ -117,6 +193,7 @@ A sell order was cancelled
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | order_id | `OrderId` | ```u128```
+| seller | `T::AccountId` | ```AccountId```
 
 ---------
 ### SellOrderCreated
@@ -126,13 +203,86 @@ A new sell order has been created
 | -------- | -------- | -------- |
 | order_id | `OrderId` | ```u128```
 | asset_id | `AssetIdOf<T>` | ```u32```
+| project_id | `ProjectIdOf<T>` | ```u32```
+| group_id | `GroupIdOf<T>` | ```u32```
 | units | `AssetBalanceOf<T>` | ```u128```
 | price_per_unit | `CurrencyBalanceOf<T>` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
 
 ---------
+### ValidatorAccountAdded
+A new ValidatorAccount has been added
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
+### ValidatorAccountRemoved
+An ValidatorAccount has been removed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
 ## Storage functions
 
+---------
+### BuyOrderCount
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'BuyOrderCount', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### BuyOrders
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'BuyOrders', ['u128']
+)
+```
+
+#### Return value
+```python
+{
+    'asset_id': 'u32',
+    'buyer': 'AccountId',
+    'expiry_time': 'u32',
+    'order_id': 'u128',
+    'payment_info': (
+        None,
+        {'chain_id': 'u32', 'tx_proof': 'Bytes', 'validators': ['AccountId']},
+    ),
+    'price_per_unit': 'u128',
+    'total_amount': 'u128',
+    'total_fee': 'u128',
+    'units': 'u128',
+}
+```
+---------
+### MinPaymentValidations
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'MinPaymentValidations', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
 ---------
 ### OrderCount
 
@@ -167,20 +317,6 @@ result = substrate.query(
 }
 ```
 ---------
-### Owner
-
-#### Python
-```python
-result = substrate.query(
-    'Dex', 'Owner', []
-)
-```
-
-#### Return value
-```python
-'AccountId'
-```
----------
 ### PaymentFees
 
 #### Python
@@ -207,6 +343,20 @@ result = substrate.query(
 #### Return value
 ```python
 'u128'
+```
+---------
+### ValidatorAccounts
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'ValidatorAccounts', []
+)
+```
+
+#### Return value
+```python
+['AccountId']
 ```
 ---------
 ## Constants
@@ -267,17 +417,6 @@ constant = substrate.get_constant('Dex', 'MinUnitsToCreateSellOrder')
 constant = substrate.get_constant('Dex', 'PalletId')
 ```
 ---------
-### StableCurrencyId
- The CurrencyId of the stable currency we accept as payment
-#### Value
-```python
-'USDT'
-```
-#### Python
-```python
-constant = substrate.get_constant('Dex', 'StableCurrencyId')
-```
----------
 ## Errors
 
 ---------
@@ -305,6 +444,12 @@ Cannot set more than the maximum payment fee
 The purchasea fee amount exceeds the limit
 
 ---------
+### ChainIdMismatch
+
+---------
+### DuplicateValidation
+
+---------
 ### FeeExceedsUserLimit
 The fee amount exceeds the limit set by user
 
@@ -325,6 +470,13 @@ The orderId does not exist
 Only the order owner can perform this call
 
 ---------
+### KYCAuthorisationFailed
+
+---------
+### NotAuthorised
+not authorized to perform action
+
+---------
 ### OrderIdOverflow
 Error when calculating orderId
 
@@ -335,5 +487,14 @@ Error when calculating order units
 ---------
 ### SellerAndBuyerCannotBeSame
 Seller and buyer cannot be same
+
+---------
+### TooManyValidatorAccounts
+
+---------
+### TxProofMismatch
+
+---------
+### ValidatorAccountAlreadyExists
 
 ---------

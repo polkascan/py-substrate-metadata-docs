@@ -1138,7 +1138,7 @@ constant = substrate.get_constant('Democracy', 'CooloffPeriod')
  where they are on the losing side of a vote.
 #### Value
 ```python
-43200
+3600
 ```
 #### Python
 ```python

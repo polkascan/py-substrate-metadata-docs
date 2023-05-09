@@ -237,6 +237,7 @@ result = substrate.query(
                     'Response': 'scale_info::74',
                     'Xcm': 'scale_info::74',
                 },
+                None: None,
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -244,7 +245,6 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },

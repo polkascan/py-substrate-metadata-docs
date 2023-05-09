@@ -209,6 +209,16 @@ result = substrate.query(
 ## Constants
 
 ---------
+### CapacityPerToken
+#### Value
+```python
+20000000
+```
+#### Python
+```python
+constant = substrate.get_constant('Capacity', 'CapacityPerToken')
+```
+---------
 ### MaxEpochLength
 #### Value
 ```python
@@ -252,7 +262,7 @@ constant = substrate.get_constant('Capacity', 'MinimumTokenBalance')
 ### UnstakingThawPeriod
 #### Value
 ```python
-2
+30
 ```
 #### Python
 ```python

@@ -1119,61 +1119,7 @@ result = substrate.query(
                 'UpdateActiveBlock': {'block_number': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::30'},
-                'SudoAsDone': {'sudo_result': 'scale_info::30'},
-            },
             'Supply': {'Inflation': {'total_inflation': 'u128'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'TechnicalCommittee': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
-                'Closed': {
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'yes': 'u32',
-                },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
-                'Executed': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
-                },
-                'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::30',
-                },
-                'Proposed': {
-                    'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
-                    'proposal_index': 'u32',
-                    'threshold': 'u32',
-                },
-                'Voted': {
-                    'account': 'AccountId',
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'voted': 'bool',
-                    'yes': 'u32',
-                },
-            },
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'scale_info::50',
@@ -1253,6 +1199,72 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::24',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::30'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::24'},
+            },
+            None: None,
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::30'},
+                'SudoAsDone': {'sudo_result': 'scale_info::30'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'TechnicalCommittee': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::30',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::30',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
+                },
+            },
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1279,16 +1291,38 @@ result = substrate.query(
                 'SomethingPaused': {'full_name': ('Bytes', (None, 'Bytes'))},
                 'SomethingUnpaused': {'full_name': ('Bytes', (None, 'Bytes'))},
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::24',
-                    'index': 'u32',
+            'UnknownTokens': {
+                'Deposited': {
+                    'asset': 'scale_info::136',
+                    'who': 'scale_info::72',
                 },
-                'DispatchedAs': {'result': 'scale_info::30'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::24'},
+                'Withdrawn': {
+                    'asset': 'scale_info::136',
+                    'who': 'scale_info::72',
+                },
+            },
+            'VaultAnnuity': {'BlockReward': 'u128'},
+            'VaultCapacity': {
+                'DepositStake': {
+                    'amount': 'i128',
+                    'pool_id': (),
+                    'stake_id': 'scale_info::50',
+                },
+                'DistributeReward': {
+                    'amount': 'i128',
+                    'currency_id': 'scale_info::50',
+                },
+                'WithdrawReward': {
+                    'amount': 'i128',
+                    'currency_id': 'scale_info::50',
+                    'pool_id': (),
+                    'stake_id': 'scale_info::50',
+                },
+                'WithdrawStake': {
+                    'amount': 'i128',
+                    'pool_id': (),
+                    'stake_id': 'scale_info::50',
+                },
             },
             'VaultRegistry': {
                 'BanVault': {
@@ -1396,40 +1430,6 @@ result = substrate.query(
                     'total_collateral': 'u128',
                     'vault_id': 'scale_info::82',
                     'withdrawn_amount': 'u128',
-                },
-            },
-            None: None,
-            'UnknownTokens': {
-                'Deposited': {
-                    'asset': 'scale_info::136',
-                    'who': 'scale_info::72',
-                },
-                'Withdrawn': {
-                    'asset': 'scale_info::136',
-                    'who': 'scale_info::72',
-                },
-            },
-            'VaultAnnuity': {'BlockReward': 'u128'},
-            'VaultCapacity': {
-                'DepositStake': {
-                    'amount': 'i128',
-                    'pool_id': (),
-                    'stake_id': 'scale_info::50',
-                },
-                'DistributeReward': {
-                    'amount': 'i128',
-                    'currency_id': 'scale_info::50',
-                },
-                'WithdrawReward': {
-                    'amount': 'i128',
-                    'currency_id': 'scale_info::50',
-                    'pool_id': (),
-                    'stake_id': 'scale_info::50',
-                },
-                'WithdrawStake': {
-                    'amount': 'i128',
-                    'pool_id': (),
-                    'stake_id': 'scale_info::50',
                 },
             },
             'VaultRewards': {
@@ -1771,7 +1771,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'kintsugi-parachain',
     'impl_version': 1,
     'spec_name': 'kintsugi-parachain',
-    'spec_version': 1023002,
+    'spec_version': 1023003,
     'state_version': 0,
     'transaction_version': 3,
 }

@@ -40,6 +40,13 @@ call = substrate.compose_call(
         'Governance',
         '_Staking',
         'NonProxy',
+        'Borrow',
+        'Invest',
+        'ProxyManagement',
+        'KeystoreManagement',
+        'PodOperation',
+        'PodAuth',
+        'PermissionManagement',
     ),
 }
 )
@@ -123,6 +130,13 @@ call = substrate.compose_call(
         'Governance',
         '_Staking',
         'NonProxy',
+        'Borrow',
+        'Invest',
+        'ProxyManagement',
+        'KeystoreManagement',
+        'PodOperation',
+        'PodAuth',
+        'PermissionManagement',
     ),
 }
 )
@@ -168,6 +182,13 @@ call = substrate.compose_call(
         'Governance',
         '_Staking',
         'NonProxy',
+        'Borrow',
+        'Invest',
+        'ProxyManagement',
+        'KeystoreManagement',
+        'PodOperation',
+        'PodAuth',
+        'PermissionManagement',
     ),
     'spawner': {
         'Address20': '[u8; 20]',
@@ -213,6 +234,13 @@ call = substrate.compose_call(
             'Governance',
             '_Staking',
             'NonProxy',
+            'Borrow',
+            'Invest',
+            'ProxyManagement',
+            'KeystoreManagement',
+            'PodOperation',
+            'PodAuth',
+            'PermissionManagement',
         ),
     ),
     'real': {
@@ -267,6 +295,13 @@ call = substrate.compose_call(
             'Governance',
             '_Staking',
             'NonProxy',
+            'Borrow',
+            'Invest',
+            'ProxyManagement',
+            'KeystoreManagement',
+            'PodOperation',
+            'PodAuth',
+            'PermissionManagement',
         ),
     ),
     'real': {
@@ -400,6 +435,13 @@ call = substrate.compose_call(
         'Governance',
         '_Staking',
         'NonProxy',
+        'Borrow',
+        'Invest',
+        'ProxyManagement',
+        'KeystoreManagement',
+        'PodOperation',
+        'PodAuth',
+        'PermissionManagement',
     ),
 }
 )
@@ -426,7 +468,7 @@ A proxy was added.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy', 'Borrow', 'Invest', 'ProxyManagement', 'KeystoreManagement', 'PodOperation', 'PodAuth', 'PermissionManagement')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -445,7 +487,7 @@ A proxy was removed.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy', 'Borrow', 'Invest', 'ProxyManagement', 'KeystoreManagement', 'PodOperation', 'PodAuth', 'PermissionManagement')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -457,7 +499,7 @@ disambiguation index and proxy type.
 | -------- | -------- | -------- |
 | pure | `T::AccountId` | ```AccountId```
 | who | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy', 'Borrow', 'Invest', 'ProxyManagement', 'KeystoreManagement', 'PodOperation', 'PodAuth', 'PermissionManagement')```
 | disambiguation_index | `u16` | ```u16```
 
 ---------
@@ -503,6 +545,13 @@ result = substrate.query(
                 'Governance',
                 '_Staking',
                 'NonProxy',
+                'Borrow',
+                'Invest',
+                'ProxyManagement',
+                'KeystoreManagement',
+                'PodOperation',
+                'PodAuth',
+                'PermissionManagement',
             ),
         },
     ],

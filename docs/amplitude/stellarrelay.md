@@ -170,7 +170,16 @@ constant = substrate.get_constant('StellarRelay', 'ValidatorLimit')
 ### BoundedVecCreationFailed
 
 ---------
+### DuplicateOrganizationId
+
+---------
+### DuplicateValidatorPublicKey
+
+---------
 ### EnvelopeSignedByUnknownValidator
+
+---------
+### FailedToComputenonGenericTxSetContentHash
 
 ---------
 ### InvalidEnvelopeSignature

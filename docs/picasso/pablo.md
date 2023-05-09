@@ -21,7 +21,7 @@ Emits `LiquidityAdded` event when successful.
 ```python
 call = substrate.compose_call(
     'Pablo', 'add_liquidity', {
-    'assets': 'scale_info::166',
+    'assets': 'scale_info::179',
     'keep_alive': 'bool',
     'min_mint_amount': 'u128',
     'pool_id': 'u128',
@@ -74,7 +74,9 @@ call = substrate.compose_call(
     'Pablo', 'create', {
     'pool': {
         'DualAssetConstantProduct': {
-            'assets_weights': 'scale_info::162',
+            'assets_weights': [
+                ('u128', 'u32'),
+            ],
             'fee': 'u32',
             'owner': 'AccountId',
         },
@@ -114,7 +116,7 @@ Emits `LiquidityRemoved` event when successful.
 call = substrate.compose_call(
     'Pablo', 'remove_liquidity', {
     'lp_amount': 'u128',
-    'min_receive': 'scale_info::166',
+    'min_receive': 'scale_info::179',
     'pool_id': 'u128',
 }
 )
@@ -164,7 +166,7 @@ Liquidity added into the pool `T::PoolId`.
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | pool_id | `T::PoolId` | ```u128```
-| asset_amounts | `BTreeMap<T::AssetId, T::Balance>` | ```scale_info::166```
+| asset_amounts | `BTreeMap<T::AssetId, T::Balance>` | ```scale_info::179```
 | minted_lp | `T::Balance` | ```u128```
 
 ---------
@@ -175,7 +177,7 @@ Liquidity removed from pool `T::PoolId` by `T::AccountId` in balanced way.
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | pool_id | `T::PoolId` | ```u128```
-| asset_amounts | `BTreeMap<T::AssetId, T::Balance>` | ```scale_info::166```
+| asset_amounts | `BTreeMap<T::AssetId, T::Balance>` | ```scale_info::179```
 
 ---------
 ### PoolCreated
@@ -185,7 +187,7 @@ Pool with specified id `T::PoolId` was created successfully by `T::AccountId`.
 | -------- | -------- | -------- |
 | pool_id | `T::PoolId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
-| asset_weights | `BTreeMap<T::AssetId, Permill>` | ```scale_info::162```
+| asset_weights | `BTreeMap<T::AssetId, Permill>` | ```scale_info::175```
 | lp_token_id | `T::AssetId` | ```u128```
 
 ---------
@@ -210,7 +212,7 @@ TWAP updated.
 | -------- | -------- | -------- |
 | pool_id | `T::PoolId` | ```u128```
 | timestamp | `MomentOf<T>` | ```u64```
-| twaps | `BTreeMap<T::AssetId, Rate>` | ```scale_info::170```
+| twaps | `BTreeMap<T::AssetId, Rate>` | ```scale_info::183```
 
 ---------
 ## Storage functions
@@ -257,7 +259,7 @@ result = substrate.query(
 ```python
 {
     'DualAssetConstantProduct': {
-        'assets_weights': 'scale_info::162',
+        'assets_weights': 'scale_info::175',
         'fee_config': {
             'fee_rate': 'u32',
             'owner_fee_rate': 'u32',
@@ -355,6 +357,9 @@ Cannot swap an asset with itself.
 
 ---------
 ### IncorrectAssetAmounts
+
+---------
+### IncorrectPoolConfig
 
 ---------
 ### InitialDepositCannotBeZero

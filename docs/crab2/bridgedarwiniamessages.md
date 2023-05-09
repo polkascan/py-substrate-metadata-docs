@@ -167,11 +167,7 @@ event.
 #### Python
 ```python
 call = substrate.compose_call(
-    'BridgeDarwiniaMessages', 'update_pallet_parameter', {
-    'parameter': {
-        'DarwiniaToCrabConversionRate': 'u128',
-    },
-}
+    'BridgeDarwiniaMessages', 'update_pallet_parameter', {'parameter': ()}
 )
 ```
 
@@ -202,7 +198,7 @@ Messages have been received from the bridged chain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Vec<ReceivedMessages<ReceivalResult>>` | ```[{'lane': '[u8; 4]', 'receive_results': [('u64', {'Dispatched': 'scale_info::159', 'InvalidNonce': None, 'TooManyUnrewardedRelayers': None, 'TooManyUnconfirmedMessages': None, 'PreDispatchValidateFailed': None})], 'skipped_for_not_enough_weight': ['u64']}]```
+| None | `Vec<ReceivedMessages<ReceivalResult>>` | ```[{'lane': '[u8; 4]', 'receive_results': [('u64', {'Dispatched': 'scale_info::157', 'InvalidNonce': None, 'TooManyUnrewardedRelayers': None, 'TooManyUnconfirmedMessages': None, 'PreDispatchValidateFailed': None})], 'skipped_for_not_enough_weight': ['u64']}]```
 
 ---------
 ### ParameterUpdated
@@ -210,7 +206,7 @@ Pallet parameter has been updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| parameter | `T::Parameter` | ```{'DarwiniaToCrabConversionRate': 'u128'}```
+| parameter | `T::Parameter` | ```()```
 
 ---------
 ## Storage functions

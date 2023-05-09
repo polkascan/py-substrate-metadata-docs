@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | moonriver     |
 | Implementation name     | moonriver     |
-| Spec version     | 2201     |
+| Spec version     | 2302     |
 | SS58 Format     | 1285     |
 | Token symbol      | MOVR     |
 | Token decimals      | 18     |
@@ -26,7 +26,7 @@
 | [CrowdloanRewards](crowdloanrewards.md) | [6](crowdloanrewards.md#calls) | [6](crowdloanrewards.md#events) | [8](crowdloanrewards.md#storage-functions) | [4](crowdloanrewards.md#constants) | [15](crowdloanrewards.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
-| [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
+| [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [2](evm.md#storage-functions) | [0](evm.md#constants) | [11](evm.md#errors) |
 | [Ethereum](ethereum.md) | [1](ethereum.md#calls) | [1](ethereum.md#events) | [5](ethereum.md#storage-functions) | [0](ethereum.md#constants) | [2](ethereum.md#errors) |
 | [EthereumChainId](ethereumchainid.md) | [0](ethereumchainid.md#calls) | [0](ethereumchainid.md#events) | [1](ethereumchainid.md#storage-functions) | [0](ethereumchainid.md#constants) | [0](ethereumchainid.md#errors) |
@@ -38,13 +38,12 @@
 | [OpenTechCommitteeCollective](opentechcommitteecollective.md) | [7](opentechcommitteecollective.md#calls) | [7](opentechcommitteecollective.md#events) | [6](opentechcommitteecollective.md#storage-functions) | [0](opentechcommitteecollective.md#constants) | [10](opentechcommitteecollective.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainStaking](parachainstaking.md) | [29](parachainstaking.md#calls) | [35](parachainstaking.md#events) | [19](parachainstaking.md#storage-functions) | [15](parachainstaking.md#constants) | [45](parachainstaking.md#errors) |
-| [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
-| [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [17](polkadotxcm.md#events) | [9](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [13](polkadotxcm.md#errors) |
+| [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
+| [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [ProxyGenesisCompanion](proxygenesiscompanion.md) | [0](proxygenesiscompanion.md#calls) | [0](proxygenesiscompanion.md#events) | [0](proxygenesiscompanion.md#storage-functions) | [0](proxygenesiscompanion.md#constants) | [0](proxygenesiscompanion.md#errors) |
 | [Randomness](randomness.md) | [1](randomness.md#calls) | [5](randomness.md#events) | [8](randomness.md#storage-functions) | [6](randomness.md#constants) | [12](randomness.md#errors) |
-| [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
 | [Referenda](referenda.md) | [8](referenda.md#calls) | [14](referenda.md#events) | [4](referenda.md#storage-functions) | [5](referenda.md#constants) | [12](referenda.md#errors) |
 | [RootTesting](roottesting.md) | [1](roottesting.md#calls) | [0](roottesting.md#events) | [0](roottesting.md#storage-functions) | [0](roottesting.md#constants) | [0](roottesting.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
@@ -57,5 +56,5 @@
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [Whitelist](whitelist.md) | [4](whitelist.md#calls) | [3](whitelist.md#events) | [1](whitelist.md#storage-functions) | [0](whitelist.md#constants) | [5](whitelist.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
-| [XcmTransactor](xcmtransactor.md) | [10](xcmtransactor.md#calls) | [11](xcmtransactor.md#events) | [3](xcmtransactor.md#storage-functions) | [2](xcmtransactor.md#constants) | [25](xcmtransactor.md#errors) |
-| [XcmpQueue](xcmpqueue.md) | [0](xcmpqueue.md#calls) | [8](xcmpqueue.md#events) | [9](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |
+| [XcmTransactor](xcmtransactor.md) | [10](xcmtransactor.md#calls) | [11](xcmtransactor.md#events) | [3](xcmtransactor.md#storage-functions) | [2](xcmtransactor.md#constants) | [26](xcmtransactor.md#errors) |
+| [XcmpQueue](xcmpqueue.md) | [0](xcmpqueue.md#calls) | [7](xcmpqueue.md#events) | [10](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

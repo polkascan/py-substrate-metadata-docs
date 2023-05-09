@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -641,24 +641,33 @@ result = substrate.query(
             },
             'MantaSbt': {
                 'AllowlistEvmAddress': {
-                    'address': 'scale_info::117',
+                    'address': '[u8; 20]',
                     'asset_id': 'u128',
+                    'mint_id': 'u32',
                 },
                 'ChangeAllowlistAccount': {'account': (None, 'AccountId')},
-                'MintChainInfo': {
-                    'end_time': (None, 'u64'),
-                    'mint_type': 'scale_info::119',
-                    'start_time': 'u64',
-                },
                 'MintSbt': {'asset': 'u128', 'source': 'AccountId'},
                 'MintSbtEvm': {
-                    'address': 'scale_info::117',
+                    'address': '[u8; 20]',
                     'asset_id': 'u128',
+                    'mint_id': 'u32',
+                },
+                'NewMintInfo': {
+                    'end_time': (None, 'u64'),
+                    'mint_id': 'u32',
+                    'mint_name': 'Bytes',
+                    'start_time': 'u64',
                 },
                 'SBTReserved': {
                     'start_id': 'u128',
                     'stop_id': 'u128',
                     'who': 'AccountId',
+                },
+                'UpdateMintInfo': {
+                    'end_time': (None, 'u64'),
+                    'mint_id': 'u32',
+                    'mint_name': 'Bytes',
+                    'start_time': 'u64',
                 },
             },
             'Multisig': {
@@ -1263,9 +1272,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'calamari',
     'impl_version': 1,
     'spec_name': 'calamari',
-    'spec_version': 4050,
+    'spec_version': 4070,
     'state_version': 0,
-    'transaction_version': 11,
+    'transaction_version': 12,
 }
 ```
 #### Python

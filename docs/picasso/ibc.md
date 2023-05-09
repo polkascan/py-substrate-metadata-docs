@@ -45,6 +45,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### increase_counters
+Increase all IBC counters by 1. Used only in testing to ensure that
+relayer uses proper proper values for source/sink chains.
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Ibc', 'increase_counters', {}
+)
+```
+
+---------
 ### transfer
 #### Attributes
 | Name | Type |
@@ -183,8 +197,8 @@ Ibc tokens have been received and minted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| from | `Vec<u8>` | ```Bytes```
-| to | `Vec<u8>` | ```Bytes```
+| from | `Signer` | ```Str```
+| to | `Signer` | ```Str```
 | ibc_denom | `Vec<u8>` | ```Bytes```
 | local_asset_id | `Option<T::AssetId>` | ```(None, 'u128')```
 | amount | `T::Balance` | ```u128```
@@ -198,8 +212,8 @@ An outgoing Ibc token transfer has been completed and burnt
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| from | `Vec<u8>` | ```Bytes```
-| to | `Vec<u8>` | ```Bytes```
+| from | `Signer` | ```Str```
+| to | `Signer` | ```Str```
 | ibc_denom | `Vec<u8>` | ```Bytes```
 | local_asset_id | `Option<T::AssetId>` | ```(None, 'u128')```
 | amount | `T::Balance` | ```u128```
@@ -213,8 +227,8 @@ Ibc transfer failed, received an acknowledgement error, tokens have been refunde
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| from | `Vec<u8>` | ```Bytes```
-| to | `Vec<u8>` | ```Bytes```
+| from | `Signer` | ```Str```
+| to | `Signer` | ```Str```
 | ibc_denom | `Vec<u8>` | ```Bytes```
 | local_asset_id | `Option<T::AssetId>` | ```(None, 'u128')```
 | amount | `T::Balance` | ```u128```
@@ -230,6 +244,22 @@ An Ibc token transfer has been started
 | -------- | -------- | -------- |
 | from | `Vec<u8>` | ```Bytes```
 | to | `Vec<u8>` | ```Bytes```
+| ibc_denom | `Vec<u8>` | ```Bytes```
+| local_asset_id | `Option<T::AssetId>` | ```(None, 'u128')```
+| amount | `T::Balance` | ```u128```
+| is_sender_source | `bool` | ```bool```
+| source_channel | `Vec<u8>` | ```Bytes```
+| destination_channel | `Vec<u8>` | ```Bytes```
+
+---------
+### TokenTransferTimeout
+Happens when token transfer timeouts, tokens have been refunded. expected
+`TokenTransferFailed` does not happen in this case.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| from | `Signer` | ```Str```
+| to | `Signer` | ```Str```
 | ibc_denom | `Vec<u8>` | ```Bytes```
 | local_asset_id | `Option<T::AssetId>` | ```(None, 'u128')```
 | amount | `T::Balance` | ```u128```
@@ -254,6 +284,21 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
+```
+---------
+### Acks
+ Acks info
+
+#### Python
+```python
+result = substrate.query(
+    'Ibc', 'Acks', ['Bytes']
+)
+```
+
+#### Return value
+```python
+'Bytes'
 ```
 ---------
 ### ChannelCounter
@@ -388,7 +433,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::574'
+'scale_info::588'
 ```
 ---------
 ### CounterForIbcAssetIds
@@ -433,7 +478,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::571'
+'scale_info::585'
 ```
 ---------
 ### IbcAssetIds
@@ -495,6 +540,36 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
+```
+---------
+### RecvPackets
+ RecvPackets info
+
+#### Python
+```python
+result = substrate.query(
+    'Ibc', 'RecvPackets', ['Bytes']
+)
+```
+
+#### Return value
+```python
+'Bytes'
+```
+---------
+### SendPackets
+ SendPackets info
+
+#### Python
+```python
+result = substrate.query(
+    'Ibc', 'SendPackets', ['Bytes']
+)
+```
+
+#### Return value
+```python
+'Bytes'
 ```
 ---------
 ## Constants

@@ -5,6 +5,45 @@
 ## Calls
 
 ---------
+### add_batch_group
+Add a new batch group to the project
+Can only be called by the ProjectOwner
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| project_id | `T::ProjectId` | 
+| batch_group | `BatchGroupOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CarbonCredits', 'add_batch_group', {
+    'batch_group': {
+        'asset_id': 'u32',
+        'batches': [
+            {
+                'end_date': 'u16',
+                'issuance_year': 'u16',
+                'minted': 'u128',
+                'name': 'Bytes',
+                'retired': 'u128',
+                'start_date': 'u16',
+                'total_supply': 'u128',
+                'uuid': 'Bytes',
+            },
+        ],
+        'minted': 'u128',
+        'name': 'Bytes',
+        'retired': 'u128',
+        'total_supply': 'u128',
+        'uuid': 'Bytes',
+    },
+    'project_id': 'u32',
+}
+)
+```
+
+---------
 ### approve_project
 Set the project status to approve/reject
 #### Attributes
@@ -62,7 +101,7 @@ call = substrate.compose_call(
         'description': 'Bytes',
         'documents': ['Bytes'],
         'images': ['Bytes'],
-        'location': [('u32', 'u32')],
+        'location': 'Bytes',
         'name': 'Bytes',
         'registry_details': [
             {
@@ -239,12 +278,12 @@ call = substrate.compose_call(
     'CarbonCredits', 'force_set_project_storage', {
     'detail': {
         'approved': 'bool',
-        'batch_groups': 'scale_info::125',
+        'batch_groups': 'scale_info::319',
         'created': 'u32',
         'description': 'Bytes',
         'documents': ['Bytes'],
         'images': ['Bytes'],
-        'location': [('u32', 'u32')],
+        'location': 'Bytes',
         'name': 'Bytes',
         'originator': 'AccountId',
         'registry_details': [
@@ -402,7 +441,7 @@ call = substrate.compose_call(
         'description': 'Bytes',
         'documents': ['Bytes'],
         'images': ['Bytes'],
-        'location': [('u32', 'u32')],
+        'location': 'Bytes',
         'name': 'Bytes',
         'registry_details': [
             {
@@ -483,6 +522,102 @@ call = substrate.compose_call(
 ```
 
 ---------
+### update_project_details
+Modify the details of an approved project
+Can only be called by the ProjectOwner
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| project_id | `T::ProjectId` | 
+| params | `ProjectCreateParams<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CarbonCredits', 'update_project_details', {
+    'params': {
+        'batch_groups': [
+            {
+                'asset_id': 'u32',
+                'batches': [
+                    {
+                        'end_date': 'u16',
+                        'issuance_year': 'u16',
+                        'minted': 'u128',
+                        'name': 'Bytes',
+                        'retired': 'u128',
+                        'start_date': 'u16',
+                        'total_supply': 'u128',
+                        'uuid': 'Bytes',
+                    },
+                ],
+                'minted': 'u128',
+                'name': 'Bytes',
+                'retired': 'u128',
+                'total_supply': 'u128',
+                'uuid': 'Bytes',
+            },
+        ],
+        'description': 'Bytes',
+        'documents': ['Bytes'],
+        'images': ['Bytes'],
+        'location': 'Bytes',
+        'name': 'Bytes',
+        'registry_details': [
+            {
+                'id': 'Bytes',
+                'name': 'Bytes',
+                'reg_name': (
+                    'Verra',
+                    'GoldStandard',
+                    'AmericanCarbonRegistry',
+                    'ClimateActionReserve',
+                ),
+                'summary': 'Bytes',
+            },
+        ],
+        'royalties': (
+            None,
+            [
+                {
+                    'account_id': 'AccountId',
+                    'percent_of_fees': 'u8',
+                },
+            ],
+        ),
+        'sdg_details': [
+            {
+                'description': 'Bytes',
+                'references': 'Bytes',
+                'sdg_type': (
+                    'NoPoverty',
+                    'ZeroHunger',
+                    'GoodHealthAndWellBeing',
+                    'QualityEducation',
+                    'GenderEquality',
+                    'CleanWaterAndSanitation',
+                    'AffordableAndCleanEnergy',
+                    'DecentWorkAndEconomicGrowth',
+                    'IndustryInnovationAndInfrastructure',
+                    'ReducedInequalities',
+                    'SustainableCitiesAndCommunities',
+                    'ResponsibleConsumptionAndProduction',
+                    'ClimateAction',
+                    'LifeBelowWater',
+                    'LifeOnLand',
+                    'PeaceJusticeAndStrongInstitutions',
+                    'ParternshipsForTheGoals',
+                ),
+            },
+        ],
+        'videos': ['Bytes'],
+    },
+    'project_id': 'u32',
+}
+)
+```
+
+---------
 ## Events
 
 ---------
@@ -502,11 +637,21 @@ An AuthorizedAccount has been removed
 | account_id | `T::AccountId` | ```AccountId```
 
 ---------
+### BatchGroupAdded
+A new batch group was added to the project
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| project_id | `T::ProjectId` | ```u32```
+| group_id | `T::GroupId` | ```u32```
+
+---------
 ### CarbonCreditMinted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | project_id | `T::ProjectId` | ```u32```
+| group_id | `T::GroupId` | ```u32```
 | recipient | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 
@@ -516,6 +661,8 @@ An AuthorizedAccount has been removed
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | project_id | `T::ProjectId` | ```u32```
+| group_id | `T::GroupId` | ```u32```
+| asset_id | `T::AssetId` | ```u32```
 | account | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 | retire_data | `BatchRetireDataList<T>` | ```[{'name': 'Bytes', 'uuid': 'Bytes', 'issuance_year': 'u16', 'count': 'u128'}]```
@@ -552,7 +699,14 @@ A project details has been resubmitted
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | project_id | `T::ProjectId` | ```u32```
-| details | `ProjectDetail<T>` | ```{'originator': 'AccountId', 'name': 'Bytes', 'description': 'Bytes', 'location': [('u32', 'u32')], 'images': ['Bytes'], 'videos': ['Bytes'], 'documents': ['Bytes'], 'registry_details': [{'reg_name': ('Verra', 'GoldStandard', 'AmericanCarbonRegistry', 'ClimateActionReserve'), 'name': 'Bytes', 'id': 'Bytes', 'summary': 'Bytes'}], 'sdg_details': [{'sdg_type': ('NoPoverty', 'ZeroHunger', 'GoodHealthAndWellBeing', 'QualityEducation', 'GenderEquality', 'CleanWaterAndSanitation', 'AffordableAndCleanEnergy', 'DecentWorkAndEconomicGrowth', 'IndustryInnovationAndInfrastructure', 'ReducedInequalities', 'SustainableCitiesAndCommunities', 'ResponsibleConsumptionAndProduction', 'ClimateAction', 'LifeBelowWater', 'LifeOnLand', 'PeaceJusticeAndStrongInstitutions', 'ParternshipsForTheGoals'), 'description': 'Bytes', 'references': 'Bytes'}], 'royalties': (None, [{'account_id': 'AccountId', 'percent_of_fees': 'u8'}]), 'batch_groups': 'scale_info::125', 'created': 'u32', 'updated': (None, 'u32'), 'approved': 'bool'}```
+
+---------
+### ProjectUpdated
+A project details has been updated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| project_id | `T::ProjectId` | ```u32```
 
 ---------
 ## Storage functions
@@ -643,12 +797,12 @@ result = substrate.query(
 ```python
 {
     'approved': 'bool',
-    'batch_groups': 'scale_info::125',
+    'batch_groups': 'scale_info::319',
     'created': 'u32',
     'description': 'Bytes',
     'documents': ['Bytes'],
     'images': ['Bytes'],
-    'location': [('u32', 'u32')],
+    'location': 'Bytes',
     'name': 'Bytes',
     'originator': 'AccountId',
     'registry_details': [
@@ -757,6 +911,10 @@ Cannot generate asset id
 ---------
 ### CannotModifyApprovedProject
 Cannot resubmit an approved project
+
+---------
+### CannotUpdateUnapprovedProject
+Can only update an approved project, use resubmit for rejected projects
 
 ---------
 ### GroupNotFound

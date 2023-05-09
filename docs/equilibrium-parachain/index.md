@@ -7,9 +7,9 @@
 | -------- | -------- |
 | Spec name     | Equilibrium-parachain     |
 | Implementation name     | Equilibrium-parachain     |
-| Spec version     | 25     |
+| Spec version     | 26     |
 | SS58 Format     | 68     |
-| Token symbol      | ['TOKEN']     |
+| Token symbol      | ['EQ']     |
 | Token decimals      | [9]     |
 
 ## Pallets

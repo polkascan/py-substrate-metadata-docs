@@ -11,11 +11,8 @@ key.
 
 The dispatch origin for this call must be _Signed_.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-- Limited storage reads.
-- One DB change.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -42,12 +39,8 @@ Authenticates the sudo key and dispatches a function call with `Root` origin.
 
 The dispatch origin for this call must be _Signed_.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-- Limited storage reads.
-- One DB write (event).
-- Weight of derivative `call` execution + 10,000.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -67,12 +60,8 @@ a given account.
 
 The dispatch origin for this call must be _Signed_.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-- Limited storage reads.
-- One DB write (event).
-- Weight of derivative `call` execution + 10,000.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -103,10 +92,8 @@ Sudo user to specify the weight of the call.
 
 The dispatch origin for this call must be _Signed_.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-- The weight of this call is defined by the caller.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | amplitude     |
 | Implementation name     | amplitude     |
-| Spec version     | 8     |
+| Spec version     | 9     |
 | SS58 Format     | 57     |
 | Token symbol      | AMPE     |
 | Token decimals      | 12     |
@@ -25,7 +25,7 @@
 | [Council](council.md) | [7](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [Currencies](currencies.md) | [3](currencies.md#calls) | [0](currencies.md#events) | [0](currencies.md#storage-functions) | [1](currencies.md#constants) | [3](currencies.md#errors) |
-| [Currency](currency.md) | [0](currency.md#calls) | [0](currency.md#events) | [0](currency.md#storage-functions) | [1](currency.md#constants) | [4](currency.md#errors) |
+| [Currency](currency.md) | [0](currency.md#calls) | [0](currency.md#events) | [0](currency.md#storage-functions) | [1](currency.md#constants) | [6](currency.md#errors) |
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
 | [DiaOracleModule](diaoraclemodule.md) | [6](diaoraclemodule.md#calls) | [6](diaoraclemodule.md#events) | [4](diaoraclemodule.md#storage-functions) | [0](diaoraclemodule.md#constants) | [10](diaoraclemodule.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
@@ -46,7 +46,7 @@
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Security](security.md) | [3](security.md#calls) | [2](security.md#events) | [4](security.md#storage-functions) | [0](security.md#constants) | [1](security.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
-| [StellarRelay](stellarrelay.md) | [1](stellarrelay.md#calls) | [1](stellarrelay.md#events) | [5](stellarrelay.md#storage-functions) | [3](stellarrelay.md#constants) | [20](stellarrelay.md#errors) |
+| [StellarRelay](stellarrelay.md) | [1](stellarrelay.md#calls) | [1](stellarrelay.md#events) | [5](stellarrelay.md#storage-functions) | [3](stellarrelay.md#constants) | [23](stellarrelay.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [TechnicalCommittee](technicalcommittee.md) | [7](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [0](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |
@@ -54,10 +54,11 @@
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
 | [Treasury](treasury.md) | [5](treasury.md#calls) | [9](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
-| [VaultRegistry](vaultregistry.md) | [13](vaultregistry.md#calls) | [22](vaultregistry.md#events) | [11](vaultregistry.md#storage-functions) | [2](vaultregistry.md#constants) | [29](vaultregistry.md#errors) |
+| [VaultRegistry](vaultregistry.md) | [14](vaultregistry.md#calls) | [22](vaultregistry.md#events) | [11](vaultregistry.md#storage-functions) | [2](vaultregistry.md#constants) | [29](vaultregistry.md#errors) |
 | [VaultRewards](vaultrewards.md) | [0](vaultrewards.md#calls) | [4](vaultrewards.md#events) | [5](vaultrewards.md#storage-functions) | [1](vaultrewards.md#constants) | [3](vaultrewards.md#errors) |
 | [VaultStaking](vaultstaking.md) | [0](vaultstaking.md#calls) | [6](vaultstaking.md#events) | [9](vaultstaking.md#storage-functions) | [1](vaultstaking.md#constants) | [3](vaultstaking.md#errors) |
 | [Vesting](vesting.md) | [5](vesting.md#calls) | [2](vesting.md#events) | [2](vesting.md#storage-functions) | [2](vesting.md#constants) | [5](vesting.md#errors) |
+| [VestingManager](vestingmanager.md) | [1](vestingmanager.md#calls) | [1](vestingmanager.md#events) | [0](vestingmanager.md#storage-functions) | [0](vestingmanager.md#constants) | [0](vestingmanager.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [8](xcmpqueue.md#events) | [9](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |
 | [ZenlinkProtocol](zenlinkprotocol.md) | [17](zenlinkprotocol.md#calls) | [17](zenlinkprotocol.md#events) | [11](zenlinkprotocol.md#storage-functions) | [1](zenlinkprotocol.md#constants) | [34](zenlinkprotocol.md#errors) |

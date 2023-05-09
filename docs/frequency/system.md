@@ -329,23 +329,6 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
-            'Capacity': {
-                'CapacityWithdrawn': {'amount': 'u128', 'msa_id': 'u64'},
-                'EpochLengthUpdated': {'blocks': 'u32'},
-                'StakeWithdrawn': {'account': 'AccountId', 'amount': 'u128'},
-                'Staked': {
-                    'account': 'AccountId',
-                    'amount': 'u128',
-                    'capacity': 'u128',
-                    'target': 'u64',
-                },
-                'UnStaked': {
-                    'account': 'AccountId',
-                    'amount': 'u128',
-                    'capacity': 'u128',
-                    'target': 'u64',
-                },
-            },
             'CollatorSelection': {
                 'CandidateAdded': {
                     'account_id': 'AccountId',
@@ -386,56 +369,12 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Democracy': {
-                'Blacklisted': {'proposal_hash': '[u8; 32]'},
-                'Cancelled': {'ref_index': 'u32'},
-                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
-                'ExternalTabled': None,
-                'NotPassed': {'ref_index': 'u32'},
-                'Passed': {'ref_index': 'u32'},
-                'ProposalCanceled': {'prop_index': 'u32'},
-                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::32'},
-                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Undelegated': {'account': 'AccountId'},
-                'Vetoed': {
-                    'proposal_hash': '[u8; 32]',
-                    'until': 'u32',
-                    'who': 'AccountId',
-                },
-                'Voted': {
-                    'ref_index': 'u32',
-                    'vote': 'scale_info::33',
-                    'voter': 'AccountId',
-                },
-            },
-            'FrequencyTxPayment': (),
             'Messages': {
                 'MessagesStored': {
                     'block_number': 'u32',
                     'count': 'u16',
                     'schema_id': 'u16',
                 },
-            },
-            'Msa': {
-                'DelegationGranted': {
-                    'delegator_id': 'u64',
-                    'provider_id': 'u64',
-                },
-                'DelegationRevoked': {
-                    'delegator_id': 'u64',
-                    'provider_id': 'u64',
-                },
-                'DelegationUpdated': {
-                    'delegator_id': 'u64',
-                    'provider_id': 'u64',
-                },
-                'MsaCreated': {'key': 'AccountId', 'msa_id': 'u64'},
-                'MsaRetired': {'msa_id': 'u64'},
-                'ProviderCreated': {'provider_id': 'u64'},
-                'PublicKeyAdded': {'key': 'AccountId', 'msa_id': 'u64'},
-                'PublicKeyDeleted': {'key': 'AccountId'},
             },
             'Multisig': {
                 'MultisigApproval': {
@@ -462,6 +401,72 @@ result = substrate.query(
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
                 },
+            },
+            None: None,
+            'Capacity': {
+                'CapacityWithdrawn': {'amount': 'u128', 'msa_id': 'u64'},
+                'EpochLengthUpdated': {'blocks': 'u32'},
+                'StakeWithdrawn': {'account': 'AccountId', 'amount': 'u128'},
+                'Staked': {
+                    'account': 'AccountId',
+                    'amount': 'u128',
+                    'capacity': 'u128',
+                    'target': 'u64',
+                },
+                'UnStaked': {
+                    'account': 'AccountId',
+                    'amount': 'u128',
+                    'capacity': 'u128',
+                    'target': 'u64',
+                },
+            },
+            'Democracy': {
+                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Cancelled': {'ref_index': 'u32'},
+                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
+                'ExternalTabled': None,
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'ProposalCanceled': {'prop_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::32'},
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Undelegated': {'account': 'AccountId'},
+                'Vetoed': {
+                    'proposal_hash': '[u8; 32]',
+                    'until': 'u32',
+                    'who': 'AccountId',
+                },
+                'Voted': {
+                    'ref_index': 'u32',
+                    'vote': 'scale_info::33',
+                    'voter': 'AccountId',
+                },
+            },
+            'FrequencyTxPayment': (),
+            'Handles': {
+                'HandleClaimed': {'handle': 'Bytes', 'msa_id': 'u64'},
+                'HandleRetired': {'handle': 'Bytes', 'msa_id': 'u64'},
+            },
+            'Msa': {
+                'DelegationGranted': {
+                    'delegator_id': 'u64',
+                    'provider_id': 'u64',
+                },
+                'DelegationRevoked': {
+                    'delegator_id': 'u64',
+                    'provider_id': 'u64',
+                },
+                'DelegationUpdated': {
+                    'delegator_id': 'u64',
+                    'provider_id': 'u64',
+                },
+                'MsaCreated': {'key': 'AccountId', 'msa_id': 'u64'},
+                'MsaRetired': {'msa_id': 'u64'},
+                'ProviderCreated': {'provider_id': 'u64'},
+                'PublicKeyAdded': {'key': 'AccountId', 'msa_id': 'u64'},
+                'PublicKeyDeleted': {'key': 'AccountId'},
             },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
@@ -617,7 +622,6 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -768,24 +772,24 @@ constant = substrate.get_constant('System', 'BlockLength')
 #### Value
 ```python
 {
-    'base_block': {'proof_size': 0, 'ref_time': 353208000},
+    'base_block': {'proof_size': 0, 'ref_time': 362498000},
     'max_block': {'proof_size': 5242880, 'ref_time': 500000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 90853000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 91097000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 90853000},
-            'max_extrinsic': {'proof_size': 3670016, 'ref_time': 349909147000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 91097000},
+            'max_extrinsic': {'proof_size': 3670016, 'ref_time': 349908903000},
             'max_total': {'proof_size': 3932160, 'ref_time': 375000000000},
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 90853000},
-            'max_extrinsic': {'proof_size': 4980736, 'ref_time': 474909147000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 91097000},
+            'max_extrinsic': {'proof_size': 4980736, 'ref_time': 474908903000},
             'max_total': {'proof_size': 5242880, 'ref_time': 500000000000},
             'reserved': {'proof_size': 1310720, 'ref_time': 125000000000},
         },
@@ -837,12 +841,13 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0xc451b3fcf34859b4', 1),
         ('0x24d062f93a859f6f', 1),
         ('0x4250010199fc50d3', 1),
+        ('0x0304bb19c2df37a2', 1),
     ],
     'authoring_version': 1,
     'impl_name': 'frequency',
     'impl_version': 0,
     'spec_name': 'frequency',
-    'spec_version': 26,
+    'spec_version': 30,
     'state_version': 1,
     'transaction_version': 1,
 }

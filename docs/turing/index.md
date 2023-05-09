@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | turing     |
 | Implementation name     | turing     |
-| Spec version     | 290     |
+| Spec version     | 291     |
 | SS58 Format     | 51     |
 | Token symbol      | TUR     |
 | Token decimals      | 10     |
@@ -20,7 +20,7 @@
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
 | [AutomationPrice](automationprice.md) | [4](automationprice.md#calls) | [9](automationprice.md#events) | [9](automationprice.md#storage-functions) | [4](automationprice.md#constants) | [15](automationprice.md#errors) |
-| [AutomationTime](automationtime.md) | [7](automationtime.md#calls) | [16](automationtime.md#events) | [6](automationtime.md#storage-functions) | [9](automationtime.md#constants) | [15](automationtime.md#errors) |
+| [AutomationTime](automationtime.md) | [8](automationtime.md#calls) | [16](automationtime.md#events) | [6](automationtime.md#storage-functions) | [9](automationtime.md#constants) | [17](automationtime.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
 | [Bounties](bounties.md) | [9](bounties.md#calls) | [7](bounties.md#events) | [4](bounties.md#storage-functions) | [9](bounties.md#constants) | [11](bounties.md#errors) |
 | [Council](council.md) | [6](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
@@ -50,5 +50,5 @@
 | [Valve](valve.md) | [9](valve.md#calls) | [7](valve.md#events) | [3](valve.md#storage-functions) | [0](valve.md#constants) | [7](valve.md#errors) |
 | [Vesting](vesting.md) | [0](vesting.md#calls) | [2](vesting.md#events) | [2](vesting.md#storage-functions) | [0](vesting.md#constants) | [1](vesting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
-| [XcmpHandler](xcmphandler.md) | [2](xcmphandler.md#calls) | [6](xcmphandler.md#events) | [1](xcmphandler.md#storage-functions) | [1](xcmphandler.md#constants) | [10](xcmphandler.md#errors) |
+| [XcmpHandler](xcmphandler.md) | [2](xcmphandler.md#calls) | [6](xcmphandler.md#events) | [1](xcmphandler.md#storage-functions) | [1](xcmphandler.md#constants) | [9](xcmphandler.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [8](xcmpqueue.md#events) | [9](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

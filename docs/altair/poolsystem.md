@@ -128,8 +128,7 @@ A pool was created.
 | admin | `T::AccountId` | ```AccountId```
 | depositor | `T::AccountId` | ```AccountId```
 | pool_id | `T::PoolId` | ```u64```
-| essence | `PoolEssence<T::CurrencyId, T::Balance, T::TrancheCurrency, T::Rate,
-T::MaxTokenNameLength, T::MaxTokenSymbolLength,>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
+| essence | `PoolEssenceOf<T>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
 
 ---------
 ### EpochClosed
@@ -182,10 +181,8 @@ A pool was updated.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | id | `T::PoolId` | ```u64```
-| old | `PoolEssence<T::CurrencyId, T::Balance, T::TrancheCurrency, T::Rate,
-T::MaxTokenNameLength, T::MaxTokenSymbolLength,>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
-| new | `PoolEssence<T::CurrencyId, T::Balance, T::TrancheCurrency, T::Rate,
-T::MaxTokenNameLength, T::MaxTokenSymbolLength,>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
+| old | `PoolEssenceOf<T>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
+| new | `PoolEssenceOf<T>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
 
 ---------
 ## Storage functions
@@ -270,7 +267,6 @@ result = substrate.query(
         'Tranche': ('u64', '[u8; 16]'),
     },
     'epoch': {'current': 'u32', 'last_closed': 'u64', 'last_executed': 'u32'},
-    'metadata': (None, 'Bytes'),
     'parameters': {'max_nav_age': 'u64', 'min_epoch_time': 'u64'},
     'reserve': {'available': 'u128', 'max': 'u128', 'total': 'u128'},
     'status': ('Open', ),
@@ -336,8 +332,22 @@ result = substrate.query(
             'NoChange': None,
         },
     },
-    'scheduled_time': 'u64',
+    'submitted_at': 'u64',
 }
+```
+---------
+### StorageVersion
+
+#### Python
+```python
+result = substrate.query(
+    'PoolSystem', 'StorageVersion', []
+)
+```
+
+#### Return value
+```python
+('V0', 'V1')
 ```
 ---------
 ## Constants
@@ -383,17 +393,6 @@ constant = substrate.get_constant('PoolSystem', 'DefaultMinEpochTime')
 #### Python
 ```python
 constant = substrate.get_constant('PoolSystem', 'MaxNAVAgeUpperBound')
-```
----------
-### MaxSizeMetadata
- Max size of Metadata
-#### Value
-```python
-46
-```
-#### Python
-```python
-constant = substrate.get_constant('PoolSystem', 'MaxSizeMetadata')
 ```
 ---------
 ### MaxTokenNameLength
@@ -505,10 +504,6 @@ constant = substrate.get_constant('PoolSystem', 'PoolDeposit')
 ```
 ---------
 ## Errors
-
----------
-### BadMetadata
-Invalid metadata passed
 
 ---------
 ### CannotAddOrRemoveTranches

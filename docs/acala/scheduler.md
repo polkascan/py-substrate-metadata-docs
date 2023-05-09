@@ -223,7 +223,6 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                None: None,
                 'GeneralCouncil': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -245,6 +244,7 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },

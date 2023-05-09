@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bitgreen-parachain     |
 | Implementation name     | bitgreen-parachain     |
-| Spec version     | 1002     |
+| Spec version     | 1105     |
 | SS58 Format     | 42     |
 | Token symbol      | BBB     |
 | Token decimals      | 18     |
@@ -20,16 +20,17 @@
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
-| [CarbonCredits](carboncredits.md) | [13](carboncredits.md#calls) | [8](carboncredits.md#events) | [7](carboncredits.md#storage-functions) | [1](carboncredits.md#constants) | [17](carboncredits.md#errors) |
+| [CarbonCredits](carboncredits.md) | [15](carboncredits.md#calls) | [10](carboncredits.md#events) | [7](carboncredits.md#storage-functions) | [1](carboncredits.md#constants) | [18](carboncredits.md#errors) |
 | [CarbonCreditsPools](carboncreditspools.md) | [4](carboncreditspools.md#calls) | [3](carboncreditspools.md#events) | [2](carboncreditspools.md#storage-functions) | [1](carboncreditspools.md#constants) | [10](carboncreditspools.md#errors) |
 | [Contracts](contracts.md) | [9](contracts.md#calls) | [8](contracts.md#events) | [6](contracts.md#storage-functions) | [5](contracts.md#constants) | [30](contracts.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
-| [Dex](dex.md) | [5](dex.md#calls) | [3](dex.md#events) | [5](dex.md#storage-functions) | [6](dex.md#constants) | [14](dex.md#errors) |
+| [Dex](dex.md) | [8](dex.md#calls) | [7](dex.md#events) | [8](dex.md#storage-functions) | [5](dex.md#constants) | [21](dex.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
-| [KYCMembership](kycmembership.md) | [7](kycmembership.md#calls) | [6](kycmembership.md#events) | [2](kycmembership.md#storage-functions) | [0](kycmembership.md#constants) | [3](kycmembership.md#errors) |
+| [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
+| [KYC](kyc.md) | [8](kyc.md#calls) | [9](kyc.md#events) | [3](kyc.md#storage-functions) | [1](kyc.md#constants) | [6](kyc.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
-| [ParachainStaking](parachainstaking.md) | [8](parachainstaking.md#calls) | [10](parachainstaking.md#events) | [6](parachainstaking.md#storage-functions) | [0](parachainstaking.md#constants) | [14](parachainstaking.md#errors) |
+| [ParachainStaking](parachainstaking.md) | [10](parachainstaking.md#calls) | [11](parachainstaking.md#events) | [8](parachainstaking.md#storage-functions) | [0](parachainstaking.md#constants) | [17](parachainstaking.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [17](polkadotxcm.md#events) | [0](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [13](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
@@ -46,5 +47,5 @@
 | [Treasury](treasury.md) | [5](treasury.md#calls) | [8](treasury.md#events) | [3](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
 | [Uniques](uniques.md) | [26](uniques.md#calls) | [27](uniques.md#events) | [10](uniques.md#storage-functions) | [8](uniques.md#constants) | [18](uniques.md#errors) |
 | [Utility](utility.md) | [5](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
-| [VestingContract](vestingcontract.md) | [6](vestingcontract.md#calls) | [3](vestingcontract.md#events) | [2](vestingcontract.md#storage-functions) | [1](vestingcontract.md#constants) | [6](vestingcontract.md#errors) |
+| [VestingContract](vestingcontract.md) | [8](vestingcontract.md#calls) | [5](vestingcontract.md#events) | [3](vestingcontract.md#storage-functions) | [1](vestingcontract.md#constants) | [9](vestingcontract.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [8](xcmpqueue.md#events) | [9](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

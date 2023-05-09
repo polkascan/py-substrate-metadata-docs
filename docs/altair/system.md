@@ -382,6 +382,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -468,7 +469,7 @@ result = substrate.query(
                 'VestingStartUpdated': 'u32',
             },
             'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::134'),
+                'ExecutedDownward': ('[u8; 8]', 'scale_info::144'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
             },
@@ -499,7 +500,7 @@ result = substrate.query(
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::134',
+                    'outcome': 'scale_info::144',
                 },
                 'InvalidFormat': {'message_id': '[u8; 32]'},
                 'OverweightEnqueued': {
@@ -589,21 +590,21 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
                 'InvestOrdersCleared': {
-                    'fulfillment': 'scale_info::125',
+                    'fulfillment': 'scale_info::135',
                     'investment_id': 'scale_info::101',
                     'order_id': 'u64',
                 },
                 'InvestOrdersCollected': {
-                    'collection': 'scale_info::122',
+                    'collection': 'scale_info::132',
                     'investment_id': 'scale_info::101',
-                    'outcome': 'scale_info::123',
+                    'outcome': 'scale_info::133',
                     'processed_orders': ['u64'],
                     'who': 'AccountId',
                 },
                 'InvestOrdersInProcessing': {
                     'investment_id': 'scale_info::101',
                     'order_id': 'u64',
-                    'total_order': 'scale_info::126',
+                    'total_order': 'scale_info::136',
                 },
                 'RedeemCollectedForNonClearedOrderId': {
                     'investment_id': 'scale_info::101',
@@ -620,66 +621,54 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
                 'RedeemOrdersCleared': {
-                    'fulfillment': 'scale_info::125',
+                    'fulfillment': 'scale_info::135',
                     'investment_id': 'scale_info::101',
                     'order_id': 'u64',
                 },
                 'RedeemOrdersCollected': {
-                    'collection': 'scale_info::124',
+                    'collection': 'scale_info::134',
                     'investment_id': 'scale_info::101',
-                    'outcome': 'scale_info::123',
+                    'outcome': 'scale_info::133',
                     'processed_orders': ['u64'],
                     'who': 'AccountId',
                 },
                 'RedeemOrdersInProcessing': {
                     'investment_id': 'scale_info::101',
                     'order_id': 'u64',
-                    'total_order': 'scale_info::126',
+                    'total_order': 'scale_info::136',
                 },
             },
             'Loans': {
                 'Borrowed': {
                     'amount': 'u128',
-                    'loan_id': 'u128',
+                    'loan_id': 'u64',
                     'pool_id': 'u64',
                 },
                 'Closed': {
                     'collateral': ('u64', 'u128'),
-                    'loan_id': 'u128',
+                    'loan_id': 'u64',
                     'pool_id': 'u64',
                 },
                 'Created': {
-                    'collateral': ('u64', 'u128'),
-                    'loan_id': 'u128',
+                    'loan_id': 'u64',
+                    'loan_info': 'scale_info::112',
                     'pool_id': 'u64',
                 },
-                'NAVUpdated': {
-                    'nav': 'u128',
+                'PortfolioValuationUpdated': {
                     'pool_id': 'u64',
-                    'update_type': 'scale_info::117',
-                },
-                'PoolInitialised': {'pool_id': 'u64'},
-                'Priced': {
-                    'interest_rate_per_sec': 'u128',
-                    'loan_id': 'u128',
-                    'loan_type': 'scale_info::113',
-                    'pool_id': 'u64',
+                    'update_type': 'scale_info::125',
+                    'valuation': 'u128',
                 },
                 'Repaid': {
                     'amount': 'u128',
-                    'loan_id': 'u128',
+                    'loan_id': 'u64',
                     'pool_id': 'u64',
                 },
-                'WriteOffGroupAdded': {
-                    'pool_id': 'u64',
-                    'write_off_group_index': 'u32',
-                },
+                'WriteOffPolicyUpdated': {'policy': ['scale_info::127'], 'pool_id': 'u64'},
                 'WrittenOff': {
-                    'loan_id': 'u128',
-                    'penalty_interest_rate_per_sec': 'u128',
-                    'percentage': 'u128',
+                    'loan_id': 'u64',
                     'pool_id': 'u64',
-                    'write_off_group_index': (None, 'u32'),
+                    'status': 'scale_info::124',
                 },
             },
             'Migration': {
@@ -736,11 +725,11 @@ result = substrate.query(
             'OrmlAssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'scale_info::75',
-                    'metadata': 'scale_info::176',
+                    'metadata': 'scale_info::186',
                 },
                 'UpdatedAsset': {
                     'asset_id': 'scale_info::75',
-                    'metadata': 'scale_info::176',
+                    'metadata': 'scale_info::186',
                 },
             },
             'OrmlTokens': {
@@ -816,7 +805,7 @@ result = substrate.query(
                 },
             },
             'OrmlXcm': {
-                'Sent': {'message': ['scale_info::147'], 'to': 'scale_info::135'},
+                'Sent': {'message': ['scale_info::157'], 'to': 'scale_info::145'},
             },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
@@ -845,25 +834,25 @@ result = substrate.query(
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
-                    'scale_info::135',
-                    'scale_info::165',
+                    'scale_info::145',
+                    'scale_info::175',
                 ),
                 'AssetsTrapped': (
                     '[u8; 32]',
-                    'scale_info::135',
-                    'scale_info::165',
+                    'scale_info::145',
+                    'scale_info::175',
                 ),
                 'Attempted': {
                     'Complete': 'u64',
-                    'Error': 'scale_info::131',
-                    'Incomplete': ('u64', 'scale_info::131'),
+                    'Error': 'scale_info::141',
+                    'Incomplete': ('u64', 'scale_info::141'),
                 },
                 'InvalidResponder': (
-                    'scale_info::135',
+                    'scale_info::145',
                     'u64',
-                    (None, 'scale_info::135'),
+                    (None, 'scale_info::145'),
                 ),
-                'InvalidResponderVersion': ('scale_info::135', 'u64'),
+                'InvalidResponderVersion': ('scale_info::145', 'u64'),
                 'Notified': ('u64', 'u8', 'u8'),
                 'NotifyDecodeFailed': ('u64', 'u8', 'u8'),
                 'NotifyDispatchError': ('u64', 'u8', 'u8'),
@@ -874,22 +863,22 @@ result = substrate.query(
                     'scale_info::8',
                     'scale_info::8',
                 ),
-                'NotifyTargetMigrationFail': ('scale_info::170', 'u64'),
+                'NotifyTargetMigrationFail': ('scale_info::180', 'u64'),
                 'NotifyTargetSendFail': (
-                    'scale_info::135',
+                    'scale_info::145',
                     'u64',
-                    'scale_info::131',
+                    'scale_info::141',
                 ),
-                'ResponseReady': ('u64', 'scale_info::155'),
+                'ResponseReady': ('u64', 'scale_info::165'),
                 'ResponseTaken': 'u64',
                 'Sent': (
-                    'scale_info::135',
-                    'scale_info::135',
-                    ['scale_info::147'],
+                    'scale_info::145',
+                    'scale_info::145',
+                    ['scale_info::157'],
                 ),
-                'SupportedVersionChanged': ('scale_info::135', 'u32'),
-                'UnexpectedResponse': ('scale_info::135', 'u64'),
-                'VersionChangeNotified': ('scale_info::135', 'u32'),
+                'SupportedVersionChanged': ('scale_info::145', 'u32'),
+                'UnexpectedResponse': ('scale_info::145', 'u64'),
+                'VersionChangeNotified': ('scale_info::145', 'u32'),
             },
             'PoolRegistry': {
                 'MetadataSet': {'metadata': 'Bytes', 'pool_id': 'u64'},
@@ -996,6 +985,13 @@ result = substrate.query(
                     'currency_id': 'scale_info::75',
                     'from': 'AccountId',
                     'to': 'AccountId',
+                },
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
                 },
             },
             'Treasury': {
@@ -1129,31 +1125,23 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
             },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::150'],
-                    'dest': 'scale_info::135',
-                    'fee': 'scale_info::150',
-                    'sender': 'AccountId',
-                },
-            },
-            None: None,
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::160'],
+                    'dest': 'scale_info::145',
+                    'fee': 'scale_info::160',
+                    'sender': 'AccountId',
+                },
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
                 'Fail': {
-                    'error': 'scale_info::131',
+                    'error': 'scale_info::141',
                     'message_hash': (None, '[u8; 32]'),
                     'weight': 'scale_info::8',
                 },
@@ -1411,7 +1399,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'altair',
     'impl_version': 1,
     'spec_name': 'altair',
-    'spec_version': 1025,
+    'spec_version': 1026,
     'state_version': 0,
     'transaction_version': 1,
 }

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | Crab2     |
 | Implementation name     | DarwiniaOfficialRust     |
-| Spec version     | 6020     |
+| Spec version     | 6210     |
 | SS58 Format     | 42     |
 | Token symbol      | CRAB     |
 | Token decimals      | 18     |

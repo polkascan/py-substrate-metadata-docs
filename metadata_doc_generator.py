@@ -266,25 +266,18 @@ if __name__ == "__main__":
     with open("config.yml", "r") as yaml_file:
         config = yaml.load(yaml_file, Loader=yaml.FullLoader)
 
-    network_info = []
+    for section in config["networks"]:
 
-    for network in config["networks"]:
-        logging.info(f"Generating docs for {network}")
-        try:
-            info = generate_docs(network)
-            network_info.append(info)
-        except WebSocketBadStatusException:
-            logging.error(f"Failed to generate docs for {network}")
+        section_name, networks = list(section.items())[0]
 
-    print('---- Nav items -------------')
-    for item in network_info:
-        print(f'- {item["name"]}: ')
-        print(f'  - {item["file"]}')
-        for pallet in item["pallets"]:
-            print(f'  - {pallet["name"]}: {pallet["file"]}')
-
-
-    # print('---- Index items -------------')
-    # for name, doc_file in network_info:
-    #     print(f'* [{name}]({doc_file})')
-
+        print(f'- {section_name}: ')
+        for network in networks:
+            logging.info(f"Generating docs for {network}")
+            try:
+                info = generate_docs(network)
+                print(f'  - {info["name"]}: ')
+                print(f'    - {info["file"]}')
+                for pallet in info["pallets"]:
+                    print(f'    - {pallet["name"]}: {pallet["file"]}')
+            except WebSocketBadStatusException:
+                logging.error(f"Failed to generate docs for {network}")

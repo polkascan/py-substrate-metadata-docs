@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | astar     |
 | Implementation name     | astar     |
-| Spec version     | 55     |
+| Spec version     | 57     |
 | SS58 Format     | 5     |
 | Token symbol      | ASTR     |
 | Token decimals      | 18     |

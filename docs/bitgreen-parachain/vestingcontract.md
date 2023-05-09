@@ -70,6 +70,37 @@ call = substrate.compose_call(
 ```
 
 ---------
+### force_add_authorized_account
+Add a new account to the list of authorised Accounts
+The caller must be from a permitted origin
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| account_id | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'VestingContract', 'force_add_authorized_account', {'account_id': 'AccountId'}
+)
+```
+
+---------
+### force_remove_authorized_account
+Remove an account from the list of authorised accounts
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| account_id | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'VestingContract', 'force_remove_authorized_account', {'account_id': 'AccountId'}
+)
+```
+
+---------
 ### force_withdraw_vested
 Call withdraw_vested for any account with a valid contract
 #### Attributes
@@ -122,6 +153,22 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### AuthorizedAccountAdded
+A new authorized account has been added to storage
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
+### AuthorizedAccountRemoved
+An authorized account has been removed from storage
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
 ### ContractAdded
 A new contract has been added to storage
 #### Attributes
@@ -152,6 +199,20 @@ An existing contract has been completed/withdrawn
 ---------
 ## Storage functions
 
+---------
+### AuthorizedAccounts
+
+#### Python
+```python
+result = substrate.query(
+    'VestingContract', 'AuthorizedAccounts', []
+)
+```
+
+#### Return value
+```python
+['AccountId']
+```
 ---------
 ### VestingBalance
 
@@ -198,6 +259,10 @@ constant = substrate.get_constant('VestingContract', 'PalletId')
 ## Errors
 
 ---------
+### AuthorizedAccountAlreadyExists
+Authorized account already exists
+
+---------
 ### ContractAlreadyExists
 Contract already exists, remove old contract before adding new
 
@@ -214,11 +279,19 @@ Contract not found in storage
 The contract expiry has already passed
 
 ---------
+### NotAuthorised
+Not authorized to perform this operation
+
+---------
 ### PalletOutOfFunds
 The pallet account does not have funds to pay contract
 
 ---------
 ### StorageOverflow
 Errors should have helpful documentation associated with them.
+
+---------
+### TooManyAuthorizedAccounts
+Too many authorized accounts
 
 ---------

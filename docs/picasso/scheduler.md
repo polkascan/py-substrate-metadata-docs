@@ -243,9 +243,9 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'RelayerXcm': {
-                    'Response': 'scale_info::70',
-                    'Xcm': 'scale_info::70',
+                'PolkadotXcm': {
+                    'Response': 'scale_info::69',
+                    'Xcm': 'scale_info::69',
                 },
                 'ReleaseCommittee': {
                     'Member': 'AccountId',

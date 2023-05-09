@@ -139,7 +139,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::511'
+'scale_info::513'
 ```
 ---------
 ### Nonce

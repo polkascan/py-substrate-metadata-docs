@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | acala     |
 | Implementation name     | acala     |
-| Spec version     | 2120     |
+| Spec version     | 2170     |
 | SS58 Format     | 10     |
 | Token symbol      | ['ACA', 'AUSD', 'DOT', 'LDOT']     |
 | Token decimals      | [12, 12, 10, 10]     |

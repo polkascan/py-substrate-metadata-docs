@@ -9,7 +9,7 @@
 Add an NFT
 
 Fails if
-  - the NFT is not found in [T::NonFungibles]
+  - the NFT is not found in [`Config::NonFungibles`]
   - `origin` is not the owner of the nft
   - the nft is already for sale
   - transferring ownership of the NFT to this pallet&\#x27;s account fails
@@ -230,7 +230,7 @@ An operation expected an NFT to be for sale when it is not
 
 ---------
 ### NotFound
-A user tried to add an NFT that could not be found in T::NonFungibles
+A user tried to add an NFT that could not be found in [`Config::NonFungibles`]
 
 ---------
 ### NotOwner

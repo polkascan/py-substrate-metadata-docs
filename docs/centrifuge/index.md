@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | centrifuge     |
 | Implementation name     | centrifuge     |
-| Spec version     | 1017     |
+| Spec version     | 1018     |
 | SS58 Format     | 36     |
 | Token symbol      | CFG     |
 | Token decimals      | 18     |
@@ -34,6 +34,10 @@
 | [Elections](elections.md) | [6](elections.md#calls) | [7](elections.md#events) | [5](elections.md#storage-functions) | [9](elections.md#constants) | [17](elections.md#errors) |
 | [Fees](fees.md) | [1](fees.md#calls) | [4](fees.md#events) | [1](fees.md#storage-functions) | [0](fees.md#constants) | [0](fees.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [17](identity.md#errors) |
+| [InterestAccrual](interestaccrual.md) | [0](interestaccrual.md#calls) | [0](interestaccrual.md#events) | [3](interestaccrual.md#storage-functions) | [0](interestaccrual.md#constants) | [5](interestaccrual.md#errors) |
+| [Investments](investments.md) | [6](investments.md#calls) | [12](investments.md#events) | [10](investments.md#storage-functions) | [0](investments.md#constants) | [10](investments.md#errors) |
+| [Keystore](keystore.md) | [3](keystore.md#calls) | [3](keystore.md#events) | [3](keystore.md#storage-functions) | [1](keystore.md#constants) | [5](keystore.md#errors) |
+| [Loans](loans.md) | [8](loans.md#calls) | [7](loans.md#events) | [6](loans.md#storage-functions) | [2](loans.md#constants) | [12](loans.md#errors) |
 | [Migration](migration.md) | [5](migration.md#calls) | [9](migration.md#events) | [1](migration.md#storage-functions) | [3](migration.md#constants) | [5](migration.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [Nfts](nfts.md) | [1](nfts.md#calls) | [1](nfts.md#events) | [0](nfts.md#storage-functions) | [2](nfts.md#constants) | [2](nfts.md#errors) |
@@ -42,7 +46,10 @@
 | [OrmlXcm](ormlxcm.md) | [1](ormlxcm.md#calls) | [1](ormlxcm.md#events) | [0](ormlxcm.md#storage-functions) | [0](ormlxcm.md#constants) | [3](ormlxcm.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
+| [Permissions](permissions.md) | [4](permissions.md#calls) | [3](permissions.md#events) | [2](permissions.md#storage-functions) | [1](permissions.md#constants) | [6](permissions.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [17](polkadotxcm.md#events) | [0](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [13](polkadotxcm.md#errors) |
+| [PoolRegistry](poolregistry.md) | [4](poolregistry.md#calls) | [5](poolregistry.md#events) | [2](poolregistry.md#storage-functions) | [4](poolregistry.md#constants) | [7](poolregistry.md#errors) |
+| [PoolSystem](poolsystem.md) | [4](poolsystem.md#calls) | [7](poolsystem.md#events) | [6](poolsystem.md#storage-functions) | [14](poolsystem.md#constants) | [33](poolsystem.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
@@ -53,6 +60,7 @@
 | [Tokens](tokens.md) | [5](tokens.md#calls) | [2](tokens.md#events) | [0](tokens.md#storage-functions) | [0](tokens.md#constants) | [1](tokens.md#errors) |
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
 | [Treasury](treasury.md) | [5](treasury.md#calls) | [8](treasury.md#events) | [3](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
+| [Uniques](uniques.md) | [26](uniques.md#calls) | [27](uniques.md#events) | [10](uniques.md#storage-functions) | [8](uniques.md#constants) | [18](uniques.md#errors) |
 | [Utility](utility.md) | [5](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [Vesting](vesting.md) | [5](vesting.md#calls) | [2](vesting.md#events) | [2](vesting.md#storage-functions) | [2](vesting.md#constants) | [5](vesting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |

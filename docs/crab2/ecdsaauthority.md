@@ -250,7 +250,7 @@ constant = substrate.get_constant('EcdsaAuthority', 'ChainId')
  The maximum number of authorities.
 #### Value
 ```python
-3
+7
 ```
 #### Python
 ```python

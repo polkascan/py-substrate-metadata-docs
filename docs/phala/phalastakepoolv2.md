@@ -266,21 +266,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_working_enabled
-Enables or disables computing. Must be called with the council or root permission.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| enable | `bool` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'PhalaStakePoolv2', 'set_working_enabled', {'enable': 'bool'}
-)
-```
-
----------
 ### start_computing
 Starts a worker on behalf of the stake pool
 
@@ -620,34 +605,8 @@ result = substrate.query(
 'u64'
 ```
 ---------
-### WorkingEnabled
- Switch to enable the stake pool pallet (disabled by default)
-
-#### Python
-```python
-result = substrate.query(
-    'PhalaStakePoolv2', 'WorkingEnabled', []
-)
-```
-
-#### Return value
-```python
-'bool'
-```
----------
 ## Constants
 
----------
-### ComputingEnabledByDefault
- If computing is enabled by default.
-#### Value
-```python
-False
-```
-#### Python
-```python
-constant = substrate.get_constant('PhalaStakePoolv2', 'ComputingEnabledByDefault')
-```
 ---------
 ### GracePeriod
  The grace period for force withdraw request, in seconds.

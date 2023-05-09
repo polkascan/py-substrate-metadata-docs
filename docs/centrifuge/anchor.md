@@ -11,7 +11,7 @@ the latest version id(`anchor_id`) obtained by hashing `anchor_id_preimage`.
 If a pre-commit exists for the obtained `anchor_id`, hash of pre-committed
 `signing_root + proof` must match the given `doc_root`.
 Any pre-committed data is automatically removed on a succesful commit and the reserved
-funds from [`pre_commit()`] are returned to the same account.
+funds from [`Pallet::pre_commit()`] are returned to the same account.
 To avoid state bloat on chain,
 the committed anchor would be evicted after the given `stored_until_date`.
 The calling account would be charged accordingly for the storage period.
@@ -56,7 +56,7 @@ call = substrate.compose_call(
 ---------
 ### evict_pre_commits
 Initiates eviction of pre-commits that has expired given a list on anchor ids.
-For each evicted pre-commits, the deposit holded by [`pre_commit()`] call
+For each evicted pre-commits, the deposit holded by [`Pallet::pre_commit()`] call
 will be returned to the same account that made it originally.
 #### Attributes
 | Name | Type |
@@ -83,8 +83,8 @@ its own state commitment upon receiving a request for signature, the node can fi
 publish a pre-commit. Only the pre-committer account in the Centrifuge chain is
 allowed to `commit` a corresponding anchor before the pre-commit has expired.
 Some funds are reserved on a succesful pre-commit call.
-These funds are returned to the same account after a succesful [`commit()`] call
-or explicitely if evicting the pre-commits by calling [`evict_pre_commits()`].
+These funds are returned to the same account after a succesful [`Pallet::commit()`] call
+or explicitely if evicting the pre-commits by calling [`Pallet::evict_pre_commits()`].
 For a more detailed explanation refer section 3.4 of
 [Centrifuge Protocol Paper](https://staticw.centrifuge.io/assets/centrifuge_os_protocol_paper.pdf)
 #### Attributes

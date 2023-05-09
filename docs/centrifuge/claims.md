@@ -172,7 +172,7 @@ constant = substrate.get_constant('Claims', 'PalletId')
 
 ---------
 ### InsufficientBalance
-Amount being claimed is less than the available amount in [`ClaimedAmounts`].
+Amount being claimed is less than the available amount stored.
 
 ---------
 ### InvalidProofs
@@ -184,6 +184,6 @@ Protected operation, must be performed by admin
 
 ---------
 ### UnderMinPayout
-The payout amount attempting to be claimed is less than the minimum allowed by [`MinimalPayoutAmount`].
+The payout amount attempting to be claimed is less than the minimum allowed by [`Config::MinimalPayoutAmount`].
 
 ---------

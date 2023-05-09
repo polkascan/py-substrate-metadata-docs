@@ -109,7 +109,7 @@ call = substrate.compose_call(
                 ],
             ),
         },
-        'credits': 'scale_info::332',
+        'credits': 'scale_info::331',
         'max_limit': 'u32',
     },
     'pool_id': 'u32',
@@ -204,7 +204,7 @@ result = substrate.query(
             ],
         ),
     },
-    'credits': 'scale_info::332',
+    'credits': 'scale_info::331',
     'max_limit': 'u32',
 }
 ```
@@ -236,7 +236,7 @@ result = substrate.query(
             ],
         ),
     },
-    'credits': 'scale_info::332',
+    'credits': 'scale_info::331',
     'max_limit': 'u32',
 }
 ```

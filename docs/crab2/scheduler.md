@@ -237,6 +237,7 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'Council': {
                     'Member': '[u8; 20]',
                     'Members': ('u32', 'u32'),
@@ -244,8 +245,6 @@ result = substrate.query(
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'Ethereum': {'EthereumTransaction': '[u8; 20]'},
-                'Void': (),
-                None: None,
                 'MessageTransact': {'MessageTransact': '[u8; 20]'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::86',
@@ -256,6 +255,7 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
             },
             'priority': 'u8',

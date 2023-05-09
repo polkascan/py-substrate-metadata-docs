@@ -382,6 +382,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -605,6 +606,118 @@ result = substrate.query(
                     'sub': 'AccountId',
                 },
             },
+            'InterestAccrual': (),
+            'Investments': {
+                'InvestCollectedForNonClearedOrderId': {
+                    'investment_id': 'scale_info::147',
+                    'who': 'AccountId',
+                },
+                'InvestCollectedWithoutActivePosition': {
+                    'investment_id': 'scale_info::147',
+                    'who': 'AccountId',
+                },
+                'InvestOrderUpdated': {
+                    'amount': 'u128',
+                    'investment_id': 'scale_info::147',
+                    'submitted_at': 'u64',
+                    'who': 'AccountId',
+                },
+                'InvestOrdersCleared': {
+                    'fulfillment': 'scale_info::167',
+                    'investment_id': 'scale_info::147',
+                    'order_id': 'u64',
+                },
+                'InvestOrdersCollected': {
+                    'collection': 'scale_info::164',
+                    'investment_id': 'scale_info::147',
+                    'outcome': 'scale_info::165',
+                    'processed_orders': ['u64'],
+                    'who': 'AccountId',
+                },
+                'InvestOrdersInProcessing': {
+                    'investment_id': 'scale_info::147',
+                    'order_id': 'u64',
+                    'total_order': 'scale_info::168',
+                },
+                'RedeemCollectedForNonClearedOrderId': {
+                    'investment_id': 'scale_info::147',
+                    'who': 'AccountId',
+                },
+                'RedeemCollectedWithoutActivePosition': {
+                    'investment_id': 'scale_info::147',
+                    'who': 'AccountId',
+                },
+                'RedeemOrderUpdated': {
+                    'amount': 'u128',
+                    'investment_id': 'scale_info::147',
+                    'submitted_at': 'u64',
+                    'who': 'AccountId',
+                },
+                'RedeemOrdersCleared': {
+                    'fulfillment': 'scale_info::167',
+                    'investment_id': 'scale_info::147',
+                    'order_id': 'u64',
+                },
+                'RedeemOrdersCollected': {
+                    'collection': 'scale_info::166',
+                    'investment_id': 'scale_info::147',
+                    'outcome': 'scale_info::165',
+                    'processed_orders': ['u64'],
+                    'who': 'AccountId',
+                },
+                'RedeemOrdersInProcessing': {
+                    'investment_id': 'scale_info::147',
+                    'order_id': 'u64',
+                    'total_order': 'scale_info::168',
+                },
+            },
+            'Keystore': {
+                'DepositSet': {'new_deposit': 'u128'},
+                'KeyAdded': {
+                    'key': '[u8; 32]',
+                    'key_type': 'scale_info::179',
+                    'owner': 'AccountId',
+                    'purpose': 'scale_info::178',
+                },
+                'KeyRevoked': {
+                    'block_number': 'u32',
+                    'key': '[u8; 32]',
+                    'owner': 'AccountId',
+                },
+            },
+            'Loans': {
+                'Borrowed': {
+                    'amount': 'u128',
+                    'loan_id': 'u64',
+                    'pool_id': 'u64',
+                },
+                'Closed': {
+                    'collateral': ('u64', 'u128'),
+                    'loan_id': 'u64',
+                    'pool_id': 'u64',
+                },
+                'Created': {
+                    'loan_id': 'u64',
+                    'loan_info': 'scale_info::181',
+                    'pool_id': 'u64',
+                },
+                'PortfolioValuationUpdated': {
+                    'pool_id': 'u64',
+                    'update_type': 'scale_info::194',
+                    'valuation': 'u128',
+                },
+                'Repaid': {
+                    'amount': 'u128',
+                    'loan_id': 'u64',
+                    'pool_id': 'u64',
+                },
+                'WriteOffPolicyUpdated': {'policy': ['scale_info::196'], 'pool_id': 'u64'},
+                'WrittenOff': {
+                    'loan_id': 'u64',
+                    'pool_id': 'u64',
+                    'status': 'scale_info::193',
+                },
+            },
             'Migration': {
                 'FailedToMigrateProxyDataFor': 'AccountId',
                 'FailedToMigrateVestingFor': 'AccountId',
@@ -739,6 +852,19 @@ result = substrate.query(
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
             },
+            'Permissions': {
+                'Added': {
+                    'role': 'scale_info::159',
+                    'scope': 'scale_info::158',
+                    'to': 'AccountId',
+                },
+                'Purged': {'from': 'AccountId', 'scope': 'scale_info::158'},
+                'Removed': {
+                    'from': 'AccountId',
+                    'role': 'scale_info::159',
+                    'scope': 'scale_info::158',
+                },
+            },
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
@@ -787,6 +913,35 @@ result = substrate.query(
                 'SupportedVersionChanged': ('scale_info::79', 'u32'),
                 'UnexpectedResponse': ('scale_info::79', 'u64'),
                 'VersionChangeNotified': ('scale_info::79', 'u32'),
+            },
+            'PoolRegistry': {
+                'MetadataSet': {'metadata': 'Bytes', 'pool_id': 'u64'},
+                'Registered': {'pool_id': 'u64'},
+                'UpdateExecuted': {'pool_id': 'u64'},
+                'UpdateRegistered': {'pool_id': 'u64'},
+                'UpdateStored': {'pool_id': 'u64'},
+            },
+            'PoolSystem': {
+                'Created': {
+                    'admin': 'AccountId',
+                    'depositor': 'AccountId',
+                    'essence': 'scale_info::146',
+                    'pool_id': 'u64',
+                },
+                'EpochClosed': {'epoch_id': 'u32', 'pool_id': 'u64'},
+                'EpochExecuted': {'epoch_id': 'u32', 'pool_id': 'u64'},
+                'MaxReserveSet': {'pool_id': 'u64'},
+                'Rebalanced': {'pool_id': 'u64'},
+                'SolutionSubmitted': {
+                    'epoch_id': 'u32',
+                    'pool_id': 'u64',
+                    'solution': 'scale_info::132',
+                },
+                'Updated': {
+                    'id': 'u64',
+                    'new': 'scale_info::146',
+                    'old': 'scale_info::146',
+                },
             },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
@@ -891,6 +1046,108 @@ result = substrate.query(
                 },
                 'Spending': {'budget_remaining': 'u128'},
             },
+            'Uniques': {
+                'ApprovalCancelled': {
+                    'collection': 'u64',
+                    'delegate': 'AccountId',
+                    'item': 'u128',
+                    'owner': 'AccountId',
+                },
+                'ApprovedTransfer': {
+                    'collection': 'u64',
+                    'delegate': 'AccountId',
+                    'item': 'u128',
+                    'owner': 'AccountId',
+                },
+                'AttributeCleared': {
+                    'collection': 'u64',
+                    'key': 'Bytes',
+                    'maybe_item': (None, 'u128'),
+                },
+                'AttributeSet': {
+                    'collection': 'u64',
+                    'key': 'Bytes',
+                    'maybe_item': (None, 'u128'),
+                    'value': 'Bytes',
+                },
+                'Burned': {
+                    'collection': 'u64',
+                    'item': 'u128',
+                    'owner': 'AccountId',
+                },
+                'CollectionFrozen': {'collection': 'u64'},
+                'CollectionMaxSupplySet': {
+                    'collection': 'u64',
+                    'max_supply': 'u32',
+                },
+                'CollectionMetadataCleared': {'collection': 'u64'},
+                'CollectionMetadataSet': {
+                    'collection': 'u64',
+                    'data': 'Bytes',
+                    'is_frozen': 'bool',
+                },
+                'CollectionThawed': {'collection': 'u64'},
+                'Created': {
+                    'collection': 'u64',
+                    'creator': 'AccountId',
+                    'owner': 'AccountId',
+                },
+                'Destroyed': {'collection': 'u64'},
+                'ForceCreated': {'collection': 'u64', 'owner': 'AccountId'},
+                'Frozen': {'collection': 'u64', 'item': 'u128'},
+                'Issued': {
+                    'collection': 'u64',
+                    'item': 'u128',
+                    'owner': 'AccountId',
+                },
+                'ItemBought': {
+                    'buyer': 'AccountId',
+                    'collection': 'u64',
+                    'item': 'u128',
+                    'price': 'u128',
+                    'seller': 'AccountId',
+                },
+                'ItemPriceRemoved': {'collection': 'u64', 'item': 'u128'},
+                'ItemPriceSet': {
+                    'collection': 'u64',
+                    'item': 'u128',
+                    'price': 'u128',
+                    'whitelisted_buyer': (None, 'AccountId'),
+                },
+                'ItemStatusChanged': {'collection': 'u64'},
+                'MetadataCleared': {'collection': 'u64', 'item': 'u128'},
+                'MetadataSet': {
+                    'collection': 'u64',
+                    'data': 'Bytes',
+                    'is_frozen': 'bool',
+                    'item': 'u128',
+                },
+                'OwnerChanged': {
+                    'collection': 'u64',
+                    'new_owner': 'AccountId',
+                },
+                'OwnershipAcceptanceChanged': {
+                    'maybe_collection': (None, 'u64'),
+                    'who': 'AccountId',
+                },
+                'Redeposited': {
+                    'collection': 'u64',
+                    'successful_items': ['u128'],
+                },
+                'TeamChanged': {
+                    'admin': 'AccountId',
+                    'collection': 'u64',
+                    'freezer': 'AccountId',
+                    'issuer': 'AccountId',
+                },
+                'Thawed': {'collection': 'u64', 'item': 'u128'},
+                'Transferred': {
+                    'collection': 'u64',
+                    'from': 'AccountId',
+                    'item': 'u128',
+                    'to': 'AccountId',
+                },
+            },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -936,7 +1193,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1171,12 +1427,13 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0x37c8bb1350a9a2a8', 2),
         ('0xea93e3f16f3d6962', 2),
         ('0xc937d79c92c4e872', 1),
+        ('0x9ce8a204acbb1235', 1),
     ],
     'authoring_version': 1,
     'impl_name': 'centrifuge',
     'impl_version': 1,
     'spec_name': 'centrifuge',
-    'spec_version': 1017,
+    'spec_version': 1018,
     'state_version': 0,
     'transaction_version': 1,
 }

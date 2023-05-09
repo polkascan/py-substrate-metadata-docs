@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | ares-odyssey     |
 | Implementation name     | ares-odyssey     |
-| Spec version     | 173     |
+| Spec version     | 174     |
 | SS58 Format     | 34     |
 | Token symbol      | ARES     |
 | Token decimals      | 12     |

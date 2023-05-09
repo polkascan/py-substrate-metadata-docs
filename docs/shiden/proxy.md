@@ -176,8 +176,6 @@ call = substrate.compose_call(
 Dispatch the given `call` from an account that the sender is authorised for through
 `add_proxy`.
 
-Removes any corresponding announcement(s).
-
 The dispatch origin for this call must be _Signed_.
 
 Parameters:
@@ -496,7 +494,7 @@ result = substrate.query(
  bytes).
 #### Value
 ```python
-1800000000000000000
+100160000000000000
 ```
 #### Python
 ```python
@@ -510,7 +508,7 @@ constant = substrate.get_constant('Proxy', 'AnnouncementDepositBase')
  into a pre-existing storage value.
 #### Value
 ```python
-6600000000000000000
+1320000000000000
 ```
 #### Python
 ```python
@@ -546,7 +544,7 @@ constant = substrate.get_constant('Proxy', 'MaxProxies')
  `sizeof(Balance)` bytes and whose key size is `sizeof(AccountId)` bytes.
 #### Value
 ```python
-1800000000000000000
+100160000000000000
 ```
 #### Python
 ```python
@@ -561,7 +559,7 @@ constant = substrate.get_constant('Proxy', 'ProxyDepositBase')
  into account `32 + proxy_type.encode().len()` bytes of data.
 #### Value
 ```python
-3300000000000000000
+660000000000000
 ```
 #### Python
 ```python

@@ -244,8 +244,8 @@ result = substrate.query(
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
-                    'Response': 'scale_info::135',
-                    'Xcm': 'scale_info::135',
+                    'Response': 'scale_info::145',
+                    'Xcm': 'scale_info::145',
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},

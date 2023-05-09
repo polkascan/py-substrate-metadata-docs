@@ -497,6 +497,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_punishment_delay
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| punishment_delay | `T::BlockNumber` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'VaultRegistry', 'set_punishment_delay', {'punishment_delay': 'u32'}
+)
+```
+
+---------
 ### set_secure_collateral_threshold
 Changes the secure threshold for a currency (only executable by the Root account)
 

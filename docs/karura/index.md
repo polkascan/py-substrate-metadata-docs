@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | karura     |
 | Implementation name     | karura     |
-| Spec version     | 2150     |
+| Spec version     | 2170     |
 | SS58 Format     | 8     |
 | Token symbol      | ['KAR', 'KUSD', 'KSM', 'LKSM', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC', 'TAI']     |
 | Token decimals      | [12, 12, 12, 12, 12, 12, 12, 12, 8, 12]     |

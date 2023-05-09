@@ -7,7 +7,7 @@
 ---------
 ### validate_mint
 Validates the proofs provided against the document root associated with the anchor_id.
-Once the proofs are verified, we create a bundled hash (deposit_address + [proof[i].hash])
+Once the proofs are verified, we create a bundled hash `(deposit_address + [proof[i].hash])`
 Bundled Hash is deposited to an DepositAsset event for bridging purposes.
 
 Adds additional fee to compensate the current cost of target chains

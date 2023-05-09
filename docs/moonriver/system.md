@@ -296,12 +296,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -370,20 +370,20 @@ result = substrate.query(
             'AssetManager': {
                 'ForeignAssetDestroyed': {
                     'asset_id': 'u128',
-                    'asset_type': 'scale_info::281',
+                    'asset_type': 'scale_info::292',
                 },
                 'ForeignAssetRegistered': {
-                    'asset': 'scale_info::281',
+                    'asset': 'scale_info::292',
                     'asset_id': 'u128',
-                    'metadata': 'scale_info::282',
+                    'metadata': 'scale_info::293',
                 },
                 'ForeignAssetRemoved': {
                     'asset_id': 'u128',
-                    'asset_type': 'scale_info::281',
+                    'asset_type': 'scale_info::292',
                 },
                 'ForeignAssetTypeChanged': {
                     'asset_id': 'u128',
-                    'new_asset_type': 'scale_info::281',
+                    'new_asset_type': 'scale_info::292',
                 },
                 'LocalAssetDestroyed': {'asset_id': 'u128'},
                 'LocalAssetRegistered': {
@@ -391,9 +391,9 @@ result = substrate.query(
                     'creator': '[u8; 20]',
                     'owner': '[u8; 20]',
                 },
-                'SupportedAssetRemoved': {'asset_type': 'scale_info::281'},
+                'SupportedAssetRemoved': {'asset_type': 'scale_info::292'},
                 'UnitsPerSecondChanged': {
-                    'asset_type': 'scale_info::281',
+                    'asset_type': 'scale_info::292',
                     'units_per_second': 'u128',
                 },
             },
@@ -437,9 +437,9 @@ result = substrate.query(
                 'ForceCreated': {'asset_id': 'u128', 'owner': '[u8; 20]'},
                 'Frozen': {'asset_id': 'u128', 'who': '[u8; 20]'},
                 'Issued': {
+                    'amount': 'u128',
                     'asset_id': 'u128',
                     'owner': '[u8; 20]',
-                    'total_supply': 'u128',
                 },
                 'MetadataCleared': {'asset_id': 'u128'},
                 'MetadataSet': {
@@ -500,7 +500,7 @@ result = substrate.query(
                 'Endowed': {'account': '[u8; 20]', 'free_balance': 'u128'},
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'destination_status': 'scale_info::32',
+                    'destination_status': 'scale_info::33',
                     'from': '[u8; 20]',
                     'to': '[u8; 20]',
                 },
@@ -525,11 +525,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::50',
+                    'result': 'scale_info::51',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::50',
+                    'result': 'scale_info::51',
                 },
                 'Proposed': {
                     'account': '[u8; 20]',
@@ -562,9 +562,9 @@ result = substrate.query(
                 'RewardsPaid': ('[u8; 20]', 'u128'),
             },
             'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::316'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
+                'ExecutedDownward': ('[u8; 32]', 'scale_info::325'),
+                'InvalidFormat': '[u8; 32]',
+                'UnsupportedVersion': '[u8; 32]',
             },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
@@ -593,9 +593,10 @@ result = substrate.query(
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::316',
+                    'outcome': 'scale_info::325',
                 },
                 'InvalidFormat': {'message_id': '[u8; 32]'},
+                'MaxMessagesExhausted': {'message_id': '[u8; 32]'},
                 'OverweightEnqueued': {
                     'message_id': '[u8; 32]',
                     'overweight_index': 'u64',
@@ -617,11 +618,11 @@ result = substrate.query(
                 'CreatedFailed': {'address': '[u8; 20]'},
                 'Executed': {'address': '[u8; 20]'},
                 'ExecutedFailed': {'address': '[u8; 20]'},
-                'Log': {'log': 'scale_info::59'},
+                'Log': {'log': 'scale_info::60'},
             },
             'Ethereum': {
                 'Executed': {
-                    'exit_reason': 'scale_info::63',
+                    'exit_reason': 'scale_info::64',
                     'from': '[u8; 20]',
                     'to': '[u8; 20]',
                     'transaction_hash': '[u8; 32]',
@@ -700,9 +701,9 @@ result = substrate.query(
                 'ForceCreated': {'asset_id': 'u128', 'owner': '[u8; 20]'},
                 'Frozen': {'asset_id': 'u128', 'who': '[u8; 20]'},
                 'Issued': {
+                    'amount': 'u128',
                     'asset_id': 'u128',
                     'owner': '[u8; 20]',
-                    'total_supply': 'u128',
                 },
                 'MetadataCleared': {'asset_id': 'u128'},
                 'MetadataSet': {
@@ -782,11 +783,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::50',
+                    'result': 'scale_info::51',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::50',
+                    'result': 'scale_info::51',
                 },
                 'Proposed': {
                     'account': '[u8; 20]',
@@ -824,7 +825,7 @@ result = substrate.query(
                 },
                 'CancelledCandidateExit': {'candidate': '[u8; 20]'},
                 'CancelledDelegationRequest': {
-                    'cancelled_request': 'scale_info::36',
+                    'cancelled_request': 'scale_info::37',
                     'collator': '[u8; 20]',
                     'delegator': '[u8; 20]',
                 },
@@ -870,7 +871,7 @@ result = substrate.query(
                     'auto_compound': 'u8',
                     'candidate': '[u8; 20]',
                     'delegator': '[u8; 20]',
-                    'delegator_position': 'scale_info::38',
+                    'delegator_position': 'scale_info::39',
                     'locked_amount': 'u128',
                 },
                 'DelegationDecreaseScheduled': {
@@ -959,33 +960,30 @@ result = substrate.query(
                 },
                 'TotalSelectedSet': {'new': 'u32', 'old': 'u32'},
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
                     'scale_info::125',
-                    'scale_info::265',
+                    'scale_info::281',
                 ),
                 'AssetsTrapped': (
                     '[u8; 32]',
                     'scale_info::125',
-                    'scale_info::265',
+                    'scale_info::281',
                 ),
                 'Attempted': {
-                    'Complete': 'u64',
-                    'Error': 'scale_info::263',
-                    'Incomplete': ('u64', 'scale_info::263'),
+                    'Complete': 'scale_info::8',
+                    'Error': 'scale_info::270',
+                    'Incomplete': ('scale_info::8', 'scale_info::270'),
                 },
+                'FeesPaid': ('scale_info::125', ['scale_info::263']),
+                'InvalidQuerier': (
+                    'scale_info::125',
+                    'u64',
+                    'scale_info::125',
+                    (None, 'scale_info::125'),
+                ),
+                'InvalidQuerierVersion': ('scale_info::125', 'u64'),
                 'InvalidResponder': (
                     'scale_info::125',
                     'u64',
@@ -1006,18 +1004,34 @@ result = substrate.query(
                 'NotifyTargetSendFail': (
                     'scale_info::125',
                     'u64',
-                    'scale_info::263',
+                    'scale_info::270',
                 ),
-                'ResponseReady': ('u64', 'scale_info::260'),
+                'ResponseReady': ('u64', 'scale_info::267'),
                 'ResponseTaken': 'u64',
                 'Sent': (
                     'scale_info::125',
                     'scale_info::125',
-                    ['scale_info::259'],
+                    ['scale_info::260'],
                 ),
                 'SupportedVersionChanged': ('scale_info::125', 'u32'),
                 'UnexpectedResponse': ('scale_info::125', 'u64'),
-                'VersionChangeNotified': ('scale_info::125', 'u32'),
+                'VersionChangeNotified': (
+                    'scale_info::125',
+                    'u32',
+                    ['scale_info::263'],
+                ),
+                'VersionNotifyRequested': (
+                    'scale_info::125',
+                    ['scale_info::263'],
+                ),
+                'VersionNotifyStarted': (
+                    'scale_info::125',
+                    ['scale_info::263'],
+                ),
+                'VersionNotifyUnrequested': (
+                    'scale_info::125',
+                    ['scale_info::263'],
+                ),
             },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
@@ -1034,18 +1048,18 @@ result = substrate.query(
                     'delay': 'u32',
                     'delegatee': '[u8; 20]',
                     'delegator': '[u8; 20]',
-                    'proxy_type': 'scale_info::53',
+                    'proxy_type': 'scale_info::54',
                 },
-                'ProxyExecuted': {'result': 'scale_info::50'},
+                'ProxyExecuted': {'result': 'scale_info::51'},
                 'ProxyRemoved': {
                     'delay': 'u32',
                     'delegatee': '[u8; 20]',
                     'delegator': '[u8; 20]',
-                    'proxy_type': 'scale_info::53',
+                    'proxy_type': 'scale_info::54',
                 },
                 'PureCreated': {
                     'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::53',
+                    'proxy_type': 'scale_info::54',
                     'pure': '[u8; 20]',
                     'who': '[u8; 20]',
                 },
@@ -1075,12 +1089,25 @@ result = substrate.query(
                 'RequestFeeIncreased': {'id': 'u64', 'new_fee': 'u128'},
                 'RequestFulfilled': {'id': 'u64'},
             },
+            None: None,
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
             'Referenda': {
                 'Approved': {'index': 'u32'},
-                'Cancelled': {'index': 'u32', 'tally': 'scale_info::301'},
+                'Cancelled': {'index': 'u32', 'tally': 'scale_info::312'},
                 'ConfirmAborted': {'index': 'u32'},
                 'ConfirmStarted': {'index': 'u32'},
-                'Confirmed': {'index': 'u32', 'tally': 'scale_info::301'},
+                'Confirmed': {'index': 'u32', 'tally': 'scale_info::312'},
                 'DecisionDepositPlaced': {
                     'amount': 'u128',
                     'index': 'u32',
@@ -1094,12 +1121,12 @@ result = substrate.query(
                 'DecisionStarted': {
                     'index': 'u32',
                     'proposal': 'scale_info::81',
-                    'tally': 'scale_info::301',
+                    'tally': 'scale_info::312',
                     'track': 'u16',
                 },
                 'DepositSlashed': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Killed': {'index': 'u32', 'tally': 'scale_info::301'},
-                'Rejected': {'index': 'u32', 'tally': 'scale_info::301'},
+                'Killed': {'index': 'u32', 'tally': 'scale_info::312'},
+                'Rejected': {'index': 'u32', 'tally': 'scale_info::312'},
                 'SubmissionDepositRefunded': {
                     'amount': 'u128',
                     'index': 'u32',
@@ -1110,7 +1137,7 @@ result = substrate.query(
                     'proposal': 'scale_info::81',
                     'track': 'u16',
                 },
-                'TimedOut': {'index': 'u32', 'tally': 'scale_info::301'},
+                'TimedOut': {'index': 'u32', 'tally': 'scale_info::312'},
             },
             'Scheduler': {
                 'CallUnavailable': {
@@ -1120,7 +1147,7 @@ result = substrate.query(
                 'Canceled': {'index': 'u32', 'when': 'u32'},
                 'Dispatched': {
                     'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::50',
+                    'result': 'scale_info::51',
                     'task': ('u32', 'u32'),
                 },
                 'PeriodicFailed': {
@@ -1154,11 +1181,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::50',
+                    'result': 'scale_info::51',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::50',
+                    'result': 'scale_info::51',
                 },
                 'Proposed': {
                     'account': '[u8; 20]',
@@ -1174,18 +1201,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::25',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::50'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::25'},
-            },
-            None: None,
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1225,11 +1240,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::50',
+                    'result': 'scale_info::51',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::50',
+                    'result': 'scale_info::51',
                 },
                 'Proposed': {
                     'account': '[u8; 20]',
@@ -1245,19 +1260,30 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::25',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::51'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::25'},
+            },
             'Whitelist': {
                 'CallWhitelisted': {'call_hash': '[u8; 32]'},
                 'WhitelistedCallDispatched': {
                     'call_hash': '[u8; 32]',
-                    'result': 'scale_info::303',
+                    'result': 'scale_info::314',
                 },
                 'WhitelistedCallRemoved': {'call_hash': '[u8; 32]'},
             },
             'XTokens': {
                 'TransferredMultiAssets': {
-                    'assets': ['scale_info::247'],
+                    'assets': ['scale_info::263'],
                     'dest': 'scale_info::125',
-                    'fee': 'scale_info::247',
+                    'fee': 'scale_info::263',
                     'sender': '[u8; 20]',
                 },
             },
@@ -1268,15 +1294,15 @@ result = substrate.query(
                     'location': 'scale_info::125',
                 },
                 'DestFeePerSecondRemoved': {'location': 'scale_info::125'},
-                'HrmpManagementSent': {'action': 'scale_info::295'},
+                'HrmpManagementSent': {'action': 'scale_info::306'},
                 'RegisteredDerivative': {
                     'account_id': '[u8; 20]',
                     'index': 'u16',
                 },
-                'TransactFailed': {'error': 'scale_info::263'},
+                'TransactFailed': {'error': 'scale_info::270'},
                 'TransactInfoChanged': {
                     'location': 'scale_info::125',
-                    'remote_info': 'scale_info::324',
+                    'remote_info': 'scale_info::332',
                 },
                 'TransactInfoRemoved': {'location': 'scale_info::125'},
                 'TransactedDerivative': {
@@ -1300,7 +1326,7 @@ result = substrate.query(
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
                 'Fail': {
-                    'error': 'scale_info::263',
+                    'error': 'scale_info::270',
                     'message_hash': (None, '[u8; 32]'),
                     'weight': 'scale_info::8',
                 },
@@ -1315,7 +1341,6 @@ result = substrate.query(
                     'used': 'scale_info::8',
                 },
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
         },
@@ -1480,11 +1505,11 @@ constant = substrate.get_constant('System', 'BlockLength')
 #### Value
 ```python
 {
-    'base_block': {'proof_size': 0, 'ref_time': 358523000},
+    'base_block': {'proof_size': 0, 'ref_time': 381015000},
     'max_block': {'proof_size': 5242880, 'ref_time': 500000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
@@ -1496,8 +1521,8 @@ constant = substrate.get_constant('System', 'BlockLength')
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 98974000},
-            'max_extrinsic': {'proof_size': 4718592, 'ref_time': 449901026000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
+            'max_extrinsic': {'proof_size': 4718592, 'ref_time': 449900160000},
             'max_total': {'proof_size': 5242880, 'ref_time': 500000000000},
             'reserved': {'proof_size': 1310720, 'ref_time': 125000000000},
         },
@@ -1552,7 +1577,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0xa33d43f58731ad84', 2),
         ('0x582211f65bb14b89', 4),
         ('0xe65b00e46cedd0aa', 2),
-        ('0x37c8bb1350a9a2a8', 2),
+        ('0x37c8bb1350a9a2a8', 3),
         ('0x2aa62120049dd2d2', 1),
         ('0xea93e3f16f3d6962', 2),
         ('0xba8173bf23b2e6f8', 1),
@@ -1561,7 +1586,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'moonriver',
     'impl_version': 0,
     'spec_name': 'moonriver',
-    'spec_version': 2201,
+    'spec_version': 2302,
     'state_version': 0,
     'transaction_version': 2,
 }

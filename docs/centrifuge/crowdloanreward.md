@@ -31,7 +31,7 @@ Modify the ratio between vested and direct payout amount.
 
 This administrative function allows to modify the ratio
 between vested and direct payout amount after the pallet
-was initialized via a call to the [`initialize`] transaction.
+was initialized via a call to the [`Pallet::initialize()`] transaction.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -49,7 +49,7 @@ call = substrate.compose_call(
 Set vesting period.
 
 This administrative transaction allows to modify the vesting period
-after a previous [`initialize`] transaction was triggered in order
+after a previous [`Pallet::initialize()`] transaction was triggered in order
 to perform seminal pallet configuration.
 
 \#\# Emits

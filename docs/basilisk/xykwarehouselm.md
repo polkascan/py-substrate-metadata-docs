@@ -192,7 +192,7 @@ constant = substrate.get_constant('XYKWarehouseLM', 'MaxFarmEntriesPerDeposit')
 ---------
 ### MaxYieldFarmsPerGlobalFarm
  Max number of yield farms can exist in global farm. This includes all farms in the
- storage(active, stopped, deleted).
+ storage(active, stopped, terminated).
 #### Value
 ```python
 50
@@ -276,6 +276,10 @@ Action cannot be completed because unexpected error has occurred. This should be
 to protocol maintainers.
 
 ---------
+### IncorrectValuedShares
+Value of deposited shares amount in reward currency is bellow min. limit.
+
+---------
 ### InsufficientRewardCurrencyBalance
 Reward currency balance is not sufficient.
 
@@ -350,9 +354,5 @@ Yield farm entry doesn&\#x27;t exist for given deposit.
 ---------
 ### YieldFarmNotFound
 Yield farm does not exist.
-
----------
-### ZeroValuedShares
-Value of deposited shares amount in reward currency can&\#x27;t be 0.
 
 ---------

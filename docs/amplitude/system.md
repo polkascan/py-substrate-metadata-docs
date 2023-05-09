@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -1006,6 +1006,64 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'VaultStaking': {
+                'DepositStake': {
+                    'amount': 'i128',
+                    'nominator_id': 'AccountId',
+                    'vault_id': 'scale_info::120',
+                },
+                'DistributeReward': {
+                    'amount': 'i128',
+                    'currency_id': 'scale_info::102',
+                    'vault_id': 'scale_info::120',
+                },
+                'ForceRefund': {'vault_id': 'scale_info::120'},
+                'IncreaseNonce': {
+                    'new_nonce': 'u32',
+                    'vault_id': 'scale_info::120',
+                },
+                'WithdrawReward': {
+                    'amount': 'i128',
+                    'currency_id': 'scale_info::102',
+                    'nominator_id': 'AccountId',
+                    'nonce': 'u32',
+                    'vault_id': 'scale_info::120',
+                },
+                'WithdrawStake': {
+                    'amount': 'i128',
+                    'nominator_id': 'AccountId',
+                    'vault_id': 'scale_info::120',
+                },
+            },
+            'VestingManager': {
+                'VestingScheduleRemoved': {
+                    'schedule_index': 'u32',
+                    'who': 'AccountId',
+                },
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::56',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::8',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::8',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::8',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1166,35 +1224,6 @@ result = substrate.query(
                     'reward_id': 'scale_info::120',
                 },
             },
-            'VaultStaking': {
-                'DepositStake': {
-                    'amount': 'i128',
-                    'nominator_id': 'AccountId',
-                    'vault_id': 'scale_info::120',
-                },
-                'DistributeReward': {
-                    'amount': 'i128',
-                    'currency_id': 'scale_info::102',
-                    'vault_id': 'scale_info::120',
-                },
-                'ForceRefund': {'vault_id': 'scale_info::120'},
-                'IncreaseNonce': {
-                    'new_nonce': 'u32',
-                    'vault_id': 'scale_info::120',
-                },
-                'WithdrawReward': {
-                    'amount': 'i128',
-                    'currency_id': 'scale_info::102',
-                    'nominator_id': 'AccountId',
-                    'nonce': 'u32',
-                    'vault_id': 'scale_info::120',
-                },
-                'WithdrawStake': {
-                    'amount': 'i128',
-                    'nominator_id': 'AccountId',
-                    'vault_id': 'scale_info::120',
-                },
-            },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
@@ -1206,28 +1235,6 @@ result = substrate.query(
                     'fee': 'scale_info::75',
                     'sender': 'AccountId',
                 },
-            },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::56',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::8',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::8',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::8',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             'ZenlinkProtocol': {
                 'AssetSwap': (
@@ -1340,7 +1347,6 @@ result = substrate.query(
                     'AccountId',
                 ),
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1581,14 +1587,16 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0x16da96d36c6d5bb7', 1),
         ('0x69e2e1aa421f4fb0', 1),
         ('0x2be5cb02b0a56e73', 1),
+        ('0x68b66ba122c93fa7', 2),
+        ('0x6ef953004ba30e59', 1),
     ],
     'authoring_version': 1,
     'impl_name': 'amplitude',
     'impl_version': 0,
     'spec_name': 'amplitude',
-    'spec_version': 8,
+    'spec_version': 9,
     'state_version': 1,
-    'transaction_version': 8,
+    'transaction_version': 9,
 }
 ```
 #### Python

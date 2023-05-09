@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | heiko     |
 | Implementation name     | heiko     |
-| Spec version     | 196     |
+| Spec version     | 197     |
 | SS58 Format     | 110     |
 | Token symbol      | HKO     |
 | Token decimals      | 12     |

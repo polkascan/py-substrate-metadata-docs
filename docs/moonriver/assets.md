@@ -1019,7 +1019,7 @@ Some assets were issued.
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```[u8; 20]```
-| total_supply | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u128```
 
 ---------
 ### MetadataCleared
@@ -1255,7 +1255,7 @@ constant = substrate.get_constant('Assets', 'MetadataDepositPerByte')
  Must be configured to result in a weight that makes each call fit in a block.
 #### Value
 ```python
-1000
+656
 ```
 #### Python
 ```python

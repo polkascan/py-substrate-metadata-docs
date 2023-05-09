@@ -359,19 +359,19 @@ result = substrate.query(
         },
         {
             'EIP1559': {
-                'logs': ['scale_info::59'],
+                'logs': ['scale_info::60'],
                 'logs_bloom': '[u8; 256]',
                 'status_code': 'u8',
                 'used_gas': '[u64; 4]',
             },
             'EIP2930': {
-                'logs': ['scale_info::59'],
+                'logs': ['scale_info::60'],
                 'logs_bloom': '[u8; 256]',
                 'status_code': 'u8',
                 'used_gas': '[u64; 4]',
             },
             'Legacy': {
-                'logs': ['scale_info::59'],
+                'logs': ['scale_info::60'],
                 'logs_bloom': '[u8; 256]',
                 'status_code': 'u8',
                 'used_gas': '[u64; 4]',

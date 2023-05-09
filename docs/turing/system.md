@@ -311,12 +311,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -1032,6 +1032,13 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1080,14 +1087,6 @@ result = substrate.query(
                 'ValveClosed': None,
                 'ValveOpen': None,
             },
-            None: None,
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Vesting': {
                 'VestFailed': {
                     'account': 'AccountId',
@@ -1096,17 +1095,9 @@ result = substrate.query(
                 },
                 'Vested': {'account': 'AccountId', 'amount': 'u128'},
             },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::82'],
-                    'dest': 'scale_info::52',
-                    'fee': 'scale_info::82',
-                    'sender': 'AccountId',
-                },
-            },
             'XcmpHandler': {
-                'XcmDataAdded': {'currency_id': 'u32', 'para_id': 'u32'},
-                'XcmDataRemoved': {'currency_id': 'u32', 'para_id': 'u32'},
+                'DestAssetConfigChanged': {'asset_location': 'scale_info::52'},
+                'DestAssetConfigRemoved': {'asset_location': 'scale_info::52'},
                 'XcmFeesFailed': {
                     'dest': 'AccountId',
                     'error': 'scale_info::23',
@@ -1115,6 +1106,15 @@ result = substrate.query(
                 'XcmFeesPaid': {'dest': 'AccountId', 'source': 'AccountId'},
                 'XcmSent': {'para_id': 'u32'},
                 'XcmTransactedLocally': None,
+            },
+            None: None,
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::82'],
+                    'dest': 'scale_info::52',
+                    'fee': 'scale_info::82',
+                    'sender': 'AccountId',
+                },
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -1378,9 +1378,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'turing',
     'impl_version': 1,
     'spec_name': 'turing',
-    'spec_version': 290,
+    'spec_version': 291,
     'state_version': 0,
-    'transaction_version': 14,
+    'transaction_version': 15,
 }
 ```
 #### Python

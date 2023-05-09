@@ -749,6 +749,10 @@ Worker is not in `Ready` state to proceed.
 The worker is not registered in the registry.
 
 ---------
+### WorkerReregisterNeeded
+The worker need to be re-registered to be added to a pool.
+
+---------
 ### _GatekeeperNotRegistered
 Deprecated
 

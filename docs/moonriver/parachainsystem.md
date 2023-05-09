@@ -117,6 +117,14 @@ An upgrade has been authorized.
 | code_hash | `T::Hash` | ```[u8; 32]```
 
 ---------
+### UpwardMessageSent
+An upward message was sent to the relay chain.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+
+---------
 ### ValidationFunctionApplied
 The validation function was applied as of the contained relay chain block number.
 #### Attributes
@@ -300,7 +308,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::349'
+'scale_info::358'
 ```
 ---------
 ### LastRelayChainBlockNumber

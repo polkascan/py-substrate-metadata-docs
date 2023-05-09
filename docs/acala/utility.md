@@ -60,24 +60,9 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Authority': {
             'delay': 'u32',
             'origin': {
-                'system': {
-                    'None': None,
-                    'Root': None,
-                    'Signed': 'AccountId',
-                },
                 None: None,
                 'Authority': {
                     'delay': 'u32',
@@ -118,8 +103,6 @@ call = substrate.compose_call(
                             'Response': 'scale_info::74',
                             'Xcm': 'scale_info::74',
                         },
-                        'Void': (),
-                        None: None,
                         'TechnicalCommittee': {
                             'Member': 'AccountId',
                             'Members': (
@@ -128,11 +111,13 @@ call = substrate.compose_call(
                             ),
                             '_Phantom': None,
                         },
+                        'Void': (),
                         'system': {
                             'None': None,
                             'Root': None,
                             'Signed': 'AccountId',
                         },
+                        None: None,
                     },
                 },
                 'CumulusXcm': {
@@ -286,7 +271,22 @@ call = substrate.compose_call(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {
+                    'None': None,
+                    'Root': None,
+                    'Signed': 'AccountId',
+                },
             },
+        },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
         },
         'FinancialCouncil': {
             'Member': 'AccountId',
