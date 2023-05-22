@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | turing     |
 | Implementation name     | turing     |
-| Spec version     | 291     |
+| Spec version     | 292     |
 | SS58 Format     | 51     |
 | Token symbol      | TUR     |
 | Token decimals      | 10     |

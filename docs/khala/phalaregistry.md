@@ -339,6 +339,11 @@ A new Gatekeeper is enabled on the blockchain
 | pubkey | `WorkerPublicKey` | ```[u8; 32]```
 
 ---------
+### GatekeeperLaunched
+#### Attributes
+No attributes
+
+---------
 ### GatekeeperRemoved
 #### Attributes
 | Name | Type | Composition
@@ -479,6 +484,21 @@ result = substrate.query(
 #### Return value
 ```python
 ['[u8; 32]']
+```
+---------
+### GatekeeperLaunchedAt
+ The block number and unix timestamp when the gatekeeper is launched
+
+#### Python
+```python
+result = substrate.query(
+    'PhalaRegistry', 'GatekeeperLaunchedAt', []
+)
+```
+
+#### Return value
+```python
+('u32', 'u64')
 ```
 ---------
 ### GatekeeperMasterPubkey

@@ -895,7 +895,6 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::31'},
             },
-            None: None,
             'Vesting': {
                 'VestingCompleted': ('AccountId', 'u32'),
                 'VestingUpdated': ('AccountId', 'u32', 'u128'),
@@ -983,6 +982,7 @@ result = substrate.query(
                     'u128',
                 ),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

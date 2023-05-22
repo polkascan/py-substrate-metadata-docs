@@ -367,32 +367,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': '[u8; 20]',
-                },
-                'Deposit': {'amount': 'u128', 'who': '[u8; 20]'},
-                'DustLost': {'account': '[u8; 20]', 'amount': 'u128'},
-                'Endowed': {'account': '[u8; 20]', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::33',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                },
-                'Reserved': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Slashed': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                },
-                'Unreserved': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Withdraw': {'amount': 'u128', 'who': '[u8; 20]'},
-            },
-            None: None,
             'AssetManager': {
                 'ForeignAssetDestroyed': {
                     'asset_id': 'u128',
@@ -514,6 +488,31 @@ result = substrate.query(
                     'new_keys': '[u8; 32]',
                     'new_nimbus_id': '[u8; 32]',
                 },
+            },
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': '[u8; 20]',
+                },
+                'Deposit': {'amount': 'u128', 'who': '[u8; 20]'},
+                'DustLost': {'account': '[u8; 20]', 'amount': 'u128'},
+                'Endowed': {'account': '[u8; 20]', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::33',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                },
+                'Reserved': {'amount': 'u128', 'who': '[u8; 20]'},
+                'Slashed': {'amount': 'u128', 'who': '[u8; 20]'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                },
+                'Unreserved': {'amount': 'u128', 'who': '[u8; 20]'},
+                'Withdraw': {'amount': 'u128', 'who': '[u8; 20]'},
             },
             'CouncilCollective': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -1189,6 +1188,15 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::105'],
+                    'dest': 'scale_info::91',
+                    'fee': 'scale_info::105',
+                    'sender': '[u8; 20]',
+                },
+            },
+            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -1199,14 +1207,6 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::51'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::25'},
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::105'],
-                    'dest': 'scale_info::91',
-                    'fee': 'scale_info::105',
-                    'sender': '[u8; 20]',
-                },
             },
             'XcmTransactor': {
                 'DeRegisteredDerivative': {'index': 'u16'},

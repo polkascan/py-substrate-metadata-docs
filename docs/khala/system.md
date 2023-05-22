@@ -353,17 +353,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             None: None,
             'Assets': {
                 'AccountsDestroyed': {
@@ -952,6 +941,7 @@ result = substrate.query(
             },
             'PhalaRegistry': {
                 'GatekeeperAdded': {'pubkey': '[u8; 32]'},
+                'GatekeeperLaunched': None,
                 'GatekeeperRemoved': {'pubkey': '[u8; 32]'},
                 'InitialScoreSet': {'init_score': 'u32', 'pubkey': '[u8; 32]'},
                 'MasterKeyRotated': {
@@ -1367,6 +1357,17 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1852,7 +1853,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'khala',
     'impl_version': 0,
     'spec_name': 'khala',
-    'spec_version': 1241,
+    'spec_version': 1245,
     'state_version': 0,
     'transaction_version': 6,
 }

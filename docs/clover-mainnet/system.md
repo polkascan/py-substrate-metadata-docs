@@ -378,6 +378,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'AssetConfig': {
                 'AssetLocationRegistered': ('u64', 'scale_info::132'),
                 'FeeRateChanged': ('u64', (None, 'u128')),
@@ -635,31 +647,6 @@ result = substrate.query(
                     'voter': 'AccountId',
                 },
             },
-            'EVM': {
-                'BalanceDeposit': ('AccountId', '[u8; 20]', '[u64; 4]'),
-                'BalanceWithdraw': ('AccountId', '[u8; 20]', '[u64; 4]'),
-                'Created': '[u8; 20]',
-                'CreatedFailed': '[u8; 20]',
-                'Executed': '[u8; 20]',
-                'ExecutedFailed': '[u8; 20]',
-                'Log': {
-                    'address': '[u8; 20]',
-                    'data': 'Bytes',
-                    'topics': ['[u8; 32]'],
-                },
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -680,6 +667,19 @@ result = substrate.query(
                     'message_id': '[u8; 32]',
                     'remaining_weight': 'u64',
                     'required_weight': 'u64',
+                },
+            },
+            'EVM': {
+                'BalanceDeposit': ('AccountId', '[u8; 20]', '[u64; 4]'),
+                'BalanceWithdraw': ('AccountId', '[u8; 20]', '[u64; 4]'),
+                'Created': '[u8; 20]',
+                'CreatedFailed': '[u8; 20]',
+                'Executed': '[u8; 20]',
+                'ExecutedFailed': '[u8; 20]',
+                'Log': {
+                    'address': '[u8; 20]',
+                    'data': 'Bytes',
+                    'topics': ['[u8; 32]'],
                 },
             },
             'ElectionsPhragmen': {

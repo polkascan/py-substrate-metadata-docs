@@ -292,7 +292,7 @@ result = substrate.query(
             None,
             {
                 'collection_admin': 'bool',
-                'restricted': (None, 'scale_info::267'),
+                'restricted': (None, 'scale_info::268'),
                 'token_owner': 'bool',
             },
         ),
@@ -383,7 +383,7 @@ result = substrate.query(
     'u32',
     'u32',
     {'collection': 'u32', 'token': 'u32'},
-    "[({'properties': ['scale_info::274'], 'owner': (None, 'scale_info::112'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::251', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::387', 'limits': 'scale_info::256', 'permissions': 'scale_info::261', 'token_property_permissions': ['scale_info::270'], 'properties': ['scale_info::274'], 'read_only': 'bool', 'flags': 'scale_info::409'}, {'proof_size': 'u64', 'compact_proof_size': 'u64', 'compressed_proof_size': 'u64', 'results': ['scale_info::412'], 'key_values': ['scale_info::417']}); 0]",
+    "[({'properties': ['scale_info::275'], 'owner': (None, 'scale_info::112'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::252', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::387', 'limits': 'scale_info::257', 'permissions': 'scale_info::262', 'token_property_permissions': ['scale_info::271'], 'properties': ['scale_info::275'], 'read_only': 'bool', 'flags': 'scale_info::409'}, {'proof_size': 'u64', 'compact_proof_size': 'u64', 'compressed_proof_size': 'u64', 'results': ['scale_info::412'], 'key_values': ['scale_info::417']}); 0]",
 )
 ```
 ---------

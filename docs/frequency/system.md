@@ -251,9 +251,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -329,6 +329,23 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
+            'Capacity': {
+                'CapacityWithdrawn': {'amount': 'u128', 'msa_id': 'u64'},
+                'EpochLengthUpdated': {'blocks': 'u32'},
+                'StakeWithdrawn': {'account': 'AccountId', 'amount': 'u128'},
+                'Staked': {
+                    'account': 'AccountId',
+                    'amount': 'u128',
+                    'capacity': 'u128',
+                    'target': 'u64',
+                },
+                'UnStaked': {
+                    'account': 'AccountId',
+                    'amount': 'u128',
+                    'capacity': 'u128',
+                    'target': 'u64',
+                },
+            },
             'CollatorSelection': {
                 'CandidateAdded': {
                     'account_id': 'AccountId',
@@ -369,57 +386,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Messages': {
-                'MessagesStored': {
-                    'block_number': 'u32',
-                    'count': 'u16',
-                    'schema_id': 'u16',
-                },
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::52',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::52',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::38',
-                    'timepoint': 'scale_info::52',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
-            None: None,
-            'Capacity': {
-                'CapacityWithdrawn': {'amount': 'u128', 'msa_id': 'u64'},
-                'EpochLengthUpdated': {'blocks': 'u32'},
-                'StakeWithdrawn': {'account': 'AccountId', 'amount': 'u128'},
-                'Staked': {
-                    'account': 'AccountId',
-                    'amount': 'u128',
-                    'capacity': 'u128',
-                    'target': 'u64',
-                },
-                'UnStaked': {
-                    'account': 'AccountId',
-                    'amount': 'u128',
-                    'capacity': 'u128',
-                    'target': 'u64',
-                },
-            },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -449,6 +415,13 @@ result = substrate.query(
                 'HandleClaimed': {'handle': 'Bytes', 'msa_id': 'u64'},
                 'HandleRetired': {'handle': 'Bytes', 'msa_id': 'u64'},
             },
+            'Messages': {
+                'MessagesStored': {
+                    'block_number': 'u32',
+                    'count': 'u16',
+                    'schema_id': 'u16',
+                },
+            },
             'Msa': {
                 'DelegationGranted': {
                     'delegator_id': 'u64',
@@ -468,6 +441,32 @@ result = substrate.query(
                 'PublicKeyAdded': {'key': 'AccountId', 'msa_id': 'u64'},
                 'PublicKeyDeleted': {'key': 'AccountId'},
             },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::52',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::52',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::38',
+                    'timepoint': 'scale_info::52',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
                     'dmq_head': '[u8; 32]',
@@ -483,27 +482,6 @@ result = substrate.query(
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
-            },
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::38',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Schemas': {
                 'SchemaCreated': {'key': 'AccountId', 'schema_id': 'u16'},
@@ -535,17 +513,6 @@ result = substrate.query(
                     'prev_content_hash': 'u32',
                     'schema_id': 'u16',
                 },
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -621,6 +588,39 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::38'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
+            },
+            None: None,
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::38',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
         },
         'phase': {

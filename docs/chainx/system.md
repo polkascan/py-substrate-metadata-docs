@@ -375,11 +375,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'Grandpa': {
-                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
-                'Paused': None,
-                'Resumed': None,
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -553,6 +548,11 @@ result = substrate.query(
                     'data': 'Bytes',
                     'topics': ['[u8; 32]'],
                 },
+            },
+            'Grandpa': {
+                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
+                'Paused': None,
+                'Resumed': None,
             },
             'Identity': {
                 'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},

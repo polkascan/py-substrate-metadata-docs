@@ -311,9 +311,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -382,6 +382,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -926,6 +927,14 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::66', 'u64'),
                 'VersionChangeNotified': ('scale_info::66', 'u32'),
             },
+            'Pools': {
+                'PoolsMutated': {
+                    'collator': 'scale_info::184',
+                    'community': 'scale_info::184',
+                    'fuel_tanks': 'scale_info::184',
+                    'price_discovery': 'scale_info::184',
+                },
+            },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
@@ -968,23 +977,6 @@ result = substrate.query(
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::80'],
-                    'dest': 'scale_info::66',
-                    'fee': 'scale_info::80',
-                    'sender': 'AccountId',
-                },
-            },
-            None: None,
-            'Pools': {
-                'PoolsMutated': {
-                    'collator': 'scale_info::184',
-                    'community': 'scale_info::184',
-                    'fuel_tanks': 'scale_info::184',
-                    'price_discovery': 'scale_info::184',
-                },
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -1060,6 +1052,14 @@ result = substrate.query(
                     'vesting_schedule': 'scale_info::43',
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::80'],
+                    'dest': 'scale_info::66',
+                    'fee': 'scale_info::80',
+                    'sender': 'AccountId',
+                },
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},

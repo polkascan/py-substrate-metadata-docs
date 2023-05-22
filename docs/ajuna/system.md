@@ -378,6 +378,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -556,7 +557,6 @@ result = substrate.query(
                 'UpwardMessageSent': (None, '[u8; 32]'),
                 'XcmpMessageSent': (None, '[u8; 32]'),
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

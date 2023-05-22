@@ -242,8 +242,6 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Origins': (
                     'StakingAdmin',
                     'Treasurer',
@@ -279,6 +277,8 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Void': (),
                 'XcmPallet': {
                     'Response': 'scale_info::156',

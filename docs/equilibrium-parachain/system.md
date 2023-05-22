@@ -574,6 +574,49 @@ result = substrate.query(
                     'required_weight': 'scale_info::14',
                 },
             },
+            'EqDex': {
+                'Match': (
+                    'u64',
+                    'u128',
+                    'i64',
+                    'u64',
+                    'AccountId',
+                    'AccountId',
+                    'u128',
+                    'u128',
+                    'u128',
+                    'scale_info::102',
+                ),
+                'OrderCreated': (
+                    'AccountId',
+                    'u64',
+                    'u64',
+                    'u128',
+                    'i64',
+                    'scale_info::102',
+                    'u64',
+                    'u64',
+                ),
+                'OrderDeleted': ('AccountId', 'u64', 'u64', 'scale_info::103'),
+            },
+            'EqSessionManager': {
+                'ValidatorAdded': 'AccountId',
+                'ValidatorRemoved': 'AccountId',
+            },
+            'Oracle': {'NewPrice': ('u64', 'i64', 'i64', 'AccountId')},
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::14',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            None: None,
             'EqAssets': {
                 'DeleteAsset': ('u64', 'Bytes'),
                 'NewAsset': ('u64', 'Bytes'),
@@ -618,31 +661,6 @@ result = substrate.query(
                 'Remark': '[u8; 32]',
                 'ToBridgeTransfer': ('AccountId', 'u64', 'u128'),
                 'WithdrawalsToggled': ('[u8; 32]', 'u8', 'bool'),
-            },
-            'EqDex': {
-                'Match': (
-                    'u64',
-                    'u128',
-                    'i64',
-                    'u64',
-                    'AccountId',
-                    'AccountId',
-                    'u128',
-                    'u128',
-                    'u128',
-                    'scale_info::102',
-                ),
-                'OrderCreated': (
-                    'AccountId',
-                    'u64',
-                    'u64',
-                    'u128',
-                    'i64',
-                    'scale_info::102',
-                    'u64',
-                    'u64',
-                ),
-                'OrderDeleted': ('AccountId', 'u64', 'u64', 'scale_info::103'),
             },
             'EqLending': {
                 'Deposit': {
@@ -690,10 +708,6 @@ result = substrate.query(
                 'ProposalCancelled': '[u8; 32]',
                 'SudoFailed': '[u8; 32]',
                 'ThresholdModified': 'u32',
-            },
-            'EqSessionManager': {
-                'ValidatorAdded': 'AccountId',
-                'ValidatorRemoved': 'AccountId',
             },
             'EqStaking': {
                 'Distributed': 'u32',
@@ -743,18 +757,6 @@ result = substrate.query(
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
                 },
-            },
-            'Oracle': {'NewPrice': ('u64', 'i64', 'i64', 'AccountId')},
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::14',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
             },
             'PolkadotXcm': {
                 'AssetsTrapped': (
@@ -845,7 +847,6 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'Subaccounts': {
                 'RegisterBailsman': ('AccountId', 'AccountId'),
                 'SubaccountCreated': (
@@ -937,7 +938,6 @@ result = substrate.query(
                 'VestingCompleted': 'AccountId',
                 'VestingUpdated': ('AccountId', 'u128'),
             },
-            None: None,
             'Whitelists': {
                 'AddedToWhitelist': 'AccountId',
                 'RemovedFromWhitelist': 'AccountId',

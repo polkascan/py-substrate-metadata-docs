@@ -382,7 +382,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -708,30 +707,6 @@ result = substrate.query(
                     'multisig': 'AccountId',
                 },
             },
-            'NftSales': {
-                'ForSale': {
-                    'class_id': 'u64',
-                    'instance_id': 'u128',
-                    'sale': 'scale_info::82',
-                },
-                'Removed': {'class_id': 'u64', 'instance_id': 'u128'},
-                'Sold': {
-                    'buyer': 'AccountId',
-                    'class_id': 'u64',
-                    'instance_id': 'u128',
-                    'sale': 'scale_info::82',
-                },
-            },
-            'OrmlAssetRegistry': {
-                'RegisteredAsset': {
-                    'asset_id': 'scale_info::75',
-                    'metadata': 'scale_info::186',
-                },
-                'UpdatedAsset': {
-                    'asset_id': 'scale_info::75',
-                    'metadata': 'scale_info::186',
-                },
-            },
             'OrmlTokens': {
                 'BalanceSet': {
                     'currency_id': 'scale_info::75',
@@ -802,6 +777,31 @@ result = substrate.query(
                     'amount': 'u128',
                     'currency_id': 'scale_info::75',
                     'who': 'AccountId',
+                },
+            },
+            None: None,
+            'NftSales': {
+                'ForSale': {
+                    'class_id': 'u64',
+                    'instance_id': 'u128',
+                    'sale': 'scale_info::82',
+                },
+                'Removed': {'class_id': 'u64', 'instance_id': 'u128'},
+                'Sold': {
+                    'buyer': 'AccountId',
+                    'class_id': 'u64',
+                    'instance_id': 'u128',
+                    'sale': 'scale_info::82',
+                },
+            },
+            'OrmlAssetRegistry': {
+                'RegisteredAsset': {
+                    'asset_id': 'scale_info::75',
+                    'metadata': 'scale_info::186',
+                },
+                'UpdatedAsset': {
+                    'asset_id': 'scale_info::75',
+                    'metadata': 'scale_info::186',
                 },
             },
             'OrmlXcm': {

@@ -24,7 +24,7 @@ from scalecodec import ScaleBytes
 from scalecodec.exceptions import RemainingScaleBytesNotEmptyException
 
 from substrateinterface import SubstrateInterface
-from websocket import WebSocketBadStatusException
+from websocket import WebSocketBadStatusException, WebSocketAddressException, WebSocketTimeoutException
 
 logging.basicConfig(level=logging.INFO)
 
@@ -279,5 +279,5 @@ if __name__ == "__main__":
                 print(f'    - {info["file"]}')
                 for pallet in info["pallets"]:
                     print(f'    - {pallet["name"]}: {pallet["file"]}')
-            except WebSocketBadStatusException:
+            except (WebSocketBadStatusException, WebSocketAddressException, WebSocketTimeoutException):
                 logging.error(f"Failed to generate docs for {network}")

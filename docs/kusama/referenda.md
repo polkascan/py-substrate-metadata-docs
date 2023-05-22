@@ -184,12 +184,6 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -1209,6 +1203,12 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
 }
 )

@@ -439,22 +439,6 @@ result = substrate.query(
                 'InvalidFormat': '[u8; 32]',
                 'UnsupportedVersion': '[u8; 32]',
             },
-            'Delegation': {
-                'DelegationCreated': (
-                    'AccountId',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    'AccountId',
-                    'scale_info::63',
-                ),
-                'DelegationRemoved': ('AccountId', '[u8; 32]'),
-                'DelegationRevoked': ('AccountId', '[u8; 32]'),
-                'DepositReclaimed': ('AccountId', '[u8; 32]'),
-                'HierarchyCreated': ('AccountId', '[u8; 32]', '[u8; 32]'),
-                'HierarchyRemoved': ('AccountId', '[u8; 32]'),
-                'HierarchyRevoked': ('AccountId', '[u8; 32]'),
-            },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -478,18 +462,6 @@ result = substrate.query(
                     'vote': 'scale_info::38',
                     'voter': 'AccountId',
                 },
-            },
-            'Did': {
-                'DidCallDispatched': ('AccountId', 'scale_info::42'),
-                'DidCreated': ('AccountId', 'AccountId'),
-                'DidDeleted': 'AccountId',
-                'DidUpdated': 'AccountId',
-            },
-            'DidLookup': {
-                'AssociationEstablished': ('scale_info::66', 'AccountId'),
-                'AssociationRemoved': ('scale_info::66', 'AccountId'),
-                'MigrationCompleted': None,
-                'MigrationProgress': None,
             },
             'DmpQueue': {
                 'ExecutedDownward': {
@@ -562,6 +534,48 @@ result = substrate.query(
                 'NewRound': ('u64', 'u32'),
                 'Rewarded': ('AccountId', 'u128'),
                 'RoundInflationSet': ('u64', 'u64', 'u64', 'u64'),
+            },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            None: None,
+            'Delegation': {
+                'DelegationCreated': (
+                    'AccountId',
+                    '[u8; 32]',
+                    '[u8; 32]',
+                    '[u8; 32]',
+                    'AccountId',
+                    'scale_info::63',
+                ),
+                'DelegationRemoved': ('AccountId', '[u8; 32]'),
+                'DelegationRevoked': ('AccountId', '[u8; 32]'),
+                'DepositReclaimed': ('AccountId', '[u8; 32]'),
+                'HierarchyCreated': ('AccountId', '[u8; 32]', '[u8; 32]'),
+                'HierarchyRemoved': ('AccountId', '[u8; 32]'),
+                'HierarchyRevoked': ('AccountId', '[u8; 32]'),
+            },
+            'Did': {
+                'DidCallDispatched': ('AccountId', 'scale_info::42'),
+                'DidCreated': ('AccountId', 'AccountId'),
+                'DidDeleted': 'AccountId',
+                'DidUpdated': 'AccountId',
+            },
+            'DidLookup': {
+                'AssociationEstablished': ('scale_info::66', 'AccountId'),
+                'AssociationRemoved': ('scale_info::66', 'AccountId'),
+                'MigrationCompleted': None,
+                'MigrationProgress': None,
             },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
@@ -648,11 +662,6 @@ result = substrate.query(
                     ['scale_info::120'],
                 ),
             },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -712,7 +721,6 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u64'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -785,13 +793,6 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -856,7 +857,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

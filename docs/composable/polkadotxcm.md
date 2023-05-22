@@ -27321,6 +27321,7 @@ call = substrate.compose_call(
         },
     },
     'message': {
+        None: None,
         'V2': [
             {
                 'BuyExecution': {
@@ -27587,7 +27588,6 @@ call = substrate.compose_call(
                 ],
             },
         ],
-        None: None,
         'V3': [
             {
                 'AliasOrigin': {

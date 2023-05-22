@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -367,7 +367,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AMM': {
                 'LiquidityAdded': (
                     'AccountId',
@@ -1153,6 +1152,7 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',

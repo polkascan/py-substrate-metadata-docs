@@ -63,11 +63,9 @@ call = substrate.compose_call(
         'Authority': {
             'delay': 'u32',
             'origin': {
-                None: None,
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
-                        None: None,
                         'Authority': {
                             'delay': 'u32',
                             'origin': 'scale_info::114',
@@ -118,6 +116,7 @@ call = substrate.compose_call(
                             'Root': None,
                             'Signed': 'AccountId',
                         },
+                        None: None,
                     },
                 },
                 'CumulusXcm': {
@@ -276,14 +275,9 @@ call = substrate.compose_call(
                     'Root': None,
                     'Signed': 'AccountId',
                 },
+                None: None,
             },
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
@@ -1167,6 +1161,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
     'call': 'Call',
 }

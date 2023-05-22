@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -1140,7 +1140,6 @@ result = substrate.query(
                     'scale_info::8',
                 ),
             },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -1151,10 +1150,6 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::61'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
-            },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
             'VoterList': {
                 'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
@@ -1167,6 +1162,11 @@ result = substrate.query(
                     'result': 'scale_info::455',
                 },
                 'WhitelistedCallRemoved': {'call_hash': '[u8; 32]'},
+            },
+            None: None,
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
             'XcmPallet': {
                 'AssetsClaimed': (

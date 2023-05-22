@@ -6299,7 +6299,7 @@ constant = substrate.get_constant('AutomationTime', 'MaxBlockWeight')
  The maximum number of times that a task can be scheduled for.
 #### Value
 ```python
-24
+36
 ```
 #### Python
 ```python

@@ -290,7 +290,7 @@ result = substrate.query(
  Percentage of spare funds (if any) that are burnt per spend period.
 #### Value
 ```python
-10000
+0
 ```
 #### Python
 ```python

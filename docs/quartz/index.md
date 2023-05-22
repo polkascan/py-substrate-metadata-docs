@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | quartz     |
 | Implementation name     | quartz     |
-| Spec version     | 939054     |
+| Spec version     | 941055     |
 | SS58 Format     | 255     |
 | Token symbol      | QTZ     |
 | Token decimals      | 18     |
@@ -15,7 +15,7 @@
 ## Pallets
 | Name | Calls | Events | Storage functions | Constants | Errors |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| [AppPromotion](apppromotion.md) | [9](apppromotion.md#calls) | [4](apppromotion.md#events) | [7](apppromotion.md#storage-functions) | [5](apppromotion.md#constants) | [7](apppromotion.md#errors) |
+| [AppPromotion](apppromotion.md) | [9](apppromotion.md#calls) | [4](apppromotion.md#events) | [6](apppromotion.md#storage-functions) | [5](apppromotion.md#constants) | [7](apppromotion.md#errors) |
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [0](authorship.md#calls) | [0](authorship.md#events) | [1](authorship.md#storage-functions) | [0](authorship.md#constants) | [0](authorship.md#errors) |
@@ -51,7 +51,7 @@
 | [Tokens](tokens.md) | [5](tokens.md#calls) | [15](tokens.md#events) | [4](tokens.md#storage-functions) | [2](tokens.md#constants) | [8](tokens.md#errors) |
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
 | [Treasury](treasury.md) | [5](treasury.md#calls) | [9](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
-| [Unique](unique.md) | [32](unique.md#calls) | [0](unique.md#events) | [10](unique.md#storage-functions) | [13](unique.md#constants) | [3](unique.md#errors) |
+| [Unique](unique.md) | [32](unique.md#calls) | [0](unique.md#events) | [9](unique.md#storage-functions) | [13](unique.md#constants) | [3](unique.md#errors) |
 | [Vesting](vesting.md) | [4](vesting.md#calls) | [3](vesting.md#events) | [1](vesting.md#storage-functions) | [1](vesting.md#constants) | [6](vesting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [7](xcmpqueue.md#events) | [10](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

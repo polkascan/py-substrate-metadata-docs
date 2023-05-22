@@ -246,7 +246,7 @@ result = substrate.query(
 ```
 ---------
 ### Exposures
- Stakers&#x27; exposure.
+ Current stakers&#x27; exposure.
 
 #### Python
 ```python
@@ -295,6 +295,21 @@ result = substrate.query(
     'unstaking_kton': [('u128', 'u32')],
     'unstaking_ring': [('u128', 'u32')],
 }
+```
+---------
+### NextExposures
+ Next stakers&#x27; exposure.
+
+#### Python
+```python
+result = substrate.query(
+    'DarwiniaStaking', 'NextExposures', ['[u8; 20]']
+)
+```
+
+#### Return value
+```python
+{'nominators': [{'value': 'u32', 'who': '[u8; 20]'}], 'total': 'u32'}
 ```
 ---------
 ### Nominators

@@ -116,21 +116,21 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'Council': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
-        'Void': (),
-        None: None,
-        'Ethereum': {
-            'EthereumTransaction': '[u8; 20]',
-        },
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
+        'Council': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
+        'Ethereum': {
+            'EthereumTransaction': '[u8; 20]',
+        },
+        'Void': (),
     },
     'call': 'Call',
 }

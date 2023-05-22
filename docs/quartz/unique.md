@@ -451,7 +451,7 @@ call = substrate.compose_call(
                         'collection_admin': 'bool',
                         'restricted': (
                             None,
-                            'scale_info::333',
+                            'scale_info::334',
                         ),
                         'token_owner': 'bool',
                     },
@@ -633,7 +633,7 @@ call = substrate.compose_call(
     'Unique', 'create_multiple_items_ex', {
     'collection_id': 'u32',
     'data': {
-        'Fungible': 'scale_info::354',
+        'Fungible': 'scale_info::355',
         'NFT': [
             {
                 'owner': {
@@ -641,7 +641,7 @@ call = substrate.compose_call(
                     'Substrate': 'AccountId',
                 },
                 'properties': [
-                    'scale_info::340',
+                    'scale_info::341',
                 ],
             },
         ],
@@ -649,7 +649,7 @@ call = substrate.compose_call(
             {
                 'pieces': 'u128',
                 'properties': [
-                    'scale_info::340',
+                    'scale_info::341',
                 ],
                 'user': {
                     'Ethereum': '[u8; 20]',
@@ -664,7 +664,7 @@ call = substrate.compose_call(
                     'value': 'Bytes',
                 },
             ],
-            'users': 'scale_info::354',
+            'users': 'scale_info::355',
         },
     },
 }
@@ -1059,7 +1059,7 @@ call = substrate.compose_call(
                 'collection_admin': 'bool',
                 'restricted': (
                     None,
-                    'scale_info::333',
+                    'scale_info::334',
                 ),
                 'token_owner': 'bool',
             },
@@ -1488,38 +1488,22 @@ result = substrate.query(
 'u32'
 ```
 ---------
-### VariableMetaDataBasket
- Variable metadata sponsoring
- Collection id (controlled?2), token id (controlled?2)
-
-#### Python
-```python
-result = substrate.query(
-    'Unique', 'VariableMetaDataBasket', ['u32', 'u32']
-)
-```
-
-#### Return value
-```python
-'u32'
-```
----------
 ## Constants
 
 ---------
-### COLLECTION_ADMINS_LIMIT
-Maximum admins per collection.
+### collection_admins_limit
+ Maximum admins per collection.
 #### Value
 ```python
 5
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'COLLECTION_ADMINS_LIMIT')
+constant = substrate.get_constant('Unique', 'collection_admins_limit')
 ```
 ---------
-### FT_DEFAULT_COLLECTION_LIMITS
-Default FT collection limit.
+### ft_default_collection_limits
+ Default FT collection limit.
 #### Value
 ```python
 {
@@ -1536,110 +1520,110 @@ Default FT collection limit.
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'FT_DEFAULT_COLLECTION_LIMITS')
+constant = substrate.get_constant('Unique', 'ft_default_collection_limits')
 ```
 ---------
-### MAX_COLLECTION_DESCRIPTION_LENGTH
-Maximal length of a collection description.
+### max_collection_description_length
+ Maximal length of a collection description.
 #### Value
 ```python
 256
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'MAX_COLLECTION_DESCRIPTION_LENGTH')
+constant = substrate.get_constant('Unique', 'max_collection_description_length')
 ```
 ---------
-### MAX_COLLECTION_NAME_LENGTH
-Maximal length of a collection name.
+### max_collection_name_length
+ Maximal length of a collection name.
 #### Value
 ```python
 64
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'MAX_COLLECTION_NAME_LENGTH')
+constant = substrate.get_constant('Unique', 'max_collection_name_length')
 ```
 ---------
-### MAX_COLLECTION_PROPERTIES_SIZE
-Maximum size for all collection properties.
+### max_collection_properties_size
+ Maximum size for all collection properties.
 #### Value
 ```python
 40960
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'MAX_COLLECTION_PROPERTIES_SIZE')
+constant = substrate.get_constant('Unique', 'max_collection_properties_size')
 ```
 ---------
-### MAX_PROPERTIES_PER_ITEM
-A maximum number of token properties.
+### max_properties_per_item
+ A maximum number of token properties.
 #### Value
 ```python
 64
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'MAX_PROPERTIES_PER_ITEM')
+constant = substrate.get_constant('Unique', 'max_properties_per_item')
 ```
 ---------
-### MAX_PROPERTY_KEY_LENGTH
-Maximal length of a property key.
+### max_property_key_length
+ Maximal length of a property key.
 #### Value
 ```python
 256
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'MAX_PROPERTY_KEY_LENGTH')
+constant = substrate.get_constant('Unique', 'max_property_key_length')
 ```
 ---------
-### MAX_PROPERTY_VALUE_LENGTH
-Maximal length of a property value.
+### max_property_value_length
+ Maximal length of a property value.
 #### Value
 ```python
 32768
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'MAX_PROPERTY_VALUE_LENGTH')
+constant = substrate.get_constant('Unique', 'max_property_value_length')
 ```
 ---------
-### MAX_TOKEN_PREFIX_LENGTH
-Maximal length of a token prefix.
+### max_token_prefix_length
+ Maximal length of a token prefix.
 #### Value
 ```python
 16
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'MAX_TOKEN_PREFIX_LENGTH')
+constant = substrate.get_constant('Unique', 'max_token_prefix_length')
 ```
 ---------
-### MAX_TOKEN_PROPERTIES_SIZE
-Maximum size of all token properties.
+### max_token_properties_size
+ Maximum size of all token properties.
 #### Value
 ```python
 32768
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'MAX_TOKEN_PROPERTIES_SIZE')
+constant = substrate.get_constant('Unique', 'max_token_properties_size')
 ```
 ---------
-### NESTING_BUDGET
-A maximum number of levels of depth in the token nesting tree.
+### nesting_budget
+ A maximum number of levels of depth in the token nesting tree.
 #### Value
 ```python
 5
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'NESTING_BUDGET')
+constant = substrate.get_constant('Unique', 'nesting_budget')
 ```
 ---------
-### NFT_DEFAULT_COLLECTION_LIMITS
-Default NFT collection limit.
+### nft_default_collection_limits
+ Default NFT collection limit.
 #### Value
 ```python
 {
@@ -1656,11 +1640,11 @@ Default NFT collection limit.
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'NFT_DEFAULT_COLLECTION_LIMITS')
+constant = substrate.get_constant('Unique', 'nft_default_collection_limits')
 ```
 ---------
-### RFT_DEFAULT_COLLECTION_LIMITS
-Default RFT collection limit.
+### rft_default_collection_limits
+ Default RFT collection limit.
 #### Value
 ```python
 {
@@ -1677,7 +1661,7 @@ Default RFT collection limit.
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Unique', 'RFT_DEFAULT_COLLECTION_LIMITS')
+constant = substrate.get_constant('Unique', 'rft_default_collection_limits')
 ```
 ---------
 ## Errors

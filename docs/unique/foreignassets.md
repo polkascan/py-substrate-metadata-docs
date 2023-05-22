@@ -2660,6 +2660,7 @@ call = substrate.compose_call(
     'ForeignAssets', 'update_foreign_asset', {
     'foreign_asset_id': 'u32',
     'location': {
+        None: None,
         'V2': {
             'interior': {
                 'Here': None,
@@ -3540,7 +3541,6 @@ call = substrate.compose_call(
             },
             'parents': 'u8',
         },
-        None: None,
         'V3': {
             'interior': {
                 'Here': None,

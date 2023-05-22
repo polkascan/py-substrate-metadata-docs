@@ -373,20 +373,6 @@ result = substrate.query(
 'u128'
 ```
 ---------
-### UpgradedToReserves
-
-#### Python
-```python
-result = substrate.query(
-    'AppPromotion', 'UpgradedToReserves', []
-)
-```
-
-#### Return value
-```python
-'bool'
-```
----------
 ## Constants
 
 ---------

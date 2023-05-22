@@ -469,6 +469,38 @@ result = substrate.query(
                     'owner': 'AccountId',
                 },
             },
+            'CalamariVesting': {
+                'VestingCompleted': 'AccountId',
+                'VestingScheduleUpdated': ['u64'],
+                'VestingUpdated': ('AccountId', 'u128'),
+            },
+            'CollatorSelection': {
+                'CandidateAdded': ('AccountId', 'u128'),
+                'CandidateRemoved': 'AccountId',
+                'NewCandidacyBond': 'u128',
+                'NewDesiredCandidates': 'u32',
+                'NewEvictionBaseline': 'u8',
+                'NewEvictionTolerance': 'u8',
+                'NewInvulnerables': ['AccountId'],
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'u64',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'TransactionPause': {
+                'PalletPaused': 'Bytes',
+                'PalletUnpaused': 'Bytes',
+                'TransactionPaused': ('Bytes', 'Bytes'),
+                'TransactionUnpaused': ('Bytes', 'Bytes'),
+            },
+            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -493,20 +525,6 @@ result = substrate.query(
                 },
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'CalamariVesting': {
-                'VestingCompleted': 'AccountId',
-                'VestingScheduleUpdated': ['u64'],
-                'VestingUpdated': ('AccountId', 'u128'),
-            },
-            'CollatorSelection': {
-                'CandidateAdded': ('AccountId', 'u128'),
-                'CandidateRemoved': 'AccountId',
-                'NewCandidacyBond': 'u128',
-                'NewDesiredCandidates': 'u32',
-                'NewEvictionBaseline': 'u8',
-                'NewEvictionTolerance': 'u8',
-                'NewInvulnerables': ['AccountId'],
             },
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -842,17 +860,6 @@ result = substrate.query(
                 },
                 'TotalSelectedSet': {'new': 'u32', 'old': 'u32'},
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'u64',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsTrapped': (
                     '[u8; 32]',
@@ -960,12 +967,6 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
-            'TransactionPause': {
-                'PalletPaused': 'Bytes',
-                'PalletUnpaused': 'Bytes',
-                'TransactionPaused': ('Bytes', 'Bytes'),
-                'TransactionUnpaused': ('Bytes', 'Bytes'),
-            },
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1029,7 +1030,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

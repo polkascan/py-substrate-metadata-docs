@@ -101,6 +101,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### refresh_vault_lock_and_check
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pid | `u64` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'PhalaVault', 'refresh_vault_lock_and_check', {'pid': 'u64'}
+)
+```
+
+---------
 ### set_payout_pref
 Changes the vault commission rate
 
@@ -251,6 +265,16 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('PhalaVault', 'InitialPriceCheckPoint')
+```
+---------
+### VaultQueuePeriod
+#### Value
+```python
+1814400
+```
+#### Python
+```python
+constant = substrate.get_constant('PhalaVault', 'VaultQueuePeriod')
 ```
 ---------
 ## Errors

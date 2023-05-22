@@ -487,12 +487,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Indices': {
-                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
-                'IndexFreed': {'index': 'u32'},
-                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
-            },
-            None: None,
             'Crowdloan': {
                 'AddedToNewRaise': {'para_id': 'u32'},
                 'AllRefunded': {'para_id': 'u32'},
@@ -619,6 +613,11 @@ result = substrate.query(
                 'AllGood': None,
                 'HeartbeatReceived': {'authority_id': '[u8; 32]'},
                 'SomeOffline': {'offline': [('AccountId', 'scale_info::58')]},
+            },
+            'Indices': {
+                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
+                'IndexFreed': {'index': 'u32'},
+                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
             },
             'Multisig': {
                 'MultisigApproval': {
@@ -1006,6 +1005,7 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::125', 'u64'),
                 'VersionChangeNotified': ('scale_info::125', 'u32'),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

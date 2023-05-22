@@ -164,8 +164,8 @@ call = substrate.compose_call(
                 'info': {
                     'additional': [
                         (
-                            'scale_info::240',
-                            'scale_info::240',
+                            'scale_info::241',
+                            'scale_info::241',
                         ),
                     ],
                     'display': {
@@ -232,7 +232,7 @@ call = substrate.compose_call(
                 'judgements': [
                     (
                         'u32',
-                        'scale_info::275',
+                        'scale_info::276',
                     ),
                 ],
             },
@@ -288,7 +288,7 @@ call = substrate.compose_call(
                 [
                     (
                         'AccountId',
-                        'scale_info::240',
+                        'scale_info::241',
                     ),
                 ],
             ),
@@ -920,7 +920,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [('scale_info::240', 'scale_info::240')],
+        'additional': [('scale_info::241', 'scale_info::241')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',

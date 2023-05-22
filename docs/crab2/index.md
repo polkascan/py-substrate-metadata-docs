@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | Crab2     |
 | Implementation name     | DarwiniaOfficialRust     |
-| Spec version     | 6210     |
+| Spec version     | 6300     |
 | SS58 Format     | 42     |
 | Token symbol      | CRAB     |
 | Token decimals      | 18     |
@@ -28,7 +28,7 @@
 | [Council](council.md) | [7](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [DarwiniaFeeMarket](darwiniafeemarket.md) | [7](darwiniafeemarket.md#calls) | [9](darwiniafeemarket.md#events) | [6](darwiniafeemarket.md#storage-functions) | [9](darwiniafeemarket.md#constants) | [9](darwiniafeemarket.md#errors) |
-| [DarwiniaStaking](darwiniastaking.md) | [8](darwiniastaking.md#calls) | [4](darwiniastaking.md#events) | [10](darwiniastaking.md#storage-functions) | [4](darwiniastaking.md#constants) | [6](darwiniastaking.md#errors) |
+| [DarwiniaStaking](darwiniastaking.md) | [8](darwiniastaking.md#calls) | [4](darwiniastaking.md#events) | [11](darwiniastaking.md#storage-functions) | [4](darwiniastaking.md#constants) | [6](darwiniastaking.md#errors) |
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
 | [Deposit](deposit.md) | [3](deposit.md#calls) | [3](deposit.md#events) | [1](deposit.md#storage-functions) | [2](deposit.md#constants) | [8](deposit.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |

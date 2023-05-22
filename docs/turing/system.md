@@ -382,16 +382,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'AssetRegistry': {
-                'RegisteredAsset': {
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::35',
-                },
-                'UpdatedAsset': {
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::35',
-                },
-            },
             'AutomationPrice': {
                 'AssetCreated': {'asset': 'Bytes'},
                 'AssetDeleted': {'asset': 'Bytes'},
@@ -641,6 +631,83 @@ result = substrate.query(
                     'sub': 'AccountId',
                 },
             },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'PolkadotXcm': {
+                'AssetsTrapped': (
+                    '[u8; 32]',
+                    'scale_info::52',
+                    'scale_info::97',
+                ),
+                'Attempted': {
+                    'Complete': 'u64',
+                    'Error': 'scale_info::73',
+                    'Incomplete': ('u64', 'scale_info::73'),
+                },
+                'InvalidResponder': (
+                    'scale_info::52',
+                    'u64',
+                    (None, 'scale_info::52'),
+                ),
+                'InvalidResponderVersion': ('scale_info::52', 'u64'),
+                'Notified': ('u64', 'u8', 'u8'),
+                'NotifyDecodeFailed': ('u64', 'u8', 'u8'),
+                'NotifyDispatchError': ('u64', 'u8', 'u8'),
+                'NotifyOverweight': (
+                    'u64',
+                    'u8',
+                    'u8',
+                    'scale_info::8',
+                    'scale_info::8',
+                ),
+                'NotifyTargetMigrationFail': ('scale_info::41', 'u64'),
+                'NotifyTargetSendFail': (
+                    'scale_info::52',
+                    'u64',
+                    'scale_info::73',
+                ),
+                'ResponseReady': ('u64', 'scale_info::87'),
+                'ResponseTaken': 'u64',
+                'Sent': (
+                    'scale_info::52',
+                    'scale_info::52',
+                    ['scale_info::79'],
+                ),
+                'SupportedVersionChanged': ('scale_info::52', 'u32'),
+                'UnexpectedResponse': ('scale_info::52', 'u64'),
+                'VersionChangeNotified': ('scale_info::52', 'u32'),
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::23',
+                    'dispatch_info': 'scale_info::20',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'AssetRegistry': {
+                'RegisteredAsset': {
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::35',
+                },
+                'UpdatedAsset': {
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::35',
+                },
+            },
             'Multisig': {
                 'MultisigApproval': {
                     'approving': 'AccountId',
@@ -813,61 +880,6 @@ result = substrate.query(
                 },
                 'TotalSelectedSet': {'new': 'u32', 'old': 'u32'},
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
-            'PolkadotXcm': {
-                'AssetsTrapped': (
-                    '[u8; 32]',
-                    'scale_info::52',
-                    'scale_info::97',
-                ),
-                'Attempted': {
-                    'Complete': 'u64',
-                    'Error': 'scale_info::73',
-                    'Incomplete': ('u64', 'scale_info::73'),
-                },
-                'InvalidResponder': (
-                    'scale_info::52',
-                    'u64',
-                    (None, 'scale_info::52'),
-                ),
-                'InvalidResponderVersion': ('scale_info::52', 'u64'),
-                'Notified': ('u64', 'u8', 'u8'),
-                'NotifyDecodeFailed': ('u64', 'u8', 'u8'),
-                'NotifyDispatchError': ('u64', 'u8', 'u8'),
-                'NotifyOverweight': (
-                    'u64',
-                    'u8',
-                    'u8',
-                    'scale_info::8',
-                    'scale_info::8',
-                ),
-                'NotifyTargetMigrationFail': ('scale_info::41', 'u64'),
-                'NotifyTargetSendFail': (
-                    'scale_info::52',
-                    'u64',
-                    'scale_info::73',
-                ),
-                'ResponseReady': ('u64', 'scale_info::87'),
-                'ResponseTaken': 'u64',
-                'Sent': (
-                    'scale_info::52',
-                    'scale_info::52',
-                    ['scale_info::79'],
-                ),
-                'SupportedVersionChanged': ('scale_info::52', 'u32'),
-                'UnexpectedResponse': ('scale_info::52', 'u64'),
-                'VersionChangeNotified': ('scale_info::52', 'u32'),
-            },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
@@ -914,17 +926,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1095,6 +1096,14 @@ result = substrate.query(
                 },
                 'Vested': {'account': 'AccountId', 'amount': 'u128'},
             },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::82'],
+                    'dest': 'scale_info::52',
+                    'fee': 'scale_info::82',
+                    'sender': 'AccountId',
+                },
+            },
             'XcmpHandler': {
                 'DestAssetConfigChanged': {'asset_location': 'scale_info::52'},
                 'DestAssetConfigRemoved': {'asset_location': 'scale_info::52'},
@@ -1106,15 +1115,6 @@ result = substrate.query(
                 'XcmFeesPaid': {'dest': 'AccountId', 'source': 'AccountId'},
                 'XcmSent': {'para_id': 'u32'},
                 'XcmTransactedLocally': None,
-            },
-            None: None,
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::82'],
-                    'dest': 'scale_info::52',
-                    'fee': 'scale_info::82',
-                    'sender': 'AccountId',
-                },
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -1378,7 +1378,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'turing',
     'impl_version': 1,
     'spec_name': 'turing',
-    'spec_version': 291,
+    'spec_version': 292,
     'state_version': 0,
     'transaction_version': 15,
 }

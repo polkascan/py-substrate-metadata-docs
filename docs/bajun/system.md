@@ -367,6 +367,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AwesomeAvatars': {
                 'AvatarForged': {
                     'avatar_id': '[u8; 32]',
@@ -928,7 +929,6 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
             },
-            None: None,
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},
                 'VestingScheduleAdded': {

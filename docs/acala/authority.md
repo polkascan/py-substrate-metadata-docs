@@ -1163,6 +1163,16 @@ call = substrate.compose_call(
     'Authority', 'delay_scheduled_dispatch', {
     'additional_delay': 'u32',
     'initial_origin': {
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Authority': {
             'delay': 'u32',
             'origin': {
@@ -1170,16 +1180,11 @@ call = substrate.compose_call(
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
+                        None: None,
                         'Authority': {
                             'delay': 'u32',
                             'origin': 'scale_info::114',
                         },
-                        'system': {
-                            'None': None,
-                            'Root': None,
-                            'Signed': 'AccountId',
-                        },
-                        None: None,
                         'CumulusXcm': {
                             'Relay': None,
                             'SiblingParachain': 'u32',
@@ -1221,6 +1226,11 @@ call = substrate.compose_call(
                             '_Phantom': None,
                         },
                         'Void': (),
+                        'system': {
+                            'None': None,
+                            'Root': None,
+                            'Signed': 'AccountId',
+                        },
                     },
                 },
                 'CumulusXcm': {
@@ -1381,11 +1391,6 @@ call = substrate.compose_call(
                 },
             },
         },
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
-        None: None,
         'FinancialCouncil': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -2265,11 +2270,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
     'task_id': 'u32',
 }
@@ -2314,18 +2314,20 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Authority', 'fast_track_scheduled_dispatch', {
     'initial_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
         None: None,
         'Authority': {
             'delay': 'u32',
             'origin': {
+                'system': {
+                    'None': None,
+                    'Root': None,
+                    'Signed': 'AccountId',
+                },
+                None: None,
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
+                        None: None,
                         'Authority': {
                             'delay': 'u32',
                             'origin': 'scale_info::114',
@@ -2376,7 +2378,6 @@ call = substrate.compose_call(
                             'Root': None,
                             'Signed': 'AccountId',
                         },
-                        None: None,
                     },
                 },
                 'CumulusXcm': {
@@ -2521,8 +2522,6 @@ call = substrate.compose_call(
                         'parents': 'u8',
                     },
                 },
-                'Void': (),
-                None: None,
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': (
@@ -2531,11 +2530,7 @@ call = substrate.compose_call(
                     ),
                     '_Phantom': None,
                 },
-                'system': {
-                    'None': None,
-                    'Root': None,
-                    'Signed': 'AccountId',
-                },
+                'Void': (),
             },
         },
         'CumulusXcm': {
@@ -3421,6 +3416,11 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'task_id': 'u32',
     'when': {

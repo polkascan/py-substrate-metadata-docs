@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | khala     |
 | Implementation name     | khala     |
-| Spec version     | 1241     |
+| Spec version     | 1245     |
 | SS58 Format     | 30     |
 | Token symbol      | PHA     |
 | Token decimals      | 12     |
@@ -39,12 +39,12 @@
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
 | [PhalaBasePool](phalabasepool.md) | [5](phalabasepool.md#calls) | [7](phalabasepool.md#events) | [9](phalabasepool.md#storage-functions) | [0](phalabasepool.md#constants) | [19](phalabasepool.md#errors) |
-| [PhalaComputation](phalacomputation.md) | [9](phalacomputation.md#calls) | [16](phalacomputation.md#events) | [17](phalacomputation.md#storage-functions) | [0](phalacomputation.md#constants) | [22](phalacomputation.md#errors) |
+| [PhalaComputation](phalacomputation.md) | [9](phalacomputation.md#calls) | [16](phalacomputation.md#events) | [17](phalacomputation.md#storage-functions) | [0](phalacomputation.md#constants) | [23](phalacomputation.md#errors) |
 | [PhalaMq](phalamq.md) | [3](phalamq.md#calls) | [0](phalamq.md#events) | [3](phalamq.md#storage-functions) | [0](phalamq.md#constants) | [3](phalamq.md#errors) |
-| [PhalaRegistry](phalaregistry.md) | [15](phalaregistry.md#calls) | [9](phalaregistry.md#events) | [18](phalaregistry.md#storage-functions) | [3](phalaregistry.md#constants) | [38](phalaregistry.md#errors) |
+| [PhalaRegistry](phalaregistry.md) | [15](phalaregistry.md#calls) | [10](phalaregistry.md#events) | [19](phalaregistry.md#storage-functions) | [3](phalaregistry.md#constants) | [38](phalaregistry.md#errors) |
 | [PhalaStakePool](phalastakepool.md) | [0](phalastakepool.md#calls) | [0](phalastakepool.md#events) | [11](phalastakepool.md#storage-functions) | [0](phalastakepool.md#constants) | [0](phalastakepool.md#errors) |
-| [PhalaStakePoolv2](phalastakepoolv2.md) | [18](phalastakepoolv2.md#calls) | [15](phalastakepoolv2.md#events) | [6](phalastakepoolv2.md#storage-functions) | [4](phalastakepoolv2.md#constants) | [33](phalastakepoolv2.md#errors) |
-| [PhalaVault](phalavault.md) | [7](phalavault.md#calls) | [5](phalavault.md#events) | [1](phalavault.md#storage-functions) | [1](phalavault.md#constants) | [8](phalavault.md#errors) |
+| [PhalaStakePoolv2](phalastakepoolv2.md) | [17](phalastakepoolv2.md#calls) | [15](phalastakepoolv2.md#events) | [5](phalastakepoolv2.md#storage-functions) | [3](phalastakepoolv2.md#constants) | [33](phalastakepoolv2.md#errors) |
+| [PhalaVault](phalavault.md) | [8](phalavault.md#calls) | [5](phalavault.md#events) | [1](phalavault.md#storage-functions) | [2](phalavault.md#constants) | [8](phalavault.md#errors) |
 | [PhalaWrappedBalances](phalawrappedbalances.md) | [6](phalawrappedbalances.md#calls) | [4](phalawrappedbalances.md#events) | [3](phalawrappedbalances.md#storage-functions) | [2](phalawrappedbalances.md#constants) | [6](phalawrappedbalances.md#errors) |
 | [PhragmenElection](phragmenelection.md) | [6](phragmenelection.md#calls) | [7](phragmenelection.md#events) | [5](phragmenelection.md#storage-functions) | [10](phragmenelection.md#constants) | [17](phragmenelection.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
