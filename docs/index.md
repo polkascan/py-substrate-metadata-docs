@@ -114,7 +114,7 @@ So examples of valid input for `beneficiary` are:
 
 ## Library resources 
 
-* [Getting started with py-substrate-interface](https://polkascan.github.io/py-substrate-interface/getting-started/)
-* [Function reference of py-substrate-interface](https://polkascan.github.io/py-substrate-interface/)
-* [Information about SCALE-encoding](https://github.com/polkascan/py-scale-codec#examples-of-different-types)
+* [Getting started with py-substrate-interface](https://polkascan.github.io/py-substrate-interface/getting-started/installation/)
+* [Function reference of py-substrate-interface](https://polkascan.github.io/py-substrate-interface/reference/base/)
+* [Information about SCALE-encoding](https://polkascan.github.io/py-scale-codec/)
 * [Substrate Stackexchange](https://substrate.stackexchange.com/questions/tagged/python)
