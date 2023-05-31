@@ -353,7 +353,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Assets': {
                 'AccountsDestroyed': {
                     'accounts_destroyed': 'u32',
@@ -1005,6 +1004,11 @@ result = substrate.query(
                     'to_owner': 'u128',
                     'to_stakers': 'u128',
                 },
+                'RewardToDistributionDismissedDust': {
+                    'amount': 'u128',
+                    'pid': 'u64',
+                },
+                'RewardToOwnerDismissedDust': {'amount': 'u128', 'pid': 'u64'},
                 'SlashSettled': {
                     'amount': 'u128',
                     'pid': 'u64',
@@ -1421,6 +1425,7 @@ result = substrate.query(
                     'tip_hash': '[u8; 32]',
                 },
             },
+            None: None,
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1853,7 +1858,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'khala',
     'impl_version': 0,
     'spec_name': 'khala',
-    'spec_version': 1245,
+    'spec_version': 1247,
     'state_version': 0,
     'transaction_version': 6,
 }

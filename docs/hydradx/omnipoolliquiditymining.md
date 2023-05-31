@@ -99,7 +99,7 @@ Create yield farm for given `asset_id` in the omnipool.
 Only farm owner can perform this action.
 
 Asset with `asset_id` has to be registered in the omnipool.
-Yield farm for same `asset_id` can exist only once in the global farm.
+At most one `active` yield farm can exist in one global farm for the same `asset_id`.
 
 Parameters:
 - `origin`: global farm&\#x27;s owner.
@@ -255,7 +255,7 @@ Stop liquidity miming for specific yield farm.
 This function claims rewards from `GlobalFarm` last time and stop yield farm
 incentivization from a `GlobalFarm`. Users will be able to only withdraw
 shares(with claiming) after calling this function.
-`deposit_shares()` and `claim_rewards()` are not allowed on stopped yield farm.
+`deposit_shares()` is not allowed on stopped yield farm.
  
 Only farm owner can perform this action.
 
@@ -345,35 +345,6 @@ call = substrate.compose_call(
     'asset_id': 'u32',
     'global_farm_id': 'u32',
     'yield_farm_id': 'u32',
-}
-)
-```
-
----------
-### update_global_farm
-Update global farm&\#x27;s exchange rate between [LRNA] and `incentivized_asset`.
-
-Only farm&\#x27;s owner can perform this action.
-
-Parameters:
-- `origin`: global farm&\#x27;s owner.
-- `global_farm_id`: id of the global farm to update.
-- `lrna_price_adjustment`: new value for LRNA price adjustment.
-
-Emits `GlobalFarmUpdated` event when successful.
-
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| global_farm_id | `GlobalFarmId` | 
-| lrna_price_adjustment | `FixedU128` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'OmnipoolLiquidityMining', 'update_global_farm', {
-    'global_farm_id': 'u32',
-    'lrna_price_adjustment': 'u128',
 }
 )
 ```
@@ -487,15 +458,6 @@ Global farm was terminated.
 | who | `T::AccountId` | ```AccountId```
 | reward_currency | `T::AssetId` | ```u32```
 | undistributed_rewards | `Balance` | ```u128```
-
----------
-### GlobalFarmUpdated
-Global farm&\#x27;s `lrna_price_adjustment` was updated.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| id | `GlobalFarmId` | ```u32```
-| lrna_price_adjustment | `FixedU128` | ```u128```
 
 ---------
 ### RewardClaimed
@@ -641,6 +603,28 @@ result = substrate.query(
 constant = substrate.get_constant('OmnipoolLiquidityMining', 'NFTCollectionId')
 ```
 ---------
+### OraclePeriod
+ Oracle&#x27;s price aggregation period.
+#### Value
+```python
+'TenMinutes'
+```
+#### Python
+```python
+constant = substrate.get_constant('OmnipoolLiquidityMining', 'OraclePeriod')
+```
+---------
+### OracleSource
+ Identifier of oracle data soruce
+#### Value
+```python
+'0x6f6d6e69706f6f6c'
+```
+#### Python
+```python
+constant = substrate.get_constant('OmnipoolLiquidityMining', 'OracleSource')
+```
+---------
 ## Errors
 
 ---------
@@ -655,6 +639,14 @@ Signed account is not owner of the deposit.
 ### InconsistentState
 Action cannot be completed because unexpected error has occurred. This should be reported
 to protocol maintainers.
+
+---------
+### OracleNotAvailable
+Oracle could not be found for requested assets.
+
+---------
+### PriceAdjustmentNotAvailable
+Oracle providing `price_adjustment` could not be found for requested assets.
 
 ---------
 ### ZeroClaimedRewards

@@ -731,6 +731,7 @@ result = substrate.query(
                 },
                 'LiquidityRemoved': {
                     'asset_id': 'u32',
+                    'fee': 'u128',
                     'position_id': 'u128',
                     'shares_removed': 'u128',
                     'who': 'AccountId',
@@ -792,10 +793,6 @@ result = substrate.query(
                     'reward_currency': 'u32',
                     'undistributed_rewards': 'u128',
                     'who': 'AccountId',
-                },
-                'GlobalFarmUpdated': {
-                    'id': 'u32',
-                    'lrna_price_adjustment': 'u128',
                 },
                 'RewardClaimed': {
                     'claimed': 'u128',
@@ -1548,7 +1545,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'hydradx',
     'impl_version': 0,
     'spec_name': 'hydradx',
-    'spec_version': 138,
+    'spec_version': 151,
     'state_version': 0,
     'transaction_version': 1,
 }

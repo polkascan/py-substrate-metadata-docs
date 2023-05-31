@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -367,7 +367,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AssetManager': {
                 'ForeignAssetDestroyed': {
                     'asset_id': 'u128',
@@ -1260,17 +1259,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::25',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::51'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::25'},
-            },
             'Whitelist': {
                 'CallWhitelisted': {'call_hash': '[u8; 32]'},
                 'WhitelistedCallDispatched': {
@@ -1278,14 +1266,6 @@ result = substrate.query(
                     'result': 'scale_info::314',
                 },
                 'WhitelistedCallRemoved': {'call_hash': '[u8; 32]'},
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::263'],
-                    'dest': 'scale_info::125',
-                    'fee': 'scale_info::263',
-                    'sender': '[u8; 20]',
-                },
             },
             'XcmTransactor': {
                 'DeRegisteredDerivative': {'index': 'u16'},
@@ -1320,6 +1300,26 @@ result = substrate.query(
                     'call': 'Bytes',
                     'dest': 'scale_info::125',
                     'fee_payer': '[u8; 20]',
+                },
+            },
+            None: None,
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::25',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::51'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::25'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::263'],
+                    'dest': 'scale_info::125',
+                    'fee': 'scale_info::263',
+                    'sender': '[u8; 20]',
                 },
             },
             'XcmpQueue': {

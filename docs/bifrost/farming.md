@@ -5,6 +5,20 @@
 ## Calls
 
 ---------
+### add_boost_pool_whitelist
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| whitelist | `Vec<PoolId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'add_boost_pool_whitelist', {'whitelist': ['u32']}
+)
+```
+
+---------
 ### charge
 #### Attributes
 | Name | Type |
@@ -17,6 +31,152 @@
 call = substrate.compose_call(
     'Farming', 'charge', {
     'pid': 'u32',
+    'rewards': [
+        (
+            {
+                'ForeignAsset': 'u32',
+                'LPToken': (
+                    (
+                        'ASG',
+                        'BNC',
+                        'KUSD',
+                        'DOT',
+                        'KSM',
+                        'ETH',
+                        'KAR',
+                        'ZLK',
+                        'PHA',
+                        'RMRK',
+                        'MOVR',
+                    ),
+                    'u8',
+                    (
+                        'ASG',
+                        'BNC',
+                        'KUSD',
+                        'DOT',
+                        'KSM',
+                        'ETH',
+                        'KAR',
+                        'ZLK',
+                        'PHA',
+                        'RMRK',
+                        'MOVR',
+                    ),
+                    'u8',
+                ),
+                'Native': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'Stable': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'StableLpToken': 'u32',
+                'Token': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'Token2': 'u8',
+                'VSBond': (
+                    (
+                        'ASG',
+                        'BNC',
+                        'KUSD',
+                        'DOT',
+                        'KSM',
+                        'ETH',
+                        'KAR',
+                        'ZLK',
+                        'PHA',
+                        'RMRK',
+                        'MOVR',
+                    ),
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
+                'VSBond2': (
+                    'u8',
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
+                'VSToken': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'VSToken2': 'u8',
+                'VToken': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'VToken2': 'u8',
+            },
+            'u128',
+        ),
+    ],
+}
+)
+```
+
+---------
+### charge_boost
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'charge_boost', {
     'rewards': [
         (
             {
@@ -1020,6 +1180,18 @@ call = substrate.compose_call(
 ```
 
 ---------
+### end_boost_round
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'end_boost_round', {}
+)
+```
+
+---------
 ### force_gauge_claim
 #### Attributes
 | Name | Type |
@@ -1479,6 +1651,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_next_round_whitelist
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| whitelist | `Vec<PoolId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'set_next_round_whitelist', {'whitelist': ['u32']}
+)
+```
+
+---------
 ### set_retire_limit
 #### Attributes
 | Name | Type |
@@ -1489,6 +1675,34 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'Farming', 'set_retire_limit', {'limit': 'u32'}
+)
+```
+
+---------
+### start_boost_round
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| round_length | `BlockNumberFor<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'start_boost_round', {'round_length': 'u32'}
+)
+```
+
+---------
+### vote
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| vote_list | `Vec<(PoolId, Percent)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'vote', {'vote_list': [('u32', 'u8')]}
 )
 ```
 
@@ -1540,6 +1754,14 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pid | `PoolId` | ```u32```
+
+---------
+### BoostCharged
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountIdOf<T>` | ```AccountId```
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32'}, 'u128')]```
 
 ---------
 ### Charged
@@ -1633,6 +1855,37 @@ call = substrate.compose_call(
 | limit | `u32` | ```u32```
 
 ---------
+### RoundEnd
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| total_votes | `BalanceOf<T>` | ```u128```
+| start_round | `BlockNumberFor<T>` | ```u32```
+| end_round | `BlockNumberFor<T>` | ```u32```
+
+---------
+### RoundStart
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| round_length | `BlockNumberFor<T>` | ```u32```
+
+---------
+### RoundStartError
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| info | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+
+---------
+### Voted
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountIdOf<T>` | ```AccountId```
+| vote_list | `Vec<(PoolId, Percent)>` | ```[('u32', 'u8')]```
+
+---------
 ### WithdrawClaimed
 #### Attributes
 | Name | Type | Composition
@@ -1652,6 +1905,209 @@ call = substrate.compose_call(
 ---------
 ## Storage functions
 
+---------
+### BoostBasicRewards
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostBasicRewards', [
+    'u32',
+    {
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+]
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### BoostNextRoundWhitelist
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostNextRoundWhitelist', ['u32']
+)
+```
+
+#### Return value
+```python
+()
+```
+---------
+### BoostPoolInfos
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostPoolInfos', []
+)
+```
+
+#### Return value
+```python
+{
+    'end_round': 'u32',
+    'round_length': 'u32',
+    'start_round': 'u32',
+    'total_votes': 'u128',
+}
+```
+---------
+### BoostVotingPools
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostVotingPools', ['u32']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### BoostWhitelist
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostWhitelist', ['u32']
+)
+```
+
+#### Return value
+```python
+()
+```
 ---------
 ### GaugeInfos
 
@@ -1693,14 +2149,14 @@ result = substrate.query(
 ```python
 {
     'gauge_amount': 'u128',
-    'gauge_basic_rewards': 'scale_info::692',
+    'gauge_basic_rewards': 'scale_info::698',
     'gauge_last_block': 'u32',
     'gauge_state': ('Unbond', 'Bonded'),
     'keeper': 'AccountId',
     'max_block': 'u32',
     'pid': 'u32',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::698',
+    'rewards': 'scale_info::704',
     'token': {
         'ForeignAsset': 'u32',
         'LPToken': (
@@ -1856,7 +2312,7 @@ result = substrate.query(
 ```python
 {
     'after_block_to_start': 'u32',
-    'basic_rewards': 'scale_info::692',
+    'basic_rewards': 'scale_info::698',
     'basic_token': (
         {
             'ForeignAsset': 'u32',
@@ -1987,9 +2443,9 @@ result = substrate.query(
     'keeper': 'AccountId',
     'min_deposit_to_start': 'u128',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::693',
+    'rewards': 'scale_info::699',
     'state': ('UnCharged', 'Charged', 'Ongoing', 'Dead', 'Retired'),
-    'tokens_proportion': 'scale_info::691',
+    'tokens_proportion': 'scale_info::697',
     'total_shares': 'u128',
     'withdraw_limit_count': 'u8',
     'withdraw_limit_time': 'u32',
@@ -2044,12 +2500,36 @@ result = substrate.query(
     'share': 'u128',
     'who': 'AccountId',
     'withdraw_list': [('u32', 'u128')],
-    'withdrawn_rewards': 'scale_info::692',
+    'withdrawn_rewards': 'scale_info::698',
 }
+```
+---------
+### UserBoostInfos
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'UserBoostInfos', ['AccountId']
+)
+```
+
+#### Return value
+```python
+{'last_vote': 'u32', 'vote_amount': 'u128', 'vote_list': [('u32', 'u8')]}
 ```
 ---------
 ## Constants
 
+---------
+### FarmingBoost
+#### Value
+```python
+'0x62662f666d627374'
+```
+#### Python
+```python
+constant = substrate.get_constant('Farming', 'FarmingBoost')
+```
 ---------
 ### Keeper
  ModuleID for creating sub account
@@ -2082,6 +2562,16 @@ constant = substrate.get_constant('Farming', 'RewardIssuer')
 constant = substrate.get_constant('Farming', 'TreasuryAccount')
 ```
 ---------
+### WhitelistMaximumLimit
+#### Value
+```python
+10
+```
+#### Python
+```python
+constant = substrate.get_constant('Farming', 'WhitelistMaximumLimit')
+```
+---------
 ## Errors
 
 ---------
@@ -2111,10 +2601,31 @@ gauge pool max_block exceeded
 ### LastGaugeNotClaim
 
 ---------
+### NobodyVoting
+
+---------
+### NotInWhitelist
+
+---------
+### PercentOverflow
+
+---------
 ### PoolDoesNotExist
 
 ---------
+### RoundLengthNotSet
+
+---------
+### RoundNotOver
+
+---------
 ### ShareInfoNotExists
+
+---------
+### WhitelistEmpty
+
+---------
+### WhitelistLimitExceeded
 
 ---------
 ### WithdrawLimitCountExceeded

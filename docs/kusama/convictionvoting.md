@@ -320,16 +320,7 @@ result = substrate.query(
     'Casting': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u32', 'u128'),
-        'votes': [
-            (
-                'u32',
-                {
-                    'Split': 'InnerStruct',
-                    'SplitAbstain': 'InnerStruct',
-                    'Standard': 'InnerStruct',
-                },
-            ),
-        ],
+        'votes': [('u32', 'scale_info::122')],
     },
     'Delegating': {
         'balance': 'u128',

@@ -5,6 +5,21 @@
 ## Storage functions
 
 ---------
+### DeliveryFeeFactor
+ The number to multiply the base delivery fee by.
+
+#### Python
+```python
+result = substrate.query(
+    'Dmp', 'DeliveryFeeFactor', ['u32']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### DownwardMessageQueueHeads
  A mapping that stores the downward message queue MQC head for each para.
 

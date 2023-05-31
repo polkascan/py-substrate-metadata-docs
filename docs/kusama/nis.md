@@ -320,6 +320,17 @@ constant = substrate.get_constant('Nis', 'BasePeriod')
 constant = substrate.get_constant('Nis', 'FifoQueueLen')
 ```
 ---------
+### HoldReason
+ The identifier of the hold reason.
+#### Value
+```python
+{'Nis': 'NftReceipt'}
+```
+#### Python
+```python
+constant = substrate.get_constant('Nis', 'HoldReason')
+```
+---------
 ### IntakePeriod
  The number of blocks between consecutive attempts to dequeue bids and create receipts.
 
@@ -409,17 +420,6 @@ constant = substrate.get_constant('Nis', 'PalletId')
 #### Python
 ```python
 constant = substrate.get_constant('Nis', 'QueueCount')
-```
----------
-### ReserveId
- The name for the reserve ID.
-#### Value
-```python
-'0x70792f6e69732020'
-```
-#### Python
-```python
-constant = substrate.get_constant('Nis', 'ReserveId')
 ```
 ---------
 ### ThawThrottle

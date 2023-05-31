@@ -184,6 +184,26 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_min_nonce
+Sets minimal deposit nonce for chain id
+
+\# &lt;weight&gt;
+- O(1) lookup and insert
+\# &lt;/weight&gt;
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| chain_id | `ChainId` | 
+| min_nonce | `DepositNonce` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ChainBridge', 'set_min_nonce', {'chain_id': 'u8', 'min_nonce': 'u64'}
+)
+```
+
+---------
 ### set_proposal_lifetime
 Sets proposal lifetime.
 
@@ -488,6 +508,21 @@ result = substrate.query(
 'u128'
 ```
 ---------
+### MinDepositNonce
+ Minimal allowed value for deposit nonce per chain id
+
+#### Python
+```python
+result = substrate.query(
+    'ChainBridge', 'MinDepositNonce', ['u8']
+)
+```
+
+#### Return value
+```python
+'u64'
+```
+---------
 ### ProposalLifetime
  Time in blocks for relays voting
 
@@ -632,6 +667,10 @@ Proposal lifetime cannot be equal 0
 ---------
 ### InvalidThreshold
 Relayer threshold cannot be 0
+
+---------
+### MinimalNonce
+Minimal nonce check not passed
 
 ---------
 ### MustBeRelayer

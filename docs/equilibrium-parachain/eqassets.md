@@ -13,14 +13,14 @@ Constructs and adds an asset
 | asset_name | `AssetName` | 
 | lot | `u128` | 
 | price_step | `i64` | 
-| maker_fee | `u128` | 
-| taker_fee | `u128` | 
+| maker_fee | `Permill` | 
+| taker_fee | `Permill` | 
 | asset_xcm_data | `AssetXcmData` | 
-| debt_weight | `u128` | 
+| debt_weight | `Permill` | 
 | buyout_priority | `u64` | 
 | asset_type | `AssetType` | 
 | is_dex_enabled | `bool` | 
-| collateral_discount | `u128` | 
+| collateral_discount | `Percent` | 
 | lending_debt_weight | `Permill` | 
 | prices | `Vec<FixedI64>` | 
 
@@ -474,15 +474,15 @@ call = substrate.compose_call(
         'SelfReserved': None,
     },
     'buyout_priority': 'u64',
-    'collateral_discount': 'u128',
-    'debt_weight': 'u128',
+    'collateral_discount': 'u8',
+    'debt_weight': 'u32',
     'is_dex_enabled': 'bool',
     'lending_debt_weight': 'u32',
     'lot': 'u128',
-    'maker_fee': 'u128',
+    'maker_fee': 'u32',
     'price_step': 'i64',
     'prices': ['i64'],
-    'taker_fee': 'u128',
+    'taker_fee': 'u32',
 }
 )
 ```
@@ -512,14 +512,14 @@ Updates an asset
 | asset_id | `Asset` | 
 | lot | `Option<u128>` | 
 | price_step | `Option<i64>` | 
-| maker_fee | `Option<u128>` | 
-| taker_fee | `Option<u128>` | 
+| maker_fee | `Option<Permill>` | 
+| taker_fee | `Option<Permill>` | 
 | asset_xcm_data | `Option<AssetXcmData>` | 
-| debt_weight | `Option<u128>` | 
+| debt_weight | `Option<Permill>` | 
 | buyout_priority | `Option<u64>` | 
 | asset_type | `Option<AssetType>` | 
 | is_dex_enabled | `Option<bool>` | 
-| collateral_discount | `Option<u128>` | 
+| collateral_discount | `Option<Percent>` | 
 | lending_debt_weight | `Option<Permill>` | 
 
 #### Python
@@ -618,18 +618,18 @@ call = substrate.compose_call(
     'buyout_priority': (None, 'u64'),
     'collateral_discount': (
         None,
-        'u128',
+        'u8',
     ),
-    'debt_weight': (None, 'u128'),
+    'debt_weight': (None, 'u32'),
     'is_dex_enabled': (None, 'bool'),
     'lending_debt_weight': (
         None,
         'u32',
     ),
     'lot': (None, 'u128'),
-    'maker_fee': (None, 'u128'),
+    'maker_fee': (None, 'u32'),
     'price_step': (None, 'i64'),
-    'taker_fee': (None, 'u128'),
+    'taker_fee': (None, 'u32'),
 }
 )
 ```
@@ -699,15 +699,15 @@ result = substrate.query(
             'SelfReserved': None,
         },
         'buyout_priority': 'u64',
-        'collateral_discount': 'u128',
-        'debt_weight': 'u128',
+        'collateral_discount': 'u8',
+        'debt_weight': 'u32',
         'id': 'u64',
         'is_dex_enabled': 'bool',
         'lending_debt_weight': 'u32',
         'lot': 'u128',
-        'maker_fee': 'u128',
+        'maker_fee': 'u32',
         'price_step': 'i64',
-        'taker_fee': 'u128',
+        'taker_fee': 'u32',
     },
 ]
 ```

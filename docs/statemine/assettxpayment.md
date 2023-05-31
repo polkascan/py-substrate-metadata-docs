@@ -12,8 +12,8 @@ has been paid by `who` in an asset `asset_id`.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| actual_fee | `BalanceOf<T>` | ```u128```
-| tip | `BalanceOf<T>` | ```u128```
+| actual_fee | `AssetBalanceOf<T>` | ```u128```
+| tip | `AssetBalanceOf<T>` | ```u128```
 | asset_id | `Option<ChargeAssetIdOf<T>>` | ```(None, 'u32')```
 
 ---------

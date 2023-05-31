@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | hydradx     |
 | Implementation name     | hydradx     |
-| Spec version     | 138     |
+| Spec version     | 151     |
 | SS58 Format     | 63     |
 | Token symbol      | HDX     |
 | Token decimals      | 12     |
@@ -34,11 +34,11 @@
 | [EmaOracle](emaoracle.md) | [0](emaoracle.md#calls) | [0](emaoracle.md#events) | [2](emaoracle.md#storage-functions) | [1](emaoracle.md#constants) | [2](emaoracle.md#errors) |
 | [GenesisHistory](genesishistory.md) | [0](genesishistory.md#calls) | [0](genesishistory.md#events) | [1](genesishistory.md#storage-functions) | [0](genesishistory.md#constants) | [0](genesishistory.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [16](identity.md#errors) |
-| [MultiTransactionPayment](multitransactionpayment.md) | [3](multitransactionpayment.md#calls) | [4](multitransactionpayment.md#events) | [3](multitransactionpayment.md#storage-functions) | [3](multitransactionpayment.md#constants) | [7](multitransactionpayment.md#errors) |
+| [MultiTransactionPayment](multitransactionpayment.md) | [3](multitransactionpayment.md#calls) | [4](multitransactionpayment.md#events) | [3](multitransactionpayment.md#storage-functions) | [1](multitransactionpayment.md#constants) | [7](multitransactionpayment.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [2](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
-| [OTC](otc.md) | [4](otc.md#calls) | [4](otc.md#events) | [2](otc.md#storage-functions) | [1](otc.md#constants) | [7](otc.md#errors) |
-| [Omnipool](omnipool.md) | [11](omnipool.md#calls) | [12](omnipool.md#events) | [6](omnipool.md#storage-functions) | [10](omnipool.md#constants) | [27](omnipool.md#errors) |
-| [OmnipoolLiquidityMining](omnipoolliquiditymining.md) | [12](omnipoolliquiditymining.md#calls) | [13](omnipoolliquiditymining.md#events) | [1](omnipoolliquiditymining.md#storage-functions) | [1](omnipoolliquiditymining.md#constants) | [4](omnipoolliquiditymining.md#errors) |
+| [OTC](otc.md) | [4](otc.md#calls) | [4](otc.md#events) | [2](otc.md#storage-functions) | [1](otc.md#constants) | [8](otc.md#errors) |
+| [Omnipool](omnipool.md) | [11](omnipool.md#calls) | [12](omnipool.md#events) | [6](omnipool.md#storage-functions) | [11](omnipool.md#constants) | [29](omnipool.md#errors) |
+| [OmnipoolLiquidityMining](omnipoolliquiditymining.md) | [11](omnipoolliquiditymining.md#calls) | [12](omnipoolliquiditymining.md#events) | [1](omnipoolliquiditymining.md#storage-functions) | [3](omnipoolliquiditymining.md#constants) | [6](omnipoolliquiditymining.md#errors) |
 | [OmnipoolWarehouseLM](omnipoolwarehouselm.md) | [0](omnipoolwarehouselm.md#calls) | [3](omnipoolwarehouselm.md#events) | [6](omnipoolwarehouselm.md#storage-functions) | [5](omnipoolwarehouselm.md#constants) | [29](omnipoolwarehouselm.md#errors) |
 | [OrmlXcm](ormlxcm.md) | [1](ormlxcm.md#calls) | [1](ormlxcm.md#events) | [0](ormlxcm.md#storage-functions) | [0](ormlxcm.md#constants) | [3](ormlxcm.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |

@@ -616,6 +616,7 @@ result = substrate.query(
             'Farming': {
                 'AllForceGaugeClaimed': {'gid': 'u32'},
                 'AllRetired': {'pid': 'u32'},
+                'BoostCharged': {'rewards': [('scale_info::130', 'u128')], 'who': 'AccountId'},
                 'Charged': {
                     'pid': 'u32',
                     'rewards': [('scale_info::130', 'u128')],
@@ -637,6 +638,14 @@ result = substrate.query(
                 'PartiallyForceGaugeClaimed': {'gid': 'u32'},
                 'PartiallyRetired': {'pid': 'u32'},
                 'RetireLimitSet': {'limit': 'u32'},
+                'RoundEnd': {
+                    'end_round': 'u32',
+                    'start_round': 'u32',
+                    'total_votes': 'u128',
+                },
+                'RoundStart': {'round_length': 'u32'},
+                'RoundStartError': {'info': 'scale_info::24'},
+                'Voted': {'vote_list': [('u32', 'u8')], 'who': 'AccountId'},
                 'WithdrawClaimed': {'pid': 'u32', 'who': 'AccountId'},
                 'Withdrawn': {
                     'pid': 'u32',
@@ -645,13 +654,13 @@ result = substrate.query(
                 },
             },
             'FeeShare': {
-                'Created': {'info': 'scale_info::229'},
+                'Created': {'info': 'scale_info::231'},
                 'Deleted': {'distribution_id': 'u32'},
-                'Edited': {'info': 'scale_info::229'},
+                'Edited': {'info': 'scale_info::231'},
                 'EraLengthSet': {'era_length': 'u32', 'next_era': 'u32'},
                 'ExecuteFailed': {
                     'distribution_id': 'u32',
-                    'info': 'scale_info::229',
+                    'info': 'scale_info::231',
                     'next_era': 'u32',
                 },
                 'Executed': {'distribution_id': 'u32'},
@@ -1228,7 +1237,7 @@ result = substrate.query(
                 },
                 'CurrencyDelaysSet': {
                     'currency_id': 'scale_info::130',
-                    'delays': (None, 'scale_info::209'),
+                    'delays': (None, 'scale_info::207'),
                 },
                 'CurrencyTuneExchangeRateLimitSet': {
                     'currency_id': 'scale_info::130',
@@ -1267,14 +1276,14 @@ result = substrate.query(
                     'delegator_id': 'scale_info::61',
                 },
                 'DelegatorLedgerQueryResponseConfirmed': {
-                    'entry': 'scale_info::199',
+                    'entry': 'scale_info::197',
                     'query_id': 'u64',
                 },
                 'DelegatorLedgerQueryResponseFailed': {'query_id': 'u64'},
                 'DelegatorLedgerSet': {
                     'currency_id': 'scale_info::130',
                     'delegator': 'scale_info::61',
-                    'ledger': (None, 'scale_info::180'),
+                    'ledger': (None, 'scale_info::178'),
                 },
                 'DelegatorRebond': {
                     'currency_id': 'scale_info::130',
@@ -1334,7 +1343,7 @@ result = substrate.query(
                 },
                 'MinimumsMaximumsSet': {
                     'currency_id': 'scale_info::130',
-                    'minimums_and_maximums': (None, 'scale_info::207'),
+                    'minimums_and_maximums': (None, 'scale_info::205'),
                 },
                 'OngoingTimeUnitUpdateIntervalSet': {
                     'currency_id': 'scale_info::130',
@@ -1362,6 +1371,10 @@ result = substrate.query(
                     'currency_id': 'scale_info::130',
                     'index': 'u32',
                     'time_unit': 'scale_info::164',
+                },
+                'RemovedFromBoostList': {
+                    'currency_id': 'scale_info::130',
+                    'who': 'scale_info::61',
                 },
                 'SupplementFeeAccountWhitelistAdded': {
                     'currency_id': 'scale_info::130',
@@ -1395,12 +1408,21 @@ result = substrate.query(
                     'query_id_hash': '[u8; 32]',
                     'targets': ['scale_info::61'],
                 },
+                'ValidatorBoostListAdded': {
+                    'currency_id': 'scale_info::130',
+                    'due_block_number': 'u32',
+                    'who': 'scale_info::61',
+                },
+                'ValidatorBoostListSet': {
+                    'currency_id': 'scale_info::130',
+                    'validator_boost_list': [('scale_info::61', 'u32')],
+                },
                 'ValidatorsAdded': {
                     'currency_id': 'scale_info::130',
                     'validator_id': 'scale_info::61',
                 },
                 'ValidatorsByDelegatorQueryResponseConfirmed': {
-                    'entry': 'scale_info::204',
+                    'entry': 'scale_info::202',
                     'query_id': 'u64',
                 },
                 'ValidatorsByDelegatorQueryResponseFailed': {
@@ -1409,15 +1431,19 @@ result = substrate.query(
                 'ValidatorsByDelegatorSet': {
                     'currency_id': 'scale_info::130',
                     'delegator_id': 'scale_info::61',
-                    'validators_list': [('scale_info::61', '[u8; 32]')],
+                    'validators_list': ['scale_info::61'],
                 },
                 'ValidatorsRemoved': {
                     'currency_id': 'scale_info::130',
                     'validator_id': 'scale_info::61',
                 },
+                'ValidatorsReset': {
+                    'currency_id': 'scale_info::130',
+                    'validator_list': ['scale_info::61'],
+                },
                 'XcmDestWeightAndFeeSet': {
                     'currency_id': 'scale_info::130',
-                    'operation': 'scale_info::173',
+                    'operation': 'scale_info::171',
                     'weight_and_fee': (None, ('scale_info::8', 'u128')),
                 },
             },
@@ -1430,7 +1456,7 @@ result = substrate.query(
                 'Closed': {'currency_id': 'scale_info::130'},
                 'ConfigSet': {
                     'currency_id': 'scale_info::130',
-                    'info': 'scale_info::227',
+                    'info': 'scale_info::229',
                 },
                 'Paid': {'currency_id': 'scale_info::130', 'value': 'u128'},
                 'RedeemFailed': {
@@ -2335,7 +2361,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'bifrost',
     'impl_version': 0,
     'spec_name': 'bifrost',
-    'spec_version': 972,
+    'spec_version': 974,
     'state_version': 0,
     'transaction_version': 1,
 }

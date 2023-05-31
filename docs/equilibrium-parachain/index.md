@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | Equilibrium-parachain     |
 | Implementation name     | Equilibrium-parachain     |
-| Spec version     | 26     |
+| Spec version     | 28     |
 | SS58 Format     | 68     |
 | Token symbol      | ['EQ']     |
 | Token decimals      | [9]     |
@@ -19,7 +19,7 @@
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
 | [Bailsman](bailsman.md) | [3](bailsman.md#calls) | [1](bailsman.md#events) | [4](bailsman.md#storage-functions) | [6](bailsman.md#constants) | [12](bailsman.md#errors) |
-| [ChainBridge](chainbridge.md) | [13](chainbridge.md#calls) | [16](chainbridge.md#events) | [9](chainbridge.md#storage-functions) | [1](chainbridge.md#constants) | [19](chainbridge.md#errors) |
+| [ChainBridge](chainbridge.md) | [14](chainbridge.md#calls) | [16](chainbridge.md#events) | [10](chainbridge.md#storage-functions) | [1](chainbridge.md#constants) | [20](chainbridge.md#errors) |
 | [Claims](claims.md) | [5](claims.md#calls) | [1](claims.md#events) | [5](claims.md#storage-functions) | [0](claims.md#constants) | [8](claims.md#errors) |
 | [Council](council.md) | [6](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
 | [CouncilMembership](councilmembership.md) | [7](councilmembership.md#calls) | [6](councilmembership.md#events) | [2](councilmembership.md#storage-functions) | [0](councilmembership.md#constants) | [3](councilmembership.md#errors) |
@@ -28,8 +28,8 @@
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [EqAggregates](eqaggregates.md) | [0](eqaggregates.md#calls) | [0](eqaggregates.md#events) | [2](eqaggregates.md#storage-functions) | [0](eqaggregates.md#constants) | [0](eqaggregates.md#errors) |
 | [EqAssets](eqassets.md) | [3](eqassets.md#calls) | [3](eqassets.md#events) | [2](eqassets.md#storage-functions) | [1](eqassets.md#constants) | [11](eqassets.md#errors) |
-| [EqBalances](eqbalances.md) | [17](eqbalances.md#calls) | [8](eqbalances.md#events) | [9](eqbalances.md#storage-functions) | [5](eqbalances.md#constants) | [21](eqbalances.md#errors) |
-| [EqBridge](eqbridge.md) | [8](eqbridge.md#calls) | [6](eqbridge.md#events) | [4](eqbridge.md#storage-functions) | [0](eqbridge.md#constants) | [9](eqbridge.md#errors) |
+| [EqBalances](eqbalances.md) | [15](eqbalances.md#calls) | [8](eqbalances.md#events) | [7](eqbalances.md#storage-functions) | [5](eqbalances.md#constants) | [21](eqbalances.md#errors) |
+| [EqBridge](eqbridge.md) | [9](eqbridge.md#calls) | [7](eqbridge.md#events) | [5](eqbridge.md#storage-functions) | [0](eqbridge.md#constants) | [11](eqbridge.md#errors) |
 | [EqDex](eqdex.md) | [4](eqdex.md#calls) | [3](eqdex.md#events) | [6](eqdex.md#storage-functions) | [3](eqdex.md#constants) | [13](eqdex.md#errors) |
 | [EqInvestors](eqinvestors.md) | [2](eqinvestors.md#calls) | [0](eqinvestors.md#events) | [1](eqinvestors.md#storage-functions) | [1](eqinvestors.md#constants) | [2](eqinvestors.md#errors) |
 | [EqLending](eqlending.md) | [3](eqlending.md#calls) | [3](eqlending.md#events) | [4](eqlending.md#storage-functions) | [1](eqlending.md#constants) | [8](eqlending.md#errors) |

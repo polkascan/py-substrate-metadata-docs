@@ -882,11 +882,21 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxVotesPe
 ### MinerMaxWeight
 #### Value
 ```python
-{'proof_size': 13650590614545068195, 'ref_time': 1468731217000}
+{'proof_size': 13650590614545068195, 'ref_time': 1476422011000}
 ```
 #### Python
 ```python
 constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxWeight')
+```
+---------
+### MinerMaxWinners
+#### Value
+```python
+2000
+```
+#### Python
+```python
+constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxWinners')
 ```
 ---------
 ### MinerTxPriority
@@ -983,7 +993,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxSubmis
  this value.
 #### Value
 ```python
-{'proof_size': 13650590614545068195, 'ref_time': 1468731217000}
+{'proof_size': 13650590614545068195, 'ref_time': 1476422011000}
 ```
 #### Python
 ```python

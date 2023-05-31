@@ -55,23 +55,3 @@ result = substrate.query(
 }
 ```
 ---------
-### ReportsByKindIndex
- Enumerates all reports of a kind along with the time they happened.
-
- All reports are sorted by the time of offence.
-
- Note that the actual type of this mapping is `Vec&lt;u8&gt;`, this is because values of
- different types are not supported at the moment so we are doing the manual serialization.
-
-#### Python
-```python
-result = substrate.query(
-    'Offences', 'ReportsByKindIndex', ['[u8; 16]']
-)
-```
-
-#### Return value
-```python
-'Bytes'
-```
----------

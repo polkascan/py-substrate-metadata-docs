@@ -1999,7 +1999,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::644'
+'scale_info::648'
 ```
 ---------
 ### NextPoolId
@@ -2043,7 +2043,7 @@ result = substrate.query(
 ```python
 {
     'deposit': 'u128',
-    'gain_avgs': 'scale_info::652',
+    'gain_avgs': 'scale_info::656',
     'pending_unlocks': [('u32', 'u128')],
     'update_b': 'u32',
 }
@@ -2073,7 +2073,7 @@ result = substrate.query(
     'pool_id': 'u32',
     'r#type': ('Mining', 'Farming', 'EBFarming', 'SingleToken'),
     'redeem_limit_time': 'u32',
-    'rewards': 'scale_info::646',
+    'rewards': 'scale_info::650',
     'state': ('UnCharged', 'Charged', 'Ongoing', 'Retired', 'Dead'),
     'trading_pair': (
         {

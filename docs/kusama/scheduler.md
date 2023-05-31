@@ -64,10 +64,6 @@ call = substrate.compose_call(
 ---------
 ### schedule_after
 Anonymously schedule a task after a delay.
-
-\# &lt;weight&gt;
-Same as [`schedule`].
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -122,10 +118,6 @@ call = substrate.compose_call(
 ---------
 ### schedule_named_after
 Schedule a named task after a delay.
-
-\# &lt;weight&gt;
-Same as [`schedule_named`](Self::schedule_named).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -180,7 +172,7 @@ Dispatched some task.
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ### PeriodicFailed
@@ -231,59 +223,18 @@ result = substrate.query(
         {
             'call': {
                 'Inline': 'Bytes',
-                'Legacy': {'hash': '[u8; 32]'},
-                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+                'Legacy': 'InnerStruct',
+                'Lookup': 'InnerStruct',
             },
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'Council': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'Origins': (
-                    'StakingAdmin',
-                    'Treasurer',
-                    'FellowshipAdmin',
-                    'GeneralAdmin',
-                    'AuctionAdmin',
-                    'LeaseAdmin',
-                    'ReferendumCanceller',
-                    'ReferendumKiller',
-                    'SmallTipper',
-                    'BigTipper',
-                    'SmallSpender',
-                    'MediumSpender',
-                    'BigSpender',
-                    'WhitelistedCaller',
-                    'FellowshipInitiates',
-                    'Fellows',
-                    'FellowshipExperts',
-                    'FellowshipMasters',
-                    'Fellowship1Dan',
-                    'Fellowship2Dan',
-                    'Fellowship3Dan',
-                    'Fellowship4Dan',
-                    'Fellowship5Dan',
-                    'Fellowship6Dan',
-                    'Fellowship7Dan',
-                    'Fellowship8Dan',
-                    'Fellowship9Dan',
-                ),
-                'ParachainsOrigin': {'Parachain': 'u32'},
-                'TechnicalCommittee': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'system': 'scale_info::128',
                 None: None,
-                'Void': (),
-                'XcmPallet': {
-                    'Response': 'scale_info::156',
-                    'Xcm': 'scale_info::156',
-                },
+                'Origins': 'scale_info::129',
+                'ParachainsOrigin': 'scale_info::130',
+                'Void': 'scale_info::140',
+                'XcmPallet': 'scale_info::132',
             },
             'priority': 'u8',
         },
@@ -328,6 +279,10 @@ result = substrate.query(
 ---------
 ### MaxScheduledPerBlock
  The maximum number of scheduled calls in the queue for a single block.
+
+ NOTE:
+ + Dependent pallets&#x27; benchmarks might require a higher limit for the setting. Set a
+ higher limit under `runtime-benchmarks` feature.
 #### Value
 ```python
 50

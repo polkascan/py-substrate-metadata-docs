@@ -39,15 +39,6 @@ A dispute has been initiated. \[candidate hash, dispute location\]
 | None | `DisputeLocation` | ```('Local', 'Remote')```
 
 ---------
-### DisputeTimedOut
-A dispute has timed out due to insufficient participation.
-`\[para id, candidate hash\]`
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CandidateHash` | ```[u8; 32]```
-
----------
 ### Revert
 A dispute has concluded with supermajority against a candidate.
 Block authors should no longer build on top of this head and should
@@ -75,7 +66,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::824'
+'scale_info::808'
 ```
 ---------
 ### Disputes

@@ -715,6 +715,33 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_min_balance
+Sets the minimum balance of an asset.
+
+Only works if there aren&\#x27;t any accounts that are holding the asset or if
+the new value of `min_balance` is less than the old one.
+
+Origin must be Signed and the sender has to be the Owner of the
+asset `id`.
+
+- `id`: The identifier of the asset.
+- `min_balance`: The new value of `min_balance`.
+
+Emits `AssetMinBalanceChanged` event when successful.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetIdParameter` | 
+| min_balance | `T::Balance` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'set_min_balance', {'id': 'u32', 'min_balance': 'u128'}
+)
+```
+
+---------
 ### set_team
 Change the Issuer, Admin and Freezer of an asset.
 
@@ -1098,6 +1125,15 @@ Some asset `asset_id` was frozen.
 | asset_id | `T::AssetId` | ```u32```
 
 ---------
+### AssetMinBalanceChanged
+The min_balance of an asset has been updated by the asset owner.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u32```
+| new_min_balance | `T::Balance` | ```u128```
+
+---------
 ### AssetStatusChanged
 An asset has had its attributes changed by the `Force` origin.
 #### Attributes
@@ -1452,6 +1488,10 @@ Invalid witness data given.
 Account balance must be greater than or equal to the transfer amount.
 
 ---------
+### CallbackFailed
+Callback action resulted in error
+
+---------
 ### Frozen
 The origin account is frozen.
 
@@ -1485,18 +1525,18 @@ The asset-account doesn&\#x27;t have an associated deposit.
 The signing account has no permission to do the operation.
 
 ---------
-### NoProvider
-Unable to increment the consumer reference counters on the account. Either no provider
-reference exists to allow a non-zero balance of a non-self-sufficient asset, or the
-maximum number of consumers has been reached.
-
----------
 ### NotFrozen
 The asset should be frozen before the given operation.
 
 ---------
 ### Unapproved
 No approval exists that would allow the transfer.
+
+---------
+### UnavailableConsumer
+Unable to increment the consumer reference counters on the account. Either no provider
+reference exists to allow a non-zero balance of a non-self-sufficient asset, or one
+fewer then the maximum number of consumers has been reached.
 
 ---------
 ### Unknown

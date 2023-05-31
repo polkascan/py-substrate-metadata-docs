@@ -10,15 +10,7 @@
 #### Python
 ```python
 result = substrate.query(
-    'EqAggregates', 'AccountUserGroups', [
-    (
-        'Unknown',
-        'Balances',
-        'Bailsmen',
-        'Borrowers',
-    ),
-    'AccountId',
-]
+    'EqAggregates', 'AccountUserGroups', [('Balances', 'Bailsmen', 'Borrowers'), 'AccountId']
 )
 ```
 
@@ -33,15 +25,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'EqAggregates', 'TotalUserGroups', [
-    (
-        'Unknown',
-        'Balances',
-        'Bailsmen',
-        'Borrowers',
-    ),
-    'u64',
-]
+    'EqAggregates', 'TotalUserGroups', [('Balances', 'Bailsmen', 'Borrowers'), 'u64']
 )
 ```
 

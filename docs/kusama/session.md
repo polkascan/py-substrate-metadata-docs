@@ -15,13 +15,9 @@ convertible to a validator ID using the chain&\#x27;s typical addressing system 
 means being a controller account) or directly convertible into a validator ID (which
 usually means being a stash account).
 
-\# &lt;weight&gt;
-- Complexity: `O(1)` in number of key types. Actual cost depends on the number of length
-  of `T::Keys::key_ids()` which is fixed.
-- DbReads: `T::ValidatorIdOf`, `NextKeys`, `origin account`
-- DbWrites: `NextKeys`, `origin account`
-- DbWrites per key id: `KeyOwner`
-\# &lt;/weight&gt;
+\#\# Complexity
+- `O(1)` in number of key types. Actual cost depends on the number of length of
+  `T::Keys::key_ids()` which is fixed.
 #### Attributes
 No attributes
 
@@ -40,14 +36,9 @@ This doesn&\#x27;t take effect until the next session.
 
 The dispatch origin of this function must be signed.
 
-\# &lt;weight&gt;
-- Complexity: `O(1)`. Actual cost depends on the number of length of
-  `T::Keys::key_ids()` which is fixed.
-- DbReads: `origin account`, `T::ValidatorIdOf`, `NextKeys`
-- DbWrites: `origin account`, `NextKeys`
-- DbReads per key id: `KeyOwner`
-- DbWrites per key id: `KeyOwner`
-\# &lt;/weight&gt;
+\#\# Complexity
+- `O(1)`. Actual cost depends on the number of length of `T::Keys::key_ids()` which is
+  fixed.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

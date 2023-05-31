@@ -235,6 +235,10 @@ Asset does not exist in registry
 The caller does not have permission to complete the action
 
 ---------
+### InsufficientReservedAmount
+Reserved amount not sufficient.
+
+---------
 ### MathError
 Error with math calculations
 

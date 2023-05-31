@@ -1125,13 +1125,13 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': '[u8; 20]',
         },
         None: None,
+        'Void': (),
     },
     'call': 'Call',
 }

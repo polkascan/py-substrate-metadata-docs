@@ -64,10 +64,6 @@ call = substrate.compose_call(
 ---------
 ### schedule_after
 Anonymously schedule a task after a delay.
-
-\# &lt;weight&gt;
-Same as [`schedule`].
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -122,10 +118,6 @@ call = substrate.compose_call(
 ---------
 ### schedule_named_after
 Schedule a named task after a delay.
-
-\# &lt;weight&gt;
-Same as [`schedule_named`](Self::schedule_named).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -231,35 +223,20 @@ result = substrate.query(
         {
             'call': {
                 'Inline': 'Bytes',
-                'Legacy': {'hash': '[u8; 32]'},
-                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+                'Legacy': 'InnerStruct',
+                'Lookup': 'InnerStruct',
             },
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'Council': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'PolkadotXcm': {
-                    'Response': 'scale_info::68',
-                    'Xcm': 'scale_info::68',
-                },
-                'ReleaseCommittee': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'TechnicalCommittee': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'Void': (),
+                'system': 'scale_info::246',
                 None: None,
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'Council': 'scale_info::247',
+                'CumulusXcm': 'scale_info::251',
+                'PolkadotXcm': 'scale_info::250',
+                'ReleaseCommittee': 'scale_info::249',
+                'TechnicalCommittee': 'scale_info::248',
+                'Void': 'scale_info::252',
             },
             'priority': 'u8',
         },

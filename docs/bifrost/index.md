@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bifrost     |
 | Implementation name     | bifrost     |
-| Spec version     | 972     |
+| Spec version     | 974     |
 | SS58 Format     | 6     |
 | Token symbol      | ['BNC', 'KUSD', 'DOT', 'KSM', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR']     |
 | Token decimals      | [12, 12, 10, 12, 12, 18, 12, 10, 18]     |
@@ -29,9 +29,9 @@
 | [Currencies](currencies.md) | [3](currencies.md#calls) | [0](currencies.md#events) | [0](currencies.md#storage-functions) | [1](currencies.md#constants) | [3](currencies.md#errors) |
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
-| [Farming](farming.md) | [14](farming.md#calls) | [16](farming.md#events) | [7](farming.md#storage-functions) | [3](farming.md#constants) | [11](farming.md#errors) |
+| [Farming](farming.md) | [20](farming.md#calls) | [21](farming.md#events) | [13](farming.md#storage-functions) | [5](farming.md#constants) | [18](farming.md#errors) |
 | [FeeShare](feeshare.md) | [5](feeshare.md#calls) | [6](feeshare.md#events) | [3](feeshare.md#storage-functions) | [1](feeshare.md#constants) | [5](feeshare.md#errors) |
-| [FlexibleFee](flexiblefee.md) | [1](flexiblefee.md#calls) | [3](flexiblefee.md#events) | [1](flexiblefee.md#storage-functions) | [4](flexiblefee.md#constants) | [4](flexiblefee.md#errors) |
+| [FlexibleFee](flexiblefee.md) | [3](flexiblefee.md#calls) | [3](flexiblefee.md#events) | [3](flexiblefee.md#storage-functions) | [5](flexiblefee.md#constants) | [4](flexiblefee.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [Indices](indices.md) | [5](indices.md#calls) | [3](indices.md#events) | [1](indices.md#storage-functions) | [1](indices.md#constants) | [5](indices.md#errors) |
 | [LighteningRedeem](lighteningredeem.md) | [5](lighteningredeem.md#calls) | [5](lighteningredeem.md#events) | [4](lighteningredeem.md#storage-functions) | [1](lighteningredeem.md#constants) | [7](lighteningredeem.md#errors) |
@@ -51,7 +51,7 @@
 | [SalpLite](salplite.md) | [13](salplite.md#calls) | [14](salplite.md#events) | [5](salplite.md#storage-functions) | [8](salplite.md#constants) | [21](salplite.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
-| [Slp](slp.md) | [43](slp.md#calls) | [41](slp.md#events) | [21](slp.md#storage-functions) | [2](slp.md#constants) | [75](slp.md#errors) |
+| [Slp](slp.md) | [47](slp.md#calls) | [45](slp.md#events) | [22](slp.md#storage-functions) | [2](slp.md#constants) | [75](slp.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [SystemMaker](systemmaker.md) | [4](systemmaker.md#calls) | [5](systemmaker.md#events) | [1](systemmaker.md#storage-functions) | [3](systemmaker.md#constants) | [3](systemmaker.md#errors) |
 | [SystemStaking](systemstaking.md) | [4](systemstaking.md#calls) | [12](systemstaking.md#events) | [3](systemstaking.md#storage-functions) | [5](systemstaking.md#constants) | [5](systemstaking.md#errors) |

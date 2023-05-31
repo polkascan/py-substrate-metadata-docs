@@ -278,6 +278,21 @@ Oracle slashed. \[oracle_address, asset_id, amount\]
 ## Storage functions
 
 ---------
+### AccumulatedRewardsPerAsset
+ Mapping of signing key to stake
+
+#### Python
+```python
+result = substrate.query(
+    'Oracle', 'AccumulatedRewardsPerAsset', ['u128']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### AnswerInTransit
  Mapping of slash amounts currently in transit
 

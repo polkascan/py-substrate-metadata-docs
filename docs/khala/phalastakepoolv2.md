@@ -498,6 +498,28 @@ The amount of reward that distributed to owner and stakers
 | to_stakers | `BalanceOf<T>` | ```u128```
 
 ---------
+### RewardToDistributionDismissedDust
+Some to-distribute reward is dismissed because the amount is too tiny (dust)
+
+There&\#x27;s no affected state.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pid | `u64` | ```u64```
+| amount | `BalanceOf<T>` | ```u128```
+
+---------
+### RewardToOwnerDismissedDust
+Some to-distribute reward is dismissed because the amount is too tiny (dust)
+
+There&\#x27;s no affected state.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pid | `u64` | ```u64```
+| amount | `BalanceOf<T>` | ```u128```
+
+---------
 ### SlashSettled
 Some slash is actually settled to a contributor (currently disabled)
 #### Attributes

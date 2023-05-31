@@ -395,6 +395,7 @@ Liquidity of an asset was removed to Omnipool.
 | position_id | `T::PositionItemId` | ```u128```
 | asset_id | `T::AssetId` | ```u32```
 | shares_removed | `Balance` | ```u128```
+| fee | `FixedU128` | ```u128```
 
 ---------
 ### PositionCreated
@@ -628,6 +629,17 @@ constant = substrate.get_constant('Omnipool', 'MaxInRatio')
 constant = substrate.get_constant('Omnipool', 'MaxOutRatio')
 ```
 ---------
+### MinWithdrawalFee
+ Minimum withdrawal fee
+#### Value
+```python
+100
+```
+#### Python
+```python
+constant = substrate.get_constant('Omnipool', 'MinWithdrawalFee')
+```
+---------
 ### MinimumPoolLiquidity
  Minimum pool liquidity which can be added
 #### Value
@@ -742,8 +754,16 @@ HJb Asset&\#x27;s trabable is only allowed to be SELL or BUY.
 Invalid initial asset price. Price must be non-zero.
 
 ---------
+### InvalidOraclePrice
+Invalid oracle price - division by zero.
+
+---------
 ### InvalidSharesAmount
 Amount of shares provided cannot be 0.
+
+---------
+### InvalidWithdrawalFee
+Failed to calculate withdrawal fee.
 
 ---------
 ### MaxInRatioExceeded

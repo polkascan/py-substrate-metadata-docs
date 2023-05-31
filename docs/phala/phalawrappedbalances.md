@@ -188,6 +188,21 @@ result = substrate.query(
 {'invest_pools': [('u64', 'u32')], 'locked': 'u128'}
 ```
 ---------
+### UnmintableDust
+ Collect the unmintable dust
+
+#### Python
+```python
+result = substrate.query(
+    'PhalaWrappedBalances', 'UnmintableDust', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### VoteAccountMap
  Mapping from the vote ids and accounts to the amounts of W-PHA used to approve or oppose to the vote
 

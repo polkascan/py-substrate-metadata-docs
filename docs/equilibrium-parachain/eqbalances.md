@@ -2054,27 +2054,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### toggle_migration
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| toggle | `bool` | 
-| migration_manager | `Option<T::AccountId>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'EqBalances', 'toggle_migration', {
-    'migration_manager': (
-        None,
-        'AccountId',
-    ),
-    'toggle': 'bool',
-}
-)
-```
-
----------
 ### transfer
 Transfers `value` amount of `Asset` from trx sender to account id `to`
 #### Attributes
@@ -4052,20 +4031,6 @@ Update XCM transfer limit or remove it in case of limit = `None`
 ```python
 call = substrate.compose_call(
     'EqBalances', 'update_xcm_transfer_native_limit', {'limit': (None, 'u128')}
-)
-```
-
----------
-### write_temp_migration
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| accounts | `Vec<T::AccountId>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'EqBalances', 'write_temp_migration', {'accounts': ['AccountId']}
 )
 ```
 
@@ -6228,20 +6193,6 @@ result = substrate.query(
 [('[u8; 8]', 'u128')]
 ```
 ---------
-### MigrationToggle
-
-#### Python
-```python
-result = substrate.query(
-    'EqBalances', 'MigrationToggle', []
-)
-```
-
-#### Return value
-```python
-('bool', (None, 'AccountId'))
-```
----------
 ### NextXcmLimitPeriod
  Stores timestamp of next xcm limit period beginning
 
@@ -6270,20 +6221,6 @@ result = substrate.query(
 #### Return value
 ```python
 'u128'
-```
----------
-### TempMigration
-
-#### Python
-```python
-result = substrate.query(
-    'EqBalances', 'TempMigration', ['AccountId']
-)
-```
-
-#### Return value
-```python
-()
 ```
 ---------
 ### XcmNativeTransfers

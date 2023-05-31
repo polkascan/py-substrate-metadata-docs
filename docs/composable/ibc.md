@@ -5,6 +5,24 @@
 ## Calls
 
 ---------
+### add_channels_to_feeless_channel_list
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| source_channel | `u64` | 
+| destination_channel | `u64` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Ibc', 'add_channels_to_feeless_channel_list', {
+    'destination_channel': 'u64',
+    'source_channel': 'u64',
+}
+)
+```
+
+---------
 ### deliver
 #### Attributes
 | Name | Type |
@@ -55,6 +73,24 @@ No attributes
 ```python
 call = substrate.compose_call(
     'Ibc', 'increase_counters', {}
+)
+```
+
+---------
+### remove_channels_from_feeless_channel_list
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| source_channel | `u64` | 
+| destination_channel | `u64` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Ibc', 'remove_channels_from_feeless_channel_list', {
+    'destination_channel': 'u64',
+    'source_channel': 'u64',
+}
 )
 ```
 
@@ -151,6 +187,42 @@ A channel has been opened
 | port_id | `Vec<u8>` | ```Bytes```
 
 ---------
+### ChargingFeeConfirmed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sequence | `u64` | ```u64```
+
+---------
+### ChargingFeeFailedAcknowledgement
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sequence | `u64` | ```u64```
+
+---------
+### ChargingFeeOnTransferInitiated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sequence | `u64` | ```u64```
+| from | `Vec<u8>` | ```Bytes```
+| to | `Vec<u8>` | ```Bytes```
+| ibc_denom | `Vec<u8>` | ```Bytes```
+| local_asset_id | `Option<T::AssetId>` | ```(None, 'u128')```
+| amount | `T::Balance` | ```u128```
+| is_flat_fee | `bool` | ```bool```
+| source_channel | `Vec<u8>` | ```Bytes```
+| destination_channel | `Vec<u8>` | ```Bytes```
+
+---------
+### ChargingFeeTimeout
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sequence | `u64` | ```u64```
+
+---------
 ### ClientFrozen
 Client has been frozen
 #### Attributes
@@ -173,6 +245,22 @@ Events emitted by the ibc subsystem
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | events | `Vec<Result<events::IbcEvent, errors::IbcError>>` | ```[{'Ok': {'NewBlock': {'revision_height': 'u64', 'revision_number': 'u64'}, 'CreateClient': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'UpdateClient': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'UpgradeClient': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'ClientMisbehaviour': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'OpenInitConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenConfirmConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenTryConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenAckConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenInitChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'OpenConfirmChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'OpenTryChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'OpenAckChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'CloseInitChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'CloseConfirmChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'channel_id': (None, 'Bytes'), 'port_id': 'Bytes', 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'ReceivePacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'dest_port': 'Bytes', 'dest_channel': 'Bytes', 'sequence': 'u64'}, 'SendPacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'dest_port': 'Bytes', 'dest_channel': 'Bytes', 'sequence': 'u64'}, 'AcknowledgePacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'sequence': 'u64'}, 'WriteAcknowledgement': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'dest_port': 'Bytes', 'dest_channel': 'Bytes', 'sequence': 'u64'}, 'TimeoutPacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'sequence': 'u64'}, 'TimeoutOnClosePacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'sequence': 'u64'}, 'Empty': None, 'ChainError': None, 'AppModule': {'kind': 'Bytes', 'module_id': 'Bytes'}}, 'Err': {'Ics02Client': {'message': 'Bytes'}, 'Ics03Connection': {'message': 'Bytes'}, 'Ics04Channel': {'message': 'Bytes'}, 'Ics20FungibleTokenTransfer': {'message': 'Bytes'}, 'UnknownMessageTypeUrl': {'message': 'Bytes'}, 'MalformedMessageBytes': {'message': 'Bytes'}}}]```
+
+---------
+### FeeLessChannelIdsAdded
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| source_channel | `u64` | ```u64```
+| destination_channel | `u64` | ```u64```
+
+---------
+### FeeLessChannelIdsRemoved
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| source_channel | `u64` | ```u64```
+| destination_channel | `u64` | ```u64```
 
 ---------
 ### OnRecvPacketError
@@ -433,7 +521,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::477'
+'scale_info::480'
 ```
 ---------
 ### CounterForIbcAssetIds
@@ -478,7 +566,23 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::474'
+'scale_info::477'
+```
+---------
+### FeeLessChannelIds
+ storage map. key is tuple of (source_channel.sequence(), destination_channel.sequence()) and
+ value () that means that this group of channels is feeless
+
+#### Python
+```python
+result = substrate.query(
+    'Ibc', 'FeeLessChannelIds', [('u64', 'u64')]
+)
+```
+
+#### Return value
+```python
+()
 ```
 ---------
 ### IbcAssetIds
@@ -542,6 +646,36 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### PendingRecvPacketSeqs
+ Pending recv packet sequences. Used in `packet_cleanup` procedure.
+
+#### Python
+```python
+result = substrate.query(
+    'Ibc', 'PendingRecvPacketSeqs', [('Bytes', 'Bytes')]
+)
+```
+
+#### Return value
+```python
+('scale_info::483', 'u64')
+```
+---------
+### PendingSendPacketSeqs
+ Pending send packet sequences. Used in `packet_cleanup` procedure.
+
+#### Python
+```python
+result = substrate.query(
+    'Ibc', 'PendingSendPacketSeqs', [('Bytes', 'Bytes')]
+)
+```
+
+#### Return value
+```python
+('scale_info::483', 'u64')
+```
+---------
 ### RecvPackets
  RecvPackets info
 
@@ -572,8 +706,49 @@ result = substrate.query(
 'Bytes'
 ```
 ---------
+### SequenceFee
+ storage map where key is transfer sequence number and value calculated fee for that sequence
+ number
+
+#### Python
+```python
+result = substrate.query(
+    'Ibc', 'SequenceFee', ['u64']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### ServiceChargeOut
+
+#### Python
+```python
+result = substrate.query(
+    'Ibc', 'ServiceChargeOut', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
 ## Constants
 
+---------
+### CleanUpPacketsPeriod
+ Cleanup packets period (in blocks)
+#### Value
+```python
+100
+```
+#### Python
+```python
+constant = substrate.get_constant('Ibc', 'CleanUpPacketsPeriod')
+```
 ---------
 ### ExpectedBlockTime
  Expected block time in milliseconds
@@ -629,6 +804,27 @@ constant = substrate.get_constant('Ibc', 'NativeAssetId')
 #### Python
 ```python
 constant = substrate.get_constant('Ibc', 'PalletPrefix')
+```
+---------
+### ServiceChargeOut
+ `ServiceChargeOut` represents the service charge rate applied to assets that will be
+ sent via IBC.
+
+ The charge is applied before assets are transffered from the sender side, during
+ transfer extrinsic (before to burn or send assets to escrow account) before the packet
+ send via IBC Inter-Blockchain Communication (IBC) protocol.
+
+ For example, if the service charge rate for incoming assets is 0.04%, `ServiceChargeIn`
+ will be configured in rutime as
+ parameter_types! { pub IbcIcs20ServiceChargeOut: Perbill = Perbill::from_rational(4_u32,
+ 1000_u32 ) };
+#### Value
+```python
+4000000
+```
+#### Python
+```python
+constant = substrate.get_constant('Ibc', 'ServiceChargeOut')
 ```
 ---------
 ### SpamProtectionDeposit
@@ -689,6 +885,9 @@ Error decoding some type
 Error encoding some type
 
 ---------
+### FailedSendFeeToAccount
+
+---------
 ### FailedToGetRevisionNumber
 Unable to get client revision number
 
@@ -723,6 +922,9 @@ Invalid route
 ---------
 ### InvalidTimestamp
 Invalid timestamp
+
+---------
+### OriginAddress
 
 ---------
 ### Other

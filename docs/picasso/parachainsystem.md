@@ -59,9 +59,9 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::279',
+        'horizontal_messages': 'scale_info::291',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::276',
+            'trie_nodes': 'scale_info::288',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -308,7 +308,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::425'
+'scale_info::447'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -414,7 +414,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::276'}
+{'trie_nodes': 'scale_info::288'}
 ```
 ---------
 ### RelevantMessagingState

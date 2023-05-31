@@ -166,17 +166,6 @@ result = substrate.query(
 ## Constants
 
 ---------
-### FeeReceiver
- Account where fees are deposited
-#### Value
-```python
-'7L53bUTBopuwFt3mKUfmkzgGLayYa1Yvn1hAg9v5UMrQzTfh'
-```
-#### Python
-```python
-constant = substrate.get_constant('MultiTransactionPayment', 'FeeReceiver')
-```
----------
 ### NativeAssetId
  Native Asset
 #### Value
@@ -186,17 +175,6 @@ constant = substrate.get_constant('MultiTransactionPayment', 'FeeReceiver')
 #### Python
 ```python
 constant = substrate.get_constant('MultiTransactionPayment', 'NativeAssetId')
-```
----------
-### WithdrawFeeForSetCurrency
- Should fee be paid for setting a currency
-#### Value
-```python
-'Yes'
-```
-#### Python
-```python
-constant = substrate.get_constant('MultiTransactionPayment', 'WithdrawFeeForSetCurrency')
 ```
 ---------
 ## Errors

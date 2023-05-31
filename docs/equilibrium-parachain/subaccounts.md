@@ -9,6 +9,7 @@
 Transfers `amount` of `currency` from subaccount to &\#x27;destination&\#x27; account. If `subacc_type`
 is `Bailsman` and it&\#x27;s total collateral value becomes less than minimal bailsman
 collateral value - subaccount will be unregistered as bailsman.
+Destination should not be subaccount.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

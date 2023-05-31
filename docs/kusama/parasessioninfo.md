@@ -52,6 +52,32 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### SessionExecutorParams
+ Executor parameter set for a given session index
+
+#### Python
+```python
+result = substrate.query(
+    'ParaSessionInfo', 'SessionExecutorParams', ['u32']
+)
+```
+
+#### Return value
+```python
+[
+    {
+        None: None,
+        'MaxMemoryPages': 'u32',
+        'PrecheckingMaxMemory': 'u64',
+        'PvfExecTimeout': (('Backing', 'Approval'), 'u64'),
+        'PvfPrepTimeout': (('Precheck', 'Lenient'), 'u64'),
+        'StackLogicalMax': 'u32',
+        'StackNativeMax': 'u32',
+        'WasmExtBulkMemory': None,
+    },
+]
+```
+---------
 ### Sessions
  Session information in a rolling window.
  Should have an entry in range `EarliestStoredSession..=CurrentSessionIndex`.

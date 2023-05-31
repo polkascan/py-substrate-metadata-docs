@@ -68,6 +68,37 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_chain_address_type
+Stores chain id relation to chain address type.
+Sudo only.
+
+\# &lt;weight&gt;
+- O(1) write
+\# &lt;/weight&gt;
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| dest_id | `chainbridge::ChainId` | 
+| address_type | `Option<ChainAddressType>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'EqBridge', 'set_chain_address_type', {
+    'address_type': (
+        None,
+        (
+            'Ethereum',
+            'Substrate',
+            'SubstrateWithPrefix',
+        ),
+    ),
+    'dest_id': 'u8',
+}
+)
+```
+
+---------
 ### set_minimum_transfer_amount
 Stores minimum transfer amount for sending asset to external chain.
 Sudo only.
@@ -183,6 +214,15 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### ChainAddressTypeChanged
+ChainAddressType has changed. \[chainId, Option&lt;ChainAddressType&gt;\]
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `chainbridge::ChainId` | ```u8```
+| None | `Option<ChainAddressType>` | ```(None, ('Ethereum', 'Substrate', 'SubstrateWithPrefix'))```
+
+---------
 ### FromBridgeTransfer
 Transfers funds from the bridge into the network
 #### Attributes
@@ -258,6 +298,20 @@ result = substrate.query(
 '[u8; 32]'
 ```
 ---------
+### ChainAddressTypes
+
+#### Python
+```python
+result = substrate.query(
+    'EqBridge', 'ChainAddressTypes', ['u8']
+)
+```
+
+#### Return value
+```python
+('Ethereum', 'Substrate', 'SubstrateWithPrefix')
+```
+---------
 ### EnabledWithdrawals
 
 #### Python
@@ -303,6 +357,10 @@ result = substrate.query(
 ## Errors
 
 ---------
+### ChainAddressTypeEqual
+Attempt to set ChainAddressType to current value
+
+---------
 ### ChainNotWhitelisted
 Interactions with this chain is not permitted
 
@@ -328,6 +386,10 @@ Resource id not mapped to `Asset`
 
 ---------
 ### InvalidTransfer
+
+---------
+### RecipientChainAddressTypeMismatch
+wrong recipient address
 
 ---------
 ### TransferAmountLowerMinimum
