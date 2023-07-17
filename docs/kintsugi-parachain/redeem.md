@@ -44,23 +44,85 @@ given in the original redeem request. The Vault completes the redeem with this f
 * `origin` - anyone executing this redeem request
 * `redeem_id` - identifier of redeem request as output from request_redeem
 * `tx_id` - transaction hash
-* `tx_block_height` - block number of collateral chain
-* `merkle_proof` - raw bytes
-* `raw_tx` - raw bytes
+* `merkle_proof` - membership proof
+* `transaction` - tx containing payment
+
+\#\# Complexity:
+- `O(H + I + O + B)` where:
+  - `H` is the number of hashes in the merkle tree
+  - `I` is the number of transaction inputs
+  - `O` is the number of transaction outputs
+  - `B` is `transaction` size in bytes (length-fee-bounded)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | redeem_id | `H256` | 
-| merkle_proof | `Vec<u8>` | 
-| raw_tx | `Vec<u8>` | 
+| merkle_proof | `MerkleProof` | 
+| transaction | `Transaction` | 
+| length_bound | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Redeem', 'execute_redeem', {
-    'merkle_proof': 'Bytes',
-    'raw_tx': 'Bytes',
+    'length_bound': 'u32',
+    'merkle_proof': {
+        'block_header': {
+            'hash': {
+                'content': '[u8; 32]',
+            },
+            'hash_prev_block': {
+                'content': '[u8; 32]',
+            },
+            'merkle_root': {
+                'content': '[u8; 32]',
+            },
+            'nonce': 'u32',
+            'target': '[u64; 4]',
+            'timestamp': 'u32',
+            'version': 'i32',
+        },
+        'flag_bits': ['bool'],
+        'hashes': [
+            {'content': '[u8; 32]'},
+        ],
+        'transactions_count': 'u32',
+    },
     'redeem_id': '[u8; 32]',
+    'transaction': {
+        'inputs': [
+            {
+                'script': 'Bytes',
+                'sequence': 'u32',
+                'source': {
+                    'Coinbase': (
+                        None,
+                        'u32',
+                    ),
+                    'FromOutput': (
+                        {
+                            'content': '[u8; 32]',
+                        },
+                        'u32',
+                    ),
+                },
+                'witness': ['Bytes'],
+            },
+        ],
+        'lock_at': {
+            'BlockHeight': 'u32',
+            'Time': 'u32',
+        },
+        'outputs': [
+            {
+                'script': {
+                    'bytes': 'Bytes',
+                },
+                'value': 'i64',
+            },
+        ],
+        'version': 'i32',
+    },
 }
 )
 ```

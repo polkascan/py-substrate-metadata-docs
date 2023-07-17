@@ -14,15 +14,13 @@ be the account that controls it.
 The dispatch origin for this call must be _Signed_ by the stash account.
 
 Emits `Bonded`.
-\# &lt;weight&gt;
+\#\# Complexity
 - Independent of the arguments. Moderate complexity.
 - O(1).
 - Three extra DB entries.
 
 NOTE: Two of the storage writes (`Self::bonded`, `Self::payee`) are _never_ cleaned
 unless the `origin` falls below _existential deposit_ and gets removed as dust.
-------------------
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -66,10 +64,9 @@ any limitation on the amount that can be added.
 
 Emits `Bonded`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - Independent of the arguments. Insignificant complexity.
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -113,11 +110,10 @@ Effects will be felt at the beginning of the next era.
 
 The dispatch origin for this call must be _Signed_ by the controller, not the stash.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - Independent of the arguments. Insignificant complexity.
 - Contains one read.
 - Writes are limited to the `origin` account key.
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -198,11 +194,9 @@ The election process starts multiple blocks before the end of the era.
 If this is called just before a new era is triggered, the election process may not
 have enough blocks to get a result.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - No arguments.
 - Weight: O(1)
-- Write ForceEra
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -246,11 +240,9 @@ The election process starts multiple blocks before the end of the era.
 Thus the election process may be ongoing when this is called. In this case the
 election will continue until the next era is triggered.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - No arguments.
 - Weight: O(1)
-- Write: ForceEra
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -289,9 +281,8 @@ Increments the ideal number of validators upto maximum of
 
 The dispatch origin must be Root.
 
-\# &lt;weight&gt;
+\#\# Complexity
 Same as [`Self::set_validator_count`].
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -347,11 +338,10 @@ Effects will be felt at the beginning of the next era.
 
 The dispatch origin for this call must be _Signed_ by the controller, not the stash.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - The transaction&\#x27;s complexity is proportional to the size of `targets` (N)
 which is capped at CompactAssignments::LIMIT (T::MaxNominations).
 - Both the reads and writes follow a similar pattern.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -385,18 +375,8 @@ Pay out all the stakers behind a single validator for a single era.
 The origin of this call must be _Signed_. Any account can call this function, even if
 it is not one of the stakers.
 
-\# &lt;weight&gt;
-- Time complexity: at most O(MaxNominatorRewardedPerValidator).
-- Contains a limited number of reads and writes.
------------
-N is the Number of payouts for the validator (including the validator)
-Weight:
-- Reward Destination Staked: O(N)
-- Reward Destination Controller (Creating): O(N)
-
-  NOTE: weights are assuming that payouts are made to alive stash account (Staked).
-  Paying even a dead controller is cheaper weight-wise. We don&\#x27;t do any refunds here.
-\# &lt;/weight&gt;
+\#\# Complexity
+- At most O(MaxNominatorRewardedPerValidator).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -449,11 +429,9 @@ Rebond a portion of the stash scheduled to be unlocked.
 
 The dispatch origin must be signed by the controller.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - Time complexity: O(L), where L is unlocking chunks
 - Bounded by `MaxUnlockingChunks`.
-- Storage changes: Can&\#x27;t increase storage, only decrease it.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -473,9 +451,8 @@ Scale up the ideal number of validators by a factor upto maximum of
 
 The dispatch origin must be Root.
 
-\# &lt;weight&gt;
+\#\# Complexity
 Same as [`Self::set_validator_count`].
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -496,16 +473,11 @@ Effects will be felt instantly (as soon as this function is completed successful
 
 The dispatch origin for this call must be _Signed_ by the stash, not the controller.
 
-\# &lt;weight&gt;
+\#\# Complexity
+O(1)
 - Independent of the arguments. Insignificant complexity.
 - Contains a limited number of reads.
 - Writes are limited to the `origin` account key.
-----------
-Weight: O(1)
-DB Weight:
-- Read: Bonded, Ledger New Controller, Ledger Old Controller
-- Write: Bonded, Ledger New Controller, Ledger Old Controller
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -569,16 +541,12 @@ Effects will be felt instantly (as soon as this function is completed successful
 
 The dispatch origin for this call must be _Signed_ by the controller, not the stash.
 
-\# &lt;weight&gt;
+\#\# Complexity
+- O(1)
 - Independent of the arguments. Insignificant complexity.
 - Contains a limited number of reads.
 - Writes are limited to the `origin` account key.
 ---------
-- Weight: O(1)
-- DB Weight:
-    - Read: Ledger
-    - Write: Payee
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -672,10 +640,8 @@ Sets the ideal number of validators.
 
 The dispatch origin must be Root.
 
-\# &lt;weight&gt;
-Weight: O(1)
-Write: Validator Count
-\# &lt;/weight&gt;
+\#\# Complexity
+O(1)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -758,10 +724,9 @@ Emits `Withdrawn`.
 
 See also [`Call::unbond`].
 
-\# &lt;weight&gt;
-Complexity O(S) where S is the number of slashing spans to remove
+\#\# Complexity
+O(S) where S is the number of slashing spans to remove
 NOTE: Weight annotation is the kill scenario, we refund otherwise.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1080,7 +1045,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'individual': 'scale_info::498', 'total': 'u32'}
+{'individual': 'scale_info::540', 'total': 'u32'}
 ```
 ---------
 ### ErasStakers

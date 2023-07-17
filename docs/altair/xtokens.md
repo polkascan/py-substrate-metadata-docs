@@ -36,6 +36,7 @@ call = substrate.compose_call(
         'ForeignAsset': 'u32',
         'KSM': None,
         'Native': None,
+        'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
     },
     'dest': {
@@ -77,12 +78,15 @@ call = substrate.compose_call(
                 'Parent': None,
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -142,12 +146,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -195,12 +202,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -250,12 +260,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -303,12 +316,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -356,12 +372,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -411,12 +430,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -464,12 +486,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -517,12 +542,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -570,12 +598,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -625,12 +656,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -678,12 +712,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -731,12 +768,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -784,12 +824,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -837,12 +880,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -892,12 +938,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -945,12 +994,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -998,12 +1050,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1051,12 +1106,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1104,12 +1162,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1157,12 +1218,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1212,12 +1276,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1265,12 +1332,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1318,12 +1388,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1371,12 +1444,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1424,12 +1500,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1477,12 +1556,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1530,12 +1612,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1585,12 +1670,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1638,12 +1726,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1691,12 +1782,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1744,12 +1838,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1797,12 +1894,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1850,12 +1950,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1903,12 +2006,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1956,12 +2062,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2013,12 +2122,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2034,15 +2146,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2050,22 +2162,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2073,8 +2185,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -2082,15 +2194,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2098,22 +2210,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2121,22 +2233,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2144,8 +2256,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -2153,15 +2265,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2169,22 +2281,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2192,22 +2304,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2215,22 +2327,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2238,8 +2350,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -2247,15 +2359,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2263,22 +2375,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2286,22 +2398,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2309,22 +2421,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2332,22 +2444,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2355,8 +2467,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -2364,15 +2476,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2380,22 +2492,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2403,22 +2515,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2426,22 +2538,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2449,22 +2561,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2472,22 +2584,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2495,8 +2607,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -2504,15 +2616,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2520,22 +2632,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2543,22 +2655,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2566,22 +2678,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2589,22 +2701,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2612,22 +2724,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2635,22 +2747,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2658,8 +2770,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -2667,15 +2779,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2683,22 +2795,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2706,22 +2818,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2729,22 +2841,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2752,22 +2864,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2775,22 +2887,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2798,22 +2910,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2821,22 +2933,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2844,8 +2956,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -2917,15 +3029,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -2934,8 +3046,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -3380,15 +3492,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -3397,8 +3509,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -3846,15 +3958,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -3863,8 +3975,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -4309,15 +4421,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -4326,8 +4438,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -4807,53 +4919,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X3': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X4': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X5': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X6': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X7': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X8': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                     },
                     'parents': 'u8',
@@ -4900,12 +5012,15 @@ call = substrate.compose_call(
                 'Parent': None,
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -4965,12 +5080,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5018,12 +5136,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5073,12 +5194,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5126,12 +5250,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5179,12 +5306,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5234,12 +5364,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5287,12 +5420,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5340,12 +5476,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5393,12 +5532,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5448,12 +5590,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5501,12 +5646,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5554,12 +5702,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5607,12 +5758,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5660,12 +5814,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5715,12 +5872,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5768,12 +5928,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5821,12 +5984,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5874,12 +6040,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5927,12 +6096,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -5980,12 +6152,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6035,12 +6210,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6088,12 +6266,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6141,12 +6322,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6194,12 +6378,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6247,12 +6434,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6300,12 +6490,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6353,12 +6546,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6408,12 +6604,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6461,12 +6660,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6514,12 +6716,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6567,12 +6772,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6620,12 +6828,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6673,12 +6884,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6726,12 +6940,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6779,12 +6996,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6836,12 +7056,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -6857,15 +7080,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -6873,22 +7096,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -6896,8 +7119,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -6905,15 +7128,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -6921,22 +7144,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -6944,22 +7167,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -6967,8 +7190,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -6976,15 +7199,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -6992,22 +7215,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7015,22 +7238,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7038,22 +7261,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7061,8 +7284,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -7070,15 +7293,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7086,22 +7309,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7109,22 +7332,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7132,22 +7355,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7155,22 +7378,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7178,8 +7401,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -7187,15 +7410,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7203,22 +7426,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7226,22 +7449,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7249,22 +7472,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7272,22 +7495,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7295,22 +7518,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7318,8 +7541,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -7327,15 +7550,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7343,22 +7566,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7366,22 +7589,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7389,22 +7612,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7412,22 +7635,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7435,22 +7658,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7458,22 +7681,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7481,8 +7704,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -7490,15 +7713,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7506,22 +7729,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7529,22 +7752,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7552,22 +7775,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7575,22 +7798,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7598,22 +7821,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7621,22 +7844,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7644,22 +7867,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7667,8 +7890,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -7750,15 +7973,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -7767,8 +7990,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -8213,15 +8436,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -8230,8 +8453,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -8679,15 +8902,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -8696,8 +8919,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -9142,15 +9365,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -9159,8 +9382,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -9640,53 +9863,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X3': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X4': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X5': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X6': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X7': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X8': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                     },
                     'parents': 'u8',
@@ -9733,12 +9956,15 @@ call = substrate.compose_call(
                 'Parent': None,
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -9798,12 +10024,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -9851,12 +10080,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -9906,12 +10138,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -9959,12 +10194,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10012,12 +10250,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10067,12 +10308,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10120,12 +10364,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10173,12 +10420,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10226,12 +10476,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10281,12 +10534,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10334,12 +10590,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10387,12 +10646,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10440,12 +10702,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10493,12 +10758,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10548,12 +10816,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10601,12 +10872,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10654,12 +10928,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10707,12 +10984,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10760,12 +11040,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10813,12 +11096,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10868,12 +11154,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10921,12 +11210,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -10974,12 +11266,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11027,12 +11322,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11080,12 +11378,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11133,12 +11434,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11186,12 +11490,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11241,12 +11548,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11294,12 +11604,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11347,12 +11660,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11400,12 +11716,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11453,12 +11772,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11506,12 +11828,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11559,12 +11884,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11612,12 +11940,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11669,12 +12000,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -11690,15 +12024,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11706,22 +12040,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11729,8 +12063,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -11738,15 +12072,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11754,22 +12088,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11777,22 +12111,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11800,8 +12134,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -11809,15 +12143,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11825,22 +12159,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11848,22 +12182,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11871,22 +12205,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11894,8 +12228,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -11903,15 +12237,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11919,22 +12253,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11942,22 +12276,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11965,22 +12299,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -11988,22 +12322,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12011,8 +12345,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -12020,15 +12354,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12036,22 +12370,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12059,22 +12393,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12082,22 +12416,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12105,22 +12439,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12128,22 +12462,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12151,8 +12485,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -12160,15 +12494,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12176,22 +12510,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12199,22 +12533,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12222,22 +12556,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12245,22 +12579,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12268,22 +12602,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12291,22 +12625,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12314,8 +12648,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -12323,15 +12657,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12339,22 +12673,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12362,22 +12696,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12385,22 +12719,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12408,22 +12742,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12431,22 +12765,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12454,22 +12788,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12477,22 +12811,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12500,8 +12834,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -12544,15 +12878,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -12561,8 +12895,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -13007,15 +13341,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -13024,8 +13358,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -13473,15 +13807,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -13490,8 +13824,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -13936,15 +14270,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -13953,8 +14287,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     'X2': (
@@ -14434,53 +14768,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X3': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X4': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X5': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X6': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X7': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                         'X8': (
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
-                            'scale_info::147',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
+                            'scale_info::162',
                         ),
                     },
                     'parents': 'u8',
@@ -14563,53 +14897,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X3': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X4': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X5': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X6': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X7': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X8': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                     },
                 },
@@ -14629,53 +14963,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X3': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X4': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X5': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X6': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X7': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X8': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                     },
                 },
@@ -14698,53 +15032,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X3': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X4': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X5': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X6': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X7': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X8': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                     },
                 },
@@ -14764,53 +15098,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X3': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X4': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X5': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X6': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X7': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                         'X8': (
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
-                            'scale_info::179',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
+                            'scale_info::194',
                         ),
                     },
                     'instance': {
@@ -14843,7 +15177,7 @@ call = substrate.compose_call(
                 'id': {
                     'Abstract': 'Bytes',
                     'Concrete': {
-                        'interior': 'scale_info::146',
+                        'interior': 'scale_info::161',
                         'parents': 'u8',
                     },
                 },
@@ -14889,12 +15223,15 @@ call = substrate.compose_call(
                 'Parent': None,
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -14954,12 +15291,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15007,12 +15347,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15062,12 +15405,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15115,12 +15461,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15168,12 +15517,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15223,12 +15575,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15276,12 +15631,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15329,12 +15687,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15382,12 +15743,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15437,12 +15801,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15490,12 +15857,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15543,12 +15913,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15596,12 +15969,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15649,12 +16025,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15704,12 +16083,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15757,12 +16139,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15810,12 +16195,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15863,12 +16251,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15916,12 +16307,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -15969,12 +16363,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16024,12 +16421,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16077,12 +16477,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16130,12 +16533,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16183,12 +16589,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16236,12 +16645,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16289,12 +16701,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16342,12 +16757,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16397,12 +16815,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16450,12 +16871,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16503,12 +16927,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16556,12 +16983,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16609,12 +17039,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16662,12 +17095,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16715,12 +17151,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16768,12 +17207,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16825,12 +17267,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -16846,15 +17291,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -16862,22 +17307,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -16885,8 +17330,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -16894,15 +17339,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -16910,22 +17355,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -16933,22 +17378,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -16956,8 +17401,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -16965,15 +17410,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -16981,22 +17426,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17004,22 +17449,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17027,22 +17472,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17050,8 +17495,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -17059,15 +17504,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17075,22 +17520,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17098,22 +17543,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17121,22 +17566,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17144,22 +17589,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17167,8 +17612,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -17176,15 +17621,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17192,22 +17637,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17215,22 +17660,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17238,22 +17683,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17261,22 +17706,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17284,22 +17729,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17307,8 +17752,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -17316,15 +17761,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17332,22 +17777,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17355,22 +17800,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17378,22 +17823,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17401,22 +17846,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17424,22 +17869,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17447,22 +17892,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17470,8 +17915,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -17479,15 +17924,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17495,22 +17940,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17518,22 +17963,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17541,22 +17986,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17564,22 +18009,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17587,22 +18032,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17610,22 +18055,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17633,22 +18078,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -17656,8 +18101,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -17710,6 +18155,9 @@ call = substrate.compose_call(
                 'ForeignAsset': 'u32',
                 'KSM': None,
                 'Native': None,
+                'Staking': (
+                    'BlockRewards',
+                ),
                 'Tranche': (
                     'u64',
                     '[u8; 16]',
@@ -17757,12 +18205,15 @@ call = substrate.compose_call(
                 'Parent': None,
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -17822,12 +18273,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -17875,12 +18329,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -17930,12 +18387,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -17983,12 +18443,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18036,12 +18499,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18091,12 +18557,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18144,12 +18613,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18197,12 +18669,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18250,12 +18725,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18305,12 +18783,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18358,12 +18839,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18411,12 +18895,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18464,12 +18951,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18517,12 +19007,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18572,12 +19065,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18625,12 +19121,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18678,12 +19177,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18731,12 +19233,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18784,12 +19289,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18837,12 +19345,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18892,12 +19403,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18945,12 +19459,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -18998,12 +19515,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19051,12 +19571,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19104,12 +19627,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19157,12 +19683,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19210,12 +19739,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19265,12 +19797,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19318,12 +19853,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19371,12 +19909,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19424,12 +19965,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19477,12 +20021,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19530,12 +20077,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19583,12 +20133,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19636,12 +20189,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19693,12 +20249,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -19714,15 +20273,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19730,22 +20289,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19753,8 +20312,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -19762,15 +20321,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19778,22 +20337,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19801,22 +20360,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19824,8 +20383,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -19833,15 +20392,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19849,22 +20408,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19872,22 +20431,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19895,22 +20454,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19918,8 +20477,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -19927,15 +20486,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19943,22 +20502,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19966,22 +20525,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -19989,22 +20548,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20012,22 +20571,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20035,8 +20594,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -20044,15 +20603,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20060,22 +20619,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20083,22 +20642,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20106,22 +20665,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20129,22 +20688,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20152,22 +20711,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20175,8 +20734,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -20184,15 +20743,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20200,22 +20759,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20223,22 +20782,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20246,22 +20805,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20269,22 +20828,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20292,22 +20851,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20315,22 +20874,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20338,8 +20897,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -20347,15 +20906,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20363,22 +20922,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20386,22 +20945,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20409,22 +20968,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20432,22 +20991,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20455,22 +21014,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20478,22 +21037,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20501,22 +21060,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -20524,8 +21083,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -20584,6 +21143,7 @@ call = substrate.compose_call(
         'ForeignAsset': 'u32',
         'KSM': None,
         'Native': None,
+        'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
     },
     'dest': {
@@ -20625,12 +21185,15 @@ call = substrate.compose_call(
                 'Parent': None,
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -20690,12 +21253,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -20743,12 +21309,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -20798,12 +21367,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -20851,12 +21423,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -20904,12 +21479,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -20959,12 +21537,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21012,12 +21593,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21065,12 +21649,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21118,12 +21705,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21173,12 +21763,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21226,12 +21819,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21279,12 +21875,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21332,12 +21931,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21385,12 +21987,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21440,12 +22045,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21493,12 +22101,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21546,12 +22157,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21599,12 +22213,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21652,12 +22269,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21705,12 +22325,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21760,12 +22383,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21813,12 +22439,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21866,12 +22495,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21919,12 +22551,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -21972,12 +22607,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22025,12 +22663,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22078,12 +22719,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22133,12 +22777,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22186,12 +22833,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22239,12 +22889,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22292,12 +22945,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22345,12 +23001,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22398,12 +23057,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22451,12 +23113,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22504,12 +23169,15 @@ call = substrate.compose_call(
                     'Parent': None,
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22561,12 +23229,15 @@ call = substrate.compose_call(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -22582,15 +23253,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22598,22 +23269,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22621,8 +23292,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -22630,15 +23301,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22646,22 +23317,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22669,22 +23340,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22692,8 +23363,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -22701,15 +23372,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22717,22 +23388,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22740,22 +23411,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22763,22 +23434,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22786,8 +23457,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -22795,15 +23466,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22811,22 +23482,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22834,22 +23505,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22857,22 +23528,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22880,22 +23551,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22903,8 +23574,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -22912,15 +23583,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22928,22 +23599,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22951,22 +23622,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22974,22 +23645,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -22997,22 +23668,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23020,22 +23691,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23043,8 +23714,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -23052,15 +23723,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23068,22 +23739,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23091,22 +23762,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23114,22 +23785,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23137,22 +23808,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23160,22 +23831,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23183,22 +23854,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23206,8 +23877,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -23215,15 +23886,15 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23231,22 +23902,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23254,22 +23925,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23277,22 +23948,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23300,22 +23971,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23323,22 +23994,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23346,22 +24017,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23369,22 +24040,22 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::149',
+                            'network': 'scale_info::164',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -23392,8 +24063,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::153',
-                            'part': 'scale_info::154',
+                            'id': 'scale_info::168',
+                            'part': 'scale_info::169',
                         },
                     },
                 ),
@@ -23420,9 +24091,9 @@ Transferred `MultiAsset` with fee.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| assets | `MultiAssets` | ```[{'id': {'Concrete': {'parents': 'u8', 'interior': 'scale_info::146'}, 'Abstract': 'Bytes'}, 'fun': {'Fungible': 'u128', 'NonFungible': {'Undefined': None, 'Index': 'u128', 'Array4': '[u8; 4]', 'Array8': '[u8; 8]', 'Array16': '[u8; 16]', 'Array32': '[u8; 32]', 'Blob': 'Bytes'}}}]```
-| fee | `MultiAsset` | ```{'id': {'Concrete': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, 'X2': ('scale_info::147', 'scale_info::147'), 'X3': ('scale_info::147', 'scale_info::147', 'scale_info::147'), 'X4': ('scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147'), 'X5': ('scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147'), 'X6': ('scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147'), 'X7': ('scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147'), 'X8': ('scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147', 'scale_info::147')}}, 'Abstract': 'Bytes'}, 'fun': {'Fungible': 'u128', 'NonFungible': {'Undefined': None, 'Index': 'u128', 'Array4': '[u8; 4]', 'Array8': '[u8; 8]', 'Array16': '[u8; 16]', 'Array32': '[u8; 32]', 'Blob': 'Bytes'}}}```
-| dest | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'id': '[u8; 32]'}, 'AccountIndex64': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'index': 'u64'}, 'AccountKey20': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Named': 'Bytes', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::149', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::149', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::149', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::153', 'part': 'scale_info::154'}})}}```
+| assets | `MultiAssets` | ```[{'id': {'Concrete': {'parents': 'u8', 'interior': 'scale_info::161'}, 'Abstract': 'Bytes'}, 'fun': {'Fungible': 'u128', 'NonFungible': {'Undefined': None, 'Index': 'u128', 'Array4': '[u8; 4]', 'Array8': '[u8; 8]', 'Array16': '[u8; 16]', 'Array32': '[u8; 32]', 'Blob': 'Bytes'}}}]```
+| fee | `MultiAsset` | ```{'id': {'Concrete': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, 'X2': ('scale_info::162', 'scale_info::162'), 'X3': ('scale_info::162', 'scale_info::162', 'scale_info::162'), 'X4': ('scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162'), 'X5': ('scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162'), 'X6': ('scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162'), 'X7': ('scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162'), 'X8': ('scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162', 'scale_info::162')}}, 'Abstract': 'Bytes'}, 'fun': {'Fungible': 'u128', 'NonFungible': {'Undefined': None, 'Index': 'u128', 'Array4': '[u8; 4]', 'Array8': '[u8; 8]', 'Array16': '[u8; 16]', 'Array32': '[u8; 32]', 'Blob': 'Bytes'}}}```
+| dest | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'id': '[u8; 32]'}, 'AccountIndex64': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'index': 'u64'}, 'AccountKey20': {'network': {'Any': None, 'Named': 'Bytes', 'Polkadot': None, 'Kusama': None}, 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Named': 'Bytes', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None, 'Defense': None, 'Administration': None, 'Treasury': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}}, {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::164', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::164', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::164', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::168', 'part': 'scale_info::169'}})}}```
 
 ---------
 ## Constants

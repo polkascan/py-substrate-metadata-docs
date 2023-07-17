@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | Crab2     |
 | Implementation name     | DarwiniaOfficialRust     |
-| Spec version     | 6300     |
+| Spec version     | 6340     |
 | SS58 Format     | 42     |
 | Token symbol      | CRAB     |
 | Token decimals      | 18     |
@@ -16,7 +16,7 @@
 | Name | Calls | Events | Storage functions | Constants | Errors |
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | [AccountMigration](accountmigration.md) | [3](accountmigration.md#calls) | [3](accountmigration.md#events) | [7](accountmigration.md#storage-functions) | [0](accountmigration.md#constants) | [3](accountmigration.md#errors) |
-| [Assets](assets.md) | [28](assets.md#calls) | [21](assets.md#events) | [4](assets.md#storage-functions) | [7](assets.md#constants) | [19](assets.md#errors) |
+| [Assets](assets.md) | [29](assets.md#calls) | [22](assets.md#events) | [4](assets.md#storage-functions) | [7](assets.md#constants) | [20](assets.md#errors) |
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [0](authorship.md#calls) | [0](authorship.md#events) | [1](authorship.md#storage-functions) | [0](authorship.md#constants) | [0](authorship.md#errors) |
@@ -29,7 +29,7 @@
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [DarwiniaFeeMarket](darwiniafeemarket.md) | [7](darwiniafeemarket.md#calls) | [9](darwiniafeemarket.md#events) | [6](darwiniafeemarket.md#storage-functions) | [9](darwiniafeemarket.md#constants) | [9](darwiniafeemarket.md#errors) |
 | [DarwiniaStaking](darwiniastaking.md) | [8](darwiniastaking.md#calls) | [4](darwiniastaking.md#events) | [11](darwiniastaking.md#storage-functions) | [4](darwiniastaking.md#constants) | [6](darwiniastaking.md#errors) |
-| [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
+| [Democracy](democracy.md) | [19](democracy.md#calls) | [17](democracy.md#events) | [12](democracy.md#storage-functions) | [12](democracy.md#constants) | [24](democracy.md#errors) |
 | [Deposit](deposit.md) | [3](deposit.md#calls) | [3](deposit.md#events) | [1](deposit.md#storage-functions) | [2](deposit.md#constants) | [8](deposit.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [2](evm.md#storage-functions) | [0](evm.md#constants) | [11](evm.md#errors) |
@@ -40,13 +40,12 @@
 | [MessageTransact](messagetransact.md) | [1](messagetransact.md#calls) | [0](messagetransact.md#events) | [0](messagetransact.md#storage-functions) | [0](messagetransact.md#constants) | [1](messagetransact.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
-| [PhragmenElection](phragmenelection.md) | [6](phragmenelection.md#calls) | [7](phragmenelection.md#events) | [5](phragmenelection.md#storage-functions) | [9](phragmenelection.md#constants) | [17](phragmenelection.md#errors) |
+| [PhragmenElection](phragmenelection.md) | [6](phragmenelection.md#calls) | [7](phragmenelection.md#events) | [5](phragmenelection.md#storage-functions) | [10](phragmenelection.md#constants) | [17](phragmenelection.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
-| [Sudo](sudo.md) | [4](sudo.md#calls) | [3](sudo.md#events) | [1](sudo.md#storage-functions) | [0](sudo.md#constants) | [1](sudo.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [TechnicalCommittee](technicalcommittee.md) | [7](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [0](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors) |
 | [TechnicalMembership](technicalmembership.md) | [7](technicalmembership.md#calls) | [6](technicalmembership.md#events) | [2](technicalmembership.md#storage-functions) | [0](technicalmembership.md#constants) | [3](technicalmembership.md#errors) |

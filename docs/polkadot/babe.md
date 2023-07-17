@@ -142,12 +142,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -170,12 +170,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -349,15 +349,13 @@ result = substrate.query(
         'Primary': {
             'authority_index': 'u32',
             'slot': 'u64',
-            'vrf_output': '[u8; 32]',
-            'vrf_proof': '[u8; 64]',
+            'vrf_signature': {'output': '[u8; 32]', 'proof': '[u8; 64]'},
         },
         'SecondaryPlain': {'authority_index': 'u32', 'slot': 'u64'},
         'SecondaryVRF': {
             'authority_index': 'u32',
             'slot': 'u64',
-            'vrf_output': '[u8; 32]',
-            'vrf_proof': '[u8; 64]',
+            'vrf_signature': {'output': '[u8; 32]', 'proof': '[u8; 64]'},
         },
     },
 )
@@ -505,6 +503,28 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
+```
+---------
+### SkippedEpochs
+ A list of the last 100 skipped epochs and the corresponding session index
+ when the epoch was skipped.
+
+ This is only used for validating equivocation proofs. An equivocation proof
+ must contains a key-ownership proof for a given session, therefore we need a
+ way to tie together sessions and epoch indices, i.e. we need to validate that
+ a validator was the owner of a given key on a given session, and what the
+ active epoch index was during that session.
+
+#### Python
+```python
+result = substrate.query(
+    'Babe', 'SkippedEpochs', []
+)
+```
+
+#### Return value
+```python
+[('u64', 'u32')]
 ```
 ---------
 ### UnderConstruction

@@ -21,9 +21,11 @@ call = substrate.compose_call(
 ### migrate_balances_issuance
 Migrates a the `TotalIssuance`.
 
-The provide balance here, will be ADDED to the existing `TotalIssuance` of the system.
-Calley better be sure, that the total issuance matches the actual total issuance in the system,
-which means, that the `AccountInfo` from the frame_system is migrated afterwards.
+The provide balance here, will be ADDED to the existing
+`TotalIssuance` of the system. Calley better be sure, that the total
+issuance matches the actual total issuance in the system,
+which means, that the `AccountInfo` from the frame_system is
+migrated afterwards.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -40,9 +42,10 @@ call = substrate.compose_call(
 ### migrate_proxy_proxies
 Migrates to `Proxies` storage from another chain.
 
-As the `Proxies` storage changed between v2 and v3, a transformation for the v2 data is done off-chain.
-The input defines an array of of tuples, where each tuple defines, the proxied account, the reserve that
-must be done on this account and the proxies for this account.
+As the `Proxies` storage changed between v2 and v3, a transformation
+for the v2 data is done off-chain. The input defines an array of of
+tuples, where each tuple defines, the proxied account, the reserve
+that must be done on this account and the proxies for this account.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -96,11 +99,12 @@ call = substrate.compose_call(
 ### migrate_system_account
 Migrating the Account informations from frame_system.
 
-This call takes the raw scale encoded key (= patricia-key for each account in the `Account` storage and inserts
-the provided scale encoded value (= `AccountInfo`) into the underlying DB.
+This call takes the raw scale encoded key (= patricia-key for each
+account in the `Account` storage and inserts the provided scale
+encoded value (= `AccountInfo`) into the underlying DB.
 
-Note: As we are converting from substrate-v2 to substrate-v3 we must do type-conversions. Those conversions are done
-off-chain.
+Note: As we are converting from substrate-v2 to substrate-v3 we must
+do type-conversions. Those conversions are done off-chain.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -117,8 +121,8 @@ call = substrate.compose_call(
 ### migrate_vesting_vesting
 Migrates vesting information to this system.
 
-The `VestingInfo` is adapted off-chain, so that it represents the correct vesting information
-on this chain.
+The `VestingInfo` is adapted off-chain, so that it represents the
+correct vesting information on this chain.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -147,8 +151,9 @@ call = substrate.compose_call(
 
 ---------
 ### FailedToMigrateProxyDataFor
-Indicates if a migration of proxy data failed, this should NEVER happen, and can only
-happen due to insufficient balances during reserve
+Indicates if a migration of proxy data failed, this should NEVER
+happen, and can only happen due to insufficient balances during
+reserve
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -156,8 +161,9 @@ happen due to insufficient balances during reserve
 
 ---------
 ### FailedToMigrateVestingFor
-This is an error that must be dispatched as an Event, as we do not want to fail the whole batch
-when one account fails. Should also not happen, as we take them from mainnet. But...
+This is an error that must be dispatched as an Event, as we do not
+want to fail the whole batch when one account fails. Should also not
+happen, as we take them from mainnet. But...
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -286,23 +292,27 @@ constant = substrate.get_constant('Migration', 'MigrationMaxVestings')
 
 ---------
 ### MigrationAlreadyCompleted
-Indicates that a migration call happened, although the migration is already closed
+Indicates that a migration call happened, although the migration is
+already closed
 
 ---------
 ### OnlyFinalizeOngoing
-Indicates that a finalize call happened, although the migration pallet is not in an
-ongoing migration
+Indicates that a finalize call happened, although the migration
+pallet is not in an ongoing migration
 
 ---------
 ### TooManyAccounts
-Too many accounts in the vector for the call of `migrate_system_account`.
+Too many accounts in the vector for the call of
+`migrate_system_account`.
 
 ---------
 ### TooManyProxies
-Too many proxies in the vector for the call of `migrate_proxy_proxies`.
+Too many proxies in the vector for the call of
+`migrate_proxy_proxies`.
 
 ---------
 ### TooManyVestings
-Too many vestingInfos in the vector for the call of `migrate_veting_vesting`.
+Too many vestingInfos in the vector for the call of
+`migrate_veting_vesting`.
 
 ---------

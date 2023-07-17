@@ -311,9 +311,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -382,6 +382,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -541,7 +542,6 @@ result = substrate.query(
                 'UnsupportedVersion': '[u8; 8]',
             },
             'Dex': {
-                'BuyOrderCompleted': {'order_id': 'u128'},
                 'BuyOrderCreated': {
                     'buyer': 'AccountId',
                     'fees_paid': 'u128',
@@ -549,8 +549,26 @@ result = substrate.query(
                     'order_id': 'u128',
                     'price_per_unit': 'u128',
                     'project_id': 'u32',
+                    'sell_order_id': 'u128',
                     'seller': 'AccountId',
                     'total_amount': 'u128',
+                    'units': 'u128',
+                },
+                'BuyOrderExpired': {
+                    'buyer': 'AccountId',
+                    'order_id': 'u128',
+                    'sell_order_id': 'u128',
+                    'units': 'u128',
+                },
+                'BuyOrderFilled': {
+                    'buyer': 'AccountId',
+                    'fees_paid': 'u128',
+                    'group_id': 'u32',
+                    'order_id': 'u128',
+                    'price_per_unit': 'u128',
+                    'project_id': 'u32',
+                    'sell_order_id': 'u128',
+                    'seller': 'AccountId',
                     'units': 'u128',
                 },
                 'BuyOrderPaymentValidated': {
@@ -570,6 +588,19 @@ result = substrate.query(
                     'price_per_unit': 'u128',
                     'project_id': 'u32',
                     'units': 'u128',
+                },
+                'SellerPayoutAuthoritySet': {'authority': 'AccountId'},
+                'SellerPayoutExecuted': {
+                    'payout': 'scale_info::123',
+                    'seller': 'AccountId',
+                },
+                'SellerPayoutPreferenceSet': {
+                    'preference': (None, 'scale_info::120'),
+                    'seller': 'AccountId',
+                },
+                'UserOpenOrderUnitsLimitUpdated': {
+                    'level': 'scale_info::129',
+                    'limit': 'u128',
                 },
                 'ValidatorAccountAdded': {'account_id': 'AccountId'},
                 'ValidatorAccountRemoved': {'account_id': 'AccountId'},
@@ -676,6 +707,11 @@ result = substrate.query(
                     'account_id': 'AccountId',
                     'amount': 'u128',
                 },
+                'DelegatedMore': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                    'candidate': 'AccountId',
+                },
                 'DelegationRemoved': {
                     'account_id': 'AccountId',
                     'candidate': 'AccountId',
@@ -773,18 +809,18 @@ result = substrate.query(
                     'delay': 'u32',
                     'delegatee': 'AccountId',
                     'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::126',
+                    'proxy_type': 'scale_info::137',
                 },
                 'ProxyExecuted': {'result': 'scale_info::90'},
                 'ProxyRemoved': {
                     'delay': 'u32',
                     'delegatee': 'AccountId',
                     'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::126',
+                    'proxy_type': 'scale_info::137',
                 },
                 'PureCreated': {
                     'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::126',
+                    'proxy_type': 'scale_info::137',
                     'pure': 'AccountId',
                     'who': 'AccountId',
                 },
@@ -1084,7 +1120,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1323,7 +1358,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'bitgreen-parachain',
     'impl_version': 0,
     'spec_name': 'bitgreen-parachain',
-    'spec_version': 1105,
+    'spec_version': 1201,
     'state_version': 1,
     'transaction_version': 1,
 }

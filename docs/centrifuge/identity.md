@@ -1002,6 +1002,10 @@ The provided judgement was for a different identity.
 Judgement given.
 
 ---------
+### JudgementPaymentFailed
+Error that occurs when there is an issue paying for judgement.
+
+---------
 ### NoIdentity
 No identity found.
 

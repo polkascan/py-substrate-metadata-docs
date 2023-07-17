@@ -94,31 +94,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### close_old_weight
-Close a vote that is either approved, disapproved, or whose voting period has ended.
-
-Must be called by a Fellow.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| proposal_hash | `T::Hash` | 
-| index | `ProposalIndex` | 
-| proposal_weight_bound | `OldWeight` | 
-| length_bound | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Alliance', 'close_old_weight', {
-    'index': 'u32',
-    'length_bound': 'u32',
-    'proposal_hash': '[u8; 32]',
-    'proposal_weight_bound': 'u64',
-}
-)
-```
-
----------
 ### disband
 Disband the Alliance, remove all active members and unreserve deposits.
 

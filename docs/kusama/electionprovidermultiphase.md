@@ -606,6 +606,8 @@ result = substrate.query(
 ### QueuedSolution
  Current best solution, signed or unsigned, queued to be returned upon `elect`.
 
+ Always sorted by score.
+
 #### Python
 ```python
 result = substrate.query(
@@ -882,7 +884,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxVotesPe
 ### MinerMaxWeight
 #### Value
 ```python
-{'proof_size': 13650590614545068195, 'ref_time': 1476422011000}
+{'proof_size': 13650590614545068195, 'ref_time': 1469437423000}
 ```
 #### Python
 ```python
@@ -993,7 +995,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxSubmis
  this value.
 #### Value
 ```python
-{'proof_size': 13650590614545068195, 'ref_time': 1476422011000}
+{'proof_size': 13650590614545068195, 'ref_time': 1469437423000}
 ```
 #### Python
 ```python

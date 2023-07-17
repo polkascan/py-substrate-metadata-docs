@@ -24,7 +24,7 @@ Weight: `O(p)` (though as this is an high-privilege dispatch, we assume it has a
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal_hash | `H256` | 
 | maybe_ref_index | `Option<ReferendumIndex>` | 
 
 #### Python
@@ -55,27 +55,6 @@ Weight: `O(p)` where `p = PublicProps::&lt;T&gt;::decode_len()`
 ```python
 call = substrate.compose_call(
     'Democracy', 'cancel_proposal', {'prop_index': 'u32'}
-)
-```
-
----------
-### cancel_queued
-Cancel a proposal queued for enactment.
-
-The dispatch origin of this call must be _Root_.
-
-- `which`: The index of the referendum to cancel.
-
-Weight: `O(D)` where `D` is the items in the dispatch queue. Weighted as `D = 10`.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| which | `ReferendumIndex` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'cancel_queued', {'which': 'u32'}
 )
 ```
 
@@ -142,7 +121,7 @@ Weight: `O(R)` where R is the number of referendums the voter delegating to has
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| to | `T::AccountId` | 
+| to | `AccountIdLookupOf<T>` | 
 | conviction | `Conviction` | 
 | balance | `BalanceOf<T>` | 
 
@@ -160,7 +139,13 @@ call = substrate.compose_call(
         'Locked5x',
         'Locked6x',
     ),
-    'to': 'AccountId',
+    'to': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
 }
 )
 ```
@@ -188,25 +173,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### enact_proposal
-Enact a proposal from a referendum. For now we just make the weight be the maximum.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| proposal_hash | `T::Hash` | 
-| index | `ReferendumIndex` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'enact_proposal', {
-    'index': 'u32',
-    'proposal_hash': '[u8; 32]',
-}
-)
-```
-
----------
 ### external_propose
 Schedule a referendum to be tabled once it is legal to schedule an external
 referendum.
@@ -214,18 +180,24 @@ referendum.
 The dispatch origin of this call must be `ExternalOrigin`.
 
 - `proposal_hash`: The preimage hash of the proposal.
-
-Weight: `O(V)` with V number of vetoers in the blacklist of proposal.
-  Decoding vec of length V. Charged as maximum
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal | `BoundedCallOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'external_propose', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose', {
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
+}
 )
 ```
 
@@ -245,12 +217,21 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal | `BoundedCallOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'external_propose_default', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose_default', {
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
+}
 )
 ```
 
@@ -270,12 +251,21 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal | `BoundedCallOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'external_propose_majority', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose_majority', {
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
+}
 )
 ```
 
@@ -288,7 +278,7 @@ but it is not a majority-carries referendum then it fails.
 The dispatch of this call must be `FastTrackOrigin`.
 
 - `proposal_hash`: The hash of the current external proposal.
-- `voting_period`: The period that is allowed for voting on this proposal.
+- `voting_period`: The period that is allowed for voting on this proposal. Increased to
 	Must be always greater than zero.
 	For `FastTrackOrigin` must be equal or greater than `FastTrackVotingPeriod`.
 - `delay`: The number of block after voting has ended in approval and this should be
@@ -300,7 +290,7 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal_hash | `H256` | 
 | voting_period | `T::BlockNumber` | 
 | delay | `T::BlockNumber` | 
 
@@ -316,86 +306,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### note_imminent_preimage
-Register the preimage for an upcoming proposal. This requires the proposal to be
-in the dispatch queue. No deposit is needed. When this call is successful, i.e.
-the preimage has not been uploaded before and matches some imminent proposal,
-no fee is paid.
-
-The dispatch origin of this call must be _Signed_.
-
-- `encoded_proposal`: The preimage of a proposal.
-
-Emits `PreimageNoted`.
-
-Weight: `O(E)` with E size of `encoded_proposal` (protected by a required deposit).
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_imminent_preimage', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
-### note_imminent_preimage_operational
-Same as `note_imminent_preimage` but origin is `OperationalPreimageOrigin`.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_imminent_preimage_operational', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
-### note_preimage
-Register the preimage for an upcoming proposal. This doesn&\#x27;t require the proposal to be
-in the dispatch queue but does require a deposit, returned once enacted.
-
-The dispatch origin of this call must be _Signed_.
-
-- `encoded_proposal`: The preimage of a proposal.
-
-Emits `PreimageNoted`.
-
-Weight: `O(E)` with E size of `encoded_proposal` (protected by a required deposit).
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_preimage', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
-### note_preimage_operational
-Same as `note_preimage` but origin is `OperationalPreimageOrigin`.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| encoded_proposal | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'note_preimage_operational', {'encoded_proposal': 'Bytes'}
-)
-```
-
----------
 ### propose
 Propose a sensitive action to be taken.
 
@@ -406,53 +316,25 @@ have funds to cover the deposit.
 - `value`: The amount of deposit (must be at least `MinimumDeposit`).
 
 Emits `Proposed`.
-
-Weight: `O(p)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal | `BoundedCallOf<T>` | 
 | value | `BalanceOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Democracy', 'propose', {
-    'proposal_hash': '[u8; 32]',
+    'proposal': {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {
+            'hash': '[u8; 32]',
+            'len': 'u32',
+        },
+    },
     'value': 'u128',
-}
-)
-```
-
----------
-### reap_preimage
-Remove an expired proposal preimage and collect the deposit.
-
-The dispatch origin of this call must be _Signed_.
-
-- `proposal_hash`: The preimage hash of a proposal.
-- `proposal_length_upper_bound`: an upper bound on length of the proposal. Extrinsic is
-  weighted according to this value with no refund.
-
-This will only work after `VotingPeriod` blocks from the time that the preimage was
-noted, if it&\#x27;s the same account doing it. If it&\#x27;s a different account, then it&\#x27;ll only
-work an additional `EnactmentPeriod` later.
-
-Emits `PreimageReaped`.
-
-Weight: `O(D)` where D is length of proposal.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| proposal_hash | `T::Hash` | 
-| proposal_len_upper_bound | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Democracy', 'reap_preimage', {
-    'proposal_hash': '[u8; 32]',
-    'proposal_len_upper_bound': 'u32',
 }
 )
 ```
@@ -477,7 +359,7 @@ Weight: `O(R + log R)` where R is the number of referenda that `target` has vote
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| target | `T::AccountId` | 
+| target | `AccountIdLookupOf<T>` | 
 | index | `ReferendumIndex` | 
 
 #### Python
@@ -485,7 +367,13 @@ Weight: `O(R + log R)` where R is the number of referenda that `target` has vote
 call = substrate.compose_call(
     'Democracy', 'remove_other_vote', {
     'index': 'u32',
-    'target': 'AccountId',
+    'target': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
 }
 )
 ```
@@ -539,22 +427,51 @@ The dispatch origin of this call must be _Signed_ and the sender
 must have funds to cover the deposit, equal to the original deposit.
 
 - `proposal`: The index of the proposal to second.
-- `seconds_upper_bound`: an upper bound on the current number of seconds on this
-  proposal. Extrinsic is weighted according to this value with no refund.
-
-Weight: `O(S)` where S is the number of seconds a proposal already has.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | proposal | `PropIndex` | 
-| seconds_upper_bound | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'second', {
-    'proposal': 'u32',
-    'seconds_upper_bound': 'u32',
+    'Democracy', 'second', {'proposal': 'u32'}
+)
+```
+
+---------
+### set_metadata
+Set or clear a metadata of a proposal or a referendum.
+
+Parameters:
+- `origin`: Must correspond to the `MetadataOwner`.
+    - `ExternalOrigin` for an external proposal with the `SuperMajorityApprove`
+      threshold.
+    - `ExternalDefaultOrigin` for an external proposal with the `SuperMajorityAgainst`
+      threshold.
+    - `ExternalMajorityOrigin` for an external proposal with the `SimpleMajority`
+      threshold.
+    - `Signed` by a creator for a public proposal.
+    - `Signed` to clear a metadata for a finished referendum.
+    - `Root` to set a metadata for an ongoing referendum.
+- `owner`: an identifier of a metadata owner.
+- `maybe_hash`: The hash of an on-chain stored preimage. `None` to clear a metadata.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| owner | `MetadataOwner` | 
+| maybe_hash | `Option<PreimageHash>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Democracy', 'set_metadata', {
+    'maybe_hash': (None, '[u8; 32]'),
+    'owner': {
+        'External': None,
+        'Proposal': 'u32',
+        'Referendum': 'u32',
+    },
 }
 )
 ```
@@ -595,12 +512,20 @@ Weight: `O(R)` with R number of vote of target.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| target | `T::AccountId` | 
+| target | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'unlock', {'target': 'AccountId'}
+    'Democracy', 'unlock', {
+    'target': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
 )
 ```
 
@@ -618,7 +543,7 @@ Weight: `O(V + log(V))` where V is number of `existing vetoers`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `T::Hash` | 
+| proposal_hash | `H256` | 
 
 #### Python
 ```python
@@ -636,8 +561,6 @@ The dispatch origin of this call must be _Signed_.
 
 - `ref_index`: The index of the referendum to vote for.
 - `vote`: The vote configuration.
-
-Weight: `O(R)` where R is the number of referendums the voter has voted on.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -683,7 +606,7 @@ A proposal_hash has been blacklisted permanently.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `H256` | ```[u8; 32]```
 
 ---------
 ### Cancelled
@@ -703,19 +626,38 @@ An account has delegated their vote to another account.
 | target | `T::AccountId` | ```AccountId```
 
 ---------
-### Executed
-A proposal has been enacted.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| ref_index | `ReferendumIndex` | ```u32```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
-
----------
 ### ExternalTabled
 An external proposal has been tabled.
 #### Attributes
 No attributes
+
+---------
+### MetadataCleared
+Metadata for a proposal or a referendum has been cleared.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| hash | `PreimageHash` | ```[u8; 32]```
+
+---------
+### MetadataSet
+Metadata for a proposal or a referendum has been set.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| hash | `PreimageHash` | ```[u8; 32]```
+
+---------
+### MetadataTransferred
+Metadata has been transferred to new owner.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| prev_owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| hash | `PreimageHash` | ```[u8; 32]```
 
 ---------
 ### NotPassed
@@ -732,55 +674,6 @@ A proposal has been approved by referendum.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | ref_index | `ReferendumIndex` | ```u32```
-
----------
-### PreimageInvalid
-A proposal could not be executed because its preimage was invalid.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| ref_index | `ReferendumIndex` | ```u32```
-
----------
-### PreimageMissing
-A proposal could not be executed because its preimage was missing.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| ref_index | `ReferendumIndex` | ```u32```
-
----------
-### PreimageNoted
-A proposal&\#x27;s preimage was noted, and the deposit taken.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| who | `T::AccountId` | ```AccountId```
-| deposit | `BalanceOf<T>` | ```u128```
-
----------
-### PreimageReaped
-A registered preimage was removed and the deposit collected by the reaper.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| provider | `T::AccountId` | ```AccountId```
-| deposit | `BalanceOf<T>` | ```u128```
-| reaper | `T::AccountId` | ```AccountId```
-
----------
-### PreimageUsed
-A proposal preimage was removed and used (the deposit was returned).
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| provider | `T::AccountId` | ```AccountId```
-| deposit | `BalanceOf<T>` | ```u128```
 
 ---------
 ### ProposalCanceled
@@ -825,7 +718,6 @@ A public proposal has been tabled for referendum vote.
 | -------- | -------- | -------- |
 | proposal_index | `PropIndex` | ```u32```
 | deposit | `BalanceOf<T>` | ```u128```
-| depositors | `Vec<T::AccountId>` | ```['AccountId']```
 
 ---------
 ### Undelegated
@@ -842,7 +734,7 @@ An external proposal has been vetoed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `H256` | ```[u8; 32]```
 | until | `T::BlockNumber` | ```u32```
 
 ---------
@@ -939,6 +831,32 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### MetadataOf
+ General information concerning any proposal or referendum.
+ The `PreimageHash` refers to the preimage of the `Preimages` provider which can be a JSON
+ dump or IPFS hash of a JSON file.
+
+ Consider a garbage collection for a metadata of finished referendums to `unrequest` (remove)
+ large preimages.
+
+#### Python
+```python
+result = substrate.query(
+    'Democracy', 'MetadataOf', [
+    {
+        'External': None,
+        'Proposal': 'u32',
+        'Referendum': 'u32',
+    },
+]
+)
+```
+
+#### Return value
+```python
+'[u8; 32]'
+```
+---------
 ### NextExternal
  The referendum to be tabled whenever it would be valid to table an external proposal.
  This happens when a referendum needs to be tabled and one of two conditions are met:
@@ -955,34 +873,13 @@ result = substrate.query(
 #### Return value
 ```python
 (
-    '[u8; 32]',
+    {
+        'Inline': 'Bytes',
+        'Legacy': {'hash': '[u8; 32]'},
+        'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+    },
     ('SuperMajorityApprove', 'SuperMajorityAgainst', 'SimpleMajority'),
 )
-```
----------
-### Preimages
- Map of hashes to the proposal preimage, along with who registered it and their deposit.
- The block number is the block at which it was deposited.
-
-#### Python
-```python
-result = substrate.query(
-    'Democracy', 'Preimages', ['[u8; 32]']
-)
-```
-
-#### Return value
-```python
-{
-    'Available': {
-        'data': 'Bytes',
-        'deposit': 'u128',
-        'expiry': (None, 'u32'),
-        'provider': 'AccountId',
-        'since': 'u32',
-    },
-    'Missing': 'u32',
-}
 ```
 ---------
 ### PublicPropCount
@@ -1001,7 +898,7 @@ result = substrate.query(
 ```
 ---------
 ### PublicProps
- The public proposals. Unsorted. The second item is the proposal&#x27;s hash.
+ The public proposals. Unsorted. The second item is the proposal.
 
 #### Python
 ```python
@@ -1012,7 +909,17 @@ result = substrate.query(
 
 #### Return value
 ```python
-[('u32', '[u8; 32]', 'AccountId')]
+[
+    (
+        'u32',
+        {
+            'Inline': 'Bytes',
+            'Legacy': {'hash': '[u8; 32]'},
+            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        },
+        'AccountId',
+    ),
+]
 ```
 ---------
 ### ReferendumCount
@@ -1049,7 +956,11 @@ result = substrate.query(
     'Ongoing': {
         'delay': 'u32',
         'end': 'u32',
-        'proposal_hash': '[u8; 32]',
+        'proposal': {
+            'Inline': 'Bytes',
+            'Legacy': {'hash': '[u8; 32]'},
+            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        },
         'tally': {'ayes': 'u128', 'nays': 'u128', 'turnout': 'u128'},
         'threshold': (
             'SuperMajorityApprove',
@@ -1058,23 +969,6 @@ result = substrate.query(
         ),
     },
 }
-```
----------
-### StorageVersion
- Storage version of the pallet.
-
- New networks start with last version.
-
-#### Python
-```python
-result = substrate.query(
-    'Democracy', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V1', )
 ```
 ---------
 ### VotingOf
@@ -1111,7 +1005,7 @@ result = substrate.query(
     'Direct': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u32', 'u128'),
-        'votes': [('u32', {'Split': 'InnerStruct', 'Standard': 'InnerStruct'})],
+        'votes': [('u32', 'scale_info::41')],
     },
 }
 ```
@@ -1180,6 +1074,28 @@ constant = substrate.get_constant('Democracy', 'InstantAllowed')
 constant = substrate.get_constant('Democracy', 'LaunchPeriod')
 ```
 ---------
+### MaxBlacklisted
+ The maximum number of items which can be blacklisted.
+#### Value
+```python
+100
+```
+#### Python
+```python
+constant = substrate.get_constant('Democracy', 'MaxBlacklisted')
+```
+---------
+### MaxDeposits
+ The maximum number of deposits a public proposal may have at any time.
+#### Value
+```python
+100
+```
+#### Python
+```python
+constant = substrate.get_constant('Democracy', 'MaxDeposits')
+```
+---------
 ### MaxProposals
  The maximum number of public proposals that can exist at any time.
 #### Value
@@ -1214,17 +1130,6 @@ constant = substrate.get_constant('Democracy', 'MaxVotes')
 #### Python
 ```python
 constant = substrate.get_constant('Democracy', 'MinimumDeposit')
-```
----------
-### PreimageByteDeposit
- The amount of balance that must be deposited per byte of preimage stored.
-#### Value
-```python
-60000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('Democracy', 'PreimageByteDeposit')
 ```
 ---------
 ### VoteLockingPeriod
@@ -1267,16 +1172,8 @@ The account is already delegating.
 Identity may not veto a proposal twice
 
 ---------
-### DuplicatePreimage
-Preimage already noted
-
----------
 ### DuplicateProposal
 Proposal already made
-
----------
-### Imminent
-Imminent
 
 ---------
 ### InstantNotAllowed
@@ -1315,10 +1212,6 @@ Delegation to oneself makes no sense.
 The account is not currently delegating.
 
 ---------
-### NotImminent
-Not imminent
-
----------
 ### NotSimpleMajority
 Next external proposal not simple majority
 
@@ -1327,12 +1220,8 @@ Next external proposal not simple majority
 The given account did not vote on the referendum.
 
 ---------
-### PreimageInvalid
-Invalid preimage
-
----------
-### PreimageMissing
-Preimage not found
+### PreimageNotExist
+The preimage does not exist.
 
 ---------
 ### ProposalBlacklisted
@@ -1347,12 +1236,8 @@ Proposal does not exist
 Vote given for invalid referendum
 
 ---------
-### TooEarly
-Too early
-
----------
-### TooManyProposals
-Maximum number of proposals reached.
+### TooMany
+Maximum number of items reached.
 
 ---------
 ### ValueLow

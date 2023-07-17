@@ -48,7 +48,9 @@ call = substrate.compose_call(
 ### burn
 Destroy a single item.
 
-Origin must be Signed and the sender should be the Admin of the `collection`.
+Origin must be Signed and the signing account must be either:
+- the Admin of the `collection`;
+- the Owner of the `item`;
 
 - `collection`: The collection of the item to be burned.
 - `item`: The item of the item to be burned.
@@ -254,7 +256,7 @@ Issue a new collection of non-fungible items from a public origin.
 
 This new collection has no items initially and its owner is the origin.
 
-The origin must be Signed and the sender must have sufficient funds free.
+The origin must conform to the configured `CreateOrigin` and have sufficient funds free.
 
 `ItemDeposit` funds of sender are reserved.
 

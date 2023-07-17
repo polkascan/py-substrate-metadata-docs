@@ -1175,7 +1175,7 @@ Some assets were issued.
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
-| total_supply | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u128```
 
 ---------
 ### MetadataCleared

@@ -1099,6 +1099,29 @@ result = substrate.query(
                 'NewAccount': {'account': '[u8; 20]'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': '[u8; 20]'},
             },
+            'Treasury': {
+                'Awarded': {
+                    'account': '[u8; 20]',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'SpendApproved': {
+                    'amount': 'u128',
+                    'beneficiary': '[u8; 20]',
+                    'proposal_index': 'u32',
+                },
+                'Spending': {'budget_remaining': 'u128'},
+                'UpdatedInactive': {
+                    'deactivated': 'u128',
+                    'reactivated': 'u128',
+                },
+            },
+            None: None,
             'TechCommitteeCollective': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1136,28 +1159,6 @@ result = substrate.query(
                     'who': '[u8; 20]',
                 },
             },
-            'Treasury': {
-                'Awarded': {
-                    'account': '[u8; 20]',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'SpendApproved': {
-                    'amount': 'u128',
-                    'beneficiary': '[u8; 20]',
-                    'proposal_index': 'u32',
-                },
-                'Spending': {'budget_remaining': 'u128'},
-                'UpdatedInactive': {
-                    'deactivated': 'u128',
-                    'reactivated': 'u128',
-                },
-            },
             'TreasuryCouncilCollective': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1188,15 +1189,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::105'],
-                    'dest': 'scale_info::91',
-                    'fee': 'scale_info::105',
-                    'sender': '[u8; 20]',
-                },
-            },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -1207,6 +1199,14 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::51'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::25'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::105'],
+                    'dest': 'scale_info::91',
+                    'fee': 'scale_info::105',
+                    'sender': '[u8; 20]',
+                },
             },
             'XcmTransactor': {
                 'DeRegisteredDerivative': {'index': 'u16'},

@@ -95,6 +95,46 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_child_storage
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| key | `Vec<u8>` | 
+| value | `Vec<u8>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Ibc', 'set_child_storage', {'key': 'Bytes', 'value': 'Bytes'}
+)
+```
+
+---------
+### substitute_client_state
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| client_id | `String` | 
+| height | `Height` | 
+| client_state_bytes | `Vec<u8>` | 
+| consensus_state_bytes | `Vec<u8>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Ibc', 'substitute_client_state', {
+    'client_id': 'Str',
+    'client_state_bytes': 'Bytes',
+    'consensus_state_bytes': 'Bytes',
+    'height': {
+        'revision_height': 'u64',
+        'revision_number': 'u64',
+    },
+}
+)
+```
+
+---------
 ### transfer
 #### Attributes
 | Name | Type |
@@ -110,7 +150,7 @@ call = substrate.compose_call(
     'Ibc', 'transfer', {
     'amount': 'u128',
     'asset_id': 'u128',
-    'memo': (None, {}),
+    'memo': (None, 'Str'),
     'params': {
         'source_channel': 'u64',
         'timeout': {
@@ -223,6 +263,11 @@ A channel has been opened
 | sequence | `u64` | ```u64```
 
 ---------
+### ChildStateUpdated
+#### Attributes
+No attributes
+
+---------
 ### ClientFrozen
 Client has been frozen
 #### Attributes
@@ -231,6 +276,14 @@ Client has been frozen
 | client_id | `Vec<u8>` | ```Bytes```
 | height | `u64` | ```u64```
 | revision_number | `u64` | ```u64```
+
+---------
+### ClientStateSubstituted
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| client_id | `String` | ```Str```
+| height | `Height` | ```{'revision_number': 'u64', 'revision_height': 'u64'}```
 
 ---------
 ### ClientUpgradeSet
@@ -244,7 +297,7 @@ Events emitted by the ibc subsystem
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| events | `Vec<Result<events::IbcEvent, errors::IbcError>>` | ```[{'Ok': {'NewBlock': {'revision_height': 'u64', 'revision_number': 'u64'}, 'CreateClient': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'UpdateClient': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'UpgradeClient': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'ClientMisbehaviour': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'OpenInitConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenConfirmConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenTryConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenAckConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenInitChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'OpenConfirmChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'OpenTryChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'OpenAckChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'CloseInitChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'CloseConfirmChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'channel_id': (None, 'Bytes'), 'port_id': 'Bytes', 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'ReceivePacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'dest_port': 'Bytes', 'dest_channel': 'Bytes', 'sequence': 'u64'}, 'SendPacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'dest_port': 'Bytes', 'dest_channel': 'Bytes', 'sequence': 'u64'}, 'AcknowledgePacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'sequence': 'u64'}, 'WriteAcknowledgement': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'dest_port': 'Bytes', 'dest_channel': 'Bytes', 'sequence': 'u64'}, 'TimeoutPacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'sequence': 'u64'}, 'TimeoutOnClosePacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'sequence': 'u64'}, 'Empty': None, 'ChainError': None, 'AppModule': {'kind': 'Bytes', 'module_id': 'Bytes'}}, 'Err': {'Ics02Client': {'message': 'Bytes'}, 'Ics03Connection': {'message': 'Bytes'}, 'Ics04Channel': {'message': 'Bytes'}, 'Ics20FungibleTokenTransfer': {'message': 'Bytes'}, 'UnknownMessageTypeUrl': {'message': 'Bytes'}, 'MalformedMessageBytes': {'message': 'Bytes'}}}]```
+| events | `Vec<Result<events::IbcEvent, errors::IbcError>>` | ```[{'Ok': {'NewBlock': {'revision_height': 'u64', 'revision_number': 'u64'}, 'CreateClient': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'UpdateClient': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'UpgradeClient': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'ClientMisbehaviour': {'client_id': 'Bytes', 'client_type': 'Bytes', 'revision_height': 'u64', 'revision_number': 'u64', 'consensus_height': 'u64', 'consensus_revision_number': 'u64'}, 'OpenInitConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenConfirmConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenTryConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenAckConnection': {'revision_height': 'u64', 'revision_number': 'u64', 'connection_id': (None, 'Bytes'), 'client_id': 'Bytes', 'counterparty_connection_id': (None, 'Bytes'), 'counterparty_client_id': 'Bytes'}, 'OpenInitChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'OpenConfirmChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'OpenTryChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'OpenAckChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': (None, 'Bytes'), 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'CloseInitChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'CloseConfirmChannel': {'revision_height': 'u64', 'revision_number': 'u64', 'channel_id': (None, 'Bytes'), 'port_id': 'Bytes', 'connection_id': 'Bytes', 'counterparty_port_id': 'Bytes', 'counterparty_channel_id': (None, 'Bytes')}, 'ReceivePacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'dest_port': 'Bytes', 'dest_channel': 'Bytes', 'sequence': 'u64'}, 'SendPacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'dest_port': 'Bytes', 'dest_channel': 'Bytes', 'sequence': 'u64'}, 'AcknowledgePacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'sequence': 'u64'}, 'WriteAcknowledgement': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'dest_port': 'Bytes', 'dest_channel': 'Bytes', 'sequence': 'u64'}, 'TimeoutPacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'sequence': 'u64'}, 'TimeoutOnClosePacket': {'revision_height': 'u64', 'revision_number': 'u64', 'port_id': 'Bytes', 'channel_id': 'Bytes', 'sequence': 'u64'}, 'Empty': None, 'ChainError': None, 'AppModule': {'kind': 'Bytes', 'module_id': 'Bytes'}, 'PushWasmCode': {'wasm_code_id': 'Bytes'}}, 'Err': {'Ics02Client': {'message': 'Bytes'}, 'Ics03Connection': {'message': 'Bytes'}, 'Ics04Channel': {'message': 'Bytes'}, 'Ics20FungibleTokenTransfer': {'message': 'Bytes'}, 'UnknownMessageTypeUrl': {'message': 'Bytes'}, 'MalformedMessageBytes': {'message': 'Bytes'}}}]```
 
 ---------
 ### FeeLessChannelIdsAdded
@@ -521,7 +574,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::623'
+'scale_info::622'
 ```
 ---------
 ### CounterForIbcAssetIds
@@ -658,7 +711,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('scale_info::626', 'u64')
+('scale_info::625', 'u64')
 ```
 ---------
 ### PendingSendPacketSeqs
@@ -673,7 +726,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('scale_info::626', 'u64')
+('scale_info::625', 'u64')
 ```
 ---------
 ### RecvPackets

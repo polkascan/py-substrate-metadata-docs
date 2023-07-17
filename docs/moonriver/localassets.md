@@ -619,6 +619,33 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_min_balance
+Sets the minimum balance of an asset.
+
+Only works if there aren&\#x27;t any accounts that are holding the asset or if
+the new value of `min_balance` is less than the old one.
+
+Origin must be Signed and the sender has to be the Owner of the
+asset `id`.
+
+- `id`: The identifier of the asset.
+- `min_balance`: The new value of `min_balance`.
+
+Emits `AssetMinBalanceChanged` event when successful.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetIdParameter` | 
+| min_balance | `T::Balance` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'LocalAssets', 'set_min_balance', {'id': 'u128', 'min_balance': 'u128'}
+)
+```
+
+---------
 ### set_team
 Change the Issuer, Admin and Freezer of an asset.
 
@@ -940,6 +967,15 @@ Some asset `asset_id` was frozen.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u128```
+
+---------
+### AssetMinBalanceChanged
+The min_balance of an asset has been updated by the asset owner.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u128```
+| new_min_balance | `T::Balance` | ```u128```
 
 ---------
 ### AssetStatusChanged
@@ -1294,6 +1330,10 @@ Invalid witness data given.
 ---------
 ### BalanceLow
 Account balance must be greater than or equal to the transfer amount.
+
+---------
+### CallbackFailed
+Callback action resulted in error
 
 ---------
 ### Frozen

@@ -48,21 +48,24 @@ call = substrate.compose_call(
     'code': 'Bytes',
     'data': 'Bytes',
     'endowment': 'u128',
-    'gas_limit': 'u64',
+    'gas_limit': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
     'perms': {
         'asset': {
-            'Except': 'scale_info::41',
-            'These': 'scale_info::41',
+            'Except': 'scale_info::44',
+            'These': 'scale_info::44',
             'Whole': None,
         },
         'extrinsic': {
-            'Except': 'scale_info::50',
-            'These': 'scale_info::50',
+            'Except': 'scale_info::53',
+            'These': 'scale_info::53',
             'Whole': None,
         },
         'portfolio': {
-            'Except': 'scale_info::56',
-            'These': 'scale_info::56',
+            'Except': 'scale_info::59',
+            'These': 'scale_info::59',
             'Whole': None,
         },
     },
@@ -122,21 +125,24 @@ call = substrate.compose_call(
     'code_hash': '[u8; 32]',
     'data': 'Bytes',
     'endowment': 'u128',
-    'gas_limit': 'u64',
+    'gas_limit': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
     'perms': {
         'asset': {
-            'Except': 'scale_info::41',
-            'These': 'scale_info::41',
+            'Except': 'scale_info::44',
+            'These': 'scale_info::44',
             'Whole': None,
         },
         'extrinsic': {
-            'Except': 'scale_info::50',
-            'These': 'scale_info::50',
+            'Except': 'scale_info::53',
+            'These': 'scale_info::53',
             'Whole': None,
         },
         'portfolio': {
-            'Except': 'scale_info::56',
-            'These': 'scale_info::56',
+            'Except': 'scale_info::59',
+            'These': 'scale_info::59',
             'Whole': None,
         },
     },

@@ -272,12 +272,13 @@ if __name__ == "__main__":
 
         print(f'- {section_name}: ')
         for network in networks:
-            logging.info(f"Generating docs for {network}")
+
             try:
                 info = generate_docs(network)
                 print(f'  - {info["name"]}: ')
                 print(f'    - {info["file"]}')
                 for pallet in info["pallets"]:
                     print(f'    - {pallet["name"]}: {pallet["file"]}')
-            except (WebSocketBadStatusException, WebSocketAddressException, WebSocketTimeoutException):
+                logging.info(f"Generated docs for {network}")
+            except:
                 logging.error(f"Failed to generate docs for {network}")

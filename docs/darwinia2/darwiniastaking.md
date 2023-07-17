@@ -340,7 +340,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('u32', 'scale_info::316')
+('u32', 'scale_info::318')
 ```
 ---------
 ### RingPool

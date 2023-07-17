@@ -2,6 +2,20 @@
 # TransactionPayment
 
 ---------
+## Events
+
+---------
+### TransactionFeePaid
+A transaction fee `actual_fee`, of which `tip` was added to the minimum inclusion fee,
+has been paid by `who`.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountId` | ```AccountId```
+| actual_fee | `Balance` | ```u128```
+| tip | `Balance` | ```u128```
+
+---------
 ## Storage functions
 
 ---------

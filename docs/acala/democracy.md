@@ -277,6 +277,28 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_metadata
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| owner | `MetadataOwner` | 
+| maybe_hash | `Option<PreimageHash>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Democracy', 'set_metadata', {
+    'maybe_hash': (None, '[u8; 32]'),
+    'owner': {
+        'External': None,
+        'Proposal': 'u32',
+        'Referendum': 'u32',
+    },
+}
+)
+```
+
+---------
 ### undelegate
 #### Attributes
 No attributes
@@ -391,6 +413,31 @@ call = substrate.compose_call(
 ### ExternalTabled
 #### Attributes
 No attributes
+
+---------
+### MetadataCleared
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| hash | `PreimageHash` | ```[u8; 32]```
+
+---------
+### MetadataSet
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| hash | `PreimageHash` | ```[u8; 32]```
+
+---------
+### MetadataTransferred
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| prev_owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| hash | `PreimageHash` | ```[u8; 32]```
 
 ---------
 ### NotPassed
@@ -544,6 +591,26 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### MetadataOf
+
+#### Python
+```python
+result = substrate.query(
+    'Democracy', 'MetadataOf', [
+    {
+        'External': None,
+        'Proposal': 'u32',
+        'Referendum': 'u32',
+    },
+]
+)
+```
+
+#### Return value
+```python
+'[u8; 32]'
+```
+---------
 ### NextExternal
 
 #### Python
@@ -678,7 +745,7 @@ result = substrate.query(
     'Direct': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u32', 'u128'),
-        'votes': [('u32', {'Split': 'InnerStruct', 'Standard': 'InnerStruct'})],
+        'votes': [('u32', 'scale_info::151')],
     },
 }
 ```
@@ -852,6 +919,9 @@ constant = substrate.get_constant('Democracy', 'VotingPeriod')
 
 ---------
 ### NotVoter
+
+---------
+### PreimageNotExist
 
 ---------
 ### ProposalBlacklisted

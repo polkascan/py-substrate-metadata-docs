@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | quartz     |
 | Implementation name     | quartz     |
-| Spec version     | 941055     |
+| Spec version     | 942057     |
 | SS58 Format     | 255     |
 | Token symbol      | QTZ     |
 | Token decimals      | 18     |
@@ -15,13 +15,14 @@
 ## Pallets
 | Name | Calls | Events | Storage functions | Constants | Errors |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| [AppPromotion](apppromotion.md) | [9](apppromotion.md#calls) | [4](apppromotion.md#events) | [6](apppromotion.md#storage-functions) | [5](apppromotion.md#constants) | [7](apppromotion.md#errors) |
+| [AppPromotion](apppromotion.md) | [11](apppromotion.md#calls) | [4](apppromotion.md#events) | [6](apppromotion.md#storage-functions) | [6](apppromotion.md#constants) | [7](apppromotion.md#errors) |
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [0](authorship.md#calls) | [0](authorship.md#events) | [1](authorship.md#storage-functions) | [0](authorship.md#constants) | [0](authorship.md#errors) |
-| [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
+| [Balances](balances.md) | [9](balances.md#calls) | [21](balances.md#events) | [7](balances.md#storage-functions) | [5](balances.md#constants) | [10](balances.md#errors) |
+| [BalancesAdapter](balancesadapter.md) | [0](balancesadapter.md#calls) | [0](balancesadapter.md#events) | [0](balancesadapter.md#storage-functions) | [0](balancesadapter.md#constants) | [0](balancesadapter.md#errors) |
 | [Charging](charging.md) | [0](charging.md#calls) | [0](charging.md#events) | [0](charging.md#storage-functions) | [0](charging.md#constants) | [0](charging.md#errors) |
-| [CollatorSelection](collatorselection.md) | [7](collatorselection.md#calls) | [6](collatorselection.md#events) | [4](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [13](collatorselection.md#errors) |
+| [CollatorSelection](collatorselection.md) | [7](collatorselection.md#calls) | [6](collatorselection.md#events) | [4](collatorselection.md#storage-functions) | [1](collatorselection.md#constants) | [13](collatorselection.md#errors) |
 | [Common](common.md) | [0](common.md#calls) | [22](common.md#events) | [9](common.md#storage-functions) | [3](common.md#constants) | [37](common.md#errors) |
 | [Configuration](configuration.md) | [6](configuration.md#calls) | [3](configuration.md#events) | [6](configuration.md#storage-functions) | [8](configuration.md#constants) | [1](configuration.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
@@ -40,10 +41,11 @@
 | [Nonfungible](nonfungible.md) | [0](nonfungible.md#calls) | [0](nonfungible.md#events) | [10](nonfungible.md#storage-functions) | [0](nonfungible.md#constants) | [3](nonfungible.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
-| [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
+| [PolkadotXcm](polkadotxcm.md) | [11](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [12](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Refungible](refungible.md) | [0](refungible.md#calls) | [0](refungible.md#events) | [9](refungible.md#storage-functions) | [0](refungible.md#constants) | [5](refungible.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
+| [StateTrieMigration](statetriemigration.md) | [6](statetriemigration.md#calls) | [4](statetriemigration.md#events) | [3](statetriemigration.md#storage-functions) | [1](statetriemigration.md#constants) | [6](statetriemigration.md#errors) |
 | [Structure](structure.md) | [0](structure.md#calls) | [1](structure.md#events) | [0](structure.md#storage-functions) | [0](structure.md#constants) | [5](structure.md#errors) |
 | [Sudo](sudo.md) | [4](sudo.md#calls) | [3](sudo.md#events) | [1](sudo.md#storage-functions) | [0](sudo.md#constants) | [1](sudo.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |

@@ -6,7 +6,8 @@
 
 ---------
 ### remark
-This can be called by the chainbridge to demonstrate an arbitrary call from a proposal.
+This can be called by the chainbridge to demonstrate an arbitrary
+call from a proposal.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -25,7 +26,8 @@ call = substrate.compose_call(
 
 ---------
 ### transfer
-Executes a simple currency transfer using the chainbridge account as the source
+Executes a simple currency transfer using the chainbridge account as
+the source
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -46,7 +48,8 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_native
-Transfers some amount of the native token to some recipient on a (whitelisted) destination chain.
+Transfers some amount of the native token to some recipient on a
+(whitelisted) destination chain.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -83,8 +86,8 @@ call = substrate.compose_call(
 ### BridgePalletId
  Pallet identifier.
 
- The module identifier may be of the form ```PalletId(*b&quot;c/bridge&quot;)``` (a string of eight characters)
- and set using the [`parameter_types`](https://substrate.dev/docs/en/knowledgebase/runtime/macros\#parameter_types)
+ The module identifier may be of the form
+ ```PalletId(*b&quot;c/bridge&quot;)``` (a string of eight characters) and set using the [`parameter_types`](https://substrate.dev/docs/en/knowledgebase/runtime/macros\#parameter_types)
  macro in one of the runtimes (see runtime folder).
 #### Value
 ```python
@@ -106,7 +109,8 @@ constant = substrate.get_constant('Bridge', 'NativeTokenId')
 ```
 ---------
 ### NativeTokenTransferFeeKey
- Key used to retrieve the fee that are charged when transferring native tokens to target chains.
+ Key used to retrieve the fee that are charged when transferring
+ native tokens to target chains.
 #### Value
 ```python
 'BridgeNativeTransfer'

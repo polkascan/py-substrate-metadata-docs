@@ -587,7 +587,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::411'
+'scale_info::413'
 ```
 ---------
 ### MaximumUnbondedChunkSize
@@ -697,7 +697,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::417'
+'scale_info::419'
 ```
 ---------
 ### SessionsPerEra

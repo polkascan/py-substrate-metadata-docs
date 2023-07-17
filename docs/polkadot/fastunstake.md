@@ -12,12 +12,12 @@ Dispatch origin must be signed by the [`Config::ControlOrigin`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| unchecked_eras_to_check | `EraIndex` | 
+| eras_to_check | `EraIndex` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'FastUnstake', 'control', {'unchecked_eras_to_check': 'u32'}
+    'FastUnstake', 'control', {'eras_to_check': 'u32'}
 )
 ```
 
@@ -83,12 +83,14 @@ A batch was partially checked for the given eras, but the process did not finish
 
 ---------
 ### BatchFinished
-A batch was terminated.
+A batch of a given size was terminated.
 
 This is always follows by a number of `Unstaked` or `Slashed` events, marking the end
 of the batch. A new batch will be created upon next block.
 #### Attributes
-No attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| size | `u32` | ```u32```
 
 ---------
 ### InternalError
@@ -112,7 +114,7 @@ A staker was unstaked.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | stash | `T::AccountId` | ```AccountId```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ## Storage functions

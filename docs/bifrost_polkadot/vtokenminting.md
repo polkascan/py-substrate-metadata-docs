@@ -3062,6 +3062,7 @@ result = substrate.query(
         'Round': 'u32',
         'SlashingSpan': 'u32',
     },
+    {'Astar': None, 'Moonbeam': '[u8; 20]', 'Native': None},
 )
 ```
 ---------
@@ -3639,6 +3640,16 @@ result = substrate.query(
 ## Constants
 
 ---------
+### AstarParachainId
+#### Value
+```python
+2006
+```
+#### Python
+```python
+constant = substrate.get_constant('VtokenMinting', 'AstarParachainId')
+```
+---------
 ### EntranceAccount
 #### Value
 ```python
@@ -3688,6 +3699,16 @@ constant = substrate.get_constant('VtokenMinting', 'MaximumUnlockIdOfTimeUnit')
 #### Python
 ```python
 constant = substrate.get_constant('VtokenMinting', 'MaximumUnlockIdOfUser')
+```
+---------
+### MoonbeamParachainId
+#### Value
+```python
+2004
+```
+#### Python
+```python
+constant = substrate.get_constant('VtokenMinting', 'MoonbeamParachainId')
 ```
 ---------
 ### RelayChainToken

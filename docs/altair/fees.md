@@ -23,6 +23,7 @@ call = substrate.compose_call(
         'AnchorsPreCommit',
         'BridgeNativeTransfer',
         'NftProofValidation',
+        'AllowanceCreation',
     ),
 }
 )
@@ -36,7 +37,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| key | `T::FeeKey` | ```('AnchorsCommit', 'AnchorsPreCommit', 'BridgeNativeTransfer', 'NftProofValidation')```
+| key | `T::FeeKey` | ```('AnchorsCommit', 'AnchorsPreCommit', 'BridgeNativeTransfer', 'NftProofValidation', 'AllowanceCreation')```
 | fee | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -79,6 +80,7 @@ result = substrate.query(
         'AnchorsPreCommit',
         'BridgeNativeTransfer',
         'NftProofValidation',
+        'AllowanceCreation',
     ),
 ]
 )

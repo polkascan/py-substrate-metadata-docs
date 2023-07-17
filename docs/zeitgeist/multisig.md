@@ -1,5 +1,5 @@
 
-# MultiSig
+# Multisig
 
 ---------
 ## Calls
@@ -53,9 +53,12 @@ NOTE: If this is the final approval, you will want to use `as_multi` instead.
 #### Python
 ```python
 call = substrate.compose_call(
-    'MultiSig', 'approve_as_multi', {
+    'Multisig', 'approve_as_multi', {
     'call_hash': '[u8; 32]',
-    'max_weight': {'ref_time': 'u64'},
+    'max_weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
     'maybe_timepoint': (
         None,
         {
@@ -112,8 +115,8 @@ may be found in the deposited `MultisigExecuted` event.
   taken for its lifetime of `DepositBase + threshold * DepositFactor`.
 -------------------------------
 - DB Weight:
-    - Reads: Multisig Storage, [Caller Account], Calls (if `store_call`)
-    - Writes: Multisig Storage, [Caller Account], Calls (if `store_call`)
+    - Reads: Multisig Storage, [Caller Account]
+    - Writes: Multisig Storage, [Caller Account]
 - Plus Call Weight
 \# &lt;/weight&gt;
 #### Attributes
@@ -122,16 +125,18 @@ may be found in the deposited `MultisigExecuted` event.
 | threshold | `u16` | 
 | other_signatories | `Vec<T::AccountId>` | 
 | maybe_timepoint | `Option<Timepoint<T::BlockNumber>>` | 
-| call | `OpaqueCall<T>` | 
-| store_call | `bool` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 | max_weight | `Weight` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'MultiSig', 'as_multi', {
+    'Multisig', 'as_multi', {
     'call': 'Call',
-    'max_weight': {'ref_time': 'u64'},
+    'max_weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
     'maybe_timepoint': (
         None,
         {
@@ -140,7 +145,6 @@ call = substrate.compose_call(
         },
     ),
     'other_signatories': ['AccountId'],
-    'store_call': 'bool',
     'threshold': 'u16',
 }
 )
@@ -168,12 +172,12 @@ O(Z + C) where Z is the length of the call and C its execution weight.
 | Name | Type |
 | -------- | -------- | 
 | other_signatories | `Vec<T::AccountId>` | 
-| call | `Box<<T as Config>::Call>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'MultiSig', 'as_multi_threshold_1', {
+    'Multisig', 'as_multi_threshold_1', {
     'call': 'Call',
     'other_signatories': ['AccountId'],
 }
@@ -205,8 +209,8 @@ transaction for this dispatch.
 - Storage: removes one item.
 ----------------------------------
 - DB Weight:
-    - Read: Multisig Storage, [Caller Account], Refund Account, Calls
-    - Write: Multisig Storage, [Caller Account], Refund Account, Calls
+    - Read: Multisig Storage, [Caller Account], Refund Account
+    - Write: Multisig Storage, [Caller Account], Refund Account
 \# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
@@ -219,7 +223,7 @@ transaction for this dispatch.
 #### Python
 ```python
 call = substrate.compose_call(
-    'MultiSig', 'cancel_as_multi', {
+    'Multisig', 'cancel_as_multi', {
     'call_hash': '[u8; 32]',
     'other_signatories': ['AccountId'],
     'threshold': 'u16',
@@ -266,7 +270,7 @@ A multisig operation has been executed.
 | timepoint | `Timepoint<T::BlockNumber>` | ```{'height': 'u64', 'index': 'u32'}```
 | multisig | `T::AccountId` | ```AccountId```
 | call_hash | `CallHash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ### NewMultisig
@@ -282,27 +286,13 @@ A new multisig operation has begun.
 ## Storage functions
 
 ---------
-### Calls
-
-#### Python
-```python
-result = substrate.query(
-    'MultiSig', 'Calls', ['[u8; 32]']
-)
-```
-
-#### Return value
-```python
-('Call', 'AccountId', 'u128')
-```
----------
 ### Multisigs
  The set of open multisig operations.
 
 #### Python
 ```python
 result = substrate.query(
-    'MultiSig', 'Multisigs', ['AccountId', '[u8; 32]']
+    'Multisig', 'Multisigs', ['AccountId', '[u8; 32]']
 )
 ```
 
@@ -328,11 +318,11 @@ result = substrate.query(
  `32 + sizeof(AccountId)` bytes.
 #### Value
 ```python
-288000000000
+15066000000
 ```
 #### Python
 ```python
-constant = substrate.get_constant('MultiSig', 'DepositBase')
+constant = substrate.get_constant('Multisig', 'DepositBase')
 ```
 ---------
 ### DepositFactor
@@ -341,11 +331,11 @@ constant = substrate.get_constant('MultiSig', 'DepositBase')
  This is held for adding 32 bytes more into a pre-existing storage value.
 #### Value
 ```python
-32000000000
+24000000
 ```
 #### Python
 ```python
-constant = substrate.get_constant('MultiSig', 'DepositFactor')
+constant = substrate.get_constant('Multisig', 'DepositFactor')
 ```
 ---------
 ### MaxSignatories
@@ -356,7 +346,7 @@ constant = substrate.get_constant('MultiSig', 'DepositFactor')
 ```
 #### Python
 ```python
-constant = substrate.get_constant('MultiSig', 'MaxSignatories')
+constant = substrate.get_constant('Multisig', 'MaxSignatories')
 ```
 ---------
 ## Errors

@@ -8,15 +8,14 @@
 ### force_transfer
 Exactly as `transfer`, except the origin must be root and the source account may be
 specified.
-\# &lt;weight&gt;
+\#\# Complexity
 - Same as transfer, but additional read and write because the source account is not
   assumed to be in the overlay.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| source | `<T::Lookup as StaticLookup>::Source` | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| source | `AccountIdLookupOf<T>` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -50,7 +49,7 @@ Can only be called by ROOT.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| who | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -82,7 +81,7 @@ The dispatch origin for this call is `root`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| who | `AccountIdLookupOf<T>` | 
 | new_free | `T::Balance` | 
 | new_reserved | `T::Balance` | 
 
@@ -113,7 +112,7 @@ of the transfer, the account will be reaped.
 
 The dispatch origin for this call must be `Signed` by the transactor.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - Dependent on arguments but not critical, given proper implementations for input config
   types. See related functions below.
 - It contains a limited number of reads and writes internally and no complex
@@ -127,13 +126,10 @@ Related functions:
   - Removing enough funds from an account will trigger `T::DustRemoval::on_unbalanced`.
   - `transfer_keep_alive` works the same way as `transfer`, but has an additional check
     that the transfer will not kill the origin account.
----------------------------------
-- Origin account is already in memory, so no DB operations for them.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -168,13 +164,12 @@ The dispatch origin of this call must be Signed.
 - `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
   of the funds the account has, causing the sender account to be killed (false), or
   transfer everything except at least the existential deposit, which will guarantee to
-  keep the sender account alive (true). \# &lt;weight&gt;
+  keep the sender account alive (true). \#\# Complexity
 - O(1). Just like transfer, but reading the user&\#x27;s transferable balance first.
-  \#&lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | keep_alive | `bool` | 
 
 #### Python
@@ -204,7 +199,7 @@ origin account.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -369,6 +364,21 @@ result = substrate.query(
 }
 ```
 ---------
+### InactiveIssuance
+ The total units of outstanding deactivated balance in the system.
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'InactiveIssuance', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### Locks
  Any liquidity locks on some account balances.
  NOTE: Should only be accessed when setting, changing and freeing a lock.
@@ -398,23 +408,6 @@ result = substrate.query(
 #### Return value
 ```python
 [{'amount': 'u128', 'id': '[u8; 8]'}]
-```
----------
-### StorageVersion
- Storage version of the pallet.
-
- This is set to v2.0.0 for new networks.
-
-#### Python
-```python
-result = substrate.query(
-    'Balances', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V1_0_0', 'V2_0_0')
 ```
 ---------
 ### TotalIssuance
@@ -485,7 +478,7 @@ A vesting schedule already exists for this account
 
 ---------
 ### InsufficientBalance
-Balance too low to send value
+Balance too low to send value.
 
 ---------
 ### KeepAlive

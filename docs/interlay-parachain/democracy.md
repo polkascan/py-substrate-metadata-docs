@@ -193,6 +193,24 @@ call = substrate.compose_call(
 ```
 
 ---------
+### spend_from_treasury
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| value | `BalanceOf<T>` | 
+| beneficiary | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Democracy', 'spend_from_treasury', {
+    'beneficiary': 'AccountId',
+    'value': 'u128',
+}
+)
+```
+
+---------
 ### table_proposal
 Same as `fast_track` but with the default `VotingPeriod`.
 
@@ -257,6 +275,14 @@ A referendum has been cancelled.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | ref_index | `ReferendumIndex` | ```u32```
+
+---------
+### CancelledProposal
+A proposal has been cancelled.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| prop_index | `PropIndex` | ```u32```
 
 ---------
 ### FastTrack

@@ -190,7 +190,7 @@ The total supply will initially be zero. To mint tokens, use `issue`.
 - `AssetAlreadyCreated` if asset was already created.
 - `TickerTooLong` if `ticker`&\#x27;s length is greater than `config.max_ticker_length` chain
 parameter.
-- `TickerNotAscii` if `ticker` is not yet registered, and contains non-ascii printable characters (from code 32 to 126) or any character after first occurrence of `\0`.
+- `TickerNotAlphanumeric` if `ticker` is not yet registered, and contains non-alphanumeric characters or any character after first occurrence of `\0`.
 
 \#\# Permissions
 * Portfolio
@@ -632,6 +632,76 @@ Remove documents for a given token.
 ```python
 call = substrate.compose_call(
     'Asset', 'remove_documents', {'ids': ['u32'], 'ticker': '[u8; 12]'}
+)
+```
+
+---------
+### remove_local_metadata_key
+Removes the asset metadata key and value of a local key.
+
+\# Arguments
+* `origin` - the secondary key of the sender.
+* `ticker` - the ticker of the local metadata key.
+* `local_key` - the local metadata key.
+
+\# Errors
+ - `SecondaryKeyNotAuthorizedForAsset` - if called by someone without the appropriate external agent permissions.
+ - `UnauthorizedAgent` - if called by someone without the appropriate external agent permissions.
+ - `AssetMetadataKeyIsMissing` - if the key doens&\#x27;t exist.
+ - `AssetMetadataValueIsLocked` - if the value of the key is locked.
+ - AssetMetadataKeyBelongsToNFTCollection - if the key is a mandatory key in an NFT collection.
+
+\# Permissions
+* Asset
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+| local_key | `AssetMetadataLocalKey` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Asset', 'remove_local_metadata_key', {
+    'local_key': 'u64',
+    'ticker': '[u8; 12]',
+}
+)
+```
+
+---------
+### remove_metadata_value
+Removes the asset metadata value of a metadata key.
+
+\# Arguments
+* `origin` - the secondary key of the sender.
+* `ticker` - the ticker of the local metadata key.
+* `metadata_key` - the metadata key that will have its value deleted.
+
+\# Errors
+ - `SecondaryKeyNotAuthorizedForAsset` - if called by someone without the appropriate external agent permissions.
+ - `UnauthorizedAgent` - if called by someone without the appropriate external agent permissions.
+ - `AssetMetadataKeyIsMissing` - if the key doens&\#x27;t exist.
+ - `AssetMetadataValueIsLocked` - if the value of the key is locked.
+
+\# Permissions
+* Asset
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+| metadata_key | `AssetMetadataKey` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Asset', 'remove_metadata_value', {
+    'metadata_key': {
+        'Global': 'u64',
+        'Local': 'u64',
+    },
+    'ticker': '[u8; 12]',
+}
 )
 ```
 
@@ -1155,6 +1225,28 @@ caller DID, ticker, beneficiary DID, value, funding round, total issued in this 
 | None | `Balance` | ```u128```
 | None | `FundingRoundName` | ```Bytes```
 | None | `Balance` | ```u128```
+
+---------
+### LocalMetadataKeyDeleted
+An event emitted when a local metadata key has been removed.
+Parameters: caller ticker, Local type name
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `Ticker` | ```[u8; 12]```
+| None | `AssetMetadataLocalKey` | ```u64```
+
+---------
+### MetadataValueDeleted
+An event emitted when a local metadata value has been removed.
+Parameters: caller ticker, Local type name
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `Ticker` | ```[u8; 12]```
+| None | `AssetMetadataKey` | ```{'Global': 'u64', 'Local': 'u64'}```
 
 ---------
 ### Redeemed
@@ -1889,6 +1981,10 @@ The token is already divisible.
 Asset Metadata Global type already exists.
 
 ---------
+### AssetMetadataKeyBelongsToNFTCollection
+Attempt to delete a key that is needed for an NFT collection.
+
+---------
 ### AssetMetadataKeyIsMissing
 Asset Metadata key is missing.
 
@@ -1903,6 +1999,10 @@ Maximum length of the asset metadata type name has been exceeded.
 ---------
 ### AssetMetadataTypeDefMaxLengthExceeded
 Maximum length of the asset metadata type definition has been exceeded.
+
+---------
+### AssetMetadataValueIsEmpty
+Attempt to lock a metadata value that is empty.
 
 ---------
 ### AssetMetadataValueIsLocked
@@ -1993,8 +2093,8 @@ The ticker is already registered to someone else.
 Tickers should start with at least one valid byte.
 
 ---------
-### TickerNotAscii
-The ticker has non-ascii-encoded parts.
+### TickerNotAlphanumeric
+The ticker has non-alphanumeric parts.
 
 ---------
 ### TickerRegistrationExpired

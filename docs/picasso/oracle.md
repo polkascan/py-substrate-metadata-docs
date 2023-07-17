@@ -105,6 +105,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### remove_signer
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Oracle', 'remove_signer', {'who': 'AccountId'}
+)
+```
+
+---------
 ### remove_stake
 Call to put in a claim to remove stake, called from controller
 
@@ -129,12 +143,16 @@ Emits `SignerSet` and `StakeAdded` events when successful.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
+| who | `T::AccountId` | 
 | signer | `T::AccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Oracle', 'set_signer', {'signer': 'AccountId'}
+    'Oracle', 'set_signer', {
+    'signer': 'AccountId',
+    'who': 'AccountId',
+}
 )
 ```
 
@@ -225,6 +243,16 @@ Rewarding Started \[rewarding start timestamp]
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::Moment` | ```u64```
+
+---------
+### SignerRemoved
+Signer removed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `T::AccountId` | ```AccountId```
+| None | `T::AccountId` | ```AccountId```
+| None | `BalanceOf<T>` | ```u128```
 
 ---------
 ### SignerSet

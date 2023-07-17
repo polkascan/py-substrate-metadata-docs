@@ -17,7 +17,9 @@ Sane weight values:
  Rococo-Local as of 11.01.2022:
 		* xcm_weight: 10_000_000_000
 		* buy_execution_weight: 500_000_000
- Kusama: to be defined, but the weights will be higher than on Rococo-Local
+ Kusama as of 11.01.2022:
+		* xcm_weight: 10_000_000_000
+		* buy_execution_weight: 5_000_000_000
 
 #### Attributes
 | Name | Type |
@@ -34,7 +36,10 @@ call = substrate.compose_call(
     'buy_execution_fee': 'u128',
     'other_id': 'u32',
     'self_id': 'u32',
-    'xcm_weight': 'u64',
+    'xcm_weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
 }
 )
 ```
@@ -67,7 +72,7 @@ constant = substrate.get_constant('XcmTransactor', 'IntegriteeKsmParaId')
 ### ShellRuntimeParaId
 #### Value
 ```python
-2223
+2267
 ```
 #### Python
 ```python

@@ -1779,7 +1779,7 @@ within that `collection`.
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
 | item | `Option<T::ItemId>` | ```(None, 'u32')```
-| attribute | `PalletAttributes<T::CollectionId>` | ```{'UsedToClaim': 'u32'}```
+| attribute | `PalletAttributes<T::CollectionId>` | ```{'UsedToClaim': 'u32', 'TransferDisabled': None}```
 | value | `BoundedVec<u8, T::ValueLimit>` | ```Bytes```
 
 ---------
@@ -2041,7 +2041,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'approvals': 'scale_info::354',
+    'approvals': 'scale_info::359',
     'deposit': {'account': 'AccountId', 'amount': 'u128'},
     'owner': 'AccountId',
 }
@@ -2059,7 +2059,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::364'
+'scale_info::369'
 ```
 ---------
 ### ItemConfigOf

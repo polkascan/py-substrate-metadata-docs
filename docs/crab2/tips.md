@@ -15,13 +15,10 @@ The tip identified by `hash` must have finished its countdown period.
 - `hash`: The identity of the open tip for which a tip value is declared. This is formed
   as the hash of the tuple of the original tip `reason` and the beneficiary account ID.
 
-\# &lt;weight&gt;
-- Complexity: `O(T)` where `T` is the number of tippers. decoding `Tipper` vec of length
-  `T`. `T` is charged as upper bound given by `ContainsLengthBound`. The actual cost
-  depends on the implementation of `T::Tippers`.
-- DbReads: `Tips`, `Tippers`, `tip finder`
-- DbWrites: `Reasons`, `Tips`, `Tippers`, `tip finder`
-\# &lt;/weight&gt;
+\#\# Complexity
+- : `O(T)` where `T` is the number of tippers. decoding `Tipper` vec of length `T`. `T`
+  is charged as upper bound given by `ContainsLengthBound`. The actual cost depends on
+  the implementation of `T::Tippers`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -49,12 +46,9 @@ Payment: `TipReportDepositBase` will be reserved from the origin account, as wel
 
 Emits `NewTip` if successful.
 
-\# &lt;weight&gt;
-- Complexity: `O(R)` where `R` length of `reason`.
+\#\# Complexity
+- `O(R)` where `R` length of `reason`.
   - encoding and hashing of &\#x27;reason&\#x27;
-- DbReads: `Reasons`, `Tips`
-- DbWrites: `Reasons`, `Tips`
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -83,12 +77,9 @@ through `tip_new`).
 
 Emits `TipRetracted` if successful.
 
-\# &lt;weight&gt;
-- Complexity: `O(1)`
+\#\# Complexity
+- `O(1)`
   - Depends on the length of `T::Hash` which is fixed.
-- DbReads: `Tips`, `origin account`
-- DbWrites: `Reasons`, `Tips`, `origin account`
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -111,10 +102,8 @@ As a result, the finder is slashed and the deposits are lost.
 
 Emits `TipSlashed` if successful.
 
-\# &lt;weight&gt;
-  `T` is charged as upper bound given by `ContainsLengthBound`.
-  The actual cost depends on the implementation of `T::Tippers`.
-\# &lt;/weight&gt;
+\#\# Complexity
+- O(1).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -143,16 +132,13 @@ member of the `Tippers` set.
 Emits `TipClosing` if the threshold of tippers has been reached and the countdown period
 has started.
 
-\# &lt;weight&gt;
-- Complexity: `O(T)` where `T` is the number of tippers. decoding `Tipper` vec of length
-  `T`, insert tip and check closing, `T` is charged as upper bound given by
-  `ContainsLengthBound`. The actual cost depends on the implementation of `T::Tippers`.
+\#\# Complexity
+- `O(T)` where `T` is the number of tippers. decoding `Tipper` vec of length `T`, insert
+  tip and check closing, `T` is charged as upper bound given by `ContainsLengthBound`.
+  The actual cost depends on the implementation of `T::Tippers`.
 
   Actually weight could be lower as it depends on how many tips are in `OpenTip` but it
   is weighted as if almost full i.e of length `T-1`.
-- DbReads: `Tippers`, `Tips`
-- DbWrites: `Tips`
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -184,15 +170,12 @@ member of the `Tippers` set.
 
 Emits `NewTip` if successful.
 
-\# &lt;weight&gt;
-- Complexity: `O(R + T)` where `R` length of `reason`, `T` is the number of tippers.
+\#\# Complexity
+- `O(R + T)` where `R` length of `reason`, `T` is the number of tippers.
   - `O(T)`: decoding `Tipper` vec of length `T`. `T` is charged as upper bound given by
     `ContainsLengthBound`. The actual cost depends on the implementation of
     `T::Tippers`.
   - `O(R)`: hashing and encoding of reason of length `R`
-- DbReads: `Tippers`, `Reasons`
-- DbWrites: `Reasons`, `Tips`
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

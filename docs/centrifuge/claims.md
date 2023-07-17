@@ -31,8 +31,8 @@ call = substrate.compose_call(
 
 ---------
 ### set_upload_account
-Admin function that sets the allowed upload account to add root hashes
-Controlled by custom origin or root
+Admin function that sets the allowed upload account to add root
+hashes Controlled by custom origin or root
 
 \# &lt;weight&gt;
 - Based on origin check and write op
@@ -155,10 +155,11 @@ constant = substrate.get_constant('Claims', 'MinimalPayoutAmount')
 ```
 ---------
 ### PalletId
- Constant configuration parameter to store the module identifier for the pallet.
+ Constant configuration parameter to store the module identifier for
+ the pallet.
 
- The module identifier may be of the form ```PalletId(*b&quot;rd/claim&quot;)``` and set
- using the [`parameter_types`](https://substrate.dev/docs/en/knowledgebase/runtime/macros\#parameter_types)
+ The module identifier may be of the form
+ ```PalletId(*b&quot;rd/claim&quot;)``` and set using the [`parameter_types`](https://substrate.dev/docs/en/knowledgebase/runtime/macros\#parameter_types)
 #### Value
 ```python
 '0x702f636c61696d73'
@@ -176,7 +177,8 @@ Amount being claimed is less than the available amount stored.
 
 ---------
 ### InvalidProofs
-The combination of account id, amount, and proofs vector in a claim was invalid.
+The combination of account id, amount, and proofs vector in a claim
+was invalid.
 
 ---------
 ### MustBeAdmin
@@ -184,6 +186,7 @@ Protected operation, must be performed by admin
 
 ---------
 ### UnderMinPayout
-The payout amount attempting to be claimed is less than the minimum allowed by [`Config::MinimalPayoutAmount`].
+The payout amount attempting to be claimed is less than the minimum
+allowed by [`Config::MinimalPayoutAmount`].
 
 ---------

@@ -56,7 +56,7 @@ call = substrate.compose_call(
                         'u32',
                         (
                             None,
-                            'scale_info::62',
+                            'scale_info::65',
                         ),
                     ),
                     'CustomerDueDiligence': '[u8; 32]',
@@ -372,7 +372,7 @@ call = substrate.compose_call(
                             'u32',
                             (
                                 None,
-                                'scale_info::62',
+                                'scale_info::65',
                             ),
                         ),
                         'CustomerDueDiligence': '[u8; 32]',
@@ -382,14 +382,14 @@ call = substrate.compose_call(
                             'Ticker': '[u8; 12]',
                         },
                         'InvestorUniqueness': (
-                            'scale_info::62',
+                            'scale_info::65',
                             '[u8; 32]',
                             '[u8; 32]',
                         ),
                         'InvestorUniquenessV2': '[u8; 32]',
                         'Jurisdiction': (
-                            'scale_info::64',
-                            'scale_info::62',
+                            'scale_info::67',
+                            'scale_info::65',
                         ),
                         'KnowYourCustomer': {
                             'Custom': 'Bytes',
@@ -434,7 +434,7 @@ call = substrate.compose_call(
                             'u32',
                             (
                                 None,
-                                'scale_info::62',
+                                'scale_info::65',
                             ),
                         ),
                         'CustomerDueDiligence': '[u8; 32]',
@@ -444,14 +444,14 @@ call = substrate.compose_call(
                             'Ticker': '[u8; 12]',
                         },
                         'InvestorUniqueness': (
-                            'scale_info::62',
+                            'scale_info::65',
                             '[u8; 32]',
                             '[u8; 32]',
                         ),
                         'InvestorUniquenessV2': '[u8; 32]',
                         'Jurisdiction': (
-                            'scale_info::64',
-                            'scale_info::62',
+                            'scale_info::67',
+                            'scale_info::65',
                         ),
                         'KnowYourCustomer': {
                             'Custom': 'Bytes',
@@ -491,7 +491,7 @@ call = substrate.compose_call(
                         'u32',
                         (
                             None,
-                            'scale_info::62',
+                            'scale_info::65',
                         ),
                     ),
                     'CustomerDueDiligence': '[u8; 32]',
@@ -788,7 +788,7 @@ call = substrate.compose_call(
                     'trusted_for': {
                         'Any': None,
                         'Specific': [
-                            'scale_info::182',
+                            'scale_info::186',
                         ],
                     },
                 },
@@ -823,7 +823,7 @@ call = substrate.compose_call(
                         'u32',
                         (
                             None,
-                            'scale_info::62',
+                            'scale_info::65',
                         ),
                     ),
                     'CustomerDueDiligence': '[u8; 32]',
@@ -1139,7 +1139,7 @@ call = substrate.compose_call(
                             'u32',
                             (
                                 None,
-                                'scale_info::62',
+                                'scale_info::65',
                             ),
                         ),
                         'CustomerDueDiligence': '[u8; 32]',
@@ -1149,14 +1149,14 @@ call = substrate.compose_call(
                             'Ticker': '[u8; 12]',
                         },
                         'InvestorUniqueness': (
-                            'scale_info::62',
+                            'scale_info::65',
                             '[u8; 32]',
                             '[u8; 32]',
                         ),
                         'InvestorUniquenessV2': '[u8; 32]',
                         'Jurisdiction': (
-                            'scale_info::64',
-                            'scale_info::62',
+                            'scale_info::67',
+                            'scale_info::65',
                         ),
                         'KnowYourCustomer': {
                             'Custom': 'Bytes',
@@ -1201,7 +1201,7 @@ call = substrate.compose_call(
                             'u32',
                             (
                                 None,
-                                'scale_info::62',
+                                'scale_info::65',
                             ),
                         ),
                         'CustomerDueDiligence': '[u8; 32]',
@@ -1211,14 +1211,14 @@ call = substrate.compose_call(
                             'Ticker': '[u8; 12]',
                         },
                         'InvestorUniqueness': (
-                            'scale_info::62',
+                            'scale_info::65',
                             '[u8; 32]',
                             '[u8; 32]',
                         ),
                         'InvestorUniquenessV2': '[u8; 32]',
                         'Jurisdiction': (
-                            'scale_info::64',
-                            'scale_info::62',
+                            'scale_info::67',
+                            'scale_info::65',
                         ),
                         'KnowYourCustomer': {
                             'Custom': 'Bytes',
@@ -1258,7 +1258,7 @@ call = substrate.compose_call(
                         'u32',
                         (
                             None,
-                            'scale_info::62',
+                            'scale_info::65',
                         ),
                     ),
                     'CustomerDueDiligence': '[u8; 32]',
@@ -1555,7 +1555,7 @@ call = substrate.compose_call(
                     'trusted_for': {
                         'Any': None,
                         'Specific': [
-                            'scale_info::182',
+                            'scale_info::186',
                         ],
                     },
                 },
@@ -1667,7 +1667,7 @@ call = substrate.compose_call(
                             'u32',
                             (
                                 None,
-                                'scale_info::62',
+                                'scale_info::65',
                             ),
                         ),
                         'CustomerDueDiligence': '[u8; 32]',
@@ -1677,14 +1677,14 @@ call = substrate.compose_call(
                             'Ticker': '[u8; 12]',
                         },
                         'InvestorUniqueness': (
-                            'scale_info::62',
+                            'scale_info::65',
                             '[u8; 32]',
                             '[u8; 32]',
                         ),
                         'InvestorUniquenessV2': '[u8; 32]',
                         'Jurisdiction': (
-                            'scale_info::64',
-                            'scale_info::62',
+                            'scale_info::67',
+                            'scale_info::65',
                         ),
                         'KnowYourCustomer': {
                             'Custom': 'Bytes',
@@ -1700,32 +1700,32 @@ call = substrate.compose_call(
                     },
                     'IsAnyOf': [
                         {
-                            'Accredited': 'scale_info::62',
-                            'Affiliate': 'scale_info::62',
-                            'Blocked': 'scale_info::62',
-                            'BuyLockup': 'scale_info::62',
+                            'Accredited': 'scale_info::65',
+                            'Affiliate': 'scale_info::65',
+                            'Blocked': 'scale_info::65',
+                            'BuyLockup': 'scale_info::65',
                             'Custom': (
                                 'u32',
                                 (
                                     None,
-                                    'scale_info::62',
+                                    'scale_info::65',
                                 ),
                             ),
                             'CustomerDueDiligence': '[u8; 32]',
-                            'Exempted': 'scale_info::62',
+                            'Exempted': 'scale_info::65',
                             'InvestorUniqueness': (
-                                'scale_info::62',
+                                'scale_info::65',
                                 '[u8; 32]',
                                 '[u8; 32]',
                             ),
                             'InvestorUniquenessV2': '[u8; 32]',
                             'Jurisdiction': (
-                                'scale_info::64',
-                                'scale_info::62',
+                                'scale_info::67',
+                                'scale_info::65',
                             ),
-                            'KnowYourCustomer': 'scale_info::62',
+                            'KnowYourCustomer': 'scale_info::65',
                             'NoData': None,
-                            'SellLockup': 'scale_info::62',
+                            'SellLockup': 'scale_info::65',
                         },
                     ],
                     'IsIdentity': {
@@ -1734,32 +1734,32 @@ call = substrate.compose_call(
                     },
                     'IsNoneOf': [
                         {
-                            'Accredited': 'scale_info::62',
-                            'Affiliate': 'scale_info::62',
-                            'Blocked': 'scale_info::62',
-                            'BuyLockup': 'scale_info::62',
+                            'Accredited': 'scale_info::65',
+                            'Affiliate': 'scale_info::65',
+                            'Blocked': 'scale_info::65',
+                            'BuyLockup': 'scale_info::65',
                             'Custom': (
                                 'u32',
                                 (
                                     None,
-                                    'scale_info::62',
+                                    'scale_info::65',
                                 ),
                             ),
                             'CustomerDueDiligence': '[u8; 32]',
-                            'Exempted': 'scale_info::62',
+                            'Exempted': 'scale_info::65',
                             'InvestorUniqueness': (
-                                'scale_info::62',
+                                'scale_info::65',
                                 '[u8; 32]',
                                 '[u8; 32]',
                             ),
                             'InvestorUniquenessV2': '[u8; 32]',
                             'Jurisdiction': (
-                                'scale_info::64',
-                                'scale_info::62',
+                                'scale_info::67',
+                                'scale_info::65',
                             ),
-                            'KnowYourCustomer': 'scale_info::62',
+                            'KnowYourCustomer': 'scale_info::65',
                             'NoData': None,
-                            'SellLockup': 'scale_info::62',
+                            'SellLockup': 'scale_info::65',
                         },
                     ],
                     'IsPresent': {
@@ -1787,7 +1787,7 @@ call = substrate.compose_call(
                             'u32',
                             (
                                 None,
-                                'scale_info::62',
+                                'scale_info::65',
                             ),
                         ),
                         'CustomerDueDiligence': '[u8; 32]',
@@ -1797,14 +1797,14 @@ call = substrate.compose_call(
                             'Ticker': '[u8; 12]',
                         },
                         'InvestorUniqueness': (
-                            'scale_info::62',
+                            'scale_info::65',
                             '[u8; 32]',
                             '[u8; 32]',
                         ),
                         'InvestorUniquenessV2': '[u8; 32]',
                         'Jurisdiction': (
-                            'scale_info::64',
-                            'scale_info::62',
+                            'scale_info::67',
+                            'scale_info::65',
                         ),
                         'KnowYourCustomer': {
                             'Custom': 'Bytes',
@@ -1825,7 +1825,7 @@ call = substrate.compose_call(
                         'trusted_for': {
                             'Any': None,
                             'Specific': [
-                                'scale_info::182',
+                                'scale_info::186',
                             ],
                         },
                     },
@@ -1860,7 +1860,7 @@ call = substrate.compose_call(
                             'u32',
                             (
                                 None,
-                                'scale_info::62',
+                                'scale_info::65',
                             ),
                         ),
                         'CustomerDueDiligence': '[u8; 32]',
@@ -1870,14 +1870,14 @@ call = substrate.compose_call(
                             'Ticker': '[u8; 12]',
                         },
                         'InvestorUniqueness': (
-                            'scale_info::62',
+                            'scale_info::65',
                             '[u8; 32]',
                             '[u8; 32]',
                         ),
                         'InvestorUniquenessV2': '[u8; 32]',
                         'Jurisdiction': (
-                            'scale_info::64',
-                            'scale_info::62',
+                            'scale_info::67',
+                            'scale_info::65',
                         ),
                         'KnowYourCustomer': {
                             'Custom': 'Bytes',
@@ -1893,32 +1893,32 @@ call = substrate.compose_call(
                     },
                     'IsAnyOf': [
                         {
-                            'Accredited': 'scale_info::62',
-                            'Affiliate': 'scale_info::62',
-                            'Blocked': 'scale_info::62',
-                            'BuyLockup': 'scale_info::62',
+                            'Accredited': 'scale_info::65',
+                            'Affiliate': 'scale_info::65',
+                            'Blocked': 'scale_info::65',
+                            'BuyLockup': 'scale_info::65',
                             'Custom': (
                                 'u32',
                                 (
                                     None,
-                                    'scale_info::62',
+                                    'scale_info::65',
                                 ),
                             ),
                             'CustomerDueDiligence': '[u8; 32]',
-                            'Exempted': 'scale_info::62',
+                            'Exempted': 'scale_info::65',
                             'InvestorUniqueness': (
-                                'scale_info::62',
+                                'scale_info::65',
                                 '[u8; 32]',
                                 '[u8; 32]',
                             ),
                             'InvestorUniquenessV2': '[u8; 32]',
                             'Jurisdiction': (
-                                'scale_info::64',
-                                'scale_info::62',
+                                'scale_info::67',
+                                'scale_info::65',
                             ),
-                            'KnowYourCustomer': 'scale_info::62',
+                            'KnowYourCustomer': 'scale_info::65',
                             'NoData': None,
-                            'SellLockup': 'scale_info::62',
+                            'SellLockup': 'scale_info::65',
                         },
                     ],
                     'IsIdentity': {
@@ -1927,32 +1927,32 @@ call = substrate.compose_call(
                     },
                     'IsNoneOf': [
                         {
-                            'Accredited': 'scale_info::62',
-                            'Affiliate': 'scale_info::62',
-                            'Blocked': 'scale_info::62',
-                            'BuyLockup': 'scale_info::62',
+                            'Accredited': 'scale_info::65',
+                            'Affiliate': 'scale_info::65',
+                            'Blocked': 'scale_info::65',
+                            'BuyLockup': 'scale_info::65',
                             'Custom': (
                                 'u32',
                                 (
                                     None,
-                                    'scale_info::62',
+                                    'scale_info::65',
                                 ),
                             ),
                             'CustomerDueDiligence': '[u8; 32]',
-                            'Exempted': 'scale_info::62',
+                            'Exempted': 'scale_info::65',
                             'InvestorUniqueness': (
-                                'scale_info::62',
+                                'scale_info::65',
                                 '[u8; 32]',
                                 '[u8; 32]',
                             ),
                             'InvestorUniquenessV2': '[u8; 32]',
                             'Jurisdiction': (
-                                'scale_info::64',
-                                'scale_info::62',
+                                'scale_info::67',
+                                'scale_info::65',
                             ),
-                            'KnowYourCustomer': 'scale_info::62',
+                            'KnowYourCustomer': 'scale_info::65',
                             'NoData': None,
-                            'SellLockup': 'scale_info::62',
+                            'SellLockup': 'scale_info::65',
                         },
                     ],
                     'IsPresent': {
@@ -1980,7 +1980,7 @@ call = substrate.compose_call(
                             'u32',
                             (
                                 None,
-                                'scale_info::62',
+                                'scale_info::65',
                             ),
                         ),
                         'CustomerDueDiligence': '[u8; 32]',
@@ -1990,14 +1990,14 @@ call = substrate.compose_call(
                             'Ticker': '[u8; 12]',
                         },
                         'InvestorUniqueness': (
-                            'scale_info::62',
+                            'scale_info::65',
                             '[u8; 32]',
                             '[u8; 32]',
                         ),
                         'InvestorUniquenessV2': '[u8; 32]',
                         'Jurisdiction': (
-                            'scale_info::64',
-                            'scale_info::62',
+                            'scale_info::67',
+                            'scale_info::65',
                         ),
                         'KnowYourCustomer': {
                             'Custom': 'Bytes',
@@ -2018,7 +2018,7 @@ call = substrate.compose_call(
                         'trusted_for': {
                             'Any': None,
                             'Specific': [
-                                'scale_info::182',
+                                'scale_info::186',
                             ],
                         },
                     },
@@ -2138,76 +2138,76 @@ call = substrate.compose_call(
                 {
                     'condition_type': {
                         'IsAbsent': {
-                            'Accredited': 'scale_info::62',
-                            'Affiliate': 'scale_info::62',
-                            'Blocked': 'scale_info::62',
-                            'BuyLockup': 'scale_info::62',
+                            'Accredited': 'scale_info::65',
+                            'Affiliate': 'scale_info::65',
+                            'Blocked': 'scale_info::65',
+                            'BuyLockup': 'scale_info::65',
                             'Custom': (
                                 'u32',
                                 (
                                     None,
-                                    'scale_info::62',
+                                    'scale_info::65',
                                 ),
                             ),
                             'CustomerDueDiligence': '[u8; 32]',
-                            'Exempted': 'scale_info::62',
+                            'Exempted': 'scale_info::65',
                             'InvestorUniqueness': (
-                                'scale_info::62',
+                                'scale_info::65',
                                 '[u8; 32]',
                                 '[u8; 32]',
                             ),
                             'InvestorUniquenessV2': '[u8; 32]',
                             'Jurisdiction': (
-                                'scale_info::64',
-                                'scale_info::62',
+                                'scale_info::67',
+                                'scale_info::65',
                             ),
-                            'KnowYourCustomer': 'scale_info::62',
+                            'KnowYourCustomer': 'scale_info::65',
                             'NoData': None,
-                            'SellLockup': 'scale_info::62',
+                            'SellLockup': 'scale_info::65',
                         },
                         'IsAnyOf': [
-                            'scale_info::61',
+                            'scale_info::64',
                         ],
                         'IsIdentity': {
                             'ExternalAgent': None,
                             'Specific': '[u8; 32]',
                         },
                         'IsNoneOf': [
-                            'scale_info::61',
+                            'scale_info::64',
                         ],
                         'IsPresent': {
-                            'Accredited': 'scale_info::62',
-                            'Affiliate': 'scale_info::62',
-                            'Blocked': 'scale_info::62',
-                            'BuyLockup': 'scale_info::62',
+                            'Accredited': 'scale_info::65',
+                            'Affiliate': 'scale_info::65',
+                            'Blocked': 'scale_info::65',
+                            'BuyLockup': 'scale_info::65',
                             'Custom': (
                                 'u32',
                                 (
                                     None,
-                                    'scale_info::62',
+                                    'scale_info::65',
                                 ),
                             ),
                             'CustomerDueDiligence': '[u8; 32]',
-                            'Exempted': 'scale_info::62',
+                            'Exempted': 'scale_info::65',
                             'InvestorUniqueness': (
-                                'scale_info::62',
+                                'scale_info::65',
                                 '[u8; 32]',
                                 '[u8; 32]',
                             ),
                             'InvestorUniquenessV2': '[u8; 32]',
                             'Jurisdiction': (
-                                'scale_info::64',
-                                'scale_info::62',
+                                'scale_info::67',
+                                'scale_info::65',
                             ),
-                            'KnowYourCustomer': 'scale_info::62',
+                            'KnowYourCustomer': 'scale_info::65',
                             'NoData': None,
-                            'SellLockup': 'scale_info::62',
+                            'SellLockup': 'scale_info::65',
                         },
                     },
                     'issuers': [
                         {
                             'issuer': '[u8; 32]',
-                            'trusted_for': 'scale_info::180',
+                            'trusted_for': 'scale_info::184',
                         },
                     ],
                 },
@@ -2216,76 +2216,76 @@ call = substrate.compose_call(
                 {
                     'condition_type': {
                         'IsAbsent': {
-                            'Accredited': 'scale_info::62',
-                            'Affiliate': 'scale_info::62',
-                            'Blocked': 'scale_info::62',
-                            'BuyLockup': 'scale_info::62',
+                            'Accredited': 'scale_info::65',
+                            'Affiliate': 'scale_info::65',
+                            'Blocked': 'scale_info::65',
+                            'BuyLockup': 'scale_info::65',
                             'Custom': (
                                 'u32',
                                 (
                                     None,
-                                    'scale_info::62',
+                                    'scale_info::65',
                                 ),
                             ),
                             'CustomerDueDiligence': '[u8; 32]',
-                            'Exempted': 'scale_info::62',
+                            'Exempted': 'scale_info::65',
                             'InvestorUniqueness': (
-                                'scale_info::62',
+                                'scale_info::65',
                                 '[u8; 32]',
                                 '[u8; 32]',
                             ),
                             'InvestorUniquenessV2': '[u8; 32]',
                             'Jurisdiction': (
-                                'scale_info::64',
-                                'scale_info::62',
+                                'scale_info::67',
+                                'scale_info::65',
                             ),
-                            'KnowYourCustomer': 'scale_info::62',
+                            'KnowYourCustomer': 'scale_info::65',
                             'NoData': None,
-                            'SellLockup': 'scale_info::62',
+                            'SellLockup': 'scale_info::65',
                         },
                         'IsAnyOf': [
-                            'scale_info::61',
+                            'scale_info::64',
                         ],
                         'IsIdentity': {
                             'ExternalAgent': None,
                             'Specific': '[u8; 32]',
                         },
                         'IsNoneOf': [
-                            'scale_info::61',
+                            'scale_info::64',
                         ],
                         'IsPresent': {
-                            'Accredited': 'scale_info::62',
-                            'Affiliate': 'scale_info::62',
-                            'Blocked': 'scale_info::62',
-                            'BuyLockup': 'scale_info::62',
+                            'Accredited': 'scale_info::65',
+                            'Affiliate': 'scale_info::65',
+                            'Blocked': 'scale_info::65',
+                            'BuyLockup': 'scale_info::65',
                             'Custom': (
                                 'u32',
                                 (
                                     None,
-                                    'scale_info::62',
+                                    'scale_info::65',
                                 ),
                             ),
                             'CustomerDueDiligence': '[u8; 32]',
-                            'Exempted': 'scale_info::62',
+                            'Exempted': 'scale_info::65',
                             'InvestorUniqueness': (
-                                'scale_info::62',
+                                'scale_info::65',
                                 '[u8; 32]',
                                 '[u8; 32]',
                             ),
                             'InvestorUniquenessV2': '[u8; 32]',
                             'Jurisdiction': (
-                                'scale_info::64',
-                                'scale_info::62',
+                                'scale_info::67',
+                                'scale_info::65',
                             ),
-                            'KnowYourCustomer': 'scale_info::62',
+                            'KnowYourCustomer': 'scale_info::65',
                             'NoData': None,
-                            'SellLockup': 'scale_info::62',
+                            'SellLockup': 'scale_info::65',
                         },
                     },
                     'issuers': [
                         {
                             'issuer': '[u8; 32]',
-                            'trusted_for': 'scale_info::180',
+                            'trusted_for': 'scale_info::184',
                         },
                     ],
                 },
@@ -2363,7 +2363,7 @@ Parameters: caller DID, ticker, new asset compliance.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
-| None | `Vec<ComplianceRequirement>` | ```[{'sender_conditions': [{'condition_type': {'IsPresent': 'scale_info::61', 'IsAbsent': 'scale_info::61', 'IsAnyOf': ['scale_info::61'], 'IsNoneOf': ['scale_info::61'], 'IsIdentity': 'scale_info::177'}, 'issuers': ['scale_info::179']}], 'receiver_conditions': [{'condition_type': {'IsPresent': 'scale_info::61', 'IsAbsent': 'scale_info::61', 'IsAnyOf': ['scale_info::61'], 'IsNoneOf': ['scale_info::61'], 'IsIdentity': 'scale_info::177'}, 'issuers': ['scale_info::179']}], 'id': 'u32'}]```
+| None | `Vec<ComplianceRequirement>` | ```[{'sender_conditions': [{'condition_type': {'IsPresent': 'scale_info::64', 'IsAbsent': 'scale_info::64', 'IsAnyOf': ['scale_info::64'], 'IsNoneOf': ['scale_info::64'], 'IsIdentity': 'scale_info::181'}, 'issuers': ['scale_info::183']}], 'receiver_conditions': [{'condition_type': {'IsPresent': 'scale_info::64', 'IsAbsent': 'scale_info::64', 'IsAnyOf': ['scale_info::64'], 'IsNoneOf': ['scale_info::64'], 'IsIdentity': 'scale_info::181'}, 'issuers': ['scale_info::183']}], 'id': 'u32'}]```
 
 ---------
 ### AssetComplianceReset
@@ -2394,7 +2394,7 @@ Emitted when compliance requirement get modified/change.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
-| None | `ComplianceRequirement` | ```{'sender_conditions': [{'condition_type': {'IsPresent': {'Accredited': 'scale_info::62', 'Affiliate': 'scale_info::62', 'BuyLockup': 'scale_info::62', 'SellLockup': 'scale_info::62', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::62', 'Jurisdiction': ('scale_info::64', 'scale_info::62'), 'Exempted': 'scale_info::62', 'Blocked': 'scale_info::62', 'InvestorUniqueness': ('scale_info::62', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::62'))}, 'IsAbsent': {'Accredited': 'scale_info::62', 'Affiliate': 'scale_info::62', 'BuyLockup': 'scale_info::62', 'SellLockup': 'scale_info::62', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::62', 'Jurisdiction': ('scale_info::64', 'scale_info::62'), 'Exempted': 'scale_info::62', 'Blocked': 'scale_info::62', 'InvestorUniqueness': ('scale_info::62', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::62'))}, 'IsAnyOf': ['scale_info::61'], 'IsNoneOf': ['scale_info::61'], 'IsIdentity': {'ExternalAgent': None, 'Specific': '[u8; 32]'}}, 'issuers': [{'issuer': '[u8; 32]', 'trusted_for': 'scale_info::180'}]}], 'receiver_conditions': [{'condition_type': {'IsPresent': {'Accredited': 'scale_info::62', 'Affiliate': 'scale_info::62', 'BuyLockup': 'scale_info::62', 'SellLockup': 'scale_info::62', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::62', 'Jurisdiction': ('scale_info::64', 'scale_info::62'), 'Exempted': 'scale_info::62', 'Blocked': 'scale_info::62', 'InvestorUniqueness': ('scale_info::62', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::62'))}, 'IsAbsent': {'Accredited': 'scale_info::62', 'Affiliate': 'scale_info::62', 'BuyLockup': 'scale_info::62', 'SellLockup': 'scale_info::62', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::62', 'Jurisdiction': ('scale_info::64', 'scale_info::62'), 'Exempted': 'scale_info::62', 'Blocked': 'scale_info::62', 'InvestorUniqueness': ('scale_info::62', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::62'))}, 'IsAnyOf': ['scale_info::61'], 'IsNoneOf': ['scale_info::61'], 'IsIdentity': {'ExternalAgent': None, 'Specific': '[u8; 32]'}}, 'issuers': [{'issuer': '[u8; 32]', 'trusted_for': 'scale_info::180'}]}], 'id': 'u32'}```
+| None | `ComplianceRequirement` | ```{'sender_conditions': [{'condition_type': {'IsPresent': {'Accredited': 'scale_info::65', 'Affiliate': 'scale_info::65', 'BuyLockup': 'scale_info::65', 'SellLockup': 'scale_info::65', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::65', 'Jurisdiction': ('scale_info::67', 'scale_info::65'), 'Exempted': 'scale_info::65', 'Blocked': 'scale_info::65', 'InvestorUniqueness': ('scale_info::65', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::65'))}, 'IsAbsent': {'Accredited': 'scale_info::65', 'Affiliate': 'scale_info::65', 'BuyLockup': 'scale_info::65', 'SellLockup': 'scale_info::65', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::65', 'Jurisdiction': ('scale_info::67', 'scale_info::65'), 'Exempted': 'scale_info::65', 'Blocked': 'scale_info::65', 'InvestorUniqueness': ('scale_info::65', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::65'))}, 'IsAnyOf': ['scale_info::64'], 'IsNoneOf': ['scale_info::64'], 'IsIdentity': {'ExternalAgent': None, 'Specific': '[u8; 32]'}}, 'issuers': [{'issuer': '[u8; 32]', 'trusted_for': 'scale_info::184'}]}], 'receiver_conditions': [{'condition_type': {'IsPresent': {'Accredited': 'scale_info::65', 'Affiliate': 'scale_info::65', 'BuyLockup': 'scale_info::65', 'SellLockup': 'scale_info::65', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::65', 'Jurisdiction': ('scale_info::67', 'scale_info::65'), 'Exempted': 'scale_info::65', 'Blocked': 'scale_info::65', 'InvestorUniqueness': ('scale_info::65', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::65'))}, 'IsAbsent': {'Accredited': 'scale_info::65', 'Affiliate': 'scale_info::65', 'BuyLockup': 'scale_info::65', 'SellLockup': 'scale_info::65', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::65', 'Jurisdiction': ('scale_info::67', 'scale_info::65'), 'Exempted': 'scale_info::65', 'Blocked': 'scale_info::65', 'InvestorUniqueness': ('scale_info::65', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::65'))}, 'IsAnyOf': ['scale_info::64'], 'IsNoneOf': ['scale_info::64'], 'IsIdentity': {'ExternalAgent': None, 'Specific': '[u8; 32]'}}, 'issuers': [{'issuer': '[u8; 32]', 'trusted_for': 'scale_info::184'}]}], 'id': 'u32'}```
 
 ---------
 ### ComplianceRequirementCreated
@@ -2405,7 +2405,7 @@ Emitted when new compliance requirement is created.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
-| None | `ComplianceRequirement` | ```{'sender_conditions': [{'condition_type': {'IsPresent': {'Accredited': 'scale_info::62', 'Affiliate': 'scale_info::62', 'BuyLockup': 'scale_info::62', 'SellLockup': 'scale_info::62', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::62', 'Jurisdiction': ('scale_info::64', 'scale_info::62'), 'Exempted': 'scale_info::62', 'Blocked': 'scale_info::62', 'InvestorUniqueness': ('scale_info::62', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::62'))}, 'IsAbsent': {'Accredited': 'scale_info::62', 'Affiliate': 'scale_info::62', 'BuyLockup': 'scale_info::62', 'SellLockup': 'scale_info::62', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::62', 'Jurisdiction': ('scale_info::64', 'scale_info::62'), 'Exempted': 'scale_info::62', 'Blocked': 'scale_info::62', 'InvestorUniqueness': ('scale_info::62', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::62'))}, 'IsAnyOf': ['scale_info::61'], 'IsNoneOf': ['scale_info::61'], 'IsIdentity': {'ExternalAgent': None, 'Specific': '[u8; 32]'}}, 'issuers': [{'issuer': '[u8; 32]', 'trusted_for': 'scale_info::180'}]}], 'receiver_conditions': [{'condition_type': {'IsPresent': {'Accredited': 'scale_info::62', 'Affiliate': 'scale_info::62', 'BuyLockup': 'scale_info::62', 'SellLockup': 'scale_info::62', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::62', 'Jurisdiction': ('scale_info::64', 'scale_info::62'), 'Exempted': 'scale_info::62', 'Blocked': 'scale_info::62', 'InvestorUniqueness': ('scale_info::62', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::62'))}, 'IsAbsent': {'Accredited': 'scale_info::62', 'Affiliate': 'scale_info::62', 'BuyLockup': 'scale_info::62', 'SellLockup': 'scale_info::62', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::62', 'Jurisdiction': ('scale_info::64', 'scale_info::62'), 'Exempted': 'scale_info::62', 'Blocked': 'scale_info::62', 'InvestorUniqueness': ('scale_info::62', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::62'))}, 'IsAnyOf': ['scale_info::61'], 'IsNoneOf': ['scale_info::61'], 'IsIdentity': {'ExternalAgent': None, 'Specific': '[u8; 32]'}}, 'issuers': [{'issuer': '[u8; 32]', 'trusted_for': 'scale_info::180'}]}], 'id': 'u32'}```
+| None | `ComplianceRequirement` | ```{'sender_conditions': [{'condition_type': {'IsPresent': {'Accredited': 'scale_info::65', 'Affiliate': 'scale_info::65', 'BuyLockup': 'scale_info::65', 'SellLockup': 'scale_info::65', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::65', 'Jurisdiction': ('scale_info::67', 'scale_info::65'), 'Exempted': 'scale_info::65', 'Blocked': 'scale_info::65', 'InvestorUniqueness': ('scale_info::65', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::65'))}, 'IsAbsent': {'Accredited': 'scale_info::65', 'Affiliate': 'scale_info::65', 'BuyLockup': 'scale_info::65', 'SellLockup': 'scale_info::65', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::65', 'Jurisdiction': ('scale_info::67', 'scale_info::65'), 'Exempted': 'scale_info::65', 'Blocked': 'scale_info::65', 'InvestorUniqueness': ('scale_info::65', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::65'))}, 'IsAnyOf': ['scale_info::64'], 'IsNoneOf': ['scale_info::64'], 'IsIdentity': {'ExternalAgent': None, 'Specific': '[u8; 32]'}}, 'issuers': [{'issuer': '[u8; 32]', 'trusted_for': 'scale_info::184'}]}], 'receiver_conditions': [{'condition_type': {'IsPresent': {'Accredited': 'scale_info::65', 'Affiliate': 'scale_info::65', 'BuyLockup': 'scale_info::65', 'SellLockup': 'scale_info::65', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::65', 'Jurisdiction': ('scale_info::67', 'scale_info::65'), 'Exempted': 'scale_info::65', 'Blocked': 'scale_info::65', 'InvestorUniqueness': ('scale_info::65', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::65'))}, 'IsAbsent': {'Accredited': 'scale_info::65', 'Affiliate': 'scale_info::65', 'BuyLockup': 'scale_info::65', 'SellLockup': 'scale_info::65', 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': 'scale_info::65', 'Jurisdiction': ('scale_info::67', 'scale_info::65'), 'Exempted': 'scale_info::65', 'Blocked': 'scale_info::65', 'InvestorUniqueness': ('scale_info::65', '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, 'scale_info::65'))}, 'IsAnyOf': ['scale_info::64'], 'IsNoneOf': ['scale_info::64'], 'IsIdentity': {'ExternalAgent': None, 'Specific': '[u8; 32]'}}, 'issuers': [{'issuer': '[u8; 32]', 'trusted_for': 'scale_info::184'}]}], 'id': 'u32'}```
 
 ---------
 ### ComplianceRequirementRemoved
@@ -2463,14 +2463,14 @@ result = substrate.query(
             'id': 'u32',
             'receiver_conditions': [
                 {
-                    'condition_type': 'scale_info::175',
-                    'issuers': ['scale_info::179'],
+                    'condition_type': 'scale_info::179',
+                    'issuers': ['scale_info::183'],
                 },
             ],
             'sender_conditions': [
                 {
-                    'condition_type': 'scale_info::175',
-                    'issuers': ['scale_info::179'],
+                    'condition_type': 'scale_info::179',
+                    'issuers': ['scale_info::183'],
                 },
             ],
         },

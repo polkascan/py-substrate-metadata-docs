@@ -1525,18 +1525,18 @@ The asset-account doesn&\#x27;t have an associated deposit.
 The signing account has no permission to do the operation.
 
 ---------
-### NoProvider
-Unable to increment the consumer reference counters on the account. Either no provider
-reference exists to allow a non-zero balance of a non-self-sufficient asset, or the
-maximum number of consumers has been reached.
-
----------
 ### NotFrozen
 The asset should be frozen before the given operation.
 
 ---------
 ### Unapproved
 No approval exists that would allow the transfer.
+
+---------
+### UnavailableConsumer
+Unable to increment the consumer reference counters on the account. Either no provider
+reference exists to allow a non-zero balance of a non-self-sufficient asset, or one
+fewer then the maximum number of consumers has been reached.
 
 ---------
 ### Unknown

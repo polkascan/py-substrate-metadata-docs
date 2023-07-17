@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | polymesh_mainnet     |
 | Implementation name     | polymesh_mainnet     |
-| Spec version     | 5003001     |
+| Spec version     | 5004001     |
 | SS58 Format     | 12     |
 | Token symbol      | POLYX     |
 | Token decimals      | 6     |
@@ -15,10 +15,10 @@
 ## Pallets
 | Name | Calls | Events | Storage functions | Constants | Errors |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| [Asset](asset.md) | [26](asset.md#calls) | [27](asset.md#events) | [31](asset.md#storage-functions) | [5](asset.md#constants) | [37](asset.md#errors) |
+| [Asset](asset.md) | [28](asset.md#calls) | [29](asset.md#events) | [31](asset.md#storage-functions) | [5](asset.md#constants) | [39](asset.md#errors) |
 | [AuthorityDiscovery](authoritydiscovery.md) | [0](authoritydiscovery.md#calls) | [0](authoritydiscovery.md#events) | [0](authoritydiscovery.md#storage-functions) | [0](authoritydiscovery.md#constants) | [0](authoritydiscovery.md#errors) |
 | [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
-| [Babe](babe.md) | [3](babe.md#calls) | [0](babe.md#events) | [16](babe.md#storage-functions) | [3](babe.md#constants) | [3](babe.md#errors) |
+| [Babe](babe.md) | [3](babe.md#calls) | [0](babe.md#events) | [16](babe.md#storage-functions) | [3](babe.md#constants) | [4](babe.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [7](balances.md#events) | [2](balances.md#storage-functions) | [1](balances.md#constants) | [5](balances.md#errors) |
 | [Base](base.md) | [0](base.md#calls) | [1](base.md#events) | [0](base.md#storage-functions) | [1](base.md#constants) | [2](base.md#errors) |
 | [Bridge](bridge.md) | [17](bridge.md#calls) | [17](bridge.md#events) | [10](bridge.md#storage-functions) | [0](bridge.md#constants) | [13](bridge.md#errors) |
@@ -27,7 +27,7 @@
 | [Checkpoint](checkpoint.md) | [4](checkpoint.md#calls) | [4](checkpoint.md#events) | [11](checkpoint.md#storage-functions) | [0](checkpoint.md#constants) | [5](checkpoint.md#errors) |
 | [CommitteeMembership](committeemembership.md) | [7](committeemembership.md#calls) | [7](committeemembership.md#events) | [3](committeemembership.md#storage-functions) | [0](committeemembership.md#constants) | [7](committeemembership.md#errors) |
 | [ComplianceManager](compliancemanager.md) | [9](compliancemanager.md#calls) | [9](compliancemanager.md#events) | [3](compliancemanager.md#storage-functions) | [1](compliancemanager.md#constants) | [6](compliancemanager.md#errors) |
-| [Contracts](contracts.md) | [5](contracts.md#calls) | [6](contracts.md#events) | [6](contracts.md#storage-functions) | [5](contracts.md#constants) | [29](contracts.md#errors) |
+| [Contracts](contracts.md) | [9](contracts.md#calls) | [8](contracts.md#events) | [6](contracts.md#storage-functions) | [8](contracts.md#constants) | [30](contracts.md#errors) |
 | [CorporateAction](corporateaction.md) | [9](corporateaction.md#calls) | [9](corporateaction.md#events) | [9](corporateaction.md#storage-functions) | [2](corporateaction.md#constants) | [12](corporateaction.md#errors) |
 | [CorporateBallot](corporateballot.md) | [6](corporateballot.md#calls) | [6](corporateballot.md#events) | [6](corporateballot.md#storage-functions) | [0](corporateballot.md#constants) | [14](corporateballot.md#errors) |
 | [ExternalAgents](externalagents.md) | [8](externalagents.md#calls) | [5](externalagents.md#events) | [5](externalagents.md#storage-functions) | [0](externalagents.md#constants) | [6](externalagents.md#errors) |
@@ -49,7 +49,7 @@
 | [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
 | [Relayer](relayer.md) | [6](relayer.md#calls) | [4](relayer.md#events) | [1](relayer.md#storage-functions) | [0](relayer.md#constants) | [7](relayer.md#errors) |
 | [Rewards](rewards.md) | [2](rewards.md#calls) | [1](rewards.md#events) | [1](rewards.md#storage-functions) | [0](rewards.md#constants) | [4](rewards.md#errors) |
-| [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [4](scheduler.md#events) | [2](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [4](scheduler.md#errors) |
+| [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [Settlement](settlement.md) | [27](settlement.md#calls) | [23](settlement.md#events) | [19](settlement.md#storage-functions) | [0](settlement.md#constants) | [36](settlement.md#errors) |
 | [Staking](staking.md) | [33](staking.md#calls) | [17](staking.md#events) | [41](staking.md#storage-functions) | [11](staking.md#constants) | [43](staking.md#errors) |
@@ -60,7 +60,7 @@
 | [TechnicalCommittee](technicalcommittee.md) | [5](technicalcommittee.md#calls) | [10](technicalcommittee.md#events) | [9](technicalcommittee.md#storage-functions) | [0](technicalcommittee.md#constants) | [9](technicalcommittee.md#errors) |
 | [TechnicalCommitteeMembership](technicalcommitteemembership.md) | [7](technicalcommitteemembership.md#calls) | [7](technicalcommitteemembership.md#events) | [3](technicalcommitteemembership.md#storage-functions) | [0](technicalcommitteemembership.md#constants) | [7](technicalcommitteemembership.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |
-| [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [0](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [2](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
+| [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [2](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
 | [Treasury](treasury.md) | [2](treasury.md#calls) | [3](treasury.md#events) | [0](treasury.md#storage-functions) | [0](treasury.md#constants) | [2](treasury.md#errors) |
 | [UpgradeCommittee](upgradecommittee.md) | [5](upgradecommittee.md#calls) | [10](upgradecommittee.md#events) | [9](upgradecommittee.md#storage-functions) | [0](upgradecommittee.md#constants) | [9](upgradecommittee.md#errors) |
 | [UpgradeCommitteeMembership](upgradecommitteemembership.md) | [7](upgradecommitteemembership.md#calls) | [7](upgradecommitteemembership.md#events) | [3](upgradecommitteemembership.md#storage-functions) | [0](upgradecommitteemembership.md#constants) | [7](upgradecommitteemembership.md#errors) |

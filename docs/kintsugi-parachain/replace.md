@@ -232,20 +232,83 @@ Execute vault replacement
 * `replace_id` - the ID of the replacement request
 * &\#x27;merkle_proof&\#x27; - the merkle root of the block
 * `raw_tx` - the transaction id in bytes
+
+\#\# Complexity:
+- `O(H + I + O + B)` where:
+  - `H` is the number of hashes in the merkle tree
+  - `I` is the number of transaction inputs
+  - `O` is the number of transaction outputs
+  - `B` is `transaction` size in bytes (length-fee-bounded)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | replace_id | `H256` | 
-| merkle_proof | `Vec<u8>` | 
-| raw_tx | `Vec<u8>` | 
+| merkle_proof | `MerkleProof` | 
+| transaction | `Transaction` | 
+| length_bound | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Replace', 'execute_replace', {
-    'merkle_proof': 'Bytes',
-    'raw_tx': 'Bytes',
+    'length_bound': 'u32',
+    'merkle_proof': {
+        'block_header': {
+            'hash': {
+                'content': '[u8; 32]',
+            },
+            'hash_prev_block': {
+                'content': '[u8; 32]',
+            },
+            'merkle_root': {
+                'content': '[u8; 32]',
+            },
+            'nonce': 'u32',
+            'target': '[u64; 4]',
+            'timestamp': 'u32',
+            'version': 'i32',
+        },
+        'flag_bits': ['bool'],
+        'hashes': [
+            {'content': '[u8; 32]'},
+        ],
+        'transactions_count': 'u32',
+    },
     'replace_id': '[u8; 32]',
+    'transaction': {
+        'inputs': [
+            {
+                'script': 'Bytes',
+                'sequence': 'u32',
+                'source': {
+                    'Coinbase': (
+                        None,
+                        'u32',
+                    ),
+                    'FromOutput': (
+                        {
+                            'content': '[u8; 32]',
+                        },
+                        'u32',
+                    ),
+                },
+                'witness': ['Bytes'],
+            },
+        ],
+        'lock_at': {
+            'BlockHeight': 'u32',
+            'Time': 'u32',
+        },
+        'outputs': [
+            {
+                'script': {
+                    'bytes': 'Bytes',
+                },
+                'value': 'i64',
+            },
+        ],
+        'version': 'i32',
+    },
 }
 )
 ```

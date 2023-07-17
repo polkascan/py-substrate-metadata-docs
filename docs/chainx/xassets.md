@@ -72,7 +72,7 @@ set free token for an account
 ```python
 call = substrate.compose_call(
     'XAssets', 'set_balance', {
-    'balances': 'scale_info::258',
+    'balances': 'scale_info::259',
     'id': 'u32',
     'who': {
         'Address20': '[u8; 20]',
@@ -175,7 +175,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::258'
+'scale_info::259'
 ```
 ---------
 ### AssetRestrictionsOf
@@ -207,7 +207,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::258'
+'scale_info::259'
 ```
 ---------
 ## Errors

@@ -393,7 +393,7 @@ constant = substrate.get_constant('BridgeKusamaGrandpa', 'HeadersToKeep')
  Max number of authorities at the bridged chain.
 #### Value
 ```python
-100000
+4096
 ```
 #### Python
 ```python

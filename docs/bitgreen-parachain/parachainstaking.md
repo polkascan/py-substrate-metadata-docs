@@ -8,12 +8,14 @@
 ### candidate_withdraw_unbonded
 Withdraw deposit and complete candidate exit
 #### Attributes
-No attributes
+| Name | Type |
+| -------- | -------- | 
+| candidate | `T::AccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'ParachainStaking', 'candidate_withdraw_unbonded', {}
+    'ParachainStaking', 'candidate_withdraw_unbonded', {'candidate': 'AccountId'}
 )
 ```
 
@@ -32,6 +34,25 @@ selected candidate
 call = substrate.compose_call(
     'ParachainStaking', 'delegate', {
     'amount': 'u128',
+    'candidate_id': 'AccountId',
+}
+)
+```
+
+---------
+### delegate_more
+Increase the amount of stake delegated
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| candidate_id | `T::AccountId` | 
+| amount_to_add | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ParachainStaking', 'delegate_more', {
+    'amount_to_add': 'u128',
     'candidate_id': 'AccountId',
 }
 )
@@ -200,6 +221,15 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account_id | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
+
+---------
+### DelegatedMore
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+| candidate | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -425,6 +455,10 @@ Already delegated
 ---------
 ### ArithmeticOverflow
 Arithmetic overflow
+
+---------
+### DelegatorAccountSameAsCandidateAccount
+The account is already a candidate
 
 ---------
 ### LessThanMinimumDelegation

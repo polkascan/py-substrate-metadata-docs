@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | chainx     |
 | Implementation name     | chainx-net     |
-| Spec version     | 27     |
+| Spec version     | 32     |
 | SS58 Format     | 44     |
 | Token symbol      | PCX     |
 | Token decimals      | 8     |
@@ -46,9 +46,10 @@
 | [Treasury](treasury.md) | [3](treasury.md#calls) | [7](treasury.md#events) | [3](treasury.md#storage-functions) | [7](treasury.md#constants) | [3](treasury.md#errors) |
 | [Utility](utility.md) | [4](utility.md#calls) | [4](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [XAssets](xassets.md) | [4](xassets.md#calls) | [4](xassets.md#events) | [3](xassets.md#storage-functions) | [0](xassets.md#constants) | [11](xassets.md#errors) |
-| [XAssetsBridge](xassetsbridge.md) | [11](xassetsbridge.md#calls) | [13](xassetsbridge.md#events) | [7](xassetsbridge.md#storage-functions) | [2](xassetsbridge.md#constants) | [15](xassetsbridge.md#errors) |
+| [XAssetsBridge](xassetsbridge.md) | [14](xassetsbridge.md#calls) | [13](xassetsbridge.md#events) | [7](xassetsbridge.md#storage-functions) | [2](xassetsbridge.md#constants) | [16](xassetsbridge.md#errors) |
 | [XAssetsRegistrar](xassetsregistrar.md) | [4](xassetsregistrar.md#calls) | [3](xassetsregistrar.md#events) | [4](xassetsregistrar.md#storage-functions) | [0](xassetsregistrar.md#constants) | [9](xassetsregistrar.md#errors) |
-| [XGatewayBitcoin](xgatewaybitcoin.md) | [10](xgatewaybitcoin.md#calls) | [15](xgatewaybitcoin.md#events) | [17](xgatewaybitcoin.md#storage-functions) | [0](xgatewaybitcoin.md#constants) | [29](xgatewaybitcoin.md#errors) |
+| [XBtcLedger](xbtcledger.md) | [3](xbtcledger.md#calls) | [5](xbtcledger.md#events) | [3](xbtcledger.md#storage-functions) | [1](xbtcledger.md#constants) | [2](xbtcledger.md#errors) |
+| [XGatewayBitcoin](xgatewaybitcoin.md) | [11](xgatewaybitcoin.md#calls) | [15](xgatewaybitcoin.md#events) | [17](xgatewaybitcoin.md#storage-functions) | [0](xgatewaybitcoin.md#constants) | [29](xgatewaybitcoin.md#errors) |
 | [XGatewayCommon](xgatewaycommon.md) | [18](xgatewaycommon.md#calls) | [8](xgatewaycommon.md#events) | [20](xgatewaycommon.md#storage-functions) | [0](xgatewaycommon.md#constants) | [17](xgatewaycommon.md#errors) |
 | [XGatewayRecords](xgatewayrecords.md) | [4](xgatewayrecords.md#calls) | [6](xgatewayrecords.md#events) | [3](xgatewayrecords.md#storage-functions) | [0](xgatewayrecords.md#constants) | [6](xgatewayrecords.md#errors) |
 | [XGenesisBuilder](xgenesisbuilder.md) | [0](xgenesisbuilder.md#calls) | [0](xgenesisbuilder.md#events) | [0](xgenesisbuilder.md#storage-functions) | [0](xgenesisbuilder.md#constants) | [0](xgenesisbuilder.md#errors) |
@@ -56,4 +57,4 @@
 | [XSpot](xspot.md) | [7](xspot.md#calls) | [8](xspot.md#events) | [10](xspot.md#storage-functions) | [0](xspot.md#constants) | [18](xspot.md#errors) |
 | [XStaking](xstaking.md) | [18](xstaking.md#calls) | [10](xstaking.md#events) | [25](xstaking.md#storage-functions) | [2](xstaking.md#constants) | [20](xstaking.md#errors) |
 | [XSystem](xsystem.md) | [2](xsystem.md#calls) | [2](xsystem.md#events) | [3](xsystem.md#storage-functions) | [0](xsystem.md#constants) | [0](xsystem.md#errors) |
-| [XTransactionFee](xtransactionfee.md) | [0](xtransactionfee.md#calls) | [1](xtransactionfee.md#events) | [0](xtransactionfee.md#storage-functions) | [0](xtransactionfee.md#constants) | [0](xtransactionfee.md#errors) |
+| [XTransactionFee](xtransactionfee.md) | [0](xtransactionfee.md#calls) | [2](xtransactionfee.md#events) | [0](xtransactionfee.md#storage-functions) | [0](xtransactionfee.md#constants) | [0](xtransactionfee.md#errors) |

@@ -23,6 +23,9 @@ call = substrate.compose_call(
             'ForeignAsset': 'u32',
             'KSM': None,
             'Native': None,
+            'Staking': (
+                'BlockRewards',
+            ),
             'Tranche': (
                 'u64',
                 '[u8; 16]',
@@ -51,15 +54,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::83',
+                            'network': 'scale_info::91',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::83',
+                            'network': 'scale_info::91',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::83',
+                            'network': 'scale_info::91',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -68,8 +71,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::87',
-                            'part': 'scale_info::88',
+                            'id': 'scale_info::95',
+                            'part': 'scale_info::96',
                         },
                     },
                     'X2': (
@@ -522,53 +525,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X3': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X4': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X5': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X6': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X7': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X8': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                     },
                     'parents': 'u8',
@@ -618,6 +621,7 @@ call = substrate.compose_call(
         'ForeignAsset': 'u32',
         'KSM': None,
         'Native': None,
+        'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
     },
     'decimals': (None, 'u32'),
@@ -635,15 +639,15 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::83',
+                            'network': 'scale_info::91',
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::83',
+                            'network': 'scale_info::91',
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::83',
+                            'network': 'scale_info::91',
                         },
                         'GeneralIndex': 'u128',
                         'GeneralKey': 'Bytes',
@@ -652,8 +656,8 @@ call = substrate.compose_call(
                         'Parachain': 'u32',
                         'Parent': None,
                         'Plurality': {
-                            'id': 'scale_info::87',
-                            'part': 'scale_info::88',
+                            'id': 'scale_info::95',
+                            'part': 'scale_info::96',
                         },
                     },
                     'X2': (
@@ -1106,53 +1110,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X3': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X4': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X5': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X6': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X7': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                         'X8': (
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
-                            'scale_info::81',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
+                            'scale_info::89',
                         ),
                     },
                     'parents': 'u8',
@@ -1174,16 +1178,16 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}```
-| metadata | `AssetMetadata<T::Balance, T::CustomMetadata>` | ```{'decimals': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'existential_deposit': 'u128', 'location': (None, {'V0': {'Null': None, 'X1': {'Parent': None, 'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, 'X2': ('scale_info::113', 'scale_info::113'), 'X3': ('scale_info::113', 'scale_info::113', 'scale_info::113'), 'X4': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113'), 'X5': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113'), 'X6': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113'), 'X7': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113'), 'X8': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113')}, 'V1': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::81', 'X2': ('scale_info::81', 'scale_info::81'), 'X3': ('scale_info::81', 'scale_info::81', 'scale_info::81'), 'X4': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81'), 'X5': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81'), 'X6': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81'), 'X7': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81'), 'X8': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81')}}}), 'additional': {'xcm': {'fee_per_second': (None, 'u128')}, 'mintable': 'bool', 'permissioned': 'bool', 'pool_currency': 'bool'}}```
+| asset_id | `T::AssetId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
+| metadata | `AssetMetadata<T::Balance, T::CustomMetadata>` | ```{'decimals': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'existential_deposit': 'u128', 'location': (None, {'V0': {'Null': None, 'X1': {'Parent': None, 'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, 'X2': ('scale_info::121', 'scale_info::121'), 'X3': ('scale_info::121', 'scale_info::121', 'scale_info::121'), 'X4': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121'), 'X5': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121'), 'X6': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121'), 'X7': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121'), 'X8': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121')}, 'V1': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::89', 'X2': ('scale_info::89', 'scale_info::89'), 'X3': ('scale_info::89', 'scale_info::89', 'scale_info::89'), 'X4': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89'), 'X5': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89'), 'X6': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89'), 'X7': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89'), 'X8': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89')}}}), 'additional': {'xcm': {'fee_per_second': (None, 'u128')}, 'mintable': 'bool', 'permissioned': 'bool', 'pool_currency': 'bool'}}```
 
 ---------
 ### UpdatedAsset
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}```
-| metadata | `AssetMetadata<T::Balance, T::CustomMetadata>` | ```{'decimals': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'existential_deposit': 'u128', 'location': (None, {'V0': {'Null': None, 'X1': {'Parent': None, 'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, 'X2': ('scale_info::113', 'scale_info::113'), 'X3': ('scale_info::113', 'scale_info::113', 'scale_info::113'), 'X4': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113'), 'X5': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113'), 'X6': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113'), 'X7': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113'), 'X8': ('scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113', 'scale_info::113')}, 'V1': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::81', 'X2': ('scale_info::81', 'scale_info::81'), 'X3': ('scale_info::81', 'scale_info::81', 'scale_info::81'), 'X4': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81'), 'X5': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81'), 'X6': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81'), 'X7': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81'), 'X8': ('scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81', 'scale_info::81')}}}), 'additional': {'xcm': {'fee_per_second': (None, 'u128')}, 'mintable': 'bool', 'permissioned': 'bool', 'pool_currency': 'bool'}}```
+| asset_id | `T::AssetId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
+| metadata | `AssetMetadata<T::Balance, T::CustomMetadata>` | ```{'decimals': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'existential_deposit': 'u128', 'location': (None, {'V0': {'Null': None, 'X1': {'Parent': None, 'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, 'X2': ('scale_info::121', 'scale_info::121'), 'X3': ('scale_info::121', 'scale_info::121', 'scale_info::121'), 'X4': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121'), 'X5': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121'), 'X6': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121'), 'X7': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121'), 'X8': ('scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121', 'scale_info::121')}, 'V1': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::89', 'X2': ('scale_info::89', 'scale_info::89'), 'X3': ('scale_info::89', 'scale_info::89', 'scale_info::89'), 'X4': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89'), 'X5': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89'), 'X6': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89'), 'X7': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89'), 'X8': ('scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89', 'scale_info::89')}}}), 'additional': {'xcm': {'fee_per_second': (None, 'u128')}, 'mintable': 'bool', 'permissioned': 'bool', 'pool_currency': 'bool'}}```
 
 ---------
 ## Storage functions
@@ -1206,6 +1210,7 @@ result = substrate.query(
     'ForeignAsset': 'u32',
     'KSM': None,
     'Native': None,
+    'Staking': ('BlockRewards', ),
     'Tranche': ('u64', '[u8; 16]'),
 }
 ```
@@ -1256,12 +1261,15 @@ result = substrate.query(
                 'Parachain': 'u32',
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
                         'Named': 'Bytes',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -1320,12 +1328,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1372,12 +1383,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1426,12 +1440,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1478,12 +1495,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1530,12 +1550,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1584,12 +1607,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1636,12 +1662,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1688,12 +1717,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1740,12 +1772,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1794,12 +1829,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1846,12 +1884,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1898,12 +1939,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1950,12 +1994,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2002,12 +2049,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2056,12 +2106,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2108,12 +2161,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2160,12 +2216,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2212,12 +2271,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2264,12 +2326,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2316,12 +2381,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2370,12 +2438,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2422,12 +2493,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2474,12 +2548,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2526,12 +2603,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2578,12 +2658,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2630,12 +2713,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2682,12 +2768,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2736,12 +2825,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2788,12 +2880,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2840,12 +2935,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2892,12 +2990,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2944,12 +3045,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2996,12 +3100,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3048,12 +3155,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3100,12 +3210,15 @@ result = substrate.query(
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
                             'Named': 'Bytes',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3132,6 +3245,7 @@ result = substrate.query(
     'ForeignAsset': 'u32',
     'KSM': None,
     'Native': None,
+    'Staking': ('BlockRewards', ),
     'Tranche': ('u64', '[u8; 16]'),
 }
 ```
@@ -3148,6 +3262,7 @@ result = substrate.query(
         'ForeignAsset': 'u32',
         'KSM': None,
         'Native': None,
+        'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
     },
 ]
@@ -3182,102 +3297,102 @@ result = substrate.query(
                     'Parent': None,
                     'Plurality': 'InnerStruct',
                 },
-                'X2': ('scale_info::113', 'scale_info::113'),
+                'X2': ('scale_info::121', 'scale_info::121'),
                 'X3': (
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
                 ),
                 'X4': (
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
                 ),
                 'X5': (
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
                 ),
                 'X6': (
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
                 ),
                 'X7': (
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
                 ),
                 'X8': (
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
-                    'scale_info::113',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
+                    'scale_info::121',
                 ),
             },
             'V1': {
                 'interior': {
                     'Here': None,
-                    'X1': 'scale_info::81',
-                    'X2': ('scale_info::81', 'scale_info::81'),
+                    'X1': 'scale_info::89',
+                    'X2': ('scale_info::89', 'scale_info::89'),
                     'X3': (
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
                     ),
                     'X4': (
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
                     ),
                     'X5': (
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
                     ),
                     'X6': (
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
                     ),
                     'X7': (
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
                     ),
                     'X8': (
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
-                        'scale_info::81',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
+                        'scale_info::89',
                     ),
                 },
                 'parents': 'u8',

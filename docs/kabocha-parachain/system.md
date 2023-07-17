@@ -702,25 +702,6 @@ result = substrate.query(
                 },
                 'Spending': {'budget_remaining': 'u128'},
             },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::176',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'u64',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'u64',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {'index': 'u64', 'used': 'u64'},
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'u64'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
             None: None,
             'TransactionPayment': {
                 'TransactionFeePaid': {
@@ -739,6 +720,25 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::31'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::22'},
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::176',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'u64',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'u64',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {'index': 'u64', 'used': 'u64'},
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'u64'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
         },
         'phase': {

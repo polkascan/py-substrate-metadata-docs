@@ -133,7 +133,7 @@ constant = substrate.get_constant('IdleScheduler', 'DisableBlockThreshold')
 ### MinimumWeightRemainInBlock
 #### Value
 ```python
-{'proof_size': 104857, 'ref_time': 10000000000}
+{'proof_size': 1048576, 'ref_time': 10000000000}
 ```
 #### Python
 ```python

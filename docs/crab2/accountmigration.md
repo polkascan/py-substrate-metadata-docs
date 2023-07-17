@@ -186,26 +186,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [
-            (
-                {
-                    'BlakeTwo256': 'h256',
-                    'Keccak256': 'h256',
-                    'None': None,
-                    'Raw': 'Bytes',
-                    'Sha256': 'h256',
-                    'ShaThree256': 'h256',
-                },
-                {
-                    'BlakeTwo256': 'h256',
-                    'Keccak256': 'h256',
-                    'None': None,
-                    'Raw': 'Bytes',
-                    'Sha256': 'h256',
-                    'ShaThree256': 'h256',
-                },
-            ),
-        ],
+        'additional': [('scale_info::269', 'scale_info::269')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',

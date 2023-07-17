@@ -242,6 +242,14 @@ Nonce is invalid
 Calculating total payment overflowed
 
 ---------
+### Reentrancy
+EVM reentrancy
+
+---------
+### TransactionMustComeFromEOA
+EIP-3607,
+
+---------
 ### Undefined
 Undefined error.
 

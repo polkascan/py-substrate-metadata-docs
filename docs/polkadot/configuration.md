@@ -5,6 +5,26 @@
 ## Calls
 
 ---------
+### set_async_backing_params
+Set the asynchronous backing parameters.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| new | `AsyncBackingParams` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Configuration', 'set_async_backing_params', {
+    'new': {
+        'allowed_ancestry_len': 'u32',
+        'max_candidate_depth': 'u32',
+    },
+}
+)
+```
+
+---------
 ### set_bypass_consistency_check
 Setting this to true will disable consistency checks for the configuration setters.
 Use with caution.
@@ -51,21 +71,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_dispute_conclusion_by_time_out_period
-Set the dispute conclusion by time out period.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| new | `T::BlockNumber` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Configuration', 'set_dispute_conclusion_by_time_out_period', {'new': 'u32'}
-)
-```
-
----------
 ### set_dispute_period
 Set the dispute period, in number of sessions to keep for disputes.
 #### Attributes
@@ -92,6 +97,46 @@ Set the dispute post conclusion acceptance period.
 ```python
 call = substrate.compose_call(
     'Configuration', 'set_dispute_post_conclusion_acceptance_period', {'new': 'u32'}
+)
+```
+
+---------
+### set_executor_params
+Set PVF executor parameters.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| new | `ExecutorParams` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Configuration', 'set_executor_params', {
+    'new': [
+        {
+            None: None,
+            'MaxMemoryPages': 'u32',
+            'PrecheckingMaxMemory': 'u64',
+            'PvfExecTimeout': (
+                (
+                    'Backing',
+                    'Approval',
+                ),
+                'u64',
+            ),
+            'PvfPrepTimeout': (
+                (
+                    'Precheck',
+                    'Lenient',
+                ),
+                'u64',
+            ),
+            'StackLogicalMax': 'u32',
+            'StackNativeMax': 'u32',
+            'WasmExtBulkMemory': None,
+        },
+    ],
+}
 )
 ```
 
@@ -697,11 +742,26 @@ result = substrate.query(
 #### Return value
 ```python
 {
+    'async_backing_params': {
+        'allowed_ancestry_len': 'u32',
+        'max_candidate_depth': 'u32',
+    },
     'chain_availability_period': 'u32',
     'code_retention_period': 'u32',
-    'dispute_conclusion_by_time_out_period': 'u32',
     'dispute_period': 'u32',
     'dispute_post_conclusion_acceptance_period': 'u32',
+    'executor_params': [
+        {
+            None: None,
+            'MaxMemoryPages': 'u32',
+            'PrecheckingMaxMemory': 'u64',
+            'PvfExecTimeout': ('scale_info::314', 'u64'),
+            'PvfPrepTimeout': ('scale_info::313', 'u64'),
+            'StackLogicalMax': 'u32',
+            'StackNativeMax': 'u32',
+            'WasmExtBulkMemory': None,
+        },
+    ],
     'group_rotation_frequency': 'u32',
     'hrmp_channel_max_capacity': 'u32',
     'hrmp_channel_max_message_size': 'u32',
@@ -780,11 +840,15 @@ result = substrate.query(
     (
         'u32',
         {
+            'async_backing_params': {
+                'allowed_ancestry_len': 'u32',
+                'max_candidate_depth': 'u32',
+            },
             'chain_availability_period': 'u32',
             'code_retention_period': 'u32',
-            'dispute_conclusion_by_time_out_period': 'u32',
             'dispute_period': 'u32',
             'dispute_post_conclusion_acceptance_period': 'u32',
+            'executor_params': ['scale_info::312'],
             'group_rotation_frequency': 'u32',
             'hrmp_channel_max_capacity': 'u32',
             'hrmp_channel_max_message_size': 'u32',

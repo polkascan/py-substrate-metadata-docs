@@ -17,7 +17,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::521'
+'scale_info::547'
 ```
 ---------
 ### Oracles

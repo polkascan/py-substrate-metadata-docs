@@ -72,18 +72,18 @@ call = substrate.compose_call(
         ),
         'JoinIdentity': {
             'asset': {
-                'Except': 'scale_info::41',
-                'These': 'scale_info::41',
+                'Except': 'scale_info::44',
+                'These': 'scale_info::44',
                 'Whole': None,
             },
             'extrinsic': {
-                'Except': 'scale_info::50',
-                'These': 'scale_info::50',
+                'Except': 'scale_info::53',
+                'These': 'scale_info::53',
                 'Whole': None,
             },
             'portfolio': {
-                'Except': 'scale_info::56',
-                'These': 'scale_info::56',
+                'Except': 'scale_info::59',
+                'These': 'scale_info::59',
                 'Whole': None,
             },
         },
@@ -97,18 +97,18 @@ call = substrate.compose_call(
         'RotatePrimaryKey': None,
         'RotatePrimaryKeyToSecondary': {
             'asset': {
-                'Except': 'scale_info::41',
-                'These': 'scale_info::41',
+                'Except': 'scale_info::44',
+                'These': 'scale_info::44',
                 'Whole': None,
             },
             'extrinsic': {
-                'Except': 'scale_info::50',
-                'These': 'scale_info::50',
+                'Except': 'scale_info::53',
+                'These': 'scale_info::53',
                 'Whole': None,
             },
             'portfolio': {
-                'Except': 'scale_info::56',
-                'These': 'scale_info::56',
+                'Except': 'scale_info::59',
+                'These': 'scale_info::59',
                 'Whole': None,
             },
         },
@@ -1214,18 +1214,18 @@ call = substrate.compose_call(
                 'key': 'AccountId',
                 'permissions': {
                     'asset': {
-                        'Except': 'scale_info::41',
-                        'These': 'scale_info::41',
+                        'Except': 'scale_info::44',
+                        'These': 'scale_info::44',
                         'Whole': None,
                     },
                     'extrinsic': {
-                        'Except': 'scale_info::50',
-                        'These': 'scale_info::50',
+                        'Except': 'scale_info::53',
+                        'These': 'scale_info::53',
                         'Whole': None,
                     },
                     'portfolio': {
-                        'Except': 'scale_info::56',
-                        'These': 'scale_info::56',
+                        'Except': 'scale_info::59',
+                        'These': 'scale_info::59',
                         'Whole': None,
                     },
                 },
@@ -1256,18 +1256,18 @@ call = substrate.compose_call(
             'secondary_key': {
                 'permissions': {
                     'asset': {
-                        'Except': 'scale_info::41',
-                        'These': 'scale_info::41',
+                        'Except': 'scale_info::44',
+                        'These': 'scale_info::44',
                         'Whole': None,
                     },
                     'extrinsic': {
-                        'Except': 'scale_info::50',
-                        'These': 'scale_info::50',
+                        'Except': 'scale_info::53',
+                        'These': 'scale_info::53',
                         'Whole': None,
                     },
                     'portfolio': {
-                        'Except': 'scale_info::56',
-                        'These': 'scale_info::56',
+                        'Except': 'scale_info::59',
+                        'These': 'scale_info::59',
                         'Whole': None,
                     },
                 },
@@ -1308,18 +1308,18 @@ call = substrate.compose_call(
             'key': 'AccountId',
             'permissions': {
                 'asset': {
-                    'Except': 'scale_info::41',
-                    'These': 'scale_info::41',
+                    'Except': 'scale_info::44',
+                    'These': 'scale_info::44',
                     'Whole': None,
                 },
                 'extrinsic': {
-                    'Except': 'scale_info::50',
-                    'These': 'scale_info::50',
+                    'Except': 'scale_info::53',
+                    'These': 'scale_info::53',
                     'Whole': None,
                 },
                 'portfolio': {
-                    'Except': 'scale_info::56',
-                    'These': 'scale_info::56',
+                    'Except': 'scale_info::59',
+                    'These': 'scale_info::59',
                     'Whole': None,
                 },
             },
@@ -1357,18 +1357,18 @@ call = substrate.compose_call(
             'key': 'AccountId',
             'permissions': {
                 'asset': {
-                    'Except': 'scale_info::41',
-                    'These': 'scale_info::41',
+                    'Except': 'scale_info::44',
+                    'These': 'scale_info::44',
                     'Whole': None,
                 },
                 'extrinsic': {
-                    'Except': 'scale_info::50',
-                    'These': 'scale_info::50',
+                    'Except': 'scale_info::53',
+                    'These': 'scale_info::53',
                     'Whole': None,
                 },
                 'portfolio': {
-                    'Except': 'scale_info::56',
-                    'These': 'scale_info::56',
+                    'Except': 'scale_info::59',
+                    'These': 'scale_info::59',
                     'Whole': None,
                 },
             },
@@ -2035,18 +2035,18 @@ call = substrate.compose_call(
     },
     'perms': {
         'asset': {
-            'Except': 'scale_info::41',
-            'These': 'scale_info::41',
+            'Except': 'scale_info::44',
+            'These': 'scale_info::44',
             'Whole': None,
         },
         'extrinsic': {
-            'Except': 'scale_info::50',
-            'These': 'scale_info::50',
+            'Except': 'scale_info::53',
+            'These': 'scale_info::53',
             'Whole': None,
         },
         'portfolio': {
-            'Except': 'scale_info::56',
-            'These': 'scale_info::56',
+            'Except': 'scale_info::59',
+            'These': 'scale_info::59',
             'Whole': None,
         },
     },
@@ -2072,18 +2072,18 @@ call = substrate.compose_call(
     'key': 'AccountId',
     'perms': {
         'asset': {
-            'Except': 'scale_info::41',
-            'These': 'scale_info::41',
+            'Except': 'scale_info::44',
+            'These': 'scale_info::44',
             'Whole': None,
         },
         'extrinsic': {
-            'Except': 'scale_info::50',
-            'These': 'scale_info::50',
+            'Except': 'scale_info::53',
+            'These': 'scale_info::53',
             'Whole': None,
         },
         'portfolio': {
-            'Except': 'scale_info::56',
-            'These': 'scale_info::56',
+            'Except': 'scale_info::59',
+            'These': 'scale_info::59',
             'Whole': None,
         },
     },
@@ -2130,7 +2130,7 @@ New authorization added.
 | None | `Option<IdentityId>` | ```(None, '[u8; 32]')```
 | None | `Option<AccountId>` | ```(None, 'AccountId')```
 | None | `u64` | ```u64```
-| None | `AuthorizationData<AccountId>` | ```{'AttestPrimaryKeyRotation': '[u8; 32]', 'RotatePrimaryKey': None, 'TransferTicker': '[u8; 12]', 'AddMultiSigSigner': 'AccountId', 'TransferAssetOwnership': '[u8; 12]', 'JoinIdentity': {'asset': {'Whole': None, 'These': 'scale_info::41', 'Except': 'scale_info::41'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::50', 'Except': 'scale_info::50'}, 'portfolio': {'Whole': None, 'These': 'scale_info::56', 'Except': 'scale_info::56'}}, 'PortfolioCustody': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'BecomeAgent': ('[u8; 12]', {'Full': None, 'Custom': 'u32', 'ExceptMeta': None, 'PolymeshV1CAA': None, 'PolymeshV1PIA': None}), 'AddRelayerPayingKey': ('AccountId', 'AccountId', 'u128'), 'RotatePrimaryKeyToSecondary': {'asset': {'Whole': None, 'These': 'scale_info::41', 'Except': 'scale_info::41'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::50', 'Except': 'scale_info::50'}, 'portfolio': {'Whole': None, 'These': 'scale_info::56', 'Except': 'scale_info::56'}}}```
+| None | `AuthorizationData<AccountId>` | ```{'AttestPrimaryKeyRotation': '[u8; 32]', 'RotatePrimaryKey': None, 'TransferTicker': '[u8; 12]', 'AddMultiSigSigner': 'AccountId', 'TransferAssetOwnership': '[u8; 12]', 'JoinIdentity': {'asset': {'Whole': None, 'These': 'scale_info::44', 'Except': 'scale_info::44'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::53', 'Except': 'scale_info::53'}, 'portfolio': {'Whole': None, 'These': 'scale_info::59', 'Except': 'scale_info::59'}}, 'PortfolioCustody': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'BecomeAgent': ('[u8; 12]', {'Full': None, 'Custom': 'u32', 'ExceptMeta': None, 'PolymeshV1CAA': None, 'PolymeshV1PIA': None}), 'AddRelayerPayingKey': ('AccountId', 'AccountId', 'u128'), 'RotatePrimaryKeyToSecondary': {'asset': {'Whole': None, 'These': 'scale_info::44', 'Except': 'scale_info::44'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::53', 'Except': 'scale_info::53'}, 'portfolio': {'Whole': None, 'These': 'scale_info::59', 'Except': 'scale_info::59'}}}```
 | None | `Option<Moment>` | ```(None, 'u64')```
 
 ---------
@@ -2247,7 +2247,7 @@ Identity created.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `AccountId` | ```AccountId```
-| None | `Vec<SecondaryKey<AccountId>>` | ```[{'key': 'AccountId', 'permissions': {'asset': {'Whole': None, 'These': 'scale_info::41', 'Except': 'scale_info::41'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::50', 'Except': 'scale_info::50'}, 'portfolio': {'Whole': None, 'These': 'scale_info::56', 'Except': 'scale_info::56'}}}]```
+| None | `Vec<SecondaryKey<AccountId>>` | ```[{'key': 'AccountId', 'permissions': {'asset': {'Whole': None, 'These': 'scale_info::44', 'Except': 'scale_info::44'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::53', 'Except': 'scale_info::53'}, 'portfolio': {'Whole': None, 'These': 'scale_info::59', 'Except': 'scale_info::59'}}}]```
 
 ---------
 ### PrimaryKeyUpdated
@@ -2282,8 +2282,8 @@ Secondary key permissions updated.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `AccountId` | ```AccountId```
-| None | `Permissions` | ```{'asset': {'Whole': None, 'These': 'scale_info::41', 'Except': 'scale_info::41'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::50', 'Except': 'scale_info::50'}, 'portfolio': {'Whole': None, 'These': 'scale_info::56', 'Except': 'scale_info::56'}}```
-| None | `Permissions` | ```{'asset': {'Whole': None, 'These': 'scale_info::41', 'Except': 'scale_info::41'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::50', 'Except': 'scale_info::50'}, 'portfolio': {'Whole': None, 'These': 'scale_info::56', 'Except': 'scale_info::56'}}```
+| None | `Permissions` | ```{'asset': {'Whole': None, 'These': 'scale_info::44', 'Except': 'scale_info::44'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::53', 'Except': 'scale_info::53'}, 'portfolio': {'Whole': None, 'These': 'scale_info::59', 'Except': 'scale_info::59'}}```
+| None | `Permissions` | ```{'asset': {'Whole': None, 'These': 'scale_info::44', 'Except': 'scale_info::44'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::53', 'Except': 'scale_info::53'}, 'portfolio': {'Whole': None, 'These': 'scale_info::59', 'Except': 'scale_info::59'}}```
 
 ---------
 ### SecondaryKeysAdded
@@ -2294,7 +2294,7 @@ Secondary keys added to identity.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `Vec<SecondaryKey<AccountId>>` | ```[{'key': 'AccountId', 'permissions': {'asset': {'Whole': None, 'These': 'scale_info::41', 'Except': 'scale_info::41'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::50', 'Except': 'scale_info::50'}, 'portfolio': {'Whole': None, 'These': 'scale_info::56', 'Except': 'scale_info::56'}}}]```
+| None | `Vec<SecondaryKey<AccountId>>` | ```[{'key': 'AccountId', 'permissions': {'asset': {'Whole': None, 'These': 'scale_info::44', 'Except': 'scale_info::44'}, 'extrinsic': {'Whole': None, 'These': 'scale_info::53', 'Except': 'scale_info::53'}, 'portfolio': {'Whole': None, 'These': 'scale_info::59', 'Except': 'scale_info::59'}}}]```
 
 ---------
 ### SecondaryKeysFrozen
@@ -2388,18 +2388,18 @@ result = substrate.query(
         ),
         'JoinIdentity': {
             'asset': {
-                'Except': 'scale_info::41',
-                'These': 'scale_info::41',
+                'Except': 'scale_info::44',
+                'These': 'scale_info::44',
                 'Whole': None,
             },
             'extrinsic': {
-                'Except': 'scale_info::50',
-                'These': 'scale_info::50',
+                'Except': 'scale_info::53',
+                'These': 'scale_info::53',
                 'Whole': None,
             },
             'portfolio': {
-                'Except': 'scale_info::56',
-                'These': 'scale_info::56',
+                'Except': 'scale_info::59',
+                'These': 'scale_info::59',
                 'Whole': None,
             },
         },
@@ -2410,18 +2410,18 @@ result = substrate.query(
         'RotatePrimaryKey': None,
         'RotatePrimaryKeyToSecondary': {
             'asset': {
-                'Except': 'scale_info::41',
-                'These': 'scale_info::41',
+                'Except': 'scale_info::44',
+                'These': 'scale_info::44',
                 'Whole': None,
             },
             'extrinsic': {
-                'Except': 'scale_info::50',
-                'These': 'scale_info::50',
+                'Except': 'scale_info::53',
+                'These': 'scale_info::53',
                 'Whole': None,
             },
             'portfolio': {
-                'Except': 'scale_info::56',
-                'These': 'scale_info::56',
+                'Except': 'scale_info::59',
+                'These': 'scale_info::59',
                 'Whole': None,
             },
         },
@@ -2981,18 +2981,18 @@ result = substrate.query(
         '[u8; 32]',
         {
             'asset': {
-                'Except': 'scale_info::41',
-                'These': 'scale_info::41',
+                'Except': 'scale_info::44',
+                'These': 'scale_info::44',
                 'Whole': None,
             },
             'extrinsic': {
-                'Except': 'scale_info::50',
-                'These': 'scale_info::50',
+                'Except': 'scale_info::53',
+                'These': 'scale_info::53',
                 'Whole': None,
             },
             'portfolio': {
-                'Except': 'scale_info::56',
-                'These': 'scale_info::56',
+                'Except': 'scale_info::59',
+                'These': 'scale_info::59',
                 'Whole': None,
             },
         },

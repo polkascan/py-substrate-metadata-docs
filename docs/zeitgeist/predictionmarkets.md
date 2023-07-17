@@ -665,13 +665,13 @@ call = substrate.compose_call(
 
 ---------
 ### BadOnInitialize
-Custom addition block initialization logic wasn&\#x27;t successful
+Custom addition block initialization logic wasn&\#x27;t successful.
 #### Attributes
 No attributes
 
 ---------
 ### BoughtCompleteSet
-A complete set of assets has been bought \[market_id, amount_per_asset, buyer\]
+A complete set of assets has been bought. \[market_id, amount_per_asset, buyer\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -689,7 +689,7 @@ The global dispute was started. \[market_id\]
 
 ---------
 ### MarketApproved
-A market has been approved \[market_id, new_market_status\]
+A market has been approved. \[market_id, new_market_status\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -698,7 +698,7 @@ A market has been approved \[market_id, new_market_status\]
 
 ---------
 ### MarketClosed
-A market has been closed \[market_id\]
+A market has been closed. \[market_id\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -706,13 +706,13 @@ A market has been closed \[market_id\]
 
 ---------
 ### MarketCreated
-A market has been created \[market_id, market_account, market\]
+A market has been created. \[market_id, market_account, market\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `MarketIdOf<T>` | ```u128```
 | None | `T::AccountId` | ```AccountId```
-| None | `MarketOf<T>` | ```{'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'creator': 'AccountId', 'creation': ('Permissionless', 'Advised'), 'creator_fee': 'u8', 'oracle': 'AccountId', 'metadata': 'Bytes', 'market_type': {'Categorical': 'u16', 'Scalar': {'start': 'u128', 'end': 'u128'}}, 'period': {'Block': {'start': 'u64', 'end': 'u64'}, 'Timestamp': {'start': 'u64', 'end': 'u64'}}, 'deadlines': {'grace_period': 'u64', 'oracle_duration': 'u64', 'dispute_duration': 'u64'}, 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'), 'status': ('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved'), 'report': (None, {'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}), 'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}), 'dispute_mechanism': ('Authorized', 'Court', 'SimpleDisputes'), 'bonds': {'creation': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'oracle': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'})}}```
+| None | `MarketOf<T>` | ```{'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'creator': 'AccountId', 'creation': ('Permissionless', 'Advised'), 'creator_fee': 'u8', 'oracle': 'AccountId', 'metadata': 'Bytes', 'market_type': {'Categorical': 'u16', 'Scalar': {'start': 'u128', 'end': 'u128'}}, 'period': {'Block': {'start': 'u64', 'end': 'u64'}, 'Timestamp': {'start': 'u64', 'end': 'u64'}}, 'deadlines': {'grace_period': 'u64', 'oracle_duration': 'u64', 'dispute_duration': 'u64'}, 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'), 'status': ('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved'), 'report': (None, {'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}), 'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}), 'dispute_mechanism': ('Authorized', 'Court', 'SimpleDisputes'), 'bonds': {'creation': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'oracle': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'outsider': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'})}}```
 
 ---------
 ### MarketDestroyed
@@ -724,7 +724,7 @@ A market has been destroyed. \[market_id\]
 
 ---------
 ### MarketDisputed
-A market has been disputed \[market_id, new_market_status, new_outcome\]
+A market has been disputed. \[market_id, new_market_status, new_outcome\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -734,12 +734,12 @@ A market has been disputed \[market_id, new_market_status, new_outcome\]
 
 ---------
 ### MarketEdited
-A proposed market has been edited by the market creator \[market_id\]
+A proposed market has been edited by the market creator. \[market_id, new_market\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `MarketIdOf<T>` | ```u128```
-| None | `MarketOf<T>` | ```{'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'creator': 'AccountId', 'creation': ('Permissionless', 'Advised'), 'creator_fee': 'u8', 'oracle': 'AccountId', 'metadata': 'Bytes', 'market_type': {'Categorical': 'u16', 'Scalar': {'start': 'u128', 'end': 'u128'}}, 'period': {'Block': {'start': 'u64', 'end': 'u64'}, 'Timestamp': {'start': 'u64', 'end': 'u64'}}, 'deadlines': {'grace_period': 'u64', 'oracle_duration': 'u64', 'dispute_duration': 'u64'}, 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'), 'status': ('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved'), 'report': (None, {'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}), 'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}), 'dispute_mechanism': ('Authorized', 'Court', 'SimpleDisputes'), 'bonds': {'creation': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'oracle': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'})}}```
+| None | `MarketOf<T>` | ```{'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'creator': 'AccountId', 'creation': ('Permissionless', 'Advised'), 'creator_fee': 'u8', 'oracle': 'AccountId', 'metadata': 'Bytes', 'market_type': {'Categorical': 'u16', 'Scalar': {'start': 'u128', 'end': 'u128'}}, 'period': {'Block': {'start': 'u64', 'end': 'u64'}, 'Timestamp': {'start': 'u64', 'end': 'u64'}}, 'deadlines': {'grace_period': 'u64', 'oracle_duration': 'u64', 'dispute_duration': 'u64'}, 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'), 'status': ('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved'), 'report': (None, {'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}), 'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}), 'dispute_mechanism': ('Authorized', 'Court', 'SimpleDisputes'), 'bonds': {'creation': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'oracle': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'outsider': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'})}}```
 
 ---------
 ### MarketExpired
@@ -761,7 +761,8 @@ A market was discarded after failing to gather enough subsidy.
 
 ---------
 ### MarketRejected
-A pending market has been rejected as invalid with a reason. \[market_id, reject_reason\]
+A pending market has been rejected as invalid with a reason.
+\[market_id, reject_reason\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -770,7 +771,7 @@ A pending market has been rejected as invalid with a reason. \[market_id, reject
 
 ---------
 ### MarketReported
-A market has been reported on \[market_id, new_market_status, reported_outcome\]
+A market has been reported on. \[market_id, new_market_status, reported_outcome\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -789,7 +790,7 @@ A proposed market has been requested edit by advisor. \[market_id, edit_reason\]
 
 ---------
 ### MarketResolved
-A market has been resolved \[market_id, new_market_status, real_outcome\]
+A market has been resolved. \[market_id, new_market_status, real_outcome\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -808,7 +809,7 @@ A market was started after gathering enough subsidy. \[market_id, new_market_sta
 
 ---------
 ### SoldCompleteSet
-A complete set of assets has been sold \[market_id, amount_per_asset, seller\]
+A complete set of assets has been sold. \[market_id, amount_per_asset, seller\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -818,7 +819,7 @@ A complete set of assets has been sold \[market_id, amount_per_asset, seller\]
 
 ---------
 ### TokensRedeemed
-An amount of winning outcomes have been redeemed
+An amount of winning outcomes have been redeemed.
 \[market_id, currency_id, amount_redeemed, payout, who\]
 #### Attributes
 | Name | Type | Composition
@@ -1104,6 +1105,17 @@ constant = substrate.get_constant('PredictionMarkets', 'MaxEditReasonLen')
 constant = substrate.get_constant('PredictionMarkets', 'MaxGracePeriod')
 ```
 ---------
+### MaxMarketLifetime
+ The maximum allowed duration of a market from creation to market close in blocks.
+#### Value
+```python
+2628000
+```
+#### Python
+```python
+constant = substrate.get_constant('PredictionMarkets', 'MaxMarketLifetime')
+```
+---------
 ### MaxOracleDuration
  The maximum number of blocks allowed to be specified as oracle_duration
  in create_market.
@@ -1194,6 +1206,16 @@ constant = substrate.get_constant('PredictionMarkets', 'MinSubsidyPeriod')
 #### Python
 ```python
 constant = substrate.get_constant('PredictionMarkets', 'OracleBond')
+```
+---------
+### OutsiderBond
+#### Value
+```python
+4000000000000
+```
+#### Python
+```python
+constant = substrate.get_constant('PredictionMarkets', 'OutsiderBond')
 ```
 ---------
 ### PalletId

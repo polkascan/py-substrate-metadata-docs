@@ -69,7 +69,7 @@ Adds an authorized oracle account (only executable by the Root account)
 | Name | Type |
 | -------- | -------- | 
 | account_id | `T::AccountId` | 
-| name | `Vec<u8>` | 
+| name | `NameOf<T>` | 
 
 #### Python
 ```python
@@ -124,7 +124,7 @@ Event emitted when exchange rate is set
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | oracle_id | `T::AccountId` | ```AccountId```
-| name | `Vec<u8>` | ```Bytes```
+| name | `NameOf<T>` | ```Bytes```
 
 ---------
 ### OracleRemoved
@@ -411,6 +411,20 @@ result = substrate.query(
 #### Return value
 ```python
 'u64'
+```
+---------
+## Constants
+
+---------
+### MaxNameLength
+ The maximum length of an oracle name.
+#### Value
+```python
+255
+```
+#### Python
+```python
+constant = substrate.get_constant('Oracle', 'MaxNameLength')
 ```
 ---------
 ## Errors

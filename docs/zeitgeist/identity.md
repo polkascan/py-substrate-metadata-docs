@@ -736,7 +736,26 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [('scale_info::232', 'scale_info::232')],
+        'additional': [
+            (
+                {
+                    'BlakeTwo256': 'h256',
+                    'Keccak256': 'h256',
+                    'None': None,
+                    'Raw': 'Bytes',
+                    'Sha256': 'h256',
+                    'ShaThree256': 'h256',
+                },
+                {
+                    'BlakeTwo256': 'h256',
+                    'Keccak256': 'h256',
+                    'None': None,
+                    'Raw': 'Bytes',
+                    'Sha256': 'h256',
+                    'ShaThree256': 'h256',
+                },
+            ),
+        ],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',
@@ -882,7 +901,7 @@ result = substrate.query(
  The amount held on deposit for a registered identity
 #### Value
 ```python
-1000000000000
+15193500000
 ```
 #### Python
 ```python
@@ -893,7 +912,7 @@ constant = substrate.get_constant('Identity', 'BasicDeposit')
  The amount held on deposit per additional field for a registered identity.
 #### Value
 ```python
-250000000000
+49500000
 ```
 #### Python
 ```python
@@ -941,7 +960,7 @@ constant = substrate.get_constant('Identity', 'MaxSubAccounts')
  be another trie item whose value is the size of an account ID plus 32 bytes.
 #### Value
 ```python
-200000000000
+15039750000
 ```
 #### Python
 ```python

@@ -655,7 +655,7 @@ constant = substrate.get_constant('Omnipool', 'MinimumPoolLiquidity')
  Minimum trading limit
 #### Value
 ```python
-1000000
+1000
 ```
 #### Python
 ```python

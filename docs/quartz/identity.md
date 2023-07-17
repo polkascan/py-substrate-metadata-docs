@@ -148,9 +148,7 @@ forbidden from interacting with an ordinary user, since it ignores any safety me
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| identities | `Vec<
-(T::AccountId, Registration<BalanceOf<T>, T::MaxRegistrars, T::
-MaxAdditionalFields>,)>` | 
+| identities | `Vec<(T::AccountId, RegistrationOf<T>)>` | 
 
 #### Python
 ```python
@@ -164,8 +162,8 @@ call = substrate.compose_call(
                 'info': {
                     'additional': [
                         (
-                            'scale_info::241',
-                            'scale_info::241',
+                            'scale_info::255',
+                            'scale_info::255',
                         ),
                     ],
                     'display': {
@@ -232,7 +230,7 @@ call = substrate.compose_call(
                 'judgements': [
                     (
                         'u32',
-                        'scale_info::276',
+                        'scale_info::290',
                     ),
                 ],
             },
@@ -271,10 +269,7 @@ forbidden from interacting with an ordinary user, since it ignores any safety me
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| subs | `Vec<
-(T::AccountId,
-(BalanceOf<T>, BoundedVec<(T::AccountId, Data), T::MaxSubAccounts
->,),)>` | 
+| subs | `Vec<SubAccountsByAccountId<T>>` | 
 
 #### Python
 ```python
@@ -288,7 +283,7 @@ call = substrate.compose_call(
                 [
                     (
                         'AccountId',
-                        'scale_info::241',
+                        'scale_info::255',
                     ),
                 ],
             ),
@@ -920,7 +915,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [('scale_info::241', 'scale_info::241')],
+        'additional': [('scale_info::255', 'scale_info::255')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',

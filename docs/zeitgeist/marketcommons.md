@@ -67,6 +67,10 @@ result = substrate.query(
             None,
             {'is_settled': 'bool', 'value': 'u128', 'who': 'AccountId'},
         ),
+        'outsider': (
+            None,
+            {'is_settled': 'bool', 'value': 'u128', 'who': 'AccountId'},
+        ),
     },
     'creation': ('Permissionless', 'Advised'),
     'creator': 'AccountId',

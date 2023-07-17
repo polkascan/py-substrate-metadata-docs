@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -421,17 +421,6 @@ result = substrate.query(
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::28'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
             },
             None: None,
             'BagsList': {
@@ -1305,6 +1294,17 @@ result = substrate.query(
                 'WorkerRoleAccountUpdated': ('u64', 'AccountId'),
                 'WorkerStartedLeaving': ('u64', (None, 'Bytes')),
                 'WorkingGroupBudgetFunded': ('u64', 'u128', 'Bytes'),
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::28'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::22'},
             },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},

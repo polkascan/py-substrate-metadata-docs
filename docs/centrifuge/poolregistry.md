@@ -62,6 +62,7 @@ call = substrate.compose_call(
         'ForeignAsset': 'u32',
         'KSM': None,
         'Native': None,
+        'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
     },
     'max_reserve': 'u128',

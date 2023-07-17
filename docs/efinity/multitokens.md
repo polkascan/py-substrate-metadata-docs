@@ -10,10 +10,11 @@ Approve the `operator` to manage all of `origin`&\#x27;s tokens belonging to `co
 If an `expiration` is provided, the approval will end when it expires.
 
 \# Errors
-- `CannotApproveSelf` - if `origin == operator`
-- `AlreadyExpired` - if `expiration` is earlier than now
-- `CollectionAccountNotFound` if the collection account does not exist
-- `MaxApprovalsExceeded` if approval count has exceeded the maximum
+
+- [`Error::CannotApproveSelf`] if `origin == operator`
+- [`Error::AlreadyExpired`] if `expiration` is earlier than now
+- [`Error::CollectionAccountNotFound`] if the collection account does not exist
+- [`Error::MaxApprovalsExceeded`] if approval count has exceeded the maximum
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -39,13 +40,13 @@ Approve `operator` to transfer up to `amount` of `caller`&\#x27;s balance for `t
 current approved amount.
 
 \# Errors
-- `CannotApproveSelf` if `origin == operator`
-- `CollectionAlreadyApproved` if `collection_id` is already approved
-- `AlreadyExpired` if `expiration` is earlier than now
-- `TokenAccountNotFound` if the token account does not exist
-- `MaxApprovalsExceeded` if approval count has exceeded the maximum
-- `WrongCurrentApprovedAmount` if `current_amount` does not match the current approval
-  amount
+- [`Error::CannotApproveSelf`] if `origin == operator`
+- [`Error::CollectionAlreadyApproved`] if `collection_id` is already approved
+- [`Error::AlreadyExpired`] if `expiration` is earlier than now
+- [`Error::TokenAccountNotFound`] if the token account does not exist
+- [`Error::MaxApprovalsExceeded`] if approval count has exceeded the maximum
+- [`Error::WrongCurrentApprovedAmount`] if `current_amount` does not match the current
+  approval amount
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -73,18 +74,17 @@ call = substrate.compose_call(
 ---------
 ### batch_mint
 Collection owner mints tokens of `collection_id` to `recipients` consisting of an
-`AccountId` and `MintParams`. A single mint failure will fail all of them in the batch.
+[`AccountId`](frame_system::Config::AccountId) and [`MintParams`]. A single mint failure
+will fail all of them in the batch.
 
 \# Errors
-- `AmountZero` if `amount == 0`.
-- `NotFound` if `collection` does **not** exist.
-- `NoPermission` if `caller` is not allowed to mint the `collection`.
-- `MintForbidden` if the policy disallows the operation
-- `BalanceOverflow` if `amount + current_total_supply` overflows its type.
-- `TokenCountOverflow` if the token_count overflows
-- `TokenMintCapExceeded` if the mint policy TokenCap does not allow minting
-- `MaxTokenCountExceeded` if the mint policy max_token_count is exceeded
-- `DepositReserveFailed` if the issuer does not have sufficent balance for token deposit
+- [`Error::AmountZero`] if `amount == 0`.
+- [`Error::CollectionNotFound`] if `collection` does **not** exist.
+- [`Error::NoPermission`] if `caller` is not allowed to mint the `collection`.
+- [`Error::TokenMintCapExceeded`] if the mint policy TokenCap does not allow minting
+- [`Error::MaxTokenCountExceeded`] if the mint policy max_token_count is exceeded
+- [`Error::DepositReserveFailed`] if the issuer does not have sufficent balance for
+  token deposit
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -100,55 +100,33 @@ call = substrate.compose_call(
         {
             'account_id': 'AccountId',
             'params': {
-                'CreateForeignToken': {
-                    'behavior': (
-                        None,
-                        {
-                            'HasRoyalty': 'scale_info::112',
-                            'IsCurrency': None,
-                        },
-                    ),
-                    'existential_deposit': 'u128',
-                    'listing_forbidden': 'bool',
-                    'metadata': {
-                        'Foreign': {
-                            'decimal_count': 'u32',
-                            'location': (
-                                None,
-                                'scale_info::66',
-                            ),
-                            'name': 'Bytes',
-                            'symbol': 'Bytes',
-                        },
-                        'Native': None,
-                    },
-                    'token_id': 'u128',
-                },
                 'CreateToken': {
                     'attributes': [
-                        {
-                            'key': 'Bytes',
-                            'value': 'Bytes',
-                        },
+                        'scale_info::372',
                     ],
                     'behavior': (
                         None,
-                        {
-                            'HasRoyalty': 'scale_info::112',
-                            'IsCurrency': None,
-                        },
+                        'scale_info::150',
                     ),
                     'cap': (
                         None,
-                        {
-                            'SingleMint': None,
-                            'Supply': 'u128',
-                        },
+                        'scale_info::177',
+                    ),
+                    'foreign_params': (
+                        None,
+                        'scale_info::383',
+                    ),
+                    'freeze_state': (
+                        None,
+                        'scale_info::156',
                     ),
                     'initial_supply': 'u128',
                     'listing_forbidden': 'bool',
+                    'sufficiency': {
+                        'Insufficient': 'InnerStruct',
+                        'Sufficient': 'InnerStruct',
+                    },
                     'token_id': 'u128',
-                    'unit_price': 'u128',
                 },
                 'Mint': {
                     'amount': 'u128',
@@ -169,16 +147,17 @@ call = substrate.compose_call(
 ### batch_set_attribute
 Collection owner sets `attributes` to `collection_id`
 
-If `token_id` is `None`, the attribute is added to the collection. If it is `Some`, the
-attribute is added to the token.
+If `token_id` is [`None`], the attribute is added to the collection. If it is [`Some`],
+the attribute is added to the token.
 
 \# Errors
-- `InvalidAttributeKey` if `key.len() == 0`
-- `CollectionNotFound` if `collection_id` does not exist.
-- `TokenNotFound` if `token_id` is `Some` and does not exist.
-- `NoPermission` if `source` account is not the owner of the collection.
-- `Overflow` if an attribute counter overflows
-- `DepositReserveFailed` if unable to reserve the deposit for the attribute storage.
+
+- [`Error::InvalidAttributeKey`] if `key.len() == 0`
+- [`Error::CollectionNotFound`] if `collection_id` does not exist.
+- [`Error::TokenNotFound`] if `token_id` is `Some` and does not exist.
+- [`Error::NoPermission`] if `source` account is not the owner of the collection.
+- [`Error::DepositReserveFailed`] if unable to reserve the deposit for the attribute
+  storage.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -208,10 +187,9 @@ Transfers the specific amount of tokens of `collection` to `recipients` from `or
 account. A single failure will fail all transfers.
 
 \# Errors
-- `AmountZero` if `amount == 0`.
-- `InvalidTargetAccount` if `source == target`.
-- `BalanceLow` if `source` does not own enough amount of `collection`.
-- `BalanceOverflow` if `target` balance of `collection` overflows.
+
+- [`Error::AmountZero`] if `amount == 0`.
+- [`Error::BalanceLow`] if `source` does not own enough amount of `collection`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -251,15 +229,11 @@ Reduces the balance of `owner` by `amount` of `token_id` from `collection_id`.
 It also updates the total supply of `collection_id`.
 
 \# Errors
-- `NotFound` if `collection` does not exist.
-- `BalanceLow` if `owner` account does not has enough amount of any token in `tokens`
-of `collection`.
-- `CollectionDoesNotSupportGivenToken` if `tokens` is not empty.
-- `BalanceLow` if `owner` account does not has enough amount of the `collection`.
-- `Overflow` if amount - supply overflows type, or if burn causes collection.token_count
-  to
-overflow.
-- `DepositUnreserveFailed` if caller does not have enough reserved balance to unreserve
+- [`Error::CollectionNotFound`] if `collection` does not exist.
+- [`Error::BalanceLow`] if `owner` account does not has enough amount of any token in
+  `tokens` of `collection`.
+- [`Error::DepositUnreserveFailed`] if caller does not have enough reserved balance to
+  unreserve
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -283,10 +257,11 @@ call = substrate.compose_call(
 
 ---------
 ### create_collection
-Creates a new collection from `descriptor`
+Creates a new [`Collection`](ep_multi_tokens::Collection) from `descriptor`
 
 \# Errors
-- `DepositReserveFailed` if the deposit cannot be reserved
+
+- [`Error::DepositReserveFailed`] if the deposit cannot be reserved
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -341,16 +316,19 @@ call = substrate.compose_call(
 
 ---------
 ### destroy_collection
-Destroys `Collection` with `id`. `origin` must be the owner of the `Collection`.
-
+Destroys [`Collection`](ep_multi_tokens::Collection) with `id`. `origin` must be the
+owner of the [`Collection`](ep_multi_tokens::Collection).
 
 \# Errors
-- `NoPermission` if `origin` is not the owner of the collection.
-- `NotFound` if `Collection` with `id` does not exist.
-- `DestroyForbiddenByCollectionEvent` if another pallet is blocking the collection&\#x27;s
-  destruction
-- `DestroyForbiddenByRemainingTokens` if collection still has tokens when destroying
-- `DestroyForbiddenByAttributeCount` if collection still has attributes when destroying
+
+- [`Error::NoPermission`] if `origin` is not the owner of the collection.
+- [`Error::CollectionNotFound`] if `Collection` with `id` does not exist.
+- [`Error::DestroyForbiddenByCollectionEvent`] if another pallet is blocking the
+  collection&\#x27;s destruction
+- [`Error::DestroyForbiddenByRemainingTokens`] if collection still has tokens when
+  destroying
+- [`Error::DestroyForbiddenByAttributeCount`] if collection still has attributes when
+  destroying
 current number of collection attributes.
 #### Attributes
 | Name | Type |
@@ -369,7 +347,8 @@ call = substrate.compose_call(
 Creates a new collection from `descriptor` at `collection_id`, origin must be root
 
 \# Errors
-- `DepositReserveFailed` if the deposit cannot be reserved
+- [`Error::DepositReserveFailed`] if the deposit cannot be reserved
+- [`Error::CollectionIdAlreadyInUse`] if the collection id is already in use
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -428,12 +407,12 @@ call = substrate.compose_call(
 
 ---------
 ### force_mutate_collection
-Exactly as `mutate_collection`, except the origin must be root and the `caller` account
-should be specified.
+Exactly as [`mutate_collection`](Self::mutate_collection), except the origin must be
+root and the `caller` account should be specified.
 
 \# Errors
-- `BadOrigin` if origin != root
-- Same as mutate_collection
+
+Same as [`mutate_collection`](Self::mutate_collection)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -474,9 +453,6 @@ call = substrate.compose_call(
 ---------
 ### force_set_attribute
 Set the Tokens storage to the given `value`, origin must be root
-
-\# Errors
-- `BadOrigin` if origin != root
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -506,9 +482,6 @@ call = substrate.compose_call(
 ---------
 ### force_set_collection
 Set the Collections storage to the given `value`, origin must be root
-
-\# Errors
-- `BadOrigin` if origin != root
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -524,7 +497,7 @@ call = substrate.compose_call(
         None,
         {
             'attribute_count': 'u32',
-            'explicit_royalty_currencies': 'scale_info::151',
+            'explicit_royalty_currencies': 'scale_info::171',
             'owner': 'AccountId',
             'policy': {
                 'attribute': {},
@@ -564,9 +537,6 @@ call = substrate.compose_call(
 ---------
 ### force_set_collection_account
 Set the CollectionAccounts storage to the given `value`, origin must be root
-
-\# Errors
-- `BadOrigin` if origin != root
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -590,7 +560,7 @@ call = substrate.compose_call(
         None,
         {
             'account_count': 'u32',
-            'approvals': 'scale_info::162',
+            'approvals': 'scale_info::183',
             'is_frozen': 'bool',
         },
     ),
@@ -601,9 +571,6 @@ call = substrate.compose_call(
 ---------
 ### force_set_token
 Set the Tokens storage to the given `value`, origin must be root
-
-\# Errors
-- `BadOrigin` if origin != root
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -624,11 +591,19 @@ call = substrate.compose_call(
             'cap': (
                 None,
                 {
+                    'CollapsingSupply': 'u128',
                     'SingleMint': None,
                     'Supply': 'u128',
                 },
             ),
-            'is_frozen': 'bool',
+            'freeze_state': (
+                None,
+                (
+                    'Permanent',
+                    'Temporary',
+                    'Never',
+                ),
+            ),
             'listing_forbidden': 'bool',
             'market_behavior': (
                 None,
@@ -646,19 +621,29 @@ call = substrate.compose_call(
                     'location': (
                         None,
                         {
-                            'interior': 'scale_info::67',
+                            'interior': 'scale_info::68',
                             'parents': 'u8',
                         },
                     ),
                     'name': 'Bytes',
+                    'preminted_supply': 'u128',
                     'symbol': 'Bytes',
+                    'units_per_second': (
+                        None,
+                        'u128',
+                    ),
                 },
                 'Native': None,
             },
             'minimum_balance': 'u128',
             'mint_deposit': 'u128',
+            'sufficiency': {
+                'Insufficient': {
+                    'unit_price': 'u128',
+                },
+                'Sufficient': None,
+            },
             'supply': 'u128',
-            'unit_price': 'u128',
         },
     ),
 }
@@ -668,9 +653,6 @@ call = substrate.compose_call(
 ---------
 ### force_set_token_account
 Set the TokenAccounts storage to the given `value`, origin must be root
-
-\# Errors
-- `BadOrigin` if origin != root
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -695,12 +677,12 @@ call = substrate.compose_call(
     'value': (
         None,
         {
-            'approvals': 'scale_info::176',
+            'approvals': 'scale_info::197',
             'balance': 'u128',
             'is_frozen': 'bool',
             'locked_balance': 'u128',
-            'locks': 'scale_info::171',
-            'named_reserves': 'scale_info::171',
+            'locks': 'scale_info::192',
+            'named_reserves': 'scale_info::192',
             'reserved_balance': 'u128',
         },
     ),
@@ -710,12 +692,12 @@ call = substrate.compose_call(
 
 ---------
 ### force_transfer
-Exactly as `transfer`, except the origin must be root and the source account should be
-specified.
+Exactly as [`transfer`](Self::transfer), except the origin must be root and the source
+account should be specified.
 
 \# Errors
-- `BadOrigin` if origin != root
-- Same as transfer
+
+Same as [`transfer`](Self::transfer)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -777,7 +759,17 @@ call = substrate.compose_call(
         'freeze_type': {
             'Collection': None,
             'CollectionAccount': 'AccountId',
-            'Token': 'u128',
+            'Token': {
+                'freeze_state': (
+                    None,
+                    (
+                        'Permanent',
+                        'Temporary',
+                        'Never',
+                    ),
+                ),
+                'token_id': 'u128',
+            },
             'TokenAccount': {
                 'account_id': 'AccountId',
                 'token_id': 'u128',
@@ -791,22 +783,21 @@ call = substrate.compose_call(
 ---------
 ### mint
 `origin` mints to `recipient` for `collection_id` with `params` using the pallet&\#x27;s
-`MintPolicy`.
+[`MintPolicy`](traits::CollectionPolicy::Mint).
 
 \# Errors
-- `AmountZero` if `amount == 0`.
-- `CollectionNotFound` if `Collection` does not exist.
-- `TokenNotFound` if `Token` does not exist.
-- `TokenAlreadyExists` if attempting to create a token that already exists
-- `NoPermission` if `caller` is not allowed to mint the `collection`.
-- `Overflow` if `amount + current_total_supply` overflows its type, or if the
-  token_count
-overflows.
-- `TokenMintCapExceeded` if the mint policy TokenCap does not allow minting
+
+- [`Error::AmountZero`] if `amount == 0`.
+- [`Error::CollectionNotFound`] if `Collection` does not exist.
+- [`Error::TokenNotFound`] if `Token` does not exist.
+- [`Error::TokenAlreadyExists`] if attempting to create a token that already exists
+- [`Error::NoPermission`] if `caller` is not allowed to mint the `collection`.
+- [`Error::TokenMintCapExceeded`] if the mint policy TokenCap does not allow minting
 - `MaxTokenCountExceeded` if the mint policy max_token_count is exceeded
-- `DepositReserveFailed` if the issuer does not have sufficent balance for token deposit
-- `ConflictingLocation` if the token is foreign and the location is already mapped to
-  another asset in `AssetIdsByLocation`
+- [`Error::DepositReserveFailed`] if the issuer does not have sufficent balance for
+  token deposit
+- [`Error::ConflictingLocation`] if the token is foreign and the location is already
+  mapped to another asset in `AssetIdsByLocation`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -820,36 +811,6 @@ call = substrate.compose_call(
     'MultiTokens', 'mint', {
     'collection_id': 'u128',
     'params': {
-        'CreateForeignToken': {
-            'behavior': (
-                None,
-                {
-                    'HasRoyalty': {
-                        'beneficiary': 'AccountId',
-                        'percentage': 'u32',
-                    },
-                    'IsCurrency': None,
-                },
-            ),
-            'existential_deposit': 'u128',
-            'listing_forbidden': 'bool',
-            'metadata': {
-                'Foreign': {
-                    'decimal_count': 'u32',
-                    'location': (
-                        None,
-                        {
-                            'interior': 'scale_info::67',
-                            'parents': 'u8',
-                        },
-                    ),
-                    'name': 'Bytes',
-                    'symbol': 'Bytes',
-                },
-                'Native': None,
-            },
-            'token_id': 'u128',
-        },
         'CreateToken': {
             'attributes': [
                 {
@@ -870,14 +831,52 @@ call = substrate.compose_call(
             'cap': (
                 None,
                 {
+                    'CollapsingSupply': 'u128',
                     'SingleMint': None,
                     'Supply': 'u128',
                 },
             ),
+            'foreign_params': (
+                None,
+                {
+                    'decimal_count': 'u32',
+                    'location': (
+                        None,
+                        {
+                            'interior': 'scale_info::68',
+                            'parents': 'u8',
+                        },
+                    ),
+                    'name': 'Bytes',
+                    'symbol': 'Bytes',
+                    'units_per_second': (
+                        None,
+                        'u128',
+                    ),
+                },
+            ),
+            'freeze_state': (
+                None,
+                (
+                    'Permanent',
+                    'Temporary',
+                    'Never',
+                ),
+            ),
             'initial_supply': 'u128',
             'listing_forbidden': 'bool',
+            'sufficiency': {
+                'Insufficient': {
+                    'unit_price': (
+                        None,
+                        'u128',
+                    ),
+                },
+                'Sufficient': {
+                    'minimum_balance': 'u128',
+                },
+            },
             'token_id': 'u128',
-            'unit_price': 'u128',
         },
         'Mint': {
             'amount': 'u128',
@@ -901,11 +900,12 @@ call = substrate.compose_call(
 
 ---------
 ### mutate_collection
-Modify `Collection` with `id` by applying `mutation`
+Modify [`Collection`](ep_multi_tokens::Collection) with `id` by applying `mutation`
 
 \# Errors
-- `NotFound`, if `collection_id` does not exist.
-- `NoPermission`, if `origin` is not the owner of `collection`.
+
+- [`Error::CollectionNotFound`] if `collection_id` does not exist.
+- [`Error::NoPermission`] if `origin` is not the owner of `collection`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -945,15 +945,16 @@ call = substrate.compose_call(
 
 ---------
 ### mutate_token
-Modify `Token` with `token_id`  from `Collection` with `collection_id` by applying
-`mutation`
+Modify [`Token`](ep_multi_tokens::Token) with `token_id`  from
+[`Collection`](ep_multi_tokens::Collection) with `collection_id` by applying `mutation`
 
 \# Errors
-- `CurrencyIncompatibleWithCollectionRoyalty` if token has already been assigned a
-  royalty
-- `NoPermission` if not the collection owner
-- `TokenNotFound` if Token does not exist
-- `ConflictingLocation` if the new location is already occupied
+
+- [`Error::CurrencyIncompatibleWithCollectionRoyalty`] if token has already been
+  assigned a royalty
+- [`Error::NoPermission`] if not the collection owner
+- [`Error::TokenNotFound`] if Token does not exist
+- [`Error::ConflictingLocation`] if the new location is already occupied
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -992,12 +993,17 @@ call = substrate.compose_call(
                     'location': (
                         None,
                         {
-                            'interior': 'scale_info::67',
+                            'interior': 'scale_info::68',
                             'parents': 'u8',
                         },
                     ),
                     'name': 'Bytes',
+                    'preminted_supply': 'u128',
                     'symbol': 'Bytes',
+                    'units_per_second': (
+                        None,
+                        'u128',
+                    ),
                 },
                 'Native': None,
             },
@@ -1014,9 +1020,10 @@ Removes all attributes from the given `collection_id` or `token_id`.
 
 \# Errors
 - `InvalidAttributeCount` if `attribute_count` doesn&\#x27;t match the number of attributes
-- `CollectionNotFound` if Collection with `collection_id` does not exist.
-- `TokenNotFound` if Token with `token_id` does not exist.
-- `NoPermission` if `origin` account is not the owner of the Collection or Token
+- [`Error::CollectionNotFound`] if Collection with `collection_id` does not exist.
+- [`Error::TokenNotFound`] if Token with `token_id` does not exist.
+- [`Error::NoPermission`] if `origin` account is not the owner of the Collection or
+  Token
 - other errors from `remove_attribute`
 #### Attributes
 | Name | Type |
@@ -1041,10 +1048,10 @@ call = substrate.compose_call(
 Removes the `key` attribute from the given `collection_id` or `token_id`.
 
 \# Errors
-- `InvalidAttributeKey` if `key.len() == 0`
-- `CollectionNotFound` if `collection_id` does not exist.
-- `TokenNotFound` if `token_id` is `Some` and does not exist.
-- `NoPermission` if `caller` is not the owner of the collection.
+- [`Error::InvalidAttributeKey`] if `key.len() == 0`
+- [`Error::CollectionNotFound`] if `collection_id` does not exist.
+- [`Error::TokenNotFound`] if `token_id` is `Some` and does not exist.
+- [`Error::NoPermission`] if `caller` is not the owner of the collection.
 - `Underflow` if an attribute counter underflows
 #### Attributes
 | Name | Type |
@@ -1067,16 +1074,16 @@ call = substrate.compose_call(
 ---------
 ### set_attribute
 Sets the attribute `key` to `value` for `collection_id`.
-If `token_id` is `None`, the attribute is added to the collection. If it is `Some`, the
-attribute is added to the token.
+If `token_id` is [`None`], the attribute is added to the collection. If it is [`Some`],
+the attribute is added to the token.
 
 \# Errors
-- `InvalidAttributeKey` if `key.len() == 0`
-- `CollectionNotFound` if `collection_id` does not exist.
-- `TokenNotFound` if `token_id` is `Some` and does not exist.
-- `NoPermission` if `source` account is not the owner of the collection.
-- `Overflow` if an attribute counter overflows
-- `DepositReserveFailed` if unable to reserve the deposit for the attribute storage.
+- [`Error::InvalidAttributeKey`] if `key.len() == 0`
+- [`Error::CollectionNotFound`] if `collection_id` does not exist.
+- [`Error::TokenNotFound`] if `token_id` is `Some` and does not exist.
+- [`Error::NoPermission`] if `source` account is not the owner of the collection.
+- [`Error::DepositReserveFailed`] if unable to reserve the deposit for the attribute
+  storage.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1114,7 +1121,17 @@ call = substrate.compose_call(
         'freeze_type': {
             'Collection': None,
             'CollectionAccount': 'AccountId',
-            'Token': 'u128',
+            'Token': {
+                'freeze_state': (
+                    None,
+                    (
+                        'Permanent',
+                        'Temporary',
+                        'Never',
+                    ),
+                ),
+                'token_id': 'u128',
+            },
             'TokenAccount': {
                 'account_id': 'AccountId',
                 'token_id': 'u128',
@@ -1130,10 +1147,9 @@ call = substrate.compose_call(
 `operator` transfers to `recipient` for `collection_id` with `params`
 
 \# Errors
-- `AmountZero` if `amount == 0`.
-- `InvalidTargetAccount` if `source == target`.
-- `BalanceLow` if `source` does not own enough amount of `collection`.
-- `Overflow` if `target` balance of `collection` overflows.
+
+- [`Error::AmountZero`] if `amount == 0`.
+- [`Error::BalanceLow`] if `source` does not own enough amount of `collection`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1175,7 +1191,8 @@ call = substrate.compose_call(
 Unapprove the `operator` to manage all of `origin`&\#x27;s tokens belonging to `collection`
 
 \# Errors
-- `CollectionAccountNotFound` if the collection account cannot be found
+
+- [`Error::CollectionAccountNotFound`] if the collection account cannot be found
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1197,7 +1214,8 @@ call = substrate.compose_call(
 Unapprove `operator` to transfer `origin`&\#x27;s `token_id` of `collection_id`
 
 \# Errors
-- `TokenAccountNotFound` if the token account does not exist
+
+- [`Error::TokenAccountNotFound`] if the token account does not exist
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1221,7 +1239,7 @@ call = substrate.compose_call(
 
 ---------
 ### Approved
-An approval took place. If `token_id` is `None`, it applies to the whole collection.
+An approval took place. If `token_id` is [`None`], it applies to the whole collection.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1267,7 +1285,7 @@ The balance of an account was set
 
 ---------
 ### Burned
-Units of a `Token` were burned
+Units of a [`Token`](ep_multi_tokens::Token) were burned
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1278,7 +1296,7 @@ Units of a `Token` were burned
 
 ---------
 ### CollectionAccountCreated
-A new `CollectionAccount` was created
+A new [`CollectionAccount`] was created
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1287,7 +1305,7 @@ A new `CollectionAccount` was created
 
 ---------
 ### CollectionAccountDestroyed
-A `CollectionAccount` was destroyed
+A [`CollectionAccount`] was destroyed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1302,11 +1320,11 @@ TokenAccount storage was set to `value`
 | -------- | -------- | -------- |
 | collection_id | `T::CollectionId` | ```u128```
 | account_id | `T::AccountId` | ```AccountId```
-| value | `Option<CollectionAccountOf<T>>` | ```(None, {'is_frozen': 'bool', 'approvals': 'scale_info::162', 'account_count': 'u32'})```
+| value | `Option<CollectionAccountOf<T>>` | ```(None, {'is_frozen': 'bool', 'approvals': 'scale_info::183', 'account_count': 'u32'})```
 
 ---------
 ### CollectionCreated
-A new `Collection` was created
+A new [`Collection`](ep_multi_tokens::Collection) was created
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1315,7 +1333,7 @@ A new `Collection` was created
 
 ---------
 ### CollectionDestroyed
-A `Collection` was destroyed.
+A [`Collection`](ep_multi_tokens::Collection) was destroyed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1324,7 +1342,7 @@ A `Collection` was destroyed.
 
 ---------
 ### CollectionMutated
-A `Collection` was mutated
+A [`Collection`](ep_multi_tokens::Collection) was mutated
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1338,7 +1356,7 @@ Collection storage was set to `value`
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection_id | `T::CollectionId` | ```u128```
-| value | `Option<CollectionOf<T>>` | ```(None, {'owner': 'AccountId', 'policy': {'mint': {'max_token_count': (None, 'u64'), 'max_token_supply': (None, 'u128'), 'force_single_mint': 'bool'}, 'burn': {}, 'transfer': {'is_frozen': 'bool'}, 'attribute': {}, 'market': {'royalty': (None, 'scale_info::112')}}, 'token_count': 'u64', 'attribute_count': 'u32', 'total_deposit': 'u128', 'explicit_royalty_currencies': 'scale_info::151'})```
+| value | `Option<CollectionOf<T>>` | ```(None, {'owner': 'AccountId', 'policy': {'mint': {'max_token_count': (None, 'u64'), 'max_token_supply': (None, 'u128'), 'force_single_mint': 'bool'}, 'burn': {}, 'transfer': {'is_frozen': 'bool'}, 'attribute': {}, 'market': {'royalty': (None, 'scale_info::129')}}, 'token_count': 'u64', 'attribute_count': 'u32', 'total_deposit': 'u128', 'explicit_royalty_currencies': 'scale_info::171'})```
 
 ---------
 ### Deposit
@@ -1357,7 +1375,7 @@ Collection, token or account was frozen
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `FreezeOf<T>` | ```{'collection_id': 'u128', 'freeze_type': {'Collection': None, 'Token': 'u128', 'CollectionAccount': 'AccountId', 'TokenAccount': {'token_id': 'u128', 'account_id': 'AccountId'}}}```
+| None | `FreezeOf<T>` | ```{'collection_id': 'u128', 'freeze_type': {'Collection': None, 'Token': {'token_id': 'u128', 'freeze_state': (None, ('Permanent', 'Temporary', 'Never'))}, 'CollectionAccount': 'AccountId', 'TokenAccount': {'token_id': 'u128', 'account_id': 'AccountId'}}}```
 
 ---------
 ### MigrationStatusUpdated
@@ -1369,7 +1387,7 @@ Migration stage updated
 
 ---------
 ### Minted
-Units of a `Token` were minted
+Units of a [`Token`](ep_multi_tokens::Token) were minted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1442,11 +1460,11 @@ Collection, token or account was unfrozen
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `FreezeOf<T>` | ```{'collection_id': 'u128', 'freeze_type': {'Collection': None, 'Token': 'u128', 'CollectionAccount': 'AccountId', 'TokenAccount': {'token_id': 'u128', 'account_id': 'AccountId'}}}```
+| None | `FreezeOf<T>` | ```{'collection_id': 'u128', 'freeze_type': {'Collection': None, 'Token': {'token_id': 'u128', 'freeze_state': (None, ('Permanent', 'Temporary', 'Never'))}, 'CollectionAccount': 'AccountId', 'TokenAccount': {'token_id': 'u128', 'account_id': 'AccountId'}}}```
 
 ---------
 ### TokenAccountCreated
-A new `TokenAccount` was created
+A new [`TokenAccount`] was created
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1457,7 +1475,7 @@ A new `TokenAccount` was created
 
 ---------
 ### TokenAccountDestroyed
-A `TokenAccount` was destroyed
+A [`TokenAccount`] was destroyed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1474,11 +1492,11 @@ TokenAccount storage was set to `value`
 | collection_id | `T::CollectionId` | ```u128```
 | token_id | `T::TokenId` | ```u128```
 | account_id | `T::AccountId` | ```AccountId```
-| value | `Option<TokenAccountOf<T>>` | ```(None, {'balance': 'u128', 'reserved_balance': 'u128', 'locked_balance': 'u128', 'named_reserves': 'scale_info::171', 'locks': 'scale_info::171', 'approvals': 'scale_info::176', 'is_frozen': 'bool'})```
+| value | `Option<TokenAccountOf<T>>` | ```(None, {'balance': 'u128', 'reserved_balance': 'u128', 'locked_balance': 'u128', 'named_reserves': 'scale_info::192', 'locks': 'scale_info::192', 'approvals': 'scale_info::197', 'is_frozen': 'bool'})```
 
 ---------
 ### TokenCreated
-A `Token` was created
+A [`Token`](ep_multi_tokens::Token) was created
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1489,7 +1507,7 @@ A `Token` was created
 
 ---------
 ### TokenDestroyed
-A `Token` was destroyed
+A [`Token`](ep_multi_tokens::Token) was destroyed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1499,13 +1517,13 @@ A `Token` was destroyed
 
 ---------
 ### TokenMutated
-A `Token` was mutated
+A [`Token`](ep_multi_tokens::Token) was mutated
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection_id | `T::CollectionId` | ```u128```
 | token_id | `T::TokenId` | ```u128```
-| mutation | `T::TokenMutation` | ```{'behavior': {'NoMutation': None, 'SomeMutation': (None, {'HasRoyalty': {'beneficiary': 'AccountId', 'percentage': 'u32'}, 'IsCurrency': None})}, 'listing_forbidden': {'NoMutation': None, 'SomeMutation': 'bool'}, 'metadata': {'NoMutation': None, 'SomeMutation': {'Native': None, 'Foreign': {'decimal_count': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'location': (None, 'scale_info::66')}}}}```
+| mutation | `T::TokenMutation` | ```{'behavior': {'NoMutation': None, 'SomeMutation': (None, {'HasRoyalty': {'beneficiary': 'AccountId', 'percentage': 'u32'}, 'IsCurrency': None})}, 'listing_forbidden': {'NoMutation': None, 'SomeMutation': 'bool'}, 'metadata': {'NoMutation': None, 'SomeMutation': {'Native': None, 'Foreign': {'decimal_count': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'location': (None, 'scale_info::67'), 'units_per_second': (None, 'u128'), 'preminted_supply': 'u128'}}}}```
 
 ---------
 ### TokenUpdated
@@ -1515,11 +1533,11 @@ Token storage was set to `value`
 | -------- | -------- | -------- |
 | collection_id | `T::CollectionId` | ```u128```
 | token_id | `T::TokenId` | ```u128```
-| value | `Option<TokenOf<T>>` | ```(None, {'supply': 'u128', 'cap': (None, {'SingleMint': None, 'Supply': 'u128'}), 'is_frozen': 'bool', 'minimum_balance': 'u128', 'unit_price': 'u128', 'mint_deposit': 'u128', 'attribute_count': 'u32', 'market_behavior': (None, {'HasRoyalty': {'beneficiary': 'AccountId', 'percentage': 'u32'}, 'IsCurrency': None}), 'listing_forbidden': 'bool', 'metadata': {'Native': None, 'Foreign': {'decimal_count': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'location': (None, 'scale_info::66')}}})```
+| value | `Option<TokenOf<T>>` | ```(None, {'supply': 'u128', 'cap': (None, {'SingleMint': None, 'Supply': 'u128', 'CollapsingSupply': 'u128'}), 'freeze_state': (None, ('Permanent', 'Temporary', 'Never')), 'minimum_balance': 'u128', 'sufficiency': {'Sufficient': None, 'Insufficient': {'unit_price': 'u128'}}, 'mint_deposit': 'u128', 'attribute_count': 'u32', 'market_behavior': (None, {'HasRoyalty': {'beneficiary': 'AccountId', 'percentage': 'u32'}, 'IsCurrency': None}), 'listing_forbidden': 'bool', 'metadata': {'Native': None, 'Foreign': {'decimal_count': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'location': (None, 'scale_info::67'), 'units_per_second': (None, 'u128'), 'preminted_supply': 'u128'}}})```
 
 ---------
 ### Transferred
-Units of a `Token` were transferred
+Units of a [`Token`](ep_multi_tokens::Token) were transferred
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1532,7 +1550,7 @@ Units of a `Token` were transferred
 
 ---------
 ### Unapproved
-An unapproval took place. If `token_id` is `None`, it applies to the collection.
+An unapproval took place. If `token_id` is [`None`], it applies to the collection.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1581,44 +1599,94 @@ result = substrate.query(
             'X1': {
                 'AccountId32': {
                     'id': '[u8; 32]',
-                    'network': {
-                        'Any': None,
-                        'Kusama': None,
-                        'Named': 'Bytes',
-                        'Polkadot': None,
-                    },
+                    'network': (
+                        None,
+                        {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                    ),
                 },
                 'AccountIndex64': {
                     'index': 'u64',
-                    'network': {
-                        'Any': None,
-                        'Kusama': None,
-                        'Named': 'Bytes',
-                        'Polkadot': None,
-                    },
+                    'network': (
+                        None,
+                        {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                    ),
                 },
                 'AccountKey20': {
                     'key': '[u8; 20]',
-                    'network': {
-                        'Any': None,
-                        'Kusama': None,
-                        'Named': 'Bytes',
-                        'Polkadot': None,
-                    },
+                    'network': (
+                        None,
+                        {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                    ),
                 },
                 'GeneralIndex': 'u128',
-                'GeneralKey': 'Bytes',
+                'GeneralKey': {
+                    'data': '[u8; 32]',
+                    'length': 'u8',
+                },
+                'GlobalConsensus': {
+                    'BitcoinCash': None,
+                    'BitcoinCore': None,
+                    'ByFork': {
+                        'block_hash': '[u8; 32]',
+                        'block_number': 'u64',
+                    },
+                    'ByGenesis': '[u8; 32]',
+                    'Ethereum': {
+                        'chain_id': 'u64',
+                    },
+                    'Kusama': None,
+                    'Polkadot': None,
+                    'Rococo': None,
+                    'Westend': None,
+                    'Wococo': None,
+                },
                 'OnlyChild': None,
                 'PalletInstance': 'u8',
                 'Parachain': 'u32',
                 'Plurality': {
                     'id': {
+                        'Administration': None,
+                        'Defense': None,
                         'Executive': None,
                         'Index': 'u32',
                         'Judicial': None,
                         'Legislative': None,
-                        'Named': 'Bytes',
+                        'Moniker': '[u8; 4]',
                         'Technical': None,
+                        'Treasury': None,
                         'Unit': None,
                     },
                     'part': {
@@ -1645,44 +1713,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1697,44 +1782,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1751,44 +1853,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1803,44 +1922,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1855,44 +1991,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1909,44 +2062,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -1961,44 +2131,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2013,44 +2200,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2065,44 +2269,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2119,44 +2340,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2171,44 +2409,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2223,44 +2478,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2275,44 +2547,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2327,44 +2616,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2381,44 +2687,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2433,44 +2756,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2485,44 +2825,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2537,44 +2894,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2589,44 +2963,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2641,44 +3032,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2695,44 +3103,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2747,44 +3172,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2799,44 +3241,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2851,44 +3310,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2903,44 +3379,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -2955,44 +3448,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3007,44 +3517,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3061,44 +3588,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3113,44 +3657,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3165,44 +3726,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3217,44 +3795,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3269,44 +3864,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3321,44 +3933,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3373,44 +4002,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3425,44 +4071,61 @@ result = substrate.query(
                 {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::72',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
                     'Plurality': {
                         'id': {
+                            'Administration': None,
+                            'Defense': None,
                             'Executive': None,
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
+                            'Treasury': None,
                             'Unit': None,
                         },
                         'part': {
@@ -3514,7 +4177,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'account_count': 'u32', 'approvals': 'scale_info::162', 'is_frozen': 'bool'}
+{'account_count': 'u32', 'approvals': 'scale_info::183', 'is_frozen': 'bool'}
 ```
 ---------
 ### Collections
@@ -3531,7 +4194,7 @@ result = substrate.query(
 ```python
 {
     'attribute_count': 'u32',
-    'explicit_royalty_currencies': 'scale_info::151',
+    'explicit_royalty_currencies': 'scale_info::171',
     'owner': 'AccountId',
     'policy': {
         'attribute': {},
@@ -3555,7 +4218,7 @@ result = substrate.query(
 ```
 ---------
 ### IdleOperations
- Pending operations to be executed on `Hooks::on_idle`.
+ Pending operations to be executed on [`Hooks::on_idle`].
 
 #### Python
 ```python
@@ -3580,21 +4243,6 @@ result = substrate.query(
 ]
 ```
 ---------
-### LastIteratedMigrationKey
- Stores last iterated key for migrations. Used by multi block migrations
-
-#### Python
-```python
-result = substrate.query(
-    'MultiTokens', 'LastIteratedMigrationKey', []
-)
-```
-
-#### Return value
-```python
-'Bytes'
-```
----------
 ### MigrationStatus
  Status of the current multi-block migration
 
@@ -3608,6 +4256,28 @@ result = substrate.query(
 #### Return value
 ```python
 ('NotStarted', 'InProgress', 'Completed', 'Failed')
+```
+---------
+### Migrations
+ Stores last iterated keys for migrations. Used by multi block migrations
+ to resume from the last iterated key.
+
+ Key is the storage prefix, value is the status of migration and last iterated key, if any.
+ i.e `[&quot;MultiTokens&quot;, &quot;TokenAccounts&quot;] -&gt; (collection_id, token_id, account_id)`
+
+#### Python
+```python
+result = substrate.query(
+    'MultiTokens', 'Migrations', ['Bytes']
+)
+```
+
+#### Return value
+```python
+{
+    'last_iterated_key': (None, 'Bytes'),
+    'stage': ('NotStarted', 'InProgress', 'Completed', 'Failed'),
+}
 ```
 ---------
 ### NextCollectionId
@@ -3631,19 +4301,19 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'MultiTokens', 'TokenAccounts', ['AccountId', 'u128', 'u128']
+    'MultiTokens', 'TokenAccounts', ['u128', 'u128', 'AccountId']
 )
 ```
 
 #### Return value
 ```python
 {
-    'approvals': 'scale_info::176',
+    'approvals': 'scale_info::197',
     'balance': 'u128',
     'is_frozen': 'bool',
     'locked_balance': 'u128',
-    'locks': 'scale_info::171',
-    'named_reserves': 'scale_info::171',
+    'locks': 'scale_info::192',
+    'named_reserves': 'scale_info::192',
     'reserved_balance': 'u128',
 }
 ```
@@ -3662,8 +4332,11 @@ result = substrate.query(
 ```python
 {
     'attribute_count': 'u32',
-    'cap': (None, {'SingleMint': None, 'Supply': 'u128'}),
-    'is_frozen': 'bool',
+    'cap': (
+        None,
+        {'CollapsingSupply': 'u128', 'SingleMint': None, 'Supply': 'u128'},
+    ),
+    'freeze_state': (None, ('Permanent', 'Temporary', 'Never')),
     'listing_forbidden': 'bool',
     'market_behavior': (
         None,
@@ -3672,16 +4345,18 @@ result = substrate.query(
     'metadata': {
         'Foreign': {
             'decimal_count': 'u32',
-            'location': (None, {'interior': 'scale_info::67', 'parents': 'u8'}),
+            'location': (None, {'interior': 'scale_info::68', 'parents': 'u8'}),
             'name': 'Bytes',
+            'preminted_supply': 'u128',
             'symbol': 'Bytes',
+            'units_per_second': (None, 'u128'),
         },
         'Native': None,
     },
     'minimum_balance': 'u128',
     'mint_deposit': 'u128',
+    'sufficiency': {'Insufficient': {'unit_price': 'u128'}, 'Sufficient': None},
     'supply': 'u128',
-    'unit_price': 'u128',
 }
 ```
 ---------
@@ -3711,7 +4386,7 @@ constant = substrate.get_constant('MultiTokens', 'AttributeDepositPerByte')
 ```
 ---------
 ### CollectionCreationDeposit
- Amount of `Currency` reserved to create a collection
+ Amount of [`Balance`](BalanceOf) reserved to create a collection
 #### Value
 ```python
 25000000000000000000
@@ -3776,8 +4451,19 @@ constant = substrate.get_constant('MultiTokens', 'MaxIdleOperationQueueWeight')
 constant = substrate.get_constant('MultiTokens', 'MaxLocks')
 ```
 ---------
+### MaxMigrationExtrinsicInfosToPause
+ Bound for the number of extrinsics to pause during multi block migration
+#### Value
+```python
+20
+```
+#### Python
+```python
+constant = substrate.get_constant('MultiTokens', 'MaxMigrationExtrinsicInfosToPause')
+```
+---------
 ### MaxMigrationKeyLength
- Max length for the `LastIteratedMigrationKey` storage
+ Max length for the [`Migrations`] storage
 #### Value
 ```python
 1024
@@ -3788,7 +4474,7 @@ constant = substrate.get_constant('MultiTokens', 'MaxMigrationKeyLength')
 ```
 ---------
 ### MaxOperatorsPerAccount
- The max number of operators a `TokenAccount` and an `CollectionAccount` can have
+ The max number of operators a [`TokenAccount`] and an [`CollectionAccount`] can have
 #### Value
 ```python
 10
@@ -3842,6 +4528,21 @@ constant = substrate.get_constant('MultiTokens', 'MaxReserves')
 constant = substrate.get_constant('MultiTokens', 'MaxTokensPerBatchTransfer')
 ```
 ---------
+### MigrationExtrinsicsInfosToPause
+ List of extrinsics to pause during multi block migration (this pallet is excluded)
+#### Value
+```python
+[
+    {'extrinsic_name': None, 'pallet_name': 'Marketplace'},
+    {'extrinsic_name': None, 'pallet_name': 'FuelTanks'},
+    {'extrinsic_name': None, 'pallet_name': 'EfinityXcm'},
+]
+```
+#### Python
+```python
+constant = substrate.get_constant('MultiTokens', 'MigrationExtrinsicsInfosToPause')
+```
+---------
 ### MigrationWeightLimitPercentage
  Percentage of block weight to consume during migration
 #### Value
@@ -3853,15 +4554,15 @@ constant = substrate.get_constant('MultiTokens', 'MaxTokensPerBatchTransfer')
 constant = substrate.get_constant('MultiTokens', 'MigrationWeightLimitPercentage')
 ```
 ---------
-### NativeAssetId
- The `AssetId` that represents the native asset
+### NativeAssetInfo
+ The [`NativeAssetInfo`](ep_multi_tokens::NativeAssetInfo) for this pallet
 #### Value
 ```python
-{'collection_id': 0, 'token_id': 0}
+{'id': {'collection_id': 0, 'token_id': 0}, 'units_per_second': 87990000000000000000}
 ```
 #### Python
 ```python
-constant = substrate.get_constant('MultiTokens', 'NativeAssetId')
+constant = substrate.get_constant('MultiTokens', 'NativeAssetInfo')
 ```
 ---------
 ### ReserveIdentifier
@@ -3876,7 +4577,8 @@ constant = substrate.get_constant('MultiTokens', 'ReserveIdentifier')
 ```
 ---------
 ### TokenAccountDeposit
- The amount of `Currency` that must be reserved for a token account to be maintained
+ The amount of [`Balance`](BalanceOf) that must be reserved for a token account to be
+ maintained
 #### Value
 ```python
 10000000000000000
@@ -3887,7 +4589,7 @@ constant = substrate.get_constant('MultiTokens', 'TokenAccountDeposit')
 ```
 ---------
 ### TokenMetadataMaxNameLength
- Max length of name stored in `TokenMetadata`
+ Max length of name stored in [`TokenMetadata`]
 #### Value
 ```python
 32
@@ -3898,7 +4600,7 @@ constant = substrate.get_constant('MultiTokens', 'TokenMetadataMaxNameLength')
 ```
 ---------
 ### TokenMetadataMaxSymbolLength
- Max length of symbol stored in `TokenMetadata`
+ Max length of symbol stored in [`TokenMetadata`]
 #### Value
 ```python
 8
@@ -3957,7 +4659,9 @@ Conflicting MultiLocation for an AssetId
 
 ---------
 ### CurrencyIncompatibleWithCollectionRoyalty
-Token cannot act as a `Currency` and also a `Royalty`
+Token cannot act as a
+[`currency`](ep_multi_tokens::Collection::explicit_royalty_currencies) and also a
+[`Royalty`](Config::Royalty)
 
 ---------
 ### DepositReserveFailed
@@ -3973,22 +4677,29 @@ The collection cannot be destroyed because it has attributes
 
 ---------
 ### DestroyForbiddenByCollectionEvent
-The `OnCollectionEvent` trait has forbidden burning of the collection
+The [`OnCollectionEvent`] trait has forbidden burning of the collection
 
 ---------
 ### DestroyForbiddenByRemainingTokens
 Destroy is not allowed on collections that have tokens. Destroy all tokens before
-calling `destroy_collection`. Keep in mind that the `Token` storage can remain even if
-all `Token` units were burned. A `Token` can only be destroyed by setting
-`remove_token_storage` to true in `burn`.
+calling [`destroy_collection`](Pallet::destroy_collection). Keep in mind that the
+[`Tokens`] storage can remain even if all of [`Token`](ep_multi_tokens::Token)&\#x27;s units
+were burned. A [`Token`](ep_multi_tokens::Token) can only be destroyed by setting
+[`remove_token_storage`](OnBurnInput::remove_token_storage) to true in
+[`burn`](Pallet::burn).
 
 ---------
-### ExistentialDepositCannotBeZero
-Foreign Tokens must have an existential deposit greater than zero
+### FreezeStateRequired
+Freeze state is required when freezing a token
 
 ---------
 ### Frozen
 The operation failed due to an item being frozen
+
+---------
+### HasNeverFreezeState
+The token has a never freeze state. The state cannot be changed and the token cannot be
+frozen.
 
 ---------
 ### IdleOperationQueueFull
@@ -4011,9 +4722,13 @@ Attribute key invalid
 One or more of the explicit royalty currencies are invalid
 
 ---------
+### InvalidFreezeState
+The freeze state is not valid
+
+---------
 ### InvalidUnitPrice
 The unit price cannot be zero, cannot decrease, and `unit_price * total_supply` must
-be greater than `TokenAccountDeposit`
+be greater than [`Config::TokenAccountDeposit`]
 
 ---------
 ### LiquidityRestrictions
@@ -4029,7 +4744,8 @@ Tried to mint more tokens than allowed
 
 ---------
 ### MintFailedRequirements
-The minting did not meet the requirements set by the `MintPolicy`
+The minting did not meet the requirements set by the
+[`MintPolicy`](traits::CollectionPolicy::Mint)
 
 ---------
 ### NoPermission
@@ -4044,6 +4760,14 @@ This operation is not allowed for the native token
 Royalty percentage is above or below allowed bounds
 
 ---------
+### PermanentlyFrozen
+The token is permanently frozen
+
+---------
+### PremintExceeded
+The preminted amount would be exceeded by the mint operation
+
+---------
 ### ReservesLow
 Reserved balance is not enough to perform the operation
 
@@ -4053,7 +4777,11 @@ TokenAccount was not found
 
 ---------
 ### TokenAlreadyExists
-Tried to create `Token` that already exists
+Tried to create [`Token`](ep_multi_tokens::Token) that already exists
+
+---------
+### TokenMetadataCreationFailed
+Token metadata could not be created from mint params
 
 ---------
 ### TokenMintCapExceeded

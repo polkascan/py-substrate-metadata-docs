@@ -5,6 +5,30 @@
 ## Calls
 
 ---------
+### force_unstake
+Called for blocks that, for some reason, have not been unstacked
+
+\# Permissions
+
+* Sudo
+
+  \# Arguments
+
+* `origin`: Must be `Root`.
+* `pending_blocks`: Block numbers that will be processed.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pending_blocks | `Vec<T::BlockNumber>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AppPromotion', 'force_unstake', {'pending_blocks': ['u32']}
+)
+```
+
+---------
 ### payout_stakers
 Recalculates interest for the specified number of stakers.
 If all stakers are not recalculated, the next call of the extrinsic
@@ -213,6 +237,30 @@ call = substrate.compose_call(
 ```
 
 ---------
+### upgrade_accounts
+ Migrates lock state into freeze one
+
+\# Permissions
+
+* Sudo
+
+  \# Arguments
+
+* `origin`: Must be `Root`.
+* `stakers`: Accounts to be upgraded.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| stakers | `Vec<T::AccountId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'AppPromotion', 'upgrade_accounts', {'stakers': ['AccountId']}
+)
+```
+
+---------
 ## Events
 
 ---------
@@ -376,6 +424,17 @@ result = substrate.query(
 ## Constants
 
 ---------
+### FreezeIdentifier
+ Freeze identifier used by the pallet
+#### Value
+```python
+'0x6170707374616b656170707374616b65'
+```
+#### Python
+```python
+constant = substrate.get_constant('AppPromotion', 'FreezeIdentifier')
+```
+---------
 ### IntervalIncome
  Rate of return for interval in blocks defined in `RecalculationInterval`.
 #### Value
@@ -438,8 +497,8 @@ constant = substrate.get_constant('AppPromotion', 'RecalculationInterval')
 Error due to action requiring admin to be set.
 
 ---------
-### IncorrectLockedBalanceOperation
-Errors caused by incorrect actions with a locked balance.
+### InconsistencyState
+Errors caused by incorrect state of a staker in context of the pallet.
 
 ---------
 ### InsufficientStakedBalance

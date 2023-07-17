@@ -301,7 +301,9 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_delegator_bond_less
-Request bond less for delegators wrt a specific collator candidate.
+Request bond less for delegators wrt a specific collator candidate. The delegation&\#x27;s
+rewards for rounds while the request is pending use the reduced bonded amount.
+A bond less may not be performed if any other scheduled request is pending.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -354,6 +356,8 @@ call = substrate.compose_call(
 ### schedule_revoke_delegation
 Request to revoke an existing delegation. If successful, the delegation is scheduled
 to be allowed to be revoked via the `execute_delegation_request` extrinsic.
+The delegation receives no rewards for the rounds while a revoke is pending.
+A revoke may not be performed if any other scheduled request is pending.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1457,7 +1461,7 @@ constant = substrate.get_constant('ParachainStaking', 'RewardPaymentDelay')
 ### PendingDelegationRevoke
 
 ---------
-### RoundLengthMustBeAtLeastTotalSelectedCollators
+### RoundLengthMustBeGreaterThanTotalSelectedCollators
 
 ---------
 ### TooLowCandidateAutoCompoundingDelegationCountToAutoCompound

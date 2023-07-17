@@ -133,7 +133,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::441'
+'scale_info::460'
 ```
 ---------
 ### Nonce
@@ -167,7 +167,25 @@ result = substrate.query(
 ('Running', 'Error')
 ```
 ---------
+## Constants
+
+---------
+### MaxErrors
+ The maximum number of error codes.
+#### Value
+```python
+1
+```
+#### Python
+```python
+constant = substrate.get_constant('Security', 'MaxErrors')
+```
+---------
 ## Errors
+
+---------
+### MaxErrorsReached
+Cannot add the error code.
 
 ---------
 ### ParachainNotRunning

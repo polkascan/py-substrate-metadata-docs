@@ -104,7 +104,7 @@ Parameters:
 call = substrate.compose_call(
     'PWIncubation', 'set_origin_of_shell_chosen_parts', {
     'chosen_parts': {
-        'parts': 'scale_info::181',
+        'parts': 'scale_info::182',
     },
     'collection_id': 'u32',
     'nft_id': 'u32',
@@ -198,8 +198,8 @@ Origin of Shell updated chosen parts.
 | -------- | -------- | -------- |
 | collection_id | `CollectionId` | ```u32```
 | nft_id | `NftId` | ```u32```
-| old_chosen_parts | `Option<ShellPartsOf<T>>` | ```(None, {'parts': 'scale_info::181'})```
-| new_chosen_parts | `ShellPartsOf<T>` | ```{'parts': 'scale_info::181'}```
+| old_chosen_parts | `Option<ShellPartsOf<T>>` | ```(None, {'parts': 'scale_info::182'})```
+| new_chosen_parts | `ShellPartsOf<T>` | ```{'parts': 'scale_info::182'}```
 
 ---------
 ### OriginOfShellReceivedFood
@@ -300,7 +300,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::658'}
+{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::674'}
 ```
 ---------
 ### HasOriginOfShellStartedIncubation
@@ -360,7 +360,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'parts': 'scale_info::181'}
+{'parts': 'scale_info::182'}
 ```
 ---------
 ### ShellCollectionId

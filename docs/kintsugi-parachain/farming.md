@@ -101,16 +101,21 @@ call = substrate.compose_call(
 
 ---------
 ### deposit
-Stake the pool tokens in the reward pool
+Stake all pool tokens in the reward pool
+
+- `pool_currency_id`: LP token to deposit
+- `length_rewards`: upper bound for number of reward currencies
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | pool_currency_id | `CurrencyIdOf<T>` | 
+| length_rewards | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Farming', 'deposit', {
+    'length_rewards': 'u32',
     'pool_currency_id': {
         'ForeignAsset': 'u32',
         'LendToken': 'u32',
@@ -356,17 +361,23 @@ call = substrate.compose_call(
 ---------
 ### withdraw
 Unstake the pool tokens from the reward pool
+
+- `pool_currency_id`: LP token to withdraw
+- `amount`: of LP token to withdraw
+- `length_rewards`: upper bound for number of reward currencies
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | pool_currency_id | `CurrencyIdOf<T>` | 
 | amount | `BalanceOf<T>` | 
+| length_rewards | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Farming', 'withdraw', {
     'amount': 'u128',
+    'length_rewards': 'u32',
     'pool_currency_id': {
         'ForeignAsset': 'u32',
         'LendToken': 'u32',
@@ -576,6 +587,9 @@ constant = substrate.get_constant('Farming', 'TreasuryAccountId')
 ```
 ---------
 ## Errors
+
+---------
+### BadRewardLength
 
 ---------
 ### InsufficientStake

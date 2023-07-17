@@ -210,41 +210,22 @@ result = substrate.query(
         {
             'call': {
                 'Inline': 'Bytes',
-                'Legacy': {'hash': '[u8; 32]'},
-                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+                'Legacy': 'InnerStruct',
+                'Lookup': 'InnerStruct',
             },
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'Authority': 'scale_info::134',
+                'GeneralCouncil': 'scale_info::135',
                 None: None,
-                'Authority': {'delay': 'u32', 'origin': 'scale_info::114'},
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'FinancialCouncil': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'GeneralCouncil': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'HomaCouncil': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'PolkadotXcm': {
-                    'Response': 'scale_info::74',
-                    'Xcm': 'scale_info::74',
-                },
-                'TechnicalCommittee': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'Void': (),
+                'CumulusXcm': 'scale_info::133',
+                'FinancialCouncil': 'scale_info::136',
+                'HomaCouncil': 'scale_info::137',
+                'PolkadotXcm': 'scale_info::132',
+                'TechnicalCommittee': 'scale_info::138',
+                'Void': 'scale_info::139',
+                'system': 'scale_info::131',
             },
             'priority': 'u8',
         },
@@ -296,7 +277,7 @@ constant = substrate.get_constant('Scheduler', 'MaxScheduledPerBlock')
 ### MaximumWeight
 #### Value
 ```python
-{'proof_size': 4194304, 'ref_time': 400000000000}
+{'proof_size': 41943040, 'ref_time': 400000000000}
 ```
 #### Python
 ```python

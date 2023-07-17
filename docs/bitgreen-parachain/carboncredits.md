@@ -278,7 +278,7 @@ call = substrate.compose_call(
     'CarbonCredits', 'force_set_project_storage', {
     'detail': {
         'approved': 'bool',
-        'batch_groups': 'scale_info::319',
+        'batch_groups': 'scale_info::330',
         'created': 'u32',
         'description': 'Bytes',
         'documents': ['Bytes'],
@@ -797,7 +797,7 @@ result = substrate.query(
 ```python
 {
     'approved': 'bool',
-    'batch_groups': 'scale_info::319',
+    'batch_groups': 'scale_info::330',
     'created': 'u32',
     'description': 'Bytes',
     'documents': ['Bytes'],

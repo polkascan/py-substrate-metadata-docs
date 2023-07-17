@@ -168,6 +168,7 @@ of the registrar whose index is `reg_index`.
 - `target`: the account whose identity the judgement is upon. This must be an account
   with a registered identity.
 - `judgement`: the judgement of the registrar of index `reg_index` about `target`.
+- `identity`: The hash of the [`IdentityInfo`] for that the judgement is provided.
 
 Emits `JudgementGiven` if successful.
 
@@ -184,11 +185,13 @@ Emits `JudgementGiven` if successful.
 | reg_index | `RegistrarIndex` | 
 | target | `AccountIdLookupOf<T>` | 
 | judgement | `Judgement<BalanceOf<T>>` | 
+| identity | `T::Hash` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Identity', 'provide_judgement', {
+    'identity': '[u8; 32]',
     'judgement': {
         'Erroneous': None,
         'FeePaid': 'u128',
@@ -682,7 +685,26 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [('scale_info::194', 'scale_info::194')],
+        'additional': [
+            (
+                {
+                    'BlakeTwo256': 'h256',
+                    'Keccak256': 'h256',
+                    'None': None,
+                    'Raw': 'Bytes',
+                    'Sha256': 'h256',
+                    'ShaThree256': 'h256',
+                },
+                {
+                    'BlakeTwo256': 'h256',
+                    'Keccak256': 'h256',
+                    'None': None,
+                    'Raw': 'Bytes',
+                    'Sha256': 'h256',
+                    'ShaThree256': 'h256',
+                },
+            ),
+        ],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',
@@ -921,8 +943,16 @@ Invalid judgement.
 The target is invalid.
 
 ---------
+### JudgementForDifferentIdentity
+The provided judgement was for a different identity.
+
+---------
 ### JudgementGiven
 Judgement given.
+
+---------
+### JudgementPaymentFailed
+Error that occurs when there is an issue paying for judgement.
 
 ---------
 ### NoIdentity

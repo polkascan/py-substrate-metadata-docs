@@ -79,6 +79,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | amount | `T::Balance` | ```u128```
+| asset_id | `T::AssetId` | ```u128```
 
 ---------
 ## Storage functions

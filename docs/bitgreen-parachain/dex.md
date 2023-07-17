@@ -96,6 +96,43 @@ call = substrate.compose_call(
 ```
 
 ---------
+### force_set_min_validations
+Set the minimum validators required to validator a payment
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| min_validators | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Dex', 'force_set_min_validations', {'min_validators': 'u32'}
+)
+```
+
+---------
+### force_set_open_order_allowed_limits
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| level | `UserLevel` | 
+| limit | `AssetBalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Dex', 'force_set_open_order_allowed_limits', {
+    'level': (
+        'KYCLevel1',
+        'KYCLevel2',
+        'Whitelist',
+    ),
+    'limit': 'u128',
+}
+)
+```
+
+---------
 ### force_set_payment_fee
 Force set PaymentFees value
 Can only be called by ForceOrigin
@@ -128,6 +165,142 @@ call = substrate.compose_call(
 ```
 
 ---------
+### force_set_seller_payout_authority
+Set the seller payout authority by force.
+
+This function allows the seller payout authority to be set forcefully by a privileged
+origin.
+
+- `origin`: The origin of the transaction.
+- `authority`: The account ID of the authority to be set as the seller payout authority.
+
+
+\# Errors
+
+This function may return an error if:
+
+- The transaction origin is not authorized to force the operation.
+
+\# Note
+
+This function is intended to be called by ForceOrigin, typically through a governance
+process. It sets the `authority` as the seller payout authority by storing it in the
+`SellerPayoutAuthority` storage item.
+
+Emits an `Event::SellerPayoutAuthoritySet` event on success.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| authority | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Dex', 'force_set_seller_payout_authority', {'authority': 'AccountId'}
+)
+```
+
+---------
+### record_payment_to_seller
+Record a payment executed to a seller.
+
+This function records a payment executed to a seller and performs necessary validations
+and updates.
+
+- `origin`: The origin of the transaction.
+- `seller`: The account ID of the seller who received the payment.
+- `payout`: A `PayoutExecutedToSeller` value representing the details of the payment.
+
+
+\# Errors
+
+This function may return an error if:
+
+- The transaction origin is not signed by the expected authority.
+- The seller payout authority has not been set.
+- The `seller` has no receivables.
+- The receivable amount is less than the payment amount.
+- The list of seller payouts is full and cannot accommodate the new payment.
+
+\# Note
+
+This function performs the following steps:
+
+- Verifies that the `origin` is signed by the expected authority, which is retrieved
+  from the `SellerPayoutAuthority` storage item.
+- Subtracts the payment amount from the seller&\#x27;s receivables stored in the
+  `SellerReceivables` storage map.
+- Adds the new payment to the list of seller payouts stored in the `SellerPayouts`
+  storage map.
+
+Emits an `Event::SellerPayoutExecuted` event on success.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| seller | `T::AccountId` | 
+| payout | `PayoutExecutedToSellerOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Dex', 'record_payment_to_seller', {
+    'payout': {
+        'amount': 'u128',
+        'chain_id': 'u32',
+        'order_id': ['u128'],
+        'recipient_address': 'Bytes',
+        'tx_hash': 'Bytes',
+    },
+    'seller': 'AccountId',
+}
+)
+```
+
+---------
+### set_seller_payout_preference
+Set the payout preference for a seller.
+
+This function allows a seller to set their preferred payout preference.
+
+- `origin`: The origin of the transaction.
+- `preference`: An optional `SellerPayoutPreference` value representing the desired
+  payout preference.
+
+
+\# Errors
+
+This function may return an error if:
+
+- The transaction origin is not signed.
+
+\# Note
+
+If a `preference` value is provided, it will be associated with the `seller` and stored
+in the `SellerPayoutPreferences` storage map. If `preference` is `None`, the payout
+preference for the `seller` will be removed from the storage.
+
+Emits an `Event::SellerPayoutPreferenceSet` event on success.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| preference | `Option<SellerPayoutPreferenceOf<T>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Dex', 'set_seller_payout_preference', {
+    'preference': (
+        None,
+        {
+            'chain_id': 'u32',
+            'recipient_address': 'Bytes',
+        },
+    ),
+}
+)
+```
+
+---------
 ### validate_buy_order
 Buy `units` of `asset_id` from the given `order_id`
 This will be called by one of the approved validators when an order is created
@@ -153,26 +326,46 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### BuyOrderCompleted
-A buy order was completed successfully
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| order_id | `BuyOrderId` | ```u128```
-
----------
 ### BuyOrderCreated
 A buy order was processed successfully
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | order_id | `OrderId` | ```u128```
+| sell_order_id | `OrderId` | ```u128```
 | units | `AssetBalanceOf<T>` | ```u128```
 | project_id | `ProjectIdOf<T>` | ```u32```
 | group_id | `GroupIdOf<T>` | ```u32```
 | price_per_unit | `CurrencyBalanceOf<T>` | ```u128```
 | fees_paid | `CurrencyBalanceOf<T>` | ```u128```
 | total_amount | `CurrencyBalanceOf<T>` | ```u128```
+| seller | `T::AccountId` | ```AccountId```
+| buyer | `T::AccountId` | ```AccountId```
+
+---------
+### BuyOrderExpired
+A buy order was expired and removed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| order_id | `BuyOrderId` | ```u128```
+| sell_order_id | `OrderId` | ```u128```
+| units | `AssetBalanceOf<T>` | ```u128```
+| buyer | `T::AccountId` | ```AccountId```
+
+---------
+### BuyOrderFilled
+A buy order was completed successfully
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| order_id | `BuyOrderId` | ```u128```
+| sell_order_id | `OrderId` | ```u128```
+| units | `AssetBalanceOf<T>` | ```u128```
+| project_id | `ProjectIdOf<T>` | ```u32```
+| group_id | `GroupIdOf<T>` | ```u32```
+| price_per_unit | `CurrencyBalanceOf<T>` | ```u128```
+| fees_paid | `CurrencyBalanceOf<T>` | ```u128```
 | seller | `T::AccountId` | ```AccountId```
 | buyer | `T::AccountId` | ```AccountId```
 
@@ -208,6 +401,41 @@ A new sell order has been created
 | units | `AssetBalanceOf<T>` | ```u128```
 | price_per_unit | `CurrencyBalanceOf<T>` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
+
+---------
+### SellerPayoutAuthoritySet
+Authority to validate seller payout has been set
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| authority | `T::AccountId` | ```AccountId```
+
+---------
+### SellerPayoutExecuted
+A seller was paid
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| seller | `T::AccountId` | ```AccountId```
+| payout | `PayoutExecutedToSellerOf<T>` | ```{'order_id': ['u128'], 'chain_id': 'u32', 'recipient_address': 'Bytes', 'amount': 'u128', 'tx_hash': 'Bytes'}```
+
+---------
+### SellerPayoutPreferenceSet
+A seller has set payout preference
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| seller | `T::AccountId` | ```AccountId```
+| preference | `Option<SellerPayoutPreferenceOf<T>>` | ```(None, {'chain_id': 'u32', 'recipient_address': 'Bytes'})```
+
+---------
+### UserOpenOrderUnitsLimitUpdated
+User open order units limit set
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| level | `UserLevel` | ```('KYCLevel1', 'KYCLevel2', 'Whitelist')```
+| limit | `AssetBalanceOf<T>` | ```u128```
 
 ---------
 ### ValidatorAccountAdded
@@ -268,6 +496,21 @@ result = substrate.query(
     'total_fee': 'u128',
     'units': 'u128',
 }
+```
+---------
+### BuyOrdersByUser
+ storage to track the buy orders by user
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'BuyOrdersByUser', ['AccountId']
+)
+```
+
+#### Return value
+```python
+[('u128', 'u128')]
 ```
 ---------
 ### MinPaymentValidations
@@ -337,6 +580,91 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'Dex', 'PurchaseFees', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### SellerPayoutAuthority
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'SellerPayoutAuthority', []
+)
+```
+
+#### Return value
+```python
+'AccountId'
+```
+---------
+### SellerPayoutPreferences
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'SellerPayoutPreferences', ['AccountId']
+)
+```
+
+#### Return value
+```python
+{'chain_id': 'u32', 'recipient_address': 'Bytes'}
+```
+---------
+### SellerPayouts
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'SellerPayouts', ['AccountId']
+)
+```
+
+#### Return value
+```python
+[
+    {
+        'amount': 'u128',
+        'chain_id': 'u32',
+        'order_id': ['u128'],
+        'recipient_address': 'Bytes',
+        'tx_hash': 'Bytes',
+    },
+]
+```
+---------
+### SellerReceivables
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'SellerReceivables', ['AccountId']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### UserOpenOrderUnitsAllowed
+ storage to track the limit of units allowed in open orders
+
+#### Python
+```python
+result = substrate.query(
+    'Dex', 'UserOpenOrderUnitsAllowed', [
+    (
+        'KYCLevel1',
+        'KYCLevel2',
+        'Whitelist',
+    ),
+]
 )
 ```
 
@@ -445,9 +773,11 @@ The purchasea fee amount exceeds the limit
 
 ---------
 ### ChainIdMismatch
+Different chainId provided when validating transaction
 
 ---------
 ### DuplicateValidation
+Already validated
 
 ---------
 ### FeeExceedsUserLimit
@@ -471,10 +801,23 @@ Only the order owner can perform this call
 
 ---------
 ### KYCAuthorisationFailed
+User not kyc authorized to perform action
+
+---------
+### NoReceivables
+No receivable found for seller
 
 ---------
 ### NotAuthorised
 not authorized to perform action
+
+---------
+### NotSellerPayoutAuthority
+Not seller payment authority
+
+---------
+### OpenOrderLimitExceeded
+User has too many open orders
 
 ---------
 ### OrderIdOverflow
@@ -485,16 +828,39 @@ Error when calculating orderId
 Error when calculating order units
 
 ---------
+### PaymentsListFull
+Payments list is full
+
+---------
+### ReceivableLessThanPayment
+receivable amount is less than payment
+
+---------
 ### SellerAndBuyerCannotBeSame
 Seller and buyer cannot be same
 
 ---------
+### SellerPayoutAuthorityNotSet
+Seller payout authority has not been set
+
+---------
 ### TooManyValidatorAccounts
+Exceeded the maximum allowed validator count
 
 ---------
 ### TxProofMismatch
+TXProof provided by the validator is different from previous validation
+
+---------
+### UserOpenOrderUnitsAllowedExceeded
+User has too many units as unpaid open orders
+
+---------
+### UserOpenOrderUnitsLimtNotFound
+Limits for open orders not configured correctly
 
 ---------
 ### ValidatorAccountAlreadyExists
+Duplicate validator account
 
 ---------

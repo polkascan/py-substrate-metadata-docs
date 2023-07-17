@@ -42,7 +42,6 @@ call = substrate.compose_call(
 ### remark
 Make some on-chain remark.
 
-\#\# Complexity
 - `O(1)`
 #### Attributes
 | Name | Type |
@@ -74,9 +73,6 @@ call = substrate.compose_call(
 ---------
 ### set_code
 Set the new runtime code.
-
-\#\# Complexity
-- `O(C + S)` where `C` length of `code` and `S` complexity of `can_set_code`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -92,9 +88,6 @@ call = substrate.compose_call(
 ---------
 ### set_code_without_checks
 Set the new runtime code without doing any checks of the given `code`.
-
-\#\# Complexity
-- `O(C)` where `C` length of `code`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -152,7 +145,7 @@ An extrinsic failed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| dispatch_error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| dispatch_error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}```
 | dispatch_info | `DispatchInfo` | ```{'weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
 
 ---------
@@ -353,7 +346,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AssetTxPayment': {
                 'AssetTxFeePaid': {
                     'actual_fee': 'u128',
@@ -391,6 +383,7 @@ result = substrate.query(
                 },
                 'AssetStatusChanged': {'asset_id': 'u32'},
                 'AssetThawed': {'asset_id': 'u32'},
+                'Blocked': {'asset_id': 'u32', 'who': 'AccountId'},
                 'Burned': {
                     'asset_id': 'u32',
                     'balance': 'u128',
@@ -426,6 +419,11 @@ result = substrate.query(
                     'issuer': 'AccountId',
                 },
                 'Thawed': {'asset_id': 'u32', 'who': 'AccountId'},
+                'Touched': {
+                    'asset_id': 'u32',
+                    'depositor': 'AccountId',
+                    'who': 'AccountId',
+                },
                 'Transferred': {
                     'amount': 'u128',
                     'asset_id': 'u32',
@@ -539,6 +537,7 @@ result = substrate.query(
                 },
                 'AssetStatusChanged': {'asset_id': 'scale_info::45'},
                 'AssetThawed': {'asset_id': 'scale_info::45'},
+                'Blocked': {'asset_id': 'scale_info::45', 'who': 'AccountId'},
                 'Burned': {
                     'asset_id': 'scale_info::45',
                     'balance': 'u128',
@@ -580,6 +579,11 @@ result = substrate.query(
                     'issuer': 'AccountId',
                 },
                 'Thawed': {'asset_id': 'scale_info::45', 'who': 'AccountId'},
+                'Touched': {
+                    'asset_id': 'scale_info::45',
+                    'depositor': 'AccountId',
+                    'who': 'AccountId',
+                },
                 'Transferred': {
                     'amount': 'u128',
                     'asset_id': 'scale_info::45',
@@ -897,7 +901,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -909,6 +912,8 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            None: None,
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1290,7 +1295,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'statemine',
     'impl_version': 0,
     'spec_name': 'statemine',
-    'spec_version': 9420,
+    'spec_version': 9430,
     'state_version': 0,
     'transaction_version': 13,
 }

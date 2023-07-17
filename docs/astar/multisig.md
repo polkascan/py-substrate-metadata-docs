@@ -25,7 +25,7 @@ transaction index) of the first approval transaction.
 
 NOTE: If this is the final approval, you will want to use `as_multi` instead.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(S)`.
 - Up to one balance-reserve or unreserve operation.
 - One passthrough operation, one insert, both `O(S)` where `S` is the number of
@@ -36,11 +36,6 @@ NOTE: If this is the final approval, you will want to use `as_multi` instead.
 - One event.
 - Storage: inserts one item, value size bounded by `MaxSignatories`, with a deposit
   taken for its lifetime of `DepositBase + threshold * DepositFactor`.
-----------------------------------
-- DB Weight:
-    - Read: Multisig Storage, [Caller Account]
-    - Write: Multisig Storage, [Caller Account]
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -100,7 +95,7 @@ Result is equivalent to the dispatched result if `threshold` is exactly `1`. Oth
 on success, result is `Ok` and the result from the interior call, if it was executed,
 may be found in the deposited `MultisigExecuted` event.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(S + Z + Call)`.
 - Up to one balance-reserve or unreserve operation.
 - One passthrough operation, one insert, both `O(S)` where `S` is the number of
@@ -113,12 +108,6 @@ may be found in the deposited `MultisigExecuted` event.
 - The weight of the `call`.
 - Storage: inserts one item, value size bounded by `MaxSignatories`, with a deposit
   taken for its lifetime of `DepositBase + threshold * DepositFactor`.
--------------------------------
-- DB Weight:
-    - Reads: Multisig Storage, [Caller Account]
-    - Writes: Multisig Storage, [Caller Account]
-- Plus Call Weight
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -162,12 +151,8 @@ multi-signature, but do not participate in the approval process.
 
 Result is equivalent to the dispatched result.
 
-\# &lt;weight&gt;
+\#\# Complexity
 O(Z + C) where Z is the length of the call and C its execution weight.
--------------------------------
-- DB Weight: None
-- Plus Call Weight
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -198,7 +183,7 @@ dispatch. May not be empty.
 transaction for this dispatch.
 - `call_hash`: The hash of the call to be executed.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(S)`.
 - Up to one balance-reserve or unreserve operation.
 - One passthrough operation, one insert, both `O(S)` where `S` is the number of
@@ -207,11 +192,6 @@ transaction for this dispatch.
 - One event.
 - I/O: 1 read `O(S)`, one remove.
 - Storage: removes one item.
-----------------------------------
-- DB Weight:
-    - Read: Multisig Storage, [Caller Account], Refund Account
-    - Write: Multisig Storage, [Caller Account], Refund Account
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

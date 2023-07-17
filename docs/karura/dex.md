@@ -29,8 +29,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -54,8 +52,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -79,8 +75,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -106,8 +100,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -131,8 +123,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -156,8 +146,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -203,8 +191,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -228,8 +214,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -253,8 +237,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -280,8 +262,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -305,8 +285,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -330,8 +308,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -381,8 +357,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -406,8 +380,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -431,8 +403,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -458,8 +428,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -483,8 +451,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -508,8 +474,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -552,8 +516,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -577,8 +539,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -602,8 +562,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -629,8 +587,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -654,8 +610,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -679,8 +633,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -723,8 +675,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -748,8 +698,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -773,8 +721,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -800,8 +746,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -825,8 +769,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -850,8 +792,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -893,8 +833,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -918,8 +856,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -943,8 +879,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -970,8 +904,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -995,8 +927,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1020,8 +950,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -1063,8 +991,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1088,8 +1014,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1113,8 +1037,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -1140,8 +1062,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1165,8 +1085,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1190,8 +1108,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -1238,8 +1154,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1263,8 +1177,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1288,8 +1200,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -1315,8 +1225,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1340,8 +1248,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1365,8 +1271,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -1414,8 +1318,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1439,8 +1341,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1464,8 +1364,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -1491,8 +1389,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1516,8 +1412,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1541,8 +1435,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -1590,8 +1482,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1615,8 +1505,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1640,8 +1528,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -1667,8 +1553,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1692,8 +1576,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1717,8 +1599,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -1766,8 +1646,6 @@ call = substrate.compose_call(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -1791,8 +1669,6 @@ call = substrate.compose_call(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -1816,8 +1692,6 @@ call = substrate.compose_call(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -1864,8 +1738,6 @@ call = substrate.compose_call(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -1889,8 +1761,6 @@ call = substrate.compose_call(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -1914,8 +1784,6 @@ call = substrate.compose_call(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -1964,8 +1832,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -1989,8 +1855,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -2014,8 +1878,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -2041,8 +1903,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -2066,8 +1926,6 @@ call = substrate.compose_call(
                     'DOT',
                     'LDOT',
                     'TAP',
-                    'RENBTC',
-                    'CASH',
                     'KAR',
                     'KUSD',
                     'KSM',
@@ -2091,8 +1949,6 @@ call = substrate.compose_call(
             'DOT',
             'LDOT',
             'TAP',
-            'RENBTC',
-            'CASH',
             'KAR',
             'KUSD',
             'KSM',
@@ -2123,9 +1979,9 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| currency_0 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
+| currency_0 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | pool_0 | `Balance` | ```u128```
-| currency_1 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
+| currency_1 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | pool_1 | `Balance` | ```u128```
 | share_increment | `Balance` | ```u128```
 
@@ -2135,9 +1991,9 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| currency_0 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
+| currency_0 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | contribution_0 | `Balance` | ```u128```
-| currency_1 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
+| currency_1 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | contribution_1 | `Balance` | ```u128```
 
 ---------
@@ -2145,28 +2001,28 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
+| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
 
 ---------
 ### EnableTradingPair
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
+| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
 
 ---------
 ### ListProvisioning
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
+| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
 
 ---------
 ### ProvisioningAborted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
+| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
 | accumulated_provision_0 | `Balance` | ```u128```
 | accumulated_provision_1 | `Balance` | ```u128```
 
@@ -2175,7 +2031,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
+| trading_pair | `TradingPair` | ```({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'})```
 | pool_0 | `Balance` | ```u128```
 | pool_1 | `Balance` | ```u128```
 | share_amount | `Balance` | ```u128```
@@ -2186,9 +2042,9 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| currency_0 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
+| currency_0 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | contribution_0 | `Balance` | ```u128```
-| currency_1 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
+| currency_1 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | contribution_1 | `Balance` | ```u128```
 
 ---------
@@ -2197,9 +2053,9 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| currency_0 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
+| currency_0 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | pool_0 | `Balance` | ```u128```
-| currency_1 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
+| currency_1 | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | pool_1 | `Balance` | ```u128```
 | share_decrement | `Balance` | ```u128```
 
@@ -2209,7 +2065,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | trader | `T::AccountId` | ```AccountId```
-| path | `Vec<CurrencyId>` | ```[{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'RENBTC', 'CASH', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}]```
+| path | `Vec<CurrencyId>` | ```[{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}]```
 | liquidity_changes | `Vec<Balance>` | ```['u128']```
 
 ---------
@@ -2236,8 +2092,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2261,8 +2115,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2286,8 +2138,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -2313,8 +2163,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2338,8 +2186,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2363,8 +2209,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -2407,8 +2251,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2432,8 +2274,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2457,8 +2297,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -2484,8 +2322,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2509,8 +2345,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2534,8 +2368,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -2578,8 +2410,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2603,8 +2433,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2628,8 +2456,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -2655,8 +2481,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2680,8 +2504,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2705,8 +2527,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -2750,8 +2570,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2775,8 +2593,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2800,8 +2616,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -2827,8 +2641,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2852,8 +2664,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -2877,8 +2687,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',

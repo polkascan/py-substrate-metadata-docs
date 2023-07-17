@@ -12,6 +12,7 @@ Additional funds can come from either the free balance of the account, of from t
 accumulated rewards, see [`BondExtra`].
 
 Bonding extra funds implies an automatic payout of all pending rewards as well.
+See `bond_extra_other` to bond pending rewards of `other` members.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,6 +25,42 @@ call = substrate.compose_call(
     'extra': {
         'FreeBalance': 'u128',
         'Rewards': None,
+    },
+}
+)
+```
+
+---------
+### bond_extra_other
+`origin` bonds funds from `extra` for some pool member `member` into their respective
+pools.
+
+`origin` can bond extra funds from free balance or pending rewards when `origin ==
+other`.
+
+In the case of `origin != other`, `origin` can only bond extra pending rewards of
+`other` members assuming set_claim_permission for the given member is
+`PermissionlessAll` or `PermissionlessCompound`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| member | `AccountIdLookupOf<T>` | 
+| extra | `BondExtra<BalanceOf<T>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'NominationPools', 'bond_extra_other', {
+    'extra': {
+        'FreeBalance': 'u128',
+        'Rewards': None,
+    },
+    'member': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
     },
 }
 )
@@ -51,13 +88,34 @@ call = substrate.compose_call(
 ```
 
 ---------
+### claim_commission
+Claim pending commission.
+
+The dispatch origin of this call must be signed by the `root` role of the pool. Pending
+commission is paid out and added to total claimed commission`. Total pending commission
+is reset to zero. the current.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `PoolId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'NominationPools', 'claim_commission', {'pool_id': 'u32'}
+)
+```
+
+---------
 ### claim_payout
 A bonded member can use this to claim their payout based on the rewards that the pool
-has accumulated since their last claimed payout (OR since joining if this is there first
+has accumulated since their last claimed payout (OR since joining if this is their first
 time claiming rewards). The payout will be transferred to the member&\#x27;s account.
 
 The member will earn rewards pro rata based on the members stake vs the sum of the
 members in the pools stake. Rewards do not &quot;expire&quot;.
+
+See `claim_payout_other` to caim rewards on bahalf of some `other` pool member.
 #### Attributes
 No attributes
 
@@ -65,6 +123,24 @@ No attributes
 ```python
 call = substrate.compose_call(
     'NominationPools', 'claim_payout', {}
+)
+```
+
+---------
+### claim_payout_other
+`origin` can claim payouts on some pool member `other`&\#x27;s behalf.
+
+Pool member `other` must have a `PermissionlessAll` or `PermissionlessWithdraw` in order
+for this call to be successful.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| other | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'NominationPools', 'claim_payout_other', {'other': 'AccountId'}
 )
 ```
 
@@ -81,7 +157,7 @@ Create a new delegation pool.
   creating multiple pools in the same extrinsic.
 * `root` - The account to set as [`PoolRoles::root`].
 * `nominator` - The account to set as the [`PoolRoles::nominator`].
-* `state_toggler` - The account to set as the [`PoolRoles::state_toggler`].
+* `bouncer` - The account to set as the [`PoolRoles::bouncer`].
 
 \# Note
 
@@ -93,13 +169,20 @@ needs at have at least `amount + existential_deposit` transferrable.
 | amount | `BalanceOf<T>` | 
 | root | `AccountIdLookupOf<T>` | 
 | nominator | `AccountIdLookupOf<T>` | 
-| state_toggler | `AccountIdLookupOf<T>` | 
+| bouncer | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'NominationPools', 'create', {
     'amount': 'u128',
+    'bouncer': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
     'nominator': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -108,13 +191,6 @@ call = substrate.compose_call(
         'Raw': 'Bytes',
     },
     'root': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-    'state_toggler': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
         'Id': 'AccountId',
@@ -139,7 +215,7 @@ same as `create` with the inclusion of
 | amount | `BalanceOf<T>` | 
 | root | `AccountIdLookupOf<T>` | 
 | nominator | `AccountIdLookupOf<T>` | 
-| state_toggler | `AccountIdLookupOf<T>` | 
+| bouncer | `AccountIdLookupOf<T>` | 
 | pool_id | `PoolId` | 
 
 #### Python
@@ -147,6 +223,13 @@ same as `create` with the inclusion of
 call = substrate.compose_call(
     'NominationPools', 'create_with_pool_id', {
     'amount': 'u128',
+    'bouncer': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
     'nominator': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -156,13 +239,6 @@ call = substrate.compose_call(
     },
     'pool_id': 'u32',
     'root': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-    'state_toggler': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
         'Id': 'AccountId',
@@ -248,6 +324,113 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_claim_permission
+Allows a pool member to set a claim permission to allow or disallow permissionless
+bonding and withdrawing.
+
+By default, this is `Permissioned`, which implies only the pool member themselves can
+claim their pending rewards. If a pool member wishes so, they can set this to
+`PermissionlessAll` to allow any account to claim their rewards and bond extra to the
+pool.
+
+\# Arguments
+
+* `origin` - Member of a pool.
+* `actor` - Account to claim reward. // improve this
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| permission | `ClaimPermission` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'NominationPools', 'set_claim_permission', {
+    'permission': (
+        'Permissioned',
+        'PermissionlessCompound',
+        'PermissionlessWithdraw',
+        'PermissionlessAll',
+    ),
+}
+)
+```
+
+---------
+### set_commission
+Set the commission of a pool.
+Both a commission percentage and a commission payee must be provided in the `current`
+tuple. Where a `current` of `None` is provided, any current commission will be removed.
+
+- If a `None` is supplied to `new_commission`, existing commission will be removed.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `PoolId` | 
+| new_commission | `Option<(Perbill, T::AccountId)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'NominationPools', 'set_commission', {
+    'new_commission': (
+        None,
+        ('u32', 'AccountId'),
+    ),
+    'pool_id': 'u32',
+}
+)
+```
+
+---------
+### set_commission_change_rate
+Set the commission change rate for a pool.
+
+Initial change rate is not bounded, whereas subsequent updates can only be more
+restrictive than the current.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `PoolId` | 
+| change_rate | `CommissionChangeRate<T::BlockNumber>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'NominationPools', 'set_commission_change_rate', {
+    'change_rate': {
+        'max_increase': 'u32',
+        'min_delay': 'u32',
+    },
+    'pool_id': 'u32',
+}
+)
+```
+
+---------
+### set_commission_max
+Set the maximum commission of a pool.
+
+- Initial max can be set to any `Perbill`, and only smaller values thereafter.
+- Current commission will be lowered in the event it is higher than a new max
+  commission.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `PoolId` | 
+| max_commission | `Perbill` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'NominationPools', 'set_commission_max', {
+    'max_commission': 'u32',
+    'pool_id': 'u32',
+}
+)
+```
+
+---------
 ### set_configs
 Update configurations for the nomination pools. The origin for this call must be
 Root.
@@ -259,6 +442,7 @@ Root.
 * `max_pools` - Set [`MaxPools`].
 * `max_members` - Set [`MaxPoolMembers`].
 * `max_members_per_pool` - Set [`MaxPoolMembersPerPool`].
+* `global_max_commission` - Set [`GlobalMaxCommission`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -267,11 +451,17 @@ Root.
 | max_pools | `ConfigOp<u32>` | 
 | max_members | `ConfigOp<u32>` | 
 | max_members_per_pool | `ConfigOp<u32>` | 
+| global_max_commission | `ConfigOp<Perbill>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'NominationPools', 'set_configs', {
+    'global_max_commission': {
+        'Noop': None,
+        'Remove': None,
+        'Set': 'u32',
+    },
     'max_members': {
         'Noop': None,
         'Remove': None,
@@ -305,8 +495,8 @@ call = substrate.compose_call(
 ### set_metadata
 Set a new metadata for the pool.
 
-The dispatch origin of this call must be signed by the state toggler, or the root role
-of the pool.
+The dispatch origin of this call must be signed by the bouncer, or the root role of the
+pool.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -332,7 +522,7 @@ change again.
 
 The dispatch origin of this call must be either:
 
-1. signed by the state toggler, or the root role of the pool,
+1. signed by the bouncer, or the root role of the pool,
 2. if the pool conditions to be open are NOT met (as described by `ok_to_be_open`), and
    then the state of the pool can be permissionlessly changed to `Destroying`.
 #### Attributes
@@ -366,8 +556,8 @@ account).
 
 \# Conditions for a permissionless dispatch.
 
-* The pool is blocked and the caller is either the root or state-toggler. This is
-  refereed to as a kick.
+* The pool is blocked and the caller is either the root or bouncer. This is refereed to
+  as a kick.
 * The pool is destroying and the member is not the depositor.
 * The pool is destroying, the member is the depositor and no other members are in the
   pool.
@@ -425,23 +615,23 @@ most pool members and they should be informed of changes to pool roles.
 | pool_id | `PoolId` | 
 | new_root | `ConfigOp<T::AccountId>` | 
 | new_nominator | `ConfigOp<T::AccountId>` | 
-| new_state_toggler | `ConfigOp<T::AccountId>` | 
+| new_bouncer | `ConfigOp<T::AccountId>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'NominationPools', 'update_roles', {
+    'new_bouncer': {
+        'Noop': None,
+        'Remove': None,
+        'Set': 'AccountId',
+    },
     'new_nominator': {
         'Noop': None,
         'Remove': None,
         'Set': 'AccountId',
     },
     'new_root': {
-        'Noop': None,
-        'Remove': None,
-        'Set': 'AccountId',
-    },
-    'new_state_toggler': {
         'Noop': None,
         'Remove': None,
         'Set': 'AccountId',
@@ -463,7 +653,7 @@ account).
 
 * The pool is in destroy mode and the target is not the depositor.
 * The target is the depositor and they are the only member in the sub pools.
-* The pool is blocked and the caller is either the root or state-toggler.
+* The pool is blocked and the caller is either the root or bouncer.
 
 \# Conditions for permissioned dispatch
 
@@ -547,6 +737,42 @@ A payout has been made to a member.
 | payout | `BalanceOf<T>` | ```u128```
 
 ---------
+### PoolCommissionChangeRateUpdated
+A pool&\#x27;s commission `change_rate` has been changed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pool_id | `PoolId` | ```u32```
+| change_rate | `CommissionChangeRate<T::BlockNumber>` | ```{'max_increase': 'u32', 'min_delay': 'u32'}```
+
+---------
+### PoolCommissionClaimed
+Pool commission has been claimed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pool_id | `PoolId` | ```u32```
+| commission | `BalanceOf<T>` | ```u128```
+
+---------
+### PoolCommissionUpdated
+A pool&\#x27;s commission setting has been changed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pool_id | `PoolId` | ```u32```
+| current | `Option<(Perbill, T::AccountId)>` | ```(None, ('u32', 'AccountId'))```
+
+---------
+### PoolMaxCommissionUpdated
+A pool&\#x27;s maximum commission setting has been changed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pool_id | `PoolId` | ```u32```
+| max_commission | `Perbill` | ```u32```
+
+---------
 ### PoolSlashed
 The active balance of pool `pool_id` has been slashed to `balance`.
 #### Attributes
@@ -563,7 +789,7 @@ can never change.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | root | `Option<T::AccountId>` | ```(None, 'AccountId')```
-| state_toggler | `Option<T::AccountId>` | ```(None, 'AccountId')```
+| bouncer | `Option<T::AccountId>` | ```(None, 'AccountId')```
 | nominator | `Option<T::AccountId>` | ```(None, 'AccountId')```
 
 ---------
@@ -640,16 +866,42 @@ result = substrate.query(
 #### Return value
 ```python
 {
+    'commission': {
+        'change_rate': (None, {'max_increase': 'u32', 'min_delay': 'u32'}),
+        'current': (None, ('u32', 'AccountId')),
+        'max': (None, 'u32'),
+        'throttle_from': (None, 'u32'),
+    },
     'member_counter': 'u32',
     'points': 'u128',
     'roles': {
+        'bouncer': (None, 'AccountId'),
         'depositor': 'AccountId',
         'nominator': (None, 'AccountId'),
         'root': (None, 'AccountId'),
-        'state_toggler': (None, 'AccountId'),
     },
     'state': ('Open', 'Blocked', 'Destroying'),
 }
+```
+---------
+### ClaimPermissions
+ Map from a pool member account to their opted claim permission.
+
+#### Python
+```python
+result = substrate.query(
+    'NominationPools', 'ClaimPermissions', ['AccountId']
+)
+```
+
+#### Return value
+```python
+(
+    'Permissioned',
+    'PermissionlessCompound',
+    'PermissionlessWithdraw',
+    'PermissionlessAll',
+)
 ```
 ---------
 ### CounterForBondedPools
@@ -734,6 +986,23 @@ Counter for the related counted storage map
 ```python
 result = substrate.query(
     'NominationPools', 'CounterForSubPoolsStorage', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### GlobalMaxCommission
+ The maximum commission that can be charged by a pool. Used on commission payouts to bound
+ pool commissions that are &gt; `GlobalMaxCommission`, necessary if a future
+ `GlobalMaxCommission` is lower than some current pool commissions.
+
+#### Python
+```python
+result = substrate.query(
+    'NominationPools', 'GlobalMaxCommission', []
 )
 ```
 
@@ -874,7 +1143,7 @@ result = substrate.query(
     'last_recorded_reward_counter': 'u128',
     'points': 'u128',
     'pool_id': 'u32',
-    'unbonding_eras': 'scale_info::618',
+    'unbonding_eras': 'scale_info::692',
 }
 ```
 ---------
@@ -897,8 +1166,8 @@ result = substrate.query(
 ```
 ---------
 ### RewardPools
- Reward pools. This is where there rewards for each pool accumulate. When a members payout
- is claimed, the balance comes out fo the reward pool. Keyed by the bonded pools account.
+ Reward pools. This is where there rewards for each pool accumulate. When a members payout is
+ claimed, the balance comes out fo the reward pool. Keyed by the bonded pools account.
 
 #### Python
 ```python
@@ -912,13 +1181,15 @@ result = substrate.query(
 {
     'last_recorded_reward_counter': 'u128',
     'last_recorded_total_payouts': 'u128',
+    'total_commission_claimed': 'u128',
+    'total_commission_pending': 'u128',
     'total_rewards_claimed': 'u128',
 }
 ```
 ---------
 ### SubPoolsStorage
- Groups of unbonding pools. Each group of unbonding pools belongs to a bonded pool,
- hence the name sub-pools. Keyed by the bonded pools account.
+ Groups of unbonding pools. Each group of unbonding pools belongs to a
+ bonded pool, hence the name sub-pools. Keyed by the bonded pools account.
 
 #### Python
 ```python
@@ -929,7 +1200,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'no_era': {'balance': 'u128', 'points': 'u128'}, 'with_era': 'scale_info::627'}
+{'no_era': {'balance': 'u128', 'points': 'u128'}, 'with_era': 'scale_info::702'}
 ```
 ---------
 ## Constants
@@ -976,12 +1247,28 @@ An account is already delegating in another pool. An account may only belong to 
 pool at a time.
 
 ---------
+### BondExtraRestricted
+Bonding extra is restricted to the exact pending reward amount.
+
+---------
 ### CanNotChangeState
 The pools state cannot be changed.
 
 ---------
 ### CannotWithdrawAny
 None of the funds can be withdrawn yet because the bonding duration has not passed.
+
+---------
+### CommissionChangeRateNotAllowed
+The submitted changes to commission change rate are not allowed.
+
+---------
+### CommissionChangeThrottled
+Not enough blocks have surpassed since the last commission update.
+
+---------
+### CommissionExceedsMaximum
+The supplied commission exceeds the max allowed commission.
 
 ---------
 ### Defensive
@@ -1000,6 +1287,10 @@ anymore to, for example, collect rewards).
 ---------
 ### InvalidPoolId
 Pool id provided is not correct/usable.
+
+---------
+### MaxCommissionRestricted
+The pool&\#x27;s max commission cannot be set higher than the existing value.
 
 ---------
 ### MaxPoolMembers
@@ -1024,6 +1315,14 @@ The amount does not meet the minimum bond to either join or create a pool.
 The depositor can never unbond to a value less than
 `Pallet::depositor_min_bond`. The caller does not have nominating
 permissions for the pool. Members can never unbond to a value below `MinJoinBond`.
+
+---------
+### NoCommissionCurrentSet
+No commission current has been set.
+
+---------
+### NoPendingCommission
+There is no pending commission to claim.
 
 ---------
 ### NotDestroying

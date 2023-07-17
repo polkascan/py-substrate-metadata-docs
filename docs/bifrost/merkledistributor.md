@@ -346,7 +346,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::635'
+'scale_info::680'
 ```
 ---------
 ### MerkleDistributorMetadata

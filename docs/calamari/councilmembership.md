@@ -12,12 +12,20 @@ May only be called from `T::AddOrigin`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `T::AccountId` | 
+| who | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'CouncilMembership', 'add_member', {'who': 'AccountId'}
+    'CouncilMembership', 'add_member', {
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
 )
 ```
 
@@ -31,12 +39,20 @@ Prime membership is passed from the origin account to `new`, if extant.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new | `T::AccountId` | 
+| new | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'CouncilMembership', 'change_key', {'new': 'AccountId'}
+    'CouncilMembership', 'change_key', {
+    'new': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
 )
 ```
 
@@ -63,12 +79,20 @@ May only be called from `T::RemoveOrigin`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `T::AccountId` | 
+| who | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'CouncilMembership', 'remove_member', {'who': 'AccountId'}
+    'CouncilMembership', 'remove_member', {
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
 )
 ```
 
@@ -98,12 +122,20 @@ May only be called from `T::PrimeOrigin`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `T::AccountId` | 
+| who | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'CouncilMembership', 'set_prime', {'who': 'AccountId'}
+    'CouncilMembership', 'set_prime', {
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
 )
 ```
 
@@ -117,15 +149,27 @@ Prime membership is *not* passed from `remove` to `add`, if extant.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| remove | `T::AccountId` | 
-| add | `T::AccountId` | 
+| remove | `AccountIdLookupOf<T>` | 
+| add | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'CouncilMembership', 'swap_member', {
-    'add': 'AccountId',
-    'remove': 'AccountId',
+    'add': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+    'remove': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
 }
 )
 ```

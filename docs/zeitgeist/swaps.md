@@ -894,17 +894,6 @@ constant = substrate.get_constant('Swaps', 'MaxWeight')
 constant = substrate.get_constant('Swaps', 'MinAssets')
 ```
 ---------
-### MinLiquidity
- The minimum amount of liqudity required to bootstrap a pool.
-#### Value
-```python
-1000000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('Swaps', 'MinLiquidity')
-```
----------
 ### MinSubsidy
  The minimum amount of subsidy required to state transit a market into active state.
  Must be greater than 0, but can be arbitrarily close to 0.
@@ -981,7 +970,7 @@ Some funds could not be transferred due to a too low balance.
 
 ---------
 ### InsufficientLiquidity
-Liquidity provided to new CPMM pool is less than `MinLiquidity`.
+Liquidity provided to new CPMM pool is less than the minimum allowed balance.
 
 ---------
 ### InsufficientSubsidy

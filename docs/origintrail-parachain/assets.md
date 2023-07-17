@@ -29,8 +29,8 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| delegate | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| delegate | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -70,8 +70,8 @@ Modes: Post-existence of `who`; Pre &amp; post Zombie-status of `who`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| who | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -109,8 +109,8 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| delegate | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| delegate | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -144,7 +144,7 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
+| id | `T::AssetIdParameter` | 
 
 #### Python
 ```python
@@ -159,7 +159,7 @@ Issue a new class of fungible assets from a public origin.
 
 This new asset class has no assets initially and its owner is the origin.
 
-The origin must be Signed and the sender must have sufficient funds free.
+The origin must conform to the configured `CreateOrigin` and have sufficient funds free.
 
 Funds of sender are reserved by `AssetDeposit`.
 
@@ -177,8 +177,8 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| admin | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| admin | `AccountIdLookupOf<T>` | 
 | min_balance | `T::Balance` | 
 
 #### Python
@@ -199,42 +199,78 @@ call = substrate.compose_call(
 ```
 
 ---------
-### destroy
-Destroy a class of fungible assets.
+### destroy_accounts
+Destroy all accounts associated with a given asset.
 
-The origin must conform to `ForceOrigin` or must be Signed and the sender must be the
-owner of the asset `id`.
+`destroy_accounts` should only be called after `start_destroy` has been called, and the
+asset is in a `Destroying` state.
+
+Due to weight restrictions, this function may need to be called multiple times to fully
+destroy all accounts. It will destroy `RemoveItemsLimit` accounts at a time.
 
 - `id`: The identifier of the asset to be destroyed. This must identify an existing
-asset.
+  asset.
 
-Emits `Destroyed` event when successful.
-
-NOTE: It can be helpful to first freeze an asset before destroying it so that you
-can provide accurate witness information and prevent users from manipulating state
-in a way that can make it harder to destroy.
-
-Weight: `O(c + p + a)` where:
-- `c = (witness.accounts - witness.sufficients)`
-- `s = witness.sufficients`
-- `a = witness.approvals`
+Each call emits the `Event::DestroyedAccounts` event.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| witness | `DestroyWitness` | 
+| id | `T::AssetIdParameter` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Assets', 'destroy', {
-    'id': 'u128',
-    'witness': {
-        'accounts': 'u32',
-        'approvals': 'u32',
-        'sufficients': 'u32',
-    },
-}
+    'Assets', 'destroy_accounts', {'id': 'u128'}
+)
+```
+
+---------
+### destroy_approvals
+Destroy all approvals associated with a given asset up to the max (T::RemoveItemsLimit).
+
+`destroy_approvals` should only be called after `start_destroy` has been called, and the
+asset is in a `Destroying` state.
+
+Due to weight restrictions, this function may need to be called multiple times to fully
+destroy all approvals. It will destroy `RemoveItemsLimit` approvals at a time.
+
+- `id`: The identifier of the asset to be destroyed. This must identify an existing
+  asset.
+
+Each call emits the `Event::DestroyedApprovals` event.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetIdParameter` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'destroy_approvals', {'id': 'u128'}
+)
+```
+
+---------
+### finish_destroy
+Complete destroying asset and unreserve currency.
+
+`finish_destroy` should only be called after `start_destroy` has been called, and the
+asset is in a `Destroying` state. All accounts or approvals should be destroyed before
+hand.
+
+- `id`: The identifier of the asset to be destroyed. This must identify an existing
+  asset.
+
+Each successful call emits the `Event::Destroyed` event.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetIdParameter` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'finish_destroy', {'id': 'u128'}
 )
 ```
 
@@ -265,11 +301,11 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| owner | `<T::Lookup as StaticLookup>::Source` | 
-| issuer | `<T::Lookup as StaticLookup>::Source` | 
-| admin | `<T::Lookup as StaticLookup>::Source` | 
-| freezer | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| owner | `AccountIdLookupOf<T>` | 
+| issuer | `AccountIdLookupOf<T>` | 
+| admin | `AccountIdLookupOf<T>` | 
+| freezer | `AccountIdLookupOf<T>` | 
 | min_balance | `T::Balance` | 
 | is_sufficient | `bool` | 
 | is_frozen | `bool` | 
@@ -332,9 +368,9 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| owner | `<T::Lookup as StaticLookup>::Source` | 
-| delegate | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| owner | `AccountIdLookupOf<T>` | 
+| delegate | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -375,7 +411,7 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
+| id | `T::AssetIdParameter` | 
 
 #### Python
 ```python
@@ -408,8 +444,8 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| owner | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| owner | `AccountIdLookupOf<T>` | 
 | is_sufficient | `bool` | 
 | min_balance | `T::Balance` | 
 
@@ -450,7 +486,7 @@ Weight: `O(N + S)` where N and S are the length of the name and symbol respectiv
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
+| id | `T::AssetIdParameter` | 
 | name | `Vec<u8>` | 
 | symbol | `Vec<u8>` | 
 | decimals | `u8` | 
@@ -493,9 +529,9 @@ Modes: Pre-existence of `dest`; Post-existence of `source`; Account pre-existenc
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| source | `<T::Lookup as StaticLookup>::Source` | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| source | `AccountIdLookupOf<T>` | 
+| dest | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -537,8 +573,8 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| who | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -570,7 +606,7 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
+| id | `T::AssetIdParameter` | 
 
 #### Python
 ```python
@@ -596,8 +632,8 @@ Modes: Pre-existing balance of `beneficiary`; Account pre-existence of `benefici
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| beneficiary | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| beneficiary | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -630,7 +666,7 @@ Emits `Refunded` event when successful.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
+| id | `T::AssetIdParameter` | 
 | allow_burn | `bool` | 
 
 #### Python
@@ -661,7 +697,7 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
+| id | `T::AssetIdParameter` | 
 | name | `Vec<u8>` | 
 | symbol | `Vec<u8>` | 
 | decimals | `u8` | 
@@ -675,6 +711,33 @@ call = substrate.compose_call(
     'name': 'Bytes',
     'symbol': 'Bytes',
 }
+)
+```
+
+---------
+### set_min_balance
+Sets the minimum balance of an asset.
+
+Only works if there aren&\#x27;t any accounts that are holding the asset or if
+the new value of `min_balance` is less than the old one.
+
+Origin must be Signed and the sender has to be the Owner of the
+asset `id`.
+
+- `id`: The identifier of the asset.
+- `min_balance`: The new value of `min_balance`.
+
+Emits `AssetMinBalanceChanged` event when successful.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetIdParameter` | 
+| min_balance | `T::Balance` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'set_min_balance', {'id': 'u128', 'min_balance': 'u128'}
 )
 ```
 
@@ -695,10 +758,10 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| issuer | `<T::Lookup as StaticLookup>::Source` | 
-| admin | `<T::Lookup as StaticLookup>::Source` | 
-| freezer | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| issuer | `AccountIdLookupOf<T>` | 
+| admin | `AccountIdLookupOf<T>` | 
+| freezer | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -731,6 +794,31 @@ call = substrate.compose_call(
 ```
 
 ---------
+### start_destroy
+Start the process of destroying a fungible asset class.
+
+`start_destroy` is the first in a series of extrinsics that should be called, to allow
+destruction of an asset class.
+
+The origin must conform to `ForceOrigin` or must be `Signed` by the asset&\#x27;s `owner`.
+
+- `id`: The identifier of the asset to be destroyed. This must identify an existing
+  asset.
+
+The asset class must be frozen before calling `start_destroy`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetIdParameter` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'start_destroy', {'id': 'u128'}
+)
+```
+
+---------
 ### thaw
 Allow unprivileged transfers from an account again.
 
@@ -745,8 +833,8 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| who | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -778,7 +866,7 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
+| id | `T::AssetIdParameter` | 
 
 #### Python
 ```python
@@ -801,7 +889,7 @@ Emits `Touched` event when successful.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
+| id | `T::AssetIdParameter` | 
 
 #### Python
 ```python
@@ -833,8 +921,8 @@ Modes: Pre-existence of `target`; Post-existence of sender; Account pre-existenc
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| target | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| target | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -877,9 +965,9 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| owner | `<T::Lookup as StaticLookup>::Source` | 
-| destination | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| owner | `AccountIdLookupOf<T>` | 
+| destination | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -929,8 +1017,8 @@ Modes: Pre-existence of `target`; Post-existence of sender; Account pre-existenc
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| target | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| target | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -965,8 +1053,8 @@ Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `T::AssetId` | 
-| owner | `<T::Lookup as StaticLookup>::Source` | 
+| id | `T::AssetIdParameter` | 
+| owner | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -988,6 +1076,16 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### AccountsDestroyed
+Accounts were destroyed for given asset.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u128```
+| accounts_destroyed | `u32` | ```u32```
+| accounts_remaining | `u32` | ```u32```
+
+---------
 ### ApprovalCancelled
 An approval for account `delegate` was cancelled by `owner`.
 #### Attributes
@@ -996,6 +1094,16 @@ An approval for account `delegate` was cancelled by `owner`.
 | asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
 | delegate | `T::AccountId` | ```AccountId```
+
+---------
+### ApprovalsDestroyed
+Approvals were destroyed for given asset.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u128```
+| approvals_destroyed | `u32` | ```u32```
+| approvals_remaining | `u32` | ```u32```
 
 ---------
 ### ApprovedTransfer
@@ -1015,6 +1123,15 @@ Some asset `asset_id` was frozen.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u128```
+
+---------
+### AssetMinBalanceChanged
+The min_balance of an asset has been updated by the asset owner.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u128```
+| new_min_balance | `T::Balance` | ```u128```
 
 ---------
 ### AssetStatusChanged
@@ -1061,6 +1178,14 @@ An asset class was destroyed.
 | asset_id | `T::AssetId` | ```u128```
 
 ---------
+### DestructionStarted
+An asset class is in the process of being destroyed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u128```
+
+---------
 ### ForceCreated
 Some asset class was force-created.
 #### Attributes
@@ -1086,7 +1211,7 @@ Some assets were issued.
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u128```
 | owner | `T::AccountId` | ```AccountId```
-| total_supply | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u128```
 
 ---------
 ### MetadataCleared
@@ -1225,11 +1350,11 @@ result = substrate.query(
     'approvals': 'u32',
     'deposit': 'u128',
     'freezer': 'AccountId',
-    'is_frozen': 'bool',
     'is_sufficient': 'bool',
     'issuer': 'AccountId',
     'min_balance': 'u128',
     'owner': 'AccountId',
+    'status': ('Live', 'Frozen', 'Destroying'),
     'sufficients': 'u32',
     'supply': 'u128',
 }
@@ -1316,6 +1441,19 @@ constant = substrate.get_constant('Assets', 'MetadataDepositBase')
 constant = substrate.get_constant('Assets', 'MetadataDepositPerByte')
 ```
 ---------
+### RemoveItemsLimit
+ Max number of items to destroy per `destroy_accounts` and `destroy_approvals` call.
+
+ Must be configured to result in a weight that makes each call fit in a block.
+#### Value
+```python
+656
+```
+#### Python
+```python
+constant = substrate.get_constant('Assets', 'RemoveItemsLimit')
+```
+---------
 ### StringLimit
  The maximum length of a name or symbol stored on-chain.
 #### Value
@@ -1334,6 +1472,10 @@ constant = substrate.get_constant('Assets', 'StringLimit')
 The asset-account already exists.
 
 ---------
+### AssetNotLive
+The asset is not live, and likely being destroyed.
+
+---------
 ### BadMetadata
 Invalid metadata given.
 
@@ -1346,12 +1488,25 @@ Invalid witness data given.
 Account balance must be greater than or equal to the transfer amount.
 
 ---------
+### CallbackFailed
+Callback action resulted in error
+
+---------
 ### Frozen
 The origin account is frozen.
 
 ---------
 ### InUse
 The asset ID is already taken.
+
+---------
+### IncorrectStatus
+The asset status is not the expected status.
+
+---------
+### LiveAsset
+The asset is a live asset and is actively being used. Usually emit for operations such
+as `start_destroy` which require the asset to be in a destroying state.
 
 ---------
 ### MinBalanceZero
@@ -1374,6 +1529,10 @@ The signing account has no permission to do the operation.
 Unable to increment the consumer reference counters on the account. Either no provider
 reference exists to allow a non-zero balance of a non-self-sufficient asset, or the
 maximum number of consumers has been reached.
+
+---------
+### NotFrozen
+The asset should be frozen before the given operation.
 
 ---------
 ### Unapproved

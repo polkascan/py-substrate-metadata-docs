@@ -306,9 +306,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -896,19 +896,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Treasury': {
-                'Buyout': {
-                    'asset': 'u64',
-                    'buyout_amount': 'u128',
-                    'exchange_amount': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            'Whitelists': {
-                'AddedToWhitelist': 'AccountId',
-                'RemovedFromWhitelist': 'AccountId',
-            },
-            None: None,
             'TechnicalCommitteeMembership': (
                 'MemberAdded',
                 'MemberRemoved',
@@ -921,6 +908,14 @@ result = substrate.query(
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
                     'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            'Treasury': {
+                'Buyout': {
+                    'asset': 'u64',
+                    'buyout_amount': 'u128',
+                    'exchange_amount': 'u128',
                     'who': 'AccountId',
                 },
             },
@@ -942,6 +937,10 @@ result = substrate.query(
             'Vesting2': {
                 'VestingCompleted': 'AccountId',
                 'VestingUpdated': ('AccountId', 'u128'),
+            },
+            'Whitelists': {
+                'AddedToWhitelist': 'AccountId',
+                'RemovedFromWhitelist': 'AccountId',
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -982,6 +981,7 @@ result = substrate.query(
                 'SaleBase': ('AccountId', 'u32', 'u128', 'u128'),
                 'SellXBase': ('AccountId', 'u32', 'u128', 'u128'),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

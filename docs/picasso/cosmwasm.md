@@ -32,7 +32,7 @@ Execute a previously instantiated contract.
 call = substrate.compose_call(
     'Cosmwasm', 'execute', {
     'contract': 'AccountId',
-    'funds': 'scale_info::396',
+    'funds': 'scale_info::397',
     'gas': 'u64',
     'message': 'Bytes',
 }
@@ -76,7 +76,7 @@ call = substrate.compose_call(
         'CodeHash': '[u8; 32]',
         'CodeId': 'u64',
     },
-    'funds': 'scale_info::396',
+    'funds': 'scale_info::397',
     'gas': 'u64',
     'label': 'Bytes',
     'message': 'Bytes',
@@ -652,6 +652,9 @@ constant = substrate.get_constant('Cosmwasm', 'WasmCostRules')
 ### AccountConversionFailure
 
 ---------
+### AssetConversion
+
+---------
 ### CodeAlreadyExists
 
 ---------
@@ -677,6 +680,9 @@ constant = substrate.get_constant('Cosmwasm', 'WasmCostRules')
 
 ---------
 ### ContractNotFound
+
+---------
+### ExecuteDeserialize
 
 ---------
 ### FailedToSerialize
@@ -737,6 +743,9 @@ constant = substrate.get_constant('Cosmwasm', 'WasmCostRules')
 
 ---------
 ### StackOverflow
+
+---------
+### SubstrateDispatch
 
 ---------
 ### TransferFailed

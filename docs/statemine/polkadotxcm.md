@@ -32,7 +32,6 @@ call = substrate.compose_call(
         'ref_time': 'u64',
     },
     'message': {
-        None: None,
         'V2': [
             {
                 'BuyExecution': {
@@ -61,7 +60,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'beneficiary': {
                         'interior': 'scale_info::90',
@@ -74,7 +73,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'dest': {
                         'interior': 'scale_info::90',
@@ -82,7 +81,7 @@ call = substrate.compose_call(
                     },
                     'max_assets': 'u32',
                     'xcm': [
-                        'scale_info::251',
+                        'scale_info::255',
                     ],
                 },
                 'DescendOrigin': {
@@ -153,7 +152,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'receive': [
                         'scale_info::87',
@@ -177,14 +176,14 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'reserve': {
                         'interior': 'scale_info::90',
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::251',
+                        'scale_info::255',
                     ],
                 },
                 'InitiateTeleport': {
@@ -192,14 +191,14 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'dest': {
                         'interior': 'scale_info::90',
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::251',
+                        'scale_info::255',
                     ],
                 },
                 'QueryHolding': {
@@ -207,7 +206,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'dest': {
                         'interior': 'scale_info::90',
@@ -227,7 +226,7 @@ call = substrate.compose_call(
                             None,
                             (
                                 'u32',
-                                'scale_info::233',
+                                'scale_info::234',
                             ),
                         ),
                         'Null': None,
@@ -250,10 +249,10 @@ call = substrate.compose_call(
                     'scale_info::87',
                 ],
                 'SetAppendix': [
-                    'scale_info::259',
+                    'scale_info::263',
                 ],
                 'SetErrorHandler': [
-                    'scale_info::259',
+                    'scale_info::263',
                 ],
                 'SubscribeVersion': {
                     'max_response_weight': 'u64',
@@ -289,7 +288,7 @@ call = substrate.compose_call(
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::251',
+                        'scale_info::255',
                     ],
                 },
                 'Trap': 'u64',
@@ -299,6 +298,7 @@ call = substrate.compose_call(
                 ],
             },
         ],
+        None: None,
         'V3': [
             {
                 'AliasOrigin': {
@@ -738,10 +738,10 @@ call = substrate.compose_call(
                     'scale_info::60',
                 ],
                 'SetAppendix': [
-                    'scale_info::263',
+                    'scale_info::267',
                 ],
                 'SetErrorHandler': [
-                    'scale_info::263',
+                    'scale_info::267',
                 ],
                 'SetFeesMode': {
                     'jit_withdraw': 'bool',
@@ -27380,7 +27380,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'beneficiary': {
                         'interior': 'scale_info::90',
@@ -27393,7 +27393,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'dest': {
                         'interior': 'scale_info::90',
@@ -27401,7 +27401,7 @@ call = substrate.compose_call(
                     },
                     'max_assets': 'u32',
                     'xcm': [
-                        'scale_info::251',
+                        'scale_info::255',
                     ],
                 },
                 'DescendOrigin': {
@@ -27472,7 +27472,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'receive': [
                         'scale_info::87',
@@ -27496,14 +27496,14 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'reserve': {
                         'interior': 'scale_info::90',
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::251',
+                        'scale_info::255',
                     ],
                 },
                 'InitiateTeleport': {
@@ -27511,14 +27511,14 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'dest': {
                         'interior': 'scale_info::90',
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::251',
+                        'scale_info::255',
                     ],
                 },
                 'QueryHolding': {
@@ -27526,7 +27526,7 @@ call = substrate.compose_call(
                         'Definite': [
                             'scale_info::87',
                         ],
-                        'Wild': 'scale_info::253',
+                        'Wild': 'scale_info::257',
                     },
                     'dest': {
                         'interior': 'scale_info::90',
@@ -27546,7 +27546,7 @@ call = substrate.compose_call(
                             None,
                             (
                                 'u32',
-                                'scale_info::233',
+                                'scale_info::234',
                             ),
                         ),
                         'Null': None,
@@ -27569,10 +27569,10 @@ call = substrate.compose_call(
                     'scale_info::87',
                 ],
                 'SetAppendix': [
-                    'scale_info::251',
+                    'scale_info::255',
                 ],
                 'SetErrorHandler': [
-                    'scale_info::251',
+                    'scale_info::255',
                 ],
                 'SubscribeVersion': {
                     'max_response_weight': 'u64',
@@ -27608,7 +27608,7 @@ call = substrate.compose_call(
                         'parents': 'u8',
                     },
                     'xcm': [
-                        'scale_info::251',
+                        'scale_info::255',
                     ],
                 },
                 'Trap': 'u64',
@@ -34009,7 +34009,7 @@ result = substrate.query(
             None: None,
             'V2': {
                 'Assets': ['scale_info::87'],
-                'ExecutionResult': (None, ('u32', 'scale_info::233')),
+                'ExecutionResult': (None, ('u32', 'scale_info::234')),
                 'Null': None,
                 'Version': 'u32',
             },
@@ -34667,6 +34667,7 @@ result = substrate.query(
 ```python
 {
     'amount': 'u128',
+    'consumers': [((), 'u128')],
     'locker': {
         None: None,
         'V2': {
@@ -34911,7 +34912,6 @@ result = substrate.query(
             'parents': 'u8',
         },
     },
-    'users': 'u32',
 }
 ```
 ---------
@@ -42916,7 +42916,7 @@ The message execution fails the filter.
 
 ---------
 ### InUse
-The unlock operation cannot succeed because there are still users of the lock.
+The unlock operation cannot succeed because there are still consumers of the lock.
 
 ---------
 ### InvalidAsset

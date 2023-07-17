@@ -51,6 +51,40 @@ call = substrate.compose_call(
 ```
 
 ---------
+### block
+Disallow further unprivileged transfers of an asset `id` to and from an account `who`.
+
+Origin must be Signed and the sender should be the Freezer of the asset `id`.
+
+- `id`: The identifier of the account&\#x27;s asset.
+- `who`: The account to be unblocked.
+
+Emits `Blocked`.
+
+Weight: `O(1)`
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetIdParameter` | 
+| who | `AccountIdLookupOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'block', {
+    'id': 'u32',
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
 ### burn
 Reduce the balance of `who` by as much as possible up to `amount` assets of `id`.
 
@@ -560,7 +594,9 @@ call = substrate.compose_call(
 
 ---------
 ### freeze
-Disallow further unprivileged transfers from an account.
+Disallow further unprivileged transfers of an asset `id` from an account `who`. `who`
+must already exist as an entry in `Account`s of the asset. If you want to freeze an
+account that does not have an entry, use `touch_other` first.
 
 Origin must be Signed and the sender should be the Freezer of the asset `id`.
 
@@ -655,11 +691,13 @@ call = substrate.compose_call(
 
 ---------
 ### refund
-Return the deposit (if any) of an asset account.
+Return the deposit (if any) of an asset account or a consumer reference (if any) of an
+account.
 
 The origin must be Signed.
 
-- `id`: The identifier of the asset for the account to be created.
+- `id`: The identifier of the asset for which the caller would like the deposit
+  refunded.
 - `allow_burn`: If `true` then assets may be destroyed in order to complete the refund.
 
 Emits `Refunded` event when successful.
@@ -673,6 +711,40 @@ Emits `Refunded` event when successful.
 ```python
 call = substrate.compose_call(
     'Assets', 'refund', {'allow_burn': 'bool', 'id': 'u32'}
+)
+```
+
+---------
+### refund_other
+Return the deposit (if any) of a target asset account. Useful if you are the depositor.
+
+The origin must be Signed and either the account owner, depositor, or asset `Admin`. In
+order to burn a non-zero balance of the asset, the caller must be the account and should
+use `refund`.
+
+- `id`: The identifier of the asset for the account holding a deposit.
+- `who`: The account to refund.
+
+Emits `Refunded` event when successful.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetIdParameter` | 
+| who | `AccountIdLookupOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'refund_other', {
+    'id': 'u32',
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
 )
 ```
 
@@ -820,7 +892,7 @@ call = substrate.compose_call(
 
 ---------
 ### thaw
-Allow unprivileged transfers from an account again.
+Allow unprivileged transfers to and from an account again.
 
 Origin must be Signed and the sender should be the Admin of the asset `id`.
 
@@ -895,6 +967,40 @@ Emits `Touched` event when successful.
 ```python
 call = substrate.compose_call(
     'Assets', 'touch', {'id': 'u32'}
+)
+```
+
+---------
+### touch_other
+Create an asset account for `who`.
+
+A deposit will be taken from the signer account.
+
+- `origin`: Must be Signed by `Freezer` or `Admin` of the asset `id`; the signer account
+  must have sufficient funds for a deposit to be taken.
+- `id`: The identifier of the asset for the account to be created.
+- `who`: The account to be created.
+
+Emits `Touched` event when successful.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `T::AssetIdParameter` | 
+| who | `AccountIdLookupOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'touch_other', {
+    'id': 'u32',
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
 )
 ```
 
@@ -1150,6 +1256,15 @@ Some asset `asset_id` was thawed.
 | asset_id | `T::AssetId` | ```u32```
 
 ---------
+### Blocked
+Some account `who` was blocked.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u32```
+| who | `T::AccountId` | ```AccountId```
+
+---------
 ### Burned
 Some assets were destroyed.
 #### Attributes
@@ -1263,6 +1378,16 @@ Some account `who` was thawed.
 | who | `T::AccountId` | ```AccountId```
 
 ---------
+### Touched
+Some account `who` was created with a deposit from `depositor`.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u32```
+| who | `T::AccountId` | ```AccountId```
+| depositor | `T::AccountId` | ```AccountId```
+
+---------
 ### Transferred
 Some assets were transferred.
 #### Attributes
@@ -1305,13 +1430,14 @@ result = substrate.query(
 {
     'balance': 'u128',
     'extra': (),
-    'is_frozen': 'bool',
     'reason': {
         'Consumer': None,
+        'DepositFrom': ('AccountId', 'u128'),
         'DepositHeld': 'u128',
         'DepositRefunded': None,
         'Sufficient': None,
     },
+    'status': ('Liquid', 'Frozen', 'Blocked'),
 }
 ```
 ---------

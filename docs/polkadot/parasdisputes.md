@@ -39,15 +39,6 @@ A dispute has been initiated. \[candidate hash, dispute location\]
 | None | `DisputeLocation` | ```('Local', 'Remote')```
 
 ---------
-### DisputeTimedOut
-A dispute has timed out due to insufficient participation.
-`\[para id, candidate hash\]`
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `CandidateHash` | ```[u8; 32]```
-
----------
 ### Revert
 A dispute has concluded with supermajority against a candidate.
 Block authors should no longer build on top of this head and should
@@ -61,6 +52,22 @@ number of the child of the last known valid block in the chain.
 ---------
 ## Storage functions
 
+---------
+### BackersOnDisputes
+ Backing votes stored for each dispute.
+ This storage is used for slashing.
+
+#### Python
+```python
+result = substrate.query(
+    'ParasDisputes', 'BackersOnDisputes', ['u32', '[u8; 32]']
+)
+```
+
+#### Return value
+```python
+'scale_info::775'
+```
 ---------
 ### Disputes
  All ongoing or concluded disputes for the last several sessions.
@@ -151,12 +158,20 @@ Validator vote submitted more than once to dispute.
 Invalid signature on statement.
 
 ---------
+### MaliciousBacker
+A dispute vote from a malicious backer.
+
+---------
+### MissingBackingVotes
+No backing votes were provides along dispute statements.
+
+---------
 ### SingleSidedDispute
 A dispute where there are only votes on one side.
 
 ---------
 ### UnconfirmedDispute
-Unconfirmed dispute statement sets provided
+Unconfirmed dispute statement sets provided.
 
 ---------
 ### ValidatorIndexOutOfBounds

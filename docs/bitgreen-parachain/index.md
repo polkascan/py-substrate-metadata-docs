@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bitgreen-parachain     |
 | Implementation name     | bitgreen-parachain     |
-| Spec version     | 1105     |
+| Spec version     | 1201     |
 | SS58 Format     | 42     |
 | Token symbol      | BBB     |
 | Token decimals      | 18     |
@@ -24,13 +24,13 @@
 | [CarbonCreditsPools](carboncreditspools.md) | [4](carboncreditspools.md#calls) | [3](carboncreditspools.md#events) | [2](carboncreditspools.md#storage-functions) | [1](carboncreditspools.md#constants) | [10](carboncreditspools.md#errors) |
 | [Contracts](contracts.md) | [9](contracts.md#calls) | [8](contracts.md#events) | [6](contracts.md#storage-functions) | [5](contracts.md#constants) | [30](contracts.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
-| [Dex](dex.md) | [8](dex.md#calls) | [7](dex.md#events) | [8](dex.md#storage-functions) | [5](dex.md#constants) | [21](dex.md#errors) |
+| [Dex](dex.md) | [13](dex.md#calls) | [12](dex.md#events) | [14](dex.md#storage-functions) | [5](dex.md#constants) | [29](dex.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
-| [KYC](kyc.md) | [8](kyc.md#calls) | [9](kyc.md#events) | [3](kyc.md#storage-functions) | [1](kyc.md#constants) | [6](kyc.md#errors) |
+| [KYC](kyc.md) | [10](kyc.md#calls) | [9](kyc.md#events) | [4](kyc.md#storage-functions) | [1](kyc.md#constants) | [6](kyc.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
-| [ParachainStaking](parachainstaking.md) | [10](parachainstaking.md#calls) | [11](parachainstaking.md#events) | [8](parachainstaking.md#storage-functions) | [0](parachainstaking.md#constants) | [17](parachainstaking.md#errors) |
+| [ParachainStaking](parachainstaking.md) | [11](parachainstaking.md#calls) | [12](parachainstaking.md#events) | [8](parachainstaking.md#storage-functions) | [0](parachainstaking.md#constants) | [18](parachainstaking.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [17](polkadotxcm.md#events) | [0](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [13](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |

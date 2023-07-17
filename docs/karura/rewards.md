@@ -25,8 +25,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -50,8 +48,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -75,8 +71,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -102,8 +96,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -127,8 +119,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -152,8 +142,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -173,7 +161,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'rewards': 'scale_info::514', 'total_shares': 'u128'}
+{'rewards': 'scale_info::523', 'total_shares': 'u128'}
 ```
 ---------
 ### SharesAndWithdrawnRewards
@@ -196,8 +184,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -221,8 +207,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -246,8 +230,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -273,8 +255,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -298,8 +278,6 @@ result = substrate.query(
                         'DOT',
                         'LDOT',
                         'TAP',
-                        'RENBTC',
-                        'CASH',
                         'KAR',
                         'KUSD',
                         'KSM',
@@ -323,8 +301,6 @@ result = substrate.query(
                 'DOT',
                 'LDOT',
                 'TAP',
-                'RENBTC',
-                'CASH',
                 'KAR',
                 'KUSD',
                 'KSM',
@@ -345,7 +321,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('u128', 'scale_info::520')
+('u128', 'scale_info::529')
 ```
 ---------
 ## Errors

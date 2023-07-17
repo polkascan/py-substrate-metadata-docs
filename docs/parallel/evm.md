@@ -246,6 +246,10 @@ Calculating total payment overflowed
 EVM reentrancy
 
 ---------
+### TransactionMustComeFromEOA
+EIP-3607,
+
+---------
 ### Undefined
 Undefined error.
 

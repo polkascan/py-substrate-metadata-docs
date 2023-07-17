@@ -226,6 +226,19 @@ result = substrate.query(
 'u128'
 ```
 ---------
+## Constants
+
+---------
+### LicenceBondIdentifier
+#### Value
+```python
+'0x6c6963656e63656964656e7469666965'
+```
+#### Python
+```python
+constant = substrate.get_constant('CollatorSelection', 'LicenceBondIdentifier')
+```
+---------
 ## Errors
 
 ---------

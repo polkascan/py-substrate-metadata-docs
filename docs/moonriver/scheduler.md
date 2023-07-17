@@ -64,10 +64,6 @@ call = substrate.compose_call(
 ---------
 ### schedule_after
 Anonymously schedule a task after a delay.
-
-\# &lt;weight&gt;
-Same as [`schedule`].
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -122,10 +118,6 @@ call = substrate.compose_call(
 ---------
 ### schedule_named_after
 Schedule a named task after a delay.
-
-\# &lt;weight&gt;
-Same as [`schedule_named`](Self::schedule_named).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -231,47 +223,24 @@ result = substrate.query(
         {
             'call': {
                 'Inline': 'Bytes',
-                'Legacy': {'hash': '[u8; 32]'},
-                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+                'Legacy': 'InnerStruct',
+                'Lookup': 'InnerStruct',
             },
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'CouncilCollective': {
-                    'Member': '[u8; 20]',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
                 None: None,
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'Ethereum': {'EthereumTransaction': '[u8; 20]'},
-                'OpenTechCommitteeCollective': {
-                    'Member': '[u8; 20]',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'Origins': (
-                    'WhitelistedCaller',
-                    'GeneralAdmin',
-                    'ReferendumCanceller',
-                    'ReferendumKiller',
-                ),
-                'PolkadotXcm': {
-                    'Response': 'scale_info::125',
-                    'Xcm': 'scale_info::125',
-                },
-                'TechCommitteeCollective': {
-                    'Member': '[u8; 20]',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'TreasuryCouncilCollective': {
-                    'Member': '[u8; 20]',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'Void': (),
+                'CouncilCollective': 'scale_info::122',
+                'CumulusXcm': 'scale_info::126',
+                'Ethereum': 'scale_info::120',
+                'EthereumXcm': 'scale_info::136',
+                'OpenTechCommitteeCollective': 'scale_info::125',
+                'Origins': 'scale_info::121',
+                'PolkadotXcm': 'scale_info::127',
+                'TechCommitteeCollective': 'scale_info::123',
+                'TreasuryCouncilCollective': 'scale_info::124',
+                'Void': 'scale_info::137',
+                'system': 'scale_info::119',
             },
             'priority': 'u8',
         },

@@ -49,7 +49,7 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'NFT', 'create_class', {
-    'attributes': 'scale_info::337',
+    'attributes': 'scale_info::344',
     'metadata': 'Bytes',
     'properties': 'u8',
 }
@@ -95,7 +95,7 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'NFT', 'mint', {
-    'attributes': 'scale_info::337',
+    'attributes': 'scale_info::344',
     'class_id': 'u32',
     'metadata': 'Bytes',
     'quantity': 'u32',

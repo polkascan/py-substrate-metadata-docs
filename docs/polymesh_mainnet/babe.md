@@ -55,12 +55,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -83,12 +83,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -142,12 +142,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -170,12 +170,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -212,7 +212,7 @@ call = substrate.compose_call(
  This field should always be populated during block processing unless
  secondary plain slots are enabled (which don&#x27;t contain a VRF output).
 
- It is set in `on_initialize`, before it will contain the value from the last block.
+ It is set in `on_finalize`, before it will contain the value from the last block.
 
 #### Python
 ```python
@@ -342,7 +342,25 @@ result = substrate.query(
 
 #### Return value
 ```python
-(None, '[u8; 32]')
+(
+    None,
+    {
+        None: None,
+        'Primary': {
+            'authority_index': 'u32',
+            'slot': 'u64',
+            'vrf_output': '[u8; 32]',
+            'vrf_proof': '[u8; 64]',
+        },
+        'SecondaryPlain': {'authority_index': 'u32', 'slot': 'u64'},
+        'SecondaryVRF': {
+            'authority_index': 'u32',
+            'slot': 'u64',
+            'vrf_output': '[u8; 32]',
+            'vrf_proof': '[u8; 64]',
+        },
+    },
+)
 ```
 ---------
 ### Lateness
@@ -551,6 +569,10 @@ constant = substrate.get_constant('Babe', 'MaxAuthorities')
 ---------
 ### DuplicateOffenceReport
 A given equivocation report is valid but already previously reported.
+
+---------
+### InvalidConfiguration
+Submitted configuration is invalid.
 
 ---------
 ### InvalidEquivocationProof

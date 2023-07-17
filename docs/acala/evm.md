@@ -228,6 +228,42 @@ call = substrate.compose_call(
 ```
 
 ---------
+### eth_call_v2
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| action | `TransactionAction` | 
+| input | `Vec<u8>` | 
+| value | `BalanceOf<T>` | 
+| gas_price | `u64` | 
+| gas_limit | `u64` | 
+| access_list | `Vec<AccessListItem>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'EVM', 'eth_call_v2', {
+    'access_list': [
+        {
+            'address': '[u8; 20]',
+            'storage_keys': [
+                '[u8; 32]',
+            ],
+        },
+    ],
+    'action': {
+        'Call': '[u8; 20]',
+        'Create': None,
+    },
+    'gas_limit': 'u64',
+    'gas_price': 'u64',
+    'input': 'Bytes',
+    'value': 'u128',
+}
+)
+```
+
+---------
 ### publish_contract
 #### Attributes
 | Name | Type |
@@ -575,7 +611,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['AccountId']
+'AccountId'
 ```
 ---------
 ### NetworkContractIndex
@@ -590,6 +626,20 @@ result = substrate.query(
 #### Return value
 ```python
 'u64'
+```
+---------
+### XcmOrigin
+
+#### Python
+```python
+result = substrate.query(
+    'EVM', 'XcmOrigin', []
+)
+```
+
+#### Return value
+```python
+['AccountId']
 ```
 ---------
 ## Constants

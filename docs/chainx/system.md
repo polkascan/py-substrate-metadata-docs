@@ -375,18 +375,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -536,19 +524,6 @@ result = substrate.query(
                     'scale_info::114',
                 ),
             },
-            'Evm': {
-                'BalanceDeposit': ('AccountId', '[u8; 20]', '[u64; 4]'),
-                'BalanceWithdraw': ('AccountId', '[u8; 20]', '[u64; 4]'),
-                'Created': '[u8; 20]',
-                'CreatedFailed': '[u8; 20]',
-                'Executed': '[u8; 20]',
-                'ExecutedFailed': '[u8; 20]',
-                'Log': {
-                    'address': '[u8; 20]',
-                    'data': 'Bytes',
-                    'topics': ['[u8; 32]'],
-                },
-            },
             'Grandpa': {
                 'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
                 'Paused': None,
@@ -624,6 +599,88 @@ result = substrate.query(
                 },
             },
             'Offences': {'Offence': {'kind': '[u8; 16]', 'timeslot': 'Bytes'}},
+            'Scheduler': {
+                'CallLookupFailed': {
+                    'error': 'scale_info::31',
+                    'id': (None, 'Bytes'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, 'Bytes'),
+                    'result': 'scale_info::29',
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'XBtcLedger': {
+                'BalanceSet': {'free': 'u128', 'who': 'AccountId'},
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'XGatewayBitcoin': {
+                'Deposited': ('[u8; 32]', 'AccountId', 'u128'),
+                'DepositedAptos': ('[u8; 32]', '[u8; 32]', 'u128'),
+                'DepositedEvm': ('[u8; 32]', '[u8; 20]', 'u128'),
+                'DepositedNamed': ('[u8; 32]', 'Bytes', 'Bytes', 'u128'),
+                'HeaderInserted': '[u8; 32]',
+                'PendingDepositAptosRemoved': (
+                    '[u8; 32]',
+                    'u128',
+                    '[u8; 32]',
+                    'Bytes',
+                ),
+                'PendingDepositEvmRemoved': (
+                    '[u8; 20]',
+                    'u128',
+                    '[u8; 32]',
+                    'Bytes',
+                ),
+                'PendingDepositNamedRemoved': (
+                    'Bytes',
+                    'Bytes',
+                    'u128',
+                    '[u8; 32]',
+                    'Bytes',
+                ),
+                'PendingDepositRemoved': (
+                    'AccountId',
+                    'u128',
+                    '[u8; 32]',
+                    'Bytes',
+                ),
+                'TxProcessed': ('[u8; 32]', '[u8; 32]', 'scale_info::87'),
+                'UnclaimedDeposit': ('[u8; 32]', 'Bytes'),
+                'WithdrawalFatalErr': ('[u8; 32]', '[u8; 32]'),
+                'WithdrawalProposalCreated': ('AccountId', ['u32']),
+                'WithdrawalProposalVoted': ('AccountId', 'bool'),
+                'Withdrawn': ('[u8; 32]', ['u32'], 'u128'),
+            },
+            'XTransactionFee': {
+                'BTCFeePaid': ('AccountId', 'u128'),
+                'FeePaid': ('AccountId', 'u128', 'AccountId', 'u128'),
+            },
+            None: None,
+            'Evm': {
+                'BalanceDeposit': ('AccountId', '[u8; 20]', '[u64; 4]'),
+                'BalanceWithdraw': ('AccountId', '[u8; 20]', '[u64; 4]'),
+                'Created': '[u8; 20]',
+                'CreatedFailed': '[u8; 20]',
+                'Executed': '[u8; 20]',
+                'ExecutedFailed': '[u8; 20]',
+                'Log': {
+                    'address': '[u8; 20]',
+                    'data': 'Bytes',
+                    'topics': ['[u8; 32]'],
+                },
+            },
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -644,21 +701,17 @@ result = substrate.query(
                 },
                 'ProxyExecuted': {'result': 'scale_info::29'},
             },
-            'Scheduler': {
-                'CallLookupFailed': {
-                    'error': 'scale_info::31',
-                    'id': (None, 'Bytes'),
-                    'task': ('u32', 'u32'),
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
                 },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, 'Bytes'),
-                    'result': 'scale_info::29',
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -778,44 +831,6 @@ result = substrate.query(
                 'Deregistered': 'u32',
                 'Recovered': ('u32', 'bool'),
                 'Registered': ('u32', 'bool'),
-            },
-            'XGatewayBitcoin': {
-                'Deposited': ('[u8; 32]', 'AccountId', 'u128'),
-                'DepositedAptos': ('[u8; 32]', '[u8; 32]', 'u128'),
-                'DepositedEvm': ('[u8; 32]', '[u8; 20]', 'u128'),
-                'DepositedNamed': ('[u8; 32]', 'Bytes', 'Bytes', 'u128'),
-                'HeaderInserted': '[u8; 32]',
-                'PendingDepositAptosRemoved': (
-                    '[u8; 32]',
-                    'u128',
-                    '[u8; 32]',
-                    'Bytes',
-                ),
-                'PendingDepositEvmRemoved': (
-                    '[u8; 20]',
-                    'u128',
-                    '[u8; 32]',
-                    'Bytes',
-                ),
-                'PendingDepositNamedRemoved': (
-                    'Bytes',
-                    'Bytes',
-                    'u128',
-                    '[u8; 32]',
-                    'Bytes',
-                ),
-                'PendingDepositRemoved': (
-                    'AccountId',
-                    'u128',
-                    '[u8; 32]',
-                    'Bytes',
-                ),
-                'TxProcessed': ('[u8; 32]', '[u8; 32]', 'scale_info::87'),
-                'UnclaimedDeposit': ('[u8; 32]', 'Bytes'),
-                'WithdrawalFatalErr': ('[u8; 32]', '[u8; 32]'),
-                'WithdrawalProposalCreated': ('AccountId', ['u32']),
-                'WithdrawalProposalVoted': ('AccountId', 'bool'),
-                'Withdrawn': ('[u8; 32]', ['u32'], 'u128'),
             },
             'XGatewayCommon': {
                 'AllocNativeReward': ('AccountId', 'u32', 'u128'),
@@ -938,9 +953,6 @@ result = substrate.query(
             'XSystem': {
                 'Blacklisted': 'AccountId',
                 'Unblacklisted': 'AccountId',
-            },
-            'XTransactionFee': {
-                'FeePaid': ('AccountId', 'u128', 'AccountId', 'u128'),
             },
         },
         'phase': {
@@ -1183,6 +1195,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0x81b5bdc101bdfcd3', 1),
         ('0xd29d497e8e7bb356', 1),
         ('0xf7caa15ca5ade450', 1),
+        ('0x227ca46d3c40b0af', 1),
         ('0x8534d1a99d7a0f28', 1),
         ('0xe65b00e46cedd0aa', 2),
         ('0x582211f65bb14b89', 4),
@@ -1191,9 +1204,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'chainx-net',
     'impl_version': 1,
     'spec_name': 'chainx',
-    'spec_version': 27,
+    'spec_version': 32,
     'state_version': 0,
-    'transaction_version': 5,
+    'transaction_version': 7,
 }
 ```
 #### Python

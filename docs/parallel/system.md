@@ -1170,6 +1170,10 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
+                'UpdatedInactive': {
+                    'deactivated': 'u128',
+                    'reactivated': 'u128',
+                },
             },
             'Utility': {
                 'BatchCompleted': None,
@@ -1470,7 +1474,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'parallel',
     'impl_version': 33,
     'spec_name': 'parallel',
-    'spec_version': 196,
+    'spec_version': 198,
     'state_version': 0,
     'transaction_version': 17,
 }

@@ -30,6 +30,31 @@ call = substrate.compose_call(
 ```
 
 ---------
+### add_member_level_two
+Add a member `who` to the set.
+
+May only be called from `T::AddOrigin`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `AccountIdLookupOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'KYC', 'add_member_level_two', {
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
 ### change_key
 Swap out the sending member for some other key `new`.
 
@@ -116,6 +141,31 @@ May only be called from `T::RemoveOrigin`.
 ```python
 call = substrate.compose_call(
     'KYC', 'remove_member', {
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
+### remove_member_level_two
+Remove a member `who` from the set.
+
+May only be called from `T::RemoveOrigin`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `AccountIdLookupOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'KYC', 'remove_member_level_two', {
     'who': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -287,6 +337,21 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'KYC', 'Members', []
+)
+```
+
+#### Return value
+```python
+['AccountId']
+```
+---------
+### MembersLevel2
+ The current Level2 membership, stored as an ordered Vec.
+
+#### Python
+```python
+result = substrate.query(
+    'KYC', 'MembersLevel2', []
 )
 ```
 

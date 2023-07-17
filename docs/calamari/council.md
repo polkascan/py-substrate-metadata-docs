@@ -53,6 +53,63 @@ call = substrate.compose_call(
     'index': 'u32',
     'length_bound': 'u32',
     'proposal_hash': '[u8; 32]',
+    'proposal_weight_bound': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
+)
+```
+
+---------
+### close_old_weight
+Close a vote that is either approved, disapproved or whose voting period has ended.
+
+May be called by any signed account in order to finish voting and close the proposal.
+
+If called before the end of the voting period it will only close the vote if it is
+has enough votes to be approved or disapproved.
+
+If called after the end of the voting period abstentions are counted as rejections
+unless there is a prime member set and the prime member cast an approval.
+
+If the close operation completes successfully with disapproval, the transaction fee will
+be waived. Otherwise execution of the approved operation will be charged to the caller.
+
++ `proposal_weight_bound`: The maximum amount of weight consumed by executing the closed
+proposal.
++ `length_bound`: The upper bound for the length of the proposal in storage. Checked via
+`storage::read` so it is `size_of::&lt;u32&gt;() == 4` larger than the pure length.
+
+\# &lt;weight&gt;
+\#\# Weight
+- `O(B + M + P1 + P2)` where:
+  - `B` is `proposal` size in bytes (length-fee-bounded)
+  - `M` is members-count (code- and governance-bounded)
+  - `P1` is the complexity of `proposal` preimage.
+  - `P2` is proposal-count (code-bounded)
+- DB:
+ - 2 storage reads (`Members`: codec `O(M)`, `Prime`: codec `O(1)`)
+ - 3 mutations (`Voting`: codec `O(M)`, `ProposalOf`: codec `O(B)`, `Proposals`: codec
+   `O(P2)`)
+ - any mutations done while executing `proposal` (`P1`)
+- up to 3 events
+\# &lt;/weight&gt;
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| proposal_hash | `T::Hash` | 
+| index | `ProposalIndex` | 
+| proposal_weight_bound | `OldWeight` | 
+| length_bound | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Council', 'close_old_weight', {
+    'index': 'u32',
+    'length_bound': 'u32',
+    'proposal_hash': '[u8; 32]',
     'proposal_weight_bound': 'u64',
 }
 )
@@ -285,7 +342,7 @@ A motion was executed; result will be `Ok` if it returned without error.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ### MemberExecuted
@@ -294,7 +351,7 @@ A single member did some action; result will be `Ok` if it returned without erro
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ### Proposed

@@ -35,8 +35,14 @@ call = substrate.compose_call(
         'Raw': 'Bytes',
     },
     'proxy_type': (
+        'Any',
+        'NonTransfer',
+        'Balances',
+        'Assets',
+        'IdentityJudgement',
         'CancelProxy',
         'DappsStaking',
+        'StakerRewardClaim',
     ),
 }
 )
@@ -115,8 +121,14 @@ call = substrate.compose_call(
     'delay': 'u32',
     'index': 'u16',
     'proxy_type': (
+        'Any',
+        'NonTransfer',
+        'Balances',
+        'Assets',
+        'IdentityJudgement',
         'CancelProxy',
         'DappsStaking',
+        'StakerRewardClaim',
     ),
 }
 )
@@ -157,8 +169,14 @@ call = substrate.compose_call(
     'height': 'u32',
     'index': 'u16',
     'proxy_type': (
+        'Any',
+        'NonTransfer',
+        'Balances',
+        'Assets',
+        'IdentityJudgement',
         'CancelProxy',
         'DappsStaking',
+        'StakerRewardClaim',
     ),
     'spawner': {
         'Address20': '[u8; 20]',
@@ -197,8 +215,14 @@ call = substrate.compose_call(
     'force_proxy_type': (
         None,
         (
+            'Any',
+            'NonTransfer',
+            'Balances',
+            'Assets',
+            'IdentityJudgement',
             'CancelProxy',
             'DappsStaking',
+            'StakerRewardClaim',
         ),
     ),
     'real': {
@@ -248,8 +272,14 @@ call = substrate.compose_call(
     'force_proxy_type': (
         None,
         (
+            'Any',
+            'NonTransfer',
+            'Balances',
+            'Assets',
+            'IdentityJudgement',
             'CancelProxy',
             'DappsStaking',
+            'StakerRewardClaim',
         ),
     ),
     'real': {
@@ -378,8 +408,14 @@ call = substrate.compose_call(
         'Raw': 'Bytes',
     },
     'proxy_type': (
+        'Any',
+        'NonTransfer',
+        'Balances',
+        'Assets',
+        'IdentityJudgement',
         'CancelProxy',
         'DappsStaking',
+        'StakerRewardClaim',
     ),
 }
 )
@@ -406,7 +442,7 @@ A proxy was added.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('CancelProxy', 'DappsStaking')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Balances', 'Assets', 'IdentityJudgement', 'CancelProxy', 'DappsStaking', 'StakerRewardClaim')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -425,7 +461,7 @@ A proxy was removed.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('CancelProxy', 'DappsStaking')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Balances', 'Assets', 'IdentityJudgement', 'CancelProxy', 'DappsStaking', 'StakerRewardClaim')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -437,7 +473,7 @@ disambiguation index and proxy type.
 | -------- | -------- | -------- |
 | pure | `T::AccountId` | ```AccountId```
 | who | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('CancelProxy', 'DappsStaking')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Balances', 'Assets', 'IdentityJudgement', 'CancelProxy', 'DappsStaking', 'StakerRewardClaim')```
 | disambiguation_index | `u16` | ```u16```
 
 ---------
@@ -477,7 +513,16 @@ result = substrate.query(
         {
             'delay': 'u32',
             'delegate': 'AccountId',
-            'proxy_type': ('CancelProxy', 'DappsStaking'),
+            'proxy_type': (
+                'Any',
+                'NonTransfer',
+                'Balances',
+                'Assets',
+                'IdentityJudgement',
+                'CancelProxy',
+                'DappsStaking',
+                'StakerRewardClaim',
+            ),
         },
     ],
     'u128',

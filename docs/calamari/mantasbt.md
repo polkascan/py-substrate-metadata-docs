@@ -41,6 +41,21 @@ call = substrate.compose_call(
 ```
 
 ---------
+### change_free_reserve_account
+Sets the privileged reserve account. Requires `AdminOrigin`
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| account | `Option<T::AccountId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'MantaSbt', 'change_free_reserve_account', {'account': (None, 'AccountId')}
+)
+```
+
+---------
 ### mint_sbt_eth
 Mint zkSBT using Evm allowlist, signature must correspond to an `EvmAddress` which has been added to allowlist.
 
@@ -129,6 +144,7 @@ call = substrate.compose_call(
 | start_time | `Moment<T>` | 
 | end_time | `Option<Moment<T>>` | 
 | mint_name | `BoundedVec<u8, T::RegistryBound>` | 
+| public | `bool` | 
 
 #### Python
 ```python
@@ -136,7 +152,27 @@ call = substrate.compose_call(
     'MantaSbt', 'new_mint_info', {
     'end_time': (None, 'u64'),
     'mint_name': 'Bytes',
+    'public': 'bool',
     'start_time': 'u64',
+}
+)
+```
+
+---------
+### remove_allowlist_evm_account
+Remove allowlist evm account. Requires `AdminOrigin`
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| mint_id | `MintId` | 
+| evm_address | `EvmAddress` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'MantaSbt', 'remove_allowlist_evm_account', {
+    'evm_address': '[u8; 20]',
+    'mint_id': 'u32',
 }
 )
 ```
@@ -147,12 +183,14 @@ Reserves AssetIds to be used subsequently in `to_private` above.
 
 Increments AssetManager&\#x27;s AssetId counter.
 #### Attributes
-No attributes
+| Name | Type |
+| -------- | -------- | 
+| reservee | `Option<T::AccountId>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'MantaSbt', 'reserve_sbt', {}
+    'MantaSbt', 'reserve_sbt', {'reservee': (None, 'AccountId')}
 )
 ```
 
@@ -161,9 +199,13 @@ call = substrate.compose_call(
 Mints a zkSBT
 
 `TransferPost` is posted to private ledger and SBT metadata is stored onchain.
+`signature` parameter can be used to relay a tx.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
+| mint_id | `Option<MintId>` | 
+| chain_id | `Option<u64>` | 
+| signature | `Option<SignatureInfoOf<T>>` | 
 | post | `Box<TransferPost>` | 
 | metadata | `BoundedVec<u8, T::SbtMetadataBound>` | 
 
@@ -171,7 +213,9 @@ Mints a zkSBT
 ```python
 call = substrate.compose_call(
     'MantaSbt', 'to_private', {
+    'chain_id': (None, 'u64'),
     'metadata': 'Bytes',
+    'mint_id': (None, 'u32'),
     'post': {
         'asset_id': (None, '[u8; 32]'),
         'authorization_signature': (
@@ -223,6 +267,21 @@ call = substrate.compose_call(
         'sinks': ['[u8; 16]'],
         'sources': ['[u8; 16]'],
     },
+    'signature': (
+        None,
+        {
+            'pub_key': {
+                'Ecdsa': '[u8; 33]',
+                'Ed25519': '[u8; 32]',
+                'Sr25519': '[u8; 32]',
+            },
+            'sig': {
+                'Ecdsa': '[u8; 65]',
+                'Ed25519': '[u8; 64]',
+                'Sr25519': '[u8; 64]',
+            },
+        },
+    ),
 }
 )
 ```
@@ -237,6 +296,7 @@ Updates the time range of which a `MintId` will be valid. Also can update `mint_
 | start_time | `Moment<T>` | 
 | end_time | `Option<Moment<T>>` | 
 | mint_name | `BoundedVec<u8, T::RegistryBound>` | 
+| public | `bool` | 
 
 #### Python
 ```python
@@ -245,6 +305,7 @@ call = substrate.compose_call(
     'end_time': (None, 'u64'),
     'mint_id': 'u32',
     'mint_name': 'Bytes',
+    'public': 'bool',
     'start_time': 'u64',
 }
 )
@@ -266,6 +327,13 @@ Evm Address is Allowlisted
 ---------
 ### ChangeAllowlistAccount
 Privileged `AllowlistAccount` is changed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account | `Option<T::AccountId>` | ```(None, 'AccountId')```
+
+---------
+### ChangeFreeReserveAccount
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -301,12 +369,22 @@ Sbt is minted using Allowlisted Eth account
 | mint_name | `Vec<u8>` | ```Bytes```
 
 ---------
+### RemoveAllowlistEvmAddress
+Evm Address is removed from allowlist
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| address | `EvmAddress` | ```[u8; 20]```
+| mint_id | `MintId` | ```u32```
+
+---------
 ### SBTReserved
 Reserve `AssetIds` as SBT
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
+| reserve_account | `T::AccountId` | ```AccountId```
 | start_id | `StandardAssetId` | ```u128```
 | stop_id | `StandardAssetId` | ```u128```
 
@@ -354,43 +432,19 @@ result = substrate.query(
 {'AlreadyMinted': None, 'Available': 'u128'}
 ```
 ---------
-### EvmAddressAllowlist
- Allowlist for Evm Accounts
-
- Deprecated delete after migration
+### FreeReserveAccount
+ Account that can reserve `AssetId` for free
 
 #### Python
 ```python
 result = substrate.query(
-    'MantaSbt', 'EvmAddressAllowlist', [
-    {
-        'Bab': '[u8; 20]',
-        'Galxe': '[u8; 20]',
-    },
-]
+    'MantaSbt', 'FreeReserveAccount', []
 )
 ```
 
 #### Return value
 ```python
-{'AlreadyMinted': None, 'Available': 'u128'}
-```
----------
-### MintChainInfos
- Range of time and chain_id at which evm mints for each `MintType` are possible.
-
- Deprecated delete after migration
-
-#### Python
-```python
-result = substrate.query(
-    'MantaSbt', 'MintChainInfos', [('Bab', 'Galxe', 'Manta')]
-)
-```
-
-#### Return value
-```python
-{'end_time': (None, 'u64'), 'start_time': 'u64'}
+'AccountId'
 ```
 ---------
 ### MintIdRegistry
@@ -409,7 +463,7 @@ result = substrate.query(
 ```
 ---------
 ### NextMintId
- Counter for MintId. Increments by one everytime a new mint type is created (Bab, Galxe, etc.)
+ Counter for MintId. Increments by one every time a new mint type is created (Bab, Galxe, etc.)
 
  Should only ever be modified by `next_mint_id_and_increment()`
 
@@ -426,7 +480,7 @@ result = substrate.query(
 ```
 ---------
 ### NextSbtId
- Counter for SBT AssetId. Increments by one everytime a new asset id is requested.
+ Counter for SBT AssetId. Increments by one every time a new asset id is requested.
 
  Should only ever be modified by `next_sbt_id_and_increment()`
 
@@ -442,8 +496,23 @@ result = substrate.query(
 'u128'
 ```
 ---------
+### PublicMintList
+ Allows mint type to be public
+
+#### Python
+```python
+result = substrate.query(
+    'MantaSbt', 'PublicMintList', ['u32']
+)
+```
+
+#### Return value
+```python
+()
+```
+---------
 ### ReservedIds
- Allowlists accounts to be able to mint SBTs with designated `StandardAssetId`
+ Allowlist accounts to be able to mint SBTs with designated `StandardAssetId`
 
 #### Python
 ```python
@@ -457,32 +526,8 @@ result = substrate.query(
 ('u128', 'u128')
 ```
 ---------
-### SbtMetadata
- SBT Metadata maps `StandardAsset` to the correstonding SBT metadata
-
- Metadata is raw bytes that correspond to an image
-
- Deprecated delete after migration
-
-#### Python
-```python
-result = substrate.query(
-    'MantaSbt', 'SbtMetadata', ['u128']
-)
-```
-
-#### Return value
-```python
-{
-    'collection_id': (None, 'u128'),
-    'extra': (None, 'Bytes'),
-    'item_id': (None, 'u128'),
-    'mint_type': ('Bab', 'Galxe', 'Manta'),
-}
-```
----------
 ### SbtMetadataV2
- SBT Metadata maps `StandardAsset` to the correstonding SBT metadata
+ SBT Metadata maps `StandardAsset` to the corresponding SBT metadata
 
  Metadata is raw bytes that correspond to an image
 
@@ -558,21 +603,6 @@ result = substrate.query(
 )
 ```
 ---------
-### UtxoAccumulatorOutputs
- Outputs of Utxo Accumulator
-
-#### Python
-```python
-result = substrate.query(
-    'MantaSbt', 'UtxoAccumulatorOutputs', ['[u8; 32]']
-)
-```
-
-#### Return value
-```python
-()
-```
----------
 ### UtxoSet
  UTXO Set
 
@@ -599,17 +629,6 @@ result = substrate.query(
 ---------
 ## Constants
 
----------
-### MinimumWeightRemainInBlock
- The minimum weight that should remain as lazy migration executes.
-#### Value
-```python
-25000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('MantaSbt', 'MinimumWeightRemainInBlock')
-```
 ---------
 ### MintsPerReserve
  Number of unique Asset Ids reserved per `reserve_sbt` call, is the amount of SBTs allowed to be minted
@@ -677,6 +696,10 @@ constant = substrate.get_constant('MantaSbt', 'SbtMetadataBound')
 SBT has already been minted with this `EvmAddress`
 
 ---------
+### AssetIdsAlreadyReserved
+Already has unused AssetIds reserved
+
+---------
 ### AssetRegistered
 Asset Registered
 
@@ -690,7 +713,7 @@ An asset present in this transfer has already been spent.
 
 ---------
 ### BadSignature
-Incorrect EVM based signature
+Crypto Signature was not valid
 
 ---------
 ### DuplicateRegister
@@ -720,7 +743,7 @@ Invalid Authorization Signature
 
 ---------
 ### InvalidMintId
-MintId does not exist, cannot update a nonexistant MintId
+MintId does not exist, cannot update a nonexistent MintId
 
 ---------
 ### InvalidProof
@@ -769,6 +792,10 @@ Marker Error, this error exists for `PhantomData` should never happen
 ---------
 ### MintNotAvailable
 Minting SBT is outside defined time range or chain_id is not set
+
+---------
+### MintNotPublic
+Mint type is not public, only permissioned accounts can use this mint
 
 ---------
 ### NoSenderLedger
@@ -872,7 +899,7 @@ Transfer Ledger Wrong Checksum Error
 
 ---------
 ### TransferLedgerFpEncodeError
-Transer Ledger Field Element Encoding Error
+Transfer Ledger Field Element Encoding Error
 
 ---------
 ### TransferLedgerProofSystemFailed
@@ -884,7 +911,7 @@ Transfer Ledger Unknown Asset
 
 ---------
 ### TransferLedgerVerifyingContextDecodeError
-Transfer Ledger `VerifyingContext` cannont be decoded
+Transfer Ledger `VerifyingContext` cannot be decoded
 
 ---------
 ### ValueNotOne

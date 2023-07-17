@@ -43,7 +43,7 @@ proposal is awarded.
 | Name | Type |
 | -------- | -------- | 
 | value | `BalanceOf<T, I>` | 
-| beneficiary | `<T::Lookup as StaticLookup>::Source` | 
+| beneficiary | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -127,7 +127,7 @@ beneficiary.
 | Name | Type |
 | -------- | -------- | 
 | amount | `BalanceOf<T, I>` | 
-| beneficiary | `<T::Lookup as StaticLookup>::Source` | 
+| beneficiary | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -218,6 +218,15 @@ We have ended a spend period and will now allocate funds.
 | budget_remaining | `BalanceOf<T, I>` | ```u128```
 
 ---------
+### UpdatedInactive
+The inactive funds of the pallet have been updated.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| reactivated | `BalanceOf<T, I>` | ```u128```
+| deactivated | `BalanceOf<T, I>` | ```u128```
+
+---------
 ## Storage functions
 
 ---------
@@ -234,6 +243,21 @@ result = substrate.query(
 #### Return value
 ```python
 ['u32']
+```
+---------
+### Deactivated
+ The amount which has been reported as inactive to Currency.
+
+#### Python
+```python
+result = substrate.query(
+    'Treasury', 'Deactivated', []
+)
+```
+
+#### Return value
+```python
+'u128'
 ```
 ---------
 ### ProposalCount

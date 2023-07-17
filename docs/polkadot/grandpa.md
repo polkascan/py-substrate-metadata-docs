@@ -253,6 +253,12 @@ result = substrate.query(
  A mapping from grandpa set ID to the index of the *most recent* session for which its
  members were responsible.
 
+ This is only used for validating equivocation proofs. An equivocation proof must
+ contains a key-ownership proof for a given session, therefore we need a way to tie
+ together sessions and GRANDPA set ids, i.e. we need to validate that a validator
+ was the owner of a given key on a given session, and what the active set ID was
+ during that session.
+
  TWOX-NOTE: `SetId` is not under user control.
 
 #### Python
@@ -314,6 +320,22 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('Grandpa', 'MaxAuthorities')
+```
+---------
+### MaxSetIdSessionEntries
+ The maximum number of entries to keep in the set id to session index mapping.
+
+ Since the `SetIdSession` map is only used for validating equivocations this
+ value should relate to the bonding duration of whatever staking system is
+ being used (if any). If equivocation handling is not enabled then this value
+ can be zero.
+#### Value
+```python
+168
+```
+#### Python
+```python
+constant = substrate.get_constant('Grandpa', 'MaxSetIdSessionEntries')
 ```
 ---------
 ## Errors

@@ -268,6 +268,20 @@ result = substrate.query(
 }
 ```
 ---------
+### InactiveIssuance
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'InactiveIssuance', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### Locks
 
 #### Python
@@ -308,20 +322,6 @@ result = substrate.query(
         ),
     },
 ]
-```
----------
-### StorageVersion
-
-#### Python
-```python
-result = substrate.query(
-    'Balances', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V1_0_0', 'V2_0_0')
 ```
 ---------
 ### TotalIssuance

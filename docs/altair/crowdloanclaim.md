@@ -7,7 +7,6 @@
 ---------
 ### claim_reward
 Claim for a reward payout
-
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -41,15 +40,15 @@ call = substrate.compose_call(
 ### initialize
 Initialize the claim pallet
 
-This administrative function is used to transfer the list of contributors
-and their respective contributions, stored as a child trie root hash in
-the relay chain&\#x27;s [`crowdloan`](https://github.com/paritytech/polkadot/blob/rococo-v1/runtime/common/src/crowdloan.rs)
+This administrative function is used to transfer the list of
+contributors and their respective contributions, stored as a child
+trie root hash in the relay chain&\#x27;s [`crowdloan`](https://github.com/paritytech/polkadot/blob/rococo-v1/runtime/common/src/crowdloan.rs)
 pallet, to `Contributions` storage item.
 This transaction can only be called via a signed transactions.
-The `contributions` parameter contains the hash of the crowdloan pallet&\#x27;s child
-trie root. It is later used for proving that a contributor effectively contributed
-to the crowdloan campaign, and that the amount of the contribution is correct as
-well.
+The `contributions` parameter contains the hash of the crowdloan
+pallet&\#x27;s child trie root. It is later used for proving that a
+contributor effectively contributed to the crowdloan campaign, and
+that the amount of the contribution is correct as well.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -74,10 +73,12 @@ call = substrate.compose_call(
 
 ---------
 ### set_contributions_root
-Set the root-hash of the relay-chain, we locked the relay-chain contributions at.
+Set the root-hash of the relay-chain, we locked the relay-chain
+contributions at.
 
 This root-hash MUST be the root-hash of the relay-chain at the block
-we locked at. This root-hash will be used to verify proofs of contribution.
+we locked at. This root-hash will be used to verify proofs of
+contribution.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -94,9 +95,10 @@ call = substrate.compose_call(
 ### set_crowdloan_trie_index
 Set the index of the crowdloan.
 
-This index comes from the relay-chain crowdloan pallet. More specifically, this index
-is used to derive the internal patricia key inside the child trie. The index is
-stored in the `FundInfo` of the relay chain crowdloan pallet.
+This index comes from the relay-chain crowdloan pallet. More
+specifically, this index is used to derive the internal patricia key
+inside the child trie. The index is stored in the `FundInfo` of the
+relay chain crowdloan pallet.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -143,10 +145,10 @@ call = substrate.compose_call(
 ### set_locked_at
 Set the block of the relay at which we lock the contributions.
 
-This means, that all generated proofs MUST generate the proof of their
-contribution at this block, as otherwise the root-hash we store here
-will not be found in the generated proof of the contributor, which will
-lead to a rejection of the proof.
+This means, that all generated proofs MUST generate the proof of
+their contribution at this block, as otherwise the root-hash we
+store here will not be found in the generated proof of the
+contributor, which will lead to a rejection of the proof.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -164,7 +166,8 @@ call = substrate.compose_call(
 
 ---------
 ### ClaimPalletInitialized
-Event emitted when the crowdloan claim pallet is properly configured.
+Event emitted when the crowdloan claim pallet is properly
+configured.
 #### Attributes
 No attributes
 
@@ -178,7 +181,8 @@ Relay-chain Root hash which allows to verify contributions
 
 ---------
 ### CrowdloanTrieIndexUpdated
-Trie index of the crowdloan inside the relay-chains crowdloan child storage
+Trie index of the crowdloan inside the relay-chains crowdloan child
+storage
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -186,8 +190,8 @@ Trie index of the crowdloan inside the relay-chains crowdloan child storage
 
 ---------
 ### LeasePeriodUpdated
-The lease period of the parachain slot. Used to define when we can initialize the
-next time
+The lease period of the parachain slot. Used to define when we can
+initialize the next time
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -195,8 +199,8 @@ next time
 
 ---------
 ### LeaseStartUpdated
-The lease start of the parachain slot. Used to define when we can initialize the
-next time
+The lease start of the parachain slot. Used to define when we can
+initialize the next time
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -240,7 +244,8 @@ result = substrate.query(
 ```
 ---------
 ### CrowdloanTrieIndex
- TrieIndex of the crowdloan campaign inside the relay-chain crowdloan pallet.
+ TrieIndex of the crowdloan campaign inside the relay-chain crowdloan
+ pallet.
 
  This is needed in order to build the correct keys for proof check.
 
@@ -327,7 +332,8 @@ result = substrate.query(
 ```
 ---------
 ### ProcessedClaims
- A map containing the list of claims for reward payouts that were successfuly processed
+ A map containing the list of claims for reward payouts that were
+ successfuly processed
 
 #### Python
 ```python
@@ -345,9 +351,11 @@ result = substrate.query(
 
 ---------
 ### PalletId
- Constant configuration parameter to store the pallet identifier for the pallet.
+ Constant configuration parameter to store the pallet identifier for
+ the pallet.
 
- The pallet identifier may be of the form ```PalletId(*b&quot;cc/claim&quot;)```.
+ The pallet identifier may be of the form
+ ```PalletId(*b&quot;cc/claim&quot;)```.
 #### Value
 ```python
 '0x63632f636c61696d'
@@ -369,14 +377,17 @@ Claimed amount is out of boundaries (too low or too high)
 
 ---------
 ### InvalidClaimAmount
-The reward amount that is claimed does not correspond to the one of the contribution
+The reward amount that is claimed does not correspond to the one of
+the contribution
 
 ---------
 ### InvalidContributorSignature
-The signature provided by the contributor when registering is not valid.
+The signature provided by the contributor when registering is not
+valid.
 
-The consequence is that the relaychain and parachain accounts being not
-associated, the contributor is not elligible for a reward payout.
+The consequence is that the relaychain and parachain accounts being
+not associated, the contributor is not elligible for a reward
+payout.
 
 ---------
 ### InvalidProofOfContribution
@@ -384,11 +395,13 @@ The proof of a contribution is invalid
 
 ---------
 ### MustBeAdministrator
-Sensitive transactions can only be performed by administrator entity (e.g. Sudo or Democracy pallet)
+Sensitive transactions can only be performed by administrator entity
+(e.g. Sudo or Democracy pallet)
 
 ---------
 ### OngoingLease
-A lease is ongoging and the pallet can henced not be initialized again
+A lease is ongoging and the pallet can henced not be initialized
+again
 
 ---------
 ### OutOfLeasePeriod

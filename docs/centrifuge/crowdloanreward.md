@@ -31,7 +31,8 @@ Modify the ratio between vested and direct payout amount.
 
 This administrative function allows to modify the ratio
 between vested and direct payout amount after the pallet
-was initialized via a call to the [`Pallet::initialize()`] transaction.
+was initialized via a call to the [`Pallet::initialize()`]
+transaction.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -49,8 +50,8 @@ call = substrate.compose_call(
 Set vesting period.
 
 This administrative transaction allows to modify the vesting period
-after a previous [`Pallet::initialize()`] transaction was triggered in order
-to perform seminal pallet configuration.
+after a previous [`Pallet::initialize()`] transaction was triggered
+in order to perform seminal pallet configuration.
 
 \#\# Emits
 UpdateVestingPeriod
@@ -106,8 +107,8 @@ Event emitted when a reward claim was processed successfully.
 
 ---------
 ### RewardPalletInitialized
-Event triggered when the reward module is ready to reward contributors
-\[vesting_start, vesting_period, direct_payout_ratio\]
+Event triggered when the reward module is ready to reward
+contributors \[vesting_start, vesting_period, direct_payout_ratio\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -136,7 +137,8 @@ Start of vesting has been updated
 
 ---------
 ### DirectPayoutRatio
- Which ratio of the rewards are payed directly. The rest is transferred via a vesting schedule.
+ Which ratio of the rewards are payed directly. The rest is transferred
+ via a vesting schedule.
 
 #### Python
 ```python
@@ -184,26 +186,27 @@ result = substrate.query(
 
 ---------
 ### PalletId
- Constant configuration parameter to store the module identifier for the pallet.
+ Constant configuration parameter to store the module identifier for
+ the pallet.
 
- The module identifier may be of the form ```PalletId(*b&quot;cc/rwrd&quot;)```. This
- constant is set when building this config trait for the runtime.
+ The module identifier may be of the form
+ ```PalletId(*b&quot;cc/rwrd&quot;)```. This constant is set when building this
+ config trait for the runtime.
 
  \# Example
  ```rust,ignore
 
  // Parameterize crowdloan reward pallet configuration
  parameter_types! {
-   pub const CrowdloanRewardPalletId: PalletId = PalletId(*b&quot;cc/rwrd&quot;);
- }
+   pub const CrowdloanRewardPalletId: PalletId =
+ PalletId(*b&quot;cc/rwrd&quot;); }
 
- // Implement crowdloan reward pallet&#x27;s configuration trait for the runtime
- impl pallet_crowdloarn_reward::Config for Runtime {
+ // Implement crowdloan reward pallet&#x27;s configuration trait for the
+ runtime impl pallet_crowdloarn_reward::Config for Runtime {
    type Event = Event;
    type WeightInfo = ();
    type PalletId = CrowdloanRewardPalletId;
  }
-
  ```
 #### Value
 ```python

@@ -57,7 +57,7 @@ call = substrate.compose_call(
         ),
         'op': ('Count', 'Balance'),
     },
-    'values': 'scale_info::521',
+    'values': 'scale_info::528',
 }
 )
 ```
@@ -90,7 +90,7 @@ Set the active asset stat_types.
 call = substrate.compose_call(
     'Statistics', 'set_active_asset_stats', {
     'asset': {'Ticker': '[u8; 12]'},
-    'stat_types': 'scale_info::520',
+    'stat_types': 'scale_info::527',
 }
 )
 ```
@@ -123,7 +123,7 @@ Set asset transfer compliance rules.
 call = substrate.compose_call(
     'Statistics', 'set_asset_transfer_compliance', {
     'asset': {'Ticker': '[u8; 12]'},
-    'transfer_conditions': 'scale_info::522',
+    'transfer_conditions': 'scale_info::529',
 }
 )
 ```
@@ -155,7 +155,7 @@ Set/unset entities exempt from an asset&\#x27;s transfer compliance rules.
 ```python
 call = substrate.compose_call(
     'Statistics', 'set_entities_exempt', {
-    'entities': 'scale_info::523',
+    'entities': 'scale_info::530',
     'exempt_key': {
         'asset': {
             'Ticker': '[u8; 12]',
@@ -199,7 +199,7 @@ Asset stats updated.
 | None | `IdentityId` | ```[u8; 32]```
 | None | `AssetScope` | ```{'Ticker': '[u8; 12]'}```
 | None | `StatType` | ```{'op': ('Count', 'Balance'), 'claim_issuer': (None, ({'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'InvestorUniqueness': None, 'NoType': None, 'InvestorUniquenessV2': None, 'Custom': 'u32'}, '[u8; 32]'))}```
-| None | `Vec<StatUpdate>` | ```[{'key2': {'NoClaimStat': None, 'Claim': {'Accredited': 'bool', 'Affiliate': 'bool', 'Jurisdiction': (None, 'scale_info::64')}}, 'value': (None, 'u128')}]```
+| None | `Vec<StatUpdate>` | ```[{'key2': {'NoClaimStat': None, 'Claim': {'Accredited': 'bool', 'Affiliate': 'bool', 'Jurisdiction': (None, 'scale_info::67')}}, 'value': (None, 'u128')}]```
 
 ---------
 ### SetAssetTransferCompliance
@@ -211,7 +211,7 @@ Set Transfer compliance rules for asset.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `AssetScope` | ```{'Ticker': '[u8; 12]'}```
-| None | `Vec<TransferCondition>` | ```[{'MaxInvestorCount': 'u64', 'MaxInvestorOwnership': 'u32', 'ClaimCount': ({'Accredited': 'bool', 'Affiliate': 'bool', 'Jurisdiction': (None, 'scale_info::64')}, '[u8; 32]', 'u64', (None, 'u64')), 'ClaimOwnership': ({'Accredited': 'bool', 'Affiliate': 'bool', 'Jurisdiction': (None, 'scale_info::64')}, '[u8; 32]', 'u32', 'u32')}]```
+| None | `Vec<TransferCondition>` | ```[{'MaxInvestorCount': 'u64', 'MaxInvestorOwnership': 'u32', 'ClaimCount': ({'Accredited': 'bool', 'Affiliate': 'bool', 'Jurisdiction': (None, 'scale_info::67')}, '[u8; 32]', 'u64', (None, 'u64')), 'ClaimOwnership': ({'Accredited': 'bool', 'Affiliate': 'bool', 'Jurisdiction': (None, 'scale_info::67')}, '[u8; 32]', 'u32', 'u32')}]```
 
 ---------
 ### StatTypesAdded
@@ -277,7 +277,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::520'
+'scale_info::527'
 ```
 ---------
 ### AssetStats
@@ -599,7 +599,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'paused': 'bool', 'requirements': 'scale_info::522'}
+{'paused': 'bool', 'requirements': 'scale_info::529'}
 ```
 ---------
 ### StorageVersion

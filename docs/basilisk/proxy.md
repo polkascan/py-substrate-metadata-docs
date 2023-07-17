@@ -15,10 +15,6 @@ Parameters:
 - `proxy_type`: The permissions allowed for this proxy account.
 - `delay`: The announcement period required of the initial proxy. Will generally be
 zero.
-
-\# &lt;weight&gt;
-Weight is a function of the number of proxies the user has (P).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -60,12 +56,6 @@ The dispatch origin for this call must be _Signed_ and a proxy of `real`.
 Parameters:
 - `real`: The account that the proxy will make a call on behalf of.
 - `call_hash`: The hash of the call to be made by the `real` account.
-
-\# &lt;weight&gt;
-Weight is a function of:
-- A: the number of announcements made.
-- P: the number of proxies the user has.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -83,7 +73,7 @@ call = substrate.compose_call(
 ```
 
 ---------
-### anonymous
+### create_pure
 Spawn a fresh new account that is guaranteed to be otherwise inaccessible, and
 initialize it with a proxy of `proxy_type` for `origin` sender.
 
@@ -102,11 +92,6 @@ Fails with `Duplicate` if this has already been called in this transaction, from
 same sender, with the same parameters.
 
 Fails if there are insufficient funds to pay for deposit.
-
-\# &lt;weight&gt;
-Weight is a function of the number of proxies the user has (P).
-\# &lt;/weight&gt;
-TODO: Might be over counting 1 read
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -117,7 +102,7 @@ TODO: Might be over counting 1 read
 #### Python
 ```python
 call = substrate.compose_call(
-    'Proxy', 'anonymous', {
+    'Proxy', 'create_pure', {
     'delay': 'u32',
     'index': 'u16',
     'proxy_type': (
@@ -132,27 +117,23 @@ call = substrate.compose_call(
 ```
 
 ---------
-### kill_anonymous
-Removes a previously spawned anonymous proxy.
+### kill_pure
+Removes a previously spawned pure proxy.
 
 WARNING: **All access to this account will be lost.** Any funds held in it will be
 inaccessible.
 
 Requires a `Signed` origin, and the sender account must have been created by a call to
-`anonymous` with corresponding parameters.
+`pure` with corresponding parameters.
 
-- `spawner`: The account that originally called `anonymous` to create this account.
-- `index`: The disambiguation index originally passed to `anonymous`. Probably `0`.
-- `proxy_type`: The proxy type originally passed to `anonymous`.
-- `height`: The height of the chain when the call to `anonymous` was processed.
-- `ext_index`: The extrinsic index in which the call to `anonymous` was processed.
+- `spawner`: The account that originally called `pure` to create this account.
+- `index`: The disambiguation index originally passed to `pure`. Probably `0`.
+- `proxy_type`: The proxy type originally passed to `pure`.
+- `height`: The height of the chain when the call to `pure` was processed.
+- `ext_index`: The extrinsic index in which the call to `pure` was processed.
 
-Fails with `NoPermission` in case the caller is not a previously created anonymous
-account whose `anonymous` call has corresponding parameters.
-
-\# &lt;weight&gt;
-Weight is a function of the number of proxies the user has (P).
-\# &lt;/weight&gt;
+Fails with `NoPermission` in case the caller is not a previously created pure
+account whose `pure` call has corresponding parameters.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -165,7 +146,7 @@ Weight is a function of the number of proxies the user has (P).
 #### Python
 ```python
 call = substrate.compose_call(
-    'Proxy', 'kill_anonymous', {
+    'Proxy', 'kill_pure', {
     'ext_index': 'u32',
     'height': 'u32',
     'index': 'u16',
@@ -186,24 +167,18 @@ call = substrate.compose_call(
 Dispatch the given `call` from an account that the sender is authorised for through
 `add_proxy`.
 
-Removes any corresponding announcement(s).
-
 The dispatch origin for this call must be _Signed_.
 
 Parameters:
 - `real`: The account that the proxy will make a call on behalf of.
 - `force_proxy_type`: Specify the exact proxy type to be used and checked for this call.
 - `call`: The call to be made by the `real` account.
-
-\# &lt;weight&gt;
-Weight is a function of the number of proxies the user has (P).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | real | `AccountIdLookupOf<T>` | 
 | force_proxy_type | `Option<T::ProxyType>` | 
-| call | `Box<<T as Config>::Call>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
@@ -238,19 +213,13 @@ Parameters:
 - `real`: The account that the proxy will make a call on behalf of.
 - `force_proxy_type`: Specify the exact proxy type to be used and checked for this call.
 - `call`: The call to be made by the `real` account.
-
-\# &lt;weight&gt;
-Weight is a function of:
-- A: the number of announcements made.
-- P: the number of proxies the user has.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | delegate | `AccountIdLookupOf<T>` | 
 | real | `AccountIdLookupOf<T>` | 
 | force_proxy_type | `Option<T::ProxyType>` | 
-| call | `Box<<T as Config>::Call>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
@@ -285,12 +254,6 @@ The dispatch origin for this call must be _Signed_.
 Parameters:
 - `delegate`: The account that previously announced the call.
 - `call_hash`: The hash of the call to be made.
-
-\# &lt;weight&gt;
-Weight is a function of:
-- A: the number of announcements made.
-- P: the number of proxies the user has.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -319,12 +282,6 @@ The dispatch origin for this call must be _Signed_.
 Parameters:
 - `real`: The account that the proxy will make a call on behalf of.
 - `call_hash`: The hash of the call to be made by the `real` account.
-
-\# &lt;weight&gt;
-Weight is a function of:
-- A: the number of announcements made.
-- P: the number of proxies the user has.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -347,12 +304,8 @@ Unregister all proxy accounts for the sender.
 
 The dispatch origin for this call must be _Signed_.
 
-WARNING: This may be called on accounts created by `anonymous`, however if done, then
+WARNING: This may be called on accounts created by `pure`, however if done, then
 the unreserved fees will be inaccessible. **All access to this account will be lost.**
-
-\# &lt;weight&gt;
-Weight is a function of the number of proxies the user has (P).
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -372,10 +325,6 @@ The dispatch origin for this call must be _Signed_.
 Parameters:
 - `proxy`: The account that the `caller` would like to remove as a proxy.
 - `proxy_type`: The permissions currently enabled for the removed proxy account.
-
-\# &lt;weight&gt;
-Weight is a function of the number of proxies the user has (P).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -414,18 +363,6 @@ An announcement was placed to make a call in the future.
 | call_hash | `CallHashOf<T>` | ```[u8; 32]```
 
 ---------
-### AnonymousCreated
-Anonymous account has been created by new proxy with given
-disambiguation index and proxy type.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| anonymous | `T::AccountId` | ```AccountId```
-| who | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Exchange', 'Transfer')```
-| disambiguation_index | `u16` | ```u16```
-
----------
 ### ProxyAdded
 A proxy was added.
 #### Attributes
@@ -442,7 +379,7 @@ A proxy was executed correctly, with the given.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ### ProxyRemoved
@@ -454,6 +391,18 @@ A proxy was removed.
 | delegatee | `T::AccountId` | ```AccountId```
 | proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Exchange', 'Transfer')```
 | delay | `T::BlockNumber` | ```u32```
+
+---------
+### PureCreated
+A pure account has been created by new proxy with given
+disambiguation index and proxy type.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pure | `T::AccountId` | ```AccountId```
+| who | `T::AccountId` | ```AccountId```
+| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Exchange', 'Transfer')```
+| disambiguation_index | `u16` | ```u16```
 
 ---------
 ## Storage functions

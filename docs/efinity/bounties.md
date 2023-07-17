@@ -11,9 +11,8 @@ A deposit will be reserved from curator and refund upon successful payout.
 
 May only be called from the curator.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -31,11 +30,10 @@ call = substrate.compose_call(
 Approve a bounty proposal. At a later time, the bounty will be funded and become active
 and the original deposit will be returned.
 
-May only be called from `T::ApproveOrigin`.
+May only be called from `T::SpendOrigin`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -58,9 +56,8 @@ The dispatch origin for this call must be the curator of this bounty.
 - `bounty_id`: Bounty ID to award.
 - `beneficiary`: The beneficiary account whom will receive the payout.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -91,9 +88,8 @@ The dispatch origin for this call must be the beneficiary of this bounty.
 
 - `bounty_id`: Bounty ID to claim.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -115,9 +111,8 @@ Only `T::RejectOrigin` is able to cancel a bounty.
 
 - `bounty_id`: Bounty ID to cancel.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -139,9 +134,8 @@ The dispatch origin for this call must be the curator of this bounty.
 - `bounty_id`: Bounty ID to extend.
 - `remark`: additional information.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -192,11 +186,10 @@ call = substrate.compose_call(
 ### propose_curator
 Assign a curator to a funded bounty.
 
-May only be called from `T::ApproveOrigin`.
+May only be called from `T::SpendOrigin`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -238,9 +231,8 @@ Finally, the origin can be anyone if and only if the curator is &quot;inactive&q
 anyone in the community to call out that a curator is not doing their due diligence, and
 we should pick a new curator. In this case the curator should also be slashed.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

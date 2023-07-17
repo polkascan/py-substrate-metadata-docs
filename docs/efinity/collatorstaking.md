@@ -6,8 +6,14 @@
 
 ---------
 ### force_set_current_max_candidates
-Set the current max candidates, must be within 0 and `T::MaxCandidates`
-ForceOrigin call only
+Set the current max candidates, must be within 0 and
+[`MaxCandidates`](Config::MaxCandidates)
+
+Only [`ForceOrigin`](Config::ForceOrigin) can call this function.
+
+\# Errors
+
+- [`Error::TooManyCandidates`] if the number of candidates is already at the maximum.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -22,8 +28,9 @@ call = substrate.compose_call(
 
 ---------
 ### force_set_min_collator_stake
-Set the MinCollatorStake amount
-ForceOrigin call only
+Set the minimum collator stake amount
+
+[`T::ForceOrigin`](Config::ForceOrigin) call only
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -39,6 +46,14 @@ call = substrate.compose_call(
 ---------
 ### join_candidates
 Join the list of candidates for collation.
+
+\# Errors
+
+- [`Error::BelowMinStakeAmount`] if `amount` is below the minimum required amount.
+- [`Error::NominationExists`] if nomination already exists.
+- [`Error::AccountIdNotRegistered`] if `AccountId` is not registered as a collator.
+- [`Error::NoAssociatedValidatorId`] if no associated validator ID for `AccountId`.
+- [`Error::TooManyCandidates`] if the number of candidates is already at the maximum.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -58,6 +73,14 @@ call = substrate.compose_call(
 ---------
 ### nominate
 Nominate a specific candidate to be selected for collation and block production.
+
+\# Errors
+
+- [`Error::CandidateDoesNotExist`] if the candidate does not exist.
+- [`Error::NominationExists`] if the nomination already exists.
+- [`Error::BelowMinNominationStakeAmount`] if the nomination amount is below the
+  minimum.
+- [`Error::TooManyNominations`] if there are too many nominations for the candidate.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -77,6 +100,12 @@ call = substrate.compose_call(
 ---------
 ### remove_nomination
 Remove a nomination previously registered for a specific collator candidate.
+
+\# Errors
+
+- [`Error::CandidateDoesNotExist`] if the candidate does not exist.
+- [`Error::NominationDoesNotExist`] if the nomination does not exist.
+- [`Error::TooManyCandidates`] if there are too many candidates in the set.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -91,7 +120,13 @@ call = substrate.compose_call(
 
 ---------
 ### set_invulnerables
-Join the list of candidates for collation.
+Force set the invulnerables.
+
+[`ForceOrigin`](Config::ForceOrigin) call only.
+
+\# Errors
+
+- [`Error::TooManyInvulnerables`] if the number of invulnerables exceeds the maximum
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -112,6 +147,12 @@ In this case, if the calling account is already a collator, an exit
 is registered so that this account is not selected for the next set of collators.
 Otherwise, if the account is only a candidate, this candidate will be removed
 and the nominations would be freed up.
+
+\# Errors
+
+- [`Error::CandidateDoesNotExist`] if candidate does not exist.
+- [`Error::CannotUnbondInvulnerable`] cannot unbond an invulnerable collator.
+- [`Error::ExitInProgress`] if unbonding for collator already in progress.
 #### Attributes
 No attributes
 
@@ -280,7 +321,7 @@ result = substrate.query(
 ```
 ---------
 ### DesiredCandidatesCount
- The current candidate limit, must be within 0 and `T::MaxCandidates`
+ The current candidate limit, must be within 0 and [`MaxCandidates`](Config::MaxCandidates)
 
 #### Python
 ```python
@@ -383,7 +424,7 @@ constant = substrate.get_constant('CollatorStaking', 'CollatorExitThreshold')
 ```
 ---------
 ### CollatorPoolAccountId
- The `AccountId` for the collator pool
+ The [`AccountId`](frame_system::Config::AccountId) for the collator pool
 #### Value
 ```python
 'efRd63tR845wJ4KW17VFyzzS38m2zRjMbabQa5VyTNTikSqdy'
@@ -405,7 +446,7 @@ constant = substrate.get_constant('CollatorStaking', 'DefaultMinCollatorStake')
 ```
 ---------
 ### FeeDistributorAccountId
- The `AccountId` for the fee distributor
+ The [`AccountId`](frame_system::Config::AccountId) for the fee distributor
 #### Value
 ```python
 'efRd63tR845wJTXfddgZNfNZ55o23Erydfz8esAmo1HfgMZMS'

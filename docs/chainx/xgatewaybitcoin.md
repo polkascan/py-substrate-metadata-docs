@@ -191,6 +191,21 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_confirmed_number
+Dangerous! Be careful to set ConfirmationNumber
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| number | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'XGatewayBitcoin', 'set_confirmed_number', {'number': 'u32'}
+)
+```
+
+---------
 ## Events
 
 ---------

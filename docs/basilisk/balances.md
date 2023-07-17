@@ -318,6 +318,21 @@ result = substrate.query(
 }
 ```
 ---------
+### InactiveIssuance
+ The total units of outstanding deactivated balance in the system.
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'InactiveIssuance', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### Locks
  Any liquidity locks on some account balances.
  NOTE: Should only be accessed when setting, changing and freeing a lock.
@@ -347,23 +362,6 @@ result = substrate.query(
 #### Return value
 ```python
 [{'amount': 'u128', 'id': ()}]
-```
----------
-### StorageVersion
- Storage version of the pallet.
-
- This is set to v2.0.0 for new networks.
-
-#### Python
-```python
-result = substrate.query(
-    'Balances', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V1_0_0', 'V2_0_0')
 ```
 ---------
 ### TotalIssuance
@@ -434,7 +432,7 @@ A vesting schedule already exists for this account
 
 ---------
 ### InsufficientBalance
-Balance too low to send value
+Balance too low to send value.
 
 ---------
 ### KeepAlive

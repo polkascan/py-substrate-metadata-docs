@@ -40,6 +40,7 @@ call = substrate.compose_call(
         'CancelProxy',
         'Collator',
         'Alliance',
+        'Fellowship',
     ),
 }
 )
@@ -123,6 +124,7 @@ call = substrate.compose_call(
         'CancelProxy',
         'Collator',
         'Alliance',
+        'Fellowship',
     ),
 }
 )
@@ -168,6 +170,7 @@ call = substrate.compose_call(
         'CancelProxy',
         'Collator',
         'Alliance',
+        'Fellowship',
     ),
     'spawner': {
         'Address20': '[u8; 20]',
@@ -184,8 +187,6 @@ call = substrate.compose_call(
 ### proxy
 Dispatch the given `call` from an account that the sender is authorised for through
 `add_proxy`.
-
-Removes any corresponding announcement(s).
 
 The dispatch origin for this call must be _Signed_.
 
@@ -213,6 +214,7 @@ call = substrate.compose_call(
             'CancelProxy',
             'Collator',
             'Alliance',
+            'Fellowship',
         ),
     ),
     'real': {
@@ -267,6 +269,7 @@ call = substrate.compose_call(
             'CancelProxy',
             'Collator',
             'Alliance',
+            'Fellowship',
         ),
     ),
     'real': {
@@ -400,6 +403,7 @@ call = substrate.compose_call(
         'CancelProxy',
         'Collator',
         'Alliance',
+        'Fellowship',
     ),
 }
 )
@@ -426,7 +430,7 @@ A proxy was added.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Collator', 'Alliance')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Collator', 'Alliance', 'Fellowship')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -435,7 +439,7 @@ A proxy was executed correctly, with the given.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ### ProxyRemoved
@@ -445,7 +449,7 @@ A proxy was removed.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Collator', 'Alliance')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Collator', 'Alliance', 'Fellowship')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -457,7 +461,7 @@ disambiguation index and proxy type.
 | -------- | -------- | -------- |
 | pure | `T::AccountId` | ```AccountId```
 | who | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Collator', 'Alliance')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'CancelProxy', 'Collator', 'Alliance', 'Fellowship')```
 | disambiguation_index | `u16` | ```u16```
 
 ---------
@@ -503,6 +507,7 @@ result = substrate.query(
                 'CancelProxy',
                 'Collator',
                 'Alliance',
+                'Fellowship',
             ),
         },
     ],

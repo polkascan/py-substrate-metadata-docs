@@ -96,7 +96,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::412'
+'scale_info::434'
 ```
 ---------
 ### RewardPerToken
@@ -482,11 +482,26 @@ constant = substrate.get_constant('FarmingRewards', 'GetNativeCurrencyId')
 constant = substrate.get_constant('FarmingRewards', 'GetWrappedCurrencyId')
 ```
 ---------
+### MaxRewardCurrencies
+ The maximum number of reward currencies.
+#### Value
+```python
+10
+```
+#### Python
+```python
+constant = substrate.get_constant('FarmingRewards', 'MaxRewardCurrencies')
+```
+---------
 ## Errors
 
 ---------
 ### InsufficientFunds
 Balance not sufficient to withdraw stake.
+
+---------
+### MaxRewardCurrencies
+Maximum rewards currencies reached.
 
 ---------
 ### TryIntoIntError

@@ -9,10 +9,12 @@
 Adds new account for `user_id` to fuel tank at `tank_id`. An account is
 required to dispatch calls. A deposit is required, and may be paid by
 the user or the fuel tank, depending on the settings.
+
 \#\#\# Errors
-- `FuelTankNotFound` if fuel tank at `tank_id` does not exist
-- `NoPermission` if `origin` does not have permission to add an account
-- `AccountAlreadyExists` if account at `user_id` already exists
+
+- [`Error::FuelTankNotFound`] if fuel tank at `tank_id` does not exist
+- [`Error::NoPermission`] if `origin` does not have permission to add an account
+- [`Error::AccountAlreadyExists`] if account at `user_id` already exists
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -43,12 +45,12 @@ call = substrate.compose_call(
 
 ---------
 ### batch_add_account
-Similar to add_account but takes a list of `AccountId`s to
-insert into a fuel tank.
+Similar to add_account but takes a list of
+[`AccountId`](frame_system::Config::AccountId)s to insert into a fuel tank.
 \#\#\# Errors
-- `FuelTankNotFound` if fuel tank at `tank_id` does not exist
-- `NoPermission` if `origin` does not have permission to add an account
-- `AccountAlreadyExists` if account at `user_id` already exists
+- [`Error::FuelTankNotFound`] if fuel tank at `tank_id` does not exist
+- [`Error::NoPermission`] if `origin` does not have permission to add an account
+- [`Error::AccountAlreadyExists`] if account at `user_id` already exists
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -81,12 +83,12 @@ call = substrate.compose_call(
 
 ---------
 ### batch_remove_account
-Similar to remove_account but takes a list of `AccountId`s to
-remove from a fuel tank.
+Similar to remove_account but takes a list of
+[`AccountId`](frame_system::Config::AccountId)s to remove from a fuel tank.
 \#\#\# Errors
-- `FuelTankNotFound` if fuel tank at `tank_id` does not exist
-- `NoPermission` if `origin` does not have permission to add an account
-- `AccountNotFound` if account at `user_id` does not exist
+- [`Error::FuelTankNotFound`] if fuel tank at `tank_id` does not exist
+- [`Error::NoPermission`] if `origin` does not have permission to add an account
+- [`Error::AccountNotFound`] if account at `user_id` does not exist
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -122,8 +124,9 @@ call = substrate.compose_call(
 Creates a fuel tank, given a descriptor
 
 \# Errors
-- `FuelTankAlreadyExists` if `tank_id` already exists
-- `DuplicateRuleKinds` if a rule set has multiple rules of the same kind
+
+- [`Error::FuelTankAlreadyExists`] if `tank_id` already exists
+- [`Error::DuplicateRuleKinds`] if a rule set has multiple rules of the same kind
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -140,12 +143,12 @@ call = substrate.compose_call(
                     'collection_id': 'u128',
                     'token_id': 'u128',
                 },
-                'WhitelistedCallers': 'scale_info::201',
+                'WhitelistedCallers': 'scale_info::221',
             },
         ],
         'name': 'Bytes',
         'provides_deposit': 'bool',
-        'rule_sets': 'scale_info::408',
+        'rule_sets': 'scale_info::422',
         'user_account_management': (
             None,
             {
@@ -164,6 +167,13 @@ Destroy the fuel tank by scheduling the deletion for `on_finalize` to execute
 Only callable by owner
 The fuel tank must be frozen
 Can only be destroyed if all accounts are removed
+
+\# Errors
+
+- [`Error::FuelTankNotFound`] if tank_id does not exist
+- [`Error::NoPermission`] if caller is not owner
+- [`Error::DestroyUnfrozenTank`] if tank is not frozen
+- [`Error::DestroyWithExistingAccounts`] if there are still accounts on the tank
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -189,21 +199,11 @@ call = substrate.compose_call(
 Dispatch a call using the `tank_id` subject to the rules of `rule_set_id`
 
 \# Errors
-- `FuelTankNotFound` if `tank_id` does not exist.
-- `InvalidRuleSetId` if `rule_set_id` does not exist
-- `UsageRestricted` if caller is not part of ruleset whitelist
-- `TransactionExceedsFuelBurnLimit` if call exceeds the max fee limit set by ruleset
-- `TransactionExceedsUserBudget` if call exceeds the max user budget limit set by
-  ruleset
-- `TransactionExceedsFuelTankBudget` if call exceeds the max fuel tank budget set by
-  ruleset
-- `CallerDoesNotHaveRuleSetTokenBalance` if caller does not own the tokens to use the
-  ruleset
-- `TransactionNotPermitted` if the call is not in the list of permitted calls of ruleset
-- `Overflow` if amount overflows type
-- `UserBalanceLowForRemainingFee` if caller does not have enough balance to pay for
-  remaining_fee when `pays_remaining_fee` is true
-- `FuelTankOutOfFunds` if the fuel tank account cannot pay fees
+- [`Error::FuelTankNotFound`] if `tank_id` does not exist.
+- [`Error::UsageRestricted`] if caller is not part of ruleset whitelist
+- [`Error::CallerDoesNotHaveRuleSetTokenBalance`] if caller does not own the tokens to
+  use the ruleset for remaining_fee when `pays_remaining_fee` is true
+- [`Error::FuelTankOutOfFunds`] if the fuel tank account cannot pay fees
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -234,7 +234,9 @@ call = substrate.compose_call(
 ### dispatch_and_touch
 Same as [dispatch](Self::dispatch), but creates an account for `origin` if it does not
 exist and is allowed by the fuel tank&\#x27;s `user_account_management` settings.
+
 \# Errors
+
 Returns the same errors as [dispatch](Self::dispatch) and
 [add_account](Self::add_account)
 #### Attributes
@@ -266,13 +268,16 @@ call = substrate.compose_call(
 ---------
 ### force_set_consumption
 Force set the fuel tank consumption
-If `user_id` is `Some`, it sets the consumption for that account.
-If it is `None`, it sets the consumption on the fuel tank directly.
+If `user_id` is [`Some`], it sets the consumption for that account.
+If it is [`None`], it sets the consumption on the fuel tank directly.
 
 \# Errors
-- `AccountNotFound` if `user_id` is `Some` and account does not exist
-- `FuelTankNotFound` if tank_id does not exist
-- `NoPermission` if caller is not ForceOrigin or fuel tank owner
+
+- [`Error::AccountNotFound`] if `user_id` is `Some` and account does not exist
+- [`Error::FuelTankNotFound`] if tank_id does not exist
+- [`Error::NoPermission`] if caller is not ForceOrigin or fuel tank owner
+- [`Error::InvalidRuleSet`] if `rule_set_id` does not exist
+- [`Error::MissingRequiredRule`] if `rule_set_id` does not have the required role
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -324,13 +329,14 @@ and it will maintain any persistent data it already has.
 
 This is only callable by the fuel tank&\#x27;s owner.
 \#\#\# Errors
-- `FuelTankNotFound` if `tank_id` does not exist.
-- `NoPermission` if caller is not the fuel tank owner
-- `RequiresFrozenTankOrRuleset` if tank or rule set is not frozen
-- `CannotRemoveRuleThatIsStoringAccountData` if removing a rule that is storing account
-  data
-- `MaxRuleSetsExceeded` if max number of rule sets was exceeded
-- `DuplicateRuleKinds` if adding a rule set with multiple rules of the same kind
+- [`Error::FuelTankNotFound`] if `tank_id` does not exist.
+- [`Error::NoPermission`] if caller is not the fuel tank owner
+- [`Error::RequiresFrozenTankOrRuleset`] if tank or rule set is not frozen
+- [`Error::CannotRemoveRuleThatIsStoringAccountData`] if removing a rule that is storing
+  account data
+- [`Error::MaxRuleSetsExceeded`] if max number of rule sets was exceeded
+- [`Error::DuplicateRuleKinds`] if adding a rule set with multiple rules of the same
+  kind
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -346,7 +352,7 @@ call = substrate.compose_call(
     'rules': [
         {
             'MaxFuelBurnPerTransaction': 'u128',
-            'PermittedCalls': 'scale_info::400',
+            'PermittedCalls': 'scale_info::414',
             'PermittedExtrinsics': [
                 'Call',
             ],
@@ -355,24 +361,15 @@ call = substrate.compose_call(
                 'token_id': 'u128',
             },
             'TankFuelBudget': {
-                'budget': {
-                    'amount': 'u128',
-                    'reset_period': 'u32',
-                },
-                'consumption': {
-                    'last_reset_block': (
-                        None,
-                        'u32',
-                    ),
-                    'total_consumed': 'u128',
-                },
+                'amount': 'u128',
+                'reset_period': 'u32',
             },
             'UserFuelBudget': {
                 'amount': 'u128',
                 'reset_period': 'u32',
             },
-            'WhitelistedCallers': 'scale_info::201',
-            'WhitelistedCollections': 'scale_info::389',
+            'WhitelistedCallers': 'scale_info::221',
+            'WhitelistedCollections': 'scale_info::404',
         },
     ],
     'tank_id': {
@@ -391,8 +388,9 @@ call = substrate.compose_call(
 Apply `mutation` to fuel tank with `tank_id`.
 
 \# Errors
-- `FuelTankNotFound` if `tank_id` does not exist.
-- `NoPermission` if `origin` is not the fuel tank owner
+
+- [`Error::FuelTankNotFound`] if `tank_id` does not exist.
+- [`Error::NoPermission`] if `origin` is not the fuel tank owner
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -412,7 +410,7 @@ call = substrate.compose_call(
                         'collection_id': 'u128',
                         'token_id': 'u128',
                     },
-                    'WhitelistedCallers': 'scale_info::201',
+                    'WhitelistedCallers': 'scale_info::221',
                 },
             ],
         ),
@@ -446,10 +444,12 @@ call = substrate.compose_call(
 ### remove_account
 Removes account for `user_id` from fuel tank at `tank_id`. Any deposits
 are returned.
+
 \#\#\# Errors
-- `FuelTankNotFound` if fuel tank at `tank_id` does not exist
-- `NoPermission` if `origin` does not have permission to add an account
-- `AccountNotFound` if account at `user_id` does not exist
+
+- [`Error::FuelTankNotFound`] if fuel tank at `tank_id` does not exist
+- [`Error::NoPermission`] if `origin` does not have permission to add an account
+- [`Error::AccountNotFound`] if account at `user_id` does not exist
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -482,13 +482,15 @@ call = substrate.compose_call(
 ### remove_account_rule_data
 Remove account rule data if it exists. Only callable by the fuel tank&\#x27;s owner. Requires
 the fuel tank or the rule set to be frozen.
+
 \#\#\# Errors
-- `FuelTankNotFound` if fuel tank for `tank_id` doesn&\#x27;t exist
-- `NoPermission` if called by non-owner
-- `AccountNotFound` if account does not exist for `user_id`
-- `RuleSetNotFound` if rule set does not exist for `rule_set_id`
-- `RequiresFrozenTankOrRuleset` if tank or rule set is not frozen
-- `RuleNotFound` if rule does not exist for `rule_kind`
+
+- [`Error::FuelTankNotFound`] if fuel tank for `tank_id` doesn&\#x27;t exist
+- [`Error::NoPermission`] if called by non-owner
+- [`Error::AccountNotFound`] if account does not exist for `user_id`
+- [`Error::RuleSetNotFound`] if rule set does not exist for `rule_set_id`
+- [`Error::RequiresFrozenTankOrRuleset`] if tank or rule set is not frozen
+- [`Error::RuleNotFound`] if rule does not exist for `rule_kind`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -536,11 +538,12 @@ Remove rule set for `tank_id` and `rule_set_id`. A rule that is storing data on
 any accounts cannot be removed. Use [Self::remove_account_rule_data] to remove the
 data first. This is only callable by the fuel tank&\#x27;s owner.
 \# Errors
-- `FuelTankNotFound` if `tank_id` does not exist.
-- `NoPermission` if caller is not the fuel tank owner
-- `RequiresFrozenTankOrRuleset` if tank or rule set is not frozen
-- `CannotRemoveRuleThatIsStoringAccountData` if removing a rule that is storing account
-  data
+
+- [`Error::FuelTankNotFound`] if `tank_id` does not exist.
+- [`Error::NoPermission`] if caller is not the fuel tank owner
+- [`Error::RequiresFrozenTankOrRuleset`] if tank or rule set is not frozen
+- [`Error::CannotRemoveRuleThatIsStoringAccountData`] if removing a rule that is storing
+  account data
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -571,9 +574,9 @@ used
 Additional 1 read and 1 write are added to account for `on_finalize` storage operations
 
 \# Errors
-- `FuelTankNotFound` if `tank_id` does not exist.
-- `NoPermission` if caller is not a fuel tank owner
-- `FreezeQueueFull` if the queue is full
+- [`Error::FuelTankNotFound`] if `tank_id` does not exist.
+- [`Error::NoPermission`] if caller is not a fuel tank owner
+- [`Error::FreezeQueueFull`] if the queue is full
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -603,7 +606,7 @@ call = substrate.compose_call(
 
 ---------
 ### AccountAdded
-An account was added to a `FuelTank`
+An account was added to a [`FuelTank`]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -614,7 +617,7 @@ An account was added to a `FuelTank`
 
 ---------
 ### AccountRemoved
-An account was removed from a `FuelTank`
+An account was removed from a [`FuelTank`]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -623,7 +626,8 @@ An account was removed from a `FuelTank`
 
 ---------
 ### AccountRuleDataRemoved
-Account data of `AccountId` was removed from `RuleSetId`
+Account data of [`AccountId`](frame_system::Config::AccountId) was removed from
+[`RuleSetId`](Config::RuleSetId)
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -634,12 +638,23 @@ Account data of `AccountId` was removed from `RuleSetId`
 
 ---------
 ### CallDispatched
-A call was dispatched through a `FuelTank`.
+A call was dispatched through a [`FuelTank`].
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | caller | `T::AccountId` | ```AccountId```
 | tank_id | `T::AccountId` | ```AccountId```
+
+---------
+### ConsumptionSet
+The consumption for an account was set for a rule set on a [`FuelTank`]
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| tank_id | `T::AccountId` | ```AccountId```
+| user_id | `Option<T::AccountId>` | ```(None, 'AccountId')```
+| rule_set_id | `T::RuleSetId` | ```u32```
+| consumption | `ConsumptionOf<T>` | ```{'total_consumed': 'u128', 'last_reset_block': (None, 'u32')}```
 
 ---------
 ### DispatchFailed
@@ -649,7 +664,7 @@ The dispatch of a call has failed
 | -------- | -------- | -------- |
 | tank_id | `T::AccountId` | ```AccountId```
 | caller | `T::AccountId` | ```AccountId```
-| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
 ### FreezeStateMutated
@@ -663,7 +678,7 @@ The freeze state change for fuel tank or its rule set was executed in `on_finali
 
 ---------
 ### FuelTankCreated
-A new `FuelTank` was created.
+A new [`FuelTank`] was created.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -673,7 +688,7 @@ A new `FuelTank` was created.
 
 ---------
 ### FuelTankDestroyed
-A `FuelTank` was destroyed
+A [`FuelTank`] was destroyed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -681,12 +696,12 @@ A `FuelTank` was destroyed
 
 ---------
 ### FuelTankMutated
-A `FuelTank` was mutated
+A [`FuelTank`] was mutated
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | tank_id | `T::AccountId` | ```AccountId```
-| mutation | `T::TankMutation` | ```{'user_account_management': {'NoMutation': None, 'SomeMutation': (None, {'tank_reserves_existential_deposit': 'bool', 'tank_reserves_account_creation_deposit': 'bool'})}, 'provides_deposit': (None, 'bool'), 'account_rules': (None, [{'WhitelistedCallers': 'scale_info::201', 'RequireToken': {'collection_id': 'u128', 'token_id': 'u128'}}])}```
+| mutation | `T::TankMutation` | ```{'user_account_management': {'NoMutation': None, 'SomeMutation': (None, {'tank_reserves_existential_deposit': 'bool', 'tank_reserves_account_creation_deposit': 'bool'})}, 'provides_deposit': (None, 'bool'), 'account_rules': (None, [{'WhitelistedCallers': 'scale_info::221', 'RequireToken': 'scale_info::222'}])}```
 
 ---------
 ### MutateFreezeStateScheduled
@@ -700,7 +715,7 @@ The freeze state mutation for fuel tank or its rule set was scheduled
 
 ---------
 ### RuleSetInserted
-A new rule set was added to `FuelTank`
+A new rule set was added to [`FuelTank`]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -709,7 +724,7 @@ A new rule set was added to `FuelTank`
 
 ---------
 ### RuleSetRemoved
-A rule set was removed from `FuelTank`
+A rule set was removed from [`FuelTank`]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -725,7 +740,7 @@ The freeze state change for fuel tank or its rule set failed in `on_finalize`
 | tank_id | `T::AccountId` | ```AccountId```
 | rule_set_id | `Option<T::RuleSetId>` | ```(None, 'u32')```
 | is_frozen | `bool` | ```bool```
-| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
 ## Storage functions
@@ -744,7 +759,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'rule_data_sets': 'scale_info::594',
+    'rule_data_sets': 'scale_info::623',
     'tank_deposit': 'u128',
     'user_deposit': 'u128',
 }
@@ -780,12 +795,12 @@ result = substrate.query(
 ```python
 {
     'account_count': 'u32',
-    'account_rules': 'scale_info::581',
+    'account_rules': 'scale_info::610',
     'is_frozen': 'bool',
     'name': 'Bytes',
     'owner': 'AccountId',
     'provides_deposit': 'bool',
-    'rule_sets': 'scale_info::575',
+    'rule_sets': 'scale_info::604',
     'total_reserved': 'u128',
     'user_account_management': (
         None,

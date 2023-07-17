@@ -641,46 +641,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_ump_max_individual_weight
-Sets the maximum amount of weight any individual upward message may consume.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| new | `Weight` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Configuration', 'set_ump_max_individual_weight', {
-    'new': {
-        'proof_size': 'u64',
-        'ref_time': 'u64',
-    },
-}
-)
-```
-
----------
-### set_ump_service_total_weight
-Sets the soft limit for the phase of dispatching dispatchable upward messages.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| new | `Weight` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Configuration', 'set_ump_service_total_weight', {
-    'new': {
-        'proof_size': 'u64',
-        'ref_time': 'u64',
-    },
-}
-)
-```
-
----------
 ### set_validation_upgrade_cooldown
 Set the validation upgrade cooldown.
 #### Attributes
@@ -794,8 +754,6 @@ result = substrate.query(
     'relay_vrf_modulo_samples': 'u32',
     'scheduling_lookahead': 'u32',
     'thread_availability_period': 'u32',
-    'ump_max_individual_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
-    'ump_service_total_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
     'validation_upgrade_cooldown': 'u32',
     'validation_upgrade_delay': 'u32',
     'zeroth_delay_tranche_width': 'u32',
@@ -881,14 +839,6 @@ result = substrate.query(
             'relay_vrf_modulo_samples': 'u32',
             'scheduling_lookahead': 'u32',
             'thread_availability_period': 'u32',
-            'ump_max_individual_weight': {
-                'proof_size': 'u64',
-                'ref_time': 'u64',
-            },
-            'ump_service_total_weight': {
-                'proof_size': 'u64',
-                'ref_time': 'u64',
-            },
             'validation_upgrade_cooldown': 'u32',
             'validation_upgrade_delay': 'u32',
             'zeroth_delay_tranche_width': 'u32',

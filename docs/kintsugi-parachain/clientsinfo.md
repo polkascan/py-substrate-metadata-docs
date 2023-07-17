@@ -7,7 +7,7 @@
 ---------
 ### set_current_client_release
 Sets the current client release version, in case of a bug fix or patch.
-Clients incude the vault, oracle, and faucet.
+Clients include the vault, oracle, and faucet.
 
 \# Arguments
 * `client_name` - raw byte string representation of the client name (e.g. `b&quot;vault&quot;`, `b&quot;oracle&quot;`,
@@ -16,8 +16,8 @@ Clients incude the vault, oracle, and faucet.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| client_name | `Vec<u8>` | 
-| release | `ClientRelease<T::Hash>` | 
+| client_name | `NameOf<T>` | 
+| release | `ClientRelease<UriOf<T>, T::Hash>` | 
 
 #### Python
 ```python
@@ -36,7 +36,7 @@ call = substrate.compose_call(
 ### set_pending_client_release
 Sets the pending client release version. To be batched alongside the
 `parachainSystem.authorizeUpgrade` Cumulus call.
-Clients incude the vault, oracle, and faucet.
+Clients include the vault, oracle, and faucet.
 
 \# Arguments
 * `client_name` - raw byte string representation of the client name (e.g. `b&quot;vault&quot;`, `b&quot;oracle&quot;`,
@@ -45,8 +45,8 @@ Clients incude the vault, oracle, and faucet.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| client_name | `Vec<u8>` | 
-| release | `ClientRelease<T::Hash>` | 
+| client_name | `NameOf<T>` | 
+| release | `ClientRelease<UriOf<T>, T::Hash>` | 
 
 #### Python
 ```python
@@ -69,14 +69,14 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| release | `ClientRelease<T::Hash>` | ```{'uri': 'Bytes', 'checksum': '[u8; 32]'}```
+| release | `ClientRelease<UriOf<T>, T::Hash>` | ```{'uri': 'Bytes', 'checksum': '[u8; 32]'}```
 
 ---------
 ### NotifyClientRelease
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| release | `ClientRelease<T::Hash>` | ```{'uri': 'Bytes', 'checksum': '[u8; 32]'}```
+| release | `ClientRelease<UriOf<T>, T::Hash>` | ```{'uri': 'Bytes', 'checksum': '[u8; 32]'}```
 
 ---------
 ## Storage functions
@@ -110,5 +110,30 @@ result = substrate.query(
 #### Return value
 ```python
 {'checksum': '[u8; 32]', 'uri': 'Bytes'}
+```
+---------
+## Constants
+
+---------
+### MaxNameLength
+ The maximum length of a client name.
+#### Value
+```python
+255
+```
+#### Python
+```python
+constant = substrate.get_constant('ClientsInfo', 'MaxNameLength')
+```
+---------
+### MaxUriLength
+ The maximum length of a client URI.
+#### Value
+```python
+255
+```
+#### Python
+```python
+constant = substrate.get_constant('ClientsInfo', 'MaxUriLength')
 ```
 ---------

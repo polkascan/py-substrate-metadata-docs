@@ -43,6 +43,11 @@ call = substrate.compose_call(
 ---------
 ### unnote_preimage
 Clear an unrequested preimage from the runtime storage.
+
+If `len` is provided, then it will be a much cheaper operation.
+
+- `hash`: The hash of the preimage to be removed from the store.
+- `len`: The length of the preimage of `hash`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -104,12 +109,11 @@ A preimage has been requested.
 
 ---------
 ### PreimageFor
- The preimages stored by this pallet.
 
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'PreimageFor', ['[u8; 32]']
+    'Preimage', 'PreimageFor', [('[u8; 32]', 'u32')]
 )
 ```
 
@@ -130,7 +134,14 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'Requested': 'u32', 'Unrequested': (None, ('AccountId', 'u128'))}
+{
+    'Requested': {
+        'count': 'u32',
+        'deposit': (None, ('AccountId', 'u128')),
+        'len': (None, 'u32'),
+    },
+    'Unrequested': {'deposit': ('AccountId', 'u128'), 'len': 'u32'},
+}
 ```
 ---------
 ## Errors
@@ -156,7 +167,7 @@ The preimage request cannot be removed since no outstanding requests exist.
 A preimage may not be removed when there are outstanding requests.
 
 ---------
-### TooLarge
+### TooBig
 Preimage is too large to store on-chain.
 
 ---------

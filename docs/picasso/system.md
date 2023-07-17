@@ -630,10 +630,15 @@ result = substrate.query(
                     'to': 'Bytes',
                 },
                 'ChargingFeeTimeout': {'sequence': 'u64'},
+                'ChildStateUpdated': None,
                 'ClientFrozen': {
                     'client_id': 'Bytes',
                     'height': 'u64',
                     'revision_number': 'u64',
+                },
+                'ClientStateSubstituted': {
+                    'client_id': 'Str',
+                    'height': 'scale_info::215',
                 },
                 'ClientUpgradeSet': None,
                 'Events': {'events': ['scale_info::210']},
@@ -710,7 +715,10 @@ result = substrate.query(
                     'destination_channel': 'u64',
                     'source_channel': 'u64',
                 },
-                'IbcTransferFeeCollected': {'amount': 'u128'},
+                'IbcTransferFeeCollected': {
+                    'amount': 'u128',
+                    'asset_id': 'u128',
+                },
             },
             'Identity': {
                 'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
@@ -791,6 +799,7 @@ result = substrate.query(
                 'PriceChanged': ('u128', 'u128'),
                 'PriceSubmitted': ('AccountId', 'u128', 'u128'),
                 'RewardingAdjustment': 'u64',
+                'SignerRemoved': ('AccountId', 'AccountId', 'u128'),
                 'SignerSet': ('AccountId', 'AccountId'),
                 'StakeAdded': ('AccountId', 'u128', 'u128'),
                 'StakeReclaimed': ('AccountId', 'u128'),
@@ -1477,7 +1486,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'picasso',
     'impl_version': 2,
     'spec_name': 'picasso',
-    'spec_version': 10026,
+    'spec_version': 10030,
     'state_version': 0,
     'transaction_version': 1,
 }

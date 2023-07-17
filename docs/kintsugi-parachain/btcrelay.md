@@ -10,37 +10,37 @@ One time function to initialize the BTC-Relay with the first block
 
 \# Arguments
 
-* `block_header_bytes` - 80 byte raw Bitcoin block header.
+* `block_header` - Bitcoin block header.
 * `block_height` - starting Bitcoin block height of the submitted block header.
 
-\# &lt;weight&gt;
-- Storage Reads:
-	- One storage read to check that parachain is not shutdown. O(1)
-	- One storage read to check if relayer authorization is disabled. O(1)
-	- One storage read to check if relayer is authorized. O(1)
-- Storage Writes:
-    - One storage write to store block hash. O(1)
-    - One storage write to store block header. O(1)
-	- One storage write to initialize main chain. O(1)
-    - One storage write to store best block hash. O(1)
-    - One storage write to store best block height. O(1)
-- Events:
-	- One event for initialization.
-
-Total Complexity: O(1)
-\# &lt;/weight&gt;
+\#\# Complexity
+- O(1)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| raw_block_header | `RawBlockHeader` | 
+| block_header | `BlockHeader` | 
 | block_height | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'BTCRelay', 'initialize', {
+    'block_header': {
+        'hash': {
+            'content': '[u8; 32]',
+        },
+        'hash_prev_block': {
+            'content': '[u8; 32]',
+        },
+        'merkle_root': {
+            'content': '[u8; 32]',
+        },
+        'nonce': 'u32',
+        'target': '[u64; 4]',
+        'timestamp': 'u32',
+        'version': 'i32',
+    },
     'block_height': 'u32',
-    'raw_block_header': '[u8; 80]',
 }
 )
 ```
@@ -51,160 +51,36 @@ Stores a single new block header
 
 \# Arguments
 
-* `raw_block_header` - 80 byte raw Bitcoin block header.
+* `block_header` - Bitcoin block header.
 
-\# &lt;weight&gt;
-Key: C (len of chains), P (len of positions)
-- Storage Reads:
-	- One storage read to check that parachain is not shutdown. O(1)
-	- One storage read to check if relayer authorization is disabled. O(1)
-	- One storage read to check if relayer is authorized. O(1)
-	- One storage read to check if block header is stored. O(1)
-	- One storage read to retrieve parent block hash. O(1)
-	- One storage read to check if difficulty check is disabled. O(1)
-	- One storage read to retrieve last re-target. O(1)
-	- One storage read to retrieve all Chains. O(C)
-- Storage Writes:
-    - One storage write to store block hash. O(1)
-    - One storage write to store block header. O(1)
-	- One storage mutate to extend main chain. O(1)
-    - One storage write to store best block hash. O(1)
-    - One storage write to store best block height. O(1)
-- Notable Computation:
-	- O(P) sort to reorg chains.
-- Events:
-	- One event for block stored (fork or extension).
-
-Total Complexity: O(C + P)
-\# &lt;/weight&gt;
+\#\# Complexity
+- `O(F)` where `F` is the number of forks
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| raw_block_header | `RawBlockHeader` | 
+| block_header | `BlockHeader` | 
+| fork_bound | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'BTCRelay', 'store_block_header', {'raw_block_header': '[u8; 80]'}
-)
-```
-
----------
-### validate_transaction
-Validates a given raw Bitcoin transaction, according to the supported transaction
-format (see &lt;https://spec.interlay.io/intro/accepted-format.html&gt;)
-This DOES NOT check if the transaction is included in a block, nor does it guarantee that the
-transaction is fully valid according to the consensus (needs full node).
-
-\# Arguments
-* `raw_tx` - raw Bitcoin transaction
-* `expected_btc` - expected amount of BTC (satoshis) sent to the recipient
-* `recipient_btc_address` - expected Bitcoin address of recipient (p2sh, p2pkh, p2wpkh)
-* `op_return_id` - 32 byte hash identifier expected in OP_RETURN (replay protection)
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| raw_tx | `Vec<u8>` | 
-| expected_btc | `Value` | 
-| recipient_btc_address | `BtcAddress` | 
-| op_return_id | `Option<H256>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'BTCRelay', 'validate_transaction', {
-    'expected_btc': 'i64',
-    'op_return_id': (None, '[u8; 32]'),
-    'raw_tx': 'Bytes',
-    'recipient_btc_address': {
-        'P2PKH': '[u8; 20]',
-        'P2SH': '[u8; 20]',
-        'P2WPKHv0': '[u8; 20]',
-        'P2WSHv0': '[u8; 32]',
+    'BTCRelay', 'store_block_header', {
+    'block_header': {
+        'hash': {
+            'content': '[u8; 32]',
+        },
+        'hash_prev_block': {
+            'content': '[u8; 32]',
+        },
+        'merkle_root': {
+            'content': '[u8; 32]',
+        },
+        'nonce': 'u32',
+        'target': '[u64; 4]',
+        'timestamp': 'u32',
+        'version': 'i32',
     },
-}
-)
-```
-
----------
-### verify_and_validate_transaction
-Verifies the inclusion of `tx_id` into the relay, and validates the given raw Bitcoin transaction, according
-to the supported transaction format (see &lt;https://spec.interlay.io/intro/accepted-format.html&gt;)
-
-\# Arguments
-
-* `raw_merkle_proof` - The raw merkle proof as returned by bitcoin `gettxoutproof`
-* `confirmations` - The number of confirmations needed to accept the proof. If `none`, the value stored in
-  the StableBitcoinConfirmations storage item is used.
-* `raw_tx` - raw Bitcoin transaction
-* `expected_btc` - expected amount of BTC (satoshis) sent to the recipient
-* `recipient_btc_address` - 20 byte Bitcoin address of recipient of the BTC in the 1st  / payment UTXO
-* `op_return_id` - 32 byte hash identifier expected in OP_RETURN (replay protection)
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| raw_merkle_proof | `Vec<u8>` | 
-| confirmations | `Option<u32>` | 
-| raw_tx | `Vec<u8>` | 
-| expected_btc | `Value` | 
-| recipient_btc_address | `BtcAddress` | 
-| op_return_id | `Option<H256>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'BTCRelay', 'verify_and_validate_transaction', {
-    'confirmations': (None, 'u32'),
-    'expected_btc': 'i64',
-    'op_return_id': (None, '[u8; 32]'),
-    'raw_merkle_proof': 'Bytes',
-    'raw_tx': 'Bytes',
-    'recipient_btc_address': {
-        'P2PKH': '[u8; 20]',
-        'P2SH': '[u8; 20]',
-        'P2WPKHv0': '[u8; 20]',
-        'P2WSHv0': '[u8; 32]',
-    },
-}
-)
-```
-
----------
-### verify_transaction_inclusion
-Verifies the inclusion of `tx_id`
-
-\# Arguments
-
-* `tx_id` - The hash of the transaction to check for
-* `raw_merkle_proof` - The raw merkle proof as returned by bitcoin `gettxoutproof`
-* `confirmations` - The number of confirmations needed to accept the proof. If `none`, the value stored in
-  the `StableBitcoinConfirmations` storage item is used.
-
-\# &lt;weight&gt;
-Key: C (len of chains), P (len of positions)
-- Storage Reads:
-	- One storage read to check if inclusion check is disabled. O(1)
-	- One storage read to retrieve best block height. O(1)
-	- One storage read to check if transaction is in active fork. O(1)
-	- One storage read to retrieve block header. O(1)
-	- One storage read to check that parachain is not shutdown. O(1)
-	- One storage read to check stable bitcoin confirmations. O(1)
-	- One storage read to check stable parachain confirmations. O(1)
-\# &lt;/weight&gt;
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| tx_id | `H256Le` | 
-| raw_merkle_proof | `Vec<u8>` | 
-| confirmations | `Option<u32>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'BTCRelay', 'verify_transaction_inclusion', {
-    'confirmations': (None, 'u32'),
-    'raw_merkle_proof': 'Bytes',
-    'tx_id': {'content': '[u8; 32]'},
+    'fork_bound': 'u32',
 }
 )
 ```
@@ -502,6 +378,10 @@ Overflow of block height
 Block header not found for given hash
 
 ---------
+### BoundExceeded
+Weight bound exceeded
+
+---------
 ### ChainCounterOverflow
 Overflow of chain counter
 
@@ -664,5 +544,9 @@ Error code not applicable to blocks
 
 ---------
 ### UnsupportedOutputFormat
+
+---------
+### WrongForkBound
+Wrong fork bound, should be higher
 
 ---------

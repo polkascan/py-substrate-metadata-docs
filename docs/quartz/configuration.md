@@ -280,7 +280,7 @@ constant = substrate.get_constant('Configuration', 'DefaultCollatorSelectionMaxC
 ### DefaultMinGasPrice
 #### Value
 ```python
-952266075838
+1906626161453
 ```
 #### Python
 ```python
@@ -290,7 +290,7 @@ constant = substrate.get_constant('Configuration', 'DefaultMinGasPrice')
 ### DefaultWeightToFeeCoefficient
 #### Value
 ```python
-78254739568813617
+76840511488584762
 ```
 #### Python
 ```python

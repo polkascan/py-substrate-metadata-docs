@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | shiden     |
 | Implementation name     | shiden     |
-| Spec version     | 96     |
+| Spec version     | 100     |
 | SS58 Format     | 5     |
 | Token symbol      | SDN     |
 | Token decimals      | 18     |
@@ -38,6 +38,7 @@
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
+| [StateTrieMigration](statetriemigration.md) | [6](statetriemigration.md#calls) | [4](statetriemigration.md#events) | [3](statetriemigration.md#storage-functions) | [1](statetriemigration.md#constants) | [6](statetriemigration.md#errors) |
 | [Sudo](sudo.md) | [4](sudo.md#calls) | [3](sudo.md#events) | [1](sudo.md#storage-functions) | [0](sudo.md#constants) | [1](sudo.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |
@@ -46,3 +47,4 @@
 | [Vesting](vesting.md) | [5](vesting.md#calls) | [2](vesting.md#events) | [2](vesting.md#storage-functions) | [2](vesting.md#constants) | [5](vesting.md#errors) |
 | [XcAssetConfig](xcassetconfig.md) | [5](xcassetconfig.md#calls) | [5](xcassetconfig.md#events) | [3](xcassetconfig.md#storage-functions) | [0](xcassetconfig.md#constants) | [3](xcassetconfig.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [7](xcmpqueue.md#events) | [10](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |
+| [Xtokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |

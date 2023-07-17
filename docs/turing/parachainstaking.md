@@ -104,6 +104,35 @@ call = substrate.compose_call(
 ```
 
 ---------
+### delegate_with_auto_compound
+If caller is not a delegator and not a collator, then join the set of delegators
+If caller is a delegator, then makes delegation to change their delegation state
+Sets the auto-compound config for the delegation
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| candidate | `T::AccountId` | 
+| amount | `BalanceOf<T>` | 
+| auto_compound | `Percent` | 
+| candidate_delegation_count | `u32` | 
+| candidate_auto_compounding_delegation_count | `u32` | 
+| delegation_count | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ParachainStaking', 'delegate_with_auto_compound', {
+    'amount': 'u128',
+    'auto_compound': 'u8',
+    'candidate': 'AccountId',
+    'candidate_auto_compounding_delegation_count': 'u32',
+    'candidate_delegation_count': 'u32',
+    'delegation_count': 'u32',
+}
+)
+```
+
+---------
 ### delegator_bond_more
 Bond more for delegators wrt a specific collator candidate.
 #### Attributes
@@ -272,7 +301,9 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_delegator_bond_less
-Request bond less for delegators wrt a specific collator candidate.
+Request bond less for delegators wrt a specific collator candidate. The delegation&\#x27;s
+rewards for rounds while the request is pending use the reduced bonded amount.
+A bond less may not be performed if any other scheduled request is pending.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -325,6 +356,8 @@ call = substrate.compose_call(
 ### schedule_revoke_delegation
 Request to revoke an existing delegation. If successful, the delegation is scheduled
 to be allowed to be revoked via the `execute_delegation_request` extrinsic.
+The delegation receives no rewards for the rounds while a revoke is pending.
+A revoke may not be performed if any other scheduled request is pending.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -334,6 +367,29 @@ to be allowed to be revoked via the `execute_delegation_request` extrinsic.
 ```python
 call = substrate.compose_call(
     'ParachainStaking', 'schedule_revoke_delegation', {'collator': 'AccountId'}
+)
+```
+
+---------
+### set_auto_compound
+Sets the auto-compounding reward percentage for a delegation.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| candidate | `T::AccountId` | 
+| value | `Percent` | 
+| candidate_auto_compounding_delegation_count_hint | `u32` | 
+| delegation_count_hint | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ParachainStaking', 'set_auto_compound', {
+    'candidate': 'AccountId',
+    'candidate_auto_compounding_delegation_count_hint': 'u32',
+    'delegation_count_hint': 'u32',
+    'value': 'u8',
+}
 )
 ```
 
@@ -463,6 +519,16 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### AutoCompoundSet
+Auto-compounding reward percent was set for a delegation.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| candidate | `T::AccountId` | ```AccountId```
+| delegator | `T::AccountId` | ```AccountId```
+| value | `Percent` | ```u8```
+
+---------
 ### BlocksPerRoundSet
 Set blocks per round
 #### Attributes
@@ -590,6 +656,16 @@ Set collator commission to this value.
 | new | `Perbill` | ```u32```
 
 ---------
+### Compounded
+Compounded a portion of rewards towards the delegation.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| candidate | `T::AccountId` | ```AccountId```
+| delegator | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
+
+---------
 ### Delegation
 New delegation (increase of the existing one).
 #### Attributes
@@ -599,6 +675,7 @@ New delegation (increase of the existing one).
 | locked_amount | `BalanceOf<T>` | ```u128```
 | candidate | `T::AccountId` | ```AccountId```
 | delegator_position | `DelegatorAdded<BalanceOf<T>>` | ```{'AddedToTop': {'new_total': 'u128'}, 'AddedToBottom': None}```
+| auto_compound | `Percent` | ```u8```
 
 ---------
 ### DelegationDecreaseScheduled
@@ -805,7 +882,28 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'bond': 'u128', 'delegations': [{'amount': 'u128', 'owner': 'AccountId'}], 'total': 'u128'}
+{
+    'bond': 'u128',
+    'delegations': [
+        {'amount': 'u128', 'auto_compound': 'u8', 'owner': 'AccountId'},
+    ],
+    'total': 'u128',
+}
+```
+---------
+### AutoCompoundingDelegations
+ Stores auto-compounding configuration per collator.
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainStaking', 'AutoCompoundingDelegations', ['AccountId']
+)
+```
+
+#### Return value
+```python
+[{'delegator': 'AccountId', 'value': 'u8'}]
 ```
 ---------
 ### AwardedPts
@@ -1363,7 +1461,13 @@ constant = substrate.get_constant('ParachainStaking', 'RewardPaymentDelay')
 ### PendingDelegationRevoke
 
 ---------
-### RoundLengthMustBeAtLeastTotalSelectedCollators
+### RoundLengthMustBeGreaterThanTotalSelectedCollators
+
+---------
+### TooLowCandidateAutoCompoundingDelegationCountToAutoCompound
+
+---------
+### TooLowCandidateAutoCompoundingDelegationCountToDelegate
 
 ---------
 ### TooLowCandidateCountToLeaveCandidates
@@ -1379,6 +1483,9 @@ constant = substrate.get_constant('ParachainStaking', 'RewardPaymentDelay')
 
 ---------
 ### TooLowCandidateDelegationCountToLeaveCandidates
+
+---------
+### TooLowDelegationCountToAutoCompound
 
 ---------
 ### TooLowDelegationCountToDelegate

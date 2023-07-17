@@ -121,8 +121,8 @@ call = substrate.compose_call(
     'ExternalAgents', 'create_and_change_custom_group', {
     'agent': '[u8; 32]',
     'perms': {
-        'Except': 'scale_info::50',
-        'These': 'scale_info::50',
+        'Except': 'scale_info::53',
+        'These': 'scale_info::53',
         'Whole': None,
     },
     'ticker': '[u8; 12]',
@@ -161,8 +161,8 @@ which you can use as `AgentGroup::Custom(id)` when adding agents for `ticker`.
 call = substrate.compose_call(
     'ExternalAgents', 'create_group', {
     'perms': {
-        'Except': 'scale_info::50',
-        'These': 'scale_info::50',
+        'Except': 'scale_info::53',
+        'These': 'scale_info::53',
         'Whole': None,
     },
     'ticker': '[u8; 12]',
@@ -191,8 +191,8 @@ call = substrate.compose_call(
     'ExternalAgents', 'create_group_and_add_auth', {
     'expiry': (None, 'u64'),
     'perms': {
-        'Except': 'scale_info::50',
-        'These': 'scale_info::50',
+        'Except': 'scale_info::53',
+        'These': 'scale_info::53',
         'Whole': None,
     },
     'target': '[u8; 32]',
@@ -263,8 +263,8 @@ call = substrate.compose_call(
     'ExternalAgents', 'set_group_permissions', {
     'id': 'u32',
     'perms': {
-        'Except': 'scale_info::50',
-        'These': 'scale_info::50',
+        'Except': 'scale_info::53',
+        'These': 'scale_info::53',
         'Whole': None,
     },
     'ticker': '[u8; 12]',
@@ -323,7 +323,7 @@ An Agent Group was created.
 | None | `EventDid` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
 | None | `AGId` | ```u32```
-| None | `ExtrinsicPermissions` | ```{'Whole': None, 'These': 'scale_info::50', 'Except': 'scale_info::50'}```
+| None | `ExtrinsicPermissions` | ```{'Whole': None, 'These': 'scale_info::53', 'Except': 'scale_info::53'}```
 
 ---------
 ### GroupPermissionsUpdated
@@ -336,7 +336,7 @@ An Agent Group&\#x27;s permissions was updated.
 | None | `EventDid` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
 | None | `AGId` | ```u32```
-| None | `ExtrinsicPermissions` | ```{'Whole': None, 'These': 'scale_info::50', 'Except': 'scale_info::50'}```
+| None | `ExtrinsicPermissions` | ```{'Whole': None, 'These': 'scale_info::53', 'Except': 'scale_info::53'}```
 
 ---------
 ## Storage functions
@@ -408,7 +408,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'Except': 'scale_info::50', 'These': 'scale_info::50', 'Whole': None}
+{'Except': 'scale_info::53', 'These': 'scale_info::53', 'Whole': None}
 ```
 ---------
 ### NumFullAgents

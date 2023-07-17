@@ -133,7 +133,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'_reserved': 'u32', 'consumed_space': 'u32', 'map': 'scale_info::392'}
+{'_reserved': 'u32', 'consumed_space': 'u32', 'map': 'scale_info::407'}
 ```
 ---------
 ### TokensBurnt

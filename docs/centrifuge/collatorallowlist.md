@@ -9,7 +9,8 @@
 Add the given `collator_id` to the allowlist.
 Fails if
   - `origin` fails the `ensure_root` check
-  - `collator_id` did not yet load their keys into the session pallet
+  - `collator_id` did not yet load their keys into the session
+    pallet
   - `collator_id` is already part of the allowlist
 #### Attributes
 | Name | Type |
@@ -92,6 +93,7 @@ The provided collator was not found in the storage.
 
 ---------
 ### CollatorNotReady
-The collator is not ready yet following to the underlying `T::ValidatorRegistration`
+The collator is not ready yet following to the underlying
+`T::ValidatorRegistration`
 
 ---------

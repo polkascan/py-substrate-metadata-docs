@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | composable     |
 | Implementation name     | composable     |
-| Spec version     | 10025     |
+| Spec version     | 10030     |
 | SS58 Format     | 50     |
 | Token symbol      | LAYR     |
 | Token decimals      | 12     |
@@ -32,7 +32,7 @@
 | [Democracy](democracy.md) | [19](democracy.md#calls) | [17](democracy.md#events) | [12](democracy.md#storage-functions) | [12](democracy.md#constants) | [24](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [GovernanceRegistry](governanceregistry.md) | [3](governanceregistry.md#calls) | [3](governanceregistry.md#events) | [1](governanceregistry.md#storage-functions) | [0](governanceregistry.md#constants) | [1](governanceregistry.md#errors) |
-| [Ibc](ibc.md) | [7](ibc.md#calls) | [18](ibc.md#events) | [25](ibc.md#storage-functions) | [8](ibc.md#constants) | [39](ibc.md#errors) |
+| [Ibc](ibc.md) | [9](ibc.md#calls) | [20](ibc.md#events) | [25](ibc.md#storage-functions) | [8](ibc.md#constants) | [39](ibc.md#errors) |
 | [Ics20Fee](ics20fee.md) | [3](ics20fee.md#calls) | [3](ics20fee.md#events) | [2](ics20fee.md#storage-functions) | [2](ics20fee.md#constants) | [0](ics20fee.md#errors) |
 | [Indices](indices.md) | [5](indices.md#calls) | [3](indices.md#events) | [1](indices.md#storage-functions) | [1](indices.md#constants) | [5](indices.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |

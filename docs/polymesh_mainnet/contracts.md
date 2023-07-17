@@ -25,7 +25,7 @@ a regular account will be created and any value will be transferred.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `BalanceOf<T>` | 
 | gas_limit | `Weight` | 
 | storage_deposit_limit | `Option<<BalanceOf<T> as codec::HasCompact>::Type>` | 
@@ -35,6 +35,43 @@ a regular account will be created and any value will be transferred.
 ```python
 call = substrate.compose_call(
     'Contracts', 'call', {
+    'data': 'Bytes',
+    'dest': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': 'u32',
+        'Raw': 'Bytes',
+    },
+    'gas_limit': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+    'storage_deposit_limit': (
+        None,
+        'u128',
+    ),
+    'value': 'u128',
+}
+)
+```
+
+---------
+### call_old_weight
+Deprecated version if [`Self::call`] for use in an in-storage `Call`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| dest | `AccountIdLookupOf<T>` | 
+| value | `BalanceOf<T>` | 
+| gas_limit | `OldWeight` | 
+| storage_deposit_limit | `Option<<BalanceOf<T> as codec::HasCompact>::Type>` | 
+| data | `Vec<u8>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Contracts', 'call_old_weight', {
     'data': 'Bytes',
     'dest': {
         'Address20': '[u8; 20]',
@@ -74,6 +111,39 @@ must be supplied.
 ```python
 call = substrate.compose_call(
     'Contracts', 'instantiate', {
+    'code_hash': '[u8; 32]',
+    'data': 'Bytes',
+    'gas_limit': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+    'salt': 'Bytes',
+    'storage_deposit_limit': (
+        None,
+        'u128',
+    ),
+    'value': 'u128',
+}
+)
+```
+
+---------
+### instantiate_old_weight
+Deprecated version if [`Self::instantiate`] for use in an in-storage `Call`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| value | `BalanceOf<T>` | 
+| gas_limit | `OldWeight` | 
+| storage_deposit_limit | `Option<<BalanceOf<T> as codec::HasCompact>::Type>` | 
+| code_hash | `CodeHash<T>` | 
+| data | `Vec<u8>` | 
+| salt | `Vec<u8>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Contracts', 'instantiate_old_weight', {
     'code_hash': '[u8; 32]',
     'data': 'Bytes',
     'gas_limit': 'u64',
@@ -131,6 +201,39 @@ call = substrate.compose_call(
     'Contracts', 'instantiate_with_code', {
     'code': 'Bytes',
     'data': 'Bytes',
+    'gas_limit': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+    'salt': 'Bytes',
+    'storage_deposit_limit': (
+        None,
+        'u128',
+    ),
+    'value': 'u128',
+}
+)
+```
+
+---------
+### instantiate_with_code_old_weight
+Deprecated version if [`Self::instantiate_with_code`] for use in an in-storage `Call`.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| value | `BalanceOf<T>` | 
+| gas_limit | `OldWeight` | 
+| storage_deposit_limit | `Option<<BalanceOf<T> as codec::HasCompact>::Type>` | 
+| code | `Vec<u8>` | 
+| data | `Vec<u8>` | 
+| salt | `Vec<u8>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Contracts', 'instantiate_with_code_old_weight', {
+    'code': 'Bytes',
+    'data': 'Bytes',
     'gas_limit': 'u64',
     'salt': 'Bytes',
     'storage_deposit_limit': (
@@ -161,6 +264,40 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_code
+Privileged function that changes the code of an existing contract.
+
+This takes care of updating refcounts and all other necessary operations. Returns
+an error if either the `code_hash` or `dest` do not exist.
+
+\# Note
+
+This does **not** change the address of the contract in question. This means
+that the contract address is no longer derived from its code hash after calling
+this dispatchable.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| dest | `AccountIdLookupOf<T>` | 
+| code_hash | `CodeHash<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Contracts', 'set_code', {
+    'code_hash': '[u8; 32]',
+    'dest': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': 'u32',
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
 ### upload_code
 Upload new `code` without instantiating a contract from it.
 
@@ -171,6 +308,10 @@ depends on the instrumented size of the the supplied `code`.
 If the code already exists in storage it will still return `Ok` and upgrades
 the in storage version to the current
 [`InstructionWeights::version`](InstructionWeights).
+
+- `determinism`: If this is set to any other value but [`Determinism::Deterministic`]
+  then the only way to use this code is to delegate call into it from an offchain
+  execution. Set to [`Determinism::Deterministic`] if in doubt.
 
 \# Note
 
@@ -183,12 +324,17 @@ through [`Self::instantiate_with_code`].
 | -------- | -------- | 
 | code | `Vec<u8>` | 
 | storage_deposit_limit | `Option<<BalanceOf<T> as codec::HasCompact>::Type>` | 
+| determinism | `Determinism` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Contracts', 'upload_code', {
     'code': 'Bytes',
+    'determinism': (
+        'Deterministic',
+        'AllowIndeterminism',
+    ),
     'storage_deposit_limit': (
         None,
         'u128',
@@ -199,6 +345,21 @@ call = substrate.compose_call(
 
 ---------
 ## Events
+
+---------
+### Called
+A contract was called either by a plain account or another contract.
+
+\# Note
+
+Please keep in mind that like all events this is only emitted for successful
+calls. This is because on failure all storage changes including events are
+rolled back.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| caller | `T::AccountId` | ```AccountId```
+| contract | `T::AccountId` | ```AccountId```
 
 ---------
 ### CodeRemoved
@@ -234,6 +395,21 @@ A custom event emitted by the contract.
 | -------- | -------- | -------- |
 | contract | `T::AccountId` | ```AccountId```
 | data | `Vec<u8>` | ```Bytes```
+
+---------
+### DelegateCalled
+A contract delegate called a code hash.
+
+\# Note
+
+Please keep in mind that like all events this is only emitted for successful
+calls. This is because on failure all storage changes including events are
+rolled back.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| contract | `T::AccountId` | ```AccountId```
+| code_hash | `CodeHash<T>` | ```[u8; 32]```
 
 ---------
 ### Instantiated
@@ -276,6 +452,7 @@ result = substrate.query(
 ```python
 {
     'code': 'Bytes',
+    'determinism': ('Deterministic', 'AllowIndeterminism'),
     'initial': 'u32',
     'instruction_weights_version': 'u32',
     'maximum': 'u32',
@@ -296,7 +473,15 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'code_hash': '[u8; 32]', 'storage_deposit': 'u128', 'trie_id': 'Bytes'}
+{
+    'code_hash': '[u8; 32]',
+    'storage_base_deposit': 'u128',
+    'storage_byte_deposit': 'u128',
+    'storage_bytes': 'u32',
+    'storage_item_deposit': 'u128',
+    'storage_items': 'u32',
+    'trie_id': 'Bytes',
+}
 ```
 ---------
 ### DeletionQueue
@@ -420,7 +605,7 @@ constant = substrate.get_constant('Contracts', 'DeletionQueueDepth')
  information about the deletion queue.
 #### Value
 ```python
-500000000000
+{'proof_size': 0, 'ref_time': 500000000000}
 ```
 #### Python
 ```python
@@ -457,125 +642,151 @@ constant = substrate.get_constant('Contracts', 'DepositPerByte')
 constant = substrate.get_constant('Contracts', 'DepositPerItem')
 ```
 ---------
+### MaxCodeLen
+ The maximum length of a contract code in bytes. This limit applies to the instrumented
+ version of the code. Therefore `instantiate_with_code` can fail even when supplying
+ a wasm binary below this maximum size.
+#### Value
+```python
+131072
+```
+#### Python
+```python
+constant = substrate.get_constant('Contracts', 'MaxCodeLen')
+```
+---------
+### MaxStorageKeyLen
+ The maximum allowable length in bytes for storage keys.
+#### Value
+```python
+128
+```
+#### Python
+```python
+constant = substrate.get_constant('Contracts', 'MaxStorageKeyLen')
+```
+---------
 ### Schedule
  Cost schedule and limits.
 #### Value
 ```python
 {
     'host_fn_weights': {
-        'address': 480560,
-        'balance': 1425340,
-        'block_number': 480670,
-        'call': 449252090,
-        'call_per_cloned_byte': 119810,
-        'call_transfer_surcharge': 268854420,
-        'caller': 478870,
-        'caller_is_origin': 210230,
-        'clear_storage': 253816710,
-        'clear_storage_per_byte': 100,
-        'code_hash': 54517310,
-        'contains_storage': 52909190,
-        'contains_storage_per_byte': 99,
-        'debug_message': 392470,
-        'delegate_call': 249283010,
-        'deposit_event': 2969730,
-        'deposit_event_per_byte': 801,
-        'deposit_event_per_topic': 252943480,
-        'ecdsa_recover': 38249020,
-        'ecdsa_to_eth_address': 154128770,
-        'gas': 240160,
-        'gas_left': 473250,
-        'get_storage': 53248240,
-        'get_storage_per_byte': 623,
-        'hash_blake2_128': 621890,
-        'hash_blake2_128_per_byte': 1168,
-        'hash_blake2_256': 622730,
-        'hash_blake2_256_per_byte': 1167,
-        'hash_keccak_256': 903630,
-        'hash_keccak_256_per_byte': 2998,
-        'hash_sha2_256': 782600,
-        'hash_sha2_256_per_byte': 4555,
-        'input': 468640,
-        'input_per_byte': 116,
-        'instantiate': 1278837540,
-        'instantiate_per_salt_byte': 1525,
-        'instantiate_transfer_surcharge': 11041,
-        'is_contract': 53712780,
-        'minimum_balance': 480410,
-        'now': 477910,
-        'own_code_hash': 528430,
-        'r#return': 0,
-        'random': 1575250,
-        'return_per_byte': 196,
-        'set_code_hash': 256724670,
-        'set_storage': 254034730,
-        'set_storage_per_new_byte': 276,
-        'set_storage_per_old_byte': 110,
-        'take_storage': 254170220,
-        'take_storage_per_byte': 640,
-        'terminate': 1252421000,
-        'transfer': 268032170,
-        'value_transferred': 483920,
-        'weight_to_fee': 1219880,
+        'account_reentrance_count': 316524,
+        'address': 205773,
+        'balance': 1120083,
+        'block_number': 195112,
+        'call': 759670786,
+        'call_per_cloned_byte': 121850,
+        'call_transfer_surcharge': 266974634,
+        'caller': 202288,
+        'caller_is_origin': 136868,
+        'clear_storage': 254959562,
+        'clear_storage_per_byte': 22176,
+        'code_hash': 52952810,
+        'contains_storage': 53785887,
+        'contains_storage_per_byte': 5029,
+        'debug_message': 160128,
+        'delegate_call': 540036890,
+        'deposit_event': 2683347,
+        'deposit_event_per_byte': 825,
+        'deposit_event_per_topic': 252152635,
+        'ecdsa_recover': 37564605,
+        'ecdsa_to_eth_address': 25993407,
+        'gas': 99421,
+        'gas_left': 199160,
+        'get_storage': 53985863,
+        'get_storage_per_byte': 6132,
+        'hash_blake2_128': 385863,
+        'hash_blake2_128_per_byte': 1216,
+        'hash_blake2_256': 391166,
+        'hash_blake2_256_per_byte': 1216,
+        'hash_keccak_256': 664825,
+        'hash_keccak_256_per_byte': 3025,
+        'hash_sha2_256': 524702,
+        'hash_sha2_256_per_byte': 3950,
+        'input': 170901,
+        'input_per_byte': 117,
+        'instantiate': 1574204350,
+        'instantiate_per_salt_byte': 1494,
+        'instantiate_transfer_surcharge': 3051,
+        'is_contract': 52422557,
+        'minimum_balance': 198144,
+        'now': 198648,
+        'own_code_hash': 246028,
+        'r#return': 1475820,
+        'random': 1361147,
+        'reentrance_count': 137144,
+        'return_per_byte': 184,
+        'set_code_hash': 532626231,
+        'set_storage': 255034746,
+        'set_storage_per_new_byte': 22455,
+        'set_storage_per_old_byte': 22143,
+        'take_storage': 255111240,
+        'take_storage_per_byte': 23277,
+        'terminate': 1502650987,
+        'transfer': 266449479,
+        'value_transferred': 196850,
+        'weight_to_fee': 1055697,
     },
     'instruction_weights': {
-        'br': 3060,
-        'br_if': 5770,
-        'br_table': 7170,
-        'br_table_per_entry': 40,
-        'call': 68540,
-        'call_indirect': 85180,
-        'call_indirect_per_param': 1760,
-        'global_get': 9050,
-        'global_set': 11140,
-        'i32wrapi64': 3140,
-        'i64add': 4450,
-        'i64and': 4500,
-        'i64clz': 3140,
-        'i64const': 2960,
-        'i64ctz': 3040,
-        'i64divs': 11070,
-        'i64divu': 11620,
-        'i64eq': 4740,
-        'i64eqz': 3160,
-        'i64extendsi32': 2890,
-        'i64extendui32': 2830,
-        'i64ges': 4660,
-        'i64geu': 4690,
-        'i64gts': 4720,
-        'i64gtu': 4840,
-        'i64les': 4730,
-        'i64leu': 4710,
-        'i64load': 7280,
-        'i64lts': 4680,
-        'i64ltu': 4690,
-        'i64mul': 4520,
-        'i64ne': 4720,
-        'i64or': 4480,
-        'i64popcnt': 2970,
-        'i64rems': 11090,
-        'i64remu': 11730,
-        'i64rotl': 4690,
-        'i64rotr': 4700,
-        'i64shl': 4740,
-        'i64shrs': 4680,
-        'i64shru': 4700,
-        'i64store': 8360,
-        'i64sub': 4520,
-        'i64xor': 4570,
-        'local_get': 3050,
-        'local_set': 3900,
-        'local_tee': 3030,
-        'memory_current': 3640,
-        'memory_grow': 11540625,
-        'r#if': 9990,
-        'select': 5980,
-        'version': 2,
+        'br': 1804,
+        'br_if': 2753,
+        'br_table': 5614,
+        'br_table_per_entry': 48,
+        'call': 18510,
+        'call_indirect': 22922,
+        'call_indirect_per_param': 87,
+        'fallback': 0,
+        'global_get': 6371,
+        'global_set': 6593,
+        'i32wrapi64': 1595,
+        'i64add': 2029,
+        'i64and': 2146,
+        'i64clz': 1617,
+        'i64const': 1723,
+        'i64ctz': 1680,
+        'i64divs': 8301,
+        'i64divu': 7650,
+        'i64eq': 2150,
+        'i64eqz': 1791,
+        'i64extendsi32': 1582,
+        'i64extendui32': 1599,
+        'i64ges': 2133,
+        'i64geu': 2218,
+        'i64gts': 2299,
+        'i64gtu': 2268,
+        'i64les': 2173,
+        'i64leu': 2221,
+        'i64load': 6941,
+        'i64lts': 2223,
+        'i64ltu': 2259,
+        'i64mul': 1977,
+        'i64ne': 2138,
+        'i64or': 2784,
+        'i64popcnt': 1688,
+        'i64rems': 8813,
+        'i64remu': 7672,
+        'i64rotl': 2174,
+        'i64rotr': 2195,
+        'i64shl': 2302,
+        'i64shrs': 2179,
+        'i64shru': 2184,
+        'i64store': 5373,
+        'i64sub': 1975,
+        'i64xor': 2127,
+        'local_get': 1944,
+        'local_set': 2086,
+        'local_tee': 1820,
+        'memory_current': 5231,
+        'memory_grow': 11539332,
+        'r#if': 7778,
+        'select': 2680,
+        'version': 4,
     },
     'limits': {
         'br_table_size': 256,
         'call_depth': 32,
-        'code_len': 131072,
         'event_topics': 4,
         'globals': 256,
         'memory_pages': 16,
@@ -592,6 +803,25 @@ constant = substrate.get_constant('Contracts', 'DepositPerItem')
 constant = substrate.get_constant('Contracts', 'Schedule')
 ```
 ---------
+### UnsafeUnstableInterface
+ Make contract callable functions marked as `\#[unstable]` available.
+
+ Contracts that use `\#[unstable]` functions won&#x27;t be able to be uploaded unless
+ this is set to `true`. This is only meant for testnets and dev nodes in order to
+ experiment with new features.
+
+ \# Warning
+
+ Do **not** set to `true` on productions chains.
+#### Value
+```python
+False
+```
+#### Python
+```python
+constant = substrate.get_constant('Contracts', 'UnsafeUnstableInterface')
+```
+---------
 ## Errors
 
 ---------
@@ -605,8 +835,13 @@ No code could be found at the supplied code hash.
 ---------
 ### CodeRejected
 The contract&\#x27;s code was found to be invalid during validation or instrumentation.
+
+The most likely cause of this is that an API was used which is not supported by the
+node. This hapens if an older node is used with a new version of ink!. Try updating
+your node to the newest available version.
+
 A more detailed error can be found on the node console if debug messages are enabled
-or in the debug buffer which is returned to RPC clients.
+by supplying `-lruntime::contracts=debug`.
 
 ---------
 ### CodeTooLarge
@@ -651,6 +886,10 @@ A contract with the same AccountId already exists.
 ---------
 ### DuplicateTopics
 The topics passed to `seal_deposit_events` contains at least one duplicate.
+
+---------
+### Indeterministic
+An indetermistic code was used in a context where this is not permitted.
 
 ---------
 ### InputForwarded

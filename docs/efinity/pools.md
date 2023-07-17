@@ -7,6 +7,10 @@
 ---------
 ### mutate_pools
 Mutate the pools. Can only be called by root.
+
+\# Errors
+
+- [`Error::InvalidFeeShares`] if the fee shares do not add up to 100%
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -39,7 +43,7 @@ call = substrate.compose_call(
 
 ---------
 ### PoolsMutated
-Pools storage was modified by `PoolsMutation`
+Pools storage was modified by [`PoolsMutation`]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -61,14 +65,15 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::554'
+'scale_info::582'
 ```
 ---------
 ## Constants
 
 ---------
 ### FeeDistributorAccountId
- The `AccountId` that holds fees until they are distributed
+ The [`AccountId`](frame_system::Config::AccountId) that holds fees until they are
+ distributed
 #### Value
 ```python
 'efRd63tR845wJTXfddgZNfNZ55o23Erydfz8esAmo1HfgMZMS'
@@ -79,7 +84,7 @@ constant = substrate.get_constant('Pools', 'FeeDistributorAccountId')
 ```
 ---------
 ### PoolAccountIds
- The `AccountId` for each pool
+ The [`AccountId`](frame_system::Config::AccountId) for each pool
 #### Value
 ```python
 {

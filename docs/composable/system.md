@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -566,10 +566,15 @@ result = substrate.query(
                     'to': 'Bytes',
                 },
                 'ChargingFeeTimeout': {'sequence': 'u64'},
+                'ChildStateUpdated': None,
                 'ClientFrozen': {
                     'client_id': 'Bytes',
                     'height': 'u64',
                     'revision_number': 'u64',
+                },
+                'ClientStateSubstituted': {
+                    'client_id': 'Str',
+                    'height': 'scale_info::177',
                 },
                 'ClientUpgradeSet': None,
                 'Events': {'events': ['scale_info::171']},
@@ -646,7 +651,10 @@ result = substrate.query(
                     'destination_channel': 'u64',
                     'source_channel': 'u64',
                 },
-                'IbcTransferFeeCollected': {'amount': 'u128'},
+                'IbcTransferFeeCollected': {
+                    'amount': 'u128',
+                    'asset_id': 'u128',
+                },
             },
             'Indices': {
                 'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
@@ -1294,7 +1302,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'composable',
     'impl_version': 3,
     'spec_name': 'composable',
-    'spec_version': 10025,
+    'spec_version': 10030,
     'state_version': 0,
     'transaction_version': 2,
 }

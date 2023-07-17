@@ -53,7 +53,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'keys': 'scale_info::811', 'kind': ('ForInvalid', 'AgainstValid')}
+{'keys': 'scale_info::812', 'kind': ('ForInvalid', 'AgainstValid')}
 ```
 ---------
 ### ValidatorSetCounts

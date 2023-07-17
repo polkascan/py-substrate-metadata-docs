@@ -6,9 +6,10 @@
 
 ---------
 ### validate_mint
-Validates the proofs provided against the document root associated with the anchor_id.
-Once the proofs are verified, we create a bundled hash `(deposit_address + [proof[i].hash])`
-Bundled Hash is deposited to an DepositAsset event for bridging purposes.
+Validates the proofs provided against the document root associated
+with the anchor_id. Once the proofs are verified, we create a
+bundled hash `(deposit_address + [proof[i].hash])` Bundled Hash is
+deposited to an DepositAsset event for bridging purposes.
 
 Adds additional fee to compensate the current cost of target chains
 \# &lt;weight&gt;
@@ -58,7 +59,8 @@ call = substrate.compose_call(
 
 ---------
 ### NftProofValidationFeeKey
- Additional fee charged for validating NFT proof (when minting a NFT).
+ Additional fee charged for validating NFT proof (when minting a
+ NFT).
 #### Value
 ```python
 'NftProofValidation'
@@ -71,8 +73,8 @@ constant = substrate.get_constant('Nfts', 'NftProofValidationFeeKey')
 ### ResourceHashId
  Resource hash id.
 
- This type was initially declared in the bridge pallet but was moved here
- to avoid circular dependencies.
+ This type was initially declared in the bridge pallet but was moved
+ here to avoid circular dependencies.
 #### Value
 ```python
 '0x0000000000000000000000000000000cb3858f3e48815bfd35c5347aa3b34c01'
@@ -86,10 +88,12 @@ constant = substrate.get_constant('Nfts', 'ResourceHashId')
 
 ---------
 ### DocumentNotAnchored
-A given document id does not match a corresponding document in the anchor storage.
+A given document id does not match a corresponding document in the
+anchor storage.
 
 ---------
 ### InvalidProofs
-Unable to recreate the anchor hash from the proofs and data provided.
+Unable to recreate the anchor hash from the proofs and data
+provided.
 
 ---------

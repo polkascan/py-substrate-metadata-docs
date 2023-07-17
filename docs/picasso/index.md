@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | picasso     |
 | Implementation name     | picasso     |
-| Spec version     | 10026     |
+| Spec version     | 10030     |
 | SS58 Format     | 49     |
 | Token symbol      | PICA     |
 | Token decimals      | 12     |
@@ -25,7 +25,7 @@
 | [BondedFinance](bondedfinance.md) | [3](bondedfinance.md#calls) | [4](bondedfinance.md#events) | [2](bondedfinance.md#storage-functions) | [3](bondedfinance.md#constants) | [4](bondedfinance.md#errors) |
 | [CallFilter](callfilter.md) | [2](callfilter.md#calls) | [2](callfilter.md#events) | [1](callfilter.md#storage-functions) | [1](callfilter.md#constants) | [2](callfilter.md#errors) |
 | [CollatorSelection](collatorselection.md) | [5](collatorselection.md#calls) | [5](collatorselection.md#events) | [5](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [10](collatorselection.md#errors) |
-| [Cosmwasm](cosmwasm.md) | [5](cosmwasm.md#calls) | [7](cosmwasm.md#events) | [7](cosmwasm.md#storage-functions) | [19](cosmwasm.md#constants) | [37](cosmwasm.md#errors) |
+| [Cosmwasm](cosmwasm.md) | [5](cosmwasm.md#calls) | [7](cosmwasm.md#events) | [7](cosmwasm.md#storage-functions) | [19](cosmwasm.md#constants) | [40](cosmwasm.md#errors) |
 | [Council](council.md) | [7](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
 | [CouncilMembership](councilmembership.md) | [7](councilmembership.md#calls) | [6](councilmembership.md#events) | [2](councilmembership.md#storage-functions) | [0](councilmembership.md#constants) | [3](councilmembership.md#errors) |
 | [CrowdloanRewards](crowdloanrewards.md) | [7](crowdloanrewards.md#calls) | [7](crowdloanrewards.md#events) | [7](crowdloanrewards.md#storage-functions) | [8](crowdloanrewards.md#constants) | [11](crowdloanrewards.md#errors) |
@@ -36,12 +36,12 @@
 | [Farming](farming.md) | [5](farming.md#calls) | [3](farming.md#events) | [1](farming.md#storage-functions) | [3](farming.md#constants) | [1](farming.md#errors) |
 | [FarmingRewards](farmingrewards.md) | [0](farmingrewards.md#calls) | [4](farmingrewards.md#events) | [6](farmingrewards.md#storage-functions) | [1](farmingrewards.md#constants) | [4](farmingrewards.md#errors) |
 | [GovernanceRegistry](governanceregistry.md) | [3](governanceregistry.md#calls) | [3](governanceregistry.md#events) | [1](governanceregistry.md#storage-functions) | [0](governanceregistry.md#constants) | [1](governanceregistry.md#errors) |
-| [Ibc](ibc.md) | [7](ibc.md#calls) | [18](ibc.md#events) | [25](ibc.md#storage-functions) | [8](ibc.md#constants) | [39](ibc.md#errors) |
+| [Ibc](ibc.md) | [9](ibc.md#calls) | [20](ibc.md#events) | [25](ibc.md#storage-functions) | [8](ibc.md#constants) | [39](ibc.md#errors) |
 | [Ics20Fee](ics20fee.md) | [3](ics20fee.md#calls) | [3](ics20fee.md#events) | [2](ics20fee.md#storage-functions) | [2](ics20fee.md#constants) | [0](ics20fee.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [Indices](indices.md) | [5](indices.md#calls) | [3](indices.md#events) | [1](indices.md#storage-functions) | [1](indices.md#constants) | [5](indices.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
-| [Oracle](oracle.md) | [7](oracle.md#calls) | [11](oracle.md#events) | [12](oracle.md#storage-functions) | [5](oracle.md#constants) | [32](oracle.md#errors) |
+| [Oracle](oracle.md) | [8](oracle.md#calls) | [12](oracle.md#events) | [12](oracle.md#storage-functions) | [5](oracle.md#constants) | [32](oracle.md#errors) |
 | [Pablo](pablo.md) | [6](pablo.md#calls) | [5](pablo.md#events) | [5](pablo.md#storage-functions) | [2](pablo.md#constants) | [31](pablo.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |

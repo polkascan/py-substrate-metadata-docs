@@ -62,7 +62,7 @@ Emits `IndexAssigned` if successful.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new | `T::AccountId` | 
+| new | `AccountIdLookupOf<T>` | 
 | index | `T::AccountIndex` | 
 | freeze | `bool` | 
 
@@ -72,7 +72,13 @@ call = substrate.compose_call(
     'Indices', 'force_transfer', {
     'freeze': 'bool',
     'index': 'u32',
-    'new': 'AccountId',
+    'new': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': 'u32',
+        'Raw': 'Bytes',
+    },
 }
 )
 ```
@@ -166,13 +172,22 @@ Emits `IndexAssigned` if successful.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new | `T::AccountId` | 
+| new | `AccountIdLookupOf<T>` | 
 | index | `T::AccountIndex` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Indices', 'transfer', {'index': 'u32', 'new': 'AccountId'}
+    'Indices', 'transfer', {
+    'index': 'u32',
+    'new': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': 'u32',
+        'Raw': 'Bytes',
+    },
+}
 )
 ```
 

@@ -16,12 +16,11 @@ The timestamp should be greater than the previous one by the amount specified by
 
 The dispatch origin for this call must be `Inherent`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)` (Note that implementations of `OnTimestampSet` must also be `O(1)`)
 - 1 storage read and 1 storage mutation (codec `O(1)`). (because of `DidUpdate::take` in
   `on_finalize`)
 - 1 event handler `on_timestamp_set`. Must be `O(1)`.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -78,7 +77,7 @@ result = substrate.query(
  double this period on default settings.
 #### Value
 ```python
-1
+6000
 ```
 #### Python
 ```python

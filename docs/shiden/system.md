@@ -593,12 +593,12 @@ result = substrate.query(
                 'CreatedFailed': {'address': '[u8; 20]'},
                 'Executed': {'address': '[u8; 20]'},
                 'ExecutedFailed': {'address': '[u8; 20]'},
-                'Log': {'log': 'scale_info::119'},
+                'Log': {'log': 'scale_info::120'},
             },
             'EthCall': {'Executed': ('AccountId', 'scale_info::30')},
             'Ethereum': {
                 'Executed': {
-                    'exit_reason': 'scale_info::122',
+                    'exit_reason': 'scale_info::123',
                     'from': '[u8; 20]',
                     'to': '[u8; 20]',
                     'transaction_hash': '[u8; 32]',
@@ -739,6 +739,16 @@ result = substrate.query(
                 },
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'StateTrieMigration': {
+                'AutoMigrationFinished': None,
+                'Halted': {'error': 'scale_info::141'},
+                'Migrated': {
+                    'child': 'u32',
+                    'compute': 'scale_info::140',
+                    'top': 'u32',
+                },
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+            },
             'Sudo': {
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::30'},
@@ -817,6 +827,14 @@ result = substrate.query(
                 },
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            'Xtokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::77'],
+                    'dest': 'scale_info::63',
+                    'fee': 'scale_info::77',
+                    'sender': 'AccountId',
+                },
             },
         },
         'phase': {
@@ -1060,7 +1078,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'shiden',
     'impl_version': 0,
     'spec_name': 'shiden',
-    'spec_version': 96,
+    'spec_version': 100,
     'state_version': 1,
     'transaction_version': 2,
 }

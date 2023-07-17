@@ -40,14 +40,17 @@ Events:
 | Name | Type |
 | -------- | -------- | 
 | index | `OverweightIndex` | 
-| weight_limit | `XcmWeight` | 
+| weight_limit | `Weight` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'XcmpQueue', 'service_overweight', {
     'index': 'u64',
-    'weight_limit': 'u64',
+    'weight_limit': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
 }
 )
 ```
@@ -133,12 +136,17 @@ Overwrites the amount of remaining weight under which we stop processing message
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new | `XcmWeight` | 
+| new | `Weight` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'XcmpQueue', 'update_threshold_weight', {'new': 'u64'}
+    'XcmpQueue', 'update_threshold_weight', {
+    'new': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
 )
 ```
 
@@ -152,12 +160,17 @@ A lower number results in a faster progression. A value of 1 makes the entire we
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new | `XcmWeight` | 
+| new | `Weight` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'XcmpQueue', 'update_weight_restrict_decay', {'new': 'u64'}
+    'XcmpQueue', 'update_weight_restrict_decay', {
+    'new': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
 )
 ```
 
@@ -171,12 +184,17 @@ Messages above this weight go into the overweight queue and may only be serviced
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new | `XcmWeight` | 
+| new | `Weight` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'XcmpQueue', 'update_xcmp_max_individual_weight', {'new': 'u64'}
+    'XcmpQueue', 'update_xcmp_max_individual_weight', {
+    'new': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
 )
 ```
 
@@ -189,7 +207,7 @@ Bad XCM format used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
 
 ---------
 ### BadVersion
@@ -197,7 +215,7 @@ Bad XCM version used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
 
 ---------
 ### Fail
@@ -205,8 +223,8 @@ Some XCM failed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
-| error | `XcmError` | ```{'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'MultiLocationFull': None, 'MultiLocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'UnhandledXcmVersion': None, 'WeightLimitReached': 'u64', 'Barrier': None, 'WeightNotComputable': None}```
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| error | `XcmError` | ```{'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'LocationFull': None, 'LocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'ExpectationFalse': None, 'PalletNotFound': None, 'NameMismatch': None, 'VersionIncompatible': None, 'HoldingWouldOverflow': None, 'ExportError': None, 'ReanchorFailed': None, 'NoDeal': None, 'FeesNotMet': None, 'LockError': None, 'NoPermission': None, 'Unanchored': None, 'NotDepositable': None, 'UnhandledXcmVersion': None, 'WeightLimitReached': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Barrier': None, 'WeightNotComputable': None, 'ExceedsStackLimit': None}```
 | weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
@@ -235,16 +253,8 @@ Some XCM was executed ok.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
 | weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
-
----------
-### UpwardMessageSent
-An upward message was sent to the relay chain.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
 
 ---------
 ### XcmpMessageSent
@@ -252,11 +262,26 @@ An HRMP message was sent to a sibling parachain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
 
 ---------
 ## Storage functions
 
+---------
+### CounterForOverweight
+Counter for the related counted storage map
+
+#### Python
+```python
+result = substrate.query(
+    'XcmpQueue', 'CounterForOverweight', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
 ---------
 ### InboundXcmpMessages
  Inbound aggregate XCMP messages. It can only be one per ParaId/block.

@@ -66,7 +66,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::808'
+'scale_info::809'
 ```
 ---------
 ### Disputes

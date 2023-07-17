@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | heiko     |
 | Implementation name     | heiko     |
-| Spec version     | 197     |
+| Spec version     | 198     |
 | SS58 Format     | 110     |
 | Token symbol      | HKO     |
 | Token decimals      | 12     |
@@ -33,7 +33,7 @@
 | [CurrencyAdapter](currencyadapter.md) | [2](currencyadapter.md#calls) | [0](currencyadapter.md#events) | [0](currencyadapter.md#storage-functions) | [1](currencyadapter.md#constants) | [1](currencyadapter.md#errors) |
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
-| [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [2](evm.md#storage-functions) | [0](evm.md#constants) | [10](evm.md#errors) |
+| [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [2](evm.md#storage-functions) | [0](evm.md#constants) | [11](evm.md#errors) |
 | [EVMSignatureCall](evmsignaturecall.md) | [2](evmsignaturecall.md#calls) | [1](evmsignaturecall.md#events) | [0](evmsignaturecall.md#storage-functions) | [4](evmsignaturecall.md#constants) | [3](evmsignaturecall.md#errors) |
 | [EmergencyShutdown](emergencyshutdown.md) | [2](emergencyshutdown.md#calls) | [2](emergencyshutdown.md#events) | [2](emergencyshutdown.md#storage-functions) | [0](emergencyshutdown.md#constants) | [0](emergencyshutdown.md#errors) |
 | [Ethereum](ethereum.md) | [1](ethereum.md#calls) | [1](ethereum.md#events) | [5](ethereum.md#storage-functions) | [0](ethereum.md#constants) | [2](ethereum.md#errors) |
@@ -62,7 +62,7 @@
 | [TechnicalCommitteeMembership](technicalcommitteemembership.md) | [7](technicalcommitteemembership.md#calls) | [6](technicalcommitteemembership.md#events) | [2](technicalcommitteemembership.md#storage-functions) | [0](technicalcommitteemembership.md#constants) | [3](technicalcommitteemembership.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
-| [Treasury](treasury.md) | [5](treasury.md#calls) | [8](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
+| [Treasury](treasury.md) | [5](treasury.md#calls) | [9](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [Vesting](vesting.md) | [4](vesting.md#calls) | [3](vesting.md#events) | [1](vesting.md#storage-functions) | [1](vesting.md#constants) | [6](vesting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |

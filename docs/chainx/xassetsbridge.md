@@ -68,6 +68,26 @@ call = substrate.compose_call(
 ```
 
 ---------
+### deposit_pcx_to_evm
+Deposit PCX from wasm to evm
+Note: for user
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| amount | `BalanceOf<T>` | 
+| eth_address | `H160` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'XAssetsBridge', 'deposit_pcx_to_evm', {
+    'amount': 'u128',
+    'eth_address': '[u8; 20]',
+}
+)
+```
+
+---------
 ### dissolve
 Dissolve substrate accounts and EVM accounts.
 Note: for general users
@@ -84,7 +104,7 @@ call = substrate.compose_call(
 ---------
 ### force_unregister
 Force unregister substrate assets and erc20 contracts
-Note: for super admin
+Note: for admin
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -163,6 +183,26 @@ call = substrate.compose_call(
 ```
 
 ---------
+### swap_xbtc_to_btc
+Swap XBTC(assets moudle) to BTC(btc ledger module) by 1:1
+Note: for user who hold XBTC
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| amount | `u128` | 
+| eth_address | `H160` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'XAssetsBridge', 'swap_xbtc_to_btc', {
+    'amount': 'u128',
+    'eth_address': '[u8; 20]',
+}
+)
+```
+
+---------
 ### teleport
 Teleport native currency between substrate account and evm address
 Ensure eth_address has been mapped
@@ -192,6 +232,26 @@ call = substrate.compose_call(
         'FromSubToEth': None,
     },
     'amount': 'u128',
+}
+)
+```
+
+---------
+### transfer_btc_to_evm
+Transfer BTC(btc ledger module) from substrate account to evm address
+Note: for user who hold BTC
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| amount | `u128` | 
+| eth_address | `H160` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'XAssetsBridge', 'transfer_btc_to_evm', {
+    'amount': 'u128',
+    'eth_address': '[u8; 20]',
 }
 )
 ```
@@ -524,6 +584,10 @@ Erc20 contract address has mapped
 ---------
 ### ContractAddressHasNotMapped
 Erc20 contract address has not mapped
+
+---------
+### Deprecated
+Deprecated
 
 ---------
 ### EthAddressHasMapped

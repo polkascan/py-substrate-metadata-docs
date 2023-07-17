@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | phala     |
 | Implementation name     | phala     |
-| Spec version     | 1247     |
+| Spec version     | 1250     |
 | SS58 Format     | 30     |
 | Token symbol      | PHA     |
 | Token decimals      | 12     |
@@ -20,12 +20,12 @@
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [0](authorship.md#calls) | [0](authorship.md#events) | [1](authorship.md#storage-functions) | [0](authorship.md#constants) | [0](authorship.md#errors) |
-| [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
+| [Balances](balances.md) | [9](balances.md#calls) | [21](balances.md#events) | [7](balances.md#storage-functions) | [5](balances.md#constants) | [10](balances.md#errors) |
 | [Bounties](bounties.md) | [9](bounties.md#calls) | [7](bounties.md#events) | [4](bounties.md#storage-functions) | [9](bounties.md#constants) | [11](bounties.md#errors) |
 | [ChainBridge](chainbridge.md) | [9](chainbridge.md#calls) | [14](chainbridge.md#events) | [7](chainbridge.md#storage-functions) | [4](chainbridge.md#constants) | [29](chainbridge.md#errors) |
 | [ChildBounties](childbounties.md) | [7](childbounties.md#calls) | [4](childbounties.md#events) | [5](childbounties.md#storage-functions) | [2](childbounties.md#constants) | [3](childbounties.md#errors) |
 | [CollatorSelection](collatorselection.md) | [5](collatorselection.md#calls) | [5](collatorselection.md#events) | [5](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [10](collatorselection.md#errors) |
-| [Council](council.md) | [7](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
+| [Council](council.md) | [6](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [1](council.md#constants) | [10](council.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [Democracy](democracy.md) | [19](democracy.md#calls) | [17](democracy.md#events) | [12](democracy.md#storage-functions) | [12](democracy.md#constants) | [24](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
@@ -46,7 +46,7 @@
 | [PhalaVault](phalavault.md) | [8](phalavault.md#calls) | [5](phalavault.md#events) | [1](phalavault.md#storage-functions) | [2](phalavault.md#constants) | [8](phalavault.md#errors) |
 | [PhalaWrappedBalances](phalawrappedbalances.md) | [6](phalawrappedbalances.md#calls) | [4](phalawrappedbalances.md#events) | [4](phalawrappedbalances.md#storage-functions) | [2](phalawrappedbalances.md#constants) | [6](phalawrappedbalances.md#errors) |
 | [PhragmenElection](phragmenelection.md) | [6](phragmenelection.md#calls) | [7](phragmenelection.md#events) | [5](phragmenelection.md#storage-functions) | [10](phragmenelection.md#constants) | [17](phragmenelection.md#errors) |
-| [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
+| [PolkadotXcm](polkadotxcm.md) | [11](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [12](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
@@ -55,8 +55,13 @@
 | [RmrkMarket](rmrkmarket.md) | [6](rmrkmarket.md#calls) | [9](rmrkmarket.md#events) | [3](rmrkmarket.md#storage-functions) | [2](rmrkmarket.md#constants) | [17](rmrkmarket.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
+| [SygmaAccessSegregator](sygmaaccesssegregator.md) | [1](sygmaaccesssegregator.md#calls) | [1](sygmaaccesssegregator.md#events) | [1](sygmaaccesssegregator.md#storage-functions) | [0](sygmaaccesssegregator.md#constants) | [2](sygmaaccesssegregator.md#errors) |
+| [SygmaBasicFeeHandler](sygmabasicfeehandler.md) | [1](sygmabasicfeehandler.md#calls) | [1](sygmabasicfeehandler.md#events) | [1](sygmabasicfeehandler.md#storage-functions) | [0](sygmabasicfeehandler.md#constants) | [2](sygmabasicfeehandler.md#errors) |
+| [SygmaBridge](sygmabridge.md) | [8](sygmabridge.md#calls) | [8](sygmabridge.md#events) | [6](sygmabridge.md#storage-functions) | [4](sygmabridge.md#constants) | [21](sygmabridge.md#errors) |
+| [SygmaFeeHandlerRouter](sygmafeehandlerrouter.md) | [1](sygmafeehandlerrouter.md#calls) | [1](sygmafeehandlerrouter.md#events) | [1](sygmafeehandlerrouter.md#storage-functions) | [0](sygmafeehandlerrouter.md#constants) | [2](sygmafeehandlerrouter.md#errors) |
+| [SygmaWrapper](sygmawrapper.md) | [0](sygmawrapper.md#calls) | [1](sygmawrapper.md#events) | [0](sygmawrapper.md#storage-functions) | [0](sygmawrapper.md#constants) | [2](sygmawrapper.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
-| [TechnicalCommittee](technicalcommittee.md) | [7](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [0](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors) |
+| [TechnicalCommittee](technicalcommittee.md) | [6](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [1](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors) |
 | [TechnicalMembership](technicalmembership.md) | [7](technicalmembership.md#calls) | [6](technicalmembership.md#events) | [2](technicalmembership.md#storage-functions) | [0](technicalmembership.md#constants) | [3](technicalmembership.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |
 | [Tips](tips.md) | [6](tips.md#calls) | [5](tips.md#events) | [2](tips.md#storage-functions) | [5](tips.md#constants) | [6](tips.md#errors) |

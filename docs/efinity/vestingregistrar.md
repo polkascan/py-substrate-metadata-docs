@@ -56,6 +56,11 @@ call = substrate.compose_call(
 ---------
 ### register_batch
 Register a batch of accounts and their vesting amounts.
+
+\# Errors
+
+- [`Error::InvalidVestedAmount`]: If the vested amount is invalid.
+- [`Error::InvalidPeriodCount`]: If the period count is invalid.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -83,6 +88,10 @@ call = substrate.compose_call(
 
 ---------
 ## Errors
+
+---------
+### EmptyAccountList
+empty list supplied for vesting
 
 ---------
 ### InvalidPeriodCount

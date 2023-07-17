@@ -33,6 +33,9 @@ call = substrate.compose_call(
             'ForeignAsset': 'u32',
             'KSM': None,
             'Native': None,
+            'Staking': (
+                'BlockRewards',
+            ),
             'Tranche': (
                 'u64',
                 '[u8; 16]',
@@ -47,16 +50,19 @@ call = substrate.compose_call(
 ### buy
 Buy the given nft
 
-Buyers must propose a `max_offer` to save them from a scenario where they could end up
-paying more than they desired for an NFT. That scenario could take place if the seller
-increased the asking price right before the buyer submits this call to buy said NFT.
+Buyers must propose a `max_offer` to save them from a scenario where
+they could end up paying more than they desired for an NFT. That
+scenario could take place if the seller increased the asking price
+right before the buyer submits this call to buy said NFT.
 
-Buyers always pay the latest asking price as long as it does not exceed their max offer.
+Buyers always pay the latest asking price as long as it does not
+exceed their max offer.
 
 Fails if
   - the NFT is not for sale
   - `origin` is the seller of the NFT
-  - `origin` does not have enough balance of the currency the nft is being sold in
+  - `origin` does not have enough balance of the currency the nft is
+    being sold in
   - transferring the asking price from the buyer to the seller fails
   - transferring the nft to the buyer fails
 #### Attributes
@@ -79,6 +85,9 @@ call = substrate.compose_call(
             'ForeignAsset': 'u32',
             'KSM': None,
             'Native': None,
+            'Staking': (
+                'BlockRewards',
+            ),
             'Tranche': (
                 'u64',
                 '[u8; 16]',
@@ -93,8 +102,8 @@ call = substrate.compose_call(
 ### remove
 Remove an NFT
 
-The seller of an NFT that is for sale can call this extrinsic to reclaim
-ownership over their NFT and remove it from sale.
+The seller of an NFT that is for sale can call this extrinsic to
+reclaim ownership over their NFT and remove it from sale.
 
 Fails if
   - the nft is not for sale
@@ -127,7 +136,7 @@ An NFT is now for sale
 | -------- | -------- | -------- |
 | class_id | `T::CollectionId` | ```u64```
 | instance_id | `T::ItemId` | ```u128```
-| sale | `SaleOf<T>` | ```{'seller': 'AccountId', 'price': {'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}, 'amount': 'u128'}}```
+| sale | `SaleOf<T>` | ```{'seller': 'AccountId', 'price': {'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}, 'amount': 'u128'}}```
 
 ---------
 ### Removed
@@ -146,7 +155,7 @@ An NFT has been sold
 | -------- | -------- | -------- |
 | class_id | `T::CollectionId` | ```u64```
 | instance_id | `T::ItemId` | ```u128```
-| sale | `SaleOf<T>` | ```{'seller': 'AccountId', 'price': {'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32'}, 'amount': 'u128'}}```
+| sale | `SaleOf<T>` | ```{'seller': 'AccountId', 'price': {'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}, 'amount': 'u128'}}```
 | buyer | `T::AccountId` | ```AccountId```
 
 ---------
@@ -192,6 +201,7 @@ result = substrate.query(
             'ForeignAsset': 'u32',
             'KSM': None,
             'Native': None,
+            'Staking': ('BlockRewards', ),
             'Tranche': ('u64', '[u8; 16]'),
         },
     },
@@ -221,8 +231,8 @@ A seller has attempted to add an NFT that is already for sale
 
 ---------
 ### InvalidOffer
-A buyer&\#x27;s max offer is invalid, i.e., either the currency or amount did
-not match the latest asking price for the targeted NFT.
+A buyer&\#x27;s max offer is invalid, i.e., either the currency or amount
+did not match the latest asking price for the targeted NFT.
 
 ---------
 ### NotForSale
@@ -230,7 +240,8 @@ An operation expected an NFT to be for sale when it is not
 
 ---------
 ### NotFound
-A user tried to add an NFT that could not be found in [`Config::NonFungibles`]
+A user tried to add an NFT that could not be found in
+[`Config::NonFungibles`]
 
 ---------
 ### NotOwner

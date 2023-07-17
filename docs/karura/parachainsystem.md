@@ -10,11 +10,15 @@
 | Name | Type |
 | -------- | -------- | 
 | code_hash | `T::Hash` | 
+| check_version | `bool` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'ParachainSystem', 'authorize_upgrade', {'code_hash': '[u8; 32]'}
+    'ParachainSystem', 'authorize_upgrade', {
+    'check_version': 'bool',
+    'code_hash': '[u8; 32]',
+}
 )
 ```
 
@@ -50,9 +54,9 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::354',
+        'horizontal_messages': 'scale_info::361',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::351',
+            'trie_nodes': 'scale_info::358',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -105,6 +109,13 @@ call = substrate.compose_call(
 | code_hash | `T::Hash` | ```[u8; 32]```
 
 ---------
+### UpwardMessageSent
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+
+---------
 ### ValidationFunctionApplied
 #### Attributes
 | Name | Type | Composition
@@ -150,7 +161,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+{'check_version': 'bool', 'code_hash': '[u8; 32]'}
 ```
 ---------
 ### CustomValidationHeadData
@@ -258,7 +269,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::589'
+'scale_info::598'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -342,7 +353,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::351'}
+{'trie_nodes': 'scale_info::358'}
 ```
 ---------
 ### RelevantMessagingState

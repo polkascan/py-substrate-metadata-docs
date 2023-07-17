@@ -6,9 +6,9 @@
 
 ---------
 ### collect_investments
-Collect the results of a users invest orders for the given investment.
-If any amounts are not fulfilled they are directly appended to the next active
-order for this investment.
+Collect the results of a users invest orders for the given
+investment. If any amounts are not fulfilled they are directly
+appended to the next active order for this investment.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -28,9 +28,9 @@ call = substrate.compose_call(
 
 ---------
 ### collect_investments_for
-Collect the results of another users invest orders for the given investment.
-If any amounts are not fulfilled they are directly appended to the next active
-order for this investment.
+Collect the results of another users invest orders for the given
+investment. If any amounts are not fulfilled they are directly
+appended to the next active order for this investment.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -52,9 +52,9 @@ call = substrate.compose_call(
 
 ---------
 ### collect_redemptions
-Collect the results of a users redeem orders for the given investment.
-If any amounts are not fulfilled they are directly appended to the next active
-order for this investment.
+Collect the results of a users redeem orders for the given
+investment. If any amounts are not fulfilled they are directly
+appended to the next active order for this investment.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -74,9 +74,9 @@ call = substrate.compose_call(
 
 ---------
 ### collect_redemptions_for
-Collect the results of another users redeem orders for the given investment.
-If any amounts are not fulfilled they are directly appended to the next active
-order for this investment.
+Collect the results of another users redeem orders for the given
+investment. If any amounts are not fulfilled they are directly
+appended to the next active order for this investment.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -190,7 +190,8 @@ An invest order was updated. [investment_id, order_id, who, amount]
 
 ---------
 ### InvestOrdersCleared
-TotalOrders of investments were fulfilled [investment_id, order_id, FulfillmentWithPrice]
+TotalOrders of investments were fulfilled [investment_id, order_id,
+FulfillmentWithPrice]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -213,7 +214,8 @@ Fulfilled orders were collected.
 
 ---------
 ### InvestOrdersInProcessing
-TotalOrders of investments are in processing state [investment_id, order_id, TotalOrder]
+TotalOrders of investments are in processing state [investment_id,
+order_id, TotalOrder]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -254,7 +256,8 @@ An invest order was updated. [investment_id, order_id, who, amount]
 
 ---------
 ### RedeemOrdersCleared
-TotalOrders of redemptions were fulfilled [investment_id, order_id, FulfillmentWithPrice]
+TotalOrders of redemptions were fulfilled [investment_id, order_id,
+FulfillmentWithPrice]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -277,7 +280,8 @@ Fulfilled orders were collected.
 
 ---------
 ### RedeemOrdersInProcessing
-TotalOrders of redemptions in processing state [investment_id, order_id, TotalOrder]
+TotalOrders of redemptions in processing state [investment_id,
+order_id, TotalOrder]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |

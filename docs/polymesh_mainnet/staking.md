@@ -1368,7 +1368,7 @@ When scheduling of reward payments get interrupted.
 | -------- | -------- | -------- |
 | None | `AccountId` | ```AccountId```
 | None | `EraIndex` | ```u32```
-| None | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}```
+| None | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
 ### Slash
@@ -1557,7 +1557,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'individual': 'scale_info::581', 'total': 'u32'}
+{'individual': 'scale_info::591', 'total': 'u32'}
 ```
 ---------
 ### ErasStakers
@@ -1913,7 +1913,7 @@ result = substrate.query(
     'exposures': [
         (
             'AccountId',
-            {'others': ['scale_info::118'], 'own': 'u128', 'total': 'u128'},
+            {'others': ['scale_info::121'], 'own': 'u128', 'total': 'u128'},
         ),
     ],
 }

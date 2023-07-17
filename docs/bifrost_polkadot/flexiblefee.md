@@ -5,53 +5,179 @@
 ## Calls
 
 ---------
-### set_user_fee_charge_order
-Set user fee charge assets order.
+### remove_from_user_fee_charge_order_list
 #### Attributes
-| Name | Type |
-| -------- | -------- | 
-| asset_order_list_vec | `Option<Vec<CurrencyIdOf<T>>>` | 
+No attributes
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'FlexibleFee', 'set_user_fee_charge_order', {
-    'asset_order_list_vec': (
+    'FlexibleFee', 'remove_from_user_fee_charge_order_list', {}
+)
+```
+
+---------
+### set_universal_fee_currency_order_list
+Set universal fee currency order list
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| default_list | `BoundedVec<CurrencyIdOf<T>, T::MaxFeeCurrencyOrderListLen>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'FlexibleFee', 'set_universal_fee_currency_order_list', {
+    'default_list': [
+        {
+            'ForeignAsset': 'u32',
+            'LPToken': (
+                (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'u8',
+                (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'u8',
+            ),
+            'Native': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'Stable': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'StableLpToken': 'u32',
+            'Token': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'Token2': 'u8',
+            'VSBond': (
+                (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'u32',
+                'u32',
+                'u32',
+            ),
+            'VSBond2': (
+                'u8',
+                'u32',
+                'u32',
+                'u32',
+            ),
+            'VSToken': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'VSToken2': 'u8',
+            'VToken': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'VToken2': 'u8',
+        },
+    ],
+}
+)
+```
+
+---------
+### set_user_default_fee_currency
+Set user default fee currency
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| maybe_fee_currency | `Option<CurrencyIdOf<T>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'FlexibleFee', 'set_user_default_fee_currency', {
+    'maybe_fee_currency': (
         None,
-        [
-            {
-                'ForeignAsset': 'u32',
-                'LPToken': (
-                    (
-                        'ASG',
-                        'BNC',
-                        'KUSD',
-                        'DOT',
-                        'KSM',
-                        'ETH',
-                        'KAR',
-                        'ZLK',
-                        'PHA',
-                        'RMRK',
-                        'MOVR',
-                    ),
-                    'u8',
-                    (
-                        'ASG',
-                        'BNC',
-                        'KUSD',
-                        'DOT',
-                        'KSM',
-                        'ETH',
-                        'KAR',
-                        'ZLK',
-                        'PHA',
-                        'RMRK',
-                        'MOVR',
-                    ),
-                    'u8',
-                ),
-                'Native': (
+        {
+            'ForeignAsset': 'u32',
+            'LPToken': (
+                (
                     'ASG',
                     'BNC',
                     'KUSD',
@@ -64,7 +190,8 @@ call = substrate.compose_call(
                     'RMRK',
                     'MOVR',
                 ),
-                'Stable': (
+                'u8',
+                (
                     'ASG',
                     'BNC',
                     'KUSD',
@@ -77,8 +204,51 @@ call = substrate.compose_call(
                     'RMRK',
                     'MOVR',
                 ),
-                'StableLpToken': 'u32',
-                'Token': (
+                'u8',
+            ),
+            'Native': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'Stable': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'StableLpToken': 'u32',
+            'Token': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'Token2': 'u8',
+            'VSBond': (
+                (
                     'ASG',
                     'BNC',
                     'KUSD',
@@ -91,61 +261,45 @@ call = substrate.compose_call(
                     'RMRK',
                     'MOVR',
                 ),
-                'Token2': 'u8',
-                'VSBond': (
-                    (
-                        'ASG',
-                        'BNC',
-                        'KUSD',
-                        'DOT',
-                        'KSM',
-                        'ETH',
-                        'KAR',
-                        'ZLK',
-                        'PHA',
-                        'RMRK',
-                        'MOVR',
-                    ),
-                    'u32',
-                    'u32',
-                    'u32',
-                ),
-                'VSBond2': (
-                    'u8',
-                    'u32',
-                    'u32',
-                    'u32',
-                ),
-                'VSToken': (
-                    'ASG',
-                    'BNC',
-                    'KUSD',
-                    'DOT',
-                    'KSM',
-                    'ETH',
-                    'KAR',
-                    'ZLK',
-                    'PHA',
-                    'RMRK',
-                    'MOVR',
-                ),
-                'VSToken2': 'u8',
-                'VToken': (
-                    'ASG',
-                    'BNC',
-                    'KUSD',
-                    'DOT',
-                    'KSM',
-                    'ETH',
-                    'KAR',
-                    'ZLK',
-                    'PHA',
-                    'RMRK',
-                    'MOVR',
-                ),
-                'VToken2': 'u8',
-            },
-        ],
+                'u32',
+                'u32',
+                'u32',
+            ),
+            'VSBond2': (
+                'u8',
+                'u32',
+                'u32',
+                'u32',
+            ),
+            'VSToken': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'VSToken2': 'u8',
+            'VToken': (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'VToken2': 'u8',
+        },
     ),
 }
 )
@@ -183,7 +337,281 @@ call = substrate.compose_call(
 ## Storage functions
 
 ---------
+### UniversalFeeCurrencyOrderList
+ Universal fee currency order list for all users
+
+#### Python
+```python
+result = substrate.query(
+    'FlexibleFee', 'UniversalFeeCurrencyOrderList', []
+)
+```
+
+#### Return value
+```python
+[
+    {
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': ('u8', 'u32', 'u32', 'u32'),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+]
+```
+---------
+### UserDefaultFeeCurrency
+ User default fee currency, if set, will be used as the first fee currency, and then use the
+ universal fee currency order list
+
+#### Python
+```python
+result = substrate.query(
+    'FlexibleFee', 'UserDefaultFeeCurrency', ['AccountId']
+)
+```
+
+#### Return value
+```python
+{
+    'ForeignAsset': 'u32',
+    'LPToken': (
+        (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'u8',
+        (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'u8',
+    ),
+    'Native': (
+        'ASG',
+        'BNC',
+        'KUSD',
+        'DOT',
+        'KSM',
+        'ETH',
+        'KAR',
+        'ZLK',
+        'PHA',
+        'RMRK',
+        'MOVR',
+    ),
+    'Stable': (
+        'ASG',
+        'BNC',
+        'KUSD',
+        'DOT',
+        'KSM',
+        'ETH',
+        'KAR',
+        'ZLK',
+        'PHA',
+        'RMRK',
+        'MOVR',
+    ),
+    'StableLpToken': 'u32',
+    'Token': (
+        'ASG',
+        'BNC',
+        'KUSD',
+        'DOT',
+        'KSM',
+        'ETH',
+        'KAR',
+        'ZLK',
+        'PHA',
+        'RMRK',
+        'MOVR',
+    ),
+    'Token2': 'u8',
+    'VSBond': (
+        (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'u32',
+        'u32',
+        'u32',
+    ),
+    'VSBond2': ('u8', 'u32', 'u32', 'u32'),
+    'VSToken': (
+        'ASG',
+        'BNC',
+        'KUSD',
+        'DOT',
+        'KSM',
+        'ETH',
+        'KAR',
+        'ZLK',
+        'PHA',
+        'RMRK',
+        'MOVR',
+    ),
+    'VSToken2': 'u8',
+    'VToken': (
+        'ASG',
+        'BNC',
+        'KUSD',
+        'DOT',
+        'KSM',
+        'ETH',
+        'KAR',
+        'ZLK',
+        'PHA',
+        'RMRK',
+        'MOVR',
+    ),
+    'VToken2': 'u8',
+}
+```
+---------
 ### UserFeeChargeOrderList
+ Deprecated. To-be removed after all data deleted.
 
 #### Python
 ```python
@@ -343,6 +771,16 @@ constant = substrate.get_constant('FlexibleFee', 'AltFeeCurrencyExchangeRate')
 constant = substrate.get_constant('FlexibleFee', 'AlternativeFeeCurrencyId')
 ```
 ---------
+### MaxFeeCurrencyOrderListLen
+#### Value
+```python
+50
+```
+#### Python
+```python
+constant = substrate.get_constant('FlexibleFee', 'MaxFeeCurrencyOrderListLen')
+```
+---------
 ### NativeCurrencyId
 #### Value
 ```python
@@ -369,12 +807,12 @@ constant = substrate.get_constant('FlexibleFee', 'TreasuryAccount')
 ### ConversionError
 
 ---------
-### ExceedMaxListLength
-
----------
 ### NotEnoughBalance
 
 ---------
 ### Overflow
+
+---------
+### WrongListLength
 
 ---------

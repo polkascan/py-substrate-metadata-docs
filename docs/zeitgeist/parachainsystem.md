@@ -59,9 +59,9 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::298',
+        'horizontal_messages': 'scale_info::299',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::295',
+            'trie_nodes': 'scale_info::296',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -97,7 +97,7 @@ Downward messages were processed using the given weight.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| weight_used | `Weight` | ```{'ref_time': 'u64'}```
+| weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 | dmq_head | `relay_chain::Hash` | ```[u8; 32]```
 
 ---------
@@ -300,7 +300,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::497'
+'scale_info::503'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -406,7 +406,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::295'}
+{'trie_nodes': 'scale_info::296'}
 ```
 ---------
 ### RelevantMessagingState
@@ -472,7 +472,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'ref_time': 'u64'}
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 ### ReservedXcmpWeightOverride
@@ -488,7 +488,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'ref_time': 'u64'}
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 ### UpgradeRestrictionSignal
