@@ -367,7 +367,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -1148,6 +1147,7 @@ result = substrate.query(
                     'withdrawn_amount': 'u128',
                 },
             },
+            None: None,
             'VaultRewards': {
                 'DepositStake': {
                     'amount': 'i128',

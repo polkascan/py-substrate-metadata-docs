@@ -378,6 +378,47 @@ result = substrate.query(
 [
     {
         'event': {
+            'BagsList': {
+                'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
+                'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
+            },
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::38',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'AresChallenge': {
                 'CheckedNoPassSlashed': {'amount': 'u128', 'who': 'AccountId'},
                 'Deposit': {'amount': 'u128', 'who': 'AccountId'},
@@ -453,35 +494,6 @@ result = substrate.query(
                     'price_token': 'Bytes',
                 },
                 'UpdatePurchasedDefaultSetting': {'setting': 'scale_info::76'},
-            },
-            'BagsList': {
-                'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
-                'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
-            },
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::38',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
             'Bounties': {
                 'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
@@ -632,6 +644,38 @@ result = substrate.query(
                     'seat_holder': 'AccountId',
                 },
             },
+            'Estimates': {
+                'ActiveEstimates': {'estimate': 'scale_info::121'},
+                'ChooseWinner': {'record': 'scale_info::139'},
+                'CompletedEstimates': {
+                    'config': 'scale_info::121',
+                    'winners': [('AccountId', 'u128')],
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'NewEstimates': {
+                    'estimate': 'scale_info::121',
+                    'who': 'AccountId',
+                },
+                'ParticipateEstimates': {
+                    'deposit': 'u128',
+                    'estimate': 'scale_info::133',
+                    'estimate_type': 'scale_info::123',
+                    'id': 'u64',
+                    'symbol': 'Bytes',
+                    'who': 'AccountId',
+                },
+                'RemovedEstimates': {'list': ['scale_info::121']},
+                'Reserved': {
+                    'amount': 'u128',
+                    'id': '[u8; 8]',
+                    'who': 'AccountId',
+                },
+            },
+            'Grandpa': {
+                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
+                'Paused': None,
+                'Resumed': None,
+            },
             'Identity': {
                 'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
                 'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
@@ -664,39 +708,6 @@ result = substrate.query(
                     'main': 'AccountId',
                     'sub': 'AccountId',
                 },
-            },
-            None: None,
-            'Estimates': {
-                'ActiveEstimates': {'estimate': 'scale_info::121'},
-                'ChooseWinner': {'record': 'scale_info::139'},
-                'CompletedEstimates': {
-                    'config': 'scale_info::121',
-                    'winners': [('AccountId', 'u128')],
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'NewEstimates': {
-                    'estimate': 'scale_info::121',
-                    'who': 'AccountId',
-                },
-                'ParticipateEstimates': {
-                    'deposit': 'u128',
-                    'estimate': 'scale_info::133',
-                    'estimate_type': 'scale_info::123',
-                    'id': 'u64',
-                    'symbol': 'Bytes',
-                    'who': 'AccountId',
-                },
-                'RemovedEstimates': {'list': ['scale_info::121']},
-                'Reserved': {
-                    'amount': 'u128',
-                    'id': '[u8; 8]',
-                    'who': 'AccountId',
-                },
-            },
-            'Grandpa': {
-                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
-                'Paused': None,
-                'Resumed': None,
             },
             'ImOnline': {
                 'AllGood': None,
@@ -878,17 +889,6 @@ result = substrate.query(
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::30'},
                 'SudoAsDone': {'sudo_result': 'scale_info::30'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
