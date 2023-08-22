@@ -32,6 +32,7 @@ call = substrate.compose_call(
         'ref_time': 'u64',
     },
     'message': {
+        None: None,
         'V2': [
             {
                 'BuyExecution': {
@@ -298,7 +299,6 @@ call = substrate.compose_call(
                 ],
             },
         ],
-        None: None,
         'V3': [
             {
                 'AliasOrigin': {

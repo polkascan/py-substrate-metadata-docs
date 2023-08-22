@@ -209,6 +209,7 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
+        None: None,
         'AllianceMotion': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -233,12 +234,6 @@ call = substrate.compose_call(
             'Fellowship8Dan',
             'Fellowship9Dan',
         ),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -1216,6 +1211,11 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
 }
 )

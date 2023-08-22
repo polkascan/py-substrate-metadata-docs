@@ -24,7 +24,6 @@ unless the `origin` falls below _existential deposit_ and gets removed as dust.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| controller | `AccountIdLookupOf<T>` | 
 | value | `BalanceOf<T>` | 
 | payee | `RewardDestination<T::AccountId>` | 
 
@@ -32,13 +31,6 @@ unless the `origin` falls below _existential deposit_ and gets removed as dust.
 ```python
 call = substrate.compose_call(
     'Staking', 'bond', {
-    'controller': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
     'payee': {
         'Account': 'AccountId',
         'Controller': None,
@@ -467,7 +459,10 @@ call = substrate.compose_call(
 
 ---------
 ### set_controller
-(Re-)set the controller of a stash.
+(Re-)sets the controller of a stash to the stash itself. This function previously
+accepted a `controller` argument to set the controller to an account other than the
+stash itself. This functionality has now been removed, now only setting the controller
+to the stash, if it is not already.
 
 Effects will be felt instantly (as soon as this function is completed successfully).
 
@@ -479,22 +474,12 @@ O(1)
 - Contains a limited number of reads.
 - Writes are limited to the `origin` account key.
 #### Attributes
-| Name | Type |
-| -------- | -------- | 
-| controller | `AccountIdLookupOf<T>` | 
+No attributes
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Staking', 'set_controller', {
-    'controller': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-}
+    'Staking', 'set_controller', {}
 )
 ```
 
@@ -1045,7 +1030,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'individual': 'scale_info::540', 'total': 'u32'}
+{'individual': 'scale_info::547', 'total': 'u32'}
 ```
 ---------
 ### ErasStakers

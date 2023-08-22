@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | moonriver     |
 | Implementation name     | moonriver     |
-| Spec version     | 2401     |
+| Spec version     | 2403     |
 | SS58 Format     | 1285     |
 | Token symbol      | MOVR     |
 | Token decimals      | 18     |

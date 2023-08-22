@@ -312,7 +312,7 @@ result = substrate.query(
                 {
                     'asset_in': 'u32',
                     'asset_out': 'u32',
-                    'pool': 'scale_info::278',
+                    'pool': 'scale_info::279',
                 },
             ],
         },
@@ -325,7 +325,7 @@ result = substrate.query(
                 {
                     'asset_in': 'u32',
                     'asset_out': 'u32',
-                    'pool': 'scale_info::278',
+                    'pool': 'scale_info::279',
                 },
             ],
         },
@@ -394,6 +394,17 @@ Minimum budget to be able to schedule a DCA, specified in native currency
 #### Python
 ```python
 constant = substrate.get_constant('DCA', 'MinBudgetInNativeCurrency')
+```
+---------
+### MinimumTradingLimit
+ Minimum trading limit for a single trade
+#### Value
+```python
+1000
+```
+#### Python
+```python
+constant = substrate.get_constant('DCA', 'MinimumTradingLimit')
 ```
 ---------
 ### NamedReserveId

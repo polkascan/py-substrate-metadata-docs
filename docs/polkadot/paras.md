@@ -634,11 +634,6 @@ Parachain cannot currently schedule a code upgrade.
 Para is not registered in our system.
 
 ---------
-### PvfCheckDisabled
-The PVF pre-checking statement cannot be included since the PVF pre-checking mechanism
-is disabled.
-
----------
 ### PvfCheckDoubleVote
 The given validator already has cast a vote.
 

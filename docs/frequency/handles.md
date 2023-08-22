@@ -5,6 +5,33 @@
 ## Calls
 
 ---------
+### change_handle
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| msa_owner_key | `T::AccountId` | 
+| proof | `MultiSignature` | 
+| payload | `ClaimHandlePayload<T::BlockNumber>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Handles', 'change_handle', {
+    'msa_owner_key': 'AccountId',
+    'payload': {
+        'base_handle': 'Bytes',
+        'expiration': 'u32',
+    },
+    'proof': {
+        'Ecdsa': '[u8; 65]',
+        'Ed25519': '[u8; 64]',
+        'Sr25519': '[u8; 64]',
+    },
+}
+)
+```
+
+---------
 ### claim_handle
 #### Attributes
 | Name | Type |

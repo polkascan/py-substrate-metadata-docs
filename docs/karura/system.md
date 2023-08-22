@@ -385,31 +385,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'origin': 'scale_info::130'},
                 'TriggeredCallBy': {'caller': 'AccountId', 'hash': '[u8; 32]'},
             },
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::49',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
             'Bounties': {
                 'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
                 'BountyBecameActive': {'index': 'u32'},
@@ -423,66 +398,12 @@ result = substrate.query(
                 'BountyProposed': {'index': 'u32'},
                 'BountyRejected': {'bond': 'u128', 'index': 'u32'},
             },
-            'CdpEngine': {
-                'CloseCDPInDebitByDEX': {
-                    'collateral_type': 'scale_info::51',
-                    'debit_value': 'u128',
-                    'owner': 'AccountId',
-                    'refund_collateral_amount': 'u128',
-                    'sold_collateral_amount': 'u128',
-                },
-                'InterestRatePerSecUpdated': {
-                    'collateral_type': 'scale_info::51',
-                    'new_interest_rate_per_sec': (None, 'u128'),
-                },
-                'LiquidateUnsafeCDP': {
-                    'bad_debt_value': 'u128',
-                    'collateral_amount': 'u128',
-                    'collateral_type': 'scale_info::51',
-                    'owner': 'AccountId',
-                    'target_amount': 'u128',
-                },
-                'LiquidationContractDeregistered': {'address': '[u8; 20]'},
-                'LiquidationContractRegistered': {'address': '[u8; 20]'},
-                'LiquidationPenaltyUpdated': {
-                    'collateral_type': 'scale_info::51',
-                    'new_liquidation_penalty': (None, 'u128'),
-                },
-                'LiquidationRatioUpdated': {
-                    'collateral_type': 'scale_info::51',
-                    'new_liquidation_ratio': (None, 'u128'),
-                },
-                'MaximumTotalDebitValueUpdated': {
-                    'collateral_type': 'scale_info::51',
-                    'new_total_debit_value': 'u128',
-                },
-                'RequiredCollateralRatioUpdated': {
-                    'collateral_type': 'scale_info::51',
-                    'new_required_collateral_ratio': (None, 'u128'),
-                },
-                'SettleCDPInDebit': {
-                    'collateral_type': 'scale_info::51',
-                    'owner': 'AccountId',
-                },
-            },
             'CdpTreasury': {
                 'DebitOffsetBufferUpdated': {'amount': 'u128'},
                 'ExpectedCollateralAuctionSizeUpdated': {
                     'collateral_type': 'scale_info::51',
                     'new_size': 'u128',
                 },
-            },
-            'CollatorSelection': {
-                'CandidateAdded': {'bond': 'u128', 'who': 'AccountId'},
-                'CandidateRemoved': {'who': 'AccountId'},
-                'NewCandidacyBond': {'new_candidacy_bond': 'u128'},
-                'NewDesiredCandidates': {'new_desired_candidates': 'u32'},
-                'NewInvulnerables': {'new_invulnerables': ['AccountId']},
-            },
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 32]', 'scale_info::72'),
-                'InvalidFormat': '[u8; 32]',
-                'UnsupportedVersion': '[u8; 32]',
             },
             'Currencies': {
                 'Deposited': {
@@ -546,6 +467,104 @@ result = substrate.query(
                     'vote': 'scale_info::151',
                     'voter': 'AccountId',
                 },
+            },
+            'IdleScheduler': {
+                'TaskAdded': {'task': 'scale_info::44', 'task_id': 'u32'},
+                'TaskDispatched': {
+                    'result': 'scale_info::32',
+                    'task_id': 'u32',
+                },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::49',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'CdpEngine': {
+                'CloseCDPInDebitByDEX': {
+                    'collateral_type': 'scale_info::51',
+                    'debit_value': 'u128',
+                    'owner': 'AccountId',
+                    'refund_collateral_amount': 'u128',
+                    'sold_collateral_amount': 'u128',
+                },
+                'InterestRatePerSecUpdated': {
+                    'collateral_type': 'scale_info::51',
+                    'new_interest_rate_per_sec': (None, 'u128'),
+                },
+                'LiquidateUnsafeCDP': {
+                    'bad_debt_value': 'u128',
+                    'collateral_amount': 'u128',
+                    'collateral_type': 'scale_info::51',
+                    'owner': 'AccountId',
+                    'target_amount': 'u128',
+                },
+                'LiquidationContractDeregistered': {'address': '[u8; 20]'},
+                'LiquidationContractRegistered': {'address': '[u8; 20]'},
+                'LiquidationPenaltyUpdated': {
+                    'collateral_type': 'scale_info::51',
+                    'new_liquidation_penalty': (None, 'u128'),
+                },
+                'LiquidationRatioUpdated': {
+                    'collateral_type': 'scale_info::51',
+                    'new_liquidation_ratio': (None, 'u128'),
+                },
+                'MaximumTotalDebitValueUpdated': {
+                    'collateral_type': 'scale_info::51',
+                    'new_total_debit_value': 'u128',
+                },
+                'RequiredCollateralRatioUpdated': {
+                    'collateral_type': 'scale_info::51',
+                    'new_required_collateral_ratio': (None, 'u128'),
+                },
+                'SettleCDPInDebit': {
+                    'collateral_type': 'scale_info::51',
+                    'owner': 'AccountId',
+                },
+            },
+            'CollatorSelection': {
+                'CandidateAdded': {'bond': 'u128', 'who': 'AccountId'},
+                'CandidateRemoved': {'who': 'AccountId'},
+                'NewCandidacyBond': {'new_candidacy_bond': 'u128'},
+                'NewDesiredCandidates': {'new_desired_candidates': 'u32'},
+                'NewInvulnerables': {'new_invulnerables': ['AccountId']},
+            },
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 32]', 'scale_info::72'),
+                'InvalidFormat': '[u8; 32]',
+                'UnsupportedVersion': '[u8; 32]',
             },
             'Dex': {
                 'AddLiquidity': {
@@ -714,6 +733,14 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'FinancialCouncilMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'GeneralCouncil': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -864,13 +891,6 @@ result = substrate.query(
                 'FromBridged': {'amount': 'u128', 'who': 'AccountId'},
                 'ToBridged': {'amount': 'u128', 'who': 'AccountId'},
             },
-            'IdleScheduler': {
-                'TaskAdded': {'task': 'scale_info::44', 'task_id': 'u32'},
-                'TaskDispatched': {
-                    'result': 'scale_info::32',
-                    'task_id': 'u32',
-                },
-            },
             'Incentives': {
                 'ClaimRewardDeductionRateUpdated': {
                     'deduction_rate': 'u128',
@@ -916,6 +936,32 @@ result = substrate.query(
                     'currency_id': 'scale_info::51',
                     'from': 'AccountId',
                     'to': 'AccountId',
+                },
+            },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::36',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::36',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::32',
+                    'timepoint': 'scale_info::36',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
                 },
             },
             'NFT': {
@@ -1042,60 +1088,6 @@ result = substrate.query(
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'TechnicalCommitteeMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            None: None,
-            'FinancialCouncilMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::36',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::36',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::32',
-                    'timepoint': 'scale_info::36',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
             },
             'Prices': {
                 'LockPrice': {
@@ -1298,6 +1290,14 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'TechnicalCommitteeMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'Tips': {
                 'NewTip': {'tip_hash': '[u8; 32]'},
                 'TipClosed': {

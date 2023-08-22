@@ -59,9 +59,9 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::232',
+        'horizontal_messages': 'scale_info::249',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::229',
+            'trie_nodes': 'scale_info::246',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -115,6 +115,14 @@ An upgrade has been authorized.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | code_hash | `T::Hash` | ```[u8; 32]```
+
+---------
+### UpwardMessageSent
+An upward message was sent to the relay chain.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
 
 ---------
 ### ValidationFunctionApplied
@@ -300,7 +308,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::378'
+'scale_info::387'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -406,7 +414,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::229'}
+{'trie_nodes': 'scale_info::246'}
 ```
 ---------
 ### RelevantMessagingState

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | collectives     |
 | Implementation name     | collectives     |
-| Spec version     | 9420     |
+| Spec version     | 9430     |
 | SS58 Format     | 0     |
 | Token symbol      | DOT     |
 | Token decimals      | 10     |

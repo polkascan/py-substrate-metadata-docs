@@ -37,6 +37,15 @@ A candidate timed out. `[candidate, head_data]`
 | None | `CoreIndex` | ```u32```
 
 ---------
+### UpwardMessagesReceived
+Some upward messages have been received and will be processed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| from | `ParaId` | ```u32```
+| count | `u32` | ```u32```
+
+---------
 ## Storage functions
 
 ---------

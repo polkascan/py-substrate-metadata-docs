@@ -60,6 +60,27 @@ Some XCM was executed ok.
 | weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
+### XcmDeferred
+Some XCM was deferred for later execution
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `ParaId` | ```u32```
+| sent_at | `RelayBlockNumber` | ```u32```
+| deferred_to | `RelayBlockNumber` | ```u32```
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+
+---------
+### XcmDeferredQueueFull
+The deferred queue is full with xcm messages
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `ParaId` | ```u32```
+| sent_at | `RelayBlockNumber` | ```u32```
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+
+---------
 ### XcmpMessageSent
 An HRMP message was sent to a sibling parachain.
 #### Attributes
@@ -84,6 +105,32 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
+```
+---------
+### DeferredXcmMessages
+ Inbound aggregate XCMP messages per ParaId.
+
+#### Python
+```python
+result = substrate.query(
+    'XcmpQueue', 'DeferredXcmMessages', ['u32']
+)
+```
+
+#### Return value
+```python
+[
+    {
+        'deferred_to': 'u32',
+        'sender': 'u32',
+        'sent_at': 'u32',
+        'xcm': {
+            None: None,
+            'V2': ['scale_info::300'],
+            'V3': ['scale_info::304'],
+        },
+    },
+]
 ```
 ---------
 ### InboundXcmpMessages

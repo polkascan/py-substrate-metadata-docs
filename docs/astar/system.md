@@ -353,6 +353,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Assets': {
                 'AccountsDestroyed': {
                     'accounts_destroyed': 'u32',
@@ -475,6 +476,29 @@ result = substrate.query(
                 'NewDesiredCandidates': 'u32',
                 'NewInvulnerables': ['AccountId'],
             },
+            'Contracts': {
+                'Called': {'caller': 'AccountId', 'contract': 'AccountId'},
+                'CodeRemoved': {'code_hash': '[u8; 32]'},
+                'CodeStored': {'code_hash': '[u8; 32]'},
+                'ContractCodeUpdated': {
+                    'contract': 'AccountId',
+                    'new_code_hash': '[u8; 32]',
+                    'old_code_hash': '[u8; 32]',
+                },
+                'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
+                'DelegateCalled': {
+                    'code_hash': '[u8; 32]',
+                    'contract': 'AccountId',
+                },
+                'Instantiated': {
+                    'contract': 'AccountId',
+                    'deployer': 'AccountId',
+                },
+                'Terminated': {
+                    'beneficiary': 'AccountId',
+                    'contract': 'AccountId',
+                },
+            },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 32]', 'scale_info::62'),
                 'InvalidFormat': '[u8; 32]',
@@ -545,56 +569,6 @@ result = substrate.query(
                     'from': '[u8; 20]',
                     'to': '[u8; 20]',
                     'transaction_hash': '[u8; 32]',
-                },
-            },
-            'StateTrieMigration': {
-                'AutoMigrationFinished': None,
-                'Halted': {'error': 'scale_info::140'},
-                'Migrated': {
-                    'child': 'u32',
-                    'compute': 'scale_info::139',
-                    'top': 'u32',
-                },
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::30'},
-                'SudoAsDone': {'sudo_result': 'scale_info::30'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'Contracts': {
-                'Called': {'caller': 'AccountId', 'contract': 'AccountId'},
-                'CodeRemoved': {'code_hash': '[u8; 32]'},
-                'CodeStored': {'code_hash': '[u8; 32]'},
-                'ContractCodeUpdated': {
-                    'contract': 'AccountId',
-                    'new_code_hash': '[u8; 32]',
-                    'old_code_hash': '[u8; 32]',
-                },
-                'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
-                'DelegateCalled': {
-                    'code_hash': '[u8; 32]',
-                    'contract': 'AccountId',
-                },
-                'Instantiated': {
-                    'contract': 'AccountId',
-                    'deployer': 'AccountId',
-                },
-                'Terminated': {
-                    'beneficiary': 'AccountId',
-                    'contract': 'AccountId',
                 },
             },
             'Identity': {
@@ -765,6 +739,32 @@ result = substrate.query(
                 },
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'StateTrieMigration': {
+                'AutoMigrationFinished': None,
+                'Halted': {'error': 'scale_info::140'},
+                'Migrated': {
+                    'child': 'u32',
+                    'compute': 'scale_info::139',
+                    'top': 'u32',
+                },
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::30'},
+                'SudoAsDone': {'sudo_result': 'scale_info::30'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',

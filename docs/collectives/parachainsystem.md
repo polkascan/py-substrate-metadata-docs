@@ -329,7 +329,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::226'
+'scale_info::227'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -484,7 +484,10 @@ result = substrate.query(
             },
         ),
     ],
-    'relay_dispatch_queue_size': ('u32', 'u32'),
+    'relay_dispatch_queue_size': {
+        'remaining_count': 'u32',
+        'remaining_size': 'u32',
+    },
 }
 ```
 ---------

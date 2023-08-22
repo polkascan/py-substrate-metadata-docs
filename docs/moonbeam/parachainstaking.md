@@ -81,6 +81,7 @@ call = substrate.compose_call(
 
 ---------
 ### delegate
+DEPRECATED use delegateWithAutoCompound
 If caller is not a delegator and not a collator, then join the set of delegators
 If caller is a delegator, then makes delegation to change their delegation state
 #### Attributes
@@ -1290,17 +1291,6 @@ constant = substrate.get_constant('ParachainStaking', 'MinBlocksPerRound')
 constant = substrate.get_constant('ParachainStaking', 'MinCandidateStk')
 ```
 ---------
-### MinCollatorStk
- Minimum stake required for any candidate to be in `SelectedCandidates` for the round
-#### Value
-```python
-2000000000000000000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('ParachainStaking', 'MinCollatorStk')
-```
----------
 ### MinDelegation
  Minimum stake for any registered on-chain account to delegate
 #### Value
@@ -1470,10 +1460,25 @@ constant = substrate.get_constant('ParachainStaking', 'RewardPaymentDelay')
 ### TooLowCandidateAutoCompoundingDelegationCountToDelegate
 
 ---------
+### TooLowCandidateAutoCompoundingDelegationCountToLeaveCandidates
+
+---------
 ### TooLowCandidateCountToLeaveCandidates
 
 ---------
+### TooLowCandidateCountWeightHint
+
+---------
 ### TooLowCandidateCountWeightHintCancelLeaveCandidates
+
+---------
+### TooLowCandidateCountWeightHintCandidateBondMore
+
+---------
+### TooLowCandidateCountWeightHintGoOffline
+
+---------
+### TooLowCandidateCountWeightHintGoOnline
 
 ---------
 ### TooLowCandidateCountWeightHintJoinCandidates

@@ -306,9 +306,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -409,7 +409,6 @@ result = substrate.query(
                 'VoteAgainst': ('u8', 'u64', 'AccountId'),
                 'VoteFor': ('u8', 'u64', 'AccountId'),
             },
-            'Claims': {'Claimed': ('AccountId', '[u8; 20]', 'u128')},
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -459,6 +458,7 @@ result = substrate.query(
                     'u128',
                 ),
                 'CreatePool': ('AccountId', 'u32'),
+                'PoolEnableStateChanged': ('u32', 'bool'),
                 'RemoveLiquidity': (
                     'AccountId',
                     'u32',
@@ -611,15 +611,6 @@ result = substrate.query(
                 },
                 'XcmTransfer': ('scale_info::48', 'scale_info::48'),
             },
-            'EqBridge': {
-                'ChainAddressTypeChanged': ('u8', (None, 'scale_info::97')),
-                'FromBridgeTransfer': ('AccountId', 'u64', 'u128'),
-                'FromBridgeTransferNext': ('Bytes', 'u64', 'u128'),
-                'MinimumTransferAmountChanged': ('u8', '[u8; 32]', 'u128'),
-                'Remark': '[u8; 32]',
-                'ToBridgeTransfer': ('AccountId', 'u64', 'u128'),
-                'WithdrawalsToggled': ('[u8; 32]', 'u8', 'bool'),
-            },
             'EqDex': {
                 'Match': (
                     'u64',
@@ -644,6 +635,41 @@ result = substrate.query(
                     'u64',
                 ),
                 'OrderDeleted': ('AccountId', 'u64', 'u64', 'scale_info::105'),
+            },
+            'Oracle': {'NewPrice': ('u64', 'i64', 'i64', 'AccountId')},
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::14',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::28',
+                    'dispatch_info': 'scale_info::25',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::25'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'Claims': {'Claimed': ('AccountId', '[u8; 20]', 'u128')},
+            'EqBridge': {
+                'ChainAddressTypeChanged': ('u8', (None, 'scale_info::97')),
+                'FromBridgeTransfer': ('AccountId', 'u64', 'u128'),
+                'FromBridgeTransferNext': ('Bytes', 'u64', 'u128'),
+                'MinimumTransferAmountChanged': ('u8', '[u8; 32]', 'u128'),
+                'Remark': '[u8; 32]',
+                'ToBridgeTransfer': ('AccountId', 'u64', 'u128'),
+                'WithdrawalsToggled': ('[u8; 32]', 'u8', 'bool'),
             },
             'EqLending': {
                 'Deposit': {
@@ -745,18 +771,6 @@ result = substrate.query(
                     'multisig': 'AccountId',
                 },
             },
-            'Oracle': {'NewPrice': ('u64', 'i64', 'i64', 'AccountId')},
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::14',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsTrapped': (
                     '[u8; 32]',
@@ -846,7 +860,6 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'Subaccounts': {
                 'RegisterBailsman': ('AccountId', 'AccountId'),
                 'SubaccountCreated': (
@@ -854,17 +867,6 @@ result = substrate.query(
                     'AccountId',
                     'scale_info::89',
                 ),
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::28',
-                    'dispatch_info': 'scale_info::25',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::25'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -981,7 +983,6 @@ result = substrate.query(
                 'SaleBase': ('AccountId', 'u32', 'u128', 'u128'),
                 'SellXBase': ('AccountId', 'u32', 'u128', 'u128'),
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1223,7 +1224,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'Equilibrium-parachain',
     'impl_version': 1,
     'spec_name': 'Equilibrium-parachain',
-    'spec_version': 28,
+    'spec_version': 30,
     'state_version': 0,
     'transaction_version': 1,
 }

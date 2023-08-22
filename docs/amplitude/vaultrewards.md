@@ -9,7 +9,7 @@
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| reward_id | `T::RewardId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}}}```
+| reward_id | `T::RewardId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}}```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
@@ -17,7 +17,7 @@
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
@@ -25,8 +25,8 @@
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| reward_id | `T::RewardId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}}}```
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}```
+| reward_id | `T::RewardId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
@@ -34,7 +34,7 @@
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| reward_id | `T::RewardId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}}}```
+| reward_id | `T::RewardId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}}```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
@@ -62,6 +62,12 @@ result = substrate.query(
             'StellarNative': None,
         },
         'XCM': 'u8',
+        'ZenlinkLPToken': (
+            'u8',
+            'u8',
+            'u8',
+            'u8',
+        ),
     },
 ]
 )
@@ -93,6 +99,12 @@ result = substrate.query(
             'StellarNative': None,
         },
         'XCM': 'u8',
+        'ZenlinkLPToken': (
+            'u8',
+            'u8',
+            'u8',
+            'u8',
+        ),
     },
     {
         'account_id': 'AccountId',
@@ -111,6 +123,12 @@ result = substrate.query(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
             'wrapped': {
                 'Native': None,
@@ -126,6 +144,12 @@ result = substrate.query(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
         },
     },
@@ -162,6 +186,12 @@ result = substrate.query(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
             'wrapped': {
                 'Native': None,
@@ -177,6 +207,12 @@ result = substrate.query(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
         },
     },
@@ -211,6 +247,12 @@ result = substrate.query(
             'StellarNative': None,
         },
         'XCM': 'u8',
+        'ZenlinkLPToken': (
+            'u8',
+            'u8',
+            'u8',
+            'u8',
+        ),
     },
 ]
 )

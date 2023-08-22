@@ -628,9 +628,9 @@ call = substrate.compose_call(
                     {
                         'ForeignAsset': 'u32',
                         'LPToken': (
-                            'scale_info::253',
+                            'scale_info::256',
                             'u8',
-                            'scale_info::253',
+                            'scale_info::256',
                             'u8',
                         ),
                         'Native': (
@@ -675,7 +675,7 @@ call = substrate.compose_call(
                         ),
                         'Token2': 'u8',
                         'VSBond': (
-                            'scale_info::253',
+                            'scale_info::256',
                             'u32',
                             'u32',
                             'u32',
@@ -1541,9 +1541,9 @@ call = substrate.compose_call(
                     {
                         'ForeignAsset': 'u32',
                         'LPToken': (
-                            'scale_info::253',
+                            'scale_info::256',
                             'u8',
-                            'scale_info::253',
+                            'scale_info::256',
                             'u8',
                         ),
                         'Native': (
@@ -1588,7 +1588,7 @@ call = substrate.compose_call(
                         ),
                         'Token2': 'u8',
                         'VSBond': (
-                            'scale_info::253',
+                            'scale_info::256',
                             'u32',
                             'u32',
                             'u32',
@@ -1875,7 +1875,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| info | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| info | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
 ### Voted
@@ -2149,14 +2149,14 @@ result = substrate.query(
 ```python
 {
     'gauge_amount': 'u128',
-    'gauge_basic_rewards': 'scale_info::724',
+    'gauge_basic_rewards': 'scale_info::733',
     'gauge_last_block': 'u32',
     'gauge_state': ('Unbond', 'Bonded'),
     'keeper': 'AccountId',
     'max_block': 'u32',
     'pid': 'u32',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::730',
+    'rewards': 'scale_info::739',
     'token': {
         'ForeignAsset': 'u32',
         'LPToken': (
@@ -2312,7 +2312,7 @@ result = substrate.query(
 ```python
 {
     'after_block_to_start': 'u32',
-    'basic_rewards': 'scale_info::724',
+    'basic_rewards': 'scale_info::733',
     'basic_token': (
         {
             'ForeignAsset': 'u32',
@@ -2443,9 +2443,9 @@ result = substrate.query(
     'keeper': 'AccountId',
     'min_deposit_to_start': 'u128',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::725',
+    'rewards': 'scale_info::734',
     'state': ('UnCharged', 'Charged', 'Ongoing', 'Dead', 'Retired'),
-    'tokens_proportion': 'scale_info::723',
+    'tokens_proportion': 'scale_info::732',
     'total_shares': 'u128',
     'withdraw_limit_count': 'u8',
     'withdraw_limit_time': 'u32',
@@ -2500,7 +2500,7 @@ result = substrate.query(
     'share': 'u128',
     'who': 'AccountId',
     'withdraw_list': [('u32', 'u128')],
-    'withdrawn_rewards': 'scale_info::724',
+    'withdrawn_rewards': 'scale_info::733',
 }
 ```
 ---------
@@ -2611,6 +2611,9 @@ gauge pool max_block exceeded
 
 ---------
 ### PoolDoesNotExist
+
+---------
+### PoolNotCleared
 
 ---------
 ### RoundLengthNotSet

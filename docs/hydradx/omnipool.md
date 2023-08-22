@@ -373,6 +373,8 @@ Buy trade executed.
 | asset_out | `T::AssetId` | ```u32```
 | amount_in | `Balance` | ```u128```
 | amount_out | `Balance` | ```u128```
+| asset_fee_amount | `Balance` | ```u128```
+| protocol_fee_amount | `Balance` | ```u128```
 
 ---------
 ### LiquidityAdded
@@ -443,6 +445,8 @@ Sell trade executed.
 | asset_out | `T::AssetId` | ```u32```
 | amount_in | `Balance` | ```u128```
 | amount_out | `Balance` | ```u128```
+| asset_fee_amount | `Balance` | ```u128```
+| protocol_fee_amount | `Balance` | ```u128```
 
 ---------
 ### TVLCapUpdated
@@ -574,17 +578,6 @@ result = substrate.query(
 ## Constants
 
 ---------
-### AssetFee
- Asset fee
-#### Value
-```python
-2500
-```
-#### Python
-```python
-constant = substrate.get_constant('Omnipool', 'AssetFee')
-```
----------
 ### HdxAssetId
  Native Asset ID
 #### Value
@@ -671,17 +664,6 @@ constant = substrate.get_constant('Omnipool', 'MinimumTradingLimit')
 #### Python
 ```python
 constant = substrate.get_constant('Omnipool', 'NFTCollectionId')
-```
----------
-### ProtocolFee
- Protocol fee
-#### Value
-```python
-500
-```
-#### Python
-```python
-constant = substrate.get_constant('Omnipool', 'ProtocolFee')
 ```
 ---------
 ### StableCoinAssetId

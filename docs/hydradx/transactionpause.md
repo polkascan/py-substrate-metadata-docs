@@ -93,3 +93,7 @@ can not pause
 invalid character encoding
 
 ---------
+### NameTooLong
+pallet name or function name is too long
+
+---------

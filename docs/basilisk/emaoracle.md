@@ -17,7 +17,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::519'
+'scale_info::526'
 ```
 ---------
 ### Oracles
@@ -49,7 +49,7 @@ result = substrate.query(
     {
         'liquidity': {'a': 'u128', 'b': 'u128'},
         'price': {'d': 'u128', 'n': 'u128'},
-        'timestamp': 'u32',
+        'updated_at': 'u32',
         'volume': {
             'a_in': 'u128',
             'a_out': 'u128',

@@ -159,6 +159,14 @@ call = substrate.compose_call(
 | budget_remaining | `BalanceOf<T, I>` | ```u128```
 
 ---------
+### UpdatedInactive
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| reactivated | `BalanceOf<T, I>` | ```u128```
+| deactivated | `BalanceOf<T, I>` | ```u128```
+
+---------
 ## Storage functions
 
 ---------
@@ -176,12 +184,12 @@ result = substrate.query(
 ['u32']
 ```
 ---------
-### Inactive
+### Deactivated
 
 #### Python
 ```python
 result = substrate.query(
-    'Treasury', 'Inactive', []
+    'Treasury', 'Deactivated', []
 )
 ```
 

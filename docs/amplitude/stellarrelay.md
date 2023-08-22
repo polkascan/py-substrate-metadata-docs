@@ -176,10 +176,25 @@ constant = substrate.get_constant('StellarRelay', 'ValidatorLimit')
 ### DuplicateValidatorPublicKey
 
 ---------
+### EmptyEnvelopeSet
+
+---------
 ### EnvelopeSignedByUnknownValidator
 
 ---------
-### FailedToComputenonGenericTxSetContentHash
+### EnvelopeSlotIndexMismatch
+
+---------
+### ExternalizedNHMismatch
+
+---------
+### ExternalizedValueMismatch
+
+---------
+### ExternalizedValueNotFound
+
+---------
+### FailedToComputeNonGenericTxSetContentHash
 
 ---------
 ### InvalidEnvelopeSignature
@@ -203,6 +218,9 @@ constant = substrate.get_constant('StellarRelay', 'ValidatorLimit')
 ### InvalidXDR
 
 ---------
+### MissingExternalizedMessage
+
+---------
 ### NoOrganizationsRegistered
 
 ---------
@@ -216,6 +234,9 @@ constant = substrate.get_constant('StellarRelay', 'ValidatorLimit')
 
 ---------
 ### OrganizationLimitExceeded
+
+---------
+### SlotIndexIsNone
 
 ---------
 ### TransactionMemoDoesNotMatch

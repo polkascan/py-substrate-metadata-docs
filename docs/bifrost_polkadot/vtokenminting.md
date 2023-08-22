@@ -1625,7 +1625,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| err | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| err | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
 ### FeeSet
@@ -3062,7 +3062,7 @@ result = substrate.query(
         'Round': 'u32',
         'SlashingSpan': 'u32',
     },
-    {'Astar': None, 'Moonbeam': '[u8; 20]', 'Native': None},
+    {'Astar': None, 'Hydradx': None, 'Moonbeam': '[u8; 20]', 'Native': None},
 )
 ```
 ---------
@@ -3678,6 +3678,16 @@ constant = substrate.get_constant('VtokenMinting', 'ExitAccount')
 #### Python
 ```python
 constant = substrate.get_constant('VtokenMinting', 'FeeAccount')
+```
+---------
+### HydradxParachainId
+#### Value
+```python
+2034
+```
+#### Python
+```python
+constant = substrate.get_constant('VtokenMinting', 'HydradxParachainId')
 ```
 ---------
 ### MaximumUnlockIdOfTimeUnit

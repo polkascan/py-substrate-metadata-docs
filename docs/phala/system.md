@@ -282,12 +282,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -570,58 +570,6 @@ result = substrate.query(
                 'NewDesiredCandidates': {'desired_candidates': 'u32'},
                 'NewInvulnerables': {'invulnerables': ['AccountId']},
             },
-            'PhalaComputation': {
-                'BenchmarkUpdated': {
-                    'p_instant': 'u32',
-                    'session': 'AccountId',
-                },
-                'BudgetUpdated': {'budget': 'u128', 'nonce': 'u64'},
-                'CoolDownExpirationChanged': {'period': 'u64'},
-                'InternalErrorWorkerSettleFailed': {'worker': '[u8; 32]'},
-                'InternalErrorWrongHalvingConfigured': None,
-                'SessionBound': {'session': 'AccountId', 'worker': '[u8; 32]'},
-                'SessionSettled': {
-                    'payout_bits': 'u128',
-                    'session': 'AccountId',
-                    'v_bits': 'u128',
-                },
-                'SessionSettlementDropped': {
-                    'payout': 'u128',
-                    'session': 'AccountId',
-                    'v': 'u128',
-                },
-                'SessionUnbound': {
-                    'session': 'AccountId',
-                    'worker': '[u8; 32]',
-                },
-                'SubsidyBudgetHalved': None,
-                'TokenomicParametersChanged': None,
-                'WorkerEnterUnresponsive': {'session': 'AccountId'},
-                'WorkerExitUnresponsive': {'session': 'AccountId'},
-                'WorkerReclaimed': {
-                    'original_stake': 'u128',
-                    'session': 'AccountId',
-                    'slashed': 'u128',
-                },
-                'WorkerStarted': {
-                    'init_p': 'u32',
-                    'init_v': 'u128',
-                    'session': 'AccountId',
-                },
-                'WorkerStopped': {'session': 'AccountId'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -791,18 +739,6 @@ result = substrate.query(
                 'WorkerAdd': {'worker': 'AccountId'},
                 'WorkerRemove': {'worker': 'AccountId'},
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::9',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PhalaBasePool': {
                 'NftCreated': {
                     'cid': 'u32',
@@ -834,6 +770,46 @@ result = substrate.query(
                     'shares': 'u128',
                     'user': 'AccountId',
                 },
+            },
+            'PhalaComputation': {
+                'BenchmarkUpdated': {
+                    'p_instant': 'u32',
+                    'session': 'AccountId',
+                },
+                'BudgetUpdated': {'budget': 'u128', 'nonce': 'u64'},
+                'CoolDownExpirationChanged': {'period': 'u64'},
+                'InternalErrorWorkerSettleFailed': {'worker': '[u8; 32]'},
+                'InternalErrorWrongHalvingConfigured': None,
+                'SessionBound': {'session': 'AccountId', 'worker': '[u8; 32]'},
+                'SessionSettled': {
+                    'payout_bits': 'u128',
+                    'session': 'AccountId',
+                    'v_bits': 'u128',
+                },
+                'SessionSettlementDropped': {
+                    'payout': 'u128',
+                    'session': 'AccountId',
+                    'v': 'u128',
+                },
+                'SessionUnbound': {
+                    'session': 'AccountId',
+                    'worker': '[u8; 32]',
+                },
+                'SubsidyBudgetHalved': None,
+                'TokenomicParametersChanged': None,
+                'WorkerEnterUnresponsive': {'session': 'AccountId'},
+                'WorkerExitUnresponsive': {'session': 'AccountId'},
+                'WorkerReclaimed': {
+                    'original_stake': 'u128',
+                    'session': 'AccountId',
+                    'slashed': 'u128',
+                },
+                'WorkerStarted': {
+                    'init_p': 'u32',
+                    'init_v': 'u128',
+                    'session': 'AccountId',
+                },
+                'WorkerStopped': {'session': 'AccountId'},
             },
             'PhalaPhatContracts': {
                 'ClusterCreated': {
@@ -1240,6 +1216,51 @@ result = substrate.query(
                     'slot_id': 'u32',
                 },
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::45',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::9',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::9',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::9',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::9',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
             'RmrkMarket': {
                 'MarketFeePaid': {
                     'amount': 'u128',
@@ -1608,27 +1629,6 @@ result = substrate.query(
                     'origin': 'scale_info::51',
                 },
             },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::45',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::9',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::9',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::9',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1870,7 +1870,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'phala',
     'impl_version': 0,
     'spec_name': 'phala',
-    'spec_version': 1250,
+    'spec_version': 1251,
     'state_version': 0,
     'transaction_version': 5,
 }

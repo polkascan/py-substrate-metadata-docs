@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | Equilibrium-parachain     |
 | Implementation name     | Equilibrium-parachain     |
-| Spec version     | 28     |
+| Spec version     | 30     |
 | SS58 Format     | 68     |
 | Token symbol      | ['EQ']     |
 | Token decimals      | [9]     |
@@ -23,7 +23,7 @@
 | [Claims](claims.md) | [5](claims.md#calls) | [1](claims.md#events) | [5](claims.md#storage-functions) | [0](claims.md#constants) | [8](claims.md#errors) |
 | [Council](council.md) | [6](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
 | [CouncilMembership](councilmembership.md) | [7](councilmembership.md#calls) | [6](councilmembership.md#events) | [2](councilmembership.md#storage-functions) | [0](councilmembership.md#constants) | [3](councilmembership.md#errors) |
-| [CurveAmm](curveamm.md) | [7](curveamm.md#calls) | [7](curveamm.md#events) | [2](curveamm.md#storage-functions) | [2](curveamm.md#constants) | [11](curveamm.md#errors) |
+| [CurveAmm](curveamm.md) | [8](curveamm.md#calls) | [8](curveamm.md#events) | [2](curveamm.md#storage-functions) | [2](curveamm.md#constants) | [12](curveamm.md#errors) |
 | [Democracy](democracy.md) | [25](democracy.md#calls) | [20](democracy.md#events) | [13](democracy.md#storage-functions) | [11](democracy.md#constants) | [29](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [EqAggregates](eqaggregates.md) | [0](eqaggregates.md#calls) | [0](eqaggregates.md#events) | [2](eqaggregates.md#storage-functions) | [0](eqaggregates.md#constants) | [0](eqaggregates.md#errors) |

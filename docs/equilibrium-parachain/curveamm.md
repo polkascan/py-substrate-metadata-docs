@@ -153,6 +153,25 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_enable_state
+Set enable pool state.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `PoolId` | 
+| is_enabled | `bool` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CurveAmm', 'set_enable_state', {
+    'is_enabled': 'bool',
+    'pool_id': 'u32',
+}
+)
+```
+
+---------
 ### withdraw_admin_fees
 Withdraw admin fee.
 #### Attributes
@@ -209,6 +228,21 @@ Included values are:
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `PoolId` | ```u32```
+
+---------
+### PoolEnableStateChanged
+Pool with specified id `PoolId` changed enable state `bool`.
+
+Included values are:
+- pool identifier `PoolId`
+- pool is enabled `bool`
+
+\[pool_id, is_enabled\]
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `PoolId` | ```u32```
+| None | `bool` | ```bool```
 
 ---------
 ### RemoveLiquidity
@@ -362,6 +396,7 @@ result = substrate.query(
     'assets': ['u64'],
     'balances': ['u128'],
     'fee': 'u32',
+    'is_enabled': 'bool',
     'owner': 'AccountId',
     'pool_asset': 'u64',
     'total_balances': ['u128'],
@@ -398,6 +433,10 @@ constant = substrate.get_constant('CurveAmm', 'PalletId')
 ---------
 ### AssetNotCreated
 Could not create new asset
+
+---------
+### Disabled
+User can call only removeLiquidity method for pool
 
 ---------
 ### DuplicateAssets

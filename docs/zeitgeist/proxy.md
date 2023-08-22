@@ -39,6 +39,13 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Staking',
+        'CreateEditMarket',
+        'ReportOutcome',
+        'Dispute',
+        'ProvideLiquidity',
+        'BuySellCompleteSets',
+        'Trading',
+        'HandleAssets',
     ),
 }
 )
@@ -121,6 +128,13 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Staking',
+        'CreateEditMarket',
+        'ReportOutcome',
+        'Dispute',
+        'ProvideLiquidity',
+        'BuySellCompleteSets',
+        'Trading',
+        'HandleAssets',
     ),
 }
 )
@@ -165,6 +179,13 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Staking',
+        'CreateEditMarket',
+        'ReportOutcome',
+        'Dispute',
+        'ProvideLiquidity',
+        'BuySellCompleteSets',
+        'Trading',
+        'HandleAssets',
     ),
     'spawner': {
         'Address20': '[u8; 20]',
@@ -209,6 +230,13 @@ call = substrate.compose_call(
             'CancelProxy',
             'Governance',
             'Staking',
+            'CreateEditMarket',
+            'ReportOutcome',
+            'Dispute',
+            'ProvideLiquidity',
+            'BuySellCompleteSets',
+            'Trading',
+            'HandleAssets',
         ),
     ),
     'real': {
@@ -262,6 +290,13 @@ call = substrate.compose_call(
             'CancelProxy',
             'Governance',
             'Staking',
+            'CreateEditMarket',
+            'ReportOutcome',
+            'Dispute',
+            'ProvideLiquidity',
+            'BuySellCompleteSets',
+            'Trading',
+            'HandleAssets',
         ),
     ),
     'real': {
@@ -394,6 +429,13 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Staking',
+        'CreateEditMarket',
+        'ReportOutcome',
+        'Dispute',
+        'ProvideLiquidity',
+        'BuySellCompleteSets',
+        'Trading',
+        'HandleAssets',
     ),
 }
 )
@@ -420,7 +462,7 @@ A proxy was added.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Staking')```
+| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Staking', 'CreateEditMarket', 'ReportOutcome', 'Dispute', 'ProvideLiquidity', 'BuySellCompleteSets', 'Trading', 'HandleAssets')```
 | delay | `T::BlockNumber` | ```u64```
 
 ---------
@@ -439,7 +481,7 @@ A proxy was removed.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Staking')```
+| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Staking', 'CreateEditMarket', 'ReportOutcome', 'Dispute', 'ProvideLiquidity', 'BuySellCompleteSets', 'Trading', 'HandleAssets')```
 | delay | `T::BlockNumber` | ```u64```
 
 ---------
@@ -451,7 +493,7 @@ disambiguation index and proxy type.
 | -------- | -------- | -------- |
 | pure | `T::AccountId` | ```AccountId```
 | who | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Staking')```
+| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Staking', 'CreateEditMarket', 'ReportOutcome', 'Dispute', 'ProvideLiquidity', 'BuySellCompleteSets', 'Trading', 'HandleAssets')```
 | disambiguation_index | `u16` | ```u16```
 
 ---------
@@ -491,7 +533,19 @@ result = substrate.query(
         {
             'delay': 'u64',
             'delegate': 'AccountId',
-            'proxy_type': ('Any', 'CancelProxy', 'Governance', 'Staking'),
+            'proxy_type': (
+                'Any',
+                'CancelProxy',
+                'Governance',
+                'Staking',
+                'CreateEditMarket',
+                'ReportOutcome',
+                'Dispute',
+                'ProvideLiquidity',
+                'BuySellCompleteSets',
+                'Trading',
+                'HandleAssets',
+            ),
         },
     ],
     'u128',

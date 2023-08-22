@@ -312,7 +312,7 @@ constant = substrate.get_constant('Scheduler', 'MaxScheduledPerBlock')
  The maximum weight that may be scheduled per block for any dispatchables.
 #### Value
 ```python
-{'proof_size': 524288, 'ref_time': 50000000000}
+{'proof_size': 2097152, 'ref_time': 200000000000}
 ```
 #### Python
 ```python

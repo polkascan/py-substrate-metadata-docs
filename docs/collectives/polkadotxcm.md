@@ -32,6 +32,7 @@ call = substrate.compose_call(
         'ref_time': 'u64',
     },
     'message': {
+        None: None,
         'V2': [
             {
                 'BuyExecution': {
@@ -298,7 +299,6 @@ call = substrate.compose_call(
                 ],
             },
         ],
-        None: None,
         'V3': [
             {
                 'AliasOrigin': {
@@ -34667,6 +34667,7 @@ result = substrate.query(
 ```python
 {
     'amount': 'u128',
+    'consumers': [((), 'u128')],
     'locker': {
         None: None,
         'V2': {
@@ -34911,7 +34912,6 @@ result = substrate.query(
             'parents': 'u8',
         },
     },
-    'users': 'u32',
 }
 ```
 ---------
@@ -42916,7 +42916,7 @@ The message execution fails the filter.
 
 ---------
 ### InUse
-The unlock operation cannot succeed because there are still users of the lock.
+The unlock operation cannot succeed because there are still consumers of the lock.
 
 ---------
 ### InvalidAsset

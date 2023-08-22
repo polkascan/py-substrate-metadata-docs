@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | calamari     |
 | Implementation name     | calamari     |
-| Spec version     | 4200     |
+| Spec version     | 4310     |
 | SS58 Format     | 78     |
 | Token symbol      | KMA     |
 | Token decimals      | 12     |
@@ -29,14 +29,18 @@
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
-| [MantaPay](mantapay.md) | [4](mantapay.md#calls) | [4](mantapay.md#events) | [7](mantapay.md#storage-functions) | [0](mantapay.md#constants) | [40](mantapay.md#errors) |
-| [MantaSbt](mantasbt.md) | [9](mantasbt.md#calls) | [9](mantasbt.md#events) | [12](mantasbt.md#storage-functions) | [5](mantasbt.md#constants) | [53](mantasbt.md#errors) |
+| [Farming](farming.md) | [14](farming.md#calls) | [16](farming.md#events) | [7](farming.md#storage-functions) | [3](farming.md#constants) | [12](farming.md#errors) |
+| [Lottery](lottery.md) | [12](lottery.md#calls) | [7](lottery.md#events) | [15](lottery.md#storage-functions) | [4](lottery.md#constants) | [18](lottery.md#errors) |
+| [MantaPay](mantapay.md) | [4](mantapay.md#calls) | [4](mantapay.md#events) | [7](mantapay.md#storage-functions) | [0](mantapay.md#constants) | [41](mantapay.md#errors) |
+| [MantaSbt](mantasbt.md) | [13](mantasbt.md#calls) | [13](mantasbt.md#events) | [13](mantasbt.md#storage-functions) | [5](mantasbt.md#constants) | [56](mantasbt.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
+| [NameService](nameservice.md) | [5](nameservice.md#calls) | [5](nameservice.md#events) | [3](nameservice.md#storage-functions) | [2](nameservice.md#constants) | [9](nameservice.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainStaking](parachainstaking.md) | [26](parachainstaking.md#calls) | [33](parachainstaking.md#events) | [18](parachainstaking.md#storage-functions) | [19](parachainstaking.md#constants) | [45](parachainstaking.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [17](polkadotxcm.md#events) | [9](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [13](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
+| [Randomness](randomness.md) | [1](randomness.md#calls) | [0](randomness.md#events) | [3](randomness.md#storage-functions) | [0](randomness.md#constants) | [1](randomness.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
@@ -49,4 +53,4 @@
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [20](xtokens.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [8](xcmpqueue.md#events) | [9](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |
-| [ZenlinkProtocol](zenlinkprotocol.md) | [16](zenlinkprotocol.md#calls) | [16](zenlinkprotocol.md#events) | [11](zenlinkprotocol.md#storage-functions) | [1](zenlinkprotocol.md#constants) | [34](zenlinkprotocol.md#errors) |
+| [ZenlinkProtocol](zenlinkprotocol.md) | [16](zenlinkprotocol.md#calls) | [16](zenlinkprotocol.md#events) | [11](zenlinkprotocol.md#storage-functions) | [1](zenlinkprotocol.md#constants) | [37](zenlinkprotocol.md#errors) |

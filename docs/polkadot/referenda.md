@@ -209,6 +209,7 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -1220,7 +1221,6 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
 }
 )
@@ -1459,6 +1459,7 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
+            None: None,
             'Council': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
@@ -1491,7 +1492,6 @@ result = substrate.query(
                 'Response': {'interior': 'scale_info::165', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::165', 'parents': 'u8'},
             },
-            None: None,
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
         },
         'proposal': {

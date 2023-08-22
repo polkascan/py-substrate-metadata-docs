@@ -472,6 +472,11 @@ result = substrate.query(
                 'VersionChangeNotified': ('scale_info::36', 'u32'),
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'Sudo': {
+                'KeyChanged': {'new_sudoer': 'AccountId'},
+                'Sudid': {'sudo_result': 'scale_info::76'},
+                'SudoAsDone': {'sudo_result': 'scale_info::76'},
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': ('scale_info::22', 'scale_info::19'),
@@ -484,12 +489,6 @@ result = substrate.query(
                 'NewAccount': 'AccountId',
                 'Remarked': ('AccountId', '[u8; 32]'),
             },
-            None: None,
-            'Sudo': {
-                'KeyChanged': {'new_sudoer': 'AccountId'},
-                'Sudid': {'sudo_result': 'scale_info::76'},
-                'SudoAsDone': {'sudo_result': 'scale_info::76'},
-            },
             'XcmpQueue': {
                 'BadFormat': (None, '[u8; 32]'),
                 'BadVersion': (None, '[u8; 32]'),
@@ -498,6 +497,7 @@ result = substrate.query(
                 'UpwardMessageSent': (None, '[u8; 32]'),
                 'XcmpMessageSent': (None, '[u8; 32]'),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

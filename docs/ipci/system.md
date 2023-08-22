@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -378,80 +378,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::35',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'Datalog': {
-                'Erased': 'AccountId',
-                'NewRecord': ('AccountId', 'u64', 'Bytes'),
-            },
-            'Identity': {
-                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentitySet': {'who': 'AccountId'},
-                'JudgementGiven': {
-                    'registrar_index': 'u32',
-                    'target': 'AccountId',
-                },
-                'JudgementRequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'JudgementUnrequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'RegistrarAdded': {'registrar_index': 'u32'},
-                'SubIdentityAdded': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRemoved': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRevoked': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::29'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
-            },
-            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -515,80 +441,39 @@ result = substrate.query(
                     'owner': 'AccountId',
                 },
             },
-            'CarbonAssets': {
-                'ApprovalCancelled': {
-                    'asset_id': '[u8; 24]',
-                    'delegate': 'AccountId',
-                    'owner': 'AccountId',
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
                 },
-                'ApprovedTransfer': {
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
                     'amount': 'u128',
-                    'asset_id': '[u8; 24]',
-                    'delegate': 'AccountId',
-                    'source': 'AccountId',
-                },
-                'AssetFrozen': {'asset_id': '[u8; 24]'},
-                'AssetStatusChanged': {'asset_id': '[u8; 24]'},
-                'AssetThawed': {'asset_id': '[u8; 24]'},
-                'Burned': {
-                    'asset_id': '[u8; 24]',
-                    'balance': 'u128',
-                    'owner': 'AccountId',
-                },
-                'CarbonCreditsBurned': {
-                    'account': 'AccountId',
-                    'amount': 'u128',
-                    'asset_id': '[u8; 24]',
-                },
-                'Created': {'asset_id': '[u8; 24]', 'creator': 'AccountId'},
-                'CustodianSet': {'custodian': 'AccountId'},
-                'Destroyed': {'asset_id': '[u8; 24]'},
-                'ForceCreated': {'asset_id': '[u8; 24]', 'owner': 'AccountId'},
-                'Frozen': {'asset_id': '[u8; 24]', 'who': 'AccountId'},
-                'Issued': {
-                    'asset_id': '[u8; 24]',
-                    'owner': 'AccountId',
-                    'total_supply': 'u128',
-                },
-                'MetadataCleared': {'asset_id': '[u8; 24]'},
-                'MetadataSet': {
-                    'asset_id': '[u8; 24]',
-                    'decimals': 'u8',
-                    'is_frozen': 'bool',
-                    'name': 'Bytes',
-                    'symbol': 'Bytes',
-                },
-                'MetadataUpdated': {
-                    'asset_id': '[u8; 24]',
-                    'data_ipfs': 'Bytes',
-                    'url': 'Bytes',
-                },
-                'OwnerChanged': {'asset_id': '[u8; 24]', 'owner': 'AccountId'},
-                'TeamChanged': {
-                    'admin': 'AccountId',
-                    'asset_id': '[u8; 24]',
-                    'freezer': 'AccountId',
-                    'issuer': 'AccountId',
-                },
-                'Thawed': {'asset_id': '[u8; 24]', 'who': 'AccountId'},
-                'Transferred': {
-                    'amount': 'u128',
-                    'asset_id': '[u8; 24]',
+                    'destination_status': 'scale_info::35',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
-                'TransferredApproved': {
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
                     'amount': 'u128',
-                    'asset_id': '[u8; 24]',
-                    'delegate': 'AccountId',
-                    'destination': 'AccountId',
-                    'owner': 'AccountId',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
                 },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::61'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
+            },
+            'Datalog': {
+                'Erased': 'AccountId',
+                'NewRecord': ('AccountId', 'u64', 'Bytes'),
             },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
@@ -663,6 +548,121 @@ result = substrate.query(
                     'message_id': '[u8; 32]',
                     'remaining_weight': 'u64',
                     'required_weight': 'u64',
+                },
+            },
+            'Identity': {
+                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentitySet': {'who': 'AccountId'},
+                'JudgementGiven': {
+                    'registrar_index': 'u32',
+                    'target': 'AccountId',
+                },
+                'JudgementRequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'JudgementUnrequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'RegistrarAdded': {'registrar_index': 'u32'},
+                'SubIdentityAdded': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRemoved': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRevoked': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::29'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::22'},
+            },
+            None: None,
+            'CarbonAssets': {
+                'ApprovalCancelled': {
+                    'asset_id': '[u8; 24]',
+                    'delegate': 'AccountId',
+                    'owner': 'AccountId',
+                },
+                'ApprovedTransfer': {
+                    'amount': 'u128',
+                    'asset_id': '[u8; 24]',
+                    'delegate': 'AccountId',
+                    'source': 'AccountId',
+                },
+                'AssetFrozen': {'asset_id': '[u8; 24]'},
+                'AssetStatusChanged': {'asset_id': '[u8; 24]'},
+                'AssetThawed': {'asset_id': '[u8; 24]'},
+                'Burned': {
+                    'asset_id': '[u8; 24]',
+                    'balance': 'u128',
+                    'owner': 'AccountId',
+                },
+                'CarbonCreditsBurned': {
+                    'account': 'AccountId',
+                    'amount': 'u128',
+                    'asset_id': '[u8; 24]',
+                },
+                'Created': {'asset_id': '[u8; 24]', 'creator': 'AccountId'},
+                'CustodianSet': {'custodian': 'AccountId'},
+                'Destroyed': {'asset_id': '[u8; 24]'},
+                'ForceCreated': {'asset_id': '[u8; 24]', 'owner': 'AccountId'},
+                'Frozen': {'asset_id': '[u8; 24]', 'who': 'AccountId'},
+                'Issued': {
+                    'asset_id': '[u8; 24]',
+                    'owner': 'AccountId',
+                    'total_supply': 'u128',
+                },
+                'MetadataCleared': {'asset_id': '[u8; 24]'},
+                'MetadataSet': {
+                    'asset_id': '[u8; 24]',
+                    'decimals': 'u8',
+                    'is_frozen': 'bool',
+                    'name': 'Bytes',
+                    'symbol': 'Bytes',
+                },
+                'MetadataUpdated': {
+                    'asset_id': '[u8; 24]',
+                    'data_ipfs': 'Bytes',
+                    'url': 'Bytes',
+                },
+                'OwnerChanged': {'asset_id': '[u8; 24]', 'owner': 'AccountId'},
+                'TeamChanged': {
+                    'admin': 'AccountId',
+                    'asset_id': '[u8; 24]',
+                    'freezer': 'AccountId',
+                    'issuer': 'AccountId',
+                },
+                'Thawed': {'asset_id': '[u8; 24]', 'who': 'AccountId'},
+                'Transferred': {
+                    'amount': 'u128',
+                    'asset_id': '[u8; 24]',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'TransferredApproved': {
+                    'amount': 'u128',
+                    'asset_id': '[u8; 24]',
+                    'delegate': 'AccountId',
+                    'destination': 'AccountId',
+                    'owner': 'AccountId',
                 },
             },
             'Lighthouse': {'BlockReward': ('AccountId', 'u128')},

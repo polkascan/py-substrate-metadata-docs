@@ -1103,6 +1103,27 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::32',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'SessionManager': {
                 'ScheduledSessionDuration': {
@@ -1231,55 +1252,6 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            'Tips': {
-                'NewTip': {'tip_hash': '[u8; 32]'},
-                'TipClosed': {
-                    'payout': 'u128',
-                    'tip_hash': '[u8; 32]',
-                    'who': 'AccountId',
-                },
-                'TipClosing': {'tip_hash': '[u8; 32]'},
-                'TipRetracted': {'tip_hash': '[u8; 32]'},
-                'TipSlashed': {
-                    'deposit': 'u128',
-                    'finder': 'AccountId',
-                    'tip_hash': '[u8; 32]',
-                },
-            },
-            'TransactionPause': {
-                'EvmPrecompilePaused': {'address': '[u8; 20]'},
-                'EvmPrecompileUnpaused': {'address': '[u8; 20]'},
-                'TransactionPaused': {
-                    'function_name_bytes': 'Bytes',
-                    'pallet_name_bytes': 'Bytes',
-                },
-                'TransactionUnpaused': {
-                    'function_name_bytes': 'Bytes',
-                    'pallet_name_bytes': 'Bytes',
-                },
-            },
-            None: None,
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::32',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1318,6 +1290,21 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
+            'Tips': {
+                'NewTip': {'tip_hash': '[u8; 32]'},
+                'TipClosed': {
+                    'payout': 'u128',
+                    'tip_hash': '[u8; 32]',
+                    'who': 'AccountId',
+                },
+                'TipClosing': {'tip_hash': '[u8; 32]'},
+                'TipRetracted': {'tip_hash': '[u8; 32]'},
+                'TipSlashed': {
+                    'deposit': 'u128',
+                    'finder': 'AccountId',
+                    'tip_hash': '[u8; 32]',
+                },
+            },
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'scale_info::51',
@@ -1398,6 +1385,18 @@ result = substrate.query(
                     'amount': 'u128',
                     'currency_id': 'scale_info::51',
                     'who': 'AccountId',
+                },
+            },
+            'TransactionPause': {
+                'EvmPrecompilePaused': {'address': '[u8; 20]'},
+                'EvmPrecompileUnpaused': {'address': '[u8; 20]'},
+                'TransactionPaused': {
+                    'function_name_bytes': 'Bytes',
+                    'pallet_name_bytes': 'Bytes',
+                },
+                'TransactionUnpaused': {
+                    'function_name_bytes': 'Bytes',
+                    'pallet_name_bytes': 'Bytes',
                 },
             },
             'TransactionPayment': {
@@ -1519,6 +1518,7 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -629,6 +629,18 @@ result = substrate.query(
                 'SetPowerBalance': ('AccountId', 'u64'),
                 'UnstakedAmountWithdrew': ('AccountId', 'u128'),
             },
+            'Emergency': {
+                'EmergencyStopped': {
+                    'function_name_bytes': 'Bytes',
+                    'pallet_name_bytes': 'Bytes',
+                },
+                'EmergencyUnStopped': {
+                    'function_name_bytes': 'Bytes',
+                    'pallet_name_bytes': 'Bytes',
+                },
+                'MaintenanceModeEnded': None,
+                'MaintenanceModeStarted': None,
+            },
             'Estate': {
                 'EstateDestroyed': ('u64', 'scale_info::129'),
                 'EstateLeaseContractCancelled': 'u64',
@@ -693,6 +705,21 @@ result = substrate.query(
                 'NewMetaverseRegisteredForStaking': ('u64', 'AccountId'),
                 'TransferredMetaverse': ('u64', 'AccountId', 'AccountId'),
             },
+            'Mining': {
+                'AddNewMiningOrigin': 'AccountId',
+                'DepositMiningResource': ('AccountId', 'u128'),
+                'MiningConfigUpdated': ('u32', 'scale_info::113'),
+                'MiningResourceBurnFrom': ('AccountId', 'u128'),
+                'MiningResourceBurned': 'u128',
+                'MiningResourceMinted': 'u128',
+                'MiningResourceMintedTo': ('AccountId', 'u128'),
+                'MiningRoundPaused': ('u32', 'u32'),
+                'MiningRoundUnPaused': ('u32', 'u32'),
+                'NewMiningRound': ('u32', 'scale_info::112'),
+                'RemoveMiningOrigin': 'AccountId',
+                'RoundLengthUpdated': 'u32',
+                'WithdrawMiningResource': ('AccountId', 'u128'),
+            },
             'Multisig': {
                 'MultisigApproval': {
                     'approving': 'AccountId',
@@ -718,48 +745,6 @@ result = substrate.query(
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
                 },
-            },
-            'Scheduler': {
-                'CallLookupFailed': {
-                    'error': 'scale_info::33',
-                    'id': (None, 'Bytes'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, 'Bytes'),
-                    'result': 'scale_info::31',
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            None: None,
-            'Emergency': {
-                'EmergencyStopped': {
-                    'function_name_bytes': 'Bytes',
-                    'pallet_name_bytes': 'Bytes',
-                },
-                'EmergencyUnStopped': {
-                    'function_name_bytes': 'Bytes',
-                    'pallet_name_bytes': 'Bytes',
-                },
-                'MaintenanceModeEnded': None,
-                'MaintenanceModeStarted': None,
-            },
-            'Mining': {
-                'AddNewMiningOrigin': 'AccountId',
-                'DepositMiningResource': ('AccountId', 'u128'),
-                'MiningConfigUpdated': ('u32', 'scale_info::113'),
-                'MiningResourceBurnFrom': ('AccountId', 'u128'),
-                'MiningResourceBurned': 'u128',
-                'MiningResourceMinted': 'u128',
-                'MiningResourceMintedTo': ('AccountId', 'u128'),
-                'MiningRoundPaused': ('u32', 'u32'),
-                'MiningRoundUnPaused': ('u32', 'u32'),
-                'NewMiningRound': ('u32', 'scale_info::112'),
-                'RemoveMiningOrigin': 'AccountId',
-                'RoundLengthUpdated': 'u32',
-                'WithdrawMiningResource': ('AccountId', 'u128'),
             },
             'Nft': {
                 'BurnedNft': ('u32', 'u64'),
@@ -917,12 +902,21 @@ result = substrate.query(
                     'values': [('u32', 'Bytes')],
                 },
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::31'},
-                'SudoAsDone': {'sudo_result': 'scale_info::31'},
+            'Scheduler': {
+                'CallLookupFailed': {
+                    'error': 'scale_info::33',
+                    'id': (None, 'Bytes'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, 'Bytes'),
+                    'result': 'scale_info::31',
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -933,6 +927,12 @@ result = substrate.query(
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::31'},
+                'SudoAsDone': {'sudo_result': 'scale_info::31'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},

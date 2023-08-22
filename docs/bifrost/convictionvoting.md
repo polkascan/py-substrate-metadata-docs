@@ -320,16 +320,7 @@ result = substrate.query(
     'Casting': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u32', 'u128'),
-        'votes': [
-            (
-                'u32',
-                {
-                    'Split': 'InnerStruct',
-                    'SplitAbstain': 'InnerStruct',
-                    'Standard': 'InnerStruct',
-                },
-            ),
-        ],
+        'votes': [('u32', 'scale_info::108')],
     },
     'Delegating': {
         'balance': 'u128',
@@ -373,7 +364,7 @@ constant = substrate.get_constant('ConvictionVoting', 'MaxVotes')
  those successful voters are locked into the consequences that their votes entail.
 #### Value
 ```python
-7200
+50400
 ```
 #### Python
 ```python

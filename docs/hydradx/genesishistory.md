@@ -16,6 +16,6 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'genesis_hash': 'Bytes', 'last_block_hash': 'Bytes'}
+{'genesis_hash': '[u8; 32]', 'last_block_hash': '[u8; 32]'}
 ```
 ---------

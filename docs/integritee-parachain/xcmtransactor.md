@@ -48,6 +48,13 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### SentXcm
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| hash | `XcmHash` | ```[u8; 32]```
+
+---------
 ### SwapTransactSent
 #### Attributes
 | Name | Type | Composition
@@ -82,12 +89,38 @@ constant = substrate.get_constant('XcmTransactor', 'ShellRuntimeParaId')
 ## Errors
 
 ---------
+### DestinationUnsupported
+The given message cannot be translated into a format that the destination can be expected
+to interpret.
+
+---------
+### FeesNotMet
+Fees needed to be paid in order to send the message were unavailable.
+
+---------
 ### InvalidSwapIds
+The swap IDs do not correspond to the runtime-configured value.
 
 ---------
 ### SwapIdsEqual
+Swap IDs need to be different.
 
 ---------
-### TransactFailed
+### Transport
+Destination is routable, but there is some issue with the transport mechanism. This is
+considered fatal.
+
+---------
+### Unreachable
+The desired destination was unreachable, generally because there is a no way of routing
+to it.
+
+---------
+### Unroutable
+Destination is known to be unroutable. This is considered fatal.
+
+---------
+### XcmSendError
+Some XCM send error occurred.
 
 ---------

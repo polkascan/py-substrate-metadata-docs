@@ -108,7 +108,7 @@ result = substrate.query(
 ```
 ---------
 ### XcmDestWeightAndFee
- The dest weight limit and fee for execution XCM msg sended by XcmInterface. Must be
+ The dest weight limit and fee for execution XCM msg sent by XcmInterface. Must be
  sufficient, otherwise the execution of XCM msg on relaychain will fail.
 
  XcmDestWeightAndFee: map: XcmInterfaceOperation =&gt; (Weight, Balance)

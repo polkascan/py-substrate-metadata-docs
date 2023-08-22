@@ -26,33 +26,47 @@ call = substrate.compose_call(
                 'X1': {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -64,7 +78,7 @@ call = substrate.compose_call(
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
                             'Treasury': None,
                             'Unit': None,
@@ -82,18 +96,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -105,18 +143,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -130,18 +192,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -153,18 +239,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -176,18 +286,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -201,18 +335,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -224,18 +382,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -247,18 +429,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -270,18 +476,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -295,18 +525,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -318,18 +572,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -341,18 +619,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -364,18 +666,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -387,18 +713,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -412,18 +762,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -435,18 +809,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -458,18 +856,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -481,18 +903,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -504,18 +950,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -527,18 +997,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -552,18 +1046,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -575,18 +1093,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -598,18 +1140,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -621,18 +1187,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -644,18 +1234,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -667,18 +1281,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -690,18 +1328,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -715,18 +1377,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -738,18 +1424,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -761,18 +1471,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -784,18 +1518,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -807,18 +1565,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -830,18 +1612,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -853,18 +1659,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -876,18 +1706,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -928,33 +1782,47 @@ call = substrate.compose_call(
                 'X1': {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -966,7 +1834,7 @@ call = substrate.compose_call(
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
                             'Treasury': None,
                             'Unit': None,
@@ -984,18 +1852,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1007,18 +1899,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1032,18 +1948,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1055,18 +1995,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1078,18 +2042,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1103,18 +2091,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1126,18 +2138,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1149,18 +2185,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1172,18 +2232,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1197,18 +2281,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1220,18 +2328,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1243,18 +2375,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1266,18 +2422,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1289,18 +2469,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1314,18 +2518,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1337,18 +2565,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1360,18 +2612,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1383,18 +2659,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1406,18 +2706,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1429,18 +2753,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1454,18 +2802,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1477,18 +2849,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1500,18 +2896,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1523,18 +2943,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1546,18 +2990,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1569,18 +3037,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1592,18 +3084,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1617,18 +3133,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1640,18 +3180,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1663,18 +3227,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1686,18 +3274,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1709,18 +3321,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1732,18 +3368,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1755,18 +3415,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1778,18 +3462,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1838,33 +3546,47 @@ call = substrate.compose_call(
                 'X1': {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -1876,7 +3598,7 @@ call = substrate.compose_call(
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
                             'Treasury': None,
                             'Unit': None,
@@ -1894,18 +3616,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1917,18 +3663,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1942,18 +3712,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1965,18 +3759,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -1988,18 +3806,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2013,18 +3855,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2036,18 +3902,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2059,18 +3949,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2082,18 +3996,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2107,18 +4045,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2130,18 +4092,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2153,18 +4139,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2176,18 +4186,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2199,18 +4233,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2224,18 +4282,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2247,18 +4329,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2270,18 +4376,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2293,18 +4423,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2316,18 +4470,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2339,18 +4517,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2364,18 +4566,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2387,18 +4613,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2410,18 +4660,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2433,18 +4707,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2456,18 +4754,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2479,18 +4801,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2502,18 +4848,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2527,18 +4897,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2550,18 +4944,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2573,18 +4991,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2596,18 +5038,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2619,18 +5085,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2642,18 +5132,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2665,18 +5179,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2688,18 +5226,42 @@ call = substrate.compose_call(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2723,18 +5285,42 @@ call = substrate.compose_call(
                     'X1': {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -2749,7 +5335,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2760,7 +5347,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2773,7 +5361,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2784,7 +5373,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2795,7 +5385,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2808,7 +5399,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2819,7 +5411,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2830,7 +5423,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2841,7 +5435,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2854,7 +5449,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2865,7 +5461,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2876,7 +5473,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2887,7 +5485,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2898,7 +5497,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2911,7 +5511,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2922,7 +5523,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2933,7 +5535,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2944,7 +5547,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2955,7 +5559,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2966,7 +5571,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2979,7 +5585,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -2990,7 +5597,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3001,7 +5609,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3012,7 +5621,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3023,7 +5633,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3034,7 +5645,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3045,7 +5657,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3058,7 +5671,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3069,7 +5683,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3080,7 +5695,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3091,7 +5707,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3102,7 +5719,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3113,7 +5731,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3124,7 +5743,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3135,7 +5755,8 @@ call = substrate.compose_call(
                             'AccountIndex64': 'InnerStruct',
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
-                            'GeneralKey': 'Bytes',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::76',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -3225,7 +5846,7 @@ New asset with the asset manager is registered
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u128```
-| asset_type | `T::ForeignAssetType` | ```{'SelfReserve': None, 'ParachainReserve': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::75', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::75', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::75', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::79', 'part': 'scale_info::80'}}, 'X2': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X3': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X4': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X5': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X6': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X7': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X8': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'})}}}```
+| asset_type | `T::ForeignAssetType` | ```{'SelfReserve': None, 'ParachainReserve': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::76'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::76'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::76'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::79', 'part': 'scale_info::80'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, 'X2': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X3': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X4': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X5': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X6': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X7': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X8': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'})}}}```
 
 ---------
 ### ForeignAssetTypeRemoved
@@ -3235,8 +5856,8 @@ default asset_id and asset_type mapping after removal
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u128```
-| removed_asset_type | `T::ForeignAssetType` | ```{'SelfReserve': None, 'ParachainReserve': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::75', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::75', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::75', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::79', 'part': 'scale_info::80'}}, 'X2': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X3': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X4': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X5': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X6': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X7': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X8': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'})}}}```
-| default_asset_type | `T::ForeignAssetType` | ```{'SelfReserve': None, 'ParachainReserve': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': 'scale_info::75', 'id': '[u8; 32]'}, 'AccountIndex64': {'network': 'scale_info::75', 'index': 'u64'}, 'AccountKey20': {'network': 'scale_info::75', 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': {'id': 'scale_info::79', 'part': 'scale_info::80'}}, 'X2': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X3': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X4': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X5': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X6': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X7': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}), 'X8': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'})}}}```
+| removed_asset_type | `T::ForeignAssetType` | ```{'SelfReserve': None, 'ParachainReserve': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::76'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::76'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::76'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::79', 'part': 'scale_info::80'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, 'X2': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X3': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X4': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X5': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X6': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X7': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X8': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'})}}}```
+| default_asset_type | `T::ForeignAssetType` | ```{'SelfReserve': None, 'ParachainReserve': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::76'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::76'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::76'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::79', 'part': 'scale_info::80'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, 'X2': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X3': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X4': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X5': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X6': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X7': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}), 'X8': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::76'})}}}```
 
 ---------
 ### UnitsPerSecondChanged
@@ -3293,17 +5914,32 @@ result = substrate.query(
         'interior': {
             'Here': None,
             'X1': {
-                'AccountId32': {'id': '[u8; 32]', 'network': 'scale_info::75'},
+                'AccountId32': {
+                    'id': '[u8; 32]',
+                    'network': (None, 'scale_info::76'),
+                },
                 'AccountIndex64': {
                     'index': 'u64',
-                    'network': 'scale_info::75',
+                    'network': (None, 'scale_info::76'),
                 },
                 'AccountKey20': {
                     'key': '[u8; 20]',
-                    'network': 'scale_info::75',
+                    'network': (None, 'scale_info::76'),
                 },
                 'GeneralIndex': 'u128',
-                'GeneralKey': 'Bytes',
+                'GeneralKey': {'data': '[u8; 32]', 'length': 'u8'},
+                'GlobalConsensus': {
+                    'BitcoinCash': None,
+                    'BitcoinCore': None,
+                    'ByFork': 'InnerStruct',
+                    'ByGenesis': '[u8; 32]',
+                    'Ethereum': 'InnerStruct',
+                    'Kusama': None,
+                    'Polkadot': None,
+                    'Rococo': None,
+                    'Westend': None,
+                    'Wococo': None,
+                },
                 'OnlyChild': None,
                 'PalletInstance': 'u8',
                 'Parachain': 'u32',
@@ -3318,7 +5954,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3329,7 +5966,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3342,7 +5980,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3353,7 +5992,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3364,7 +6004,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3377,7 +6018,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3388,7 +6030,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3399,7 +6042,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3410,7 +6054,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3423,7 +6068,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3434,7 +6080,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3445,7 +6092,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3456,7 +6104,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3467,7 +6116,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3480,7 +6130,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3491,7 +6142,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3502,7 +6154,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3513,7 +6166,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3524,7 +6178,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3535,7 +6190,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3548,7 +6204,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3559,7 +6216,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3570,7 +6228,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3581,7 +6240,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3592,7 +6252,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3603,7 +6264,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3614,7 +6276,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3627,7 +6290,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3638,7 +6302,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3649,7 +6314,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3660,7 +6326,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3671,7 +6338,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3682,7 +6350,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3693,7 +6362,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3704,7 +6374,8 @@ result = substrate.query(
                     'AccountIndex64': 'InnerStruct',
                     'AccountKey20': 'InnerStruct',
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': 'InnerStruct',
+                    'GlobalConsensus': 'scale_info::76',
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3751,33 +6422,47 @@ result = substrate.query(
                 'X1': {
                     'AccountId32': {
                         'id': '[u8; 32]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
-                        'network': {
-                            'Any': None,
-                            'Kusama': None,
-                            'Named': 'Bytes',
-                            'Polkadot': None,
-                        },
+                        'network': (
+                            None,
+                            'scale_info::76',
+                        ),
                     },
                     'GeneralIndex': 'u128',
-                    'GeneralKey': 'Bytes',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
                     'OnlyChild': None,
                     'PalletInstance': 'u8',
                     'Parachain': 'u32',
@@ -3789,7 +6474,7 @@ result = substrate.query(
                             'Index': 'u32',
                             'Judicial': None,
                             'Legislative': None,
-                            'Named': 'Bytes',
+                            'Moniker': '[u8; 4]',
                             'Technical': None,
                             'Treasury': None,
                             'Unit': None,
@@ -3807,18 +6492,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -3830,18 +6539,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -3855,18 +6588,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -3878,18 +6635,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -3901,18 +6682,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -3926,18 +6731,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -3949,18 +6778,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -3972,18 +6825,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -3995,18 +6872,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4020,18 +6921,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4043,18 +6968,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4066,18 +7015,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4089,18 +7062,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4112,18 +7109,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4137,18 +7158,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4160,18 +7205,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4183,18 +7252,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4206,18 +7299,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4229,18 +7346,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4252,18 +7393,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4277,18 +7442,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4300,18 +7489,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4323,18 +7536,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4346,18 +7583,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4369,18 +7630,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4392,18 +7677,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4415,18 +7724,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4440,18 +7773,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4463,18 +7820,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4486,18 +7867,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4509,18 +7914,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4532,18 +7961,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4555,18 +8008,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4578,18 +8055,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
@@ -4601,18 +8102,42 @@ result = substrate.query(
                     {
                         'AccountId32': {
                             'id': '[u8; 32]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
-                            'network': 'scale_info::75',
+                            'network': (
+                                None,
+                                'scale_info::76',
+                            ),
                         },
                         'GeneralIndex': 'u128',
-                        'GeneralKey': 'Bytes',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
                         'OnlyChild': None,
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',

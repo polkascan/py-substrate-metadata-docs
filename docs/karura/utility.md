@@ -102,12 +102,6 @@ call = substrate.compose_call(
                             'Response': 'scale_info::73',
                             'Xcm': 'scale_info::73',
                         },
-                        'system': {
-                            'None': None,
-                            'Root': None,
-                            'Signed': 'AccountId',
-                        },
-                        None: None,
                         'TechnicalCommittee': {
                             'Member': 'AccountId',
                             'Members': (
@@ -117,6 +111,12 @@ call = substrate.compose_call(
                             '_Phantom': None,
                         },
                         'Void': (),
+                        'system': {
+                            'None': None,
+                            'Root': None,
+                            'Signed': 'AccountId',
+                        },
+                        None: None,
                     },
                 },
                 'CumulusXcm': {
@@ -287,7 +287,6 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        None: None,
         'GeneralCouncil': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -1285,6 +1284,7 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
     'call': 'Call',
 }

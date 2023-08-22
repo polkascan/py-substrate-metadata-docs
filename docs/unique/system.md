@@ -353,6 +353,12 @@ result = substrate.query(
 [
     {
         'event': {
+            'AppPromotion': {
+                'SetAdmin': 'AccountId',
+                'Stake': ('AccountId', 'u128'),
+                'StakingRecalculation': ('AccountId', 'u128', 'u128'),
+                'Unstake': ('AccountId', 'u128'),
+            },
             'Balances': {
                 'BalanceSet': {'free': 'u128', 'who': 'AccountId'},
                 'Burned': {'amount': 'u128', 'who': 'AccountId'},
@@ -384,13 +390,6 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Upgraded': {'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            None: None,
-            'AppPromotion': {
-                'SetAdmin': 'AccountId',
-                'Stake': ('AccountId', 'u128'),
-                'StakingRecalculation': ('AccountId', 'u128', 'u128'),
-                'Unstake': ('AccountId', 'u128'),
             },
             'Common': {
                 'AllowListAddressAdded': ('u32', 'scale_info::116'),
@@ -433,15 +432,69 @@ result = substrate.query(
                     'u128',
                 ),
             },
-            'Configuration': {
-                'NewCollatorKickThreshold': {'length_in_blocks': (None, 'u32')},
-                'NewCollatorLicenseBond': {'bond_cost': (None, 'u128')},
-                'NewDesiredCollators': {'desired_collators': (None, 'u32')},
-            },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 32]', 'scale_info::71'),
                 'InvalidFormat': '[u8; 32]',
                 'UnsupportedVersion': '[u8; 32]',
+            },
+            'EVM': {
+                'Created': {'address': '[u8; 20]'},
+                'CreatedFailed': {'address': '[u8; 20]'},
+                'Executed': {'address': '[u8; 20]'},
+                'ExecutedFailed': {'address': '[u8; 20]'},
+                'Log': {'log': 'scale_info::126'},
+            },
+            'Ethereum': {
+                'Executed': {
+                    'exit_reason': 'scale_info::129',
+                    'extra_data': 'Bytes',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                    'transaction_hash': '[u8; 32]',
+                },
+            },
+            'EvmContractHelpers': {
+                'ContractSponsorRemoved': '[u8; 20]',
+                'ContractSponsorSet': ('[u8; 20]', 'AccountId'),
+                'ContractSponsorshipConfirmed': ('[u8; 20]', 'AccountId'),
+            },
+            'ForeignAssets': {
+                'AssetRegistered': {
+                    'asset_id': 'scale_info::65',
+                    'metadata': 'scale_info::122',
+                },
+                'AssetUpdated': {
+                    'asset_id': 'scale_info::65',
+                    'metadata': 'scale_info::122',
+                },
+                'ForeignAssetRegistered': {
+                    'asset_address': 'scale_info::51',
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::122',
+                },
+                'ForeignAssetUpdated': {
+                    'asset_address': 'scale_info::51',
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::122',
+                },
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::9',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
+            'Configuration': {
+                'NewCollatorKickThreshold': {'length_in_blocks': (None, 'u32')},
+                'NewCollatorLicenseBond': {'bond_cost': (None, 'u128')},
+                'NewDesiredCollators': {'desired_collators': (None, 'u32')},
             },
             'DmpQueue': {
                 'ExecutedDownward': {
@@ -466,61 +519,8 @@ result = substrate.query(
                     'required_weight': 'scale_info::9',
                 },
             },
-            'EVM': {
-                'Created': {'address': '[u8; 20]'},
-                'CreatedFailed': {'address': '[u8; 20]'},
-                'Executed': {'address': '[u8; 20]'},
-                'ExecutedFailed': {'address': '[u8; 20]'},
-                'Log': {'log': 'scale_info::126'},
-            },
-            'Ethereum': {
-                'Executed': {
-                    'exit_reason': 'scale_info::129',
-                    'extra_data': 'Bytes',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                    'transaction_hash': '[u8; 32]',
-                },
-            },
-            'EvmContractHelpers': {
-                'ContractSponsorRemoved': '[u8; 20]',
-                'ContractSponsorSet': ('[u8; 20]', 'AccountId'),
-                'ContractSponsorshipConfirmed': ('[u8; 20]', 'AccountId'),
-            },
             'EvmMigration': ('TestEvent', ),
-            'ForeignAssets': {
-                'AssetRegistered': {
-                    'asset_id': 'scale_info::65',
-                    'metadata': 'scale_info::122',
-                },
-                'AssetUpdated': {
-                    'asset_id': 'scale_info::65',
-                    'metadata': 'scale_info::122',
-                },
-                'ForeignAssetRegistered': {
-                    'asset_address': 'scale_info::51',
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::122',
-                },
-                'ForeignAssetUpdated': {
-                    'asset_address': 'scale_info::51',
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::122',
-                },
-            },
             'Maintenance': ('MaintenanceEnabled', 'MaintenanceDisabled'),
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::9',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',

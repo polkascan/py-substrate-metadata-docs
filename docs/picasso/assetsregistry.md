@@ -19,7 +19,7 @@ Creates an asset.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| protocol_id | `[u8; 8]` | 
+| protocol_id | `[u8; 4]` | 
 | nonce | `u64` | 
 | location | `Option<T::ForeignAssetId>` | 
 | asset_info | `AssetInfo<T::Balance>` | 
@@ -126,7 +126,7 @@ call = substrate.compose_call(
         },
     ),
     'nonce': 'u64',
-    'protocol_id': '[u8; 8]',
+    'protocol_id': '[u8; 4]',
 }
 )
 ```
@@ -2048,6 +2048,20 @@ result = substrate.query(
 #### Return value
 ```python
 'u128'
+```
+---------
+## Constants
+
+---------
+### NetworkId
+ Network id, unique per chain
+#### Value
+```python
+0
+```
+#### Python
+```python
+constant = substrate.get_constant('AssetsRegistry', 'NetworkId')
 ```
 ---------
 ## Errors

@@ -8,10 +8,9 @@
 ### force_transfer
 Exactly as `transfer`, except the origin must be root and the source account may be
 specified.
-\# &lt;weight&gt;
+\#\# Complexity
 - Same as transfer, but additional read and write because the source account is not
   assumed to be in the overlay.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -113,7 +112,7 @@ of the transfer, the account will be reaped.
 
 The dispatch origin for this call must be `Signed` by the transactor.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - Dependent on arguments but not critical, given proper implementations for input config
   types. See related functions below.
 - It contains a limited number of reads and writes internally and no complex
@@ -127,9 +126,6 @@ Related functions:
   - Removing enough funds from an account will trigger `T::DustRemoval::on_unbalanced`.
   - `transfer_keep_alive` works the same way as `transfer`, but has an additional check
     that the transfer will not kill the origin account.
----------------------------------
-- Origin account is already in memory, so no DB operations for them.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -168,9 +164,8 @@ The dispatch origin of this call must be Signed.
 - `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
   of the funds the account has, causing the sender account to be killed (false), or
   transfer everything except at least the existential deposit, which will guarantee to
-  keep the sender account alive (true). \# &lt;weight&gt;
+  keep the sender account alive (true). \#\# Complexity
 - O(1). Just like transfer, but reading the user&\#x27;s transferable balance first.
-  \#&lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

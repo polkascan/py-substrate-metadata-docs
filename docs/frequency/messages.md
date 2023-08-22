@@ -54,7 +54,6 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | schema_id | `SchemaId` | ```u16```
 | block_number | `T::BlockNumber` | ```u32```
-| count | `u16` | ```u16```
 
 ---------
 ## Storage functions

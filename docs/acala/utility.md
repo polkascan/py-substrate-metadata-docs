@@ -60,20 +60,12 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Authority': {
             'delay': 'u32',
             'origin': {
-                None: None,
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
-                        None: None,
                         'Authority': {
                             'delay': 'u32',
                             'origin': 'scale_info::130',
@@ -124,6 +116,7 @@ call = substrate.compose_call(
                             'Root': None,
                             'Signed': 'AccountId',
                         },
+                        None: None,
                     },
                 },
                 'CumulusXcm': {
@@ -268,6 +261,12 @@ call = substrate.compose_call(
                         'parents': 'u8',
                     },
                 },
+                'system': {
+                    'None': None,
+                    'Root': None,
+                    'Signed': 'AccountId',
+                },
+                None: None,
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': (
@@ -277,11 +276,6 @@ call = substrate.compose_call(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {
-                    'None': None,
-                    'Root': None,
-                    'Signed': 'AccountId',
-                },
             },
         },
         'CumulusXcm': {
@@ -1285,6 +1279,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
     'call': 'Call',
 }

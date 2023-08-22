@@ -5,109 +5,6 @@
 ## Calls
 
 ---------
-### call_worker
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| request | `Request` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Teerex', 'call_worker', {
-    'request': {
-        'cyphertext': 'Bytes',
-        'shard': '[u8; 32]',
-    },
-}
-)
-```
-
----------
-### confirm_processed_parentchain_block
-The integritee worker calls this function for every processed parentchain_block to confirm a state update.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| block_hash | `H256` | 
-| block_number | `T::BlockNumber` | 
-| trusted_calls_merkle_root | `H256` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Teerex', 'confirm_processed_parentchain_block', {
-    'block_hash': '[u8; 32]',
-    'block_number': 'u32',
-    'trusted_calls_merkle_root': '[u8; 32]',
-}
-)
-```
-
----------
-### publish_hash
-Publish a hash as a result of an arbitrary enclave operation.
-
-The `mrenclave` of the origin will be used as an event topic a client can subscribe to.
-`extra_topics`, if any, will be used as additional event topics.
-
-`data` can be anything worthwhile publishing related to the hash. If it is a
-utf8-encoded string, the UIs will usually even render the text.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| hash | `H256` | 
-| extra_topics | `Vec<T::Hash>` | 
-| data | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Teerex', 'publish_hash', {
-    'data': 'Bytes',
-    'extra_topics': ['[u8; 32]'],
-    'hash': '[u8; 32]',
-}
-)
-```
-
----------
-### register_dcap_enclave
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| dcap_quote | `Vec<u8>` | 
-| worker_url | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Teerex', 'register_dcap_enclave', {
-    'dcap_quote': 'Bytes',
-    'worker_url': 'Bytes',
-}
-)
-```
-
----------
-### register_ias_enclave
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ra_report | `Vec<u8>` | 
-| worker_url | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Teerex', 'register_ias_enclave', {
-    'ra_report': 'Bytes',
-    'worker_url': 'Bytes',
-}
-)
-```
-
----------
 ### register_quoting_enclave
 #### Attributes
 | Name | Type |
@@ -123,6 +20,30 @@ call = substrate.compose_call(
     'certificate_chain': 'Bytes',
     'enclave_identity': 'Bytes',
     'signature': 'Bytes',
+}
+)
+```
+
+---------
+### register_sgx_enclave
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| proof | `Vec<u8>` | 
+| worker_url | `Option<Vec<u8>>` | 
+| attestation_method | `SgxAttestationMethod` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Teerex', 'register_sgx_enclave', {
+    'attestation_method': {
+        'Dcap': {'proxied': 'bool'},
+        'Ias': None,
+        'Skip': {'proxied': 'bool'},
+    },
+    'proof': 'Bytes',
+    'worker_url': (None, 'Bytes'),
 }
 )
 ```
@@ -148,60 +69,61 @@ call = substrate.compose_call(
 ```
 
 ---------
-### shield_funds
-Sent by a client who requests to get shielded funds managed by an enclave. For this on-chain balance is sent to the bonding_account of the enclave.
-The bonding_account does not have a private key as the balance on this account is exclusively managed from withing the pallet_teerex.
-Note: The bonding_account is bit-equivalent to the worker shard.
+### set_security_flags
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| incognito_account_encrypted | `Vec<u8>` | 
-| amount | `BalanceOf<T>` | 
-| bonding_account | `T::AccountId` | 
+| allow_skipping_attestation | `bool` | 
+| sgx_allow_debug_mode | `bool` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Teerex', 'shield_funds', {
-    'amount': 'u128',
-    'bonding_account': 'AccountId',
-    'incognito_account_encrypted': 'Bytes',
+    'Teerex', 'set_security_flags', {
+    'allow_skipping_attestation': 'bool',
+    'sgx_allow_debug_mode': 'bool',
 }
 )
 ```
 
 ---------
-### unregister_enclave
+### unregister_proxied_enclave
 #### Attributes
-No attributes
+| Name | Type |
+| -------- | -------- | 
+| address | `EnclaveInstanceAddress<T::AccountId>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Teerex', 'unregister_enclave', {}
+    'Teerex', 'unregister_proxied_enclave', {
+    'address': {
+        'fingerprint': '[u8; 32]',
+        'registrar': 'AccountId',
+        'signer': {
+            'Known': {
+                'Ecdsa': '[u8; 33]',
+                'Ed25519': '[u8; 32]',
+                'Sr25519': '[u8; 32]',
+            },
+            'Opaque': 'Bytes',
+        },
+    },
+}
 )
 ```
 
 ---------
-### unshield_funds
-Sent by enclaves only as a result of an `unshield` request from a client to an enclave.
+### unregister_sovereign_enclave
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| public_account | `T::AccountId` | 
-| amount | `BalanceOf<T>` | 
-| bonding_account | `T::AccountId` | 
-| call_hash | `H256` | 
+| enclave_signer | `T::AccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Teerex', 'unshield_funds', {
-    'amount': 'u128',
-    'bonding_account': 'AccountId',
-    'call_hash': '[u8; 32]',
-    'public_account': 'AccountId',
-}
+    'Teerex', 'unregister_sovereign_enclave', {'enclave_signer': 'AccountId'}
 )
 ```
 
@@ -209,88 +131,68 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### AddedEnclave
+### AddedSgxEnclave
+An Intel SGX enclave has been added to the enclave registry
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | registered_by | `T::AccountId` | ```AccountId```
-| worker_url | `Vec<u8>` | ```Bytes```
+| worker_url | `Option<Vec<u8>>` | ```(None, 'Bytes')```
 | tcb_status | `Option<SgxStatus>` | ```(None, ('Invalid', 'Ok', 'GroupOutOfDate', 'GroupRevoked', 'ConfigurationNeeded'))```
-| attestation_method | `AttestationMethod` | ```('Dcap', 'Ias', 'Skip')```
+| attestation_method | `SgxAttestationMethod` | ```{'Skip': {'proxied': 'bool'}, 'Ias': None, 'Dcap': {'proxied': 'bool'}}```
 
 ---------
-### Forwarded
+### RemovedProxiedEnclave
+a proxied enclave has been removed from the enclave registry
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ShardIdentifier` | ```[u8; 32]```
+| None | `EnclaveInstanceAddress<T::AccountId>` | ```{'fingerprint': '[u8; 32]', 'registrar': 'AccountId', 'signer': {'Opaque': 'Bytes', 'Known': {'Ed25519': '[u8; 32]', 'Sr25519': '[u8; 32]', 'Ecdsa': '[u8; 33]'}}}```
 
 ---------
-### ProcessedParentchainBlock
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `H256` | ```[u8; 32]```
-| None | `H256` | ```[u8; 32]```
-| None | `T::BlockNumber` | ```u32```
-
----------
-### PublishedHash
-An enclave with [mr_enclave] has published some [hash] with some metadata [data].
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| mr_enclave | `MrEnclave` | ```[u8; 32]```
-| hash | `H256` | ```[u8; 32]```
-| data | `Vec<u8>` | ```Bytes```
-
----------
-### QuotingEnclaveRegistered
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| quoting_enclave | `QuotingEnclave` | ```{'issue_date': 'u64', 'next_update': 'u64', 'miscselect': '[u8; 4]', 'miscselect_mask': '[u8; 4]', 'attributes': '[u8; 16]', 'attributes_mask': '[u8; 16]', 'mrsigner': '[u8; 32]', 'isvprodid': 'u16', 'tcb': [{'isvsvn': 'u16'}]}```
-
----------
-### RemovedEnclave
+### RemovedSovereignEnclave
+a sovereign enclave has been removed from the enclave registry
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 
 ---------
-### ShieldFunds
+### SgxQuotingEnclaveRegistered
+An Intel SGX quoting enclave has been registered
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Vec<u8>` | ```Bytes```
+| quoting_enclave | `SgxQuotingEnclave` | ```{'issue_date': 'u64', 'next_update': 'u64', 'miscselect': '[u8; 4]', 'miscselect_mask': '[u8; 4]', 'attributes': '[u8; 16]', 'attributes_mask': '[u8; 16]', 'mrsigner': '[u8; 32]', 'isvprodid': 'u16', 'tcb': [{'isvsvn': 'u16'}]}```
 
 ---------
-### TcbInfoRegistered
+### SgxTcbInfoRegistered
+Intel SGX TCB info has been registered
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | fmspc | `Fmspc` | ```[u8; 6]```
-| on_chain_info | `TcbInfoOnChain` | ```{'issue_date': 'u64', 'next_update': 'u64', 'tcb_levels': [{'cpusvn': '[u8; 16]', 'pcesvn': 'u16'}]}```
+| on_chain_info | `SgxTcbInfoOnChain` | ```{'issue_date': 'u64', 'next_update': 'u64', 'tcb_levels': [{'cpusvn': '[u8; 16]', 'pcesvn': 'u16'}]}```
 
 ---------
-### UnshieldedFunds
+### UpdatedSecurityFlags
+the enclave registry security flags have been updated
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
+| allow_skipping_attestation | `bool` | ```bool```
+| sgx_allow_debug_mode | `bool` | ```bool```
 
 ---------
 ## Storage functions
 
 ---------
-### AllowSGXDebugMode
+### AllowSkippingAttestation
 
 #### Python
 ```python
 result = substrate.query(
-    'Teerex', 'AllowSGXDebugMode', []
+    'Teerex', 'AllowSkippingAttestation', []
 )
 ```
 
@@ -299,74 +201,74 @@ result = substrate.query(
 'bool'
 ```
 ---------
-### EnclaveCount
+### ProxiedEnclaves
 
 #### Python
 ```python
 result = substrate.query(
-    'Teerex', 'EnclaveCount', []
-)
-```
-
-#### Return value
-```python
-'u64'
-```
----------
-### EnclaveIndex
-
-#### Python
-```python
-result = substrate.query(
-    'Teerex', 'EnclaveIndex', ['AccountId']
-)
-```
-
-#### Return value
-```python
-'u64'
-```
----------
-### EnclaveRegistry
-
-#### Python
-```python
-result = substrate.query(
-    'Teerex', 'EnclaveRegistry', ['u64']
+    'Teerex', 'ProxiedEnclaves', [
+    {
+        'fingerprint': '[u8; 32]',
+        'registrar': 'AccountId',
+        'signer': {
+            'Known': {
+                'Ecdsa': '[u8; 33]',
+                'Ed25519': '[u8; 32]',
+                'Sr25519': '[u8; 32]',
+            },
+            'Opaque': 'Bytes',
+        },
+    },
+]
 )
 ```
 
 #### Return value
 ```python
 {
-    'mr_enclave': '[u8; 32]',
-    'pubkey': 'AccountId',
-    'sgx_mode': ('Debug', 'Production'),
-    'timestamp': 'u64',
-    'url': 'Bytes',
+    'Sgx': {
+        'attestation_method': {
+            'Dcap': {'proxied': 'bool'},
+            'Ias': None,
+            'Skip': {'proxied': 'bool'},
+        },
+        'build_mode': ('Debug', 'Production'),
+        'mr_enclave': '[u8; 32]',
+        'mr_signer': '[u8; 32]',
+        'report_data': {'d': '[u8; 64]'},
+        'status': (
+            'Invalid',
+            'Ok',
+            'GroupOutOfDate',
+            'GroupRevoked',
+            'ConfigurationNeeded',
+        ),
+        'timestamp': 'u64',
+        'url': (None, 'Bytes'),
+    },
 }
 ```
 ---------
-### ExecutedCalls
+### SgxAllowDebugMode
 
 #### Python
 ```python
 result = substrate.query(
-    'Teerex', 'ExecutedCalls', ['[u8; 32]']
+    'Teerex', 'SgxAllowDebugMode', []
 )
 ```
 
 #### Return value
 ```python
-'u64'
+'bool'
 ```
 ---------
-### QuotingEnclaveRegistry
+### SgxQuotingEnclaveRegistry
 
 #### Python
 ```python
 result = substrate.query(
-    'Teerex', 'QuotingEnclaveRegistry', []
+    'Teerex', 'SgxQuotingEnclaveRegistry', []
 )
 ```
 
@@ -385,12 +287,12 @@ result = substrate.query(
 }
 ```
 ---------
-### TcbInfo
+### SgxTcbInfo
 
 #### Python
 ```python
 result = substrate.query(
-    'Teerex', 'TcbInfo', ['[u8; 6]']
+    'Teerex', 'SgxTcbInfo', ['[u8; 6]']
 )
 ```
 
@@ -403,18 +305,53 @@ result = substrate.query(
 }
 ```
 ---------
+### SovereignEnclaves
+
+#### Python
+```python
+result = substrate.query(
+    'Teerex', 'SovereignEnclaves', ['AccountId']
+)
+```
+
+#### Return value
+```python
+{
+    'Sgx': {
+        'attestation_method': {
+            'Dcap': {'proxied': 'bool'},
+            'Ias': None,
+            'Skip': {'proxied': 'bool'},
+        },
+        'build_mode': ('Debug', 'Production'),
+        'mr_enclave': '[u8; 32]',
+        'mr_signer': '[u8; 32]',
+        'report_data': {'d': '[u8; 64]'},
+        'status': (
+            'Invalid',
+            'Ok',
+            'GroupOutOfDate',
+            'GroupRevoked',
+            'ConfigurationNeeded',
+        ),
+        'timestamp': 'u64',
+        'url': (None, 'Bytes'),
+    },
+}
+```
+---------
 ## Constants
 
 ---------
-### MaxSilenceTime
- If a worker does not re-register within `MaxSilenceTime`, it will be unregistered.
+### MaxAttestationRenewalPeriod
+ If a worker does not re-register within `MaxAttestationRenewalPeriod`, it can be unregistered by anyone.
 #### Value
 ```python
 172800000
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Teerex', 'MaxSilenceTime')
+constant = substrate.get_constant('Teerex', 'MaxAttestationRenewalPeriod')
 ```
 ---------
 ### MomentsPerDay
@@ -434,10 +371,6 @@ constant = substrate.get_constant('Teerex', 'MomentsPerDay')
 The provided collateral data is invalid
 
 ---------
-### DataTooLong
-The length of the `data` passed to `publish_hash` exceeds the limit.
-
----------
 ### EmptyEnclaveRegistry
 No enclave is registered.
 
@@ -454,11 +387,16 @@ Failed to decode enclave signer.
 The worker url is too long.
 
 ---------
-### RaReportTooLong
-The Remote Attestation report is too long.
+### MissingTcbInfoForFmspc
+No TCB info could be found onchain for the examinee&\#x27;s fmspc
+
+---------
+### RaProofTooLong
+The Remote Attestation proof is too long.
 
 ---------
 ### RemoteAttestationTooOld
+IAS remote attestation is too old
 
 ---------
 ### RemoteAttestationVerificationFailed
@@ -473,15 +411,15 @@ Sender does not match attested enclave in report.
 The enclave cannot attest, because its building mode is not allowed.
 
 ---------
-### TooManyTopics
-The number of `extra_topics` passed to `publish_hash` exceeds the limit.
+### SkippingAttestationNotAllowed
+skipping attestation not allowed by configuration
 
 ---------
-### WrongMrenclaveForBondingAccount
-The bonding account doesn&\#x27;t match the enclave.
+### TcbInfoOutdated
+Either the enclave TCB has outdated status or the onchain TCB collateral is outdated
 
 ---------
-### WrongMrenclaveForShard
-The shard doesn&\#x27;t match the enclave.
+### UnregisterActiveEnclaveNotAllowed
+It is not allowed to unregister enclaves with recent activity
 
 ---------

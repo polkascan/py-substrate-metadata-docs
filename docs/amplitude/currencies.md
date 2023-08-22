@@ -36,6 +36,12 @@ call = substrate.compose_call(
             'StellarNative': None,
         },
         'XCM': 'u8',
+        'ZenlinkLPToken': (
+            'u8',
+            'u8',
+            'u8',
+            'u8',
+        ),
     },
     'dest': {
         'Address20': '[u8; 20]',
@@ -107,6 +113,12 @@ call = substrate.compose_call(
             'StellarNative': None,
         },
         'XCM': 'u8',
+        'ZenlinkLPToken': (
+            'u8',
+            'u8',
+            'u8',
+            'u8',
+        ),
     },
     'who': {
         'Address20': '[u8; 20]',

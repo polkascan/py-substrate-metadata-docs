@@ -34,6 +34,12 @@ call = substrate.compose_call(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
             'wrapped': {
                 'Native': None,
@@ -49,6 +55,12 @@ call = substrate.compose_call(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
         },
     },
@@ -83,6 +95,12 @@ call = substrate.compose_call(
                 'StellarNative': None,
             },
             'XCM': 'u8',
+            'ZenlinkLPToken': (
+                'u8',
+                'u8',
+                'u8',
+                'u8',
+            ),
         },
         'wrapped': {
             'Native': None,
@@ -98,6 +116,12 @@ call = substrate.compose_call(
                 'StellarNative': None,
             },
             'XCM': 'u8',
+            'ZenlinkLPToken': (
+                'u8',
+                'u8',
+                'u8',
+                'u8',
+            ),
         },
     },
 }
@@ -131,6 +155,12 @@ call = substrate.compose_call(
                 'StellarNative': None,
             },
             'XCM': 'u8',
+            'ZenlinkLPToken': (
+                'u8',
+                'u8',
+                'u8',
+                'u8',
+            ),
         },
         'wrapped': {
             'Native': None,
@@ -146,6 +176,12 @@ call = substrate.compose_call(
                 'StellarNative': None,
             },
             'XCM': 'u8',
+            'ZenlinkLPToken': (
+                'u8',
+                'u8',
+                'u8',
+                'u8',
+            ),
         },
     },
 }
@@ -198,6 +234,12 @@ call = substrate.compose_call(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
             'wrapped': {
                 'Native': None,
@@ -213,6 +255,12 @@ call = substrate.compose_call(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
         },
     },
@@ -228,7 +276,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}}}```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}}```
 | nominator_id | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T>` | ```u128```
 
@@ -237,21 +285,21 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}}}```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}}```
 
 ---------
 ### NominationOptOut
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}}}```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}}```
 
 ---------
 ### WithdrawCollateral
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}}}}```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}}```
 | nominator_id | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T>` | ```u128```
 
@@ -298,6 +346,12 @@ result = substrate.query(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
             'wrapped': {
                 'Native': None,
@@ -313,6 +367,12 @@ result = substrate.query(
                     'StellarNative': None,
                 },
                 'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
             },
         },
     },

@@ -39,7 +39,7 @@ call = substrate.compose_call(
 ### MaximumCapacityBatchLength
 #### Value
 ```python
-2
+10
 ```
 #### Python
 ```python

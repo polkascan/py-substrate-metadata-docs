@@ -353,6 +353,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AccountMigration': {
                 'Migrated': {'from': 'AccountId', 'to': '[u8; 20]'},
                 'MultisigMigrated': {
@@ -442,6 +443,31 @@ result = substrate.query(
                     'owner': '[u8; 20]',
                 },
             },
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': '[u8; 20]',
+                },
+                'Deposit': {'amount': 'u128', 'who': '[u8; 20]'},
+                'DustLost': {'account': '[u8; 20]', 'amount': 'u128'},
+                'Endowed': {'account': '[u8; 20]', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::33',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                },
+                'Reserved': {'amount': 'u128', 'who': '[u8; 20]'},
+                'Slashed': {'amount': 'u128', 'who': '[u8; 20]'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                },
+                'Unreserved': {'amount': 'u128', 'who': '[u8; 20]'},
+                'Withdraw': {'amount': 'u128', 'who': '[u8; 20]'},
+            },
             'BridgeDarwiniaDispatch': {
                 'MessageCallDecodeFailed': ('[u8; 4]', ('[u8; 4]', 'u64')),
                 'MessageCallValidateFailed': (
@@ -498,49 +524,6 @@ result = substrate.query(
                     'parachain_head_hash': '[u8; 32]',
                 },
             },
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 32]', 'scale_info::84'),
-                'InvalidFormat': '[u8; 32]',
-                'UnsupportedVersion': '[u8; 32]',
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
-            None: None,
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': '[u8; 20]',
-                },
-                'Deposit': {'amount': 'u128', 'who': '[u8; 20]'},
-                'DustLost': {'account': '[u8; 20]', 'amount': 'u128'},
-                'Endowed': {'account': '[u8; 20]', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::33',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                },
-                'Reserved': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Slashed': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                },
-                'Unreserved': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Withdraw': {'amount': 'u128', 'who': '[u8; 20]'},
-            },
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -570,6 +553,11 @@ result = substrate.query(
                     'voted': 'bool',
                     'yes': 'u32',
                 },
+            },
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 32]', 'scale_info::84'),
+                'InvalidFormat': '[u8; 32]',
+                'UnsupportedVersion': '[u8; 32]',
             },
             'DarwiniaFeeMarket': {
                 'CancelEnrollment': '[u8; 20]',
@@ -750,6 +738,18 @@ result = substrate.query(
                     'main': '[u8; 20]',
                     'sub': '[u8; 20]',
                 },
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
             },
             'PhragmenElection': {
                 'CandidateSlashed': {

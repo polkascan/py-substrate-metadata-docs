@@ -600,6 +600,14 @@ Transfer Ledger Unknown Asset
 Transfer Ledger `VerifyingContext` cannont be decoded
 
 ---------
+### UnrestrictedPublicAsset
+UnrestrictedPublicAsset
+
+The public asset of a receiver post utxo cannot be unrestricted,
+Otherwise it gives a potential attacker control over the nullifier
+value for no particular reason
+
+---------
 ### ZeroTransfer
 Zero Transfer
 

@@ -85,40 +85,25 @@ call = substrate.compose_call(
 ### burn
 Destroy a single item.
 
-Origin must be Signed and the signing account must be either:
-- the Admin of the `collection`;
-- the Owner of the `item`;
+The origin must conform to `ForceOrigin` or must be Signed and the signing account must
+be the owner of the `item`.
 
 - `collection`: The collection of the item to be burned.
 - `item`: The item to be burned.
-- `check_owner`: If `Some` then the operation will fail with `WrongOwner` unless the
-  item is owned by this value.
 
-Emits `Burned` with the actual amount burned.
+Emits `Burned`.
 
 Weight: `O(1)`
-Modes: `check_owner.is_some()`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | collection | `T::CollectionId` | 
 | item | `T::ItemId` | 
-| check_owner | `Option<AccountIdLookupOf<T>>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Nft', 'burn', {
-    'check_owner': (
-        None,
-        {
-            'Address20': '[u8; 20]',
-            'Address32': '[u8; 32]',
-            'Id': 'AccountId',
-            'Index': (),
-            'Raw': 'Bytes',
-        },
-    ),
     'collection': 'u32',
     'item': '[u8; 32]',
 }
@@ -160,7 +145,6 @@ Cancel one of the transfer approvals for a specific item.
 
 Origin must be either:
 - the `Force` origin;
-- `Signed` with the signer being the Admin of the `collection`;
 - `Signed` with the signer being the Owner of the `item`;
 
 Arguments:
@@ -313,7 +297,6 @@ Cancel all the approvals of a specific item.
 
 Origin must be either:
 - the `Force` origin;
-- `Signed` with the signer being the Admin of the `collection`;
 - `Signed` with the signer being the Owner of the `item`;
 
 Arguments:
@@ -344,7 +327,7 @@ call = substrate.compose_call(
 Clear an attribute for a collection or item.
 
 Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
-`collection`.
+attribute.
 
 Any deposit is freed for the collection&\#x27;s owner.
 
@@ -385,7 +368,7 @@ call = substrate.compose_call(
 ### clear_collection_metadata
 Clear the metadata for a collection.
 
-Origin must be either `ForceOrigin` or `Signed` and the sender should be the Owner of
+Origin must be either `ForceOrigin` or `Signed` and the sender should be the Admin of
 the `collection`.
 
 Any deposit is freed for the collection&\#x27;s owner.
@@ -411,7 +394,7 @@ call = substrate.compose_call(
 ### clear_metadata
 Clear the metadata for an item.
 
-Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
+Origin must be either `ForceOrigin` or Signed and the sender should be the Admin of the
 `collection`.
 
 Any deposit is freed for the collection&\#x27;s owner.
@@ -555,15 +538,17 @@ Destroy a collection of fungible items.
 The origin must conform to `ForceOrigin` or must be `Signed` and the sender must be the
 owner of the `collection`.
 
+NOTE: The collection must have 0 items to be destroyed.
+
 - `collection`: The identifier of the collection to be destroyed.
 - `witness`: Information on the items minted in the collection. This must be
 correct.
 
 Emits `Destroyed` event when successful.
 
-Weight: `O(n + m)` where:
-- `n = witness.items`
+Weight: `O(m + c + a)` where:
 - `m = witness.item_metadatas`
+- `c = witness.item_configs`
 - `a = witness.attributes`
 #### Attributes
 | Name | Type |
@@ -578,8 +563,8 @@ call = substrate.compose_call(
     'collection': 'u32',
     'witness': {
         'attributes': 'u32',
+        'item_configs': 'u32',
         'item_metadatas': 'u32',
-        'items': 'u32',
     },
 }
 )
@@ -813,12 +798,13 @@ call = substrate.compose_call(
 ### lock_collection
 Disallows specified settings for the whole collection.
 
-Origin must be Signed and the sender should be the Freezer of the `collection`.
+Origin must be Signed and the sender should be the Owner of the `collection`.
 
 - `collection`: The collection to be locked.
 - `lock_settings`: The settings to be locked.
 
 Note: it&\#x27;s possible to only lock(set) the setting, but not to unset it.
+
 Emits `CollectionLocked`.
 
 Weight: `O(1)`
@@ -842,8 +828,8 @@ call = substrate.compose_call(
 ### lock_item_properties
 Disallows changing the metadata or attributes of the item.
 
-Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
-`collection`.
+Origin must be either `ForceOrigin` or Signed and the sender should be the Admin
+of the `collection`.
 
 - `collection`: The collection if the `item`.
 - `item`: An item to be locked.
@@ -851,8 +837,8 @@ Origin must be either `ForceOrigin` or Signed and the sender should be the Owner
 - `lock_attributes`: Specifies whether the attributes in the `CollectionOwner` namespace
   should be locked.
 
-Note: `lock_attributes` affects the attributes in the `CollectionOwner` namespace
-only. When the metadata or attributes are locked, it won&\#x27;t be possible the unlock them.
+Note: `lock_attributes` affects the attributes in the `CollectionOwner` namespace only.
+When the metadata or attributes are locked, it won&\#x27;t be possible the unlock them.
 
 Emits `ItemPropertiesLocked`.
 
@@ -909,7 +895,7 @@ call = substrate.compose_call(
 ### mint
 Mint an item of a particular collection.
 
-The origin must be Signed and the sender must be the Issuer of the `collection`.
+The origin must be Signed and the sender must comply with the `mint_settings` rules.
 
 - `collection`: The collection of the item to be minted.
 - `item`: An identifier of the new item.
@@ -945,8 +931,57 @@ call = substrate.compose_call(
     },
     'witness_data': (
         None,
-        {'owner_of_item': '[u8; 32]'},
+        {'owned_item': '[u8; 32]'},
     ),
+}
+)
+```
+
+---------
+### mint_pre_signed
+Mint an item by providing the pre-signed approval.
+
+Origin must be Signed.
+
+- `mint_data`: The pre-signed approval that consists of the information about the item,
+  its metadata, attributes, who can mint it (`None` for anyone) and until what block
+  number.
+- `signature`: The signature of the `data` object.
+- `signer`: The `data` object&\#x27;s signer. Should be an Issuer of the collection.
+
+Emits `Issued` on success.
+Emits `AttributeSet` if the attributes were provided.
+Emits `ItemMetadataSet` if the metadata was not empty.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| mint_data | `PreSignedMintOf<T, I>` | 
+| signature | `T::OffchainSignature` | 
+| signer | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Nft', 'mint_pre_signed', {
+    'mint_data': {
+        'attributes': [
+            ('Bytes', 'Bytes'),
+        ],
+        'collection': 'u32',
+        'deadline': 'u32',
+        'item': '[u8; 32]',
+        'metadata': 'Bytes',
+        'only_account': (
+            None,
+            'AccountId',
+        ),
+    },
+    'signature': {
+        'Ecdsa': '[u8; 65]',
+        'Ed25519': '[u8; 64]',
+        'Sr25519': '[u8; 64]',
+    },
+    'signer': 'AccountId',
 }
 )
 ```
@@ -1045,7 +1080,7 @@ call = substrate.compose_call(
 Set an attribute for a collection or item.
 
 Origin must be Signed and must conform to the namespace ruleset:
-- `CollectionOwner` namespace could be modified by the `collection` owner only;
+- `CollectionOwner` namespace could be modified by the `collection` Admin only;
 - `ItemOwner` namespace could be modified by the `maybe_item` owner only. `maybe_item`
   should be set in that case;
 - `Account(AccountId)` namespace could be modified only when the `origin` was given a
@@ -1092,6 +1127,56 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_attributes_pre_signed
+Set attributes for an item by providing the pre-signed approval.
+
+Origin must be Signed and must be an owner of the `data.item`.
+
+- `data`: The pre-signed approval that consists of the information about the item,
+  attributes to update and until what block number.
+- `signature`: The signature of the `data` object.
+- `signer`: The `data` object&\#x27;s signer. Should be an Admin of the collection for the
+  `CollectionOwner` namespace.
+
+Emits `AttributeSet` for each provided attribute.
+Emits `ItemAttributesApprovalAdded` if the approval wasn&\#x27;t set before.
+Emits `PreSignedAttributesSet` on success.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| data | `PreSignedAttributesOf<T, I>` | 
+| signature | `T::OffchainSignature` | 
+| signer | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Nft', 'set_attributes_pre_signed', {
+    'data': {
+        'attributes': [
+            ('Bytes', 'Bytes'),
+        ],
+        'collection': 'u32',
+        'deadline': 'u32',
+        'item': '[u8; 32]',
+        'namespace': {
+            'Account': 'AccountId',
+            'CollectionOwner': None,
+            'ItemOwner': None,
+            'Pallet': None,
+        },
+    },
+    'signature': {
+        'Ecdsa': '[u8; 65]',
+        'Ed25519': '[u8; 64]',
+        'Sr25519': '[u8; 64]',
+    },
+    'signer': 'AccountId',
+}
+)
+```
+
+---------
 ### set_collection_max_supply
 Set the maximum number of items a collection could have.
 
@@ -1122,7 +1207,7 @@ call = substrate.compose_call(
 ### set_collection_metadata
 Set the metadata for a collection.
 
-Origin must be either `ForceOrigin` or `Signed` and the sender should be the Owner of
+Origin must be either `ForceOrigin` or `Signed` and the sender should be the Admin of
 the `collection`.
 
 If the origin is `Signed`, then funds of signer are reserved according to the formula:
@@ -1152,7 +1237,7 @@ call = substrate.compose_call(
 ### set_metadata
 Set the metadata for an item.
 
-Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
+Origin must be either `ForceOrigin` or Signed and the sender should be the Admin of the
 `collection`.
 
 If the origin is Signed, then funds of signer are reserved according to the formula:
@@ -1188,7 +1273,7 @@ call = substrate.compose_call(
 ### set_price
 Set (or reset) the price for an item.
 
-Origin must be Signed and must be the owner of the asset `item`.
+Origin must be Signed and must be the owner of the `item`.
 
 - `collection`: The collection of the item.
 - `item`: The item to set the price for.
@@ -1233,6 +1318,9 @@ Change the Issuer, Admin and Freezer of a collection.
 Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
 `collection`.
 
+Note: by setting the role to `None` only the `ForceOrigin` will be able to change it
+after to `Some(account)`.
+
 - `collection`: The collection whose team should be changed.
 - `issuer`: The new Issuer of this collection.
 - `admin`: The new Admin of this collection.
@@ -1245,36 +1333,45 @@ Weight: `O(1)`
 | Name | Type |
 | -------- | -------- | 
 | collection | `T::CollectionId` | 
-| issuer | `AccountIdLookupOf<T>` | 
-| admin | `AccountIdLookupOf<T>` | 
-| freezer | `AccountIdLookupOf<T>` | 
+| issuer | `Option<AccountIdLookupOf<T>>` | 
+| admin | `Option<AccountIdLookupOf<T>>` | 
+| freezer | `Option<AccountIdLookupOf<T>>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Nft', 'set_team', {
-    'admin': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
+    'admin': (
+        None,
+        {
+            'Address20': '[u8; 20]',
+            'Address32': '[u8; 32]',
+            'Id': 'AccountId',
+            'Index': (),
+            'Raw': 'Bytes',
+        },
+    ),
     'collection': 'u32',
-    'freezer': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-    'issuer': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
+    'freezer': (
+        None,
+        {
+            'Address20': '[u8; 20]',
+            'Address32': '[u8; 32]',
+            'Id': 'AccountId',
+            'Index': (),
+            'Raw': 'Bytes',
+        },
+    ),
+    'issuer': (
+        None,
+        {
+            'Address20': '[u8; 20]',
+            'Address32': '[u8; 32]',
+            'Id': 'AccountId',
+            'Index': (),
+            'Raw': 'Bytes',
+        },
+    ),
 }
 )
 ```
@@ -1284,7 +1381,6 @@ call = substrate.compose_call(
 Move an item from the sender account to another.
 
 Origin must be Signed and the signing account must be either:
-- the Admin of the `collection`;
 - the Owner of the `item`;
 - the approved delegate for the `item` (in this case, the approval is reset).
 
@@ -1387,8 +1483,8 @@ call = substrate.compose_call(
 ### update_mint_settings
 Update mint settings.
 
-Origin must be either `ForceOrigin` or `Signed` and the sender should be the Owner of
-the `collection`.
+Origin must be either `ForceOrigin` or `Signed` and the sender should be the Issuer
+of the `collection`.
 
 - `collection`: The identifier of the collection to change.
 - `mint_settings`: The new mint settings.
@@ -1693,6 +1789,28 @@ Ownership acceptance has changed for an account.
 | maybe_collection | `Option<T::CollectionId>` | ```(None, 'u32')```
 
 ---------
+### PalletAttributeSet
+A new attribute in the `Pallet` namespace was set for the `collection` or an `item`
+within that `collection`.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| collection | `T::CollectionId` | ```u32```
+| item | `Option<T::ItemId>` | ```(None, '[u8; 32]')```
+| attribute | `PalletAttributes<T::CollectionId>` | ```{'UsedToClaim': 'u32'}```
+| value | `BoundedVec<u8, T::ValueLimit>` | ```Bytes```
+
+---------
+### PreSignedAttributesSet
+New attributes have been set for an `item` of the `collection`.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| collection | `T::CollectionId` | ```u32```
+| item | `T::ItemId` | ```[u8; 32]```
+| namespace | `AttributeNamespace<T::AccountId>` | ```{'Pallet': None, 'CollectionOwner': None, 'ItemOwner': None, 'Account': 'AccountId'}```
+
+---------
 ### Redeposited
 The deposit for a set of `item`s within a `collection` has been updated.
 #### Attributes
@@ -1749,9 +1867,9 @@ The management team changed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection | `T::CollectionId` | ```u32```
-| issuer | `T::AccountId` | ```AccountId```
-| admin | `T::AccountId` | ```AccountId```
-| freezer | `T::AccountId` | ```AccountId```
+| issuer | `Option<T::AccountId>` | ```(None, 'AccountId')```
+| admin | `Option<T::AccountId>` | ```(None, 'AccountId')```
+| freezer | `Option<T::AccountId>` | ```(None, 'AccountId')```
 
 ---------
 ### TipSent
@@ -1848,6 +1966,7 @@ result = substrate.query(
 ```python
 {
     'attributes': 'u32',
+    'item_configs': 'u32',
     'item_metadatas': 'u32',
     'items': 'u32',
     'owner': 'AccountId',
@@ -1940,7 +2059,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'approvals': 'scale_info::429',
+    'approvals': 'scale_info::474',
     'deposit': {'account': 'AccountId', 'amount': 'u128'},
     'owner': 'AccountId',
 }
@@ -1958,7 +2077,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::439'
+'scale_info::485'
 ```
 ---------
 ### ItemConfigOf
@@ -1988,7 +2107,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'data': 'Bytes', 'deposit': 'u128'}
+{'data': 'Bytes', 'deposit': {'account': (None, 'AccountId'), 'amount': 'u128'}}
 ```
 ---------
 ### ItemPriceOf
@@ -2086,7 +2205,7 @@ constant = substrate.get_constant('Nft', 'AttributeDepositBase')
  The basic amount of funds that must be reserved for collection.
 #### Value
 ```python
-1000000
+100000000000000
 ```
 #### Python
 ```python
@@ -2131,7 +2250,7 @@ constant = substrate.get_constant('Nft', 'ItemAttributesApprovalsLimit')
  The basic amount of funds that must be reserved for an item.
 #### Value
 ```python
-1000
+100000000000
 ```
 #### Python
 ```python
@@ -2147,6 +2266,17 @@ constant = substrate.get_constant('Nft', 'ItemDeposit')
 #### Python
 ```python
 constant = substrate.get_constant('Nft', 'KeyLimit')
+```
+---------
+### MaxAttributesPerCall
+ The max number of attributes a user could set per call.
+#### Value
+```python
+10
+```
+#### Python
+```python
+constant = substrate.get_constant('Nft', 'MaxAttributesPerCall')
 ```
 ---------
 ### MaxDeadlineDuration
@@ -2219,6 +2349,10 @@ The item ID has already been used for an item.
 The approval had a deadline that expired, so the approval isn&\#x27;t valid anymore.
 
 ---------
+### AttributeNotFound
+The provided attribute can&\#x27;t be found.
+
+---------
 ### BadWitness
 The witness data given does not match the current state of the chain.
 
@@ -2231,6 +2365,10 @@ The provided bid is too low.
 Collection ID is already taken.
 
 ---------
+### CollectionNotEmpty
+Can&\#x27;t delete non-empty collections.
+
+---------
 ### DeadlineExpired
 The deadline has already expired.
 
@@ -2241,6 +2379,10 @@ Item&\#x27;s config already exists and should be equal to the provided one.
 ---------
 ### IncorrectData
 The provided data is incorrect.
+
+---------
+### IncorrectMetadata
+The provided metadata might be too long.
 
 ---------
 ### ItemLocked
@@ -2267,6 +2409,10 @@ Item&\#x27;s attributes are locked.
 Item&\#x27;s metadata is locked.
 
 ---------
+### MaxAttributesLimitReached
+Can&\#x27;t set more attributes per one call.
+
+---------
 ### MaxSupplyLocked
 The max supply is locked and can&\#x27;t be changed.
 
@@ -2277,6 +2423,10 @@ All items have been minted.
 ---------
 ### MaxSupplyTooSmall
 The provided max supply is less than the number of items a collection already has.
+
+---------
+### MetadataNotFound
+The given item has no metadata set.
 
 ---------
 ### MethodDisabled
@@ -2343,11 +2493,23 @@ The delegate turned out to be different to what was expected.
 The duration provided should be less than or equal to `MaxDeadlineDuration`.
 
 ---------
+### WrongNamespace
+The provided namespace isn&\#x27;t supported in this call.
+
+---------
+### WrongOrigin
+The extrinsic was sent by the wrong origin.
+
+---------
 ### WrongOwner
 The owner turned out to be different to what was expected.
 
 ---------
 ### WrongSetting
 The provided setting can&\#x27;t be set.
+
+---------
+### WrongSignature
+The provided signature is incorrect.
 
 ---------

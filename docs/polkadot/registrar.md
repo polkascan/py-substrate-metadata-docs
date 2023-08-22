@@ -236,6 +236,14 @@ call = substrate.compose_call(
 | who | `T::AccountId` | ```AccountId```
 
 ---------
+### Swapped
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| para_id | `ParaId` | ```u32```
+| other_id | `ParaId` | ```u32```
+
+---------
 ## Storage functions
 
 ---------

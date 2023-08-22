@@ -1218,7 +1218,28 @@ result = substrate.query(
 ['AccountId']
 ```
 ---------
+## Constants
+
+---------
+### MaxLengthLimit
+#### Value
+```python
+500
+```
+#### Python
+```python
+constant = substrate.get_constant('TokenIssuer', 'MaxLengthLimit')
+```
+---------
 ## Errors
+
+---------
+### ConvertError
+Failed to convert vec to boundedVec
+
+---------
+### ExceedMaxLen
+Excceed the max length limit of BoundedVec
 
 ---------
 ### NotAllowed

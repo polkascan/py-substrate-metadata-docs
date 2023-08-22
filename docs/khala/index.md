@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | khala     |
 | Implementation name     | khala     |
-| Spec version     | 1250     |
+| Spec version     | 1251     |
 | SS58 Format     | 30     |
 | Token symbol      | PHA     |
 | Token decimals      | 12     |

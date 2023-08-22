@@ -590,7 +590,7 @@ A new pool has been created. \[CommonPoolEventParams, pool, pool_amount, pool_ac
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CommonPoolEventParams<<T as frame_system::Config>::AccountId>` | ```{'pool_id': 'u128', 'who': 'AccountId'}```
-| None | `Pool<BalanceOf<T>, MarketIdOf<T>>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}], 'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'market_id': 'u128', 'pool_status': ('Active', 'CollectingSubsidy', 'Closed', 'Clean', 'Initialized'), 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'), 'swap_fee': (None, 'u128'), 'total_subsidy': (None, 'u128'), 'total_weight': (None, 'u128'), 'weights': (None, 'scale_info::80')}```
+| None | `Pool<BalanceOf<T>, MarketIdOf<T>>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}], 'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'market_id': 'u128', 'pool_status': ('Active', 'CollectingSubsidy', 'Closed', 'Clean', 'Initialized'), 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'), 'swap_fee': (None, 'u128'), 'total_subsidy': (None, 'u128'), 'total_weight': (None, 'u128'), 'weights': (None, 'scale_info::82')}```
 | None | `BalanceOf<T>` | ```u128```
 | None | `T::AccountId` | ```AccountId```
 
@@ -752,7 +752,7 @@ result = substrate.query(
                 'CombinatorialOutcome': None,
                 'ForeignAsset': 'u32',
                 'PoolShare': 'u128',
-                'ScalarOutcome': ('u128', 'scale_info::62'),
+                'ScalarOutcome': ('u128', 'scale_info::64'),
                 'Ztg': None,
             },
         ],
@@ -776,7 +776,7 @@ result = substrate.query(
         'swap_fee': (None, 'u128'),
         'total_subsidy': (None, 'u128'),
         'total_weight': (None, 'u128'),
-        'weights': (None, 'scale_info::80'),
+        'weights': (None, 'scale_info::82'),
     },
 )
 ```

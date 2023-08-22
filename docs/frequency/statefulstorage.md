@@ -72,6 +72,44 @@ call = substrate.compose_call(
 ```
 
 ---------
+### apply_item_actions_with_signature_v2
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| delegator_key | `T::AccountId` | 
+| proof | `MultiSignature` | 
+| payload | `ItemizedSignaturePayloadV2<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'StatefulStorage', 'apply_item_actions_with_signature_v2', {
+    'delegator_key': 'AccountId',
+    'payload': {
+        'actions': [
+            {
+                'Add': {
+                    'data': 'Bytes',
+                },
+                'Delete': {
+                    'index': 'u16',
+                },
+            },
+        ],
+        'expiration': 'u32',
+        'schema_id': 'u16',
+        'target_hash': 'u32',
+    },
+    'proof': {
+        'Ecdsa': '[u8; 65]',
+        'Ed25519': '[u8; 64]',
+        'Sr25519': '[u8; 64]',
+    },
+}
+)
+```
+
+---------
 ### delete_page
 #### Attributes
 | Name | Type |
@@ -110,6 +148,35 @@ call = substrate.compose_call(
     'payload': {
         'expiration': 'u32',
         'msa_id': 'u64',
+        'page_id': 'u16',
+        'schema_id': 'u16',
+        'target_hash': 'u32',
+    },
+    'proof': {
+        'Ecdsa': '[u8; 65]',
+        'Ed25519': '[u8; 64]',
+        'Sr25519': '[u8; 64]',
+    },
+}
+)
+```
+
+---------
+### delete_page_with_signature_v2
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| delegator_key | `T::AccountId` | 
+| proof | `MultiSignature` | 
+| payload | `PaginatedDeleteSignaturePayloadV2<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'StatefulStorage', 'delete_page_with_signature_v2', {
+    'delegator_key': 'AccountId',
+    'payload': {
+        'expiration': 'u32',
         'page_id': 'u16',
         'schema_id': 'u16',
         'target_hash': 'u32',
@@ -164,6 +231,36 @@ call = substrate.compose_call(
     'payload': {
         'expiration': 'u32',
         'msa_id': 'u64',
+        'page_id': 'u16',
+        'payload': 'Bytes',
+        'schema_id': 'u16',
+        'target_hash': 'u32',
+    },
+    'proof': {
+        'Ecdsa': '[u8; 65]',
+        'Ed25519': '[u8; 64]',
+        'Sr25519': '[u8; 64]',
+    },
+}
+)
+```
+
+---------
+### upsert_page_with_signature_v2
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| delegator_key | `T::AccountId` | 
+| proof | `MultiSignature` | 
+| payload | `PaginatedUpsertSignaturePayloadV2<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'StatefulStorage', 'upsert_page_with_signature_v2', {
+    'delegator_key': 'AccountId',
+    'payload': {
+        'expiration': 'u32',
         'page_id': 'u16',
         'payload': 'Bytes',
         'schema_id': 'u16',

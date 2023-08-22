@@ -10,7 +10,7 @@ The integritee worker calls this function for every imported sidechain_block.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| shard_id | `ShardIdentifier` | 
+| shard | `ShardIdentifier` | 
 | block_number | `u64` | 
 | next_finalization_candidate_block_number | `u64` | 
 | block_header_hash | `H256` | 
@@ -22,7 +22,7 @@ call = substrate.compose_call(
     'block_header_hash': '[u8; 32]',
     'block_number': 'u64',
     'next_finalization_candidate_block_number': 'u64',
-    'shard_id': '[u8; 32]',
+    'shard': '[u8; 32]',
 }
 )
 ```
@@ -32,19 +32,13 @@ call = substrate.compose_call(
 
 ---------
 ### FinalizedSidechainBlock
+a sidechain block has been finalized
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `H256` | ```[u8; 32]```
-
----------
-### ProposedSidechainBlock
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `H256` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```[u8; 32]```
+| block_header_hash | `H256` | ```[u8; 32]```
+| validateer | `T::AccountId` | ```AccountId```
 
 ---------
 ## Storage functions
@@ -70,20 +64,6 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'Sidechain', 'SidechainBlockFinalizationCandidate', ['[u8; 32]']
-)
-```
-
-#### Return value
-```python
-'u64'
-```
----------
-### WorkerForShard
-
-#### Python
-```python
-result = substrate.query(
-    'Sidechain', 'WorkerForShard', ['[u8; 32]']
 )
 ```
 

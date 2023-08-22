@@ -503,10 +503,8 @@ Set the protocol fee point.
 \# Arguments
 
 - `fee_point`:
-The fee_point which integer between [0,30]
-0 means no protocol fee.
-30 means 0.3% * 100% = 0.0030.
-default is 5 and means 0.3% * 1 / 6 = 0.0005.
+0 means that all exchange fees belong to the liquidity provider.
+30 means that all exchange fees belong to the fee receiver.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -674,44 +672,6 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-}
-)
-```
-
----------
-### transfer_to_parachain
-Transfer zenlink assets to a sibling parachain.
-
-Zenlink assets can be either native or foreign to the sending parachain.
-
-\# Arguments
-
-- `asset_id`: Global identifier for a zenlink foreign
-- `para_id`: Destination parachain
-- `account`: Destination account
-- `amount`: Amount to transfer
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| asset_id | `T::AssetId` | 
-| para_id | `ParaId` | 
-| recipient | `T::AccountId` | 
-| amount | `AssetBalance` | 
-| max_weight | `u64` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'ZenlinkProtocol', 'transfer_to_parachain', {
-    'amount': 'u128',
-    'asset_id': {
-        'asset_index': 'u64',
-        'asset_type': 'u8',
-        'chain_id': 'u32',
-    },
-    'max_weight': 'u64',
-    'para_id': 'u32',
-    'recipient': 'AccountId',
 }
 )
 ```
@@ -1002,7 +962,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::498'
+'scale_info::525'
 ```
 ---------
 ### BootstrapPersonalSupply
@@ -1059,7 +1019,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::498'
+'scale_info::525'
 ```
 ---------
 ### FeeMeta

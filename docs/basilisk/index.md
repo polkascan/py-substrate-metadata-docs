@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | basilisk     |
 | Implementation name     | basilisk     |
-| Spec version     | 101     |
+| Spec version     | 105     |
 | SS58 Format     | 10041     |
 | Token symbol      | BSX     |
 | Token decimals      | 12     |
@@ -43,7 +43,7 @@
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [RelayChainInfo](relaychaininfo.md) | [0](relaychaininfo.md#calls) | [1](relaychaininfo.md#events) | [0](relaychaininfo.md#storage-functions) | [0](relaychaininfo.md#constants) | [0](relaychaininfo.md#errors) |
-| [Router](router.md) | [2](router.md#calls) | [1](router.md#events) | [0](router.md#storage-functions) | [1](router.md#constants) | [6](router.md#errors) |
+| [Router](router.md) | [2](router.md#calls) | [1](router.md#events) | [0](router.md#storage-functions) | [1](router.md#constants) | [7](router.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
@@ -62,4 +62,5 @@
 | [XYK](xyk.md) | [5](xyk.md#calls) | [6](xyk.md#events) | [3](xyk.md#storage-functions) | [6](xyk.md#constants) | [25](xyk.md#errors) |
 | [XYKLiquidityMining](xykliquiditymining.md) | [12](xykliquiditymining.md#calls) | [13](xykliquiditymining.md#events) | [0](xykliquiditymining.md#storage-functions) | [1](xykliquiditymining.md#constants) | [9](xykliquiditymining.md#errors) |
 | [XYKWarehouseLM](xykwarehouselm.md) | [0](xykwarehouselm.md#calls) | [3](xykwarehouselm.md#events) | [6](xykwarehouselm.md#storage-functions) | [5](xykwarehouselm.md#constants) | [29](xykwarehouselm.md#errors) |
-| [XcmpQueue](xcmpqueue.md) | [0](xcmpqueue.md#calls) | [7](xcmpqueue.md#events) | [10](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |
+| [XcmRateLimiter](xcmratelimiter.md) | [0](xcmratelimiter.md#calls) | [0](xcmratelimiter.md#events) | [1](xcmratelimiter.md#storage-functions) | [2](xcmratelimiter.md#constants) | [0](xcmratelimiter.md#errors) |
+| [XcmpQueue](xcmpqueue.md) | [0](xcmpqueue.md#calls) | [9](xcmpqueue.md#events) | [11](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

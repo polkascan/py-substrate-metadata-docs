@@ -431,6 +431,20 @@ result = substrate.query(
                     'group_id': 'u32',
                 },
             },
+            'CollatorAllowlist': {
+                'CollatorAdded': {'collator_id': 'AccountId'},
+                'CollatorRemoved': {'collator_id': 'AccountId'},
+            },
+            'CollatorSelection': {
+                'CandidateAdded': {
+                    'account_id': 'AccountId',
+                    'deposit': 'u128',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'NewCandidacyBond': {'bond_amount': 'u128'},
+                'NewDesiredCandidates': {'desired_candidates': 'u32'},
+                'NewInvulnerables': {'invulnerables': ['AccountId']},
+            },
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -461,6 +475,27 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'CrowdloanClaim': {
+                'ClaimPalletInitialized': None,
+                'ContributionsRootUpdated': '[u8; 32]',
+                'CrowdloanTrieIndexUpdated': 'u32',
+                'LeasePeriodUpdated': 'u32',
+                'LeaseStartUpdated': 'u32',
+                'LockedAtUpdated': 'u32',
+                'RewardClaimed': ('AccountId', 'AccountId', 'u128'),
+            },
+            'CrowdloanReward': {
+                'DirectPayoutRatioUpdated': 'u32',
+                'RewardClaimed': ('AccountId', 'u128', 'u128'),
+                'RewardPalletInitialized': ('u32', 'u32', 'u32'),
+                'VestingPeriodUpdated': 'u32',
+                'VestingStartUpdated': 'u32',
+            },
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 8]', 'scale_info::159'),
+                'InvalidFormat': '[u8; 8]',
+                'UnsupportedVersion': '[u8; 8]',
+            },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -484,81 +519,6 @@ result = substrate.query(
                     'vote': 'scale_info::54',
                     'voter': 'AccountId',
                 },
-            },
-            'Fees': {
-                'FeeChanged': {'fee': 'u128', 'key': 'scale_info::68'},
-                'FeeToAuthor': {'balance': 'u128', 'from': 'AccountId'},
-                'FeeToBurn': {'balance': 'u128', 'from': 'AccountId'},
-                'FeeToTreasury': {'balance': 'u128', 'from': 'AccountId'},
-            },
-            'Identity': {
-                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentitySet': {'who': 'AccountId'},
-                'JudgementGiven': {
-                    'registrar_index': 'u32',
-                    'target': 'AccountId',
-                },
-                'JudgementRequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'JudgementUnrequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'RegistrarAdded': {'registrar_index': 'u32'},
-                'SubIdentityAdded': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRemoved': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRevoked': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-            },
-            None: None,
-            'CollatorAllowlist': {
-                'CollatorAdded': {'collator_id': 'AccountId'},
-                'CollatorRemoved': {'collator_id': 'AccountId'},
-            },
-            'CollatorSelection': {
-                'CandidateAdded': {
-                    'account_id': 'AccountId',
-                    'deposit': 'u128',
-                },
-                'CandidateRemoved': {'account_id': 'AccountId'},
-                'NewCandidacyBond': {'bond_amount': 'u128'},
-                'NewDesiredCandidates': {'desired_candidates': 'u32'},
-                'NewInvulnerables': {'invulnerables': ['AccountId']},
-            },
-            'CrowdloanClaim': {
-                'ClaimPalletInitialized': None,
-                'ContributionsRootUpdated': '[u8; 32]',
-                'CrowdloanTrieIndexUpdated': 'u32',
-                'LeasePeriodUpdated': 'u32',
-                'LeaseStartUpdated': 'u32',
-                'LockedAtUpdated': 'u32',
-                'RewardClaimed': ('AccountId', 'AccountId', 'u128'),
-            },
-            'CrowdloanReward': {
-                'DirectPayoutRatioUpdated': 'u32',
-                'RewardClaimed': ('AccountId', 'u128', 'u128'),
-                'RewardPalletInitialized': ('u32', 'u32', 'u32'),
-                'VestingPeriodUpdated': 'u32',
-                'VestingStartUpdated': 'u32',
-            },
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::159'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
             },
             'DmpQueue': {
                 'ExecutedDownward': {
@@ -610,6 +570,45 @@ result = substrate.query(
                     'from': '[u8; 20]',
                     'to': '[u8; 20]',
                     'transaction_hash': '[u8; 32]',
+                },
+            },
+            'Fees': {
+                'FeeChanged': {'fee': 'u128', 'key': 'scale_info::68'},
+                'FeeToAuthor': {'balance': 'u128', 'from': 'AccountId'},
+                'FeeToBurn': {'balance': 'u128', 'from': 'AccountId'},
+                'FeeToTreasury': {'balance': 'u128', 'from': 'AccountId'},
+            },
+            'Identity': {
+                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentitySet': {'who': 'AccountId'},
+                'JudgementGiven': {
+                    'registrar_index': 'u32',
+                    'target': 'AccountId',
+                },
+                'JudgementRequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'JudgementUnrequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'RegistrarAdded': {'registrar_index': 'u32'},
+                'SubIdentityAdded': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRemoved': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRevoked': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
                 },
             },
             'InterestAccrual': (),
@@ -1056,6 +1055,29 @@ result = substrate.query(
                     'reactivated': 'u128',
                 },
             },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::156',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::8',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::8',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::8',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
             'Uniques': {
                 'ApprovalCancelled': {
                     'collection': 'u64',
@@ -1180,28 +1202,6 @@ result = substrate.query(
                     'fee': 'scale_info::175',
                     'sender': 'AccountId',
                 },
-            },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::156',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::8',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::8',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::8',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
         },
         'phase': {

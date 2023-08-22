@@ -33,6 +33,8 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Transfer',
+        'Liquidity',
+        'LiquidityMining',
     ),
 }
 )
@@ -109,6 +111,8 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Transfer',
+        'Liquidity',
+        'LiquidityMining',
     ),
 }
 )
@@ -153,6 +157,8 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Transfer',
+        'Liquidity',
+        'LiquidityMining',
     ),
     'spawner': 'AccountId',
 }
@@ -189,6 +195,8 @@ call = substrate.compose_call(
             'CancelProxy',
             'Governance',
             'Transfer',
+            'Liquidity',
+            'LiquidityMining',
         ),
     ),
     'real': 'AccountId',
@@ -230,6 +238,8 @@ call = substrate.compose_call(
             'CancelProxy',
             'Governance',
             'Transfer',
+            'Liquidity',
+            'LiquidityMining',
         ),
     ),
     'real': 'AccountId',
@@ -338,6 +348,8 @@ call = substrate.compose_call(
         'CancelProxy',
         'Governance',
         'Transfer',
+        'Liquidity',
+        'LiquidityMining',
     ),
 }
 )
@@ -364,7 +376,7 @@ A proxy was added.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Transfer')```
+| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Transfer', 'Liquidity', 'LiquidityMining')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -383,7 +395,7 @@ A proxy was removed.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Transfer')```
+| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Transfer', 'Liquidity', 'LiquidityMining')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -395,7 +407,7 @@ disambiguation index and proxy type.
 | -------- | -------- | -------- |
 | pure | `T::AccountId` | ```AccountId```
 | who | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Transfer')```
+| proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Transfer', 'Liquidity', 'LiquidityMining')```
 | disambiguation_index | `u16` | ```u16```
 
 ---------
@@ -435,7 +447,14 @@ result = substrate.query(
         {
             'delay': 'u32',
             'delegate': 'AccountId',
-            'proxy_type': ('Any', 'CancelProxy', 'Governance', 'Transfer'),
+            'proxy_type': (
+                'Any',
+                'CancelProxy',
+                'Governance',
+                'Transfer',
+                'Liquidity',
+                'LiquidityMining',
+            ),
         },
     ],
     'u128',

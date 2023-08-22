@@ -5,6 +5,30 @@
 ## Calls
 
 ---------
+### force_set_balance
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `AccountIdLookupOf<T>` | 
+| new_free | `T::Balance` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Balances', 'force_set_balance', {
+    'new_free': 'u128',
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
 ### force_transfer
 #### Attributes
 | Name | Type |
@@ -61,20 +85,20 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_balance
+### set_balance_deprecated
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | who | `AccountIdLookupOf<T>` | 
 | new_free | `T::Balance` | 
-| new_reserved | `T::Balance` | 
+| old_reserved | `T::Balance` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Balances', 'set_balance', {
+    'Balances', 'set_balance_deprecated', {
     'new_free': 'u128',
-    'new_reserved': 'u128',
+    'old_reserved': 'u128',
     'who': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -135,6 +159,30 @@ call = substrate.compose_call(
 ```
 
 ---------
+### transfer_allow_death
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| dest | `AccountIdLookupOf<T>` | 
+| value | `T::Balance` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Balances', 'transfer_allow_death', {
+    'dest': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+    'value': 'u128',
+}
+)
+```
+
+---------
 ### transfer_keep_alive
 #### Attributes
 | Name | Type |
@@ -159,6 +207,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### upgrade_accounts
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `Vec<T::AccountId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Balances', 'upgrade_accounts', {'who': ['AccountId']}
+)
+```
+
+---------
 ## Events
 
 ---------
@@ -168,7 +230,14 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | free | `T::Balance` | ```u128```
-| reserved | `T::Balance` | ```u128```
+
+---------
+### Burned
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
 
 ---------
 ### Deposit
@@ -195,6 +264,44 @@ call = substrate.compose_call(
 | free_balance | `T::Balance` | ```u128```
 
 ---------
+### Frozen
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Issued
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| amount | `T::Balance` | ```u128```
+
+---------
+### Locked
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Minted
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Rescinded
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| amount | `T::Balance` | ```u128```
+
+---------
 ### ReserveRepatriated
 #### Attributes
 | Name | Type | Composition
@@ -213,7 +320,31 @@ call = substrate.compose_call(
 | amount | `T::Balance` | ```u128```
 
 ---------
+### Restored
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
 ### Slashed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Suspended
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Thawed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -230,12 +361,27 @@ call = substrate.compose_call(
 | amount | `T::Balance` | ```u128```
 
 ---------
+### Unlocked
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
 ### Unreserved
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
+
+---------
+### Upgraded
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
 
 ---------
 ### Withdraw
@@ -260,12 +406,35 @@ result = substrate.query(
 
 #### Return value
 ```python
-{
-    'fee_frozen': 'u128',
-    'free': 'u128',
-    'misc_frozen': 'u128',
-    'reserved': 'u128',
-}
+{'flags': 'u128', 'free': 'u128', 'frozen': 'u128', 'reserved': 'u128'}
+```
+---------
+### Freezes
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'Freezes', ['AccountId']
+)
+```
+
+#### Return value
+```python
+[{'amount': 'u128', 'id': ()}]
+```
+---------
+### Holds
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'Holds', ['AccountId']
+)
+```
+
+#### Return value
+```python
+[{'amount': 'u128', 'id': ()}]
 ```
 ---------
 ### InactiveIssuance
@@ -337,6 +506,26 @@ result = substrate.query(
 constant = substrate.get_constant('Balances', 'ExistentialDeposit')
 ```
 ---------
+### MaxFreezes
+#### Value
+```python
+0
+```
+#### Python
+```python
+constant = substrate.get_constant('Balances', 'MaxFreezes')
+```
+---------
+### MaxHolds
+#### Value
+```python
+0
+```
+#### Python
+```python
+constant = substrate.get_constant('Balances', 'MaxHolds')
+```
+---------
 ### MaxLocks
 #### Value
 ```python
@@ -369,13 +558,19 @@ constant = substrate.get_constant('Balances', 'MaxReserves')
 ### ExistingVestingSchedule
 
 ---------
+### Expendability
+
+---------
 ### InsufficientBalance
 
 ---------
-### KeepAlive
+### LiquidityRestrictions
 
 ---------
-### LiquidityRestrictions
+### TooManyFreezes
+
+---------
+### TooManyHolds
 
 ---------
 ### TooManyReserves

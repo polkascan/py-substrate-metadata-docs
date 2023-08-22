@@ -254,7 +254,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::579'
+'scale_info::588'
 ```
 ---------
 ## Constants

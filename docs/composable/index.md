@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | composable     |
 | Implementation name     | composable     |
-| Spec version     | 10030     |
+| Spec version     | 10036     |
 | SS58 Format     | 50     |
 | Token symbol      | LAYR     |
 | Token decimals      | 12     |
@@ -17,7 +17,7 @@
 | -------- | -------- | -------- | -------- | -------- | -------- |
 | [AssetTxPayment](assettxpayment.md) | [1](assettxpayment.md#calls) | [0](assettxpayment.md#events) | [1](assettxpayment.md#storage-functions) | [1](assettxpayment.md#constants) | [0](assettxpayment.md#errors) |
 | [Assets](assets.md) | [10](assets.md#calls) | [0](assets.md#events) | [0](assets.md#storage-functions) | [1](assets.md#constants) | [2](assets.md#errors) |
-| [AssetsRegistry](assetsregistry.md) | [4](assetsregistry.md#calls) | [5](assetsregistry.md#events) | [8](assetsregistry.md#storage-functions) | [0](assetsregistry.md#constants) | [5](assetsregistry.md#errors) |
+| [AssetsRegistry](assetsregistry.md) | [4](assetsregistry.md#calls) | [5](assetsregistry.md#events) | [8](assetsregistry.md#storage-functions) | [1](assetsregistry.md#constants) | [5](assetsregistry.md#errors) |
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [0](authorship.md#calls) | [0](authorship.md#events) | [1](authorship.md#storage-functions) | [0](authorship.md#constants) | [0](authorship.md#errors) |
@@ -32,10 +32,11 @@
 | [Democracy](democracy.md) | [19](democracy.md#calls) | [17](democracy.md#events) | [12](democracy.md#storage-functions) | [12](democracy.md#constants) | [24](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [GovernanceRegistry](governanceregistry.md) | [3](governanceregistry.md#calls) | [3](governanceregistry.md#events) | [1](governanceregistry.md#storage-functions) | [0](governanceregistry.md#constants) | [1](governanceregistry.md#errors) |
-| [Ibc](ibc.md) | [9](ibc.md#calls) | [20](ibc.md#events) | [25](ibc.md#storage-functions) | [8](ibc.md#constants) | [39](ibc.md#errors) |
+| [Ibc](ibc.md) | [9](ibc.md#calls) | [26](ibc.md#events) | [25](ibc.md#storage-functions) | [8](ibc.md#constants) | [39](ibc.md#errors) |
 | [Ics20Fee](ics20fee.md) | [3](ics20fee.md#calls) | [3](ics20fee.md#events) | [2](ics20fee.md#storage-functions) | [2](ics20fee.md#constants) | [0](ics20fee.md#errors) |
 | [Indices](indices.md) | [5](indices.md#calls) | [3](indices.md#events) | [1](indices.md#storage-functions) | [1](indices.md#constants) | [5](indices.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
+| [PalletMultihopXcmIbc](palletmultihopxcmibc.md) | [1](palletmultihopxcmibc.md#calls) | [5](palletmultihopxcmibc.md#events) | [1](palletmultihopxcmibc.md#storage-functions) | [3](palletmultihopxcmibc.md#constants) | [10](palletmultihopxcmibc.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |

@@ -275,9 +275,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -346,6 +346,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AssetTxPayment': {
                 'AssetTxFeePaid': {
                     'actual_fee': 'u128',
@@ -901,6 +902,7 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -912,8 +914,6 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            None: None,
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',

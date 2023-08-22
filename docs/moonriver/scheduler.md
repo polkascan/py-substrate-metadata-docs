@@ -229,7 +229,6 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                None: None,
                 'CouncilCollective': 'scale_info::122',
                 'CumulusXcm': 'scale_info::126',
                 'Ethereum': 'scale_info::120',
@@ -241,6 +240,7 @@ result = substrate.query(
                 'TreasuryCouncilCollective': 'scale_info::124',
                 'Void': 'scale_info::137',
                 'system': 'scale_info::119',
+                None: None,
             },
             'priority': 'u8',
         },

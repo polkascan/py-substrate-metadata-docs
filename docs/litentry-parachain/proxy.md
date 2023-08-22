@@ -185,8 +185,6 @@ call = substrate.compose_call(
 Dispatch the given `call` from an account that the sender is authorised for through
 `add_proxy`.
 
-Removes any corresponding announcement(s).
-
 The dispatch origin for this call must be _Signed_.
 
 Parameters:

@@ -1619,7 +1619,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'moonriver',
     'impl_version': 0,
     'spec_name': 'moonriver',
-    'spec_version': 2401,
+    'spec_version': 2403,
     'state_version': 0,
     'transaction_version': 2,
 }

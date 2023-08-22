@@ -32,7 +32,7 @@ Execute a previously instantiated contract.
 call = substrate.compose_call(
     'Cosmwasm', 'execute', {
     'contract': 'AccountId',
-    'funds': 'scale_info::397',
+    'funds': 'scale_info::400',
     'gas': 'u64',
     'message': 'Bytes',
 }
@@ -76,7 +76,7 @@ call = substrate.compose_call(
         'CodeHash': '[u8; 32]',
         'CodeId': 'u64',
     },
-    'funds': 'scale_info::397',
+    'funds': 'scale_info::400',
     'gas': 'u64',
     'label': 'Bytes',
     'message': 'Bytes',
@@ -470,7 +470,7 @@ constant = substrate.get_constant('Cosmwasm', 'ContractStorageByteWritePrice')
  Max accepted code size in bytes.
 #### Value
 ```python
-524288
+1048576
 ```
 #### Python
 ```python
@@ -497,17 +497,6 @@ constant = substrate.get_constant('Cosmwasm', 'MaxContractLabelSize')
 #### Python
 ```python
 constant = substrate.get_constant('Cosmwasm', 'MaxContractTrieIdSize')
-```
----------
-### MaxFrames
- Max number of frames a contract is able to push, a.k.a recursive calls.
-#### Value
-```python
-64
-```
-#### Python
-```python
-constant = substrate.get_constant('Cosmwasm', 'MaxFrames')
 ```
 ---------
 ### MaxFundsAssets
@@ -547,7 +536,7 @@ constant = substrate.get_constant('Cosmwasm', 'MaxInstrumentedCodeSize')
  Max message size in bytes.
 #### Value
 ```python
-32768
+65536
 ```
 #### Python
 ```python
@@ -685,6 +674,9 @@ constant = substrate.get_constant('Cosmwasm', 'WasmCostRules')
 ### ExecuteDeserialize
 
 ---------
+### ExecuteSerialize
+
+---------
 ### FailedToSerialize
 
 ---------
@@ -701,6 +693,9 @@ constant = substrate.get_constant('Cosmwasm', 'WasmCostRules')
 
 ---------
 ### InvalidAccount
+
+---------
+### InvalidGasCheckpoint
 
 ---------
 ### InvalidSalt
@@ -727,7 +722,16 @@ constant = substrate.get_constant('Cosmwasm', 'WasmCostRules')
 ### NotEnoughFundsForUpload
 
 ---------
+### NotImplemented
+
+---------
 ### OutOfGas
+
+---------
+### Precompile
+
+---------
+### QueryDeserialize
 
 ---------
 ### ReadOnlyViolation

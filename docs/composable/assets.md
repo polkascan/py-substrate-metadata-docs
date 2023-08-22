@@ -340,7 +340,7 @@ call = substrate.compose_call(
 ### NativeAssetId
 #### Value
 ```python
-2
+79228162514264337593543950338
 ```
 #### Python
 ```python

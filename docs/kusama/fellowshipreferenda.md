@@ -209,6 +209,11 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
         None: None,
         'Origins': (
             'StakingAdmin',
@@ -1219,11 +1224,6 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
 }
 )
@@ -1462,6 +1462,7 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
+            None: None,
             'Origins': (
                 'StakingAdmin',
                 'Treasurer',
@@ -1498,7 +1499,6 @@ result = substrate.query(
                 'Xcm': {'interior': 'scale_info::134', 'parents': 'u8'},
             },
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',

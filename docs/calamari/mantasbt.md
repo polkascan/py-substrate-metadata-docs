@@ -41,6 +41,21 @@ call = substrate.compose_call(
 ```
 
 ---------
+### change_force_account
+Sets the privileged reserve account. Requires `AdminOrigin`
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| account | `Option<T::AccountId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'MantaSbt', 'change_force_account', {'account': (None, 'AccountId')}
+)
+```
+
+---------
 ### change_free_reserve_account
 Sets the privileged reserve account. Requires `AdminOrigin`
 #### Attributes
@@ -52,6 +67,156 @@ Sets the privileged reserve account. Requires `AdminOrigin`
 ```python
 call = substrate.compose_call(
     'MantaSbt', 'change_free_reserve_account', {'account': (None, 'AccountId')}
+)
+```
+
+---------
+### force_mint_sbt_eth
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| post | `Box<TransferPost>` | 
+| mint_id | `MintId` | 
+| address | `EvmAddress` | 
+| collection_id | `Option<u128>` | 
+| item_id | `Option<u128>` | 
+| metadata | `BoundedVec<u8, T::SbtMetadataBound>` | 
+| minting_account | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'MantaSbt', 'force_mint_sbt_eth', {
+    'address': '[u8; 20]',
+    'collection_id': (None, 'u128'),
+    'item_id': (None, 'u128'),
+    'metadata': 'Bytes',
+    'mint_id': 'u32',
+    'minting_account': 'AccountId',
+    'post': {
+        'asset_id': (None, '[u8; 32]'),
+        'authorization_signature': (
+            None,
+            {
+                'authorization_key': '[u8; 32]',
+                'signature': (
+                    '[u8; 32]',
+                    '[u8; 32]',
+                ),
+            },
+        ),
+        'proof': '[u8; 128]',
+        'receiver_posts': [
+            {
+                'full_incoming_note': {
+                    'address_partition': 'u8',
+                    'incoming_note': {
+                        'ciphertext': '[[u8; 32]; 3]',
+                        'ephemeral_public_key': '[u8; 32]',
+                        'tag': '[u8; 32]',
+                    },
+                    'light_incoming_note': {
+                        'ciphertext': '[[u8; 32]; 3]',
+                        'ephemeral_public_key': '[u8; 32]',
+                    },
+                },
+                'utxo': {
+                    'commitment': '[u8; 32]',
+                    'is_transparent': 'bool',
+                    'public_asset': {
+                        'id': '[u8; 32]',
+                        'value': '[u8; 16]',
+                    },
+                },
+            },
+        ],
+        'sender_posts': [
+            {
+                'nullifier_commitment': '[u8; 32]',
+                'outgoing_note': {
+                    'ciphertext': '[[u8; 32]; 2]',
+                    'ephemeral_public_key': '[u8; 32]',
+                },
+                'utxo_accumulator_output': '[u8; 32]',
+            },
+        ],
+        'sink_accounts': ['[u8; 32]'],
+        'sinks': ['[u8; 16]'],
+        'sources': ['[u8; 16]'],
+    },
+}
+)
+```
+
+---------
+### force_to_private
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| post | `Box<TransferPost>` | 
+| mint_id | `MintId` | 
+| metadata | `BoundedVec<u8, T::SbtMetadataBound>` | 
+| minting_account | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'MantaSbt', 'force_to_private', {
+    'metadata': 'Bytes',
+    'mint_id': 'u32',
+    'minting_account': 'AccountId',
+    'post': {
+        'asset_id': (None, '[u8; 32]'),
+        'authorization_signature': (
+            None,
+            {
+                'authorization_key': '[u8; 32]',
+                'signature': (
+                    '[u8; 32]',
+                    '[u8; 32]',
+                ),
+            },
+        ),
+        'proof': '[u8; 128]',
+        'receiver_posts': [
+            {
+                'full_incoming_note': {
+                    'address_partition': 'u8',
+                    'incoming_note': {
+                        'ciphertext': '[[u8; 32]; 3]',
+                        'ephemeral_public_key': '[u8; 32]',
+                        'tag': '[u8; 32]',
+                    },
+                    'light_incoming_note': {
+                        'ciphertext': '[[u8; 32]; 3]',
+                        'ephemeral_public_key': '[u8; 32]',
+                    },
+                },
+                'utxo': {
+                    'commitment': '[u8; 32]',
+                    'is_transparent': 'bool',
+                    'public_asset': {
+                        'id': '[u8; 32]',
+                        'value': '[u8; 16]',
+                    },
+                },
+            },
+        ],
+        'sender_posts': [
+            {
+                'nullifier_commitment': '[u8; 32]',
+                'outgoing_note': {
+                    'ciphertext': '[[u8; 32]; 2]',
+                    'ephemeral_public_key': '[u8; 32]',
+                },
+                'utxo_accumulator_output': '[u8; 32]',
+            },
+        ],
+        'sink_accounts': ['[u8; 32]'],
+        'sinks': ['[u8; 16]'],
+        'sources': ['[u8; 16]'],
+    },
+}
 )
 ```
 
@@ -195,6 +360,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_next_sbt_id
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| asset_id | `Option<StandardAssetId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'MantaSbt', 'set_next_sbt_id', {'asset_id': (None, 'u128')}
+)
+```
+
+---------
 ### to_private
 Mints a zkSBT
 
@@ -333,11 +512,35 @@ Privileged `AllowlistAccount` is changed
 | account | `Option<T::AccountId>` | ```(None, 'AccountId')```
 
 ---------
+### ChangeForceAccount
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account | `Option<T::AccountId>` | ```(None, 'AccountId')```
+
+---------
 ### ChangeFreeReserveAccount
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `Option<T::AccountId>` | ```(None, 'AccountId')```
+
+---------
+### ForceMintSbtEvm
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| address | `EvmAddress` | ```[u8; 20]```
+| mint_id | `MintId` | ```u32```
+| asset_id | `StandardAssetId` | ```u128```
+
+---------
+### ForceToPrivate
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset | `StandardAssetId` | ```u128```
+| source | `T::AccountId` | ```AccountId```
 
 ---------
 ### MintSbt
@@ -389,6 +592,13 @@ Reserve `AssetIds` as SBT
 | stop_id | `StandardAssetId` | ```u128```
 
 ---------
+### SetNextSbtId
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `Option<StandardAssetId>` | ```(None, 'u128')```
+
+---------
 ### UpdateMintInfo
 #### Attributes
 | Name | Type | Composition
@@ -430,6 +640,21 @@ result = substrate.query(
 #### Return value
 ```python
 {'AlreadyMinted': None, 'Available': 'u128'}
+```
+---------
+### ForceAccount
+ Account that can access to force calls
+
+#### Python
+```python
+result = substrate.query(
+    'MantaSbt', 'ForceAccount', []
+)
+```
+
+#### Return value
+```python
+'AccountId'
 ```
 ---------
 ### FreeReserveAccount
@@ -667,7 +892,7 @@ constant = substrate.get_constant('MantaSbt', 'RegistryBound')
  Price to reserve Asset Ids
 #### Value
 ```python
-100000000000000000
+5000000000000000
 ```
 #### Python
 ```python
@@ -714,6 +939,10 @@ An asset present in this transfer has already been spent.
 ---------
 ### BadSignature
 Crypto Signature was not valid
+
+---------
+### DuplicateAssetId
+Duplicate asset id
 
 ---------
 ### DuplicateRegister
@@ -810,6 +1039,10 @@ Account is not the privileged account able to allowlist eth addresses
 Eth account is not allowlisted for free mint, can also be caused by an incorrect signature (recovers an invalid account)
 
 ---------
+### NotForceAccount
+Account is not privileged account able to do force mints
+
+---------
 ### NotReserved
 `AssetId` was not reserved by this account to mint
 
@@ -892,6 +1125,10 @@ Sender Ledger Fp Encoding failed.
 ---------
 ### SenderLedgerOutgoingNodeDecodeFailed
 Sender Ledger [`OutgoingNote`] failed to decode
+
+---------
+### TooHighAssetId
+Force call is trying to use asset id above the maximum
 
 ---------
 ### TransferLedgerChecksumError

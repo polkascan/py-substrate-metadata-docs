@@ -132,6 +132,10 @@ constant = substrate.get_constant('Router', 'MaxNumberOfTrades')
 The user has not enough balance to execute the trade
 
 ---------
+### InvalidRouteExecution
+The route execution failed in the underlying AMM
+
+---------
 ### MaxTradesExceeded
 The the max number of trades limit is reached
 
@@ -140,15 +144,15 @@ The the max number of trades limit is reached
 The AMM pool is not supported for executing trades
 
 ---------
+### RouteCalculationFailed
+The calculation of route trade amounts failed in the underlying AMM
+
+---------
 ### RouteHasNoTrades
 Route has not trades to be executed
 
 ---------
 ### TradingLimitReached
 The trading limit has been reached
-
----------
-### UnexpectedError
-Unexpected error which should never really happen, but the error case must be handled to prevent panics.
 
 ---------

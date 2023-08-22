@@ -30,6 +30,13 @@ call = substrate.compose_call(
 
 ---------
 ### claim_treasury
+Claim treasury of a season.
+
+The origin of this call must be signed by a treasurer account associated with the given
+season ID. The treasurer of a season can claim the season&\#x27;s associated treasury once the
+season finishes.
+
+Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -39,20 +46,6 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'AwesomeAvatars', 'claim_treasury', {'season_id': 'u16'}
-)
-```
-
----------
-### fix_variation
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| avatar_id | `AvatarIdOf<T>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'AwesomeAvatars', 'fix_variation', {'avatar_id': '[u8; 32]'}
 )
 ```
 
@@ -85,6 +78,17 @@ call = substrate.compose_call(
 
 ---------
 ### lock_avatar
+Locks an avatar to be tokenized as an NFT.
+
+The origin of this call must specify an avatar, owned by the origin, to prevent it from
+forging, trading and transferring it to other players. When successful, the ownership of
+the avatar is transferred from the player to the pallet&\#x27;s technical account.
+
+Locking an avatar allows for new
+ways of interacting with it currently under development.
+
+Weight: `O(n)` where:
+- `n = max avatars per player`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -115,15 +119,17 @@ Weight: `O(n)` where:
 call = substrate.compose_call(
     'AwesomeAvatars', 'mint', {
     'mint_option': {
-        'count': (
+        'pack_size': (
             'One',
             'Three',
             'Six',
         ),
-        'mint_type': (
-            'Free',
-            'Normal',
+        'pack_type': (
+            'Material',
+            'Equipment',
+            'Special',
         ),
+        'payment': ('Free', 'Normal'),
     },
 }
 )
@@ -131,6 +137,13 @@ call = substrate.compose_call(
 
 ---------
 ### prepare_avatar
+Prepare an avatar to be uploaded to IPFS.
+
+The origin of this call must specify an avatar, owned by the origin, to display the
+intention of uploading it to an IPFS storage. When successful, the `PreparedAvatar`
+event is emitted to be picked up by our external service that interacts with the IPFS.
+
+Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -145,6 +158,13 @@ call = substrate.compose_call(
 
 ---------
 ### prepare_ipfs
+Prepare IPFS for an avatar.
+
+The origin of this call must be signed by the service account to upload the given avatar
+to an IPFS storage and stores its CID. A third-party service subscribes for the
+`PreparedAvatar` events which triggers preparing assets, their upload to IPFS and
+storing their CIDs.
+Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -184,6 +204,12 @@ call = substrate.compose_call(
 
 ---------
 ### set_collection_id
+Set the collection ID to associate avatars with.
+
+Externally created collection ID for avatars must be set in the `CollectionId` storage
+to serve as a lookup for locking and unlocking avatars as NFTs.
+
+Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -298,11 +324,31 @@ call = substrate.compose_call(
         'description': 'Bytes',
         'early_start': 'u32',
         'end': 'u32',
+        'fee': {
+            'buy_minimum': 'u128',
+            'buy_percent': 'u8',
+            'mint': {
+                'one': 'u128',
+                'six': 'u128',
+                'three': 'u128',
+            },
+            'prepare_avatar': 'u128',
+            'transfer_avatar': 'u128',
+            'upgrade_storage': 'u128',
+        },
+        'forge_logic': (
+            'First',
+            'Second',
+        ),
         'max_components': 'u8',
         'max_sacrifices': 'u8',
         'max_tier_forges': 'u32',
         'max_variations': 'u8',
         'min_sacrifices': 'u8',
+        'mint_logic': (
+            'First',
+            'Second',
+        ),
         'name': 'Bytes',
         'per_period': 'u32',
         'periods': 'u16',
@@ -310,6 +356,7 @@ call = substrate.compose_call(
         'start': 'u32',
         'tiers': [
             (
+                'None',
                 'Common',
                 'Uncommon',
                 'Rare',
@@ -318,6 +365,7 @@ call = substrate.compose_call(
                 'Mythical',
             ),
         ],
+        'trade_filters': ['u32'],
     },
     'season_id': 'u16',
 }
@@ -326,6 +374,12 @@ call = substrate.compose_call(
 
 ---------
 ### set_service_account
+Set a service account.
+
+The origin of this call must be root. A service account has sufficient privilege to call
+the `prepare_ipfs` extrinsic.
+
+Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -405,6 +459,15 @@ call = substrate.compose_call(
 
 ---------
 ### unlock_avatar
+Unlocks an avatar removing its NFT representation.
+
+The origin of this call must specify an avatar, owned and locked by the origin, to allow
+forging, trading and transferring it to other players. When successful, the ownership of
+the avatar is transferred from the pallet&\#x27;s technical account back to the player and its
+existing NFT representation is destroyed.
+
+Weight: `O(n)` where:
+- `n = max avatars per player`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -419,6 +482,12 @@ call = substrate.compose_call(
 
 ---------
 ### unprepare_avatar
+Unprepare an avatar to be detached from IPFS.
+
+The origin of this call must specify an avatar, owned by the origin, that is undergoing
+the IPFS upload process.
+
+Weight: `O(1)`
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -450,31 +519,17 @@ Weight: `O(1)`
 call = substrate.compose_call(
     'AwesomeAvatars', 'update_global_config', {
     'new_global_config': {
-        'account': {
-            'storage_upgrade_fee': 'u128',
-        },
         'forge': {'open': 'bool'},
         'mint': {
             'cooldown': 'u32',
-            'fees': {
-                'one': 'u128',
-                'six': 'u128',
-                'three': 'u128',
-            },
             'free_mint_fee_multiplier': 'u16',
             'open': 'bool',
         },
         'nft_transfer': {
             'open': 'bool',
-            'prepare_fee': 'u128',
         },
-        'trade': {
-            'min_fee': 'u128',
-            'open': 'bool',
-            'percent_fee': 'u8',
-        },
+        'trade': {'open': 'bool'},
         'transfer': {
-            'avatar_transfer_fee': 'u128',
             'free_mint_transfer_fee': 'u16',
             'min_free_mint_transfer': 'u16',
             'open': 'bool',
@@ -486,32 +541,38 @@ call = substrate.compose_call(
 
 ---------
 ### upgrade_storage
-Upgrade storage.
+Upgrade the avatar inventory space in a season.
+
+* If called with a value in the **beneficiary** parameter, that account will receive the
+  upgrade
+instead of the caller.
+* If the **in_season** parameter contains a value, this will set which specific season
+will the storage be upgraded for, if no value is set then the current season will be the
+one for which the storage will be upgraded.
+
+In all cases the upgrade fees are **paid by the caller**.
 
 Emits `StorageTierUpgraded` event when successful.
 
 Weight: `O(1)`
 #### Attributes
-No attributes
+| Name | Type |
+| -------- | -------- | 
+| beneficiary | `Option<AccountIdOf<T>>` | 
+| in_season | `Option<SeasonId>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'AwesomeAvatars', 'upgrade_storage', {}
+    'AwesomeAvatars', 'upgrade_storage', {
+    'beneficiary': (None, 'AccountId'),
+    'in_season': (None, 'u16'),
+}
 )
 ```
 
 ---------
 ## Events
-
----------
-### AvatarForged
-Avatar forged.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
-| upgraded_components | `u8` | ```u8```
 
 ---------
 ### AvatarLocked
@@ -565,6 +626,14 @@ Avatar unlocked.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+
+---------
+### AvatarsForged
+Avatar forged.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| avatar_ids | `Vec<(AvatarIdOf<T>, UpgradedComponents)>` | ```[('[u8; 32]', 'u8')]```
 
 ---------
 ### AvatarsMinted
@@ -653,7 +722,10 @@ A service account has been set.
 ### StorageTierUpgraded
 Storage tier has been upgraded.
 #### Attributes
-No attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account | `T::AccountId` | ```AccountId```
+| season_id | `SeasonId` | ```u16```
 
 ---------
 ### TreasurerSet
@@ -688,7 +760,7 @@ Global configuration updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `GlobalConfigOf<T>` | ```{'mint': {'open': 'bool', 'fees': {'one': 'u128', 'three': 'u128', 'six': 'u128'}, 'cooldown': 'u32', 'free_mint_fee_multiplier': 'u16'}, 'forge': {'open': 'bool'}, 'transfer': {'open': 'bool', 'free_mint_transfer_fee': 'u16', 'min_free_mint_transfer': 'u16', 'avatar_transfer_fee': 'u128'}, 'trade': {'open': 'bool', 'min_fee': 'u128', 'percent_fee': 'u8'}, 'account': {'storage_upgrade_fee': 'u128'}, 'nft_transfer': {'open': 'bool', 'prepare_fee': 'u128'}}```
+| None | `GlobalConfigOf<T>` | ```{'mint': {'open': 'bool', 'cooldown': 'u32', 'free_mint_fee_multiplier': 'u16'}, 'forge': {'open': 'bool'}, 'transfer': {'open': 'bool', 'free_mint_transfer_fee': 'u16', 'min_free_mint_transfer': 'u16'}, 'trade': {'open': 'bool'}, 'nft_transfer': {'open': 'bool'}}```
 
 ---------
 ### UpdatedSeason
@@ -697,41 +769,11 @@ The season configuration for {season_id} has been updated.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | season_id | `SeasonId` | ```u16```
-| season | `SeasonOf<T>` | ```{'name': 'Bytes', 'description': 'Bytes', 'early_start': 'u32', 'start': 'u32', 'end': 'u32', 'max_tier_forges': 'u32', 'max_variations': 'u8', 'max_components': 'u8', 'min_sacrifices': 'u8', 'max_sacrifices': 'u8', 'tiers': [('Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythical')], 'single_mint_probs': 'Bytes', 'batch_mint_probs': 'Bytes', 'base_prob': 'u8', 'per_period': 'u32', 'periods': 'u16'}```
+| season | `SeasonOf<T>` | ```{'name': 'Bytes', 'description': 'Bytes', 'early_start': 'u32', 'start': 'u32', 'end': 'u32', 'max_tier_forges': 'u32', 'max_variations': 'u8', 'max_components': 'u8', 'min_sacrifices': 'u8', 'max_sacrifices': 'u8', 'tiers': [('None', 'Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythical')], 'single_mint_probs': 'Bytes', 'batch_mint_probs': 'Bytes', 'base_prob': 'u8', 'per_period': 'u32', 'periods': 'u16', 'trade_filters': ['u32'], 'fee': {'mint': {'one': 'u128', 'three': 'u128', 'six': 'u128'}, 'transfer_avatar': 'u128', 'buy_minimum': 'u128', 'buy_percent': 'u8', 'upgrade_storage': 'u128', 'prepare_avatar': 'u128'}, 'mint_logic': ('First', 'Second'), 'forge_logic': ('First', 'Second')}```
 
 ---------
 ## Storage functions
 
----------
-### Accounts
-
-#### Python
-```python
-result = substrate.query(
-    'AwesomeAvatars', 'Accounts', ['AccountId']
-)
-```
-
-#### Return value
-```python
-{
-    'free_mints': 'u16',
-    'stats': {
-        'forge': {
-            'first': 'u32',
-            'last': 'u32',
-            'seasons_participated': 'scale_info::413',
-        },
-        'mint': {
-            'first': 'u32',
-            'last': 'u32',
-            'seasons_participated': 'scale_info::413',
-        },
-        'trade': {'bought': 'u32', 'sold': 'u32'},
-    },
-    'storage_tier': ('One', 'Two', 'Three', 'Four', 'Five', 'Max'),
-}
-```
 ---------
 ### Avatars
 
@@ -744,7 +786,10 @@ result = substrate.query(
 
 #### Return value
 ```python
-('AccountId', {'dna': 'Bytes', 'season_id': 'u16', 'souls': 'u32'})
+(
+    'AccountId',
+    {'dna': 'Bytes', 'encoding': ('V1', 'V2'), 'season_id': 'u16', 'souls': 'u32'},
+)
 ```
 ---------
 ### CollectionId
@@ -759,21 +804,6 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
-```
----------
-### CurrentSeasonId
- Contains the identifier of the current season.
-
-#### Python
-```python
-result = substrate.query(
-    'AwesomeAvatars', 'CurrentSeasonId', []
-)
-```
-
-#### Return value
-```python
-'u16'
 ```
 ---------
 ### CurrentSeasonStatus
@@ -792,6 +822,7 @@ result = substrate.query(
     'early': 'bool',
     'early_ended': 'bool',
     'max_tier_avatars': 'u32',
+    'season_id': 'u16',
 }
 ```
 ---------
@@ -807,18 +838,15 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'account': {'storage_upgrade_fee': 'u128'},
     'forge': {'open': 'bool'},
     'mint': {
         'cooldown': 'u32',
-        'fees': {'one': 'u128', 'six': 'u128', 'three': 'u128'},
         'free_mint_fee_multiplier': 'u16',
         'open': 'bool',
     },
-    'nft_transfer': {'open': 'bool', 'prepare_fee': 'u128'},
-    'trade': {'min_fee': 'u128', 'open': 'bool', 'percent_fee': 'u8'},
+    'nft_transfer': {'open': 'bool'},
+    'trade': {'open': 'bool'},
     'transfer': {
-        'avatar_transfer_fee': 'u128',
         'free_mint_transfer_fee': 'u16',
         'min_free_mint_transfer': 'u16',
         'open': 'bool',
@@ -859,13 +887,56 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'AwesomeAvatars', 'Owners', ['AccountId']
+    'AwesomeAvatars', 'Owners', ['AccountId', 'u16']
 )
 ```
 
 #### Return value
 ```python
 ['[u8; 32]']
+```
+---------
+### PlayerConfigs
+
+#### Python
+```python
+result = substrate.query(
+    'AwesomeAvatars', 'PlayerConfigs', ['AccountId']
+)
+```
+
+#### Return value
+```python
+{'free_mints': 'u16'}
+```
+---------
+### PlayerSeasonConfigs
+
+#### Python
+```python
+result = substrate.query(
+    'AwesomeAvatars', 'PlayerSeasonConfigs', ['AccountId', 'u16']
+)
+```
+
+#### Return value
+```python
+{
+    'stats': {
+        'forge': {
+            'first': 'u32',
+            'last': 'u32',
+            'seasons_participated': 'scale_info::457',
+        },
+        'mint': {
+            'first': 'u32',
+            'last': 'u32',
+            'seasons_participated': 'scale_info::457',
+        },
+        'trade': {'bought': 'u32', 'sold': 'u32'},
+    },
+    'storage_tier': ('One', 'Two', 'Three', 'Four', 'Five', 'Max'),
+}
 ```
 ---------
 ### Preparation
@@ -914,17 +985,38 @@ result = substrate.query(
     'description': 'Bytes',
     'early_start': 'u32',
     'end': 'u32',
+    'fee': {
+        'buy_minimum': 'u128',
+        'buy_percent': 'u8',
+        'mint': {'one': 'u128', 'six': 'u128', 'three': 'u128'},
+        'prepare_avatar': 'u128',
+        'transfer_avatar': 'u128',
+        'upgrade_storage': 'u128',
+    },
+    'forge_logic': ('First', 'Second'),
     'max_components': 'u8',
     'max_sacrifices': 'u8',
     'max_tier_forges': 'u32',
     'max_variations': 'u8',
     'min_sacrifices': 'u8',
+    'mint_logic': ('First', 'Second'),
     'name': 'Bytes',
     'per_period': 'u32',
     'periods': 'u16',
     'single_mint_probs': 'Bytes',
     'start': 'u32',
-    'tiers': [('Common', 'Uncommon', 'Rare', 'Epic', 'Legendary', 'Mythical')],
+    'tiers': [
+        (
+            'None',
+            'Common',
+            'Uncommon',
+            'Rare',
+            'Epic',
+            'Legendary',
+            'Mythical',
+        ),
+    ],
+    'trade_filters': ['u32'],
 }
 ```
 ---------
@@ -947,7 +1039,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'AwesomeAvatars', 'Trade', ['[u8; 32]']
+    'AwesomeAvatars', 'Trade', ['u16', '[u8; 32]']
 )
 ```
 
@@ -1008,6 +1100,10 @@ Attempt to buy his or her own avatar.
 Tried to prepare an already prepared avatar.
 
 ---------
+### AvatarCannotBeTraded
+This avatar cannot be used in trades.
+
+---------
 ### AvatarInTrade
 An avatar listed for trade is used to forge.
 
@@ -1020,12 +1116,24 @@ The avatar is currently locked and cannot be used.
 The avatar is currently unlocked and cannot be locked again.
 
 ---------
+### BaseProbTooHigh
+The given base probability is too high. It must be less than 100.
+
+---------
+### BatchMintProbsOverflow
+The sum of the given batch mint probabilities overflows.
+
+---------
 ### CannotClaimDuringSeason
 Tried claiming treasury during a season.
 
 ---------
 ### CannotClaimZero
 Tried claiming treasury which is zero.
+
+---------
+### CannotTransferFromInactiveAccount
+Tried transferring while the account still hasn&\#x27;t minted and forged anything.
 
 ---------
 ### CannotTransferToSelf
@@ -1052,8 +1160,24 @@ The season season start later than its early access
 Tried to prepare an IPFS URL for an avatar with an empty URL.
 
 ---------
+### ExcessiveSacrifices
+The amount of sacrifices is too much for forging.
+
+---------
 ### ForgeClosed
 Forging is not available at the moment.
+
+---------
+### IncompatibleAvatarVersions
+Tried to forge avatars with different DNA versions.
+
+---------
+### IncompatibleForgeComponents
+The components tried to forge were not compatible.
+
+---------
+### IncompatibleMintComponents
+The components tried to mint were not compatible.
 
 ---------
 ### IncorrectAvatarId
@@ -1080,8 +1204,20 @@ Rarity percentages don&\#x27;t add up to 100
 Incorrect season ID.
 
 ---------
+### InsufficientBalance
+The player has not enough balance available.
+
+---------
 ### InsufficientFreeMints
 The player has not enough free mints available.
+
+---------
+### InsufficientSacrifices
+The amount of sacrifices is not sufficient for forging.
+
+---------
+### InsufficientStorageForForging
+There&\#x27;s not enough space to hold the forging results
 
 ---------
 ### LeaderSacrificed
@@ -1168,12 +1304,12 @@ The season ends after the new season has started.
 The season start date is newer than its end date.
 
 ---------
-### TooFewSacrifices
-Less than minimum allowed sacrifices are used for forging.
+### SingleMintProbsOverflow
+The sum of the given single mint probabilities overflows.
 
 ---------
-### TooLowFees
-Attempt to set fees lower than the existential deposit amount.
+### TooFewSacrifices
+Less than minimum allowed sacrifices are used for forging.
 
 ---------
 ### TooLowFreeMints

@@ -230,12 +230,12 @@ result = substrate.query(
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
                 'Council': 'scale_info::409',
-                None: None,
                 'CumulusXcm': 'scale_info::407',
                 'PolkadotXcm': 'scale_info::408',
                 'TechnicalCommittee': 'scale_info::410',
                 'Void': 'scale_info::411',
                 'system': 'scale_info::406',
+                None: None,
             },
             'priority': 'u8',
         },

@@ -1236,7 +1236,7 @@ result = substrate.query(
         'currency_ids': [
             {
                 'ForeignAsset': 'u32',
-                'LPToken': ('scale_info::253', 'u8', 'scale_info::253', 'u8'),
+                'LPToken': ('scale_info::256', 'u8', 'scale_info::256', 'u8'),
                 'Native': (
                     'ASG',
                     'BNC',
@@ -1278,7 +1278,7 @@ result = substrate.query(
                     'MOVR',
                 ),
                 'Token2': 'u8',
-                'VSBond': ('scale_info::253', 'u32', 'u32', 'u32'),
+                'VSBond': ('scale_info::256', 'u32', 'u32', 'u32'),
                 'VSBond2': ('u8', 'u32', 'u32', 'u32'),
                 'VSToken': (
                     'ASG',
@@ -1445,7 +1445,7 @@ result = substrate.query(
         'base_currencies': [
             {
                 'ForeignAsset': 'u32',
-                'LPToken': ('scale_info::253', 'u8', 'scale_info::253', 'u8'),
+                'LPToken': ('scale_info::256', 'u8', 'scale_info::256', 'u8'),
                 'Native': (
                     'ASG',
                     'BNC',
@@ -1487,7 +1487,7 @@ result = substrate.query(
                     'MOVR',
                 ),
                 'Token2': 'u8',
-                'VSBond': ('scale_info::253', 'u32', 'u32', 'u32'),
+                'VSBond': ('scale_info::256', 'u32', 'u32', 'u32'),
                 'VSBond2': ('u8', 'u32', 'u32', 'u32'),
                 'VSToken': (
                     'ASG',
@@ -1530,21 +1530,21 @@ result = substrate.query(
                 {
                     'ForeignAsset': 'u32',
                     'LPToken': (
-                        'scale_info::253',
+                        'scale_info::256',
                         'u8',
-                        'scale_info::253',
+                        'scale_info::256',
                         'u8',
                     ),
-                    'Native': 'scale_info::253',
-                    'Stable': 'scale_info::253',
+                    'Native': 'scale_info::256',
+                    'Stable': 'scale_info::256',
                     'StableLpToken': 'u32',
-                    'Token': 'scale_info::253',
+                    'Token': 'scale_info::256',
                     'Token2': 'u8',
-                    'VSBond': ('scale_info::253', 'u32', 'u32', 'u32'),
+                    'VSBond': ('scale_info::256', 'u32', 'u32', 'u32'),
                     'VSBond2': ('u8', 'u32', 'u32', 'u32'),
-                    'VSToken': 'scale_info::253',
+                    'VSToken': 'scale_info::256',
                     'VSToken2': 'u8',
-                    'VToken': 'scale_info::253',
+                    'VToken': 'scale_info::256',
                     'VToken2': 'u8',
                 },
             ],
@@ -1556,7 +1556,7 @@ result = substrate.query(
             'lp_currency_decimal': 'u8',
             'lp_currency_id': {
                 'ForeignAsset': 'u32',
-                'LPToken': ('scale_info::253', 'u8', 'scale_info::253', 'u8'),
+                'LPToken': ('scale_info::256', 'u8', 'scale_info::256', 'u8'),
                 'Native': (
                     'ASG',
                     'BNC',
@@ -1598,7 +1598,7 @@ result = substrate.query(
                     'MOVR',
                 ),
                 'Token2': 'u8',
-                'VSBond': ('scale_info::253', 'u32', 'u32', 'u32'),
+                'VSBond': ('scale_info::256', 'u32', 'u32', 'u32'),
                 'VSBond2': ('u8', 'u32', 'u32', 'u32'),
                 'VSToken': (
                     'ASG',

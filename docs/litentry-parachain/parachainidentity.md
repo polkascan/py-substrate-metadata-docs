@@ -14,11 +14,8 @@ The dispatch origin for this call must be `T::RegistrarOrigin`.
 
 Emits `RegistrarAdded` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(R)` where `R` registrar-count (governance-bounded and code-bounded).
-- One storage mutation (codec `O(R)`).
-- One event.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -90,12 +87,10 @@ registered identity.
 
 Emits `JudgementUnrequested` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(R + X)`.
-- One balance-reserve operation.
-- One storage mutation `O(R + X)`.
-- One event
-\# &lt;/weight&gt;
+  - where `R` registrar-count (governance-bounded).
+  - where `X` additional-field-count (deposit-bounded and code-bounded).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -119,15 +114,11 @@ identity.
 
 Emits `IdentityCleared` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(R + S + X)`
   - where `R` registrar-count (governance-bounded).
   - where `S` subs-count (hard- and deposit-bounded).
   - where `X` additional-field-count (deposit-bounded and code-bounded).
-- One balance-unreserve operation.
-- `2` storage reads and `S + 2` storage deletions.
-- One event.
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -153,12 +144,11 @@ The dispatch origin for this call must match `T::ForceOrigin`.
 
 Emits `IdentityKilled` if successful.
 
-\# &lt;weight&gt;
-- `O(R + S + X)`.
-- One balance-reserve operation.
-- `S + 2` storage mutations.
-- One event.
-\# &lt;/weight&gt;
+\#\# Complexity
+- `O(R + S + X)`
+  - where `R` registrar-count (governance-bounded).
+  - where `S` subs-count (hard- and deposit-bounded).
+  - where `X` additional-field-count (deposit-bounded and code-bounded).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -194,13 +184,10 @@ of the registrar whose index is `reg_index`.
 
 Emits `JudgementGiven` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(R + X)`.
-- One balance-transfer operation.
-- Up to one account-lookup operation.
-- Storage: 1 read `O(R)`, 1 mutate `O(R + X)`.
-- One event.
-\# &lt;/weight&gt;
+  - where `R` registrar-count (governance-bounded).
+  - where `X` additional-field-count (deposit-bounded and code-bounded).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -340,12 +327,10 @@ Self::registrars().get(reg_index).unwrap().fee
 
 Emits `JudgementRequested` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(R + X)`.
-- One balance-reserve operation.
-- Storage: 1 read `O(R)`, 1 mutate `O(X + R)`.
-- One event.
-\# &lt;/weight&gt;
+  - where `R` registrar-count (governance-bounded).
+  - where `X` additional-field-count (deposit-bounded and code-bounded).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -372,11 +357,9 @@ of the registrar whose index is `index`.
 - `index`: the index of the registrar whose fee is to be set.
 - `new`: the new account ID.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(R)`.
-- One storage mutation `O(R)`.
-- Benchmark: 8.823 + R * 0.32 µs (min squares analysis)
-\# &lt;/weight&gt;
+  - where `R` registrar-count (governance-bounded).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -409,11 +392,9 @@ of the registrar whose index is `index`.
 - `index`: the index of the registrar whose fee is to be set.
 - `fee`: the new fee.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(R)`.
-- One storage mutation `O(R)`.
-- Benchmark: 7.315 + R * 0.329 µs (min squares analysis)
-\# &lt;/weight&gt;
+  - where `R` registrar-count (governance-bounded).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -437,11 +418,9 @@ of the registrar whose index is `index`.
 - `index`: the index of the registrar whose fee is to be set.
 - `fields`: the fields that the registrar concerns themselves with.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(R)`.
-- One storage mutation `O(R)`.
-- Benchmark: 7.464 + R * 0.325 µs (min squares analysis)
-\# &lt;/weight&gt;
+  - where `R` registrar-count (governance-bounded).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -468,14 +447,10 @@ The dispatch origin for this call must be _Signed_.
 
 Emits `IdentitySet` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(X + X&\#x27; + R)`
   - where `X` additional-field-count (deposit-bounded and code-bounded)
   - where `R` judgements-count (registrar-count-bounded)
-- One balance reserve operation.
-- One storage mutation (codec-read `O(X&\#x27; + R)`, codec-write `O(X + R)`).
-- One event.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -583,17 +558,10 @@ identity.
 
 - `subs`: The identity&\#x27;s (new) sub-accounts.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(P + S)`
   - where `P` old-subs-count (hard- and deposit-bounded).
   - where `S` subs-count (hard- and deposit-bounded).
-- At most one balance operations.
-- DB:
-  - `P + S` storage mutations (codec complexity `O(1)`)
-  - One storage read (codec complexity `O(P)`).
-  - One storage write (codec complexity `O(S)`).
-  - One storage-exists (`IdentityOf::contains_key`).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -736,26 +704,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [
-            (
-                {
-                    'BlakeTwo256': 'h256',
-                    'Keccak256': 'h256',
-                    'None': None,
-                    'Raw': 'Bytes',
-                    'Sha256': 'h256',
-                    'ShaThree256': 'h256',
-                },
-                {
-                    'BlakeTwo256': 'h256',
-                    'Keccak256': 'h256',
-                    'None': None,
-                    'Raw': 'Bytes',
-                    'Sha256': 'h256',
-                    'ShaThree256': 'h256',
-                },
-            ),
-        ],
+        'additional': [('scale_info::205', 'scale_info::205')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',

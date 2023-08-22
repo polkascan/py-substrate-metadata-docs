@@ -86,7 +86,7 @@ call = substrate.compose_call(
                 'id': {
                     'Abstract': '[u8; 32]',
                     'Concrete': {
-                        'interior': 'scale_info::119',
+                        'interior': 'scale_info::120',
                         'parents': 'u8',
                     },
                 },

@@ -42,9 +42,8 @@ call = substrate.compose_call(
 ### remark
 Make some on-chain remark.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -76,16 +75,8 @@ call = substrate.compose_call(
 ### set_code
 Set the new runtime code.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(C + S)` where `C` length of `code` and `S` complexity of `can_set_code`
-- 1 call to `can_set_code`: `O(S)` (calls `sp_io::misc::runtime_version` which is
-  expensive).
-- 1 storage write (codec `O(C)`).
-- 1 digest item.
-- 1 event.
-The weight of this function is dependent on the runtime, but generally this is very
-expensive. We will treat this as a full block.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -102,13 +93,8 @@ call = substrate.compose_call(
 ### set_code_without_checks
 Set the new runtime code without doing any checks of the given `code`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(C)` where `C` length of `code`
-- 1 storage write (codec `O(C)`).
-- 1 digest item.
-- 1 event.
-The weight of this function is dependent on the runtime. We will treat this as a full
-block. \# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -296,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -367,6 +353,16 @@ result = substrate.query(
 [
     {
         'event': {
+            'AssetRegistry': {
+                'RegisteredAsset': {
+                    'asset_id': 'scale_info::118',
+                    'metadata': 'scale_info::166',
+                },
+                'UpdatedAsset': {
+                    'asset_id': 'scale_info::118',
+                    'metadata': 'scale_info::166',
+                },
+            },
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -378,7 +374,7 @@ result = substrate.query(
                 'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'destination_status': 'scale_info::31',
+                    'destination_status': 'scale_info::32',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
@@ -453,11 +449,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::39',
+                    'result': 'scale_info::41',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::39',
+                    'result': 'scale_info::41',
                 },
                 'Proposed': {
                     'account': 'AccountId',
@@ -474,21 +470,31 @@ result = substrate.query(
                 },
             },
             'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::59'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
+                'ExecutedDownward': ('[u8; 32]', 'scale_info::59'),
+                'InvalidFormat': '[u8; 32]',
+                'UnsupportedVersion': '[u8; 32]',
             },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
                 'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
                 'ExternalTabled': None,
+                'MetadataCleared': {
+                    'hash': '[u8; 32]',
+                    'owner': 'scale_info::38',
+                },
+                'MetadataSet': {'hash': '[u8; 32]', 'owner': 'scale_info::38'},
+                'MetadataTransferred': {
+                    'hash': '[u8; 32]',
+                    'owner': 'scale_info::38',
+                    'prev_owner': 'scale_info::38',
+                },
                 'NotPassed': {'ref_index': 'u32'},
                 'Passed': {'ref_index': 'u32'},
                 'ProposalCanceled': {'prop_index': 'u32'},
                 'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::34'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::35'},
                 'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Undelegated': {'account': 'AccountId'},
                 'Vetoed': {
@@ -498,7 +504,7 @@ result = substrate.query(
                 },
                 'Voted': {
                     'ref_index': 'u32',
-                    'vote': 'scale_info::35',
+                    'vote': 'scale_info::36',
                     'voter': 'AccountId',
                 },
             },
@@ -508,7 +514,7 @@ result = substrate.query(
                 'BatchingApiRouteSet': 'Bytes',
                 'CurrencyAdded': ('Bytes', 'Bytes'),
                 'CurrencyRemoved': ('Bytes', 'Bytes'),
-                'UpdatedPrices': [(('Bytes', 'Bytes'), 'scale_info::112')],
+                'UpdatedPrices': [(('Bytes', 'Bytes'), 'scale_info::128')],
             },
             'DmpQueue': {
                 'ExecutedDownward': {
@@ -516,6 +522,7 @@ result = substrate.query(
                     'outcome': 'scale_info::59',
                 },
                 'InvalidFormat': {'message_id': '[u8; 32]'},
+                'MaxMessagesExhausted': {'message_id': '[u8; 32]'},
                 'OverweightEnqueued': {
                     'message_id': '[u8; 32]',
                     'overweight_index': 'u64',
@@ -530,6 +537,37 @@ result = substrate.query(
                     'message_id': '[u8; 32]',
                     'remaining_weight': 'scale_info::8',
                     'required_weight': 'scale_info::8',
+                },
+            },
+            'Farming': {
+                'AllForceGaugeClaimed': {'gid': 'u32'},
+                'AllRetired': {'pid': 'u32'},
+                'Charged': {
+                    'pid': 'u32',
+                    'rewards': [('scale_info::118', 'u128')],
+                    'who': 'AccountId',
+                },
+                'Claimed': {'pid': 'u32', 'who': 'AccountId'},
+                'Deposited': {
+                    'add_value': 'u128',
+                    'gauge_info': (None, ('u128', 'u32')),
+                    'pid': 'u32',
+                    'who': 'AccountId',
+                },
+                'FarmingPoolClosed': {'pid': 'u32'},
+                'FarmingPoolCreated': {'pid': 'u32'},
+                'FarmingPoolEdited': {'pid': 'u32'},
+                'FarmingPoolKilled': {'pid': 'u32'},
+                'FarmingPoolReset': {'pid': 'u32'},
+                'GaugeWithdrawn': {'gid': 'u32', 'who': 'AccountId'},
+                'PartiallyForceGaugeClaimed': {'gid': 'u32'},
+                'PartiallyRetired': {'pid': 'u32'},
+                'RetireLimitSet': {'limit': 'u32'},
+                'WithdrawClaimed': {'pid': 'u32', 'who': 'AccountId'},
+                'Withdrawn': {
+                    'pid': 'u32',
+                    'remove_value': (None, 'u128'),
+                    'who': 'AccountId',
                 },
             },
             'Identity': {
@@ -573,15 +611,15 @@ result = substrate.query(
                 },
                 'ExecuteIssue': {
                     'amount': 'u128',
-                    'asset': 'scale_info::102',
+                    'asset': 'scale_info::118',
                     'fee': 'u128',
                     'issue_id': '[u8; 32]',
                     'requester': 'AccountId',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'IssueAmountChange': {
                     'amount': 'u128',
-                    'asset': 'scale_info::102',
+                    'asset': 'scale_info::118',
                     'confiscated_griefing_collateral': 'u128',
                     'fee': 'u128',
                     'issue_id': '[u8; 32]',
@@ -593,16 +631,16 @@ result = substrate.query(
                 'RateLimitUpdate': {
                     'interval_length': 'u32',
                     'limit_volume_amount': (None, 'u128'),
-                    'limit_volume_currency_id': 'scale_info::102',
+                    'limit_volume_currency_id': 'scale_info::118',
                 },
                 'RequestIssue': {
                     'amount': 'u128',
-                    'asset': 'scale_info::102',
+                    'asset': 'scale_info::118',
                     'fee': 'u128',
                     'griefing_collateral': 'u128',
                     'issue_id': '[u8; 32]',
                     'requester': 'AccountId',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                     'vault_stellar_public_key': '[u8; 32]',
                 },
             },
@@ -611,20 +649,20 @@ result = substrate.query(
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::47',
+                    'timepoint': 'scale_info::48',
                 },
                 'MultisigCancelled': {
                     'call_hash': '[u8; 32]',
                     'cancelling': 'AccountId',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::47',
+                    'timepoint': 'scale_info::48',
                 },
                 'MultisigExecuted': {
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'result': 'scale_info::39',
-                    'timepoint': 'scale_info::47',
+                    'result': 'scale_info::41',
+                    'timepoint': 'scale_info::48',
                 },
                 'NewMultisig': {
                     'approving': 'AccountId',
@@ -636,20 +674,20 @@ result = substrate.query(
                 'DepositCollateral': {
                     'amount': 'u128',
                     'nominator_id': 'AccountId',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
-                'NominationOptIn': {'vault_id': 'scale_info::120'},
-                'NominationOptOut': {'vault_id': 'scale_info::120'},
+                'NominationOptIn': {'vault_id': 'scale_info::136'},
+                'NominationOptOut': {'vault_id': 'scale_info::136'},
                 'WithdrawCollateral': {
                     'amount': 'u128',
                     'nominator_id': 'AccountId',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
             },
             'Oracle': {
-                'AggregateUpdated': {'values': [('scale_info::127', 'u128')]},
+                'AggregateUpdated': {'values': [('scale_info::143', 'u128')]},
                 'MaxDelayUpdated': {'max_delay': 'u64'},
-                'OracleKeysUpdated': {'oracle_keys': ['scale_info::127']},
+                'OracleKeysUpdated': {'oracle_keys': ['scale_info::143']},
             },
             'ParachainStaking': {
                 'BlocksPerRoundSet': ('u32', 'u32', 'u32', 'u32'),
@@ -703,6 +741,7 @@ result = substrate.query(
                 },
                 'DownwardMessagesReceived': {'count': 'u32'},
                 'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
@@ -711,18 +750,26 @@ result = substrate.query(
                 'AssetsClaimed': (
                     '[u8; 32]',
                     'scale_info::60',
-                    'scale_info::91',
+                    'scale_info::98',
                 ),
                 'AssetsTrapped': (
                     '[u8; 32]',
                     'scale_info::60',
-                    'scale_info::91',
+                    'scale_info::98',
                 ),
                 'Attempted': {
-                    'Complete': 'u64',
+                    'Complete': 'scale_info::8',
                     'Error': 'scale_info::56',
-                    'Incomplete': ('u64', 'scale_info::56'),
+                    'Incomplete': ('scale_info::8', 'scale_info::56'),
                 },
+                'FeesPaid': ('scale_info::60', ['scale_info::75']),
+                'InvalidQuerier': (
+                    'scale_info::60',
+                    'u64',
+                    'scale_info::60',
+                    (None, 'scale_info::60'),
+                ),
+                'InvalidQuerierVersion': ('scale_info::60', 'u64'),
                 'InvalidResponder': (
                     'scale_info::60',
                     'u64',
@@ -739,7 +786,7 @@ result = substrate.query(
                     'scale_info::8',
                     'scale_info::8',
                 ),
-                'NotifyTargetMigrationFail': ('scale_info::96', 'u64'),
+                'NotifyTargetMigrationFail': ('scale_info::112', 'u64'),
                 'NotifyTargetSendFail': (
                     'scale_info::60',
                     'u64',
@@ -754,7 +801,20 @@ result = substrate.query(
                 ),
                 'SupportedVersionChanged': ('scale_info::60', 'u32'),
                 'UnexpectedResponse': ('scale_info::60', 'u64'),
-                'VersionChangeNotified': ('scale_info::60', 'u32'),
+                'VersionChangeNotified': (
+                    'scale_info::60',
+                    'u32',
+                    ['scale_info::75'],
+                ),
+                'VersionNotifyRequested': (
+                    'scale_info::60',
+                    ['scale_info::75'],
+                ),
+                'VersionNotifyStarted': ('scale_info::60', ['scale_info::75']),
+                'VersionNotifyUnrequested': (
+                    'scale_info::60',
+                    ['scale_info::75'],
+                ),
             },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
@@ -766,32 +826,32 @@ result = substrate.query(
                     'redeem_id': '[u8; 32]',
                     'redeemer': 'AccountId',
                     'slashed_amount': 'u128',
-                    'status': 'scale_info::131',
-                    'vault_id': 'scale_info::120',
+                    'status': 'scale_info::147',
+                    'vault_id': 'scale_info::136',
                 },
                 'ExecuteRedeem': {
                     'amount': 'u128',
-                    'asset': 'scale_info::102',
+                    'asset': 'scale_info::118',
                     'fee': 'u128',
                     'redeem_id': '[u8; 32]',
                     'redeemer': 'AccountId',
                     'transfer_fee': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'LiquidationRedeem': {
                     'amount': 'u128',
-                    'asset': 'scale_info::102',
+                    'asset': 'scale_info::118',
                     'redeemer': 'AccountId',
                 },
                 'MintTokensForReimbursedRedeem': {
                     'amount': 'u128',
                     'redeem_id': '[u8; 32]',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'RateLimitUpdate': {
                     'interval_length': 'u32',
                     'limit_volume_amount': (None, 'u128'),
-                    'limit_volume_currency_id': 'scale_info::102',
+                    'limit_volume_currency_id': 'scale_info::118',
                 },
                 'RedeemMinimumTransferAmountUpdate': {
                     'new_minimum_amount': 'u128',
@@ -799,40 +859,40 @@ result = substrate.query(
                 'RedeemPeriodChange': {'period': 'u32'},
                 'RequestRedeem': {
                     'amount': 'u128',
-                    'asset': 'scale_info::102',
+                    'asset': 'scale_info::118',
                     'fee': 'u128',
                     'premium': 'u128',
                     'redeem_id': '[u8; 32]',
                     'redeemer': 'AccountId',
                     'stellar_address': '[u8; 32]',
                     'transfer_fee': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'SelfRedeem': {
                     'amount': 'u128',
                     'fee': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
             },
             'Replace': {
                 'AcceptReplace': {
                     'amount': 'u128',
-                    'asset': 'scale_info::102',
+                    'asset': 'scale_info::118',
                     'collateral': 'u128',
-                    'new_vault_id': 'scale_info::120',
-                    'old_vault_id': 'scale_info::120',
+                    'new_vault_id': 'scale_info::136',
+                    'old_vault_id': 'scale_info::136',
                     'replace_id': '[u8; 32]',
                     'stellar_address': '[u8; 32]',
                 },
                 'CancelReplace': {
                     'griefing_collateral': 'u128',
-                    'new_vault_id': 'scale_info::120',
-                    'old_vault_id': 'scale_info::120',
+                    'new_vault_id': 'scale_info::136',
+                    'old_vault_id': 'scale_info::136',
                     'replace_id': '[u8; 32]',
                 },
                 'ExecuteReplace': {
-                    'new_vault_id': 'scale_info::120',
-                    'old_vault_id': 'scale_info::120',
+                    'new_vault_id': 'scale_info::136',
+                    'old_vault_id': 'scale_info::136',
                     'replace_id': '[u8; 32]',
                 },
                 'ReplaceMinimumTransferAmountUpdate': {
@@ -841,13 +901,13 @@ result = substrate.query(
                 'ReplacePeriodChange': {'period': 'u32'},
                 'RequestReplace': {
                     'amount': 'u128',
-                    'asset': 'scale_info::102',
+                    'asset': 'scale_info::118',
                     'griefing_collateral': 'u128',
-                    'old_vault_id': 'scale_info::120',
+                    'old_vault_id': 'scale_info::136',
                 },
                 'WithdrawReplace': {
-                    'asset': 'scale_info::102',
-                    'old_vault_id': 'scale_info::120',
+                    'asset': 'scale_info::118',
+                    'old_vault_id': 'scale_info::136',
                     'withdrawn_griefing_collateral': 'u128',
                     'withdrawn_tokens': 'u128',
                 },
@@ -860,7 +920,7 @@ result = substrate.query(
                 'Canceled': {'index': 'u32', 'when': 'u32'},
                 'Dispatched': {
                     'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::39',
+                    'result': 'scale_info::41',
                     'task': ('u32', 'u32'),
                 },
                 'PeriodicFailed': {
@@ -875,8 +935,8 @@ result = substrate.query(
             },
             'Security': {
                 'RecoverFromErrors': {
-                    'cleared_errors': ['scale_info::136'],
-                    'new_status': 'scale_info::134',
+                    'cleared_errors': ['scale_info::152'],
+                    'new_status': 'scale_info::150',
                 },
                 'UpdateActiveBlock': {'block_number': 'u32'},
             },
@@ -907,11 +967,11 @@ result = substrate.query(
                 'Disapproved': {'proposal_hash': '[u8; 32]'},
                 'Executed': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::39',
+                    'result': 'scale_info::41',
                 },
                 'MemberExecuted': {
                     'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::39',
+                    'result': 'scale_info::41',
                 },
                 'Proposed': {
                     'account': 'AccountId',
@@ -929,73 +989,83 @@ result = substrate.query(
             },
             'Tokens': {
                 'BalanceSet': {
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'free': 'u128',
                     'reserved': 'u128',
                     'who': 'AccountId',
                 },
                 'Deposited': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'who': 'AccountId',
                 },
                 'DustLost': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'who': 'AccountId',
                 },
                 'Endowed': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'who': 'AccountId',
                 },
                 'LockRemoved': {
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'lock_id': '[u8; 8]',
                     'who': 'AccountId',
                 },
                 'LockSet': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'lock_id': '[u8; 8]',
+                    'who': 'AccountId',
+                },
+                'Locked': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::118',
                     'who': 'AccountId',
                 },
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'from': 'AccountId',
-                    'status': 'scale_info::31',
+                    'status': 'scale_info::32',
                     'to': 'AccountId',
                 },
                 'Reserved': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'who': 'AccountId',
                 },
                 'Slashed': {
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'free_amount': 'u128',
                     'reserved_amount': 'u128',
                     'who': 'AccountId',
                 },
                 'TotalIssuanceSet': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                 },
                 'Transfer': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
+                'Unlocked': {
+                    'amount': 'u128',
+                    'currency_id': 'scale_info::118',
+                    'who': 'AccountId',
+                },
                 'Unreserved': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'who': 'AccountId',
                 },
                 'Withdrawn': {
                     'amount': 'u128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'who': 'AccountId',
                 },
             },
@@ -1035,82 +1105,82 @@ result = substrate.query(
                     'error': 'scale_info::24',
                     'index': 'u32',
                 },
-                'DispatchedAs': {'result': 'scale_info::39'},
+                'DispatchedAs': {'result': 'scale_info::41'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
             },
             'VaultRegistry': {
                 'BanVault': {
                     'banned_until': 'u32',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'DecreaseLockedCollateral': {
-                    'currency_pair': 'scale_info::121',
+                    'currency_pair': 'scale_info::137',
                     'delta': 'u128',
                     'total': 'u128',
                 },
                 'DecreaseToBeIssuedTokens': {
                     'decrease': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'DecreaseToBeRedeemedTokens': {
                     'decrease': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'DecreaseToBeReplacedTokens': {
                     'decrease': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'DecreaseTokens': {
                     'decrease': 'u128',
                     'user_id': 'AccountId',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'DepositCollateral': {
                     'free_collateral': 'u128',
                     'new_collateral': 'u128',
                     'total_collateral': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'IncreaseLockedCollateral': {
-                    'currency_pair': 'scale_info::121',
+                    'currency_pair': 'scale_info::137',
                     'delta': 'u128',
                     'total': 'u128',
                 },
                 'IncreaseToBeIssuedTokens': {
                     'increase': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'IncreaseToBeRedeemedTokens': {
                     'increase': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'IncreaseToBeReplacedTokens': {
                     'increase': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'IssueTokens': {
                     'increase': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'LiquidateVault': {
                     'backing_collateral': 'u128',
                     'issued_tokens': 'u128',
                     'replace_collateral': 'u128',
-                    'status': 'scale_info::139',
+                    'status': 'scale_info::155',
                     'to_be_issued_tokens': 'u128',
                     'to_be_redeemed_tokens': 'u128',
                     'to_be_replaced_tokens': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'RedeemTokens': {
                     'redeemed_amount': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'RedeemTokensLiquidatedVault': {
                     'collateral': 'u128',
                     'tokens': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'RedeemTokensLiquidation': {
                     'burned_tokens': 'u128',
@@ -1121,21 +1191,21 @@ result = substrate.query(
                     'collateral': 'u128',
                     'redeemed_amount': 'u128',
                     'user_id': 'AccountId',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'RegisterAddress': {
                     'address': '[u8; 32]',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'RegisterVault': {
                     'collateral': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'ReplaceTokens': {
                     'additional_collateral': 'u128',
                     'amount': 'u128',
-                    'new_vault_id': 'scale_info::120',
-                    'old_vault_id': 'scale_info::120',
+                    'new_vault_id': 'scale_info::136',
+                    'old_vault_id': 'scale_info::136',
                 },
                 'UpdatePublicKey': {
                     'account_id': 'AccountId',
@@ -1143,57 +1213,56 @@ result = substrate.query(
                 },
                 'WithdrawCollateral': {
                     'total_collateral': 'u128',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                     'withdrawn_amount': 'u128',
                 },
             },
-            None: None,
             'VaultRewards': {
                 'DepositStake': {
                     'amount': 'i128',
-                    'reward_id': 'scale_info::120',
+                    'reward_id': 'scale_info::136',
                 },
                 'DistributeReward': {
                     'amount': 'i128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                 },
                 'WithdrawReward': {
                     'amount': 'i128',
-                    'currency_id': 'scale_info::102',
-                    'reward_id': 'scale_info::120',
+                    'currency_id': 'scale_info::118',
+                    'reward_id': 'scale_info::136',
                 },
                 'WithdrawStake': {
                     'amount': 'i128',
-                    'reward_id': 'scale_info::120',
+                    'reward_id': 'scale_info::136',
                 },
             },
             'VaultStaking': {
                 'DepositStake': {
                     'amount': 'i128',
                     'nominator_id': 'AccountId',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'DistributeReward': {
                     'amount': 'i128',
-                    'currency_id': 'scale_info::102',
-                    'vault_id': 'scale_info::120',
+                    'currency_id': 'scale_info::118',
+                    'vault_id': 'scale_info::136',
                 },
-                'ForceRefund': {'vault_id': 'scale_info::120'},
+                'ForceRefund': {'vault_id': 'scale_info::136'},
                 'IncreaseNonce': {
                     'new_nonce': 'u32',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'WithdrawReward': {
                     'amount': 'i128',
-                    'currency_id': 'scale_info::102',
+                    'currency_id': 'scale_info::118',
                     'nominator_id': 'AccountId',
                     'nonce': 'u32',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
                 'WithdrawStake': {
                     'amount': 'i128',
                     'nominator_id': 'AccountId',
-                    'vault_id': 'scale_info::120',
+                    'vault_id': 'scale_info::136',
                 },
             },
             'Vesting': {
@@ -1233,37 +1302,36 @@ result = substrate.query(
                     'used': 'scale_info::8',
                 },
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             'ZenlinkProtocol': {
                 'AssetSwap': (
                     'AccountId',
                     'AccountId',
-                    ['scale_info::114'],
+                    ['scale_info::130'],
                     ['u128'],
                 ),
                 'BootstrapClaim': (
                     'AccountId',
                     'AccountId',
                     'AccountId',
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'u128',
                     'u128',
                     'u128',
                 ),
                 'BootstrapContribute': (
                     'AccountId',
-                    'scale_info::114',
+                    'scale_info::130',
                     'u128',
-                    'scale_info::114',
+                    'scale_info::130',
                     'u128',
                 ),
                 'BootstrapCreated': (
                     'AccountId',
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'u128',
                     'u128',
                     'u128',
@@ -1271,8 +1339,8 @@ result = substrate.query(
                     'u32',
                 ),
                 'BootstrapEnd': (
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'u128',
                     'u128',
                     'u128',
@@ -1280,38 +1348,38 @@ result = substrate.query(
                 'BootstrapRefund': (
                     'AccountId',
                     'AccountId',
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'u128',
                     'u128',
                 ),
                 'BootstrapUpdate': (
                     'AccountId',
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'u128',
                     'u128',
                     'u128',
                     'u128',
                     'u32',
                 ),
-                'Burned': ('scale_info::114', 'AccountId', 'u128'),
+                'Burned': ('scale_info::130', 'AccountId', 'u128'),
                 'ChargeReward': (
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'AccountId',
-                    [('scale_info::114', 'u128')],
+                    [('scale_info::130', 'u128')],
                 ),
                 'DistributeReward': (
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'AccountId',
-                    [('scale_info::114', 'u128')],
+                    [('scale_info::130', 'u128')],
                 ),
                 'LiquidityAdded': (
                     'AccountId',
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'u128',
                     'u128',
                     'u128',
@@ -1319,22 +1387,22 @@ result = substrate.query(
                 'LiquidityRemoved': (
                     'AccountId',
                     'AccountId',
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'u128',
                     'u128',
                     'u128',
                 ),
-                'Minted': ('scale_info::114', 'AccountId', 'u128'),
-                'PairCreated': ('scale_info::114', 'scale_info::114'),
+                'Minted': ('scale_info::130', 'AccountId', 'u128'),
+                'PairCreated': ('scale_info::130', 'scale_info::130'),
                 'Transferred': (
-                    'scale_info::114',
+                    'scale_info::130',
                     'AccountId',
                     'AccountId',
                     'u128',
                 ),
                 'TransferredToParachain': (
-                    'scale_info::114',
+                    'scale_info::130',
                     'AccountId',
                     'u32',
                     'AccountId',
@@ -1342,11 +1410,12 @@ result = substrate.query(
                     'u64',
                 ),
                 'WithdrawReward': (
-                    'scale_info::114',
-                    'scale_info::114',
+                    'scale_info::130',
+                    'scale_info::130',
                     'AccountId',
                 ),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1578,11 +1647,12 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0xf78b278be53f454c', 2),
         ('0xab3c0572291feb8b', 1),
         ('0xbc9d89904f5b923f', 1),
-        ('0x37c8bb1350a9a2a8', 2),
+        ('0x37c8bb1350a9a2a8', 3),
         ('0xea93e3f16f3d6962', 2),
         ('0xfb74f0e21eea131a', 1),
         ('0x53699d721098ded3', 1),
         ('0x60aed43cb52456f1', 1),
+        ('0x0d94b80c178630f0', 1),
         ('0xcaf39b979a6880bd', 1),
         ('0x16da96d36c6d5bb7', 1),
         ('0x69e2e1aa421f4fb0', 1),
@@ -1594,9 +1664,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'amplitude',
     'impl_version': 0,
     'spec_name': 'amplitude',
-    'spec_version': 9,
+    'spec_version': 10,
     'state_version': 1,
-    'transaction_version': 9,
+    'transaction_version': 10,
 }
 ```
 #### Python

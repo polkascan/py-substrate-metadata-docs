@@ -10,14 +10,14 @@
 | Name | Type |
 | -------- | -------- | 
 | data_source | `DataSource` | 
-| mrenclave | `[u8; 32]` | 
+| enclave_fingerprint | `EnclaveFingerprint` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Teeracle', 'add_to_whitelist', {
     'data_source': 'Bytes',
-    'mrenclave': '[u8; 32]',
+    'enclave_fingerprint': '[u8; 32]',
 }
 )
 ```
@@ -28,14 +28,14 @@ call = substrate.compose_call(
 | Name | Type |
 | -------- | -------- | 
 | data_source | `DataSource` | 
-| mrenclave | `[u8; 32]` | 
+| enclave_fingerprint | `EnclaveFingerprint` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Teeracle', 'remove_from_whitelist', {
     'data_source': 'Bytes',
-    'mrenclave': '[u8; 32]',
+    'enclave_fingerprint': '[u8; 32]',
 }
 )
 ```
@@ -68,7 +68,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| oracle_name | `OracleDataName` | 
+| oracle_data_name | `OracleDataName` | 
 | data_source | `DataSource` | 
 | new_blob | `OracleDataBlob<T>` | 
 
@@ -78,7 +78,7 @@ call = substrate.compose_call(
     'Teeracle', 'update_oracle', {
     'data_source': 'Bytes',
     'new_blob': 'Bytes',
-    'oracle_name': 'Bytes',
+    'oracle_data_name': 'Bytes',
 }
 )
 ```
@@ -88,45 +88,49 @@ call = substrate.compose_call(
 
 ---------
 ### AddedToWhitelist
+an oracle fingerprint has been added to the whitelist
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `DataSource` | ```Bytes```
-| None | `[u8; 32]` | ```[u8; 32]```
+| data_source | `DataSource` | ```Bytes```
+| enclave_fingerprint | `EnclaveFingerprint` | ```[u8; 32]```
 
 ---------
 ### ExchangeRateDeleted
+The exchange rate of trading pair was deleted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `DataSource` | ```Bytes```
-| None | `TradingPairString` | ```Bytes```
+| data_source | `DataSource` | ```Bytes```
+| trading_pair | `TradingPairString` | ```Bytes```
 
 ---------
 ### ExchangeRateUpdated
-The exchange rate of trading pair was set/updated with value from source. \[data_source], [trading_pair], [new value\]
+The exchange rate of trading pair was set/updated with value from source.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `DataSource` | ```Bytes```
-| None | `TradingPairString` | ```Bytes```
-| None | `Option<ExchangeRate>` | ```(None, {'bits': 'u64'})```
+| data_source | `DataSource` | ```Bytes```
+| trading_pair | `TradingPairString` | ```Bytes```
+| exchange_rate | `ExchangeRate` | ```{'bits': 'u64'}```
 
 ---------
 ### OracleUpdated
+a generic named oracle has updated its data blob
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `OracleDataName` | ```Bytes```
-| None | `DataSource` | ```Bytes```
+| oracle_data_name | `OracleDataName` | ```Bytes```
+| data_source | `DataSource` | ```Bytes```
 
 ---------
 ### RemovedFromWhitelist
+an oracle fingerprint has been removed from the whitelist
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `DataSource` | ```Bytes```
-| None | `[u8; 32]` | ```[u8; 32]```
+| data_source | `DataSource` | ```Bytes```
+| enclave_fingerprint | `EnclaveFingerprint` | ```[u8; 32]```
 
 ---------
 ## Storage functions
@@ -204,27 +208,30 @@ constant = substrate.get_constant('Teeracle', 'MaxWhitelistedReleases')
 
 ---------
 ### DataSourceStringTooLong
+data source string too long
 
 ---------
-### InvalidCurrency
+### FingerprintAlreadyWhitelisted
+enclave fingerprint already whitelisted for this data source.
+
+---------
+### FingerprintNotWhitelisted
+calling enclave fingerprint not whitelisted for this data source.
+
+---------
+### FingerprintWhitelistOverflow
+Too many enclave fingerprints in the whitelist for this data source.
 
 ---------
 ### OracleBlobTooBig
+generic oracle blob too big
 
 ---------
 ### OracleDataNameStringTooLong
-
----------
-### ReleaseAlreadyWhitelisted
-
----------
-### ReleaseNotWhitelisted
-
----------
-### ReleaseWhitelistOverflow
-Too many MrEnclave in the whitelist.
+generic oracle data name string too long
 
 ---------
 ### TradingPairStringTooLong
+trading pair string too long
 
 ---------

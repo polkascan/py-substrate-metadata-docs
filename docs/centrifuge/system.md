@@ -508,6 +508,22 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'CrowdloanClaim': {
+                'ClaimPalletInitialized': None,
+                'ContributionsRootUpdated': '[u8; 32]',
+                'CrowdloanTrieIndexUpdated': 'u32',
+                'LeasePeriodUpdated': 'u32',
+                'LeaseStartUpdated': 'u32',
+                'LockedAtUpdated': 'u32',
+                'RewardClaimed': ('AccountId', 'AccountId', 'u128'),
+            },
+            'CrowdloanReward': {
+                'DirectPayoutRatioUpdated': 'u32',
+                'RewardClaimed': ('AccountId', 'u128', 'u128'),
+                'RewardPalletInitialized': ('u32', 'u32', 'u32'),
+                'VestingPeriodUpdated': 'u32',
+                'VestingStartUpdated': 'u32',
+            },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::86'),
                 'InvalidFormat': '[u8; 8]',
@@ -778,6 +794,7 @@ result = substrate.query(
                     'multisig': 'AccountId',
                 },
             },
+            'Nfts': {'DepositAsset': '[u8; 32]'},
             'OrmlAssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'scale_info::70',
@@ -860,6 +877,33 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'OrmlXcm': {
+                'Sent': {'message': ['scale_info::99'], 'to': 'scale_info::87'},
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'Permissions': {
+                'Added': {
+                    'role': 'scale_info::181',
+                    'scope': 'scale_info::180',
+                    'to': 'AccountId',
+                },
+                'Purged': {'from': 'AccountId', 'scope': 'scale_info::180'},
+                'Removed': {
+                    'from': 'AccountId',
+                    'role': 'scale_info::181',
+                    'scope': 'scale_info::180',
+                },
+            },
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
@@ -908,73 +952,6 @@ result = substrate.query(
                 'SupportedVersionChanged': ('scale_info::87', 'u32'),
                 'UnexpectedResponse': ('scale_info::87', 'u64'),
                 'VersionChangeNotified': ('scale_info::87', 'u32'),
-            },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::83',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::8',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::8',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::8',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'CrowdloanClaim': {
-                'ClaimPalletInitialized': None,
-                'ContributionsRootUpdated': '[u8; 32]',
-                'CrowdloanTrieIndexUpdated': 'u32',
-                'LeasePeriodUpdated': 'u32',
-                'LeaseStartUpdated': 'u32',
-                'LockedAtUpdated': 'u32',
-                'RewardClaimed': ('AccountId', 'AccountId', 'u128'),
-            },
-            'CrowdloanReward': {
-                'DirectPayoutRatioUpdated': 'u32',
-                'RewardClaimed': ('AccountId', 'u128', 'u128'),
-                'RewardPalletInitialized': ('u32', 'u32', 'u32'),
-                'VestingPeriodUpdated': 'u32',
-                'VestingStartUpdated': 'u32',
-            },
-            'Nfts': {'DepositAsset': '[u8; 32]'},
-            'OrmlXcm': {
-                'Sent': {'message': ['scale_info::99'], 'to': 'scale_info::87'},
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
-            'Permissions': {
-                'Added': {
-                    'role': 'scale_info::181',
-                    'scope': 'scale_info::180',
-                    'to': 'AccountId',
-                },
-                'Purged': {'from': 'AccountId', 'scope': 'scale_info::180'},
-                'Removed': {
-                    'from': 'AccountId',
-                    'role': 'scale_info::181',
-                    'scope': 'scale_info::180',
-                },
             },
             'PoolRegistry': {
                 'MetadataSet': {'metadata': 'Bytes', 'pool_id': 'u64'},
@@ -1090,6 +1067,7 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1236,6 +1214,28 @@ result = substrate.query(
                     'fee': 'scale_info::102',
                     'sender': 'AccountId',
                 },
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::83',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::8',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::8',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::8',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
         },
         'phase': {

@@ -20,7 +20,6 @@ call = substrate.compose_call(
     'XcAssetConfig', 'change_existing_asset_location', {
     'asset_id': 'u128',
     'new_asset_location': {
-        None: None,
         'V2': {
             'interior': {
                 'Here': None,
@@ -901,6 +900,7 @@ call = substrate.compose_call(
             },
             'parents': 'u8',
         },
+        None: None,
         'V3': {
             'interior': {
                 'Here': None,

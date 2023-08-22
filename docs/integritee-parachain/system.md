@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -353,6 +353,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Balances': {
                 'BalanceSet': {'free': 'u128', 'who': 'AccountId'},
                 'Burned': {'amount': 'u128', 'who': 'AccountId'},
@@ -504,6 +505,31 @@ result = substrate.query(
                     'message_id': '[u8; 32]',
                     'remaining_weight': 'scale_info::9',
                     'required_weight': 'scale_info::9',
+                },
+            },
+            'EnclaveBridge': {
+                'IndirectInvocationRegistered': '[u8; 32]',
+                'ProcessedParentchainBlock': {
+                    'block_hash': '[u8; 32]',
+                    'block_number': 'u32',
+                    'shard': '[u8; 32]',
+                    'trusted_calls_merkle_root': '[u8; 32]',
+                },
+                'PublishedHash': {
+                    'data': 'Bytes',
+                    'enclave_fingerprint': '[u8; 32]',
+                    'hash': '[u8; 32]',
+                },
+                'ShardConfigUpdated': '[u8; 32]',
+                'ShieldFunds': {
+                    'amount': 'u128',
+                    'encrypted_beneficiary': 'Bytes',
+                    'shard': '[u8; 32]',
+                },
+                'UnshieldedFunds': {
+                    'amount': 'u128',
+                    'beneficiary': 'AccountId',
+                    'shard': '[u8; 32]',
                 },
             },
             'Multisig': {
@@ -670,8 +696,11 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Sidechain': {
-                'FinalizedSidechainBlock': ('AccountId', '[u8; 32]'),
-                'ProposedSidechainBlock': ('AccountId', '[u8; 32]'),
+                'FinalizedSidechainBlock': {
+                    'block_header_hash': '[u8; 32]',
+                    'shard': '[u8; 32]',
+                    'validateer': 'AccountId',
+                },
             },
             'System': {
                 'CodeUpdated': None,
@@ -715,45 +744,52 @@ result = substrate.query(
                 },
             },
             'Teeracle': {
-                'AddedToWhitelist': ('Bytes', '[u8; 32]'),
-                'ExchangeRateDeleted': ('Bytes', 'Bytes'),
-                'ExchangeRateUpdated': (
-                    'Bytes',
-                    'Bytes',
-                    (None, 'scale_info::136'),
-                ),
-                'OracleUpdated': ('Bytes', 'Bytes'),
-                'RemovedFromWhitelist': ('Bytes', '[u8; 32]'),
+                'AddedToWhitelist': {
+                    'data_source': 'Bytes',
+                    'enclave_fingerprint': '[u8; 32]',
+                },
+                'ExchangeRateDeleted': {
+                    'data_source': 'Bytes',
+                    'trading_pair': 'Bytes',
+                },
+                'ExchangeRateUpdated': {
+                    'data_source': 'Bytes',
+                    'exchange_rate': 'scale_info::144',
+                    'trading_pair': 'Bytes',
+                },
+                'OracleUpdated': {
+                    'data_source': 'Bytes',
+                    'oracle_data_name': 'Bytes',
+                },
+                'RemovedFromWhitelist': {
+                    'data_source': 'Bytes',
+                    'enclave_fingerprint': '[u8; 32]',
+                },
             },
             'Teerex': {
-                'AddedEnclave': {
-                    'attestation_method': 'scale_info::124',
+                'AddedSgxEnclave': {
+                    'attestation_method': 'scale_info::125',
                     'registered_by': 'AccountId',
-                    'tcb_status': (None, 'scale_info::123'),
-                    'worker_url': 'Bytes',
+                    'tcb_status': (None, 'scale_info::124'),
+                    'worker_url': (None, 'Bytes'),
                 },
-                'Forwarded': '[u8; 32]',
-                'ProcessedParentchainBlock': (
-                    'AccountId',
-                    '[u8; 32]',
-                    '[u8; 32]',
-                    'u32',
-                ),
-                'PublishedHash': {
-                    'data': 'Bytes',
-                    'hash': '[u8; 32]',
-                    'mr_enclave': '[u8; 32]',
+                'RemovedProxiedEnclave': {
+                    'fingerprint': '[u8; 32]',
+                    'registrar': 'AccountId',
+                    'signer': 'scale_info::127',
                 },
-                'QuotingEnclaveRegistered': {
-                    'quoting_enclave': 'scale_info::129',
+                'RemovedSovereignEnclave': 'AccountId',
+                'SgxQuotingEnclaveRegistered': {
+                    'quoting_enclave': 'scale_info::138',
                 },
-                'RemovedEnclave': 'AccountId',
-                'ShieldFunds': 'Bytes',
-                'TcbInfoRegistered': {
+                'SgxTcbInfoRegistered': {
                     'fmspc': '[u8; 6]',
-                    'on_chain_info': 'scale_info::126',
+                    'on_chain_info': 'scale_info::135',
                 },
-                'UnshieldedFunds': 'AccountId',
+                'UpdatedSecurityFlags': {
+                    'allow_skipping_attestation': 'bool',
+                    'sgx_allow_debug_mode': 'bool',
+                },
             },
             'TransactionPayment': {
                 'TransactionFeePaid': {
@@ -808,6 +844,7 @@ result = substrate.query(
                 },
             },
             'XcmTransactor': {
+                'SentXcm': {'hash': '[u8; 32]'},
                 'SwapTransactSent': {'para_a': 'u32', 'para_b': 'u32'},
             },
             'XcmpQueue': {
@@ -831,7 +868,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1071,9 +1107,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'integritee-full',
     'impl_version': 1,
     'spec_name': 'integritee-parachain',
-    'spec_version': 35,
+    'spec_version': 37,
     'state_version': 0,
-    'transaction_version': 5,
+    'transaction_version': 6,
 }
 ```
 #### Python
