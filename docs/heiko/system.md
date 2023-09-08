@@ -1120,17 +1120,6 @@ result = substrate.query(
                 ),
                 'StreamWithdrawn': ('u128', 'AccountId', 'u32', 'u128'),
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1169,6 +1158,13 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1219,12 +1215,6 @@ result = substrate.query(
                     'sender': 'AccountId',
                 },
             },
-            'XcmHelper': {
-                'XcmWeightFeeUpdated': {
-                    'fee': 'u128',
-                    'weight': 'scale_info::8',
-                },
-            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -1247,11 +1237,21 @@ result = substrate.query(
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             None: None,
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'XcmHelper': {
+                'XcmWeightFeeUpdated': {
+                    'fee': 'u128',
+                    'weight': 'scale_info::8',
                 },
             },
         },

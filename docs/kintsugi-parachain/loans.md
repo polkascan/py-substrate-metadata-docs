@@ -2867,6 +2867,10 @@ Liquidator is same as borrower
 Only free lend tokens are redeemable
 
 ---------
+### MarketAlreadyActivated
+Market already activated
+
+---------
 ### MarketAlreadyExists
 Market already exists
 

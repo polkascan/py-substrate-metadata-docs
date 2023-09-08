@@ -479,31 +479,6 @@ result = substrate.query(
                     'new_nimbus_id': '[u8; 32]',
                 },
             },
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': '[u8; 20]',
-                },
-                'Deposit': {'amount': 'u128', 'who': '[u8; 20]'},
-                'DustLost': {'account': '[u8; 20]', 'amount': 'u128'},
-                'Endowed': {'account': '[u8; 20]', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::33',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                },
-                'Reserved': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Slashed': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                },
-                'Unreserved': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Withdraw': {'amount': 'u128', 'who': '[u8; 20]'},
-            },
             'ConvictionVoting': {'Delegated': ('[u8; 20]', '[u8; 20]'), 'Undelegated': '[u8; 20]'},
             'CouncilCollective': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -745,6 +720,44 @@ result = substrate.query(
                 'FailedToResumeIdleXcmExecution': {'error': 'scale_info::25'},
                 'FailedToSuspendIdleXcmExecution': {'error': 'scale_info::25'},
                 'NormalOperationResumed': None,
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': '[u8; 20]',
+                },
+                'Deposit': {'amount': 'u128', 'who': '[u8; 20]'},
+                'DustLost': {'account': '[u8; 20]', 'amount': 'u128'},
+                'Endowed': {'account': '[u8; 20]', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::33',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                },
+                'Reserved': {'amount': 'u128', 'who': '[u8; 20]'},
+                'Slashed': {'amount': 'u128', 'who': '[u8; 20]'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                },
+                'Unreserved': {'amount': 'u128', 'who': '[u8; 20]'},
+                'Withdraw': {'amount': 'u128', 'who': '[u8; 20]'},
             },
             'Migrations': {
                 'FailedToResumeIdleXcmExecution': {'error': 'scale_info::25'},
@@ -990,18 +1003,6 @@ result = substrate.query(
                     'expect_min': 'u128',
                 },
                 'TotalSelectedSet': {'new': 'u32', 'old': 'u32'},
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
             },
             'PolkadotXcm': {
                 'AssetsClaimed': (
@@ -1375,7 +1376,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

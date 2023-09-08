@@ -353,7 +353,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AssetManager': {
                 'ForeignAssetMetadataUpdated': {
                     'asset_id': 'u128',
@@ -877,53 +876,6 @@ result = substrate.query(
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
             },
-            'Proxy': {
-                'Announced': {
-                    'call_hash': '[u8; 32]',
-                    'proxy': 'AccountId',
-                    'real': 'AccountId',
-                },
-                'ProxyAdded': {
-                    'delay': 'u32',
-                    'delegatee': 'AccountId',
-                    'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::38',
-                },
-                'ProxyExecuted': {'result': 'scale_info::32'},
-                'ProxyRemoved': {
-                    'delay': 'u32',
-                    'delegatee': 'AccountId',
-                    'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::38',
-                },
-                'PureCreated': {
-                    'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::38',
-                    'pure': 'AccountId',
-                    'who': 'AccountId',
-                },
-            },
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::32',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'Sudo': {
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
@@ -971,14 +923,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'TechnicalCommitteeMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
             'Tokens': {
                 'BalanceSet': {
                     'currency_id': 'u128',
@@ -1087,17 +1031,6 @@ result = substrate.query(
                     'reactivated': 'u128',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::24',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::32'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::24'},
-            },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
@@ -1109,6 +1042,73 @@ result = substrate.query(
                     'fee': 'scale_info::86',
                     'sender': 'AccountId',
                 },
+            },
+            None: None,
+            'Proxy': {
+                'Announced': {
+                    'call_hash': '[u8; 32]',
+                    'proxy': 'AccountId',
+                    'real': 'AccountId',
+                },
+                'ProxyAdded': {
+                    'delay': 'u32',
+                    'delegatee': 'AccountId',
+                    'delegator': 'AccountId',
+                    'proxy_type': 'scale_info::38',
+                },
+                'ProxyExecuted': {'result': 'scale_info::32'},
+                'ProxyRemoved': {
+                    'delay': 'u32',
+                    'delegatee': 'AccountId',
+                    'delegator': 'AccountId',
+                    'proxy_type': 'scale_info::38',
+                },
+                'PureCreated': {
+                    'disambiguation_index': 'u16',
+                    'proxy_type': 'scale_info::38',
+                    'pure': 'AccountId',
+                    'who': 'AccountId',
+                },
+            },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::32',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
+            'TechnicalCommitteeMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::24',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::32'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::24'},
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},

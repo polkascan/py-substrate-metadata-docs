@@ -309,9 +309,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
-            None: None,
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -380,6 +380,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Asset': {
                 'AssetCreated': (
                     '[u8; 32]',
@@ -1184,14 +1185,6 @@ result = substrate.query(
                 'Sudid': {'Err': 'scale_info::24', 'Ok': ()},
                 'SudoAsDone': {'Err': 'scale_info::24', 'Ok': ()},
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            None: None,
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -1237,6 +1230,13 @@ result = substrate.query(
                 'MemberRevoked': ('[u8; 32]', '[u8; 32]'),
                 'MembersReset': ('[u8; 32]', ['[u8; 32]']),
                 'MembersSwapped': ('[u8; 32]', '[u8; 32]', '[u8; 32]'),
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
             },
             'Treasury': {
                 'TreasuryDisbursement': (
@@ -1560,7 +1560,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'polymesh_mainnet',
     'impl_version': 0,
     'spec_name': 'polymesh_mainnet',
-    'spec_version': 5004001,
+    'spec_version': 5004002,
     'state_version': 1,
     'transaction_version': 3,
 }

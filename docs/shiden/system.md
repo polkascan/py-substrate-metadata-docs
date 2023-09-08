@@ -1082,7 +1082,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'shiden',
     'impl_version': 0,
     'spec_name': 'shiden',
-    'spec_version': 104,
+    'spec_version': 106,
     'state_version': 1,
     'transaction_version': 2,
 }

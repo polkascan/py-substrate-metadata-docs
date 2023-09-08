@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -353,6 +353,26 @@ result = substrate.query(
 [
     {
         'event': {
+            'Escrow': {
+                'Deposit': {
+                    'amount': 'u128',
+                    'unlock_height': 'u32',
+                    'who': 'AccountId',
+                },
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'u32',
@@ -640,14 +660,6 @@ result = substrate.query(
                     'required_weight': 'scale_info::8',
                 },
             },
-            'Escrow': {
-                'Deposit': {
-                    'amount': 'u128',
-                    'unlock_height': 'u32',
-                    'who': 'AccountId',
-                },
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
             'EscrowAnnuity': {'BlockReward': 'u128'},
             'EscrowRewards': {
                 'DepositStake': {
@@ -875,6 +887,32 @@ result = substrate.query(
                     'currency_id': 'scale_info::50',
                 },
             },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::40',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::40',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::30',
+                    'timepoint': 'scale_info::40',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
             'Nomination': {
                 'DepositCollateral': {
                     'amount': 'u128',
@@ -987,77 +1025,6 @@ result = substrate.query(
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
             },
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::30',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::30'},
-                'SudoAsDone': {'sudo_result': 'scale_info::30'},
-            },
-            'UnknownTokens': {
-                'Deposited': {
-                    'asset': 'scale_info::140',
-                    'who': 'scale_info::73',
-                },
-                'Withdrawn': {
-                    'asset': 'scale_info::140',
-                    'who': 'scale_info::73',
-                },
-            },
-            'XTokens': {
-                'TransferredMultiAssets': {
-                    'assets': ['scale_info::140'],
-                    'dest': 'scale_info::73',
-                    'fee': 'scale_info::140',
-                    'sender': 'AccountId',
-                },
-            },
-            None: None,
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::40',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::40',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::30',
-                    'timepoint': 'scale_info::40',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -1158,6 +1125,27 @@ result = substrate.query(
                     'withdrawn_tokens': 'u128',
                 },
             },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::30',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
             'Security': {
                 'RecoverFromErrors': {
                     'cleared_errors': ['scale_info::98'],
@@ -1166,18 +1154,12 @@ result = substrate.query(
                 'UpdateActiveBlock': {'block_number': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Supply': {'Inflation': {'total_inflation': 'u128'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::30'},
+                'SudoAsDone': {'sudo_result': 'scale_info::30'},
             },
+            'Supply': {'Inflation': {'total_inflation': 'u128'}},
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1308,6 +1290,16 @@ result = substrate.query(
             'TxPause': {
                 'SomethingPaused': {'full_name': ('Bytes', (None, 'Bytes'))},
                 'SomethingUnpaused': {'full_name': ('Bytes', (None, 'Bytes'))},
+            },
+            'UnknownTokens': {
+                'Deposited': {
+                    'asset': 'scale_info::140',
+                    'who': 'scale_info::73',
+                },
+                'Withdrawn': {
+                    'asset': 'scale_info::140',
+                    'who': 'scale_info::73',
+                },
             },
             'Utility': {
                 'BatchCompleted': None,
@@ -1519,6 +1511,14 @@ result = substrate.query(
                     'vesting_schedule': 'scale_info::57',
                 },
                 'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::140'],
+                    'dest': 'scale_info::73',
+                    'fee': 'scale_info::140',
+                    'sender': 'AccountId',
+                },
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},

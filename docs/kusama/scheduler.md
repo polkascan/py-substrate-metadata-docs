@@ -229,12 +229,12 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': 'scale_info::128',
                 None: None,
                 'Origins': 'scale_info::129',
                 'ParachainsOrigin': 'scale_info::130',
                 'Void': 'scale_info::140',
                 'XcmPallet': 'scale_info::132',
+                'system': 'scale_info::128',
             },
             'priority': 'u8',
         },

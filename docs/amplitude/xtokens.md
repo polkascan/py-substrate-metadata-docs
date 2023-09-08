@@ -13952,6 +13952,7 @@ call = substrate.compose_call(
         ),
     },
     'dest': {
+        None: None,
         'V2': {
             'interior': {
                 'Here': None,
@@ -14832,7 +14833,6 @@ call = substrate.compose_call(
             },
             'parents': 'u8',
         },
-        None: None,
         'V3': {
             'interior': {
                 'Here': None,

@@ -229,8 +229,8 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                None: None,
                 'Council': 'scale_info::383',
+                None: None,
                 'CumulusXcm': 'scale_info::381',
                 'PolkadotXcm': 'scale_info::382',
                 'TechnicalCommittee': 'scale_info::384',

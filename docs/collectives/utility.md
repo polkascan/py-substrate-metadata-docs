@@ -1110,13 +1110,13 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
         None: None,
-        'Void': (),
     },
     'call': 'Call',
 }

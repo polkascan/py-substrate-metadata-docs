@@ -11,7 +11,7 @@
 | -------- | -------- | 
 | threshold | `u16` | 
 | other_signatories | `Vec<T::AccountId>` | 
-| maybe_timepoint | `Option<Timepoint<T::BlockNumber>>` | 
+| maybe_timepoint | `Option<Timepoint<BlockNumberFor<T>>>` | 
 | call_hash | `[u8; 32]` | 
 | max_weight | `Weight` | 
 
@@ -44,7 +44,7 @@ call = substrate.compose_call(
 | -------- | -------- | 
 | threshold | `u16` | 
 | other_signatories | `Vec<T::AccountId>` | 
-| maybe_timepoint | `Option<Timepoint<T::BlockNumber>>` | 
+| maybe_timepoint | `Option<Timepoint<BlockNumberFor<T>>>` | 
 | call | `Box<<T as Config>::RuntimeCall>` | 
 | max_weight | `Weight` | 
 
@@ -95,7 +95,7 @@ call = substrate.compose_call(
 | -------- | -------- | 
 | threshold | `u16` | 
 | other_signatories | `Vec<T::AccountId>` | 
-| timepoint | `Timepoint<T::BlockNumber>` | 
+| timepoint | `Timepoint<BlockNumberFor<T>>` | 
 | call_hash | `[u8; 32]` | 
 
 #### Python
@@ -122,7 +122,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | approving | `T::AccountId` | ```AccountId```
-| timepoint | `Timepoint<T::BlockNumber>` | ```{'height': 'u32', 'index': 'u32'}```
+| timepoint | `Timepoint<BlockNumberFor<T>>` | ```{'height': 'u32', 'index': 'u32'}```
 | multisig | `T::AccountId` | ```AccountId```
 | call_hash | `CallHash` | ```[u8; 32]```
 
@@ -132,7 +132,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | cancelling | `T::AccountId` | ```AccountId```
-| timepoint | `Timepoint<T::BlockNumber>` | ```{'height': 'u32', 'index': 'u32'}```
+| timepoint | `Timepoint<BlockNumberFor<T>>` | ```{'height': 'u32', 'index': 'u32'}```
 | multisig | `T::AccountId` | ```AccountId```
 | call_hash | `CallHash` | ```[u8; 32]```
 
@@ -142,10 +142,10 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | approving | `T::AccountId` | ```AccountId```
-| timepoint | `Timepoint<T::BlockNumber>` | ```{'height': 'u32', 'index': 'u32'}```
+| timepoint | `Timepoint<BlockNumberFor<T>>` | ```{'height': 'u32', 'index': 'u32'}```
 | multisig | `T::AccountId` | ```AccountId```
 | call_hash | `CallHash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### NewMultisig

@@ -110,7 +110,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -1097,6 +1096,7 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
+        None: None,
         'system': {
             'None': None,
             'Root': None,

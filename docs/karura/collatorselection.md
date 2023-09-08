@@ -164,7 +164,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::430'
+'scale_info::437'
 ```
 ---------
 ### DesiredCandidates

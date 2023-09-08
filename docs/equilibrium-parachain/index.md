@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | Equilibrium-parachain     |
 | Implementation name     | Equilibrium-parachain     |
-| Spec version     | 30     |
+| Spec version     | 31     |
 | SS58 Format     | 68     |
 | Token symbol      | ['EQ']     |
 | Token decimals      | [9]     |

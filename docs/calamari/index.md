@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | calamari     |
 | Implementation name     | calamari     |
-| Spec version     | 4310     |
+| Spec version     | 4400     |
 | SS58 Format     | 78     |
 | Token symbol      | KMA     |
 | Token decimals      | 12     |
@@ -15,7 +15,7 @@
 ## Pallets
 | Name | Calls | Events | Storage functions | Constants | Errors |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| [AssetManager](assetmanager.md) | [8](assetmanager.md#calls) | [9](assetmanager.md#events) | [10](assetmanager.md#storage-functions) | [0](assetmanager.md#constants) | [9](assetmanager.md#errors) |
+| [AssetManager](assetmanager.md) | [9](assetmanager.md#calls) | [10](assetmanager.md#events) | [11](assetmanager.md#storage-functions) | [0](assetmanager.md#constants) | [13](assetmanager.md#errors) |
 | [Assets](assets.md) | [28](assets.md#calls) | [21](assets.md#events) | [4](assets.md#storage-functions) | [7](assets.md#constants) | [19](assets.md#errors) |
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraAuthorFilter](auraauthorfilter.md) | [0](auraauthorfilter.md#calls) | [0](auraauthorfilter.md#events) | [0](auraauthorfilter.md#storage-functions) | [0](auraauthorfilter.md#constants) | [0](auraauthorfilter.md#errors) |
@@ -30,7 +30,7 @@
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [Farming](farming.md) | [14](farming.md#calls) | [16](farming.md#events) | [7](farming.md#storage-functions) | [3](farming.md#constants) | [12](farming.md#errors) |
-| [Lottery](lottery.md) | [12](lottery.md#calls) | [7](lottery.md#events) | [15](lottery.md#storage-functions) | [4](lottery.md#constants) | [18](lottery.md#errors) |
+| [Lottery](lottery.md) | [12](lottery.md#calls) | [7](lottery.md#events) | [15](lottery.md#storage-functions) | [4](lottery.md#constants) | [22](lottery.md#errors) |
 | [MantaPay](mantapay.md) | [4](mantapay.md#calls) | [4](mantapay.md#events) | [7](mantapay.md#storage-functions) | [0](mantapay.md#constants) | [41](mantapay.md#errors) |
 | [MantaSbt](mantasbt.md) | [13](mantasbt.md#calls) | [13](mantasbt.md#events) | [13](mantasbt.md#storage-functions) | [5](mantasbt.md#constants) | [56](mantasbt.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |

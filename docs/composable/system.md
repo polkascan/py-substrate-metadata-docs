@@ -357,27 +357,33 @@ result = substrate.query(
                 'AssetLocationRemoved': {'asset_id': 'u128'},
                 'AssetLocationUpdated': {
                     'asset_id': 'u128',
-                    'location': 'scale_info::139',
+                    'location': 'scale_info::138',
                 },
                 'AssetRegistered': {
                     'asset_id': 'u128',
-                    'asset_info': 'scale_info::150',
-                    'location': (None, 'scale_info::139'),
+                    'asset_info': 'scale_info::149',
+                    'location': (None, 'scale_info::138'),
                 },
                 'AssetUpdated': {
                     'asset_id': 'u128',
-                    'asset_info': 'scale_info::158',
+                    'asset_info': 'scale_info::157',
                 },
                 'MinFeeUpdated': {
                     'amount': (None, 'u128'),
-                    'foreign_asset_id': 'scale_info::139',
+                    'foreign_asset_id': 'scale_info::138',
                     'target_parachain_id': 'u32',
                 },
             },
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::30'},
-                'SudoAsDone': {'sudo_result': 'scale_info::30'},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             None: None,
             'Balances': {
@@ -406,8 +412,8 @@ result = substrate.query(
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
             'CallFilter': {
-                'Disabled': {'entry': 'scale_info::166'},
-                'Enabled': {'entry': 'scale_info::166'},
+                'Disabled': {'entry': 'scale_info::165'},
+                'Enabled': {'entry': 'scale_info::165'},
             },
             'CollatorSelection': {
                 'CandidateAdded': {
@@ -538,11 +544,6 @@ result = substrate.query(
                     'required_weight': 'scale_info::8',
                 },
             },
-            'GovernanceRegistry': {
-                'GrantRoot': {'asset_id': 'u128'},
-                'Remove': {'asset_id': 'u128'},
-                'Set': {'asset_id': 'u128', 'value': 'AccountId'},
-            },
             'Ibc': {
                 'AssetAdminUpdated': {'admin_account': 'AccountId'},
                 'ChannelOpened': {'channel_id': 'Bytes', 'port_id': 'Bytes'},
@@ -568,10 +569,10 @@ result = substrate.query(
                 },
                 'ClientStateSubstituted': {
                     'client_id': 'Str',
-                    'height': 'scale_info::177',
+                    'height': 'scale_info::176',
                 },
                 'ClientUpgradeSet': None,
-                'Events': {'events': ['scale_info::171']},
+                'Events': {'events': ['scale_info::170']},
                 'ExecuteMemoIbcTokenTransferFailed': {
                     'amount': 'u128',
                     'asset_id': 'u128',
@@ -723,7 +724,7 @@ result = substrate.query(
             'PalletMultihopXcmIbc': {
                 'FailedCallback': {
                     'origin_address': '[u8; 32]',
-                    'reason': 'scale_info::182',
+                    'reason': 'scale_info::181',
                     'route_id': 'u128',
                 },
                 'FailedMatchLocation': None,
@@ -739,7 +740,7 @@ result = substrate.query(
                     'asset_id': 'u128',
                     'from': 'AccountId',
                     'is_error': 'bool',
-                    'reason': 'scale_info::182',
+                    'reason': 'scale_info::181',
                     'to': 'AccountId',
                 },
                 'SuccessXcmToIbc': {
@@ -923,16 +924,10 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::30'},
+                'SudoAsDone': {'sudo_result': 'scale_info::30'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -1371,7 +1366,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'composable',
     'impl_version': 1,
     'spec_name': 'composable',
-    'spec_version': 10036,
+    'spec_version': 10037,
     'state_version': 0,
     'transaction_version': 2,
 }

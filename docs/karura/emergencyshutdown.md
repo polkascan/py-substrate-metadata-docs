@@ -50,7 +50,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| block_number | `T::BlockNumber` | ```u32```
+| block_number | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### Refund
@@ -59,14 +59,14 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | stable_coin_amount | `Balance` | ```u128```
-| refund_list | `Vec<(CurrencyId, Balance)>` | ```[({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': 'scale_info::52', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': 'scale_info::52', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'u128')]```
+| refund_list | `Vec<(CurrencyId, Balance)>` | ```[({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': 'scale_info::53', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': 'scale_info::53', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'u128')]```
 
 ---------
 ### Shutdown
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| block_number | `T::BlockNumber` | ```u32```
+| block_number | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ## Storage functions

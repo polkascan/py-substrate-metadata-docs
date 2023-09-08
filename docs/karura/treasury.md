@@ -237,7 +237,7 @@ result = substrate.query(
 ### Burn
 #### Value
 ```python
-0
+10000
 ```
 #### Python
 ```python
@@ -297,7 +297,7 @@ constant = substrate.get_constant('Treasury', 'ProposalBondMinimum')
 ### SpendPeriod
 #### Value
 ```python
-50400
+216000
 ```
 #### Python
 ```python

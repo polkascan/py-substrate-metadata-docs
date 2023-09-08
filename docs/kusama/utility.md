@@ -139,10 +139,11 @@ call = substrate.compose_call(
             'Fellowship8Dan',
             'Fellowship9Dan',
         ),
+        'Void': (),
+        None: None,
         'ParachainsOrigin': {
             'Parachain': 'u32',
         },
-        'Void': (),
         'XcmPallet': {
             'Response': {
                 'interior': {
@@ -1124,7 +1125,6 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
     'call': 'Call',
 }

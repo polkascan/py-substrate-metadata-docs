@@ -228,14 +228,14 @@ result = substrate.query(
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Ethereum': {'EthereumTransaction': '[u8; 20]'},
                 'Void': (),
+                None: None,
+                'Ethereum': {'EthereumTransaction': '[u8; 20]'},
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',

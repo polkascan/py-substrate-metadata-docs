@@ -30,28 +30,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### close_old_weight
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| proposal_hash | `T::Hash` | 
-| index | `ProposalIndex` | 
-| proposal_weight_bound | `OldWeight` | 
-| length_bound | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'FinancialCouncil', 'close_old_weight', {
-    'index': 'u32',
-    'length_bound': 'u32',
-    'proposal_hash': '[u8; 32]',
-    'proposal_weight_bound': 'u64',
-}
-)
-```
-
----------
 ### disapprove_proposal
 #### Attributes
 | Name | Type |
@@ -175,7 +153,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### MemberExecuted
@@ -183,7 +161,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### Proposed
@@ -292,6 +270,19 @@ result = substrate.query(
 #### Return value
 ```python
 {'ayes': ['AccountId'], 'end': 'u32', 'index': 'u32', 'nays': ['AccountId'], 'threshold': 'u32'}
+```
+---------
+## Constants
+
+---------
+### MaxProposalWeight
+#### Value
+```python
+{'proof_size': 26214400, 'ref_time': 250000000000}
+```
+#### Python
+```python
+constant = substrate.get_constant('FinancialCouncil', 'MaxProposalWeight')
 ```
 ---------
 ## Errors

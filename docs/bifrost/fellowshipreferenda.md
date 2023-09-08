@@ -218,6 +218,12 @@ call = substrate.compose_call(
             'Relay': None,
             'SiblingParachain': 'u32',
         },
+        'TechnicalCommittee': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
+        None: None,
         'Origins': (
             'WhitelistedCaller',
             'FellowshipAdmin',
@@ -239,11 +245,8 @@ call = substrate.compose_call(
             'Fellowship7Dan',
             'Fellowship8Dan',
             'Fellowship9Dan',
-            'AssetRegistryAdmin',
-            'FarmingAdmin',
-            'FeeShareAdmin',
-            'SystemMakerAdmin',
-            'VtokenMintingAdmin',
+            'TechAdmin',
+            'CoreAdmin',
         ),
         'PolkadotXcm': {
             'Response': {
@@ -1221,18 +1224,12 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        'TechnicalCommittee': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
         'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
 }
 )
@@ -1471,6 +1468,8 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+            None: None,
             'Council': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
@@ -1498,11 +1497,8 @@ result = substrate.query(
                 'Fellowship7Dan',
                 'Fellowship8Dan',
                 'Fellowship9Dan',
-                'AssetRegistryAdmin',
-                'FarmingAdmin',
-                'FeeShareAdmin',
-                'SystemMakerAdmin',
-                'VtokenMintingAdmin',
+                'TechAdmin',
+                'CoreAdmin',
             ),
             'PolkadotXcm': {
                 'Response': {'interior': 'scale_info::120', 'parents': 'u8'},
@@ -1513,8 +1509,6 @@ result = substrate.query(
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
             'Void': (),
         },
         'proposal': {

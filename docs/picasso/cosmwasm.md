@@ -32,7 +32,7 @@ Execute a previously instantiated contract.
 call = substrate.compose_call(
     'Cosmwasm', 'execute', {
     'contract': 'AccountId',
-    'funds': 'scale_info::400',
+    'funds': 'scale_info::398',
     'gas': 'u64',
     'message': 'Bytes',
 }
@@ -76,7 +76,7 @@ call = substrate.compose_call(
         'CodeHash': '[u8; 32]',
         'CodeId': 'u64',
     },
-    'funds': 'scale_info::400',
+    'funds': 'scale_info::398',
     'gas': 'u64',
     'label': 'Bytes',
     'message': 'Bytes',
@@ -525,7 +525,7 @@ constant = substrate.get_constant('Cosmwasm', 'MaxInstantiateSaltSize')
  Max code size after gas instrumentation.
 #### Value
 ```python
-1048576
+2097152
 ```
 #### Python
 ```python

@@ -239,11 +239,8 @@ call = substrate.compose_call(
             'Fellowship7Dan',
             'Fellowship8Dan',
             'Fellowship9Dan',
-            'AssetRegistryAdmin',
-            'FarmingAdmin',
-            'FeeShareAdmin',
-            'SystemMakerAdmin',
-            'VtokenMintingAdmin',
+            'TechAdmin',
+            'CoreAdmin',
         ),
         'PolkadotXcm': {
             'Response': {
@@ -1227,12 +1224,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
 }
 )
@@ -1498,11 +1495,8 @@ result = substrate.query(
                 'Fellowship7Dan',
                 'Fellowship8Dan',
                 'Fellowship9Dan',
-                'AssetRegistryAdmin',
-                'FarmingAdmin',
-                'FeeShareAdmin',
-                'SystemMakerAdmin',
-                'VtokenMintingAdmin',
+                'TechAdmin',
+                'CoreAdmin',
             ),
             'PolkadotXcm': {
                 'Response': {'interior': 'scale_info::120', 'parents': 'u8'},
@@ -1514,8 +1508,8 @@ result = substrate.query(
                 '_Phantom': None,
             },
             'Void': (),
-            None: None,
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
@@ -1644,9 +1638,9 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
             'min_enactment_period': 50,
             'min_support': {
                 'Reciprocal': {
-                    'factor': 8650766,
-                    'x_offset': 18867926,
-                    'y_offset': 41509433,
+                    'factor': 2566772,
+                    'x_offset': 5319148,
+                    'y_offset': 17446809,
                 },
             },
             'name': 'whitelisted_caller',
@@ -1763,7 +1757,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
             'confirm_period': 900,
             'decision_deposit': 1000000000000000,
             'decision_period': 100800,
-            'max_deciding': 2,
+            'max_deciding': 10,
             'min_approval': {
                 'Reciprocal': {
                     'factor': 222222224,
@@ -1789,7 +1783,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
             'confirm_period': 300,
             'decision_deposit': 250000000000000,
             'decision_period': 100800,
-            'max_deciding': 2,
+            'max_deciding': 10,
             'min_approval': {
                 'Reciprocal': {
                     'factor': 73724007,

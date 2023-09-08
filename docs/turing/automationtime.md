@@ -18,12 +18,12 @@ Tasks can only can be cancelled by their owners.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| task_id | `TaskId<T>` | 
+| task_id | `TaskIdV2` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'AutomationTime', 'cancel_task', {'task_id': '[u8; 32]'}
+    'AutomationTime', 'cancel_task', {'task_id': 'Bytes'}
 )
 ```
 
@@ -41,14 +41,14 @@ Sudo can force cancel a task.
 | Name | Type |
 | -------- | -------- | 
 | owner_id | `AccountOf<T>` | 
-| task_id | `TaskId<T>` | 
+| task_id | `TaskIdV2` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'AutomationTime', 'force_cancel_task', {
     'owner_id': 'AccountId',
-    'task_id': '[u8; 32]',
+    'task_id': 'Bytes',
 }
 )
 ```
@@ -97,7 +97,6 @@ Schedule a task that will dispatch a call.
 ** This is currently limited to calls from the System and Balances pallets.
 
 \# Parameters
-* `provided_id`: An id provided by the user. This id must be unique for the user.
 * `execution_times`: The list of unix standard times in seconds for when the task should run.
 * `call`: The call that will be dispatched.
 
@@ -110,7 +109,6 @@ Schedule a task that will dispatch a call.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| provided_id | `Vec<u8>` | 
 | schedule | `ScheduleParam` | 
 | call | `Box<<T as Config>::Call>` | 
 
@@ -119,7 +117,6 @@ Schedule a task that will dispatch a call.
 call = substrate.compose_call(
     'AutomationTime', 'schedule_dynamic_dispatch_task', {
     'call': 'Call',
-    'provided_id': 'Bytes',
     'schedule': {
         'Fixed': {
             'execution_times': ['u64'],
@@ -129,91 +126,6 @@ call = substrate.compose_call(
             'next_execution_time': 'u64',
         },
     },
-}
-)
-```
-
----------
-### schedule_native_transfer_task
-Schedule a task to transfer native token balance from sender to recipient.
-
-Before the task can be scheduled the task must past validation checks.
-* The transaction is signed
-* The provided_id&\#x27;s length &gt; 0
-* The times are valid
-* Larger transfer amount than the acceptable minimum
-* Transfer to account other than to self
-
-\# Parameters
-* `provided_id`: An id provided by the user. This id must be unique for the user.
-* `execution_times`: The list of unix standard times in seconds for when the task should run.
-* `recipient_id`: Account ID of the recipient.
-* `amount`: Amount of balance to transfer.
-
-\# Errors
-* `InvalidTime`: Time must end in a whole hour.
-* `PastTime`: Time must be in the future.
-* `DuplicateTask`: There can be no duplicate tasks.
-* `TimeTooFarOut`: Execution time or frequency are past the max time horizon.
-* `TimeSlotFull`: Time slot is full. No more tasks can be scheduled for this time.
-* `InvalidAmount`: Amount has to be larger than 0.1 OAK.
-* `TransferToSelf`: Sender cannot transfer money to self.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| provided_id | `Vec<u8>` | 
-| execution_times | `Vec<UnixTime>` | 
-| recipient_id | `AccountOf<T>` | 
-| amount | `BalanceOf<T>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'AutomationTime', 'schedule_native_transfer_task', {
-    'amount': 'u128',
-    'execution_times': ['u64'],
-    'provided_id': 'Bytes',
-    'recipient_id': 'AccountId',
-}
-)
-```
-
----------
-### schedule_notify_task
-Schedule a task to fire an event with a custom message.
-
-Before the task can be scheduled the task must past validation checks.
-* The transaction is signed
-* The provided_id&\#x27;s length &gt; 0
-* The message&\#x27;s length &gt; 0
-* The times are valid
-
-\# Parameters
-* `provided_id`: An id provided by the user. This id must be unique for the user.
-* `execution_times`: The list of unix standard times in seconds for when the task should run.
-* `message`: The message you want the event to have.
-
-\# Errors
-* `InvalidTime`: Time must end in a whole hour.
-* `PastTime`: Time must be in the future.
-* `EmptyMessage`: The message cannot be empty.
-* `DuplicateTask`: There can be no duplicate tasks.
-* `TimeTooFarOut`: Execution time or frequency are past the max time horizon.
-* `TimeSlotFull`: Time slot is full. No more tasks can be scheduled for this time.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| provided_id | `Vec<u8>` | 
-| execution_times | `Vec<UnixTime>` | 
-| message | `Vec<u8>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'AutomationTime', 'schedule_notify_task', {
-    'execution_times': ['u64'],
-    'message': 'Bytes',
-    'provided_id': 'Bytes',
 }
 )
 ```
@@ -224,17 +136,17 @@ Schedule a task through XCMP to fire an XCMP message with a provided call.
 
 Before the task can be scheduled the task must past validation checks.
 * The transaction is signed
-* The provided_id&\#x27;s length &gt; 0
 * The times are valid
 * The given asset location is supported
 
 \# Parameters
-* `provided_id`: An id provided by the user. This id must be unique for the user.
-* `execution_times`: The list of unix standard times in seconds for when the task should run.
-* `para_id`: Parachain id the XCMP call will be sent to.
-* `currency_id`: The currency in which fees will be paid.
+* `schedule`: The triggering rules for recurring task or the list of unix standard times in seconds for when the task should run.
+* `destination`: Destination the XCMP call will be sent to.
+* `schedule_fee`: The payment asset location required for scheduling automation task.
+* `execution_fee`: The fee will be paid for XCMP execution.
 * `encoded_call`: Call that will be sent via XCMP to the parachain id provided.
 * `encoded_call_weight`: Required weight at most the provided call will take.
+* `overall_weight`: The overall weight in which fees will be paid for XCM instructions.
 
 \# Errors
 * `InvalidTime`: Time must end in a whole hour.
@@ -242,29 +154,3569 @@ Before the task can be scheduled the task must past validation checks.
 * `DuplicateTask`: There can be no duplicate tasks.
 * `TimeTooFarOut`: Execution time or frequency are past the max time horizon.
 * `TimeSlotFull`: Time slot is full. No more tasks can be scheduled for this time.
+* `UnsupportedFeePayment`: Time slot is full. No more tasks can be scheduled for this time.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| provided_id | `Vec<u8>` | 
 | schedule | `ScheduleParam` | 
-| para_id | `ParaId` | 
-| currency_id | `T::CurrencyId` | 
-| xcm_asset_location | `VersionedMultiLocation` | 
+| destination | `Box<VersionedMultiLocation>` | 
+| schedule_fee | `Box<VersionedMultiLocation>` | 
+| execution_fee | `Box<AssetPayment>` | 
 | encoded_call | `Vec<u8>` | 
 | encoded_call_weight | `Weight` | 
+| overall_weight | `Weight` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'AutomationTime', 'schedule_xcmp_task', {
-    'currency_id': 'u32',
+    'destination': {
+        None: None,
+        'V2': {
+            'interior': {
+                'Here': None,
+                'X1': {
+                    'AccountId32': {
+                        'id': '[u8; 32]',
+                        'network': {
+                            'Any': None,
+                            'Kusama': None,
+                            'Named': 'Bytes',
+                            'Polkadot': None,
+                        },
+                    },
+                    'AccountIndex64': {
+                        'index': 'u64',
+                        'network': {
+                            'Any': None,
+                            'Kusama': None,
+                            'Named': 'Bytes',
+                            'Polkadot': None,
+                        },
+                    },
+                    'AccountKey20': {
+                        'key': '[u8; 20]',
+                        'network': {
+                            'Any': None,
+                            'Kusama': None,
+                            'Named': 'Bytes',
+                            'Polkadot': None,
+                        },
+                    },
+                    'GeneralIndex': 'u128',
+                    'GeneralKey': 'Bytes',
+                    'OnlyChild': None,
+                    'PalletInstance': 'u8',
+                    'Parachain': 'u32',
+                    'Plurality': {
+                        'id': {
+                            'Administration': None,
+                            'Defense': None,
+                            'Executive': None,
+                            'Index': 'u32',
+                            'Judicial': None,
+                            'Legislative': None,
+                            'Named': 'Bytes',
+                            'Technical': None,
+                            'Treasury': None,
+                            'Unit': None,
+                        },
+                        'part': {
+                            'AtLeastProportion': 'InnerStruct',
+                            'Fraction': 'InnerStruct',
+                            'Members': 'InnerStruct',
+                            'MoreThanProportion': 'InnerStruct',
+                            'Voice': None,
+                        },
+                    },
+                },
+                'X2': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X3': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X4': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X5': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X6': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X7': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X8': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+            },
+            'parents': 'u8',
+        },
+        'V3': {
+            'interior': {
+                'Here': None,
+                'X1': {
+                    'AccountId32': {
+                        'id': '[u8; 32]',
+                        'network': (
+                            None,
+                            'scale_info::58',
+                        ),
+                    },
+                    'AccountIndex64': {
+                        'index': 'u64',
+                        'network': (
+                            None,
+                            'scale_info::58',
+                        ),
+                    },
+                    'AccountKey20': {
+                        'key': '[u8; 20]',
+                        'network': (
+                            None,
+                            'scale_info::58',
+                        ),
+                    },
+                    'GeneralIndex': 'u128',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
+                    'OnlyChild': None,
+                    'PalletInstance': 'u8',
+                    'Parachain': 'u32',
+                    'Plurality': {
+                        'id': {
+                            'Administration': None,
+                            'Defense': None,
+                            'Executive': None,
+                            'Index': 'u32',
+                            'Judicial': None,
+                            'Legislative': None,
+                            'Moniker': '[u8; 4]',
+                            'Technical': None,
+                            'Treasury': None,
+                            'Unit': None,
+                        },
+                        'part': {
+                            'AtLeastProportion': 'InnerStruct',
+                            'Fraction': 'InnerStruct',
+                            'Members': 'InnerStruct',
+                            'MoreThanProportion': 'InnerStruct',
+                            'Voice': None,
+                        },
+                    },
+                },
+                'X2': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X3': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X4': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X5': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X6': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X7': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X8': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+            },
+            'parents': 'u8',
+        },
+    },
     'encoded_call': 'Bytes',
     'encoded_call_weight': {
         'proof_size': 'u64',
         'ref_time': 'u64',
     },
-    'para_id': 'u32',
-    'provided_id': 'Bytes',
+    'execution_fee': {
+        'amount': 'u128',
+        'asset_location': {
+            'V2': {
+                'interior': {
+                    'Here': None,
+                    'X1': {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    'X2': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X3': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X4': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X5': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X6': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X7': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X8': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                },
+                'parents': 'u8',
+            },
+            None: None,
+            'V3': {
+                'interior': {
+                    'Here': None,
+                    'X1': {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    'X2': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X3': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X4': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X5': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X6': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X7': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X8': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                },
+                'parents': 'u8',
+            },
+        },
+    },
+    'overall_weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
     'schedule': {
         'Fixed': {
             'execution_times': ['u64'],
@@ -274,7 +3726,7 @@ call = substrate.compose_call(
             'next_execution_time': 'u64',
         },
     },
-    'xcm_asset_location': {
+    'schedule_fee': {
         None: None,
         'V2': {
             'interior': {
@@ -2897,30 +6349,3593 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_xcmp_task_through_proxy
+Schedule a task through XCMP through proxy account to fire an XCMP message with a provided call.
+
+Before the task can be scheduled the task must past validation checks.
+* The transaction is signed
+* The times are valid
+* The given asset location is supported
+
+\# Parameters
+* `schedule`: The triggering rules for recurring task or the list of unix standard times in seconds for when the task should run.
+* `destination`: Destination the XCMP call will be sent to.
+* `schedule_fee`: The payment asset location required for scheduling automation task.
+* `execution_fee`: The fee will be paid for XCMP execution.
+* `encoded_call`: Call that will be sent via XCMP to the parachain id provided.
+* `encoded_call_weight`: Required weight at most the provided call will take.
+* `overall_weight`: The overall weight in which fees will be paid for XCM instructions.
+
+\# Errors
+* `InvalidTime`: Time must end in a whole hour.
+* `PastTime`: Time must be in the future.
+* `DuplicateTask`: There can be no duplicate tasks.
+* `TimeTooFarOut`: Execution time or frequency are past the max time horizon.
+* `TimeSlotFull`: Time slot is full. No more tasks can be scheduled for this time.
+* `UnsupportedFeePayment`: Time slot is full. No more tasks can be scheduled for this time.
+* `Other(&quot;proxy error: expected `ProxyType::Any`&quot;)`: schedule_as must be a proxy account of type &quot;any&quot; for the caller.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| provided_id | `Vec<u8>` | 
 | schedule | `ScheduleParam` | 
-| para_id | `ParaId` | 
-| currency_id | `T::CurrencyId` | 
-| xcm_asset_location | `VersionedMultiLocation` | 
+| destination | `Box<VersionedMultiLocation>` | 
+| schedule_fee | `Box<VersionedMultiLocation>` | 
+| execution_fee | `Box<AssetPayment>` | 
 | encoded_call | `Vec<u8>` | 
 | encoded_call_weight | `Weight` | 
+| overall_weight | `Weight` | 
 | schedule_as | `T::AccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'AutomationTime', 'schedule_xcmp_task_through_proxy', {
-    'currency_id': 'u32',
+    'destination': {
+        None: None,
+        'V2': {
+            'interior': {
+                'Here': None,
+                'X1': {
+                    'AccountId32': {
+                        'id': '[u8; 32]',
+                        'network': {
+                            'Any': None,
+                            'Kusama': None,
+                            'Named': 'Bytes',
+                            'Polkadot': None,
+                        },
+                    },
+                    'AccountIndex64': {
+                        'index': 'u64',
+                        'network': {
+                            'Any': None,
+                            'Kusama': None,
+                            'Named': 'Bytes',
+                            'Polkadot': None,
+                        },
+                    },
+                    'AccountKey20': {
+                        'key': '[u8; 20]',
+                        'network': {
+                            'Any': None,
+                            'Kusama': None,
+                            'Named': 'Bytes',
+                            'Polkadot': None,
+                        },
+                    },
+                    'GeneralIndex': 'u128',
+                    'GeneralKey': 'Bytes',
+                    'OnlyChild': None,
+                    'PalletInstance': 'u8',
+                    'Parachain': 'u32',
+                    'Plurality': {
+                        'id': {
+                            'Administration': None,
+                            'Defense': None,
+                            'Executive': None,
+                            'Index': 'u32',
+                            'Judicial': None,
+                            'Legislative': None,
+                            'Named': 'Bytes',
+                            'Technical': None,
+                            'Treasury': None,
+                            'Unit': None,
+                        },
+                        'part': {
+                            'AtLeastProportion': 'InnerStruct',
+                            'Fraction': 'InnerStruct',
+                            'Members': 'InnerStruct',
+                            'MoreThanProportion': 'InnerStruct',
+                            'Voice': None,
+                        },
+                    },
+                },
+                'X2': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X3': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X4': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X5': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X6': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X7': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+                'X8': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                ),
+            },
+            'parents': 'u8',
+        },
+        'V3': {
+            'interior': {
+                'Here': None,
+                'X1': {
+                    'AccountId32': {
+                        'id': '[u8; 32]',
+                        'network': (
+                            None,
+                            'scale_info::58',
+                        ),
+                    },
+                    'AccountIndex64': {
+                        'index': 'u64',
+                        'network': (
+                            None,
+                            'scale_info::58',
+                        ),
+                    },
+                    'AccountKey20': {
+                        'key': '[u8; 20]',
+                        'network': (
+                            None,
+                            'scale_info::58',
+                        ),
+                    },
+                    'GeneralIndex': 'u128',
+                    'GeneralKey': {
+                        'data': '[u8; 32]',
+                        'length': 'u8',
+                    },
+                    'GlobalConsensus': {
+                        'BitcoinCash': None,
+                        'BitcoinCore': None,
+                        'ByFork': {
+                            'block_hash': '[u8; 32]',
+                            'block_number': 'u64',
+                        },
+                        'ByGenesis': '[u8; 32]',
+                        'Ethereum': {
+                            'chain_id': 'u64',
+                        },
+                        'Kusama': None,
+                        'Polkadot': None,
+                        'Rococo': None,
+                        'Westend': None,
+                        'Wococo': None,
+                    },
+                    'OnlyChild': None,
+                    'PalletInstance': 'u8',
+                    'Parachain': 'u32',
+                    'Plurality': {
+                        'id': {
+                            'Administration': None,
+                            'Defense': None,
+                            'Executive': None,
+                            'Index': 'u32',
+                            'Judicial': None,
+                            'Legislative': None,
+                            'Moniker': '[u8; 4]',
+                            'Technical': None,
+                            'Treasury': None,
+                            'Unit': None,
+                        },
+                        'part': {
+                            'AtLeastProportion': 'InnerStruct',
+                            'Fraction': 'InnerStruct',
+                            'Members': 'InnerStruct',
+                            'MoreThanProportion': 'InnerStruct',
+                            'Voice': None,
+                        },
+                    },
+                },
+                'X2': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X3': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X4': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X5': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X6': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X7': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+                'X8': (
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                ),
+            },
+            'parents': 'u8',
+        },
+    },
     'encoded_call': 'Bytes',
     'encoded_call_weight': {
         'proof_size': 'u64',
         'ref_time': 'u64',
     },
-    'para_id': 'u32',
-    'provided_id': 'Bytes',
+    'execution_fee': {
+        'amount': 'u128',
+        'asset_location': {
+            'V2': {
+                'interior': {
+                    'Here': None,
+                    'X1': {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': 'scale_info::48',
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': 'scale_info::48',
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'Bytes',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::52',
+                            'part': 'scale_info::53',
+                        },
+                    },
+                    'X2': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X3': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X4': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X5': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X6': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X7': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X8': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'Bytes',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                },
+                'parents': 'u8',
+            },
+            None: None,
+            'V3': {
+                'interior': {
+                    'Here': None,
+                    'X1': {
+                        'AccountId32': {
+                            'id': '[u8; 32]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountIndex64': {
+                            'index': 'u64',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'AccountKey20': {
+                            'key': '[u8; 20]',
+                            'network': (
+                                None,
+                                'scale_info::58',
+                            ),
+                        },
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': {
+                            'data': '[u8; 32]',
+                            'length': 'u8',
+                        },
+                        'GlobalConsensus': {
+                            'BitcoinCash': None,
+                            'BitcoinCore': None,
+                            'ByFork': 'InnerStruct',
+                            'ByGenesis': '[u8; 32]',
+                            'Ethereum': 'InnerStruct',
+                            'Kusama': None,
+                            'Polkadot': None,
+                            'Rococo': None,
+                            'Westend': None,
+                            'Wococo': None,
+                        },
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': {
+                            'id': 'scale_info::59',
+                            'part': 'scale_info::60',
+                        },
+                    },
+                    'X2': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X3': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X4': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X5': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X6': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X7': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                    'X8': (
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                        {
+                            'AccountId32': 'InnerStruct',
+                            'AccountIndex64': 'InnerStruct',
+                            'AccountKey20': 'InnerStruct',
+                            'GeneralIndex': 'u128',
+                            'GeneralKey': 'InnerStruct',
+                            'GlobalConsensus': 'scale_info::58',
+                            'OnlyChild': None,
+                            'PalletInstance': 'u8',
+                            'Parachain': 'u32',
+                            'Plurality': 'InnerStruct',
+                        },
+                    ),
+                },
+                'parents': 'u8',
+            },
+        },
+    },
+    'overall_weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
     'schedule': {
         'Fixed': {
             'execution_times': ['u64'],
@@ -2931,7 +9946,7 @@ call = substrate.compose_call(
         },
     },
     'schedule_as': 'AccountId',
-    'xcm_asset_location': {
+    'schedule_fee': {
         None: None,
         'V2': {
             'interior': {
@@ -5556,74 +12571,37 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### AutoCompoundDelegatorStakeFailed
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| task_id | `TaskId<T>` | ```[u8; 32]```
-| error_message | `Vec<u8>` | ```Bytes```
-| error | `DispatchErrorWithPostInfo` | ```{'post_info': {'actual_weight': (None, {'ref_time': 'u64', 'proof_size': 'u64'}), 'pays_fee': ('Yes', 'No')}, 'error': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
-
----------
-### CallCannotBeDecoded
-The call for the DynamicDispatch action can no longer be decoded.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| who | `AccountOf<T>` | ```AccountId```
-| task_id | `TaskId<T>` | ```[u8; 32]```
-
----------
-### DynamicDispatchResult
-The result of the DynamicDispatch action.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| who | `AccountOf<T>` | ```AccountId```
-| task_id | `TaskId<T>` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
-
----------
-### Notify
-Notify event for the task.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| message | `Vec<u8>` | ```Bytes```
-
----------
-### SuccesfullyAutoCompoundedDelegatorStake
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| task_id | `TaskId<T>` | ```[u8; 32]```
-| amount | `BalanceOf<T>` | ```u128```
-
----------
-### SuccessfullyTransferredFunds
-Successfully transferred funds
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| task_id | `TaskId<T>` | ```[u8; 32]```
-
----------
 ### TaskCancelled
 Cancelled a task.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountOf<T>` | ```AccountId```
-| task_id | `TaskId<T>` | ```[u8; 32]```
+| task_id | `TaskIdV2` | ```Bytes```
 
 ---------
-### TaskFailedToReschedule
-A recurring task attempted but failed to be rescheduled
+### TaskCompleted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountOf<T>` | ```AccountId```
-| task_id | `TaskId<T>` | ```[u8; 32]```
+| task_id | `TaskIdV2` | ```Bytes```
+
+---------
+### TaskExecuted
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountOf<T>` | ```AccountId```
+| task_id | `TaskIdV2` | ```Bytes```
+
+---------
+### TaskExecutionFailed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountOf<T>` | ```AccountId```
+| task_id | `TaskIdV2` | ```Bytes```
 | error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
@@ -5633,7 +12611,7 @@ The task could not be run at the scheduled time.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountOf<T>` | ```AccountId```
-| task_id | `TaskId<T>` | ```[u8; 32]```
+| task_id | `TaskIdV2` | ```Bytes```
 | execution_time | `UnixTime` | ```u64```
 
 ---------
@@ -5643,7 +12621,7 @@ A Task was not found.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountOf<T>` | ```AccountId```
-| task_id | `TaskId<T>` | ```[u8; 32]```
+| task_id | `TaskIdV2` | ```Bytes```
 
 ---------
 ### TaskNotRescheduled
@@ -5652,7 +12630,17 @@ A recurring task was not rescheduled
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountOf<T>` | ```AccountId```
-| task_id | `TaskId<T>` | ```[u8; 32]```
+| task_id | `TaskIdV2` | ```Bytes```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+
+---------
+### TaskRescheduleFailed
+A recurring task attempted but failed to be rescheduled
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountOf<T>` | ```AccountId```
+| task_id | `TaskIdV2` | ```Bytes```
 | error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
@@ -5662,7 +12650,8 @@ A recurring task was rescheduled
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountOf<T>` | ```AccountId```
-| task_id | `TaskId<T>` | ```[u8; 32]```
+| task_id | `TaskIdV2` | ```Bytes```
+| schedule_as | `Option<AccountOf<T>>` | ```(None, 'AccountId')```
 
 ---------
 ### TaskScheduled
@@ -5671,7 +12660,18 @@ Schedule task success.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountOf<T>` | ```AccountId```
-| task_id | `TaskId<T>` | ```[u8; 32]```
+| task_id | `TaskIdV2` | ```Bytes```
+| schedule_as | `Option<AccountOf<T>>` | ```(None, 'AccountId')```
+
+---------
+### TaskTriggered
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountOf<T>` | ```AccountId```
+| task_id | `TaskIdV2` | ```Bytes```
+| condition | `BTreeMap<Vec<u8>, Vec<u8>>` | ```scale_info::134```
+| encoded_call | `Option<Vec<u8>>` | ```(None, 'Bytes')```
 
 ---------
 ### TransferFailed
@@ -5679,7 +12679,7 @@ Transfer Failed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task_id | `TaskId<T>` | ```[u8; 32]```
+| task_id | `TaskIdV2` | ```Bytes```
 | error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
@@ -5688,18 +12688,9 @@ Failed to send XCMP
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task_id | `T::Hash` | ```[u8; 32]```
-| para_id | `ParaId` | ```u32```
+| task_id | `TaskIdV2` | ```Bytes```
+| destination | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Moniker': '[u8; 4]', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None, 'Defense': None, 'Administration': None, 'Treasury': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': {'block_number': 'u64', 'block_hash': '[u8; 32]'}, 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': {'chain_id': 'u64'}, 'BitcoinCore': None, 'BitcoinCash': None}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::58'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::58'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::58'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}})}}```
 | error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
-
----------
-### XcmpTaskSucceeded
-Successfully sent XCMP
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| task_id | `T::Hash` | ```[u8; 32]```
-| para_id | `ParaId` | ```u32```
 
 ---------
 ## Storage functions
@@ -5710,13 +12701,14 @@ Successfully sent XCMP
 #### Python
 ```python
 result = substrate.query(
-    'AutomationTime', 'AccountTasks', ['AccountId', '[u8; 32]']
+    'AutomationTime', 'AccountTasks', ['AccountId', 'Bytes']
 )
 ```
 
 #### Return value
 ```python
 {
+    'abort_errors': ['Bytes'],
     'action': {
         'AutoCompoundDelegatedStake': {
             'account_minimum': 'u128',
@@ -5724,31 +12716,137 @@ result = substrate.query(
             'delegator': 'AccountId',
         },
         'DynamicDispatch': {'encoded_call': 'Bytes'},
-        'NativeTransfer': {
-            'amount': 'u128',
-            'recipient': 'AccountId',
-            'sender': 'AccountId',
-        },
-        'Notify': {'message': 'Bytes'},
         'XCMP': {
-            'currency_id': 'u32',
+            'destination': {
+                'interior': {
+                    'Here': None,
+                    'X1': 'scale_info::56',
+                    'X2': ('scale_info::56', 'scale_info::56'),
+                    'X3': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X4': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X5': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X6': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X7': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X8': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                },
+                'parents': 'u8',
+            },
             'encoded_call': 'Bytes',
             'encoded_call_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
-            'para_id': 'u32',
+            'execution_fee': {
+                'amount': 'u128',
+                'asset_location': {
+                    None: None,
+                    'V2': 'scale_info::44',
+                    'V3': 'scale_info::54',
+                },
+            },
+            'instruction_sequence': (
+                'PayThroughSovereignAccount',
+                'PayThroughRemoteDerivativeAccount',
+            ),
+            'overall_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
             'schedule_as': (None, 'AccountId'),
-            'xcm_asset_location': {
-                None: None,
-                'V2': {'interior': 'scale_info::45', 'parents': 'u8'},
-                'V3': {'interior': 'scale_info::55', 'parents': 'u8'},
+            'schedule_fee': {
+                'interior': {
+                    'Here': None,
+                    'X1': 'scale_info::56',
+                    'X2': ('scale_info::56', 'scale_info::56'),
+                    'X3': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X4': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X5': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X6': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X7': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                    'X8': (
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                        'scale_info::56',
+                    ),
+                },
+                'parents': 'u8',
             },
         },
     },
     'owner_id': 'AccountId',
-    'provided_id': 'Bytes',
     'schedule': {
         'Fixed': {'execution_times': ['u64'], 'executions_left': 'u32'},
         'Recurring': {'frequency': 'u64', 'next_execution_time': 'u64'},
     },
+    'task_id': 'Bytes',
 }
 ```
 ---------
@@ -5777,7 +12875,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[{'execution_time': 'u64', 'owner_id': 'AccountId', 'task_id': '[u8; 32]'}]
+[{'execution_time': 'u64', 'owner_id': 'AccountId', 'task_id': 'Bytes'}]
 ```
 ---------
 ### ScheduledTasksV3
@@ -5791,7 +12889,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'tasks': [('AccountId', '[u8; 32]')], 'weight': 'u128'}
+{'tasks': [('AccountId', 'Bytes')], 'weight': 'u128'}
 ```
 ---------
 ### Shutdown
@@ -5819,7 +12917,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[('AccountId', '[u8; 32]')]
+[('AccountId', 'Bytes')]
 ```
 ---------
 ## Constants
@@ -5833,17 +12931,6 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('AutomationTime', 'ExecutionWeightFee')
-```
----------
-### GetNativeCurrencyId
- The currencyId for the native currency.
-#### Value
-```python
-0
-```
-#### Python
-```python
-constant = substrate.get_constant('AutomationTime', 'GetNativeCurrencyId')
 ```
 ---------
 ### MaxBlockWeight
@@ -5939,16 +13026,11 @@ Block time not set.
 The call can no longer be decoded.
 
 ---------
+### CannotReanchor
+
+---------
 ### DuplicateTask
 There can be no duplicate tasks.
-
----------
-### EmptyMessage
-The message cannot be empty.
-
----------
-### EmptyProvidedId
-The provided_id cannot be empty
 
 ---------
 ### IncoveribleCurrencyId
@@ -5957,10 +13039,6 @@ Incoverible currency ID.
 ---------
 ### InsufficientBalance
 Insufficient balance to pay execution fee.
-
----------
-### InvalidAmount
-Amount has to be larger than 0.1 OAK.
 
 ---------
 ### InvalidTime
@@ -5991,7 +13069,6 @@ Time cannot be too far in the future.
 Too many execution times provided.
 
 ---------
-### TransferToSelf
-Sender cannot transfer money to self.
+### UnsupportedFeePayment
 
 ---------

@@ -367,12 +367,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
-            None: None,
             'AdvisoryCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -921,6 +915,11 @@ result = substrate.query(
                     'AccountId',
                 ),
             },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -1180,6 +1179,7 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            None: None,
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',

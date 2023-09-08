@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -390,7 +390,6 @@ result = substrate.query(
                     'xcm_rate_limit': (None, 'u128'),
                 },
             },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -536,30 +535,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Democracy': {
-                'Blacklisted': {'proposal_hash': '[u8; 32]'},
-                'Cancelled': {'ref_index': 'u32'},
-                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
-                'ExternalTabled': None,
-                'NotPassed': {'ref_index': 'u32'},
-                'Passed': {'ref_index': 'u32'},
-                'ProposalCanceled': {'prop_index': 'u32'},
-                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::39'},
-                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Undelegated': {'account': 'AccountId'},
-                'Vetoed': {
-                    'proposal_hash': '[u8; 32]',
-                    'until': 'u32',
-                    'who': 'AccountId',
-                },
-                'Voted': {
-                    'ref_index': 'u32',
-                    'vote': 'scale_info::40',
-                    'voter': 'AccountId',
-                },
-            },
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -587,6 +562,62 @@ result = substrate.query(
                 'Added': {'who': 'AccountId'},
                 'Dusted': {'amount': 'u128', 'who': 'AccountId'},
                 'Removed': {'who': 'AccountId'},
+            },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::53',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::53',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::34',
+                    'timepoint': 'scale_info::53',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
+            None: None,
+            'Democracy': {
+                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Cancelled': {'ref_index': 'u32'},
+                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
+                'ExternalTabled': None,
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'ProposalCanceled': {'prop_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::39'},
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Undelegated': {'account': 'AccountId'},
+                'Vetoed': {
+                    'proposal_hash': '[u8; 32]',
+                    'until': 'u32',
+                    'who': 'AccountId',
+                },
+                'Voted': {
+                    'ref_index': 'u32',
+                    'vote': 'scale_info::40',
+                    'voter': 'AccountId',
+                },
             },
             'DynamicFees': (),
             'Elections': {
@@ -648,32 +679,6 @@ result = substrate.query(
                     'destination_account_id': 'AccountId',
                     'native_fee_amount': 'u128',
                     'non_native_fee_amount': 'u128',
-                },
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::53',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::53',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::34',
-                    'timepoint': 'scale_info::53',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
                 },
             },
             'OTC': {
@@ -953,11 +958,6 @@ result = substrate.query(
                     'scale_info::65',
                     ['scale_info::113'],
                 ),
-            },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
             },
             'Proxy': {
                 'Announced': {

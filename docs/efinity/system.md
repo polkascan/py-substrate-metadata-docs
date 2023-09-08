@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -405,6 +405,27 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'CollatorStaking': {
+                'CandidateJoined': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                    'rewards_cut': 'u32',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'CollatorSelected': {'account_id': 'AccountId'},
+                'NewInvulnerables': {'new': ['AccountId']},
+                'Nominated': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                    'collator_id': 'AccountId',
+                },
+                'NominationRemoved': {
+                    'account_id': 'AccountId',
+                    'amount': 'u128',
+                    'collator_id': 'AccountId',
+                },
+                'RoundFinalized': {'number': 'u32'},
+            },
             'CommunityPool': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -524,84 +545,6 @@ result = substrate.query(
                 'BatchFailed': {'error': 'scale_info::25', 'index': 'u32'},
                 'BatchPartiallyDispatched': [('u32', 'scale_info::25')],
             },
-            'ExtrinsicPause': {
-                'ExtrinsicPaused': {
-                    'extrinsic_name': 'Bytes',
-                    'pallet_name': 'Bytes',
-                },
-                'ExtrinsicResumed': {
-                    'extrinsic_name': 'Bytes',
-                    'pallet_name': 'Bytes',
-                },
-                'PalletPaused': {'pallet_name': 'Bytes'},
-                'PalletResumed': {'pallet_name': 'Bytes'},
-            },
-            'Marketplace': {
-                'AuctionFinalized': {
-                    'listing_id': '[u8; 32]',
-                    'protocol_fee': 'u128',
-                    'royalty': 'u128',
-                    'winning_bid': (None, 'scale_info::235'),
-                },
-                'BidPlaced': {
-                    'bid': 'scale_info::235',
-                    'listing_id': '[u8; 32]',
-                },
-                'ListingCancelled': {'listing_id': '[u8; 32]'},
-                'ListingCreated': {
-                    'listing': 'scale_info::227',
-                    'listing_id': '[u8; 32]',
-                },
-                'ListingFilled': {
-                    'amount_filled': 'u128',
-                    'amount_remaining': 'u128',
-                    'buyer': 'AccountId',
-                    'listing_id': '[u8; 32]',
-                    'protocol_fee': 'u128',
-                    'royalty': 'u128',
-                },
-                'ProtocolFeeSet': {'protocol_fee': 'u32'},
-            },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::33'},
-                'SudoAsDone': {'sudo_result': 'scale_info::33'},
-            },
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            None: None,
-            'CollatorStaking': {
-                'CandidateJoined': {
-                    'account_id': 'AccountId',
-                    'amount': 'u128',
-                    'rewards_cut': 'u32',
-                },
-                'CandidateRemoved': {'account_id': 'AccountId'},
-                'CollatorSelected': {'account_id': 'AccountId'},
-                'NewInvulnerables': {'new': ['AccountId']},
-                'Nominated': {
-                    'account_id': 'AccountId',
-                    'amount': 'u128',
-                    'collator_id': 'AccountId',
-                },
-                'NominationRemoved': {
-                    'account_id': 'AccountId',
-                    'amount': 'u128',
-                    'collator_id': 'AccountId',
-                },
-                'RoundFinalized': {'number': 'u32'},
-            },
             'EfinityXcm': {
                 'MinimumWeightUpdated': {
                     'fee': 'u128',
@@ -622,6 +565,18 @@ result = substrate.query(
                     'Transactional': 'scale_info::29',
                     'Unavailable': None,
                 },
+            },
+            'ExtrinsicPause': {
+                'ExtrinsicPaused': {
+                    'extrinsic_name': 'Bytes',
+                    'pallet_name': 'Bytes',
+                },
+                'ExtrinsicResumed': {
+                    'extrinsic_name': 'Bytes',
+                    'pallet_name': 'Bytes',
+                },
+                'PalletPaused': {'pallet_name': 'Bytes'},
+                'PalletResumed': {'pallet_name': 'Bytes'},
             },
             'FuelTanks': {
                 'AccountAdded': {
@@ -689,6 +644,32 @@ result = substrate.query(
                     'rule_set_id': (None, 'u32'),
                     'tank_id': 'AccountId',
                 },
+            },
+            'Marketplace': {
+                'AuctionFinalized': {
+                    'listing_id': '[u8; 32]',
+                    'protocol_fee': 'u128',
+                    'royalty': 'u128',
+                    'winning_bid': (None, 'scale_info::235'),
+                },
+                'BidPlaced': {
+                    'bid': 'scale_info::235',
+                    'listing_id': '[u8; 32]',
+                },
+                'ListingCancelled': {'listing_id': '[u8; 32]'},
+                'ListingCreated': {
+                    'listing': 'scale_info::227',
+                    'listing_id': '[u8; 32]',
+                },
+                'ListingFilled': {
+                    'amount_filled': 'u128',
+                    'amount_remaining': 'u128',
+                    'buyer': 'AccountId',
+                    'listing_id': '[u8; 32]',
+                    'protocol_fee': 'u128',
+                    'royalty': 'u128',
+                },
+                'ProtocolFeeSet': {'protocol_fee': 'u32'},
             },
             'MultiTokens': {
                 'Approved': {
@@ -989,6 +970,11 @@ result = substrate.query(
                     'price_discovery': 'scale_info::204',
                 },
             },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
             'Scheduler': {
                 'CallUnavailable': {
                     'id': (None, '[u8; 32]'),
@@ -1011,6 +997,11 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::33'},
+                'SudoAsDone': {'sudo_result': 'scale_info::33'},
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -1052,6 +1043,14 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
@@ -1080,6 +1079,7 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::25'},
             },
+            None: None,
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},
                 'VestingScheduleAdded': {

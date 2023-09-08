@@ -16,7 +16,7 @@ The dispatch origin for this call must be _Signed_ by the staker&\#x27;s account
 | Name | Type |
 | -------- | -------- | 
 | contract_id | `T::SmartContract` | 
-| value | `BalanceOf<T>` | 
+| value | `Balance` | 
 
 #### Python
 ```python
@@ -145,7 +145,7 @@ check whether max number of unbonding chunks is exceeded.
 | Name | Type |
 | -------- | -------- | 
 | origin_contract_id | `T::SmartContract` | 
-| value | `BalanceOf<T>` | 
+| value | `Balance` | 
 | target_contract_id | `T::SmartContract` | 
 
 #### Python
@@ -203,7 +203,7 @@ The dispatch origin must be Root.
 | -------- | -------- | 
 | contract | `T::SmartContract` | 
 | era | `EraIndex` | 
-| contract_stake_info | `ContractStakeInfo<BalanceOf<T>>` | 
+| contract_stake_info | `ContractStakeInfo` | 
 
 #### Python
 ```python
@@ -260,7 +260,7 @@ entire stake for that contract will be unstaked.
 | Name | Type |
 | -------- | -------- | 
 | contract_id | `T::SmartContract` | 
-| value | `BalanceOf<T>` | 
+| value | `Balance` | 
 
 #### Python
 ```python
@@ -349,7 +349,7 @@ Account has bonded and staked funds on a smart contract.
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `T::SmartContract` | ```{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}```
-| None | `BalanceOf<T>` | ```u128```
+| None | `Balance` | ```u128```
 
 ---------
 ### ContractRemoved
@@ -395,7 +395,7 @@ Nomination part has been transfered from one contract to another.
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `T::SmartContract` | ```{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}```
-| None | `BalanceOf<T>` | ```u128```
+| None | `Balance` | ```u128```
 | None | `T::SmartContract` | ```{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}```
 
 ---------
@@ -407,7 +407,7 @@ Reward paid to staker or developer.
 | None | `T::AccountId` | ```AccountId```
 | None | `T::SmartContract` | ```{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}```
 | None | `EraIndex` | ```u32```
-| None | `BalanceOf<T>` | ```u128```
+| None | `Balance` | ```u128```
 
 ---------
 ### RewardDestination
@@ -429,7 +429,7 @@ Stale, unclaimed reward from an unregistered contract has been burned.
 | None | `T::AccountId` | ```AccountId```
 | None | `T::SmartContract` | ```{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}```
 | None | `EraIndex` | ```u32```
-| None | `BalanceOf<T>` | ```u128```
+| None | `Balance` | ```u128```
 
 ---------
 ### UnbondAndUnstake
@@ -439,7 +439,7 @@ Account has unbonded &amp; unstaked some funds. Unbonding process begins.
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `T::SmartContract` | ```{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}```
-| None | `BalanceOf<T>` | ```u128```
+| None | `Balance` | ```u128```
 
 ---------
 ### WithdrawFromUnregistered
@@ -449,7 +449,7 @@ Account has fully withdrawn all staked amount from an unregistered contract.
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `T::SmartContract` | ```{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}```
-| None | `BalanceOf<T>` | ```u128```
+| None | `Balance` | ```u128```
 
 ---------
 ### Withdrawn
@@ -458,7 +458,7 @@ Account has withdrawn unbonded funds.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
+| None | `Balance` | ```u128```
 
 ---------
 ## Storage functions

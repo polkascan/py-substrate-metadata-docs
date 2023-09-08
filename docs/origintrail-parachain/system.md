@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -576,66 +576,6 @@ result = substrate.query(
                 'ExecutedFailed': {'address': '[u8; 20]'},
                 'Log': {'log': 'scale_info::106'},
             },
-            'Ethereum': {
-                'Executed': {
-                    'exit_reason': 'scale_info::110',
-                    'extra_data': 'Bytes',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                    'transaction_hash': '[u8; 32]',
-                },
-            },
-            'EvmAccounts': {
-                'ClaimAccount': {
-                    'account_id': 'AccountId',
-                    'evm_address': '[u8; 20]',
-                },
-            },
-            'Identity': {
-                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentitySet': {'who': 'AccountId'},
-                'JudgementGiven': {
-                    'registrar_index': 'u32',
-                    'target': 'AccountId',
-                },
-                'JudgementRequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'JudgementUnrequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'RegistrarAdded': {'registrar_index': 'u32'},
-                'SubIdentityAdded': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRemoved': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRevoked': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
@@ -706,45 +646,6 @@ result = substrate.query(
                     ['scale_info::73'],
                 ),
             },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'Treasury': {
-                'Awarded': {
-                    'account': 'AccountId',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'SpendApproved': {
-                    'amount': 'u128',
-                    'beneficiary': 'AccountId',
-                    'proposal_index': 'u32',
-                },
-                'Spending': {'budget_remaining': 'u128'},
-                'UpdatedInactive': {
-                    'deactivated': 'u128',
-                    'reactivated': 'u128',
-                },
-            },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -757,6 +658,71 @@ result = substrate.query(
                 'ItemFailed': {'error': 'scale_info::24'},
             },
             None: None,
+            'Ethereum': {
+                'Executed': {
+                    'exit_reason': 'scale_info::110',
+                    'extra_data': 'Bytes',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                    'transaction_hash': '[u8; 32]',
+                },
+            },
+            'EvmAccounts': {
+                'ClaimAccount': {
+                    'account_id': 'AccountId',
+                    'evm_address': '[u8; 20]',
+                },
+            },
+            'Identity': {
+                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentitySet': {'who': 'AccountId'},
+                'JudgementGiven': {
+                    'registrar_index': 'u32',
+                    'target': 'AccountId',
+                },
+                'JudgementRequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'JudgementUnrequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'RegistrarAdded': {'registrar_index': 'u32'},
+                'SubIdentityAdded': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRemoved': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRevoked': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
             'Scheduler': {
                 'CallUnavailable': {
                     'id': (None, '[u8; 32]'),
@@ -778,11 +744,45 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TransactionPayment': {
                 'TransactionFeePaid': {
                     'actual_fee': 'u128',
                     'tip': 'u128',
                     'who': 'AccountId',
+                },
+            },
+            'Treasury': {
+                'Awarded': {
+                    'account': 'AccountId',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'SpendApproved': {
+                    'amount': 'u128',
+                    'beneficiary': 'AccountId',
+                    'proposal_index': 'u32',
+                },
+                'Spending': {'budget_remaining': 'u128'},
+                'UpdatedInactive': {
+                    'deactivated': 'u128',
+                    'reactivated': 'u128',
                 },
             },
             'Vesting': {
@@ -1071,7 +1071,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'origintrail-parachain',
     'impl_version': 0,
     'spec_name': 'origintrail-parachain',
-    'spec_version': 120,
+    'spec_version': 121,
     'state_version': 1,
     'transaction_version': 1,
 }

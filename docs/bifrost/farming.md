@@ -34,6 +34,7 @@ call = substrate.compose_call(
     'rewards': [
         (
             {
+                'BLP': 'u32',
                 'ForeignAsset': 'u32',
                 'LPToken': (
                     (
@@ -180,6 +181,7 @@ call = substrate.compose_call(
     'rewards': [
         (
             {
+                'BLP': 'u32',
                 'ForeignAsset': 'u32',
                 'LPToken': (
                     (
@@ -364,6 +366,7 @@ call = substrate.compose_call(
     'basic_rewards': [
         (
             {
+                'BLP': 'u32',
                 'ForeignAsset': 'u32',
                 'LPToken': (
                     (
@@ -497,6 +500,7 @@ call = substrate.compose_call(
         None,
         (
             {
+                'BLP': 'u32',
                 'ForeignAsset': 'u32',
                 'LPToken': (
                     (
@@ -626,6 +630,7 @@ call = substrate.compose_call(
             [
                 (
                     {
+                        'BLP': 'u32',
                         'ForeignAsset': 'u32',
                         'LPToken': (
                             'scale_info::256',
@@ -724,6 +729,7 @@ call = substrate.compose_call(
     'tokens_proportion': [
         (
             {
+                'BLP': 'u32',
                 'ForeignAsset': 'u32',
                 'LPToken': (
                     (
@@ -902,6 +908,7 @@ call = substrate.compose_call(
         [
             (
                 {
+                    'BLP': 'u32',
                     'ForeignAsset': 'u32',
                     'LPToken': (
                         (
@@ -1037,6 +1044,7 @@ call = substrate.compose_call(
         [
             (
                 {
+                    'BLP': 'u32',
                     'ForeignAsset': 'u32',
                     'LPToken': (
                         (
@@ -1276,6 +1284,7 @@ call = substrate.compose_call(
         [
             (
                 {
+                    'BLP': 'u32',
                     'ForeignAsset': 'u32',
                     'LPToken': (
                         (
@@ -1410,6 +1419,7 @@ call = substrate.compose_call(
         None,
         (
             {
+                'BLP': 'u32',
                 'ForeignAsset': 'u32',
                 'LPToken': (
                     (
@@ -1539,6 +1549,7 @@ call = substrate.compose_call(
             [
                 (
                     {
+                        'BLP': 'u32',
                         'ForeignAsset': 'u32',
                         'LPToken': (
                             'scale_info::256',
@@ -1761,7 +1772,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountIdOf<T>` | ```AccountId```
-| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32'}, 'u128')]```
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}, 'u128')]```
 
 ---------
 ### Charged
@@ -1770,7 +1781,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | who | `AccountIdOf<T>` | ```AccountId```
 | pid | `PoolId` | ```u32```
-| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32'}, 'u128')]```
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}, 'u128')]```
 
 ---------
 ### Claimed
@@ -1914,6 +1925,7 @@ result = substrate.query(
     'Farming', 'BoostBasicRewards', [
     'u32',
     {
+        'BLP': 'u32',
         'ForeignAsset': 'u32',
         'LPToken': (
             (
@@ -2149,15 +2161,16 @@ result = substrate.query(
 ```python
 {
     'gauge_amount': 'u128',
-    'gauge_basic_rewards': 'scale_info::733',
+    'gauge_basic_rewards': 'scale_info::739',
     'gauge_last_block': 'u32',
     'gauge_state': ('Unbond', 'Bonded'),
     'keeper': 'AccountId',
     'max_block': 'u32',
     'pid': 'u32',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::739',
+    'rewards': 'scale_info::743',
     'token': {
+        'BLP': 'u32',
         'ForeignAsset': 'u32',
         'LPToken': (
             (
@@ -2312,9 +2325,10 @@ result = substrate.query(
 ```python
 {
     'after_block_to_start': 'u32',
-    'basic_rewards': 'scale_info::733',
+    'basic_rewards': 'scale_info::739',
     'basic_token': (
         {
+            'BLP': 'u32',
             'ForeignAsset': 'u32',
             'LPToken': (
                 (
@@ -2443,9 +2457,9 @@ result = substrate.query(
     'keeper': 'AccountId',
     'min_deposit_to_start': 'u128',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::734',
+    'rewards': 'scale_info::740',
     'state': ('UnCharged', 'Charged', 'Ongoing', 'Dead', 'Retired'),
-    'tokens_proportion': 'scale_info::732',
+    'tokens_proportion': 'scale_info::738',
     'total_shares': 'u128',
     'withdraw_limit_count': 'u8',
     'withdraw_limit_time': 'u32',
@@ -2500,7 +2514,7 @@ result = substrate.query(
     'share': 'u128',
     'who': 'AccountId',
     'withdraw_list': [('u32', 'u128')],
-    'withdrawn_rewards': 'scale_info::733',
+    'withdrawn_rewards': 'scale_info::739',
 }
 ```
 ---------

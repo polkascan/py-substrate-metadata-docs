@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -1076,6 +1076,57 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'VaultStaking': {
+                'DepositStake': {
+                    'amount': 'i128',
+                    'nominator_id': 'AccountId',
+                    'vault_id': 'scale_info::136',
+                },
+                'DistributeReward': {
+                    'amount': 'i128',
+                    'currency_id': 'scale_info::118',
+                    'vault_id': 'scale_info::136',
+                },
+                'ForceRefund': {'vault_id': 'scale_info::136'},
+                'IncreaseNonce': {
+                    'new_nonce': 'u32',
+                    'vault_id': 'scale_info::136',
+                },
+                'WithdrawReward': {
+                    'amount': 'i128',
+                    'currency_id': 'scale_info::118',
+                    'nominator_id': 'AccountId',
+                    'nonce': 'u32',
+                    'vault_id': 'scale_info::136',
+                },
+                'WithdrawStake': {
+                    'amount': 'i128',
+                    'nominator_id': 'AccountId',
+                    'vault_id': 'scale_info::136',
+                },
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::56',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::8',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::8',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::8',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1236,35 +1287,6 @@ result = substrate.query(
                     'reward_id': 'scale_info::136',
                 },
             },
-            'VaultStaking': {
-                'DepositStake': {
-                    'amount': 'i128',
-                    'nominator_id': 'AccountId',
-                    'vault_id': 'scale_info::136',
-                },
-                'DistributeReward': {
-                    'amount': 'i128',
-                    'currency_id': 'scale_info::118',
-                    'vault_id': 'scale_info::136',
-                },
-                'ForceRefund': {'vault_id': 'scale_info::136'},
-                'IncreaseNonce': {
-                    'new_nonce': 'u32',
-                    'vault_id': 'scale_info::136',
-                },
-                'WithdrawReward': {
-                    'amount': 'i128',
-                    'currency_id': 'scale_info::118',
-                    'nominator_id': 'AccountId',
-                    'nonce': 'u32',
-                    'vault_id': 'scale_info::136',
-                },
-                'WithdrawStake': {
-                    'amount': 'i128',
-                    'nominator_id': 'AccountId',
-                    'vault_id': 'scale_info::136',
-                },
-            },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
@@ -1282,27 +1304,6 @@ result = substrate.query(
                     'fee': 'scale_info::75',
                     'sender': 'AccountId',
                 },
-            },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::56',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::8',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::8',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::8',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             'ZenlinkProtocol': {
                 'AssetSwap': (
@@ -1415,7 +1416,6 @@ result = substrate.query(
                     'AccountId',
                 ),
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

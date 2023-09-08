@@ -97,6 +97,7 @@ call = substrate.compose_call(
     'description': 'Bytes',
     'distribute_amount': 'u128',
     'distribute_currency': {
+        'BLP': 'u32',
         'ForeignAsset': 'u32',
         'LPToken': (
             (
@@ -346,7 +347,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::686'
+'scale_info::692'
 ```
 ---------
 ### MerkleDistributorMetadata
@@ -365,6 +366,7 @@ result = substrate.query(
     'description': 'Bytes',
     'distribute_amount': 'u128',
     'distribute_currency': {
+        'BLP': 'u32',
         'ForeignAsset': 'u32',
         'LPToken': (
             (

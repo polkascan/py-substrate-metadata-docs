@@ -50,7 +50,7 @@ call = substrate.compose_call(
             'IbcIcs20': {
                 'base_denom': 'Str',
                 'trace_path': [
-                    'scale_info::157',
+                    'scale_info::156',
                 ],
             },
             'Xcm': {
@@ -734,7 +734,7 @@ call = substrate.compose_call(
             'IbcIcs20': {
                 'base_denom': 'Str',
                 'trace_path': [
-                    'scale_info::157',
+                    'scale_info::156',
                 ],
             },
             'Xcm': {
@@ -829,7 +829,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | asset_id | `T::LocalAssetId` | ```u128```
-| location | `T::ForeignAssetId` | ```{'Xcm': {None: None, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::75'}, 'X2': ('scale_info::72', 'scale_info::72'), 'X3': ('scale_info::72', 'scale_info::72', 'scale_info::72'), 'X4': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X5': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X6': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X7': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X8': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72')}}}, 'IbcIcs20': {'trace_path': ['scale_info::157'], 'base_denom': 'Str'}}```
+| location | `T::ForeignAssetId` | ```{'Xcm': {None: None, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::75'}, 'X2': ('scale_info::72', 'scale_info::72'), 'X3': ('scale_info::72', 'scale_info::72', 'scale_info::72'), 'X4': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X5': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X6': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X7': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X8': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72')}}}, 'IbcIcs20': {'trace_path': ['scale_info::156'], 'base_denom': 'Str'}}```
 
 ---------
 ### AssetRegistered
@@ -837,7 +837,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | asset_id | `T::LocalAssetId` | ```u128```
-| location | `Option<T::ForeignAssetId>` | ```(None, {'Xcm': {None: None, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::72', 'X2': ('scale_info::72', 'scale_info::72'), 'X3': ('scale_info::72', 'scale_info::72', 'scale_info::72'), 'X4': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X5': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X6': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X7': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X8': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72')}}}, 'IbcIcs20': {'trace_path': ['scale_info::157'], 'base_denom': 'Str'}})```
+| location | `Option<T::ForeignAssetId>` | ```(None, {'Xcm': {None: None, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::72', 'X2': ('scale_info::72', 'scale_info::72'), 'X3': ('scale_info::72', 'scale_info::72', 'scale_info::72'), 'X4': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X5': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X6': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X7': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X8': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72')}}}, 'IbcIcs20': {'trace_path': ['scale_info::156'], 'base_denom': 'Str'}})```
 | asset_info | `AssetInfo<T::Balance>` | ```{'name': (None, {'inner': 'Bytes'}), 'symbol': (None, {'inner': 'Bytes'}), 'decimals': (None, 'u8'), 'existential_deposit': 'u128', 'ratio': (None, {'n': 'u64', 'd': 'u64'})}```
 
 ---------
@@ -854,7 +854,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | target_parachain_id | `u32` | ```u32```
-| foreign_asset_id | `T::ForeignAssetId` | ```{'Xcm': {None: None, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::75'}, 'X2': ('scale_info::72', 'scale_info::72'), 'X3': ('scale_info::72', 'scale_info::72', 'scale_info::72'), 'X4': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X5': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X6': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X7': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X8': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72')}}}, 'IbcIcs20': {'trace_path': ['scale_info::157'], 'base_denom': 'Str'}}```
+| foreign_asset_id | `T::ForeignAssetId` | ```{'Xcm': {None: None, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::75'}, 'X2': ('scale_info::72', 'scale_info::72'), 'X3': ('scale_info::72', 'scale_info::72', 'scale_info::72'), 'X4': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X5': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X6': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X7': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72'), 'X8': ('scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72', 'scale_info::72')}}}, 'IbcIcs20': {'trace_path': ['scale_info::156'], 'base_denom': 'Str'}}```
 | amount | `Option<T::Balance>` | ```(None, 'u128')```
 
 ---------
@@ -1466,7 +1466,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'IbcIcs20': {'base_denom': 'Str', 'trace_path': ['scale_info::157']},
+    'IbcIcs20': {'base_denom': 'Str', 'trace_path': ['scale_info::156']},
     'Xcm': {
         None: None,
         'V3': {

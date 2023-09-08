@@ -50,9 +50,9 @@ call = substrate.compose_call(
                 'validator_indices': 'BitVec',
                 'validity_votes': [
                     {
+                        None: None,
                         'Explicit': '[u8; 64]',
                         'Implicit': '[u8; 64]',
-                        None: None,
                     },
                 ],
             },

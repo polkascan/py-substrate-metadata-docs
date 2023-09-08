@@ -353,6 +353,12 @@ result = substrate.query(
 [
     {
         'event': {
+            'AppPromotion': {
+                'SetAdmin': 'AccountId',
+                'Stake': ('AccountId', 'u128'),
+                'StakingRecalculation': ('AccountId', 'u128', 'u128'),
+                'Unstake': ('AccountId', 'u128'),
+            },
             'Balances': {
                 'BalanceSet': {'free': 'u128', 'who': 'AccountId'},
                 'Burned': {'amount': 'u128', 'who': 'AccountId'},
@@ -384,13 +390,6 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Upgraded': {'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            None: None,
-            'AppPromotion': {
-                'SetAdmin': 'AccountId',
-                'Stake': ('AccountId', 'u128'),
-                'StakingRecalculation': ('AccountId', 'u128', 'u128'),
-                'Unstake': ('AccountId', 'u128'),
             },
             'CollatorSelection': {
                 'CandidateAdded': {'account_id': 'AccountId'},
@@ -823,6 +822,7 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

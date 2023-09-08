@@ -141,8 +141,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| last_era_bumped_block | `Option<T::BlockNumber>` | 
-| frequency | `Option<T::BlockNumber>` | 
+| last_era_bumped_block | `Option<BlockNumberFor<T>>` | 
+| frequency | `Option<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -196,7 +196,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| frequency | `T::BlockNumber` | ```u32```
+| frequency | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### CommissionRateUpdated
@@ -238,7 +238,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| last_era_bumped_block | `T::BlockNumber` | ```u32```
+| last_era_bumped_block | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### LedgerBondedReset

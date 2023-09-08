@@ -401,6 +401,8 @@ result = substrate.query(
 ```
 ---------
 ### StakedCollators
+ Incremented whenever delegating tokens to a collator
+ Collators are removed from here when their funds are unlocked in [`Call::finish_unstaking_collators`]
 
 #### Python
 ```python
@@ -635,6 +637,10 @@ Lottery has not been started
 Fatal: No collators found to assign this deposit to
 
 ---------
+### NoCollatorForStake
+Fatal: No collators found to assign this deposit to
+
+---------
 ### NoCollatorForWithdrawal
 Fatal: No collators found to withdraw from
 
@@ -647,8 +653,16 @@ No deposits found for this account
 Fatal: No winner could be selected
 
 ---------
+### NobodyPlaying
+No funds eligible to win
+
+---------
 ### NotImplemented
 Fatal: Functionality not yet supported
+
+---------
+### NothingToWin
+No funds to win in pool
 
 ---------
 ### PalletMisconfigured
@@ -660,11 +674,16 @@ Pallet balance is lower than the needed gas fee buffer
 
 ---------
 ### PotBalanceTooLow
-Not enough funds in pallet to pay winnings
+FATAL: Assigning/Transferring winning claims
+would **remove** user deposited funds from pallet
 
 ---------
 ### PotBalanceTooLowToPayTxFee
 Pallet balance is too low to submit a needed transaction
+
+---------
+### PotBalanceTooLowToStake
+FATAL: Can&\#x27;t stake the requested amount with available funds
 
 ---------
 ### TooCloseToDrawing

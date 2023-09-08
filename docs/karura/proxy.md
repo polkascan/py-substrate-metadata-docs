@@ -11,7 +11,7 @@
 | -------- | -------- | 
 | delegate | `AccountIdLookupOf<T>` | 
 | proxy_type | `T::ProxyType` | 
-| delay | `T::BlockNumber` | 
+| delay | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -71,7 +71,7 @@ call = substrate.compose_call(
 | Name | Type |
 | -------- | -------- | 
 | proxy_type | `T::ProxyType` | 
-| delay | `T::BlockNumber` | 
+| delay | `BlockNumberFor<T>` | 
 | index | `u16` | 
 
 #### Python
@@ -104,7 +104,7 @@ call = substrate.compose_call(
 | spawner | `AccountIdLookupOf<T>` | 
 | proxy_type | `T::ProxyType` | 
 | index | `u16` | 
-| height | `T::BlockNumber` | 
+| height | `BlockNumberFor<T>` | 
 | ext_index | `u32` | 
 
 #### Python
@@ -292,7 +292,7 @@ call = substrate.compose_call(
 | -------- | -------- | 
 | delegate | `AccountIdLookupOf<T>` | 
 | proxy_type | `T::ProxyType` | 
-| delay | `T::BlockNumber` | 
+| delay | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -342,14 +342,14 @@ call = substrate.compose_call(
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
 | proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Auction', 'Swap', 'Loan', 'DexLiquidity', 'StableAssetSwap', 'StableAssetLiquidity', 'Homa')```
-| delay | `T::BlockNumber` | ```u32```
+| delay | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### ProxyExecuted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### ProxyRemoved
@@ -359,7 +359,7 @@ call = substrate.compose_call(
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
 | proxy_type | `T::ProxyType` | ```('Any', 'CancelProxy', 'Governance', 'Auction', 'Swap', 'Loan', 'DexLiquidity', 'StableAssetSwap', 'StableAssetLiquidity', 'Homa')```
-| delay | `T::BlockNumber` | ```u32```
+| delay | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### PureCreated

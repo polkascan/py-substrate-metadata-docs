@@ -237,12 +237,14 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::54',
                     'Xcm': 'scale_info::54',
@@ -253,8 +255,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },
@@ -312,7 +312,7 @@ constant = substrate.get_constant('Scheduler', 'MaxScheduledPerBlock')
  The maximum weight that may be scheduled per block for any dispatchables.
 #### Value
 ```python
-{'proof_size': 2097152, 'ref_time': 200000000000}
+{'proof_size': 524288, 'ref_time': 50000000000}
 ```
 #### Python
 ```python

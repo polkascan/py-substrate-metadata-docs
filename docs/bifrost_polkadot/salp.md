@@ -34,24 +34,166 @@ call = substrate.compose_call(
 ```
 
 ---------
+### buyback_vstoken_by_stable_pool
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `StableAssetPoolId` | 
+| currency_id_in | `CurrencyId` | 
+| value | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Salp', 'buyback_vstoken_by_stable_pool', {
+    'currency_id_in': {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+    'pool_id': 'u32',
+    'value': 'u128',
+}
+)
+```
+
+---------
 ### confirm_contribute
 Confirm contribute
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `AccountIdOf<T>` | 
-| index | `ParaId` | 
+| query_id | `QueryId` | 
 | is_success | `bool` | 
-| message_id | `MessageId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Salp', 'confirm_contribute', {
-    'index': 'u32',
     'is_success': 'bool',
-    'message_id': '[u8; 32]',
-    'who': 'AccountId',
+    'query_id': 'u64',
 }
 )
 ```
@@ -439,6 +581,7 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Salp', 'unlock_by_vsbond', {
     'vsbond': {
+        'BLP': 'u32',
         'ForeignAsset': 'u32',
         'LPToken': (
             (
@@ -623,6 +766,15 @@ all refund
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `BalanceOf<T>` | ```u128```
+
+---------
+### BuybackByStablePool
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pool_id | `StableAssetPoolId` | ```u32```
+| currency_id_in | `CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| value | `BalanceOf<T>` | ```u128```
 
 ---------
 ### Continued
@@ -1045,6 +1197,9 @@ constant = substrate.get_constant('Salp', 'VSBondValidPeriod')
 ```
 ---------
 ## Errors
+
+---------
+### ArgumentsError
 
 ---------
 ### CapExceeded

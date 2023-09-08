@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -372,31 +372,6 @@ result = substrate.query(
                     'weight': 'scale_info::9',
                 },
             },
-            'Bounties': {
-                'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
-                'BountyBecameActive': {'index': 'u32'},
-                'BountyCanceled': {'index': 'u32'},
-                'BountyClaimed': {
-                    'beneficiary': 'AccountId',
-                    'index': 'u32',
-                    'payout': 'u128',
-                },
-                'BountyExtended': {'index': 'u32'},
-                'BountyProposed': {'index': 'u32'},
-                'BountyRejected': {'bond': 'u128', 'index': 'u32'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {'free': 'u128', 'who': 'AccountId'},
                 'Burned': {'amount': 'u128', 'who': 'AccountId'},
@@ -429,10 +404,24 @@ result = substrate.query(
                 'Upgraded': {'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
+            'Bounties': {
+                'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
+                'BountyBecameActive': {'index': 'u32'},
+                'BountyCanceled': {'index': 'u32'},
+                'BountyClaimed': {
+                    'beneficiary': 'AccountId',
+                    'index': 'u32',
+                    'payout': 'u128',
+                },
+                'BountyExtended': {'index': 'u32'},
+                'BountyProposed': {'index': 'u32'},
+                'BountyRejected': {'bond': 'u128', 'index': 'u32'},
+            },
             'CallSwitchgear': {
                 'TransactionSwitchedOn': ('Bytes', 'Bytes'),
                 'TransactionSwitchedoff': ('Bytes', 'Bytes'),
                 'TransferAccountDisabled': {
+                    'BLP': 'u32',
                     'ForeignAsset': 'u32',
                     'LPToken': (
                         'scale_info::131',
@@ -453,6 +442,7 @@ result = substrate.query(
                     'VToken2': 'u8',
                 },
                 'TransferAccountEnabled': {
+                    'BLP': 'u32',
                     'ForeignAsset': 'u32',
                     'LPToken': (
                         'scale_info::131',
@@ -667,13 +657,13 @@ result = substrate.query(
                 },
             },
             'FeeShare': {
-                'Created': {'info': 'scale_info::221'},
+                'Created': {'info': 'scale_info::222'},
                 'Deleted': {'distribution_id': 'u32'},
-                'Edited': {'info': 'scale_info::221'},
+                'Edited': {'info': 'scale_info::222'},
                 'EraLengthSet': {'era_length': 'u32', 'next_era': 'u32'},
                 'ExecuteFailed': {
                     'distribution_id': 'u32',
-                    'info': 'scale_info::221',
+                    'info': 'scale_info::222',
                     'next_era': 'u32',
                 },
                 'Executed': {'distribution_id': 'u32'},
@@ -893,6 +883,11 @@ result = substrate.query(
                 'AllRefunded': 'u32',
                 'AllUnlocked': 'u32',
                 'Buyback': 'u128',
+                'BuybackByStablePool': {
+                    'currency_id_in': 'scale_info::130',
+                    'pool_id': 'u32',
+                    'value': 'u128',
+                },
                 'Continued': ('u32', 'u32', 'u32'),
                 'ContributeFailed': ('AccountId', 'u32', 'u128'),
                 'Contributed': ('AccountId', 'u32', 'u128'),
@@ -947,7 +942,7 @@ result = substrate.query(
                 },
                 'CurrencyDelaysSet': {
                     'currency_id': 'scale_info::130',
-                    'delays': (None, 'scale_info::193'),
+                    'delays': (None, 'scale_info::194'),
                 },
                 'CurrencyTuneExchangeRateLimitSet': {
                     'currency_id': 'scale_info::130',
@@ -986,14 +981,14 @@ result = substrate.query(
                     'delegator_id': 'scale_info::59',
                 },
                 'DelegatorLedgerQueryResponseConfirmed': {
-                    'entry': 'scale_info::183',
+                    'entry': 'scale_info::184',
                     'query_id': 'u64',
                 },
                 'DelegatorLedgerQueryResponseFailed': {'query_id': 'u64'},
                 'DelegatorLedgerSet': {
                     'currency_id': 'scale_info::130',
                     'delegator': 'scale_info::59',
-                    'ledger': (None, 'scale_info::164'),
+                    'ledger': (None, 'scale_info::165'),
                 },
                 'DelegatorRebond': {
                     'currency_id': 'scale_info::130',
@@ -1049,11 +1044,11 @@ result = substrate.query(
                     'delegator_id': 'scale_info::59',
                     'query_id': 'u64',
                     'query_id_hash': '[u8; 32]',
-                    'time_unit': (None, 'scale_info::149'),
+                    'time_unit': (None, 'scale_info::150'),
                 },
                 'MinimumsMaximumsSet': {
                     'currency_id': 'scale_info::130',
-                    'minimums_and_maximums': (None, 'scale_info::191'),
+                    'minimums_and_maximums': (None, 'scale_info::192'),
                 },
                 'OngoingTimeUnitUpdateIntervalSet': {
                     'currency_id': 'scale_info::130',
@@ -1065,7 +1060,7 @@ result = substrate.query(
                 },
                 'Payout': {
                     'currency_id': 'scale_info::130',
-                    'time_unit': (None, 'scale_info::149'),
+                    'time_unit': (None, 'scale_info::150'),
                     'validator': 'scale_info::59',
                 },
                 'PoolTokenDecreased': {
@@ -1080,7 +1075,7 @@ result = substrate.query(
                     'amount': 'u128',
                     'currency_id': 'scale_info::130',
                     'index': 'u32',
-                    'time_unit': 'scale_info::149',
+                    'time_unit': 'scale_info::150',
                 },
                 'RemovedFromBoostList': {
                     'currency_id': 'scale_info::130',
@@ -1096,8 +1091,8 @@ result = substrate.query(
                 },
                 'TimeUnitUpdated': {
                     'currency_id': 'scale_info::130',
-                    'new': 'scale_info::149',
-                    'old': (None, 'scale_info::149'),
+                    'new': 'scale_info::150',
+                    'old': (None, 'scale_info::150'),
                 },
                 'TransferBack': {
                     'amount': 'u128',
@@ -1132,7 +1127,7 @@ result = substrate.query(
                     'validator_id': 'scale_info::59',
                 },
                 'ValidatorsByDelegatorQueryResponseConfirmed': {
-                    'entry': 'scale_info::188',
+                    'entry': 'scale_info::189',
                     'query_id': 'u64',
                 },
                 'ValidatorsByDelegatorQueryResponseFailed': {
@@ -1153,63 +1148,90 @@ result = substrate.query(
                 },
                 'XcmDestWeightAndFeeSet': {
                     'currency_id': 'scale_info::130',
-                    'operation': 'scale_info::157',
+                    'operation': 'scale_info::158',
                     'weight_and_fee': (None, ('scale_info::9', 'u128')),
                 },
             },
             'Slpx': {
                 'AddWhitelistAccountId': {
                     'evm_contract_account_id': 'AccountId',
-                    'support_chain': 'scale_info::231',
+                    'support_chain': 'scale_info::232',
                 },
                 'RemoveWhitelistAccountId': {
                     'evm_contract_account_id': 'AccountId',
-                    'support_chain': 'scale_info::231',
+                    'support_chain': 'scale_info::232',
                 },
                 'SetExecutionFee': {
                     'currency_id': 'scale_info::130',
                     'execution_fee': 'u128',
                 },
                 'SetTransferToFee': {
-                    'support_chain': 'scale_info::231',
+                    'support_chain': 'scale_info::232',
                     'transfer_to_fee': 'u128',
                 },
                 'XcmMint': {
                     'currency_id': 'scale_info::130',
                     'evm_caller': '[u8; 20]',
-                    'support_chain': 'scale_info::231',
+                    'target_chain': 'scale_info::234',
                     'token_amount': 'u128',
                 },
                 'XcmMintFailed': {
                     'currency_id': 'scale_info::130',
                     'evm_caller': '[u8; 20]',
-                    'support_chain': 'scale_info::231',
+                    'target_chain': 'scale_info::234',
                     'token_amount': 'u128',
                 },
                 'XcmRedeem': {
                     'evm_caller': '[u8; 20]',
-                    'support_chain': 'scale_info::231',
+                    'target_chain': 'scale_info::234',
                     'vtoken_amount': 'u128',
                     'vtoken_id': 'scale_info::130',
                 },
                 'XcmRedeemFailed': {
                     'evm_caller': '[u8; 20]',
-                    'support_chain': 'scale_info::231',
+                    'target_chain': 'scale_info::234',
                     'vtoken_amount': 'u128',
                     'vtoken_id': 'scale_info::130',
                 },
-                'XcmSwap': {
+                'XcmStablePoolSwap': {
+                    'currency_id_out_amount': 'u128',
+                    'evm_caller': '[u8; 20]',
+                    'pool_token_index_in': 'u32',
+                    'pool_token_index_out': 'u32',
+                    'target_chain': 'scale_info::234',
+                },
+                'XcmStablePoolSwapFailed': {
+                    'currency_id_in_amount': 'u128',
+                    'evm_caller': '[u8; 20]',
+                    'pool_token_index_in': 'u32',
+                    'pool_token_index_out': 'u32',
+                    'target_chain': 'scale_info::234',
+                },
+                'XcmZenlinkSwap': {
                     'currency_id_in': 'scale_info::130',
                     'currency_id_out': 'scale_info::130',
+                    'currency_id_out_amount': 'u128',
                     'evm_caller': '[u8; 20]',
-                    'support_chain': 'scale_info::231',
+                    'target_chain': 'scale_info::234',
                 },
-                'XcmSwapFailed': {
+                'XcmZenlinkSwapFailed': {
                     'currency_id_in': 'scale_info::130',
+                    'currency_id_in_amount': 'u128',
                     'currency_id_out': 'scale_info::130',
                     'evm_caller': '[u8; 20]',
-                    'support_chain': 'scale_info::231',
+                    'target_chain': 'scale_info::234',
                 },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'SystemMaker': {
                 'Charged': {
@@ -1220,7 +1242,7 @@ result = substrate.query(
                 'Closed': {'currency_id': 'scale_info::130'},
                 'ConfigSet': {
                     'currency_id': 'scale_info::130',
-                    'info': 'scale_info::219',
+                    'info': 'scale_info::220',
                 },
                 'Paid': {'currency_id': 'scale_info::130', 'value': 'u128'},
                 'RedeemFailed': {
@@ -1366,9 +1388,9 @@ result = substrate.query(
                 },
             },
             'TokenConversion': {
-                'ExchangeFeeSet': {'exchange_fee': 'scale_info::203'},
+                'ExchangeFeeSet': {'exchange_fee': 'scale_info::204'},
                 'ExchangeRateSet': {
-                    'exchange_rate': 'scale_info::205',
+                    'exchange_rate': 'scale_info::206',
                     'lease': 'i32',
                 },
                 'RelaychainLeaseSet': {'lease': 'u32'},
@@ -1543,7 +1565,7 @@ result = substrate.query(
             },
             'VeMinting': {
                 'AmountIncreased': {'addr': 'AccountId', 'value': 'u128'},
-                'ConfigSet': {'config': 'scale_info::229'},
+                'ConfigSet': {'config': 'scale_info::230'},
                 'IncentiveSet': {'rewards_duration': 'u32'},
                 'LockCreated': {
                     'addr': 'AccountId',
@@ -1577,7 +1599,7 @@ result = substrate.query(
                 'FeeSet': {'mint_fee': 'u32', 'redeem_fee': 'u32'},
                 'HookIterationLimitSet': {'limit': 'u32'},
                 'MinTimeUnitSet': {
-                    'time_unit': 'scale_info::149',
+                    'time_unit': 'scale_info::150',
                     'token_id': 'scale_info::130',
                 },
                 'MinimumMintSet': {
@@ -1591,6 +1613,7 @@ result = substrate.query(
                 'Minted': {
                     'address': 'AccountId',
                     'fee': 'u128',
+                    'remark': 'Bytes',
                     'token_amount': 'u128',
                     'token_id': 'scale_info::130',
                     'vtoken_amount': 'u128',
@@ -1626,7 +1649,7 @@ result = substrate.query(
                 'SupportRebondTokenRemoved': {'token_id': 'scale_info::130'},
                 'UnlockDurationSet': {
                     'token_id': 'scale_info::130',
-                    'unlock_duration': 'scale_info::149',
+                    'unlock_duration': 'scale_info::150',
                 },
                 'UnlockingTotalSet': {
                     'amount': 'u128',
@@ -1643,8 +1666,8 @@ result = substrate.query(
             },
             'XcmInterface': {
                 'TransferredStatemineMultiAsset': ('AccountId', 'u128'),
-                'XcmDestWeightUpdated': ('scale_info::201', 'scale_info::9'),
-                'XcmFeeUpdated': ('scale_info::201', 'u128'),
+                'XcmDestWeightUpdated': ('scale_info::202', 'scale_info::9'),
+                'XcmFeeUpdated': ('scale_info::202', 'u128'),
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -1778,6 +1801,7 @@ result = substrate.query(
                     'AccountId',
                 ),
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -2021,7 +2045,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'bifrost_polkadot',
     'impl_version': 0,
     'spec_name': 'bifrost_polkadot',
-    'spec_version': 978,
+    'spec_version': 980,
     'state_version': 0,
     'transaction_version': 1,
 }

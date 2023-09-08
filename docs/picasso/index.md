@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | picasso     |
 | Implementation name     | picasso     |
-| Spec version     | 10036     |
+| Spec version     | 10037     |
 | SS58 Format     | 49     |
 | Token symbol      | PICA     |
 | Token decimals      | 12     |
@@ -35,7 +35,6 @@
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [Farming](farming.md) | [5](farming.md#calls) | [3](farming.md#events) | [1](farming.md#storage-functions) | [3](farming.md#constants) | [1](farming.md#errors) |
 | [FarmingRewards](farmingrewards.md) | [0](farmingrewards.md#calls) | [4](farmingrewards.md#events) | [6](farmingrewards.md#storage-functions) | [1](farmingrewards.md#constants) | [4](farmingrewards.md#errors) |
-| [GovernanceRegistry](governanceregistry.md) | [3](governanceregistry.md#calls) | [3](governanceregistry.md#events) | [1](governanceregistry.md#storage-functions) | [0](governanceregistry.md#constants) | [1](governanceregistry.md#errors) |
 | [Ibc](ibc.md) | [9](ibc.md#calls) | [26](ibc.md#events) | [25](ibc.md#storage-functions) | [8](ibc.md#constants) | [39](ibc.md#errors) |
 | [Ics20Fee](ics20fee.md) | [3](ics20fee.md#calls) | [3](ics20fee.md#events) | [2](ics20fee.md#storage-functions) | [2](ics20fee.md#constants) | [0](ics20fee.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |

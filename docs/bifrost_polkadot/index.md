@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bifrost_polkadot     |
 | Implementation name     | bifrost_polkadot     |
-| Spec version     | 978     |
+| Spec version     | 980     |
 | SS58 Format     | 6     |
 | Token symbol      | ['BNC']     |
 | Token decimals      | [12]     |
@@ -44,11 +44,11 @@
 | [PolkadotXcm](polkadotxcm.md) | [11](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [12](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
-| [Salp](salp.md) | [21](salp.md#calls) | [20](salp.md#events) | [7](salp.md#storage-functions) | [11](salp.md#constants) | [27](salp.md#errors) |
+| [Salp](salp.md) | [22](salp.md#calls) | [21](salp.md#events) | [7](salp.md#storage-functions) | [11](salp.md#constants) | [28](salp.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [Slp](slp.md) | [47](slp.md#calls) | [45](slp.md#events) | [22](slp.md#storage-functions) | [3](slp.md#constants) | [76](slp.md#errors) |
-| [Slpx](slpx.md) | [7](slpx.md#calls) | [10](slpx.md#events) | [3](slpx.md#storage-functions) | [2](slpx.md#constants) | [7](slpx.md#errors) |
+| [Slpx](slpx.md) | [8](slpx.md#calls) | [12](slpx.md#events) | [3](slpx.md#storage-functions) | [2](slpx.md#constants) | [8](slpx.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [SystemMaker](systemmaker.md) | [4](systemmaker.md#calls) | [5](systemmaker.md#events) | [1](systemmaker.md#storage-functions) | [3](systemmaker.md#constants) | [3](systemmaker.md#errors) |
 | [SystemStaking](systemstaking.md) | [4](systemstaking.md#calls) | [12](systemstaking.md#events) | [3](systemstaking.md#storage-functions) | [5](systemstaking.md#constants) | [5](systemstaking.md#errors) |

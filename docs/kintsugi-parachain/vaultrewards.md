@@ -10,7 +10,7 @@
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pool_id | `T::PoolId` | ```{'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}```
-| stake_id | `T::StakeId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| stake_id | `T::StakeId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
@@ -27,7 +27,7 @@
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pool_id | `T::PoolId` | ```{'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}```
-| stake_id | `T::StakeId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| stake_id | `T::StakeId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | currency_id | `T::CurrencyId` | ```{'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}```
 | amount | `T::SignedFixedPoint` | ```i128```
 
@@ -37,7 +37,7 @@
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pool_id | `T::PoolId` | ```{'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}```
-| stake_id | `T::StakeId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| stake_id | `T::StakeId` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | amount | `T::SignedFixedPoint` | ```i128```
 
 ---------
@@ -96,7 +96,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::434'
+'scale_info::463'
 ```
 ---------
 ### RewardPerToken
@@ -289,12 +289,12 @@ result = substrate.query(
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                     ),
                     'StableLpToken': 'u32',
@@ -314,12 +314,12 @@ result = substrate.query(
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                     ),
                     'StableLpToken': 'u32',
@@ -401,12 +401,12 @@ result = substrate.query(
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                     ),
                     'StableLpToken': 'u32',
@@ -426,12 +426,12 @@ result = substrate.query(
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                     ),
                     'StableLpToken': 'u32',
@@ -570,31 +570,11 @@ result = substrate.query(
 ## Constants
 
 ---------
-### GetNativeCurrencyId
-#### Value
-```python
-{'Token': 'KINT'}
-```
-#### Python
-```python
-constant = substrate.get_constant('VaultRewards', 'GetNativeCurrencyId')
-```
----------
-### GetWrappedCurrencyId
-#### Value
-```python
-{'Token': 'KBTC'}
-```
-#### Python
-```python
-constant = substrate.get_constant('VaultRewards', 'GetWrappedCurrencyId')
-```
----------
 ### MaxRewardCurrencies
  The maximum number of reward currencies.
 #### Value
 ```python
-10
+2
 ```
 #### Python
 ```python

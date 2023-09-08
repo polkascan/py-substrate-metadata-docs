@@ -140,11 +140,8 @@ call = substrate.compose_call(
             'Fellowship7Dan',
             'Fellowship8Dan',
             'Fellowship9Dan',
-            'AssetRegistryAdmin',
-            'FarmingAdmin',
-            'FeeShareAdmin',
-            'SystemMakerAdmin',
-            'VtokenMintingAdmin',
+            'TechAdmin',
+            'CoreAdmin',
         ),
         'PolkadotXcm': {
             'Response': {

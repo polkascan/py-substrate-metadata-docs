@@ -275,9 +275,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -376,18 +376,6 @@ result = substrate.query(
                     'block_number': 'u32',
                 },
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {'free': 'u128', 'who': 'AccountId'},
                 'Burned': {'amount': 'u128', 'who': 'AccountId'},
@@ -793,32 +781,6 @@ result = substrate.query(
                 },
             },
             'Offences': {'Offence': {'kind': '[u8; 16]', 'timeslot': 'Bytes'}},
-            'ParaInclusion': {
-                'CandidateBacked': ('scale_info::484', 'Bytes', 'u32', 'u32'),
-                'CandidateIncluded': (
-                    'scale_info::484',
-                    'Bytes',
-                    'u32',
-                    'u32',
-                ),
-                'CandidateTimedOut': ('scale_info::484', 'Bytes', 'u32'),
-                'UpwardMessagesReceived': {'count': 'u32', 'from': 'u32'},
-            },
-            'Paras': {
-                'ActionQueued': ('u32', 'u32'),
-                'CodeUpgradeScheduled': 'u32',
-                'CurrentCodeUpdated': 'u32',
-                'CurrentHeadUpdated': 'u32',
-                'NewHeadNoted': 'u32',
-                'PvfCheckAccepted': ('[u8; 32]', 'u32'),
-                'PvfCheckRejected': ('[u8; 32]', 'u32'),
-                'PvfCheckStarted': ('[u8; 32]', 'u32'),
-            },
-            'ParasDisputes': {
-                'DisputeConcluded': ('[u8; 32]', 'scale_info::491'),
-                'DisputeInitiated': ('[u8; 32]', 'scale_info::490'),
-                'Revert': 'u32',
-            },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
@@ -849,6 +811,33 @@ result = substrate.query(
                     'pure': 'AccountId',
                     'who': 'AccountId',
                 },
+            },
+            None: None,
+            'ParaInclusion': {
+                'CandidateBacked': ('scale_info::484', 'Bytes', 'u32', 'u32'),
+                'CandidateIncluded': (
+                    'scale_info::484',
+                    'Bytes',
+                    'u32',
+                    'u32',
+                ),
+                'CandidateTimedOut': ('scale_info::484', 'Bytes', 'u32'),
+                'UpwardMessagesReceived': {'count': 'u32', 'from': 'u32'},
+            },
+            'Paras': {
+                'ActionQueued': ('u32', 'u32'),
+                'CodeUpgradeScheduled': 'u32',
+                'CurrentCodeUpdated': 'u32',
+                'CurrentHeadUpdated': 'u32',
+                'NewHeadNoted': 'u32',
+                'PvfCheckAccepted': ('[u8; 32]', 'u32'),
+                'PvfCheckRejected': ('[u8; 32]', 'u32'),
+                'PvfCheckStarted': ('[u8; 32]', 'u32'),
+            },
+            'ParasDisputes': {
+                'DisputeConcluded': ('[u8; 32]', 'scale_info::491'),
+                'DisputeInitiated': ('[u8; 32]', 'scale_info::490'),
+                'Revert': 'u32',
             },
             'Recovery': {
                 'AccountRecovered': {
@@ -1009,6 +998,17 @@ result = substrate.query(
                     'stash': 'AccountId',
                 },
                 'Withdrawn': {'amount': 'u128', 'stash': 'AccountId'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TransactionPayment': {
                 'TransactionFeePaid': {

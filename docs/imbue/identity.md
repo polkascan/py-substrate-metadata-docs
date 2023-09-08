@@ -704,7 +704,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [('scale_info::171', 'scale_info::171')],
+        'additional': [('scale_info::177', 'scale_info::177')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',

@@ -35,6 +35,7 @@ call = substrate.compose_call(
             'Stable': {
                 'base_pool_id': 'u32',
                 'from_currency': {
+                    'BLP': 'u32',
                     'ForeignAsset': 'u32',
                     'LPToken': (
                         (
@@ -167,6 +168,7 @@ call = substrate.compose_call(
                 ),
                 'pool_id': 'u32',
                 'to_currency': {
+                    'BLP': 'u32',
                     'ForeignAsset': 'u32',
                     'LPToken': (
                         (

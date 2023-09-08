@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bifrost     |
 | Implementation name     | bifrost     |
-| Spec version     | 978     |
+| Spec version     | 980     |
 | SS58 Format     | 6     |
 | Token symbol      | ['BNC', 'KUSD', 'DOT', 'KSM', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR']     |
 | Token decimals      | [12, 12, 10, 12, 12, 18, 12, 10, 18]     |
@@ -48,11 +48,13 @@
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [Referenda](referenda.md) | [9](referenda.md#calls) | [16](referenda.md#events) | [5](referenda.md#storage-functions) | [5](referenda.md#constants) | [13](referenda.md#errors) |
-| [Salp](salp.md) | [21](salp.md#calls) | [20](salp.md#events) | [7](salp.md#storage-functions) | [11](salp.md#constants) | [27](salp.md#errors) |
+| [Salp](salp.md) | [22](salp.md#calls) | [21](salp.md#events) | [7](salp.md#storage-functions) | [11](salp.md#constants) | [28](salp.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [Slp](slp.md) | [47](slp.md#calls) | [45](slp.md#events) | [22](slp.md#storage-functions) | [3](slp.md#constants) | [76](slp.md#errors) |
-| [Slpx](slpx.md) | [7](slpx.md#calls) | [10](slpx.md#events) | [3](slpx.md#storage-functions) | [2](slpx.md#constants) | [7](slpx.md#errors) |
+| [Slpx](slpx.md) | [8](slpx.md#calls) | [12](slpx.md#events) | [3](slpx.md#storage-functions) | [2](slpx.md#constants) | [8](slpx.md#errors) |
+| [StableAsset](stableasset.md) | [0](stableasset.md#calls) | [13](stableasset.md#events) | [3](stableasset.md#storage-functions) | [5](stableasset.md#constants) | [12](stableasset.md#errors) |
+| [StablePool](stablepool.md) | [10](stablepool.md#calls) | [0](stablepool.md#events) | [0](stablepool.md#storage-functions) | [0](stablepool.md#constants) | [5](stablepool.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [SystemMaker](systemmaker.md) | [4](systemmaker.md#calls) | [5](systemmaker.md#events) | [1](systemmaker.md#storage-functions) | [3](systemmaker.md#constants) | [3](systemmaker.md#errors) |
 | [SystemStaking](systemstaking.md) | [4](systemstaking.md#calls) | [12](systemstaking.md#events) | [3](systemstaking.md#storage-functions) | [5](systemstaking.md#constants) | [5](systemstaking.md#errors) |

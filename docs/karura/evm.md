@@ -200,7 +200,7 @@ call = substrate.compose_call(
 | gas_limit | `u64` | 
 | storage_limit | `u32` | 
 | access_list | `Vec<AccessListItem>` | 
-| valid_until | `T::BlockNumber` | 
+| valid_until | `BlockNumberFor<T>` | 
 
 #### Python
 ```python

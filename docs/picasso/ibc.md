@@ -637,7 +637,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::631'
+'scale_info::627'
 ```
 ---------
 ### CounterForIbcAssetIds
@@ -682,7 +682,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::629'
+'scale_info::625'
 ```
 ---------
 ### FeeLessChannelIds
@@ -774,7 +774,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('scale_info::634', 'u64')
+('scale_info::630', 'u64')
 ```
 ---------
 ### PendingSendPacketSeqs
@@ -789,7 +789,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('scale_info::634', 'u64')
+('scale_info::630', 'u64')
 ```
 ---------
 ### RecvPackets

@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -917,6 +917,11 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::31'},
+                'SudoAsDone': {'sudo_result': 'scale_info::31'},
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -927,12 +932,6 @@ result = substrate.query(
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::31'},
-                'SudoAsDone': {'sudo_result': 'scale_info::31'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -1043,6 +1042,17 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'UnknownTokens': {
+                'Deposited': {
+                    'asset': 'scale_info::75',
+                    'who': 'scale_info::59',
+                },
+                'Withdrawn': {
+                    'asset': 'scale_info::75',
+                    'who': 'scale_info::59',
+                },
+            },
+            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1060,16 +1070,6 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
-            },
-            'UnknownTokens': {
-                'Deposited': {
-                    'asset': 'scale_info::75',
-                    'who': 'scale_info::59',
-                },
-                'Withdrawn': {
-                    'asset': 'scale_info::75',
-                    'who': 'scale_info::59',
-                },
             },
             'Utility': {
                 'BatchCompleted': None,

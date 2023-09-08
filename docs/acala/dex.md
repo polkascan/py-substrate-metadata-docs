@@ -1135,7 +1135,7 @@ call = substrate.compose_call(
 | min_contribution_b | `Balance` | 
 | target_provision_a | `Balance` | 
 | target_provision_b | `Balance` | 
-| not_before | `T::BlockNumber` | 
+| not_before | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -1813,7 +1813,7 @@ call = substrate.compose_call(
 | min_contribution_b | `Balance` | 
 | target_provision_a | `Balance` | 
 | target_provision_b | `Balance` | 
-| not_before | `T::BlockNumber` | 
+| not_before | `BlockNumberFor<T>` | 
 
 #### Python
 ```python

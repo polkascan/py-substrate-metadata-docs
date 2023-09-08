@@ -275,9 +275,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -862,17 +862,6 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
-            'Slots': {
-                'Leased': {
-                    'extra_reserved': 'u128',
-                    'leaser': 'AccountId',
-                    'para_id': 'u32',
-                    'period_begin': 'u32',
-                    'period_count': 'u32',
-                    'total_amount': 'u128',
-                },
-                'NewLeasePeriod': {'lease_period': 'u32'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -884,55 +873,26 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            'Tips': {
-                'NewTip': {'tip_hash': '[u8; 32]'},
-                'TipClosed': {
-                    'payout': 'u128',
-                    'tip_hash': '[u8; 32]',
-                    'who': 'AccountId',
+            'Whitelist': {
+                'CallWhitelisted': {'call_hash': '[u8; 32]'},
+                'WhitelistedCallDispatched': {
+                    'call_hash': '[u8; 32]',
+                    'result': 'scale_info::442',
                 },
-                'TipClosing': {'tip_hash': '[u8; 32]'},
-                'TipRetracted': {'tip_hash': '[u8; 32]'},
-                'TipSlashed': {
-                    'deposit': 'u128',
-                    'finder': 'AccountId',
-                    'tip_hash': '[u8; 32]',
-                },
-            },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            'Treasury': {
-                'Awarded': {
-                    'account': 'AccountId',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'SpendApproved': {
-                    'amount': 'u128',
-                    'beneficiary': 'AccountId',
-                    'proposal_index': 'u32',
-                },
-                'Spending': {'budget_remaining': 'u128'},
-                'UpdatedInactive': {
-                    'deactivated': 'u128',
-                    'reactivated': 'u128',
-                },
-            },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+                'WhitelistedCallRemoved': {'call_hash': '[u8; 32]'},
             },
             None: None,
+            'Slots': {
+                'Leased': {
+                    'extra_reserved': 'u128',
+                    'leaser': 'AccountId',
+                    'para_id': 'u32',
+                    'period_begin': 'u32',
+                    'period_count': 'u32',
+                    'total_amount': 'u128',
+                },
+                'NewLeasePeriod': {'lease_period': 'u32'},
+            },
             'Staking': {
                 'Bonded': {'amount': 'u128', 'stash': 'AccountId'},
                 'Chilled': {'stash': 'AccountId'},
@@ -1002,6 +962,50 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
+            'Tips': {
+                'NewTip': {'tip_hash': '[u8; 32]'},
+                'TipClosed': {
+                    'payout': 'u128',
+                    'tip_hash': '[u8; 32]',
+                    'who': 'AccountId',
+                },
+                'TipClosing': {'tip_hash': '[u8; 32]'},
+                'TipRetracted': {'tip_hash': '[u8; 32]'},
+                'TipSlashed': {
+                    'deposit': 'u128',
+                    'finder': 'AccountId',
+                    'tip_hash': '[u8; 32]',
+                },
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            'Treasury': {
+                'Awarded': {
+                    'account': 'AccountId',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'SpendApproved': {
+                    'amount': 'u128',
+                    'beneficiary': 'AccountId',
+                    'proposal_index': 'u32',
+                },
+                'Spending': {'budget_remaining': 'u128'},
+                'UpdatedInactive': {
+                    'deactivated': 'u128',
+                    'reactivated': 'u128',
+                },
+            },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -1013,17 +1017,13 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::25'},
             },
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
             'VoterList': {
                 'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
                 'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
-            },
-            'Whitelist': {
-                'CallWhitelisted': {'call_hash': '[u8; 32]'},
-                'WhitelistedCallDispatched': {
-                    'call_hash': '[u8; 32]',
-                    'result': 'scale_info::442',
-                },
-                'WhitelistedCallRemoved': {'call_hash': '[u8; 32]'},
             },
             'XcmPallet': {
                 'AssetsClaimed': (

@@ -135,9 +135,9 @@ result = substrate.query(
 {
     'consumers': 'u32',
     'data': {
-        'fee_frozen': 'u128',
+        'flags': 'u128',
         'free': 'u128',
-        'misc_frozen': 'u128',
+        'frozen': 'u128',
         'reserved': 'u128',
     },
     'nonce': 'u32',
@@ -186,7 +186,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [('scale_info::269', 'scale_info::269')],
+        'additional': [('scale_info::276', 'scale_info::276')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',
@@ -324,23 +324,6 @@ result = substrate.query(
 #### Return value
 ```python
 {'members': [('AccountId', 'bool')], 'threshold': 'u16', 'to': '[u8; 20]'}
-```
----------
-### Vestings
- [`pallet_vesting::Vesting`] data.
-
- &lt;https://github.dev/paritytech/substrate/blob/19162e43be45817b44c7d48e50d03f074f60fbf4/frame/vesting/src/lib.rs\#L188&gt;
-
-#### Python
-```python
-result = substrate.query(
-    'AccountMigration', 'Vestings', ['AccountId']
-)
-```
-
-#### Return value
-```python
-[{'locked': 'u128', 'per_block': 'u128', 'starting_block': 'u32'}]
 ```
 ---------
 ## Errors

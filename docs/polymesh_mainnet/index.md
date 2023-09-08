@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | polymesh_mainnet     |
 | Implementation name     | polymesh_mainnet     |
-| Spec version     | 5004001     |
+| Spec version     | 5004002     |
 | SS58 Format     | 12     |
 | Token symbol      | POLYX     |
 | Token decimals      | 6     |

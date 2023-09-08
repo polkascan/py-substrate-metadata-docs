@@ -87,8 +87,8 @@ call = substrate.compose_call(
 result = substrate.query(
     'PhalaMq', 'OffchainIngress', [
     {
-        'AccountId': '[u8; 32]',
         None: None,
+        'AccountId': '[u8; 32]',
         'Cluster': '[u8; 32]',
         'Contract': '[u8; 32]',
         'Gatekeeper': None,
@@ -130,8 +130,8 @@ result = substrate.query(
             'Contract': '[u8; 32]',
             'Gatekeeper': None,
             'MultiLocation': 'Bytes',
-            None: None,
             'Pallet': 'Bytes',
+            None: None,
             'Reserved': None,
             'Worker': '[u8; 32]',
         },
@@ -160,8 +160,8 @@ result = substrate.query(
             'Contract': '[u8; 32]',
             'Gatekeeper': None,
             'MultiLocation': 'Bytes',
-            None: None,
             'Pallet': 'Bytes',
+            None: None,
             'Reserved': None,
             'Worker': '[u8; 32]',
         },

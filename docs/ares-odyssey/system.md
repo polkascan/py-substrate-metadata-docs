@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -669,40 +669,6 @@ result = substrate.query(
                 'HeartbeatReceived': {'authority_id': '[u8; 32]'},
                 'SomeOffline': {'offline': [('AccountId', 'scale_info::111')]},
             },
-            None: None,
-            'Identity': {
-                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
-                'IdentitySet': {'who': 'AccountId'},
-                'JudgementGiven': {
-                    'registrar_index': 'u32',
-                    'target': 'AccountId',
-                },
-                'JudgementRequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'JudgementUnrequested': {
-                    'registrar_index': 'u32',
-                    'who': 'AccountId',
-                },
-                'RegistrarAdded': {'registrar_index': 'u32'},
-                'SubIdentityAdded': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRemoved': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-                'SubIdentityRevoked': {
-                    'deposit': 'u128',
-                    'main': 'AccountId',
-                    'sub': 'AccountId',
-                },
-            },
             'ManualBridge': {
                 'CompletedList': ['scale_info::149'],
                 'CrossChainRequest': {
@@ -813,11 +779,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -874,11 +835,6 @@ result = substrate.query(
                 'ValidatorPrefsSet': ('AccountId', 'scale_info::47'),
                 'Withdrawn': ('AccountId', 'u128'),
             },
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::30'},
-                'SudoAsDone': {'sudo_result': 'scale_info::30'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -889,6 +845,61 @@ result = substrate.query(
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
+            None: None,
+            'Identity': {
+                'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
+                'IdentitySet': {'who': 'AccountId'},
+                'JudgementGiven': {
+                    'registrar_index': 'u32',
+                    'target': 'AccountId',
+                },
+                'JudgementRequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'JudgementUnrequested': {
+                    'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'RegistrarAdded': {'registrar_index': 'u32'},
+                'SubIdentityAdded': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRemoved': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+                'SubIdentityRevoked': {
+                    'deposit': 'u128',
+                    'main': 'AccountId',
+                    'sub': 'AccountId',
+                },
+            },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::30'},
+                'SudoAsDone': {'sudo_result': 'scale_info::30'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -920,13 +931,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -955,10 +959,6 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::30'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::22'},
-            },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
         },
         'phase': {

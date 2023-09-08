@@ -83,6 +83,77 @@ result = substrate.query(
                 'KBTC',
             ),
         },
+        'Earning': {
+            'DexShare': (
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+            ),
+            'Erc20': '[u8; 20]',
+            'ForeignAsset': 'u16',
+            'LiquidCrowdloan': 'u32',
+            'StableAssetPoolToken': 'u32',
+            'Token': (
+                'ACA',
+                'AUSD',
+                'DOT',
+                'LDOT',
+                'TAP',
+                'KAR',
+                'KUSD',
+                'KSM',
+                'LKSM',
+                'TAI',
+                'BNC',
+                'VSKSM',
+                'PHA',
+                'KINT',
+                'KBTC',
+            ),
+        },
         'Loans': {
             'DexShare': (
                 {
@@ -161,7 +232,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'rewards': 'scale_info::521', 'total_shares': 'u128'}
+{'rewards': 'scale_info::533', 'total_shares': 'u128'}
 ```
 ---------
 ### SharesAndWithdrawnRewards
@@ -172,6 +243,77 @@ result = substrate.query(
     'Rewards', 'SharesAndWithdrawnRewards', [
     {
         'Dex': {
+            'DexShare': (
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+            ),
+            'Erc20': '[u8; 20]',
+            'ForeignAsset': 'u16',
+            'LiquidCrowdloan': 'u32',
+            'StableAssetPoolToken': 'u32',
+            'Token': (
+                'ACA',
+                'AUSD',
+                'DOT',
+                'LDOT',
+                'TAP',
+                'KAR',
+                'KUSD',
+                'KSM',
+                'LKSM',
+                'TAI',
+                'BNC',
+                'VSKSM',
+                'PHA',
+                'KINT',
+                'KBTC',
+            ),
+        },
+        'Earning': {
             'DexShare': (
                 {
                     'Erc20': '[u8; 20]',
@@ -321,7 +463,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('u128', 'scale_info::527')
+('u128', 'scale_info::539')
 ```
 ---------
 ## Errors

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | origintrail-parachain     |
 | Implementation name     | origintrail-parachain     |
-| Spec version     | 120     |
+| Spec version     | 121     |
 | SS58 Format     | 101     |
 | Token symbol      | OTP     |
 | Token decimals      | 12     |
@@ -32,7 +32,7 @@
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
-| [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [0](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
+| [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |

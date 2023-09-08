@@ -1055,29 +1055,6 @@ result = substrate.query(
                     'reactivated': 'u128',
                 },
             },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::156',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::8',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::8',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::8',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
             'Uniques': {
                 'ApprovalCancelled': {
                     'collection': 'u64',
@@ -1203,6 +1180,29 @@ result = substrate.query(
                     'sender': 'AccountId',
                 },
             },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::156',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::8',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::8',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::8',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

@@ -5,22 +5,6 @@
 ## Calls
 
 ---------
-### finalise_no_confidence_round
-Finalise a &quot;vote of no condidence&quot; round.
-Votes must pass a threshold as defined in the config trait for the vote to succeed.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| project_key | `ProjectKey` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'ImbueProposals', 'finalise_no_confidence_round', {'project_key': 'u32'}
-)
-```
-
----------
 ### raise_vote_of_no_confidence
 In case of contributors losing confidence in the initiator a &quot;Vote of no confidence&quot; can be called.
 This will start a round which each contributor can vote on.
@@ -83,6 +67,7 @@ pallet-disputes?
 Vote on an already existing &quot;Vote of no condidence&quot; round.
 is_yay is FOR the project&\#x27;s continuation.
 so is_yay == false == against the project from continuing.
+This autofinalises like in the milestone voting.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -144,6 +129,7 @@ You have created a vote of no confidence.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
+| None | `T::AccountId` | ```AccountId```
 | None | `ProjectKey` | ```u32```
 
 ---------
@@ -152,6 +138,7 @@ You have finalised a vote of no confidence.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
+| None | `T::AccountId` | ```AccountId```
 | None | `ProjectKey` | ```u32```
 
 ---------
@@ -160,6 +147,7 @@ You have voted upon a round of no confidence.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
+| None | `T::AccountId` | ```AccountId```
 | None | `ProjectKey` | ```u32```
 
 ---------
@@ -289,7 +277,7 @@ result = substrate.query(
 {
     'agreement_hash': '[u8; 32]',
     'cancelled': 'bool',
-    'contributions': 'scale_info::439',
+    'contributions': 'scale_info::459',
     'created_on': 'u32',
     'currency_id': {
         'AUSD': None,
@@ -302,7 +290,7 @@ result = substrate.query(
     'deposit_id': 'u64',
     'funding_type': {'Brief': None, 'Grant': ('Kusama', 'Imbue', 'Karura'), 'Proposal': None},
     'initiator': 'AccountId',
-    'milestones': 'scale_info::434',
+    'milestones': 'scale_info::454',
     'raised_funds': 'u128',
     'withdrawn_funds': 'u128',
 }
@@ -378,7 +366,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::446'
+'scale_info::466'
 ```
 ---------
 ## Errors

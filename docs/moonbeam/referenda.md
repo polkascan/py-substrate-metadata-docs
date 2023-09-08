@@ -209,7 +209,6 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
-        None: None,
         'CouncilCollective': {
             'Member': '[u8; 20]',
             'Members': ('u32', 'u32'),
@@ -1222,12 +1221,13 @@ call = substrate.compose_call(
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': '[u8; 20]',
         },
+        None: None,
+        'Void': (),
     },
 }
 )
@@ -1466,7 +1466,6 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
-            'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
             None: None,
             'CouncilCollective': {
                 'Member': '[u8; 20]',
@@ -1502,6 +1501,7 @@ result = substrate.query(
                 '_Phantom': None,
             },
             'Void': (),
+            'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
         },
         'proposal': {
             'Inline': 'Bytes',

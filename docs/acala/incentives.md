@@ -87,6 +87,77 @@ call = substrate.compose_call(
                 'KBTC',
             ),
         },
+        'Earning': {
+            'DexShare': (
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+            ),
+            'Erc20': '[u8; 20]',
+            'ForeignAsset': 'u16',
+            'LiquidCrowdloan': 'u32',
+            'StableAssetPoolToken': 'u32',
+            'Token': (
+                'ACA',
+                'AUSD',
+                'DOT',
+                'LDOT',
+                'TAP',
+                'KAR',
+                'KUSD',
+                'KSM',
+                'LKSM',
+                'TAI',
+                'BNC',
+                'VSKSM',
+                'PHA',
+                'KINT',
+                'KBTC',
+            ),
+        },
         'Loans': {
             'DexShare': (
                 {
@@ -272,14 +343,53 @@ call = substrate.compose_call(
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::52',
+                            'Token': 'scale_info::53',
                         },
                         {
                             'Erc20': '[u8; 20]',
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::52',
+                            'Token': 'scale_info::53',
+                        },
+                    ),
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+                'Earning': {
+                    'DexShare': (
+                        {
+                            'Erc20': '[u8; 20]',
+                            'ForeignAsset': 'u16',
+                            'LiquidCrowdloan': 'u32',
+                            'StableAssetPoolToken': 'u32',
+                            'Token': 'scale_info::53',
+                        },
+                        {
+                            'Erc20': '[u8; 20]',
+                            'ForeignAsset': 'u16',
+                            'LiquidCrowdloan': 'u32',
+                            'StableAssetPoolToken': 'u32',
+                            'Token': 'scale_info::53',
                         },
                     ),
                     'Erc20': '[u8; 20]',
@@ -311,14 +421,14 @@ call = substrate.compose_call(
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::52',
+                            'Token': 'scale_info::53',
                         },
                         {
                             'Erc20': '[u8; 20]',
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::52',
+                            'Token': 'scale_info::53',
                         },
                     ),
                     'Erc20': '[u8; 20]',
@@ -372,14 +482,53 @@ call = substrate.compose_call(
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::52',
+                            'Token': 'scale_info::53',
                         },
                         {
                             'Erc20': '[u8; 20]',
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::52',
+                            'Token': 'scale_info::53',
+                        },
+                    ),
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+                'Earning': {
+                    'DexShare': (
+                        {
+                            'Erc20': '[u8; 20]',
+                            'ForeignAsset': 'u16',
+                            'LiquidCrowdloan': 'u32',
+                            'StableAssetPoolToken': 'u32',
+                            'Token': 'scale_info::53',
+                        },
+                        {
+                            'Erc20': '[u8; 20]',
+                            'ForeignAsset': 'u16',
+                            'LiquidCrowdloan': 'u32',
+                            'StableAssetPoolToken': 'u32',
+                            'Token': 'scale_info::53',
                         },
                     ),
                     'Erc20': '[u8; 20]',
@@ -411,14 +560,14 @@ call = substrate.compose_call(
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::52',
+                            'Token': 'scale_info::53',
                         },
                         {
                             'Erc20': '[u8; 20]',
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::52',
+                            'Token': 'scale_info::53',
                         },
                     ),
                     'Erc20': '[u8; 20]',
@@ -448,8 +597,8 @@ call = substrate.compose_call(
                 (
                     {
                         'DexShare': (
-                            'scale_info::53',
-                            'scale_info::53',
+                            'scale_info::54',
+                            'scale_info::54',
                         ),
                         'Erc20': '[u8; 20]',
                         'ForeignAsset': 'u16',
@@ -578,7 +727,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| pool | `PoolId` | ```{'Loans': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'Dex': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}}```
+| pool | `PoolId` | ```{'Loans': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'Dex': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'Earning': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}}```
 | deduction_rate | `Rate` | ```u128```
 
 ---------
@@ -587,7 +736,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| pool | `PoolId` | ```{'Loans': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'Dex': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}}```
+| pool | `PoolId` | ```{'Loans': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'Dex': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'Earning': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}}```
 | reward_currency_id | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | actual_amount | `Balance` | ```u128```
 | deduction_amount | `Balance` | ```u128```
@@ -606,7 +755,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| pool | `PoolId` | ```{'Loans': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'Dex': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}}```
+| pool | `PoolId` | ```{'Loans': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'Dex': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'Earning': {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}}```
 | reward_currency_id | `CurrencyId` | ```{'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}```
 | reward_amount_per_period | `Balance` | ```u128```
 
@@ -631,6 +780,77 @@ result = substrate.query(
     'Incentives', 'ClaimRewardDeductionRates', [
     {
         'Dex': {
+            'DexShare': (
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+            ),
+            'Erc20': '[u8; 20]',
+            'ForeignAsset': 'u16',
+            'LiquidCrowdloan': 'u32',
+            'StableAssetPoolToken': 'u32',
+            'Token': (
+                'ACA',
+                'AUSD',
+                'DOT',
+                'LDOT',
+                'TAP',
+                'KAR',
+                'KUSD',
+                'KSM',
+                'LKSM',
+                'TAI',
+                'BNC',
+                'VSKSM',
+                'PHA',
+                'KINT',
+                'KBTC',
+            ),
+        },
+        'Earning': {
             'DexShare': (
                 {
                     'Erc20': '[u8; 20]',
@@ -790,6 +1010,77 @@ result = substrate.query(
     'Incentives', 'IncentiveRewardAmounts', [
     {
         'Dex': {
+            'DexShare': (
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+            ),
+            'Erc20': '[u8; 20]',
+            'ForeignAsset': 'u16',
+            'LiquidCrowdloan': 'u32',
+            'StableAssetPoolToken': 'u32',
+            'Token': (
+                'ACA',
+                'AUSD',
+                'DOT',
+                'LDOT',
+                'TAP',
+                'KAR',
+                'KUSD',
+                'KSM',
+                'LKSM',
+                'TAI',
+                'BNC',
+                'VSKSM',
+                'PHA',
+                'KINT',
+                'KBTC',
+            ),
+        },
+        'Earning': {
             'DexShare': (
                 {
                     'Erc20': '[u8; 20]',
@@ -1090,6 +1381,77 @@ result = substrate.query(
                 'KBTC',
             ),
         },
+        'Earning': {
+            'DexShare': (
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+                {
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': (
+                        'ACA',
+                        'AUSD',
+                        'DOT',
+                        'LDOT',
+                        'TAP',
+                        'KAR',
+                        'KUSD',
+                        'KSM',
+                        'LKSM',
+                        'TAI',
+                        'BNC',
+                        'VSKSM',
+                        'PHA',
+                        'KINT',
+                        'KBTC',
+                    ),
+                },
+            ),
+            'Erc20': '[u8; 20]',
+            'ForeignAsset': 'u16',
+            'LiquidCrowdloan': 'u32',
+            'StableAssetPoolToken': 'u32',
+            'Token': (
+                'ACA',
+                'AUSD',
+                'DOT',
+                'LDOT',
+                'TAP',
+                'KAR',
+                'KUSD',
+                'KSM',
+                'LKSM',
+                'TAI',
+                'BNC',
+                'VSKSM',
+                'PHA',
+                'KINT',
+                'KBTC',
+            ),
+        },
         'Loans': {
             'DexShare': (
                 {
@@ -1169,7 +1531,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::527'
+'scale_info::539'
 ```
 ---------
 ## Constants
@@ -1183,16 +1545,6 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('Incentives', 'AccumulatePeriod')
-```
----------
-### EarnShareBooster
-#### Value
-```python
-300000
-```
-#### Python
-```python
-constant = substrate.get_constant('Incentives', 'EarnShareBooster')
 ```
 ---------
 ### NativeCurrencyId

@@ -364,84 +364,6 @@ result = substrate.query(
                     'to': 'scale_info::42',
                 },
             },
-            'Assets': {
-                'AccountsDestroyed': {
-                    'accounts_destroyed': 'u32',
-                    'accounts_remaining': 'u32',
-                    'asset_id': 'u64',
-                },
-                'ApprovalCancelled': {
-                    'asset_id': 'u64',
-                    'delegate': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-                'ApprovalsDestroyed': {
-                    'approvals_destroyed': 'u32',
-                    'approvals_remaining': 'u32',
-                    'asset_id': 'u64',
-                },
-                'ApprovedTransfer': {
-                    'amount': 'u128',
-                    'asset_id': 'u64',
-                    'delegate': '[u8; 20]',
-                    'source': '[u8; 20]',
-                },
-                'AssetFrozen': {'asset_id': 'u64'},
-                'AssetMinBalanceChanged': {
-                    'asset_id': 'u64',
-                    'new_min_balance': 'u128',
-                },
-                'AssetStatusChanged': {'asset_id': 'u64'},
-                'AssetThawed': {'asset_id': 'u64'},
-                'Burned': {
-                    'asset_id': 'u64',
-                    'balance': 'u128',
-                    'owner': '[u8; 20]',
-                },
-                'Created': {
-                    'asset_id': 'u64',
-                    'creator': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-                'Destroyed': {'asset_id': 'u64'},
-                'DestructionStarted': {'asset_id': 'u64'},
-                'ForceCreated': {'asset_id': 'u64', 'owner': '[u8; 20]'},
-                'Frozen': {'asset_id': 'u64', 'who': '[u8; 20]'},
-                'Issued': {
-                    'amount': 'u128',
-                    'asset_id': 'u64',
-                    'owner': '[u8; 20]',
-                },
-                'MetadataCleared': {'asset_id': 'u64'},
-                'MetadataSet': {
-                    'asset_id': 'u64',
-                    'decimals': 'u8',
-                    'is_frozen': 'bool',
-                    'name': 'Bytes',
-                    'symbol': 'Bytes',
-                },
-                'OwnerChanged': {'asset_id': 'u64', 'owner': '[u8; 20]'},
-                'TeamChanged': {
-                    'admin': '[u8; 20]',
-                    'asset_id': 'u64',
-                    'freezer': '[u8; 20]',
-                    'issuer': '[u8; 20]',
-                },
-                'Thawed': {'asset_id': 'u64', 'who': '[u8; 20]'},
-                'Transferred': {
-                    'amount': 'u128',
-                    'asset_id': 'u64',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                },
-                'TransferredApproved': {
-                    'amount': 'u128',
-                    'asset_id': 'u64',
-                    'delegate': '[u8; 20]',
-                    'destination': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-            },
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -523,6 +445,102 @@ result = substrate.query(
                     'parachain_head_hash': '[u8; 32]',
                 },
             },
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 32]', 'scale_info::84'),
+                'InvalidFormat': '[u8; 32]',
+                'UnsupportedVersion': '[u8; 32]',
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
+            'Assets': {
+                'AccountsDestroyed': {
+                    'accounts_destroyed': 'u32',
+                    'accounts_remaining': 'u32',
+                    'asset_id': 'u64',
+                },
+                'ApprovalCancelled': {
+                    'asset_id': 'u64',
+                    'delegate': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+                'ApprovalsDestroyed': {
+                    'approvals_destroyed': 'u32',
+                    'approvals_remaining': 'u32',
+                    'asset_id': 'u64',
+                },
+                'ApprovedTransfer': {
+                    'amount': 'u128',
+                    'asset_id': 'u64',
+                    'delegate': '[u8; 20]',
+                    'source': '[u8; 20]',
+                },
+                'AssetFrozen': {'asset_id': 'u64'},
+                'AssetMinBalanceChanged': {
+                    'asset_id': 'u64',
+                    'new_min_balance': 'u128',
+                },
+                'AssetStatusChanged': {'asset_id': 'u64'},
+                'AssetThawed': {'asset_id': 'u64'},
+                'Burned': {
+                    'asset_id': 'u64',
+                    'balance': 'u128',
+                    'owner': '[u8; 20]',
+                },
+                'Created': {
+                    'asset_id': 'u64',
+                    'creator': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+                'Destroyed': {'asset_id': 'u64'},
+                'DestructionStarted': {'asset_id': 'u64'},
+                'ForceCreated': {'asset_id': 'u64', 'owner': '[u8; 20]'},
+                'Frozen': {'asset_id': 'u64', 'who': '[u8; 20]'},
+                'Issued': {
+                    'amount': 'u128',
+                    'asset_id': 'u64',
+                    'owner': '[u8; 20]',
+                },
+                'MetadataCleared': {'asset_id': 'u64'},
+                'MetadataSet': {
+                    'asset_id': 'u64',
+                    'decimals': 'u8',
+                    'is_frozen': 'bool',
+                    'name': 'Bytes',
+                    'symbol': 'Bytes',
+                },
+                'OwnerChanged': {'asset_id': 'u64', 'owner': '[u8; 20]'},
+                'TeamChanged': {
+                    'admin': '[u8; 20]',
+                    'asset_id': 'u64',
+                    'freezer': '[u8; 20]',
+                    'issuer': '[u8; 20]',
+                },
+                'Thawed': {'asset_id': 'u64', 'who': '[u8; 20]'},
+                'Transferred': {
+                    'amount': 'u128',
+                    'asset_id': 'u64',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                },
+                'TransferredApproved': {
+                    'amount': 'u128',
+                    'asset_id': 'u64',
+                    'delegate': '[u8; 20]',
+                    'destination': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+            },
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -577,11 +595,6 @@ result = substrate.query(
                 'UpdateCollateralSlashProtect': 'u128',
                 'UpdateLockedCollateral': ('[u8; 20]', 'u128'),
                 'UpdateRelayFee': ('[u8; 20]', 'u128'),
-            },
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 32]', 'scale_info::84'),
-                'InvalidFormat': '[u8; 32]',
-                'UnsupportedVersion': '[u8; 32]',
             },
             'DarwiniaStaking': {
                 'Elected': {'collators': ['[u8; 20]']},
@@ -738,18 +751,6 @@ result = substrate.query(
                     'sub': '[u8; 20]',
                 },
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PhragmenElection': {
                 'CandidateSlashed': {
                     'amount': 'u128',
@@ -887,6 +888,7 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -958,8 +960,6 @@ result = substrate.query(
                     'who': '[u8; 20]',
                 },
             },
-            None: None,
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'Treasury': {
                 'Awarded': {
                     'account': '[u8; 20]',

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | shiden     |
 | Implementation name     | shiden     |
-| Spec version     | 104     |
+| Spec version     | 106     |
 | SS58 Format     | 5     |
 | Token symbol      | SDN     |
 | Token decimals      | 18     |

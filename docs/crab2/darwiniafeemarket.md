@@ -161,7 +161,7 @@ Reward distribute of the order. \[lane_id, message_nonce, rewards\]
 | -------- | -------- | -------- |
 | None | `LaneId` | ```[u8; 4]```
 | None | `MessageNonce` | ```u64```
-| None | `RewardItem<T::AccountId, BalanceOf<T, I>>` | ```{'to_assigned_relayers': 'scale_info::173', 'to_treasury': (None, 'u128'), 'to_message_relayer': (None, ('[u8; 20]', 'u128')), 'to_confirm_relayer': (None, ('[u8; 20]', 'u128'))}```
+| None | `RewardItem<T::AccountId, BalanceOf<T, I>>` | ```{'to_assigned_relayers': 'scale_info::175', 'to_treasury': (None, 'u128'), 'to_message_relayer': (None, ('[u8; 20]', 'u128')), 'to_confirm_relayer': (None, ('[u8; 20]', 'u128'))}```
 
 ---------
 ### UpdateAssignedRelayersNumber

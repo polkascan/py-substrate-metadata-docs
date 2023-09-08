@@ -880,17 +880,6 @@ result = substrate.query(
             'OrmlXcm': {
                 'Sent': {'message': ['scale_info::99'], 'to': 'scale_info::87'},
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'Permissions': {
                 'Added': {
                     'role': 'scale_info::181',
@@ -953,13 +942,6 @@ result = substrate.query(
                 'UnexpectedResponse': ('scale_info::87', 'u64'),
                 'VersionChangeNotified': ('scale_info::87', 'u32'),
             },
-            'PoolRegistry': {
-                'MetadataSet': {'metadata': 'Bytes', 'pool_id': 'u64'},
-                'Registered': {'pool_id': 'u64'},
-                'UpdateExecuted': {'pool_id': 'u64'},
-                'UpdateRegistered': {'pool_id': 'u64'},
-                'UpdateStored': {'pool_id': 'u64'},
-            },
             'PoolSystem': {
                 'Created': {
                     'admin': 'AccountId',
@@ -981,6 +963,25 @@ result = substrate.query(
                     'new': 'scale_info::168',
                     'old': 'scale_info::168',
                 },
+            },
+            None: None,
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            'PoolRegistry': {
+                'MetadataSet': {'metadata': 'Bytes', 'pool_id': 'u64'},
+                'Registered': {'pool_id': 'u64'},
+                'UpdateExecuted': {'pool_id': 'u64'},
+                'UpdateRegistered': {'pool_id': 'u64'},
+                'UpdateStored': {'pool_id': 'u64'},
             },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
@@ -1067,7 +1068,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',

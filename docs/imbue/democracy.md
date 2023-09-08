@@ -1005,7 +1005,7 @@ result = substrate.query(
     'Direct': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u32', 'u128'),
-        'votes': [('u32', 'scale_info::41')],
+        'votes': [('u32', 'scale_info::40')],
     },
 }
 ```

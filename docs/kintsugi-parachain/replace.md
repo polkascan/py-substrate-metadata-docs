@@ -232,82 +232,140 @@ Execute vault replacement
 * `replace_id` - the ID of the replacement request
 * &\#x27;merkle_proof&\#x27; - the merkle root of the block
 * `raw_tx` - the transaction id in bytes
-
-\#\# Complexity:
-- `O(H + I + O + B)` where:
-  - `H` is the number of hashes in the merkle tree
-  - `I` is the number of transaction inputs
-  - `O` is the number of transaction outputs
-  - `B` is `transaction` size in bytes (length-fee-bounded)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | replace_id | `H256` | 
-| merkle_proof | `MerkleProof` | 
-| transaction | `Transaction` | 
-| length_bound | `u32` | 
+| unchecked_transaction | `FullTransactionProof` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Replace', 'execute_replace', {
-    'length_bound': 'u32',
-    'merkle_proof': {
-        'block_header': {
-            'hash': {
-                'content': '[u8; 32]',
-            },
-            'hash_prev_block': {
-                'content': '[u8; 32]',
-            },
-            'merkle_root': {
-                'content': '[u8; 32]',
-            },
-            'nonce': 'u32',
-            'target': '[u64; 4]',
-            'timestamp': 'u32',
-            'version': 'i32',
-        },
-        'flag_bits': ['bool'],
-        'hashes': [
-            {'content': '[u8; 32]'},
-        ],
-        'transactions_count': 'u32',
-    },
     'replace_id': '[u8; 32]',
-    'transaction': {
-        'inputs': [
-            {
-                'script': 'Bytes',
-                'sequence': 'u32',
-                'source': {
-                    'Coinbase': (
-                        None,
-                        'u32',
-                    ),
-                    'FromOutput': (
-                        {
-                            'content': '[u8; 32]',
+    'unchecked_transaction': {
+        'coinbase_proof': {
+            'merkle_proof': {
+                'block_header': {
+                    'hash': {
+                        'content': '[u8; 32]',
+                    },
+                    'hash_prev_block': {
+                        'content': '[u8; 32]',
+                    },
+                    'merkle_root': {
+                        'content': '[u8; 32]',
+                    },
+                    'nonce': 'u32',
+                    'target': '[u64; 4]',
+                    'timestamp': 'u32',
+                    'version': 'i32',
+                },
+                'flag_bits': ['bool'],
+                'hashes': [
+                    {
+                        'content': '[u8; 32]',
+                    },
+                ],
+                'transactions_count': 'u32',
+            },
+            'transaction': {
+                'inputs': [
+                    {
+                        'script': 'Bytes',
+                        'sequence': 'u32',
+                        'source': {
+                            'Coinbase': (
+                                None,
+                                'u32',
+                            ),
+                            'FromOutput': (
+                                'scale_info::95',
+                                'u32',
+                            ),
                         },
-                        'u32',
-                    ),
+                        'witness': [
+                            'Bytes',
+                        ],
+                    },
+                ],
+                'lock_at': {
+                    'BlockHeight': 'u32',
+                    'Time': 'u32',
                 },
-                'witness': ['Bytes'],
+                'outputs': [
+                    {
+                        'script': {
+                            'bytes': 'Bytes',
+                        },
+                        'value': 'i64',
+                    },
+                ],
+                'version': 'i32',
             },
-        ],
-        'lock_at': {
-            'BlockHeight': 'u32',
-            'Time': 'u32',
+            'tx_encoded_len': 'u32',
         },
-        'outputs': [
-            {
-                'script': {
-                    'bytes': 'Bytes',
+        'user_tx_proof': {
+            'merkle_proof': {
+                'block_header': {
+                    'hash': {
+                        'content': '[u8; 32]',
+                    },
+                    'hash_prev_block': {
+                        'content': '[u8; 32]',
+                    },
+                    'merkle_root': {
+                        'content': '[u8; 32]',
+                    },
+                    'nonce': 'u32',
+                    'target': '[u64; 4]',
+                    'timestamp': 'u32',
+                    'version': 'i32',
                 },
-                'value': 'i64',
+                'flag_bits': ['bool'],
+                'hashes': [
+                    {
+                        'content': '[u8; 32]',
+                    },
+                ],
+                'transactions_count': 'u32',
             },
-        ],
-        'version': 'i32',
+            'transaction': {
+                'inputs': [
+                    {
+                        'script': 'Bytes',
+                        'sequence': 'u32',
+                        'source': {
+                            'Coinbase': (
+                                None,
+                                'u32',
+                            ),
+                            'FromOutput': (
+                                'scale_info::95',
+                                'u32',
+                            ),
+                        },
+                        'witness': [
+                            'Bytes',
+                        ],
+                    },
+                ],
+                'lock_at': {
+                    'BlockHeight': 'u32',
+                    'Time': 'u32',
+                },
+                'outputs': [
+                    {
+                        'script': {
+                            'bytes': 'Bytes',
+                        },
+                        'value': 'i64',
+                    },
+                ],
+                'version': 'i32',
+            },
+            'tx_encoded_len': 'u32',
+        },
     },
 }
 )
@@ -550,8 +608,8 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | replace_id | `H256` | ```[u8; 32]```
-| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
-| new_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| new_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | amount | `BalanceOf<T>` | ```u128```
 | collateral | `BalanceOf<T>` | ```u128```
 | btc_address | `BtcAddress` | ```{'P2PKH': '[u8; 20]', 'P2SH': '[u8; 20]', 'P2WPKHv0': '[u8; 20]', 'P2WSHv0': '[u8; 32]'}```
@@ -562,8 +620,8 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | replace_id | `H256` | ```[u8; 32]```
-| new_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
-| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| new_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | griefing_collateral | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -572,8 +630,8 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | replace_id | `H256` | ```[u8; 32]```
-| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
-| new_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| new_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 
 ---------
 ### ReplacePeriodChange
@@ -587,7 +645,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | amount | `BalanceOf<T>` | ```u128```
 | griefing_collateral | `BalanceOf<T>` | ```u128```
 
@@ -596,7 +654,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::51', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
+| old_vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | withdrawn_tokens | `BalanceOf<T>` | ```u128```
 | withdrawn_griefing_collateral | `BalanceOf<T>` | ```u128```
 
@@ -668,14 +726,14 @@ result = substrate.query(
             'collateral': {
                 'ForeignAsset': 'u32',
                 'LendToken': 'u32',
-                'LpToken': ('scale_info::52', 'scale_info::52'),
+                'LpToken': ('scale_info::53', 'scale_info::53'),
                 'StableLpToken': 'u32',
                 'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'),
             },
             'wrapped': {
                 'ForeignAsset': 'u32',
                 'LendToken': 'u32',
-                'LpToken': ('scale_info::52', 'scale_info::52'),
+                'LpToken': ('scale_info::53', 'scale_info::53'),
                 'StableLpToken': 'u32',
                 'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'),
             },
@@ -687,14 +745,14 @@ result = substrate.query(
             'collateral': {
                 'ForeignAsset': 'u32',
                 'LendToken': 'u32',
-                'LpToken': ('scale_info::52', 'scale_info::52'),
+                'LpToken': ('scale_info::53', 'scale_info::53'),
                 'StableLpToken': 'u32',
                 'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'),
             },
             'wrapped': {
                 'ForeignAsset': 'u32',
                 'LendToken': 'u32',
-                'LpToken': ('scale_info::52', 'scale_info::52'),
+                'LpToken': ('scale_info::53', 'scale_info::53'),
                 'StableLpToken': 'u32',
                 'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'),
             },

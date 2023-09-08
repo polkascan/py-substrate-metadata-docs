@@ -962,7 +962,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::682'
+'scale_info::688'
 ```
 ---------
 ### BootstrapPersonalSupply
@@ -1019,7 +1019,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::682'
+'scale_info::688'
 ```
 ---------
 ### FeeMeta

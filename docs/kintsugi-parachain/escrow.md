@@ -85,6 +85,26 @@ call = substrate.compose_call(
 ```
 
 ---------
+### update_user_stake
+Update the stake amount for a user.
+
+\# Arguments
+
+* `origin` - Sender of the transaction.
+* `target_user` - The account ID of the user whose stake amount needs to be updated.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| target_user | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Escrow', 'update_user_stake', {'target_user': 'AccountId'}
+)
+```
+
+---------
 ### withdraw
 #### Attributes
 No attributes
@@ -272,6 +292,10 @@ constant = substrate.get_constant('Escrow', 'Span')
 ```
 ---------
 ## Errors
+
+---------
+### IncorrectPercent
+Incorrect Percent
 
 ---------
 ### InputAmountZero

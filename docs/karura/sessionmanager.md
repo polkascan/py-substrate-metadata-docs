@@ -10,7 +10,7 @@
 | Name | Type |
 | -------- | -------- | 
 | start_session | `SessionIndex` | 
-| duration | `T::BlockNumber` | 
+| duration | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -30,9 +30,9 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| block_number | `T::BlockNumber` | ```u32```
+| block_number | `BlockNumberFor<T>` | ```u32```
 | session_index | `SessionIndex` | ```u32```
-| session_duration | `T::BlockNumber` | ```u32```
+| session_duration | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ## Storage functions

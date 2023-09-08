@@ -207,7 +207,7 @@ call = substrate.compose_call(
 | -------- | -------- | 
 | pool_id | `StableAssetPoolId` | 
 | a | `T::AtLeast64BitUnsigned` | 
-| future_a_block | `T::BlockNumber` | 
+| future_a_block | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -368,7 +368,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | pool_id | `StableAssetPoolId` | ```u32```
 | value | `T::AtLeast64BitUnsigned` | ```u128```
-| time | `T::BlockNumber` | ```u32```
+| time | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### BalanceUpdated
@@ -552,14 +552,14 @@ result = substrate.query(
                     'ForeignAsset': 'u16',
                     'LiquidCrowdloan': 'u32',
                     'StableAssetPoolToken': 'u32',
-                    'Token': 'scale_info::52',
+                    'Token': 'scale_info::53',
                 },
                 {
                     'Erc20': '[u8; 20]',
                     'ForeignAsset': 'u16',
                     'LiquidCrowdloan': 'u32',
                     'StableAssetPoolToken': 'u32',
-                    'Token': 'scale_info::52',
+                    'Token': 'scale_info::53',
                 },
             ),
             'Erc20': '[u8; 20]',

@@ -23,6 +23,7 @@ call = substrate.compose_call(
     'Currencies', 'transfer', {
     'amount': 'u128',
     'currency_id': {
+        'BLP': 'u32',
         'ForeignAsset': 'u32',
         'LPToken': (
             (
@@ -205,6 +206,7 @@ call = substrate.compose_call(
     'Currencies', 'update_balance', {
     'amount': 'i128',
     'currency_id': {
+        'BLP': 'u32',
         'ForeignAsset': 'u32',
         'LPToken': (
             (

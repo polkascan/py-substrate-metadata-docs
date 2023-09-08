@@ -185,8 +185,8 @@ call = substrate.compose_call(
 | Name | Type |
 | -------- | -------- | 
 | proposal_hash | `H256` | 
-| voting_period | `T::BlockNumber` | 
-| delay | `T::BlockNumber` | 
+| voting_period | `BlockNumberFor<T>` | 
+| delay | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -506,7 +506,7 @@ No attributes
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | proposal_hash | `H256` | ```[u8; 32]```
-| until | `T::BlockNumber` | ```u32```
+| until | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### Voted
@@ -745,7 +745,7 @@ result = substrate.query(
     'Direct': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u32', 'u128'),
-        'votes': [('u32', 'scale_info::151')],
+        'votes': [('u32', 'scale_info::152')],
     },
 }
 ```

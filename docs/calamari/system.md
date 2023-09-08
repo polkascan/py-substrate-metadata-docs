@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -367,6 +367,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
             'AssetManager': {
                 'AssetLocationFilteredForOutgoingTransfers': {
                     'filtered_location': 'scale_info::101',
@@ -401,6 +413,10 @@ result = substrate.query(
                 'MinXcmFeeUpdated': {
                     'min_xcm_fee': 'u128',
                     'reserve_chain': 'scale_info::101',
+                },
+                'PermissionlessAssetRegistered': {
+                    'asset_id': 'u128',
+                    'metadata': 'scale_info::111',
                 },
                 'UnitsPerSecondUpdated': {
                     'asset_id': 'u128',
@@ -891,17 +907,6 @@ result = substrate.query(
                 },
                 'TotalSelectedSet': {'new': 'u32', 'old': 'u32'},
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
@@ -1027,6 +1032,19 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
+            'TransactionPause': {
+                'PalletPaused': 'Bytes',
+                'PalletUnpaused': 'Bytes',
+                'TransactionPaused': ('Bytes', 'Bytes'),
+                'TransactionUnpaused': ('Bytes', 'Bytes'),
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1059,20 +1077,6 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::40'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
-            },
-            None: None,
-            'TransactionPause': {
-                'PalletPaused': 'Bytes',
-                'PalletUnpaused': 'Bytes',
-                'TransactionPaused': ('Bytes', 'Bytes'),
-                'TransactionUnpaused': ('Bytes', 'Bytes'),
-            },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
             },
             'XTokens': {
                 'TransferredMultiAssets': {
@@ -1452,9 +1456,9 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'calamari',
     'impl_version': 1,
     'spec_name': 'calamari',
-    'spec_version': 4310,
+    'spec_version': 4400,
     'state_version': 0,
-    'transaction_version': 14,
+    'transaction_version': 15,
 }
 ```
 #### Python

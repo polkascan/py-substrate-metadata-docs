@@ -5,21 +5,6 @@
 ## Calls
 
 ---------
-### add_to_fellowship
-Approve an account so that they can be accepted as an applicant.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| account_id | `AccountIdOf<T>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'ImbueBriefs', 'add_to_fellowship', {'account_id': 'AccountId'}
-)
-```
-
----------
 ### cancel_brief
 Extrinsic to cancel a brief
 #### Attributes
@@ -174,7 +159,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::439'
+'scale_info::459'
 ```
 ---------
 ### Briefs
@@ -219,23 +204,6 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
-```
----------
-### FreelanceFellowship
- The list of accounts approved to apply for work.
- Key: AccountId
- Value: Unit
-
-#### Python
-```python
-result = substrate.query(
-    'ImbueBriefs', 'FreelanceFellowship', ['AccountId']
-)
-```
-
-#### Return value
-```python
-()
 ```
 ---------
 ### StorageVersion

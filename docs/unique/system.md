@@ -432,51 +432,10 @@ result = substrate.query(
                     'u128',
                 ),
             },
-            'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 32]', 'scale_info::71'),
-                'InvalidFormat': '[u8; 32]',
-                'UnsupportedVersion': '[u8; 32]',
-            },
-            'EVM': {
-                'Created': {'address': '[u8; 20]'},
-                'CreatedFailed': {'address': '[u8; 20]'},
-                'Executed': {'address': '[u8; 20]'},
-                'ExecutedFailed': {'address': '[u8; 20]'},
-                'Log': {'log': 'scale_info::126'},
-            },
-            'Ethereum': {
-                'Executed': {
-                    'exit_reason': 'scale_info::129',
-                    'extra_data': 'Bytes',
-                    'from': '[u8; 20]',
-                    'to': '[u8; 20]',
-                    'transaction_hash': '[u8; 32]',
-                },
-            },
-            'EvmContractHelpers': {
-                'ContractSponsorRemoved': '[u8; 20]',
-                'ContractSponsorSet': ('[u8; 20]', 'AccountId'),
-                'ContractSponsorshipConfirmed': ('[u8; 20]', 'AccountId'),
-            },
-            'ForeignAssets': {
-                'AssetRegistered': {
-                    'asset_id': 'scale_info::65',
-                    'metadata': 'scale_info::122',
-                },
-                'AssetUpdated': {
-                    'asset_id': 'scale_info::65',
-                    'metadata': 'scale_info::122',
-                },
-                'ForeignAssetRegistered': {
-                    'asset_address': 'scale_info::51',
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::122',
-                },
-                'ForeignAssetUpdated': {
-                    'asset_address': 'scale_info::51',
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::122',
-                },
+            'Configuration': {
+                'NewCollatorKickThreshold': {'length_in_blocks': (None, 'u32')},
+                'NewCollatorLicenseBond': {'bond_cost': (None, 'u128')},
+                'NewDesiredCollators': {'desired_collators': (None, 'u32')},
             },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
@@ -490,11 +449,53 @@ result = substrate.query(
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
             },
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::40'},
+                'SudoAsDone': {'sudo_result': 'scale_info::40'},
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            'Vesting': {
+                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
+                'VestingScheduleAdded': {
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                    'vesting_schedule': 'scale_info::44',
+                },
+                'VestingSchedulesUpdated': {'who': 'AccountId'},
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::68',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::9',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::9',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::9',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
             None: None,
-            'Configuration': {
-                'NewCollatorKickThreshold': {'length_in_blocks': (None, 'u32')},
-                'NewCollatorLicenseBond': {'bond_cost': (None, 'u128')},
-                'NewDesiredCollators': {'desired_collators': (None, 'u32')},
+            'CumulusXcm': {
+                'ExecutedDownward': ('[u8; 32]', 'scale_info::71'),
+                'InvalidFormat': '[u8; 32]',
+                'UnsupportedVersion': '[u8; 32]',
             },
             'DmpQueue': {
                 'ExecutedDownward': {
@@ -519,7 +520,48 @@ result = substrate.query(
                     'required_weight': 'scale_info::9',
                 },
             },
+            'EVM': {
+                'Created': {'address': '[u8; 20]'},
+                'CreatedFailed': {'address': '[u8; 20]'},
+                'Executed': {'address': '[u8; 20]'},
+                'ExecutedFailed': {'address': '[u8; 20]'},
+                'Log': {'log': 'scale_info::126'},
+            },
+            'Ethereum': {
+                'Executed': {
+                    'exit_reason': 'scale_info::129',
+                    'extra_data': 'Bytes',
+                    'from': '[u8; 20]',
+                    'to': '[u8; 20]',
+                    'transaction_hash': '[u8; 32]',
+                },
+            },
+            'EvmContractHelpers': {
+                'ContractSponsorRemoved': '[u8; 20]',
+                'ContractSponsorSet': ('[u8; 20]', 'AccountId'),
+                'ContractSponsorshipConfirmed': ('[u8; 20]', 'AccountId'),
+            },
             'EvmMigration': ('TestEvent', ),
+            'ForeignAssets': {
+                'AssetRegistered': {
+                    'asset_id': 'scale_info::65',
+                    'metadata': 'scale_info::122',
+                },
+                'AssetUpdated': {
+                    'asset_id': 'scale_info::65',
+                    'metadata': 'scale_info::122',
+                },
+                'ForeignAssetRegistered': {
+                    'asset_address': 'scale_info::51',
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::122',
+                },
+                'ForeignAssetUpdated': {
+                    'asset_address': 'scale_info::51',
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::122',
+                },
+            },
             'Maintenance': ('MaintenanceEnabled', 'MaintenanceDisabled'),
             'PolkadotXcm': {
                 'AssetsClaimed': (
@@ -602,11 +644,6 @@ result = substrate.query(
                 'Slashed': {'amount': 'u128', 'who': 'AccountId'},
             },
             'Structure': {'Executed': {'Err': 'scale_info::25', 'Ok': ()}},
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::40'},
-                'SudoAsDone': {'sudo_result': 'scale_info::40'},
-            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -700,13 +737,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -729,15 +759,6 @@ result = substrate.query(
                     'reactivated': 'u128',
                 },
             },
-            'Vesting': {
-                'Claimed': {'amount': 'u128', 'who': 'AccountId'},
-                'VestingScheduleAdded': {
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                    'vesting_schedule': 'scale_info::44',
-                },
-                'VestingSchedulesUpdated': {'who': 'AccountId'},
-            },
             'XTokens': {
                 'TransferredMultiAssets': {
                     'assets': ['scale_info::49'],
@@ -745,27 +766,6 @@ result = substrate.query(
                     'fee': 'scale_info::49',
                     'sender': 'AccountId',
                 },
-            },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::68',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::9',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::9',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::9',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
         },
         'phase': {

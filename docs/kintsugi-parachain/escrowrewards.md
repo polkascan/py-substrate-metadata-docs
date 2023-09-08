@@ -56,7 +56,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::434'
+'scale_info::463'
 ```
 ---------
 ### RewardPerToken
@@ -260,31 +260,11 @@ result = substrate.query(
 ## Constants
 
 ---------
-### GetNativeCurrencyId
-#### Value
-```python
-{'Token': 'KINT'}
-```
-#### Python
-```python
-constant = substrate.get_constant('EscrowRewards', 'GetNativeCurrencyId')
-```
----------
-### GetWrappedCurrencyId
-#### Value
-```python
-{'Token': 'KBTC'}
-```
-#### Python
-```python
-constant = substrate.get_constant('EscrowRewards', 'GetWrappedCurrencyId')
-```
----------
 ### MaxRewardCurrencies
  The maximum number of reward currencies.
 #### Value
 ```python
-10
+1
 ```
 #### Python
 ```python

@@ -9,7 +9,7 @@
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| values | `Vec<(T::OracleKey, T::OracleValue)>` | 
+| values | `BoundedVec<(T::OracleKey, T::OracleValue), T::MaxFeedValues>` | 
 
 #### Python
 ```python
@@ -24,46 +24,14 @@ call = substrate.compose_call(
                         'ForeignAsset': 'u16',
                         'LiquidCrowdloan': 'u32',
                         'StableAssetPoolToken': 'u32',
-                        'Token': (
-                            'ACA',
-                            'AUSD',
-                            'DOT',
-                            'LDOT',
-                            'TAP',
-                            'KAR',
-                            'KUSD',
-                            'KSM',
-                            'LKSM',
-                            'TAI',
-                            'BNC',
-                            'VSKSM',
-                            'PHA',
-                            'KINT',
-                            'KBTC',
-                        ),
+                        'Token': 'scale_info::53',
                     },
                     {
                         'Erc20': '[u8; 20]',
                         'ForeignAsset': 'u16',
                         'LiquidCrowdloan': 'u32',
                         'StableAssetPoolToken': 'u32',
-                        'Token': (
-                            'ACA',
-                            'AUSD',
-                            'DOT',
-                            'LDOT',
-                            'TAP',
-                            'KAR',
-                            'KUSD',
-                            'KSM',
-                            'LKSM',
-                            'TAI',
-                            'BNC',
-                            'VSKSM',
-                            'PHA',
-                            'KINT',
-                            'KBTC',
-                        ),
+                        'Token': 'scale_info::53',
                     },
                 ),
                 'Erc20': '[u8; 20]',
@@ -104,7 +72,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| values | `Vec<(T::OracleKey, T::OracleValue)>` | ```[({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': 'scale_info::52', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': 'scale_info::52', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'u128')]```
+| values | `Vec<(T::OracleKey, T::OracleValue)>` | ```[({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': 'scale_info::53', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': 'scale_info::53', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'u128')]```
 
 ---------
 ## Storage functions
@@ -299,6 +267,16 @@ result = substrate.query(
 ---------
 ## Constants
 
+---------
+### MaxFeedValues
+#### Value
+```python
+10
+```
+#### Python
+```python
+constant = substrate.get_constant('AcalaOracle', 'MaxFeedValues')
+```
 ---------
 ### MaxHasDispatchedSize
 #### Value
