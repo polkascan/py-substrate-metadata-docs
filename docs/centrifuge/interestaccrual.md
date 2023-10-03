@@ -39,20 +39,6 @@ result = substrate.query(
 ]
 ```
 ---------
-### StorageVersion
-
-#### Python
-```python
-result = substrate.query(
-    'InterestAccrual', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V0', 'V1', 'V2')
-```
----------
 ## Errors
 
 ---------

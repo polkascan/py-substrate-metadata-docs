@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | picasso     |
 | Implementation name     | picasso     |
-| Spec version     | 10037     |
+| Spec version     | 10039     |
 | SS58 Format     | 49     |
 | Token symbol      | PICA     |
 | Token decimals      | 12     |
@@ -25,6 +25,7 @@
 | [BondedFinance](bondedfinance.md) | [3](bondedfinance.md#calls) | [4](bondedfinance.md#events) | [2](bondedfinance.md#storage-functions) | [3](bondedfinance.md#constants) | [4](bondedfinance.md#errors) |
 | [CallFilter](callfilter.md) | [2](callfilter.md#calls) | [2](callfilter.md#events) | [1](callfilter.md#storage-functions) | [1](callfilter.md#constants) | [2](callfilter.md#errors) |
 | [CollatorSelection](collatorselection.md) | [5](collatorselection.md#calls) | [5](collatorselection.md#events) | [5](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [10](collatorselection.md#errors) |
+| [ConvictionVoting](convictionvoting.md) | [6](convictionvoting.md#calls) | [2](convictionvoting.md#events) | [2](convictionvoting.md#storage-functions) | [2](convictionvoting.md#constants) | [12](convictionvoting.md#errors) |
 | [Cosmwasm](cosmwasm.md) | [5](cosmwasm.md#calls) | [7](cosmwasm.md#events) | [7](cosmwasm.md#storage-functions) | [18](cosmwasm.md#constants) | [45](cosmwasm.md#errors) |
 | [Council](council.md) | [7](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |
 | [CouncilMembership](councilmembership.md) | [7](councilmembership.md#calls) | [6](councilmembership.md#events) | [2](councilmembership.md#storage-functions) | [0](councilmembership.md#constants) | [3](councilmembership.md#errors) |
@@ -35,12 +36,14 @@
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [Farming](farming.md) | [5](farming.md#calls) | [3](farming.md#events) | [1](farming.md#storage-functions) | [3](farming.md#constants) | [1](farming.md#errors) |
 | [FarmingRewards](farmingrewards.md) | [0](farmingrewards.md#calls) | [4](farmingrewards.md#events) | [6](farmingrewards.md#storage-functions) | [1](farmingrewards.md#constants) | [4](farmingrewards.md#errors) |
-| [Ibc](ibc.md) | [9](ibc.md#calls) | [26](ibc.md#events) | [25](ibc.md#storage-functions) | [8](ibc.md#constants) | [39](ibc.md#errors) |
+| [Ibc](ibc.md) | [9](ibc.md#calls) | [26](ibc.md#events) | [25](ibc.md#storage-functions) | [8](ibc.md#constants) | [40](ibc.md#errors) |
 | [Ics20Fee](ics20fee.md) | [3](ics20fee.md#calls) | [3](ics20fee.md#events) | [2](ics20fee.md#storage-functions) | [2](ics20fee.md#constants) | [0](ics20fee.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [Indices](indices.md) | [5](indices.md#calls) | [3](indices.md#events) | [1](indices.md#storage-functions) | [1](indices.md#constants) | [5](indices.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
+| [OpenGovBalances](opengovbalances.md) | [6](opengovbalances.md#calls) | [10](opengovbalances.md#events) | [5](opengovbalances.md#storage-functions) | [3](opengovbalances.md#constants) | [8](opengovbalances.md#errors) |
 | [Oracle](oracle.md) | [8](oracle.md#calls) | [12](oracle.md#events) | [12](oracle.md#storage-functions) | [5](oracle.md#constants) | [32](oracle.md#errors) |
+| [Origins](origins.md) | [0](origins.md#calls) | [0](origins.md#events) | [0](origins.md#storage-functions) | [0](origins.md#constants) | [0](origins.md#errors) |
 | [Pablo](pablo.md) | [6](pablo.md#calls) | [5](pablo.md#events) | [5](pablo.md#storage-functions) | [2](pablo.md#constants) | [31](pablo.md#errors) |
 | [PalletMultihopXcmIbc](palletmultihopxcmibc.md) | [1](palletmultihopxcmibc.md#calls) | [5](palletmultihopxcmibc.md#events) | [1](palletmultihopxcmibc.md#storage-functions) | [3](palletmultihopxcmibc.md#constants) | [10](palletmultihopxcmibc.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
@@ -48,6 +51,7 @@
 | [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
+| [Referenda](referenda.md) | [9](referenda.md#calls) | [16](referenda.md#events) | [5](referenda.md#storage-functions) | [5](referenda.md#constants) | [13](referenda.md#errors) |
 | [ReleaseCommittee](releasecommittee.md) | [7](releasecommittee.md#calls) | [7](releasecommittee.md#events) | [6](releasecommittee.md#storage-functions) | [0](releasecommittee.md#constants) | [10](releasecommittee.md#errors) |
 | [ReleaseMembership](releasemembership.md) | [7](releasemembership.md#calls) | [6](releasemembership.md#events) | [2](releasemembership.md#storage-functions) | [0](releasemembership.md#constants) | [3](releasemembership.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
@@ -63,5 +67,6 @@
 | [UnknownTokens](unknowntokens.md) | [0](unknowntokens.md#calls) | [2](unknowntokens.md#events) | [2](unknowntokens.md#storage-functions) | [0](unknowntokens.md#constants) | [3](unknowntokens.md#errors) |
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [Vesting](vesting.md) | [4](vesting.md#calls) | [3](vesting.md#events) | [2](vesting.md#storage-functions) | [1](vesting.md#constants) | [8](vesting.md#errors) |
+| [Whitelist](whitelist.md) | [4](whitelist.md#calls) | [3](whitelist.md#events) | [1](whitelist.md#storage-functions) | [0](whitelist.md#constants) | [5](whitelist.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [7](xcmpqueue.md#events) | [10](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

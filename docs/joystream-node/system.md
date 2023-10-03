@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -411,9 +411,57 @@ result = substrate.query(
                 'WorkerStartedLeaving': ('u64', (None, 'Bytes')),
                 'WorkingGroupBudgetFunded': ('u64', 'u128', 'Bytes'),
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::28'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::22'},
+            },
+            None: None,
             'BagsList': {
                 'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
                 'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
+            },
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::31',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
             'Bounty': {
                 'BountyContributorRemarked': (
@@ -718,6 +766,19 @@ result = substrate.query(
                 'WorkerStartedLeaving': ('u64', (None, 'Bytes')),
                 'WorkingGroupBudgetFunded': ('u64', 'u128', 'Bytes'),
             },
+            'ElectionProviderMultiPhase': {
+                'ElectionFinalized': {
+                    'election_compute': (None, 'scale_info::33'),
+                },
+                'Rewarded': {'account': 'AccountId', 'value': 'u128'},
+                'SignedPhaseStarted': {'round': 'u32'},
+                'Slashed': {'account': 'AccountId', 'value': 'u128'},
+                'SolutionStored': {
+                    'election_compute': 'scale_info::33',
+                    'prev_ejected': 'bool',
+                },
+                'UnsignedPhaseStarted': {'round': 'u32'},
+            },
             'Forum': {
                 'CategoryArchivalStatusUpdated': (
                     'u64',
@@ -794,67 +855,6 @@ result = substrate.query(
                 'WorkerRoleAccountUpdated': ('u64', 'AccountId'),
                 'WorkerStartedLeaving': ('u64', (None, 'Bytes')),
                 'WorkingGroupBudgetFunded': ('u64', 'u128', 'Bytes'),
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::28'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
-            },
-            None: None,
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::31',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'ElectionProviderMultiPhase': {
-                'ElectionFinalized': {
-                    'election_compute': (None, 'scale_info::33'),
-                },
-                'Rewarded': {'account': 'AccountId', 'value': 'u128'},
-                'SignedPhaseStarted': {'round': 'u32'},
-                'Slashed': {'account': 'AccountId', 'value': 'u128'},
-                'SolutionStored': {
-                    'election_compute': 'scale_info::33',
-                    'prev_ejected': 'bool',
-                },
-                'UnsignedPhaseStarted': {'round': 'u32'},
             },
             'Grandpa': {
                 'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},

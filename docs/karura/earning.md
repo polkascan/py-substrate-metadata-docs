@@ -141,16 +141,6 @@ result = substrate.query(
 ## Constants
 
 ---------
-### InstantUnstakeFee
-#### Value
-```python
-None
-```
-#### Python
-```python
-constant = substrate.get_constant('Earning', 'InstantUnstakeFee')
-```
----------
 ### LockIdentifier
 #### Value
 ```python

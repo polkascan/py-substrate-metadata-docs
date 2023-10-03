@@ -32,7 +32,7 @@ Execute a previously instantiated contract.
 call = substrate.compose_call(
     'Cosmwasm', 'execute', {
     'contract': 'AccountId',
-    'funds': 'scale_info::398',
+    'funds': 'scale_info::375',
     'gas': 'u64',
     'message': 'Bytes',
 }
@@ -76,7 +76,7 @@ call = substrate.compose_call(
         'CodeHash': '[u8; 32]',
         'CodeId': 'u64',
     },
-    'funds': 'scale_info::398',
+    'funds': 'scale_info::375',
     'gas': 'u64',
     'label': 'Bytes',
     'message': 'Bytes',

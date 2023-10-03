@@ -364,7 +364,7 @@ constant = substrate.get_constant('ConvictionVoting', 'MaxVotes')
  those successful voters are locked into the consequences that their votes entail.
 #### Value
 ```python
-50400
+7200
 ```
 #### Python
 ```python

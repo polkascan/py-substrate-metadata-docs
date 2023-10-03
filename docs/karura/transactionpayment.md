@@ -427,30 +427,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### with_fee_paid_by
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| call | `Box<CallOf<T>>` | 
-| payer_addr | `T::AccountId` | 
-| payer_sig | `MultiSignature` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'TransactionPayment', 'with_fee_paid_by', {
-    'call': 'Call',
-    'payer_addr': 'AccountId',
-    'payer_sig': {
-        'Ecdsa': '[u8; 65]',
-        'Ed25519': '[u8; 64]',
-        'Sr25519': '[u8; 64]',
-    },
-}
-)
-```
-
----------
 ### with_fee_path
 #### Attributes
 | Name | Type |

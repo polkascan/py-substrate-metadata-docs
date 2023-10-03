@@ -197,6 +197,20 @@ result = substrate.query(
 'Bytes'
 ```
 ---------
+### AccountCodesMetadata
+
+#### Python
+```python
+result = substrate.query(
+    'EVM', 'AccountCodesMetadata', ['[u8; 20]']
+)
+```
+
+#### Return value
+```python
+{'hash': '[u8; 32]', 'size': 'u64'}
+```
+---------
 ### AccountStorages
 
 #### Python

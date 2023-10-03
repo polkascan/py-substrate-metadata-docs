@@ -26,12 +26,12 @@ Cancel a named scheduled task.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `Vec<u8>` | 
+| id | `TaskName` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Scheduler', 'cancel_named', {'id': 'Bytes'}
+    'Scheduler', 'cancel_named', {'id': '[u8; 32]'}
 )
 ```
 
@@ -44,16 +44,13 @@ Anonymously schedule a task.
 | when | `T::BlockNumber` | 
 | maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
 | priority | `schedule::Priority` | 
-| call | `Box<CallOrHashOf<T>>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Scheduler', 'schedule', {
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
+    'call': 'Call',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -67,27 +64,20 @@ call = substrate.compose_call(
 ---------
 ### schedule_after
 Anonymously schedule a task after a delay.
-
-\# &lt;weight&gt;
-Same as [`schedule`].
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | after | `T::BlockNumber` | 
 | maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
 | priority | `schedule::Priority` | 
-| call | `Box<CallOrHashOf<T>>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Scheduler', 'schedule_after', {
     'after': 'u32',
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
+    'call': 'Call',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -103,21 +93,18 @@ Schedule a named task.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `Vec<u8>` | 
+| id | `TaskName` | 
 | when | `T::BlockNumber` | 
 | maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
 | priority | `schedule::Priority` | 
-| call | `Box<CallOrHashOf<T>>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Scheduler', 'schedule_named', {
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
-    'id': 'Bytes',
+    'call': 'Call',
+    'id': '[u8; 32]',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -131,29 +118,22 @@ call = substrate.compose_call(
 ---------
 ### schedule_named_after
 Schedule a named task after a delay.
-
-\# &lt;weight&gt;
-Same as [`schedule_named`](Self::schedule_named).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| id | `Vec<u8>` | 
+| id | `TaskName` | 
 | after | `T::BlockNumber` | 
 | maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
 | priority | `schedule::Priority` | 
-| call | `Box<CallOrHashOf<T>>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Scheduler', 'schedule_named_after', {
     'after': 'u32',
-    'call': {
-        'Hash': '[u8; 32]',
-        'Value': 'Call',
-    },
-    'id': 'Bytes',
+    'call': 'Call',
+    'id': '[u8; 32]',
     'maybe_periodic': (
         None,
         ('u32', 'u32'),
@@ -167,14 +147,13 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### CallLookupFailed
+### CallUnavailable
 The call for the provided hash was not found so the task has been aborted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
-| id | `Option<Vec<u8>>` | ```(None, 'Bytes')```
-| error | `LookupError` | ```('Unknown', 'BadFormat')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
 ### Canceled
@@ -192,8 +171,26 @@ Dispatched some task.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
-| id | `Option<Vec<u8>>` | ```(None, 'Bytes')```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+
+---------
+### PeriodicFailed
+The given task was unable to be renewed since the agenda is full at that block.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
+
+---------
+### PermanentlyOverweight
+The given task can never be executed since it is overweight.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
 ### Scheduled
@@ -224,27 +221,20 @@ result = substrate.query(
     (
         None,
         {
-            'call': {'Hash': '[u8; 32]', 'Value': 'Call'},
-            'maybe_id': (None, 'Bytes'),
+            'call': {
+                'Inline': 'Bytes',
+                'Legacy': 'InnerStruct',
+                'Lookup': 'InnerStruct',
+            },
+            'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                'Council': 'scale_info::364',
+                'system': 'scale_info::362',
                 None: None,
-                'Council': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'PolkadotXcm': {
-                    'Response': 'scale_info::48',
-                    'Xcm': 'scale_info::48',
-                },
-                'TechnicalCommittee': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
-                },
-                'Void': (),
+                'PolkadotXcm': 'scale_info::363',
+                'TechnicalCommittee': 'scale_info::365',
+                'Void': 'scale_info::366',
             },
             'priority': 'u8',
         },
@@ -252,13 +242,30 @@ result = substrate.query(
 ]
 ```
 ---------
-### Lookup
- Lookup from identity to the block number and index of the task.
+### IncompleteSince
 
 #### Python
 ```python
 result = substrate.query(
-    'Scheduler', 'Lookup', ['Bytes']
+    'Scheduler', 'IncompleteSince', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### Lookup
+ Lookup from a name to the block number and index of the task.
+
+ For v3 -&gt; v4 the previously unbounded identities are Blake2-256 hashed to form the v4
+ identities.
+
+#### Python
+```python
+result = substrate.query(
+    'Scheduler', 'Lookup', ['[u8; 32]']
 )
 ```
 
@@ -272,7 +279,10 @@ result = substrate.query(
 ---------
 ### MaxScheduledPerBlock
  The maximum number of scheduled calls in the queue for a single block.
- Not strictly enforced, but used for weight estimation.
+
+ NOTE:
+ + Dependent pallets&#x27; benchmarks might require a higher limit for the setting. Set a
+ higher limit under `runtime-benchmarks` feature.
 #### Value
 ```python
 10
@@ -283,11 +293,10 @@ constant = substrate.get_constant('Scheduler', 'MaxScheduledPerBlock')
 ```
 ---------
 ### MaximumWeight
- The maximum weight that may be scheduled per block for any dispatchables of less
- priority than `schedule::HARD_DEADLINE`.
+ The maximum weight that may be scheduled per block for any dispatchables.
 #### Value
 ```python
-{'ref_time': 400000000000}
+{'proof_size': 4194304, 'ref_time': 400000000000}
 ```
 #### Python
 ```python
@@ -299,6 +308,10 @@ constant = substrate.get_constant('Scheduler', 'MaximumWeight')
 ---------
 ### FailedToSchedule
 Failed to schedule a call
+
+---------
+### Named
+Attempt to use a non-named function on a named task.
 
 ---------
 ### NotFound

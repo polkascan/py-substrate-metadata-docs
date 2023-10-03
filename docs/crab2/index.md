@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | Crab2     |
 | Implementation name     | DarwiniaOfficialRust     |
-| Spec version     | 6400     |
+| Spec version     | 6402     |
 | SS58 Format     | 42     |
 | Token symbol      | CRAB     |
 | Token decimals      | 18     |
@@ -50,7 +50,6 @@
 | [TechnicalCommittee](technicalcommittee.md) | [6](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [1](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors) |
 | [TechnicalMembership](technicalmembership.md) | [7](technicalmembership.md#calls) | [6](technicalmembership.md#events) | [2](technicalmembership.md#storage-functions) | [0](technicalmembership.md#constants) | [3](technicalmembership.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |
-| [Tips](tips.md) | [6](tips.md#calls) | [5](tips.md#events) | [2](tips.md#storage-functions) | [5](tips.md#constants) | [6](tips.md#errors) |
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
 | [Treasury](treasury.md) | [5](treasury.md#calls) | [9](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |

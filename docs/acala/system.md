@@ -304,6 +304,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AcalaOracle': {
                 'NewFeedData': {
                     'sender': 'AccountId',
@@ -312,22 +313,22 @@ result = substrate.query(
             },
             'AssetRegistry': {
                 'AssetRegistered': {
-                    'asset_id': 'scale_info::186',
-                    'metadata': 'scale_info::185',
+                    'asset_id': 'scale_info::192',
+                    'metadata': 'scale_info::191',
                 },
                 'AssetUpdated': {
-                    'asset_id': 'scale_info::186',
-                    'metadata': 'scale_info::185',
+                    'asset_id': 'scale_info::192',
+                    'metadata': 'scale_info::191',
                 },
                 'ForeignAssetRegistered': {
                     'asset_address': 'scale_info::74',
                     'asset_id': 'u16',
-                    'metadata': 'scale_info::185',
+                    'metadata': 'scale_info::191',
                 },
                 'ForeignAssetUpdated': {
                     'asset_address': 'scale_info::74',
                     'asset_id': 'u16',
-                    'metadata': 'scale_info::185',
+                    'metadata': 'scale_info::191',
                 },
             },
             'Auction': {
@@ -646,30 +647,30 @@ result = substrate.query(
                 'Created': {
                     'contract': '[u8; 20]',
                     'from': '[u8; 20]',
-                    'logs': ['scale_info::190'],
+                    'logs': ['scale_info::196'],
                     'used_gas': 'u64',
                     'used_storage': 'i32',
                 },
                 'CreatedFailed': {
                     'contract': '[u8; 20]',
-                    'exit_reason': 'scale_info::193',
+                    'exit_reason': 'scale_info::199',
                     'from': '[u8; 20]',
-                    'logs': ['scale_info::190'],
+                    'logs': ['scale_info::196'],
                     'used_gas': 'u64',
                     'used_storage': 'i32',
                 },
                 'Executed': {
                     'contract': '[u8; 20]',
                     'from': '[u8; 20]',
-                    'logs': ['scale_info::190'],
+                    'logs': ['scale_info::196'],
                     'used_gas': 'u64',
                     'used_storage': 'i32',
                 },
                 'ExecutedFailed': {
                     'contract': '[u8; 20]',
-                    'exit_reason': 'scale_info::193',
+                    'exit_reason': 'scale_info::199',
                     'from': '[u8; 20]',
-                    'logs': ['scale_info::190'],
+                    'logs': ['scale_info::196'],
                     'output': 'Bytes',
                     'used_gas': 'u64',
                     'used_storage': 'i32',
@@ -794,7 +795,7 @@ result = substrate.query(
                     'sub_account_index': 'u16',
                 },
                 'LedgerUnlockingReset': {
-                    'new_unlocking': ['scale_info::178'],
+                    'new_unlocking': ['scale_info::184'],
                     'sub_account_index': 'u16',
                 },
                 'Minted': {
@@ -896,12 +897,12 @@ result = substrate.query(
             'Incentives': {
                 'ClaimRewardDeductionRateUpdated': {
                     'deduction_rate': 'u128',
-                    'pool': 'scale_info::182',
+                    'pool': 'scale_info::188',
                 },
                 'ClaimRewards': {
                     'actual_amount': 'u128',
                     'deduction_amount': 'u128',
-                    'pool': 'scale_info::182',
+                    'pool': 'scale_info::188',
                     'reward_currency_id': 'scale_info::52',
                     'who': 'AccountId',
                 },
@@ -911,7 +912,7 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
                 'IncentiveRewardAmountUpdated': {
-                    'pool': 'scale_info::182',
+                    'pool': 'scale_info::188',
                     'reward_amount_per_period': 'u128',
                     'reward_currency_id': 'scale_info::52',
                 },
@@ -1024,6 +1025,7 @@ result = substrate.query(
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
             },
+            'Parameters': {'Updated': {'key_value': 'scale_info::161'}},
             'PolkadotXcm': {
                 'AssetsClaimed': {
                     'assets': 'scale_info::110',
@@ -1527,7 +1529,6 @@ result = substrate.query(
                     'who': 'scale_info::74',
                 },
             },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -1559,11 +1560,11 @@ result = substrate.query(
             'XcmInterface': {
                 'XcmDestWeightUpdated': {
                     'new_xcm_dest_weight': 'scale_info::9',
-                    'xcm_operation': 'scale_info::180',
+                    'xcm_operation': 'scale_info::186',
                 },
                 'XcmFeeUpdated': {
                     'new_xcm_dest_weight': 'u128',
-                    'xcm_operation': 'scale_info::180',
+                    'xcm_operation': 'scale_info::186',
                 },
             },
             'XcmpQueue': {
@@ -1820,7 +1821,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'acala',
     'impl_version': 0,
     'spec_name': 'acala',
-    'spec_version': 2200,
+    'spec_version': 2210,
     'state_version': 0,
     'transaction_version': 3,
 }

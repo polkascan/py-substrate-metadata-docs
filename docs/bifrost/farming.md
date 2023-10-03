@@ -2161,14 +2161,14 @@ result = substrate.query(
 ```python
 {
     'gauge_amount': 'u128',
-    'gauge_basic_rewards': 'scale_info::739',
+    'gauge_basic_rewards': 'scale_info::747',
     'gauge_last_block': 'u32',
     'gauge_state': ('Unbond', 'Bonded'),
     'keeper': 'AccountId',
     'max_block': 'u32',
     'pid': 'u32',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::743',
+    'rewards': 'scale_info::751',
     'token': {
         'BLP': 'u32',
         'ForeignAsset': 'u32',
@@ -2325,7 +2325,7 @@ result = substrate.query(
 ```python
 {
     'after_block_to_start': 'u32',
-    'basic_rewards': 'scale_info::739',
+    'basic_rewards': 'scale_info::747',
     'basic_token': (
         {
             'BLP': 'u32',
@@ -2457,9 +2457,9 @@ result = substrate.query(
     'keeper': 'AccountId',
     'min_deposit_to_start': 'u128',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::740',
+    'rewards': 'scale_info::748',
     'state': ('UnCharged', 'Charged', 'Ongoing', 'Dead', 'Retired'),
-    'tokens_proportion': 'scale_info::738',
+    'tokens_proportion': 'scale_info::746',
     'total_shares': 'u128',
     'withdraw_limit_count': 'u8',
     'withdraw_limit_time': 'u32',
@@ -2514,7 +2514,7 @@ result = substrate.query(
     'share': 'u128',
     'who': 'AccountId',
     'withdraw_list': [('u32', 'u128')],
-    'withdrawn_rewards': 'scale_info::739',
+    'withdrawn_rewards': 'scale_info::747',
 }
 ```
 ---------

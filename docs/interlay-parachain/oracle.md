@@ -31,12 +31,12 @@ call = substrate.compose_call(
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                     ),
                     'StableLpToken': 'u32',
@@ -107,7 +107,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| values | `Vec<(OracleKey, Option<T::UnsignedFixedPoint>)>` | ```[({'ExchangeRate': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ('scale_info::52', 'scale_info::52'), 'StableLpToken': 'u32'}, 'FeeEstimation': None}, (None, 'u128'))]```
+| values | `Vec<(OracleKey, Option<T::UnsignedFixedPoint>)>` | ```[({'ExchangeRate': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ('scale_info::53', 'scale_info::53'), 'StableLpToken': 'u32'}, 'FeeEstimation': None}, (None, 'u128'))]```
 
 ---------
 ### FeedValues
@@ -116,7 +116,7 @@ Event emitted when exchange rate is set
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | oracle_id | `T::AccountId` | ```AccountId```
-| values | `Vec<(OracleKey, T::UnsignedFixedPoint)>` | ```[({'ExchangeRate': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ('scale_info::52', 'scale_info::52'), 'StableLpToken': 'u32'}, 'FeeEstimation': None}, 'u128')]```
+| values | `Vec<(OracleKey, T::UnsignedFixedPoint)>` | ```[({'ExchangeRate': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ('scale_info::53', 'scale_info::53'), 'StableLpToken': 'u32'}, 'FeeEstimation': None}, 'u128')]```
 
 ---------
 ### OracleAdded

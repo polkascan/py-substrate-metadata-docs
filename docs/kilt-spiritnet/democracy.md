@@ -440,6 +440,43 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_metadata
+Set or clear a metadata of a proposal or a referendum.
+
+Parameters:
+- `origin`: Must correspond to the `MetadataOwner`.
+    - `ExternalOrigin` for an external proposal with the `SuperMajorityApprove`
+      threshold.
+    - `ExternalDefaultOrigin` for an external proposal with the `SuperMajorityAgainst`
+      threshold.
+    - `ExternalMajorityOrigin` for an external proposal with the `SimpleMajority`
+      threshold.
+    - `Signed` by a creator for a public proposal.
+    - `Signed` to clear a metadata for a finished referendum.
+    - `Root` to set a metadata for an ongoing referendum.
+- `owner`: an identifier of a metadata owner.
+- `maybe_hash`: The hash of an on-chain stored preimage. `None` to clear a metadata.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| owner | `MetadataOwner` | 
+| maybe_hash | `Option<PreimageHash>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Democracy', 'set_metadata', {
+    'maybe_hash': (None, '[u8; 32]'),
+    'owner': {
+        'External': None,
+        'Proposal': 'u32',
+        'Referendum': 'u32',
+    },
+}
+)
+```
+
+---------
 ### undelegate
 Undelegate the voting power of the sending account.
 
@@ -593,6 +630,34 @@ An account has delegated their vote to another account.
 An external proposal has been tabled.
 #### Attributes
 No attributes
+
+---------
+### MetadataCleared
+Metadata for a proposal or a referendum has been cleared.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| hash | `PreimageHash` | ```[u8; 32]```
+
+---------
+### MetadataSet
+Metadata for a proposal or a referendum has been set.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| hash | `PreimageHash` | ```[u8; 32]```
+
+---------
+### MetadataTransferred
+Metadata has been transferred to new owner.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| prev_owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
+| hash | `PreimageHash` | ```[u8; 32]```
 
 ---------
 ### NotPassed
@@ -766,6 +831,32 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### MetadataOf
+ General information concerning any proposal or referendum.
+ The `PreimageHash` refers to the preimage of the `Preimages` provider which can be a JSON
+ dump or IPFS hash of a JSON file.
+
+ Consider a garbage collection for a metadata of finished referendums to `unrequest` (remove)
+ large preimages.
+
+#### Python
+```python
+result = substrate.query(
+    'Democracy', 'MetadataOf', [
+    {
+        'External': None,
+        'Proposal': 'u32',
+        'Referendum': 'u32',
+    },
+]
+)
+```
+
+#### Return value
+```python
+'[u8; 32]'
+```
+---------
 ### NextExternal
  The referendum to be tabled whenever it would be valid to table an external proposal.
  This happens when a referendum needs to be tabled and one of two conditions are met:
@@ -914,7 +1005,7 @@ result = substrate.query(
     'Direct': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u64', 'u128'),
-        'votes': [('u32', {'Split': 'InnerStruct', 'Standard': 'InnerStruct'})],
+        'votes': [('u32', 'scale_info::38')],
     },
 }
 ```
@@ -1127,6 +1218,10 @@ Next external proposal not simple majority
 ---------
 ### NotVoter
 The given account did not vote on the referendum.
+
+---------
+### PreimageNotExist
+The preimage does not exist.
 
 ---------
 ### ProposalBlacklisted

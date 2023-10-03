@@ -96,7 +96,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::434'
+'scale_info::459'
 ```
 ---------
 ### RewardPerToken
@@ -461,26 +461,6 @@ result = substrate.query(
 ---------
 ## Constants
 
----------
-### GetNativeCurrencyId
-#### Value
-```python
-{'Token': 'INTR'}
-```
-#### Python
-```python
-constant = substrate.get_constant('FarmingRewards', 'GetNativeCurrencyId')
-```
----------
-### GetWrappedCurrencyId
-#### Value
-```python
-{'Token': 'IBTC'}
-```
-#### Python
-```python
-constant = substrate.get_constant('FarmingRewards', 'GetWrappedCurrencyId')
-```
 ---------
 ### MaxRewardCurrencies
  The maximum number of reward currencies.

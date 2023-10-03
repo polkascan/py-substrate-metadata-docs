@@ -754,6 +754,9 @@ constant = substrate.get_constant('EVM', 'TxFeePerGas')
 ### NoPermission
 
 ---------
+### NotEOA
+
+---------
 ### OutOfStorage
 
 ---------

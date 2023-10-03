@@ -422,6 +422,10 @@ User supplied an invalid address
 Invalid chain ID
 
 ---------
+### InvalidCoinbasePosition
+Coinbase tx must be the first transaction in the block
+
+---------
 ### InvalidCompact
 Invalid compact value in header
 

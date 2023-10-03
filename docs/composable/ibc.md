@@ -637,7 +637,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::484'
+'scale_info::537'
 ```
 ---------
 ### CounterForIbcAssetIds
@@ -682,7 +682,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::482'
+'scale_info::535'
 ```
 ---------
 ### FeeLessChannelIds
@@ -774,7 +774,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('scale_info::487', 'u64')
+('scale_info::540', 'u64')
 ```
 ---------
 ### PendingSendPacketSeqs
@@ -789,7 +789,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('scale_info::487', 'u64')
+('scale_info::540', 'u64')
 ```
 ---------
 ### RecvPackets
@@ -1002,6 +1002,7 @@ Error encoding some type
 
 ---------
 ### FailedSendFeeToAccount
+Fee errors
 
 ---------
 ### FailedToGetRevisionNumber
@@ -1018,6 +1019,13 @@ Invalid asset id
 ---------
 ### InvalidChannelId
 Invalid channel id
+
+---------
+### InvalidMemo
+The memo hasn&\#x27;t passed the validation. Potential reasons:
+- The memo is too long.
+- The memo is in invalid format
+- The memo contains unsupported middlewares
 
 ---------
 ### InvalidMessageType
@@ -1041,6 +1049,7 @@ Invalid timestamp
 
 ---------
 ### OriginAddress
+Failed to derive origin sender address.
 
 ---------
 ### Other

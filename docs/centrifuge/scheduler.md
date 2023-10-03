@@ -237,20 +237,24 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'Ethereum': {'EthereumTransaction': '[u8; 20]'},
-                'PolkadotXcm': {
-                    'Response': 'scale_info::87',
-                    'Xcm': 'scale_info::87',
-                },
                 'Void': (),
+                None: None,
+                'Ethereum': {'EthereumTransaction': '[u8; 20]'},
+                'LiquidityPoolsGateway': {
+                    'AxelarRelay': 'scale_info::134',
+                    'Domain': 'scale_info::134',
+                },
+                'PolkadotXcm': {
+                    'Response': 'scale_info::99',
+                    'Xcm': 'scale_info::99',
+                },
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },

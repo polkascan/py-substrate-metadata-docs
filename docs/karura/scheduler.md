@@ -216,9 +216,9 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'Authority': 'scale_info::135',
                 'system': 'scale_info::132',
                 None: None,
+                'Authority': 'scale_info::135',
                 'CumulusXcm': 'scale_info::134',
                 'FinancialCouncil': 'scale_info::137',
                 'GeneralCouncil': 'scale_info::136',

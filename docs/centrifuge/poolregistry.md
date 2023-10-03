@@ -51,6 +51,7 @@ use, or if the tranche configuration cannot be used.
 | currency | `T::CurrencyId` | 
 | max_reserve | `T::Balance` | 
 | metadata | `Option<Vec<u8>>` | 
+| write_off_policy | `PolicyOf<T>` | 
 
 #### Python
 ```python
@@ -58,12 +59,12 @@ call = substrate.compose_call(
     'PoolRegistry', 'register', {
     'admin': 'AccountId',
     'currency': {
+        'Native': None,
+        'Tranche': ('u64', '[u8; 16]'),
+        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'KSM': None,
-        'Native': None,
         'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
     },
     'max_reserve': 'u128',
     'metadata': (None, 'Bytes'),
@@ -82,6 +83,15 @@ call = substrate.compose_call(
                 },
                 'Residual': None,
             },
+        },
+    ],
+    'write_off_policy': [
+        {
+            'status': {
+                'penalty': 'u128',
+                'percentage': 'u128',
+            },
+            'triggers': 'scale_info::258',
         },
     ],
 }

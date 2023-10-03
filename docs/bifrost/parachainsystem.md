@@ -329,7 +329,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::469'
+'scale_info::473'
 ```
 ---------
 ### LastRelayChainBlockNumber

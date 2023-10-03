@@ -239,7 +239,6 @@ result = substrate.query(
             'origin': {
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'Ethereum': {'EthereumTransaction': '[u8; 20]'},
-                None: None,
                 'GeneralCouncil': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -254,8 +253,9 @@ result = substrate.query(
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
+                'Void': (),
             },
             'priority': 'u8',
         },

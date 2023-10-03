@@ -238,7 +238,6 @@ result = substrate.query(
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                None: None,
                 'Ethereum': {'EthereumTransaction': '[u8; 20]'},
                 'GeneralCouncil': {
                     'Member': 'AccountId',
@@ -256,6 +255,7 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },

@@ -119,7 +119,7 @@ new service endpoints bounded by `MaxNumberOfServicesPerDid`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| details | `Box<DidCreationDetails<T>>` | 
+| details | `Box<DidCreationDetailsOf<T>>` | 
 | signature | `DidSignature` | 
 
 #### Python
@@ -144,7 +144,7 @@ call = substrate.compose_call(
                 'Sr25519': '[u8; 32]',
             },
         ),
-        'new_key_agreement_keys': 'scale_info::280',
+        'new_key_agreement_keys': 'scale_info::296',
         'new_service_details': [
             {
                 'id': 'Bytes',
@@ -497,7 +497,7 @@ Weight: O(1) + weight of the dispatched call
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| did_call | `Box<DidAuthorizedCallOperation<T>>` | 
+| did_call | `Box<DidAuthorizedCallOperationOf<T>>` | 
 | signature | `DidSignature` | 
 
 #### Python
@@ -601,9 +601,9 @@ result = substrate.query(
     'authentication_key': '[u8; 32]',
     'delegation_key': (None, '[u8; 32]'),
     'deposit': {'amount': 'u128', 'owner': 'AccountId'},
-    'key_agreement_keys': 'scale_info::410',
+    'key_agreement_keys': 'scale_info::424',
     'last_tx_counter': 'u64',
-    'public_keys': 'scale_info::419',
+    'public_keys': 'scale_info::432',
 }
 ```
 ---------
@@ -663,17 +663,18 @@ result = substrate.query(
 ## Constants
 
 ---------
-### Deposit
+### BaseDeposit
  The amount of balance that will be taken for each DID as a deposit
- to incentivise fair use of the on chain storage. The deposit can be
- reclaimed when the DID is deleted.
+ to incentivise fair use of the on chain storage. The deposits
+ increase by the amount of used keys and service endpoints. The
+ deposit can be reclaimed when the DID is deleted.
 #### Value
 ```python
-2007900000000000
+2000000000000000
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Did', 'Deposit')
+constant = substrate.get_constant('Did', 'BaseDeposit')
 ```
 ---------
 ### Fee
@@ -687,6 +688,18 @@ constant = substrate.get_constant('Did', 'Deposit')
 #### Python
 ```python
 constant = substrate.get_constant('Did', 'Fee')
+```
+---------
+### KeyDeposit
+ The amount of balance that will be taken for each added key as a
+ deposit to incentivise fair use of the on chain storage.
+#### Value
+```python
+1750000000000
+```
+#### Python
+```python
+constant = substrate.get_constant('Did', 'KeyDeposit')
 ```
 ---------
 ### MaxBlocksTxValidity
@@ -739,7 +752,7 @@ constant = substrate.get_constant('Did', 'MaxNumberOfTypesPerService')
  The maximum number of a URLs for a service endpoint.
 #### Value
 ```python
-1
+2
 ```
 #### Python
 ```python
@@ -804,6 +817,20 @@ constant = substrate.get_constant('Did', 'MaxServiceUrlLength')
 #### Python
 ```python
 constant = substrate.get_constant('Did', 'MaxTotalKeyAgreementKeys')
+```
+---------
+### ServiceEndpointDeposit
+ The amount of balance that will be taken for each service endpoint
+ as a deposit to incentivise fair use of the on chain storage. The
+ deposit can be reclaimed when the service endpoint is removed or the
+ DID deleted.
+#### Value
+```python
+81400000000000
+```
+#### Python
+```python
+constant = substrate.get_constant('Did', 'ServiceEndpointDeposit')
 ```
 ---------
 ## Errors

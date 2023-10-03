@@ -231,11 +231,11 @@ result = substrate.query(
             'origin': {
                 'Council': 'scale_info::173',
                 'CumulusXcm': 'scale_info::176',
-                'Void': 'scale_info::177',
-                None: None,
                 'PolkadotXcm': 'scale_info::175',
                 'TechnicalCommittee': 'scale_info::174',
+                'Void': 'scale_info::177',
                 'system': 'scale_info::172',
+                None: None,
             },
             'priority': 'u8',
         },

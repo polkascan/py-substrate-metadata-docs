@@ -1,4 +1,4 @@
-# Statemine
+# Kusama Asset Hub
 
 ---------
 

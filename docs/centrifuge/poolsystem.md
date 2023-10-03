@@ -127,7 +127,7 @@ A pool was created.
 | admin | `T::AccountId` | ```AccountId```
 | depositor | `T::AccountId` | ```AccountId```
 | pool_id | `T::PoolId` | ```u64```
-| essence | `PoolEssenceOf<T>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
+| essence | `PoolEssenceOf<T>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
 
 ---------
 ### EpochClosed
@@ -156,6 +156,16 @@ The max reserve was updated.
 | pool_id | `T::PoolId` | ```u64```
 
 ---------
+### ProposedChange
+A change was proposed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pool_id | `T::PoolId` | ```u64```
+| change_id | `T::Hash` | ```[u8; 32]```
+| change | `T::RuntimeChange` | ```{'Loan': {'Loan': ('u64', {'Maturity': {'Fixed': 'InnerStruct'}, 'MaturityExtension': 'u64', 'InterestRate': {'Fixed': 'InnerStruct'}, 'InterestPayments': ('None',), 'PayDownSchedule': ('None',), 'Internal': {'ValuationMethod': 'scale_info::251', 'ProbabilityOfDefault': 'u128', 'LossGivenDefault': 'u128', 'DiscountRate': 'scale_info::246'}}), 'Policy': [{'triggers': 'scale_info::258', 'status': {'percentage': 'u128', 'penalty': 'u128'}}]}}```
+
+---------
 ### Rebalanced
 The tranches were rebalanced.
 #### Attributes
@@ -180,8 +190,8 @@ A pool was updated.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | id | `T::PoolId` | ```u64```
-| old | `PoolEssenceOf<T>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
-| new | `PoolEssenceOf<T>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
+| old | `PoolEssenceOf<T>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
+| new | `PoolEssenceOf<T>` | ```{'currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}, 'max_reserve': 'u128', 'max_nav_age': 'u64', 'min_epoch_time': 'u64', 'tranches': [{'currency': {'pool_id': 'u64', 'tranche_id': '[u8; 16]'}, 'ty': {'Residual': None, 'NonResidual': {'interest_rate_per_sec': 'u128', 'min_risk_buffer': 'u64'}}, 'metadata': {'token_name': 'Bytes', 'token_symbol': 'Bytes'}}]}```
 
 ---------
 ## Storage functions
@@ -216,12 +226,12 @@ result = substrate.query(
     'best_submission': (
         None,
         {
-            'Healthy': {'score': 'u128', 'solution': ['scale_info::158']},
+            'Healthy': {'score': 'u128', 'solution': ['scale_info::220']},
             'Unhealthy': {
                 'reserve_improvement_score': (None, 'u128'),
                 'risk_buffer_improvement_scores': (None, ['u128']),
-                'solution': ['scale_info::158'],
-                'state': ['scale_info::163'],
+                'solution': ['scale_info::220'],
+                'state': ['scale_info::225'],
             },
         },
     ),
@@ -246,6 +256,40 @@ result = substrate.query(
 }
 ```
 ---------
+### NotedChange
+
+#### Python
+```python
+result = substrate.query(
+    'PoolSystem', 'NotedChange', ['u64', '[u8; 32]']
+)
+```
+
+#### Return value
+```python
+{
+    'change': {
+        'Loan': {
+            'Loan': (
+                'u64',
+                {
+                    'InterestPayments': 'scale_info::248',
+                    'InterestRate': 'scale_info::246',
+                    'Internal': 'scale_info::250',
+                    'Maturity': 'scale_info::245',
+                    'MaturityExtension': 'u64',
+                    'PayDownSchedule': 'scale_info::249',
+                },
+            ),
+            'Policy': [
+                {'status': 'scale_info::260', 'triggers': 'scale_info::258'},
+            ],
+        },
+    },
+    'submitted_time': 'u64',
+}
+```
+---------
 ### Pool
 
 #### Python
@@ -259,12 +303,12 @@ result = substrate.query(
 ```python
 {
     'currency': {
+        'Native': None,
+        'Tranche': ('u64', '[u8; 16]'),
+        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'KSM': None,
-        'Native': None,
         'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
     },
     'epoch': {'current': 'u32', 'last_closed': 'u64', 'last_executed': 'u32'},
     'parameters': {'max_nav_age': 'u64', 'min_epoch_time': 'u64'},
@@ -327,27 +371,13 @@ result = substrate.query(
         },
         'tranches': {
             'NewValue': [
-                {'seniority': (None, 'u32'), 'tranche_type': 'scale_info::175'},
+                {'seniority': (None, 'u32'), 'tranche_type': 'scale_info::237'},
             ],
             'NoChange': None,
         },
     },
     'submitted_at': 'u64',
 }
-```
----------
-### StorageVersion
-
-#### Python
-```python
-result = substrate.query(
-    'PoolSystem', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V0', 'V1')
 ```
 ---------
 ## Constants
@@ -502,6 +532,14 @@ Adding &amp; removing tranches is not supported
 ---------
 ### ChallengeTimeHasNotPassed
 Attempted to execute an epoch too early
+
+---------
+### ChangeNotFound
+The external change was not found for the specified ChangeId.
+
+---------
+### ChangeNotReady
+The external change was found for is not ready yet to be released.
 
 ---------
 ### EpochNotExecutedYet

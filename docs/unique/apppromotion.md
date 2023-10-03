@@ -237,30 +237,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### upgrade_accounts
- Migrates lock state into freeze one
-
-\# Permissions
-
-* Sudo
-
-  \# Arguments
-
-* `origin`: Must be `Root`.
-* `stakers`: Accounts to be upgraded.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| stakers | `Vec<T::AccountId>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'AppPromotion', 'upgrade_accounts', {'stakers': ['AccountId']}
-)
-```
-
----------
 ## Events
 
 ---------

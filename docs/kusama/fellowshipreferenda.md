@@ -241,6 +241,7 @@ call = substrate.compose_call(
         'ParachainsOrigin': {
             'Parachain': 'u32',
         },
+        None: None,
         'Void': (),
         'XcmPallet': {
             'Response': {
@@ -1223,7 +1224,6 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
 }
 )
@@ -1462,7 +1462,6 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             None: None,
             'Origins': (
                 'StakingAdmin',
@@ -1499,6 +1498,7 @@ result = substrate.query(
                 'Response': {'interior': 'scale_info::134', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::134', 'parents': 'u8'},
             },
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
         },
         'proposal': {
             'Inline': 'Bytes',

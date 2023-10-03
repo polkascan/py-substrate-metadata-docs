@@ -116,6 +116,10 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
         'system': {
             'None': None,
             'Root': None,
@@ -126,10 +130,6 @@ call = substrate.compose_call(
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
-        },
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
         },
         'Ethereum': {
             'EthereumTransaction': '[u8; 20]',

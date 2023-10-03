@@ -251,9 +251,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -304,18 +304,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'AcalaOracle': {
                 'NewFeedData': {
                     'sender': 'AccountId',
@@ -324,22 +312,22 @@ result = substrate.query(
             },
             'AssetRegistry': {
                 'AssetRegistered': {
-                    'asset_id': 'scale_info::187',
-                    'metadata': 'scale_info::186',
+                    'asset_id': 'scale_info::193',
+                    'metadata': 'scale_info::192',
                 },
                 'AssetUpdated': {
-                    'asset_id': 'scale_info::187',
-                    'metadata': 'scale_info::186',
+                    'asset_id': 'scale_info::193',
+                    'metadata': 'scale_info::192',
                 },
                 'ForeignAssetRegistered': {
                     'asset_address': 'scale_info::74',
                     'asset_id': 'u16',
-                    'metadata': 'scale_info::186',
+                    'metadata': 'scale_info::192',
                 },
                 'ForeignAssetUpdated': {
                     'asset_address': 'scale_info::74',
                     'asset_id': 'u16',
-                    'metadata': 'scale_info::186',
+                    'metadata': 'scale_info::192',
                 },
             },
             'Auction': {
@@ -658,30 +646,30 @@ result = substrate.query(
                 'Created': {
                     'contract': '[u8; 20]',
                     'from': '[u8; 20]',
-                    'logs': ['scale_info::190'],
+                    'logs': ['scale_info::196'],
                     'used_gas': 'u64',
                     'used_storage': 'i32',
                 },
                 'CreatedFailed': {
                     'contract': '[u8; 20]',
-                    'exit_reason': 'scale_info::193',
+                    'exit_reason': 'scale_info::199',
                     'from': '[u8; 20]',
-                    'logs': ['scale_info::190'],
+                    'logs': ['scale_info::196'],
                     'used_gas': 'u64',
                     'used_storage': 'i32',
                 },
                 'Executed': {
                     'contract': '[u8; 20]',
                     'from': '[u8; 20]',
-                    'logs': ['scale_info::190'],
+                    'logs': ['scale_info::196'],
                     'used_gas': 'u64',
                     'used_storage': 'i32',
                 },
                 'ExecutedFailed': {
                     'contract': '[u8; 20]',
-                    'exit_reason': 'scale_info::193',
+                    'exit_reason': 'scale_info::199',
                     'from': '[u8; 20]',
-                    'logs': ['scale_info::190'],
+                    'logs': ['scale_info::196'],
                     'output': 'Bytes',
                     'used_gas': 'u64',
                     'used_storage': 'i32',
@@ -717,44 +705,6 @@ result = substrate.query(
                     'evm_address': '[u8; 20]',
                 },
             },
-            'FinancialCouncil': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
-                'Closed': {
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'yes': 'u32',
-                },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
-                'Executed': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::33',
-                },
-                'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::33',
-                },
-                'Proposed': {
-                    'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
-                    'proposal_index': 'u32',
-                    'threshold': 'u32',
-                },
-                'Voted': {
-                    'account': 'AccountId',
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'voted': 'bool',
-                    'yes': 'u32',
-                },
-            },
-            'FinancialCouncilMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
             'GeneralCouncil': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -793,118 +743,6 @@ result = substrate.query(
                 'KeyChanged',
                 'Dummy',
             ),
-            'Homa': {
-                'BumpEraFrequencyUpdated': {'frequency': 'u32'},
-                'CommissionRateUpdated': {'commission_rate': 'u128'},
-                'CurrentEraBumped': {'new_era_index': 'u32'},
-                'CurrentEraReset': {'new_era_index': 'u32'},
-                'EstimatedRewardRatePerEraUpdated': {'reward_rate': 'u128'},
-                'FastMatchFeeRateUpdated': {'fast_match_fee_rate': 'u128'},
-                'LastEraBumpedBlockUpdated': {'last_era_bumped_block': 'u32'},
-                'LedgerBondedReset': {
-                    'new_bonded_amount': 'u128',
-                    'sub_account_index': 'u16',
-                },
-                'LedgerUnlockingReset': {
-                    'new_unlocking': ['scale_info::179'],
-                    'sub_account_index': 'u16',
-                },
-                'Minted': {
-                    'liquid_amount_added_to_void': 'u128',
-                    'liquid_amount_received': 'u128',
-                    'minter': 'AccountId',
-                    'staking_currency_amount': 'u128',
-                },
-                'RedeemRequestCancelled': {
-                    'cancelled_liquid_amount': 'u128',
-                    'redeemer': 'AccountId',
-                },
-                'RedeemedByFastMatch': {
-                    'fee_in_liquid': 'u128',
-                    'matched_liquid_amount': 'u128',
-                    'redeemed_staking_amount': 'u128',
-                    'redeemer': 'AccountId',
-                },
-                'RedeemedByUnbond': {
-                    'era_index_when_unbond': 'u32',
-                    'liquid_amount': 'u128',
-                    'redeemer': 'AccountId',
-                    'unbonding_staking_amount': 'u128',
-                },
-                'RequestedRedeem': {
-                    'allow_fast_match': 'bool',
-                    'liquid_amount': 'u128',
-                    'redeemer': 'AccountId',
-                },
-                'SoftBondedCapPerSubAccountUpdated': {'cap_amount': 'u128'},
-                'WithdrawRedemption': {
-                    'redeemer': 'AccountId',
-                    'redemption_amount': 'u128',
-                },
-            },
-            'HomaCouncil': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
-                'Closed': {
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'yes': 'u32',
-                },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
-                'Executed': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::33',
-                },
-                'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::33',
-                },
-                'Proposed': {
-                    'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
-                    'proposal_index': 'u32',
-                    'threshold': 'u32',
-                },
-                'Voted': {
-                    'account': 'AccountId',
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'voted': 'bool',
-                    'yes': 'u32',
-                },
-            },
-            'HomaCouncilMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            'Honzon': {
-                'Authorization': {
-                    'authorizee': 'AccountId',
-                    'authorizer': 'AccountId',
-                    'collateral_type': 'scale_info::52',
-                },
-                'TransferDebit': {
-                    'amount': 'u128',
-                    'from_currency': 'scale_info::52',
-                    'to_currency': 'scale_info::52',
-                },
-                'UnAuthorization': {
-                    'authorizee': 'AccountId',
-                    'authorizer': 'AccountId',
-                    'collateral_type': 'scale_info::52',
-                },
-                'UnAuthorizationAll': {'authorizer': 'AccountId'},
-            },
-            'HonzonBridge': {
-                'BridgedStableCoinCurrencyIdSet': {
-                    'bridged_stable_coin_currency_id': 'scale_info::52',
-                },
-                'FromBridged': {'amount': 'u128', 'who': 'AccountId'},
-                'ToBridged': {'amount': 'u128', 'who': 'AccountId'},
-            },
             'IdleScheduler': {
                 'TaskAdded': {'task': 'scale_info::45', 'task_id': 'u32'},
                 'TaskDispatched': {
@@ -912,114 +750,6 @@ result = substrate.query(
                     'task_id': 'u32',
                 },
             },
-            'Incentives': {
-                'ClaimRewardDeductionRateUpdated': {
-                    'deduction_rate': 'u128',
-                    'pool': 'scale_info::183',
-                },
-                'ClaimRewards': {
-                    'actual_amount': 'u128',
-                    'deduction_amount': 'u128',
-                    'pool': 'scale_info::183',
-                    'reward_currency_id': 'scale_info::52',
-                    'who': 'AccountId',
-                },
-                'DepositDexShare': {
-                    'deposit': 'u128',
-                    'dex_share_type': 'scale_info::52',
-                    'who': 'AccountId',
-                },
-                'IncentiveRewardAmountUpdated': {
-                    'pool': 'scale_info::183',
-                    'reward_amount_per_period': 'u128',
-                    'reward_currency_id': 'scale_info::52',
-                },
-                'WithdrawDexShare': {
-                    'dex_share_type': 'scale_info::52',
-                    'who': 'AccountId',
-                    'withdraw': 'u128',
-                },
-            },
-            'Loans': {
-                'ConfiscateCollateralAndDebit': {
-                    'collateral_type': 'scale_info::52',
-                    'confiscated_collateral_amount': 'u128',
-                    'deduct_debit_amount': 'u128',
-                    'owner': 'AccountId',
-                },
-                'PositionUpdated': {
-                    'collateral_adjustment': 'i128',
-                    'collateral_type': 'scale_info::52',
-                    'debit_adjustment': 'i128',
-                    'owner': 'AccountId',
-                },
-                'TransferLoan': {
-                    'currency_id': 'scale_info::52',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::37',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::37',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::33',
-                    'timepoint': 'scale_info::37',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
-            'NFT': {
-                'BurnedToken': {
-                    'class_id': 'u32',
-                    'owner': 'AccountId',
-                    'token_id': 'u64',
-                },
-                'BurnedTokenWithRemark': {
-                    'class_id': 'u32',
-                    'owner': 'AccountId',
-                    'remark_hash': '[u8; 32]',
-                    'token_id': 'u64',
-                },
-                'CreatedClass': {'class_id': 'u32', 'owner': 'AccountId'},
-                'DestroyedClass': {'class_id': 'u32', 'owner': 'AccountId'},
-                'MintedToken': {
-                    'class_id': 'u32',
-                    'from': 'AccountId',
-                    'quantity': 'u32',
-                    'to': 'AccountId',
-                },
-                'TransferredToken': {
-                    'class_id': 'u32',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                    'token_id': 'u64',
-                },
-            },
-            'OperatorMembershipAcala': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
             'OrmlXcm': {
                 'Sent': {'message': ['scale_info::84'], 'to': 'scale_info::74'},
             },
@@ -1139,6 +869,298 @@ result = substrate.query(
                     'message_id': '[u8; 32]',
                 },
             },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::33',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::25',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::33'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::25'},
+            },
+            None: None,
+            'FinancialCouncil': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::33',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::33',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
+                },
+            },
+            'FinancialCouncilMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
+            'Homa': {
+                'BumpEraFrequencyUpdated': {'frequency': 'u32'},
+                'CommissionRateUpdated': {'commission_rate': 'u128'},
+                'CurrentEraBumped': {'new_era_index': 'u32'},
+                'CurrentEraReset': {'new_era_index': 'u32'},
+                'EstimatedRewardRatePerEraUpdated': {'reward_rate': 'u128'},
+                'FastMatchFeeRateUpdated': {'fast_match_fee_rate': 'u128'},
+                'LastEraBumpedBlockUpdated': {'last_era_bumped_block': 'u32'},
+                'LedgerBondedReset': {
+                    'new_bonded_amount': 'u128',
+                    'sub_account_index': 'u16',
+                },
+                'LedgerUnlockingReset': {
+                    'new_unlocking': ['scale_info::185'],
+                    'sub_account_index': 'u16',
+                },
+                'Minted': {
+                    'liquid_amount_added_to_void': 'u128',
+                    'liquid_amount_received': 'u128',
+                    'minter': 'AccountId',
+                    'staking_currency_amount': 'u128',
+                },
+                'RedeemRequestCancelled': {
+                    'cancelled_liquid_amount': 'u128',
+                    'redeemer': 'AccountId',
+                },
+                'RedeemedByFastMatch': {
+                    'fee_in_liquid': 'u128',
+                    'matched_liquid_amount': 'u128',
+                    'redeemed_staking_amount': 'u128',
+                    'redeemer': 'AccountId',
+                },
+                'RedeemedByUnbond': {
+                    'era_index_when_unbond': 'u32',
+                    'liquid_amount': 'u128',
+                    'redeemer': 'AccountId',
+                    'unbonding_staking_amount': 'u128',
+                },
+                'RequestedRedeem': {
+                    'allow_fast_match': 'bool',
+                    'liquid_amount': 'u128',
+                    'redeemer': 'AccountId',
+                },
+                'SoftBondedCapPerSubAccountUpdated': {'cap_amount': 'u128'},
+                'WithdrawRedemption': {
+                    'redeemer': 'AccountId',
+                    'redemption_amount': 'u128',
+                },
+            },
+            'HomaCouncil': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::33',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::33',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
+                },
+            },
+            'HomaCouncilMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
+            'Honzon': {
+                'Authorization': {
+                    'authorizee': 'AccountId',
+                    'authorizer': 'AccountId',
+                    'collateral_type': 'scale_info::52',
+                },
+                'TransferDebit': {
+                    'amount': 'u128',
+                    'from_currency': 'scale_info::52',
+                    'to_currency': 'scale_info::52',
+                },
+                'UnAuthorization': {
+                    'authorizee': 'AccountId',
+                    'authorizer': 'AccountId',
+                    'collateral_type': 'scale_info::52',
+                },
+                'UnAuthorizationAll': {'authorizer': 'AccountId'},
+            },
+            'HonzonBridge': {
+                'BridgedStableCoinCurrencyIdSet': {
+                    'bridged_stable_coin_currency_id': 'scale_info::52',
+                },
+                'FromBridged': {'amount': 'u128', 'who': 'AccountId'},
+                'ToBridged': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'Incentives': {
+                'ClaimRewardDeductionRateUpdated': {
+                    'deduction_rate': 'u128',
+                    'pool': 'scale_info::189',
+                },
+                'ClaimRewards': {
+                    'actual_amount': 'u128',
+                    'deduction_amount': 'u128',
+                    'pool': 'scale_info::189',
+                    'reward_currency_id': 'scale_info::52',
+                    'who': 'AccountId',
+                },
+                'DepositDexShare': {
+                    'deposit': 'u128',
+                    'dex_share_type': 'scale_info::52',
+                    'who': 'AccountId',
+                },
+                'IncentiveRewardAmountUpdated': {
+                    'pool': 'scale_info::189',
+                    'reward_amount_per_period': 'u128',
+                    'reward_currency_id': 'scale_info::52',
+                },
+                'WithdrawDexShare': {
+                    'dex_share_type': 'scale_info::52',
+                    'who': 'AccountId',
+                    'withdraw': 'u128',
+                },
+            },
+            'Loans': {
+                'ConfiscateCollateralAndDebit': {
+                    'collateral_type': 'scale_info::52',
+                    'confiscated_collateral_amount': 'u128',
+                    'deduct_debit_amount': 'u128',
+                    'owner': 'AccountId',
+                },
+                'PositionUpdated': {
+                    'collateral_adjustment': 'i128',
+                    'collateral_type': 'scale_info::52',
+                    'debit_adjustment': 'i128',
+                    'owner': 'AccountId',
+                },
+                'TransferLoan': {
+                    'currency_id': 'scale_info::52',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+            },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::37',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::37',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::33',
+                    'timepoint': 'scale_info::37',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
+            'NFT': {
+                'BurnedToken': {
+                    'class_id': 'u32',
+                    'owner': 'AccountId',
+                    'token_id': 'u64',
+                },
+                'BurnedTokenWithRemark': {
+                    'class_id': 'u32',
+                    'owner': 'AccountId',
+                    'remark_hash': '[u8; 32]',
+                    'token_id': 'u64',
+                },
+                'CreatedClass': {'class_id': 'u32', 'owner': 'AccountId'},
+                'DestroyedClass': {'class_id': 'u32', 'owner': 'AccountId'},
+                'MintedToken': {
+                    'class_id': 'u32',
+                    'from': 'AccountId',
+                    'quantity': 'u32',
+                    'to': 'AccountId',
+                },
+                'TransferredToken': {
+                    'class_id': 'u32',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                    'token_id': 'u64',
+                },
+            },
+            'OperatorMembershipAcala': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
+            'Parameters': {'Updated': {'key_value': 'scale_info::161'}},
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
@@ -1176,27 +1198,6 @@ result = substrate.query(
                     'pure': 'AccountId',
                     'who': 'AccountId',
                 },
-            },
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::33',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'SessionManager': {
@@ -1314,6 +1315,17 @@ result = substrate.query(
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::33'},
                 'SudoAsDone': {'sudo_result': 'scale_info::33'},
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -1527,17 +1539,6 @@ result = substrate.query(
                     'who': 'scale_info::74',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::25',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::33'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::25'},
-            },
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},
                 'VestingScheduleAdded': {
@@ -1558,11 +1559,11 @@ result = substrate.query(
             'XcmInterface': {
                 'XcmDestWeightUpdated': {
                     'new_xcm_dest_weight': 'scale_info::9',
-                    'xcm_operation': 'scale_info::181',
+                    'xcm_operation': 'scale_info::187',
                 },
                 'XcmFeeUpdated': {
                     'new_xcm_dest_weight': 'u128',
-                    'xcm_operation': 'scale_info::181',
+                    'xcm_operation': 'scale_info::187',
                 },
             },
             'XcmpQueue': {
@@ -1819,7 +1820,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'karura',
     'impl_version': 0,
     'spec_name': 'karura',
-    'spec_version': 2200,
+    'spec_version': 2210,
     'state_version': 0,
     'transaction_version': 2,
 }

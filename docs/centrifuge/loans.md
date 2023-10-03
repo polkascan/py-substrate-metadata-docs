@@ -19,7 +19,7 @@ updated to reflect the new present value of the loan.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| pool_id | `PoolIdOf<T>` | 
+| pool_id | `T::PoolId` | 
 | loan_id | `T::LoanId` | 
 | percentage | `T::Rate` | 
 | penalty | `T::Rate` | 
@@ -31,6 +31,48 @@ call = substrate.compose_call(
     'loan_id': 'u64',
     'penalty': 'u128',
     'percentage': 'u128',
+    'pool_id': 'u64',
+}
+)
+```
+
+---------
+### apply_loan_mutation
+Apply a proposed change identified by a change id.
+It will only perform the change if the requirements for it
+are fulfilled.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `T::PoolId` | 
+| change_id | `T::Hash` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Loans', 'apply_loan_mutation', {
+    'change_id': '[u8; 32]',
+    'pool_id': 'u64',
+}
+)
+```
+
+---------
+### apply_write_off_policy
+Apply a proposed change identified by a change id.
+It will only perform the change if the requirements for it
+are fulfilled.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `T::PoolId` | 
+| change_id | `T::Hash` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Loans', 'apply_write_off_policy', {
+    'change_id': '[u8; 32]',
     'pool_id': 'u64',
 }
 )
@@ -49,15 +91,21 @@ Rate accumulation will start after the first borrow.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| pool_id | `PoolIdOf<T>` | 
+| pool_id | `T::PoolId` | 
 | loan_id | `T::LoanId` | 
-| amount | `T::Balance` | 
+| amount | `PricingAmount<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Loans', 'borrow', {
-    'amount': 'u128',
+    'amount': {
+        'External': {
+            'quantity': 'u128',
+            'settlement_price': 'u128',
+        },
+        'Internal': 'u128',
+    },
     'loan_id': 'u64',
     'pool_id': 'u64',
 }
@@ -74,7 +122,7 @@ borrower .
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| pool_id | `PoolIdOf<T>` | 
+| pool_id | `T::PoolId` | 
 | loan_id | `T::LoanId` | 
 
 #### Python
@@ -93,7 +141,7 @@ This collateral will be transferred to the existing pool.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| pool_id | `PoolIdOf<T>` | 
+| pool_id | `T::PoolId` | 
 | info | `LoanInfo<T>` | 
 
 #### Python
@@ -102,14 +150,28 @@ call = substrate.compose_call(
     'Loans', 'create', {
     'info': {
         'collateral': ('u64', 'u128'),
+        'interest_rate': {
+            'Fixed': {
+                'compounding': (
+                    'Secondly',
+                ),
+                'rate_per_year': 'u128',
+            },
+        },
         'pricing': {
             'External': {
-                'max_borrow_quantity': 'u128',
-                'price_id': 'u64',
+                'max_borrow_amount': {
+                    'NoLimit': None,
+                    'Quantity': 'u128',
+                },
+                'max_price_variation': 'u128',
+                'notional': 'u128',
+                'price_id': {
+                    'Isin': '[u8; 12]',
+                },
             },
             'Internal': {
                 'collateral_value': 'u128',
-                'interest_rate': 'u128',
                 'max_borrow_amount': {
                     'UpToOutstandingDebt': {
                         'advance_rate': 'u128',
@@ -120,7 +182,9 @@ call = substrate.compose_call(
                 },
                 'valuation_method': {
                     'DiscountedCashFlow': {
-                        'discount_rate': 'u128',
+                        'discount_rate': {
+                            'Fixed': 'InnerStruct',
+                        },
                         'loss_given_default': 'u128',
                         'probability_of_default': 'u128',
                     },
@@ -132,10 +196,11 @@ call = substrate.compose_call(
             'borrows': (
                 'NotWrittenOff',
                 'FullOnce',
+                'OraclePriceRequired',
             ),
             'repayments': (
                 'None',
-                'FullOnce',
+                'Full',
             ),
         },
         'schedule': {
@@ -143,13 +208,112 @@ call = substrate.compose_call(
                 'None',
             ),
             'maturity': {
-                'Fixed': 'u64',
+                'Fixed': {
+                    'date': 'u64',
+                    'extension': 'u64',
+                },
             },
             'pay_down_schedule': (
                 'None',
             ),
         },
     },
+    'pool_id': 'u64',
+}
+)
+```
+
+---------
+### propose_loan_mutation
+Propose a change.
+The change is not performed until you call
+[`Pallet::apply_loan_mutation()`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `T::PoolId` | 
+| loan_id | `T::LoanId` | 
+| mutation | `LoanMutation<T::Rate>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Loans', 'propose_loan_mutation', {
+    'loan_id': 'u64',
+    'mutation': {
+        'InterestPayments': ('None', ),
+        'InterestRate': {
+            'Fixed': {
+                'compounding': (
+                    'Secondly',
+                ),
+                'rate_per_year': 'u128',
+            },
+        },
+        'Internal': {
+            'DiscountRate': {
+                'Fixed': {
+                    'compounding': (
+                        'Secondly',
+                    ),
+                    'rate_per_year': 'u128',
+                },
+            },
+            'LossGivenDefault': 'u128',
+            'ProbabilityOfDefault': 'u128',
+            'ValuationMethod': {
+                'DiscountedCashFlow': {
+                    'discount_rate': {
+                        'Fixed': {
+                            'compounding': 'scale_info::247',
+                            'rate_per_year': 'u128',
+                        },
+                    },
+                    'loss_given_default': 'u128',
+                    'probability_of_default': 'u128',
+                },
+                'OutstandingDebt': None,
+            },
+        },
+        'Maturity': {
+            'Fixed': {
+                'date': 'u64',
+                'extension': 'u64',
+            },
+        },
+        'MaturityExtension': 'u64',
+        'PayDownSchedule': ('None', ),
+    },
+    'pool_id': 'u64',
+}
+)
+```
+
+---------
+### propose_write_off_policy
+Updates the write off policy with write off rules.
+
+The write off policy is used to automatically set a write off
+minimum value to the loan.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `T::PoolId` | 
+| policy | `BoundedVec<WriteOffRule<T::Rate>, T::MaxWriteOffPolicySize>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Loans', 'propose_write_off_policy', {
+    'policy': [
+        {
+            'status': {
+                'penalty': 'u128',
+                'percentage': 'u128',
+            },
+            'triggers': 'scale_info::258',
+        },
+    ],
     'pool_id': 'u64',
 }
 )
@@ -163,26 +327,34 @@ The origin must be the borrower of the loan.
 The repay action should fulfill the repay restrictions
 configured at [`types::RepayRestrictions`].
 If the repaying `amount` is more than current debt, only current
-debt is transferred. This does not apply to `unchecked_amount`,
+debt is transferred. This does not apply to `unscheduled_amount`,
 which can be used to repay more than the outstanding debt.
 The portfolio  valuation of the pool is updated to reflect the new
 present value of the loan.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| pool_id | `PoolIdOf<T>` | 
+| pool_id | `T::PoolId` | 
 | loan_id | `T::LoanId` | 
-| amount | `T::Balance` | 
-| unchecked_amount | `T::Balance` | 
+| amount | `RepaidPricingAmount<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Loans', 'repay', {
-    'amount': 'u128',
+    'amount': {
+        'interest': 'u128',
+        'principal': {
+            'External': {
+                'quantity': 'u128',
+                'settlement_price': 'u128',
+            },
+            'Internal': 'u128',
+        },
+        'unscheduled': 'u128',
+    },
     'loan_id': 'u64',
     'pool_id': 'u64',
-    'unchecked_amount': 'u128',
 }
 )
 ```
@@ -193,7 +365,7 @@ Updates the porfolio valuation for the given pool
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| pool_id | `PoolIdOf<T>` | 
+| pool_id | `T::PoolId` | 
 
 #### Python
 ```python
@@ -203,41 +375,10 @@ call = substrate.compose_call(
 ```
 
 ---------
-### update_write_off_policy
-Updates the write off policy with write off rules.
-
-The write off policy is used to automatically set a write off
-minimum value to the loan.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| pool_id | `PoolIdOf<T>` | 
-| policy | `BoundedVec<WriteOffRule<T::Rate>, T::MaxWriteOffPolicySize>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Loans', 'update_write_off_policy', {
-    'policy': [
-        {
-            'status': {
-                'penalty': 'u128',
-                'percentage': 'u128',
-            },
-            'triggers': 'scale_info::225',
-        },
-    ],
-    'pool_id': 'u64',
-}
-)
-```
-
----------
 ### write_off
 Writes off an overdue loan.
 
-This action will write off based on the write off policy configured
-by [`Pallet::update_write_off_policy()`].
+This action will write off based on the configured write off policy.
 The write off action will only take effect if it writes down more
 (percentage or penalty) than the current write off status of the
 loan. This action will never writes up. i.e:
@@ -253,7 +394,7 @@ present value of the loan.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| pool_id | `PoolIdOf<T>` | 
+| pool_id | `T::PoolId` | 
 | loan_id | `T::LoanId` | 
 
 #### Python
@@ -272,9 +413,9 @@ An amount was borrowed for a loan
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| pool_id | `PoolIdOf<T>` | ```u64```
+| pool_id | `T::PoolId` | ```u64```
 | loan_id | `T::LoanId` | ```u64```
-| amount | `T::Balance` | ```u128```
+| amount | `PricingAmount<T>` | ```{'Internal': 'u128', 'External': {'quantity': 'u128', 'settlement_price': 'u128'}}```
 
 ---------
 ### Closed
@@ -282,7 +423,7 @@ A loan was closed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| pool_id | `PoolIdOf<T>` | ```u64```
+| pool_id | `T::PoolId` | ```u64```
 | loan_id | `T::LoanId` | ```u64```
 | collateral | `AssetOf<T>` | ```('u64', 'u128')```
 
@@ -292,9 +433,19 @@ A loan was created
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| pool_id | `PoolIdOf<T>` | ```u64```
+| pool_id | `T::PoolId` | ```u64```
 | loan_id | `T::LoanId` | ```u64```
-| loan_info | `LoanInfo<T>` | ```{'schedule': {'maturity': {'Fixed': 'u64'}, 'interest_payments': ('None',), 'pay_down_schedule': ('None',)}, 'collateral': ('u64', 'u128'), 'pricing': {'Internal': {'collateral_value': 'u128', 'valuation_method': {'DiscountedCashFlow': {'probability_of_default': 'u128', 'loss_given_default': 'u128', 'discount_rate': 'u128'}, 'OutstandingDebt': None}, 'interest_rate': 'u128', 'max_borrow_amount': {'UpToTotalBorrowed': {'advance_rate': 'u128'}, 'UpToOutstandingDebt': {'advance_rate': 'u128'}}}, 'External': {'price_id': 'u64', 'max_borrow_quantity': 'u128'}}, 'restrictions': {'borrows': ('NotWrittenOff', 'FullOnce'), 'repayments': ('None', 'FullOnce')}}```
+| loan_info | `LoanInfo<T>` | ```{'schedule': {'maturity': {'Fixed': {'date': 'u64', 'extension': 'u64'}}, 'interest_payments': ('None',), 'pay_down_schedule': ('None',)}, 'collateral': ('u64', 'u128'), 'interest_rate': {'Fixed': {'rate_per_year': 'u128', 'compounding': ('Secondly',)}}, 'pricing': {'Internal': {'collateral_value': 'u128', 'valuation_method': {'DiscountedCashFlow': {'probability_of_default': 'u128', 'loss_given_default': 'u128', 'discount_rate': 'scale_info::246'}, 'OutstandingDebt': None}, 'max_borrow_amount': {'UpToTotalBorrowed': {'advance_rate': 'u128'}, 'UpToOutstandingDebt': {'advance_rate': 'u128'}}}, 'External': {'price_id': {'Isin': '[u8; 12]'}, 'max_borrow_amount': {'NoLimit': None, 'Quantity': 'u128'}, 'notional': 'u128', 'max_price_variation': 'u128'}}, 'restrictions': {'borrows': ('NotWrittenOff', 'FullOnce', 'OraclePriceRequired'), 'repayments': ('None', 'Full')}}```
+
+---------
+### Mutated
+An active loan was mutated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pool_id | `T::PoolId` | ```u64```
+| loan_id | `T::LoanId` | ```u64```
+| mutation | `LoanMutation<T::Rate>` | ```{'Maturity': {'Fixed': {'date': 'u64', 'extension': 'u64'}}, 'MaturityExtension': 'u64', 'InterestRate': {'Fixed': {'rate_per_year': 'u128', 'compounding': ('Secondly',)}}, 'InterestPayments': ('None',), 'PayDownSchedule': ('None',), 'Internal': {'ValuationMethod': {'DiscountedCashFlow': {'probability_of_default': 'u128', 'loss_given_default': 'u128', 'discount_rate': {'Fixed': 'InnerStruct'}}, 'OutstandingDebt': None}, 'ProbabilityOfDefault': 'u128', 'LossGivenDefault': 'u128', 'DiscountRate': {'Fixed': {'rate_per_year': 'u128', 'compounding': ('Secondly',)}}}}```
 
 ---------
 ### PortfolioValuationUpdated
@@ -302,7 +453,7 @@ The Portfolio Valuation for a pool was updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| pool_id | `PoolIdOf<T>` | ```u64```
+| pool_id | `T::PoolId` | ```u64```
 | valuation | `T::Balance` | ```u128```
 | update_type | `PortfolioValuationUpdateType` | ```('Exact', 'Inexact')```
 
@@ -312,18 +463,17 @@ An amount was repaid for a loan
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| pool_id | `PoolIdOf<T>` | ```u64```
+| pool_id | `T::PoolId` | ```u64```
 | loan_id | `T::LoanId` | ```u64```
-| amount | `T::Balance` | ```u128```
-| unchecked_amount | `T::Balance` | ```u128```
+| amount | `RepaidPricingAmount<T>` | ```{'principal': {'Internal': 'u128', 'External': {'quantity': 'u128', 'settlement_price': 'u128'}}, 'interest': 'u128', 'unscheduled': 'u128'}```
 
 ---------
 ### WriteOffPolicyUpdated
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| pool_id | `PoolIdOf<T>` | ```u64```
-| policy | `BoundedVec<WriteOffRule<T::Rate>, T::MaxWriteOffPolicySize>` | ```[{'triggers': 'scale_info::225', 'status': {'percentage': 'u128', 'penalty': 'u128'}}]```
+| pool_id | `T::PoolId` | ```u64```
+| policy | `BoundedVec<WriteOffRule<T::Rate>, T::MaxWriteOffPolicySize>` | ```[{'triggers': 'scale_info::258', 'status': {'percentage': 'u128', 'penalty': 'u128'}}]```
 
 ---------
 ### WrittenOff
@@ -331,7 +481,7 @@ A loan was written off
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| pool_id | `PoolIdOf<T>` | ```u64```
+| pool_id | `T::PoolId` | ```u64```
 | loan_id | `T::LoanId` | ```u64```
 | status | `WriteOffStatus<T::Rate>` | ```{'percentage': 'u128', 'penalty': 'u128'}```
 
@@ -365,27 +515,36 @@ result = substrate.query(
             'origination_date': 'u64',
             'pricing': {
                 'External': {
-                    'info': 'scale_info::214',
+                    'info': 'scale_info::291',
+                    'interest': 'scale_info::825',
+                    'latest_settlement_price': 'u128',
                     'outstanding_quantity': 'u128',
                 },
                 'Internal': {
-                    'info': 'scale_info::210',
-                    'normalized_debt': 'u128',
-                    'write_off_penalty': 'u128',
+                    'info': 'scale_info::289',
+                    'interest': 'scale_info::825',
                 },
             },
+            'repayments_on_schedule_until': 'u64',
             'restrictions': {
-                'borrows': ('NotWrittenOff', 'FullOnce'),
-                'repayments': ('None', 'FullOnce'),
+                'borrows': (
+                    'NotWrittenOff',
+                    'FullOnce',
+                    'OraclePriceRequired',
+                ),
+                'repayments': ('None', 'Full'),
             },
             'schedule': {
                 'interest_payments': ('None', ),
-                'maturity': {'Fixed': 'u64'},
+                'maturity': {'Fixed': 'InnerStruct'},
                 'pay_down_schedule': ('None', ),
             },
             'total_borrowed': 'u128',
-            'total_repaid': 'u128',
-            'total_repaid_unchecked': 'u128',
+            'total_repaid': {
+                'interest': 'u128',
+                'principal': 'u128',
+                'unscheduled': 'u128',
+            },
             'write_off_percentage': 'u128',
         },
     ),
@@ -410,33 +569,44 @@ result = substrate.query(
     'closed_at': 'u32',
     'info': {
         'collateral': ('u64', 'u128'),
+        'interest_rate': {
+            'Fixed': {'compounding': ('Secondly', ), 'rate_per_year': 'u128'},
+        },
         'pricing': {
-            'External': {'max_borrow_quantity': 'u128', 'price_id': 'u64'},
+            'External': {
+                'max_borrow_amount': {'NoLimit': None, 'Quantity': 'u128'},
+                'max_price_variation': 'u128',
+                'notional': 'u128',
+                'price_id': {'Isin': '[u8; 12]'},
+            },
             'Internal': {
                 'collateral_value': 'u128',
-                'interest_rate': 'u128',
                 'max_borrow_amount': {
                     'UpToOutstandingDebt': 'InnerStruct',
                     'UpToTotalBorrowed': 'InnerStruct',
                 },
                 'valuation_method': {
-                    'DiscountedCashFlow': 'scale_info::212',
+                    'DiscountedCashFlow': 'scale_info::252',
                     'OutstandingDebt': None,
                 },
             },
         },
         'restrictions': {
-            'borrows': ('NotWrittenOff', 'FullOnce'),
-            'repayments': ('None', 'FullOnce'),
+            'borrows': ('NotWrittenOff', 'FullOnce', 'OraclePriceRequired'),
+            'repayments': ('None', 'Full'),
         },
         'schedule': {
             'interest_payments': ('None', ),
-            'maturity': {'Fixed': 'u64'},
+            'maturity': {'Fixed': {'date': 'u64', 'extension': 'u64'}},
             'pay_down_schedule': ('None', ),
         },
     },
     'total_borrowed': 'u128',
-    'total_repaid': 'u128',
+    'total_repaid': {
+        'interest': 'u128',
+        'principal': 'u128',
+        'unscheduled': 'u128',
+    },
 }
 ```
 ---------
@@ -456,28 +626,35 @@ result = substrate.query(
     'borrower': 'AccountId',
     'info': {
         'collateral': ('u64', 'u128'),
+        'interest_rate': {
+            'Fixed': {'compounding': ('Secondly', ), 'rate_per_year': 'u128'},
+        },
         'pricing': {
-            'External': {'max_borrow_quantity': 'u128', 'price_id': 'u64'},
+            'External': {
+                'max_borrow_amount': {'NoLimit': None, 'Quantity': 'u128'},
+                'max_price_variation': 'u128',
+                'notional': 'u128',
+                'price_id': {'Isin': '[u8; 12]'},
+            },
             'Internal': {
                 'collateral_value': 'u128',
-                'interest_rate': 'u128',
                 'max_borrow_amount': {
                     'UpToOutstandingDebt': 'InnerStruct',
                     'UpToTotalBorrowed': 'InnerStruct',
                 },
                 'valuation_method': {
-                    'DiscountedCashFlow': 'scale_info::212',
+                    'DiscountedCashFlow': 'scale_info::252',
                     'OutstandingDebt': None,
                 },
             },
         },
         'restrictions': {
-            'borrows': ('NotWrittenOff', 'FullOnce'),
-            'repayments': ('None', 'FullOnce'),
+            'borrows': ('NotWrittenOff', 'FullOnce', 'OraclePriceRequired'),
+            'repayments': ('None', 'Full'),
         },
         'schedule': {
             'interest_payments': ('None', ),
-            'maturity': {'Fixed': 'u64'},
+            'maturity': {'Fixed': {'date': 'u64', 'extension': 'u64'}},
             'pay_down_schedule': ('None', ),
         },
     },
@@ -527,7 +704,7 @@ result = substrate.query(
 #### Return value
 ```python
 [
-    {'status': {'penalty': 'u128', 'percentage': 'u128'}, 'triggers': 'scale_info::225'},
+    {'status': {'penalty': 'u128', 'percentage': 'u128'}, 'triggers': 'scale_info::258'},
 ]
 ```
 ---------
@@ -559,10 +736,6 @@ constant = substrate.get_constant('Loans', 'MaxWriteOffPolicySize')
 ## Errors
 
 ---------
-### AmountNotMultipleOfPrice
-Emits when an amount used is not multiple of the current price
-
----------
 ### BorrowLoanError
 Emits when the loan can not be borrowed from
 
@@ -583,8 +756,20 @@ Emits when loan doesn&\#x27;t exist or it&\#x27;s not active yet.
 Emits when the max number of active loans was reached
 
 ---------
+### MismatchedPricingMethod
+Emits when the pricing method is not compatible with the input
+
+---------
+### MutationError
+Emits when the loan can not be mutated
+
+---------
 ### NFTOwnerNotFound
 Emits when the NFT owner is not found
+
+---------
+### NoLoanChangeId
+The Change Id does not belong to a loan change
 
 ---------
 ### NoValidWriteOffRule
@@ -606,6 +791,14 @@ Emits when pool doesn&\#x27;t exist
 ---------
 ### RepayLoanError
 Emits when the loan can not be repaid from
+
+---------
+### SettlementPriceExceedsVariation
+Emits when settlement price is exceeds the configured variation.
+
+---------
+### UnrelatedChangeId
+The Change Id exists but it&\#x27;s not releated with the expected change
 
 ---------
 ### WrittenOffError

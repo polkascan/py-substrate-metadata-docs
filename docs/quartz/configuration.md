@@ -70,7 +70,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| amount | `Option<BalanceOf<T>>` | 
+| amount | `Option<<T as Config>::Balance>` | 
 
 #### Python
 ```python
@@ -122,7 +122,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| bond_cost | `Option<BalanceOf<T>>` | ```(None, 'u128')```
+| bond_cost | `Option<T::Balance>` | ```(None, 'u128')```
 
 ---------
 ### NewDesiredCollators

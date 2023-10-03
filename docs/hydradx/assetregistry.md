@@ -32,8 +32,11 @@ call = substrate.compose_call(
     'AssetRegistry', 'register', {
     'asset_id': (None, 'u32'),
     'asset_type': {
+        'Bond': None,
         'PoolShare': ('u32', 'u32'),
+        'StableSwap': None,
         'Token': None,
+        'XYK': None,
     },
     'existential_deposit': 'u128',
     'location': (
@@ -2346,8 +2349,11 @@ call = substrate.compose_call(
     'AssetRegistry', 'update', {
     'asset_id': 'u32',
     'asset_type': {
+        'Bond': None,
         'PoolShare': ('u32', 'u32'),
+        'StableSwap': None,
         'Token': None,
+        'XYK': None,
     },
     'existential_deposit': (
         None,
@@ -2389,7 +2395,7 @@ Asset was registered.
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u32```
 | asset_name | `BoundedVec<u8, T::StringLimit>` | ```Bytes```
-| asset_type | `AssetType<T::AssetId>` | ```{'Token': None, 'PoolShare': ('u32', 'u32')}```
+| asset_type | `AssetType<T::AssetId>` | ```{'Token': None, 'PoolShare': ('u32', 'u32'), 'XYK': None, 'StableSwap': None, 'Bond': None}```
 
 ---------
 ### Updated
@@ -2399,7 +2405,7 @@ Asset was updated.
 | -------- | -------- | -------- |
 | asset_id | `T::AssetId` | ```u32```
 | asset_name | `BoundedVec<u8, T::StringLimit>` | ```Bytes```
-| asset_type | `AssetType<T::AssetId>` | ```{'Token': None, 'PoolShare': ('u32', 'u32')}```
+| asset_type | `AssetType<T::AssetId>` | ```{'Token': None, 'PoolShare': ('u32', 'u32'), 'XYK': None, 'StableSwap': None, 'Bond': None}```
 | existential_deposit | `T::Balance` | ```u128```
 | xcm_rate_limit | `Option<T::Balance>` | ```(None, 'u128')```
 
@@ -2936,7 +2942,13 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'asset_type': {'PoolShare': ('u32', 'u32'), 'Token': None},
+    'asset_type': {
+        'Bond': None,
+        'PoolShare': ('u32', 'u32'),
+        'StableSwap': None,
+        'Token': None,
+        'XYK': None,
+    },
     'existential_deposit': 'u128',
     'name': 'Bytes',
     'xcm_rate_limit': (None, 'u128'),

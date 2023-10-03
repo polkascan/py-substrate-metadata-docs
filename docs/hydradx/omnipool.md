@@ -704,6 +704,10 @@ Asset weight cap has been exceeded.
 Minimum limit has not been reached during trade.
 
 ---------
+### FeeOverdraft
+More than allowed amount of fee has been transferred.
+
+---------
 ### Forbidden
 Signed account is not owner of position instance.
 

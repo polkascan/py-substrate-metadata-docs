@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | karura     |
 | Implementation name     | karura     |
-| Spec version     | 2200     |
+| Spec version     | 2210     |
 | SS58 Format     | 8     |
 | Token symbol      | ['KAR', 'KUSD', 'KSM', 'LKSM', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC', 'TAI']     |
 | Token decimals      | [12, 12, 12, 12, 12, 12, 12, 12, 8, 12]     |
@@ -35,9 +35,9 @@
 | [Dex](dex.md) | [13](dex.md#calls) | [10](dex.md#events) | [4](dex.md#storage-functions) | [4](dex.md#constants) | [23](dex.md#errors) |
 | [DexOracle](dexoracle.md) | [3](dexoracle.md#calls) | [0](dexoracle.md#events) | [2](dexoracle.md#storage-functions) | [0](dexoracle.md#constants) | [5](dexoracle.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
-| [EVM](evm.md) | [16](evm.md#calls) | [10](evm.md#events) | [9](evm.md#storage-functions) | [7](evm.md#constants) | [16](evm.md#errors) |
+| [EVM](evm.md) | [16](evm.md#calls) | [10](evm.md#events) | [9](evm.md#storage-functions) | [7](evm.md#constants) | [17](evm.md#errors) |
 | [EVMBridge](evmbridge.md) | [0](evmbridge.md#calls) | [0](evmbridge.md#events) | [0](evmbridge.md#storage-functions) | [0](evmbridge.md#constants) | [5](evmbridge.md#errors) |
-| [Earning](earning.md) | [5](earning.md#calls) | [5](earning.md#events) | [1](earning.md#storage-functions) | [5](earning.md#constants) | [4](earning.md#errors) |
+| [Earning](earning.md) | [5](earning.md#calls) | [5](earning.md#events) | [1](earning.md#storage-functions) | [4](earning.md#constants) | [4](earning.md#errors) |
 | [EmergencyShutdown](emergencyshutdown.md) | [3](emergencyshutdown.md#calls) | [3](emergencyshutdown.md#events) | [2](emergencyshutdown.md#storage-functions) | [0](emergencyshutdown.md#constants) | [5](emergencyshutdown.md#errors) |
 | [EvmAccounts](evmaccounts.md) | [2](evmaccounts.md#calls) | [1](evmaccounts.md#events) | [2](evmaccounts.md#storage-functions) | [1](evmaccounts.md#constants) | [5](evmaccounts.md#errors) |
 | [FinancialCouncil](financialcouncil.md) | [6](financialcouncil.md#calls) | [7](financialcouncil.md#events) | [6](financialcouncil.md#storage-functions) | [1](financialcouncil.md#constants) | [10](financialcouncil.md#errors) |
@@ -59,6 +59,7 @@
 | [OrmlXcm](ormlxcm.md) | [1](ormlxcm.md#calls) | [1](ormlxcm.md#events) | [0](ormlxcm.md#storage-functions) | [0](ormlxcm.md#constants) | [3](ormlxcm.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
+| [Parameters](parameters.md) | [1](parameters.md#calls) | [1](parameters.md#events) | [1](parameters.md#storage-functions) | [0](parameters.md#constants) | [0](parameters.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [11](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [12](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
 | [Prices](prices.md) | [2](prices.md#calls) | [2](prices.md#events) | [1](prices.md#storage-functions) | [5](prices.md#constants) | [2](prices.md#errors) |
@@ -76,7 +77,7 @@
 | [Tips](tips.md) | [6](tips.md#calls) | [5](tips.md#events) | [2](tips.md#storage-functions) | [5](tips.md#constants) | [6](tips.md#errors) |
 | [Tokens](tokens.md) | [0](tokens.md#calls) | [17](tokens.md#events) | [4](tokens.md#storage-functions) | [2](tokens.md#constants) | [8](tokens.md#errors) |
 | [TransactionPause](transactionpause.md) | [4](transactionpause.md#calls) | [4](transactionpause.md#events) | [2](transactionpause.md#storage-functions) | [0](transactionpause.md#constants) | [2](transactionpause.md#errors) |
-| [TransactionPayment](transactionpayment.md) | [7](transactionpayment.md#calls) | [4](transactionpayment.md#events) | [6](transactionpayment.md#storage-functions) | [12](transactionpayment.md#constants) | [6](transactionpayment.md#errors) |
+| [TransactionPayment](transactionpayment.md) | [6](transactionpayment.md#calls) | [4](transactionpayment.md#events) | [6](transactionpayment.md#storage-functions) | [12](transactionpayment.md#constants) | [6](transactionpayment.md#errors) |
 | [Treasury](treasury.md) | [5](treasury.md#calls) | [9](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
 | [UnknownTokens](unknowntokens.md) | [0](unknowntokens.md#calls) | [2](unknowntokens.md#events) | [2](unknowntokens.md#storage-functions) | [0](unknowntokens.md#constants) | [3](unknowntokens.md#errors) |
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |

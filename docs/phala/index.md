@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | phala     |
 | Implementation name     | phala     |
-| Spec version     | 1251     |
+| Spec version     | 1252     |
 | SS58 Format     | 30     |
 | Token symbol      | PHA     |
 | Token decimals      | 12     |

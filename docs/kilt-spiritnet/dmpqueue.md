@@ -47,6 +47,14 @@ Downward message is invalid XCM.
 | message_id | `MessageId` | ```[u8; 32]```
 
 ---------
+### MaxMessagesExhausted
+The maximum number of downward messages was.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| message_id | `MessageId` | ```[u8; 32]```
+
+---------
 ### OverweightEnqueued
 Downward message is overweight and was placed in the overweight queue.
 #### Attributes

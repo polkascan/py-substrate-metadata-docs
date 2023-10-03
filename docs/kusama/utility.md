@@ -110,6 +110,12 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Origins': (
             'StakingAdmin',
             'Treasurer',
@@ -139,11 +145,10 @@ call = substrate.compose_call(
             'Fellowship8Dan',
             'Fellowship9Dan',
         ),
-        'Void': (),
-        None: None,
         'ParachainsOrigin': {
             'Parachain': 'u32',
         },
+        'Void': (),
         'XcmPallet': {
             'Response': {
                 'interior': {
@@ -1119,11 +1124,6 @@ call = substrate.compose_call(
                 },
                 'parents': 'u8',
             },
-        },
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
         },
     },
     'call': 'Call',

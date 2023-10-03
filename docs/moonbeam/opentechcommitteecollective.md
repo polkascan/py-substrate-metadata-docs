@@ -54,52 +54,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### close_old_weight
-Close a vote that is either approved, disapproved or whose voting period has ended.
-
-May be called by any signed account in order to finish voting and close the proposal.
-
-If called before the end of the voting period it will only close the vote if it is
-has enough votes to be approved or disapproved.
-
-If called after the end of the voting period abstentions are counted as rejections
-unless there is a prime member set and the prime member cast an approval.
-
-If the close operation completes successfully with disapproval, the transaction fee will
-be waived. Otherwise execution of the approved operation will be charged to the caller.
-
-+ `proposal_weight_bound`: The maximum amount of weight consumed by executing the closed
-proposal.
-+ `length_bound`: The upper bound for the length of the proposal in storage. Checked via
-`storage::read` so it is `size_of::&lt;u32&gt;() == 4` larger than the pure length.
-
-\#\# Complexity
-- `O(B + M + P1 + P2)` where:
-  - `B` is `proposal` size in bytes (length-fee-bounded)
-  - `M` is members-count (code- and governance-bounded)
-  - `P1` is the complexity of `proposal` preimage.
-  - `P2` is proposal-count (code-bounded)
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| proposal_hash | `T::Hash` | 
-| index | `ProposalIndex` | 
-| proposal_weight_bound | `OldWeight` | 
-| length_bound | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'OpenTechCommitteeCollective', 'close_old_weight', {
-    'index': 'u32',
-    'length_bound': 'u32',
-    'proposal_hash': '[u8; 32]',
-    'proposal_weight_bound': 'u64',
-}
-)
-```
-
----------
 ### disapprove_proposal
 Disapprove a proposal, close, and remove it from the system, regardless of its current
 state.
@@ -293,7 +247,7 @@ A motion was executed; result will be `Ok` if it returned without error.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### MemberExecuted
@@ -302,7 +256,7 @@ A single member did some action; result will be `Ok` if it returned without erro
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### Proposed
@@ -421,6 +375,20 @@ result = substrate.query(
 #### Return value
 ```python
 {'ayes': ['[u8; 20]'], 'end': 'u32', 'index': 'u32', 'nays': ['[u8; 20]'], 'threshold': 'u32'}
+```
+---------
+## Constants
+
+---------
+### MaxProposalWeight
+ The maximum weight of a dispatch call that can be proposed and executed.
+#### Value
+```python
+{'proof_size': 2621440, 'ref_time': 250000000000}
+```
+#### Python
+```python
+constant = substrate.get_constant('OpenTechCommitteeCollective', 'MaxProposalWeight')
 ```
 ---------
 ## Errors

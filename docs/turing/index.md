@@ -20,7 +20,7 @@
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [0](authorship.md#calls) | [0](authorship.md#events) | [1](authorship.md#storage-functions) | [0](authorship.md#constants) | [0](authorship.md#errors) |
 | [AutomationPrice](automationprice.md) | [4](automationprice.md#calls) | [9](automationprice.md#events) | [9](automationprice.md#storage-functions) | [4](automationprice.md#constants) | [15](automationprice.md#errors) |
-| [AutomationTime](automationtime.md) | [6](automationtime.md#calls) | [13](automationtime.md#events) | [6](automationtime.md#storage-functions) | [8](automationtime.md#constants) | [15](automationtime.md#errors) |
+| [AutomationTime](automationtime.md) | [6](automationtime.md#calls) | [11](automationtime.md#events) | [6](automationtime.md#storage-functions) | [8](automationtime.md#constants) | [15](automationtime.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
 | [Bounties](bounties.md) | [9](bounties.md#calls) | [7](bounties.md#events) | [4](bounties.md#storage-functions) | [9](bounties.md#constants) | [11](bounties.md#errors) |
 | [Council](council.md) | [7](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [0](council.md#constants) | [10](council.md#errors) |

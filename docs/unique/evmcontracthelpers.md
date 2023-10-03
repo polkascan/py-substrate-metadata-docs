@@ -180,7 +180,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::478'
+'scale_info::492'
 ```
 ---------
 ### SponsoringMode

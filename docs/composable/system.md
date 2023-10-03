@@ -353,6 +353,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'AssetsRegistry': {
                 'AssetLocationRemoved': {'asset_id': 'u128'},
                 'AssetLocationUpdated': {
@@ -374,18 +386,6 @@ result = substrate.query(
                     'target_parachain_id': 'u32',
                 },
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -412,8 +412,8 @@ result = substrate.query(
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
             'CallFilter': {
-                'Disabled': {'entry': 'scale_info::165'},
-                'Enabled': {'entry': 'scale_info::165'},
+                'Disabled': {'entry': 'scale_info::283'},
+                'Enabled': {'entry': 'scale_info::283'},
             },
             'CollatorSelection': {
                 'CandidateAdded': {
@@ -425,6 +425,7 @@ result = substrate.query(
                 'NewDesiredCandidates': {'desired_candidates': 'u32'},
                 'NewInvulnerables': {'invulnerables': ['AccountId']},
             },
+            'ConvictionVoting': {'Delegated': ('AccountId', 'AccountId'), 'Undelegated': 'AccountId'},
             'Council': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -569,10 +570,10 @@ result = substrate.query(
                 },
                 'ClientStateSubstituted': {
                     'client_id': 'Str',
-                    'height': 'scale_info::176',
+                    'height': 'scale_info::296',
                 },
                 'ClientUpgradeSet': None,
-                'Events': {'events': ['scale_info::170']},
+                'Events': {'events': ['scale_info::318']},
                 'ExecuteMemoIbcTokenTransferFailed': {
                     'amount': 'u128',
                     'asset_id': 'u128',
@@ -721,10 +722,35 @@ result = substrate.query(
                     'multisig': 'AccountId',
                 },
             },
+            'OpenGovBalances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::36',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
             'PalletMultihopXcmIbc': {
                 'FailedCallback': {
                     'origin_address': '[u8; 32]',
-                    'reason': 'scale_info::181',
+                    'reason': 'scale_info::326',
                     'route_id': 'u128',
                 },
                 'FailedMatchLocation': None,
@@ -740,7 +766,7 @@ result = substrate.query(
                     'asset_id': 'u128',
                     'from': 'AccountId',
                     'is_error': 'bool',
-                    'reason': 'scale_info::181',
+                    'reason': 'scale_info::326',
                     'to': 'AccountId',
                 },
                 'SuccessXcmToIbc': {
@@ -863,6 +889,45 @@ result = substrate.query(
                     'pure': 'AccountId',
                     'who': 'AccountId',
                 },
+            },
+            'Referenda': {
+                'Approved': {'index': 'u32'},
+                'Cancelled': {'index': 'u32', 'tally': 'scale_info::307'},
+                'ConfirmAborted': {'index': 'u32'},
+                'ConfirmStarted': {'index': 'u32'},
+                'Confirmed': {'index': 'u32', 'tally': 'scale_info::307'},
+                'DecisionDepositPlaced': {
+                    'amount': 'u128',
+                    'index': 'u32',
+                    'who': 'AccountId',
+                },
+                'DecisionDepositRefunded': {
+                    'amount': 'u128',
+                    'index': 'u32',
+                    'who': 'AccountId',
+                },
+                'DecisionStarted': {
+                    'index': 'u32',
+                    'proposal': 'scale_info::165',
+                    'tally': 'scale_info::307',
+                    'track': 'u16',
+                },
+                'DepositSlashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Killed': {'index': 'u32', 'tally': 'scale_info::307'},
+                'MetadataCleared': {'hash': '[u8; 32]', 'index': 'u32'},
+                'MetadataSet': {'hash': '[u8; 32]', 'index': 'u32'},
+                'Rejected': {'index': 'u32', 'tally': 'scale_info::307'},
+                'SubmissionDepositRefunded': {
+                    'amount': 'u128',
+                    'index': 'u32',
+                    'who': 'AccountId',
+                },
+                'Submitted': {
+                    'index': 'u32',
+                    'proposal': 'scale_info::165',
+                    'track': 'u16',
+                },
+                'TimedOut': {'index': 'u32', 'tally': 'scale_info::307'},
             },
             'ReleaseCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
@@ -1095,6 +1160,14 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::30'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
+            },
+            'Whitelist': {
+                'CallWhitelisted': {'call_hash': '[u8; 32]'},
+                'WhitelistedCallDispatched': {
+                    'call_hash': '[u8; 32]',
+                    'result': 'scale_info::311',
+                },
+                'WhitelistedCallRemoved': {'call_hash': '[u8; 32]'},
             },
             'XTokens': {
                 'TransferredMultiAssets': {
@@ -1366,7 +1439,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'composable',
     'impl_version': 1,
     'spec_name': 'composable',
-    'spec_version': 10037,
+    'spec_version': 10039,
     'state_version': 0,
     'transaction_version': 2,
 }

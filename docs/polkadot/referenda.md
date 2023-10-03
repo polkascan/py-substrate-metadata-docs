@@ -239,6 +239,7 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        None: None,
         'XcmPallet': {
             'Response': {
                 'interior': {
@@ -1220,7 +1221,6 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
 }
 )

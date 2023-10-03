@@ -25,7 +25,7 @@ transaction index) of the first approval transaction.
 
 NOTE: If this is the final approval, you will want to use `as_multi` instead.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(S)`.
 - Up to one balance-reserve or unreserve operation.
 - One passthrough operation, one insert, both `O(S)` where `S` is the number of
@@ -36,11 +36,6 @@ NOTE: If this is the final approval, you will want to use `as_multi` instead.
 - One event.
 - Storage: inserts one item, value size bounded by `MaxSignatories`, with a deposit
   taken for its lifetime of `DepositBase + threshold * DepositFactor`.
-----------------------------------
-- DB Weight:
-    - Read: Multisig Storage, [Caller Account]
-    - Write: Multisig Storage, [Caller Account]
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -55,7 +50,10 @@ NOTE: If this is the final approval, you will want to use `as_multi` instead.
 call = substrate.compose_call(
     'Multisig', 'approve_as_multi', {
     'call_hash': '[u8; 32]',
-    'max_weight': {'ref_time': 'u64'},
+    'max_weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
     'maybe_timepoint': (
         None,
         {
@@ -97,7 +95,7 @@ Result is equivalent to the dispatched result if `threshold` is exactly `1`. Oth
 on success, result is `Ok` and the result from the interior call, if it was executed,
 may be found in the deposited `MultisigExecuted` event.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(S + Z + Call)`.
 - Up to one balance-reserve or unreserve operation.
 - One passthrough operation, one insert, both `O(S)` where `S` is the number of
@@ -110,20 +108,13 @@ may be found in the deposited `MultisigExecuted` event.
 - The weight of the `call`.
 - Storage: inserts one item, value size bounded by `MaxSignatories`, with a deposit
   taken for its lifetime of `DepositBase + threshold * DepositFactor`.
--------------------------------
-- DB Weight:
-    - Reads: Multisig Storage, [Caller Account], Calls (if `store_call`)
-    - Writes: Multisig Storage, [Caller Account], Calls (if `store_call`)
-- Plus Call Weight
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | threshold | `u16` | 
 | other_signatories | `Vec<T::AccountId>` | 
 | maybe_timepoint | `Option<Timepoint<T::BlockNumber>>` | 
-| call | `OpaqueCall<T>` | 
-| store_call | `bool` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 | max_weight | `Weight` | 
 
 #### Python
@@ -131,7 +122,10 @@ may be found in the deposited `MultisigExecuted` event.
 call = substrate.compose_call(
     'Multisig', 'as_multi', {
     'call': 'Call',
-    'max_weight': {'ref_time': 'u64'},
+    'max_weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
     'maybe_timepoint': (
         None,
         {
@@ -140,7 +134,6 @@ call = substrate.compose_call(
         },
     ),
     'other_signatories': ['AccountId'],
-    'store_call': 'bool',
     'threshold': 'u16',
 }
 )
@@ -158,17 +151,13 @@ multi-signature, but do not participate in the approval process.
 
 Result is equivalent to the dispatched result.
 
-\# &lt;weight&gt;
+\#\# Complexity
 O(Z + C) where Z is the length of the call and C its execution weight.
--------------------------------
-- DB Weight: None
-- Plus Call Weight
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | other_signatories | `Vec<T::AccountId>` | 
-| call | `Box<<T as Config>::Call>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
@@ -194,7 +183,7 @@ dispatch. May not be empty.
 transaction for this dispatch.
 - `call_hash`: The hash of the call to be executed.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(S)`.
 - Up to one balance-reserve or unreserve operation.
 - One passthrough operation, one insert, both `O(S)` where `S` is the number of
@@ -203,11 +192,6 @@ transaction for this dispatch.
 - One event.
 - I/O: 1 read `O(S)`, one remove.
 - Storage: removes one item.
-----------------------------------
-- DB Weight:
-    - Read: Multisig Storage, [Caller Account], Refund Account, Calls
-    - Write: Multisig Storage, [Caller Account], Refund Account, Calls
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -266,7 +250,7 @@ A multisig operation has been executed.
 | timepoint | `Timepoint<T::BlockNumber>` | ```{'height': 'u32', 'index': 'u32'}```
 | multisig | `T::AccountId` | ```AccountId```
 | call_hash | `CallHash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ### NewMultisig
@@ -281,20 +265,6 @@ A new multisig operation has begun.
 ---------
 ## Storage functions
 
----------
-### Calls
-
-#### Python
-```python
-result = substrate.query(
-    'Multisig', 'Calls', ['[u8; 32]']
-)
-```
-
-#### Return value
-```python
-('Call', 'AccountId', 'u128')
-```
 ---------
 ### Multisigs
  The set of open multisig operations.

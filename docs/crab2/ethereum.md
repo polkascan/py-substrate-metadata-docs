@@ -170,7 +170,7 @@ result = substrate.query(
     'transactions': [
         {
             'EIP1559': {
-                'access_list': ['scale_info::418'],
+                'access_list': ['scale_info::416'],
                 'action': {'Call': '[u8; 20]', 'Create': None},
                 'chain_id': 'u64',
                 'gas_limit': '[u64; 4]',
@@ -184,7 +184,7 @@ result = substrate.query(
                 'value': '[u64; 4]',
             },
             'EIP2930': {
-                'access_list': ['scale_info::418'],
+                'access_list': ['scale_info::416'],
                 'action': {'Call': '[u8; 20]', 'Create': None},
                 'chain_id': 'u64',
                 'gas_limit': '[u64; 4]',
@@ -307,7 +307,7 @@ result = substrate.query(
     (
         {
             'EIP1559': {
-                'access_list': ['scale_info::418'],
+                'access_list': ['scale_info::416'],
                 'action': {'Call': '[u8; 20]', 'Create': None},
                 'chain_id': 'u64',
                 'gas_limit': '[u64; 4]',
@@ -321,7 +321,7 @@ result = substrate.query(
                 'value': '[u64; 4]',
             },
             'EIP2930': {
-                'access_list': ['scale_info::418'],
+                'access_list': ['scale_info::416'],
                 'action': {'Call': '[u8; 20]', 'Create': None},
                 'chain_id': 'u64',
                 'gas_limit': '[u64; 4]',
@@ -360,19 +360,19 @@ result = substrate.query(
         },
         {
             'EIP1559': {
-                'logs': ['scale_info::152'],
+                'logs': ['scale_info::151'],
                 'logs_bloom': '[u8; 256]',
                 'status_code': 'u8',
                 'used_gas': '[u64; 4]',
             },
             'EIP2930': {
-                'logs': ['scale_info::152'],
+                'logs': ['scale_info::151'],
                 'logs_bloom': '[u8; 256]',
                 'status_code': 'u8',
                 'used_gas': '[u64; 4]',
             },
             'Legacy': {
-                'logs': ['scale_info::152'],
+                'logs': ['scale_info::151'],
                 'logs_bloom': '[u8; 256]',
                 'status_code': 'u8',
                 'used_gas': '[u64; 4]',

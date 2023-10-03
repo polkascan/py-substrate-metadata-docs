@@ -922,17 +922,6 @@ result = substrate.query(
                 'Sudid': {'sudo_result': 'scale_info::31'},
                 'SudoAsDone': {'sudo_result': 'scale_info::31'},
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1042,17 +1031,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'UnknownTokens': {
-                'Deposited': {
-                    'asset': 'scale_info::75',
-                    'who': 'scale_info::59',
-                },
-                'Withdrawn': {
-                    'asset': 'scale_info::75',
-                    'who': 'scale_info::59',
-                },
-            },
-            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1070,6 +1048,16 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
+            },
+            'UnknownTokens': {
+                'Deposited': {
+                    'asset': 'scale_info::75',
+                    'who': 'scale_info::59',
+                },
+                'Withdrawn': {
+                    'asset': 'scale_info::75',
+                    'who': 'scale_info::59',
+                },
             },
             'Utility': {
                 'BatchCompleted': None,
@@ -1112,6 +1100,18 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'u64'},
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
         },
         'phase': {

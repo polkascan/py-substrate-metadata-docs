@@ -432,15 +432,6 @@ result = substrate.query(
                     'task_id': 'Bytes',
                     'who': 'AccountId',
                 },
-                'TransferFailed': {
-                    'error': 'scale_info::24',
-                    'task_id': 'Bytes',
-                },
-                'XcmpTaskFailed': {
-                    'destination': 'scale_info::54',
-                    'error': 'scale_info::24',
-                    'task_id': 'Bytes',
-                },
             },
             'Balances': {
                 'BalanceSet': {
@@ -1044,13 +1035,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1103,6 +1087,14 @@ result = substrate.query(
                 'ValveClosed': None,
                 'ValveOpen': None,
             },
+            None: None,
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Vesting': {
                 'VestFailed': {
                     'account': 'AccountId',
@@ -1118,6 +1110,18 @@ result = substrate.query(
                     'fee': 'scale_info::87',
                     'sender': 'AccountId',
                 },
+            },
+            'XcmpHandler': {
+                'TransactInfoChanged': {'destination': 'scale_info::54'},
+                'TransactInfoRemoved': {'destination': 'scale_info::54'},
+                'XcmFeesFailed': {
+                    'dest': 'AccountId',
+                    'error': 'scale_info::24',
+                    'source': 'AccountId',
+                },
+                'XcmFeesPaid': {'dest': 'AccountId', 'source': 'AccountId'},
+                'XcmSent': {'destination': 'scale_info::54'},
+                'XcmTransactedLocally': None,
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
@@ -1139,19 +1143,6 @@ result = substrate.query(
                 },
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'XcmpHandler': {
-                'TransactInfoChanged': {'destination': 'scale_info::54'},
-                'TransactInfoRemoved': {'destination': 'scale_info::54'},
-                'XcmFeesFailed': {
-                    'dest': 'AccountId',
-                    'error': 'scale_info::24',
-                    'source': 'AccountId',
-                },
-                'XcmFeesPaid': {'dest': 'AccountId', 'source': 'AccountId'},
-                'XcmSent': {'destination': 'scale_info::54'},
-                'XcmTransactedLocally': None,
             },
         },
         'phase': {
@@ -1391,7 +1382,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     ],
     'authoring_version': 1,
     'impl_name': 'turing',
-    'impl_version': 0,
+    'impl_version': 1,
     'spec_name': 'turing',
     'spec_version': 295,
     'state_version': 0,

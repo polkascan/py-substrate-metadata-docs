@@ -60,9 +60,248 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
+        'Authority': {
+            'delay': 'u32',
+            'origin': {
+                'Authority': {
+                    'delay': 'u32',
+                    'origin': {
+                        'CumulusXcm': {
+                            'Relay': None,
+                            'SiblingParachain': 'u32',
+                        },
+                        'system': {
+                            'None': None,
+                            'Root': None,
+                            'Signed': 'AccountId',
+                        },
+                        None: None,
+                        'Authority': {
+                            'delay': 'u32',
+                            'origin': 'scale_info::131',
+                        },
+                        'FinancialCouncil': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'GeneralCouncil': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'HomaCouncil': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'PolkadotXcm': {
+                            'Response': 'scale_info::74',
+                            'Xcm': 'scale_info::74',
+                        },
+                        'TechnicalCommittee': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'Void': (),
+                    },
+                },
+                'CumulusXcm': {
+                    'Relay': None,
+                    'SiblingParachain': 'u32',
+                },
+                'FinancialCouncil': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
+                'GeneralCouncil': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
+                'HomaCouncil': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
+                'PolkadotXcm': {
+                    'Response': {
+                        'interior': {
+                            'Here': None,
+                            'X1': 'scale_info::76',
+                            'X2': (
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X3': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X4': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X5': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X6': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X7': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X8': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                        },
+                        'parents': 'u8',
+                    },
+                    'Xcm': {
+                        'interior': {
+                            'Here': None,
+                            'X1': 'scale_info::76',
+                            'X2': (
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X3': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X4': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X5': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X6': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X7': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                            'X8': (
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                                'scale_info::76',
+                            ),
+                        },
+                        'parents': 'u8',
+                    },
+                },
+                'TechnicalCommittee': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
+                'Void': (),
+                'system': {
+                    'None': None,
+                    'Root': None,
+                    'Signed': 'AccountId',
+                },
+                None: None,
+            },
+        },
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
+        },
+        'FinancialCouncil': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
+        'GeneralCouncil': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
+        'HomaCouncil': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
         },
         'PolkadotXcm': {
             'Response': {
@@ -1040,251 +1279,12 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
-        None: None,
-        'Authority': {
-            'delay': 'u32',
-            'origin': {
-                'system': {
-                    'None': None,
-                    'Root': None,
-                    'Signed': 'AccountId',
-                },
-                None: None,
-                'Authority': {
-                    'delay': 'u32',
-                    'origin': {
-                        'Authority': {
-                            'delay': 'u32',
-                            'origin': 'scale_info::131',
-                        },
-                        'CumulusXcm': {
-                            'Relay': None,
-                            'SiblingParachain': 'u32',
-                        },
-                        'FinancialCouncil': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'GeneralCouncil': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'HomaCouncil': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'PolkadotXcm': {
-                            'Response': 'scale_info::74',
-                            'Xcm': 'scale_info::74',
-                        },
-                        'TechnicalCommittee': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'Void': (),
-                        'system': {
-                            'None': None,
-                            'Root': None,
-                            'Signed': 'AccountId',
-                        },
-                        None: None,
-                    },
-                },
-                'CumulusXcm': {
-                    'Relay': None,
-                    'SiblingParachain': 'u32',
-                },
-                'FinancialCouncil': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
-                },
-                'GeneralCouncil': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
-                },
-                'HomaCouncil': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
-                },
-                'PolkadotXcm': {
-                    'Response': {
-                        'interior': {
-                            'Here': None,
-                            'X1': 'scale_info::76',
-                            'X2': (
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X3': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X4': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X5': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X6': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X7': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X8': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                        },
-                        'parents': 'u8',
-                    },
-                    'Xcm': {
-                        'interior': {
-                            'Here': None,
-                            'X1': 'scale_info::76',
-                            'X2': (
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X3': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X4': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X5': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X6': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X7': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                            'X8': (
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                                'scale_info::76',
-                            ),
-                        },
-                        'parents': 'u8',
-                    },
-                },
-                'TechnicalCommittee': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
-                },
-                'Void': (),
-            },
-        },
-        'FinancialCouncil': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
-        'GeneralCouncil': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
-        'HomaCouncil': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
-        },
         'TechnicalCommittee': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
     },
     'call': 'Call',
 }

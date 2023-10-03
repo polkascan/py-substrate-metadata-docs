@@ -5,78 +5,17 @@
 ## Calls
 
 ---------
-### insert_parachain_error
-Insert a new parachain error.
-
-\# Arguments
-
-* `origin` - the dispatch origin of this call (must be _Root_)
-* `error_code` - the error code to insert
-
-\# Weight: `O(1)`
+### activate_counter
+Activate or deactivate active block counting.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| error_code | `ErrorCode` | 
+| is_active | `bool` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Security', 'insert_parachain_error', {
-    'error_code': (
-        'None',
-        'OracleOffline',
-    ),
-}
-)
-```
-
----------
-### remove_parachain_error
-Remove a parachain error.
-
-\# Arguments
-
-* `origin` - the dispatch origin of this call (must be _Root_)
-* `error_code` - the error code to remove
-
-\# Weight: `O(1)`
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| error_code | `ErrorCode` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Security', 'remove_parachain_error', {
-    'error_code': (
-        'None',
-        'OracleOffline',
-    ),
-}
-)
-```
-
----------
-### set_parachain_status
-Set the parachain status code.
-
-\# Arguments
-
-* `origin` - the dispatch origin of this call (must be _Root_)
-* `status_code` - the status code to set
-
-\# Weight: `O(1)`
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| status_code | `StatusCode` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Security', 'set_parachain_status', {'status_code': ('Running', 'Error')}
+    'Security', 'activate_counter', {'is_active': 'bool'}
 )
 ```
 
@@ -84,12 +23,14 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### RecoverFromErrors
+### Activated
 #### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| new_status | `StatusCode` | ```('Running', 'Error')```
-| cleared_errors | `Vec<ErrorCode>` | ```[('None', 'OracleOffline')]```
+No attributes
+
+---------
+### Deactivated
+#### Attributes
+No attributes
 
 ---------
 ### UpdateActiveBlock
@@ -121,19 +62,18 @@ result = substrate.query(
 'u32'
 ```
 ---------
-### Errors
- Set of ErrorCodes, indicating the reason for an &quot;Error&quot; ParachainStatus.
+### IsDeactivated
 
 #### Python
 ```python
 result = substrate.query(
-    'Security', 'Errors', []
+    'Security', 'IsDeactivated', []
 )
 ```
 
 #### Return value
 ```python
-'scale_info::460'
+'bool'
 ```
 ---------
 ### Nonce
@@ -151,44 +91,4 @@ result = substrate.query(
 ```python
 '[u64; 4]'
 ```
----------
-### ParachainStatus
- Integer/Enum defining the current state of the BTC-Parachain.
-
-#### Python
-```python
-result = substrate.query(
-    'Security', 'ParachainStatus', []
-)
-```
-
-#### Return value
-```python
-('Running', 'Error')
-```
----------
-## Constants
-
----------
-### MaxErrors
- The maximum number of error codes.
-#### Value
-```python
-1
-```
-#### Python
-```python
-constant = substrate.get_constant('Security', 'MaxErrors')
-```
----------
-## Errors
-
----------
-### MaxErrorsReached
-Cannot add the error code.
-
----------
-### ParachainNotRunning
-Parachain is not running.
-
 ---------

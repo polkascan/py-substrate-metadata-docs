@@ -120,6 +120,9 @@ call = substrate.compose_call(
             'Relay': None,
             'SiblingParachain': 'u32',
         },
+        'Origins': (
+            'WhitelistedCaller',
+        ),
         'PolkadotXcm': {
             'Response': {
                 'interior': {

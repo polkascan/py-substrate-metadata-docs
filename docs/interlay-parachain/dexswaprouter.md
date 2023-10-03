@@ -37,12 +37,12 @@ call = substrate.compose_call(
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                     ),
                     'StableLpToken': 'u32',
@@ -65,12 +65,12 @@ call = substrate.compose_call(
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                     ),
                     'StableLpToken': 'u32',
@@ -96,12 +96,12 @@ call = substrate.compose_call(
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                         {
                             'ForeignAsset': 'u32',
                             'StableLpToken': 'u32',
-                            'Token': 'scale_info::51',
+                            'Token': 'scale_info::52',
                         },
                     ),
                     'StableLpToken': 'u32',

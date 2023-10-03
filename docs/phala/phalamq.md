@@ -59,12 +59,12 @@ call = substrate.compose_call(
             'sender': {
                 'AccountId': '[u8; 32]',
                 'Cluster': '[u8; 32]',
+                None: None,
                 'Contract': '[u8; 32]',
                 'Gatekeeper': None,
-                'Reserved': None,
-                None: None,
                 'MultiLocation': 'Bytes',
                 'Pallet': 'Bytes',
+                'Reserved': None,
                 'Worker': '[u8; 32]',
             },
         },
@@ -89,13 +89,13 @@ result = substrate.query(
     {
         'AccountId': '[u8; 32]',
         'Cluster': '[u8; 32]',
+        None: None,
         'Contract': '[u8; 32]',
         'Gatekeeper': None,
         'MultiLocation': 'Bytes',
         'Pallet': 'Bytes',
         'Reserved': None,
         'Worker': '[u8; 32]',
-        None: None,
     },
 ]
 )
@@ -125,8 +125,8 @@ result = substrate.query(
         'destination': 'Bytes',
         'payload': 'Bytes',
         'sender': {
-            None: None,
             'AccountId': '[u8; 32]',
+            None: None,
             'Cluster': '[u8; 32]',
             'Contract': '[u8; 32]',
             'Gatekeeper': None,
@@ -157,10 +157,10 @@ result = substrate.query(
         'sender': {
             'AccountId': '[u8; 32]',
             'Cluster': '[u8; 32]',
+            None: None,
             'Contract': '[u8; 32]',
             'Gatekeeper': None,
             'MultiLocation': 'Bytes',
-            None: None,
             'Pallet': 'Bytes',
             'Reserved': None,
             'Worker': '[u8; 32]',

@@ -312,7 +312,7 @@ result = substrate.query(
                 {
                     'asset_in': 'u32',
                     'asset_out': 'u32',
-                    'pool': 'scale_info::279',
+                    'pool': 'scale_info::284',
                 },
             ],
         },
@@ -325,7 +325,7 @@ result = substrate.query(
                 {
                     'asset_in': 'u32',
                     'asset_out': 'u32',
-                    'pool': 'scale_info::279',
+                    'pool': 'scale_info::284',
                 },
             ],
         },

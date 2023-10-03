@@ -6,20 +6,41 @@
 
 ---------
 ### authorize_upgrade
+Authorize an upgrade to a given `code_hash` for the runtime. The runtime can be supplied
+later.
+
+The `check_version` parameter sets a boolean flag for whether or not the runtime&\#x27;s spec
+version and name should be verified on upgrade. Since the authorization only has a hash,
+it cannot actually perform the verification.
+
+This call requires Root origin.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | code_hash | `T::Hash` | 
+| check_version | `bool` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'ParachainSystem', 'authorize_upgrade', {'code_hash': '[u8; 32]'}
+    'ParachainSystem', 'authorize_upgrade', {
+    'check_version': 'bool',
+    'code_hash': '[u8; 32]',
+}
 )
 ```
 
 ---------
 ### enact_authorized_upgrade
+Provide the preimage (runtime binary) `code` for an upgrade that has been authorized.
+
+If the authorization required a version check, this call will ensure the spec name
+remains unchanged and that the spec version has increased.
+
+Note that this function will not apply the new `code`, but only attempt to schedule the
+upgrade with the Relay Chain.
+
+All origins are allowed.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -59,9 +80,9 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::202',
+        'horizontal_messages': 'scale_info::217',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::186',
+            'trie_nodes': 'scale_info::199',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -97,7 +118,7 @@ Downward messages were processed using the given weight.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| weight_used | `Weight` | ```{'ref_time': 'u64'}```
+| weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 | dmq_head | `relay_chain::Hash` | ```[u8; 32]```
 
 ---------
@@ -115,6 +136,14 @@ An upgrade has been authorized.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | code_hash | `T::Hash` | ```[u8; 32]```
+
+---------
+### UpwardMessageSent
+An upward message was sent to the relay chain.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
 
 ---------
 ### ValidationFunctionApplied
@@ -168,7 +197,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+{'check_version': 'bool', 'code_hash': '[u8; 32]'}
 ```
 ---------
 ### CustomValidationHeadData
@@ -300,7 +329,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::193'
+'scale_info::207'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -406,7 +435,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::186'}
+{'trie_nodes': 'scale_info::199'}
 ```
 ---------
 ### RelevantMessagingState
@@ -472,7 +501,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'ref_time': 'u64'}
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 ### ReservedXcmpWeightOverride
@@ -488,7 +517,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'ref_time': 'u64'}
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 ### UpgradeRestrictionSignal
@@ -555,7 +584,7 @@ result = substrate.query(
 
 ---------
 ### HostConfigurationNotAvailable
-The inherent which supplies the host configuration did not run this block
+The inherent which supplies the host configuration did not run this block.
 
 ---------
 ### NotScheduled
@@ -567,16 +596,16 @@ No code upgrade has been authorized.
 
 ---------
 ### OverlappingUpgrades
-Attempt to upgrade validation function while existing upgrade pending
+Attempt to upgrade validation function while existing upgrade pending.
 
 ---------
 ### ProhibitedByPolkadot
-Polkadot currently prohibits this parachain from upgrading its validation function
+Polkadot currently prohibits this parachain from upgrading its validation function.
 
 ---------
 ### TooBig
 The supplied validation function has compiled into a blob larger than Polkadot is
-willing to run
+willing to run.
 
 ---------
 ### Unauthorized
@@ -584,6 +613,6 @@ The given code upgrade has not been authorized.
 
 ---------
 ### ValidationDataNotAvailable
-The inherent which supplies the validation data did not run this block
+The inherent which supplies the validation data did not run this block.
 
 ---------

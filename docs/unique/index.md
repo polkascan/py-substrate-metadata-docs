@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | unique     |
 | Implementation name     | unique     |
-| Spec version     | 942057     |
+| Spec version     | 943061     |
 | SS58 Format     | 7391     |
 | Token symbol      | UNQ     |
 | Token decimals      | 18     |
@@ -15,7 +15,7 @@
 ## Pallets
 | Name | Calls | Events | Storage functions | Constants | Errors |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| [AppPromotion](apppromotion.md) | [11](apppromotion.md#calls) | [4](apppromotion.md#events) | [6](apppromotion.md#storage-functions) | [6](apppromotion.md#constants) | [7](apppromotion.md#errors) |
+| [AppPromotion](apppromotion.md) | [10](apppromotion.md#calls) | [4](apppromotion.md#events) | [6](apppromotion.md#storage-functions) | [6](apppromotion.md#constants) | [7](apppromotion.md#errors) |
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Balances](balances.md) | [9](balances.md#calls) | [21](balances.md#events) | [7](balances.md#storage-functions) | [5](balances.md#constants) | [10](balances.md#errors) |
@@ -25,9 +25,9 @@
 | [Configuration](configuration.md) | [6](configuration.md#calls) | [3](configuration.md#events) | [6](configuration.md#storage-functions) | [8](configuration.md#constants) | [1](configuration.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
-| [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [3](evm.md#storage-functions) | [0](evm.md#constants) | [11](evm.md#errors) |
+| [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [4](evm.md#storage-functions) | [0](evm.md#constants) | [11](evm.md#errors) |
 | [Ethereum](ethereum.md) | [1](ethereum.md#calls) | [1](ethereum.md#events) | [6](ethereum.md#storage-functions) | [0](ethereum.md#constants) | [2](ethereum.md#errors) |
-| [EvmCoderSubstrate](evmcodersubstrate.md) | [1](evmcodersubstrate.md#calls) | [0](evmcodersubstrate.md#events) | [0](evmcodersubstrate.md#storage-functions) | [0](evmcodersubstrate.md#constants) | [2](evmcodersubstrate.md#errors) |
+| [EvmCoderSubstrate](evmcodersubstrate.md) | [0](evmcodersubstrate.md#calls) | [0](evmcodersubstrate.md#events) | [0](evmcodersubstrate.md#storage-functions) | [0](evmcodersubstrate.md#constants) | [2](evmcodersubstrate.md#errors) |
 | [EvmContractHelpers](evmcontracthelpers.md) | [1](evmcontracthelpers.md#calls) | [3](evmcontracthelpers.md#events) | [9](evmcontracthelpers.md#storage-functions) | [1](evmcontracthelpers.md#constants) | [3](evmcontracthelpers.md#errors) |
 | [EvmMigration](evmmigration.md) | [6](evmmigration.md#calls) | [1](evmmigration.md#events) | [1](evmmigration.md#storage-functions) | [0](evmmigration.md#constants) | [3](evmmigration.md#errors) |
 | [EvmTransactionPayment](evmtransactionpayment.md) | [0](evmtransactionpayment.md#calls) | [0](evmtransactionpayment.md#events) | [0](evmtransactionpayment.md#storage-functions) | [0](evmtransactionpayment.md#constants) | [0](evmtransactionpayment.md#errors) |
@@ -49,6 +49,7 @@
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
 | [Treasury](treasury.md) | [5](treasury.md#calls) | [9](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |
 | [Unique](unique.md) | [32](unique.md#calls) | [0](unique.md#events) | [9](unique.md#storage-functions) | [13](unique.md#constants) | [3](unique.md#errors) |
+| [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [Vesting](vesting.md) | [4](vesting.md#calls) | [3](vesting.md#events) | [1](vesting.md#storage-functions) | [1](vesting.md#constants) | [6](vesting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [7](xcmpqueue.md#events) | [10](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

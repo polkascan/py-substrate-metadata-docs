@@ -130,7 +130,6 @@ call = substrate.compose_call(
     'PolymeshCommittee', 'vote_or_propose', {
     'approve': 'bool',
     'call': {
-        'Asset': 'Call',
         'Authorship': {
             'set_uncles': {
                 'new_uncles': [
@@ -148,6 +147,8 @@ call = substrate.compose_call(
                 ],
             },
         },
+        None: None,
+        'Asset': 'Call',
         'Babe': {
             'plan_config_change': {
                 'config': {
@@ -695,8 +696,62 @@ call = substrate.compose_call(
                     'Balances': 'Call',
                     'Base': 'Call',
                     'Bridge': 'Call',
+                    'CapitalDistribution': {
+                        'claim': {
+                            'ca_id': 'scale_info::163',
+                        },
+                        'distribute': {
+                            'amount': 'u128',
+                            'ca_id': 'scale_info::163',
+                            'currency': '[u8; 12]',
+                            'expires_at': (
+                                None,
+                                'u64',
+                            ),
+                            'payment_at': 'u64',
+                            'per_share': 'u128',
+                            'portfolio': (
+                                None,
+                                'u64',
+                            ),
+                        },
+                        'push_benefit': {
+                            'ca_id': 'scale_info::163',
+                            'holder': '[u8; 32]',
+                        },
+                        'reclaim': {
+                            'ca_id': 'scale_info::163',
+                        },
+                        'remove_distribution': {
+                            'ca_id': 'scale_info::163',
+                        },
+                    },
                     'CddServiceProviders': 'Call',
+                    'ImOnline': {
+                        'heartbeat': {
+                            'heartbeat': 'scale_info::480',
+                            'signature': '[u8; 64]',
+                        },
+                    },
+                    None: None,
+                    'Checkpoint': {
+                        'create_checkpoint': {
+                            'ticker': '[u8; 12]',
+                        },
+                        'create_schedule': {
+                            'schedule': 'scale_info::497',
+                            'ticker': '[u8; 12]',
+                        },
+                        'remove_schedule': {
+                            'id': 'u64',
+                            'ticker': '[u8; 12]',
+                        },
+                        'set_schedules_max_complexity': {
+                            'max_complexity': 'u64',
+                        },
+                    },
                     'CommitteeMembership': 'Call',
+                    'ComplianceManager': 'Call',
                     'Contracts': {
                         'call': {
                             'data': 'Bytes',
@@ -778,96 +833,6 @@ call = substrate.compose_call(
                             ),
                         },
                     },
-                    'ExternalAgents': 'Call',
-                    'Grandpa': {
-                        'note_stalled': {
-                            'best_finalized_block_number': 'u32',
-                            'delay': 'u32',
-                        },
-                        'report_equivocation': {
-                            'equivocation_proof': 'scale_info::469',
-                            'key_owner_proof': 'scale_info::343',
-                        },
-                        'report_equivocation_unsigned': {
-                            'equivocation_proof': 'scale_info::469',
-                            'key_owner_proof': 'scale_info::343',
-                        },
-                    },
-                    'Identity': 'Call',
-                    'ImOnline': {
-                        'heartbeat': {
-                            'heartbeat': 'scale_info::480',
-                            'signature': '[u8; 64]',
-                        },
-                    },
-                    'Indices': {
-                        'claim': {
-                            'index': 'u32',
-                        },
-                        'force_transfer': {
-                            'freeze': 'bool',
-                            'index': 'u32',
-                            'new': 'scale_info::348',
-                        },
-                        'free': {
-                            'index': 'u32',
-                        },
-                        'freeze': {
-                            'index': 'u32',
-                        },
-                        'transfer': {
-                            'index': 'u32',
-                            'new': 'scale_info::348',
-                        },
-                    },
-                    None: None,
-                    'CapitalDistribution': {
-                        'claim': {
-                            'ca_id': 'scale_info::163',
-                        },
-                        'distribute': {
-                            'amount': 'u128',
-                            'ca_id': 'scale_info::163',
-                            'currency': '[u8; 12]',
-                            'expires_at': (
-                                None,
-                                'u64',
-                            ),
-                            'payment_at': 'u64',
-                            'per_share': 'u128',
-                            'portfolio': (
-                                None,
-                                'u64',
-                            ),
-                        },
-                        'push_benefit': {
-                            'ca_id': 'scale_info::163',
-                            'holder': '[u8; 32]',
-                        },
-                        'reclaim': {
-                            'ca_id': 'scale_info::163',
-                        },
-                        'remove_distribution': {
-                            'ca_id': 'scale_info::163',
-                        },
-                    },
-                    'Checkpoint': {
-                        'create_checkpoint': {
-                            'ticker': '[u8; 12]',
-                        },
-                        'create_schedule': {
-                            'schedule': 'scale_info::497',
-                            'ticker': '[u8; 12]',
-                        },
-                        'remove_schedule': {
-                            'id': 'u64',
-                            'ticker': '[u8; 12]',
-                        },
-                        'set_schedules_max_complexity': {
-                            'max_complexity': 'u64',
-                        },
-                    },
-                    'ComplianceManager': 'Call',
                     'CorporateAction': 'Call',
                     'CorporateBallot': {
                         'attach_ballot': {
@@ -896,6 +861,42 @@ call = substrate.compose_call(
                             'votes': [
                                 'scale_info::212',
                             ],
+                        },
+                    },
+                    'ExternalAgents': 'Call',
+                    'Grandpa': {
+                        'note_stalled': {
+                            'best_finalized_block_number': 'u32',
+                            'delay': 'u32',
+                        },
+                        'report_equivocation': {
+                            'equivocation_proof': 'scale_info::469',
+                            'key_owner_proof': 'scale_info::343',
+                        },
+                        'report_equivocation_unsigned': {
+                            'equivocation_proof': 'scale_info::469',
+                            'key_owner_proof': 'scale_info::343',
+                        },
+                    },
+                    'Identity': 'Call',
+                    'Indices': {
+                        'claim': {
+                            'index': 'u32',
+                        },
+                        'force_transfer': {
+                            'freeze': 'bool',
+                            'index': 'u32',
+                            'new': 'scale_info::348',
+                        },
+                        'free': {
+                            'index': 'u32',
+                        },
+                        'freeze': {
+                            'index': 'u32',
+                        },
+                        'transfer': {
+                            'index': 'u32',
+                            'new': 'scale_info::348',
                         },
                     },
                     'MultiSig': 'Call',
@@ -1049,6 +1050,7 @@ call = substrate.compose_call(
             'schedule_after': {
                 'after': 'u32',
                 'call': {
+                    None: None,
                     'Asset': 'Call',
                     'Authorship': {
                         'set_uncles': {
@@ -1070,8 +1072,6 @@ call = substrate.compose_call(
                             'key_owner_proof': 'scale_info::343',
                         },
                     },
-                    'CommitteeMembership': 'Call',
-                    None: None,
                     'Balances': 'Call',
                     'Base': 'Call',
                     'Bridge': 'Call',
@@ -1122,6 +1122,7 @@ call = substrate.compose_call(
                             'max_complexity': 'u64',
                         },
                     },
+                    'CommitteeMembership': 'Call',
                     'ComplianceManager': 'Call',
                     'Contracts': {
                         'call': {
@@ -1425,7 +1426,6 @@ call = substrate.compose_call(
             },
             'schedule_named': {
                 'call': {
-                    'Asset': 'Call',
                     'Authorship': {
                         'set_uncles': {
                             'new_uncles': [
@@ -1433,6 +1433,8 @@ call = substrate.compose_call(
                             ],
                         },
                     },
+                    None: None,
+                    'Asset': 'Call',
                     'Babe': {
                         'plan_config_change': {
                             'config': 'scale_info::328',
@@ -1447,6 +1449,7 @@ call = substrate.compose_call(
                         },
                     },
                     'Balances': 'Call',
+                    'Base': 'Call',
                     'Bridge': 'Call',
                     'CapitalDistribution': {
                         'claim': {
@@ -1608,6 +1611,7 @@ call = substrate.compose_call(
                             ],
                         },
                     },
+                    'ExternalAgents': 'Call',
                     'Grandpa': {
                         'note_stalled': {
                             'best_finalized_block_number': 'u32',
@@ -1650,12 +1654,9 @@ call = substrate.compose_call(
                         },
                     },
                     'MultiSig': 'Call',
-                    'PolymeshCommittee': 'Call',
-                    None: None,
-                    'Base': 'Call',
-                    'ExternalAgents': 'Call',
                     'Nft': 'Call',
                     'Pips': 'Call',
+                    'PolymeshCommittee': 'Call',
                     'PolymeshContracts': 'Call',
                     'Portfolio': 'Call',
                     'Preimage': {
@@ -1804,7 +1805,6 @@ call = substrate.compose_call(
             'schedule_named_after': {
                 'after': 'u32',
                 'call': {
-                    None: None,
                     'Asset': 'Call',
                     'Authorship': {
                         'set_uncles': {
@@ -2034,9 +2034,53 @@ call = substrate.compose_call(
                     'MultiSig': 'Call',
                     'Nft': 'Call',
                     'Pips': 'Call',
-                    'PolymeshCommittee': 'Call',
                     'PolymeshContracts': 'Call',
                     'Portfolio': 'Call',
+                    'ProtocolFee': 'Call',
+                    'Session': {
+                        'purge_keys': None,
+                        'set_keys': {
+                            'keys': 'scale_info::466',
+                            'proof': 'Bytes',
+                        },
+                    },
+                    'System': {
+                        'kill_prefix': {
+                            'prefix': 'Bytes',
+                            'subkeys': 'u32',
+                        },
+                        'kill_storage': {
+                            'keys': [
+                                'Bytes',
+                            ],
+                        },
+                        'placeholder_fill_block': None,
+                        'remark': {
+                            'remark': 'Bytes',
+                        },
+                        'remark_with_event': {
+                            'remark': 'Bytes',
+                        },
+                        'set_code': {
+                            'code': 'Bytes',
+                        },
+                        'set_code_without_checks': {
+                            'code': 'Bytes',
+                        },
+                        'set_heap_pages': {
+                            'pages': 'u64',
+                        },
+                        'set_storage': {
+                            'items': [
+                                (
+                                    'Bytes',
+                                    'Bytes',
+                                ),
+                            ],
+                        },
+                    },
+                    None: None,
+                    'PolymeshCommittee': 'Call',
                     'Preimage': {
                         'note_preimage': {
                             'bytes': 'Bytes',
@@ -2051,7 +2095,6 @@ call = substrate.compose_call(
                             'hash': '[u8; 32]',
                         },
                     },
-                    'ProtocolFee': 'Call',
                     'Relayer': 'Call',
                     'Rewards': 'Call',
                     'Scheduler': {
@@ -2113,53 +2156,11 @@ call = substrate.compose_call(
                             'priority': 'u8',
                         },
                     },
-                    'Session': {
-                        'purge_keys': None,
-                        'set_keys': {
-                            'keys': 'scale_info::466',
-                            'proof': 'Bytes',
-                        },
-                    },
                     'Settlement': 'Call',
                     'Staking': 'Call',
                     'Statistics': 'Call',
                     'Sto': 'Call',
                     'Sudo': 'Call',
-                    'System': {
-                        'kill_prefix': {
-                            'prefix': 'Bytes',
-                            'subkeys': 'u32',
-                        },
-                        'kill_storage': {
-                            'keys': [
-                                'Bytes',
-                            ],
-                        },
-                        'placeholder_fill_block': None,
-                        'remark': {
-                            'remark': 'Bytes',
-                        },
-                        'remark_with_event': {
-                            'remark': 'Bytes',
-                        },
-                        'set_code': {
-                            'code': 'Bytes',
-                        },
-                        'set_code_without_checks': {
-                            'code': 'Bytes',
-                        },
-                        'set_heap_pages': {
-                            'pages': 'u64',
-                        },
-                        'set_storage': {
-                            'items': [
-                                (
-                                    'Bytes',
-                                    'Bytes',
-                                ),
-                            ],
-                        },
-                    },
                     'TechnicalCommittee': 'Call',
                     'TechnicalCommitteeMembership': 'Call',
                     'Timestamp': {
@@ -2228,14 +2229,13 @@ call = substrate.compose_call(
             },
         },
         'TechnicalCommittee': 'Call',
+        'TechnicalCommitteeMembership': 'Call',
         'Timestamp': {
             'set': {'now': 'u64'},
         },
         'Treasury': 'Call',
-        'UpgradeCommitteeMembership': 'Call',
-        None: None,
-        'TechnicalCommitteeMembership': 'Call',
         'UpgradeCommittee': 'Call',
+        'UpgradeCommitteeMembership': 'Call',
         'Utility': 'Call',
     },
 }
@@ -2829,13 +2829,13 @@ result = substrate.query(
                     'set_storage': 'InnerStruct',
                 },
                 'TechnicalCommittee': 'Call',
+                'TechnicalCommitteeMembership': 'Call',
                 'Timestamp': {'set': 'InnerStruct'},
                 'Treasury': 'Call',
-                'UpgradeCommitteeMembership': 'Call',
-                None: None,
-                'TechnicalCommitteeMembership': 'Call',
                 'UpgradeCommittee': 'Call',
+                'UpgradeCommitteeMembership': 'Call',
                 'Utility': 'Call',
+                None: None,
             },
             'maybe_periodic': (None, ('u32', 'u32')),
             'priority': 'u8',
@@ -2852,6 +2852,7 @@ result = substrate.query(
                     'report_equivocation_unsigned': 'InnerStruct',
                 },
                 'Balances': 'Call',
+                None: None,
                 'Base': 'Call',
                 'Bridge': 'Call',
                 'CapitalDistribution': {
@@ -2950,7 +2951,6 @@ result = substrate.query(
                 'Timestamp': {'set': 'InnerStruct'},
                 'Treasury': 'Call',
                 'UpgradeCommittee': 'Call',
-                None: None,
                 'UpgradeCommitteeMembership': 'Call',
                 'Utility': 'Call',
             },
@@ -3022,16 +3022,33 @@ result = substrate.query(
                 },
                 'MultiSig': 'Call',
                 'Nft': 'Call',
+                'Pips': 'Call',
+                'PolymeshCommittee': 'Call',
                 'PolymeshContracts': 'Call',
+                'Portfolio': 'Call',
                 'Preimage': {
                     'note_preimage': 'InnerStruct',
                     'request_preimage': 'InnerStruct',
                     'unnote_preimage': 'InnerStruct',
                     'unrequest_preimage': 'InnerStruct',
                 },
+                'ProtocolFee': 'Call',
                 'Relayer': 'Call',
                 'Rewards': 'Call',
+                'Scheduler': {
+                    'cancel': 'InnerStruct',
+                    'cancel_named': 'InnerStruct',
+                    'schedule': 'InnerStruct',
+                    'schedule_after': 'InnerStruct',
+                    'schedule_named': 'InnerStruct',
+                    'schedule_named_after': 'InnerStruct',
+                },
                 'Session': {'purge_keys': None, 'set_keys': 'InnerStruct'},
+                'Settlement': 'Call',
+                'Staking': 'Call',
+                'Statistics': 'Call',
+                'Sto': 'Call',
+                'Sudo': 'Call',
                 'System': {
                     'kill_prefix': 'InnerStruct',
                     'kill_storage': 'InnerStruct',
@@ -3044,29 +3061,12 @@ result = substrate.query(
                     'set_storage': 'InnerStruct',
                 },
                 'TechnicalCommittee': 'Call',
-                'TechnicalCommitteeMembership': 'Call',
-                None: None,
-                'Pips': 'Call',
-                'PolymeshCommittee': 'Call',
-                'Portfolio': 'Call',
-                'ProtocolFee': 'Call',
-                'Scheduler': {
-                    'cancel': 'InnerStruct',
-                    'cancel_named': 'InnerStruct',
-                    'schedule': 'InnerStruct',
-                    'schedule_after': 'InnerStruct',
-                    'schedule_named': 'InnerStruct',
-                    'schedule_named_after': 'InnerStruct',
-                },
-                'Settlement': 'Call',
-                'Staking': 'Call',
-                'Statistics': 'Call',
-                'Sto': 'Call',
-                'Sudo': 'Call',
                 'Timestamp': {'set': 'InnerStruct'},
                 'Treasury': 'Call',
-                'UpgradeCommittee': 'Call',
                 'UpgradeCommitteeMembership': 'Call',
+                None: None,
+                'TechnicalCommitteeMembership': 'Call',
+                'UpgradeCommittee': 'Call',
                 'Utility': 'Call',
             },
             'id': '[u8; 32]',
@@ -3129,8 +3129,25 @@ result = substrate.query(
                     'report_equivocation': 'InnerStruct',
                     'report_equivocation_unsigned': 'InnerStruct',
                 },
-                'Identity': 'Call',
                 'ImOnline': {'heartbeat': 'InnerStruct'},
+                'MultiSig': 'Call',
+                'Nft': 'Call',
+                'PolymeshCommittee': 'Call',
+                'PolymeshContracts': 'Call',
+                'Preimage': {
+                    'note_preimage': 'InnerStruct',
+                    'request_preimage': 'InnerStruct',
+                    'unnote_preimage': 'InnerStruct',
+                    'unrequest_preimage': 'InnerStruct',
+                },
+                'Relayer': 'Call',
+                'Rewards': 'Call',
+                'Session': {'purge_keys': None, 'set_keys': 'InnerStruct'},
+                'Staking': 'Call',
+                'UpgradeCommittee': 'Call',
+                'UpgradeCommitteeMembership': 'Call',
+                None: None,
+                'Identity': 'Call',
                 'Indices': {
                     'claim': 'InnerStruct',
                     'force_transfer': 'InnerStruct',
@@ -3138,21 +3155,9 @@ result = substrate.query(
                     'freeze': 'InnerStruct',
                     'transfer': 'InnerStruct',
                 },
-                'MultiSig': 'Call',
-                'Nft': 'Call',
                 'Pips': 'Call',
-                'PolymeshCommittee': 'Call',
-                'PolymeshContracts': 'Call',
                 'Portfolio': 'Call',
-                'Preimage': {
-                    'note_preimage': 'InnerStruct',
-                    'request_preimage': 'InnerStruct',
-                    'unnote_preimage': 'InnerStruct',
-                    'unrequest_preimage': 'InnerStruct',
-                },
                 'ProtocolFee': 'Call',
-                'Relayer': 'Call',
-                'Rewards': 'Call',
                 'Scheduler': {
                     'cancel': 'InnerStruct',
                     'cancel_named': 'InnerStruct',
@@ -3161,9 +3166,7 @@ result = substrate.query(
                     'schedule_named': 'InnerStruct',
                     'schedule_named_after': 'InnerStruct',
                 },
-                'Session': {'purge_keys': None, 'set_keys': 'InnerStruct'},
                 'Settlement': 'Call',
-                'Staking': 'Call',
                 'Statistics': 'Call',
                 'Sto': 'Call',
                 'Sudo': 'Call',
@@ -3179,12 +3182,9 @@ result = substrate.query(
                     'set_storage': 'InnerStruct',
                 },
                 'TechnicalCommittee': 'Call',
+                'TechnicalCommitteeMembership': 'Call',
                 'Timestamp': {'set': 'InnerStruct'},
                 'Treasury': 'Call',
-                'UpgradeCommitteeMembership': 'Call',
-                None: None,
-                'TechnicalCommitteeMembership': 'Call',
-                'UpgradeCommittee': 'Call',
                 'Utility': 'Call',
             },
             'id': '[u8; 32]',
@@ -3220,12 +3220,12 @@ result = substrate.query(
         'set_heap_pages': {'pages': 'u64'},
         'set_storage': {'items': [('Bytes', 'Bytes')]},
     },
-    'TechnicalCommitteeMembership': 'Call',
+    'TechnicalCommittee': 'Call',
     'Timestamp': {'set': {'now': 'u64'}},
     'Treasury': 'Call',
     'UpgradeCommitteeMembership': 'Call',
     None: None,
-    'TechnicalCommittee': 'Call',
+    'TechnicalCommitteeMembership': 'Call',
     'UpgradeCommittee': 'Call',
     'Utility': 'Call',
 }

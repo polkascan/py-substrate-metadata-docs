@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | hydradx     |
 | Implementation name     | hydradx     |
-| Spec version     | 170     |
+| Spec version     | 176     |
 | SS58 Format     | 63     |
 | Token symbol      | HDX     |
 | Token decimals      | 12     |
@@ -20,6 +20,7 @@
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [0](authorship.md#calls) | [0](authorship.md#events) | [1](authorship.md#storage-functions) | [0](authorship.md#constants) | [0](authorship.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
+| [Bonds](bonds.md) | [2](bonds.md#calls) | [3](bonds.md#events) | [2](bonds.md#storage-functions) | [3](bonds.md#constants) | [4](bonds.md#errors) |
 | [CircuitBreaker](circuitbreaker.md) | [3](circuitbreaker.md#calls) | [3](circuitbreaker.md#events) | [6](circuitbreaker.md#storage-functions) | [3](circuitbreaker.md#constants) | [6](circuitbreaker.md#errors) |
 | [Claims](claims.md) | [1](claims.md#calls) | [1](claims.md#events) | [1](claims.md#storage-functions) | [0](claims.md#constants) | [3](claims.md#errors) |
 | [CollatorRewards](collatorrewards.md) | [0](collatorrewards.md#calls) | [1](collatorrewards.md#events) | [1](collatorrewards.md#storage-functions) | [2](collatorrewards.md#constants) | [0](collatorrewards.md#errors) |
@@ -36,10 +37,11 @@
 | [EmaOracle](emaoracle.md) | [0](emaoracle.md#calls) | [0](emaoracle.md#events) | [2](emaoracle.md#storage-functions) | [1](emaoracle.md#constants) | [2](emaoracle.md#errors) |
 | [GenesisHistory](genesishistory.md) | [0](genesishistory.md#calls) | [0](genesishistory.md#events) | [1](genesishistory.md#storage-functions) | [0](genesishistory.md#constants) | [0](genesishistory.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
+| [LBP](lbp.md) | [6](lbp.md#calls) | [6](lbp.md#events) | [2](lbp.md#storage-functions) | [5](lbp.md#constants) | [23](lbp.md#errors) |
 | [MultiTransactionPayment](multitransactionpayment.md) | [3](multitransactionpayment.md#calls) | [4](multitransactionpayment.md#events) | [3](multitransactionpayment.md#storage-functions) | [1](multitransactionpayment.md#constants) | [7](multitransactionpayment.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [OTC](otc.md) | [4](otc.md#calls) | [4](otc.md#events) | [2](otc.md#storage-functions) | [1](otc.md#constants) | [8](otc.md#errors) |
-| [Omnipool](omnipool.md) | [11](omnipool.md#calls) | [12](omnipool.md#events) | [6](omnipool.md#storage-functions) | [9](omnipool.md#constants) | [29](omnipool.md#errors) |
+| [Omnipool](omnipool.md) | [11](omnipool.md#calls) | [12](omnipool.md#events) | [6](omnipool.md#storage-functions) | [9](omnipool.md#constants) | [30](omnipool.md#errors) |
 | [OmnipoolLiquidityMining](omnipoolliquiditymining.md) | [11](omnipoolliquiditymining.md#calls) | [12](omnipoolliquiditymining.md#events) | [1](omnipoolliquiditymining.md#storage-functions) | [3](omnipoolliquiditymining.md#constants) | [6](omnipoolliquiditymining.md#errors) |
 | [OmnipoolWarehouseLM](omnipoolwarehouselm.md) | [0](omnipoolwarehouselm.md#calls) | [3](omnipoolwarehouselm.md#events) | [6](omnipoolwarehouselm.md#storage-functions) | [5](omnipoolwarehouselm.md#constants) | [29](omnipoolwarehouselm.md#errors) |
 | [OrmlXcm](ormlxcm.md) | [1](ormlxcm.md#calls) | [1](ormlxcm.md#events) | [0](ormlxcm.md#storage-functions) | [0](ormlxcm.md#constants) | [3](ormlxcm.md#errors) |
@@ -52,6 +54,7 @@
 | [Router](router.md) | [2](router.md#calls) | [1](router.md#events) | [0](router.md#storage-functions) | [1](router.md#constants) | [7](router.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
+| [Staking](staking.md) | [5](staking.md#calls) | [6](staking.md#events) | [4](staking.md#storage-functions) | [11](staking.md#constants) | [11](staking.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [TechnicalCommittee](technicalcommittee.md) | [7](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [0](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |

@@ -1224,12 +1224,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
+        None: None,
     },
 }
 )
@@ -1599,7 +1599,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
         0,
         {
             'confirm_period': 7200,
-            'decision_deposit': 5000000000000000,
+            'decision_deposit': 50000000000000000,
             'decision_period': 100800,
             'max_deciding': 1,
             'min_approval': {
@@ -1625,7 +1625,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
         1,
         {
             'confirm_period': 50,
-            'decision_deposit': 500000000000000,
+            'decision_deposit': 5000000000000000,
             'decision_period': 100800,
             'max_deciding': 100,
             'min_approval': {
@@ -1651,7 +1651,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
         2,
         {
             'confirm_period': 900,
-            'decision_deposit': 250000000000000,
+            'decision_deposit': 2500000000000000,
             'decision_period': 100800,
             'max_deciding': 10,
             'min_approval': {
@@ -1677,7 +1677,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
         3,
         {
             'confirm_period': 900,
-            'decision_deposit': 500000000000000,
+            'decision_deposit': 5000000000000000,
             'decision_period': 50400,
             'max_deciding': 1000,
             'min_approval': {
@@ -1703,7 +1703,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
         4,
         {
             'confirm_period': 900,
-            'decision_deposit': 2500000000000000,
+            'decision_deposit': 25000000000000000,
             'decision_period': 100800,
             'max_deciding': 1000,
             'min_approval': {
@@ -1729,7 +1729,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
         10,
         {
             'confirm_period': 900,
-            'decision_deposit': 250000000000000,
+            'decision_deposit': 2500000000000000,
             'decision_period': 100800,
             'max_deciding': 10,
             'min_approval': {
@@ -1755,7 +1755,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
         11,
         {
             'confirm_period': 900,
-            'decision_deposit': 1000000000000000,
+            'decision_deposit': 10000000000000000,
             'decision_period': 100800,
             'max_deciding': 10,
             'min_approval': {
@@ -1781,7 +1781,7 @@ constant = substrate.get_constant('Referenda', 'SubmissionDeposit')
         12,
         {
             'confirm_period': 300,
-            'decision_deposit': 250000000000000,
+            'decision_deposit': 2500000000000000,
             'decision_period': 100800,
             'max_deciding': 10,
             'min_approval': {

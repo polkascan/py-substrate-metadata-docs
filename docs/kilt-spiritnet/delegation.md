@@ -397,7 +397,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'children': 'scale_info::410',
+    'children': 'scale_info::424',
     'deposit': {'amount': 'u128', 'owner': 'AccountId'},
     'details': {'owner': 'AccountId', 'permissions': {'bits': 'u32'}, 'revoked': 'bool'},
     'hierarchy_root_id': '[u8; 32]',

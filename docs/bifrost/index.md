@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bifrost     |
 | Implementation name     | bifrost     |
-| Spec version     | 980     |
+| Spec version     | 982     |
 | SS58 Format     | 6     |
 | Token symbol      | ['BNC', 'KUSD', 'DOT', 'KSM', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR']     |
 | Token decimals      | [12, 12, 10, 12, 12, 18, 12, 10, 18]     |
@@ -34,7 +34,7 @@
 | [FeeShare](feeshare.md) | [5](feeshare.md#calls) | [6](feeshare.md#events) | [3](feeshare.md#storage-functions) | [1](feeshare.md#constants) | [5](feeshare.md#errors) |
 | [FellowshipCollective](fellowshipcollective.md) | [6](fellowshipcollective.md#calls) | [4](fellowshipcollective.md#events) | [6](fellowshipcollective.md#storage-functions) | [0](fellowshipcollective.md#constants) | [9](fellowshipcollective.md#errors) |
 | [FellowshipReferenda](fellowshipreferenda.md) | [9](fellowshipreferenda.md#calls) | [16](fellowshipreferenda.md#events) | [5](fellowshipreferenda.md#storage-functions) | [5](fellowshipreferenda.md#constants) | [13](fellowshipreferenda.md#errors) |
-| [FlexibleFee](flexiblefee.md) | [2](flexiblefee.md#calls) | [3](flexiblefee.md#events) | [2](flexiblefee.md#storage-functions) | [5](flexiblefee.md#constants) | [4](flexiblefee.md#errors) |
+| [FlexibleFee](flexiblefee.md) | [2](flexiblefee.md#calls) | [3](flexiblefee.md#events) | [2](flexiblefee.md#storage-functions) | [2](flexiblefee.md#constants) | [6](flexiblefee.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [Indices](indices.md) | [5](indices.md#calls) | [3](indices.md#events) | [1](indices.md#storage-functions) | [1](indices.md#constants) | [5](indices.md#errors) |
 | [MerkleDistributor](merkledistributor.md) | [6](merkledistributor.md#calls) | [5](merkledistributor.md#events) | [4](merkledistributor.md#storage-functions) | [2](merkledistributor.md#constants) | [9](merkledistributor.md#errors) |
@@ -51,7 +51,7 @@
 | [Salp](salp.md) | [22](salp.md#calls) | [21](salp.md#events) | [7](salp.md#storage-functions) | [11](salp.md#constants) | [28](salp.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
-| [Slp](slp.md) | [47](slp.md#calls) | [45](slp.md#events) | [22](slp.md#storage-functions) | [3](slp.md#constants) | [76](slp.md#errors) |
+| [Slp](slp.md) | [46](slp.md#calls) | [44](slp.md#events) | [22](slp.md#storage-functions) | [3](slp.md#constants) | [77](slp.md#errors) |
 | [Slpx](slpx.md) | [8](slpx.md#calls) | [12](slpx.md#events) | [3](slpx.md#storage-functions) | [2](slpx.md#constants) | [8](slpx.md#errors) |
 | [StableAsset](stableasset.md) | [0](stableasset.md#calls) | [13](stableasset.md#events) | [3](stableasset.md#storage-functions) | [5](stableasset.md#constants) | [12](stableasset.md#errors) |
 | [StablePool](stablepool.md) | [10](stablepool.md#calls) | [0](stablepool.md#events) | [0](stablepool.md#storage-functions) | [0](stablepool.md#constants) | [5](stablepool.md#errors) |
@@ -72,9 +72,10 @@
 | [Vesting](vesting.md) | [8](vesting.md#calls) | [2](vesting.md#events) | [3](vesting.md#storage-functions) | [1](vesting.md#constants) | [7](vesting.md#errors) |
 | [VstokenConversion](vstokenconversion.md) | [5](vstokenconversion.md#calls) | [9](vstokenconversion.md#events) | [3](vstokenconversion.md#storage-functions) | [3](vstokenconversion.md#constants) | [3](vstokenconversion.md#errors) |
 | [VtokenMinting](vtokenminting.md) | [13](vtokenminting.md#calls) | [15](vtokenminting.md#events) | [14](vtokenminting.md#storage-functions) | [9](vtokenminting.md#constants) | [17](vtokenminting.md#errors) |
+| [VtokenVoting](vtokenvoting.md) | [10](vtokenvoting.md#calls) | [12](vtokenvoting.md#events) | [11](vtokenvoting.md#storage-functions) | [3](vtokenvoting.md#constants) | [18](vtokenvoting.md#errors) |
 | [Whitelist](whitelist.md) | [4](whitelist.md#calls) | [3](whitelist.md#events) | [1](whitelist.md#storage-functions) | [0](whitelist.md#constants) | [5](whitelist.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
-| [XcmInterface](xcminterface.md) | [2](xcminterface.md#calls) | [3](xcminterface.md#events) | [2](xcminterface.md#storage-functions) | [9](xcminterface.md#constants) | [3](xcminterface.md#errors) |
+| [XcmInterface](xcminterface.md) | [2](xcminterface.md#calls) | [2](xcminterface.md#events) | [3](xcminterface.md#storage-functions) | [5](xcminterface.md#constants) | [4](xcminterface.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [7](xcmpqueue.md#events) | [10](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |
 | [ZenlinkProtocol](zenlinkprotocol.md) | [16](zenlinkprotocol.md#calls) | [17](zenlinkprotocol.md#events) | [11](zenlinkprotocol.md#storage-functions) | [1](zenlinkprotocol.md#constants) | [34](zenlinkprotocol.md#errors) |
 | [ZenlinkStableAMM](zenlinkstableamm.md) | [19](zenlinkstableamm.md#calls) | [13](zenlinkstableamm.md#events) | [3](zenlinkstableamm.md#storage-functions) | [2](zenlinkstableamm.md#constants) | [29](zenlinkstableamm.md#errors) |

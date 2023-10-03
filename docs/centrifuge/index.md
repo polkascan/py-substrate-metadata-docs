@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | centrifuge     |
 | Implementation name     | centrifuge     |
-| Spec version     | 1019     |
+| Spec version     | 1020     |
 | SS58 Format     | 36     |
 | Token symbol      | CFG     |
 | Token decimals      | 18     |
@@ -18,7 +18,7 @@
 | [Anchor](anchor.md) | [4](anchor.md#calls) | [0](anchor.md#events) | [7](anchor.md#storage-functions) | [0](anchor.md#constants) | [8](anchor.md#errors) |
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
-| [Authorship](authorship.md) | [1](authorship.md#calls) | [0](authorship.md#events) | [3](authorship.md#storage-functions) | [1](authorship.md#constants) | [7](authorship.md#errors) |
+| [Authorship](authorship.md) | [0](authorship.md#calls) | [0](authorship.md#events) | [1](authorship.md#storage-functions) | [0](authorship.md#constants) | [0](authorship.md#errors) |
 | [Balances](balances.md) | [6](balances.md#calls) | [10](balances.md#events) | [5](balances.md#storage-functions) | [3](balances.md#constants) | [8](balances.md#errors) |
 | [BaseFee](basefee.md) | [2](basefee.md#calls) | [3](basefee.md#events) | [2](basefee.md#storage-functions) | [0](basefee.md#constants) | [0](basefee.md#errors) |
 | [BlockRewards](blockrewards.md) | [3](blockrewards.md#calls) | [2](blockrewards.md#events) | [2](blockrewards.md#storage-functions) | [5](blockrewards.md#constants) | [2](blockrewards.md#errors) |
@@ -33,30 +33,40 @@
 | [CrowdloanReward](crowdloanreward.md) | [4](crowdloanreward.md#calls) | [5](crowdloanreward.md#events) | [3](crowdloanreward.md#storage-functions) | [1](crowdloanreward.md#constants) | [3](crowdloanreward.md#errors) |
 | [CumulusXcm](cumulusxcm.md) | [0](cumulusxcm.md#calls) | [3](cumulusxcm.md#events) | [0](cumulusxcm.md#storage-functions) | [0](cumulusxcm.md#constants) | [0](cumulusxcm.md#errors) |
 | [Democracy](democracy.md) | [18](democracy.md#calls) | [14](democracy.md#events) | [11](democracy.md#storage-functions) | [12](democracy.md#constants) | [23](democracy.md#errors) |
-| [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [6](dmpqueue.md#events) | [4](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
+| [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [2](evm.md#storage-functions) | [0](evm.md#constants) | [11](evm.md#errors) |
 | [EVMChainId](evmchainid.md) | [0](evmchainid.md#calls) | [0](evmchainid.md#events) | [1](evmchainid.md#storage-functions) | [0](evmchainid.md#constants) | [0](evmchainid.md#errors) |
 | [Elections](elections.md) | [6](elections.md#calls) | [7](elections.md#events) | [5](elections.md#storage-functions) | [9](elections.md#constants) | [17](elections.md#errors) |
 | [Ethereum](ethereum.md) | [1](ethereum.md#calls) | [1](ethereum.md#events) | [5](ethereum.md#storage-functions) | [0](ethereum.md#constants) | [2](ethereum.md#errors) |
+| [EthereumTransaction](ethereumtransaction.md) | [0](ethereumtransaction.md#calls) | [1](ethereumtransaction.md#events) | [1](ethereumtransaction.md#storage-functions) | [0](ethereumtransaction.md#constants) | [19](ethereumtransaction.md#errors) |
 | [Fees](fees.md) | [1](fees.md#calls) | [4](fees.md#events) | [1](fees.md#storage-functions) | [0](fees.md#constants) | [0](fees.md#errors) |
+| [GapRewardMechanism](gaprewardmechanism.md) | [0](gaprewardmechanism.md#calls) | [0](gaprewardmechanism.md#events) | [2](gaprewardmechanism.md#storage-functions) | [0](gaprewardmechanism.md#constants) | [1](gaprewardmechanism.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
-| [InterestAccrual](interestaccrual.md) | [0](interestaccrual.md#calls) | [0](interestaccrual.md#events) | [3](interestaccrual.md#storage-functions) | [0](interestaccrual.md#constants) | [5](interestaccrual.md#errors) |
+| [InterestAccrual](interestaccrual.md) | [0](interestaccrual.md#calls) | [0](interestaccrual.md#events) | [2](interestaccrual.md#storage-functions) | [0](interestaccrual.md#constants) | [5](interestaccrual.md#errors) |
 | [Investments](investments.md) | [6](investments.md#calls) | [12](investments.md#events) | [10](investments.md#storage-functions) | [0](investments.md#constants) | [10](investments.md#errors) |
 | [Keystore](keystore.md) | [3](keystore.md#calls) | [3](keystore.md#events) | [3](keystore.md#storage-functions) | [1](keystore.md#constants) | [5](keystore.md#errors) |
-| [Loans](loans.md) | [8](loans.md#calls) | [7](loans.md#events) | [6](loans.md#storage-functions) | [2](loans.md#constants) | [13](loans.md#errors) |
+| [LiquidityPools](liquiditypools.md) | [10](liquiditypools.md#calls) | [3](liquiditypools.md#events) | [1](liquiditypools.md#storage-functions) | [2](liquiditypools.md#constants) | [21](liquiditypools.md#errors) |
+| [LiquidityPoolsAxelarGateway](liquiditypoolsaxelargateway.md) | [2](liquiditypoolsaxelargateway.md#calls) | [2](liquiditypoolsaxelargateway.md#events) | [2](liquiditypoolsaxelargateway.md#storage-functions) | [0](liquiditypoolsaxelargateway.md#constants) | [2](liquiditypoolsaxelargateway.md#errors) |
+| [LiquidityPoolsGateway](liquiditypoolsgateway.md) | [6](liquiditypoolsgateway.md#calls) | [6](liquiditypoolsgateway.md#events) | [3](liquiditypoolsgateway.md#storage-functions) | [2](liquiditypoolsgateway.md#constants) | [11](liquiditypoolsgateway.md#errors) |
+| [LiquidityRewards](liquidityrewards.md) | [7](liquidityrewards.md#calls) | [1](liquidityrewards.md#events) | [3](liquidityrewards.md#storage-functions) | [3](liquidityrewards.md#constants) | [1](liquidityrewards.md#errors) |
+| [LiquidityRewardsBase](liquidityrewardsbase.md) | [0](liquidityrewardsbase.md#calls) | [5](liquidityrewardsbase.md#events) | [3](liquidityrewardsbase.md#storage-functions) | [1](liquidityrewardsbase.md#constants) | [3](liquidityrewardsbase.md#errors) |
+| [Loans](loans.md) | [11](loans.md#calls) | [8](loans.md#events) | [6](loans.md#storage-functions) | [2](loans.md#constants) | [17](loans.md#errors) |
 | [Migration](migration.md) | [5](migration.md#calls) | [9](migration.md#events) | [1](migration.md#storage-functions) | [3](migration.md#constants) | [5](migration.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [Nfts](nfts.md) | [1](nfts.md#calls) | [1](nfts.md#events) | [0](nfts.md#storage-functions) | [2](nfts.md#constants) | [2](nfts.md#errors) |
 | [OrmlAssetRegistry](ormlassetregistry.md) | [2](ormlassetregistry.md#calls) | [2](ormlassetregistry.md#events) | [3](ormlassetregistry.md#storage-functions) | [0](ormlassetregistry.md#constants) | [5](ormlassetregistry.md#errors) |
-| [OrmlTokens](ormltokens.md) | [0](ormltokens.md#calls) | [13](ormltokens.md#events) | [4](ormltokens.md#storage-functions) | [2](ormltokens.md#constants) | [8](ormltokens.md#errors) |
+| [OrmlTokens](ormltokens.md) | [0](ormltokens.md#calls) | [15](ormltokens.md#events) | [4](ormltokens.md#storage-functions) | [2](ormltokens.md#constants) | [8](ormltokens.md#errors) |
 | [OrmlXcm](ormlxcm.md) | [1](ormlxcm.md#calls) | [1](ormlxcm.md#events) | [0](ormlxcm.md#storage-functions) | [0](ormlxcm.md#constants) | [3](ormlxcm.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
-| [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [6](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
+| [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
 | [Permissions](permissions.md) | [4](permissions.md#calls) | [3](permissions.md#events) | [2](permissions.md#storage-functions) | [1](permissions.md#constants) | [6](permissions.md#errors) |
-| [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [17](polkadotxcm.md#events) | [0](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [13](polkadotxcm.md#errors) |
+| [PolkadotXcm](polkadotxcm.md) | [10](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [11](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [PoolRegistry](poolregistry.md) | [4](poolregistry.md#calls) | [5](poolregistry.md#events) | [2](poolregistry.md#storage-functions) | [4](poolregistry.md#constants) | [7](poolregistry.md#errors) |
-| [PoolSystem](poolsystem.md) | [4](poolsystem.md#calls) | [7](poolsystem.md#events) | [6](poolsystem.md#storage-functions) | [13](poolsystem.md#constants) | [33](poolsystem.md#errors) |
+| [PoolSystem](poolsystem.md) | [4](poolsystem.md#calls) | [8](poolsystem.md#events) | [6](poolsystem.md#storage-functions) | [13](poolsystem.md#constants) | [35](poolsystem.md#errors) |
 | [Preimage](preimage.md) | [4](preimage.md#calls) | [3](preimage.md#events) | [2](preimage.md#storage-functions) | [0](preimage.md#constants) | [6](preimage.md#errors) |
+| [PriceCollector](pricecollector.md) | [0](pricecollector.md#calls) | [0](pricecollector.md#events) | [2](pricecollector.md#storage-functions) | [2](pricecollector.md#constants) | [4](pricecollector.md#errors) |
+| [PriceOracle](priceoracle.md) | [1](priceoracle.md#calls) | [1](priceoracle.md#events) | [3](priceoracle.md#storage-functions) | [2](priceoracle.md#constants) | [2](priceoracle.md#errors) |
+| [PriceOracleMembership](priceoraclemembership.md) | [7](priceoraclemembership.md#calls) | [6](priceoraclemembership.md#events) | [2](priceoraclemembership.md#storage-functions) | [0](priceoraclemembership.md#constants) | [3](priceoraclemembership.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [RandomnessCollectiveFlip](randomnesscollectiveflip.md) | [0](randomnesscollectiveflip.md#calls) | [0](randomnesscollectiveflip.md#events) | [1](randomnesscollectiveflip.md#storage-functions) | [0](randomnesscollectiveflip.md#constants) | [0](randomnesscollectiveflip.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
@@ -70,4 +80,5 @@
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [Vesting](vesting.md) | [5](vesting.md#calls) | [2](vesting.md#events) | [2](vesting.md#storage-functions) | [2](vesting.md#constants) | [5](vesting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
-| [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [8](xcmpqueue.md#events) | [9](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |
+| [XcmTransactor](xcmtransactor.md) | [10](xcmtransactor.md#calls) | [11](xcmtransactor.md#events) | [3](xcmtransactor.md#storage-functions) | [2](xcmtransactor.md#constants) | [26](xcmtransactor.md#errors) |
+| [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [7](xcmpqueue.md#events) | [10](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

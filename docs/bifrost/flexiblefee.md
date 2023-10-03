@@ -303,8 +303,9 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ExtraFeeName` | ```('SalpContribute', 'StatemineTransfer', 'NoExtraFee')```
+| None | `ExtraFeeName` | ```('SalpContribute', 'StatemineTransfer', 'VoteVtoken', 'VoteRemoveDelegatorVote', 'NoExtraFee')```
 | None | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| None | `PalletBalanceOf<T>` | ```u128```
 | None | `PalletBalanceOf<T>` | ```u128```
 
 ---------
@@ -605,27 +606,6 @@ result = substrate.query(
 ## Constants
 
 ---------
-### AltFeeCurrencyExchangeRate
- Alternative Fee currency exchange rate: ?x Fee currency: ?y Native currency
-#### Value
-```python
-(1, 100)
-```
-#### Python
-```python
-constant = substrate.get_constant('FlexibleFee', 'AltFeeCurrencyExchangeRate')
-```
----------
-### AlternativeFeeCurrencyId
-#### Value
-```python
-{'Token': 'KSM'}
-```
-#### Python
-```python
-constant = substrate.get_constant('FlexibleFee', 'AlternativeFeeCurrencyId')
-```
----------
 ### MaxFeeCurrencyOrderListLen
 #### Value
 ```python
@@ -634,16 +614,6 @@ constant = substrate.get_constant('FlexibleFee', 'AlternativeFeeCurrencyId')
 #### Python
 ```python
 constant = substrate.get_constant('FlexibleFee', 'MaxFeeCurrencyOrderListLen')
-```
----------
-### NativeCurrencyId
-#### Value
-```python
-{'Native': 'BNC'}
-```
-#### Python
-```python
-constant = substrate.get_constant('FlexibleFee', 'NativeCurrencyId')
 ```
 ---------
 ### TreasuryAccount
@@ -662,10 +632,16 @@ constant = substrate.get_constant('FlexibleFee', 'TreasuryAccount')
 ### ConversionError
 
 ---------
+### DexFailedToGetAmountInByPath
+
+---------
 ### NotEnoughBalance
 
 ---------
 ### Overflow
+
+---------
+### WeightAndFeeNotExist
 
 ---------
 ### WrongListLength

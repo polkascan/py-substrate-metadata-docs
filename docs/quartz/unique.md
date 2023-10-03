@@ -365,7 +365,7 @@ Prefer it to the deprecated [`create_collection`][`Pallet::create_collection`] m
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| data | `CreateCollectionData<T::AccountId>` | 
+| data | `CreateCollectionData<T::CrossAccountId>` | 
 
 #### Python
 ```python
@@ -376,7 +376,14 @@ call = substrate.compose_call(
             None,
             ('Normal', 'AllowList'),
         ),
+        'admin_list': [
+            {
+                'Ethereum': '[u8; 20]',
+                'Substrate': 'AccountId',
+            },
+        ],
         'description': ['u16'],
+        'flags': '[u8; 1]',
         'limits': (
             None,
             {
@@ -429,7 +436,10 @@ call = substrate.compose_call(
         'name': ['u16'],
         'pending_sponsor': (
             None,
-            'AccountId',
+            {
+                'Ethereum': '[u8; 20]',
+                'Substrate': 'AccountId',
+            },
         ),
         'permissions': (
             None,
@@ -451,7 +461,7 @@ call = substrate.compose_call(
                         'collection_admin': 'bool',
                         'restricted': (
                             None,
-                            'scale_info::348',
+                            'scale_info::291',
                         ),
                         'token_owner': 'bool',
                     },
@@ -633,7 +643,7 @@ call = substrate.compose_call(
     'Unique', 'create_multiple_items_ex', {
     'collection_id': 'u32',
     'data': {
-        'Fungible': 'scale_info::369',
+        'Fungible': 'scale_info::316',
         'NFT': [
             {
                 'owner': {
@@ -641,7 +651,7 @@ call = substrate.compose_call(
                     'Substrate': 'AccountId',
                 },
                 'properties': [
-                    'scale_info::355',
+                    'scale_info::299',
                 ],
             },
         ],
@@ -649,7 +659,7 @@ call = substrate.compose_call(
             {
                 'pieces': 'u128',
                 'properties': [
-                    'scale_info::355',
+                    'scale_info::299',
                 ],
                 'user': {
                     'Ethereum': '[u8; 20]',
@@ -664,7 +674,7 @@ call = substrate.compose_call(
                     'value': 'Bytes',
                 },
             ],
-            'users': 'scale_info::369',
+            'users': 'scale_info::316',
         },
     },
 }
@@ -1059,7 +1069,7 @@ call = substrate.compose_call(
                 'collection_admin': 'bool',
                 'restricted': (
                     None,
-                    'scale_info::348',
+                    'scale_info::291',
                 ),
                 'token_owner': 'bool',
             },

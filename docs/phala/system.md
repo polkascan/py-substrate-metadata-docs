@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -605,6 +605,46 @@ result = substrate.query(
                 'InvalidFormat': '[u8; 32]',
                 'UnsupportedVersion': '[u8; 32]',
             },
+            'Democracy': {
+                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Cancelled': {'ref_index': 'u32'},
+                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
+                'ExternalTabled': None,
+                'MetadataCleared': {
+                    'hash': '[u8; 32]',
+                    'owner': 'scale_info::117',
+                },
+                'MetadataSet': {
+                    'hash': '[u8; 32]',
+                    'owner': 'scale_info::117',
+                },
+                'MetadataTransferred': {
+                    'hash': '[u8; 32]',
+                    'owner': 'scale_info::117',
+                    'prev_owner': 'scale_info::117',
+                },
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'ProposalCanceled': {'prop_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
+                'Started': {
+                    'ref_index': 'u32',
+                    'threshold': 'scale_info::114',
+                },
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Undelegated': {'account': 'AccountId'},
+                'Vetoed': {
+                    'proposal_hash': '[u8; 32]',
+                    'until': 'u32',
+                    'who': 'AccountId',
+                },
+                'Voted': {
+                    'ref_index': 'u32',
+                    'vote': 'scale_info::115',
+                    'voter': 'AccountId',
+                },
+            },
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -661,81 +701,6 @@ result = substrate.query(
                     'sub': 'AccountId',
                 },
             },
-            'PalletIndex': {
-                'Claimed': {'tasks': ['[u8; 32]']},
-                'NewTask': {'deposit_info': 'scale_info::170'},
-                'WorkerAdd': {'worker': 'AccountId'},
-                'WorkerRemove': {'worker': 'AccountId'},
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::9',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'Democracy': {
-                'Blacklisted': {'proposal_hash': '[u8; 32]'},
-                'Cancelled': {'ref_index': 'u32'},
-                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
-                'ExternalTabled': None,
-                'MetadataCleared': {
-                    'hash': '[u8; 32]',
-                    'owner': 'scale_info::117',
-                },
-                'MetadataSet': {
-                    'hash': '[u8; 32]',
-                    'owner': 'scale_info::117',
-                },
-                'MetadataTransferred': {
-                    'hash': '[u8; 32]',
-                    'owner': 'scale_info::117',
-                    'prev_owner': 'scale_info::117',
-                },
-                'NotPassed': {'ref_index': 'u32'},
-                'Passed': {'ref_index': 'u32'},
-                'ProposalCanceled': {'prop_index': 'u32'},
-                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {
-                    'ref_index': 'u32',
-                    'threshold': 'scale_info::114',
-                },
-                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Undelegated': {'account': 'AccountId'},
-                'Vetoed': {
-                    'proposal_hash': '[u8; 32]',
-                    'until': 'u32',
-                    'who': 'AccountId',
-                },
-                'Voted': {
-                    'ref_index': 'u32',
-                    'vote': 'scale_info::115',
-                    'voter': 'AccountId',
-                },
-            },
             'Lottery': {
                 'CallsUpdated': None,
                 'LotteryStarted': None,
@@ -767,6 +732,24 @@ result = substrate.query(
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
                 },
+            },
+            'PalletIndex': {
+                'Claimed': {'tasks': ['[u8; 32]']},
+                'NewTask': {'deposit_info': 'scale_info::170'},
+                'WorkerAdd': {'worker': 'AccountId'},
+                'WorkerRemove': {'worker': 'AccountId'},
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::9',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
             },
             'PhalaBasePool': {
                 'NftCreated': {
@@ -1105,6 +1088,11 @@ result = substrate.query(
                     ['scale_info::66'],
                 ),
             },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
             'Proxy': {
                 'Announced': {
                     'call_hash': '[u8; 32]',
@@ -1385,6 +1373,17 @@ result = substrate.query(
                     'origin': 'scale_info::51',
                 },
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1601,13 +1600,6 @@ result = substrate.query(
                     'who': 'scale_info::51',
                 },
             },
-            'XcmBridge': {
-                'AssetTransfered': {
-                    'asset': 'scale_info::66',
-                    'dest': 'scale_info::51',
-                    'origin': 'scale_info::51',
-                },
-            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -1628,6 +1620,14 @@ result = substrate.query(
                 },
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
+            },
+            None: None,
+            'XcmBridge': {
+                'AssetTransfered': {
+                    'asset': 'scale_info::66',
+                    'dest': 'scale_info::51',
+                    'origin': 'scale_info::51',
+                },
             },
         },
         'phase': {
@@ -1870,7 +1870,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'phala',
     'impl_version': 0,
     'spec_name': 'phala',
-    'spec_version': 1251,
+    'spec_version': 1252,
     'state_version': 0,
     'transaction_version': 5,
 }

@@ -346,6 +346,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Auctions': {
                 'AuctionClosed': {'auction_index': 'u32'},
                 'AuctionStarted': {
@@ -781,6 +782,32 @@ result = substrate.query(
                 },
             },
             'Offences': {'Offence': {'kind': '[u8; 16]', 'timeslot': 'Bytes'}},
+            'ParaInclusion': {
+                'CandidateBacked': ('scale_info::484', 'Bytes', 'u32', 'u32'),
+                'CandidateIncluded': (
+                    'scale_info::484',
+                    'Bytes',
+                    'u32',
+                    'u32',
+                ),
+                'CandidateTimedOut': ('scale_info::484', 'Bytes', 'u32'),
+                'UpwardMessagesReceived': {'count': 'u32', 'from': 'u32'},
+            },
+            'Paras': {
+                'ActionQueued': ('u32', 'u32'),
+                'CodeUpgradeScheduled': 'u32',
+                'CurrentCodeUpdated': 'u32',
+                'CurrentHeadUpdated': 'u32',
+                'NewHeadNoted': 'u32',
+                'PvfCheckAccepted': ('[u8; 32]', 'u32'),
+                'PvfCheckRejected': ('[u8; 32]', 'u32'),
+                'PvfCheckStarted': ('[u8; 32]', 'u32'),
+            },
+            'ParasDisputes': {
+                'DisputeConcluded': ('[u8; 32]', 'scale_info::491'),
+                'DisputeInitiated': ('[u8; 32]', 'scale_info::490'),
+                'Revert': 'u32',
+            },
             'Preimage': {
                 'Cleared': {'hash': '[u8; 32]'},
                 'Noted': {'hash': '[u8; 32]'},
@@ -811,33 +838,6 @@ result = substrate.query(
                     'pure': 'AccountId',
                     'who': 'AccountId',
                 },
-            },
-            None: None,
-            'ParaInclusion': {
-                'CandidateBacked': ('scale_info::484', 'Bytes', 'u32', 'u32'),
-                'CandidateIncluded': (
-                    'scale_info::484',
-                    'Bytes',
-                    'u32',
-                    'u32',
-                ),
-                'CandidateTimedOut': ('scale_info::484', 'Bytes', 'u32'),
-                'UpwardMessagesReceived': {'count': 'u32', 'from': 'u32'},
-            },
-            'Paras': {
-                'ActionQueued': ('u32', 'u32'),
-                'CodeUpgradeScheduled': 'u32',
-                'CurrentCodeUpdated': 'u32',
-                'CurrentHeadUpdated': 'u32',
-                'NewHeadNoted': 'u32',
-                'PvfCheckAccepted': ('[u8; 32]', 'u32'),
-                'PvfCheckRejected': ('[u8; 32]', 'u32'),
-                'PvfCheckStarted': ('[u8; 32]', 'u32'),
-            },
-            'ParasDisputes': {
-                'DisputeConcluded': ('[u8; 32]', 'scale_info::491'),
-                'DisputeInitiated': ('[u8; 32]', 'scale_info::490'),
-                'Revert': 'u32',
             },
             'Recovery': {
                 'AccountRecovered': {

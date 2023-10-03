@@ -251,9 +251,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -454,6 +454,12 @@ result = substrate.query(
                 'PublicKeyAdded': {'key': 'AccountId', 'msa_id': 'u64'},
                 'PublicKeyDeleted': {'key': 'AccountId'},
             },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
+            None: None,
             'Multisig': {
                 'MultisigApproval': {
                     'approving': 'AccountId',
@@ -491,11 +497,6 @@ result = substrate.query(
                 'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
-            },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
             },
             'Scheduler': {
                 'CallUnavailable': {
@@ -639,7 +640,6 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::25'},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

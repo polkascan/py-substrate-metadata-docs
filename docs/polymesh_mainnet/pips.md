@@ -140,7 +140,6 @@ call = substrate.compose_call(
     'deposit': 'u128',
     'description': (None, 'Bytes'),
     'proposal': {
-        None: None,
         'Asset': 'Call',
         'Authorship': {
             'set_uncles': {
@@ -1081,6 +1080,8 @@ call = substrate.compose_call(
                             'key_owner_proof': 'scale_info::343',
                         },
                     },
+                    'CddServiceProviders': 'Call',
+                    None: None,
                     'Balances': 'Call',
                     'Base': 'Call',
                     'Bridge': 'Call',
@@ -1114,7 +1115,6 @@ call = substrate.compose_call(
                             'ca_id': 'scale_info::163',
                         },
                     },
-                    'CddServiceProviders': 'Call',
                     'Checkpoint': {
                         'create_checkpoint': {
                             'ticker': '[u8; 12]',
@@ -1309,15 +1309,6 @@ call = substrate.compose_call(
                     'ProtocolFee': 'Call',
                     'Relayer': 'Call',
                     'Rewards': 'Call',
-                    'Session': {
-                        'purge_keys': None,
-                        'set_keys': {
-                            'keys': 'scale_info::466',
-                            'proof': 'Bytes',
-                        },
-                    },
-                    'Staking': 'Call',
-                    None: None,
                     'Scheduler': {
                         'cancel': {
                             'index': 'u32',
@@ -1377,7 +1368,15 @@ call = substrate.compose_call(
                             'priority': 'u8',
                         },
                     },
+                    'Session': {
+                        'purge_keys': None,
+                        'set_keys': {
+                            'keys': 'scale_info::466',
+                            'proof': 'Bytes',
+                        },
+                    },
                     'Settlement': 'Call',
+                    'Staking': 'Call',
                     'Statistics': 'Call',
                     'Sto': 'Call',
                     'Sudo': 'Call',
@@ -1458,7 +1457,6 @@ call = substrate.compose_call(
                         },
                     },
                     'Balances': 'Call',
-                    'Base': 'Call',
                     'Bridge': 'Call',
                     'CapitalDistribution': {
                         'claim': {
@@ -1620,7 +1618,6 @@ call = substrate.compose_call(
                             ],
                         },
                     },
-                    'ExternalAgents': 'Call',
                     'Grandpa': {
                         'note_stalled': {
                             'best_finalized_block_number': 'u32',
@@ -1663,9 +1660,12 @@ call = substrate.compose_call(
                         },
                     },
                     'MultiSig': 'Call',
+                    'PolymeshCommittee': 'Call',
+                    None: None,
+                    'Base': 'Call',
+                    'ExternalAgents': 'Call',
                     'Nft': 'Call',
                     'Pips': 'Call',
-                    'PolymeshCommittee': 'Call',
                     'PolymeshContracts': 'Call',
                     'Portfolio': 'Call',
                     'Preimage': {
@@ -1802,7 +1802,6 @@ call = substrate.compose_call(
                     'UpgradeCommittee': 'Call',
                     'UpgradeCommitteeMembership': 'Call',
                     'Utility': 'Call',
-                    None: None,
                 },
                 'id': '[u8; 32]',
                 'maybe_periodic': (
@@ -1815,6 +1814,7 @@ call = substrate.compose_call(
             'schedule_named_after': {
                 'after': 'u32',
                 'call': {
+                    None: None,
                     'Asset': 'Call',
                     'Authorship': {
                         'set_uncles': {
@@ -2181,7 +2181,6 @@ call = substrate.compose_call(
                     'UpgradeCommittee': 'Call',
                     'UpgradeCommitteeMembership': 'Call',
                     'Utility': 'Call',
-                    None: None,
                 },
                 'id': '[u8; 32]',
                 'maybe_periodic': (
@@ -2247,6 +2246,7 @@ call = substrate.compose_call(
         'UpgradeCommittee': 'Call',
         'UpgradeCommitteeMembership': 'Call',
         'Utility': 'Call',
+        None: None,
     },
     'url': (None, 'Bytes'),
 }
@@ -3005,6 +3005,7 @@ result = substrate.query(
     'proposal': {
         'Asset': 'Call',
         'Authorship': {'set_uncles': {'new_uncles': ['scale_info::341']}},
+        None: None,
         'Babe': {
             'plan_config_change': {'config': {None: None, 'V1': 'InnerStruct'}},
             'report_equivocation': {
@@ -3034,7 +3035,6 @@ result = substrate.query(
                 },
             },
         },
-        None: None,
         'Balances': 'Call',
         'Base': 'Call',
         'Bridge': 'Call',
@@ -3264,20 +3264,19 @@ result = substrate.query(
                     'Authorship': 'scale_info::353',
                     'Babe': 'scale_info::339',
                     'Balances': 'Call',
-                    'CapitalDistribution': 'scale_info::494',
-                    'Checkpoint': 'scale_info::496',
-                    'ComplianceManager': 'Call',
-                    'ExternalAgents': 'Call',
-                    'Grandpa': 'scale_info::468',
-                    'Identity': 'Call',
-                    None: None,
                     'Base': 'Call',
                     'Bridge': 'Call',
+                    'CapitalDistribution': 'scale_info::494',
                     'CddServiceProviders': 'Call',
+                    'Checkpoint': 'scale_info::496',
                     'CommitteeMembership': 'Call',
+                    'ComplianceManager': 'Call',
                     'Contracts': 'scale_info::546',
                     'CorporateAction': 'Call',
                     'CorporateBallot': 'scale_info::505',
+                    'ExternalAgents': 'Call',
+                    'Grandpa': 'scale_info::468',
+                    'Identity': 'Call',
                     'ImOnline': 'scale_info::479',
                     'Indices': 'scale_info::347',
                     'MultiSig': 'Call',
@@ -3298,12 +3297,13 @@ result = substrate.query(
                     'Sto': 'Call',
                     'Sudo': 'Call',
                     'System': 'scale_info::306',
-                    'TechnicalCommittee': 'Call',
                     'TechnicalCommitteeMembership': 'Call',
                     'Timestamp': 'scale_info::345',
                     'Treasury': 'Call',
-                    'UpgradeCommittee': 'Call',
                     'UpgradeCommitteeMembership': 'Call',
+                    None: None,
+                    'TechnicalCommittee': 'Call',
+                    'UpgradeCommittee': 'Call',
                     'Utility': 'Call',
                 },
                 'maybe_periodic': (None, ('u32', 'u32')),
@@ -3313,7 +3313,6 @@ result = substrate.query(
             'schedule_after': {
                 'after': 'u32',
                 'call': {
-                    None: None,
                     'Asset': 'Call',
                     'Authorship': 'scale_info::353',
                     'Babe': 'scale_info::339',
@@ -3351,19 +3350,21 @@ result = substrate.query(
                     'Sto': 'Call',
                     'Sudo': 'Call',
                     'System': 'scale_info::306',
-                    'TechnicalCommittee': 'Call',
                     'TechnicalCommitteeMembership': 'Call',
                     'Timestamp': 'scale_info::345',
                     'Treasury': 'Call',
+                    'Utility': 'Call',
+                    None: None,
+                    'TechnicalCommittee': 'Call',
                     'UpgradeCommittee': 'Call',
                     'UpgradeCommitteeMembership': 'Call',
-                    'Utility': 'Call',
                 },
                 'maybe_periodic': (None, ('u32', 'u32')),
                 'priority': 'u8',
             },
             'schedule_named': {
                 'call': {
+                    None: None,
                     'Asset': 'Call',
                     'Authorship': 'scale_info::353',
                     'Babe': 'scale_info::339',
@@ -3394,17 +3395,16 @@ result = substrate.query(
                     'Relayer': 'Call',
                     'Rewards': 'Call',
                     'Scheduler': 'scale_info::518',
+                    'Session': 'scale_info::465',
                     'Settlement': 'Call',
                     'Staking': 'Call',
                     'Statistics': 'Call',
                     'Sto': 'Call',
+                    'Sudo': 'Call',
                     'System': 'scale_info::306',
+                    'TechnicalCommittee': 'Call',
                     'TechnicalCommitteeMembership': 'Call',
                     'Timestamp': 'scale_info::345',
-                    None: None,
-                    'Session': 'scale_info::465',
-                    'Sudo': 'Call',
-                    'TechnicalCommittee': 'Call',
                     'Treasury': 'Call',
                     'UpgradeCommittee': 'Call',
                     'UpgradeCommitteeMembership': 'Call',
@@ -3418,9 +3418,10 @@ result = substrate.query(
             'schedule_named_after': {
                 'after': 'u32',
                 'call': {
-                    'Asset': 'Call',
                     'Authorship': 'scale_info::353',
                     'Babe': 'scale_info::339',
+                    None: None,
+                    'Asset': 'Call',
                     'Balances': 'Call',
                     'Base': 'Call',
                     'Bridge': 'Call',
@@ -3459,7 +3460,6 @@ result = substrate.query(
                     'TechnicalCommitteeMembership': 'Call',
                     'Timestamp': 'scale_info::345',
                     'Treasury': 'Call',
-                    None: None,
                     'UpgradeCommittee': 'Call',
                     'UpgradeCommitteeMembership': 'Call',
                     'Utility': 'Call',

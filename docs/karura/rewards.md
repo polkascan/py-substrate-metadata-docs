@@ -232,7 +232,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'rewards': 'scale_info::533', 'total_shares': 'u128'}
+{'rewards': 'scale_info::534', 'total_shares': 'u128'}
 ```
 ---------
 ### SharesAndWithdrawnRewards
@@ -463,7 +463,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('u128', 'scale_info::539')
+('u128', 'scale_info::540')
 ```
 ---------
 ## Errors

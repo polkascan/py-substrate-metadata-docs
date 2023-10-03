@@ -1454,6 +1454,8 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+            None: None,
             'AllianceMotion': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
@@ -1479,9 +1481,7 @@ result = substrate.query(
                 'Response': {'interior': 'scale_info::44', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::44', 'parents': 'u8'},
             },
-            None: None,
             'Void': (),
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
         },
         'proposal': {
             'Inline': 'Bytes',

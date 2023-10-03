@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -570,6 +570,36 @@ result = substrate.query(
                 'NewDesiredCandidates': {'desired_candidates': 'u32'},
                 'NewInvulnerables': {'invulnerables': ['AccountId']},
             },
+            'Council': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::31',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::31',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
+                },
+            },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 32]', 'scale_info::48'),
                 'InvalidFormat': '[u8; 32]',
@@ -671,6 +701,38 @@ result = substrate.query(
                     'sub': 'AccountId',
                 },
             },
+            'Lottery': {
+                'CallsUpdated': None,
+                'LotteryStarted': None,
+                'TicketBought': {'call_index': ('u8', 'u8'), 'who': 'AccountId'},
+                'Winner': {'lottery_balance': 'u128', 'winner': 'AccountId'},
+            },
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::34',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::34',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::31',
+                    'timepoint': 'scale_info::34',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
             'PWIncubation': {
                 'CanStartIncubationStatusChanged': {
                     'official_hatch_time': 'u64',
@@ -715,6 +777,18 @@ result = substrate.query(
                     'nft_id': 'u32',
                     'owner': 'AccountId',
                     'start_time': 'u64',
+                },
+            },
+            'PWMarketplace': {
+                'MarketplaceOwnerSet': {
+                    'new_marketplace_owner': 'AccountId',
+                    'old_marketplace_owner': (None, 'AccountId'),
+                },
+                'RoyaltyInfoUpdated': {
+                    'collection_id': 'u32',
+                    'new_royalty_info': 'scale_info::187',
+                    'nft_id': 'u32',
+                    'old_royalty_info': (None, 'scale_info::187'),
                 },
             },
             'PWNftSale': {
@@ -798,97 +872,6 @@ result = substrate.query(
                 'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
-            },
-            'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'Council': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
-                'Closed': {
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'yes': 'u32',
-                },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
-                'Executed': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::31',
-                },
-                'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::31',
-                },
-                'Proposed': {
-                    'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
-                    'proposal_index': 'u32',
-                    'threshold': 'u32',
-                },
-                'Voted': {
-                    'account': 'AccountId',
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'voted': 'bool',
-                    'yes': 'u32',
-                },
-            },
-            'Lottery': {
-                'CallsUpdated': None,
-                'LotteryStarted': None,
-                'TicketBought': {'call_index': ('u8', 'u8'), 'who': 'AccountId'},
-                'Winner': {'lottery_balance': 'u128', 'winner': 'AccountId'},
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::34',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::34',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::31',
-                    'timepoint': 'scale_info::34',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
-            'PWMarketplace': {
-                'MarketplaceOwnerSet': {
-                    'new_marketplace_owner': 'AccountId',
-                    'old_marketplace_owner': (None, 'AccountId'),
-                },
-                'RoyaltyInfoUpdated': {
-                    'collection_id': 'u32',
-                    'new_royalty_info': 'scale_info::187',
-                    'nft_id': 'u32',
-                    'old_royalty_info': (None, 'scale_info::187'),
-                },
             },
             'PhalaBasePool': {
                 'NftCreated': {
@@ -1165,6 +1148,11 @@ result = substrate.query(
                     'scale_info::51',
                     ['scale_info::66'],
                 ),
+            },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
             },
             'Proxy': {
                 'Announced': {
@@ -1446,6 +1434,17 @@ result = substrate.query(
                     'origin': 'scale_info::51',
                 },
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1690,6 +1689,7 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
+            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1931,7 +1931,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'khala',
     'impl_version': 0,
     'spec_name': 'khala',
-    'spec_version': 1251,
+    'spec_version': 1252,
     'state_version': 0,
     'transaction_version': 6,
 }

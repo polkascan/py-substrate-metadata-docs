@@ -102,26 +102,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### migrate
-Executes the key type migration of the `ConnectedDids` and
-`ConnectedAccounts` storages by converting the given `AccountId`
-into `LinkableAccountId(AccountId)`. Once all keys have been
-migrated, the migration is done and this call will be filtered.
-
-Can be called by any origin.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| limit | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'DidLookup', 'migrate', {'limit': 'u32'}
-)
-```
-
----------
 ### reclaim_deposit
 Remove the association of the provided account. This call can only
 be called from the deposit owner. The reserved deposit will be
@@ -303,27 +283,6 @@ result = substrate.query(
 #### Return value
 ```python
 {'deposit': {'amount': 'u128', 'owner': 'AccountId'}, 'did': 'AccountId'}
-```
----------
-### MigrationStateStore
-
-#### Python
-```python
-result = substrate.query(
-    'DidLookup', 'MigrationStateStore', []
-)
-```
-
-#### Return value
-```python
-{
-    'Done': None,
-    'PreUpgrade': None,
-    'Upgrading': {
-        'V1': 'AccountId',
-        'V2': {'AccountId20': '[u8; 20]', 'AccountId32': 'AccountId'},
-    },
-}
 ```
 ---------
 ## Constants

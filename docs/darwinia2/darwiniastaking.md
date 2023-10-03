@@ -158,6 +158,14 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### CommissionUpdated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```[u8; 20]```
+| commission | `Perbill` | ```u32```
+
+---------
 ### Elected
 A new collator set has been elected.
 #### Attributes
@@ -340,7 +348,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('u32', 'scale_info::318')
+('u32', 'scale_info::323')
 ```
 ---------
 ### RingPool
@@ -377,6 +385,17 @@ result = substrate.query(
 ---------
 ## Constants
 
+---------
+### MaxCommission
+ Maximum commission rate.
+#### Value
+```python
+300000000
+```
+#### Python
+```python
+constant = substrate.get_constant('DarwiniaStaking', 'MaxCommission')
+```
 ---------
 ### MaxDeposits
  Maximum deposit count.
@@ -425,6 +444,10 @@ constant = substrate.get_constant('DarwiniaStaking', 'PayoutFraction')
 ```
 ---------
 ## Errors
+
+---------
+### CommissionTooHigh
+Commission rate must be less than maximum commission rate.
 
 ---------
 ### DepositNotFound

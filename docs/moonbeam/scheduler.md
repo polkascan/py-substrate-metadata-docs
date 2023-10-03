@@ -172,7 +172,7 @@ Dispatched some task.
 | -------- | -------- | -------- |
 | task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### PeriodicFailed
@@ -229,18 +229,18 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': 'scale_info::120',
                 None: None,
-                'CouncilCollective': 'scale_info::122',
-                'CumulusXcm': 'scale_info::126',
-                'Ethereum': 'scale_info::120',
-                'EthereumXcm': 'scale_info::136',
-                'OpenTechCommitteeCollective': 'scale_info::125',
-                'Origins': 'scale_info::121',
-                'PolkadotXcm': 'scale_info::127',
-                'TechCommitteeCollective': 'scale_info::123',
-                'TreasuryCouncilCollective': 'scale_info::124',
-                'Void': 'scale_info::137',
-                'system': 'scale_info::119',
+                'CouncilCollective': 'scale_info::123',
+                'CumulusXcm': 'scale_info::127',
+                'Ethereum': 'scale_info::121',
+                'EthereumXcm': 'scale_info::137',
+                'OpenTechCommitteeCollective': 'scale_info::126',
+                'Origins': 'scale_info::122',
+                'PolkadotXcm': 'scale_info::128',
+                'TechCommitteeCollective': 'scale_info::124',
+                'TreasuryCouncilCollective': 'scale_info::125',
+                'Void': 'scale_info::138',
             },
             'priority': 'u8',
         },
@@ -285,6 +285,10 @@ result = substrate.query(
 ---------
 ### MaxScheduledPerBlock
  The maximum number of scheduled calls in the queue for a single block.
+
+ NOTE:
+ + Dependent pallets&#x27; benchmarks might require a higher limit for the setting. Set a
+ higher limit under `runtime-benchmarks` feature.
 #### Value
 ```python
 50

@@ -16,14 +16,8 @@ The dispatch origin for this call must be _Signed_.
 
 Emits `IndexAssigned` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- One storage mutation (codec `O(1)`).
-- One reserve operation.
-- One event.
--------------------
-- DB Weight: 1 Read/Write (Accounts)
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -49,16 +43,8 @@ The dispatch origin for this call must be _Root_.
 
 Emits `IndexAssigned` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- One storage mutation (codec `O(1)`).
-- Up to one reserve operation.
-- One event.
--------------------
-- DB Weight:
-   - Reads: Indices Accounts, System Account (original owner)
-   - Writes: Indices Accounts, System Account (original owner)
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -95,14 +81,8 @@ The dispatch origin for this call must be _Signed_ and the sender must own the i
 
 Emits `IndexFreed` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- One storage mutation (codec `O(1)`).
-- One reserve operation.
-- One event.
--------------------
-- DB Weight: 1 Read/Write (Accounts)
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -127,14 +107,8 @@ non-frozen account `index`.
 
 Emits `IndexFrozen` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- One storage mutation (codec `O(1)`).
-- Up to one slash operation.
-- One event.
--------------------
-- DB Weight: 1 Read/Write (Accounts)
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -159,16 +133,8 @@ The dispatch origin for this call must be _Signed_.
 
 Emits `IndexAssigned` if successful.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- One storage mutation (codec `O(1)`).
-- One transfer operation.
-- One event.
--------------------
-- DB Weight:
-   - Reads: Indices Accounts, System Account (recipient)
-   - Writes: Indices Accounts, System Account (recipient)
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

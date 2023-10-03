@@ -237,13 +237,18 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u64', 'u32')),
             'origin': {
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'AdvisoryCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
+                'TechnicalCommittee': {
+                    'Member': 'AccountId',
+                    'Members': ('u32', 'u32'),
+                    '_Phantom': None,
+                },
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -253,11 +258,6 @@ result = substrate.query(
                 'PolkadotXcm': {
                     'Response': 'scale_info::130',
                     'Xcm': 'scale_info::130',
-                },
-                'TechnicalCommittee': {
-                    'Member': 'AccountId',
-                    'Members': ('u32', 'u32'),
-                    '_Phantom': None,
                 },
                 'Void': (),
             },

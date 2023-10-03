@@ -29,11 +29,11 @@ call = substrate.compose_call(
 Sets the xcm_dest_weight and fee for XCM operation of XcmInterface.
 
 Parameters:
-- `updates`: vec of tuple: (XcmInterfaceOperation, WeightChange, FeeChange).
+- `updates`: vec of tuple: (XcmOperationType, WeightChange, FeeChange).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| updates | `Vec<(XcmInterfaceOperation, Option<Weight>, Option<BalanceOf<T>>)>` | 
+| updates | `Vec<(CurrencyIdOf<T>, XcmOperationType, Weight, BalanceOf<T>)>` | 
 
 #### Python
 ```python
@@ -41,18 +41,161 @@ call = substrate.compose_call(
     'XcmInterface', 'update_xcm_dest_weight_and_fee', {
     'updates': [
         (
+            {
+                'BLP': 'u32',
+                'ForeignAsset': 'u32',
+                'LPToken': (
+                    (
+                        'ASG',
+                        'BNC',
+                        'KUSD',
+                        'DOT',
+                        'KSM',
+                        'ETH',
+                        'KAR',
+                        'ZLK',
+                        'PHA',
+                        'RMRK',
+                        'MOVR',
+                    ),
+                    'u8',
+                    (
+                        'ASG',
+                        'BNC',
+                        'KUSD',
+                        'DOT',
+                        'KSM',
+                        'ETH',
+                        'KAR',
+                        'ZLK',
+                        'PHA',
+                        'RMRK',
+                        'MOVR',
+                    ),
+                    'u8',
+                ),
+                'Native': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'Stable': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'StableLpToken': 'u32',
+                'Token': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'Token2': 'u8',
+                'VSBond': (
+                    (
+                        'ASG',
+                        'BNC',
+                        'KUSD',
+                        'DOT',
+                        'KSM',
+                        'ETH',
+                        'KAR',
+                        'ZLK',
+                        'PHA',
+                        'RMRK',
+                        'MOVR',
+                    ),
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
+                'VSBond2': (
+                    'u8',
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
+                'VSToken': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'VSToken2': 'u8',
+                'VToken': (
+                    'ASG',
+                    'BNC',
+                    'KUSD',
+                    'DOT',
+                    'KSM',
+                    'ETH',
+                    'KAR',
+                    'ZLK',
+                    'PHA',
+                    'RMRK',
+                    'MOVR',
+                ),
+                'VToken2': 'u8',
+            },
             (
                 'UmpContributeTransact',
                 'StatemineTransfer',
+                'Bond',
+                'WithdrawUnbonded',
+                'BondExtra',
+                'Unbond',
+                'Rebond',
+                'Delegate',
+                'Payout',
+                'Liquidize',
+                'TransferBack',
+                'TransferTo',
+                'Chill',
+                'Undelegate',
+                'CancelLeave',
+                'XtokensTransferBack',
+                'ExecuteLeave',
+                'ConvertAsset',
+                'Vote',
+                'RemoveVote',
+                'Any',
             ),
-            (
-                None,
-                {
-                    'proof_size': 'u64',
-                    'ref_time': 'u64',
-                },
-            ),
-            (None, 'u128'),
+            {
+                'proof_size': 'u64',
+                'ref_time': 'u64',
+            },
+            'u128',
         ),
     ],
 }
@@ -71,21 +214,13 @@ call = substrate.compose_call(
 | None | `BalanceOf<T>` | ```u128```
 
 ---------
-### XcmDestWeightUpdated
-Xcm dest weight has been updated. \[xcm_operation, new_xcm_dest_weight\]
+### XcmDestWeightAndFeeUpdated
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `XcmInterfaceOperation` | ```('UmpContributeTransact', 'StatemineTransfer')```
+| None | `XcmOperationType` | ```('UmpContributeTransact', 'StatemineTransfer', 'Bond', 'WithdrawUnbonded', 'BondExtra', 'Unbond', 'Rebond', 'Delegate', 'Payout', 'Liquidize', 'TransferBack', 'TransferTo', 'Chill', 'Undelegate', 'CancelLeave', 'XtokensTransferBack', 'ExecuteLeave', 'ConvertAsset', 'Vote', 'RemoveVote', 'Any')```
+| None | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
 | None | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
-
----------
-### XcmFeeUpdated
-Xcm dest weight has been updated. \[xcm_operation, new_xcm_dest_weight\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `XcmInterfaceOperation` | ```('UmpContributeTransact', 'StatemineTransfer')```
 | None | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -93,7 +228,6 @@ Xcm dest weight has been updated. \[xcm_operation, new_xcm_dest_weight\]
 
 ---------
 ### CurrentNonce
- Tracker for the next nonce index
 
 #### Python
 ```python
@@ -108,10 +242,6 @@ result = substrate.query(
 ```
 ---------
 ### XcmDestWeightAndFee
- The dest weight limit and fee for execution XCM msg sent by XcmInterface. Must be
- sufficient, otherwise the execution of XCM msg on relaychain will fail.
-
- XcmDestWeightAndFee: map: XcmInterfaceOperation =&gt; (Weight, Balance)
 
 #### Python
 ```python
@@ -120,6 +250,175 @@ result = substrate.query(
     (
         'UmpContributeTransact',
         'StatemineTransfer',
+    ),
+]
+)
+```
+
+#### Return value
+```python
+({'proof_size': 'u64', 'ref_time': 'u64'}, 'u128')
+```
+---------
+### XcmWeightAndFee
+ The dest weight limit and fee for execution XCM msg sent by XcmInterface. Must be
+ sufficient, otherwise the execution of XCM msg on relaychain will fail.
+
+ XcmWeightAndFee: map: XcmOperationType =&gt; (Weight, Balance)
+
+#### Python
+```python
+result = substrate.query(
+    'XcmInterface', 'XcmWeightAndFee', [
+    {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+    (
+        'UmpContributeTransact',
+        'StatemineTransfer',
+        'Bond',
+        'WithdrawUnbonded',
+        'BondExtra',
+        'Unbond',
+        'Rebond',
+        'Delegate',
+        'Payout',
+        'Liquidize',
+        'TransferBack',
+        'TransferTo',
+        'Chill',
+        'Undelegate',
+        'CancelLeave',
+        'XtokensTransferBack',
+        'ExecuteLeave',
+        'ConvertAsset',
+        'Vote',
+        'RemoveVote',
+        'Any',
     ),
 ]
 )
@@ -141,26 +440,6 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('XcmInterface', 'CallBackTimeOut')
-```
----------
-### ContributionFee
-#### Value
-```python
-1000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('XcmInterface', 'ContributionFee')
-```
----------
-### ContributionWeight
-#### Value
-```python
-{'proof_size': 1000000, 'ref_time': 1000000000}
-```
-#### Python
-```python
-constant = substrate.get_constant('XcmInterface', 'ContributionWeight')
 ```
 ---------
 ### ParachainId
@@ -205,30 +484,13 @@ constant = substrate.get_constant('XcmInterface', 'RelayNetwork')
 constant = substrate.get_constant('XcmInterface', 'RelaychainCurrencyId')
 ```
 ---------
-### StatemineTransferFee
-#### Value
-```python
-4000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('XcmInterface', 'StatemineTransferFee')
-```
----------
-### StatemineTransferWeight
-#### Value
-```python
-{'proof_size': 0, 'ref_time': 4000000000}
-```
-#### Python
-```python
-constant = substrate.get_constant('XcmInterface', 'StatemineTransferWeight')
-```
----------
 ## Errors
 
 ---------
 ### FeeConvertFailed
+
+---------
+### OperationWeightAndFeeNotExist
 
 ---------
 ### XcmExecutionFailed
