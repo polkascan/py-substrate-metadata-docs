@@ -57,7 +57,13 @@ The dispatch origin of this function must be signed.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Session', 'set_keys', {'keys': {'aura': '[u8; 32]'}, 'proof': 'Bytes'}
+    'Session', 'set_keys', {
+    'keys': {
+        'aura': '[u8; 32]',
+        'beefy': '[u8; 33]',
+    },
+    'proof': 'Bytes',
+}
 )
 ```
 
@@ -138,7 +144,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'aura': '[u8; 32]'}
+{'aura': '[u8; 32]', 'beefy': '[u8; 33]'}
 ```
 ---------
 ### QueuedChanged
@@ -170,7 +176,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[('AccountId', {'aura': '[u8; 32]'})]
+[('AccountId', {'aura': '[u8; 32]', 'beefy': '[u8; 33]'})]
 ```
 ---------
 ### Validators

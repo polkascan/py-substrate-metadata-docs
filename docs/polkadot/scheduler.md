@@ -229,6 +229,7 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'Council': 'scale_info::158',
                 'Origins': 'scale_info::160',
                 'ParachainsOrigin': 'scale_info::161',
@@ -236,7 +237,6 @@ result = substrate.query(
                 'Void': 'scale_info::171',
                 'XcmPallet': 'scale_info::163',
                 'system': 'scale_info::157',
-                None: None,
             },
             'priority': 'u8',
         },

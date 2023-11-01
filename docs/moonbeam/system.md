@@ -346,6 +346,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AssetManager': {
                 'ForeignAssetDestroyed': {
                     'asset_id': 'u128',
@@ -1093,6 +1094,32 @@ result = substrate.query(
                 'Noted': {'hash': '[u8; 32]'},
                 'Requested': {'hash': '[u8; 32]'},
             },
+            'Proxy': {
+                'Announced': {
+                    'call_hash': '[u8; 32]',
+                    'proxy': '[u8; 20]',
+                    'real': '[u8; 20]',
+                },
+                'ProxyAdded': {
+                    'delay': 'u32',
+                    'delegatee': '[u8; 20]',
+                    'delegator': '[u8; 20]',
+                    'proxy_type': 'scale_info::55',
+                },
+                'ProxyExecuted': {'result': 'scale_info::52'},
+                'ProxyRemoved': {
+                    'delay': 'u32',
+                    'delegatee': '[u8; 20]',
+                    'delegator': '[u8; 20]',
+                    'proxy_type': 'scale_info::55',
+                },
+                'PureCreated': {
+                    'disambiguation_index': 'u16',
+                    'proxy_type': 'scale_info::55',
+                    'pure': '[u8; 20]',
+                    'who': '[u8; 20]',
+                },
+            },
             'Randomness': {
                 'RandomnessRequestedBabeEpoch': {
                     'contract_address': '[u8; 20]',
@@ -1189,96 +1216,6 @@ result = substrate.query(
                 'NewAccount': {'account': '[u8; 20]'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': '[u8; 20]'},
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': '[u8; 20]',
-                },
-            },
-            'XcmTransactor': {
-                'DeRegisteredDerivative': {'index': 'u16'},
-                'DestFeePerSecondChanged': {
-                    'fee_per_second': 'u128',
-                    'location': 'scale_info::129',
-                },
-                'DestFeePerSecondRemoved': {'location': 'scale_info::129'},
-                'HrmpManagementSent': {'action': 'scale_info::313'},
-                'RegisteredDerivative': {
-                    'account_id': '[u8; 20]',
-                    'index': 'u16',
-                },
-                'TransactFailed': {'error': 'scale_info::275'},
-                'TransactInfoChanged': {
-                    'location': 'scale_info::129',
-                    'remote_info': 'scale_info::347',
-                },
-                'TransactInfoRemoved': {'location': 'scale_info::129'},
-                'TransactedDerivative': {
-                    'account_id': '[u8; 20]',
-                    'call': 'Bytes',
-                    'dest': 'scale_info::129',
-                    'index': 'u16',
-                },
-                'TransactedSigned': {
-                    'call': 'Bytes',
-                    'dest': 'scale_info::129',
-                    'fee_payer': '[u8; 20]',
-                },
-                'TransactedSovereign': {
-                    'call': 'Bytes',
-                    'dest': 'scale_info::129',
-                    'fee_payer': '[u8; 20]',
-                },
-            },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::275',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::9',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::9',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::9',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'Proxy': {
-                'Announced': {
-                    'call_hash': '[u8; 32]',
-                    'proxy': '[u8; 20]',
-                    'real': '[u8; 20]',
-                },
-                'ProxyAdded': {
-                    'delay': 'u32',
-                    'delegatee': '[u8; 20]',
-                    'delegator': '[u8; 20]',
-                    'proxy_type': 'scale_info::55',
-                },
-                'ProxyExecuted': {'result': 'scale_info::52'},
-                'ProxyRemoved': {
-                    'delay': 'u32',
-                    'delegatee': '[u8; 20]',
-                    'delegator': '[u8; 20]',
-                    'proxy_type': 'scale_info::55',
-                },
-                'PureCreated': {
-                    'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::55',
-                    'pure': '[u8; 20]',
-                    'who': '[u8; 20]',
-                },
-            },
             'TechCommitteeCollective': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1307,6 +1244,13 @@ result = substrate.query(
                     'proposal_hash': '[u8; 32]',
                     'voted': 'bool',
                     'yes': 'u32',
+                },
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': '[u8; 20]',
                 },
             },
             'Treasury': {
@@ -1387,6 +1331,62 @@ result = substrate.query(
                     'fee': 'scale_info::268',
                     'sender': '[u8; 20]',
                 },
+            },
+            'XcmTransactor': {
+                'DeRegisteredDerivative': {'index': 'u16'},
+                'DestFeePerSecondChanged': {
+                    'fee_per_second': 'u128',
+                    'location': 'scale_info::129',
+                },
+                'DestFeePerSecondRemoved': {'location': 'scale_info::129'},
+                'HrmpManagementSent': {'action': 'scale_info::313'},
+                'RegisteredDerivative': {
+                    'account_id': '[u8; 20]',
+                    'index': 'u16',
+                },
+                'TransactFailed': {'error': 'scale_info::275'},
+                'TransactInfoChanged': {
+                    'location': 'scale_info::129',
+                    'remote_info': 'scale_info::347',
+                },
+                'TransactInfoRemoved': {'location': 'scale_info::129'},
+                'TransactedDerivative': {
+                    'account_id': '[u8; 20]',
+                    'call': 'Bytes',
+                    'dest': 'scale_info::129',
+                    'index': 'u16',
+                },
+                'TransactedSigned': {
+                    'call': 'Bytes',
+                    'dest': 'scale_info::129',
+                    'fee_payer': '[u8; 20]',
+                },
+                'TransactedSovereign': {
+                    'call': 'Bytes',
+                    'dest': 'scale_info::129',
+                    'fee_payer': '[u8; 20]',
+                },
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::275',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::9',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::9',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::9',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
         },
         'phase': {

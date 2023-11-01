@@ -735,7 +735,7 @@ result = substrate.query(
             },
             'PalletIndex': {
                 'Claimed': {'tasks': ['[u8; 32]']},
-                'NewTask': {'deposit_info': 'scale_info::170'},
+                'NewTask': {'deposit_info': 'scale_info::171'},
                 'WorkerAdd': {'worker': 'AccountId'},
                 'WorkerRemove': {'worker': 'AccountId'},
             },
@@ -771,6 +771,7 @@ result = substrate.query(
                 },
                 'Withdrawal': {
                     'amount': 'u128',
+                    'burnt_shares': 'u128',
                     'pid': 'u64',
                     'shares': 'u128',
                     'user': 'AccountId',
@@ -781,6 +782,7 @@ result = substrate.query(
                     'pid': 'u64',
                     'shares': 'u128',
                     'user': 'AccountId',
+                    'withdrawing_nft_id': 'u32',
                 },
             },
             'PhalaComputation': {
@@ -974,6 +976,7 @@ result = substrate.query(
                     'shares': 'u128',
                     'user': 'AccountId',
                 },
+                'ForceShutdown': {'pid': 'u64', 'reason': 'scale_info::145'},
                 'OwnerSharesClaimed': {
                     'pid': 'u64',
                     'shares': 'u128',
@@ -1140,7 +1143,7 @@ result = substrate.query(
                 'NFTAccepted': {
                     'collection_id': 'u32',
                     'nft_id': 'u32',
-                    'recipient': 'scale_info::158',
+                    'recipient': 'scale_info::159',
                     'sender': 'AccountId',
                 },
                 'NFTBurned': {
@@ -1157,13 +1160,13 @@ result = substrate.query(
                     'approval_required': 'bool',
                     'collection_id': 'u32',
                     'nft_id': 'u32',
-                    'recipient': 'scale_info::158',
+                    'recipient': 'scale_info::159',
                     'sender': 'AccountId',
                 },
                 'NftMinted': {
                     'collection_id': 'u32',
                     'nft_id': 'u32',
-                    'owner': 'scale_info::158',
+                    'owner': 'scale_info::159',
                 },
                 'PrioritySet': {'collection_id': 'u32', 'nft_id': 'u32'},
                 'PropertiesRemoved': {
@@ -1331,7 +1334,7 @@ result = substrate.query(
                     'handler_response': 'Bytes',
                     'resource_id': '[u8; 32]',
                     'sender': 'AccountId',
-                    'transfer_type': 'scale_info::165',
+                    'transfer_type': 'scale_info::166',
                 },
                 'FailedHandlerExecution': {
                     'deposit_nonce': 'u64',
@@ -1363,7 +1366,7 @@ result = substrate.query(
                 'FeeHandlerSet': {
                     'asset': 'scale_info::67',
                     'domain': 'u8',
-                    'handler_type': 'scale_info::167',
+                    'handler_type': 'scale_info::168',
                 },
             },
             'SygmaWrapper': {
@@ -1600,6 +1603,13 @@ result = substrate.query(
                     'who': 'scale_info::51',
                 },
             },
+            'XcmBridge': {
+                'AssetTransfered': {
+                    'asset': 'scale_info::66',
+                    'dest': 'scale_info::51',
+                    'origin': 'scale_info::51',
+                },
+            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -1622,13 +1632,6 @@ result = substrate.query(
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             None: None,
-            'XcmBridge': {
-                'AssetTransfered': {
-                    'asset': 'scale_info::66',
-                    'dest': 'scale_info::51',
-                    'origin': 'scale_info::51',
-                },
-            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1870,7 +1873,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'phala',
     'impl_version': 0,
     'spec_name': 'phala',
-    'spec_version': 1252,
+    'spec_version': 1254,
     'state_version': 0,
     'transaction_version': 5,
 }

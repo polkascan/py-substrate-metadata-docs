@@ -118,7 +118,7 @@ The route with trades has been successfully executed
  Max limit for the number of trades within a route
 #### Value
 ```python
-5
+3
 ```
 #### Python
 ```python

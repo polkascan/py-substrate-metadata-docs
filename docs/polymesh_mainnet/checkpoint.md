@@ -41,10 +41,8 @@ The schedule starts out with `strong_ref_count(schedule_id) &lt;- 0`.
 
 \# Errors
 - `UnauthorizedAgent` if the DID of `origin` isn&\#x27;t a permissioned agent for `ticker`.
-- `ScheduleDurationTooShort` if the schedule duration is too short.
 - `InsufficientAccountBalance` if the protocol fee could not be charged.
 - `CounterOverflow` if the schedule ID or total checkpoint counters would overflow.
-- `FailedToComputeNextCheckpoint` if the next checkpoint for `schedule` is in the past.
 
 \# Permissions
 * Asset
@@ -52,27 +50,14 @@ The schedule starts out with `strong_ref_count(schedule_id) &lt;- 0`.
 | Name | Type |
 | -------- | -------- | 
 | ticker | `Ticker` | 
-| schedule | `ScheduleSpec` | 
+| schedule | `ScheduleCheckpoints` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Checkpoint', 'create_schedule', {
     'schedule': {
-        'period': {
-            'amount': 'u64',
-            'unit': (
-                'Second',
-                'Minute',
-                'Hour',
-                'Day',
-                'Week',
-                'Month',
-                'Year',
-            ),
-        },
-        'remaining': 'u32',
-        'start': (None, 'u64'),
+        'pending': 'scale_info::173',
     },
     'ticker': '[u8; 12]',
 }
@@ -142,7 +127,7 @@ A checkpoint was created.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Option<EventDid>` | ```(None, '[u8; 32]')```
+| None | `Option<IdentityId>` | ```(None, '[u8; 32]')```
 | None | `Ticker` | ```[u8; 12]```
 | None | `CheckpointId` | ```u64```
 | None | `Balance` | ```u128```
@@ -163,25 +148,27 @@ The maximum complexity for an arbitrary ticker&\#x27;s schedule set was changed.
 ### ScheduleCreated
 A checkpoint schedule was created.
 
-(caller DID, ticker, schedule)
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `EventDid` | ```[u8; 32]```
-| None | `Ticker` | ```[u8; 12]```
-| None | `StoredSchedule` | ```{'schedule': {'start': 'u64', 'period': {'unit': ('Second', 'Minute', 'Hour', 'Day', 'Week', 'Month', 'Year'), 'amount': 'u64'}}, 'id': 'u64', 'at': 'u64', 'remaining': 'u32'}```
-
----------
-### ScheduleRemoved
-A checkpoint schedule was removed.
-
-(caller DID, ticker, schedule)
+(caller DID, ticker, schedule id, schedule)
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
-| None | `StoredSchedule` | ```{'schedule': {'start': 'u64', 'period': {'unit': ('Second', 'Minute', 'Hour', 'Day', 'Week', 'Month', 'Year'), 'amount': 'u64'}}, 'id': 'u64', 'at': 'u64', 'remaining': 'u32'}```
+| None | `ScheduleId` | ```u64```
+| None | `ScheduleCheckpoints` | ```{'pending': 'scale_info::173'}```
+
+---------
+### ScheduleRemoved
+A checkpoint schedule was removed.
+
+(caller DID, ticker, schedule id, schedule)
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `Ticker` | ```[u8; 12]```
+| None | `ScheduleId` | ```u64```
+| None | `ScheduleCheckpoints` | ```{'pending': 'scale_info::173'}```
 
 ---------
 ## Storage functions
@@ -218,6 +205,25 @@ result = substrate.query(
 #### Return value
 ```python
 ['u64']
+```
+---------
+### CachedNextCheckpoints
+ Cached next checkpoint for each schedule.
+
+ This is used to quickly find the next checkpoint from a ticker&#x27;s schedules.
+
+ (ticker) -&gt; next checkpoints
+
+#### Python
+```python
+result = substrate.query(
+    'Checkpoint', 'CachedNextCheckpoints', ['[u8; 12]']
+)
+```
+
+#### Return value
+```python
+{'next_at': 'u64', 'schedules': 'scale_info::632', 'total_pending': 'u64'}
 ```
 ---------
 ### CheckpointIdSequence
@@ -294,47 +300,25 @@ result = substrate.query(
 'u32'
 ```
 ---------
-### Schedules
- Checkpoint schedules for tickers.
+### ScheduledCheckpoints
+ Scheduled checkpoints.
 
- (ticker) -&gt; [schedule]
+ (ticker, schedule ID) -&gt; schedule checkpoints
 
 #### Python
 ```python
 result = substrate.query(
-    'Checkpoint', 'Schedules', ['[u8; 12]']
+    'Checkpoint', 'ScheduledCheckpoints', ['[u8; 12]', 'u64']
 )
 ```
 
 #### Return value
 ```python
-[
-    {
-        'at': 'u64',
-        'id': 'u64',
-        'remaining': 'u32',
-        'schedule': {
-            'period': {
-                'amount': 'u64',
-                'unit': (
-                    'Second',
-                    'Minute',
-                    'Hour',
-                    'Day',
-                    'Week',
-                    'Month',
-                    'Year',
-                ),
-            },
-            'start': 'u64',
-        },
-    },
-]
+{'pending': 'scale_info::173'}
 ```
 ---------
 ### SchedulesMaxComplexity
- The maximum complexity allowed for an arbitrary ticker&#x27;s schedule set
- (i.e. `Schedules` storage item below).
+ The maximum complexity allowed for a ticker&#x27;s schedules.
 
 #### Python
 ```python
@@ -403,25 +387,27 @@ result = substrate.query(
 ## Errors
 
 ---------
-### FailedToComputeNextCheckpoint
-Failed to compute the next checkpoint.
-The schedule does not have any upcoming checkpoints.
-
----------
 ### NoSuchSchedule
 A checkpoint schedule does not exist for the asset.
 
 ---------
-### ScheduleDurationTooShort
-The duration of a schedule period is too short.
+### ScheduleFinished
+The schedule has no more checkpoints.
+
+---------
+### ScheduleHasExpiredCheckpoints
+The schedule has expired checkpoints.
+
+---------
+### ScheduleIsEmpty
+Can&\#x27;t create an empty schedule.
 
 ---------
 ### ScheduleNotRemovable
 A checkpoint schedule is not removable as `ref_count(schedule_id) &gt; 0`.
 
 ---------
-### SchedulesTooComplex
-The set of schedules taken together are too complex.
-For example, they are too many, or they occurs too frequently.
+### SchedulesOverMaxComplexity
+The new schedule would put the ticker over the maximum complexity allowed.
 
 ---------

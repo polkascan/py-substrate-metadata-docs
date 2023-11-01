@@ -488,7 +488,7 @@ result = substrate.query(
             },
             'Contracts': {
                 'Called': {
-                    'caller': 'scale_info::138',
+                    'caller': 'scale_info::137',
                     'contract': 'AccountId',
                 },
                 'CodeRemoved': {'code_hash': '[u8; 32]'},
@@ -575,7 +575,6 @@ result = substrate.query(
                 'ExecutedFailed': {'address': '[u8; 20]'},
                 'Log': {'log': 'scale_info::121'},
             },
-            'EthCall': {'Executed': ('AccountId', 'scale_info::31')},
             'Ethereum': {
                 'Executed': {
                     'exit_reason': 'scale_info::124',
@@ -1082,7 +1081,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'astar',
     'impl_version': 0,
     'spec_name': 'astar',
-    'spec_version': 66,
+    'spec_version': 68,
     'state_version': 1,
     'transaction_version': 2,
 }

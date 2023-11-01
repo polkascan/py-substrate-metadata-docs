@@ -296,9 +296,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -948,6 +948,7 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            None: None,
             'TechnicalMembership': (
                 'MemberAdded',
                 'MemberRemoved',
@@ -1035,6 +1036,13 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1086,14 +1094,6 @@ result = substrate.query(
                 'ScheduledTasksStopped': None,
                 'ValveClosed': None,
                 'ValveOpen': None,
-            },
-            None: None,
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
             },
             'Vesting': {
                 'VestFailed': {

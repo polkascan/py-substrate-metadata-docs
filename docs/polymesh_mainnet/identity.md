@@ -178,16 +178,6 @@ call = substrate.compose_call(
             'Identity': '[u8; 32]',
             'Ticker': '[u8; 12]',
         },
-        'InvestorUniqueness': (
-            {
-                'Custom': 'Bytes',
-                'Identity': '[u8; 32]',
-                'Ticker': '[u8; 12]',
-            },
-            '[u8; 32]',
-            '[u8; 32]',
-        ),
-        'InvestorUniquenessV2': '[u8; 32]',
         'Jurisdiction': (
             (
                 'AF',
@@ -452,7 +442,6 @@ call = substrate.compose_call(
             'Identity': '[u8; 32]',
             'Ticker': '[u8; 12]',
         },
-        'NoData': None,
         'SellLockup': {
             'Custom': 'Bytes',
             'Identity': '[u8; 32]',
@@ -460,723 +449,6 @@ call = substrate.compose_call(
         },
     },
     'expiry': (None, 'u64'),
-    'target': '[u8; 32]',
-}
-)
-```
-
----------
-### add_investor_uniqueness_claim
-Add `Claim::InvestorUniqueness` claim for a given target identity.
-
-\# &lt;weight&gt;
- Weight of the this extrinsic is depend on the computation that used to validate
- the proof of claim, which will be a constant independent of user inputs.
-\# &lt;/weight&gt;
-
-\# Arguments
-* origin - Who provides the claim to the user? In this case, it&\#x27;s the user&\#x27;s account id as the user provides.
-* target - `IdentityId` to which the claim gets assigned.
-* claim - `InvestorUniqueness` claim details.
-* proof - To validate the self attestation.
-* expiry - Expiry of claim.
-
-\# Errors
-* `DidMustAlreadyExist` Target should already been a part of the ecosystem.
-* `ClaimVariantNotAllowed` When origin trying to pass claim variant other than `InvestorUniqueness`.
-* `ConfidentialScopeClaimNotAllowed` When issuer is different from target or CDD_ID is invalid for given user.
-* `InvalidScopeClaim When proof is invalid.
-* `InvalidCDDId` when you are not the owner of that CDD_ID.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| target | `IdentityId` | 
-| claim | `Claim` | 
-| proof | `InvestorZKProofData` | 
-| expiry | `Option<T::Moment>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Identity', 'add_investor_uniqueness_claim', {
-    'claim': {
-        'Accredited': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'Affiliate': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'Blocked': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'BuyLockup': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'Custom': (
-            'u32',
-            (
-                None,
-                {
-                    'Custom': 'Bytes',
-                    'Identity': '[u8; 32]',
-                    'Ticker': '[u8; 12]',
-                },
-            ),
-        ),
-        'CustomerDueDiligence': '[u8; 32]',
-        'Exempted': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'InvestorUniqueness': (
-            {
-                'Custom': 'Bytes',
-                'Identity': '[u8; 32]',
-                'Ticker': '[u8; 12]',
-            },
-            '[u8; 32]',
-            '[u8; 32]',
-        ),
-        'InvestorUniquenessV2': '[u8; 32]',
-        'Jurisdiction': (
-            (
-                'AF',
-                'AX',
-                'AL',
-                'DZ',
-                'AS',
-                'AD',
-                'AO',
-                'AI',
-                'AQ',
-                'AG',
-                'AR',
-                'AM',
-                'AW',
-                'AU',
-                'AT',
-                'AZ',
-                'BS',
-                'BH',
-                'BD',
-                'BB',
-                'BY',
-                'BE',
-                'BZ',
-                'BJ',
-                'BM',
-                'BT',
-                'BO',
-                'BA',
-                'BW',
-                'BV',
-                'BR',
-                'VG',
-                'IO',
-                'BN',
-                'BG',
-                'BF',
-                'BI',
-                'KH',
-                'CM',
-                'CA',
-                'CV',
-                'KY',
-                'CF',
-                'TD',
-                'CL',
-                'CN',
-                'HK',
-                'MO',
-                'CX',
-                'CC',
-                'CO',
-                'KM',
-                'CG',
-                'CD',
-                'CK',
-                'CR',
-                'CI',
-                'HR',
-                'CU',
-                'CY',
-                'CZ',
-                'DK',
-                'DJ',
-                'DM',
-                'DO',
-                'EC',
-                'EG',
-                'SV',
-                'GQ',
-                'ER',
-                'EE',
-                'ET',
-                'FK',
-                'FO',
-                'FJ',
-                'FI',
-                'FR',
-                'GF',
-                'PF',
-                'TF',
-                'GA',
-                'GM',
-                'GE',
-                'DE',
-                'GH',
-                'GI',
-                'GR',
-                'GL',
-                'GD',
-                'GP',
-                'GU',
-                'GT',
-                'GG',
-                'GN',
-                'GW',
-                'GY',
-                'HT',
-                'HM',
-                'VA',
-                'HN',
-                'HU',
-                'IS',
-                'IN',
-                'ID',
-                'IR',
-                'IQ',
-                'IE',
-                'IM',
-                'IL',
-                'IT',
-                'JM',
-                'JP',
-                'JE',
-                'JO',
-                'KZ',
-                'KE',
-                'KI',
-                'KP',
-                'KR',
-                'KW',
-                'KG',
-                'LA',
-                'LV',
-                'LB',
-                'LS',
-                'LR',
-                'LY',
-                'LI',
-                'LT',
-                'LU',
-                'MK',
-                'MG',
-                'MW',
-                'MY',
-                'MV',
-                'ML',
-                'MT',
-                'MH',
-                'MQ',
-                'MR',
-                'MU',
-                'YT',
-                'MX',
-                'FM',
-                'MD',
-                'MC',
-                'MN',
-                'ME',
-                'MS',
-                'MA',
-                'MZ',
-                'MM',
-                'NA',
-                'NR',
-                'NP',
-                'NL',
-                'AN',
-                'NC',
-                'NZ',
-                'NI',
-                'NE',
-                'NG',
-                'NU',
-                'NF',
-                'MP',
-                'NO',
-                'OM',
-                'PK',
-                'PW',
-                'PS',
-                'PA',
-                'PG',
-                'PY',
-                'PE',
-                'PH',
-                'PN',
-                'PL',
-                'PT',
-                'PR',
-                'QA',
-                'RE',
-                'RO',
-                'RU',
-                'RW',
-                'BL',
-                'SH',
-                'KN',
-                'LC',
-                'MF',
-                'PM',
-                'VC',
-                'WS',
-                'SM',
-                'ST',
-                'SA',
-                'SN',
-                'RS',
-                'SC',
-                'SL',
-                'SG',
-                'SK',
-                'SI',
-                'SB',
-                'SO',
-                'ZA',
-                'GS',
-                'SS',
-                'ES',
-                'LK',
-                'SD',
-                'SR',
-                'SJ',
-                'SZ',
-                'SE',
-                'CH',
-                'SY',
-                'TW',
-                'TJ',
-                'TZ',
-                'TH',
-                'TL',
-                'TG',
-                'TK',
-                'TO',
-                'TT',
-                'TN',
-                'TR',
-                'TM',
-                'TC',
-                'TV',
-                'UG',
-                'UA',
-                'AE',
-                'GB',
-                'US',
-                'UM',
-                'UY',
-                'UZ',
-                'VU',
-                'VE',
-                'VN',
-                'VI',
-                'WF',
-                'EH',
-                'YE',
-                'ZM',
-                'ZW',
-                'BQ',
-                'CW',
-                'SX',
-            ),
-            {
-                'Custom': 'Bytes',
-                'Identity': '[u8; 32]',
-                'Ticker': '[u8; 12]',
-            },
-        ),
-        'KnowYourCustomer': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'NoData': None,
-        'SellLockup': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-    },
-    'expiry': (None, 'u64'),
-    'proof': '[u8; 64]',
-    'target': '[u8; 32]',
-}
-)
-```
-
----------
-### add_investor_uniqueness_claim_v2
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| target | `IdentityId` | 
-| scope | `Scope` | 
-| claim | `Claim` | 
-| proof | `ScopeClaimProof` | 
-| expiry | `Option<T::Moment>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Identity', 'add_investor_uniqueness_claim_v2', {
-    'claim': {
-        'Accredited': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'Affiliate': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'Blocked': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'BuyLockup': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'Custom': (
-            'u32',
-            (
-                None,
-                {
-                    'Custom': 'Bytes',
-                    'Identity': '[u8; 32]',
-                    'Ticker': '[u8; 12]',
-                },
-            ),
-        ),
-        'CustomerDueDiligence': '[u8; 32]',
-        'Exempted': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'InvestorUniqueness': (
-            {
-                'Custom': 'Bytes',
-                'Identity': '[u8; 32]',
-                'Ticker': '[u8; 12]',
-            },
-            '[u8; 32]',
-            '[u8; 32]',
-        ),
-        'InvestorUniquenessV2': '[u8; 32]',
-        'Jurisdiction': (
-            (
-                'AF',
-                'AX',
-                'AL',
-                'DZ',
-                'AS',
-                'AD',
-                'AO',
-                'AI',
-                'AQ',
-                'AG',
-                'AR',
-                'AM',
-                'AW',
-                'AU',
-                'AT',
-                'AZ',
-                'BS',
-                'BH',
-                'BD',
-                'BB',
-                'BY',
-                'BE',
-                'BZ',
-                'BJ',
-                'BM',
-                'BT',
-                'BO',
-                'BA',
-                'BW',
-                'BV',
-                'BR',
-                'VG',
-                'IO',
-                'BN',
-                'BG',
-                'BF',
-                'BI',
-                'KH',
-                'CM',
-                'CA',
-                'CV',
-                'KY',
-                'CF',
-                'TD',
-                'CL',
-                'CN',
-                'HK',
-                'MO',
-                'CX',
-                'CC',
-                'CO',
-                'KM',
-                'CG',
-                'CD',
-                'CK',
-                'CR',
-                'CI',
-                'HR',
-                'CU',
-                'CY',
-                'CZ',
-                'DK',
-                'DJ',
-                'DM',
-                'DO',
-                'EC',
-                'EG',
-                'SV',
-                'GQ',
-                'ER',
-                'EE',
-                'ET',
-                'FK',
-                'FO',
-                'FJ',
-                'FI',
-                'FR',
-                'GF',
-                'PF',
-                'TF',
-                'GA',
-                'GM',
-                'GE',
-                'DE',
-                'GH',
-                'GI',
-                'GR',
-                'GL',
-                'GD',
-                'GP',
-                'GU',
-                'GT',
-                'GG',
-                'GN',
-                'GW',
-                'GY',
-                'HT',
-                'HM',
-                'VA',
-                'HN',
-                'HU',
-                'IS',
-                'IN',
-                'ID',
-                'IR',
-                'IQ',
-                'IE',
-                'IM',
-                'IL',
-                'IT',
-                'JM',
-                'JP',
-                'JE',
-                'JO',
-                'KZ',
-                'KE',
-                'KI',
-                'KP',
-                'KR',
-                'KW',
-                'KG',
-                'LA',
-                'LV',
-                'LB',
-                'LS',
-                'LR',
-                'LY',
-                'LI',
-                'LT',
-                'LU',
-                'MK',
-                'MG',
-                'MW',
-                'MY',
-                'MV',
-                'ML',
-                'MT',
-                'MH',
-                'MQ',
-                'MR',
-                'MU',
-                'YT',
-                'MX',
-                'FM',
-                'MD',
-                'MC',
-                'MN',
-                'ME',
-                'MS',
-                'MA',
-                'MZ',
-                'MM',
-                'NA',
-                'NR',
-                'NP',
-                'NL',
-                'AN',
-                'NC',
-                'NZ',
-                'NI',
-                'NE',
-                'NG',
-                'NU',
-                'NF',
-                'MP',
-                'NO',
-                'OM',
-                'PK',
-                'PW',
-                'PS',
-                'PA',
-                'PG',
-                'PY',
-                'PE',
-                'PH',
-                'PN',
-                'PL',
-                'PT',
-                'PR',
-                'QA',
-                'RE',
-                'RO',
-                'RU',
-                'RW',
-                'BL',
-                'SH',
-                'KN',
-                'LC',
-                'MF',
-                'PM',
-                'VC',
-                'WS',
-                'SM',
-                'ST',
-                'SA',
-                'SN',
-                'RS',
-                'SC',
-                'SL',
-                'SG',
-                'SK',
-                'SI',
-                'SB',
-                'SO',
-                'ZA',
-                'GS',
-                'SS',
-                'ES',
-                'LK',
-                'SD',
-                'SR',
-                'SJ',
-                'SZ',
-                'SE',
-                'CH',
-                'SY',
-                'TW',
-                'TJ',
-                'TZ',
-                'TH',
-                'TL',
-                'TG',
-                'TK',
-                'TO',
-                'TT',
-                'TN',
-                'TR',
-                'TM',
-                'TC',
-                'TV',
-                'UG',
-                'UA',
-                'AE',
-                'GB',
-                'US',
-                'UM',
-                'UY',
-                'UZ',
-                'VU',
-                'VE',
-                'VN',
-                'VI',
-                'WF',
-                'EH',
-                'YE',
-                'ZM',
-                'ZW',
-                'BQ',
-                'CW',
-                'SX',
-            ),
-            {
-                'Custom': 'Bytes',
-                'Identity': '[u8; 32]',
-                'Ticker': '[u8; 12]',
-            },
-        ),
-        'KnowYourCustomer': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-        'NoData': None,
-        'SellLockup': {
-            'Custom': 'Bytes',
-            'Identity': '[u8; 32]',
-            'Ticker': '[u8; 12]',
-        },
-    },
-    'expiry': (None, 'u64'),
-    'proof': {
-        'proof_scope_id_cdd_id_match': {
-            'blinded_scope_did_hash': '[u8; 32]',
-            'challenge_responses': '[[u8; 32]; 2]',
-            'subtract_expressions_res': '[u8; 32]',
-        },
-        'proof_scope_id_wellformed': {
-            'r': '[u8; 32]',
-            's': '[u8; 32]',
-        },
-        'scope_id': '[u8; 32]',
-    },
-    'scope': {
-        'Custom': 'Bytes',
-        'Identity': '[u8; 32]',
-        'Ticker': '[u8; 12]',
-    },
     'target': '[u8; 32]',
 }
 )
@@ -1228,52 +500,6 @@ call = substrate.compose_call(
                         'These': 'scale_info::59',
                         'Whole': None,
                     },
-                },
-            },
-        },
-    ],
-    'expires_at': 'u64',
-}
-)
-```
-
----------
-### add_secondary_keys_with_authorization_old
-Deprecated. Use `add_secondary_keys_with_authorization` instead.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| additional_keys | `Vec<SecondaryKeyWithAuthV1<T::AccountId>>` | 
-| expires_at | `T::Moment` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Identity', 'add_secondary_keys_with_authorization_old', {
-    'additional_keys': [
-        {
-            'auth_signature': '[u8; 64]',
-            'secondary_key': {
-                'permissions': {
-                    'asset': {
-                        'Except': 'scale_info::44',
-                        'These': 'scale_info::44',
-                        'Whole': None,
-                    },
-                    'extrinsic': {
-                        'Except': 'scale_info::53',
-                        'These': 'scale_info::53',
-                        'Whole': None,
-                    },
-                    'portfolio': {
-                        'Except': 'scale_info::59',
-                        'These': 'scale_info::59',
-                        'Whole': None,
-                    },
-                },
-                'signer': {
-                    'Account': 'AccountId',
-                    'Identity': '[u8; 32]',
                 },
             },
         },
@@ -1399,6 +625,70 @@ call = substrate.compose_call(
 ```
 
 ---------
+### create_child_identities
+Create a child identities.
+
+The new primary key for each child identity will need to sign (off-chain)
+an authorization.
+
+Only the primary key can create child identities.
+
+\# Arguments
+- `child_keys` the keys that will become primary keys of their own child identity.
+
+\# Errors
+- `KeyNotAllowed` only the primary key can create a new identity.
+- `AlreadyLinked` one of the keys is already linked to an identity.
+- `DuplicateKey` one of the keys is included multiple times.
+- `IsChildIdentity` the caller&\#x27;s identity is already a child identity and can&\#x27;t create child identities.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| child_keys | `Vec<CreateChildIdentityWithAuth<T::AccountId>>` | 
+| expires_at | `T::Moment` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'create_child_identities', {
+    'child_keys': [
+        {
+            'auth_signature': '[u8; 64]',
+            'key': 'AccountId',
+        },
+    ],
+    'expires_at': 'u64',
+}
+)
+```
+
+---------
+### create_child_identity
+Create a child identity and make the `secondary_key` it&\#x27;s primary key.
+
+Only the primary key can create child identities.
+
+\# Arguments
+- `secondary_key` the secondary key that will become the primary key of the new identity.
+
+\# Errors
+- `KeyNotAllowed` only the primary key can create a new identity.
+- `NotASigner` the `secondary_key` is not a secondary key of the caller&\#x27;s identity.
+- `AccountKeyIsBeingUsed` the `secondary_key` can&\#x27;t be unlinked from it&\#x27;s current identity.
+- `IsChildIdentity` the caller&\#x27;s identity is already a child identity and can&\#x27;t create child identities.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| secondary_key | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'create_child_identity', {'secondary_key': 'AccountId'}
+)
+```
+
+---------
 ### freeze_secondary_keys
 It disables all secondary keys at `did` identity.
 
@@ -1497,19 +787,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### placeholder_legacy_set_permission_to_signer
-Placeholder for removed `legacy_set_permission_to_signer`.
-#### Attributes
-No attributes
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Identity', 'placeholder_legacy_set_permission_to_signer', {}
-)
-```
-
----------
 ### register_custom_claim_type
 Register custom claim type.
 
@@ -1574,28 +851,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### remove_secondary_keys_old
-Deprecated. Use `remove_secondary_keys` instead.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| keys_to_remove | `Vec<Signatory<T::AccountId>>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Identity', 'remove_secondary_keys_old', {
-    'keys_to_remove': [
-        {
-            'Account': 'AccountId',
-            'Identity': '[u8; 32]',
-        },
-    ],
-}
-)
-```
-
----------
 ### revoke_claim
 Marks the specified claim as revoked.
 #### Attributes
@@ -1646,16 +901,6 @@ call = substrate.compose_call(
             'Identity': '[u8; 32]',
             'Ticker': '[u8; 12]',
         },
-        'InvestorUniqueness': (
-            {
-                'Custom': 'Bytes',
-                'Identity': '[u8; 32]',
-                'Ticker': '[u8; 12]',
-            },
-            '[u8; 32]',
-            '[u8; 32]',
-        ),
-        'InvestorUniquenessV2': '[u8; 32]',
         'Jurisdiction': (
             (
                 'AF',
@@ -1920,7 +1165,6 @@ call = substrate.compose_call(
             'Identity': '[u8; 32]',
             'Ticker': '[u8; 12]',
         },
-        'NoData': None,
         'SellLockup': {
             'Custom': 'Bytes',
             'Identity': '[u8; 32]',
@@ -1938,10 +1182,6 @@ Revokes a specific claim using its [Claim Unique Index](/pallet_identity/index.h
 `claim_type`, and `scope`.
 
 Please note that `origin` must be the issuer of the target claim.
-
-\# Errors
-- `TargetHasNonZeroBalanceAtScopeId` when you try to revoke a `InvestorUniqueness*`
-claim, and `target` identity still have any balance on the given `scope`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1961,11 +1201,8 @@ call = substrate.compose_call(
         'Custom': 'u32',
         'CustomerDueDiligence': None,
         'Exempted': None,
-        'InvestorUniqueness': None,
-        'InvestorUniquenessV2': None,
         'Jurisdiction': None,
         'KnowYourCustomer': None,
-        'NoType': None,
         'SellLockup': None,
     },
     'scope': (
@@ -2017,44 +1254,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_permission_to_signer
-Deprecated. Use `set_secondary_key_permissions` instead.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| key | `Signatory<T::AccountId>` | 
-| perms | `Permissions` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Identity', 'set_permission_to_signer', {
-    'key': {
-        'Account': 'AccountId',
-        'Identity': '[u8; 32]',
-    },
-    'perms': {
-        'asset': {
-            'Except': 'scale_info::44',
-            'These': 'scale_info::44',
-            'Whole': None,
-        },
-        'extrinsic': {
-            'Except': 'scale_info::53',
-            'These': 'scale_info::53',
-            'Whole': None,
-        },
-        'portfolio': {
-            'Except': 'scale_info::59',
-            'These': 'scale_info::59',
-            'Whole': None,
-        },
-    },
-}
-)
-```
-
----------
 ### set_secondary_key_permissions
 Sets permissions for an specific `target_key` key.
 
@@ -2101,6 +1300,31 @@ No attributes
 ```python
 call = substrate.compose_call(
     'Identity', 'unfreeze_secondary_keys', {}
+)
+```
+
+---------
+### unlink_child_identity
+Unlink a child identity from it&\#x27;s parent identity.
+
+Only the primary key of the parent or child identities can unlink the identities.
+
+\# Arguments
+- `child_did` the child identity to unlink from its parent identity.
+
+\# Errors
+- `KeyNotAllowed` only the primary key of either the parent or child identity can unlink the identities.
+- `NoParentIdentity` the identity `child_did` doesn&\#x27;t have a parent identity.
+- `NotParentOrChildIdentity` the caller&\#x27;s identity isn&\#x27;t the parent or child identity.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| child_did | `IdentityId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'unlink_child_identity', {'child_did': '[u8; 32]'}
 )
 ```
 
@@ -2204,6 +1428,30 @@ CDD requirement for updating primary key changed.
 | None | `bool` | ```bool```
 
 ---------
+### ChildDidCreated
+Child identity created.
+
+(Parent DID, Child DID, primary key)
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `IdentityId` | ```[u8; 32]```
+| None | `AccountId` | ```AccountId```
+
+---------
+### ChildDidUnlinked
+Child identity unlinked from parent identity.
+
+(Caller DID, Parent DID, Child DID)
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `IdentityId` | ```[u8; 32]```
+| None | `IdentityId` | ```[u8; 32]```
+
+---------
 ### ClaimAdded
 Claim added to identity.
 
@@ -2212,7 +1460,7 @@ Claim added to identity.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `IdentityClaim` | ```{'claim_issuer': '[u8; 32]', 'issuance_date': 'u64', 'last_update_date': 'u64', 'expiry': (None, 'u64'), 'claim': {'Accredited': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Affiliate': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'BuyLockup': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'SellLockup': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Jurisdiction': (('AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BA', 'BW', 'BV', 'BR', 'VG', 'IO', 'BN', 'BG', 'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'HK', 'MO', 'CX', 'CC', 'CO', 'KM', 'CG', 'CD', 'CK', 'CR', 'CI', 'HR', 'CU', 'CY', 'CZ', 'DK', 'DJ', 'DM', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FK', 'FO', 'FJ', 'FI', 'FR', 'GF', 'PF', 'TF', 'GA', 'GM', 'GE', 'DE', 'GH', 'GI', 'GR', 'GL', 'GD', 'GP', 'GU', 'GT', 'GG', 'GN', 'GW', 'GY', 'HT', 'HM', 'VA', 'HN', 'HU', 'IS', 'IN', 'ID', 'IR', 'IQ', 'IE', 'IM', 'IL', 'IT', 'JM', 'JP', 'JE', 'JO', 'KZ', 'KE', 'KI', 'KP', 'KR', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LI', 'LT', 'LU', 'MK', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MH', 'MQ', 'MR', 'MU', 'YT', 'MX', 'FM', 'MD', 'MC', 'MN', 'ME', 'MS', 'MA', 'MZ', 'MM', 'NA', 'NR', 'NP', 'NL', 'AN', 'NC', 'NZ', 'NI', 'NE', 'NG', 'NU', 'NF', 'MP', 'NO', 'OM', 'PK', 'PW', 'PS', 'PA', 'PG', 'PY', 'PE', 'PH', 'PN', 'PL', 'PT', 'PR', 'QA', 'RE', 'RO', 'RU', 'RW', 'BL', 'SH', 'KN', 'LC', 'MF', 'PM', 'VC', 'WS', 'SM', 'ST', 'SA', 'SN', 'RS', 'SC', 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'GS', 'SS', 'ES', 'LK', 'SD', 'SR', 'SJ', 'SZ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UM', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW', 'BQ', 'CW', 'SX'), {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}), 'Exempted': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Blocked': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'InvestorUniqueness': ({'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}))}}```
+| None | `IdentityClaim` | ```{'claim_issuer': '[u8; 32]', 'issuance_date': 'u64', 'last_update_date': 'u64', 'expiry': (None, 'u64'), 'claim': {'Accredited': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Affiliate': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'BuyLockup': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'SellLockup': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Jurisdiction': (('AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BA', 'BW', 'BV', 'BR', 'VG', 'IO', 'BN', 'BG', 'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'HK', 'MO', 'CX', 'CC', 'CO', 'KM', 'CG', 'CD', 'CK', 'CR', 'CI', 'HR', 'CU', 'CY', 'CZ', 'DK', 'DJ', 'DM', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FK', 'FO', 'FJ', 'FI', 'FR', 'GF', 'PF', 'TF', 'GA', 'GM', 'GE', 'DE', 'GH', 'GI', 'GR', 'GL', 'GD', 'GP', 'GU', 'GT', 'GG', 'GN', 'GW', 'GY', 'HT', 'HM', 'VA', 'HN', 'HU', 'IS', 'IN', 'ID', 'IR', 'IQ', 'IE', 'IM', 'IL', 'IT', 'JM', 'JP', 'JE', 'JO', 'KZ', 'KE', 'KI', 'KP', 'KR', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LI', 'LT', 'LU', 'MK', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MH', 'MQ', 'MR', 'MU', 'YT', 'MX', 'FM', 'MD', 'MC', 'MN', 'ME', 'MS', 'MA', 'MZ', 'MM', 'NA', 'NR', 'NP', 'NL', 'AN', 'NC', 'NZ', 'NI', 'NE', 'NG', 'NU', 'NF', 'MP', 'NO', 'OM', 'PK', 'PW', 'PS', 'PA', 'PG', 'PY', 'PE', 'PH', 'PN', 'PL', 'PT', 'PR', 'QA', 'RE', 'RO', 'RU', 'RW', 'BL', 'SH', 'KN', 'LC', 'MF', 'PM', 'VC', 'WS', 'SM', 'ST', 'SA', 'SN', 'RS', 'SC', 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'GS', 'SS', 'ES', 'LK', 'SD', 'SR', 'SJ', 'SZ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UM', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW', 'BQ', 'CW', 'SX'), {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}), 'Exempted': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Blocked': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Custom': ('u32', (None, {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}))}}```
 
 ---------
 ### ClaimRevoked
@@ -2223,7 +1471,7 @@ Claim revoked from identity.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `IdentityClaim` | ```{'claim_issuer': '[u8; 32]', 'issuance_date': 'u64', 'last_update_date': 'u64', 'expiry': (None, 'u64'), 'claim': {'Accredited': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Affiliate': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'BuyLockup': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'SellLockup': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Jurisdiction': (('AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BA', 'BW', 'BV', 'BR', 'VG', 'IO', 'BN', 'BG', 'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'HK', 'MO', 'CX', 'CC', 'CO', 'KM', 'CG', 'CD', 'CK', 'CR', 'CI', 'HR', 'CU', 'CY', 'CZ', 'DK', 'DJ', 'DM', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FK', 'FO', 'FJ', 'FI', 'FR', 'GF', 'PF', 'TF', 'GA', 'GM', 'GE', 'DE', 'GH', 'GI', 'GR', 'GL', 'GD', 'GP', 'GU', 'GT', 'GG', 'GN', 'GW', 'GY', 'HT', 'HM', 'VA', 'HN', 'HU', 'IS', 'IN', 'ID', 'IR', 'IQ', 'IE', 'IM', 'IL', 'IT', 'JM', 'JP', 'JE', 'JO', 'KZ', 'KE', 'KI', 'KP', 'KR', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LI', 'LT', 'LU', 'MK', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MH', 'MQ', 'MR', 'MU', 'YT', 'MX', 'FM', 'MD', 'MC', 'MN', 'ME', 'MS', 'MA', 'MZ', 'MM', 'NA', 'NR', 'NP', 'NL', 'AN', 'NC', 'NZ', 'NI', 'NE', 'NG', 'NU', 'NF', 'MP', 'NO', 'OM', 'PK', 'PW', 'PS', 'PA', 'PG', 'PY', 'PE', 'PH', 'PN', 'PL', 'PT', 'PR', 'QA', 'RE', 'RO', 'RU', 'RW', 'BL', 'SH', 'KN', 'LC', 'MF', 'PM', 'VC', 'WS', 'SM', 'ST', 'SA', 'SN', 'RS', 'SC', 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'GS', 'SS', 'ES', 'LK', 'SD', 'SR', 'SJ', 'SZ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UM', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW', 'BQ', 'CW', 'SX'), {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}), 'Exempted': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Blocked': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'InvestorUniqueness': ({'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, '[u8; 32]', '[u8; 32]'), 'NoData': None, 'InvestorUniquenessV2': '[u8; 32]', 'Custom': ('u32', (None, {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}))}}```
+| None | `IdentityClaim` | ```{'claim_issuer': '[u8; 32]', 'issuance_date': 'u64', 'last_update_date': 'u64', 'expiry': (None, 'u64'), 'claim': {'Accredited': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Affiliate': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'BuyLockup': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'SellLockup': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'CustomerDueDiligence': '[u8; 32]', 'KnowYourCustomer': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Jurisdiction': (('AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BA', 'BW', 'BV', 'BR', 'VG', 'IO', 'BN', 'BG', 'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'HK', 'MO', 'CX', 'CC', 'CO', 'KM', 'CG', 'CD', 'CK', 'CR', 'CI', 'HR', 'CU', 'CY', 'CZ', 'DK', 'DJ', 'DM', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FK', 'FO', 'FJ', 'FI', 'FR', 'GF', 'PF', 'TF', 'GA', 'GM', 'GE', 'DE', 'GH', 'GI', 'GR', 'GL', 'GD', 'GP', 'GU', 'GT', 'GG', 'GN', 'GW', 'GY', 'HT', 'HM', 'VA', 'HN', 'HU', 'IS', 'IN', 'ID', 'IR', 'IQ', 'IE', 'IM', 'IL', 'IT', 'JM', 'JP', 'JE', 'JO', 'KZ', 'KE', 'KI', 'KP', 'KR', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LI', 'LT', 'LU', 'MK', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MH', 'MQ', 'MR', 'MU', 'YT', 'MX', 'FM', 'MD', 'MC', 'MN', 'ME', 'MS', 'MA', 'MZ', 'MM', 'NA', 'NR', 'NP', 'NL', 'AN', 'NC', 'NZ', 'NI', 'NE', 'NG', 'NU', 'NF', 'MP', 'NO', 'OM', 'PK', 'PW', 'PS', 'PA', 'PG', 'PY', 'PE', 'PH', 'PN', 'PL', 'PT', 'PR', 'QA', 'RE', 'RO', 'RU', 'RW', 'BL', 'SH', 'KN', 'LC', 'MF', 'PM', 'VC', 'WS', 'SM', 'ST', 'SA', 'SN', 'RS', 'SC', 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'GS', 'SS', 'ES', 'LK', 'SD', 'SR', 'SJ', 'SZ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UM', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW', 'BQ', 'CW', 'SX'), {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}), 'Exempted': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Blocked': {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}, 'Custom': ('u32', (None, {'Identity': '[u8; 32]', 'Ticker': '[u8; 12]', 'Custom': 'Bytes'}))}}```
 
 ---------
 ### CustomClaimTypeAdded
@@ -2449,22 +1697,6 @@ result = substrate.query(
 {'Account': 'AccountId', 'Identity': '[u8; 32]'}
 ```
 ---------
-### CddAuthForMasterKeyRotation
- Obsoleted storage variable superceded by `CddAuthForPrimaryKeyRotation`. It is kept here
- for the purpose of storage migration.
-
-#### Python
-```python
-result = substrate.query(
-    'Identity', 'CddAuthForMasterKeyRotation', []
-)
-```
-
-#### Return value
-```python
-'bool'
-```
----------
 ### CddAuthForPrimaryKeyRotation
  A config flag that, if set, instructs an authorization from a CDD provider in order to
  change the primary key of an identity.
@@ -2497,11 +1729,8 @@ result = substrate.query(
             'Custom': 'u32',
             'CustomerDueDiligence': None,
             'Exempted': None,
-            'InvestorUniqueness': None,
-            'InvestorUniquenessV2': None,
             'Jurisdiction': None,
             'KnowYourCustomer': None,
-            'NoType': None,
             'SellLockup': None,
         },
         'target': '[u8; 32]',
@@ -2562,12 +1791,6 @@ result = substrate.query(
             'Identity': '[u8; 32]',
             'Ticker': '[u8; 12]',
         },
-        'InvestorUniqueness': (
-            {'Custom': 'Bytes', 'Identity': '[u8; 32]', 'Ticker': '[u8; 12]'},
-            '[u8; 32]',
-            '[u8; 32]',
-        ),
-        'InvestorUniquenessV2': '[u8; 32]',
         'Jurisdiction': (
             (
                 'AF',
@@ -2828,7 +2051,6 @@ result = substrate.query(
             'Identity': '[u8; 32]',
             'Ticker': '[u8; 12]',
         },
-        'NoData': None,
         'SellLockup': {
             'Custom': 'Bytes',
             'Identity': '[u8; 32]',
@@ -3030,6 +2252,21 @@ result = substrate.query(
 'u64'
 ```
 ---------
+### ParentDid
+ Parent identity if the DID is a child Identity.
+
+#### Python
+```python
+result = substrate.query(
+    'Identity', 'ParentDid', ['[u8; 32]']
+)
+```
+
+#### Return value
+```python
+'[u8; 32]'
+```
+---------
 ### StorageVersion
  Storage version.
 
@@ -3081,32 +2318,12 @@ Authorization has been explicitly revoked.
 Authorizations are not for the same DID.
 
 ---------
-### CDDIdNotUniqueForIdentity
-CDDId should be unique &amp; same within all cdd claims possessed by a DID.
-
----------
 ### CannotDecodeSignerAccountId
 Cannot convert a `T::AccountId` to `AnySignature::Signer::AccountId`.
 
 ---------
-### ClaimAndProofVersionsDoNotMatch
-Claim and Proof versions are different.
-
----------
 ### ClaimDoesNotExist
 Claim does not exist.
-
----------
-### ClaimVariantNotAllowed
-Try to add a claim variant using un-designated extrinsic.
-
----------
-### ConfidentialScopeClaimNotAllowed
-Confidential Scope claims can be added by an Identity to it-self.
-
----------
-### CurrentIdentityCannotBeForwarded
-Current identity cannot be forwarded, it is not a secondary key of target identity.
 
 ---------
 ### CustomClaimTypeAlreadyExists
@@ -3134,6 +2351,14 @@ The DID does not exist.
 The DID must already exist.
 
 ---------
+### DuplicateKey
+The same key was included multiple times.
+
+---------
+### ExceptNotAllowedForExtrinsics
+Cannot use Except when specifying extrinsic permissions.
+
+---------
 ### FailedToChargeFee
 Couldn&\#x27;t charge fee for the transaction.
 
@@ -3154,12 +2379,8 @@ An invalid authorization from the owner.
 An invalid authorization signature.
 
 ---------
-### InvalidCDDId
-Non systematic CDD providers can not create default cdd_id claims.
-
----------
-### InvalidScopeClaim
-Addition of a new scope claim gets invalidated.
+### IsChildIdentity
+Identity is already a child of an other identity, can&\#x27;t create grand-child identity.
 
 ---------
 ### KeyNotAllowed
@@ -3174,12 +2395,20 @@ Missing current identity on the transaction
 Multisig can not be unlinked from an identity while it still holds POLYX
 
 ---------
+### NoParentIdentity
+The Identity doesn&\#x27;t have a parent identity.
+
+---------
 ### NotASigner
 Signer is not a secondary key of the provided identity
 
 ---------
 ### NotCddProviderAttestation
 Attestation was not by a CDD service provider.
+
+---------
+### NotParentOrChildIdentity
+The caller is not the parent or child identity.
 
 ---------
 ### NotPrimaryKey
@@ -3192,10 +2421,6 @@ The secondary keys contain the primary key.
 ---------
 ### TargetHasNoCdd
 The target DID has no valid CDD.
-
----------
-### TargetHasNonZeroBalanceAtScopeId
-Try to delete the IU claim even when the user has non zero balance at given scopeId.
 
 ---------
 ### UnAuthorizedCddProvider

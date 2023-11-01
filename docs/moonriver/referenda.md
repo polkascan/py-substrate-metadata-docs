@@ -209,6 +209,10 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
+        'Ethereum': {
+            'EthereumTransaction': '[u8; 20]',
+        },
+        None: None,
         'CouncilCollective': {
             'Member': '[u8; 20]',
             'Members': ('u32', 'u32'),
@@ -217,9 +221,6 @@ call = substrate.compose_call(
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
-        },
-        'Ethereum': {
-            'EthereumTransaction': '[u8; 20]',
         },
         'EthereumXcm': {
             'XcmEthereumTransaction': '[u8; 20]',
@@ -1227,7 +1228,6 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': '[u8; 20]',
         },
-        None: None,
     },
 }
 )
@@ -1466,14 +1466,13 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
-            'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
-            None: None,
             'CouncilCollective': {
                 'Member': '[u8; 20]',
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
             'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+            None: None,
             'Ethereum': {'EthereumTransaction': '[u8; 20]'},
             'EthereumXcm': {'XcmEthereumTransaction': '[u8; 20]'},
             'OpenTechCommitteeCollective': {
@@ -1502,6 +1501,7 @@ result = substrate.query(
                 '_Phantom': None,
             },
             'Void': (),
+            'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
         },
         'proposal': {
             'Inline': 'Bytes',

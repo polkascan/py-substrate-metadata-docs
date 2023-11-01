@@ -382,6 +382,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -1119,7 +1120,6 @@ result = substrate.query(
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

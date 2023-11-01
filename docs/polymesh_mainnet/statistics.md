@@ -45,11 +45,8 @@ call = substrate.compose_call(
                     'Custom': 'u32',
                     'CustomerDueDiligence': None,
                     'Exempted': None,
-                    'InvestorUniqueness': None,
-                    'InvestorUniquenessV2': None,
                     'Jurisdiction': None,
                     'KnowYourCustomer': None,
-                    'NoType': None,
                     'SellLockup': None,
                 },
                 '[u8; 32]',
@@ -57,7 +54,7 @@ call = substrate.compose_call(
         ),
         'op': ('Count', 'Balance'),
     },
-    'values': 'scale_info::528',
+    'values': 'scale_info::507',
 }
 )
 ```
@@ -90,7 +87,7 @@ Set the active asset stat_types.
 call = substrate.compose_call(
     'Statistics', 'set_active_asset_stats', {
     'asset': {'Ticker': '[u8; 12]'},
-    'stat_types': 'scale_info::527',
+    'stat_types': 'scale_info::506',
 }
 )
 ```
@@ -123,7 +120,7 @@ Set asset transfer compliance rules.
 call = substrate.compose_call(
     'Statistics', 'set_asset_transfer_compliance', {
     'asset': {'Ticker': '[u8; 12]'},
-    'transfer_conditions': 'scale_info::529',
+    'transfer_conditions': 'scale_info::508',
 }
 )
 ```
@@ -149,13 +146,13 @@ Set/unset entities exempt from an asset&\#x27;s transfer compliance rules.
 | -------- | -------- | 
 | is_exempt | `bool` | 
 | exempt_key | `TransferConditionExemptKey` | 
-| entities | `BTreeSet<ScopeId>` | 
+| entities | `BTreeSet<IdentityId>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Statistics', 'set_entities_exempt', {
-    'entities': 'scale_info::530',
+    'entities': 'scale_info::509',
     'exempt_key': {
         'asset': {
             'Ticker': '[u8; 12]',
@@ -170,11 +167,8 @@ call = substrate.compose_call(
                 'Custom': 'u32',
                 'CustomerDueDiligence': None,
                 'Exempted': None,
-                'InvestorUniqueness': None,
-                'InvestorUniquenessV2': None,
                 'Jurisdiction': None,
                 'KnowYourCustomer': None,
-                'NoType': None,
                 'SellLockup': None,
             },
         ),
@@ -198,7 +192,7 @@ Asset stats updated.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `AssetScope` | ```{'Ticker': '[u8; 12]'}```
-| None | `StatType` | ```{'op': ('Count', 'Balance'), 'claim_issuer': (None, ({'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'InvestorUniqueness': None, 'NoType': None, 'InvestorUniquenessV2': None, 'Custom': 'u32'}, '[u8; 32]'))}```
+| None | `StatType` | ```{'op': ('Count', 'Balance'), 'claim_issuer': (None, ({'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'Custom': 'u32'}, '[u8; 32]'))}```
 | None | `Vec<StatUpdate>` | ```[{'key2': {'NoClaimStat': None, 'Claim': {'Accredited': 'bool', 'Affiliate': 'bool', 'Jurisdiction': (None, 'scale_info::67')}}, 'value': (None, 'u128')}]```
 
 ---------
@@ -223,7 +217,7 @@ Stat types added to asset.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `AssetScope` | ```{'Ticker': '[u8; 12]'}```
-| None | `Vec<StatType>` | ```[{'op': ('Count', 'Balance'), 'claim_issuer': (None, ({'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'InvestorUniqueness': None, 'NoType': None, 'InvestorUniquenessV2': None, 'Custom': 'u32'}, '[u8; 32]'))}]```
+| None | `Vec<StatType>` | ```[{'op': ('Count', 'Balance'), 'claim_issuer': (None, ({'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'Custom': 'u32'}, '[u8; 32]'))}]```
 
 ---------
 ### StatTypesRemoved
@@ -235,31 +229,31 @@ Stat types removed from asset.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `AssetScope` | ```{'Ticker': '[u8; 12]'}```
-| None | `Vec<StatType>` | ```[{'op': ('Count', 'Balance'), 'claim_issuer': (None, ({'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'InvestorUniqueness': None, 'NoType': None, 'InvestorUniquenessV2': None, 'Custom': 'u32'}, '[u8; 32]'))}]```
+| None | `Vec<StatType>` | ```[{'op': ('Count', 'Balance'), 'claim_issuer': (None, ({'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'Custom': 'u32'}, '[u8; 32]'))}]```
 
 ---------
 ### TransferConditionExemptionsAdded
-Add `ScopeId`s exempt for transfer conditions matching exempt key.
+Add `IdentityId`s exempt for transfer conditions matching exempt key.
 
 (Caller DID, Exempt key, Entities)
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `TransferConditionExemptKey` | ```{'asset': {'Ticker': '[u8; 12]'}, 'op': ('Count', 'Balance'), 'claim_type': (None, {'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'InvestorUniqueness': None, 'NoType': None, 'InvestorUniquenessV2': None, 'Custom': 'u32'})}```
-| None | `Vec<ScopeId>` | ```['[u8; 32]']```
+| None | `TransferConditionExemptKey` | ```{'asset': {'Ticker': '[u8; 12]'}, 'op': ('Count', 'Balance'), 'claim_type': (None, {'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'Custom': 'u32'})}```
+| None | `Vec<IdentityId>` | ```['[u8; 32]']```
 
 ---------
 ### TransferConditionExemptionsRemoved
-Remove `ScopeId`s exempt for transfer conditions matching exempt key.
+Remove `IdentityId`s exempt for transfer conditions matching exempt key.
 
 (Caller DID, Exempt key, Entities)
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `TransferConditionExemptKey` | ```{'asset': {'Ticker': '[u8; 12]'}, 'op': ('Count', 'Balance'), 'claim_type': (None, {'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'InvestorUniqueness': None, 'NoType': None, 'InvestorUniquenessV2': None, 'Custom': 'u32'})}```
-| None | `Vec<ScopeId>` | ```['[u8; 32]']```
+| None | `TransferConditionExemptKey` | ```{'asset': {'Ticker': '[u8; 12]'}, 'op': ('Count', 'Balance'), 'claim_type': (None, {'Accredited': None, 'Affiliate': None, 'BuyLockup': None, 'SellLockup': None, 'CustomerDueDiligence': None, 'KnowYourCustomer': None, 'Jurisdiction': None, 'Exempted': None, 'Blocked': None, 'Custom': 'u32'})}```
+| None | `Vec<IdentityId>` | ```['[u8; 32]']```
 
 ---------
 ## Storage functions
@@ -277,7 +271,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::527'
+'scale_info::506'
 ```
 ---------
 ### AssetStats
@@ -303,11 +297,8 @@ result = substrate.query(
                         'Custom': 'u32',
                         'CustomerDueDiligence': None,
                         'Exempted': None,
-                        'InvestorUniqueness': None,
-                        'InvestorUniquenessV2': None,
                         'Jurisdiction': None,
                         'KnowYourCustomer': None,
-                        'NoType': None,
                         'SellLockup': None,
                     },
                     '[u8; 32]',
@@ -599,7 +590,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'paused': 'bool', 'requirements': 'scale_info::529'}
+{'paused': 'bool', 'requirements': 'scale_info::508'}
 ```
 ---------
 ### StorageVersion
@@ -638,11 +629,8 @@ result = substrate.query(
                 'Custom': 'u32',
                 'CustomerDueDiligence': None,
                 'Exempted': None,
-                'InvestorUniqueness': None,
-                'InvestorUniquenessV2': None,
                 'Jurisdiction': None,
                 'KnowYourCustomer': None,
-                'NoType': None,
                 'SellLockup': None,
             },
         ),
@@ -706,5 +694,9 @@ StatType is needed by TransferCondition.
 ---------
 ### TransferConditionLimitReached
 The limit of TransferConditions allowed for an asset has been reached.
+
+---------
+### WeightLimitExceeded
+The maximum weight limit for executing the function was exceeded.
 
 ---------

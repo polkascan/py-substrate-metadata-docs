@@ -304,13 +304,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
-            'AcalaOracle': {
-                'NewFeedData': {
-                    'sender': 'AccountId',
-                    'values': [('scale_info::52', 'u128')],
-                },
-            },
             'AssetRegistry': {
                 'AssetRegistered': {
                     'asset_id': 'scale_info::192',
@@ -329,6 +322,24 @@ result = substrate.query(
                     'asset_address': 'scale_info::74',
                     'asset_id': 'u16',
                     'metadata': 'scale_info::191',
+                },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'AcalaOracle': {
+                'NewFeedData': {
+                    'sender': 'AccountId',
+                    'values': [('scale_info::52', 'u128')],
                 },
             },
             'Auction': {
@@ -1305,17 +1316,6 @@ result = substrate.query(
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::33'},
                 'SudoAsDone': {'sudo_result': 'scale_info::33'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},

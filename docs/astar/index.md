@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | astar     |
 | Implementation name     | astar     |
-| Spec version     | 66     |
+| Spec version     | 68     |
 | SS58 Format     | 5     |
 | Token symbol      | ASTR     |
 | Token decimals      | 18     |
@@ -28,13 +28,12 @@
 | [DappsStaking](dappsstaking.md) | [14](dappsstaking.md#calls) | [12](dappsstaking.md#events) | [12](dappsstaking.md#storage-functions) | [10](dappsstaking.md#constants) | [23](dappsstaking.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
 | [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [3](evm.md#storage-functions) | [0](evm.md#constants) | [11](evm.md#errors) |
-| [EthCall](ethcall.md) | [1](ethcall.md#calls) | [1](ethcall.md#events) | [0](ethcall.md#storage-functions) | [2](ethcall.md#constants) | [3](ethcall.md#errors) |
 | [Ethereum](ethereum.md) | [1](ethereum.md#calls) | [1](ethereum.md#events) | [5](ethereum.md#storage-functions) | [0](ethereum.md#constants) | [2](ethereum.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
-| [PolkadotXcm](polkadotxcm.md) | [13](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [12](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
+| [PolkadotXcm](polkadotxcm.md) | [11](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [12](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |
 | [Proxy](proxy.md) | [10](proxy.md#calls) | [5](proxy.md#events) | [2](proxy.md#storage-functions) | [6](proxy.md#constants) | [8](proxy.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
 | [Sudo](sudo.md) | [4](sudo.md#calls) | [3](sudo.md#events) | [1](sudo.md#storage-functions) | [0](sudo.md#constants) | [1](sudo.md#errors) |

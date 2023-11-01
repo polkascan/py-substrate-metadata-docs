@@ -125,15 +125,15 @@ call = substrate.compose_call(
             'Relay': None,
             'SiblingParachain': 'u32',
         },
+        'Ethereum': {
+            'EthereumTransaction': '[u8; 20]',
+        },
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
         None: None,
-        'Ethereum': {
-            'EthereumTransaction': '[u8; 20]',
-        },
         'PolkadotXcm': {
             'Response': {
                 'interior': {

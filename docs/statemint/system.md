@@ -805,6 +805,44 @@ result = substrate.query(
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
             },
+            'Proxy': {
+                'Announced': {
+                    'call_hash': '[u8; 32]',
+                    'proxy': 'AccountId',
+                    'real': 'AccountId',
+                },
+                'ProxyAdded': {
+                    'delay': 'u32',
+                    'delegatee': 'AccountId',
+                    'delegator': 'AccountId',
+                    'proxy_type': 'scale_info::107',
+                },
+                'ProxyExecuted': {'result': 'scale_info::102'},
+                'ProxyRemoved': {
+                    'delay': 'u32',
+                    'delegatee': 'AccountId',
+                    'delegator': 'AccountId',
+                    'proxy_type': 'scale_info::107',
+                },
+                'PureCreated': {
+                    'disambiguation_index': 'u16',
+                    'proxy_type': 'scale_info::107',
+                    'pure': 'AccountId',
+                    'who': 'AccountId',
+                },
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::25',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::102'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::25'},
+            },
+            None: None,
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
@@ -874,32 +912,6 @@ result = substrate.query(
                     'scale_info::45',
                     ['scale_info::60'],
                 ),
-            },
-            'Proxy': {
-                'Announced': {
-                    'call_hash': '[u8; 32]',
-                    'proxy': 'AccountId',
-                    'real': 'AccountId',
-                },
-                'ProxyAdded': {
-                    'delay': 'u32',
-                    'delegatee': 'AccountId',
-                    'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::107',
-                },
-                'ProxyExecuted': {'result': 'scale_info::102'},
-                'ProxyRemoved': {
-                    'delay': 'u32',
-                    'delegatee': 'AccountId',
-                    'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::107',
-                },
-                'PureCreated': {
-                    'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::107',
-                    'pure': 'AccountId',
-                    'who': 'AccountId',
-                },
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
@@ -1022,17 +1034,6 @@ result = substrate.query(
                     'to': 'AccountId',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::25',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::102'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::25'},
-            },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -1054,7 +1055,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

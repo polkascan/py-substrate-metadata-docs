@@ -45,6 +45,17 @@ result = substrate.query(
 ## Constants
 
 ---------
+### KeyLimit
+ The maximum length of an attribute key.
+#### Value
+```python
+32
+```
+#### Python
+```python
+constant = substrate.get_constant('NftTransfer', 'KeyLimit')
+```
+---------
 ### PalletId
  The NFT-transfer&#x27;s pallet id, used for deriving its sovereign account ID.
 #### Value
@@ -54,6 +65,17 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('NftTransfer', 'PalletId')
+```
+---------
+### ValueLimit
+ The maximum length of an attribute value.
+#### Value
+```python
+64
+```
+#### Python
+```python
+constant = substrate.get_constant('NftTransfer', 'ValueLimit')
 ```
 ---------
 ## Errors

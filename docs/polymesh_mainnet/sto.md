@@ -146,15 +146,19 @@ call = substrate.compose_call(
     'receipt': (
         None,
         {
+            'instruction_id': 'u64',
             'leg_id': 'u64',
-            'metadata': 'Bytes',
-            'receipt_uid': 'u64',
+            'metadata': (
+                None,
+                '[u8; 32]',
+            ),
             'signature': {
                 'Ecdsa': '[u8; 65]',
                 'Ed25519': '[u8; 64]',
                 'Sr25519': '[u8; 64]',
             },
             'signer': 'AccountId',
+            'uid': 'u64',
         },
     ),
 }

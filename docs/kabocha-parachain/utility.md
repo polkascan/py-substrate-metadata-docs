@@ -979,12 +979,12 @@ call = substrate.compose_call(
             },
         },
         'Void': (),
+        None: None,
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
     },
     'call': 'Call',
 }

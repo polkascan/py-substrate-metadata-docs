@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | hydradx     |
 | Implementation name     | hydradx     |
-| Spec version     | 176     |
+| Spec version     | 183     |
 | SS58 Format     | 63     |
 | Token symbol      | HDX     |
 | Token decimals      | 12     |
@@ -54,6 +54,7 @@
 | [Router](router.md) | [2](router.md#calls) | [1](router.md#events) | [0](router.md#storage-functions) | [1](router.md#constants) | [7](router.md#errors) |
 | [Scheduler](scheduler.md) | [6](scheduler.md#calls) | [6](scheduler.md#events) | [3](scheduler.md#storage-functions) | [2](scheduler.md#constants) | [5](scheduler.md#errors) |
 | [Session](session.md) | [2](session.md#calls) | [1](session.md#events) | [7](session.md#storage-functions) | [0](session.md#constants) | [5](session.md#errors) |
+| [Stableswap](stableswap.md) | [10](stableswap.md#calls) | [8](stableswap.md#events) | [2](stableswap.md#storage-functions) | [3](stableswap.md#constants) | [27](stableswap.md#errors) |
 | [Staking](staking.md) | [5](staking.md#calls) | [6](staking.md#events) | [4](staking.md#storage-functions) | [11](staking.md#constants) | [11](staking.md#errors) |
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [TechnicalCommittee](technicalcommittee.md) | [7](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [0](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors) |
@@ -68,4 +69,5 @@
 | [Utility](utility.md) | [6](utility.md#calls) | [6](utility.md#events) | [0](utility.md#storage-functions) | [1](utility.md#constants) | [1](utility.md#errors) |
 | [Vesting](vesting.md) | [4](vesting.md#calls) | [3](vesting.md#events) | [1](vesting.md#storage-functions) | [1](vesting.md#constants) | [6](vesting.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
+| [XYK](xyk.md) | [5](xyk.md#calls) | [6](xyk.md#events) | [3](xyk.md#storage-functions) | [6](xyk.md#constants) | [25](xyk.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [0](xcmpqueue.md#calls) | [9](xcmpqueue.md#events) | [11](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |

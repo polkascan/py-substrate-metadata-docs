@@ -633,9 +633,9 @@ call = substrate.compose_call(
                         'BLP': 'u32',
                         'ForeignAsset': 'u32',
                         'LPToken': (
-                            'scale_info::131',
+                            'scale_info::249',
                             'u8',
-                            'scale_info::131',
+                            'scale_info::249',
                             'u8',
                         ),
                         'Native': (
@@ -680,7 +680,7 @@ call = substrate.compose_call(
                         ),
                         'Token2': 'u8',
                         'VSBond': (
-                            'scale_info::131',
+                            'scale_info::249',
                             'u32',
                             'u32',
                             'u32',
@@ -1552,9 +1552,9 @@ call = substrate.compose_call(
                         'BLP': 'u32',
                         'ForeignAsset': 'u32',
                         'LPToken': (
-                            'scale_info::131',
+                            'scale_info::249',
                             'u8',
-                            'scale_info::131',
+                            'scale_info::249',
                             'u8',
                         ),
                         'Native': (
@@ -1599,7 +1599,7 @@ call = substrate.compose_call(
                         ),
                         'Token2': 'u8',
                         'VSBond': (
-                            'scale_info::131',
+                            'scale_info::249',
                             'u32',
                             'u32',
                             'u32',
@@ -2161,14 +2161,14 @@ result = substrate.query(
 ```python
 {
     'gauge_amount': 'u128',
-    'gauge_basic_rewards': 'scale_info::639',
+    'gauge_basic_rewards': 'scale_info::705',
     'gauge_last_block': 'u32',
     'gauge_state': ('Unbond', 'Bonded'),
     'keeper': 'AccountId',
     'max_block': 'u32',
     'pid': 'u32',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::645',
+    'rewards': 'scale_info::709',
     'token': {
         'BLP': 'u32',
         'ForeignAsset': 'u32',
@@ -2325,7 +2325,7 @@ result = substrate.query(
 ```python
 {
     'after_block_to_start': 'u32',
-    'basic_rewards': 'scale_info::639',
+    'basic_rewards': 'scale_info::705',
     'basic_token': (
         {
             'BLP': 'u32',
@@ -2457,9 +2457,9 @@ result = substrate.query(
     'keeper': 'AccountId',
     'min_deposit_to_start': 'u128',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::640',
+    'rewards': 'scale_info::706',
     'state': ('UnCharged', 'Charged', 'Ongoing', 'Dead', 'Retired'),
-    'tokens_proportion': 'scale_info::638',
+    'tokens_proportion': 'scale_info::704',
     'total_shares': 'u128',
     'withdraw_limit_count': 'u8',
     'withdraw_limit_time': 'u32',
@@ -2514,7 +2514,7 @@ result = substrate.query(
     'share': 'u128',
     'who': 'AccountId',
     'withdraw_list': [('u32', 'u128')],
-    'withdrawn_rewards': 'scale_info::639',
+    'withdrawn_rewards': 'scale_info::705',
 }
 ```
 ---------

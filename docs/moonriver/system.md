@@ -346,36 +346,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'AssetManager': {
-                'ForeignAssetDestroyed': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::299',
-                },
-                'ForeignAssetRegistered': {
-                    'asset': 'scale_info::299',
-                    'asset_id': 'u128',
-                    'metadata': 'scale_info::300',
-                },
-                'ForeignAssetRemoved': {
-                    'asset_id': 'u128',
-                    'asset_type': 'scale_info::299',
-                },
-                'ForeignAssetTypeChanged': {
-                    'asset_id': 'u128',
-                    'new_asset_type': 'scale_info::299',
-                },
-                'LocalAssetDestroyed': {'asset_id': 'u128'},
-                'LocalAssetRegistered': {
-                    'asset_id': 'u128',
-                    'creator': '[u8; 20]',
-                    'owner': '[u8; 20]',
-                },
-                'SupportedAssetRemoved': {'asset_type': 'scale_info::299'},
-                'UnitsPerSecondChanged': {
-                    'asset_type': 'scale_info::299',
-                    'units_per_second': 'u128',
-                },
-            },
             'Assets': {
                 'AccountsDestroyed': {
                     'accounts_destroyed': 'u32',
@@ -458,6 +428,49 @@ result = substrate.query(
                     'delegate': '[u8; 20]',
                     'destination': '[u8; 20]',
                     'owner': '[u8; 20]',
+                },
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::9',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
+            'AssetManager': {
+                'ForeignAssetDestroyed': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::299',
+                },
+                'ForeignAssetRegistered': {
+                    'asset': 'scale_info::299',
+                    'asset_id': 'u128',
+                    'metadata': 'scale_info::300',
+                },
+                'ForeignAssetRemoved': {
+                    'asset_id': 'u128',
+                    'asset_type': 'scale_info::299',
+                },
+                'ForeignAssetTypeChanged': {
+                    'asset_id': 'u128',
+                    'new_asset_type': 'scale_info::299',
+                },
+                'LocalAssetDestroyed': {'asset_id': 'u128'},
+                'LocalAssetRegistered': {
+                    'asset_id': 'u128',
+                    'creator': '[u8; 20]',
+                    'owner': '[u8; 20]',
+                },
+                'SupportedAssetRemoved': {'asset_type': 'scale_info::299'},
+                'UnitsPerSecondChanged': {
+                    'asset_type': 'scale_info::299',
+                    'units_per_second': 'u128',
                 },
             },
             'AuthorFilter': {'EligibleUpdated': 'u32'},
@@ -1003,18 +1016,6 @@ result = substrate.query(
                 },
                 'TotalSelectedSet': {'new': 'u32', 'old': 'u32'},
             },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::9',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
             'PolkadotXcm': {
                 'AssetsClaimed': (
                     '[u8; 32]',
@@ -1387,7 +1388,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

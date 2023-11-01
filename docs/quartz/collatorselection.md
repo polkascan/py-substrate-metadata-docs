@@ -6,7 +6,7 @@
 
 ---------
 ### add_invulnerable
-Add a collator to the list of invulnerable (fixed) collators.
+See [`Pallet::add_invulnerable`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -21,11 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_release_license
-Force deregister `origin` as a collator candidate as a governing authority, and revoke its license.
-Note that the collator can only leave on session change.
-The `LicenseBond` will be unreserved and returned immediately.
-
-This call is, of course, not applicable to `Invulnerable` collators.
+See [`Pallet::force_release_license`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -40,11 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### get_license
-Purchase a license on block collation for this account.
-It does not make it a collator candidate, use `onboard` afterward. The account must
-(a) already have registered session keys and (b) be able to reserve the `LicenseBond`.
-
-This call is not available to `Invulnerable` collators.
+See [`Pallet::get_license`].
 #### Attributes
 No attributes
 
@@ -57,8 +49,7 @@ call = substrate.compose_call(
 
 ---------
 ### offboard
-Deregister `origin` as a collator candidate. Note that the collator can only leave on
-session change. The license to `onboard` later at any other time will remain.
+See [`Pallet::offboard`].
 #### Attributes
 No attributes
 
@@ -71,10 +62,7 @@ call = substrate.compose_call(
 
 ---------
 ### onboard
-Register this account as a candidate for collators for next sessions.
-The account must already hold a license, and cannot offboard immediately during a session.
-
-This call is not available to `Invulnerable` collators.
+See [`Pallet::onboard`].
 #### Attributes
 No attributes
 
@@ -87,9 +75,7 @@ call = substrate.compose_call(
 
 ---------
 ### release_license
-Forfeit `origin`&\#x27;s own license. The `LicenseBond` will be unreserved immediately.
-
-This call is not available to `Invulnerable` collators.
+See [`Pallet::release_license`].
 #### Attributes
 No attributes
 
@@ -102,7 +88,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_invulnerable
-Remove a collator from the list of invulnerable (fixed) collators.
+See [`Pallet::remove_invulnerable`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -224,19 +210,6 @@ result = substrate.query(
 #### Return value
 ```python
 'u128'
-```
----------
-## Constants
-
----------
-### LicenceBondIdentifier
-#### Value
-```python
-'0x6c6963656e63656964656e7469666965'
-```
-#### Python
-```python
-constant = substrate.get_constant('CollatorSelection', 'LicenceBondIdentifier')
 ```
 ---------
 ## Errors

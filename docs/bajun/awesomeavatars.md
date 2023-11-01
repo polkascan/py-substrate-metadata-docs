@@ -1079,6 +1079,17 @@ result = substrate.query(
 ## Constants
 
 ---------
+### KeyLimit
+ The maximum length of an attribute key.
+#### Value
+```python
+32
+```
+#### Python
+```python
+constant = substrate.get_constant('AwesomeAvatars', 'KeyLimit')
+```
+---------
 ### PalletId
 #### Value
 ```python
@@ -1087,6 +1098,17 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('AwesomeAvatars', 'PalletId')
+```
+---------
+### ValueLimit
+ The maximum length of an attribute value.
+#### Value
+```python
+64
+```
+#### Python
+```python
+constant = substrate.get_constant('AwesomeAvatars', 'ValueLimit')
 ```
 ---------
 ## Errors

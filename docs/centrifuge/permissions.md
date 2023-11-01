@@ -40,17 +40,17 @@ call = substrate.compose_call(
     },
     'scope': {
         'Currency': {
+            'AUSD': None,
+            'ForeignAsset': 'u32',
             'Native': None,
+            'Staking': (
+                'BlockRewards',
+            ),
             'Tranche': (
                 'u64',
                 '[u8; 16]',
             ),
             None: None,
-            'AUSD': None,
-            'ForeignAsset': 'u32',
-            'Staking': (
-                'BlockRewards',
-            ),
         },
         'Pool': 'u64',
     },
@@ -95,15 +95,15 @@ call = substrate.compose_call(
     'scope': {
         'Currency': {
             'Native': None,
-            'Tranche': (
-                'u64',
-                '[u8; 16]',
-            ),
             None: None,
             'AUSD': None,
             'ForeignAsset': 'u32',
             'Staking': (
                 'BlockRewards',
+            ),
+            'Tranche': (
+                'u64',
+                '[u8; 16]',
             ),
         },
         'Pool': 'u64',
@@ -125,16 +125,16 @@ call = substrate.compose_call(
     'Permissions', 'purge', {
     'scope': {
         'Currency': {
-            'Native': None,
-            'Tranche': (
-                'u64',
-                '[u8; 16]',
-            ),
             None: None,
             'AUSD': None,
             'ForeignAsset': 'u32',
+            'Native': None,
             'Staking': (
                 'BlockRewards',
+            ),
+            'Tranche': (
+                'u64',
+                '[u8; 16]',
             ),
         },
         'Pool': 'u64',
@@ -260,17 +260,17 @@ result = substrate.query(
     'AccountId',
     {
         'Currency': {
+            'AUSD': None,
+            'ForeignAsset': 'u32',
             'Native': None,
+            'Staking': (
+                'BlockRewards',
+            ),
             'Tranche': (
                 'u64',
                 '[u8; 16]',
             ),
             None: None,
-            'AUSD': None,
-            'ForeignAsset': 'u32',
-            'Staking': (
-                'BlockRewards',
-            ),
         },
         'Pool': 'u64',
     },

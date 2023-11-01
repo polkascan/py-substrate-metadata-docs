@@ -307,9 +307,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -378,6 +378,19 @@ result = substrate.query(
 [
     {
         'event': {
+            'AresChallenge': {
+                'CheckedNoPassSlashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'Reserved': {
+                    'amount': 'u128',
+                    'id': '[u8; 8]',
+                    'who': 'AccountId',
+                },
+            },
+            'BagsList': {
+                'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
+                'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -390,15 +403,6 @@ result = substrate.query(
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             None: None,
-            'AresChallenge': {
-                'CheckedNoPassSlashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'Reserved': {
-                    'amount': 'u128',
-                    'id': '[u8; 8]',
-                    'who': 'AccountId',
-                },
-            },
             'AresOracle': {
                 'AddPriceRequest': {
                     'fraction': 'u32',
@@ -465,10 +469,6 @@ result = substrate.query(
                     'price_token': 'Bytes',
                 },
                 'UpdatePurchasedDefaultSetting': {'setting': 'scale_info::76'},
-            },
-            'BagsList': {
-                'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
-                'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
             },
             'Balances': {
                 'BalanceSet': {

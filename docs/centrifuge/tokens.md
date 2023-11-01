@@ -23,9 +23,9 @@ call = substrate.compose_call(
         'AUSD': None,
         'ForeignAsset': 'u32',
         'Native': None,
+        'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
         None: None,
-        'Staking': ('BlockRewards', ),
     },
     'dest': {
         'Address20': '[u8; 20]',
@@ -60,12 +60,12 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Tokens', 'set_balance', {
     'currency_id': {
-        'Native': None,
-        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'Staking': ('BlockRewards', ),
+        'Native': None,
         'Tranche': ('u64', '[u8; 16]'),
+        None: None,
+        'Staking': ('BlockRewards', ),
     },
     'new_free': 'u128',
     'new_reserved': 'u128',
@@ -95,12 +95,12 @@ call = substrate.compose_call(
     'Tokens', 'transfer', {
     'amount': 'u128',
     'currency_id': {
+        'Native': None,
+        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
-        None: None,
     },
     'dest': {
         'Address20': '[u8; 20]',
@@ -127,10 +127,10 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Tokens', 'transfer_all', {
     'currency_id': {
+        'Native': None,
         None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
     },
@@ -163,10 +163,10 @@ call = substrate.compose_call(
     'currency_id': {
         'AUSD': None,
         'ForeignAsset': 'u32',
-        None: None,
         'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
     'dest': {
         'Address20': '[u8; 20]',

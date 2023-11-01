@@ -6,6 +6,12 @@
 
 ---------
 ### leave_intent
+Deregister `origin` as a collator candidate. Note that the collator can only leave on
+session change. The `CandidacyBond` will be unreserved immediately.
+
+This call will fail if the total number of candidates would drop below `MinCandidates`.
+
+This call is not available to `Invulnerable` collators.
 #### Attributes
 No attributes
 
@@ -18,6 +24,10 @@ call = substrate.compose_call(
 
 ---------
 ### register_as_candidate
+Register this account as a collator candidate. The account must (a) already have
+registered session keys and (b) be able to reserve the `CandidacyBond`.
+
+This call is not available to `Invulnerable` collators.
 #### Attributes
 No attributes
 
@@ -30,6 +40,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_candidacy_bond
+Set the candidacy bond amount.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -44,6 +55,9 @@ call = substrate.compose_call(
 
 ---------
 ### set_desired_candidates
+Set the ideal number of collators (not including the invulnerables).
+If lowering this number, then the number of running collators could be higher than this figure.
+Aside from that edge case, there should be no other way to have more collators than the desired number.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -58,6 +72,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_invulnerables
+Set the list of invulnerable (fixed) collators.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -78,43 +93,45 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
+| account_id | `T::AccountId` | ```AccountId```
+| deposit | `BalanceOf<T>` | ```u128```
 
 ---------
 ### CandidateRemoved
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
+| account_id | `T::AccountId` | ```AccountId```
 
 ---------
 ### NewCandidacyBond
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `BalanceOf<T>` | ```u128```
+| bond_amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ### NewDesiredCandidates
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `u32` | ```u32```
+| desired_candidates | `u32` | ```u32```
 
 ---------
 ### NewInvulnerables
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Vec<T::AccountId>` | ```['AccountId']```
+| invulnerables | `Vec<T::AccountId>` | ```['AccountId']```
 
 ---------
 ## Storage functions
 
 ---------
 ### CandidacyBond
- Fixed deposit bond for each candidate.
+ Fixed amount to deposit to become a collator.
+
+ When a collator calls `leave_intent` they immediately receive the deposit back.
 
 #### Python
 ```python
@@ -219,6 +236,10 @@ Too few candidates
 ---------
 ### TooManyCandidates
 Too many candidates
+
+---------
+### TooManyInvulnerables
+Too many invulnerables
 
 ---------
 ### Unknown

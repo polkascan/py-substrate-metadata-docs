@@ -33,6 +33,7 @@ call = substrate.compose_call(
     'amount': 'u128',
     'currency_id': ('TEER', ),
     'dest': {
+        None: None,
         'V2': {
             'interior': {
                 'Here': None,
@@ -913,7 +914,6 @@ call = substrate.compose_call(
             },
             'parents': 'u8',
         },
-        None: None,
         'V3': {
             'interior': {
                 'Here': None,
@@ -13887,6 +13887,7 @@ call = substrate.compose_call(
     'amount': 'u128',
     'currency_id': ('TEER', ),
     'dest': {
+        None: None,
         'V2': {
             'interior': {
                 'Here': None,
@@ -14767,7 +14768,6 @@ call = substrate.compose_call(
             },
             'parents': 'u8',
         },
-        None: None,
         'V3': {
             'interior': {
                 'Here': None,

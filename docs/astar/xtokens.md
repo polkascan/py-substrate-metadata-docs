@@ -16540,7 +16540,7 @@ Transferred `MultiAsset` with fee.
  T::Weigher::weight(&amp;msg)`.
 #### Value
 ```python
-{'proof_size': 65536, 'ref_time': 1000000000}
+{'proof_size': 4096, 'ref_time': 1000000000}
 ```
 #### Python
 ```python

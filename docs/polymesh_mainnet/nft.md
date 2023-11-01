@@ -144,14 +144,18 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### IssuedNFT
-Emitted when a new nft is issued.
+### NFTPortfolioUpdated
+Emitted when NFTs were issued, redeemed or transferred.
+Contains the [`IdentityId`] of the receiver/issuer/redeemer, the [`NFTs`], the [`PortfolioId`] of the source, the [`PortfolioId`]
+of the destination and the [`PortfolioUpdateReason`].
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `NFTCollectionId` | ```u64```
-| None | `NFTId` | ```u64```
+| None | `NFTs` | ```{'ticker': '[u8; 12]', 'ids': ['u64']}```
+| None | `Option<PortfolioId>` | ```(None, {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}})```
+| None | `Option<PortfolioId>` | ```(None, {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}})```
+| None | `PortfolioUpdateReason` | ```{'Issued': {'funding_round_name': (None, 'Bytes')}, 'Redeemed': None, 'Transferred': {'instruction_id': (None, 'u64'), 'instruction_memo': (None, '[u8; 32]')}}```
 
 ---------
 ### NftCollectionCreated
@@ -162,16 +166,6 @@ Emitted when a new nft collection is created.
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
 | None | `NFTCollectionId` | ```u64```
-
----------
-### RedeemedNFT
-Emitted when an NFT is redeemed.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `Ticker` | ```[u8; 12]```
-| None | `NFTId` | ```u64```
 
 ---------
 ## Storage functions
@@ -204,7 +198,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::743'
+'scale_info::725'
 ```
 ---------
 ### CollectionTicker

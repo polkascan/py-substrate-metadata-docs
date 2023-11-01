@@ -245,8 +245,8 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'PolkadotXcm': {
-                    'Response': 'scale_info::61',
-                    'Xcm': 'scale_info::61',
+                    'Response': 'scale_info::60',
+                    'Xcm': 'scale_info::60',
                 },
                 'TechnicalCommittee': {
                     'Member': 'AccountId',

@@ -487,6 +487,9 @@ constant = substrate.get_constant('XcmInterface', 'RelaychainCurrencyId')
 ## Errors
 
 ---------
+### FailToConvert
+
+---------
 ### FeeConvertFailed
 
 ---------

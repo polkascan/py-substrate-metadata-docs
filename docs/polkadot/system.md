@@ -275,9 +275,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -861,6 +861,7 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'Slots': {
                 'Leased': {
                     'extra_reserved': 'u128',
@@ -903,6 +904,55 @@ result = substrate.query(
                 },
                 'Withdrawn': {'amount': 'u128', 'stash': 'AccountId'},
             },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'Tips': {
+                'NewTip': {'tip_hash': '[u8; 32]'},
+                'TipClosed': {
+                    'payout': 'u128',
+                    'tip_hash': '[u8; 32]',
+                    'who': 'AccountId',
+                },
+                'TipClosing': {'tip_hash': '[u8; 32]'},
+                'TipRetracted': {'tip_hash': '[u8; 32]'},
+                'TipSlashed': {
+                    'deposit': 'u128',
+                    'finder': 'AccountId',
+                    'tip_hash': '[u8; 32]',
+                },
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::25',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::33'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::25'},
+            },
+            'Vesting': {
+                'VestingCompleted': {'account': 'AccountId'},
+                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
+            },
+            None: None,
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -933,28 +983,14 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'Tips': {
-                'NewTip': {'tip_hash': '[u8; 32]'},
-                'TipClosed': {
-                    'payout': 'u128',
-                    'tip_hash': '[u8; 32]',
-                    'who': 'AccountId',
-                },
-                'TipClosing': {'tip_hash': '[u8; 32]'},
-                'TipRetracted': {'tip_hash': '[u8; 32]'},
-                'TipSlashed': {
-                    'deposit': 'u128',
-                    'finder': 'AccountId',
-                    'tip_hash': '[u8; 32]',
-                },
-            },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -977,42 +1013,6 @@ result = substrate.query(
                     'reactivated': 'u128',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::25',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::33'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::25'},
-            },
-            'Vesting': {
-                'VestingCompleted': {'account': 'AccountId'},
-                'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
-            },
-            None: None,
-            'Session': {'NewSession': {'session_index': 'u32'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
             'VoterList': {
                 'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
                 'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
@@ -1361,7 +1361,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'parity-polkadot',
     'impl_version': 0,
     'spec_name': 'polkadot',
-    'spec_version': 9430,
+    'spec_version': 9431,
     'state_version': 0,
     'transaction_version': 24,
 }

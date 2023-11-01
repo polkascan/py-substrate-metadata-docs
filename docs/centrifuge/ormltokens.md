@@ -179,12 +179,12 @@ result = substrate.query(
     'OrmlTokens', 'Accounts', [
     'AccountId',
     {
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'Native': None,
         'Staking': ('BlockRewards', ),
+        'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
 ]
 )
@@ -230,12 +230,12 @@ result = substrate.query(
     'OrmlTokens', 'Reserves', [
     'AccountId',
     {
-        'Native': None,
-        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
 ]
 )
@@ -254,12 +254,12 @@ result = substrate.query(
 result = substrate.query(
     'OrmlTokens', 'TotalIssuance', [
     {
-        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
         'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
 ]
 )

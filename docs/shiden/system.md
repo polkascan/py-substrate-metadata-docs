@@ -346,7 +346,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Assets': {
                 'AccountsDestroyed': {
                     'accounts_destroyed': 'u32',
@@ -478,17 +477,9 @@ result = substrate.query(
                     'ideal_dapps_staking_tvl': 'u32',
                 },
             },
-            'CollatorSelection': {
-                'CandidateAdded': ('AccountId', 'u128'),
-                'CandidateRemoved': 'AccountId',
-                'CandidateSlashed': 'AccountId',
-                'NewCandidacyBond': 'u128',
-                'NewDesiredCandidates': 'u32',
-                'NewInvulnerables': ['AccountId'],
-            },
             'Contracts': {
                 'Called': {
-                    'caller': 'scale_info::138',
+                    'caller': 'scale_info::137',
                     'contract': 'AccountId',
                 },
                 'CodeRemoved': {'code_hash': '[u8; 32]'},
@@ -545,29 +536,6 @@ result = substrate.query(
                 ),
                 'Withdrawn': ('AccountId', 'u128'),
             },
-            'DmpQueue': {
-                'ExecutedDownward': {
-                    'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::63',
-                },
-                'InvalidFormat': {'message_id': '[u8; 32]'},
-                'MaxMessagesExhausted': {'message_id': '[u8; 32]'},
-                'OverweightEnqueued': {
-                    'message_id': '[u8; 32]',
-                    'overweight_index': 'u64',
-                    'required_weight': 'scale_info::9',
-                },
-                'OverweightServiced': {
-                    'overweight_index': 'u64',
-                    'weight_used': 'scale_info::9',
-                },
-                'UnsupportedVersion': {'message_id': '[u8; 32]'},
-                'WeightExhausted': {
-                    'message_id': '[u8; 32]',
-                    'remaining_weight': 'scale_info::9',
-                    'required_weight': 'scale_info::9',
-                },
-            },
             'EVM': {
                 'Created': {'address': '[u8; 20]'},
                 'CreatedFailed': {'address': '[u8; 20]'},
@@ -575,7 +543,6 @@ result = substrate.query(
                 'ExecutedFailed': {'address': '[u8; 20]'},
                 'Log': {'log': 'scale_info::121'},
             },
-            'EthCall': {'Executed': ('AccountId', 'scale_info::31')},
             'Ethereum': {
                 'Executed': {
                     'exit_reason': 'scale_info::124',
@@ -616,6 +583,49 @@ result = substrate.query(
                     'deposit': 'u128',
                     'main': 'AccountId',
                     'sub': 'AccountId',
+                },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'CollatorSelection': {
+                'CandidateAdded': ('AccountId', 'u128'),
+                'CandidateRemoved': 'AccountId',
+                'CandidateSlashed': 'AccountId',
+                'NewCandidacyBond': 'u128',
+                'NewDesiredCandidates': 'u32',
+                'NewInvulnerables': ['AccountId'],
+            },
+            'DmpQueue': {
+                'ExecutedDownward': {
+                    'message_id': '[u8; 32]',
+                    'outcome': 'scale_info::63',
+                },
+                'InvalidFormat': {'message_id': '[u8; 32]'},
+                'MaxMessagesExhausted': {'message_id': '[u8; 32]'},
+                'OverweightEnqueued': {
+                    'message_id': '[u8; 32]',
+                    'overweight_index': 'u64',
+                    'required_weight': 'scale_info::9',
+                },
+                'OverweightServiced': {
+                    'overweight_index': 'u64',
+                    'weight_used': 'scale_info::9',
+                },
+                'UnsupportedVersion': {'message_id': '[u8; 32]'},
+                'WeightExhausted': {
+                    'message_id': '[u8; 32]',
+                    'remaining_weight': 'scale_info::9',
+                    'required_weight': 'scale_info::9',
                 },
             },
             'Multisig': {
@@ -757,17 +767,6 @@ result = substrate.query(
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::31'},
                 'SudoAsDone': {'sudo_result': 'scale_info::31'},
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TransactionPayment': {
                 'TransactionFeePaid': {
@@ -1082,7 +1081,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'shiden',
     'impl_version': 0,
     'spec_name': 'shiden',
-    'spec_version': 106,
+    'spec_version': 108,
     'state_version': 1,
     'transaction_version': 2,
 }

@@ -163,7 +163,7 @@ A change was proposed.
 | -------- | -------- | -------- |
 | pool_id | `T::PoolId` | ```u64```
 | change_id | `T::Hash` | ```[u8; 32]```
-| change | `T::RuntimeChange` | ```{'Loan': {'Loan': ('u64', {'Maturity': {'Fixed': 'InnerStruct'}, 'MaturityExtension': 'u64', 'InterestRate': {'Fixed': 'InnerStruct'}, 'InterestPayments': ('None',), 'PayDownSchedule': ('None',), 'Internal': {'ValuationMethod': 'scale_info::251', 'ProbabilityOfDefault': 'u128', 'LossGivenDefault': 'u128', 'DiscountRate': 'scale_info::246'}}), 'Policy': [{'triggers': 'scale_info::258', 'status': {'percentage': 'u128', 'penalty': 'u128'}}]}}```
+| change | `T::RuntimeChange` | ```{'Loan': {'Loan': ('u64', {'Maturity': {'Fixed': 'InnerStruct'}, 'MaturityExtension': 'u64', 'InterestRate': {'Fixed': 'InnerStruct'}, 'InterestPayments': ('None',), 'PayDownSchedule': ('None',), 'Internal': {'ValuationMethod': 'scale_info::252', 'ProbabilityOfDefault': 'u128', 'LossGivenDefault': 'u128', 'DiscountRate': 'scale_info::247'}}), 'Policy': [{'triggers': 'scale_info::259', 'status': {'percentage': 'u128', 'penalty': 'u128'}}], 'TransferDebt': ('u64', 'u64', {'principal': {'Internal': 'u128', 'External': 'scale_info::265'}, 'interest': 'u128', 'unscheduled': 'u128'}, {'Internal': 'u128', 'External': {'quantity': 'u128', 'settlement_price': 'u128'}})}}```
 
 ---------
 ### Rebalanced
@@ -226,12 +226,12 @@ result = substrate.query(
     'best_submission': (
         None,
         {
-            'Healthy': {'score': 'u128', 'solution': ['scale_info::220']},
+            'Healthy': {'score': 'u128', 'solution': ['scale_info::223']},
             'Unhealthy': {
                 'reserve_improvement_score': (None, 'u128'),
                 'risk_buffer_improvement_scores': (None, ['u128']),
-                'solution': ['scale_info::220'],
-                'state': ['scale_info::225'],
+                'solution': ['scale_info::223'],
+                'state': ['scale_info::228'],
             },
         },
     ),
@@ -273,17 +273,27 @@ result = substrate.query(
             'Loan': (
                 'u64',
                 {
-                    'InterestPayments': 'scale_info::248',
-                    'InterestRate': 'scale_info::246',
-                    'Internal': 'scale_info::250',
-                    'Maturity': 'scale_info::245',
+                    'InterestPayments': 'scale_info::249',
+                    'InterestRate': 'scale_info::247',
+                    'Internal': 'scale_info::251',
+                    'Maturity': 'scale_info::246',
                     'MaturityExtension': 'u64',
-                    'PayDownSchedule': 'scale_info::249',
+                    'PayDownSchedule': 'scale_info::250',
                 },
             ),
             'Policy': [
-                {'status': 'scale_info::260', 'triggers': 'scale_info::258'},
+                {'status': 'scale_info::261', 'triggers': 'scale_info::259'},
             ],
+            'TransferDebt': (
+                'u64',
+                'u64',
+                {
+                    'interest': 'u128',
+                    'principal': 'scale_info::264',
+                    'unscheduled': 'u128',
+                },
+                {'External': 'scale_info::265', 'Internal': 'u128'},
+            ),
         },
     },
     'submitted_time': 'u64',
@@ -303,12 +313,12 @@ result = substrate.query(
 ```python
 {
     'currency': {
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
         None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'Native': None,
         'Staking': ('BlockRewards', ),
+        'Tranche': ('u64', '[u8; 16]'),
     },
     'epoch': {'current': 'u32', 'last_closed': 'u64', 'last_executed': 'u32'},
     'parameters': {'max_nav_age': 'u64', 'min_epoch_time': 'u64'},
@@ -371,7 +381,7 @@ result = substrate.query(
         },
         'tranches': {
             'NewValue': [
-                {'seniority': (None, 'u32'), 'tranche_type': 'scale_info::237'},
+                {'seniority': (None, 'u32'), 'tranche_type': 'scale_info::239'},
             ],
             'NoChange': None,
         },

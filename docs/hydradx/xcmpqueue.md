@@ -121,8 +121,8 @@ result = substrate.query(
         'sent_at': 'u32',
         'xcm': {
             None: None,
-            'V2': ['scale_info::331'],
-            'V3': ['scale_info::335'],
+            'V2': ['scale_info::339'],
+            'V3': ['scale_info::343'],
         },
     },
 ]

@@ -209,7 +209,6 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
-        None: None,
         'CouncilCollective': {
             'Member': '[u8; 20]',
             'Members': ('u32', 'u32'),
@@ -1228,6 +1227,7 @@ call = substrate.compose_call(
             'Root': None,
             'Signed': '[u8; 20]',
         },
+        None: None,
     },
 }
 )

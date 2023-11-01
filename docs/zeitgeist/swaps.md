@@ -560,6 +560,29 @@ Share holder rewards were distributed. \[pool_id, num_accounts_rewarded, amount\
 | None | `BalanceOf<T>` | ```u128```
 
 ---------
+### MarketCreatorFeePaymentFailed
+Fee payment to market creator failed (usually due to existential deposit requirements) \[payer, payee, amount, asset, error\]
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
+| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
+| None | `BalanceOf<T>` | ```u128```
+| None | `Asset<MarketIdOf<T>>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
+| None | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+
+---------
+### MarketCreatorFeesPaid
+Fees were paid to the market creators. \[payer, payee, amount, asset\]
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
+| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
+| None | `BalanceOf<T>` | ```u128```
+| None | `Asset<MarketIdOf<T>>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
+
+---------
 ### PoolActive
 A pool was opened. \[pool_id\]
 #### Attributes
@@ -590,7 +613,7 @@ A new pool has been created. \[CommonPoolEventParams, pool, pool_amount, pool_ac
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CommonPoolEventParams<<T as frame_system::Config>::AccountId>` | ```{'pool_id': 'u128', 'who': 'AccountId'}```
-| None | `Pool<BalanceOf<T>, MarketIdOf<T>>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}], 'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'market_id': 'u128', 'pool_status': ('Active', 'CollectingSubsidy', 'Closed', 'Clean', 'Initialized'), 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'), 'swap_fee': (None, 'u128'), 'total_subsidy': (None, 'u128'), 'total_weight': (None, 'u128'), 'weights': (None, 'scale_info::82')}```
+| None | `Pool<BalanceOf<T>, MarketIdOf<T>>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}], 'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'market_id': 'u128', 'pool_status': ('Active', 'CollectingSubsidy', 'Closed', 'Clean', 'Initialized'), 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma', 'Lmsr', 'Orderbook'), 'swap_fee': (None, 'u128'), 'total_subsidy': (None, 'u128'), 'total_weight': (None, 'u128'), 'weights': (None, 'scale_info::85')}```
 | None | `BalanceOf<T>` | ```u128```
 | None | `T::AccountId` | ```AccountId```
 
@@ -772,11 +795,16 @@ result = substrate.query(
             'Clean',
             'Initialized',
         ),
-        'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'),
+        'scoring_rule': (
+            'CPMM',
+            'RikiddoSigmoidFeeMarketEma',
+            'Lmsr',
+            'Orderbook',
+        ),
         'swap_fee': (None, 'u128'),
         'total_subsidy': (None, 'u128'),
         'total_weight': (None, 'u128'),
-        'weights': (None, 'scale_info::82'),
+        'weights': (None, 'scale_info::85'),
     },
 )
 ```

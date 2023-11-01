@@ -225,6 +225,20 @@ result = substrate.query(
 '[u8; 32]'
 ```
 ---------
+### Suicided
+
+#### Python
+```python
+result = substrate.query(
+    'EVM', 'Suicided', ['[u8; 20]']
+)
+```
+
+#### Return value
+```python
+()
+```
+---------
 ## Errors
 
 ---------

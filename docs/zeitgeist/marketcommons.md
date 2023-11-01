@@ -63,6 +63,10 @@ result = substrate.query(
             None,
             {'is_settled': 'bool', 'value': 'u128', 'who': 'AccountId'},
         ),
+        'dispute': (
+            None,
+            {'is_settled': 'bool', 'value': 'u128', 'who': 'AccountId'},
+        ),
         'oracle': (
             None,
             {'is_settled': 'bool', 'value': 'u128', 'who': 'AccountId'},
@@ -74,13 +78,13 @@ result = substrate.query(
     },
     'creation': ('Permissionless', 'Advised'),
     'creator': 'AccountId',
-    'creator_fee': 'u8',
+    'creator_fee': 'u32',
     'deadlines': {
         'dispute_duration': 'u64',
         'grace_period': 'u64',
         'oracle_duration': 'u64',
     },
-    'dispute_mechanism': ('Authorized', 'Court', 'SimpleDisputes'),
+    'dispute_mechanism': (None, ('Authorized', 'Court', 'SimpleDisputes')),
     'market_type': {
         'Categorical': 'u16',
         'Scalar': {'end': 'u128', 'start': 'u128'},
@@ -100,7 +104,12 @@ result = substrate.query(
         },
     ),
     'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}),
-    'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'),
+    'scoring_rule': (
+        'CPMM',
+        'RikiddoSigmoidFeeMarketEma',
+        'Lmsr',
+        'Orderbook',
+    ),
     'status': (
         'Proposed',
         'Active',

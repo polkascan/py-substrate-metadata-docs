@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bifrost     |
 | Implementation name     | bifrost     |
-| Spec version     | 982     |
+| Spec version     | 984     |
 | SS58 Format     | 6     |
 | Token symbol      | ['BNC', 'KUSD', 'DOT', 'KSM', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR']     |
 | Token decimals      | [12, 12, 10, 12, 12, 18, 12, 10, 18]     |
@@ -72,10 +72,10 @@
 | [Vesting](vesting.md) | [8](vesting.md#calls) | [2](vesting.md#events) | [3](vesting.md#storage-functions) | [1](vesting.md#constants) | [7](vesting.md#errors) |
 | [VstokenConversion](vstokenconversion.md) | [5](vstokenconversion.md#calls) | [9](vstokenconversion.md#events) | [3](vstokenconversion.md#storage-functions) | [3](vstokenconversion.md#constants) | [3](vstokenconversion.md#errors) |
 | [VtokenMinting](vtokenminting.md) | [13](vtokenminting.md#calls) | [15](vtokenminting.md#events) | [14](vtokenminting.md#storage-functions) | [9](vtokenminting.md#constants) | [17](vtokenminting.md#errors) |
-| [VtokenVoting](vtokenvoting.md) | [10](vtokenvoting.md#calls) | [12](vtokenvoting.md#events) | [11](vtokenvoting.md#storage-functions) | [3](vtokenvoting.md#constants) | [18](vtokenvoting.md#errors) |
+| [VtokenVoting](vtokenvoting.md) | [10](vtokenvoting.md#calls) | [12](vtokenvoting.md#events) | [12](vtokenvoting.md#storage-functions) | [4](vtokenvoting.md#constants) | [19](vtokenvoting.md#errors) |
 | [Whitelist](whitelist.md) | [4](whitelist.md#calls) | [3](whitelist.md#events) | [1](whitelist.md#storage-functions) | [0](whitelist.md#constants) | [5](whitelist.md#errors) |
 | [XTokens](xtokens.md) | [6](xtokens.md#calls) | [1](xtokens.md#events) | [0](xtokens.md#storage-functions) | [2](xtokens.md#constants) | [19](xtokens.md#errors) |
-| [XcmInterface](xcminterface.md) | [2](xcminterface.md#calls) | [2](xcminterface.md#events) | [3](xcminterface.md#storage-functions) | [5](xcminterface.md#constants) | [4](xcminterface.md#errors) |
+| [XcmInterface](xcminterface.md) | [2](xcminterface.md#calls) | [2](xcminterface.md#events) | [3](xcminterface.md#storage-functions) | [5](xcminterface.md#constants) | [5](xcminterface.md#errors) |
 | [XcmpQueue](xcmpqueue.md) | [9](xcmpqueue.md#calls) | [7](xcmpqueue.md#events) | [10](xcmpqueue.md#storage-functions) | [0](xcmpqueue.md#constants) | [5](xcmpqueue.md#errors) |
 | [ZenlinkProtocol](zenlinkprotocol.md) | [16](zenlinkprotocol.md#calls) | [17](zenlinkprotocol.md#events) | [11](zenlinkprotocol.md#storage-functions) | [1](zenlinkprotocol.md#constants) | [34](zenlinkprotocol.md#errors) |
 | [ZenlinkStableAMM](zenlinkstableamm.md) | [19](zenlinkstableamm.md#calls) | [13](zenlinkstableamm.md#events) | [3](zenlinkstableamm.md#storage-functions) | [2](zenlinkstableamm.md#constants) | [29](zenlinkstableamm.md#errors) |

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | centrifuge     |
 | Implementation name     | centrifuge     |
-| Spec version     | 1020     |
+| Spec version     | 1023     |
 | SS58 Format     | 36     |
 | Token symbol      | CFG     |
 | Token decimals      | 18     |
@@ -38,22 +38,24 @@
 | [EVMChainId](evmchainid.md) | [0](evmchainid.md#calls) | [0](evmchainid.md#events) | [1](evmchainid.md#storage-functions) | [0](evmchainid.md#constants) | [0](evmchainid.md#errors) |
 | [Elections](elections.md) | [6](elections.md#calls) | [7](elections.md#events) | [5](elections.md#storage-functions) | [9](elections.md#constants) | [17](elections.md#errors) |
 | [Ethereum](ethereum.md) | [1](ethereum.md#calls) | [1](ethereum.md#events) | [5](ethereum.md#storage-functions) | [0](ethereum.md#constants) | [2](ethereum.md#errors) |
-| [EthereumTransaction](ethereumtransaction.md) | [0](ethereumtransaction.md#calls) | [1](ethereumtransaction.md#events) | [1](ethereumtransaction.md#storage-functions) | [0](ethereumtransaction.md#constants) | [19](ethereumtransaction.md#errors) |
+| [EthereumTransaction](ethereumtransaction.md) | [0](ethereumtransaction.md#calls) | [0](ethereumtransaction.md#events) | [1](ethereumtransaction.md#storage-functions) | [0](ethereumtransaction.md#constants) | [0](ethereumtransaction.md#errors) |
 | [Fees](fees.md) | [1](fees.md#calls) | [4](fees.md#events) | [1](fees.md#storage-functions) | [0](fees.md#constants) | [0](fees.md#errors) |
+| [ForeignInvestments](foreigninvestments.md) | [0](foreigninvestments.md#calls) | [4](foreigninvestments.md#events) | [8](foreigninvestments.md#storage-functions) | [1](foreigninvestments.md#constants) | [8](foreigninvestments.md#errors) |
 | [GapRewardMechanism](gaprewardmechanism.md) | [0](gaprewardmechanism.md#calls) | [0](gaprewardmechanism.md#events) | [2](gaprewardmechanism.md#storage-functions) | [0](gaprewardmechanism.md#constants) | [1](gaprewardmechanism.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [InterestAccrual](interestaccrual.md) | [0](interestaccrual.md#calls) | [0](interestaccrual.md#events) | [2](interestaccrual.md#storage-functions) | [0](interestaccrual.md#constants) | [5](interestaccrual.md#errors) |
-| [Investments](investments.md) | [6](investments.md#calls) | [12](investments.md#events) | [10](investments.md#storage-functions) | [0](investments.md#constants) | [10](investments.md#errors) |
+| [Investments](investments.md) | [6](investments.md#calls) | [12](investments.md#events) | [10](investments.md#storage-functions) | [1](investments.md#constants) | [10](investments.md#errors) |
 | [Keystore](keystore.md) | [3](keystore.md#calls) | [3](keystore.md#events) | [3](keystore.md#storage-functions) | [1](keystore.md#constants) | [5](keystore.md#errors) |
-| [LiquidityPools](liquiditypools.md) | [10](liquiditypools.md#calls) | [3](liquiditypools.md#events) | [1](liquiditypools.md#storage-functions) | [2](liquiditypools.md#constants) | [21](liquiditypools.md#errors) |
+| [LiquidityPools](liquiditypools.md) | [11](liquiditypools.md#calls) | [1](liquiditypools.md#events) | [0](liquiditypools.md#storage-functions) | [2](liquiditypools.md#constants) | [22](liquiditypools.md#errors) |
 | [LiquidityPoolsAxelarGateway](liquiditypoolsaxelargateway.md) | [2](liquiditypoolsaxelargateway.md#calls) | [2](liquiditypoolsaxelargateway.md#events) | [2](liquiditypoolsaxelargateway.md#storage-functions) | [0](liquiditypoolsaxelargateway.md#constants) | [2](liquiditypoolsaxelargateway.md#errors) |
 | [LiquidityPoolsGateway](liquiditypoolsgateway.md) | [6](liquiditypoolsgateway.md#calls) | [6](liquiditypoolsgateway.md#events) | [3](liquiditypoolsgateway.md#storage-functions) | [2](liquiditypoolsgateway.md#constants) | [11](liquiditypoolsgateway.md#errors) |
 | [LiquidityRewards](liquidityrewards.md) | [7](liquidityrewards.md#calls) | [1](liquidityrewards.md#events) | [3](liquidityrewards.md#storage-functions) | [3](liquidityrewards.md#constants) | [1](liquidityrewards.md#errors) |
 | [LiquidityRewardsBase](liquidityrewardsbase.md) | [0](liquidityrewardsbase.md#calls) | [5](liquidityrewardsbase.md#events) | [3](liquidityrewardsbase.md#storage-functions) | [1](liquidityrewardsbase.md#constants) | [3](liquidityrewardsbase.md#errors) |
-| [Loans](loans.md) | [11](loans.md#calls) | [8](loans.md#events) | [6](loans.md#storage-functions) | [2](loans.md#constants) | [17](loans.md#errors) |
+| [Loans](loans.md) | [13](loans.md#calls) | [9](loans.md#events) | [6](loans.md#storage-functions) | [2](loans.md#constants) | [19](loans.md#errors) |
 | [Migration](migration.md) | [5](migration.md#calls) | [9](migration.md#events) | [1](migration.md#storage-functions) | [3](migration.md#constants) | [5](migration.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [Nfts](nfts.md) | [1](nfts.md#calls) | [1](nfts.md#events) | [0](nfts.md#storage-functions) | [2](nfts.md#constants) | [2](nfts.md#errors) |
+| [OrderBook](orderbook.md) | [8](orderbook.md#calls) | [7](orderbook.md#events) | [5](orderbook.md#storage-functions) | [2](orderbook.md#constants) | [13](orderbook.md#errors) |
 | [OrmlAssetRegistry](ormlassetregistry.md) | [2](ormlassetregistry.md#calls) | [2](ormlassetregistry.md#events) | [3](ormlassetregistry.md#storage-functions) | [0](ormlassetregistry.md#constants) | [5](ormlassetregistry.md#errors) |
 | [OrmlTokens](ormltokens.md) | [0](ormltokens.md#calls) | [15](ormltokens.md#events) | [4](ormltokens.md#storage-functions) | [2](ormltokens.md#constants) | [8](ormltokens.md#errors) |
 | [OrmlXcm](ormlxcm.md) | [1](ormlxcm.md#calls) | [1](ormlxcm.md#events) | [0](ormlxcm.md#storage-functions) | [0](ormlxcm.md#constants) | [3](ormlxcm.md#errors) |

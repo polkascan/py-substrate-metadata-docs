@@ -193,6 +193,21 @@ result = substrate.query(
 'bool'
 ```
 ---------
+### StorageVersion
+ Storage version.
+
+#### Python
+```python
+result = substrate.query(
+    'PolymeshContracts', 'StorageVersion', []
+)
+```
+
+#### Return value
+```python
+'u8'
+```
+---------
 ## Errors
 
 ---------

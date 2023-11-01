@@ -399,17 +399,6 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### CAATransferred
-A new DID was made the CAA.
-(New CAA DID, Ticker, New CAA DID).
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `Ticker` | ```[u8; 12]```
-| None | `IdentityId` | ```[u8; 32]```
-
----------
 ### CAInitiated
 A CA was initiated.
 (Agent DID, CA id, the CA, the CA details)
@@ -717,10 +706,6 @@ constant = substrate.get_constant('CorporateAction', 'MaxTargetIds')
 ```
 ---------
 ## Errors
-
----------
-### AuthNotCAATransfer
-The authorization type is not to transfer the CAA to another DID.
 
 ---------
 ### DeclDateAfterRecordDate

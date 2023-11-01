@@ -6,8 +6,7 @@
 
 ---------
 ### begin
-Start contract migration, inserts contract stub at target address,
-and marks account as pending, allowing to insert storage
+See [`Pallet::begin`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -22,9 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### finish
-Finish contract migration, allows it to be called.
-It is not possible to alter contract storage via [`Self::set_data`]
-after this call.
+See [`Pallet::finish`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -43,7 +40,7 @@ call = substrate.compose_call(
 
 ---------
 ### insert_eth_logs
-Create ethereum events attached to the fake transaction
+See [`Pallet::insert_eth_logs`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -66,7 +63,7 @@ call = substrate.compose_call(
 
 ---------
 ### insert_events
-Create substrate events
+See [`Pallet::insert_events`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -81,7 +78,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_rmrk_data
-Remove remark compatibility data leftovers
+See [`Pallet::remove_rmrk_data`].
 #### Attributes
 No attributes
 
@@ -94,8 +91,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_data
-Insert items into contract storage, this method can be called
-multiple times
+See [`Pallet::set_data`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

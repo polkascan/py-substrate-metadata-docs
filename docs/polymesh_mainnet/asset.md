@@ -102,38 +102,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### claim_classic_ticker
-Claim a systematically reserved Polymath Classic (PMC) `ticker`
-and transfer it to the `origin`&\#x27;s identity.
-
-To verify that the `origin` is in control of the Ethereum account on the books,
-an `ethereum_signature` containing the `origin`&\#x27;s DID as the message
-must be provided by that Ethereum account.
-
-\# Errors
-- `NoSuchClassicTicker` if this is not a systematically reserved PMC ticker.
-- `TickerAlreadyRegistered` if the ticker was already registered, e.g., by `origin`.
-- `TickerRegistrationExpired` if the ticker&\#x27;s registration has expired.
-- `BadOrigin` if not signed.
-- `InvalidEthereumSignature` if the `ethereum_signature` is not valid.
-- `NotAnOwner` if the ethereum account is not the owner of the PMC ticker.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ticker | `Ticker` | 
-| ethereum_signature | `EcdsaSignature` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Asset', 'claim_classic_ticker', {
-    'ethereum_signature': '[u8; 65]',
-    'ticker': '[u8; 12]',
-}
-)
-```
-
----------
 ### controller_transfer
 Forces a transfer of token from `from_portfolio` to the caller&\#x27;s default portfolio.
 
@@ -179,8 +147,6 @@ The total supply will initially be zero. To mint tokens, use `issue`.
 * `asset_type` - the asset type.
 * `identifiers` - a vector of asset identifiers.
 * `funding_round` - name of the funding round.
-* `disable_iu` - whether or not investor uniqueness enforcement should be disabled.
-  This cannot be changed after creating the asset.
 
 \#\# Errors
 - `InvalidAssetIdentifier` if any of `identifiers` are invalid.
@@ -203,7 +169,6 @@ parameter.
 | asset_type | `AssetType` | 
 | identifiers | `Vec<AssetIdentifier>` | 
 | funding_round | `Option<FundingRoundName>` | 
-| disable_iu | `bool` | 
 
 #### Python
 ```python
@@ -228,7 +193,6 @@ call = substrate.compose_call(
         'StableCoin': None,
         'StructuredProduct': None,
     },
-    'disable_iu': 'bool',
     'divisible': 'bool',
     'funding_round': (None, 'Bytes'),
     'identifiers': [
@@ -258,14 +222,12 @@ Utility extrinsic to batch `create_asset` and `register_custom_asset_type`.
 | custom_asset_type | `Vec<u8>` | 
 | identifiers | `Vec<AssetIdentifier>` | 
 | funding_round | `Option<FundingRoundName>` | 
-| disable_iu | `bool` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Asset', 'create_asset_with_custom_type', {
     'custom_asset_type': 'Bytes',
-    'disable_iu': 'bool',
     'divisible': 'bool',
     'funding_round': (None, 'Bytes'),
     'identifiers': [
@@ -280,6 +242,28 @@ call = substrate.compose_call(
     'name': 'Bytes',
     'ticker': '[u8; 12]',
 }
+)
+```
+
+---------
+### exempt_ticker_affirmation
+Pre-approves the receivement of the asset for all identities.
+
+\# Arguments
+* `origin` - the secondary key of the sender.
+* `ticker` - the [`Ticker`] that will be exempt from affirmation.
+
+\# Permissions
+* Root
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Asset', 'exempt_ticker_affirmation', {'ticker': '[u8; 12]'}
 )
 ```
 
@@ -310,13 +294,13 @@ call = substrate.compose_call(
 
 ---------
 ### issue
-Issue, or mint, new tokens to the caller,
-which must be an authorized external agent.
+Issue, or mint, new tokens to the caller, which must be an authorized external agent.
 
 \# Arguments
-* `origin` is a signer that has permissions to act as an agent of `ticker`.
-* `ticker` of the token.
-* `amount` of tokens that get issued.
+* `origin` - A signer that has permissions to act as an agent of `ticker`.
+* `ticker` - The [`Ticker`] of the token.
+* `amount` - The amount of tokens that will be issued.
+* `portfolio_kind` - The [`PortfolioKind`] of the portfolio that will receive the minted tokens.
 
 \# Permissions
 * Asset
@@ -326,12 +310,17 @@ which must be an authorized external agent.
 | -------- | -------- | 
 | ticker | `Ticker` | 
 | amount | `Balance` | 
+| portfolio_kind | `PortfolioKind` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Asset', 'issue', {
     'amount': 'u128',
+    'portfolio_kind': {
+        'Default': None,
+        'User': 'u64',
+    },
     'ticker': '[u8; 12]',
 }
 )
@@ -359,6 +348,28 @@ Makes an indivisible token divisible.
 ```python
 call = substrate.compose_call(
     'Asset', 'make_divisible', {'ticker': '[u8; 12]'}
+)
+```
+
+---------
+### pre_approve_ticker
+Pre-approves the receivement of an asset.
+
+\# Arguments
+* `origin` - the secondary key of the sender.
+* `ticker` - the [`Ticker`] that will be exempt from affirmation.
+
+\# Permissions
+* Asset
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Asset', 'pre_approve_ticker', {'ticker': '[u8; 12]'}
 )
 ```
 
@@ -706,6 +717,50 @@ call = substrate.compose_call(
 ```
 
 ---------
+### remove_ticker_affirmation_exemption
+Removes the pre-approval of the asset for all identities.
+
+\# Arguments
+* `origin` - the secondary key of the sender.
+* `ticker` - the [`Ticker`] that will have its exemption removed.
+
+\# Permissions
+* Root
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Asset', 'remove_ticker_affirmation_exemption', {'ticker': '[u8; 12]'}
+)
+```
+
+---------
+### remove_ticker_pre_approval
+Removes the pre approval of an asset.
+
+\# Arguments
+* `origin` - the secondary key of the sender.
+* `ticker` - the [`Ticker`] that will have its exemption removed.
+
+\# Permissions
+* Asset
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Asset', 'remove_ticker_pre_approval', {'ticker': '[u8; 12]'}
+)
+```
+
+---------
 ### rename_asset
 Renames a given token.
 
@@ -732,50 +787,6 @@ call = substrate.compose_call(
     'Asset', 'rename_asset', {
     'name': 'Bytes',
     'ticker': '[u8; 12]',
-}
-)
-```
-
----------
-### reserve_classic_ticker
-Reserve a Polymath Classic (PMC) ticker.
-Must be called by root, and assigns the ticker to a systematic DID.
-
-\# Arguments
-* `origin` which must be root.
-* `classic_ticker_import` specification for the PMC ticker.
-* `contract_did` to reserve the ticker to if `classic_ticker_import.is_contract` holds.
-* `config` to use for expiry and ticker length.
-
-\# Errors
-* `AssetAlreadyCreated` if `classic_ticker_import.ticker` was created as an asset.
-* `TickerTooLong` if the `config` considers the `classic_ticker_import.ticker` too long.
-* `TickerAlreadyRegistered` if `classic_ticker_import.ticker` was already registered.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| classic_ticker_import | `ClassicTickerImport` | 
-| contract_did | `IdentityId` | 
-| config | `TickerRegistrationConfig<T::Moment>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Asset', 'reserve_classic_ticker', {
-    'classic_ticker_import': {
-        'eth_owner': '[u8; 20]',
-        'is_contract': 'bool',
-        'is_created': 'bool',
-        'ticker': '[u8; 12]',
-    },
-    'config': {
-        'max_ticker_length': 'u8',
-        'registration_length': (
-            None,
-            'u64',
-        ),
-    },
-    'contract_did': '[u8; 32]',
 }
 )
 ```
@@ -1024,9 +1035,24 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### AssetBalanceUpdated
+Emitted when Tokens were issued, redeemed or transferred.
+Contains the [`IdentityId`] of the receiver/issuer/redeemer, the [`Ticker`] for the token, the balance that was issued/transferred/redeemed,
+the [`PortfolioId`] of the source, the [`PortfolioId`] of the destination and the [`PortfolioUpdateReason`].
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `Ticker` | ```[u8; 12]```
+| None | `Balance` | ```u128```
+| None | `Option<PortfolioId>` | ```(None, {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}})```
+| None | `Option<PortfolioId>` | ```(None, {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}})```
+| None | `PortfolioUpdateReason` | ```{'Issued': {'funding_round_name': (None, 'Bytes')}, 'Redeemed': None, 'Transferred': {'instruction_id': (None, 'u64'), 'instruction_memo': (None, '[u8; 32]')}}```
+
+---------
 ### AssetCreated
 Event for creation of the asset.
-caller DID/ owner DID, ticker, divisibility, asset type, beneficiary DID, disable investor uniqueness, asset name, identifiers, funding round
+caller DID/ owner DID, ticker, divisibility, asset type, beneficiary DID, asset name, identifiers, funding round
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -1035,7 +1061,6 @@ caller DID/ owner DID, ticker, divisibility, asset type, beneficiary DID, disabl
 | None | `bool` | ```bool```
 | None | `AssetType` | ```{'EquityCommon': None, 'EquityPreferred': None, 'Commodity': None, 'FixedIncome': None, 'REIT': None, 'Fund': None, 'RevenueShareAgreement': None, 'StructuredProduct': None, 'Derivative': None, 'Custom': 'u32', 'StableCoin': None, 'NonFungible': {'Derivative': None, 'FixedIncome': None, 'Invoice': None, 'Custom': 'u32'}}```
 | None | `IdentityId` | ```[u8; 32]```
-| None | `bool` | ```bool```
 | None | `AssetName` | ```Bytes```
 | None | `Vec<AssetIdentifier>` | ```[{'CUSIP': '[u8; 9]', 'CINS': '[u8; 9]', 'ISIN': '[u8; 12]', 'LEI': '[u8; 20]', 'FIGI': '[u8; 12]'}]```
 | None | `Option<FundingRoundName>` | ```(None, 'Bytes')```
@@ -1092,16 +1117,6 @@ Parameter: caller DID, ticker.
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
-
----------
-### ClassicTickerClaimed
-A Polymath Classic token was claimed and transferred to a non-systematic DID.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `Ticker` | ```[u8; 12]```
-| None | `EthereumAddress` | ```[u8; 20]```
 
 ---------
 ### ControllerTransfer
@@ -1213,20 +1228,6 @@ ticker, return value (true if issuable)
 | None | `bool` | ```bool```
 
 ---------
-### Issued
-Emit when tokens get issued.
-caller DID, ticker, beneficiary DID, value, funding round, total issued in this funding round
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `Ticker` | ```[u8; 12]```
-| None | `IdentityId` | ```[u8; 32]```
-| None | `Balance` | ```u128```
-| None | `FundingRoundName` | ```Bytes```
-| None | `Balance` | ```u128```
-
----------
 ### LocalMetadataKeyDeleted
 An event emitted when a local metadata key has been removed.
 Parameters: caller ticker, Local type name
@@ -1247,18 +1248,6 @@ Parameters: caller ticker, Local type name
 | None | `IdentityId` | ```[u8; 32]```
 | None | `Ticker` | ```[u8; 12]```
 | None | `AssetMetadataKey` | ```{'Global': 'u64', 'Local': 'u64'}```
-
----------
-### Redeemed
-Emit when tokens get redeemed.
-caller DID, ticker,  from DID, value
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `Ticker` | ```[u8; 12]```
-| None | `IdentityId` | ```[u8; 32]```
-| None | `Balance` | ```u128```
 
 ---------
 ### RegisterAssetMetadataGlobalType
@@ -1330,19 +1319,6 @@ caller DID / ticker transferred to DID, ticker, from
 | None | `IdentityId` | ```[u8; 32]```
 
 ---------
-### Transfer
-Event for transfer of tokens.
-caller DID, ticker, from portfolio, to portfolio, value
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `Ticker` | ```[u8; 12]```
-| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
-| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
-| None | `Balance` | ```u128```
-
----------
 ### TransferWithData
 An additional event to Transfer; emitted when `transfer_with_data` is called.
 caller DID , ticker, from DID, to DID, value, data
@@ -1359,22 +1335,6 @@ caller DID , ticker, from DID, to DID, value, data
 ---------
 ## Storage functions
 
----------
-### AggregateBalance
- Store aggregate balance of those identities that has the same `ScopeId`.
- (Ticker, ScopeId) =&gt; Balance.
-
-#### Python
-```python
-result = substrate.query(
-    'Asset', 'AggregateBalance', ['[u8; 12]', '[u8; 32]']
-)
-```
-
-#### Return value
-```python
-'u128'
-```
 ---------
 ### AssetDocuments
  Documents attached to an Asset
@@ -1639,38 +1599,6 @@ result = substrate.query(
 'u128'
 ```
 ---------
-### BalanceOfAtScope
- Balances get stored on the basis of the `ScopeId`.
- Right now it is only helpful for the UI purposes but in future it can be used to do miracles on-chain.
- (ScopeId, IdentityId) =&gt; Balance.
-
-#### Python
-```python
-result = substrate.query(
-    'Asset', 'BalanceOfAtScope', ['[u8; 32]', '[u8; 32]']
-)
-```
-
-#### Return value
-```python
-'u128'
-```
----------
-### ClassicTickers
- Ticker registration details on Polymath Classic / Ethereum.
-
-#### Python
-```python
-result = substrate.query(
-    'Asset', 'ClassicTickers', ['[u8; 12]']
-)
-```
-
-#### Return value
-```python
-{'eth_owner': '[u8; 20]', 'is_created': 'bool'}
-```
----------
 ### CustomTypeIdSequence
  The next `AssetType::Custom` ID in the sequence.
 
@@ -1716,24 +1644,6 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
-```
----------
-### DisableInvestorUniqueness
- Decides whether investor uniqueness requirement is enforced for this asset.
- `false` means that it is enforced.
-
- Ticker =&gt; bool.
-
-#### Python
-```python
-result = substrate.query(
-    'Asset', 'DisableInvestorUniqueness', ['[u8; 12]']
-)
-```
-
-#### Return value
-```python
-'bool'
 ```
 ---------
 ### Frozen
@@ -1807,20 +1717,19 @@ result = substrate.query(
 'u128'
 ```
 ---------
-### ScopeIdOf
- Tracks the ScopeId of the identity for a given ticker.
- (Ticker, IdentityId) =&gt; ScopeId.
+### PreApprovedTicker
+ All tickers that don&#x27;t need an affirmation to be received by an identity.
 
 #### Python
 ```python
 result = substrate.query(
-    'Asset', 'ScopeIdOf', ['[u8; 12]', '[u8; 32]']
+    'Asset', 'PreApprovedTicker', ['[u8; 32]', '[u8; 12]']
 )
 ```
 
 #### Return value
 ```python
-'[u8; 32]'
+'bool'
 ```
 ---------
 ### StorageVersion
@@ -1868,6 +1777,21 @@ result = substrate.query(
 #### Return value
 ```python
 {'expiry': (None, 'u64'), 'owner': '[u8; 32]'}
+```
+---------
+### TickersExemptFromAffirmation
+ A list of tickers that exempt all users from affirming the receivement of the asset.
+
+#### Python
+```python
+result = substrate.query(
+    'Asset', 'TickersExemptFromAffirmation', ['[u8; 12]']
+)
+```
+
+#### Return value
+```python
+'bool'
 ```
 ---------
 ### Tokens
@@ -2053,20 +1977,12 @@ Transfer validation check failed.
 Investor Uniqueness claims are not allowed for this asset.
 
 ---------
-### InvestorUniquenessNotAllowed
-Investor Uniqueness not allowed.
-
----------
 ### MaxLengthOfAssetNameExceeded
 Maximum length of asset name has been exceeded.
 
 ---------
 ### NoSuchAsset
 No such token.
-
----------
-### NoSuchClassicTicker
-The given ticker is not a classic one.
 
 ---------
 ### NoSuchDoc

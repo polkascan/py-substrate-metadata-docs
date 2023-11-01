@@ -15,8 +15,8 @@ specified.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| source | `<T::Lookup as StaticLookup>::Source` | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| source | `AccountIdLookupOf<T>` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -50,7 +50,7 @@ Can only be called by ROOT.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| who | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
@@ -74,7 +74,7 @@ call = substrate.compose_call(
 Set the balances of a given account.
 
 This will alter `FreeBalance` and `ReservedBalance` in storage. it will
-also decrease the total issuance of the system (`TotalIssuance`).
+also alter the total issuance of the system (`TotalIssuance`) appropriately.
 If the new free or reserved balance is below the existential deposit,
 it will reset the account nonce (`frame_system::AccountNonce`).
 
@@ -82,7 +82,7 @@ The dispatch origin for this call is `root`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| who | `AccountIdLookupOf<T>` | 
 | new_free | `T::Balance` | 
 | new_reserved | `T::Balance` | 
 
@@ -108,7 +108,6 @@ call = substrate.compose_call(
 Transfer some liquid free balance to another account.
 
 `transfer` will set the `FreeBalance` of the sender and receiver.
-It will decrease the total issuance of the system by the `TransferFee`.
 If the sender&\#x27;s account is below the existential deposit as a result
 of the transfer, the account will be reaped.
 
@@ -134,7 +133,7 @@ Related functions:
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -175,7 +174,7 @@ The dispatch origin of this call must be Signed.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | keep_alive | `bool` | 
 
 #### Python
@@ -205,7 +204,7 @@ origin account.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -328,8 +327,29 @@ Some amount was withdrawn from the account (e.g. for transaction fees).
 
 ---------
 ### Account
- The balance of an account.
+ The Balances pallet example of storing the balance of an account.
 
+ \# Example
+
+ ```nocompile
+  impl pallet_balances::Config for Runtime {
+    type AccountStore = StorageMapShim&lt;Self::Account&lt;Runtime&gt;, frame_system::Provider&lt;Runtime&gt;, AccountId, Self::AccountData&lt;Balance&gt;&gt;
+  }
+ ```
+
+ You can also store the balance of an account in the `System` pallet.
+
+ \# Example
+
+ ```nocompile
+  impl pallet_balances::Config for Runtime {
+   type AccountStore = System
+  }
+ ```
+
+ But this comes with tradeoffs, storing account balances in the system pallet stores
+ `frame_system` data alongside the account data contrary to storing account balances in the
+ `Balances` pallet, which uses a `StorageMap` to store balances data only.
  NOTE: This is only used in the case that this pallet is used to store balances.
 
 #### Python
@@ -347,6 +367,21 @@ result = substrate.query(
     'misc_frozen': 'u128',
     'reserved': 'u128',
 }
+```
+---------
+### InactiveIssuance
+ The total units of outstanding deactivated balance in the system.
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'InactiveIssuance', []
+)
+```
+
+#### Return value
+```python
+'u128'
 ```
 ---------
 ### Locks
@@ -378,23 +413,6 @@ result = substrate.query(
 #### Return value
 ```python
 [{'amount': 'u128', 'id': '[u8; 8]'}]
-```
----------
-### StorageVersion
- Storage version of the pallet.
-
- This is set to v2.0.0 for new networks.
-
-#### Python
-```python
-result = substrate.query(
-    'Balances', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V1_0_0', 'V2_0_0')
 ```
 ---------
 ### TotalIssuance
@@ -465,7 +483,7 @@ A vesting schedule already exists for this account
 
 ---------
 ### InsufficientBalance
-Balance too low to send value
+Balance too low to send value.
 
 ---------
 ### KeepAlive

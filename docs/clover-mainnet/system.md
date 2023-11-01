@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -378,6 +378,7 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AssetConfig': {
                 'AssetLocationRegistered': ('u64', 'scale_info::132'),
                 'FeeRateChanged': ('u64', (None, 'u128')),
@@ -445,6 +446,37 @@ result = substrate.query(
                     'owner': 'AccountId',
                 },
             },
+            'Balances': {
+                'BalanceSet': {
+                    'free': 'u128',
+                    'reserved': 'u128',
+                    'who': 'AccountId',
+                },
+                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
+                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
+                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
+                'ReserveRepatriated': {
+                    'amount': 'u128',
+                    'destination_status': 'scale_info::29',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
+                'Transfer': {
+                    'amount': 'u128',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
+                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            'BaseFee': {
+                'BaseFeeOverflow': None,
+                'IsActive': 'bool',
+                'NewBaseFeePerGas': '[u64; 4]',
+                'NewElasticity': 'u32',
+            },
             'Bounties': {
                 'BountyAwarded': {'beneficiary': 'AccountId', 'index': 'u32'},
                 'BountyBecameActive': {'index': 'u32'},
@@ -498,102 +530,6 @@ result = substrate.query(
                 'NewDesiredCandidates': {'desired_candidates': 'u32'},
                 'NewInvulnerables': {'invulnerables': ['AccountId']},
             },
-            'Democracy': {
-                'Blacklisted': {'proposal_hash': '[u8; 32]'},
-                'Cancelled': {'ref_index': 'u32'},
-                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
-                'Executed': {'ref_index': 'u32', 'result': 'scale_info::37'},
-                'ExternalTabled': None,
-                'NotPassed': {'ref_index': 'u32'},
-                'Passed': {'ref_index': 'u32'},
-                'PreimageInvalid': {
-                    'proposal_hash': '[u8; 32]',
-                    'ref_index': 'u32',
-                },
-                'PreimageMissing': {
-                    'proposal_hash': '[u8; 32]',
-                    'ref_index': 'u32',
-                },
-                'PreimageNoted': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'who': 'AccountId',
-                },
-                'PreimageReaped': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'provider': 'AccountId',
-                    'reaper': 'AccountId',
-                },
-                'PreimageUsed': {
-                    'deposit': 'u128',
-                    'proposal_hash': '[u8; 32]',
-                    'provider': 'AccountId',
-                },
-                'ProposalCanceled': {'prop_index': 'u32'},
-                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::36'},
-                'Tabled': {
-                    'deposit': 'u128',
-                    'depositors': ['AccountId'],
-                    'proposal_index': 'u32',
-                },
-                'Undelegated': {'account': 'AccountId'},
-                'Vetoed': {
-                    'proposal_hash': '[u8; 32]',
-                    'until': 'u32',
-                    'who': 'AccountId',
-                },
-                'Voted': {
-                    'ref_index': 'u32',
-                    'vote': 'scale_info::39',
-                    'voter': 'AccountId',
-                },
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
-            'Balances': {
-                'BalanceSet': {
-                    'free': 'u128',
-                    'reserved': 'u128',
-                    'who': 'AccountId',
-                },
-                'Deposit': {'amount': 'u128', 'who': 'AccountId'},
-                'DustLost': {'account': 'AccountId', 'amount': 'u128'},
-                'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
-                'ReserveRepatriated': {
-                    'amount': 'u128',
-                    'destination_status': 'scale_info::29',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Reserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Transfer': {
-                    'amount': 'u128',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
-                'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
-            },
-            'BaseFee': {
-                'BaseFeeOverflow': None,
-                'IsActive': 'bool',
-                'NewBaseFeePerGas': '[u64; 4]',
-                'NewElasticity': 'u32',
-            },
             'Contracts': {
                 'CodeRemoved': {'code_hash': '[u8; 32]'},
                 'CodeStored': {'code_hash': '[u8; 32]'},
@@ -646,6 +582,59 @@ result = substrate.query(
                 'ExecutedDownward': ('[u8; 8]', 'scale_info::89'),
                 'InvalidFormat': '[u8; 8]',
                 'UnsupportedVersion': '[u8; 8]',
+            },
+            'Democracy': {
+                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Cancelled': {'ref_index': 'u32'},
+                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
+                'Executed': {'ref_index': 'u32', 'result': 'scale_info::37'},
+                'ExternalTabled': None,
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'PreimageInvalid': {
+                    'proposal_hash': '[u8; 32]',
+                    'ref_index': 'u32',
+                },
+                'PreimageMissing': {
+                    'proposal_hash': '[u8; 32]',
+                    'ref_index': 'u32',
+                },
+                'PreimageNoted': {
+                    'deposit': 'u128',
+                    'proposal_hash': '[u8; 32]',
+                    'who': 'AccountId',
+                },
+                'PreimageReaped': {
+                    'deposit': 'u128',
+                    'proposal_hash': '[u8; 32]',
+                    'provider': 'AccountId',
+                    'reaper': 'AccountId',
+                },
+                'PreimageUsed': {
+                    'deposit': 'u128',
+                    'proposal_hash': '[u8; 32]',
+                    'provider': 'AccountId',
+                },
+                'ProposalCanceled': {'prop_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::36'},
+                'Tabled': {
+                    'deposit': 'u128',
+                    'depositors': ['AccountId'],
+                    'proposal_index': 'u32',
+                },
+                'Undelegated': {'account': 'AccountId'},
+                'Vetoed': {
+                    'proposal_hash': '[u8; 32]',
+                    'until': 'u32',
+                    'who': 'AccountId',
+                },
+                'Voted': {
+                    'ref_index': 'u32',
+                    'vote': 'scale_info::39',
+                    'voter': 'AccountId',
+                },
             },
             'DmpQueue': {
                 'ExecutedDownward': {
@@ -845,6 +834,17 @@ result = substrate.query(
                 'PongSent': ('u32', 'u32', 'Bytes'),
                 'Ponged': ('u32', 'u32', 'Bytes', 'u32'),
                 'UnknownPong': ('u32', 'u32', 'Bytes'),
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},

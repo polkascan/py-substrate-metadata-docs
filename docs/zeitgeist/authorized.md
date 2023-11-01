@@ -27,6 +27,18 @@ call = substrate.compose_call(
 ```
 
 ---------
+## Events
+
+---------
+### AuthorityReported
+The Authority reported.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| market_id | `MarketIdOf<T>` | ```u128```
+| outcome | `OutcomeReport` | ```{'Categorical': 'u16', 'Scalar': 'u128'}```
+
+---------
 ## Storage functions
 
 ---------
@@ -80,10 +92,6 @@ The market unexpectedly has the incorrect dispute mechanism.
 ---------
 ### MarketIsNotDisputed
 An account attempts to submit a report to an undisputed market.
-
----------
-### OnlyOneDisputeAllowed
-Only one dispute is allowed.
 
 ---------
 ### OutcomeMismatch

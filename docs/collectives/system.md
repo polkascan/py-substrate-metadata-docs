@@ -378,36 +378,6 @@ result = substrate.query(
                 'UnscrupulousItemAdded': {'items': ['scale_info::118']},
                 'UnscrupulousItemRemoved': {'items': ['scale_info::118']},
             },
-            'AllianceMotion': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
-                'Closed': {
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'yes': 'u32',
-                },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
-                'Executed': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::100',
-                },
-                'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::100',
-                },
-                'Proposed': {
-                    'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
-                    'proposal_index': 'u32',
-                    'threshold': 'u32',
-                },
-                'Voted': {
-                    'account': 'AccountId',
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'voted': 'bool',
-                    'yes': 'u32',
-                },
-            },
             'Balances': {
                 'BalanceSet': {'free': 'u128', 'who': 'AccountId'},
                 'Burned': {'amount': 'u128', 'who': 'AccountId'},
@@ -439,6 +409,37 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Upgraded': {'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
+            },
+            None: None,
+            'AllianceMotion': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::100',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::100',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
+                },
             },
             'CollatorSelection': {
                 'CandidateAdded': {
@@ -707,7 +708,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,

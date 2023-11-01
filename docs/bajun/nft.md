@@ -2327,7 +2327,7 @@ constant = substrate.get_constant('Nft', 'StringLimit')
  The maximum length of an attribute value.
 #### Value
 ```python
-200
+64
 ```
 #### Python
 ```python

@@ -37,6 +37,7 @@ call = substrate.compose_call(
         'CapitalDistributionDistribute',
         'NFTCreateCollection',
         'NFTMint',
+        'IdentityCreateChildIdentity',
     ),
 }
 )
@@ -117,6 +118,7 @@ result = substrate.query(
         'CapitalDistributionDistribute',
         'NFTCreateCollection',
         'NFTMint',
+        'IdentityCreateChildIdentity',
     ),
 ]
 )

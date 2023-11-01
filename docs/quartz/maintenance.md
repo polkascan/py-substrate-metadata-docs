@@ -6,6 +6,7 @@
 
 ---------
 ### disable
+See [`Pallet::disable`].
 #### Attributes
 No attributes
 
@@ -18,6 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### enable
+See [`Pallet::enable`].
 #### Attributes
 No attributes
 
@@ -25,31 +27,6 @@ No attributes
 ```python
 call = substrate.compose_call(
     'Maintenance', 'enable', {}
-)
-```
-
----------
-### execute_preimage
-Execute a runtime call stored as a preimage.
-
-`weight_bound` is the maximum weight that the caller is willing
-to allow the extrinsic to be executed with.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| hash | `H256` | 
-| weight_bound | `Weight` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Maintenance', 'execute_preimage', {
-    'hash': '[u8; 32]',
-    'weight_bound': {
-        'proof_size': 'u64',
-        'ref_time': 'u64',
-    },
-}
 )
 ```
 

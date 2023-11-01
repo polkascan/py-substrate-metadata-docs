@@ -282,12 +282,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -353,6 +353,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'u32',
@@ -1197,18 +1209,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            None: None,
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalMembership': (
                 'MemberAdded',
                 'MemberRemoved',
@@ -1811,7 +1811,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'interlay-parachain',
     'impl_version': 1,
     'spec_name': 'interlay-parachain',
-    'spec_version': 1025002,
+    'spec_version': 1025003,
     'state_version': 0,
     'transaction_version': 4,
 }

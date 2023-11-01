@@ -158,6 +158,7 @@ Affected states:
 | user | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T>` | ```u128```
 | shares | `BalanceOf<T>` | ```u128```
+| burnt_shares | `BalanceOf<T>` | ```u128```
 
 ---------
 ### WithdrawalQueued
@@ -174,6 +175,7 @@ Affected states:
 | shares | `BalanceOf<T>` | ```u128```
 | nft_id | `NftId` | ```u32```
 | as_vault | `Option<u64>` | ```(None, 'u64')```
+| withdrawing_nft_id | `NftId` | ```u32```
 
 ---------
 ## Storage functions

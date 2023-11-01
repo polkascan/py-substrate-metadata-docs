@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | bajun     |
 | Implementation name     | bajun     |
-| Spec version     | 122     |
+| Spec version     | 123     |
 | SS58 Format     | 1337     |
 | Token symbol      | BAJU     |
 | Token decimals      | 12     |
@@ -18,7 +18,7 @@
 | [Aura](aura.md) | [0](aura.md#calls) | [0](aura.md#events) | [2](aura.md#storage-functions) | [0](aura.md#constants) | [0](aura.md#errors) |
 | [AuraExt](auraext.md) | [0](auraext.md#calls) | [0](auraext.md#events) | [1](auraext.md#storage-functions) | [0](auraext.md#constants) | [0](auraext.md#errors) |
 | [Authorship](authorship.md) | [0](authorship.md#calls) | [0](authorship.md#events) | [1](authorship.md#storage-functions) | [0](authorship.md#constants) | [0](authorship.md#errors) |
-| [AwesomeAvatars](awesomeavatars.md) | [21](awesomeavatars.md#calls) | [23](awesomeavatars.md#events) | [16](awesomeavatars.md#storage-functions) | [1](awesomeavatars.md#constants) | [66](awesomeavatars.md#errors) |
+| [AwesomeAvatars](awesomeavatars.md) | [21](awesomeavatars.md#calls) | [23](awesomeavatars.md#events) | [16](awesomeavatars.md#storage-functions) | [3](awesomeavatars.md#constants) | [66](awesomeavatars.md#errors) |
 | [Balances](balances.md) | [9](balances.md#calls) | [21](balances.md#events) | [7](balances.md#storage-functions) | [5](balances.md#constants) | [10](balances.md#errors) |
 | [CollatorSelection](collatorselection.md) | [5](collatorselection.md#calls) | [5](collatorselection.md#events) | [5](collatorselection.md#storage-functions) | [0](collatorselection.md#constants) | [10](collatorselection.md#errors) |
 | [Council](council.md) | [6](council.md#calls) | [7](council.md#events) | [6](council.md#storage-functions) | [1](council.md#constants) | [10](council.md#errors) |
@@ -28,7 +28,7 @@
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |
 | [Multisig](multisig.md) | [4](multisig.md#calls) | [4](multisig.md#events) | [1](multisig.md#storage-functions) | [3](multisig.md#constants) | [14](multisig.md#errors) |
 | [Nft](nft.md) | [39](nft.md#calls) | [38](nft.md#events) | [15](nft.md#storage-functions) | [14](nft.md#constants) | [44](nft.md#errors) |
-| [NftTransfer](nfttransfer.md) | [0](nfttransfer.md#calls) | [2](nfttransfer.md#events) | [1](nfttransfer.md#storage-functions) | [1](nfttransfer.md#constants) | [7](nfttransfer.md#errors) |
+| [NftTransfer](nfttransfer.md) | [0](nfttransfer.md#calls) | [2](nfttransfer.md#events) | [1](nfttransfer.md#storage-functions) | [3](nfttransfer.md#constants) | [7](nfttransfer.md#errors) |
 | [ParachainInfo](parachaininfo.md) | [0](parachaininfo.md#calls) | [0](parachaininfo.md#events) | [1](parachaininfo.md#storage-functions) | [0](parachaininfo.md#constants) | [0](parachaininfo.md#errors) |
 | [ParachainSystem](parachainsystem.md) | [4](parachainsystem.md#calls) | [7](parachainsystem.md#events) | [21](parachainsystem.md#storage-functions) | [0](parachainsystem.md#constants) | [8](parachainsystem.md#errors) |
 | [PolkadotXcm](polkadotxcm.md) | [11](polkadotxcm.md#calls) | [23](polkadotxcm.md#events) | [12](polkadotxcm.md#storage-functions) | [0](polkadotxcm.md#constants) | [20](polkadotxcm.md#errors) |

@@ -6,20 +6,11 @@
 
 ---------
 ### force_unstake
-Called for blocks that, for some reason, have not been unstacked
-
-\# Permissions
-
-* Sudo
-
-  \# Arguments
-
-* `origin`: Must be `Root`.
-* `pending_blocks`: Block numbers that will be processed.
+See [`Pallet::force_unstake`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| pending_blocks | `Vec<T::BlockNumber>` | 
+| pending_blocks | `Vec<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -30,18 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### payout_stakers
-Recalculates interest for the specified number of stakers.
-If all stakers are not recalculated, the next call of the extrinsic
-will continue the recalculation, from those stakers for whom this
-was not perform in last call.
-
-\# Permissions
-
-* Pallet admin
-
-\# Arguments
-
-* `stakers_number`: the number of stakers for which recalculation will be performed
+See [`Pallet::payout_stakers`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -56,15 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_admin_address
-Sets an address as the the admin.
-
-\# Permissions
-
-* Sudo
-
-\# Arguments
-
-* `admin`: account of the new admin.
+See [`Pallet::set_admin_address`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -84,15 +56,7 @@ call = substrate.compose_call(
 
 ---------
 ### sponsor_collection
-Sets the pallet to be the sponsor for the collection.
-
-\# Permissions
-
-* Pallet admin
-
-\# Arguments
-
-* `collection_id`: ID of the collection that will be sponsored by `pallet_id`
+See [`Pallet::sponsor_collection`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -107,15 +71,7 @@ call = substrate.compose_call(
 
 ---------
 ### sponsor_contract
-Sets the pallet to be the sponsor for the contract.
-
-\# Permissions
-
-* Pallet admin
-
-\# Arguments
-
-* `contract_id`: the contract address that will be sponsored by `pallet_id`
+See [`Pallet::sponsor_contract`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -130,13 +86,7 @@ call = substrate.compose_call(
 
 ---------
 ### stake
-Stakes the amount of native tokens.
-Sets `amount` to the locked state.
-The maximum number of stakes for a staker is 10.
-
-\# Arguments
-
-* `amount`: in native tokens.
+See [`Pallet::stake`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -151,17 +101,7 @@ call = substrate.compose_call(
 
 ---------
 ### stop_sponsoring_collection
-Removes the pallet as the sponsor for the collection.
-Returns [`NoPermission`][`Error::NoPermission`]
-if the pallet wasn&\#x27;t the sponsor.
-
-\# Permissions
-
-* Pallet admin
-
-\# Arguments
-
-* `collection_id`: ID of the collection that is sponsored by `pallet_id`
+See [`Pallet::stop_sponsoring_collection`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -176,17 +116,7 @@ call = substrate.compose_call(
 
 ---------
 ### stop_sponsoring_contract
-Removes the pallet as the sponsor for the contract.
-Returns [`NoPermission`][`Error::NoPermission`]
-if the pallet wasn&\#x27;t the sponsor.
-
-\# Permissions
-
-* Pallet admin
-
-\# Arguments
-
-* `contract_id`: the contract address that is sponsored by `pallet_id`
+See [`Pallet::stop_sponsoring_contract`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -201,9 +131,7 @@ call = substrate.compose_call(
 
 ---------
 ### unstake_all
-Unstakes all stakes.
-After the end of `PendingInterval` this sum becomes completely
-free for further use.
+See [`Pallet::unstake_all`].
 #### Attributes
 No attributes
 
@@ -216,14 +144,7 @@ call = substrate.compose_call(
 
 ---------
 ### unstake_partial
-Unstakes the amount of balance for the staker.
-After the end of `PendingInterval` this sum becomes completely
-free for further use.
-
- \# Arguments
-
-* `staker`: staker account.
-* `amount`: amount of unstaked funds.
+See [`Pallet::unstake_partial`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

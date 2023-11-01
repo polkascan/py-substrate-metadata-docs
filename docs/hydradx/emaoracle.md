@@ -17,7 +17,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::578'
+'scale_info::591'
 ```
 ---------
 ### Oracles
@@ -68,7 +68,7 @@ result = substrate.query(
  Maximum number of unique oracle entries expected in one block.
 #### Value
 ```python
-20
+40
 ```
 #### Python
 ```python

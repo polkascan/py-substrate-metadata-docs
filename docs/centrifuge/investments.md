@@ -487,6 +487,21 @@ result = substrate.query(
 {'amount': 'u128', 'submitted_at': 'u64'}
 ```
 ---------
+## Constants
+
+---------
+### MaxOutstandingCollects
+ The bound on how many fulfilled orders we cache until
+ the user needs to collect them.
+#### Value
+```python
+10
+```
+#### Python
+```python
+constant = substrate.get_constant('Investments', 'MaxOutstandingCollects')
+```
+---------
 ## Errors
 
 ---------

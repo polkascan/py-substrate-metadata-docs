@@ -69,22 +69,22 @@ call = substrate.compose_call(
         'Authority': {
             'delay': 'u32',
             'origin': {
+                'system': {
+                    'None': None,
+                    'Root': None,
+                    'Signed': 'AccountId',
+                },
+                None: None,
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
-                        'CumulusXcm': {
-                            'Relay': None,
-                            'SiblingParachain': 'u32',
-                        },
-                        'system': {
-                            'None': None,
-                            'Root': None,
-                            'Signed': 'AccountId',
-                        },
-                        None: None,
                         'Authority': {
                             'delay': 'u32',
                             'origin': 'scale_info::131',
+                        },
+                        'CumulusXcm': {
+                            'Relay': None,
+                            'SiblingParachain': 'u32',
                         },
                         'FinancialCouncil': {
                             'Member': 'AccountId',
@@ -123,6 +123,12 @@ call = substrate.compose_call(
                             '_Phantom': None,
                         },
                         'Void': (),
+                        'system': {
+                            'None': None,
+                            'Root': None,
+                            'Signed': 'AccountId',
+                        },
+                        None: None,
                     },
                 },
                 'CumulusXcm': {
@@ -276,12 +282,6 @@ call = substrate.compose_call(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {
-                    'None': None,
-                    'Root': None,
-                    'Signed': 'AccountId',
-                },
-                None: None,
             },
         },
         'CumulusXcm': {

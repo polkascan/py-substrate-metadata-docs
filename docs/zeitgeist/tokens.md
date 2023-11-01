@@ -68,6 +68,16 @@ Some funds are locked
 | amount | `T::Balance` | ```u128```
 
 ---------
+### Locked
+Some free balance was locked.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| currency_id | `T::CurrencyId` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
 ### ReserveRepatriated
 Some reserved balance was repatriated (moved from reserved to
 another account).
@@ -119,6 +129,16 @@ Transfer succeeded.
 | currency_id | `T::CurrencyId` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Unlocked
+Some locked balance was freed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| currency_id | `T::CurrencyId` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
+| who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
 
 ---------

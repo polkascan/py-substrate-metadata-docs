@@ -378,18 +378,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'u64',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
-            },
-            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -628,6 +616,17 @@ result = substrate.query(
             'OrmlXcm': {
                 'Sent': {'message': ['scale_info::64'], 'to': 'scale_info::52'},
             },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'u64',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
             'PolkadotXcm': {
                 'AssetsTrapped': (
                     '[u8; 32]',
@@ -685,7 +684,6 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
             'Sudo': {
                 'KeyChanged': {'old_sudoer': (None, 'AccountId')},
                 'Sudid': {'sudo_result': 'scale_info::29'},
@@ -702,6 +700,8 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            None: None,
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,

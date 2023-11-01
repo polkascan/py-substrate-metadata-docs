@@ -936,21 +936,6 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': '[u8; 20]',
-                },
-            },
             'Treasury': {
                 'Awarded': {
                     'account': '[u8; 20]',
@@ -984,6 +969,22 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::26'},
             },
+            None: None,
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': '[u8; 20]',
+                },
+            },
             'Vesting': {
                 'VestingCompleted': {'account': '[u8; 20]'},
                 'VestingUpdated': {'account': '[u8; 20]', 'unvested': 'u128'},
@@ -1009,7 +1010,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1252,7 +1252,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'DarwiniaOfficialRust',
     'impl_version': 0,
     'spec_name': 'Darwinia2',
-    'spec_version': 6402,
+    'spec_version': 6404,
     'state_version': 0,
     'transaction_version': 0,
 }

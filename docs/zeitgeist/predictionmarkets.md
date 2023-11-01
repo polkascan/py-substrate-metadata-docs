@@ -153,12 +153,13 @@ which open at the same time as the specified market.
 | Name | Type |
 | -------- | -------- | 
 | base_asset | `Asset<MarketIdOf<T>>` | 
+| creator_fee | `Perbill` | 
 | oracle | `T::AccountId` | 
 | period | `MarketPeriod<T::BlockNumber, MomentOf<T>>` | 
 | deadlines | `Deadlines<T::BlockNumber>` | 
 | metadata | `MultiHash` | 
 | market_type | `MarketType` | 
-| dispute_mechanism | `MarketDisputeMechanism` | 
+| dispute_mechanism | `Option<MarketDisputeMechanism>` | 
 | swap_fee | `BalanceOf<T>` | 
 | amount | `BalanceOf<T>` | 
 | weights | `Vec<u128>` | 
@@ -182,15 +183,19 @@ call = substrate.compose_call(
         ),
         'Ztg': None,
     },
+    'creator_fee': 'u32',
     'deadlines': {
         'dispute_duration': 'u64',
         'grace_period': 'u64',
         'oracle_duration': 'u64',
     },
     'dispute_mechanism': (
-        'Authorized',
-        'Court',
-        'SimpleDisputes',
+        None,
+        (
+            'Authorized',
+            'Court',
+            'SimpleDisputes',
+        ),
     ),
     'market_type': {
         'Categorical': 'u16',
@@ -231,13 +236,14 @@ which close at the same time as the specified market.
 | Name | Type |
 | -------- | -------- | 
 | base_asset | `Asset<MarketIdOf<T>>` | 
+| creator_fee | `Perbill` | 
 | oracle | `T::AccountId` | 
 | period | `MarketPeriod<T::BlockNumber, MomentOf<T>>` | 
 | deadlines | `Deadlines<T::BlockNumber>` | 
 | metadata | `MultiHash` | 
 | creation | `MarketCreation` | 
 | market_type | `MarketType` | 
-| dispute_mechanism | `MarketDisputeMechanism` | 
+| dispute_mechanism | `Option<MarketDisputeMechanism>` | 
 | scoring_rule | `ScoringRule` | 
 
 #### Python
@@ -262,15 +268,19 @@ call = substrate.compose_call(
         'Permissionless',
         'Advised',
     ),
+    'creator_fee': 'u32',
     'deadlines': {
         'dispute_duration': 'u64',
         'grace_period': 'u64',
         'oracle_duration': 'u64',
     },
     'dispute_mechanism': (
-        'Authorized',
-        'Court',
-        'SimpleDisputes',
+        None,
+        (
+            'Authorized',
+            'Court',
+            'SimpleDisputes',
+        ),
     ),
     'market_type': {
         'Categorical': 'u16',
@@ -296,7 +306,94 @@ call = substrate.compose_call(
     'scoring_rule': (
         'CPMM',
         'RikiddoSigmoidFeeMarketEma',
+        'Lmsr',
+        'Orderbook',
     ),
+}
+)
+```
+
+---------
+### create_market_and_deploy_pool
+Create a market, deploy a LMSR pool, and buy outcome tokens and provide liquidity to the
+market.
+
+\# Weight
+
+`O(n)` where `n` is the number of markets which close on the same block, plus the
+resources consumed by `DeployPool::create_pool`. In the standard implementation using
+neo-swaps, this is `O(m)` where `m` is the number of assets in the market.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| base_asset | `Asset<MarketIdOf<T>>` | 
+| creator_fee | `Perbill` | 
+| oracle | `T::AccountId` | 
+| period | `MarketPeriod<T::BlockNumber, MomentOf<T>>` | 
+| deadlines | `Deadlines<T::BlockNumber>` | 
+| metadata | `MultiHash` | 
+| market_type | `MarketType` | 
+| dispute_mechanism | `Option<MarketDisputeMechanism>` | 
+| amount | `BalanceOf<T>` | 
+| spot_prices | `Vec<BalanceOf<T>>` | 
+| swap_fee | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'PredictionMarkets', 'create_market_and_deploy_pool', {
+    'amount': 'u128',
+    'base_asset': {
+        'CategoricalOutcome': (
+            'u128',
+            'u16',
+        ),
+        'CombinatorialOutcome': None,
+        'ForeignAsset': 'u32',
+        'PoolShare': 'u128',
+        'ScalarOutcome': (
+            'u128',
+            ('Long', 'Short'),
+        ),
+        'Ztg': None,
+    },
+    'creator_fee': 'u32',
+    'deadlines': {
+        'dispute_duration': 'u64',
+        'grace_period': 'u64',
+        'oracle_duration': 'u64',
+    },
+    'dispute_mechanism': (
+        None,
+        (
+            'Authorized',
+            'Court',
+            'SimpleDisputes',
+        ),
+    ),
+    'market_type': {
+        'Categorical': 'u16',
+        'Scalar': {
+            'end': 'u128',
+            'start': 'u128',
+        },
+    },
+    'metadata': {
+        'Sha3_384': '[u8; 50]',
+    },
+    'oracle': 'AccountId',
+    'period': {
+        'Block': {
+            'end': 'u64',
+            'start': 'u64',
+        },
+        'Timestamp': {
+            'end': 'u64',
+            'start': 'u64',
+        },
+    },
+    'spot_prices': ['u128'],
+    'swap_fee': 'u128',
 }
 )
 ```
@@ -400,18 +497,11 @@ Complexity: `O(n)`, where `n` is the number of outstanding disputes.
 | Name | Type |
 | -------- | -------- | 
 | market_id | `MarketIdOf<T>` | 
-| outcome | `OutcomeReport` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'PredictionMarkets', 'dispute', {
-    'market_id': 'u128',
-    'outcome': {
-        'Categorical': 'u16',
-        'Scalar': 'u128',
-    },
-}
+    'PredictionMarkets', 'dispute', {'market_id': 'u128'}
 )
 ```
 
@@ -446,7 +536,7 @@ which end at the same time as the market before the edit.
 | deadlines | `Deadlines<T::BlockNumber>` | 
 | metadata | `MultiHash` | 
 | market_type | `MarketType` | 
-| dispute_mechanism | `MarketDisputeMechanism` | 
+| dispute_mechanism | `Option<MarketDisputeMechanism>` | 
 | scoring_rule | `ScoringRule` | 
 
 #### Python
@@ -473,9 +563,12 @@ call = substrate.compose_call(
         'oracle_duration': 'u64',
     },
     'dispute_mechanism': (
-        'Authorized',
-        'Court',
-        'SimpleDisputes',
+        None,
+        (
+            'Authorized',
+            'Court',
+            'SimpleDisputes',
+        ),
     ),
     'market_id': 'u128',
     'market_type': {
@@ -502,6 +595,8 @@ call = substrate.compose_call(
     'scoring_rule': (
         'CPMM',
         'RikiddoSigmoidFeeMarketEma',
+        'Lmsr',
+        'Orderbook',
     ),
 }
 )
@@ -637,15 +732,14 @@ call = substrate.compose_call(
 
 ---------
 ### start_global_dispute
-When the `MaxDisputes` amount of disputes is reached,
-this allows to start a global dispute.
+Start a global dispute, if the market dispute mechanism fails.
 
 \# Arguments
 
 * `market_id`: The identifier of the market.
 
 NOTE:
-The outcomes of the disputes and the report outcome
+The returned outcomes of the market dispute mechanism and the report outcome
 are added to the global dispute voting outcomes.
 The bond of each dispute is the initial vote amount.
 #### Attributes
@@ -712,7 +806,7 @@ A market has been created. \[market_id, market_account, market\]
 | -------- | -------- | -------- |
 | None | `MarketIdOf<T>` | ```u128```
 | None | `T::AccountId` | ```AccountId```
-| None | `MarketOf<T>` | ```{'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'creator': 'AccountId', 'creation': ('Permissionless', 'Advised'), 'creator_fee': 'u8', 'oracle': 'AccountId', 'metadata': 'Bytes', 'market_type': {'Categorical': 'u16', 'Scalar': {'start': 'u128', 'end': 'u128'}}, 'period': {'Block': {'start': 'u64', 'end': 'u64'}, 'Timestamp': {'start': 'u64', 'end': 'u64'}}, 'deadlines': {'grace_period': 'u64', 'oracle_duration': 'u64', 'dispute_duration': 'u64'}, 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'), 'status': ('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved'), 'report': (None, {'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}), 'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}), 'dispute_mechanism': ('Authorized', 'Court', 'SimpleDisputes'), 'bonds': {'creation': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'oracle': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'outsider': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'})}}```
+| None | `MarketOf<T>` | ```{'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'creator': 'AccountId', 'creation': ('Permissionless', 'Advised'), 'creator_fee': 'u32', 'oracle': 'AccountId', 'metadata': 'Bytes', 'market_type': {'Categorical': 'u16', 'Scalar': {'start': 'u128', 'end': 'u128'}}, 'period': {'Block': {'start': 'u64', 'end': 'u64'}, 'Timestamp': {'start': 'u64', 'end': 'u64'}}, 'deadlines': {'grace_period': 'u64', 'oracle_duration': 'u64', 'dispute_duration': 'u64'}, 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma', 'Lmsr', 'Orderbook'), 'status': ('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved'), 'report': (None, {'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}), 'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}), 'dispute_mechanism': (None, ('Authorized', 'Court', 'SimpleDisputes')), 'bonds': {'creation': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'oracle': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'outsider': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'dispute': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'})}}```
 
 ---------
 ### MarketDestroyed
@@ -724,13 +818,12 @@ A market has been destroyed. \[market_id\]
 
 ---------
 ### MarketDisputed
-A market has been disputed. \[market_id, new_market_status, new_outcome\]
+A market has been disputed \[market_id, new_market_status\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `MarketIdOf<T>` | ```u128```
 | None | `MarketStatus` | ```('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved')```
-| None | `MarketDispute<T::AccountId, T::BlockNumber>` | ```{'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}```
 
 ---------
 ### MarketEdited
@@ -739,7 +832,7 @@ A proposed market has been edited by the market creator. \[market_id, new_market
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `MarketIdOf<T>` | ```u128```
-| None | `MarketOf<T>` | ```{'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'creator': 'AccountId', 'creation': ('Permissionless', 'Advised'), 'creator_fee': 'u8', 'oracle': 'AccountId', 'metadata': 'Bytes', 'market_type': {'Categorical': 'u16', 'Scalar': {'start': 'u128', 'end': 'u128'}}, 'period': {'Block': {'start': 'u64', 'end': 'u64'}, 'Timestamp': {'start': 'u64', 'end': 'u64'}}, 'deadlines': {'grace_period': 'u64', 'oracle_duration': 'u64', 'dispute_duration': 'u64'}, 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma'), 'status': ('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved'), 'report': (None, {'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}), 'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}), 'dispute_mechanism': ('Authorized', 'Court', 'SimpleDisputes'), 'bonds': {'creation': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'oracle': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'outsider': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'})}}```
+| None | `MarketOf<T>` | ```{'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'creator': 'AccountId', 'creation': ('Permissionless', 'Advised'), 'creator_fee': 'u32', 'oracle': 'AccountId', 'metadata': 'Bytes', 'market_type': {'Categorical': 'u16', 'Scalar': {'start': 'u128', 'end': 'u128'}}, 'period': {'Block': {'start': 'u64', 'end': 'u64'}, 'Timestamp': {'start': 'u64', 'end': 'u64'}}, 'deadlines': {'grace_period': 'u64', 'oracle_duration': 'u64', 'dispute_duration': 'u64'}, 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma', 'Lmsr', 'Orderbook'), 'status': ('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved'), 'report': (None, {'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}), 'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}), 'dispute_mechanism': (None, ('Authorized', 'Court', 'SimpleDisputes')), 'bonds': {'creation': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'oracle': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'outsider': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'}), 'dispute': (None, {'who': 'AccountId', 'value': 'u128', 'is_settled': 'bool'})}}```
 
 ---------
 ### MarketExpired
@@ -777,7 +870,7 @@ A market has been reported on. \[market_id, new_market_status, reported_outcome\
 | -------- | -------- | -------- |
 | None | `MarketIdOf<T>` | ```u128```
 | None | `MarketStatus` | ```('Proposed', 'Active', 'Suspended', 'Closed', 'CollectingSubsidy', 'InsufficientSubsidy', 'Reported', 'Disputed', 'Resolved')```
-| None | `Report<T::AccountId, T::BlockNumber>` | ```{'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}```
+| None | `ReportOf<T>` | ```{'at': 'u64', 'by': 'AccountId', 'outcome': {'Categorical': 'u16', 'Scalar': 'u128'}}```
 
 ---------
 ### MarketRequestedEdit
@@ -1036,18 +1129,6 @@ constant = substrate.get_constant('PredictionMarkets', 'AdvisoryBondSlashPercent
 constant = substrate.get_constant('PredictionMarkets', 'DisputeBond')
 ```
 ---------
-### DisputeFactor
- The additional amount of currency that must be bonded when creating a subsequent
- dispute.
-#### Value
-```python
-20000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('PredictionMarkets', 'DisputeFactor')
-```
----------
 ### MaxCategories
  The maximum number of categories available for categorical markets.
 #### Value
@@ -1057,6 +1138,17 @@ constant = substrate.get_constant('PredictionMarkets', 'DisputeFactor')
 #### Python
 ```python
 constant = substrate.get_constant('PredictionMarkets', 'MaxCategories')
+```
+---------
+### MaxCreatorFee
+ A upper bound for the fee that is charged each trade and given to the market creator.
+#### Value
+```python
+10000000
+```
+#### Python
+```python
+constant = substrate.get_constant('PredictionMarkets', 'MaxCreatorFee')
 ```
 ---------
 ### MaxDisputeDuration
@@ -1098,7 +1190,7 @@ constant = substrate.get_constant('PredictionMarkets', 'MaxEditReasonLen')
  in create_market.
 #### Value
 ```python
-2628000
+2629800
 ```
 #### Python
 ```python
@@ -1109,7 +1201,7 @@ constant = substrate.get_constant('PredictionMarkets', 'MaxGracePeriod')
  The maximum allowed duration of a market from creation to market close in blocks.
 #### Value
 ```python
-2628000
+10519200
 ```
 #### Python
 ```python
@@ -1265,12 +1357,12 @@ EditReason&\#x27;s length greater than MaxEditReasonLen.
 Only creator is able to edit the market.
 
 ---------
-### GlobalDisputeAlreadyStarted
-The start of the global dispute for this market happened already.
+### FeeTooHigh
+The fee is too high.
 
 ---------
-### GlobalDisputesDisabled
-The global dispute resolution system is disabled.
+### GlobalDisputeExistsAlready
+The start of the global dispute for this market happened already.
 
 ---------
 ### GracePeriodGreaterThanMaxGracePeriod
@@ -1321,6 +1413,10 @@ An operation is requested that is unsupported for the given scoring rule.
 Market is already reported on.
 
 ---------
+### MarketDisputeMechanismNotFailed
+The market dispute mechanism has not failed.
+
+---------
 ### MarketDurationTooLong
 The market duration is longer than allowed.
 
@@ -1369,20 +1465,20 @@ The point in time when the market becomes active is too late.
 The point in time when the market becomes active is too soon.
 
 ---------
-### MaxDisputesNeeded
-The maximum number of disputes is needed for this operation.
-
----------
-### MaxDisputesReached
-The maximum number of disputes has been reached.
-
----------
 ### MissingBond
 Tried to settle missing bond.
 
 ---------
+### NoDisputeMechanism
+The market has no dispute mechanism.
+
+---------
 ### NoWinningBalance
 The user has no winning balance.
+
+---------
+### NonZeroDisputePeriodOnTrustedMarket
+The dispute duration is positive but the market has dispute period.
 
 ---------
 ### NotAllowedToReportYet

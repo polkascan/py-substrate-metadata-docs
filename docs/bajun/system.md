@@ -353,6 +353,33 @@ result = substrate.query(
 [
     {
         'event': {
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::33',
+                },
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::33',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::34',
+                    'timepoint': 'scale_info::33',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
+            },
+            None: None,
             'AwesomeAvatars': {
                 'AvatarLocked': {'avatar_id': '[u8; 32]'},
                 'AvatarPriceSet': {'avatar_id': '[u8; 32]', 'price': 'u128'},
@@ -545,32 +572,6 @@ result = substrate.query(
                     'deposit': 'u128',
                     'main': 'AccountId',
                     'sub': 'AccountId',
-                },
-            },
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::33',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::33',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::34',
-                    'timepoint': 'scale_info::33',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
                 },
             },
             'Nft': {
@@ -921,18 +922,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::25',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::34'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::25'},
-            },
-            None: None,
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -954,6 +943,17 @@ result = substrate.query(
                     'deactivated': 'u128',
                     'reactivated': 'u128',
                 },
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::25',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::34'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::25'},
             },
             'Vesting': {
                 'Claimed': {'amount': 'u128', 'who': 'AccountId'},
@@ -1223,7 +1223,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'bajun',
     'impl_version': 0,
     'spec_name': 'bajun',
-    'spec_version': 122,
+    'spec_version': 123,
     'state_version': 1,
     'transaction_version': 1,
 }

@@ -371,7 +371,7 @@ constant = substrate.get_constant('PhragmenElection', 'CandidacyBond')
  Number of members to elect.
 #### Value
 ```python
-13
+3
 ```
 #### Python
 ```python

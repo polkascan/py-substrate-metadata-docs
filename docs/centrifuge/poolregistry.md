@@ -59,12 +59,12 @@ call = substrate.compose_call(
     'PoolRegistry', 'register', {
     'admin': 'AccountId',
     'currency': {
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
         None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'Native': None,
         'Staking': ('BlockRewards', ),
+        'Tranche': ('u64', '[u8; 16]'),
     },
     'max_reserve': 'u128',
     'metadata': (None, 'Bytes'),
@@ -91,7 +91,7 @@ call = substrate.compose_call(
                 'penalty': 'u128',
                 'percentage': 'u128',
             },
-            'triggers': 'scale_info::258',
+            'triggers': 'scale_info::259',
         },
     ],
 }

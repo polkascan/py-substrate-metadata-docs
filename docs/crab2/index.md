@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | Crab2     |
 | Implementation name     | DarwiniaOfficialRust     |
-| Spec version     | 6402     |
+| Spec version     | 6404     |
 | SS58 Format     | 42     |
 | Token symbol      | CRAB     |
 | Token decimals      | 18     |
@@ -32,7 +32,7 @@
 | [Democracy](democracy.md) | [19](democracy.md#calls) | [17](democracy.md#events) | [12](democracy.md#storage-functions) | [12](democracy.md#constants) | [24](democracy.md#errors) |
 | [Deposit](deposit.md) | [3](deposit.md#calls) | [3](deposit.md#events) | [1](deposit.md#storage-functions) | [2](deposit.md#constants) | [8](deposit.md#errors) |
 | [DmpQueue](dmpqueue.md) | [1](dmpqueue.md#calls) | [7](dmpqueue.md#events) | [5](dmpqueue.md#storage-functions) | [0](dmpqueue.md#constants) | [2](dmpqueue.md#errors) |
-| [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [3](evm.md#storage-functions) | [0](evm.md#constants) | [11](evm.md#errors) |
+| [EVM](evm.md) | [4](evm.md#calls) | [5](evm.md#events) | [4](evm.md#storage-functions) | [0](evm.md#constants) | [11](evm.md#errors) |
 | [EcdsaAuthority](ecdsaauthority.md) | [5](ecdsaauthority.md#calls) | [4](ecdsaauthority.md#events) | [5](ecdsaauthority.md#storage-functions) | [5](ecdsaauthority.md#constants) | [9](ecdsaauthority.md#errors) |
 | [Ethereum](ethereum.md) | [1](ethereum.md#calls) | [1](ethereum.md#events) | [5](ethereum.md#storage-functions) | [0](ethereum.md#constants) | [2](ethereum.md#errors) |
 | [Identity](identity.md) | [15](identity.md#calls) | [10](identity.md#events) | [4](identity.md#storage-functions) | [6](identity.md#constants) | [18](identity.md#errors) |

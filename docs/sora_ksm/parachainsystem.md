@@ -59,9 +59,9 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::124',
+        'horizontal_messages': 'scale_info::180',
         'relay_chain_state': {
-            'trie_nodes': ['Bytes'],
+            'trie_nodes': 'scale_info::164',
         },
         'validation_data': {
             'max_pov_size': 'u32',
@@ -94,21 +94,19 @@ call = substrate.compose_call(
 ---------
 ### DownwardMessagesProcessed
 Downward messages were processed using the given weight.
-\[ weight_used, result_mqc_head \]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Weight` | ```u64```
-| None | `relay_chain::Hash` | ```[u8; 32]```
+| weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
+| dmq_head | `relay_chain::Hash` | ```[u8; 32]```
 
 ---------
 ### DownwardMessagesReceived
 Some downward messages have been received and will be processed.
-\[ count \]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `u32` | ```u32```
+| count | `u32` | ```u32```
 
 ---------
 ### UpgradeAuthorized
@@ -116,7 +114,15 @@ An upgrade has been authorized.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```[u8; 32]```
+
+---------
+### UpwardMessageSent
+An upward message was sent to the relay chain.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
 
 ---------
 ### ValidationFunctionApplied
@@ -124,7 +130,7 @@ The validation function was applied as of the contained relay chain block number
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `RelayChainBlockNumber` | ```u32```
+| relay_chain_block_num | `RelayChainBlockNumber` | ```u32```
 
 ---------
 ### ValidationFunctionDiscarded
@@ -173,6 +179,23 @@ result = substrate.query(
 '[u8; 32]'
 ```
 ---------
+### CustomValidationHeadData
+ A custom head data that should be returned as result of `validate_block`.
+
+ See [`Pallet::set_custom_validation_head_data`] for more information.
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainSystem', 'CustomValidationHeadData', []
+)
+```
+
+#### Return value
+```python
+'Bytes'
+```
+---------
 ### DidSetValidationCode
  Were the validation data set to notify the relay chain?
 
@@ -213,8 +236,8 @@ result = substrate.query(
     'max_upward_message_size': 'u32',
     'max_upward_queue_count': 'u32',
     'max_upward_queue_size': 'u32',
+    'validation_upgrade_cooldown': 'u32',
     'validation_upgrade_delay': 'u32',
-    'validation_upgrade_frequency': 'u32',
 }
 ```
 ---------
@@ -285,7 +308,22 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::114'
+'scale_info::171'
+```
+---------
+### LastRelayChainBlockNumber
+ The relay chain block number associated with the last parachain block.
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainSystem', 'LastRelayChainBlockNumber', []
+)
+```
+
+#### Return value
+```python
+'u32'
 ```
 ---------
 ### NewValidationCode
@@ -359,6 +397,26 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### RelayStateProof
+ The state proof for the last relay parent block.
+
+ This field is meant to be updated each block with the validation data inherent. Therefore,
+ before processing of the inherent, e.g. in `on_initialize` this data may be stale.
+
+ This data is also absent from the genesis.
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainSystem', 'RelayStateProof', []
+)
+```
+
+#### Return value
+```python
+{'trie_nodes': 'scale_info::164'}
+```
+---------
 ### RelevantMessagingState
  The snapshot of some state related to messaging relevant to the current parachain as per
  the relay parent.
@@ -422,7 +480,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'u64'
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 ### ReservedXcmpWeightOverride
@@ -438,7 +496,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'u64'
+{'proof_size': 'u64', 'ref_time': 'u64'}
 ```
 ---------
 ### UpgradeRestrictionSignal

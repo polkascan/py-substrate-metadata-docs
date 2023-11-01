@@ -209,6 +209,7 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
+        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -239,7 +240,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        None: None,
         'XcmPallet': {
             'Response': {
                 'interior': {
@@ -1464,6 +1464,7 @@ result = substrate.query(
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
+            None: None,
             'Origins': (
                 'StakingAdmin',
                 'Treasurer',
@@ -1492,7 +1493,6 @@ result = substrate.query(
                 'Xcm': {'interior': 'scale_info::165', 'parents': 'u8'},
             },
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',

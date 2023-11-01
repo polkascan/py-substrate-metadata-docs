@@ -375,6 +375,27 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::22',
+                    'dispatch_info': 'scale_info::19',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::28'},
+                'ItemCompleted': None,
+            },
+            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -795,17 +816,6 @@ result = substrate.query(
                 'Sudid': {'sudo_result': 'scale_info::28'},
                 'SudoAsDone': {'sudo_result': 'scale_info::28'},
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'Tips': {
                 'NewTip': {'tip_hash': '[u8; 32]'},
                 'TipClosed': {
@@ -835,16 +845,6 @@ result = substrate.query(
                 'Spending': {'budget_remaining': 'u128'},
             },
             'TreasuryReward': {'TreasuryMinting': ('u128', 'u32', 'AccountId')},
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
-                },
-                'DispatchedAs': {'result': 'scale_info::28'},
-                'ItemCompleted': None,
-            },
-            None: None,
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},

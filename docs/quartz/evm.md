@@ -6,7 +6,7 @@
 
 ---------
 ### call
-Issue an EVM call operation. This is similar to a message call transaction in Ethereum.
+See [`Pallet::call`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -44,8 +44,7 @@ call = substrate.compose_call(
 
 ---------
 ### create
-Issue an EVM create operation. This is similar to a contract creation transaction in
-Ethereum.
+See [`Pallet::create`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -81,7 +80,7 @@ call = substrate.compose_call(
 
 ---------
 ### create2
-Issue an EVM create2 operation.
+See [`Pallet::create2`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -119,7 +118,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw
-Withdraw balance from EVM into currency/balances pallet.
+See [`Pallet::withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

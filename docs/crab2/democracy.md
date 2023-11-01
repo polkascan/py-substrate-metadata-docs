@@ -1009,7 +1009,7 @@ constant = substrate.get_constant('Democracy', 'CooloffPeriod')
  where they are on the losing side of a vote.
 #### Value
 ```python
-57600
+201600
 ```
 #### Python
 ```python
@@ -1044,7 +1044,7 @@ constant = substrate.get_constant('Democracy', 'InstantAllowed')
  How often (in blocks) new public referenda are launched.
 #### Value
 ```python
-50400
+201600
 ```
 #### Python
 ```python
@@ -1116,7 +1116,7 @@ constant = substrate.get_constant('Democracy', 'MinimumDeposit')
  those successful voters are locked into the consequences that their votes entail.
 #### Value
 ```python
-57600
+201600
 ```
 #### Python
 ```python
@@ -1127,7 +1127,7 @@ constant = substrate.get_constant('Democracy', 'VoteLockingPeriod')
  How often (in blocks) to check for new votes.
 #### Value
 ```python
-50400
+201600
 ```
 #### Python
 ```python

@@ -284,6 +284,10 @@ constant = substrate.get_constant('PhalaVault', 'VaultQueuePeriod')
 The asset account hasn&\#x27;t been created. It indicates an internal error.
 
 ---------
+### CommissionNotChanged
+The commission is not changed
+
+---------
 ### InsufficientBalance
 Trying to contribute more than the available balance
 

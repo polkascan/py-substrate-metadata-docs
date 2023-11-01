@@ -10,7 +10,6 @@ Let any user to launch a vault withdraw. Then check if the vault need to be forc
 
 If the shutdown condition is met, all shares owned by the vault will be forced withdraw.
 Note: This function doesn&\#x27;t guarantee no-op when there&\#x27;s error.
-TODO(mingxuan): add more detail comment later.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -178,6 +177,14 @@ Affected states:
 | shares | `BalanceOf<T>` | ```u128```
 
 ---------
+### ForceShutdown
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pid | `u64` | ```u64```
+| reason | `ForceShutdownReason` | ```('NoEnoughReleasingStake', 'Waiting3xGracePeriod')```
+
+---------
 ### OwnerSharesClaimed
 Owner shares is claimed by pool owner
 Affected states:
@@ -282,6 +289,10 @@ constant = substrate.get_constant('PhalaVault', 'VaultQueuePeriod')
 ---------
 ### AssetAccountNotExist
 The asset account hasn&\#x27;t been created. It indicates an internal error.
+
+---------
+### CommissionNotChanged
+The commission is not changed
 
 ---------
 ### InsufficientBalance

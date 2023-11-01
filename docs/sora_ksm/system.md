@@ -5,21 +5,6 @@
 ## Calls
 
 ---------
-### fill_block
-A dispatch that will fill the block weight up to the given ratio.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ratio | `Perbill` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-```
-
----------
 ### kill_prefix
 Kill all storage items with a key that starts with the given prefix.
 
@@ -75,11 +60,6 @@ call = substrate.compose_call(
 ---------
 ### remark_with_event
 Make some on-chain remark and emit event.
-
-\# &lt;weight&gt;
-- `O(b)` where b is the length of the remark.
-- 1 event.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -182,45 +162,45 @@ No attributes
 
 ---------
 ### ExtrinsicFailed
-An extrinsic failed. \[error, info\]
+An extrinsic failed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': 'u8'}, 'ConsumerRemaining': None, 'NoProviders': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero')}```
-| None | `DispatchInfo` | ```{'weight': 'u64', 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
+| dispatch_error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| dispatch_info | `DispatchInfo` | ```{'weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
 
 ---------
 ### ExtrinsicSuccess
-An extrinsic completed successfully. \[info\]
+An extrinsic completed successfully.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `DispatchInfo` | ```{'weight': 'u64', 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
+| dispatch_info | `DispatchInfo` | ```{'weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
 
 ---------
 ### KilledAccount
-An \[account\] was reaped.
+An account was reaped.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
+| account | `T::AccountId` | ```AccountId```
 
 ---------
 ### NewAccount
-A new \[account\] was created.
+A new account was created.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
+| account | `T::AccountId` | ```AccountId```
 
 ---------
 ### Remarked
-On on-chain remark happened. \[origin, remark_hash\]
+On on-chain remark happened.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `T::Hash` | ```[u8; 32]```
+| sender | `T::AccountId` | ```AccountId```
+| hash | `T::Hash` | ```[u8; 32]```
 
 ---------
 ## Storage functions
@@ -294,7 +274,11 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'mandatory': 'u64', 'normal': 'u64', 'operational': 'u64'}
+{
+    'mandatory': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'normal': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'operational': {'proof_size': 'u64', 'ref_time': 'u64'},
+}
 ```
 ---------
 ### Digest
@@ -365,8 +349,11 @@ result = substrate.query(
 ### Events
  Events deposited for the current block.
 
- NOTE: This storage item is explicitly unbounded since it is never intended to be read
- from within the runtime.
+ NOTE: The item is unbound and should therefore never be read on chain.
+ It could otherwise inflate the PoV size of a block.
+
+ Events have a large in-memory size. Box the events to not go out-of-memory
+ just in case someone still reads them from within the runtime.
 
 #### Python
 ```python
@@ -391,7 +378,7 @@ result = substrate.query(
                 'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'destination_status': 'scale_info::27',
+                    'destination_status': 'scale_info::33',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
@@ -405,98 +392,418 @@ result = substrate.query(
                 'Unreserved': {'amount': 'u128', 'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
+            None: None,
+            'BeefyLightClient': {
+                'NewMMRRoot': ('scale_info::109', '[u8; 32]', 'u64'),
+                'ValidatorRegistryUpdated': (
+                    'scale_info::109',
+                    '[u8; 32]',
+                    'u32',
+                    'u64',
+                ),
+                'VerificationSuccessful': (
+                    'scale_info::109',
+                    'AccountId',
+                    'u32',
+                ),
+            },
+            'BridgeDataSigner': {
+                'AddedPeer': {
+                    'network_id': 'scale_info::114',
+                    'peer': '[u8; 33]',
+                },
+                'ApprovalAccepted': {
+                    'data': '[u8; 32]',
+                    'network_id': 'scale_info::114',
+                    'signature': '[u8; 65]',
+                },
+                'Approved': {
+                    'data': '[u8; 32]',
+                    'network_id': 'scale_info::114',
+                    'signatures': ['[u8; 65]'],
+                },
+                'Initialized': {
+                    'network_id': 'scale_info::114',
+                    'peers': ['[u8; 33]'],
+                },
+                'RemovedPeer': {
+                    'network_id': 'scale_info::114',
+                    'peer': '[u8; 33]',
+                },
+            },
             'CollatorSelection': {
-                'CandidateAdded': ('AccountId', 'u128'),
-                'CandidateRemoved': 'AccountId',
-                'NewCandidacyBond': 'u128',
-                'NewDesiredCandidates': 'u32',
-                'NewInvulnerables': ['AccountId'],
+                'CandidateAdded': {
+                    'account_id': 'AccountId',
+                    'deposit': 'u128',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'NewCandidacyBond': {'bond_amount': 'u128'},
+                'NewDesiredCandidates': {'desired_candidates': 'u32'},
+                'NewInvulnerables': {'invulnerables': ['AccountId']},
+            },
+            'Council': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::99',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::99',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
+                },
             },
             'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 8]', 'scale_info::35'),
-                'InvalidFormat': '[u8; 8]',
-                'UnsupportedVersion': '[u8; 8]',
+                'ExecutedDownward': ('[u8; 32]', 'scale_info::42'),
+                'InvalidFormat': '[u8; 32]',
+                'UnsupportedVersion': '[u8; 32]',
+            },
+            'Democracy': {
+                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Cancelled': {'ref_index': 'u32'},
+                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
+                'ExternalTabled': None,
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'ProposalCanceled': {'prop_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
+                'Started': {
+                    'ref_index': 'u32',
+                    'threshold': 'scale_info::131',
+                },
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Undelegated': {'account': 'AccountId'},
+                'Vetoed': {
+                    'proposal_hash': '[u8; 32]',
+                    'until': 'u32',
+                    'who': 'AccountId',
+                },
+                'Voted': {
+                    'ref_index': 'u32',
+                    'vote': 'scale_info::132',
+                    'voter': 'AccountId',
+                },
             },
             'DmpQueue': {
-                'ExecutedDownward': ('[u8; 32]', 'scale_info::35'),
-                'InvalidFormat': '[u8; 32]',
-                'OverweightEnqueued': ('[u8; 32]', 'u64', 'u64'),
-                'OverweightServiced': ('u64', 'u64'),
-                'UnsupportedVersion': '[u8; 32]',
-                'WeightExhausted': ('[u8; 32]', 'u64', 'u64'),
+                'ExecutedDownward': {
+                    'message_id': '[u8; 32]',
+                    'outcome': 'scale_info::42',
+                },
+                'InvalidFormat': {'message_id': '[u8; 32]'},
+                'MaxMessagesExhausted': {'message_id': '[u8; 32]'},
+                'OverweightEnqueued': {
+                    'message_id': '[u8; 32]',
+                    'overweight_index': 'u64',
+                    'required_weight': 'scale_info::8',
+                },
+                'OverweightServiced': {
+                    'overweight_index': 'u64',
+                    'weight_used': 'scale_info::8',
+                },
+                'UnsupportedVersion': {'message_id': '[u8; 32]'},
+                'WeightExhausted': {
+                    'message_id': '[u8; 32]',
+                    'remaining_weight': 'scale_info::8',
+                    'required_weight': 'scale_info::8',
+                },
+            },
+            'LeafProvider': (),
+            'MultisigVerifier': {
+                'NetworkInitialized': {
+                    'EVM': '[u64; 4]',
+                    'EVMLegacy': 'u32',
+                    'Sub': 'scale_info::109',
+                },
+                'PeerAdded': '[u8; 33]',
+                'PeerRemoved': '[u8; 33]',
+                'VerificationSuccessful': {
+                    'EVM': '[u64; 4]',
+                    'EVMLegacy': 'u32',
+                    'Sub': 'scale_info::109',
+                },
             },
             'ParachainSystem': {
-                'DownwardMessagesProcessed': ('u64', '[u8; 32]'),
-                'DownwardMessagesReceived': 'u32',
-                'UpgradeAuthorized': '[u8; 32]',
-                'ValidationFunctionApplied': 'u32',
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
             },
             'PolkadotXcm': {
+                'AssetsClaimed': (
+                    '[u8; 32]',
+                    'scale_info::43',
+                    'scale_info::80',
+                ),
                 'AssetsTrapped': (
                     '[u8; 32]',
-                    'scale_info::36',
-                    'scale_info::67',
+                    'scale_info::43',
+                    'scale_info::80',
                 ),
                 'Attempted': {
-                    'Complete': 'u64',
-                    'Error': 'scale_info::33',
-                    'Incomplete': ('u64', 'scale_info::33'),
+                    'Complete': 'scale_info::8',
+                    'Error': 'scale_info::39',
+                    'Incomplete': ('scale_info::8', 'scale_info::39'),
                 },
-                'InvalidResponder': (
-                    'scale_info::36',
+                'FeesPaid': ('scale_info::43', ['scale_info::58']),
+                'InvalidQuerier': (
+                    'scale_info::43',
                     'u64',
-                    (None, 'scale_info::36'),
+                    'scale_info::43',
+                    (None, 'scale_info::43'),
                 ),
-                'InvalidResponderVersion': ('scale_info::36', 'u64'),
+                'InvalidQuerierVersion': ('scale_info::43', 'u64'),
+                'InvalidResponder': (
+                    'scale_info::43',
+                    'u64',
+                    (None, 'scale_info::43'),
+                ),
+                'InvalidResponderVersion': ('scale_info::43', 'u64'),
                 'Notified': ('u64', 'u8', 'u8'),
                 'NotifyDecodeFailed': ('u64', 'u8', 'u8'),
                 'NotifyDispatchError': ('u64', 'u8', 'u8'),
-                'NotifyOverweight': ('u64', 'u8', 'u8', 'u64', 'u64'),
-                'NotifyTargetMigrationFail': ('scale_info::72', 'u64'),
-                'NotifyTargetSendFail': (
-                    'scale_info::36',
+                'NotifyOverweight': (
                     'u64',
-                    'scale_info::33',
+                    'u8',
+                    'u8',
+                    'scale_info::8',
+                    'scale_info::8',
                 ),
-                'ResponseReady': ('u64', 'scale_info::57'),
+                'NotifyTargetMigrationFail': ('scale_info::94', 'u64'),
+                'NotifyTargetSendFail': (
+                    'scale_info::43',
+                    'u64',
+                    'scale_info::39',
+                ),
+                'ResponseReady': ('u64', 'scale_info::64'),
                 'ResponseTaken': 'u64',
                 'Sent': (
-                    'scale_info::36',
-                    'scale_info::36',
-                    ['scale_info::48'],
+                    'scale_info::43',
+                    'scale_info::43',
+                    ['scale_info::55'],
                 ),
-                'SupportedVersionChanged': ('scale_info::36', 'u32'),
-                'UnexpectedResponse': ('scale_info::36', 'u64'),
-                'VersionChangeNotified': ('scale_info::36', 'u32'),
+                'SupportedVersionChanged': ('scale_info::43', 'u32'),
+                'UnexpectedResponse': ('scale_info::43', 'u64'),
+                'VersionChangeNotified': (
+                    'scale_info::43',
+                    'u32',
+                    ['scale_info::58'],
+                ),
+                'VersionNotifyRequested': (
+                    'scale_info::43',
+                    ['scale_info::58'],
+                ),
+                'VersionNotifyStarted': ('scale_info::43', ['scale_info::58']),
+                'VersionNotifyUnrequested': (
+                    'scale_info::43',
+                    ['scale_info::58'],
+                ),
+            },
+            'Preimage': {
+                'Cleared': {'hash': '[u8; 32]'},
+                'Noted': {'hash': '[u8; 32]'},
+                'Requested': {'hash': '[u8; 32]'},
+            },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::99',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'SubstrateBridgeInboundChannel': (),
+            'SubstrateBridgeOutboundChannel': {
+                'MessageAccepted': {
+                    'batch_nonce': 'u64',
+                    'message_nonce': 'u64',
+                    'network_id': 'scale_info::109',
+                },
+            },
+            'SubstrateDispatch': {
+                'MessageDecodeFailed': {
+                    'batch_nonce': (None, 'u64'),
+                    'message_nonce': 'u64',
+                    'receiver': 'scale_info::114',
+                    'sender': 'scale_info::114',
+                },
+                'MessageDispatched': ('scale_info::113', 'scale_info::99'),
+                'MessageRejected': {
+                    'batch_nonce': (None, 'u64'),
+                    'message_nonce': 'u64',
+                    'receiver': 'scale_info::114',
+                    'sender': 'scale_info::114',
+                },
+            },
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::99'},
+                'SudoAsDone': {'sudo_result': 'scale_info::99'},
+            },
             'System': {
                 'CodeUpdated': None,
-                'ExtrinsicFailed': ('scale_info::22', 'scale_info::19'),
-                'ExtrinsicSuccess': {
-                    'class': 'scale_info::20',
-                    'pays_fee': 'scale_info::21',
-                    'weight': 'u64',
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
                 },
-                'KilledAccount': 'AccountId',
-                'NewAccount': 'AccountId',
-                'Remarked': ('AccountId', '[u8; 32]'),
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
-            None: None,
-            'Sudo': {
-                'KeyChanged': {'new_sudoer': 'AccountId'},
-                'Sudid': {'sudo_result': 'scale_info::76'},
-                'SudoAsDone': {'sudo_result': 'scale_info::76'},
+            'TechnicalCommittee': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::99',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::99',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
+                },
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
+            'XCMApp': {
+                'AssetAddedToChannel': {
+                    'FinalizeAssetRegistration': 'InnerStruct',
+                    'ReportXCMTransferResult': 'InnerStruct',
+                    'Transfer': 'InnerStruct',
+                },
+                'AssetIdMappingError': '[u8; 32]',
+                'AssetMappingChanged': ('[u8; 32]', 'scale_info::43'),
+                'AssetMinimumAmountSet': ('[u8; 32]', 'u128'),
+                'AssetRefundSent': (
+                    '[u8; 32]',
+                    'AccountId',
+                    '[u8; 32]',
+                    'u128',
+                ),
+                'AssetTransferred': (
+                    'AccountId',
+                    'scale_info::43',
+                    '[u8; 32]',
+                    'u128',
+                ),
+                'BridgeAssetTrapped': (
+                    'u128',
+                    (None, '[u8; 32]'),
+                    'AccountId',
+                    '[u8; 32]',
+                    'u128',
+                ),
+                'DoneMessageTrapped': '[u8; 32]',
+                'MappingCreated': ('[u8; 32]', 'scale_info::43'),
+                'MappingDeleted': ('[u8; 32]', 'scale_info::43'),
+                'MultiAssetMappingError': {
+                    'fun': 'scale_info::60',
+                    'id': 'scale_info::59',
+                },
+                'MultilocationMappingError': {
+                    'interior': 'scale_info::44',
+                    'parents': 'u8',
+                },
+                'MultilocationtMappingChanged': ('[u8; 32]', 'scale_info::43'),
+                'SubmittingToChannelError': ('scale_info::24', '[u8; 32]'),
+                'TrappedMessageRefundSent': (
+                    '[u8; 32]',
+                    'AccountId',
+                    '[u8; 32]',
+                    'u128',
+                ),
+                'TrappedMessageSent': ('AccountId', '[u8; 32]', 'u128'),
+                'TrasferringAssetError': ('scale_info::24', '[u8; 32]'),
+            },
+            'XTokens': {
+                'TransferredMultiAssets': {
+                    'assets': ['scale_info::58'],
+                    'dest': 'scale_info::43',
+                    'fee': 'scale_info::58',
+                    'sender': 'AccountId',
+                },
             },
             'XcmpQueue': {
-                'BadFormat': (None, '[u8; 32]'),
-                'BadVersion': (None, '[u8; 32]'),
-                'Fail': ((None, '[u8; 32]'), 'scale_info::33'),
-                'Success': (None, '[u8; 32]'),
-                'UpwardMessageSent': (None, '[u8; 32]'),
-                'XcmpMessageSent': (None, '[u8; 32]'),
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::39',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::8',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::8',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::8',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
         },
         'phase': {
@@ -637,7 +944,7 @@ result = substrate.query(
  Maximum number of block number to block hash mappings to keep (oldest pruned first).
 #### Value
 ```python
-2400
+4096
 ```
 #### Python
 ```python
@@ -660,26 +967,26 @@ constant = substrate.get_constant('System', 'BlockLength')
 #### Value
 ```python
 {
-    'base_block': 5000000000,
-    'max_block': 500000000000,
+    'base_block': {'proof_size': 0, 'ref_time': 381015000},
+    'max_block': {'proof_size': 5242880, 'ref_time': 500000000000},
     'per_class': {
         'mandatory': {
-            'base_extrinsic': 125000000,
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': 125000000,
-            'max_extrinsic': 349875000000,
-            'max_total': 375000000000,
-            'reserved': 0,
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
+            'max_extrinsic': {'proof_size': 3670016, 'ref_time': 349900160000},
+            'max_total': {'proof_size': 3932160, 'ref_time': 375000000000},
+            'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': 125000000,
-            'max_extrinsic': 474875000000,
-            'max_total': 500000000000,
-            'reserved': 125000000000,
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
+            'max_extrinsic': {'proof_size': 4980736, 'ref_time': 474900160000},
+            'max_total': {'proof_size': 5242880, 'ref_time': 500000000000},
+            'reserved': {'proof_size': 1310720, 'ref_time': 125000000000},
         },
     },
 }
@@ -701,7 +1008,7 @@ constant = substrate.get_constant('System', 'DbWeight')
 ```
 ---------
 ### SS58Prefix
- The designated SS85 prefix of this chain.
+ The designated SS58 prefix of this chain.
 
  This replaces the &quot;ss58Format&quot; property declared in the chain spec. Reason is
  that the runtime should know about the prefix in order to make use of it as
@@ -722,22 +1029,27 @@ constant = substrate.get_constant('System', 'SS58Prefix')
 {
     'apis': [
         ('0xdd718d5cc53262d4', 1),
-        ('0xdf6acb689907609b', 3),
+        ('0xdf6acb689907609b', 4),
         ('0x37e397fc7c91f5e4', 1),
-        ('0x40fe3ad401f8959a', 5),
+        ('0x40fe3ad401f8959a', 6),
         ('0xd2bc9897eed08f15', 3),
         ('0xf78b278be53f454c', 2),
         ('0xab3c0572291feb8b', 1),
+        ('0x49eaaf1b548a0cb0', 1),
+        ('0x91d5df18b0d2cf58', 1),
+        ('0xbfba27fa718cef1f', 1),
+        ('0xeb4d485ae89fbcb5', 1),
         ('0xbc9d89904f5b923f', 1),
-        ('0x37c8bb1350a9a2a8', 1),
-        ('0xea93e3f16f3d6962', 1),
+        ('0x37c8bb1350a9a2a8', 3),
+        ('0xea93e3f16f3d6962', 2),
     ],
     'authoring_version': 1,
     'impl_name': 'sora_ksm',
     'impl_version': 0,
     'spec_name': 'sora_ksm',
-    'spec_version': 1,
-    'transaction_version': 1,
+    'spec_version': 7,
+    'state_version': 1,
+    'transaction_version': 7,
 }
 ```
 #### Python

@@ -446,7 +446,7 @@ constant = substrate.get_constant('PhragmenElection', 'PalletId')
  be in passive mode.
 #### Value
 ```python
-7200
+50400
 ```
 #### Python
 ```python

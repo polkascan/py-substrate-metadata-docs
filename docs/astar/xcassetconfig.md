@@ -10630,6 +10630,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
+    None: None,
     'V2': {
         'interior': {
             'Here': None,
@@ -11058,7 +11059,6 @@ result = substrate.query(
         },
         'parents': 'u8',
     },
-    None: None,
     'V3': {
         'interior': {
             'Here': None,

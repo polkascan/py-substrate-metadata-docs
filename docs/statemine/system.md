@@ -346,7 +346,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'AssetTxPayment': {
                 'AssetTxFeePaid': {
                     'actual_fee': 'u128',
@@ -471,43 +470,10 @@ result = substrate.query(
                 'Upgraded': {'who': 'AccountId'},
                 'Withdraw': {'amount': 'u128', 'who': 'AccountId'},
             },
-            'CollatorSelection': {
-                'CandidateAdded': {
-                    'account_id': 'AccountId',
-                    'deposit': 'u128',
-                },
-                'CandidateRemoved': {'account_id': 'AccountId'},
-                'NewCandidacyBond': {'bond_amount': 'u128'},
-                'NewDesiredCandidates': {'desired_candidates': 'u32'},
-                'NewInvulnerables': {'invulnerables': ['AccountId']},
-            },
             'CumulusXcm': {
                 'ExecutedDownward': ('[u8; 32]', 'scale_info::44'),
                 'InvalidFormat': '[u8; 32]',
                 'UnsupportedVersion': '[u8; 32]',
-            },
-            'DmpQueue': {
-                'ExecutedDownward': {
-                    'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::44',
-                },
-                'InvalidFormat': {'message_id': '[u8; 32]'},
-                'MaxMessagesExhausted': {'message_id': '[u8; 32]'},
-                'OverweightEnqueued': {
-                    'message_id': '[u8; 32]',
-                    'overweight_index': 'u64',
-                    'required_weight': 'scale_info::9',
-                },
-                'OverweightServiced': {
-                    'overweight_index': 'u64',
-                    'weight_used': 'scale_info::9',
-                },
-                'UnsupportedVersion': {'message_id': '[u8; 32]'},
-                'WeightExhausted': {
-                    'message_id': '[u8; 32]',
-                    'remaining_weight': 'scale_info::9',
-                    'required_weight': 'scale_info::9',
-                },
             },
             'ForeignAssets': {
                 'AccountsDestroyed': {
@@ -623,6 +589,40 @@ result = substrate.query(
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
+                },
+            },
+            None: None,
+            'CollatorSelection': {
+                'CandidateAdded': {
+                    'account_id': 'AccountId',
+                    'deposit': 'u128',
+                },
+                'CandidateRemoved': {'account_id': 'AccountId'},
+                'NewCandidacyBond': {'bond_amount': 'u128'},
+                'NewDesiredCandidates': {'desired_candidates': 'u32'},
+                'NewInvulnerables': {'invulnerables': ['AccountId']},
+            },
+            'DmpQueue': {
+                'ExecutedDownward': {
+                    'message_id': '[u8; 32]',
+                    'outcome': 'scale_info::44',
+                },
+                'InvalidFormat': {'message_id': '[u8; 32]'},
+                'MaxMessagesExhausted': {'message_id': '[u8; 32]'},
+                'OverweightEnqueued': {
+                    'message_id': '[u8; 32]',
+                    'overweight_index': 'u64',
+                    'required_weight': 'scale_info::9',
+                },
+                'OverweightServiced': {
+                    'overweight_index': 'u64',
+                    'weight_used': 'scale_info::9',
+                },
+                'UnsupportedVersion': {'message_id': '[u8; 32]'},
+                'WeightExhausted': {
+                    'message_id': '[u8; 32]',
+                    'remaining_weight': 'scale_info::9',
+                    'required_weight': 'scale_info::9',
                 },
             },
             'Nfts': {

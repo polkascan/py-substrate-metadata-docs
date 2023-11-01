@@ -275,9 +275,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -346,7 +346,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Auctions': {
                 'AuctionClosed': {'auction_index': 'u32'},
                 'AuctionStarted': {
@@ -377,6 +376,7 @@ result = substrate.query(
                     'block_number': 'u32',
                 },
             },
+            None: None,
             'Balances': {
                 'BalanceSet': {'free': 'u128', 'who': 'AccountId'},
                 'Burned': {'amount': 'u128', 'who': 'AccountId'},

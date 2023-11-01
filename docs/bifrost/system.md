@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
+            'Other': 'Bytes',
             None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
-            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -353,6 +353,18 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
             'AssetRegistry': {
                 'AssetRegistered': {
                     'asset_id': 'scale_info::420',
@@ -1555,17 +1567,6 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'SystemMaker': {
                 'Charged': {
                     'currency_id': 'scale_info::255',
@@ -1697,6 +1698,14 @@ result = substrate.query(
                     'yes': 'u32',
                 },
             },
+            'TechnicalMembership': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'Tips': {
                 'NewTip': {'tip_hash': '[u8; 32]'},
                 'TipClosed': {
@@ -1807,6 +1816,13 @@ result = substrate.query(
                     'who': 'AccountId',
                 },
             },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Treasury': {
                 'Awarded': {
                     'account': 'AccountId',
@@ -1849,6 +1865,41 @@ result = substrate.query(
                 'DispatchedAs': {'result': 'scale_info::50'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::25'},
+            },
+            'VSBondAuction': {
+                'OrderClinchd': (
+                    'u64',
+                    'scale_info::290',
+                    'AccountId',
+                    'AccountId',
+                    'scale_info::255',
+                    'u128',
+                    'u128',
+                    'u128',
+                    'u128',
+                ),
+                'OrderCreated': (
+                    'u64',
+                    'scale_info::290',
+                    'AccountId',
+                    'scale_info::255',
+                    'u128',
+                    'u128',
+                ),
+                'OrderRevoked': (
+                    'u64',
+                    'scale_info::290',
+                    'AccountId',
+                    'scale_info::255',
+                    'u128',
+                    'u128',
+                    'u128',
+                ),
+                'TransactionFeeRateSet': ('u32', 'u32'),
+            },
+            'Vesting': {
+                'VestingCompleted': 'AccountId',
+                'VestingUpdated': ('AccountId', 'u128'),
             },
             'VstokenConversion': {
                 'ExchangeFeeSet': {'exchange_fee': 'scale_info::338'},
@@ -1956,78 +2007,6 @@ result = substrate.query(
                     'token_id': 'scale_info::255',
                 },
             },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::174',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::9',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::9',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::9',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
-            None: None,
-            'TechnicalMembership': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
-            },
-            'VSBondAuction': {
-                'OrderClinchd': (
-                    'u64',
-                    'scale_info::290',
-                    'AccountId',
-                    'AccountId',
-                    'scale_info::255',
-                    'u128',
-                    'u128',
-                    'u128',
-                    'u128',
-                ),
-                'OrderCreated': (
-                    'u64',
-                    'scale_info::290',
-                    'AccountId',
-                    'scale_info::255',
-                    'u128',
-                    'u128',
-                ),
-                'OrderRevoked': (
-                    'u64',
-                    'scale_info::290',
-                    'AccountId',
-                    'scale_info::255',
-                    'u128',
-                    'u128',
-                    'u128',
-                ),
-                'TransactionFeeRateSet': ('u32', 'u32'),
-            },
-            'Vesting': {
-                'VestingCompleted': 'AccountId',
-                'VestingUpdated': ('AccountId', 'u128'),
-            },
             'VtokenVoting': {
                 'DelegatorRoleSet': {
                     'derivative_index': 'u16',
@@ -2113,6 +2092,27 @@ result = substrate.query(
                     'scale_info::9',
                     'u128',
                 ),
+            },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, '[u8; 32]')},
+                'BadVersion': {'message_hash': (None, '[u8; 32]')},
+                'Fail': {
+                    'error': 'scale_info::174',
+                    'message_hash': (None, '[u8; 32]'),
+                    'weight': 'scale_info::9',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::9',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::9',
+                },
+                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
+                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
             'ZenlinkProtocol': {
                 'AssetSwap': (
@@ -2555,7 +2555,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'bifrost',
     'impl_version': 0,
     'spec_name': 'bifrost',
-    'spec_version': 982,
+    'spec_version': 984,
     'state_version': 0,
     'transaction_version': 1,
 }

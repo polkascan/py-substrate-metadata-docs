@@ -6,18 +6,7 @@
 
 ---------
 ### transfer
-Transfer native currencies.
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -39,6 +28,7 @@ call = substrate.compose_call(
         ),
     },
     'dest': {
+        None: None,
         'V2': {
             'interior': {
                 'Here': None,
@@ -919,7 +909,6 @@ call = substrate.compose_call(
             },
             'parents': 'u8',
         },
-        None: None,
         'V3': {
             'interior': {
                 'Here': None,
@@ -2668,18 +2657,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_multiasset
-Transfer `MultiAsset`.
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_multiasset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -5490,27 +5468,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_multiasset_with_fee
-Transfer `MultiAsset` specifying the fee and amount as separate.
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-`fee` is the multiasset to be spent to pay for execution in
-destination chain. Both fee and amount will be subtracted form the
-callers balance For now we only accept fee and asset having the same
-`MultiLocation` id.
-
-If `fee` is not high enough to cover for the execution costs in the
-destination chain, then the assets will be trapped in the
-destination chain
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_multiasset_with_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -8491,21 +8449,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_multiassets
-Transfer several `MultiAsset` specifying the item to be used as fee
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-`fee_item` is index of the MultiAssets that we want to use for
-payment
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_multiassets`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -11197,21 +11141,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_multicurrencies
-Transfer several currencies specifying the item to be used as fee
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-`fee_item` is index of the currencies tuple that we want to use for
-payment
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_multicurrencies`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -13867,27 +13797,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_with_fee
-Transfer native currencies specifying the fee and amount as
-separate.
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-`fee` is the amount to be spent to pay for execution in destination
-chain. Both fee and amount will be subtracted form the callers
-balance.
-
-If `fee` is not high enough to cover for the execution costs in the
-destination chain, then the assets will be trapped in the
-destination chain
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_with_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | integritee-parachain     |
 | Implementation name     | integritee-full     |
-| Spec version     | 37     |
+| Spec version     | 38     |
 | SS58 Format     | 13     |
 | Token symbol      | TEER     |
 | Token decimals      | 12     |
@@ -38,7 +38,7 @@
 | [System](system.md) | [8](system.md#calls) | [6](system.md#events) | [16](system.md#storage-functions) | [6](system.md#constants) | [6](system.md#errors) |
 | [TechnicalCommittee](technicalcommittee.md) | [6](technicalcommittee.md#calls) | [7](technicalcommittee.md#events) | [6](technicalcommittee.md#storage-functions) | [1](technicalcommittee.md#constants) | [10](technicalcommittee.md#errors) |
 | [Teeracle](teeracle.md) | [4](teeracle.md#calls) | [5](teeracle.md#events) | [3](teeracle.md#storage-functions) | [2](teeracle.md#constants) | [7](teeracle.md#errors) |
-| [Teerex](teerex.md) | [6](teerex.md#calls) | [6](teerex.md#events) | [6](teerex.md#storage-functions) | [2](teerex.md#constants) | [14](teerex.md#errors) |
+| [Teerex](teerex.md) | [6](teerex.md#calls) | [6](teerex.md#events) | [6](teerex.md#storage-functions) | [2](teerex.md#constants) | [54](teerex.md#errors) |
 | [Timestamp](timestamp.md) | [1](timestamp.md#calls) | [0](timestamp.md#events) | [2](timestamp.md#storage-functions) | [1](timestamp.md#constants) | [0](timestamp.md#errors) |
 | [TransactionPayment](transactionpayment.md) | [0](transactionpayment.md#calls) | [1](transactionpayment.md#events) | [2](transactionpayment.md#storage-functions) | [1](transactionpayment.md#constants) | [0](transactionpayment.md#errors) |
 | [Treasury](treasury.md) | [5](treasury.md#calls) | [9](treasury.md#events) | [4](treasury.md#storage-functions) | [7](treasury.md#constants) | [5](treasury.md#errors) |

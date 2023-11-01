@@ -6,7 +6,7 @@
 
 ---------
 ### transact
-Transact an Ethereum transaction.
+See [`Pallet::transact`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

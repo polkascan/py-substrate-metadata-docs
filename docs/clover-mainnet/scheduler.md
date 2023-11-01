@@ -234,8 +234,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Ethereum': {'EthereumTransaction': '[u8; 20]'},
                 'PolkadotXcm': {
                     'Response': 'scale_info::90',
@@ -247,6 +245,8 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
             },
             'priority': 'u8',
         },

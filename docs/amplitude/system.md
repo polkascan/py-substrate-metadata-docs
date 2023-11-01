@@ -282,9 +282,9 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
             None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
@@ -353,6 +353,49 @@ result = substrate.query(
 [
     {
         'event': {
+            'Council': {
+                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Closed': {
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'yes': 'u32',
+                },
+                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Executed': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::41',
+                },
+                'MemberExecuted': {
+                    'proposal_hash': '[u8; 32]',
+                    'result': 'scale_info::41',
+                },
+                'Proposed': {
+                    'account': 'AccountId',
+                    'proposal_hash': '[u8; 32]',
+                    'proposal_index': 'u32',
+                    'threshold': 'u32',
+                },
+                'Voted': {
+                    'account': 'AccountId',
+                    'no': 'u32',
+                    'proposal_hash': '[u8; 32]',
+                    'voted': 'bool',
+                    'yes': 'u32',
+                },
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::8',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
                     'asset_id': 'scale_info::118',
@@ -437,36 +480,6 @@ result = substrate.query(
                 'Terminated': {
                     'beneficiary': 'AccountId',
                     'contract': 'AccountId',
-                },
-            },
-            'Council': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
-                'Closed': {
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'yes': 'u32',
-                },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
-                'Executed': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::41',
-                },
-                'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
-                    'result': 'scale_info::41',
-                },
-                'Proposed': {
-                    'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
-                    'proposal_index': 'u32',
-                    'threshold': 'u32',
-                },
-                'Voted': {
-                    'account': 'AccountId',
-                    'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
-                    'voted': 'bool',
-                    'yes': 'u32',
                 },
             },
             'CumulusXcm': {
@@ -733,18 +746,6 @@ result = substrate.query(
                 'NewRound': ('u32', 'u32'),
                 'Rewarded': ('AccountId', 'u128'),
                 'RoundInflationSet': ('u64', 'u64', 'u64', 'u64'),
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::8',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
             },
             'PolkadotXcm': {
                 'AssetsClaimed': (
@@ -1415,7 +1416,6 @@ result = substrate.query(
                     'AccountId',
                 ),
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',

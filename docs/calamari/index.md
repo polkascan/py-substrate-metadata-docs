@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | calamari     |
 | Implementation name     | calamari     |
-| Spec version     | 4400     |
+| Spec version     | 4401     |
 | SS58 Format     | 78     |
 | Token symbol      | KMA     |
 | Token decimals      | 12     |

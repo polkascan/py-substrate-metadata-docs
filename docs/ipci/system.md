@@ -307,12 +307,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -378,69 +378,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'Assets': {
-                'ApprovalCancelled': {
-                    'asset_id': 'u32',
-                    'delegate': 'AccountId',
-                    'owner': 'AccountId',
-                },
-                'ApprovedTransfer': {
-                    'amount': 'u128',
-                    'asset_id': 'u32',
-                    'delegate': 'AccountId',
-                    'source': 'AccountId',
-                },
-                'AssetFrozen': {'asset_id': 'u32'},
-                'AssetStatusChanged': {'asset_id': 'u32'},
-                'AssetThawed': {'asset_id': 'u32'},
-                'Burned': {
-                    'asset_id': 'u32',
-                    'balance': 'u128',
-                    'owner': 'AccountId',
-                },
-                'Created': {
-                    'asset_id': 'u32',
-                    'creator': 'AccountId',
-                    'owner': 'AccountId',
-                },
-                'Destroyed': {'asset_id': 'u32'},
-                'ForceCreated': {'asset_id': 'u32', 'owner': 'AccountId'},
-                'Frozen': {'asset_id': 'u32', 'who': 'AccountId'},
-                'Issued': {
-                    'asset_id': 'u32',
-                    'owner': 'AccountId',
-                    'total_supply': 'u128',
-                },
-                'MetadataCleared': {'asset_id': 'u32'},
-                'MetadataSet': {
-                    'asset_id': 'u32',
-                    'decimals': 'u8',
-                    'is_frozen': 'bool',
-                    'name': 'Bytes',
-                    'symbol': 'Bytes',
-                },
-                'OwnerChanged': {'asset_id': 'u32', 'owner': 'AccountId'},
-                'TeamChanged': {
-                    'admin': 'AccountId',
-                    'asset_id': 'u32',
-                    'freezer': 'AccountId',
-                    'issuer': 'AccountId',
-                },
-                'Thawed': {'asset_id': 'u32', 'who': 'AccountId'},
-                'Transferred': {
-                    'amount': 'u128',
-                    'asset_id': 'u32',
-                    'from': 'AccountId',
-                    'to': 'AccountId',
-                },
-                'TransferredApproved': {
-                    'amount': 'u128',
-                    'asset_id': 'u32',
-                    'delegate': 'AccountId',
-                    'destination': 'AccountId',
-                    'owner': 'AccountId',
-                },
-            },
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -583,18 +520,96 @@ result = substrate.query(
                     'sub': 'AccountId',
                 },
             },
-            'Utility': {
-                'BatchCompleted': None,
-                'BatchCompletedWithErrors': None,
-                'BatchInterrupted': {
-                    'error': 'scale_info::22',
-                    'index': 'u32',
+            'Multisig': {
+                'MultisigApproval': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::33',
                 },
-                'DispatchedAs': {'result': 'scale_info::29'},
-                'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
+                'MultisigCancelled': {
+                    'call_hash': '[u8; 32]',
+                    'cancelling': 'AccountId',
+                    'multisig': 'AccountId',
+                    'timepoint': 'scale_info::33',
+                },
+                'MultisigExecuted': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                    'result': 'scale_info::29',
+                    'timepoint': 'scale_info::33',
+                },
+                'NewMultisig': {
+                    'approving': 'AccountId',
+                    'call_hash': '[u8; 32]',
+                    'multisig': 'AccountId',
+                },
             },
             None: None,
+            'Assets': {
+                'ApprovalCancelled': {
+                    'asset_id': 'u32',
+                    'delegate': 'AccountId',
+                    'owner': 'AccountId',
+                },
+                'ApprovedTransfer': {
+                    'amount': 'u128',
+                    'asset_id': 'u32',
+                    'delegate': 'AccountId',
+                    'source': 'AccountId',
+                },
+                'AssetFrozen': {'asset_id': 'u32'},
+                'AssetStatusChanged': {'asset_id': 'u32'},
+                'AssetThawed': {'asset_id': 'u32'},
+                'Burned': {
+                    'asset_id': 'u32',
+                    'balance': 'u128',
+                    'owner': 'AccountId',
+                },
+                'Created': {
+                    'asset_id': 'u32',
+                    'creator': 'AccountId',
+                    'owner': 'AccountId',
+                },
+                'Destroyed': {'asset_id': 'u32'},
+                'ForceCreated': {'asset_id': 'u32', 'owner': 'AccountId'},
+                'Frozen': {'asset_id': 'u32', 'who': 'AccountId'},
+                'Issued': {
+                    'asset_id': 'u32',
+                    'owner': 'AccountId',
+                    'total_supply': 'u128',
+                },
+                'MetadataCleared': {'asset_id': 'u32'},
+                'MetadataSet': {
+                    'asset_id': 'u32',
+                    'decimals': 'u8',
+                    'is_frozen': 'bool',
+                    'name': 'Bytes',
+                    'symbol': 'Bytes',
+                },
+                'OwnerChanged': {'asset_id': 'u32', 'owner': 'AccountId'},
+                'TeamChanged': {
+                    'admin': 'AccountId',
+                    'asset_id': 'u32',
+                    'freezer': 'AccountId',
+                    'issuer': 'AccountId',
+                },
+                'Thawed': {'asset_id': 'u32', 'who': 'AccountId'},
+                'Transferred': {
+                    'amount': 'u128',
+                    'asset_id': 'u32',
+                    'from': 'AccountId',
+                    'to': 'AccountId',
+                },
+                'TransferredApproved': {
+                    'amount': 'u128',
+                    'asset_id': 'u32',
+                    'delegate': 'AccountId',
+                    'destination': 'AccountId',
+                    'owner': 'AccountId',
+                },
+            },
             'CarbonAssets': {
                 'ApprovalCancelled': {
                     'asset_id': '[u8; 24]',
@@ -666,32 +681,6 @@ result = substrate.query(
                 },
             },
             'Lighthouse': {'BlockReward': ('AccountId', 'u128')},
-            'Multisig': {
-                'MultisigApproval': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::33',
-                },
-                'MultisigCancelled': {
-                    'call_hash': '[u8; 32]',
-                    'cancelling': 'AccountId',
-                    'multisig': 'AccountId',
-                    'timepoint': 'scale_info::33',
-                },
-                'MultisigExecuted': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                    'result': 'scale_info::29',
-                    'timepoint': 'scale_info::33',
-                },
-                'NewMultisig': {
-                    'approving': 'AccountId',
-                    'call_hash': '[u8; 32]',
-                    'multisig': 'AccountId',
-                },
-            },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
                     'dmq_head': '[u8; 32]',
@@ -838,6 +827,17 @@ result = substrate.query(
                     'proposal_index': 'u32',
                 },
                 'Spending': {'budget_remaining': 'u128'},
+            },
+            'Utility': {
+                'BatchCompleted': None,
+                'BatchCompletedWithErrors': None,
+                'BatchInterrupted': {
+                    'error': 'scale_info::22',
+                    'index': 'u32',
+                },
+                'DispatchedAs': {'result': 'scale_info::29'},
+                'ItemCompleted': None,
+                'ItemFailed': {'error': 'scale_info::22'},
             },
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},

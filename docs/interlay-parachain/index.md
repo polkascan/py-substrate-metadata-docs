@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | interlay-parachain     |
 | Implementation name     | interlay-parachain     |
-| Spec version     | 1025002     |
+| Spec version     | 1025003     |
 | SS58 Format     | 2032     |
 | Token symbol      | ['INTR', 'IBTC', 'DOT', 'KINT', 'KBTC', 'KSM']     |
 | Token decimals      | [10, 8, 10, 12, 8, 12]     |

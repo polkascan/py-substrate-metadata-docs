@@ -353,16 +353,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'AssetRegistry': {
-                'RegisteredAsset': {
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::61',
-                },
-                'UpdatedAsset': {
-                    'asset_id': 'u32',
-                    'metadata': 'scale_info::61',
-                },
-            },
             'BTCRelay': {
                 'ChainReorg': {
                     'fork_depth': 'u32',
@@ -389,6 +379,28 @@ result = substrate.query(
                     'block_hash': 'scale_info::95',
                     'block_height': 'u32',
                     'relayer_id': 'AccountId',
+                },
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
+            None: None,
+            'AssetRegistry': {
+                'RegisteredAsset': {
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::61',
+                },
+                'UpdatedAsset': {
+                    'asset_id': 'u32',
+                    'metadata': 'scale_info::61',
                 },
             },
             'BaseFee': {
@@ -1190,17 +1202,6 @@ result = substrate.query(
                 'SudoAsDone': {'sudo_result': 'scale_info::31'},
             },
             'Supply': {'Inflation': {'total_inflation': 'u128'}},
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1582,7 +1583,6 @@ result = substrate.query(
                 'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::9'},
                 'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
             },
-            None: None,
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
@@ -1835,7 +1835,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'kintsugi-parachain',
     'impl_version': 1,
     'spec_name': 'kintsugi-parachain',
-    'spec_version': 1025002,
+    'spec_version': 1025003,
     'state_version': 0,
     'transaction_version': 4,
 }

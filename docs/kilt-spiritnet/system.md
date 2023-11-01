@@ -282,12 +282,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Consensus': ('[u8; 4]', 'Bytes'),
             'Other': 'Bytes',
+            None: None,
+            'Consensus': ('[u8; 4]', 'Bytes'),
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
-            None: None,
         },
     ],
 }
@@ -353,52 +353,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'Democracy': {
-                'Blacklisted': {'proposal_hash': '[u8; 32]'},
-                'Cancelled': {'ref_index': 'u32'},
-                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
-                'ExternalTabled': None,
-                'MetadataCleared': {
-                    'hash': '[u8; 32]',
-                    'owner': 'scale_info::40',
-                },
-                'MetadataSet': {'hash': '[u8; 32]', 'owner': 'scale_info::40'},
-                'MetadataTransferred': {
-                    'hash': '[u8; 32]',
-                    'owner': 'scale_info::40',
-                    'prev_owner': 'scale_info::40',
-                },
-                'NotPassed': {'ref_index': 'u32'},
-                'Passed': {'ref_index': 'u32'},
-                'ProposalCanceled': {'prop_index': 'u32'},
-                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::37'},
-                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
-                'Undelegated': {'account': 'AccountId'},
-                'Vetoed': {
-                    'proposal_hash': '[u8; 32]',
-                    'until': 'u64',
-                    'who': 'AccountId',
-                },
-                'Voted': {
-                    'ref_index': 'u32',
-                    'vote': 'scale_info::38',
-                    'voter': 'AccountId',
-                },
-            },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            None: None,
             'Attestation': {
                 'AttestationCreated': (
                     'AccountId',
@@ -486,6 +440,40 @@ result = substrate.query(
                 'HierarchyCreated': ('AccountId', '[u8; 32]', '[u8; 32]'),
                 'HierarchyRemoved': ('AccountId', '[u8; 32]'),
                 'HierarchyRevoked': ('AccountId', '[u8; 32]'),
+            },
+            'Democracy': {
+                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Cancelled': {'ref_index': 'u32'},
+                'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
+                'ExternalTabled': None,
+                'MetadataCleared': {
+                    'hash': '[u8; 32]',
+                    'owner': 'scale_info::40',
+                },
+                'MetadataSet': {'hash': '[u8; 32]', 'owner': 'scale_info::40'},
+                'MetadataTransferred': {
+                    'hash': '[u8; 32]',
+                    'owner': 'scale_info::40',
+                    'prev_owner': 'scale_info::40',
+                },
+                'NotPassed': {'ref_index': 'u32'},
+                'Passed': {'ref_index': 'u32'},
+                'ProposalCanceled': {'prop_index': 'u32'},
+                'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Seconded': {'prop_index': 'u32', 'seconder': 'AccountId'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::37'},
+                'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
+                'Undelegated': {'account': 'AccountId'},
+                'Vetoed': {
+                    'proposal_hash': '[u8; 32]',
+                    'until': 'u64',
+                    'who': 'AccountId',
+                },
+                'Voted': {
+                    'ref_index': 'u32',
+                    'vote': 'scale_info::38',
+                    'voter': 'AccountId',
+                },
             },
             'Did': {
                 'DidCallDispatched': ('AccountId', 'scale_info::43'),
@@ -748,6 +736,17 @@ result = substrate.query(
                 'Scheduled': {'index': 'u32', 'when': 'u64'},
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+            },
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -859,6 +858,7 @@ result = substrate.query(
                 'Web3NameReleased': {'name': 'Bytes', 'owner': 'AccountId'},
                 'Web3NameUnbanned': {'name': 'Bytes'},
             },
+            None: None,
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},

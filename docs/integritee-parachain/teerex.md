@@ -172,7 +172,7 @@ Intel SGX TCB info has been registered
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | fmspc | `Fmspc` | ```[u8; 6]```
-| on_chain_info | `SgxTcbInfoOnChain` | ```{'issue_date': 'u64', 'next_update': 'u64', 'tcb_levels': [{'cpusvn': '[u8; 16]', 'pcesvn': 'u16'}]}```
+| on_chain_info | `SgxTcbInfoOnChain` | ```{'issue_date': 'u64', 'next_update': 'u64', 'tcb_levels': [{'cpusvn': '[u8; 16]', 'pcesvn': 'u16', 'tcb_status': ('Unknown', 'UpToDate', 'SWHardeningNeeded', 'ConfigurationAndSWHardeningNeeded', 'OutOfDate', 'OutOfDateConfigurationNeeded', 'Revoked')}]}```
 
 ---------
 ### UpdatedSecurityFlags
@@ -301,7 +301,21 @@ result = substrate.query(
 {
     'issue_date': 'u64',
     'next_update': 'u64',
-    'tcb_levels': [{'cpusvn': '[u8; 16]', 'pcesvn': 'u16'}],
+    'tcb_levels': [
+        {
+            'cpusvn': '[u8; 16]',
+            'pcesvn': 'u16',
+            'tcb_status': (
+                'Unknown',
+                'UpToDate',
+                'SWHardeningNeeded',
+                'ConfigurationAndSWHardeningNeeded',
+                'OutOfDate',
+                'OutOfDateConfigurationNeeded',
+                'Revoked',
+            ),
+        },
+    ],
 }
 ```
 ---------
@@ -367,12 +381,51 @@ constant = substrate.get_constant('Teerex', 'MomentsPerDay')
 ## Errors
 
 ---------
-### CollateralInvalid
+### CaVerificationFailed
+
+---------
+### CertificateChainIsInvalid
+
+---------
+### CertificateChainIsTooShort
+
+---------
+### CollateralIsInvalid
 The provided collateral data is invalid
+
+---------
+### CpuSvnDecodingError
+
+---------
+### CpuSvnLengthMismatch
+
+---------
+### CpuSvnOidIsMissing
+
+---------
+### DcapKeyTypeMismatch
+
+---------
+### DcapQuoteDecodingError
+
+---------
+### DcapQuoteIsTooLong
+
+---------
+### DcapQuoteVersionMismatch
+
+---------
+### DerEncodingError
 
 ---------
 ### EmptyEnclaveRegistry
 No enclave is registered.
+
+---------
+### EnclaveIdentityDecodingError
+
+---------
+### EnclaveIdentitySignatureIsInvalid
 
 ---------
 ### EnclaveIsNotRegistered
@@ -383,19 +436,86 @@ The enclave is not registered.
 Failed to decode enclave signer.
 
 ---------
-### EnclaveUrlTooLong
+### EnclaveUrlIsTooLong
 The worker url is too long.
+
+---------
+### FmspcDecodingError
+
+---------
+### FmspcLengthMismatch
+
+---------
+### FmspcOidIsMissing
+
+---------
+### IntelExtensionAmbiguity
+
+---------
+### IntelExtensionCertificateDecodingError
+
+---------
+### IsvEnclaveReportSignatureIsInvalid
+
+---------
+### KeyLengthIsInvalid
+
+---------
+### LeafCertificateParsingError
 
 ---------
 ### MissingTcbInfoForFmspc
 No TCB info could be found onchain for the examinee&\#x27;s fmspc
 
 ---------
-### RaProofTooLong
+### NetscapeDecodingError
+
+---------
+### NetscapeDerError
+
+---------
+### OtherSgxVerifyError
+An error originating in the sgx_verify crate
+
+---------
+### PceSvnDecodingError
+
+---------
+### PceSvnLengthMismatch
+
+---------
+### PceSvnOidIsMissing
+
+---------
+### PckCertFormatMismatch
+
+---------
+### PublicKeyIsInvalid
+
+---------
+### QeHasRejectedEnclave
+
+---------
+### QeReportHashMismatch
+
+---------
+### QuoteBodyDecodingError
+
+---------
+### QuoteBodyIsInvalid
+
+---------
+### QuoteBodyMissing
+
+---------
+### QuoteStatusMissing
+
+---------
+### RaProofIsTooLong
 The Remote Attestation proof is too long.
 
 ---------
-### RemoteAttestationTooOld
+### RemoteAttestationIsTooOld
 IAS remote attestation is too old
 
 ---------
@@ -403,23 +523,38 @@ IAS remote attestation is too old
 Verifying RA report failed.
 
 ---------
+### RsaSignatureIsInvalid
+
+---------
 ### SenderIsNotAttestedEnclave
 Sender does not match attested enclave in report.
 
 ---------
-### SgxModeNotAllowed
+### SgxModeIsNotAllowed
 The enclave cannot attest, because its building mode is not allowed.
 
 ---------
-### SkippingAttestationNotAllowed
+### SgxReportParsingError
+
+---------
+### SkippingAttestationIsNotAllowed
 skipping attestation not allowed by configuration
 
 ---------
-### TcbInfoOutdated
+### TcbInfoIsInvalid
+
+---------
+### TcbInfoIsOutdated
 Either the enclave TCB has outdated status or the onchain TCB collateral is outdated
 
 ---------
-### UnregisterActiveEnclaveNotAllowed
+### TimestampIsInvalid
+
+---------
+### TimestampIsMissing
+
+---------
+### UnregisterActiveEnclaveIsNotAllowed
 It is not allowed to unregister enclaves with recent activity
 
 ---------

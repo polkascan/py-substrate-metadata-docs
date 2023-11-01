@@ -358,8 +358,8 @@ result = substrate.query(
 {
     'last_update_time': 'u32',
     'period_finish': 'u32',
-    'reward_per_token_stored': 'scale_info::639',
-    'reward_rate': 'scale_info::639',
+    'reward_per_token_stored': 'scale_info::705',
+    'reward_rate': 'scale_info::705',
     'rewards_duration': 'u32',
 }
 ```
@@ -403,7 +403,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::639'
+'scale_info::705'
 ```
 ---------
 ### SlopeChanges
@@ -473,7 +473,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::639'
+'scale_info::705'
 ```
 ---------
 ### VeConfigs

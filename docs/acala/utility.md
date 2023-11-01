@@ -60,20 +60,31 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Authority': {
             'delay': 'u32',
             'origin': {
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
+                        'CumulusXcm': {
+                            'Relay': None,
+                            'SiblingParachain': 'u32',
+                        },
+                        'system': {
+                            'None': None,
+                            'Root': None,
+                            'Signed': 'AccountId',
+                        },
                         None: None,
                         'Authority': {
                             'delay': 'u32',
                             'origin': 'scale_info::131',
-                        },
-                        'CumulusXcm': {
-                            'Relay': None,
-                            'SiblingParachain': 'u32',
                         },
                         'FinancialCouncil': {
                             'Member': 'AccountId',
@@ -112,13 +123,14 @@ call = substrate.compose_call(
                             '_Phantom': None,
                         },
                         'Void': (),
-                        'system': {
-                            'None': None,
-                            'Root': None,
-                            'Signed': 'AccountId',
-                        },
                     },
                 },
+                'system': {
+                    'None': None,
+                    'Root': None,
+                    'Signed': 'AccountId',
+                },
+                None: None,
                 'CumulusXcm': {
                     'Relay': None,
                     'SiblingParachain': 'u32',
@@ -261,12 +273,6 @@ call = substrate.compose_call(
                         'parents': 'u8',
                     },
                 },
-                'system': {
-                    'None': None,
-                    'Root': None,
-                    'Signed': 'AccountId',
-                },
-                None: None,
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': (
@@ -1279,12 +1285,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'call': 'Call',
 }

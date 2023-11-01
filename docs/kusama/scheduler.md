@@ -230,11 +230,11 @@ result = substrate.query(
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
                 'Origins': 'scale_info::129',
-                'Void': 'scale_info::140',
+                'system': 'scale_info::128',
                 None: None,
                 'ParachainsOrigin': 'scale_info::130',
+                'Void': 'scale_info::140',
                 'XcmPallet': 'scale_info::132',
-                'system': 'scale_info::128',
             },
             'priority': 'u8',
         },

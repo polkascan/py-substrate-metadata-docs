@@ -374,17 +374,6 @@ result = substrate.query(
                     'target_parachain_id': 'u32',
                 },
             },
-            'Indices': {
-                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
-                'IndexFreed': {'index': 'u32'},
-                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
-            },
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::30'},
-                'SudoAsDone': {'sudo_result': 'scale_info::30'},
-            },
-            None: None,
             'Balances': {
                 'BalanceSet': {
                     'free': 'u128',
@@ -798,6 +787,11 @@ result = substrate.query(
                     'sub': 'AccountId',
                 },
             },
+            'Indices': {
+                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
+                'IndexFreed': {'index': 'u32'},
+                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
+            },
             'Multisig': {
                 'MultisigApproval': {
                     'approving': 'AccountId',
@@ -902,36 +896,6 @@ result = substrate.query(
                     'pool_id': 'u128',
                     'timestamp': 'u64',
                     'twaps': 'scale_info::185',
-                },
-            },
-            'PalletMultihopXcmIbc': {
-                'FailedCallback': {
-                    'origin_address': '[u8; 32]',
-                    'reason': 'scale_info::423',
-                    'route_id': 'u128',
-                },
-                'FailedMatchLocation': None,
-                'FailedXcmToIbc': {
-                    'amount': 'u128',
-                    'asset_id': 'u128',
-                    'memo': (None, 'Str'),
-                    'origin_address': 'AccountId',
-                    'to': '[u8; 32]',
-                },
-                'MultihopXcmMemo': {
-                    'amount': 'u128',
-                    'asset_id': 'u128',
-                    'from': 'AccountId',
-                    'is_error': 'bool',
-                    'reason': 'scale_info::423',
-                    'to': 'AccountId',
-                },
-                'SuccessXcmToIbc': {
-                    'amount': 'u128',
-                    'asset_id': 'u128',
-                    'memo': (None, 'Str'),
-                    'origin_address': 'AccountId',
-                    'to': '[u8; 32]',
                 },
             },
             'ParachainSystem': {
@@ -1145,7 +1109,11 @@ result = substrate.query(
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
-            'Session': {'NewSession': {'session_index': 'u32'}},
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::30'},
+                'SudoAsDone': {'sudo_result': 'scale_info::30'},
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
@@ -1157,6 +1125,60 @@ result = substrate.query(
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
             },
+            'Treasury': {
+                'Awarded': {
+                    'account': 'AccountId',
+                    'award': 'u128',
+                    'proposal_index': 'u32',
+                },
+                'Burnt': {'burnt_funds': 'u128'},
+                'Deposit': {'value': 'u128'},
+                'Proposed': {'proposal_index': 'u32'},
+                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
+                'Rollover': {'rollover_balance': 'u128'},
+                'SpendApproved': {
+                    'amount': 'u128',
+                    'beneficiary': 'AccountId',
+                    'proposal_index': 'u32',
+                },
+                'Spending': {'budget_remaining': 'u128'},
+                'UpdatedInactive': {
+                    'deactivated': 'u128',
+                    'reactivated': 'u128',
+                },
+            },
+            None: None,
+            'PalletMultihopXcmIbc': {
+                'FailedCallback': {
+                    'origin_address': '[u8; 32]',
+                    'reason': 'scale_info::423',
+                    'route_id': 'u128',
+                },
+                'FailedMatchLocation': None,
+                'FailedXcmToIbc': {
+                    'amount': 'u128',
+                    'asset_id': 'u128',
+                    'memo': (None, 'Str'),
+                    'origin_address': 'AccountId',
+                    'to': '[u8; 32]',
+                },
+                'MultihopXcmMemo': {
+                    'amount': 'u128',
+                    'asset_id': 'u128',
+                    'from': 'AccountId',
+                    'is_error': 'bool',
+                    'reason': 'scale_info::423',
+                    'to': 'AccountId',
+                },
+                'SuccessXcmToIbc': {
+                    'amount': 'u128',
+                    'asset_id': 'u128',
+                    'memo': (None, 'Str'),
+                    'origin_address': 'AccountId',
+                    'to': '[u8; 32]',
+                },
+            },
+            'Session': {'NewSession': {'session_index': 'u32'}},
             'TechnicalCommittee': {
                 'Approved': {'proposal_hash': '[u8; 32]'},
                 'Closed': {
@@ -1279,28 +1301,6 @@ result = substrate.query(
                     'actual_fee': 'u128',
                     'tip': 'u128',
                     'who': 'AccountId',
-                },
-            },
-            'Treasury': {
-                'Awarded': {
-                    'account': 'AccountId',
-                    'award': 'u128',
-                    'proposal_index': 'u32',
-                },
-                'Burnt': {'burnt_funds': 'u128'},
-                'Deposit': {'value': 'u128'},
-                'Proposed': {'proposal_index': 'u32'},
-                'Rejected': {'proposal_index': 'u32', 'slashed': 'u128'},
-                'Rollover': {'rollover_balance': 'u128'},
-                'SpendApproved': {
-                    'amount': 'u128',
-                    'beneficiary': 'AccountId',
-                    'proposal_index': 'u32',
-                },
-                'Spending': {'budget_remaining': 'u128'},
-                'UpdatedInactive': {
-                    'deactivated': 'u128',
-                    'reactivated': 'u128',
                 },
             },
             'UnknownTokens': {

@@ -209,6 +209,7 @@ call = substrate.compose_call(
         },
     },
     'proposal_origin': {
+        None: None,
         'AllianceMotion': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -1209,13 +1210,12 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        'Void': (),
         'system': {
             'None': None,
             'Root': None,
             'Signed': 'AccountId',
         },
-        None: None,
-        'Void': (),
     },
 }
 )
@@ -1454,8 +1454,6 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
             'AllianceMotion': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
@@ -1482,6 +1480,8 @@ result = substrate.query(
                 'Xcm': {'interior': 'scale_info::44', 'parents': 'u8'},
             },
             'Void': (),
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',

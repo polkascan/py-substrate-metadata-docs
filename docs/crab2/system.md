@@ -589,23 +589,6 @@ result = substrate.query(
                 'UpdateLockedCollateral': ('[u8; 20]', 'u128'),
                 'UpdateRelayFee': ('[u8; 20]', 'u128'),
             },
-            'DarwiniaStaking': {
-                'CommissionUpdated': {'commission': 'u32', 'who': '[u8; 20]'},
-                'Elected': {'collators': ['[u8; 20]']},
-                'Payout': {'ring_amount': 'u128', 'staker': '[u8; 20]'},
-                'Staked': {
-                    'deposits': ['u16'],
-                    'kton_amount': 'u128',
-                    'ring_amount': 'u128',
-                    'staker': '[u8; 20]',
-                },
-                'Unstaked': {
-                    'deposits': ['u16'],
-                    'kton_amount': 'u128',
-                    'ring_amount': 'u128',
-                    'staker': '[u8; 20]',
-                },
-            },
             'Democracy': {
                 'Blacklisted': {'proposal_hash': '[u8; 32]'},
                 'Cancelled': {'ref_index': 'u32'},
@@ -640,22 +623,6 @@ result = substrate.query(
                     'voter': '[u8; 20]',
                 },
             },
-            'Deposit': {
-                'DepositClaimed': {'deposit_id': 'u16', 'owner': '[u8; 20]'},
-                'DepositClaimedWithPenalty': {
-                    'deposit_id': 'u16',
-                    'kton_penalty': 'u128',
-                    'owner': '[u8; 20]',
-                },
-                'DepositCreated': {
-                    'deposit_id': 'u16',
-                    'expired_time': 'u128',
-                    'kton_reward': 'u128',
-                    'owner': '[u8; 20]',
-                    'start_time': 'u128',
-                    'value': 'u128',
-                },
-            },
             'DmpQueue': {
                 'ExecutedDownward': {
                     'message_id': '[u8; 32]',
@@ -685,6 +652,52 @@ result = substrate.query(
                 'Executed': {'address': '[u8; 20]'},
                 'ExecutedFailed': {'address': '[u8; 20]'},
                 'Log': {'log': 'scale_info::151'},
+            },
+            'ParachainSystem': {
+                'DownwardMessagesProcessed': {
+                    'dmq_head': '[u8; 32]',
+                    'weight_used': 'scale_info::9',
+                },
+                'DownwardMessagesReceived': {'count': 'u32'},
+                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
+                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
+                'ValidationFunctionDiscarded': None,
+                'ValidationFunctionStored': None,
+            },
+            None: None,
+            'DarwiniaStaking': {
+                'CommissionUpdated': {'commission': 'u32', 'who': '[u8; 20]'},
+                'Elected': {'collators': ['[u8; 20]']},
+                'Payout': {'ring_amount': 'u128', 'staker': '[u8; 20]'},
+                'Staked': {
+                    'deposits': ['u16'],
+                    'kton_amount': 'u128',
+                    'ring_amount': 'u128',
+                    'staker': '[u8; 20]',
+                },
+                'Unstaked': {
+                    'deposits': ['u16'],
+                    'kton_amount': 'u128',
+                    'ring_amount': 'u128',
+                    'staker': '[u8; 20]',
+                },
+            },
+            'Deposit': {
+                'DepositClaimed': {'deposit_id': 'u16', 'owner': '[u8; 20]'},
+                'DepositClaimedWithPenalty': {
+                    'deposit_id': 'u16',
+                    'kton_penalty': 'u128',
+                    'owner': '[u8; 20]',
+                },
+                'DepositCreated': {
+                    'deposit_id': 'u16',
+                    'expired_time': 'u128',
+                    'kton_reward': 'u128',
+                    'owner': '[u8; 20]',
+                    'start_time': 'u128',
+                    'value': 'u128',
+                },
             },
             'EcdsaAuthority': {
                 'CollectedEnoughAuthoritiesChangeSignatures': {
@@ -744,18 +757,6 @@ result = substrate.query(
                     'main': '[u8; 20]',
                     'sub': '[u8; 20]',
                 },
-            },
-            'ParachainSystem': {
-                'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
-                    'weight_used': 'scale_info::9',
-                },
-                'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
-                'ValidationFunctionDiscarded': None,
-                'ValidationFunctionStored': None,
             },
             'PhragmenElection': {
                 'CandidateSlashed': {
@@ -973,7 +974,6 @@ result = substrate.query(
                     'reactivated': 'u128',
                 },
             },
-            None: None,
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -1252,7 +1252,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'DarwiniaOfficialRust',
     'impl_version': 0,
     'spec_name': 'Crab2',
-    'spec_version': 6402,
+    'spec_version': 6404,
     'state_version': 0,
     'transaction_version': 0,
 }

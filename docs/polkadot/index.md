@@ -7,7 +7,7 @@
 | -------- | -------- |
 | Spec name     | polkadot     |
 | Implementation name     | parity-polkadot     |
-| Spec version     | 9430     |
+| Spec version     | 9431     |
 | SS58 Format     | 0     |
 | Token symbol      | DOT     |
 | Token decimals      | 10     |

@@ -6,6 +6,7 @@
 
 ---------
 ### register_foreign_asset
+See [`Pallet::register_foreign_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -2647,6 +2648,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_foreign_asset
+See [`Pallet::update_foreign_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -5295,7 +5297,7 @@ The asset registered.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `AssetIds` | ```{'ForeignAssetId': 'u32', 'NativeAssetId': ('Here', 'Parent')}```
+| asset_id | `AssetId` | ```{'ForeignAssetId': 'u32', 'NativeAssetId': ('Here', 'Parent')}```
 | metadata | `AssetMetadata<BalanceOf<T>>` | ```{'name': 'Bytes', 'symbol': 'Bytes', 'decimals': 'u8', 'minimal_balance': 'u128'}```
 
 ---------
@@ -5304,7 +5306,7 @@ The asset updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `AssetIds` | ```{'ForeignAssetId': 'u32', 'NativeAssetId': ('Here', 'Parent')}```
+| asset_id | `AssetId` | ```{'ForeignAssetId': 'u32', 'NativeAssetId': ('Here', 'Parent')}```
 | metadata | `AssetMetadata<BalanceOf<T>>` | ```{'name': 'Bytes', 'symbol': 'Bytes', 'decimals': 'u8', 'minimal_balance': 'u128'}```
 
 ---------

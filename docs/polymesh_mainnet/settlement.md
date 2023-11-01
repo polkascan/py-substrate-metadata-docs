@@ -6,17 +6,17 @@
 
 ---------
 ### add_and_affirm_instruction
-Deprecated. Use `add_and_affirm_instruction_with_memo` instead.
 Adds and affirms a new instruction.
 
 \# Arguments
 * `venue_id` - ID of the venue this instruction belongs to.
-* `settlement_type` - Defines if the instruction should be settled
-   in the next block after receiving all affirmations or waiting till a specific block.
+* `settlement_type` - Defines if the instruction should be settled in the next block, after receiving all affirmations
+or waiting till a specific block.
 * `trade_date` - Optional date from which people can interact with this instruction.
 * `value_date` - Optional date after which the instruction should be settled (not enforced)
 * `legs` - Legs included in this instruction.
 * `portfolios` - Portfolios that the sender controls and wants to use in this affirmations.
+* `instruction_memo` - Memo field for this instruction.
 
 \# Permissions
 * Portfolio
@@ -29,188 +29,61 @@ Adds and affirms a new instruction.
 | value_date | `Option<T::Moment>` | 
 | legs | `Vec<Leg>` | 
 | portfolios | `Vec<PortfolioId>` | 
+| instruction_memo | `Option<Memo>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Settlement', 'add_and_affirm_instruction', {
-    'legs': [
-        {
-            'amount': 'u128',
-            'asset': '[u8; 12]',
-            'from': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
-                },
-            },
-            'to': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
-                },
-            },
-        },
-    ],
-    'portfolios': [
-        {
-            'did': '[u8; 32]',
-            'kind': {
-                'Default': None,
-                'User': 'u64',
-            },
-        },
-    ],
-    'settlement_type': {
-        'SettleManual': 'u32',
-        'SettleOnAffirmation': None,
-        'SettleOnBlock': 'u32',
-    },
-    'trade_date': (None, 'u64'),
-    'value_date': (None, 'u64'),
-    'venue_id': 'u64',
-}
-)
-```
-
----------
-### add_and_affirm_instruction_with_memo
-Adds and affirms a new instruction.
-
-\# Arguments
-* `venue_id` - ID of the venue this instruction belongs to.
-* `settlement_type` - Defines if the instruction should be settled
-   in the next block after receiving all affirmations or waiting till a specific block.
-* `trade_date` - Optional date from which people can interact with this instruction.
-* `value_date` - Optional date after which the instruction should be settled (not enforced)
-* `legs` - Legs included in this instruction.
-* `portfolios` - Portfolios that the sender controls and wants to use in this affirmations.
-* `memo` - Memo field for this instruction.
-
-\# Permissions
-* Portfolio
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| venue_id | `VenueId` | 
-| settlement_type | `SettlementType<T::BlockNumber>` | 
-| trade_date | `Option<T::Moment>` | 
-| value_date | `Option<T::Moment>` | 
-| legs | `Vec<Leg>` | 
-| portfolios | `Vec<PortfolioId>` | 
-| instruction_memo | `Option<InstructionMemo>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Settlement', 'add_and_affirm_instruction_with_memo', {
     'instruction_memo': (
         None,
         '[u8; 32]',
     ),
     'legs': [
         {
-            'amount': 'u128',
-            'asset': '[u8; 12]',
-            'from': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
+            'Fungible': {
+                'amount': 'u128',
+                'receiver': {
+                    'did': '[u8; 32]',
+                    'kind': {
+                        'Default': None,
+                        'User': 'u64',
+                    },
                 },
-            },
-            'to': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
+                'sender': {
+                    'did': '[u8; 32]',
+                    'kind': {
+                        'Default': None,
+                        'User': 'u64',
+                    },
                 },
+                'ticker': '[u8; 12]',
             },
-        },
-    ],
-    'portfolios': [
-        {
-            'did': '[u8; 32]',
-            'kind': {
-                'Default': None,
-                'User': 'u64',
-            },
-        },
-    ],
-    'settlement_type': {
-        'SettleManual': 'u32',
-        'SettleOnAffirmation': None,
-        'SettleOnBlock': 'u32',
-    },
-    'trade_date': (None, 'u64'),
-    'value_date': (None, 'u64'),
-    'venue_id': 'u64',
-}
-)
-```
-
----------
-### add_and_affirm_instruction_with_memo_v2
-Adds and affirms a new instruction.
-
-\# Arguments
-* `venue_id` - ID of the venue this instruction belongs to.
-* `settlement_type` - Defines if the instruction should be settled
-   in the next block after receiving all affirmations or waiting till a specific block.
-* `trade_date` - Optional date from which people can interact with this instruction.
-* `value_date` - Optional date after which the instruction should be settled (not enforced)
-* `legs` - Legs included in this instruction.
-* `portfolios` - Portfolios that the sender controls and wants to use in this affirmations.
-* `memo` - Memo field for this instruction.
-
-\# Permissions
-* Portfolio
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| venue_id | `VenueId` | 
-| settlement_type | `SettlementType<T::BlockNumber>` | 
-| trade_date | `Option<T::Moment>` | 
-| value_date | `Option<T::Moment>` | 
-| legs | `Vec<LegV2>` | 
-| portfolios | `Vec<PortfolioId>` | 
-| instruction_memo | `Option<InstructionMemo>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Settlement', 'add_and_affirm_instruction_with_memo_v2', {
-    'instruction_memo': (
-        None,
-        '[u8; 32]',
-    ),
-    'legs': [
-        {
-            'asset': {
-                'Fungible': {
-                    'amount': 'u128',
-                    'ticker': '[u8; 12]',
-                },
-                'NonFungible': {
+            'NonFungible': {
+                'nfts': {
                     'ids': ['u64'],
                     'ticker': '[u8; 12]',
                 },
-            },
-            'from': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
+                'receiver': {
+                    'did': '[u8; 32]',
+                    'kind': {
+                        'Default': None,
+                        'User': 'u64',
+                    },
+                },
+                'sender': {
+                    'did': '[u8; 32]',
+                    'kind': {
+                        'Default': None,
+                        'User': 'u64',
+                    },
                 },
             },
-            'to': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
-                },
+            'OffChain': {
+                'amount': 'u128',
+                'receiver_identity': '[u8; 32]',
+                'sender_identity': '[u8; 32]',
+                'ticker': '[u8; 12]',
             },
         },
     ],
@@ -237,16 +110,16 @@ call = substrate.compose_call(
 
 ---------
 ### add_instruction
-Deprecated. Use `add_instruction_with_memo` instead.
 Adds a new instruction.
 
 \# Arguments
 * `venue_id` - ID of the venue this instruction belongs to.
-* `settlement_type` - Defines if the instruction should be settled
-   in the next block after receiving all affirmations or waiting till a specific block.
+* `settlement_type` - Defines if the instruction should be settled in the next block, after receiving all affirmations
+or waiting till a specific block.
 * `trade_date` - Optional date from which people can interact with this instruction.
 * `value_date` - Optional date after which the instruction should be settled (not enforced)
 * `legs` - Legs included in this instruction.
+* `memo` - Memo field for this instruction.
 
 \# Weight
 `950_000_000 + 1_000_000 * legs.len()`
@@ -258,166 +131,61 @@ Adds a new instruction.
 | trade_date | `Option<T::Moment>` | 
 | value_date | `Option<T::Moment>` | 
 | legs | `Vec<Leg>` | 
+| instruction_memo | `Option<Memo>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Settlement', 'add_instruction', {
-    'legs': [
-        {
-            'amount': 'u128',
-            'asset': '[u8; 12]',
-            'from': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
-                },
-            },
-            'to': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
-                },
-            },
-        },
-    ],
-    'settlement_type': {
-        'SettleManual': 'u32',
-        'SettleOnAffirmation': None,
-        'SettleOnBlock': 'u32',
-    },
-    'trade_date': (None, 'u64'),
-    'value_date': (None, 'u64'),
-    'venue_id': 'u64',
-}
-)
-```
-
----------
-### add_instruction_with_memo
-Adds a new instruction with memo.
-
-\# Arguments
-* `venue_id` - ID of the venue this instruction belongs to.
-* `settlement_type` - Defines if the instruction should be settled
-   in the next block after receiving all affirmations or waiting till a specific block.
-* `trade_date` - Optional date from which people can interact with this instruction.
-* `value_date` - Optional date after which the instruction should be settled (not enforced)
-* `legs` - Legs included in this instruction.
-* `memo` - Memo field for this instruction.
-
-\# Weight
-`950_000_000 + 1_000_000 * legs.len()`
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| venue_id | `VenueId` | 
-| settlement_type | `SettlementType<T::BlockNumber>` | 
-| trade_date | `Option<T::Moment>` | 
-| value_date | `Option<T::Moment>` | 
-| legs | `Vec<Leg>` | 
-| instruction_memo | `Option<InstructionMemo>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Settlement', 'add_instruction_with_memo', {
     'instruction_memo': (
         None,
         '[u8; 32]',
     ),
     'legs': [
         {
-            'amount': 'u128',
-            'asset': '[u8; 12]',
-            'from': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
+            'Fungible': {
+                'amount': 'u128',
+                'receiver': {
+                    'did': '[u8; 32]',
+                    'kind': {
+                        'Default': None,
+                        'User': 'u64',
+                    },
                 },
+                'sender': {
+                    'did': '[u8; 32]',
+                    'kind': {
+                        'Default': None,
+                        'User': 'u64',
+                    },
+                },
+                'ticker': '[u8; 12]',
             },
-            'to': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
-                },
-            },
-        },
-    ],
-    'settlement_type': {
-        'SettleManual': 'u32',
-        'SettleOnAffirmation': None,
-        'SettleOnBlock': 'u32',
-    },
-    'trade_date': (None, 'u64'),
-    'value_date': (None, 'u64'),
-    'venue_id': 'u64',
-}
-)
-```
-
----------
-### add_instruction_with_memo_v2
-Adds a new instruction with memo.
-
-\# Arguments
-* `venue_id` - ID of the venue this instruction belongs to.
-* `settlement_type` - Defines if the instruction should be settled
-   in the next block after receiving all affirmations or waiting till a specific block.
-* `trade_date` - Optional date from which people can interact with this instruction.
-* `value_date` - Optional date after which the instruction should be settled (not enforced)
-* `legs` - Legs included in this instruction.
-* `memo` - Memo field for this instruction.
-
-\# Weight
-`950_000_000 + 1_000_000 * legs.len()`
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| venue_id | `VenueId` | 
-| settlement_type | `SettlementType<T::BlockNumber>` | 
-| trade_date | `Option<T::Moment>` | 
-| value_date | `Option<T::Moment>` | 
-| legs | `Vec<LegV2>` | 
-| instruction_memo | `Option<InstructionMemo>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Settlement', 'add_instruction_with_memo_v2', {
-    'instruction_memo': (
-        None,
-        '[u8; 32]',
-    ),
-    'legs': [
-        {
-            'asset': {
-                'Fungible': {
-                    'amount': 'u128',
-                    'ticker': '[u8; 12]',
-                },
-                'NonFungible': {
+            'NonFungible': {
+                'nfts': {
                     'ids': ['u64'],
                     'ticker': '[u8; 12]',
                 },
-            },
-            'from': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
+                'receiver': {
+                    'did': '[u8; 32]',
+                    'kind': {
+                        'Default': None,
+                        'User': 'u64',
+                    },
+                },
+                'sender': {
+                    'did': '[u8; 32]',
+                    'kind': {
+                        'Default': None,
+                        'User': 'u64',
+                    },
                 },
             },
-            'to': {
-                'did': '[u8; 32]',
-                'kind': {
-                    'Default': None,
-                    'User': 'u64',
-                },
+            'OffChain': {
+                'amount': 'u128',
+                'receiver_identity': '[u8; 32]',
+                'sender_identity': '[u8; 32]',
+                'ticker': '[u8; 12]',
             },
         },
     ],
@@ -438,9 +206,8 @@ call = substrate.compose_call(
 Provide affirmation to an existing instruction.
 
 \# Arguments
-* `id` - Instruction id to affirm.
-* `portfolios` - Portfolios that the sender controls and wants to affirm this instruction.
-* `max_legs_count` - Number of legs that need to be  affirmed.
+* `id` - the [`InstructionId`] of the instruction being affirmed.
+* `portfolios` - a vector of [`PortfolioId`] under the caller&\#x27;s control and intended for affirmation.
 
 \# Permissions
 * Portfolio
@@ -449,14 +216,12 @@ Provide affirmation to an existing instruction.
 | -------- | -------- | 
 | id | `InstructionId` | 
 | portfolios | `Vec<PortfolioId>` | 
-| max_legs_count | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Settlement', 'affirm_instruction', {
     'id': 'u64',
-    'max_legs_count': 'u32',
     'portfolios': [
         {
             'did': '[u8; 32]',
@@ -471,14 +236,15 @@ call = substrate.compose_call(
 ```
 
 ---------
-### affirm_instruction_v2
+### affirm_instruction_with_count
 Provide affirmation to an existing instruction.
 
 \# Arguments
-* `id` - Instruction id to affirm.
-* `portfolios` - Portfolios that the sender controls and wants to affirm this instruction.
-* `fungible_transfers` - number of fungible transfers in the instruction.
-* `nfts_transfers` - total number of NFTs being transferred in the instruction.
+* `id` - the [`InstructionId`] of the instruction being affirmed.
+* `portfolios` - a vector of [`PortfolioId`] under the caller&\#x27;s control and intended for affirmation.
+* `number_of_assets` - an optional [`AffirmationCount`] that will be used for a precise fee estimation before executing the extrinsic.
+
+Note: calling the rpc method `get_affirmation_count` returns an instance of [`AffirmationCount`].
 
 \# Permissions
 * Portfolio
@@ -487,16 +253,29 @@ Provide affirmation to an existing instruction.
 | -------- | -------- | 
 | id | `InstructionId` | 
 | portfolios | `Vec<PortfolioId>` | 
-| fungible_transfers | `u32` | 
-| nfts_transfers | `u32` | 
+| number_of_assets | `Option<AffirmationCount>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Settlement', 'affirm_instruction_v2', {
-    'fungible_transfers': 'u32',
+    'Settlement', 'affirm_instruction_with_count', {
     'id': 'u64',
-    'nfts_transfers': 'u32',
+    'number_of_assets': (
+        None,
+        {
+            'offchain_count': 'u32',
+            'receiver_asset_count': {
+                'fungible': 'u32',
+                'non_fungible': 'u32',
+                'off_chain': 'u32',
+            },
+            'sender_asset_count': {
+                'fungible': 'u32',
+                'non_fungible': 'u32',
+                'off_chain': 'u32',
+            },
+        },
+    ),
     'portfolios': [
         {
             'did': '[u8; 32]',
@@ -512,15 +291,12 @@ call = substrate.compose_call(
 
 ---------
 ### affirm_with_receipts
-Accepts an instruction and claims a signed receipt.
+Affirms an instruction using receipts for offchain transfers.
 
 \# Arguments
-* `id` - Target instruction id.
-* `leg_id` - Target leg id for the receipt
-* `receipt_uid` - Receipt ID generated by the signer.
-* `signer` - Signer of the receipt.
-* `signed_data` - Signed receipt.
-* `portfolios` - Portfolios that the sender controls and wants to accept this instruction with
+* `id` - the [`InstructionId`] of the instruction being affirmed.
+* `receipt_details` - a vector of [`ReceiptDetails`], which contain the details about the offchain transfer.
+* `portfolios` - a vector of [`PortfolioId`] under the caller&\#x27;s control and intended for affirmation.
 
 \# Permissions
 * Portfolio
@@ -530,14 +306,12 @@ Accepts an instruction and claims a signed receipt.
 | id | `InstructionId` | 
 | receipt_details | `Vec<ReceiptDetails<T::AccountId, T::OffChainSignature>>` | 
 | portfolios | `Vec<PortfolioId>` | 
-| max_legs_count | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Settlement', 'affirm_with_receipts', {
     'id': 'u64',
-    'max_legs_count': 'u32',
     'portfolios': [
         {
             'did': '[u8; 32]',
@@ -549,15 +323,92 @@ call = substrate.compose_call(
     ],
     'receipt_details': [
         {
+            'instruction_id': 'u64',
             'leg_id': 'u64',
-            'metadata': 'Bytes',
-            'receipt_uid': 'u64',
+            'metadata': (
+                None,
+                '[u8; 32]',
+            ),
             'signature': {
                 'Ecdsa': '[u8; 65]',
                 'Ed25519': '[u8; 64]',
                 'Sr25519': '[u8; 64]',
             },
             'signer': 'AccountId',
+            'uid': 'u64',
+        },
+    ],
+}
+)
+```
+
+---------
+### affirm_with_receipts_with_count
+Affirms an instruction using receipts for offchain transfers.
+
+\# Arguments
+* `id` - the [`InstructionId`] of the instruction being affirmed.
+* `receipt_details` - a vector of [`ReceiptDetails`], which contain the details about the offchain transfer.
+* `portfolios` - a vector of [`PortfolioId`] under the caller&\#x27;s control and intended for affirmation.
+* `number_of_assets` - an optional [`AffirmationCount`] that will be used for a precise fee estimation before executing the extrinsic.
+
+Note: calling the rpc method `get_affirmation_count` returns an instance of [`AffirmationCount`].
+
+\# Permissions
+* Portfolio
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| id | `InstructionId` | 
+| receipt_details | `Vec<ReceiptDetails<T::AccountId, T::OffChainSignature>>` | 
+| portfolios | `Vec<PortfolioId>` | 
+| number_of_assets | `Option<AffirmationCount>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Settlement', 'affirm_with_receipts_with_count', {
+    'id': 'u64',
+    'number_of_assets': (
+        None,
+        {
+            'offchain_count': 'u32',
+            'receiver_asset_count': {
+                'fungible': 'u32',
+                'non_fungible': 'u32',
+                'off_chain': 'u32',
+            },
+            'sender_asset_count': {
+                'fungible': 'u32',
+                'non_fungible': 'u32',
+                'off_chain': 'u32',
+            },
+        },
+    ),
+    'portfolios': [
+        {
+            'did': '[u8; 32]',
+            'kind': {
+                'Default': None,
+                'User': 'u64',
+            },
+        },
+    ],
+    'receipt_details': [
+        {
+            'instruction_id': 'u64',
+            'leg_id': 'u64',
+            'metadata': (
+                None,
+                '[u8; 32]',
+            ),
+            'signature': {
+                'Ecdsa': '[u8; 65]',
+                'Ed25519': '[u8; 64]',
+                'Sr25519': '[u8; 64]',
+            },
+            'signer': 'AccountId',
+            'uid': 'u64',
         },
     ],
 }
@@ -585,29 +436,6 @@ call = substrate.compose_call(
     'Settlement', 'allow_venues', {
     'ticker': '[u8; 12]',
     'venues': ['u64'],
-}
-)
-```
-
----------
-### change_receipt_validity
-Marks a receipt issued by the caller as claimed or not claimed.
-This allows the receipt issuer to invalidate an already issued receipt or revalidate an already claimed receipt.
-
-* `receipt_uid` - Unique ID of the receipt.
-* `validity` - New validity of the receipt.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| receipt_uid | `u64` | 
-| validity | `bool` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Settlement', 'change_receipt_validity', {
-    'receipt_uid': 'u64',
-    'validity': 'bool',
 }
 )
 ```
@@ -669,27 +497,37 @@ call = substrate.compose_call(
 
 ---------
 ### execute_manual_instruction
-Manually execute settlement
+Manually executes an instruction.
 
 \# Arguments
-* `id` - Target instruction id to reschedule.
-* `_legs_count` - Legs included in this instruction.
+* `id`: The [`InstructionId`] of the instruction to be executed.
+* `portfolio`:  One of the caller&\#x27;s [`PortfolioId`] which is also a counter patry in the instruction.
+If None, the caller must be the venue creator or a counter party in a [`Leg::OffChain`].
+* `fungible_transfers`: The number of fungible legs in the instruction.
+* `nfts_transfers`: The number of nfts being transferred in the instruction.
+* `offchain_transfers`: The number of offchain legs in the instruction.
+* `weight_limit`: An optional maximum [`Weight`] value to be charged for executing the instruction.
+If the `weight_limit` is less than the required amount, the instruction will fail execution.
 
-\# Errors
-* `InstructionNotFailed` - Instruction not in a failed state or does not exist.
+Note: calling the rpc method `get_execute_instruction_info` returns an instance of [`ExecuteInstructionInfo`], which contains the count parameters.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | id | `InstructionId` | 
-| legs_count | `u32` | 
 | portfolio | `Option<PortfolioId>` | 
+| fungible_transfers | `u32` | 
+| nfts_transfers | `u32` | 
+| offchain_transfers | `u32` | 
+| weight_limit | `Option<Weight>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Settlement', 'execute_manual_instruction', {
+    'fungible_transfers': 'u32',
     'id': 'u64',
-    'legs_count': 'u32',
+    'nfts_transfers': 'u32',
+    'offchain_transfers': 'u32',
     'portfolio': (
         None,
         {
@@ -698,6 +536,13 @@ call = substrate.compose_call(
                 'Default': None,
                 'User': 'u64',
             },
+        },
+    ),
+    'weight_limit': (
+        None,
+        {
+            'proof_size': 'u64',
+            'ref_time': 'u64',
         },
     ),
 }
@@ -711,59 +556,18 @@ Root callable extrinsic, used as an internal call to execute a scheduled settlem
 | Name | Type |
 | -------- | -------- | 
 | id | `InstructionId` | 
-| _legs_count | `u32` | 
+| weight_limit | `Weight` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Settlement', 'execute_scheduled_instruction', {'_legs_count': 'u32', 'id': 'u64'}
-)
-```
-
----------
-### execute_scheduled_instruction_v2
-Root callable extrinsic, used as an internal call to execute a scheduled settlement instruction.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| id | `InstructionId` | 
-| _fungible_transfers | `u32` | 
-| _nfts_transfers | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Settlement', 'execute_scheduled_instruction_v2', {
-    '_fungible_transfers': 'u32',
-    '_nfts_transfers': 'u32',
+    'Settlement', 'execute_scheduled_instruction', {
     'id': 'u64',
+    'weight_limit': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
 }
-)
-```
-
----------
-### placeholder_claim_receipt
-Placeholder for removed `claim_receipt`
-#### Attributes
-No attributes
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Settlement', 'placeholder_claim_receipt', {}
-)
-```
-
----------
-### placeholder_unclaim_receipt
-Placeholder for removed `unclaim_receipt`
-#### Attributes
-No attributes
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Settlement', 'placeholder_unclaim_receipt', {}
 )
 ```
 
@@ -772,9 +576,8 @@ call = substrate.compose_call(
 Rejects an existing instruction.
 
 \# Arguments
-* `id` - Instruction id to reject.
-* `portfolio` - Portfolio to reject the instruction.
-* `num_of_legs` - Number of legs in the instruction.
+* `id` - the [`InstructionId`] of the instruction being rejected.
+* `portfolio` - the [`PortfolioId`] that belongs to the instruction and is rejecting it.
 
 \# Permissions
 * Portfolio
@@ -783,14 +586,12 @@ Rejects an existing instruction.
 | -------- | -------- | 
 | id | `InstructionId` | 
 | portfolio | `PortfolioId` | 
-| num_of_legs | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Settlement', 'reject_instruction', {
     'id': 'u64',
-    'num_of_legs': 'u32',
     'portfolio': {
         'did': '[u8; 32]',
         'kind': {
@@ -803,14 +604,15 @@ call = substrate.compose_call(
 ```
 
 ---------
-### reject_instruction_v2
+### reject_instruction_with_count
 Rejects an existing instruction.
 
 \# Arguments
-* `id` - Instruction id to reject.
-* `portfolio` - Portfolio to reject the instruction.
-* `fungible_transfers` - number of fungible transfers in the instruction.
-* `nfts_transfers` - total number of NFTs being transferred in the instruction.
+* `id` - the [`InstructionId`] of the instruction being rejected.
+* `portfolio` - the [`PortfolioId`] that belongs to the instruction and is rejecting it.
+* `number_of_assets` - an optional [`AssetCount`] that will be used for a precise fee estimation before executing the extrinsic.
+
+Note: calling the rpc method `get_execute_instruction_info` returns an instance of [`ExecuteInstructionInfo`], which contain the asset count.
 
 \# Permissions
 * Portfolio
@@ -819,16 +621,21 @@ Rejects an existing instruction.
 | -------- | -------- | 
 | id | `InstructionId` | 
 | portfolio | `PortfolioId` | 
-| fungible_transfers | `u32` | 
-| nfts_transfers | `u32` | 
+| number_of_assets | `Option<AssetCount>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Settlement', 'reject_instruction_v2', {
-    'fungible_transfers': 'u32',
+    'Settlement', 'reject_instruction_with_count', {
     'id': 'u64',
-    'nfts_transfers': 'u32',
+    'number_of_assets': (
+        None,
+        {
+            'fungible': 'u32',
+            'non_fungible': 'u32',
+            'off_chain': 'u32',
+        },
+    ),
     'portfolio': {
         'did': '[u8; 32]',
         'kind': {
@@ -837,30 +644,6 @@ call = substrate.compose_call(
         },
     },
 }
-)
-```
-
----------
-### reschedule_instruction
-Reschedules a failed instruction.
-
-\# Arguments
-* `id` - Target instruction id to reschedule.
-
-\# Permissions
-* Portfolio
-
-\# Errors
-* `InstructionNotFailed` - Instruction not in a failed state or does not exist.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| id | `InstructionId` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Settlement', 'reschedule_instruction', {'id': 'u64'}
 )
 ```
 
@@ -965,9 +748,8 @@ call = substrate.compose_call(
 Withdraw an affirmation for a given instruction.
 
 \# Arguments
-* `id` - Instruction id for that affirmation get withdrawn.
-* `portfolios` - Portfolios that the sender controls and wants to withdraw affirmation.
-* `max_legs_count` - Number of legs that need to be un-affirmed.
+* `id` - the [`InstructionId`] of the instruction getting an affirmation withdrawn.
+* `portfolios` - a vector of [`PortfolioId`] under the caller&\#x27;s control and intended for affirmation withdrawal.
 
 \# Permissions
 * Portfolio
@@ -976,14 +758,12 @@ Withdraw an affirmation for a given instruction.
 | -------- | -------- | 
 | id | `InstructionId` | 
 | portfolios | `Vec<PortfolioId>` | 
-| max_legs_count | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Settlement', 'withdraw_affirmation', {
     'id': 'u64',
-    'max_legs_count': 'u32',
     'portfolios': [
         {
             'did': '[u8; 32]',
@@ -998,14 +778,15 @@ call = substrate.compose_call(
 ```
 
 ---------
-### withdraw_affirmation_v2
+### withdraw_affirmation_with_count
 Withdraw an affirmation for a given instruction.
 
 \# Arguments
-* `id` - Instruction id for that affirmation get withdrawn.
-* `portfolios` - Portfolios that the sender controls and wants to withdraw affirmation.
-* `fungible_transfers` - number of fungible transfers in the instruction.
-* `nfts_transfers` - total number of NFTs being transferred in the instruction.
+* `id` - the [`InstructionId`] of the instruction getting an affirmation withdrawn.
+* `portfolios` - a vector of [`PortfolioId`] under the caller&\#x27;s control and intended for affirmation withdrawal.
+* `number_of_assets` - an optional [`AffirmationCount`] that will be used for a precise fee estimation before executing the extrinsic.
+
+Note: calling the rpc method `get_affirmation_count` returns an instance of [`AffirmationCount`].
 
 \# Permissions
 * Portfolio
@@ -1014,16 +795,29 @@ Withdraw an affirmation for a given instruction.
 | -------- | -------- | 
 | id | `InstructionId` | 
 | portfolios | `Vec<PortfolioId>` | 
-| fungible_transfers | `u32` | 
-| nfts_transfers | `u32` | 
+| number_of_assets | `Option<AffirmationCount>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Settlement', 'withdraw_affirmation_v2', {
-    'fungible_transfers': 'u32',
+    'Settlement', 'withdraw_affirmation_with_count', {
     'id': 'u64',
-    'nfts_transfers': 'u32',
+    'number_of_assets': (
+        None,
+        {
+            'offchain_count': 'u32',
+            'receiver_asset_count': {
+                'fungible': 'u32',
+                'non_fungible': 'u32',
+                'off_chain': 'u32',
+            },
+            'sender_asset_count': {
+                'fungible': 'u32',
+                'non_fungible': 'u32',
+                'off_chain': 'u32',
+            },
+        },
+    ),
     'portfolios': [
         {
             'did': '[u8; 32]',
@@ -1082,8 +876,8 @@ A new instruction has been created
 | None | `SettlementType<BlockNumber>` | ```{'SettleOnAffirmation': None, 'SettleOnBlock': 'u32', 'SettleManual': 'u32'}```
 | None | `Option<Moment>` | ```(None, 'u64')```
 | None | `Option<Moment>` | ```(None, 'u64')```
-| None | `Vec<Leg>` | ```[{'from': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'to': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'asset': '[u8; 12]', 'amount': 'u128'}]```
-| None | `Option<InstructionMemo>` | ```(None, '[u8; 32]')```
+| None | `Vec<Leg>` | ```[{'Fungible': {'sender': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'receiver': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'ticker': '[u8; 12]', 'amount': 'u128'}, 'NonFungible': {'sender': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'receiver': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'nfts': {'ticker': '[u8; 12]', 'ids': ['u64']}}, 'OffChain': {'sender_identity': '[u8; 32]', 'receiver_identity': '[u8; 32]', 'ticker': '[u8; 12]', 'amount': 'u128'}}]```
+| None | `Option<Memo>` | ```(None, '[u8; 32]')```
 
 ---------
 ### InstructionExecuted
@@ -1123,22 +917,6 @@ Instruction is rescheduled.
 | None | `InstructionId` | ```u64```
 
 ---------
-### InstructionV2Created
-A new instruction has been created
-(did, venue_id, instruction_id, settlement_type, trade_date, value_date, legs, memo)
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `VenueId` | ```u64```
-| None | `InstructionId` | ```u64```
-| None | `SettlementType<BlockNumber>` | ```{'SettleOnAffirmation': None, 'SettleOnBlock': 'u32', 'SettleManual': 'u32'}```
-| None | `Option<Moment>` | ```(None, 'u64')```
-| None | `Option<Moment>` | ```(None, 'u64')```
-| None | `Vec<LegV2>` | ```[{'from': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'to': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}, 'asset': {'Fungible': {'ticker': '[u8; 12]', 'amount': 'u128'}, 'NonFungible': {'ticker': '[u8; 12]', 'ids': ['u64']}}}]```
-| None | `Option<InstructionMemo>` | ```(None, '[u8; 32]')```
-
----------
 ### LegFailedExecution
 Execution of a leg failed (did, instruction_id, leg_id)
 #### Attributes
@@ -1159,30 +937,7 @@ A receipt has been claimed (did, instruction_id, leg_id, receipt_uid, signer, re
 | None | `LegId` | ```u64```
 | None | `u64` | ```u64```
 | None | `AccountId` | ```AccountId```
-| None | `ReceiptMetadata` | ```Bytes```
-
----------
-### ReceiptUnclaimed
-A receipt has been unclaimed (did, instruction_id, leg_id, receipt_uid, signer)
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `InstructionId` | ```u64```
-| None | `LegId` | ```u64```
-| None | `u64` | ```u64```
-| None | `AccountId` | ```AccountId```
-
----------
-### ReceiptValidityChanged
-A receipt has been invalidated (did, signer, receipt_uid, validity)
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `AccountId` | ```AccountId```
-| None | `u64` | ```u64```
-| None | `bool` | ```bool```
+| None | `Option<ReceiptMetadata>` | ```(None, '[u8; 32]')```
 
 ---------
 ### SchedulingFailed
@@ -1377,7 +1132,6 @@ result = substrate.query(
         'SettleOnAffirmation': None,
         'SettleOnBlock': 'u32',
     },
-    'status': ('Unknown', 'Pending', 'Failed'),
     'trade_date': (None, 'u64'),
     'value_date': (None, 'u64'),
     'venue_id': 'u64',
@@ -1416,32 +1170,29 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'amount': 'u128',
-    'asset': '[u8; 12]',
-    'from': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}},
-    'to': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}},
-}
-```
----------
-### InstructionLegsV2
- Legs under an instruction. (instruction_id, leg_id) -&gt; Leg
-
-#### Python
-```python
-result = substrate.query(
-    'Settlement', 'InstructionLegsV2', ['u64', 'u64']
-)
-```
-
-#### Return value
-```python
-{
-    'asset': {
-        'Fungible': {'amount': 'u128', 'ticker': '[u8; 12]'},
-        'NonFungible': {'ids': ['u64'], 'ticker': '[u8; 12]'},
+    'Fungible': {
+        'amount': 'u128',
+        'receiver': {
+            'did': '[u8; 32]',
+            'kind': {'Default': None, 'User': 'u64'},
+        },
+        'sender': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}},
+        'ticker': '[u8; 12]',
     },
-    'from': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}},
-    'to': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}},
+    'NonFungible': {
+        'nfts': {'ids': ['u64'], 'ticker': '[u8; 12]'},
+        'receiver': {
+            'did': '[u8; 32]',
+            'kind': {'Default': None, 'User': 'u64'},
+        },
+        'sender': {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}},
+    },
+    'OffChain': {
+        'amount': 'u128',
+        'receiver_identity': '[u8; 32]',
+        'sender_identity': '[u8; 32]',
+        'ticker': '[u8; 12]',
+    },
 }
 ```
 ---------
@@ -1458,6 +1209,57 @@ result = substrate.query(
 #### Return value
 ```python
 '[u8; 32]'
+```
+---------
+### InstructionStatuses
+ Instruction statuses. instruction_id -&gt; InstructionStatus
+
+#### Python
+```python
+result = substrate.query(
+    'Settlement', 'InstructionStatuses', ['u64']
+)
+```
+
+#### Return value
+```python
+{
+    'Failed': None,
+    'Pending': None,
+    'Rejected': 'u32',
+    'Success': 'u32',
+    'Unknown': None,
+}
+```
+---------
+### NumberOfVenueSigners
+ Tracks the number of signers each venue has.
+
+#### Python
+```python
+result = substrate.query(
+    'Settlement', 'NumberOfVenueSigners', ['u64']
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### OffChainAffirmations
+ Tracks the affirmation status for offchain legs in a instruction. [`(InstructionId, LegId)`] -&gt; [`AffirmationStatus`]
+
+#### Python
+```python
+result = substrate.query(
+    'Settlement', 'OffChainAffirmations', ['u64', 'u64']
+)
+```
+
+#### Return value
+```python
+('Unknown', 'Pending', 'Affirmed')
 ```
 ---------
 ### ReceiptsUsed
@@ -1517,17 +1319,21 @@ result = substrate.query(
 ---------
 ### UserVenues
  Array of venues created by an identity. Only needed for the UI. IdentityId -&gt; Vec&lt;venue_id&gt;
+ Venues create by an identity.
+ Only needed for the UI.
+
+ identity -&gt; venue_id ()
 
 #### Python
 ```python
 result = substrate.query(
-    'Settlement', 'UserVenues', ['[u8; 32]']
+    'Settlement', 'UserVenues', ['[u8; 32]', 'u64']
 )
 ```
 
 #### Return value
 ```python
-['u64']
+()
 ```
 ---------
 ### VenueAllowList
@@ -1634,40 +1440,28 @@ result = substrate.query(
 The caller is not a party of this instruction.
 
 ---------
-### DeprecatedCallOnV2Instruction
-Deprecated function has been called on a v2 instruction.
+### DuplicateReceiptUid
+No duplicate uid are allowed for different receipts.
 
 ---------
-### FailedToLockTokens
-While affirming the transfer, system failed to lock the assets involved.
+### FailedToReleaseLockOrTransferAssets
+The instruction failed to release asset locks or transfer the assets.
 
 ---------
 ### FailedToSchedule
 Scheduling of an instruction fails.
 
 ---------
+### InputWeightIsLessThanMinimum
+The input weight is less than the minimum required.
+
+---------
 ### InstructionDatesInvalid
 Instruction has invalid dates
 
 ---------
-### InstructionFailed
-Instruction failed to execute.
-
----------
-### InstructionHasTooManyLegs
-Maximum legs that can be in a single instruction.
-
----------
 ### InstructionNotAffirmed
 Instruction has not been affirmed.
-
----------
-### InstructionNotFailed
-Provided instruction is not failing execution.
-
----------
-### InstructionNotPending
-Provided instruction is not pending execution.
 
 ---------
 ### InstructionSettleBlockNotReached
@@ -1678,8 +1472,8 @@ Instruction settlement block has not yet been reached.
 Instruction&\#x27;s target settle block reached.
 
 ---------
-### InvalidLegAsset
-Expected a different type of asset in a leg.
+### InvalidInstructionStatusForExecution
+Only [`InstructionStatus::Pending`] or [`InstructionStatus::Failed`] instructions can be executed.
 
 ---------
 ### InvalidSignature
@@ -1690,48 +1484,64 @@ Offchain signature is invalid.
 Venue does not exist.
 
 ---------
-### LegCountTooSmall
-Legs count should matches with the total number of legs in which given portfolio act as `from_portfolio`.
+### LegNotFound
+No leg with the given id was found
 
 ---------
-### LegNotPending
-Provided leg is not pending execution.
+### MaxNumberOfFungibleAssetsExceeded
+The maximum number of fungible assets was exceeded.
 
 ---------
 ### MaxNumberOfNFTsExceeded
 The number of nfts being transferred in the instruction was exceeded.
 
 ---------
-### MaxNumberOfNFTsPerLegExceeded
-The maximum number of nfts being transferred in one leg was exceeded.
+### MaxNumberOfOffChainAssetsExceeded
+The maximum number of off-chain assets was exceeded.
 
 ---------
-### NoPendingAffirm
-No pending affirmation for the provided instruction.
+### MaxNumberOfReceiptsExceeded
+The maximum number of receipts was exceeded.
 
 ---------
-### NoPortfolioProvided
-Portfolio based actions require at least one portfolio to be provided as input.
+### MultipleReceiptsForOneLeg
+Multiple receipts for the same leg are not allowed.
+
+---------
+### NotAllAffirmationsHaveBeenReceived
+There are parties who have not affirmed the instruction.
+
+---------
+### NumberOfFungibleTransfersUnderestimated
+The given number of fungible transfers was underestimated.
+
+---------
+### NumberOfOffChainTransfersUnderestimated
+The given number of off-chain transfers was underestimated.
 
 ---------
 ### NumberOfTransferredNFTsUnderestimated
 The given number of nfts being transferred was underestimated.
 
 ---------
-### PortfolioMismatch
-Portfolio in receipt does not match with portfolios provided by the user.
+### NumberOfVenueSignersExceeded
+The maximum number of venue signers was exceeded.
+
+---------
+### OffChainAssetCantBeLocked
+Off-Chain assets cannot be locked.
 
 ---------
 ### ReceiptAlreadyClaimed
 Receipt already used.
 
 ---------
-### ReceiptForNonFungibleAsset
-Off-chain receipts are not accepted for non-fungible tokens.
+### ReceiptForInvalidLegType
+Off-chain receipts can only be used for off-chain leg type.
 
 ---------
-### ReceiptNotClaimed
-Receipt not used yet.
+### ReceiptInstructionIdMissmatch
+The instruction id in all receipts must match the extrinsic parameter.
 
 ---------
 ### SameSenderReceiver
@@ -1766,8 +1576,20 @@ Venue does not have required permissions.
 The current instruction affirmation status does not support the requested action.
 
 ---------
+### UnexpectedLegStatus
+An invalid has been reached.
+
+---------
+### UnexpectedOFFChainAsset
+Ticker could not be found on chain.
+
+---------
 ### UnknownInstruction
 Instruction status is unknown
+
+---------
+### WeightLimitExceeded
+The maximum weight limit for executing the function was exceeded.
 
 ---------
 ### ZeroAmount

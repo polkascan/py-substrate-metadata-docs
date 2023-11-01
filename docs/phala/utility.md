@@ -110,12 +110,6 @@ The dispatch origin for this call must be _Root_.
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -125,6 +119,17 @@ call = substrate.compose_call(
             'Relay': None,
             'SiblingParachain': 'u32',
         },
+        'TechnicalCommittee': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'PolkadotXcm': {
             'Response': {
                 'interior': {
@@ -1100,11 +1105,6 @@ call = substrate.compose_call(
                 },
                 'parents': 'u8',
             },
-        },
-        'TechnicalCommittee': {
-            'Member': 'AccountId',
-            'Members': ('u32', 'u32'),
-            '_Phantom': None,
         },
         'Void': (),
     },

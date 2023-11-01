@@ -57,60 +57,6 @@ call = substrate.compose_call(
 
 ---------
 ### move_portfolio_funds
-Moves a token amount from one portfolio of an identity to another portfolio of the same
-identity. Must be called by the custodian of the sender.
-Funds from deleted portfolios can also be recovered via this method.
-
-A short memo can be added to to each token amount moved.
-
-\# Errors
-* `PortfolioDoesNotExist` if one or both of the portfolios reference an invalid portfolio.
-* `destination_is_same_portfolio` if both sender and receiver portfolio are the same
-* `DifferentIdentityPortfolios` if the sender and receiver portfolios belong to different identities
-* `UnauthorizedCustodian` if the caller is not the custodian of the from portfolio
-* `InsufficientPortfolioBalance` if the sender does not have enough free balance
-* `NoDuplicateAssetsAllowed` the same ticker can&\#x27;t be repeated in the items vector.
-
-\# Permissions
-* Portfolio
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| from | `PortfolioId` | 
-| to | `PortfolioId` | 
-| items | `Vec<MovePortfolioItem>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Portfolio', 'move_portfolio_funds', {
-    'from': {
-        'did': '[u8; 32]',
-        'kind': {
-            'Default': None,
-            'User': 'u64',
-        },
-    },
-    'items': [
-        {
-            'amount': 'u128',
-            'memo': (None, '[u8; 32]'),
-            'ticker': '[u8; 12]',
-        },
-    ],
-    'to': {
-        'did': '[u8; 32]',
-        'kind': {
-            'Default': None,
-            'User': 'u64',
-        },
-    },
-}
-)
-```
-
----------
-### move_portfolio_funds_v2
 Moves fungigle an non-fungible tokens from one portfolio of an identity to another portfolio of the same
 identity. Must be called by the custodian of the sender.
 Funds from deleted portfolios can also be recovered via this method.
@@ -139,7 +85,7 @@ A short memo can be added to to each token amount moved.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Portfolio', 'move_portfolio_funds_v2', {
+    'Portfolio', 'move_portfolio_funds', {
     'from': {
         'did': '[u8; 32]',
         'kind': {
@@ -169,6 +115,39 @@ call = substrate.compose_call(
             'User': 'u64',
         },
     },
+}
+)
+```
+
+---------
+### pre_approve_portfolio
+Pre-approves the receivement of an asset to a portfolio.
+
+\# Arguments
+* `origin` - the secondary key of the sender.
+* `ticker` - the [`Ticker`] that will be exempt from affirmation.
+* `portfolio_id` - the [`PortfolioId`] that can receive `ticker` without affirmation.
+
+\# Permissions
+* Portfolio
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+| portfolio_id | `PortfolioId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Portfolio', 'pre_approve_portfolio', {
+    'portfolio_id': {
+        'did': '[u8; 32]',
+        'kind': {
+            'Default': None,
+            'User': 'u64',
+        },
+    },
+    'ticker': '[u8; 12]',
 }
 )
 ```
@@ -204,6 +183,39 @@ call = substrate.compose_call(
 ```
 
 ---------
+### remove_portfolio_pre_approval
+Removes the pre approval of an asset to a portfolio.
+
+\# Arguments
+* `origin` - the secondary key of the sender.
+* `ticker` - the [`Ticker`] that will be exempt from affirmation.
+* `portfolio_id` - the [`PortfolioId`] that can receive `ticker` without affirmation.
+
+\# Permissions
+* Portfolio
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+| portfolio_id | `PortfolioId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Portfolio', 'remove_portfolio_pre_approval', {
+    'portfolio_id': {
+        'did': '[u8; 32]',
+        'kind': {
+            'Default': None,
+            'User': 'u64',
+        },
+    },
+    'ticker': '[u8; 12]',
+}
+)
+```
+
+---------
 ### rename_portfolio
 Renames a non-default portfolio.
 
@@ -229,62 +241,23 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### FungibleTokensMovedBetweenPortfolios
-A token amount has been moved from one portfolio to another.
+### FundsMovedBetweenPortfolios
+Funds have moved between portfolios
 
 \# Parameters
-* origin DID
-* source portfolio
-* destination portfolio
-* asset ticker
-* asset balance that was moved
+* Origin DID.
+* Source portfolio.
+* Destination portfolio.
+* The type of fund that was moved.
+* Optional memo for the move.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
 | None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
 | None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
-| None | `Ticker` | ```[u8; 12]```
-| None | `Balance` | ```u128```
-| None | `Option<PortfolioMemo>` | ```(None, '[u8; 32]')```
-
----------
-### MovedBetweenPortfolios
-A token amount has been moved from one portfolio to another.
-
-\# Parameters
-* origin DID
-* source portfolio
-* destination portfolio
-* asset ticker
-* asset balance that was moved
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
-| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
-| None | `Ticker` | ```[u8; 12]```
-| None | `Balance` | ```u128```
+| None | `FundDescription` | ```{'Fungible': {'ticker': '[u8; 12]', 'amount': 'u128'}, 'NonFungible': {'ticker': '[u8; 12]', 'ids': ['u64']}}```
 | None | `Option<Memo>` | ```(None, '[u8; 32]')```
-
----------
-### NFTsMovedBetweenPortfolios
-NFTs have been moved from one portfolio to another.
-
-\# Parameters
-* origin DID
-* source portfolio
-* destination portfolio
-* NFTs
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `IdentityId` | ```[u8; 32]```
-| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
-| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
-| None | `NFTs` | ```{'ticker': '[u8; 12]', 'ids': ['u64']}```
-| None | `Option<PortfolioMemo>` | ```(None, '[u8; 32]')```
 
 ---------
 ### PortfolioCreated
@@ -578,6 +551,30 @@ result = substrate.query(
 'bool'
 ```
 ---------
+### PreApprovedPortfolios
+ All portfolios that don&#x27;t need to affirm the receivement of a given ticker.
+
+#### Python
+```python
+result = substrate.query(
+    'Portfolio', 'PreApprovedPortfolios', [
+    {
+        'did': '[u8; 32]',
+        'kind': {
+            'Default': None,
+            'User': 'u64',
+        },
+    },
+    '[u8; 12]',
+]
+)
+```
+
+#### Return value
+```python
+'bool'
+```
+---------
 ### StorageVersion
  Storage version.
 
@@ -602,6 +599,10 @@ The source and destination portfolios should be different.
 ---------
 ### DifferentIdentityPortfolios
 The portfolios belong to different identities
+
+---------
+### EmptyTransfer
+Trying to move an amount of zero assets.
 
 ---------
 ### InsufficientPortfolioBalance
