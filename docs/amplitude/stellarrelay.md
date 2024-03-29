@@ -191,9 +191,6 @@ constant = substrate.get_constant('StellarRelay', 'ValidatorLimit')
 ### ExternalizedValueMismatch
 
 ---------
-### ExternalizedValueNotFound
-
----------
 ### FailedToComputeNonGenericTxSetContentHash
 
 ---------
@@ -209,10 +206,7 @@ constant = substrate.get_constant('StellarRelay', 'ValidatorLimit')
 ### InvalidScpPledge
 
 ---------
-### InvalidTransactionSet
-
----------
-### InvalidTransactionXDR
+### InvalidTransactionSetPrefix
 
 ---------
 ### InvalidXDR
@@ -224,13 +218,7 @@ constant = substrate.get_constant('StellarRelay', 'ValidatorLimit')
 ### NoOrganizationsRegistered
 
 ---------
-### NoOrganizationsRegisteredForNetwork
-
----------
 ### NoValidatorsRegistered
-
----------
-### NoValidatorsRegisteredForNetwork
 
 ---------
 ### OrganizationLimitExceeded

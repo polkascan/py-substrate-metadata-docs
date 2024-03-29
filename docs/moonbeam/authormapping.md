@@ -6,10 +6,7 @@
 
 ---------
 ### add_association
-Register your NimbusId onchain so blocks you author are associated with your account.
-
-Users who have been (or will soon be) elected active collators in staking,
-should submit this extrinsic to have their blocks accepted and earn rewards.
+See [`Pallet::add_association`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,10 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### clear_association
-Clear your Mapping.
-
-This is useful when you are no longer an author and would like to re-claim your security
-deposit.
+See [`Pallet::clear_association`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -42,10 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_keys
-Remove your Mapping.
-
-This is useful when you are no longer an author and would like to re-claim your security
-deposit.
+See [`Pallet::remove_keys`].
 #### Attributes
 No attributes
 
@@ -58,11 +49,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_keys
-Set association and session keys at once.
-
-This is useful for key rotation to update Nimbus and VRF keys in one call.
-No new security deposit is required. Will replace `update_association` which is kept
-now for backwards compatibility reasons.
+See [`Pallet::set_keys`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -77,11 +64,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_association
-Change your Mapping.
-
-This is useful for normal key rotation or for when switching from one physical collator
-machine to another. No new security deposit is required.
-This sets keys to new_nimbus_id.into() by default.
+See [`Pallet::update_association`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

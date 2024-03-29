@@ -6,17 +6,7 @@
 
 ---------
 ### add_cluster
-Create a new cluster
-
-\# Arguments
-- `owner` - The owner of the cluster.
-- `permission` - Who can deploy contracts in the cluster.
-- `deploy_workers` - Workers included in the cluster.
-- `deposit` - Transfer amount of tokens from the owner on chain to the owner in cluster.
-- `gas_price` - Gas price for contract transactions.
-- `deposit_per_item` - Price for contract storage per item.
-- `deposit_per_byte` - Price for contract storage per byte.
-- `treasury_account` - The treasury account used to collect the gas and storage fee.
+See [`Pallet::add_cluster`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -50,7 +40,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_worker_to_cluster
-Add a new worker to a cluster
+See [`Pallet::add_worker_to_cluster`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -61,14 +51,30 @@ Add a new worker to a cluster
 ```python
 call = substrate.compose_call(
     'PhalaPhatContracts', 'add_worker_to_cluster', {
-    'cluster_id': '[u8; 32]',
+    'cluster_id': 'scale_info::12',
     'worker_pubkey': '[u8; 32]',
 }
 )
 ```
 
 ---------
+### cleanup_removed_workers
+See [`Pallet::cleanup_removed_workers`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| cluster_id | `ContractClusterId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'PhalaPhatContracts', 'cleanup_removed_workers', {'cluster_id': 'scale_info::12'}
+)
+```
+
+---------
 ### cluster_destroy
+See [`Pallet::cluster_destroy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -77,12 +83,13 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'PhalaPhatContracts', 'cluster_destroy', {'cluster': '[u8; 32]'}
+    'PhalaPhatContracts', 'cluster_destroy', {'cluster': 'scale_info::12'}
 )
 ```
 
 ---------
 ### cluster_upload_resource
+See [`Pallet::cluster_upload_resource`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -94,7 +101,7 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'PhalaPhatContracts', 'cluster_upload_resource', {
-    'cluster_id': '[u8; 32]',
+    'cluster_id': 'scale_info::12',
     'resource_data': 'Bytes',
     'resource_type': (
         'InkCode',
@@ -107,6 +114,7 @@ call = substrate.compose_call(
 
 ---------
 ### instantiate_contract
+See [`Pallet::instantiate_contract`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -123,9 +131,9 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'PhalaPhatContracts', 'instantiate_contract', {
-    'cluster_id': '[u8; 32]',
+    'cluster_id': 'scale_info::12',
     'code_index': {
-        'WasmCode': '[u8; 32]',
+        'WasmCode': 'scale_info::12',
     },
     'data': 'Bytes',
     'deposit': 'u128',
@@ -142,6 +150,7 @@ call = substrate.compose_call(
 
 ---------
 ### push_contract_message
+See [`Pallet::push_contract_message`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -153,7 +162,7 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'PhalaPhatContracts', 'push_contract_message', {
-    'contract_id': '[u8; 32]',
+    'contract_id': 'scale_info::12',
     'deposit': 'u128',
     'payload': 'Bytes',
 }
@@ -162,7 +171,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_worker_from_cluster
-Remove a new worker from a cluster
+See [`Pallet::remove_worker_from_cluster`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -173,7 +182,7 @@ Remove a new worker from a cluster
 ```python
 call = substrate.compose_call(
     'PhalaPhatContracts', 'remove_worker_from_cluster', {
-    'cluster_id': '[u8; 32]',
+    'cluster_id': 'scale_info::12',
     'worker_pubkey': '[u8; 32]',
 }
 )
@@ -181,6 +190,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_pink_runtime_version
+See [`Pallet::set_pink_runtime_version`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -195,6 +205,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_pink_system_code
+See [`Pallet::set_pink_system_code`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -209,7 +220,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_to_cluster
-Transfer `amount` of on-chain token to the `dest_account` in the cluster of id `cluster_id`.
+See [`Pallet::transfer_to_cluster`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -222,7 +233,7 @@ Transfer `amount` of on-chain token to the `dest_account` in the cluster of id `
 call = substrate.compose_call(
     'PhalaPhatContracts', 'transfer_to_cluster', {
     'amount': 'u128',
-    'cluster_id': '[u8; 32]',
+    'cluster_id': 'scale_info::12',
     'dest_account': 'AccountId',
 }
 )
@@ -236,15 +247,15 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| cluster | `ContractClusterId` | ```[u8; 32]```
-| system_contract | `ContractId` | ```[u8; 32]```
+| cluster | `ContractClusterId` | ```scale_info::12```
+| system_contract | `ContractId` | ```scale_info::12```
 
 ---------
 ### ClusterDeployed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| cluster | `ContractClusterId` | ```[u8; 32]```
+| cluster | `ContractClusterId` | ```scale_info::12```
 | pubkey | `ClusterPublicKey` | ```[u8; 32]```
 | worker | `WorkerPublicKey` | ```[u8; 32]```
 
@@ -253,7 +264,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| cluster | `ContractClusterId` | ```[u8; 32]```
+| cluster | `ContractClusterId` | ```scale_info::12```
 | worker | `WorkerPublicKey` | ```[u8; 32]```
 
 ---------
@@ -261,14 +272,14 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| cluster | `ContractClusterId` | ```[u8; 32]```
+| cluster | `ContractClusterId` | ```scale_info::12```
 
 ---------
 ### ClusterPubkeyAvailable
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| cluster | `ContractClusterId` | ```[u8; 32]```
+| cluster | `ContractClusterId` | ```scale_info::12```
 | pubkey | `ClusterPublicKey` | ```[u8; 32]```
 
 ---------
@@ -276,8 +287,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| contract | `ContractId` | ```[u8; 32]```
-| cluster | `ContractClusterId` | ```[u8; 32]```
+| contract | `ContractId` | ```scale_info::12```
+| cluster | `ContractClusterId` | ```scale_info::12```
 | pubkey | `ContractPublicKey` | ```[u8; 32]```
 
 ---------
@@ -285,17 +296,17 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| contract | `ContractId` | ```[u8; 32]```
-| cluster | `ContractClusterId` | ```[u8; 32]```
-| deployer | `H256` | ```[u8; 32]```
+| contract | `ContractId` | ```scale_info::12```
+| cluster | `ContractClusterId` | ```scale_info::12```
+| deployer | `H256` | ```scale_info::12```
 
 ---------
 ### Instantiating
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| contract | `ContractId` | ```[u8; 32]```
-| cluster | `ContractClusterId` | ```[u8; 32]```
+| contract | `ContractId` | ```scale_info::12```
+| cluster | `ContractClusterId` | ```scale_info::12```
 | deployer | `T::AccountId` | ```AccountId```
 
 ---------
@@ -303,8 +314,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| cluster | `ContractClusterId` | ```[u8; 32]```
-| account | `H256` | ```[u8; 32]```
+| cluster | `ContractClusterId` | ```scale_info::12```
+| account | `H256` | ```scale_info::12```
 | amount | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -313,7 +324,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | worker | `WorkerPublicKey` | ```[u8; 32]```
-| cluster | `ContractClusterId` | ```[u8; 32]```
+| cluster | `ContractClusterId` | ```scale_info::12```
 
 ---------
 ### WorkerRemovedFromCluster
@@ -321,7 +332,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | worker | `WorkerPublicKey` | ```[u8; 32]```
-| cluster | `ContractClusterId` | ```[u8; 32]```
+| cluster | `ContractClusterId` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -338,7 +349,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### ClusterContracts
@@ -346,13 +357,13 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'PhalaPhatContracts', 'ClusterContracts', ['[u8; 32]']
+    'PhalaPhatContracts', 'ClusterContracts', ['scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::12']
 ```
 ---------
 ### ClusterCounter
@@ -375,7 +386,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'PhalaPhatContracts', 'ClusterWorkers', ['[u8; 32]']
+    'PhalaPhatContracts', 'ClusterWorkers', ['scale_info::12']
 )
 ```
 
@@ -389,7 +400,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'PhalaPhatContracts', 'Clusters', ['[u8; 32]']
+    'PhalaPhatContracts', 'Clusters', ['scale_info::12']
 )
 ```
 
@@ -401,8 +412,7 @@ result = substrate.query(
     'gas_price': 'u128',
     'owner': 'AccountId',
     'permission': {'OnlyOwner': 'AccountId', 'Public': None},
-    'system_contract': '[u8; 32]',
-    'workers': ['[u8; 32]'],
+    'system_contract': 'scale_info::12',
 }
 ```
 ---------
@@ -411,13 +421,13 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'PhalaPhatContracts', 'Contracts', ['[u8; 32]']
+    'PhalaPhatContracts', 'Contracts', ['scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-{'cluster': '[u8; 32]', 'deployer': 'AccountId'}
+{'cluster': 'scale_info::12', 'deployer': 'AccountId'}
 ```
 ---------
 ### NextPinkSystemCode
@@ -478,7 +488,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ## Errors

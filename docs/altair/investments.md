@@ -6,7 +6,7 @@
 
 ---------
 ### collect_investments
-Collect the results of a users invest orders for the given
+Collect the results of a user&\#x27;s invest orders for the given
 investment. If any amounts are not fulfilled they are directly
 appended to the next active order for this investment.
 #### Attributes
@@ -52,7 +52,7 @@ call = substrate.compose_call(
 
 ---------
 ### collect_redemptions
-Collect the results of a users redeem orders for the given
+Collect the results of a user&\#x27;s redeem orders for the given
 investment. If any amounts are not fulfilled they are directly
 appended to the next active order for this investment.
 #### Attributes
@@ -487,6 +487,21 @@ result = substrate.query(
 {'amount': 'u128', 'submitted_at': 'u64'}
 ```
 ---------
+## Constants
+
+---------
+### MaxOutstandingCollects
+ The bound on how many fulfilled orders we cache until
+ the user needs to collect them.
+#### Value
+```python
+10
+```
+#### Python
+```python
+constant = substrate.get_constant('Investments', 'MaxOutstandingCollects')
+```
+---------
 ## Errors
 
 ---------
@@ -528,7 +543,7 @@ a collect is possible
 
 ---------
 ### UnknownInvestment
-IvestmentManager does not now given investment
+InvestmentManager does not know the given investment
 
 ---------
 ### ZeroPricedInvestment

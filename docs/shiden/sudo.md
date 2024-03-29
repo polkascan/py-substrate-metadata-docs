@@ -6,13 +6,7 @@
 
 ---------
 ### set_key
-Authenticates the current sudo key and sets the given AccountId (`new`) as the new sudo
-key.
-
-The dispatch origin for this call must be _Signed_.
-
-\#\# Complexity
-- O(1).
+See [`Pallet::set_key`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -35,12 +29,7 @@ call = substrate.compose_call(
 
 ---------
 ### sudo
-Authenticates the sudo key and dispatches a function call with `Root` origin.
-
-The dispatch origin for this call must be _Signed_.
-
-\#\# Complexity
-- O(1).
+See [`Pallet::sudo`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -55,13 +44,7 @@ call = substrate.compose_call(
 
 ---------
 ### sudo_as
-Authenticates the sudo key and dispatches a function call with `Signed` origin from
-a given account.
-
-The dispatch origin for this call must be _Signed_.
-
-\#\# Complexity
-- O(1).
+See [`Pallet::sudo_as`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -86,14 +69,7 @@ call = substrate.compose_call(
 
 ---------
 ### sudo_unchecked_weight
-Authenticates the sudo key and dispatches a function call with `Root` origin.
-This function does not check the weight of the call, and instead allows the
-Sudo user to specify the weight of the call.
-
-The dispatch origin for this call must be _Signed_.
-
-\#\# Complexity
-- O(1).
+See [`Pallet::sudo_unchecked_weight`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

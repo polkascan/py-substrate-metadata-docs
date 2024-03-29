@@ -6,7 +6,7 @@
 
 ---------
 ### fill_block
-A dispatch that will fill the block weight up to the given ratio.
+See `Pallet::fill_block`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -18,5 +18,8 @@ call = substrate.compose_call(
     'RootTesting', 'fill_block', {'ratio': 'u32'}
 )
 ```
+
+---------
+## Storage functions
 
 ---------

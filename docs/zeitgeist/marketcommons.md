@@ -22,8 +22,10 @@ result = substrate.query(
 ```
 ---------
 ### MarketPool
- Maps a market id to a related pool id. It is up to the caller to keep and sync valid
+ Maps a market ID to a related pool ID. It is up to the caller to keep and sync valid
  existent markets with valid existent pools.
+
+ Beware! DEPRECATED as of v0.5.0.
 
 #### Python
 ```python
@@ -54,11 +56,20 @@ result = substrate.query(
         'CategoricalOutcome': ('u128', 'u16'),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': ('u128', 'u16'),
         'PoolShare': 'u128',
         'ScalarOutcome': ('u128', ('Long', 'Short')),
         'Ztg': None,
     },
     'bonds': {
+        'close_dispute': (
+            None,
+            {'is_settled': 'bool', 'value': 'u128', 'who': 'AccountId'},
+        ),
+        'close_request': (
+            None,
+            {'is_settled': 'bool', 'value': 'u128', 'who': 'AccountId'},
+        ),
         'creation': (
             None,
             {'is_settled': 'bool', 'value': 'u128', 'who': 'AccountId'},
@@ -85,6 +96,25 @@ result = substrate.query(
         'oracle_duration': 'u64',
     },
     'dispute_mechanism': (None, ('Authorized', 'Court', 'SimpleDisputes')),
+    'early_close': (
+        None,
+        {
+            'new': {
+                'Block': {'end': 'u64', 'start': 'u64'},
+                'Timestamp': {'end': 'u64', 'start': 'u64'},
+            },
+            'old': {
+                'Block': {'end': 'u64', 'start': 'u64'},
+                'Timestamp': {'end': 'u64', 'start': 'u64'},
+            },
+            'state': (
+                'ScheduledAsMarketCreator',
+                'ScheduledAsOther',
+                'Disputed',
+                'Rejected',
+            ),
+        },
+    ),
     'market_type': {
         'Categorical': 'u16',
         'Scalar': {'end': 'u128', 'start': 'u128'},
@@ -104,38 +134,16 @@ result = substrate.query(
         },
     ),
     'resolved_outcome': (None, {'Categorical': 'u16', 'Scalar': 'u128'}),
-    'scoring_rule': (
-        'CPMM',
-        'RikiddoSigmoidFeeMarketEma',
-        'Lmsr',
-        'Orderbook',
-    ),
+    'scoring_rule': ('Lmsr', 'Orderbook', 'Parimutuel'),
     'status': (
         'Proposed',
         'Active',
-        'Suspended',
         'Closed',
-        'CollectingSubsidy',
-        'InsufficientSubsidy',
         'Reported',
         'Disputed',
         'Resolved',
     ),
 }
-```
----------
-## Constants
-
----------
-### PredictionMarketsPalletId
- The prefix used to calculate the prize pool accounts.
-#### Value
-```python
-'0x7a67652f70726564'
-```
-#### Python
-```python
-constant = substrate.get_constant('MarketCommons', 'PredictionMarketsPalletId')
 ```
 ---------
 ## Errors

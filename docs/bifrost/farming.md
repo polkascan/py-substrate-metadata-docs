@@ -6,6 +6,7 @@
 
 ---------
 ### add_boost_pool_whitelist
+See [`Pallet::add_boost_pool_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -20,6 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### charge
+See [`Pallet::charge`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -66,6 +68,7 @@ call = substrate.compose_call(
                     ),
                     'u8',
                 ),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -169,6 +172,7 @@ call = substrate.compose_call(
 
 ---------
 ### charge_boost
+See [`Pallet::charge_boost`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -213,6 +217,7 @@ call = substrate.compose_call(
                     ),
                     'u8',
                 ),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -316,6 +321,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim
+See [`Pallet::claim`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -330,6 +336,7 @@ call = substrate.compose_call(
 
 ---------
 ### close_pool
+See [`Pallet::close_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -344,6 +351,7 @@ call = substrate.compose_call(
 
 ---------
 ### create_farming_pool
+See [`Pallet::create_farming_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -398,6 +406,7 @@ call = substrate.compose_call(
                     ),
                     'u8',
                 ),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -532,6 +541,7 @@ call = substrate.compose_call(
                     ),
                     'u8',
                 ),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -633,11 +643,12 @@ call = substrate.compose_call(
                         'BLP': 'u32',
                         'ForeignAsset': 'u32',
                         'LPToken': (
-                            'scale_info::256',
+                            'scale_info::259',
                             'u8',
-                            'scale_info::256',
+                            'scale_info::259',
                             'u8',
                         ),
+                        'Lend': 'u8',
                         'Native': (
                             'ASG',
                             'BNC',
@@ -680,7 +691,7 @@ call = substrate.compose_call(
                         ),
                         'Token2': 'u8',
                         'VSBond': (
-                            'scale_info::256',
+                            'scale_info::259',
                             'u32',
                             'u32',
                             'u32',
@@ -761,6 +772,7 @@ call = substrate.compose_call(
                     ),
                     'u8',
                 ),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -866,6 +878,7 @@ call = substrate.compose_call(
 
 ---------
 ### deposit
+See [`Pallet::deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -889,6 +902,7 @@ call = substrate.compose_call(
 
 ---------
 ### edit_pool
+See [`Pallet::edit_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -940,6 +954,7 @@ call = substrate.compose_call(
                         ),
                         'u8',
                     ),
+                    'Lend': 'u8',
                     'Native': (
                         'ASG',
                         'BNC',
@@ -1076,6 +1091,7 @@ call = substrate.compose_call(
                         ),
                         'u8',
                     ),
+                    'Lend': 'u8',
                     'Native': (
                         'ASG',
                         'BNC',
@@ -1189,6 +1205,7 @@ call = substrate.compose_call(
 
 ---------
 ### end_boost_round
+See [`Pallet::end_boost_round`].
 #### Attributes
 No attributes
 
@@ -1201,6 +1218,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_gauge_claim
+See [`Pallet::force_gauge_claim`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1215,6 +1233,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_retire_pool
+See [`Pallet::force_retire_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1229,6 +1248,7 @@ call = substrate.compose_call(
 
 ---------
 ### gauge_withdraw
+See [`Pallet::gauge_withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1243,6 +1263,7 @@ call = substrate.compose_call(
 
 ---------
 ### kill_pool
+See [`Pallet::kill_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1257,6 +1278,7 @@ call = substrate.compose_call(
 
 ---------
 ### reset_pool
+See [`Pallet::reset_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1316,6 +1338,7 @@ call = substrate.compose_call(
                         ),
                         'u8',
                     ),
+                    'Lend': 'u8',
                     'Native': (
                         'ASG',
                         'BNC',
@@ -1451,6 +1474,7 @@ call = substrate.compose_call(
                     ),
                     'u8',
                 ),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -1552,11 +1576,12 @@ call = substrate.compose_call(
                         'BLP': 'u32',
                         'ForeignAsset': 'u32',
                         'LPToken': (
-                            'scale_info::256',
+                            'scale_info::259',
                             'u8',
-                            'scale_info::256',
+                            'scale_info::259',
                             'u8',
                         ),
+                        'Lend': 'u8',
                         'Native': (
                             'ASG',
                             'BNC',
@@ -1599,7 +1624,7 @@ call = substrate.compose_call(
                         ),
                         'Token2': 'u8',
                         'VSBond': (
-                            'scale_info::256',
+                            'scale_info::259',
                             'u32',
                             'u32',
                             'u32',
@@ -1663,6 +1688,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_next_round_whitelist
+See [`Pallet::set_next_round_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1677,6 +1703,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_retire_limit
+See [`Pallet::set_retire_limit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1691,6 +1718,7 @@ call = substrate.compose_call(
 
 ---------
 ### start_boost_round
+See [`Pallet::start_boost_round`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1705,6 +1733,7 @@ call = substrate.compose_call(
 
 ---------
 ### vote
+See [`Pallet::vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1719,6 +1748,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw
+See [`Pallet::withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1737,6 +1767,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw_claim
+See [`Pallet::withdraw_claim`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1772,7 +1803,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountIdOf<T>` | ```AccountId```
-| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}, 'u128')]```
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}, 'u128')]```
 
 ---------
 ### Charged
@@ -1781,7 +1812,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | who | `AccountIdOf<T>` | ```AccountId```
 | pid | `PoolId` | ```u32```
-| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}, 'u128')]```
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}, 'u128')]```
 
 ---------
 ### Claimed
@@ -1886,7 +1917,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| info | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| info | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}```
 
 ---------
 ### Voted
@@ -1957,6 +1988,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -2161,14 +2193,14 @@ result = substrate.query(
 ```python
 {
     'gauge_amount': 'u128',
-    'gauge_basic_rewards': 'scale_info::747',
+    'gauge_basic_rewards': 'scale_info::799',
     'gauge_last_block': 'u32',
     'gauge_state': ('Unbond', 'Bonded'),
     'keeper': 'AccountId',
     'max_block': 'u32',
     'pid': 'u32',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::751',
+    'rewards': 'scale_info::803',
     'token': {
         'BLP': 'u32',
         'ForeignAsset': 'u32',
@@ -2202,6 +2234,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -2325,7 +2358,7 @@ result = substrate.query(
 ```python
 {
     'after_block_to_start': 'u32',
-    'basic_rewards': 'scale_info::747',
+    'basic_rewards': 'scale_info::799',
     'basic_token': (
         {
             'BLP': 'u32',
@@ -2360,6 +2393,7 @@ result = substrate.query(
                 ),
                 'u8',
             ),
+            'Lend': 'u8',
             'Native': (
                 'ASG',
                 'BNC',
@@ -2457,9 +2491,9 @@ result = substrate.query(
     'keeper': 'AccountId',
     'min_deposit_to_start': 'u128',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::748',
+    'rewards': 'scale_info::800',
     'state': ('UnCharged', 'Charged', 'Ongoing', 'Dead', 'Retired'),
-    'tokens_proportion': 'scale_info::746',
+    'tokens_proportion': 'scale_info::798',
     'total_shares': 'u128',
     'withdraw_limit_count': 'u8',
     'withdraw_limit_time': 'u32',
@@ -2514,7 +2548,7 @@ result = substrate.query(
     'share': 'u128',
     'who': 'AccountId',
     'withdraw_list': [('u32', 'u128')],
-    'withdrawn_rewards': 'scale_info::747',
+    'withdrawn_rewards': 'scale_info::799',
 }
 ```
 ---------

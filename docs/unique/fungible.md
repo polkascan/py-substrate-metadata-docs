@@ -77,16 +77,8 @@ Fungible token does not support nesting.
 Tried to set data for fungible item.
 
 ---------
-### FungibleItemsHaveNoId
-Fungible tokens hold no ID, and the default value of TokenId for Fungible collection is 0.
-
----------
 ### FungibleTokensAreAlwaysValid
 Only a fungible collection could be possibly broken; any fungible token is valid.
-
----------
-### NotFungibleDataUsedToMintFungibleCollectionToken
-Not Fungible item data used to mint in Fungible collection.
 
 ---------
 ### SettingAllowanceForAllNotAllowed

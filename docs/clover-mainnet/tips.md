@@ -30,7 +30,7 @@ The tip identified by `hash` must have finished its countdown period.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Tips', 'close_tip', {'hash': '[u8; 32]'}
+    'Tips', 'close_tip', {'hash': 'scale_info::9'}
 )
 ```
 
@@ -100,7 +100,7 @@ Emits `TipRetracted` if successful.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Tips', 'retract_tip', {'hash': '[u8; 32]'}
+    'Tips', 'retract_tip', {'hash': 'scale_info::9'}
 )
 ```
 
@@ -126,7 +126,7 @@ Emits `TipSlashed` if successful.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Tips', 'slash_tip', {'hash': '[u8; 32]'}
+    'Tips', 'slash_tip', {'hash': 'scale_info::9'}
 )
 ```
 
@@ -166,7 +166,7 @@ has started.
 ```python
 call = substrate.compose_call(
     'Tips', 'tip', {
-    'hash': '[u8; 32]',
+    'hash': 'scale_info::9',
     'tip_value': 'u128',
 }
 )
@@ -223,7 +223,7 @@ A new tip suggestion has been opened.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::9```
 
 ---------
 ### TipClosed
@@ -231,7 +231,7 @@ A tip suggestion has been closed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::9```
 | who | `T::AccountId` | ```AccountId```
 | payout | `BalanceOf<T, I>` | ```u128```
 
@@ -241,7 +241,7 @@ A tip suggestion has reached threshold and is closing.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::9```
 
 ---------
 ### TipRetracted
@@ -249,7 +249,7 @@ A tip suggestion has been retracted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::9```
 
 ---------
 ### TipSlashed
@@ -257,7 +257,7 @@ A tip suggestion has been slashed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::9```
 | finder | `T::AccountId` | ```AccountId```
 | deposit | `BalanceOf<T, I>` | ```u128```
 
@@ -272,7 +272,7 @@ A tip suggestion has been slashed.
 #### Python
 ```python
 result = substrate.query(
-    'Tips', 'Reasons', ['[u8; 32]']
+    'Tips', 'Reasons', ['scale_info::9']
 )
 ```
 
@@ -289,7 +289,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Tips', 'Tips', ['[u8; 32]']
+    'Tips', 'Tips', ['scale_info::9']
 )
 ```
 
@@ -300,7 +300,7 @@ result = substrate.query(
     'deposit': 'u128',
     'finder': 'AccountId',
     'finders_fee': 'bool',
-    'reason': '[u8; 32]',
+    'reason': 'scale_info::9',
     'tips': [('AccountId', 'u128')],
     'who': 'AccountId',
 }

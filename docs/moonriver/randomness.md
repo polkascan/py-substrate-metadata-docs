@@ -6,7 +6,7 @@
 
 ---------
 ### set_babe_randomness_results
-Populates `RandomnessResults` due this epoch with BABE epoch randomness
+See [`Pallet::set_babe_randomness_results`].
 #### Attributes
 No attributes
 
@@ -31,7 +31,7 @@ call = substrate.compose_call(
 | fee | `BalanceOf<T>` | ```u128```
 | gas_limit | `u64` | ```u64```
 | num_words | `u8` | ```u8```
-| salt | `H256` | ```[u8; 32]```
+| salt | `H256` | ```scale_info::12```
 | earliest_epoch | `u64` | ```u64```
 
 ---------
@@ -45,8 +45,8 @@ call = substrate.compose_call(
 | fee | `BalanceOf<T>` | ```u128```
 | gas_limit | `u64` | ```u64```
 | num_words | `u8` | ```u8```
-| salt | `H256` | ```[u8; 32]```
-| earliest_block | `T::BlockNumber` | ```u32```
+| salt | `H256` | ```scale_info::12```
+| earliest_block | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### RequestExpirationExecuted
@@ -102,7 +102,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-(None, '[u8; 32]')
+(None, 'scale_info::12')
 ```
 ---------
 ### NotFirstBlock
@@ -133,7 +133,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### RandomnessResults
@@ -149,7 +149,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'randomness': (None, '[u8; 32]'), 'request_count': 'u64'}
+{'randomness': (None, 'scale_info::12'), 'request_count': 'u64'}
 ```
 ---------
 ### RelayEpoch
@@ -203,7 +203,7 @@ result = substrate.query(
         'info': {'BabeEpoch': ('u64', 'u64'), 'Local': ('u32', 'u32')},
         'num_words': 'u8',
         'refund_address': '[u8; 20]',
-        'salt': '[u8; 32]',
+        'salt': 'scale_info::12',
     },
 }
 ```

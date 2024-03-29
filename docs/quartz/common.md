@@ -292,7 +292,7 @@ result = substrate.query(
             None,
             {
                 'collection_admin': 'bool',
-                'restricted': (None, 'scale_info::291'),
+                'restricted': (None, 'scale_info::288'),
                 'token_owner': 'bool',
             },
         ),
@@ -318,7 +318,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'_reserved': 'u32', 'consumed_space': 'u32', 'map': 'scale_info::597'}
+{'_reserved': 'u32', 'consumed_space': 'u32', 'map': 'scale_info::590'}
 ```
 ---------
 ### CollectionPropertyPermissions
@@ -333,7 +333,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::602'
+'scale_info::595'
 ```
 ---------
 ### CreatedCollectionCount
@@ -383,7 +383,7 @@ result = substrate.query(
     'u32',
     'u32',
     {'collection': 'u32', 'token': 'u32'},
-    "[({'properties': ['scale_info::299'], 'owner': (None, 'scale_info::275'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::273', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::593', 'limits': 'scale_info::279', 'permissions': 'scale_info::284', 'token_property_permissions': ['scale_info::294'], 'properties': ['scale_info::299'], 'read_only': 'bool', 'flags': 'scale_info::613'}, {'proof_size': 'u64', 'compact_proof_size': 'u64', 'compressed_proof_size': 'u64', 'results': ['scale_info::616'], 'key_values': ['scale_info::621']}); 0]",
+    "[({'properties': ['scale_info::296'], 'owner': (None, 'scale_info::273'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::271', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::586', 'limits': 'scale_info::277', 'permissions': 'scale_info::282', 'token_property_permissions': ['scale_info::291'], 'properties': ['scale_info::296'], 'read_only': 'bool', 'flags': 'scale_info::606'}, {'proof_size': 'u64', 'compact_proof_size': 'u64', 'compressed_proof_size': 'u64', 'results': ['scale_info::609'], 'key_values': ['scale_info::614']}); 0]",
 )
 ```
 ---------
@@ -545,6 +545,10 @@ No permission to perform action
 ---------
 ### NoSpaceForProperty
 Tried to store more property data than allowed
+
+---------
+### NotFungibleDataUsedToMintFungibleCollectionToken
+Not Fungible item data used to mint in Fungible collection.
 
 ---------
 ### NotSufficientFounds

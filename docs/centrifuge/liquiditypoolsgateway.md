@@ -47,6 +47,21 @@ call = substrate.compose_call(
 ```
 
 ---------
+### process_failed_outbound_message
+Manually process a failed outbound message.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| nonce | `T::OutboundMessageNonce` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'LiquidityPoolsGateway', 'process_failed_outbound_message', {'nonce': 'u64'}
+)
+```
+
+---------
 ### process_msg
 Process an incoming message.
 #### Attributes
@@ -58,6 +73,24 @@ Process an incoming message.
 ```python
 call = substrate.compose_call(
     'LiquidityPoolsGateway', 'process_msg', {'msg': 'Bytes'}
+)
+```
+
+---------
+### process_outbound_message
+Convenience method for manually processing an outbound message.
+
+If the execution fails, the message gets moved to the
+`FailedOutboundMessages` storage.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| nonce | `T::OutboundMessageNonce` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'LiquidityPoolsGateway', 'process_outbound_message', {'nonce': 'u64'}
 )
 ```
 
@@ -125,12 +158,12 @@ call = substrate.compose_call(
             'router': {
                 'evm_domain': {
                     'fee_values': {
-                        'gas_limit': '[u64; 4]',
-                        'gas_price': '[u64; 4]',
-                        'value': '[u64; 4]',
+                        'gas_limit': 'scale_info::131',
+                        'gas_price': 'scale_info::131',
+                        'value': 'scale_info::131',
                     },
                     'target_contract_address': '[u8; 20]',
-                    'target_contract_hash': '[u8; 32]',
+                    'target_contract_hash': 'scale_info::12',
                 },
             },
         },
@@ -143,26 +176,27 @@ call = substrate.compose_call(
                     'ethereum_xcm_transact_call_index': 'Bytes',
                     'fee_amount': 'u128',
                     'fee_currency': {
+                        None: None,
                         'AUSD': None,
                         'ForeignAsset': 'u32',
+                        'LocalAsset': 'u32',
                         'Native': None,
+                        'Staking': (
+                            'BlockRewards',
+                        ),
                         'Tranche': (
                             'u64',
                             '[u8; 16]',
                         ),
-                        None: None,
-                        'Staking': (
-                            'BlockRewards',
-                        ),
                     },
                     'location': {
+                        None: None,
                         'V2': {
-                            'interior': 'scale_info::108',
+                            'interior': 'scale_info::110',
                             'parents': 'u8',
                         },
-                        None: None,
                         'V3': {
-                            'interior': 'scale_info::117',
+                            'interior': 'scale_info::119',
                             'parents': 'u8',
                         },
                     },
@@ -193,6 +227,7 @@ call = substrate.compose_call(
                         None: None,
                         'AUSD': None,
                         'ForeignAsset': 'u32',
+                        'LocalAsset': 'u32',
                         'Staking': (
                             'BlockRewards',
                         ),
@@ -200,11 +235,11 @@ call = substrate.compose_call(
                     'location': {
                         None: None,
                         'V2': {
-                            'interior': 'scale_info::108',
+                            'interior': 'scale_info::110',
                             'parents': 'u8',
                         },
                         'V3': {
-                            'interior': 'scale_info::117',
+                            'interior': 'scale_info::119',
                             'parents': 'u8',
                         },
                     },
@@ -235,7 +270,7 @@ The router for a given domain was set.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | domain | `Domain` | ```{'Centrifuge': None, 'EVM': 'u64'}```
-| router | `T::Router` | ```{'EthereumXCM': {'router': {'xcm_domain': {'location': {None: None, 'V2': 'scale_info::107', 'V3': 'scale_info::116'}, 'ethereum_xcm_transact_call_index': 'Bytes', 'contract_address': '[u8; 20]', 'max_gas_limit': 'u64', 'transact_required_weight_at_most': {'ref_time': 'u64', 'proof_size': 'u64'}, 'overall_weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'fee_currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': 'scale_info::72'}, 'fee_amount': 'u128'}}}, 'AxelarEVM': {'router': {'evm_domain': {'target_contract_address': '[u8; 20]', 'target_contract_hash': '[u8; 32]', 'fee_values': {'value': '[u64; 4]', 'gas_price': '[u64; 4]', 'gas_limit': '[u64; 4]'}}}, 'evm_chain': 'Bytes', 'liquidity_pools_contract_address': '[u8; 20]'}, 'AxelarXCM': {'router': {'xcm_domain': {'location': {None: None, 'V2': 'scale_info::107', 'V3': 'scale_info::116'}, 'ethereum_xcm_transact_call_index': 'Bytes', 'contract_address': '[u8; 20]', 'max_gas_limit': 'u64', 'transact_required_weight_at_most': {'ref_time': 'u64', 'proof_size': 'u64'}, 'overall_weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'fee_currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': 'scale_info::72'}, 'fee_amount': 'u128'}}, 'axelar_target_chain': 'Bytes', 'axelar_target_contract': '[u8; 20]'}}```
+| router | `T::Router` | ```{'EthereumXCM': {'router': {'xcm_domain': {'location': {None: None, 'V2': 'scale_info::109', 'V3': 'scale_info::118'}, 'ethereum_xcm_transact_call_index': 'Bytes', 'contract_address': '[u8; 20]', 'max_gas_limit': 'u64', 'transact_required_weight_at_most': {'ref_time': 'u64', 'proof_size': 'u64'}, 'overall_weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'fee_currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': 'scale_info::71', 'LocalAsset': 'u32'}, 'fee_amount': 'u128'}}}, 'AxelarEVM': {'router': {'evm_domain': {'target_contract_address': '[u8; 20]', 'target_contract_hash': 'scale_info::12', 'fee_values': {'value': 'scale_info::131', 'gas_price': 'scale_info::131', 'gas_limit': 'scale_info::131'}}}, 'evm_chain': 'Bytes', 'liquidity_pools_contract_address': '[u8; 20]'}, 'AxelarXCM': {'router': {'xcm_domain': {'location': {None: None, 'V2': 'scale_info::109', 'V3': 'scale_info::118'}, 'ethereum_xcm_transact_call_index': 'Bytes', 'contract_address': '[u8; 20]', 'max_gas_limit': 'u64', 'transact_required_weight_at_most': {'ref_time': 'u64', 'proof_size': 'u64'}, 'overall_weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'fee_currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': 'scale_info::71', 'LocalAsset': 'u32'}, 'fee_amount': 'u128'}}, 'axelar_target_chain': 'Bytes', 'axelar_target_contract': '[u8; 20]'}}```
 
 ---------
 ### InstanceAdded
@@ -254,6 +289,29 @@ An instance was removed from a domain.
 | instance | `DomainAddress` | ```{'Centrifuge': '[u8; 32]', 'EVM': ('u64', '[u8; 20]')}```
 
 ---------
+### OutboundMessageExecutionFailure
+Outbound message execution failure.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| nonce | `T::OutboundMessageNonce` | ```u64```
+| sender | `T::AccountId` | ```AccountId```
+| domain | `Domain` | ```{'Centrifuge': None, 'EVM': 'u64'}```
+| message | `T::Message` | ```{'Invalid': None, 'AddCurrency': {'currency': 'u128', 'evm_address': '[u8; 20]'}, 'AddPool': {'pool_id': 'u64'}, 'AllowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}, 'AddTranche': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]', 'decimals': 'u8', 'restriction_set': 'u8'}, 'UpdateTrancheTokenPrice': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'currency': 'u128', 'price': 'u128', 'computed_at': 'u64'}, 'UpdateMember': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'member': '[u8; 32]', 'valid_until': 'u64'}, 'Transfer': {'currency': 'u128', 'sender': '[u8; 32]', 'receiver': '[u8; 32]', 'amount': 'u128'}, 'TransferTrancheTokens': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'sender': '[u8; 32]', 'domain': {'Centrifuge': None, 'EVM': 'u64'}, 'receiver': '[u8; 32]', 'amount': 'u128'}, 'IncreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'IncreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'CollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ExecutedDecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedDecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'ExecutedCollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedCollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'CancelInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CancelRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ScheduleUpgrade': {'contract': '[u8; 20]'}, 'CancelUpgrade': {'contract': '[u8; 20]'}, 'UpdateTrancheTokenMetadata': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]'}, 'DisallowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}}```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}```
+
+---------
+### OutboundMessageExecutionSuccess
+Outbound message execution success.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| nonce | `T::OutboundMessageNonce` | ```u64```
+| sender | `T::AccountId` | ```AccountId```
+| domain | `Domain` | ```{'Centrifuge': None, 'EVM': 'u64'}```
+| message | `T::Message` | ```{'Invalid': None, 'AddCurrency': {'currency': 'u128', 'evm_address': '[u8; 20]'}, 'AddPool': {'pool_id': 'u64'}, 'AllowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}, 'AddTranche': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]', 'decimals': 'u8', 'restriction_set': 'u8'}, 'UpdateTrancheTokenPrice': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'currency': 'u128', 'price': 'u128', 'computed_at': 'u64'}, 'UpdateMember': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'member': '[u8; 32]', 'valid_until': 'u64'}, 'Transfer': {'currency': 'u128', 'sender': '[u8; 32]', 'receiver': '[u8; 32]', 'amount': 'u128'}, 'TransferTrancheTokens': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'sender': '[u8; 32]', 'domain': {'Centrifuge': None, 'EVM': 'u64'}, 'receiver': '[u8; 32]', 'amount': 'u128'}, 'IncreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'IncreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'CollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ExecutedDecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedDecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'ExecutedCollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedCollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'CancelInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CancelRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ScheduleUpgrade': {'contract': '[u8; 20]'}, 'CancelUpgrade': {'contract': '[u8; 20]'}, 'UpdateTrancheTokenMetadata': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]'}, 'DisallowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}}```
+
+---------
 ### OutboundMessageSubmitted
 An outbound message has been submitted.
 #### Attributes
@@ -261,7 +319,7 @@ An outbound message has been submitted.
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
 | domain | `Domain` | ```{'Centrifuge': None, 'EVM': 'u64'}```
-| message | `T::Message` | ```{'Invalid': None, 'AddCurrency': {'currency': 'u128', 'evm_address': '[u8; 20]'}, 'AddPool': {'pool_id': 'u64'}, 'AllowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}, 'AddTranche': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]', 'decimals': 'u8'}, 'UpdateTrancheTokenPrice': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'currency': 'u128', 'price': 'u128'}, 'UpdateMember': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'member': '[u8; 32]', 'valid_until': 'u64'}, 'Transfer': {'currency': 'u128', 'sender': '[u8; 32]', 'receiver': '[u8; 32]', 'amount': 'u128'}, 'TransferTrancheTokens': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'sender': '[u8; 32]', 'domain': {'Centrifuge': None, 'EVM': 'u64'}, 'receiver': '[u8; 32]', 'amount': 'u128'}, 'IncreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'IncreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'CollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ExecutedDecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedDecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'ExecutedCollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedCollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'CancelInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CancelRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ScheduleUpgrade': {'contract': '[u8; 20]'}, 'CancelUpgrade': {'contract': '[u8; 20]'}, 'UpdateTrancheTokenMetadata': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]'}}```
+| message | `T::Message` | ```{'Invalid': None, 'AddCurrency': {'currency': 'u128', 'evm_address': '[u8; 20]'}, 'AddPool': {'pool_id': 'u64'}, 'AllowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}, 'AddTranche': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]', 'decimals': 'u8', 'restriction_set': 'u8'}, 'UpdateTrancheTokenPrice': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'currency': 'u128', 'price': 'u128', 'computed_at': 'u64'}, 'UpdateMember': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'member': '[u8; 32]', 'valid_until': 'u64'}, 'Transfer': {'currency': 'u128', 'sender': '[u8; 32]', 'receiver': '[u8; 32]', 'amount': 'u128'}, 'TransferTrancheTokens': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'sender': '[u8; 32]', 'domain': {'Centrifuge': None, 'EVM': 'u64'}, 'receiver': '[u8; 32]', 'amount': 'u128'}, 'IncreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'IncreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'CollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ExecutedDecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedDecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'ExecutedCollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedCollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'CancelInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CancelRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ScheduleUpgrade': {'contract': '[u8; 20]'}, 'CancelUpgrade': {'contract': '[u8; 20]'}, 'UpdateTrancheTokenMetadata': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]'}, 'DisallowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}}```
 
 ---------
 ### RelayerAdded
@@ -328,12 +386,12 @@ result = substrate.query(
         'router': {
             'evm_domain': {
                 'fee_values': {
-                    'gas_limit': '[u64; 4]',
-                    'gas_price': '[u64; 4]',
-                    'value': '[u64; 4]',
+                    'gas_limit': 'scale_info::131',
+                    'gas_price': 'scale_info::131',
+                    'value': 'scale_info::131',
                 },
                 'target_contract_address': '[u8; 20]',
-                'target_contract_hash': '[u8; 32]',
+                'target_contract_hash': 'scale_info::12',
             },
         },
     },
@@ -346,17 +404,18 @@ result = substrate.query(
                 'ethereum_xcm_transact_call_index': 'Bytes',
                 'fee_amount': 'u128',
                 'fee_currency': {
+                    'Native': None,
+                    'Tranche': ('u64', '[u8; 16]'),
+                    None: None,
                     'AUSD': None,
                     'ForeignAsset': 'u32',
-                    'Native': None,
-                    'Staking': 'scale_info::72',
-                    None: None,
-                    'Tranche': ('u64', '[u8; 16]'),
+                    'LocalAsset': 'u32',
+                    'Staking': 'scale_info::71',
                 },
                 'location': {
                     None: None,
-                    'V2': 'scale_info::107',
-                    'V3': 'scale_info::116',
+                    'V2': 'scale_info::109',
+                    'V3': 'scale_info::118',
                 },
                 'max_gas_limit': 'u64',
                 'overall_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
@@ -377,14 +436,15 @@ result = substrate.query(
                     None: None,
                     'AUSD': None,
                     'ForeignAsset': 'u32',
+                    'LocalAsset': 'u32',
                     'Native': None,
-                    'Staking': 'scale_info::72',
+                    'Staking': 'scale_info::71',
                     'Tranche': ('u64', '[u8; 16]'),
                 },
                 'location': {
                     None: None,
-                    'V2': 'scale_info::107',
-                    'V3': 'scale_info::116',
+                    'V2': 'scale_info::109',
+                    'V3': 'scale_info::118',
                 },
                 'max_gas_limit': 'u64',
                 'overall_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
@@ -396,6 +456,356 @@ result = substrate.query(
         },
     },
 }
+```
+---------
+### FailedOutboundMessages
+ Storage for failed outbound messages that can be manually re-triggered.
+
+#### Python
+```python
+result = substrate.query(
+    'LiquidityPoolsGateway', 'FailedOutboundMessages', ['u64']
+)
+```
+
+#### Return value
+```python
+(
+    {'Centrifuge': None, 'EVM': 'u64'},
+    'AccountId',
+    {
+        'AddCurrency': {'currency': 'u128', 'evm_address': '[u8; 20]'},
+        'AddPool': {'pool_id': 'u64'},
+        'AddTranche': {
+            'decimals': 'u8',
+            'pool_id': 'u64',
+            'restriction_set': 'u8',
+            'token_name': '[u8; 128]',
+            'token_symbol': '[u8; 32]',
+            'tranche_id': '[u8; 16]',
+        },
+        'AllowInvestmentCurrency': {'currency': 'u128', 'pool_id': 'u64'},
+        'CancelInvestOrder': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'CancelRedeemOrder': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'CancelUpgrade': {'contract': '[u8; 20]'},
+        'CollectInvest': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'CollectRedeem': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'DecreaseInvestOrder': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'DecreaseRedeemOrder': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'DisallowInvestmentCurrency': {'currency': 'u128', 'pool_id': 'u64'},
+        'ExecutedCollectInvest': {
+            'currency': 'u128',
+            'currency_payout': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'remaining_invest_amount': 'u128',
+            'tranche_id': '[u8; 16]',
+            'tranche_tokens_payout': 'u128',
+        },
+        'ExecutedCollectRedeem': {
+            'currency': 'u128',
+            'currency_payout': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'remaining_redeem_amount': 'u128',
+            'tranche_id': '[u8; 16]',
+            'tranche_tokens_payout': 'u128',
+        },
+        'ExecutedDecreaseInvestOrder': {
+            'currency': 'u128',
+            'currency_payout': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'remaining_invest_amount': 'u128',
+            'tranche_id': '[u8; 16]',
+        },
+        'ExecutedDecreaseRedeemOrder': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'remaining_redeem_amount': 'u128',
+            'tranche_id': '[u8; 16]',
+            'tranche_tokens_payout': 'u128',
+        },
+        'IncreaseInvestOrder': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'IncreaseRedeemOrder': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'Invalid': None,
+        'ScheduleUpgrade': {'contract': '[u8; 20]'},
+        'Transfer': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'receiver': '[u8; 32]',
+            'sender': '[u8; 32]',
+        },
+        'TransferTrancheTokens': {
+            'amount': 'u128',
+            'domain': {'Centrifuge': None, 'EVM': 'u64'},
+            'pool_id': 'u64',
+            'receiver': '[u8; 32]',
+            'sender': '[u8; 32]',
+            'tranche_id': '[u8; 16]',
+        },
+        'UpdateMember': {
+            'member': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+            'valid_until': 'u64',
+        },
+        'UpdateTrancheTokenMetadata': {
+            'pool_id': 'u64',
+            'token_name': '[u8; 128]',
+            'token_symbol': '[u8; 32]',
+            'tranche_id': '[u8; 16]',
+        },
+        'UpdateTrancheTokenPrice': {
+            'computed_at': 'u64',
+            'currency': 'u128',
+            'pool_id': 'u64',
+            'price': 'u128',
+            'tranche_id': '[u8; 16]',
+        },
+    },
+    {
+        'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'),
+        'BadOrigin': None,
+        'CannotLookup': None,
+        'ConsumerRemaining': None,
+        'Corruption': None,
+        'Exhausted': None,
+        'Module': {'error': '[u8; 4]', 'index': 'u8'},
+        'NoProviders': None,
+        'Other': None,
+        'RootNotAllowed': None,
+        'Token': (
+            'FundsUnavailable',
+            'OnlyProvider',
+            'BelowMinimum',
+            'CannotCreate',
+            'UnknownAsset',
+            'Frozen',
+            'Unsupported',
+            'CannotCreateHold',
+            'NotExpendable',
+            'Blocked',
+        ),
+        'TooManyConsumers': None,
+        'Transactional': ('LimitReached', 'NoLayer'),
+        'Unavailable': None,
+    },
+)
+```
+---------
+### OutboundMessageNonceStore
+
+#### Python
+```python
+result = substrate.query(
+    'LiquidityPoolsGateway', 'OutboundMessageNonceStore', []
+)
+```
+
+#### Return value
+```python
+'u64'
+```
+---------
+### OutboundMessageQueue
+ Storage for outbound messages that will be processed during the
+ `on_idle` hook.
+
+#### Python
+```python
+result = substrate.query(
+    'LiquidityPoolsGateway', 'OutboundMessageQueue', ['u64']
+)
+```
+
+#### Return value
+```python
+(
+    {'Centrifuge': None, 'EVM': 'u64'},
+    'AccountId',
+    {
+        'AddCurrency': {'currency': 'u128', 'evm_address': '[u8; 20]'},
+        'AddPool': {'pool_id': 'u64'},
+        'AddTranche': {
+            'decimals': 'u8',
+            'pool_id': 'u64',
+            'restriction_set': 'u8',
+            'token_name': '[u8; 128]',
+            'token_symbol': '[u8; 32]',
+            'tranche_id': '[u8; 16]',
+        },
+        'AllowInvestmentCurrency': {'currency': 'u128', 'pool_id': 'u64'},
+        'CancelInvestOrder': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'CancelRedeemOrder': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'CancelUpgrade': {'contract': '[u8; 20]'},
+        'CollectInvest': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'CollectRedeem': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'DecreaseInvestOrder': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'DecreaseRedeemOrder': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'DisallowInvestmentCurrency': {'currency': 'u128', 'pool_id': 'u64'},
+        'ExecutedCollectInvest': {
+            'currency': 'u128',
+            'currency_payout': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'remaining_invest_amount': 'u128',
+            'tranche_id': '[u8; 16]',
+            'tranche_tokens_payout': 'u128',
+        },
+        'ExecutedCollectRedeem': {
+            'currency': 'u128',
+            'currency_payout': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'remaining_redeem_amount': 'u128',
+            'tranche_id': '[u8; 16]',
+            'tranche_tokens_payout': 'u128',
+        },
+        'ExecutedDecreaseInvestOrder': {
+            'currency': 'u128',
+            'currency_payout': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'remaining_invest_amount': 'u128',
+            'tranche_id': '[u8; 16]',
+        },
+        'ExecutedDecreaseRedeemOrder': {
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'remaining_redeem_amount': 'u128',
+            'tranche_id': '[u8; 16]',
+            'tranche_tokens_payout': 'u128',
+        },
+        'IncreaseInvestOrder': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'IncreaseRedeemOrder': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'investor': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+        },
+        'Invalid': None,
+        'ScheduleUpgrade': {'contract': '[u8; 20]'},
+        'Transfer': {
+            'amount': 'u128',
+            'currency': 'u128',
+            'receiver': '[u8; 32]',
+            'sender': '[u8; 32]',
+        },
+        'TransferTrancheTokens': {
+            'amount': 'u128',
+            'domain': {'Centrifuge': None, 'EVM': 'u64'},
+            'pool_id': 'u64',
+            'receiver': '[u8; 32]',
+            'sender': '[u8; 32]',
+            'tranche_id': '[u8; 16]',
+        },
+        'UpdateMember': {
+            'member': '[u8; 32]',
+            'pool_id': 'u64',
+            'tranche_id': '[u8; 16]',
+            'valid_until': 'u64',
+        },
+        'UpdateTrancheTokenMetadata': {
+            'pool_id': 'u64',
+            'token_name': '[u8; 128]',
+            'token_symbol': '[u8; 32]',
+            'tranche_id': '[u8; 16]',
+        },
+        'UpdateTrancheTokenPrice': {
+            'computed_at': 'u64',
+            'currency': 'u128',
+            'pool_id': 'u64',
+            'price': 'u128',
+            'tranche_id': '[u8; 16]',
+        },
+    },
+)
 ```
 ---------
 ### RelayerList
@@ -455,6 +865,10 @@ constant = substrate.get_constant('LiquidityPoolsGateway', 'Sender')
 The domain is not supported.
 
 ---------
+### FailedOutboundMessageNotFound
+Failed outbound message not found in storage.
+
+---------
 ### InstanceAlreadyAdded
 Instance was already added to the domain.
 
@@ -469,6 +883,10 @@ Maximum number of instances for a domain was reached.
 ---------
 ### MessageDecodingFailed
 Message decoding error.
+
+---------
+### OutboundMessageNotFound
+Outbound message not found in storage.
 
 ---------
 ### RelayerAlreadyAdded

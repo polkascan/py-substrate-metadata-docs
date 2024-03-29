@@ -6,11 +6,7 @@
 
 ---------
 ### associate_native_identity
-Associate a native rewards_destination identity with a crowdloan contribution.
-
-The caller needs to provide the unassociated relay account and a proof to succeed
-with the association
-The proof is nothing but a signature over the reward_address using the relay keys
+See [`Pallet::associate_native_identity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -35,11 +31,7 @@ call = substrate.compose_call(
 
 ---------
 ### change_association_with_relay_keys
-Change reward account by submitting proofs from relay accounts
-
-The number of valid proofs needs to be bigger than &\#x27;RewardAddressRelayVoteThreshold&\#x27;
-The account to be changed needs to be submitted as &\#x27;previous_account&\#x27;
-Origin must be RewardAddressChangeOrigin
+See [`Pallet::change_association_with_relay_keys`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -69,7 +61,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim
-Collect whatever portion of your reward are currently vested.
+See [`Pallet::claim`].
 #### Attributes
 No attributes
 
@@ -82,10 +74,7 @@ call = substrate.compose_call(
 
 ---------
 ### complete_initialization
-This extrinsic completes the initialization if some checks are fullfiled. These checks are:
- -The reward contribution money matches the crowdloan pot
- -The end vesting block is higher than the init vesting block
- -The initialization has not complete yet
+See [`Pallet::complete_initialization`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -100,9 +89,7 @@ call = substrate.compose_call(
 
 ---------
 ### initialize_reward_vec
-Initialize the reward distribution storage. It shortcuts whenever an error is found
-This does not enforce any checks other than making sure we dont go over funds
-complete_initialization should perform any additional
+See [`Pallet::initialize_reward_vec`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -125,7 +112,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_reward_address
-Update reward address, proving that the caller owns the current native key
+See [`Pallet::update_reward_address`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

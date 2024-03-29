@@ -5,182 +5,7 @@
 ## Calls
 
 ---------
-### add_trading_pair
-Adds a valid trading pair.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| asset_in | `T::AssetCurrencyId` | 
-| asset_out | `T::AssetCurrencyId` | 
-| min_order | `T::Balance` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'OrderBook', 'add_trading_pair', {
-    'asset_in': {
-        'Native': None,
-        None: None,
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
-    },
-    'asset_out': {
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Staking': ('BlockRewards', ),
-    },
-    'min_order': 'u128',
-}
-)
-```
-
----------
-### create_order
-Create an order with the default min fulfillment amount.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| asset_in | `T::AssetCurrencyId` | 
-| asset_out | `T::AssetCurrencyId` | 
-| buy_amount | `T::Balance` | 
-| price | `T::SellRatio` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'OrderBook', 'create_order', {
-    'asset_in': {
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Native': None,
-        'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
-    },
-    'asset_out': {
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
-        'Staking': ('BlockRewards', ),
-    },
-    'buy_amount': 'u128',
-    'price': 'u128',
-}
-)
-```
-
----------
-### fill_order_full
-Fill an existing order, fulfilling the entire order.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| order_id | `T::OrderIdNonce` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'OrderBook', 'fill_order_full', {'order_id': 'u64'}
-)
-```
-
----------
-### fill_order_partial
-Fill an existing order, based on the provided partial buy amount.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| order_id | `T::OrderIdNonce` | 
-| buy_amount | `T::Balance` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'OrderBook', 'fill_order_partial', {
-    'buy_amount': 'u128',
-    'order_id': 'u64',
-}
-)
-```
-
----------
-### rm_trading_pair
-Removes a valid trading pair
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| asset_in | `T::AssetCurrencyId` | 
-| asset_out | `T::AssetCurrencyId` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'OrderBook', 'rm_trading_pair', {
-    'asset_in': {
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
-        'Staking': ('BlockRewards', ),
-    },
-    'asset_out': {
-        None: None,
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Native': None,
-        'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
-    },
-}
-)
-```
-
----------
-### update_min_order
-Sets the minimum order amount for a given trading pair.
-If the trading pair is not yet added this errors out.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| asset_in | `T::AssetCurrencyId` | 
-| asset_out | `T::AssetCurrencyId` | 
-| min_order | `T::Balance` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'OrderBook', 'update_min_order', {
-    'asset_in': {
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Staking': ('BlockRewards', ),
-    },
-    'asset_out': {
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Native': None,
-        'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
-    },
-    'min_order': 'u128',
-}
-)
-```
-
----------
-### user_cancel_order
+### cancel_order
  Cancel an existing order that had been created by calling account.
 #### Attributes
 | Name | Type |
@@ -190,27 +15,283 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'OrderBook', 'user_cancel_order', {'order_id': 'u64'}
+    'OrderBook', 'cancel_order', {'order_id': 'u64'}
 )
 ```
 
 ---------
-### user_update_order
+### fill_order
+Fill an existing order with the given amount.
+The `amount_out` is the amount the originator of this call is
+willing to buy for
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| order_id | `T::OrderIdNonce` | 
+| amount_out | `T::BalanceOut` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'OrderBook', 'fill_order', {
+    'amount_out': 'u128',
+    'order_id': 'u64',
+}
+)
+```
+
+---------
+### place_order
+Create an order with the default min fulfillment amount.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| currency_in | `T::CurrencyId` | 
+| currency_out | `T::CurrencyId` | 
+| amount_out | `T::BalanceOut` | 
+| ratio | `OrderRatio<T::Ratio>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'OrderBook', 'place_order', {
+    'amount_out': 'u128',
+    'currency_in': {
+        'Native': None,
+        'Tranche': ('u64', '[u8; 16]'),
+        None: None,
+        'AUSD': None,
+        'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
+        'Staking': ('BlockRewards', ),
+    },
+    'currency_out': {
+        'Native': None,
+        'Tranche': ('u64', '[u8; 16]'),
+        None: None,
+        'AUSD': None,
+        'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
+        'Staking': ('BlockRewards', ),
+    },
+    'ratio': {
+        'Custom': 'u128',
+        'Market': None,
+    },
+}
+)
+```
+
+---------
+### set_market_feeder
+Set the market feeder for set market ratios.
+The origin must be the admin origin.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| feeder_id | `T::FeederId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'OrderBook', 'set_market_feeder', {
+    'feeder_id': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
+        'Council': {
+            'Member': 'AccountId',
+            'Members': ('u32', 'u32'),
+            '_Phantom': None,
+        },
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
+        },
+        'Ethereum': {
+            'EthereumTransaction': '[u8; 20]',
+        },
+        'LiquidityPoolsGateway': {
+            'AxelarRelay': {
+                'Centrifuge': '[u8; 32]',
+                'EVM': (
+                    'u64',
+                    '[u8; 20]',
+                ),
+            },
+            'Domain': {
+                'Centrifuge': '[u8; 32]',
+                'EVM': (
+                    'u64',
+                    '[u8; 20]',
+                ),
+            },
+        },
+        'PolkadotXcm': {
+            'Response': {
+                'interior': {
+                    'Here': None,
+                    'X1': {
+                        'AccountId32': 'InnerStruct',
+                        'AccountIndex64': 'InnerStruct',
+                        'AccountKey20': 'InnerStruct',
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'InnerStruct',
+                        'GlobalConsensus': 'scale_info::122',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': 'InnerStruct',
+                    },
+                    'X2': (
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X3': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X4': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X5': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X6': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X7': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X8': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                },
+                'parents': 'u8',
+            },
+            'Xcm': {
+                'interior': {
+                    'Here': None,
+                    'X1': {
+                        'AccountId32': 'InnerStruct',
+                        'AccountIndex64': 'InnerStruct',
+                        'AccountKey20': 'InnerStruct',
+                        'GeneralIndex': 'u128',
+                        'GeneralKey': 'InnerStruct',
+                        'GlobalConsensus': 'scale_info::122',
+                        'OnlyChild': None,
+                        'PalletInstance': 'u8',
+                        'Parachain': 'u32',
+                        'Plurality': 'InnerStruct',
+                    },
+                    'X2': (
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X3': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X4': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X5': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X6': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X7': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                    'X8': (
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                        'scale_info::120',
+                    ),
+                },
+                'parents': 'u8',
+            },
+        },
+        'Void': (),
+    },
+}
+)
+```
+
+---------
+### update_order
 Update an existing order
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | order_id | `T::OrderIdNonce` | 
-| buy_amount | `T::Balance` | 
-| price | `T::SellRatio` | 
+| amount_out | `T::BalanceOut` | 
+| ratio | `OrderRatio<T::Ratio>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'OrderBook', 'user_update_order', {
-    'buy_amount': 'u128',
+    'OrderBook', 'update_order', {
+    'amount_out': 'u128',
     'order_id': 'u64',
-    'price': 'u128',
+    'ratio': {
+        'Custom': 'u128',
+        'Market': None,
+    },
 }
 )
 ```
@@ -219,15 +300,12 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### MinOrderUpdated
-Event emitted when a minimum order amount for a trading pair is
-updated.
+### FeederChanged
+Event emitted when a valid trading pair is removed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_in | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
-| asset_out | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
-| min_order | `T::Balance` | ```u128```
+| feeder_id | `T::FeederId` | ```{'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'Council': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'LiquidityPoolsGateway': {'Domain': {'Centrifuge': '[u8; 32]', 'EVM': ('u64', '[u8; 20]')}, 'AxelarRelay': {'Centrifuge': '[u8; 32]', 'EVM': ('u64', '[u8; 20]')}}, 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::120', 'X2': ('scale_info::120', 'scale_info::120'), 'X3': ('scale_info::120', 'scale_info::120', 'scale_info::120'), 'X4': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120'), 'X5': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120'), 'X6': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120'), 'X7': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120'), 'X8': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120')}}, 'Response': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::120', 'X2': ('scale_info::120', 'scale_info::120'), 'X3': ('scale_info::120', 'scale_info::120', 'scale_info::120'), 'X4': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120'), 'X5': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120'), 'X6': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120'), 'X7': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120'), 'X8': ('scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120', 'scale_info::120')}}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Ethereum': {'EthereumTransaction': '[u8; 20]'}}```
 
 ---------
 ### OrderCancelled
@@ -246,11 +324,11 @@ Event emitted when an order is created.
 | -------- | -------- | -------- |
 | order_id | `T::OrderIdNonce` | ```u64```
 | creator_account | `T::AccountId` | ```AccountId```
-| currency_in | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
-| currency_out | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
-| buy_amount | `T::Balance` | ```u128```
-| min_fulfillment_amount | `T::Balance` | ```u128```
-| sell_rate_limit | `T::SellRatio` | ```u128```
+| currency_in | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
+| currency_out | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
+| amount_out | `T::BalanceOut` | ```u128```
+| min_fulfillment_amount_out | `T::BalanceOut` | ```u128```
+| ratio | `OrderRatio<T::Ratio>` | ```{'Market': None, 'Custom': 'u128'}```
 
 ---------
 ### OrderFulfillment
@@ -265,10 +343,10 @@ full.
 | placing_account | `T::AccountId` | ```AccountId```
 | fulfilling_account | `T::AccountId` | ```AccountId```
 | partial_fulfillment | `bool` | ```bool```
-| fulfillment_amount | `T::Balance` | ```u128```
-| currency_in | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
-| currency_out | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
-| sell_rate_limit | `T::SellRatio` | ```u128```
+| fulfillment_amount | `T::BalanceOut` | ```u128```
+| currency_in | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
+| currency_out | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
+| ratio | `T::Ratio` | ```u128```
 
 ---------
 ### OrderUpdated
@@ -278,66 +356,146 @@ Event emitted when an order is updated.
 | -------- | -------- | -------- |
 | order_id | `T::OrderIdNonce` | ```u64```
 | account | `T::AccountId` | ```AccountId```
-| buy_amount | `T::Balance` | ```u128```
-| sell_rate_limit | `T::SellRatio` | ```u128```
-| min_fulfillment_amount | `T::Balance` | ```u128```
-
----------
-### TradingPairAdded
-Event emitted when a valid trading pair is added.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| asset_in | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
-| asset_out | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
-| min_order | `T::Balance` | ```u128```
-
----------
-### TradingPairRemoved
-Event emitted when a valid trading pair is removed.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| asset_in | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
-| asset_out | `T::AssetCurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
+| amount_out | `T::BalanceOut` | ```u128```
+| ratio | `OrderRatio<T::Ratio>` | ```{'Market': None, 'Custom': 'u128'}```
+| min_fulfillment_amount_out | `T::BalanceOut` | ```u128```
 
 ---------
 ## Storage functions
 
 ---------
-### AssetPairOrders
- Map of Vec containing OrderIds of same asset in/out pairs.
- Allows looking up orders available corresponding pairs.
-
- NOTE: The key order is (currency_in, currency_out).
+### MarketFeederId
+ Stores the market feeder id used to set with market conversion ratios
 
 #### Python
 ```python
 result = substrate.query(
-    'OrderBook', 'AssetPairOrders', [
-    {
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Native': None,
-        'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
-    },
-    {
-        'Native': None,
-        None: None,
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
-    },
-]
+    'OrderBook', 'MarketFeederId', []
 )
 ```
 
 #### Return value
 ```python
-['u64']
+{
+    'Council': {'Member': 'AccountId', 'Members': ('u32', 'u32'), '_Phantom': None},
+    'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+    'Ethereum': {'EthereumTransaction': '[u8; 20]'},
+    'LiquidityPoolsGateway': {
+        'AxelarRelay': {'Centrifuge': '[u8; 32]', 'EVM': ('u64', '[u8; 20]')},
+        'Domain': {'Centrifuge': '[u8; 32]', 'EVM': ('u64', '[u8; 20]')},
+    },
+    'PolkadotXcm': {
+        'Response': {
+            'interior': {
+                'Here': None,
+                'X1': 'scale_info::120',
+                'X2': ('scale_info::120', 'scale_info::120'),
+                'X3': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X4': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X5': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X6': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X7': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X8': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+            },
+            'parents': 'u8',
+        },
+        'Xcm': {
+            'interior': {
+                'Here': None,
+                'X1': 'scale_info::120',
+                'X2': ('scale_info::120', 'scale_info::120'),
+                'X3': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X4': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X5': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X6': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X7': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+                'X8': (
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                    'scale_info::120',
+                ),
+            },
+            'parents': 'u8',
+        },
+    },
+    'Void': (),
+    'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+    None: None,
+}
 ```
 ---------
 ### OrderIdNonceStore
@@ -372,68 +530,31 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'asset_in_id': {
-        'AUSD': None,
-        'ForeignAsset': 'u32',
+    'amount_in': 'u128',
+    'amount_out': 'u128',
+    'amount_out_initial': 'u128',
+    'currency_in': {
         'Native': None,
         'Tranche': ('u64', '[u8; 16]'),
         None: None,
+        'AUSD': None,
+        'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
         'Staking': ('BlockRewards', ),
     },
-    'asset_out_id': {
+    'currency_out': {
+        'Native': None,
+        'Tranche': ('u64', '[u8; 16]'),
         None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'Native': None,
+        'LocalAsset': 'u32',
         'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
     },
-    'buy_amount': 'u128',
-    'initial_buy_amount': 'u128',
-    'max_sell_amount': 'u128',
-    'max_sell_rate': 'u128',
-    'min_fulfillment_amount': 'u128',
     'order_id': 'u64',
     'placing_account': 'AccountId',
+    'ratio': {'Custom': 'u128', 'Market': None},
 }
-```
----------
-### TradingPair
- Storage of valid order pairs.
- Stores:
-  - key1 -&gt; AssetIn
-  - key2 -&gt; AssetOut
-
- Stores the minimum `buy_amount` of `asset_in` when buying
- with `asset_out`
-
-#### Python
-```python
-result = substrate.query(
-    'OrderBook', 'TradingPair', [
-    {
-        None: None,
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Native': None,
-        'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
-    },
-    {
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Staking': ('BlockRewards', ),
-    },
-]
-)
-```
-
-#### Return value
-```python
-'u128'
 ```
 ---------
 ### UserOrders
@@ -450,31 +571,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{
-    'asset_in_id': {
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Native': None,
-        'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
-    },
-    'asset_out_id': {
-        None: None,
-        'AUSD': None,
-        'ForeignAsset': 'u32',
-        'Native': None,
-        'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
-    },
-    'buy_amount': 'u128',
-    'initial_buy_amount': 'u128',
-    'max_sell_amount': 'u128',
-    'max_sell_rate': 'u128',
-    'min_fulfillment_amount': 'u128',
-    'order_id': 'u64',
-    'placing_account': 'AccountId',
-}
+()
 ```
 ---------
 ## Constants
@@ -495,76 +592,49 @@ result = substrate.query(
 constant = substrate.get_constant('OrderBook', 'MinFulfillmentAmountNative')
 ```
 ---------
-### OrderPairVecSize
- Size of order id bounded vec in storage
+### NativeDecimals
 #### Value
 ```python
-1000
+18
 ```
 #### Python
 ```python
-constant = substrate.get_constant('OrderBook', 'OrderPairVecSize')
+constant = substrate.get_constant('OrderBook', 'NativeDecimals')
 ```
 ---------
 ## Errors
 
 ---------
-### AssetPairOrdersOverflow
-Error when the number of orders for a trading pair has exceeded the
-BoundedVec size for the order pair for the currency pair in
-question.
+### BelowMinFulfillmentAmount
+Error when an account cannot reserve or transfer the amount.
 
 ---------
-### BalanceConversionErr
-Error when unable to convert fee balance to asset balance when asset
-out matches fee currency
+### FulfillAmountTooLarge
+Error when the provided amount to fulfill is too large for the
+order.
 
 ---------
-### BuyAmountTooLarge
-Error when the provided partial buy amount is too large.
-
----------
-### ConflictingAssetIds
-Error when order is placed attempting to exchange assets of the same
-type.
-
----------
-### InsufficientAssetFunds
-Error when an account specifies an invalid buy price -- currently
-specified for trade, or amount to be fulfilled.
-
----------
-### InsufficientOrderSize
-Error when an order amount is too small
-
----------
-### InvalidAssetId
+### InvalidCurrencyId
 Error when an order is placed with a currency that is not in the
-asset registry.
+`AssetRegistry`.
 
 ---------
-### InvalidBuyAmount
-Error when an account cannot reserve or transfer the amount
-currently `0`.
+### MarketFeederNotFound
+There is not feeder set for market conversion ratios
 
 ---------
-### InvalidMaxPrice
-Error when Max price ratio is invalid
-
----------
-### InvalidMinimumFulfillment
-Error when min order amount is invalid, currently `0`
-
----------
-### InvalidTradingPair
-Error when a trade is using an invalid trading pair.
-Currently can happen when there is not a minimum order size
-defined for the trading pair.
+### MarketRatioNotFound
+Expected a market ratio for the given pair of currencies.
 
 ---------
 ### OrderNotFound
 Error when an operation is attempted on an order id that is not in
 storage.
+
+---------
+### SameCurrencyIds
+Error when order is placed attempting to exchange currencies of the
+same type.
 
 ---------
 ### Unauthorised

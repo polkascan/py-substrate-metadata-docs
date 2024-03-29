@@ -78,7 +78,7 @@ call = substrate.compose_call(
     'who': (
         None,
         {
-            'Aptos': '[u8; 32]',
+            'Aptos': 'scale_info::9',
             'Evm': '[u8; 20]',
             'Named': (
                 'Bytes',
@@ -118,7 +118,7 @@ Dangerous! Be careful to set BestIndex
 call = substrate.compose_call(
     'XGatewayBitcoin', 'set_best_index', {
     'index': {
-        'hash': '[u8; 32]',
+        'hash': 'scale_info::9',
         'height': 'u32',
     },
 }
@@ -183,7 +183,7 @@ Dangerous! Be careful to set ConfirmedIndex
 call = substrate.compose_call(
     'XGatewayBitcoin', 'set_confirmed_index', {
     'index': {
-        'hash': '[u8; 32]',
+        'hash': 'scale_info::9',
         'height': 'u32',
     },
 }
@@ -214,7 +214,7 @@ An account deposited some token. [tx_hash, who, amount]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `T::AccountId` | ```AccountId```
 | None | `BalanceOf<T>` | ```u128```
 
@@ -224,8 +224,8 @@ An account deposited some token for aptos address. [tx_hash, who, amount]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
+| None | `H256` | ```scale_info::9```
 | None | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -234,7 +234,7 @@ An account deposited some token for evm address. [tx_hash, who, amount]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `H160` | ```[u8; 20]```
 | None | `BalanceOf<T>` | ```u128```
 
@@ -244,7 +244,7 @@ An account deposited some token for named address. [tx_hash, prefix, who, amount
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `Vec<u8>` | ```Bytes```
 | None | `Vec<u8>` | ```Bytes```
 | None | `BalanceOf<T>` | ```u128```
@@ -255,7 +255,7 @@ A Bitcoin header was validated and inserted. [btc_header_hash]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 
 ---------
 ### PendingDepositAptosRemoved
@@ -263,9 +263,9 @@ A unclaimed deposit record was removed for aptos address. [depositor, deposit_am
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `BalanceOf<T>` | ```u128```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `BtcAddress` | ```Bytes```
 
 ---------
@@ -276,7 +276,7 @@ A unclaimed deposit record was removed for evm address. [depositor, deposit_amou
 | -------- | -------- | -------- |
 | None | `H160` | ```[u8; 20]```
 | None | `BalanceOf<T>` | ```u128```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `BtcAddress` | ```Bytes```
 
 ---------
@@ -288,7 +288,7 @@ A unclaimed deposit record was removed for named address. [prefix, depositor, de
 | None | `Vec<u8>` | ```Bytes```
 | None | `Vec<u8>` | ```Bytes```
 | None | `BalanceOf<T>` | ```u128```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `BtcAddress` | ```Bytes```
 
 ---------
@@ -299,7 +299,7 @@ A unclaimed deposit record was removed for wasm address. [depositor, deposit_amo
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `BalanceOf<T>` | ```u128```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `BtcAddress` | ```Bytes```
 
 ---------
@@ -308,8 +308,8 @@ A Bitcoin transaction was processed. [tx_hash, block_hash, tx_state]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
+| None | `H256` | ```scale_info::9```
 | None | `BtcTxState` | ```{'tx_type': ('Withdrawal', 'Deposit', 'HotAndCold', 'TrusteeTransition', 'Irrelevance'), 'result': ('Success', 'Failure')}```
 
 ---------
@@ -318,7 +318,7 @@ A new record of unclaimed deposit. [tx_hash, btc_address]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `BtcAddress` | ```Bytes```
 
 ---------
@@ -327,8 +327,8 @@ A fatal error happened during the withdrawal process. [tx_hash, proposal_hash]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
+| None | `H256` | ```scale_info::9```
 
 ---------
 ### WithdrawalProposalCreated
@@ -354,7 +354,7 @@ A list of withdrawal applications were processed successfully. [tx_hash, withdra
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `Vec<u32>` | ```['u32']```
 | None | `BalanceOf<T>` | ```u128```
 
@@ -374,7 +374,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'hash': '[u8; 32]', 'height': 'u32'}
+{'hash': 'scale_info::9', 'height': 'u32'}
 ```
 ---------
 ### BlockHashFor
@@ -389,7 +389,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::9']
 ```
 ---------
 ### BtcMinDeposit
@@ -464,7 +464,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'hash': '[u8; 32]', 'height': 'u32'}
+{'hash': 'scale_info::9', 'height': 'u32'}
 ```
 ---------
 ### GenesisInfo
@@ -482,9 +482,9 @@ result = substrate.query(
 (
     {
         'bits': 'u32',
-        'merkle_root_hash': '[u8; 32]',
+        'merkle_root_hash': 'scale_info::9',
         'nonce': 'u32',
-        'previous_header_hash': '[u8; 32]',
+        'previous_header_hash': 'scale_info::9',
         'time': 'u32',
         'version': 'u32',
     },
@@ -498,7 +498,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'XGatewayBitcoin', 'Headers', ['[u8; 32]']
+    'XGatewayBitcoin', 'Headers', ['scale_info::9']
 )
 ```
 
@@ -507,9 +507,9 @@ result = substrate.query(
 {
     'header': {
         'bits': 'u32',
-        'merkle_root_hash': '[u8; 32]',
+        'merkle_root_hash': 'scale_info::9',
         'nonce': 'u32',
-        'previous_header_hash': '[u8; 32]',
+        'previous_header_hash': 'scale_info::9',
         'time': 'u32',
         'version': 'u32',
     },
@@ -523,7 +523,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'XGatewayBitcoin', 'MainChain', ['[u8; 32]']
+    'XGatewayBitcoin', 'MainChain', ['scale_info::9']
 )
 ```
 
@@ -598,7 +598,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[{'balance': 'u64', 'txid': '[u8; 32]'}]
+[{'balance': 'u64', 'txid': 'scale_info::9'}]
 ```
 ---------
 ### TxState
@@ -607,7 +607,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'XGatewayBitcoin', 'TxState', ['[u8; 32]']
+    'XGatewayBitcoin', 'TxState', ['scale_info::9']
 )
 ```
 
@@ -657,7 +657,7 @@ result = substrate.query(
     'tx': {
         'inputs': [
             {
-                'previous_output': {'index': 'u32', 'txid': '[u8; 32]'},
+                'previous_output': {'index': 'u32', 'txid': 'scale_info::9'},
                 'script_sig': 'Bytes',
                 'script_witness': ['Bytes'],
                 'sequence': 'u32',

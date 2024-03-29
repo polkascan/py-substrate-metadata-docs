@@ -15,7 +15,10 @@
 #### Python
 ```python
 call = substrate.compose_call(
-    'VCManagement', 'activate_schema', {'index': 'u64', 'shard': '[u8; 32]'}
+    'VCManagement', 'activate_schema', {
+    'index': 'u64',
+    'shard': 'scale_info::11',
+}
 )
 ```
 
@@ -34,7 +37,7 @@ call = substrate.compose_call(
     'VCManagement', 'add_schema', {
     'content': 'Bytes',
     'id': 'Bytes',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
 }
 )
 ```
@@ -50,7 +53,10 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'VCManagement', 'disable_schema', {'index': 'u64', 'shard': '[u8; 32]'}
+    'VCManagement', 'disable_schema', {
+    'index': 'u64',
+    'shard': 'scale_info::11',
+}
 )
 ```
 
@@ -64,7 +70,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'VCManagement', 'disable_vc', {'index': '[u8; 32]'}
+    'VCManagement', 'disable_vc', {'index': 'scale_info::11'}
 )
 ```
 
@@ -98,7 +104,7 @@ call = substrate.compose_call(
         'A8': None,
         'A9': None,
     },
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
 }
 )
 ```
@@ -114,7 +120,10 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'VCManagement', 'revoke_schema', {'index': 'u64', 'shard': '[u8; 32]'}
+    'VCManagement', 'revoke_schema', {
+    'index': 'u64',
+    'shard': 'scale_info::11',
+}
 )
 ```
 
@@ -128,7 +137,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'VCManagement', 'revoke_vc', {'index': '[u8; 32]'}
+    'VCManagement', 'revoke_vc', {'index': 'scale_info::11'}
 )
 ```
 
@@ -194,8 +203,8 @@ The following extrinsics are supposed to be called by TEE only
 call = substrate.compose_call(
     'VCManagement', 'vc_issued', {
     'account': 'AccountId',
-    'hash': '[u8; 32]',
-    'index': '[u8; 32]',
+    'hash': 'scale_info::11',
+    'index': 'scale_info::11',
     'vc': {
         'aad': 'Bytes',
         'ciphertext': 'Bytes',
@@ -281,7 +290,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 | index | `SchemaIndex` | ```u64```
 
 ---------
@@ -298,7 +307,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 | index | `SchemaIndex` | ```u64```
 
 ---------
@@ -307,7 +316,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 | index | `SchemaIndex` | ```u64```
 
 ---------
@@ -316,7 +325,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 | index | `SchemaIndex` | ```u64```
 
 ---------
@@ -324,7 +333,7 @@ No attributes
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| index | `VCIndex` | ```[u8; 32]```
+| index | `VCIndex` | ```scale_info::11```
 
 ---------
 ### VCIssued
@@ -332,7 +341,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| index | `VCIndex` | ```[u8; 32]```
+| index | `VCIndex` | ```scale_info::11```
 | vc | `AesOutput` | ```{'ciphertext': 'Bytes', 'aad': 'Bytes', 'nonce': '[u8; 12]'}```
 
 ---------
@@ -340,14 +349,14 @@ No attributes
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| index | `VCIndex` | ```[u8; 32]```
+| index | `VCIndex` | ```scale_info::11```
 
 ---------
 ### VCRequested
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 | assertion | `Assertion` | ```{'A1': None, 'A2': 'Bytes', 'A3': ('Bytes', 'Bytes', 'Bytes'), 'A4': 'u128', 'A5': ('Bytes', 'Bytes'), 'A6': None, 'A7': 'u128', 'A8': None, 'A9': None, 'A10': 'u128', 'A11': 'u128', 'A13': 'u32'}```
 
 ---------
@@ -355,7 +364,7 @@ No attributes
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| index | `VCIndex` | ```[u8; 32]```
+| index | `VCIndex` | ```scale_info::11```
 
 ---------
 ## Storage functions
@@ -413,13 +422,13 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'VCManagement', 'VCRegistry', ['[u8; 32]']
+    'VCManagement', 'VCRegistry', ['scale_info::11']
 )
 ```
 
 #### Return value
 ```python
-{'hash': '[u8; 32]', 'status': ('Active', 'Disabled'), 'subject': 'AccountId'}
+{'hash': 'scale_info::11', 'status': ('Active', 'Disabled'), 'subject': 'AccountId'}
 ```
 ---------
 ## Errors

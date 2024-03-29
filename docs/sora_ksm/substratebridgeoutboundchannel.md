@@ -2,14 +2,38 @@
 # SubstrateBridgeOutboundChannel
 
 ---------
+## Calls
+
+---------
+### update_interval
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| new_interval | `T::BlockNumber` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'SubstrateBridgeOutboundChannel', 'update_interval', {'new_interval': 'u32'}
+)
+```
+
+---------
 ## Events
+
+---------
+### IntervalUpdated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| interval | `T::BlockNumber` | ```u32```
 
 ---------
 ### MessageAccepted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| network_id | `SubNetworkId` | ```{'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}```
+| network_id | `SubNetworkId` | ```('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland')```
 | batch_nonce | `u64` | ```u64```
 | message_nonce | `MessageNonce` | ```u64```
 
@@ -23,13 +47,14 @@
 ```python
 result = substrate.query(
     'SubstrateBridgeOutboundChannel', 'ChannelNonces', [
-    {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
 ]
 )
 ```
@@ -60,13 +85,14 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'SubstrateBridgeOutboundChannel', 'LatestCommitment', [
-    {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
 ]
 )
 ```
@@ -79,16 +105,16 @@ result = substrate.query(
         'EVM': {
             'messages': [
                 {
-                    'max_gas': '[u64; 4]',
+                    'max_gas': 'scale_info::111',
                     'payload': 'Bytes',
                     'target': '[u8; 20]',
                 },
             ],
             'nonce': 'u64',
-            'total_max_gas': '[u64; 4]',
+            'total_max_gas': 'scale_info::111',
         },
         'Sub': {
-            'messages': [{'payload': 'Bytes', 'timepoint': 'scale_info::287'}],
+            'messages': [{'payload': 'Bytes', 'timepoint': 'scale_info::291'}],
             'nonce': 'u64',
         },
     },
@@ -103,13 +129,14 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'SubstrateBridgeOutboundChannel', 'MessageQueues', [
-    {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
 ]
 )
 ```
@@ -168,5 +195,9 @@ The message payload exceeds byte limit.
 ---------
 ### QueueSizeLimitReached
 No more messages can be queued for the channel during this commit cycle.
+
+---------
+### ZeroInterval
+Interval cannot be zero.
 
 ---------

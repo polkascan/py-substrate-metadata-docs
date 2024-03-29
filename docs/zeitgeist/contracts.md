@@ -111,7 +111,7 @@ must be supplied.
 ```python
 call = substrate.compose_call(
     'Contracts', 'instantiate', {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::11',
     'data': 'Bytes',
     'gas_limit': {
         'proof_size': 'u64',
@@ -144,7 +144,7 @@ Deprecated version if [`Self::instantiate`] for use in an in-storage `Call`.
 ```python
 call = substrate.compose_call(
     'Contracts', 'instantiate_old_weight', {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::11',
     'data': 'Bytes',
     'gas_limit': 'u64',
     'salt': 'Bytes',
@@ -259,7 +259,7 @@ not used by any contract.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Contracts', 'remove_code', {'code_hash': '[u8; 32]'}
+    'Contracts', 'remove_code', {'code_hash': 'scale_info::11'}
 )
 ```
 
@@ -285,7 +285,7 @@ this dispatchable.
 ```python
 call = substrate.compose_call(
     'Contracts', 'set_code', {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::11',
     'dest': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -367,7 +367,7 @@ A code with the specified hash was removed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::11```
 
 ---------
 ### CodeStored
@@ -375,7 +375,7 @@ Code with the specified hash has been stored.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::11```
 
 ---------
 ### ContractCodeUpdated
@@ -384,8 +384,8 @@ A contract&\#x27;s code was updated.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | contract | `T::AccountId` | ```AccountId```
-| new_code_hash | `T::Hash` | ```[u8; 32]```
-| old_code_hash | `T::Hash` | ```[u8; 32]```
+| new_code_hash | `T::Hash` | ```scale_info::11```
+| old_code_hash | `T::Hash` | ```scale_info::11```
 
 ---------
 ### ContractEmitted
@@ -409,7 +409,7 @@ rolled back.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | contract | `T::AccountId` | ```AccountId```
-| code_hash | `CodeHash<T>` | ```[u8; 32]```
+| code_hash | `CodeHash<T>` | ```scale_info::11```
 
 ---------
 ### Instantiated
@@ -444,7 +444,7 @@ The only way for a contract to be removed and emitting this event is by calling
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'CodeStorage', ['[u8; 32]']
+    'Contracts', 'CodeStorage', ['scale_info::11']
 )
 ```
 
@@ -474,7 +474,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::11',
     'storage_base_deposit': 'u128',
     'storage_byte_deposit': 'u128',
     'storage_bytes': 'u32',
@@ -544,7 +544,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'OwnerInfoOf', ['[u8; 32]']
+    'Contracts', 'OwnerInfoOf', ['scale_info::11']
 )
 ```
 
@@ -559,7 +559,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'PristineCode', ['[u8; 32]']
+    'Contracts', 'PristineCode', ['scale_info::11']
 )
 ```
 
@@ -687,119 +687,119 @@ constant = substrate.get_constant('Contracts', 'MaxStorageKeyLen')
 ```python
 {
     'host_fn_weights': {
-        'account_reentrance_count': {'proof_size': 0, 'ref_time': 406557},
-        'address': {'proof_size': 0, 'ref_time': 448133},
-        'balance': {'proof_size': 0, 'ref_time': 1977918},
-        'block_number': {'proof_size': 0, 'ref_time': 487345},
-        'call': {'proof_size': 0, 'ref_time': 892132277},
-        'call_per_cloned_byte': {'proof_size': 0, 'ref_time': 171288},
-        'call_transfer_surcharge': {'proof_size': 0, 'ref_time': 154224311},
-        'caller': {'proof_size': 0, 'ref_time': 483609},
-        'caller_is_origin': {'proof_size': 0, 'ref_time': 262386},
-        'clear_storage': {'proof_size': 1024, 'ref_time': 135121906},
-        'clear_storage_per_byte': {'proof_size': 1, 'ref_time': 12035},
-        'code_hash': {'proof_size': 0, 'ref_time': 31812227},
-        'contains_storage': {'proof_size': 1024, 'ref_time': 32562131},
-        'contains_storage_per_byte': {'proof_size': 1, 'ref_time': 3454},
-        'debug_message': {'proof_size': 0, 'ref_time': 331734},
-        'delegate_call': {'proof_size': 0, 'ref_time': 774769782},
-        'deposit_event': {'proof_size': 0, 'ref_time': 4876051},
-        'deposit_event_per_byte': {'proof_size': 0, 'ref_time': 1511},
-        'deposit_event_per_topic': {'proof_size': 0, 'ref_time': 129146765},
-        'ecdsa_recover': {'proof_size': 0, 'ref_time': 69775853},
-        'ecdsa_to_eth_address': {'proof_size': 0, 'ref_time': 15944841},
-        'gas': {'proof_size': 0, 'ref_time': 215699},
-        'gas_left': {'proof_size': 0, 'ref_time': 441951},
-        'get_storage': {'proof_size': 1024, 'ref_time': 33048039},
-        'get_storage_per_byte': {'proof_size': 1, 'ref_time': 5486},
-        'hash_blake2_128': {'proof_size': 0, 'ref_time': 633358},
-        'hash_blake2_128_per_byte': {'proof_size': 0, 'ref_time': 1916},
-        'hash_blake2_256': {'proof_size': 0, 'ref_time': 722839},
-        'hash_blake2_256_per_byte': {'proof_size': 0, 'ref_time': 1880},
-        'hash_keccak_256': {'proof_size': 0, 'ref_time': 857303},
-        'hash_keccak_256_per_byte': {'proof_size': 0, 'ref_time': 4223},
-        'hash_sha2_256': {'proof_size': 0, 'ref_time': 1368759},
-        'hash_sha2_256_per_byte': {'proof_size': 0, 'ref_time': 1076},
-        'input': {'proof_size': 0, 'ref_time': 376174},
+        'account_reentrance_count': {'proof_size': 0, 'ref_time': 434173},
+        'address': {'proof_size': 0, 'ref_time': 475774},
+        'balance': {'proof_size': 0, 'ref_time': 2060931},
+        'block_number': {'proof_size': 0, 'ref_time': 470245},
+        'call': {'proof_size': 0, 'ref_time': 670560799},
+        'call_per_cloned_byte': {'proof_size': 0, 'ref_time': 164407},
+        'call_transfer_surcharge': {'proof_size': 0, 'ref_time': 149642786},
+        'caller': {'proof_size': 0, 'ref_time': 455124},
+        'caller_is_origin': {'proof_size': 0, 'ref_time': 282604},
+        'clear_storage': {'proof_size': 1024, 'ref_time': 134564519},
+        'clear_storage_per_byte': {'proof_size': 1, 'ref_time': 12153},
+        'code_hash': {'proof_size': 0, 'ref_time': 31727514},
+        'contains_storage': {'proof_size': 1024, 'ref_time': 32621394},
+        'contains_storage_per_byte': {'proof_size': 1, 'ref_time': 3533},
+        'debug_message': {'proof_size': 0, 'ref_time': 329761},
+        'delegate_call': {'proof_size': 0, 'ref_time': 555823852},
+        'deposit_event': {'proof_size': 0, 'ref_time': 4969991},
+        'deposit_event_per_byte': {'proof_size': 0, 'ref_time': 1299},
+        'deposit_event_per_topic': {'proof_size': 0, 'ref_time': 128778430},
+        'ecdsa_recover': {'proof_size': 0, 'ref_time': 67055693},
+        'ecdsa_to_eth_address': {'proof_size': 0, 'ref_time': 16320398},
+        'gas': {'proof_size': 0, 'ref_time': 210086},
+        'gas_left': {'proof_size': 0, 'ref_time': 490964},
+        'get_storage': {'proof_size': 1024, 'ref_time': 33070976},
+        'get_storage_per_byte': {'proof_size': 1, 'ref_time': 5408},
+        'hash_blake2_128': {'proof_size': 0, 'ref_time': 1292543},
+        'hash_blake2_128_per_byte': {'proof_size': 0, 'ref_time': 1781},
+        'hash_blake2_256': {'proof_size': 0, 'ref_time': 8848327},
+        'hash_blake2_256_per_byte': {'proof_size': 0, 'ref_time': 1772},
+        'hash_keccak_256': {'proof_size': 0, 'ref_time': 1548810},
+        'hash_keccak_256_per_byte': {'proof_size': 0, 'ref_time': 4079},
+        'hash_sha2_256': {'proof_size': 0, 'ref_time': 422129},
+        'hash_sha2_256_per_byte': {'proof_size': 0, 'ref_time': 974},
+        'input': {'proof_size': 0, 'ref_time': 406612},
         'input_per_byte': {'proof_size': 0, 'ref_time': 148},
-        'instantiate': {'proof_size': 0, 'ref_time': 1399518041},
-        'instantiate_per_input_byte': {'proof_size': 0, 'ref_time': 2531},
-        'instantiate_per_salt_byte': {'proof_size': 0, 'ref_time': 2586},
+        'instantiate': {'proof_size': 0, 'ref_time': 1171221082},
+        'instantiate_per_input_byte': {'proof_size': 0, 'ref_time': 1337},
+        'instantiate_per_salt_byte': {'proof_size': 0, 'ref_time': 1282},
         'instantiate_transfer_surcharge': {'proof_size': 0, 'ref_time': 1525},
-        'instantiation_nonce': {'proof_size': 0, 'ref_time': 288992},
-        'is_contract': {'proof_size': 0, 'ref_time': 30771815},
-        'minimum_balance': {'proof_size': 0, 'ref_time': 462553},
-        'now': {'proof_size': 0, 'ref_time': 471833},
-        'own_code_hash': {'proof_size': 0, 'ref_time': 549149},
-        'r#return': {'proof_size': 0, 'ref_time': 95501187},
-        'random': {'proof_size': 0, 'ref_time': 2534643},
-        'reentrance_count': {'proof_size': 0, 'ref_time': 282467},
-        'return_per_byte': {'proof_size': 0, 'ref_time': 395},
-        'set_code_hash': {'proof_size': 0, 'ref_time': 293211301},
-        'set_storage': {'proof_size': 1024, 'ref_time': 134840456},
-        'set_storage_per_new_byte': {'proof_size': 0, 'ref_time': 12663},
-        'set_storage_per_old_byte': {'proof_size': 1, 'ref_time': 12028},
-        'take_storage': {'proof_size': 1024, 'ref_time': 134906652},
-        'take_storage_per_byte': {'proof_size': 1, 'ref_time': 14274},
-        'terminate': {'proof_size': 0, 'ref_time': 835289165},
-        'transfer': {'proof_size': 0, 'ref_time': 154617836},
-        'value_transferred': {'proof_size': 0, 'ref_time': 449723},
-        'weight_to_fee': {'proof_size': 0, 'ref_time': 1914552},
+        'instantiation_nonce': {'proof_size': 0, 'ref_time': 205124},
+        'is_contract': {'proof_size': 0, 'ref_time': 30777523},
+        'minimum_balance': {'proof_size': 0, 'ref_time': 463327},
+        'now': {'proof_size': 0, 'ref_time': 444650},
+        'own_code_hash': {'proof_size': 0, 'ref_time': 564927},
+        'r#return': {'proof_size': 0, 'ref_time': 482669},
+        'random': {'proof_size': 0, 'ref_time': 2563603},
+        'reentrance_count': {'proof_size': 0, 'ref_time': 278637},
+        'return_per_byte': {'proof_size': 0, 'ref_time': 247},
+        'set_code_hash': {'proof_size': 0, 'ref_time': 293638316},
+        'set_storage': {'proof_size': 1024, 'ref_time': 134819341},
+        'set_storage_per_new_byte': {'proof_size': 0, 'ref_time': 12639},
+        'set_storage_per_old_byte': {'proof_size': 1, 'ref_time': 12149},
+        'take_storage': {'proof_size': 1024, 'ref_time': 135145212},
+        'take_storage_per_byte': {'proof_size': 1, 'ref_time': 14192},
+        'terminate': {'proof_size': 0, 'ref_time': 818040573},
+        'transfer': {'proof_size': 0, 'ref_time': 154000299},
+        'value_transferred': {'proof_size': 0, 'ref_time': 433848},
+        'weight_to_fee': {'proof_size': 0, 'ref_time': 1999826},
     },
     'instruction_weights': {
-        'br': 3376,
-        'br_if': 4042,
-        'br_table': 7989,
-        'br_table_per_entry': 93,
-        'call': 39129,
-        'call_indirect': 45848,
-        'call_indirect_per_param': 0,
+        'br': 3919,
+        'br_if': 4679,
+        'br_table': 8385,
+        'br_table_per_entry': 52,
+        'call': 46184,
+        'call_indirect': 44388,
+        'call_indirect_per_param': 61,
         'call_per_local': 0,
         'fallback': 0,
-        'global_get': 10654,
-        'global_set': 15751,
-        'i32wrapi64': 2702,
-        'i64add': 2591,
-        'i64and': 2813,
-        'i64clz': 2471,
-        'i64const': 3016,
-        'i64ctz': 2590,
-        'i64divs': 3942,
-        'i64divu': 3106,
-        'i64eq': 3130,
-        'i64eqz': 2793,
-        'i64extendsi32': 2746,
-        'i64extendui32': 2550,
-        'i64ges': 2342,
-        'i64geu': 2777,
-        'i64gts': 2645,
-        'i64gtu': 2718,
-        'i64les': 2795,
-        'i64leu': 2738,
-        'i64load': 13410,
-        'i64lts': 2596,
-        'i64ltu': 2815,
-        'i64mul': 2534,
-        'i64ne': 2953,
-        'i64or': 3200,
-        'i64popcnt': 2754,
-        'i64rems': 4736,
-        'i64remu': 4163,
-        'i64rotl': 2372,
-        'i64rotr': 2754,
-        'i64shl': 2574,
-        'i64shrs': 2577,
-        'i64shru': 2368,
-        'i64store': 10541,
-        'i64sub': 2511,
-        'i64xor': 3033,
-        'local_get': 4113,
-        'local_set': 7616,
-        'local_tee': 7635,
-        'memory_current': 10465,
-        'memory_grow': 23263721,
-        'r#if': 19938,
-        'select': 4472,
+        'global_get': 12385,
+        'global_set': 15439,
+        'i32wrapi64': 3450,
+        'i64add': 2576,
+        'i64and': 3295,
+        'i64clz': 2976,
+        'i64const': 2858,
+        'i64ctz': 3137,
+        'i64divs': 5333,
+        'i64divu': 3611,
+        'i64eq': 3671,
+        'i64eqz': 2686,
+        'i64extendsi32': 3116,
+        'i64extendui32': 3039,
+        'i64ges': 2899,
+        'i64geu': 3161,
+        'i64gts': 3360,
+        'i64gtu': 3691,
+        'i64les': 2729,
+        'i64leu': 2896,
+        'i64load': 15160,
+        'i64lts': 3015,
+        'i64ltu': 3524,
+        'i64mul': 3279,
+        'i64ne': 2812,
+        'i64or': 2769,
+        'i64popcnt': 3105,
+        'i64rems': 5111,
+        'i64remu': 4334,
+        'i64rotl': 3526,
+        'i64rotr': 3063,
+        'i64shl': 3295,
+        'i64shrs': 2758,
+        'i64shru': 3334,
+        'i64store': 10381,
+        'i64sub': 3168,
+        'i64xor': 2922,
+        'local_get': 4861,
+        'local_set': 7926,
+        'local_tee': 7554,
+        'memory_current': 10441,
+        'memory_grow': 17075391,
+        'r#if': 10967,
+        'select': 4256,
         'version': 4,
     },
     'limits': {

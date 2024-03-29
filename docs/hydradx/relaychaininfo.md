@@ -11,7 +11,7 @@ Current block numbers
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| parachain_block_number | `T::BlockNumber` | ```u32```
-| relaychain_block_number | `T::BlockNumber` | ```u32```
+| parachain_block_number | `BlockNumberFor<T>` | ```u32```
+| relaychain_block_number | `BlockNumberFor<T>` | ```u32```
 
 ---------

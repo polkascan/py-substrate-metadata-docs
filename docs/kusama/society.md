@@ -5,23 +5,23 @@
 ## Calls
 
 ---------
+### bestow_membership
+See [`Pallet::bestow_membership`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| candidate | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'bestow_membership', {'candidate': 'AccountId'}
+)
+```
+
+---------
 ### bid
-A user outside of the society can make a bid for entry.
-
-Payment: `CandidateDeposit` will be reserved for making a bid. It is returned
-when the bid becomes a member, or if the bid calls `unbid`.
-
-The dispatch origin for this call must be _Signed_.
-
-Parameters:
-- `value`: A one time payment the bid would like to receive when joining the society.
-
-\#\# Complexity
-- O(M + B + C + logM + logB + X)
-	  - B (len of bids)
-  - C (len of candidates)
-  - M (len of members)
-  - X (balance reserve)
+See [`Pallet::bid`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -35,18 +35,59 @@ call = substrate.compose_call(
 ```
 
 ---------
+### claim_membership
+See [`Pallet::claim_membership`].
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'claim_membership', {}
+)
+```
+
+---------
+### cleanup_candidacy
+See [`Pallet::cleanup_candidacy`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| candidate | `T::AccountId` | 
+| max | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'cleanup_candidacy', {
+    'candidate': 'AccountId',
+    'max': 'u32',
+}
+)
+```
+
+---------
+### cleanup_challenge
+See [`Pallet::cleanup_challenge`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| challenge_round | `RoundIndex` | 
+| max | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'cleanup_challenge', {
+    'challenge_round': 'u32',
+    'max': 'u32',
+}
+)
+```
+
+---------
 ### defender_vote
-As a member, vote on the defender.
-
-The dispatch origin for this call must be _Signed_ and a member.
-
-Parameters:
-- `approve`: A boolean which says if the candidate should be
-approved (`true`) or rejected (`false`).
-
-\#\# Complexity
-- O(M + logM)
-  - M (len of members)
+See [`Pallet::defender_vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -60,32 +101,51 @@ call = substrate.compose_call(
 ```
 
 ---------
-### found
-Found the society.
+### dissolve
+See [`Pallet::dissolve`].
+#### Attributes
+No attributes
 
-This is done as a discrete action in order to allow for the
-pallet to be included into a running chain and can only be done once.
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'dissolve', {}
+)
+```
 
-The dispatch origin for this call must be from the _FounderSetOrigin_.
+---------
+### drop_candidate
+See [`Pallet::drop_candidate`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| candidate | `T::AccountId` | 
 
-Parameters:
-- `founder` - The first member and head of the newly founded society.
-- `max_members` - The initial max number of members for the society.
-- `rules` - The rules of this society concerning membership.
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'drop_candidate', {'candidate': 'AccountId'}
+)
+```
 
-\#\# Complexity
-- O(1)
+---------
+### found_society
+See [`Pallet::found_society`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | founder | `AccountIdLookupOf<T>` | 
 | max_members | `u32` | 
+| max_intake | `u32` | 
+| max_strikes | `u32` | 
+| candidate_deposit | `BalanceOf<T, I>` | 
 | rules | `Vec<u8>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Society', 'found', {
+    'Society', 'found_society', {
+    'candidate_deposit': 'u128',
     'founder': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -93,83 +153,17 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
+    'max_intake': 'u32',
     'max_members': 'u32',
+    'max_strikes': 'u32',
     'rules': 'Bytes',
 }
 )
 ```
 
 ---------
-### judge_suspended_candidate
-Allow suspended judgement origin to make judgement on a suspended candidate.
-
-If the judgement is `Approve`, we add them to society as a member with the appropriate
-payment for joining society.
-
-If the judgement is `Reject`, we either slash the deposit of the bid, giving it back
-to the society treasury, or we ban the voucher from vouching again.
-
-If the judgement is `Rebid`, we put the candidate back in the bid pool and let them go
-through the induction process again.
-
-The dispatch origin for this call must be from the _SuspensionJudgementOrigin_.
-
-Parameters:
-- `who` - The suspended candidate to be judged.
-- `judgement` - `Approve`, `Reject`, or `Rebid`.
-
-\#\# Complexity
-- O(M + logM + B + X)
-  - B (len of bids)
-  - M (len of members)
-  - X (balance action)
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| who | `AccountIdLookupOf<T>` | 
-| judgement | `Judgement` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Society', 'judge_suspended_candidate', {
-    'judgement': (
-        'Rebid',
-        'Reject',
-        'Approve',
-    ),
-    'who': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-}
-)
-```
-
----------
 ### judge_suspended_member
-Allow suspension judgement origin to make judgement on a suspended member.
-
-If a suspended member is forgiven, we simply add them back as a member, not affecting
-any of the existing storage items for that member.
-
-If a suspended member is rejected, remove all associated storage items, including
-their payouts, and remove any vouched bids they currently have.
-
-The dispatch origin for this call must be from the _SuspensionJudgementOrigin_.
-
-Parameters:
-- `who` - The suspended member to be judged.
-- `forgive` - A boolean representing whether the suspension judgement origin forgives
-  (`true`) or rejects (`false`) a suspended member.
-
-\#\# Complexity
-- O(M + logM + B)
-  - B (len of bids)
-  - M (len of members)
+See [`Pallet::judge_suspended_member`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -193,23 +187,23 @@ call = substrate.compose_call(
 ```
 
 ---------
+### kick_candidate
+See [`Pallet::kick_candidate`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| candidate | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'kick_candidate', {'candidate': 'AccountId'}
+)
+```
+
+---------
 ### payout
-Transfer the first matured payout for the sender and remove it from the records.
-
-NOTE: This extrinsic needs to be called multiple times to claim multiple matured
-payouts.
-
-Payment: The member will receive a payment equal to their first matured
-payout to their free balance.
-
-The dispatch origin for this call must be _Signed_ and a member with
-payouts remaining.
-
-\#\# Complexity
-- O(M + logM + P + X)
-  - M (len of members)
-  - P (number of payouts for a particular member)
-  - X (currency transfer call)
+See [`Pallet::payout`].
 #### Attributes
 No attributes
 
@@ -221,118 +215,83 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_max_members
-Allows root origin to change the maximum number of members in society.
-Max membership count must be greater than 1.
-
-The dispatch origin for this call must be from _ROOT_.
-
-Parameters:
-- `max` - The maximum number of members for the society.
-
-\#\# Complexity
-- O(1)
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| max | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Society', 'set_max_members', {'max': 'u32'}
-)
-```
-
----------
-### unbid
-A bidder can remove their bid for entry into society.
-By doing so, they will have their candidate deposit returned or
-they will unvouch their voucher.
-
-Payment: The bid deposit is unreserved if the user made a bid.
-
-The dispatch origin for this call must be _Signed_ and a bidder.
-
-Parameters:
-- `pos`: Position in the `Bids` vector of the bid who wants to unbid.
-
-\#\# Complexity
-- O(B + X)
-  - B (len of bids)
-  - X (balance unreserve)
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| pos | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Society', 'unbid', {'pos': 'u32'}
-)
-```
-
----------
-### unfound
-Annul the founding of the society.
-
-The dispatch origin for this call must be Signed, and the signing account must be both
-the `Founder` and the `Head`. This implies that it may only be done when there is one
-member.
-
-\#\# Complexity
-- O(1)
+### punish_skeptic
+See [`Pallet::punish_skeptic`].
 #### Attributes
 No attributes
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Society', 'unfound', {}
+    'Society', 'punish_skeptic', {}
+)
+```
+
+---------
+### resign_candidacy
+See [`Pallet::resign_candidacy`].
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'resign_candidacy', {}
+)
+```
+
+---------
+### set_parameters
+See [`Pallet::set_parameters`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| max_members | `u32` | 
+| max_intake | `u32` | 
+| max_strikes | `u32` | 
+| candidate_deposit | `BalanceOf<T, I>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'set_parameters', {
+    'candidate_deposit': 'u128',
+    'max_intake': 'u32',
+    'max_members': 'u32',
+    'max_strikes': 'u32',
+}
+)
+```
+
+---------
+### unbid
+See [`Pallet::unbid`].
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'unbid', {}
 )
 ```
 
 ---------
 ### unvouch
-As a vouching member, unvouch a bid. This only works while vouched user is
-only a bidder (and not a candidate).
-
-The dispatch origin for this call must be _Signed_ and a vouching member.
-
-Parameters:
-- `pos`: Position in the `Bids` vector of the bid who should be unvouched.
-
-\#\# Complexity
-- O(B)
-  - B (len of bids)
+See [`Pallet::unvouch`].
 #### Attributes
-| Name | Type |
-| -------- | -------- | 
-| pos | `u32` | 
+No attributes
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Society', 'unvouch', {'pos': 'u32'}
+    'Society', 'unvouch', {}
 )
 ```
 
 ---------
 ### vote
-As a member, vote on a candidate.
-
-The dispatch origin for this call must be _Signed_ and a member.
-
-Parameters:
-- `candidate`: The candidate that the member would like to bid on.
-- `approve`: A boolean which says if the candidate should be approved (`true`) or
-  rejected (`false`).
-
-\#\# Complexity
-- O(M + logM + C)
-  - C (len of candidates)
-  - M (len of members)
+See [`Pallet::vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -357,30 +316,7 @@ call = substrate.compose_call(
 
 ---------
 ### vouch
-As a member, vouch for someone to join society by placing a bid on their behalf.
-
-There is no deposit required to vouch for a new bid, but a member can only vouch for
-one bid at a time. If the bid becomes a suspended candidate and ultimately rejected by
-the suspension judgement origin, the member will be banned from vouching again.
-
-As a vouching member, you can claim a tip if the candidate is accepted. This tip will
-be paid as a portion of the reward the member will receive for joining the society.
-
-The dispatch origin for this call must be _Signed_ and a member.
-
-Parameters:
-- `who`: The user who you would like to vouch for.
-- `value`: The total reward to be paid between you and the candidate if they become
-a member in the society.
-- `tip`: Your cut of the total `value` payout when the candidate is inducted into
-the society. Tips larger than `value` will be saturated upon payout.
-
-\#\# Complexity
-- O(M + B + C + logM + logB + X)
-  - B (len of bids)
-  - C (len of candidates)
-  - M (len of members)
-  - X (balance reserve)
+See [`Pallet::vouch`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -402,6 +338,21 @@ call = substrate.compose_call(
         'Raw': 'Bytes',
     },
 }
+)
+```
+
+---------
+### waive_repay
+See [`Pallet::waive_repay`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| amount | `BalanceOf<T, I>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Society', 'waive_repay', {'amount': 'u128'}
 )
 ```
 
@@ -460,6 +411,15 @@ Some funds were deposited into the society account.
 | value | `BalanceOf<T, I>` | ```u128```
 
 ---------
+### Elevated
+A \[member\] got elevated to \[rank\].
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| member | `T::AccountId` | ```AccountId```
+| rank | `Rank` | ```u32```
+
+---------
 ### Founded
 The society is founded by the given identity.
 #### Attributes
@@ -486,20 +446,12 @@ A member has been suspended
 | member | `T::AccountId` | ```AccountId```
 
 ---------
-### NewMaxMembers
-A new \[max\] member count has been set
+### NewParams
+A new set of \[params\] has been set for the group.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| max | `u32` | ```u32```
-
----------
-### SkepticsChosen
-A group of members has been choosen as Skeptics
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| skeptics | `Vec<T::AccountId>` | ```['AccountId']```
+| params | `GroupParamsFor<T, I>` | ```{'max_members': 'u32', 'max_intake': 'u32', 'max_strikes': 'u32', 'candidate_deposit': 'u128'}```
 
 ---------
 ### SuspendedMemberJudgement
@@ -577,50 +529,68 @@ result = substrate.query(
 ```
 ---------
 ### Candidates
- The current set of candidates; bidders that are attempting to become members.
 
 #### Python
 ```python
 result = substrate.query(
-    'Society', 'Candidates', []
+    'Society', 'Candidates', ['AccountId']
 )
 ```
 
 #### Return value
 ```python
-[
-    {'kind': {'Deposit': 'u128', 'Vouch': ('AccountId', 'u128')}, 'value': 'u128', 'who': 'AccountId'},
-]
+{
+    'bid': 'u128',
+    'kind': {'Deposit': 'u128', 'Vouch': ('AccountId', 'u128')},
+    'round': 'u32',
+    'skeptic_struck': 'bool',
+    'tally': {'approvals': 'u32', 'rejections': 'u32'},
+}
 ```
 ---------
-### Defender
- The defending member currently being challenged.
+### ChallengeRoundCount
+ The number of challenge rounds there have been. Used to identify stale DefenderVotes.
 
 #### Python
 ```python
 result = substrate.query(
-    'Society', 'Defender', []
+    'Society', 'ChallengeRoundCount', []
 )
 ```
 
 #### Return value
 ```python
-'AccountId'
+'u32'
 ```
 ---------
 ### DefenderVotes
- Votes for the defender.
+ Votes for the defender, keyed by challenge round.
 
 #### Python
 ```python
 result = substrate.query(
-    'Society', 'DefenderVotes', ['AccountId']
+    'Society', 'DefenderVotes', ['u32', 'AccountId']
 )
 ```
 
 #### Return value
 ```python
-('Skeptic', 'Reject', 'Approve')
+{'approve': 'bool', 'weight': 'u32'}
+```
+---------
+### Defending
+ The defending member currently being challenged, along with a running tally of votes.
+
+#### Python
+```python
+result = substrate.query(
+    'Society', 'Defending', []
+)
+```
+
+#### Return value
+```python
+('AccountId', 'AccountId', {'approvals': 'u32', 'rejections': 'u32'})
 ```
 ---------
 ### Founder
@@ -639,7 +609,7 @@ result = substrate.query(
 ```
 ---------
 ### Head
- The most primary from the most recently approved members.
+ The most primary from the most recently approved rank 0 members in the society.
 
 #### Python
 ```python
@@ -653,13 +623,29 @@ result = substrate.query(
 'AccountId'
 ```
 ---------
-### MaxMembers
- The max number of members for the society at one time.
+### MemberByIndex
+ The current items in `Members` keyed by their unique index. Keys are densely populated
+ `0..MemberCount` (does not include `MemberCount`).
 
 #### Python
 ```python
 result = substrate.query(
-    'Society', 'MaxMembers', []
+    'Society', 'MemberByIndex', ['u32']
+)
+```
+
+#### Return value
+```python
+'AccountId'
+```
+---------
+### MemberCount
+ The number of items in `Members` currently. (Doesn&#x27;t include `SuspendedMembers`.)
+
+#### Python
+```python
+result = substrate.query(
+    'Society', 'MemberCount', []
 )
 ```
 
@@ -669,22 +655,64 @@ result = substrate.query(
 ```
 ---------
 ### Members
- The current set of members, ordered.
+ The current members and their rank. Doesn&#x27;t include `SuspendedMembers`.
 
 #### Python
 ```python
 result = substrate.query(
-    'Society', 'Members', []
+    'Society', 'Members', ['AccountId']
 )
 ```
 
 #### Return value
 ```python
-['AccountId']
+{
+    'index': 'u32',
+    'rank': 'u32',
+    'strikes': 'u32',
+    'vouching': (None, ('Vouching', 'Banned')),
+}
+```
+---------
+### NextHead
+ At the end of the claim period, this contains the most recently approved members (along with
+ their bid and round ID) who is from the most recent round with the lowest bid. They will
+ become the new `Head`.
+
+#### Python
+```python
+result = substrate.query(
+    'Society', 'NextHead', []
+)
+```
+
+#### Return value
+```python
+{'bid': 'u128', 'round': 'u32', 'who': 'AccountId'}
+```
+---------
+### Parameters
+ The max number of members for the society at one time.
+
+#### Python
+```python
+result = substrate.query(
+    'Society', 'Parameters', []
+)
+```
+
+#### Return value
+```python
+{
+    'candidate_deposit': 'u128',
+    'max_intake': 'u32',
+    'max_members': 'u32',
+    'max_strikes': 'u32',
+}
 ```
 ---------
 ### Payouts
- Pending payouts; ordered by block number, with the amount that should be paid out.
+ Information regarding rank-0 payouts, past and future.
 
 #### Python
 ```python
@@ -695,7 +723,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[('u32', 'u128')]
+{'paid': 'u128', 'payouts': [('u32', 'u128')]}
 ```
 ---------
 ### Pot
@@ -713,6 +741,21 @@ result = substrate.query(
 'u128'
 ```
 ---------
+### RoundCount
+ The number of rounds which have passed.
+
+#### Python
+```python
+result = substrate.query(
+    'Society', 'RoundCount', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
 ### Rules
  A hash of the rules of this society concerning membership. Can only be set once and
  only by the founder.
@@ -726,41 +769,26 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
-### Strikes
- The ongoing number of losing votes cast by the member.
+### Skeptic
+ The current skeptic.
 
 #### Python
 ```python
 result = substrate.query(
-    'Society', 'Strikes', ['AccountId']
+    'Society', 'Skeptic', []
 )
 ```
 
 #### Return value
 ```python
-'u32'
-```
----------
-### SuspendedCandidates
- The set of suspended candidates.
-
-#### Python
-```python
-result = substrate.query(
-    'Society', 'SuspendedCandidates', ['AccountId']
-)
-```
-
-#### Return value
-```python
-('u128', {'Deposit': 'u128', 'Vouch': ('AccountId', 'u128')})
+'AccountId'
 ```
 ---------
 ### SuspendedMembers
- The set of suspended members.
+ The set of suspended members, with their old membership record.
 
 #### Python
 ```python
@@ -771,7 +799,27 @@ result = substrate.query(
 
 #### Return value
 ```python
-'bool'
+{
+    'index': 'u32',
+    'rank': 'u32',
+    'strikes': 'u32',
+    'vouching': (None, ('Vouching', 'Banned')),
+}
+```
+---------
+### VoteClearCursor
+ Clear-cursor for Vote, map from Candidate -&gt; (Maybe) Cursor.
+
+#### Python
+```python
+result = substrate.query(
+    'Society', 'VoteClearCursor', ['AccountId']
+)
+```
+
+#### Return value
+```python
+'Bytes'
 ```
 ---------
 ### Votes
@@ -786,37 +834,11 @@ result = substrate.query(
 
 #### Return value
 ```python
-('Skeptic', 'Reject', 'Approve')
-```
----------
-### Vouching
- Members currently vouching or banned from vouching again
-
-#### Python
-```python
-result = substrate.query(
-    'Society', 'Vouching', ['AccountId']
-)
-```
-
-#### Return value
-```python
-('Vouching', 'Banned')
+{'approve': 'bool', 'weight': 'u32'}
 ```
 ---------
 ## Constants
 
----------
-### CandidateDeposit
- The minimum amount of a deposit required for a bid to be made.
-#### Value
-```python
-333333333330
-```
-#### Python
-```python
-constant = substrate.get_constant('Society', 'CandidateDeposit')
-```
 ---------
 ### ChallengePeriod
  The number of blocks between membership challenges.
@@ -829,15 +851,38 @@ constant = substrate.get_constant('Society', 'CandidateDeposit')
 constant = substrate.get_constant('Society', 'ChallengePeriod')
 ```
 ---------
-### MaxCandidateIntake
- The maximum number of candidates that we accept per round.
+### ClaimPeriod
+ The number of blocks on which new candidates can claim their membership and be the
+ named head.
 #### Value
 ```python
-1
+28800
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Society', 'MaxCandidateIntake')
+constant = substrate.get_constant('Society', 'ClaimPeriod')
+```
+---------
+### GraceStrikes
+ The maximum number of strikes before a member gets funds slashed.
+#### Value
+```python
+10
+```
+#### Python
+```python
+constant = substrate.get_constant('Society', 'GraceStrikes')
+```
+---------
+### MaxBids
+ The maximum number of bids at once.
+#### Value
+```python
+512
+```
+#### Python
+```python
+constant = substrate.get_constant('Society', 'MaxBids')
 ```
 ---------
 ### MaxLockDuration
@@ -851,16 +896,15 @@ constant = substrate.get_constant('Society', 'MaxCandidateIntake')
 constant = substrate.get_constant('Society', 'MaxLockDuration')
 ```
 ---------
-### MaxStrikes
- The number of times a member may vote the wrong way (or not at all, when they are a
- skeptic) before they become suspended.
+### MaxPayouts
+ The maximum number of payouts a member may have waiting unclaimed.
 #### Value
 ```python
-10
+8
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Society', 'MaxStrikes')
+constant = substrate.get_constant('Society', 'MaxPayouts')
 ```
 ---------
 ### PalletId
@@ -885,27 +929,16 @@ constant = substrate.get_constant('Society', 'PalletId')
 constant = substrate.get_constant('Society', 'PeriodSpend')
 ```
 ---------
-### RotationPeriod
- The number of blocks between candidate/membership rotation periods.
+### VotingPeriod
+ The number of blocks on which new candidates should be voted on. Together with
+ `ClaimPeriod`, this sums to the number of blocks between candidate intake periods.
 #### Value
 ```python
-100800
+72000
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Society', 'RotationPeriod')
-```
----------
-### WrongSideDeduction
- The amount of the unpaid reward that gets deducted in the case that either a skeptic
- doesn&#x27;t vote or someone votes in the wrong way.
-#### Value
-```python
-66666666666
-```
-#### Python
-```python
-constant = substrate.get_constant('Society', 'WrongSideDeduction')
+constant = substrate.get_constant('Society', 'VotingPeriod')
 ```
 ---------
 ## Errors
@@ -919,6 +952,10 @@ User has already made a bid.
 User is already a candidate.
 
 ---------
+### AlreadyElevated
+The member is already elevated to this rank.
+
+---------
 ### AlreadyFounded
 Society already founded.
 
@@ -927,12 +964,20 @@ Society already founded.
 User is already a member.
 
 ---------
+### AlreadyPunished
+The skeptic has already been punished for this offence.
+
+---------
 ### AlreadyVouching
 Member is already vouching or banned from vouching again.
 
 ---------
-### BadPosition
-An incorrect position was provided.
+### Approved
+The candidacy cannot be dropped as the candidate was clearly approved.
+
+---------
+### Expired
+The skeptic need not vote on candidates from expired rounds.
 
 ---------
 ### Founder
@@ -943,6 +988,14 @@ Cannot remove the founder.
 Cannot remove the head of the chain.
 
 ---------
+### InProgress
+The candidacy cannot be concluded as the voting is still in progress.
+
+---------
+### InsufficientFunds
+Funds are insufficient to pay off society debts.
+
+---------
 ### InsufficientPot
 Not enough in pot to accept candidate.
 
@@ -951,8 +1004,24 @@ Not enough in pot to accept candidate.
 Too many members in the society.
 
 ---------
+### NoDefender
+There is no defender currently.
+
+---------
 ### NoPayout
 Nothing to payout.
+
+---------
+### NoVotes
+The candidate/defender has no stale votes to remove.
+
+---------
+### NotApproved
+The membership cannot be claimed as the candidate was not clearly approved.
+
+---------
+### NotBidder
+User is not a bidder.
 
 ---------
 ### NotCandidate
@@ -963,6 +1032,10 @@ User is not a candidate.
 The caller is not the founder.
 
 ---------
+### NotGroup
+Group doesn&\#x27;t exist.
+
+---------
 ### NotHead
 The caller is not the head.
 
@@ -971,15 +1044,31 @@ The caller is not the head.
 User is not a member.
 
 ---------
+### NotRejected
+The candidate cannot be kicked as the candidate was not clearly rejected.
+
+---------
 ### NotSuspended
 User is not suspended.
 
 ---------
-### NotVouching
+### NotVouchingOnBidder
 Member is not vouching.
+
+---------
+### Rejected
+The candidacy cannot be bestowed as the candidate was clearly rejected.
 
 ---------
 ### Suspended
 User is suspended.
+
+---------
+### TooEarly
+The candidacy cannot be pruned until a full additional intake period has passed.
+
+---------
+### Voted
+The skeptic already voted.
 
 ---------

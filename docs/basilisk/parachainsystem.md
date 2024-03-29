@@ -6,20 +6,26 @@
 
 ---------
 ### authorize_upgrade
+See [`Pallet::authorize_upgrade`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | code_hash | `T::Hash` | 
+| check_version | `bool` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'ParachainSystem', 'authorize_upgrade', {'code_hash': '[u8; 32]'}
+    'ParachainSystem', 'authorize_upgrade', {
+    'check_version': 'bool',
+    'code_hash': 'scale_info::12',
+}
 )
 ```
 
 ---------
 ### enact_authorized_upgrade
+See [`Pallet::enact_authorized_upgrade`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -34,15 +40,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_validation_data
-Set the current validation data.
-
-This should be invoked exactly once per block. It will panic at the finalization
-phase if the call was not invoked.
-
-The dispatch origin for this call must be `Inherent`
-
-As a side effect, this function upgrades the current validation function
-if the appropriate time has come.
+See [`Pallet::set_validation_data`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -59,15 +57,15 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::276',
+        'horizontal_messages': 'scale_info::283',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::273',
+            'trie_nodes': 'scale_info::280',
         },
         'validation_data': {
             'max_pov_size': 'u32',
             'parent_head': 'Bytes',
             'relay_parent_number': 'u32',
-            'relay_parent_storage_root': '[u8; 32]',
+            'relay_parent_storage_root': 'scale_info::12',
         },
     },
 }
@@ -76,6 +74,7 @@ call = substrate.compose_call(
 
 ---------
 ### sudo_send_upward_message
+See [`Pallet::sudo_send_upward_message`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -98,7 +97,7 @@ Downward messages were processed using the given weight.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
-| dmq_head | `relay_chain::Hash` | ```[u8; 32]```
+| dmq_head | `relay_chain::Hash` | ```scale_info::12```
 
 ---------
 ### DownwardMessagesReceived
@@ -114,7 +113,7 @@ An upgrade has been authorized.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### UpwardMessageSent
@@ -148,6 +147,31 @@ No attributes
 ## Storage functions
 
 ---------
+### AggregatedUnincludedSegment
+ Storage field that keeps track of bandwidth used by the unincluded segment along with the
+ latest the latest HRMP watermark. Used for limiting the acceptance of new blocks with
+ respect to relay chain constraints.
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainSystem', 'AggregatedUnincludedSegment', []
+)
+```
+
+#### Return value
+```python
+{
+    'consumed_go_ahead_signal': (None, ('Abort', 'GoAhead')),
+    'hrmp_watermark': (None, 'u32'),
+    'used_bandwidth': {
+        'hrmp_outgoing': 'scale_info::436',
+        'ump_msg_count': 'u32',
+        'ump_total_bytes': 'u32',
+    },
+}
+```
+---------
 ### AnnouncedHrmpMessagesPerCandidate
  The number of HRMP messages we observed in `on_initialize` and thus used that number for
  announcing the weight of `on_initialize` and `on_finalize`.
@@ -176,13 +200,13 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+{'check_version': 'bool', 'code_hash': 'scale_info::12'}
 ```
 ---------
 ### CustomValidationHeadData
  A custom head data that should be returned as result of `validate_block`.
 
- See [`Pallet::set_custom_validation_head_data`] for more information.
+ See `Pallet::set_custom_validation_head_data` for more information.
 
 #### Python
 ```python
@@ -229,6 +253,10 @@ result = substrate.query(
 #### Return value
 ```python
 {
+    'async_backing_params': {
+        'allowed_ancestry_len': 'u32',
+        'max_candidate_depth': 'u32',
+    },
     'hrmp_max_message_num_per_candidate': 'u32',
     'max_code_size': 'u32',
     'max_head_data_size': 'u32',
@@ -290,7 +318,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### LastHrmpMqcHeads
@@ -308,7 +336,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::435'
+'scale_info::453'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -361,12 +389,12 @@ result = substrate.query(
 ```
 ---------
 ### PendingValidationCode
- In case of a scheduled upgrade, this storage field contains the validation code to be applied.
+ In case of a scheduled upgrade, this storage field contains the validation code to be
+ applied.
 
- As soon as the relay chain gives us the go-ahead signal, we will overwrite the [`:code`][well_known_keys::CODE]
- which will result the next block process with the new validation code. This concludes the upgrade process.
-
- [well_known_keys::CODE]: sp_core::storage::well_known_keys::CODE
+ As soon as the relay chain gives us the go-ahead signal, we will overwrite the
+ [`:code`][sp_core::storage::well_known_keys::CODE] which will result the next block process
+ with the new validation code. This concludes the upgrade process.
 
 #### Python
 ```python
@@ -414,7 +442,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::273'}
+{'trie_nodes': 'scale_info::280'}
 ```
 ---------
 ### RelevantMessagingState
@@ -436,7 +464,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'dmq_mqc_head': '[u8; 32]',
+    'dmq_mqc_head': 'scale_info::12',
     'egress_channels': [
         (
             'u32',
@@ -444,7 +472,7 @@ result = substrate.query(
                 'max_capacity': 'u32',
                 'max_message_size': 'u32',
                 'max_total_size': 'u32',
-                'mqc_head': (None, '[u8; 32]'),
+                'mqc_head': (None, 'scale_info::12'),
                 'msg_count': 'u32',
                 'total_size': 'u32',
             },
@@ -457,13 +485,16 @@ result = substrate.query(
                 'max_capacity': 'u32',
                 'max_message_size': 'u32',
                 'max_total_size': 'u32',
-                'mqc_head': (None, '[u8; 32]'),
+                'mqc_head': (None, 'scale_info::12'),
                 'msg_count': 'u32',
                 'total_size': 'u32',
             },
         ),
     ],
-    'relay_dispatch_queue_size': ('u32', 'u32'),
+    'relay_dispatch_queue_remaining_capacity': {
+        'remaining_count': 'u32',
+        'remaining_size': 'u32',
+    },
 }
 ```
 ---------
@@ -497,6 +528,55 @@ result = substrate.query(
 #### Return value
 ```python
 {'proof_size': 'u64', 'ref_time': 'u64'}
+```
+---------
+### UnincludedSegment
+ Latest included block descendants the runtime accepted. In other words, these are
+ ancestors of the currently executing block which have not been included in the observed
+ relay-chain state.
+
+ The segment length is limited by the capacity returned from the [`ConsensusHook`] configured
+ in the pallet.
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainSystem', 'UnincludedSegment', []
+)
+```
+
+#### Return value
+```python
+[
+    {
+        'consumed_go_ahead_signal': (None, ('Abort', 'GoAhead')),
+        'para_head_hash': (None, 'scale_info::12'),
+        'used_bandwidth': {
+            'hrmp_outgoing': 'scale_info::436',
+            'ump_msg_count': 'u32',
+            'ump_total_bytes': 'u32',
+        },
+    },
+]
+```
+---------
+### UpgradeGoAhead
+ Optional upgrade go-ahead signal from the relay-chain.
+
+ This storage item is a mirror of the corresponding value for the current parachain from the
+ relay-chain. This value is ephemeral which means it doesn&#x27;t hit the storage. This value is
+ set after the inherent.
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainSystem', 'UpgradeGoAhead', []
+)
+```
+
+#### Return value
+```python
+(None, ('Abort', 'GoAhead'))
 ```
 ---------
 ### UpgradeRestrictionSignal
@@ -555,7 +635,7 @@ result = substrate.query(
     'max_pov_size': 'u32',
     'parent_head': 'Bytes',
     'relay_parent_number': 'u32',
-    'relay_parent_storage_root': '[u8; 32]',
+    'relay_parent_storage_root': 'scale_info::12',
 }
 ```
 ---------
@@ -563,7 +643,7 @@ result = substrate.query(
 
 ---------
 ### HostConfigurationNotAvailable
-The inherent which supplies the host configuration did not run this block
+The inherent which supplies the host configuration did not run this block.
 
 ---------
 ### NotScheduled
@@ -575,16 +655,16 @@ No code upgrade has been authorized.
 
 ---------
 ### OverlappingUpgrades
-Attempt to upgrade validation function while existing upgrade pending
+Attempt to upgrade validation function while existing upgrade pending.
 
 ---------
 ### ProhibitedByPolkadot
-Polkadot currently prohibits this parachain from upgrading its validation function
+Polkadot currently prohibits this parachain from upgrading its validation function.
 
 ---------
 ### TooBig
 The supplied validation function has compiled into a blob larger than Polkadot is
-willing to run
+willing to run.
 
 ---------
 ### Unauthorized
@@ -592,6 +672,6 @@ The given code upgrade has not been authorized.
 
 ---------
 ### ValidationDataNotAvailable
-The inherent which supplies the validation data did not run this block
+The inherent which supplies the validation data did not run this block.
 
 ---------

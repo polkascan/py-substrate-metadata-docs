@@ -186,7 +186,7 @@ On on-chain remark happened.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -245,7 +245,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### BlockWeight
@@ -282,12 +282,12 @@ result = substrate.query(
 {
     'logs': [
         {
-            'Other': 'Bytes',
-            None: None,
             'Consensus': ('[u8; 4]', 'Bytes'),
+            'Other': 'Bytes',
             'PreRuntime': ('[u8; 4]', 'Bytes'),
             'RuntimeEnvironmentUpdated': None,
             'Seal': ('[u8; 4]', 'Bytes'),
+            None: None,
         },
     ],
 }
@@ -323,7 +323,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'System', 'EventTopics', ['[u8; 32]']
+    'System', 'EventTopics', ['scale_info::12']
 )
 ```
 
@@ -353,17 +353,6 @@ result = substrate.query(
 [
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::25',
-                    'dispatch_info': 'scale_info::22',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             None: None,
             'AssetRegistry': {
                 'RegisteredAsset': {
@@ -405,7 +394,7 @@ result = substrate.query(
             },
             'BaseFee': {
                 'BaseFeeOverflow': None,
-                'NewBaseFeePerGas': {'fee': '[u64; 4]'},
+                'NewBaseFeePerGas': {'fee': 'scale_info::186'},
                 'NewElasticity': {'elasticity': 'u32'},
             },
             'ClientsInfo': {
@@ -701,7 +690,7 @@ result = substrate.query(
                     'extra_data': 'Bytes',
                     'from': '[u8; 20]',
                     'to': '[u8; 20]',
-                    'transaction_hash': '[u8; 32]',
+                    'transaction_hash': 'scale_info::12',
                 },
             },
             'Farming': {
@@ -781,13 +770,13 @@ result = substrate.query(
             'Issue': {
                 'CancelIssue': {
                     'griefing_collateral': 'u128',
-                    'issue_id': '[u8; 32]',
+                    'issue_id': 'scale_info::12',
                     'requester': 'AccountId',
                 },
                 'ExecuteIssue': {
                     'amount': 'u128',
                     'fee': 'u128',
-                    'issue_id': '[u8; 32]',
+                    'issue_id': 'scale_info::12',
                     'requester': 'AccountId',
                     'vault_id': 'scale_info::88',
                 },
@@ -795,7 +784,7 @@ result = substrate.query(
                     'amount': 'u128',
                     'confiscated_griefing_collateral': 'u128',
                     'fee': 'u128',
-                    'issue_id': '[u8; 32]',
+                    'issue_id': 'scale_info::12',
                 },
                 'IssuePeriodChange': {'period': 'u32'},
                 'RequestIssue': {
@@ -803,7 +792,7 @@ result = substrate.query(
                     'fee': 'u128',
                     'griefing_collateral': 'u128',
                     'griefing_currency': 'scale_info::51',
-                    'issue_id': '[u8; 32]',
+                    'issue_id': 'scale_info::12',
                     'requester': 'AccountId',
                     'vault_address': 'scale_info::100',
                     'vault_id': 'scale_info::88',
@@ -961,11 +950,11 @@ result = substrate.query(
             },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
+                    'dmq_head': 'scale_info::12',
                     'weight_used': 'scale_info::9',
                 },
                 'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpgradeAuthorized': {'code_hash': 'scale_info::12'},
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
                 'ValidationFunctionDiscarded': None,
@@ -973,12 +962,12 @@ result = substrate.query(
             },
             'PolkadotXcm': {
                 'AssetsClaimed': (
-                    '[u8; 32]',
+                    'scale_info::12',
                     'scale_info::74',
                     'scale_info::160',
                 ),
                 'AssetsTrapped': (
-                    '[u8; 32]',
+                    'scale_info::12',
                     'scale_info::74',
                     'scale_info::160',
                 ),
@@ -1042,13 +1031,13 @@ result = substrate.query(
                 ),
             },
             'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
+                'Cleared': {'hash': 'scale_info::12'},
+                'Noted': {'hash': 'scale_info::12'},
+                'Requested': {'hash': 'scale_info::12'},
             },
             'Proxy': {
                 'Announced': {
-                    'call_hash': '[u8; 32]',
+                    'call_hash': 'scale_info::12',
                     'proxy': 'AccountId',
                     'real': 'AccountId',
                 },
@@ -1074,7 +1063,7 @@ result = substrate.query(
             },
             'Redeem': {
                 'CancelRedeem': {
-                    'redeem_id': '[u8; 32]',
+                    'redeem_id': 'scale_info::12',
                     'redeemer': 'AccountId',
                     'slashed_amount': 'u128',
                     'status': 'scale_info::115',
@@ -1083,7 +1072,7 @@ result = substrate.query(
                 'ExecuteRedeem': {
                     'amount': 'u128',
                     'fee': 'u128',
-                    'redeem_id': '[u8; 32]',
+                    'redeem_id': 'scale_info::12',
                     'redeemer': 'AccountId',
                     'transfer_fee': 'u128',
                     'vault_id': 'scale_info::88',
@@ -1094,7 +1083,7 @@ result = substrate.query(
                 },
                 'MintTokensForReimbursedRedeem': {
                     'amount': 'u128',
-                    'redeem_id': '[u8; 32]',
+                    'redeem_id': 'scale_info::12',
                     'vault_id': 'scale_info::88',
                 },
                 'RedeemPeriodChange': {'period': 'u32'},
@@ -1103,7 +1092,7 @@ result = substrate.query(
                     'btc_address': 'scale_info::100',
                     'fee': 'u128',
                     'premium': 'u128',
-                    'redeem_id': '[u8; 32]',
+                    'redeem_id': 'scale_info::12',
                     'redeemer': 'AccountId',
                     'transfer_fee': 'u128',
                     'vault_id': 'scale_info::88',
@@ -1121,18 +1110,18 @@ result = substrate.query(
                     'collateral': 'u128',
                     'new_vault_id': 'scale_info::88',
                     'old_vault_id': 'scale_info::88',
-                    'replace_id': '[u8; 32]',
+                    'replace_id': 'scale_info::12',
                 },
                 'CancelReplace': {
                     'griefing_collateral': 'u128',
                     'new_vault_id': 'scale_info::88',
                     'old_vault_id': 'scale_info::88',
-                    'replace_id': '[u8; 32]',
+                    'replace_id': 'scale_info::12',
                 },
                 'ExecuteReplace': {
                     'new_vault_id': 'scale_info::88',
                     'old_vault_id': 'scale_info::88',
-                    'replace_id': '[u8; 32]',
+                    'replace_id': 'scale_info::12',
                 },
                 'ReplacePeriodChange': {'period': 'u32'},
                 'RequestReplace': {
@@ -1179,32 +1168,43 @@ result = substrate.query(
                 'SudoAsDone': {'sudo_result': 'scale_info::31'},
             },
             'Supply': {'Inflation': {'total_inflation': 'u128'}},
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': 'scale_info::12', 'sender': 'AccountId'},
+            },
             'TechnicalCommittee': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Approved': {'proposal_hash': 'scale_info::12'},
                 'Closed': {
                     'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::12',
                     'yes': 'u32',
                 },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Disapproved': {'proposal_hash': 'scale_info::12'},
                 'Executed': {
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::12',
                     'result': 'scale_info::31',
                 },
                 'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::12',
                     'result': 'scale_info::31',
                 },
                 'Proposed': {
                     'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::12',
                     'proposal_index': 'u32',
                     'threshold': 'u32',
                 },
                 'Voted': {
                     'account': 'AccountId',
                     'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::12',
                     'voted': 'bool',
                     'yes': 'u32',
                 },
@@ -1566,7 +1566,7 @@ result = substrate.query(
             'Finalization': None,
             'Initialization': None,
         },
-        'topics': ['[u8; 32]'],
+        'topics': ['scale_info::12'],
     },
 ]
 ```
@@ -1658,7 +1658,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### UpgradedToTripleRefCount

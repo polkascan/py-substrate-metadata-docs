@@ -564,7 +564,7 @@ constant = substrate.get_constant('Homa', 'LiquidCurrencyId')
 ### MintThreshold
 #### Value
 ```python
-50000000000
+10000000000
 ```
 #### Python
 ```python
@@ -584,7 +584,7 @@ constant = substrate.get_constant('Homa', 'PalletId')
 ### RedeemThreshold
 #### Value
 ```python
-500000000000
+50000000000
 ```
 #### Python
 ```python

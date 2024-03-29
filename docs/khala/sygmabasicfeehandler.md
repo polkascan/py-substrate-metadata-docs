@@ -6,7 +6,7 @@
 
 ---------
 ### set_fee
-Set bridge fee for a specific asset
+See [`Pallet::set_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

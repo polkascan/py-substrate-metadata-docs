@@ -5,21 +5,6 @@
 ## Calls
 
 ---------
-### fill_block
-A dispatch that will fill the block weight up to the given ratio.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| ratio | `Perbill` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'System', 'fill_block', {'ratio': 'u32'}
-)
-```
-
----------
 ### kill_prefix
 Kill all storage items with a key that starts with the given prefix.
 
@@ -57,9 +42,8 @@ call = substrate.compose_call(
 ### remark
 Make some on-chain remark.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -91,16 +75,8 @@ call = substrate.compose_call(
 ### set_code
 Set the new runtime code.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(C + S)` where `C` length of `code` and `S` complexity of `can_set_code`
-- 1 call to `can_set_code`: `O(S)` (calls `sp_io::misc::runtime_version` which is
-  expensive).
-- 1 storage write (codec `O(C)`).
-- 1 digest item.
-- 1 event.
-The weight of this function is dependent on the runtime, but generally this is very
-expensive. We will treat this as a full block.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -117,13 +93,8 @@ call = substrate.compose_call(
 ### set_code_without_checks
 Set the new runtime code without doing any checks of the given `code`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(C)` where `C` length of `code`
-- 1 storage write (codec `O(C)`).
-- 1 digest item.
-- 1 event.
-The weight of this function is dependent on the runtime. We will treat this as a full
-block. \# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -181,8 +152,8 @@ An extrinsic failed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| dispatch_error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer')}```
-| dispatch_info | `DispatchInfo` | ```{'weight': 'u64', 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
+| dispatch_error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| dispatch_info | `DispatchInfo` | ```{'weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
 
 ---------
 ### ExtrinsicSuccess
@@ -190,7 +161,7 @@ An extrinsic completed successfully.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| dispatch_info | `DispatchInfo` | ```{'weight': 'u64', 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
+| dispatch_info | `DispatchInfo` | ```{'weight': {'ref_time': 'u64', 'proof_size': 'u64'}, 'class': ('Normal', 'Operational', 'Mandatory'), 'pays_fee': ('Yes', 'No')}```
 
 ---------
 ### KilledAccount
@@ -215,7 +186,7 @@ On on-chain remark happened.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::11```
 
 ---------
 ## Storage functions
@@ -274,7 +245,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::11'
 ```
 ---------
 ### BlockWeight
@@ -289,7 +260,11 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'mandatory': 'u64', 'normal': 'u64', 'operational': 'u64'}
+{
+    'mandatory': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'normal': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'operational': {'proof_size': 'u64', 'ref_time': 'u64'},
+}
 ```
 ---------
 ### Digest
@@ -348,7 +323,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'System', 'EventTopics', ['[u8; 32]']
+    'System', 'EventTopics', ['scale_info::11']
 )
 ```
 
@@ -378,9 +353,10 @@ result = substrate.query(
 [
     {
         'event': {
+            None: None,
             'AppWorkingGroup': {
                 'ApplicationWithdrawn': 'u64',
-                'AppliedOnOpening': ('scale_info::218', 'u64'),
+                'AppliedOnOpening': ('scale_info::225', 'u64'),
                 'BudgetSet': 'u128',
                 'BudgetSpending': ('AccountId', 'u128', (None, 'Bytes')),
                 'LeadRemarked': 'Bytes',
@@ -390,17 +366,17 @@ result = substrate.query(
                 'OpeningAdded': (
                     'u64',
                     'Bytes',
-                    'scale_info::217',
-                    'scale_info::210',
+                    'scale_info::224',
+                    'scale_info::216',
                     (None, 'u128'),
                 ),
                 'OpeningCanceled': 'u64',
-                'OpeningFilled': ('u64', 'scale_info::214', 'scale_info::84'),
-                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::221'),
+                'OpeningFilled': ('u64', 'scale_info::221', 'scale_info::90'),
+                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::228'),
                 'StakeDecreased': ('u64', 'u128'),
                 'StakeIncreased': ('u64', 'u128'),
                 'StakeSlashed': ('u64', 'u128', 'u128', (None, 'Bytes')),
-                'StatusTextChanged': ('[u8; 32]', (None, 'Bytes')),
+                'StatusTextChanged': ('scale_info::11', (None, 'Bytes')),
                 'TerminatedLeader': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'TerminatedWorker': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'WorkerExited': 'u64',
@@ -410,10 +386,6 @@ result = substrate.query(
                 'WorkerRoleAccountUpdated': ('u64', 'AccountId'),
                 'WorkerStartedLeaving': ('u64', (None, 'Bytes')),
                 'WorkingGroupBudgetFunded': ('u64', 'u128', 'Bytes'),
-            },
-            'BagsList': {
-                'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
-                'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
             },
             'Balances': {
                 'BalanceSet': {
@@ -426,7 +398,7 @@ result = substrate.query(
                 'Endowed': {'account': 'AccountId', 'free_balance': 'u128'},
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'destination_status': 'scale_info::31',
+                    'destination_status': 'scale_info::33',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
@@ -442,54 +414,54 @@ result = substrate.query(
             },
             'Bounty': {
                 'BountyContributorRemarked': (
-                    'scale_info::88',
+                    'scale_info::94',
                     'u64',
                     'Bytes',
                 ),
-                'BountyCreated': ('u64', 'scale_info::87', 'Bytes'),
-                'BountyCreatorCherryWithdrawal': ('u64', 'scale_info::88'),
+                'BountyCreated': ('u64', 'scale_info::93', 'Bytes'),
+                'BountyCreatorCherryWithdrawal': ('u64', 'scale_info::94'),
                 'BountyCreatorOracleRewardWithdrawal': (
                     'u64',
-                    'scale_info::88',
+                    'scale_info::94',
                 ),
-                'BountyCreatorRemarked': ('scale_info::88', 'u64', 'Bytes'),
+                'BountyCreatorRemarked': ('scale_info::94', 'u64', 'Bytes'),
                 'BountyEntrantRemarked': ('u64', 'u64', 'u64', 'Bytes'),
-                'BountyFunded': ('u64', 'scale_info::88', 'u128'),
-                'BountyFundingWithdrawal': ('u64', 'scale_info::88'),
+                'BountyFunded': ('u64', 'scale_info::94', 'u128'),
+                'BountyFundingWithdrawal': ('u64', 'scale_info::94'),
                 'BountyMaxFundingReached': 'u64',
-                'BountyOracleRemarked': ('scale_info::88', 'u64', 'Bytes'),
+                'BountyOracleRemarked': ('scale_info::94', 'u64', 'Bytes'),
                 'BountyOracleRewardWithdrawal': (
                     'u64',
-                    'scale_info::88',
+                    'scale_info::94',
                     'u128',
                 ),
                 'BountyOracleSwitched': (
                     'u64',
-                    'scale_info::88',
-                    'scale_info::88',
-                    'scale_info::88',
+                    'scale_info::94',
+                    'scale_info::94',
+                    'scale_info::94',
                 ),
                 'BountyRemoved': 'u64',
                 'BountyTerminated': (
                     'u64',
-                    'scale_info::88',
-                    'scale_info::88',
-                    'scale_info::88',
+                    'scale_info::94',
+                    'scale_info::94',
+                    'scale_info::94',
                 ),
                 'CreatorStateBloatBondWithdrawn': (
                     'u64',
-                    'scale_info::88',
+                    'scale_info::94',
                     'u128',
                 ),
                 'FunderStateBloatBondWithdrawn': (
                     'u64',
-                    'scale_info::88',
+                    'scale_info::94',
                     'u128',
                 ),
                 'OracleJudgmentSubmitted': (
                     'u64',
-                    'scale_info::88',
-                    'scale_info::91',
+                    'scale_info::94',
+                    'scale_info::97',
                     'Bytes',
                 ),
                 'WorkEntrantFundsWithdrawn': ('u64', 'u64', 'u64'),
@@ -502,155 +474,153 @@ result = substrate.query(
                     'AccountId',
                     'Bytes',
                 ),
-                'WorkSubmissionPeriodEnded': ('u64', 'scale_info::88'),
+                'WorkSubmissionPeriodEnded': ('u64', 'scale_info::94'),
                 'WorkSubmitted': ('u64', 'u64', 'u64', 'Bytes'),
             },
-            'Constitution': {'ConstutionAmended': ('[u8; 32]', 'Bytes')},
+            'Constitution': {'ConstutionAmended': ('scale_info::11', 'Bytes')},
             'Content': {
                 'AuctionBidCanceled': ('u64', 'u64'),
                 'AuctionBidMade': ('u64', 'u64', 'u128', (None, 'u64')),
-                'AuctionCanceled': ('scale_info::99', 'u64'),
+                'AuctionCanceled': ('scale_info::105', 'u64'),
                 'BidMadeCompletingAuction': ('u64', 'u64', (None, 'u64')),
-                'BuyNowCanceled': ('u64', 'scale_info::99'),
-                'BuyNowPriceUpdated': ('u64', 'scale_info::99', 'u128'),
-                'CancelChannelTransfer': ('u64', 'scale_info::99'),
-                'ChannelAgentRemarked': ('scale_info::99', 'u64', 'Bytes'),
+                'BuyNowCanceled': ('u64', 'scale_info::105'),
+                'BuyNowPriceUpdated': ('u64', 'scale_info::105', 'u128'),
+                'CancelChannelTransfer': ('u64', 'scale_info::105'),
+                'ChannelAgentRemarked': ('scale_info::105', 'u64', 'Bytes'),
                 'ChannelAssetsDeletedByModerator': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
-                    'scale_info::84',
+                    'scale_info::90',
                     'Bytes',
                 ),
                 'ChannelAssetsRemoved': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
-                    'scale_info::84',
-                    'scale_info::100',
+                    'scale_info::90',
+                    'scale_info::106',
                 ),
                 'ChannelCreated': (
                     'u64',
-                    'scale_info::100',
-                    'scale_info::127',
+                    'scale_info::106',
+                    'scale_info::133',
                     'AccountId',
                 ),
-                'ChannelDeleted': ('scale_info::99', 'u64'),
-                'ChannelDeletedByModerator': (
-                    'scale_info::99',
-                    'u64',
-                    'Bytes',
-                ),
+                'ChannelDeleted': ('scale_info::105', 'u64'),
                 'ChannelFundsWithdrawn': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
                     'u128',
-                    'scale_info::155',
+                    'scale_info::161',
                 ),
                 'ChannelNftLimitUpdated': (
-                    'scale_info::99',
-                    'scale_info::156',
+                    'scale_info::105',
+                    'scale_info::162',
                     'u64',
                     'u64',
                 ),
                 'ChannelOwnerRemarked': ('u64', 'Bytes'),
                 'ChannelPausedFeaturesUpdatedByModerator': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
-                    'scale_info::112',
+                    'scale_info::118',
                     'Bytes',
                 ),
-                'ChannelPayoutsUpdated': ('scale_info::150', (None, 'u64'), 'AccountId'),
+                'ChannelPayoutsUpdated': ('scale_info::156', (None, 'u64'), 'AccountId'),
                 'ChannelPrivilegeLevelUpdated': ('u64', 'u8'),
                 'ChannelRewardClaimedAndWithdrawn': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
                     'u128',
-                    'scale_info::155',
+                    'scale_info::161',
                 ),
                 'ChannelRewardUpdated': ('u128', 'u128', 'u64'),
                 'ChannelStateBloatBondValueUpdated': 'u128',
-                'ChannelTransferAccepted': ('u64', 'scale_info::149'),
+                'ChannelTransferAccepted': ('u64', 'scale_info::155'),
                 'ChannelUpdated': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
-                    'scale_info::138',
-                    'scale_info::84',
+                    'scale_info::144',
+                    'scale_info::90',
                 ),
                 'ChannelVisibilitySetByModerator': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
                     'bool',
                     'Bytes',
                 ),
-                'CreatorTokenIssued': ('scale_info::99', 'u64', 'u64'),
-                'CuratorAdded': ('u64', 'u64', 'scale_info::105'),
+                'CreatorTokenIssued': ('scale_info::105', 'u64', 'u64'),
+                'CreatorTokenIssuerRemarked': ('u64', 'u64', 'Bytes'),
+                'CuratorAdded': ('u64', 'u64', 'scale_info::111'),
                 'CuratorGroupCreated': 'u64',
-                'CuratorGroupPermissionsUpdated': ('u64', 'scale_info::143'),
+                'CuratorGroupPermissionsUpdated': ('u64', 'scale_info::149'),
                 'CuratorGroupStatusSet': ('u64', 'bool'),
                 'CuratorRemoved': ('u64', 'u64'),
                 'EnglishAuctionSettled': ('u64', 'AccountId', 'u64'),
                 'EnglishAuctionStarted': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
-                    'scale_info::121',
+                    'scale_info::127',
                 ),
-                'GlobalNftLimitUpdated': ('scale_info::156', 'u64'),
+                'GlobalNftLimitUpdated': ('scale_info::162', 'u64'),
                 'InitializedChannelTransfer': (
                     'u64',
-                    'scale_info::99',
-                    'scale_info::117',
+                    'scale_info::105',
+                    'scale_info::123',
                 ),
                 'NftBought': ('u64', 'u64'),
-                'NftDestroyed': ('scale_info::99', 'u64'),
-                'NftIssued': ('scale_info::99', 'u64', 'scale_info::124'),
-                'NftOwnerRemarked': ('scale_info::99', 'u64', 'Bytes'),
-                'NftSellOrderMade': ('u64', 'scale_info::99', 'u128'),
-                'NftSlingedBackToTheOriginalArtist': ('u64', 'scale_info::99'),
+                'NftDestroyed': ('scale_info::105', 'u64'),
+                'NftIssued': ('scale_info::105', 'u64', 'scale_info::130'),
+                'NftOwnerRemarked': ('scale_info::105', 'u64', 'Bytes'),
+                'NftSellOrderMade': ('u64', 'scale_info::105', 'u128'),
+                'NftSlingedBackToTheOriginalArtist': (
+                    'u64',
+                    'scale_info::105',
+                ),
                 'OfferAccepted': 'u64',
-                'OfferCanceled': ('u64', 'scale_info::99'),
+                'OfferCanceled': ('u64', 'scale_info::105'),
                 'OfferStarted': (
                     'u64',
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
                     (None, 'u128'),
                 ),
                 'OpenAuctionBidAccepted': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
                     'u64',
                     'u128',
                 ),
                 'OpenAuctionStarted': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
-                    'scale_info::123',
+                    'scale_info::129',
                     'u64',
                 ),
                 'ToggledNftLimits': 'bool',
                 'VideoAssetsDeletedByModerator': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
-                    'scale_info::84',
+                    'scale_info::90',
                     'bool',
                     'Bytes',
                 ),
                 'VideoCreated': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
                     'u64',
-                    'scale_info::140',
-                    'scale_info::84',
+                    'scale_info::146',
+                    'scale_info::90',
                 ),
-                'VideoDeleted': ('scale_info::99', 'u64'),
-                'VideoDeletedByModerator': ('scale_info::99', 'u64', 'Bytes'),
+                'VideoDeleted': ('scale_info::105', 'u64'),
                 'VideoStateBloatBondValueUpdated': 'u128',
                 'VideoUpdated': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
-                    'scale_info::142',
-                    'scale_info::84',
+                    'scale_info::148',
+                    'scale_info::90',
                 ),
                 'VideoVisibilitySetByModerator': (
-                    'scale_info::99',
+                    'scale_info::105',
                     'u64',
                     'bool',
                     'Bytes',
@@ -658,7 +628,7 @@ result = substrate.query(
             },
             'ContentWorkingGroup': {
                 'ApplicationWithdrawn': 'u64',
-                'AppliedOnOpening': ('scale_info::218', 'u64'),
+                'AppliedOnOpening': ('scale_info::225', 'u64'),
                 'BudgetSet': 'u128',
                 'BudgetSpending': ('AccountId', 'u128', (None, 'Bytes')),
                 'LeadRemarked': 'Bytes',
@@ -668,17 +638,17 @@ result = substrate.query(
                 'OpeningAdded': (
                     'u64',
                     'Bytes',
-                    'scale_info::217',
-                    'scale_info::210',
+                    'scale_info::224',
+                    'scale_info::216',
                     (None, 'u128'),
                 ),
                 'OpeningCanceled': 'u64',
-                'OpeningFilled': ('u64', 'scale_info::214', 'scale_info::84'),
-                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::221'),
+                'OpeningFilled': ('u64', 'scale_info::221', 'scale_info::90'),
+                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::228'),
                 'StakeDecreased': ('u64', 'u128'),
                 'StakeIncreased': ('u64', 'u128'),
                 'StakeSlashed': ('u64', 'u128', 'u128', (None, 'Bytes')),
-                'StatusTextChanged': ('[u8; 32]', (None, 'Bytes')),
+                'StatusTextChanged': ('scale_info::11', (None, 'Bytes')),
                 'TerminatedLeader': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'TerminatedWorker': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'WorkerExited': 'u64',
@@ -712,7 +682,7 @@ result = substrate.query(
             },
             'DistributionWorkingGroup': {
                 'ApplicationWithdrawn': 'u64',
-                'AppliedOnOpening': ('scale_info::218', 'u64'),
+                'AppliedOnOpening': ('scale_info::225', 'u64'),
                 'BudgetSet': 'u128',
                 'BudgetSpending': ('AccountId', 'u128', (None, 'Bytes')),
                 'LeadRemarked': 'Bytes',
@@ -722,17 +692,17 @@ result = substrate.query(
                 'OpeningAdded': (
                     'u64',
                     'Bytes',
-                    'scale_info::217',
-                    'scale_info::210',
+                    'scale_info::224',
+                    'scale_info::216',
                     (None, 'u128'),
                 ),
                 'OpeningCanceled': 'u64',
-                'OpeningFilled': ('u64', 'scale_info::214', 'scale_info::84'),
-                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::221'),
+                'OpeningFilled': ('u64', 'scale_info::221', 'scale_info::90'),
+                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::228'),
                 'StakeDecreased': ('u64', 'u128'),
                 'StakeIncreased': ('u64', 'u128'),
                 'StakeSlashed': ('u64', 'u128', 'u128', (None, 'Bytes')),
-                'StatusTextChanged': ('[u8; 32]', (None, 'Bytes')),
+                'StatusTextChanged': ('scale_info::11', (None, 'Bytes')),
                 'TerminatedLeader': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'TerminatedWorker': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'WorkerExited': 'u64',
@@ -744,44 +714,54 @@ result = substrate.query(
                 'WorkingGroupBudgetFunded': ('u64', 'u128', 'Bytes'),
             },
             'ElectionProviderMultiPhase': {
+                'ElectionFailed': None,
                 'ElectionFinalized': {
-                    'election_compute': (None, 'scale_info::33'),
+                    'compute': 'scale_info::36',
+                    'score': 'scale_info::39',
+                },
+                'PhaseTransitioned': {
+                    'from': 'scale_info::40',
+                    'round': 'u32',
+                    'to': 'scale_info::40',
                 },
                 'Rewarded': {'account': 'AccountId', 'value': 'u128'},
-                'SignedPhaseStarted': {'round': 'u32'},
                 'Slashed': {'account': 'AccountId', 'value': 'u128'},
                 'SolutionStored': {
-                    'election_compute': 'scale_info::33',
+                    'compute': 'scale_info::36',
+                    'origin': (None, 'AccountId'),
                     'prev_ejected': 'bool',
                 },
-                'UnsignedPhaseStarted': {'round': 'u32'},
             },
             'Forum': {
                 'CategoryArchivalStatusUpdated': (
                     'u64',
                     'bool',
-                    'scale_info::79',
+                    'scale_info::85',
                 ),
                 'CategoryCreated': ('u64', (None, 'u64'), 'Bytes', 'Bytes'),
-                'CategoryDeleted': ('u64', 'scale_info::79'),
+                'CategoryDeleted': ('u64', 'scale_info::85'),
                 'CategoryDescriptionUpdated': (
                     'u64',
-                    '[u8; 32]',
-                    'scale_info::79',
+                    'scale_info::11',
+                    'scale_info::85',
                 ),
                 'CategoryMembershipOfModeratorUpdated': ('u64', 'u64', 'bool'),
                 'CategoryStickyThreadUpdate': (
                     'u64',
-                    'scale_info::84',
-                    'scale_info::79',
+                    'scale_info::90',
+                    'scale_info::85',
                 ),
-                'CategoryTitleUpdated': ('u64', '[u8; 32]', 'scale_info::79'),
+                'CategoryTitleUpdated': (
+                    'u64',
+                    'scale_info::11',
+                    'scale_info::85',
+                ),
                 'PostAdded': ('u64', 'u64', 'u64', 'u64', 'Bytes', 'bool'),
-                'PostDeleted': ('Bytes', 'u64', 'scale_info::81'),
+                'PostDeleted': ('Bytes', 'u64', 'scale_info::87'),
                 'PostModerated': (
                     'u64',
                     'Bytes',
-                    'scale_info::79',
+                    'scale_info::85',
                     'u64',
                     'u64',
                 ),
@@ -796,13 +776,13 @@ result = substrate.query(
                 ),
                 'ThreadDeleted': ('u64', 'u64', 'u64', 'bool'),
                 'ThreadMetadataUpdated': ('u64', 'u64', 'u64', 'Bytes'),
-                'ThreadModerated': ('u64', 'Bytes', 'scale_info::79', 'u64'),
-                'ThreadMoved': ('u64', 'u64', 'scale_info::79', 'u64'),
-                'ThreadUpdated': ('u64', 'bool', 'scale_info::79', 'u64'),
+                'ThreadModerated': ('u64', 'Bytes', 'scale_info::85', 'u64'),
+                'ThreadMoved': ('u64', 'u64', 'scale_info::85', 'u64'),
+                'ThreadUpdated': ('u64', 'bool', 'scale_info::85', 'u64'),
             },
             'ForumWorkingGroup': {
                 'ApplicationWithdrawn': 'u64',
-                'AppliedOnOpening': ('scale_info::218', 'u64'),
+                'AppliedOnOpening': ('scale_info::225', 'u64'),
                 'BudgetSet': 'u128',
                 'BudgetSpending': ('AccountId', 'u128', (None, 'Bytes')),
                 'LeadRemarked': 'Bytes',
@@ -812,17 +792,17 @@ result = substrate.query(
                 'OpeningAdded': (
                     'u64',
                     'Bytes',
-                    'scale_info::217',
-                    'scale_info::210',
+                    'scale_info::224',
+                    'scale_info::216',
                     (None, 'u128'),
                 ),
                 'OpeningCanceled': 'u64',
-                'OpeningFilled': ('u64', 'scale_info::214', 'scale_info::84'),
-                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::221'),
+                'OpeningFilled': ('u64', 'scale_info::221', 'scale_info::90'),
+                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::228'),
                 'StakeDecreased': ('u64', 'u128'),
                 'StakeIncreased': ('u64', 'u128'),
                 'StakeSlashed': ('u64', 'u128', 'u128', (None, 'Bytes')),
-                'StatusTextChanged': ('[u8; 32]', (None, 'Bytes')),
+                'StatusTextChanged': ('scale_info::11', (None, 'Bytes')),
                 'TerminatedLeader': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'TerminatedWorker': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'WorkerExited': 'u64',
@@ -841,16 +821,16 @@ result = substrate.query(
             'ImOnline': {
                 'AllGood': None,
                 'HeartbeatReceived': {'authority_id': '[u8; 32]'},
-                'SomeOffline': {'offline': [('AccountId', 'scale_info::51')]},
+                'SomeOffline': {'offline': [('AccountId', 'scale_info::58')]},
             },
             'JoystreamUtility': {
                 'RuntimeUpgraded': 'Bytes',
                 'Signaled': 'Bytes',
                 'TokensBurned': ('AccountId', 'u128'),
                 'UpdatedWorkingGroupBudget': (
-                    'scale_info::96',
+                    'scale_info::102',
                     'u128',
-                    'scale_info::97',
+                    'scale_info::103',
                 ),
             },
             'Members': {
@@ -863,8 +843,8 @@ result = substrate.query(
                     (None, 'AccountId'),
                     (None, 'AccountId'),
                 ),
-                'MemberCreated': ('u64', 'scale_info::72', 'u32'),
-                'MemberInvited': ('u64', 'scale_info::71', 'u128'),
+                'MemberCreated': ('u64', 'scale_info::79', 'u32'),
+                'MemberInvited': ('u64', 'scale_info::78', 'u128'),
                 'MemberProfileUpdated': (
                     'u64',
                     (None, 'Bytes'),
@@ -876,8 +856,8 @@ result = substrate.query(
                     (None, ('AccountId', 'u128')),
                 ),
                 'MemberVerificationStatusUpdated': ('u64', 'bool', 'u64'),
-                'MembershipBought': ('u64', 'scale_info::68', 'u32'),
-                'MembershipGifted': ('u64', 'scale_info::73'),
+                'MembershipBought': ('u64', 'scale_info::75', 'u32'),
+                'MembershipGifted': ('u64', 'scale_info::80'),
                 'MembershipPriceUpdated': 'u128',
                 'ReferralCutUpdated': 'u8',
                 'StakingAccountAdded': ('AccountId', 'u64'),
@@ -886,7 +866,7 @@ result = substrate.query(
             },
             'MembershipWorkingGroup': {
                 'ApplicationWithdrawn': 'u64',
-                'AppliedOnOpening': ('scale_info::218', 'u64'),
+                'AppliedOnOpening': ('scale_info::225', 'u64'),
                 'BudgetSet': 'u128',
                 'BudgetSpending': ('AccountId', 'u128', (None, 'Bytes')),
                 'LeadRemarked': 'Bytes',
@@ -896,17 +876,17 @@ result = substrate.query(
                 'OpeningAdded': (
                     'u64',
                     'Bytes',
-                    'scale_info::217',
-                    'scale_info::210',
+                    'scale_info::224',
+                    'scale_info::216',
                     (None, 'u128'),
                 ),
                 'OpeningCanceled': 'u64',
-                'OpeningFilled': ('u64', 'scale_info::214', 'scale_info::84'),
-                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::221'),
+                'OpeningFilled': ('u64', 'scale_info::221', 'scale_info::90'),
+                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::228'),
                 'StakeDecreased': ('u64', 'u128'),
                 'StakeIncreased': ('u64', 'u128'),
                 'StakeSlashed': ('u64', 'u128', 'u128', (None, 'Bytes')),
-                'StatusTextChanged': ('[u8; 32]', (None, 'Bytes')),
+                'StatusTextChanged': ('scale_info::11', (None, 'Bytes')),
                 'TerminatedLeader': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'TerminatedWorker': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'WorkerExited': 'u64',
@@ -922,20 +902,20 @@ result = substrate.query(
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::60',
+                    'timepoint': 'scale_info::67',
                 },
                 'MultisigCancelled': {
                     'call_hash': '[u8; 32]',
                     'cancelling': 'AccountId',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::60',
+                    'timepoint': 'scale_info::67',
                 },
                 'MultisigExecuted': {
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'result': 'scale_info::28',
-                    'timepoint': 'scale_info::60',
+                    'result': 'scale_info::30',
+                    'timepoint': 'scale_info::67',
                 },
                 'NewMultisig': {
                     'approving': 'AccountId',
@@ -946,7 +926,7 @@ result = substrate.query(
             'Offences': {'Offence': {'kind': '[u8; 16]', 'timeslot': 'Bytes'}},
             'OperationsWorkingGroupAlpha': {
                 'ApplicationWithdrawn': 'u64',
-                'AppliedOnOpening': ('scale_info::218', 'u64'),
+                'AppliedOnOpening': ('scale_info::225', 'u64'),
                 'BudgetSet': 'u128',
                 'BudgetSpending': ('AccountId', 'u128', (None, 'Bytes')),
                 'LeadRemarked': 'Bytes',
@@ -956,17 +936,17 @@ result = substrate.query(
                 'OpeningAdded': (
                     'u64',
                     'Bytes',
-                    'scale_info::217',
-                    'scale_info::210',
+                    'scale_info::224',
+                    'scale_info::216',
                     (None, 'u128'),
                 ),
                 'OpeningCanceled': 'u64',
-                'OpeningFilled': ('u64', 'scale_info::214', 'scale_info::84'),
-                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::221'),
+                'OpeningFilled': ('u64', 'scale_info::221', 'scale_info::90'),
+                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::228'),
                 'StakeDecreased': ('u64', 'u128'),
                 'StakeIncreased': ('u64', 'u128'),
                 'StakeSlashed': ('u64', 'u128', 'u128', (None, 'Bytes')),
-                'StatusTextChanged': ('[u8; 32]', (None, 'Bytes')),
+                'StatusTextChanged': ('scale_info::11', (None, 'Bytes')),
                 'TerminatedLeader': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'TerminatedWorker': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'WorkerExited': 'u64',
@@ -979,7 +959,7 @@ result = substrate.query(
             },
             'OperationsWorkingGroupBeta': {
                 'ApplicationWithdrawn': 'u64',
-                'AppliedOnOpening': ('scale_info::218', 'u64'),
+                'AppliedOnOpening': ('scale_info::225', 'u64'),
                 'BudgetSet': 'u128',
                 'BudgetSpending': ('AccountId', 'u128', (None, 'Bytes')),
                 'LeadRemarked': 'Bytes',
@@ -989,17 +969,17 @@ result = substrate.query(
                 'OpeningAdded': (
                     'u64',
                     'Bytes',
-                    'scale_info::217',
-                    'scale_info::210',
+                    'scale_info::224',
+                    'scale_info::216',
                     (None, 'u128'),
                 ),
                 'OpeningCanceled': 'u64',
-                'OpeningFilled': ('u64', 'scale_info::214', 'scale_info::84'),
-                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::221'),
+                'OpeningFilled': ('u64', 'scale_info::221', 'scale_info::90'),
+                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::228'),
                 'StakeDecreased': ('u64', 'u128'),
                 'StakeIncreased': ('u64', 'u128'),
                 'StakeSlashed': ('u64', 'u128', 'u128', (None, 'Bytes')),
-                'StatusTextChanged': ('[u8; 32]', (None, 'Bytes')),
+                'StatusTextChanged': ('scale_info::11', (None, 'Bytes')),
                 'TerminatedLeader': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'TerminatedWorker': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'WorkerExited': 'u64',
@@ -1012,7 +992,7 @@ result = substrate.query(
             },
             'OperationsWorkingGroupGamma': {
                 'ApplicationWithdrawn': 'u64',
-                'AppliedOnOpening': ('scale_info::218', 'u64'),
+                'AppliedOnOpening': ('scale_info::225', 'u64'),
                 'BudgetSet': 'u128',
                 'BudgetSpending': ('AccountId', 'u128', (None, 'Bytes')),
                 'LeadRemarked': 'Bytes',
@@ -1022,17 +1002,17 @@ result = substrate.query(
                 'OpeningAdded': (
                     'u64',
                     'Bytes',
-                    'scale_info::217',
-                    'scale_info::210',
+                    'scale_info::224',
+                    'scale_info::216',
                     (None, 'u128'),
                 ),
                 'OpeningCanceled': 'u64',
-                'OpeningFilled': ('u64', 'scale_info::214', 'scale_info::84'),
-                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::221'),
+                'OpeningFilled': ('u64', 'scale_info::221', 'scale_info::90'),
+                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::228'),
                 'StakeDecreased': ('u64', 'u128'),
                 'StakeIncreased': ('u64', 'u128'),
                 'StakeSlashed': ('u64', 'u128', 'u128', (None, 'Bytes')),
-                'StatusTextChanged': ('[u8; 32]', (None, 'Bytes')),
+                'StatusTextChanged': ('scale_info::11', (None, 'Bytes')),
                 'TerminatedLeader': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'TerminatedWorker': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'WorkerExited': 'u64',
@@ -1048,37 +1028,42 @@ result = substrate.query(
                     'u64',
                     'u64',
                     'AccountId',
-                    'scale_info::171',
+                    'scale_info::177',
                 ),
-                'MemberJoinedWhitelist': ('u64', 'u64', 'scale_info::171'),
+                'AmmActivated': ('u64', 'u64', 'scale_info::201'),
+                'AmmDeactivated': ('u64', 'u64', 'u128'),
+                'FrozenStatusUpdated': 'bool',
+                'MemberJoinedWhitelist': ('u64', 'u64', 'scale_info::177'),
                 'PatronageCreditClaimed': ('u64', 'u128', 'u64'),
-                'PatronageRateDecreasedTo': ('u64', 'u64'),
+                'PatronageRateDecreasedTo': ('u64', 'u32'),
                 'RevenueSplitFinalized': ('u64', 'AccountId', 'u128'),
                 'RevenueSplitIssued': ('u64', 'u32', 'u32', 'u128'),
                 'RevenueSplitLeft': ('u64', 'u64', 'u128'),
                 'TokenAmountTransferred': (
                     'u64',
                     'u64',
-                    'scale_info::191',
+                    'scale_info::197',
                     'Bytes',
                 ),
                 'TokenAmountTransferredByIssuer': (
                     'u64',
                     'u64',
-                    'scale_info::191',
+                    'scale_info::197',
                     'Bytes',
                 ),
                 'TokenDeissued': 'u64',
-                'TokenIssued': ('u64', 'scale_info::172'),
+                'TokenIssued': ('u64', 'scale_info::178'),
                 'TokenSaleFinalized': ('u64', 'u32', 'u128', 'u128'),
                 'TokenSaleInitialized': (
                     'u64',
                     'u32',
-                    'scale_info::194',
+                    'scale_info::200',
                     (None, 'Bytes'),
                 ),
+                'TokensBoughtOnAmm': ('u64', 'u64', 'u128', 'u128'),
                 'TokensBurned': ('u64', 'u64', 'u128'),
                 'TokensPurchasedOnSale': ('u64', 'u32', 'u128', 'u64'),
+                'TokensSoldOnAmm': ('u64', 'u64', 'u128', 'u128'),
                 'TransferPolicyChangedToPermissionless': 'u64',
                 'UpcomingTokenSaleUpdated': (
                     'u64',
@@ -1097,8 +1082,8 @@ result = substrate.query(
             'ProposalsCodex': {
                 'ProposalCreated': (
                     'u32',
-                    'scale_info::205',
-                    'scale_info::206',
+                    'scale_info::211',
+                    'scale_info::212',
                     'u64',
                 ),
             },
@@ -1107,69 +1092,85 @@ result = substrate.query(
                 'PostDeleted': ('u64', 'u64', 'u64', 'bool'),
                 'PostUpdated': ('u64', 'u64', 'u64', 'Bytes'),
                 'ThreadCreated': ('u64', 'u64'),
-                'ThreadModeChanged': ('u64', 'scale_info::203', 'u64'),
+                'ThreadModeChanged': ('u64', 'scale_info::209', 'u64'),
             },
             'ProposalsEngine': {
                 'ProposalCancelled': ('u64', 'u32'),
-                'ProposalDecisionMade': ('u32', 'scale_info::198'),
-                'ProposalExecuted': ('u32', 'scale_info::200'),
-                'ProposalStatusUpdated': ('u32', 'scale_info::197'),
+                'ProposalDecisionMade': ('u32', 'scale_info::204'),
+                'ProposalExecuted': ('u32', 'scale_info::206'),
+                'ProposalStatusUpdated': ('u32', 'scale_info::203'),
                 'ProposerRemarked': ('u64', 'u32', 'Bytes'),
-                'Voted': ('u64', 'u32', 'scale_info::201', 'Bytes'),
+                'Voted': ('u64', 'u32', 'scale_info::207', 'Bytes'),
             },
             'Referendum': {
                 'AccountOptedOutOfVoting': 'AccountId',
-                'ReferendumFinished': ['scale_info::66'],
+                'ReferendumFinished': ['scale_info::73'],
                 'ReferendumStarted': ('u32', 'u32'),
                 'ReferendumStartedForcefully': ('u32', 'u32'),
                 'RevealingStageStarted': 'u32',
                 'StakeReleased': 'AccountId',
-                'VoteCast': ('AccountId', '[u8; 32]', 'u128'),
+                'VoteCast': ('AccountId', 'scale_info::11', 'u128'),
                 'VoteRevealed': ('AccountId', 'u64', 'Bytes'),
             },
             'Session': {'NewSession': {'session_index': 'u32'}},
             'Staking': {
-                'Bonded': ('AccountId', 'u128'),
-                'Chilled': 'AccountId',
-                'EraPaid': ('u32', 'u128', 'u128'),
-                'Kicked': ('AccountId', 'AccountId'),
-                'OldSlashingReportDiscarded': 'u32',
-                'PayoutStarted': ('u32', 'AccountId'),
-                'Rewarded': ('AccountId', 'u128'),
-                'Slashed': ('AccountId', 'u128'),
+                'Bonded': {'amount': 'u128', 'stash': 'AccountId'},
+                'Chilled': {'stash': 'AccountId'},
+                'EraPaid': {
+                    'era_index': 'u32',
+                    'remainder': 'u128',
+                    'validator_payout': 'u128',
+                },
+                'ForceEra': {'mode': 'scale_info::46'},
+                'Kicked': {'nominator': 'AccountId', 'stash': 'AccountId'},
+                'OldSlashingReportDiscarded': {'session_index': 'u32'},
+                'PayoutStarted': {
+                    'era_index': 'u32',
+                    'validator_stash': 'AccountId',
+                },
+                'Rewarded': {'amount': 'u128', 'stash': 'AccountId'},
+                'SlashReported': {
+                    'fraction': 'u32',
+                    'slash_era': 'u32',
+                    'validator': 'AccountId',
+                },
+                'Slashed': {'amount': 'u128', 'staker': 'AccountId'},
                 'StakersElected': None,
                 'StakingElectionFailed': None,
-                'Unbonded': ('AccountId', 'u128'),
-                'ValidatorPrefsSet': ('AccountId', 'scale_info::37'),
-                'Withdrawn': ('AccountId', 'u128'),
+                'Unbonded': {'amount': 'u128', 'stash': 'AccountId'},
+                'ValidatorPrefsSet': {
+                    'prefs': 'scale_info::44',
+                    'stash': 'AccountId',
+                },
+                'Withdrawn': {'amount': 'u128', 'stash': 'AccountId'},
             },
             'Storage': {
                 'DataObjectPerMegabyteFeeUpdated': 'u128',
                 'DataObjectStateBloatBondValueUpdated': 'u128',
                 'DataObjectsDeleted': (
                     'AccountId',
-                    'scale_info::159',
-                    'scale_info::84',
+                    'scale_info::165',
+                    'scale_info::90',
                 ),
                 'DataObjectsMoved': (
-                    'scale_info::159',
-                    'scale_info::159',
-                    'scale_info::84',
+                    'scale_info::165',
+                    'scale_info::165',
+                    'scale_info::90',
                 ),
                 'DataObjectsUpdated': (
-                    'scale_info::158',
-                    'scale_info::84',
-                    'scale_info::84',
+                    'scale_info::164',
+                    'scale_info::90',
+                    'scale_info::90',
                 ),
                 'DataObjectsUploaded': (
-                    'scale_info::84',
-                    'scale_info::158',
+                    'scale_info::90',
+                    'scale_info::164',
                     'u128',
                 ),
                 'DistributionBucketCreated': (
                     'u64',
                     'bool',
-                    'scale_info::131',
+                    'scale_info::137',
                 ),
                 'DistributionBucketDeleted': {
                     'distribution_bucket_family_id': 'u64',
@@ -1180,54 +1181,54 @@ result = substrate.query(
                 'DistributionBucketFamilyMetadataSet': ('u64', 'Bytes'),
                 'DistributionBucketInvitationAccepted': (
                     'u64',
-                    'scale_info::131',
+                    'scale_info::137',
                 ),
                 'DistributionBucketInvitationCancelled': (
-                    'scale_info::131',
+                    'scale_info::137',
                     'u64',
                 ),
                 'DistributionBucketMetadataSet': (
                     'u64',
-                    'scale_info::131',
+                    'scale_info::137',
                     'Bytes',
                 ),
-                'DistributionBucketModeUpdated': ('scale_info::131', 'bool'),
+                'DistributionBucketModeUpdated': ('scale_info::137', 'bool'),
                 'DistributionBucketOperatorInvited': (
-                    'scale_info::131',
+                    'scale_info::137',
                     'u64',
                 ),
                 'DistributionBucketOperatorRemoved': (
-                    'scale_info::131',
+                    'scale_info::137',
                     'u64',
                 ),
-                'DistributionBucketStatusUpdated': ('scale_info::131', 'bool'),
+                'DistributionBucketStatusUpdated': ('scale_info::137', 'bool'),
                 'DistributionBucketsPerBagLimitUpdated': 'u32',
                 'DistributionBucketsUpdatedForBag': (
-                    'scale_info::159',
+                    'scale_info::165',
                     'u64',
-                    'scale_info::84',
-                    'scale_info::84',
+                    'scale_info::90',
+                    'scale_info::90',
                 ),
                 'DistributionOperatorRemarked': (
                     'u64',
-                    'scale_info::131',
+                    'scale_info::137',
                     'Bytes',
                 ),
-                'DynamicBagCreated': ('scale_info::162', 'scale_info::84'),
+                'DynamicBagCreated': ('scale_info::168', 'scale_info::90'),
                 'DynamicBagDeleted': {'Channel': 'u64', 'Member': 'u64'},
                 'FamiliesInDynamicBagCreationPolicyUpdated': (
-                    'scale_info::166',
-                    'scale_info::167',
+                    'scale_info::172',
+                    'scale_info::173',
                 ),
                 'NumberOfStorageBucketsInDynamicBagCreationPolicyUpdated': (
-                    'scale_info::166',
+                    'scale_info::172',
                     'u32',
                 ),
                 'PendingDataObjectsAccepted': (
                     'u64',
                     'u64',
-                    'scale_info::159',
-                    'scale_info::84',
+                    'scale_info::165',
+                    'scale_info::90',
                 ),
                 'StorageBucketCreated': ('u64', (None, 'u64'), 'bool', 'u64', 'u64'),
                 'StorageBucketDeleted': 'u64',
@@ -1239,20 +1240,20 @@ result = substrate.query(
                 'StorageBucketVoucherLimitsSet': ('u64', 'u64', 'u64'),
                 'StorageBucketsPerBagLimitUpdated': 'u32',
                 'StorageBucketsUpdatedForBag': (
-                    'scale_info::159',
-                    'scale_info::84',
-                    'scale_info::84',
+                    'scale_info::165',
+                    'scale_info::90',
+                    'scale_info::90',
                 ),
                 'StorageBucketsVoucherMaxLimitsUpdated': ('u64', 'u64'),
                 'StorageOperatorMetadataSet': ('u64', 'u64', 'Bytes'),
                 'StorageOperatorRemarked': ('u64', 'u64', 'Bytes'),
-                'UpdateBlacklist': ('scale_info::163', 'scale_info::163'),
+                'UpdateBlacklist': ('scale_info::169', 'scale_info::169'),
                 'UploadingBlockStatusUpdated': 'bool',
-                'VoucherChanged': ('u64', 'scale_info::165'),
+                'VoucherChanged': ('u64', 'scale_info::171'),
             },
             'StorageWorkingGroup': {
                 'ApplicationWithdrawn': 'u64',
-                'AppliedOnOpening': ('scale_info::218', 'u64'),
+                'AppliedOnOpening': ('scale_info::225', 'u64'),
                 'BudgetSet': 'u128',
                 'BudgetSpending': ('AccountId', 'u128', (None, 'Bytes')),
                 'LeadRemarked': 'Bytes',
@@ -1262,17 +1263,17 @@ result = substrate.query(
                 'OpeningAdded': (
                     'u64',
                     'Bytes',
-                    'scale_info::217',
-                    'scale_info::210',
+                    'scale_info::224',
+                    'scale_info::216',
                     (None, 'u128'),
                 ),
                 'OpeningCanceled': 'u64',
-                'OpeningFilled': ('u64', 'scale_info::214', 'scale_info::84'),
-                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::221'),
+                'OpeningFilled': ('u64', 'scale_info::221', 'scale_info::90'),
+                'RewardPaid': ('u64', 'AccountId', 'u128', 'scale_info::228'),
                 'StakeDecreased': ('u64', 'u128'),
                 'StakeIncreased': ('u64', 'u128'),
                 'StakeSlashed': ('u64', 'u128', 'u128', (None, 'Bytes')),
-                'StatusTextChanged': ('[u8; 32]', (None, 'Bytes')),
+                'StatusTextChanged': ('scale_info::11', (None, 'Bytes')),
                 'TerminatedLeader': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'TerminatedWorker': ('u64', (None, 'u128'), (None, 'Bytes')),
                 'WorkerExited': 'u64',
@@ -1286,37 +1287,47 @@ result = substrate.query(
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::22',
-                    'dispatch_info': 'scale_info::19',
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
                 },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::19'},
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+                'Remarked': {'hash': 'scale_info::11', 'sender': 'AccountId'},
+            },
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
             },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
                 'BatchInterrupted': {
-                    'error': 'scale_info::22',
+                    'error': 'scale_info::24',
                     'index': 'u32',
                 },
-                'DispatchedAs': {'result': 'scale_info::28'},
+                'DispatchedAs': {'result': 'scale_info::30'},
                 'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::22'},
+                'ItemFailed': {'error': 'scale_info::24'},
             },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
             },
-            None: None,
+            'VoterList': {
+                'Rebagged': {'from': 'u64', 'to': 'u64', 'who': 'AccountId'},
+                'ScoreUpdated': {'new_score': 'u64', 'who': 'AccountId'},
+            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
             'Finalization': None,
             'Initialization': None,
         },
-        'topics': ['[u8; 32]'],
+        'topics': ['scale_info::11'],
     },
 ]
 ```
@@ -1408,7 +1419,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::11'
 ```
 ---------
 ### UpgradedToTripleRefCount
@@ -1472,26 +1483,44 @@ constant = substrate.get_constant('System', 'BlockLength')
 #### Value
 ```python
 {
-    'base_block': 5919668000,
-    'max_block': 2000000000000,
+    'base_block': {'proof_size': 0, 'ref_time': 441686000},
+    'max_block': {
+        'proof_size': 18446744073709551615,
+        'ref_time': 2000000000000,
+    },
     'per_class': {
         'mandatory': {
-            'base_extrinsic': 106628000,
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 110530000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': 106628000,
-            'max_extrinsic': 1299893372000,
-            'max_total': 1500000000000,
-            'reserved': 0,
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 110530000},
+            'max_extrinsic': {
+                'proof_size': 11990383647911208550,
+                'ref_time': 1299889470000,
+            },
+            'max_total': {
+                'proof_size': 13835058055282163711,
+                'ref_time': 1500000000000,
+            },
+            'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': 106628000,
-            'max_extrinsic': 1799893372000,
-            'max_total': 2000000000000,
-            'reserved': 500000000000,
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 110530000},
+            'max_extrinsic': {
+                'proof_size': 16602069666338596454,
+                'ref_time': 1799889470000,
+            },
+            'max_total': {
+                'proof_size': 18446744073709551615,
+                'ref_time': 2000000000000,
+            },
+            'reserved': {
+                'proof_size': 4611686018427387904,
+                'ref_time': 500000000000,
+            },
         },
     },
 }
@@ -1505,7 +1534,7 @@ constant = substrate.get_constant('System', 'BlockWeights')
  The weight of runtime database operations the runtime can invoke.
 #### Value
 ```python
-{'read': 8997000, 'write': 54966000}
+{'read': 4968000, 'write': 64373000}
 ```
 #### Python
 ```python
@@ -1513,7 +1542,7 @@ constant = substrate.get_constant('System', 'DbWeight')
 ```
 ---------
 ### SS58Prefix
- The designated SS85 prefix of this chain.
+ The designated SS58 prefix of this chain.
 
  This replaces the &quot;ss58Format&quot; property declared in the chain spec. Reason is
  that the runtime should know about the prefix in order to make use of it as
@@ -1536,22 +1565,23 @@ constant = substrate.get_constant('System', 'SS58Prefix')
         ('0xdf6acb689907609b', 4),
         ('0x37e397fc7c91f5e4', 1),
         ('0x40fe3ad401f8959a', 6),
+        ('0x18ef58a3b67ba770', 1),
         ('0xd2bc9897eed08f15', 3),
         ('0xf78b278be53f454c', 2),
         ('0xed99c5acb25eedf5', 3),
         ('0xcbca25e39f142387', 2),
         ('0x687ad44ad37f03c2', 1),
         ('0xbc9d89904f5b923f', 1),
-        ('0x37c8bb1350a9a2a8', 1),
+        ('0x37c8bb1350a9a2a8', 3),
         ('0xab3c0572291feb8b', 1),
     ],
     'authoring_version': 12,
     'impl_name': 'joystream-node',
     'impl_version': 0,
     'spec_name': 'joystream-node',
-    'spec_version': 2001,
+    'spec_version': 2002,
     'state_version': 1,
-    'transaction_version': 1,
+    'transaction_version': 2,
 }
 ```
 #### Python

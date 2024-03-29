@@ -48,12 +48,17 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### MessagesInBlock
+#### Attributes
+No attributes
+
+---------
 ### MessagesStored
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | schema_id | `SchemaId` | ```u16```
-| block_number | `T::BlockNumber` | ```u32```
+| block_number | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ## Storage functions
@@ -73,48 +78,31 @@ result = substrate.query(
 'u16'
 ```
 ---------
-### Messages
+### MessagesV2
 
 #### Python
 ```python
 result = substrate.query(
-    'Messages', 'Messages', ['u32', 'u16']
+    'Messages', 'MessagesV2', ['u32', 'u16', 'u16']
 )
 ```
 
 #### Return value
 ```python
-[
-    {
-        'index': 'u16',
-        'msa_id': (None, 'u64'),
-        'payload': 'Bytes',
-        'provider_msa_id': 'u64',
-    },
-]
+{'msa_id': (None, 'u64'), 'payload': 'Bytes', 'provider_msa_id': 'u64'}
 ```
 ---------
 ## Constants
 
 ---------
-### MaxMessagePayloadSizeBytes
+### MessagesMaxPayloadSizeBytes
 #### Value
 ```python
-51200
+3072
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Messages', 'MaxMessagePayloadSizeBytes')
-```
----------
-### MaxMessagesPerBlock
-#### Value
-```python
-7000
-```
-#### Python
-```python
-constant = substrate.get_constant('Messages', 'MaxMessagesPerBlock')
+constant = substrate.get_constant('Messages', 'MessagesMaxPayloadSizeBytes')
 ```
 ---------
 ## Errors

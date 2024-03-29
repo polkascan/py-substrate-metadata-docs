@@ -215,7 +215,7 @@ On on-chain remark happened.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::11```
 
 ---------
 ## Storage functions
@@ -274,7 +274,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::11'
 ```
 ---------
 ### BlockWeight
@@ -352,7 +352,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'System', 'EventTopics', ['[u8; 32]']
+    'System', 'EventTopics', ['scale_info::11']
 )
 ```
 
@@ -382,7 +382,6 @@ result = substrate.query(
 [
     {
         'event': {
-            None: None,
             'Assets': {
                 'ApprovalCancelled': {
                     'asset_id': 'u32',
@@ -515,16 +514,16 @@ result = substrate.query(
             },
             'Contracts': {
                 'Called': {'caller': 'AccountId', 'contract': 'AccountId'},
-                'CodeRemoved': {'code_hash': '[u8; 32]'},
-                'CodeStored': {'code_hash': '[u8; 32]'},
+                'CodeRemoved': {'code_hash': 'scale_info::11'},
+                'CodeStored': {'code_hash': 'scale_info::11'},
                 'ContractCodeUpdated': {
                     'contract': 'AccountId',
-                    'new_code_hash': '[u8; 32]',
-                    'old_code_hash': '[u8; 32]',
+                    'new_code_hash': 'scale_info::11',
+                    'old_code_hash': 'scale_info::11',
                 },
                 'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
                 'DelegateCalled': {
-                    'code_hash': '[u8; 32]',
+                    'code_hash': 'scale_info::11',
                     'contract': 'AccountId',
                 },
                 'Instantiated': {
@@ -736,23 +735,23 @@ result = substrate.query(
             },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
+                    'dmq_head': 'scale_info::11',
                     'weight_used': 'scale_info::8',
                 },
                 'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpgradeAuthorized': {'code_hash': 'scale_info::11'},
                 'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
                 'ValidationFunctionDiscarded': None,
                 'ValidationFunctionStored': None,
             },
             'PolkadotXcm': {
                 'AssetsClaimed': (
-                    '[u8; 32]',
+                    'scale_info::11',
                     'scale_info::48',
                     'scale_info::79',
                 ),
                 'AssetsTrapped': (
-                    '[u8; 32]',
+                    'scale_info::11',
                     'scale_info::48',
                     'scale_info::79',
                 ),
@@ -795,13 +794,13 @@ result = substrate.query(
                 'VersionChangeNotified': ('scale_info::48', 'u32'),
             },
             'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
+                'Cleared': {'hash': 'scale_info::11'},
+                'Noted': {'hash': 'scale_info::11'},
+                'Requested': {'hash': 'scale_info::11'},
             },
             'Proxy': {
                 'Announced': {
-                    'call_hash': '[u8; 32]',
+                    'call_hash': 'scale_info::11',
                     'proxy': 'AccountId',
                     'real': 'AccountId',
                 },
@@ -861,7 +860,7 @@ result = substrate.query(
                 'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
+                'Remarked': {'hash': 'scale_info::11', 'sender': 'AccountId'},
             },
             'Tokens': {
                 'BalanceSet': {
@@ -943,13 +942,6 @@ result = substrate.query(
                 'TransactionUnpaused': {
                     'function_name_bytes': 'Bytes',
                     'pallet_name_bytes': 'Bytes',
-                },
-            },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
                 },
             },
             'Treasury': {
@@ -1072,6 +1064,36 @@ result = substrate.query(
                     'to': 'AccountId',
                 },
             },
+            'XcmpQueue': {
+                'BadFormat': {'message_hash': (None, 'scale_info::11')},
+                'BadVersion': {'message_hash': (None, 'scale_info::11')},
+                'Fail': {
+                    'error': 'scale_info::44',
+                    'message_hash': (None, 'scale_info::11'),
+                    'weight': 'scale_info::8',
+                },
+                'OverweightEnqueued': {
+                    'index': 'u64',
+                    'required': 'scale_info::8',
+                    'sender': 'u32',
+                    'sent_at': 'u32',
+                },
+                'OverweightServiced': {
+                    'index': 'u64',
+                    'used': 'scale_info::8',
+                },
+                'Success': {'message_hash': (None, 'scale_info::11'), 'weight': 'scale_info::8'},
+                'UpwardMessageSent': {'message_hash': (None, 'scale_info::11')},
+                'XcmpMessageSent': {'message_hash': (None, 'scale_info::11')},
+            },
+            None: None,
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -1098,35 +1120,13 @@ result = substrate.query(
                     'recipient': 'AccountId',
                 },
             },
-            'XcmpQueue': {
-                'BadFormat': {'message_hash': (None, '[u8; 32]')},
-                'BadVersion': {'message_hash': (None, '[u8; 32]')},
-                'Fail': {
-                    'error': 'scale_info::44',
-                    'message_hash': (None, '[u8; 32]'),
-                    'weight': 'scale_info::8',
-                },
-                'OverweightEnqueued': {
-                    'index': 'u64',
-                    'required': 'scale_info::8',
-                    'sender': 'u32',
-                    'sent_at': 'u32',
-                },
-                'OverweightServiced': {
-                    'index': 'u64',
-                    'used': 'scale_info::8',
-                },
-                'Success': {'message_hash': (None, '[u8; 32]'), 'weight': 'scale_info::8'},
-                'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
-                'XcmpMessageSent': {'message_hash': (None, '[u8; 32]')},
-            },
         },
         'phase': {
             'ApplyExtrinsic': 'u32',
             'Finalization': None,
             'Initialization': None,
         },
-        'topics': ['[u8; 32]'],
+        'topics': ['scale_info::11'],
     },
 ]
 ```
@@ -1218,7 +1218,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::11'
 ```
 ---------
 ### UpgradedToTripleRefCount

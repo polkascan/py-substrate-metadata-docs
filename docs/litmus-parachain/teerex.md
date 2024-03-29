@@ -17,7 +17,7 @@ call = substrate.compose_call(
     'Teerex', 'call_worker', {
     'request': {
         'cyphertext': 'Bytes',
-        'shard': '[u8; 32]',
+        'shard': 'scale_info::11',
     },
 }
 )
@@ -38,9 +38,9 @@ confirm a state update.
 ```python
 call = substrate.compose_call(
     'Teerex', 'confirm_processed_parentchain_block', {
-    'block_hash': '[u8; 32]',
+    'block_hash': 'scale_info::11',
     'block_number': 'u32',
-    'trusted_calls_merkle_root': '[u8; 32]',
+    'trusted_calls_merkle_root': 'scale_info::11',
 }
 )
 ```
@@ -66,8 +66,8 @@ utf8-encoded string, the UIs will usually even render the text.
 call = substrate.compose_call(
     'Teerex', 'publish_hash', {
     'data': 'Bytes',
-    'extra_topics': ['[u8; 32]'],
-    'hash': '[u8; 32]',
+    'extra_topics': ['scale_info::11'],
+    'hash': 'scale_info::11',
 }
 )
 ```
@@ -234,7 +234,7 @@ call = substrate.compose_call(
     'Teerex', 'unshield_funds', {
     'amount': 'u128',
     'bonding_account': 'AccountId',
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::11',
     'public_account': 'AccountId',
 }
 )
@@ -274,7 +274,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ShardIdentifier` | ```[u8; 32]```
+| None | `ShardIdentifier` | ```scale_info::11```
 
 ---------
 ### ProcessedParentchainBlock
@@ -282,8 +282,8 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
-| None | `H256` | ```[u8; 32]```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::11```
+| None | `H256` | ```scale_info::11```
 | None | `T::BlockNumber` | ```u32```
 
 ---------
@@ -293,7 +293,7 @@ An enclave with [mr_enclave] has published some [hash] with some metadata [data]
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | mr_enclave | `MrEnclave` | ```[u8; 32]```
-| hash | `H256` | ```[u8; 32]```
+| hash | `H256` | ```scale_info::11```
 | data | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -412,7 +412,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Teerex', 'ExecutedCalls', ['[u8; 32]']
+    'Teerex', 'ExecutedCalls', ['scale_info::11']
 )
 ```
 

@@ -5,6 +5,18 @@
 ## Calls
 
 ---------
+### remove_key
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Sudo', 'remove_key', {}
+)
+```
+
+---------
 ### set_key
 #### Attributes
 | Name | Type |
@@ -93,7 +105,13 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| old_sudoer | `Option<T::AccountId>` | ```(None, 'AccountId')```
+| old | `Option<T::AccountId>` | ```(None, 'AccountId')```
+| new | `T::AccountId` | ```AccountId```
+
+---------
+### KeyRemoved
+#### Attributes
+No attributes
 
 ---------
 ### Sudid

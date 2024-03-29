@@ -39,10 +39,10 @@ call = substrate.compose_call(
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::9',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::9',
+            'state_root': 'scale_info::9',
         },
     ],
 }
@@ -95,7 +95,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[{'InclusionHeight': 'u32', 'Uncle': ('[u8; 32]', (None, 'AccountId'))}]
+[{'InclusionHeight': 'u32', 'Uncle': ('scale_info::9', (None, 'AccountId'))}]
 ```
 ---------
 ## Constants

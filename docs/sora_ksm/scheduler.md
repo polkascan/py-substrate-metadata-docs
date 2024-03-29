@@ -231,12 +231,13 @@ result = substrate.query(
         {
             'call': {
                 'Inline': 'Bytes',
-                'Legacy': {'hash': '[u8; 32]'},
-                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+                'Legacy': {'hash': 'scale_info::11'},
+                'Lookup': {'hash': 'scale_info::11', 'len': 'u32'},
             },
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -247,7 +248,7 @@ result = substrate.query(
                     'Response': 'scale_info::43',
                     'Xcm': 'scale_info::43',
                 },
-                'SubstrateDispatch': {'origin': 'scale_info::363'},
+                'SubstrateDispatch': {'origin': 'scale_info::340'},
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -255,7 +256,6 @@ result = substrate.query(
                 },
                 'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },

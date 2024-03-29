@@ -6,11 +6,7 @@
 
 ---------
 ### resume_xcm_execution
-Resumes all XCM executions for the XCMP queue.
-
-Note that this function doesn&\#x27;t change the status of the in/out bound channels.
-
-- `origin`: Must pass `ControllerOrigin`.
+See [`Pallet::resume_xcm_execution`].
 #### Attributes
 No attributes
 
@@ -22,44 +18,8 @@ call = substrate.compose_call(
 ```
 
 ---------
-### service_overweight
-Services a single overweight XCM.
-
-- `origin`: Must pass `ExecuteOverweightOrigin`.
-- `index`: The index of the overweight XCM to service
-- `weight_limit`: The amount of weight that XCM execution may take.
-
-Errors:
-- `BadOverweightIndex`: XCM under `index` is not found in the `Overweight` storage map.
-- `BadXcm`: XCM under `index` cannot be properly decoded into a valid XCM format.
-- `WeightOverLimit`: XCM execution may use greater `weight_limit`.
-
-Events:
-- `OverweightServiced`: On success.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| index | `OverweightIndex` | 
-| weight_limit | `Weight` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'XcmpQueue', 'service_overweight', {
-    'index': 'u64',
-    'weight_limit': {
-        'proof_size': 'u64',
-        'ref_time': 'u64',
-    },
-}
-)
-```
-
----------
 ### suspend_xcm_execution
-Suspends all XCM executions for the XCMP queue, regardless of the sender&\#x27;s origin.
-
-- `origin`: Must pass `ControllerOrigin`.
+See [`Pallet::suspend_xcm_execution`].
 #### Attributes
 No attributes
 
@@ -72,11 +32,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_drop_threshold
-Overwrites the number of pages of messages which must be in the queue after which we drop any further
-messages from the channel.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.drop_threshold`
+See [`Pallet::update_drop_threshold`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -91,11 +47,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_resume_threshold
-Overwrites the number of pages of messages which the queue must be reduced to before it signals that
-message sending may recommence after it has been suspended.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.resume_threshold`
+See [`Pallet::update_resume_threshold`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -110,11 +62,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_suspend_threshold
-Overwrites the number of pages of messages which must be in the queue for the other side to be told to
-suspend their sending.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.suspend_value`
+See [`Pallet::update_suspend_threshold`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -128,133 +76,7 @@ call = substrate.compose_call(
 ```
 
 ---------
-### update_threshold_weight
-Overwrites the amount of remaining weight under which we stop processing messages.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.threshold_weight`
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| new | `Weight` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'XcmpQueue', 'update_threshold_weight', {
-    'new': {
-        'proof_size': 'u64',
-        'ref_time': 'u64',
-    },
-}
-)
-```
-
----------
-### update_weight_restrict_decay
-Overwrites the speed to which the available weight approaches the maximum weight.
-A lower number results in a faster progression. A value of 1 makes the entire weight available initially.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.weight_restrict_decay`.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| new | `Weight` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'XcmpQueue', 'update_weight_restrict_decay', {
-    'new': {
-        'proof_size': 'u64',
-        'ref_time': 'u64',
-    },
-}
-)
-```
-
----------
-### update_xcmp_max_individual_weight
-Overwrite the maximum amount of weight any individual message may consume.
-Messages above this weight go into the overweight queue and may only be serviced explicitly.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.xcmp_max_individual_weight`.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| new | `Weight` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'XcmpQueue', 'update_xcmp_max_individual_weight', {
-    'new': {
-        'proof_size': 'u64',
-        'ref_time': 'u64',
-    },
-}
-)
-```
-
----------
 ## Events
-
----------
-### BadFormat
-Bad XCM format used.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
-
----------
-### BadVersion
-Bad XCM version used.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
-
----------
-### Fail
-Some XCM failed.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
-| error | `XcmError` | ```{'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'LocationFull': None, 'LocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'ExpectationFalse': None, 'PalletNotFound': None, 'NameMismatch': None, 'VersionIncompatible': None, 'HoldingWouldOverflow': None, 'ExportError': None, 'ReanchorFailed': None, 'NoDeal': None, 'FeesNotMet': None, 'LockError': None, 'NoPermission': None, 'Unanchored': None, 'NotDepositable': None, 'UnhandledXcmVersion': None, 'WeightLimitReached': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Barrier': None, 'WeightNotComputable': None, 'ExceedsStackLimit': None}```
-| weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
-
----------
-### OverweightEnqueued
-An XCM exceeded the individual message weight budget.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| sender | `ParaId` | ```u32```
-| sent_at | `RelayBlockNumber` | ```u32```
-| index | `OverweightIndex` | ```u64```
-| required | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
-
----------
-### OverweightServiced
-An XCM from the overweight queue was executed with the given actual weight used.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| index | `OverweightIndex` | ```u64```
-| used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
-
----------
-### Success
-Some XCM was executed ok.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
-| weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### XcmpMessageSent
@@ -262,70 +84,47 @@ An HRMP message was sent to a sibling parachain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ## Storage functions
 
 ---------
-### CounterForOverweight
-Counter for the related counted storage map
+### DeliveryFeeFactor
+ The factor to multiply the base delivery fee by.
 
 #### Python
 ```python
 result = substrate.query(
-    'XcmpQueue', 'CounterForOverweight', []
+    'XcmpQueue', 'DeliveryFeeFactor', ['u32']
 )
 ```
 
 #### Return value
 ```python
-'u32'
+'u128'
 ```
 ---------
-### InboundXcmpMessages
- Inbound aggregate XCMP messages. It can only be one per ParaId/block.
+### InboundXcmpSuspended
+ The suspended inbound XCMP channels. All others are not suspended.
+
+ This is a `StorageValue` instead of a `StorageMap` since we expect multiple reads per block
+ to different keys with a one byte payload. The access to `BoundedBTreeSet` will be cached
+ within the block and therefore only included once in the proof size.
+
+ NOTE: The PoV benchmarking cannot know this and will over-estimate, but the actual proof
+ will be smaller.
 
 #### Python
 ```python
 result = substrate.query(
-    'XcmpQueue', 'InboundXcmpMessages', ['u32', 'u32']
+    'XcmpQueue', 'InboundXcmpSuspended', []
 )
 ```
 
 #### Return value
 ```python
-'Bytes'
-```
----------
-### InboundXcmpStatus
- Status of the inbound XCMP channels.
-
-#### Python
-```python
-result = substrate.query(
-    'XcmpQueue', 'InboundXcmpStatus', []
-)
-```
-
-#### Return value
-```python
-[
-    {
-        'message_metadata': [
-            (
-                'u32',
-                (
-                    'ConcatenatedVersionedXcm',
-                    'ConcatenatedEncodedBlob',
-                    'Signals',
-                ),
-            ),
-        ],
-        'sender': 'u32',
-        'state': ('Ok', 'Suspended'),
-    },
-]
+'scale_info::458'
 ```
 ---------
 ### OutboundXcmpMessages
@@ -371,40 +170,6 @@ result = substrate.query(
 ]
 ```
 ---------
-### Overweight
- The messages that exceeded max individual message weight budget.
-
- These message stay in this storage map until they are manually dispatched via
- `service_overweight`.
-
-#### Python
-```python
-result = substrate.query(
-    'XcmpQueue', 'Overweight', ['u64']
-)
-```
-
-#### Return value
-```python
-('u32', 'u32', 'Bytes')
-```
----------
-### OverweightCount
- The number of overweight messages ever recorded in `Overweight`. Also doubles as the next
- available free overweight index.
-
-#### Python
-```python
-result = substrate.query(
-    'XcmpQueue', 'OverweightCount', []
-)
-```
-
-#### Return value
-```python
-'u64'
-```
----------
 ### QueueConfig
  The configuration which controls the dynamics of the outbound queue.
 
@@ -421,9 +186,6 @@ result = substrate.query(
     'drop_threshold': 'u32',
     'resume_threshold': 'u32',
     'suspend_threshold': 'u32',
-    'threshold_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
-    'weight_restrict_decay': {'proof_size': 'u64', 'ref_time': 'u64'},
-    'xcmp_max_individual_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
 }
 ```
 ---------
@@ -457,26 +219,36 @@ result = substrate.query(
 'Bytes'
 ```
 ---------
+## Constants
+
+---------
+### MaxInboundSuspended
+ The maximum number of inbound XCMP channels that can be suspended simultaneously.
+
+ Any further channel suspensions will fail and messages may get dropped without further
+ notice. Choosing a high value (1000) is okay; the trade-off that is described in
+ [`InboundXcmpSuspended`] still applies at that scale.
+#### Value
+```python
+1000
+```
+#### Python
+```python
+constant = substrate.get_constant('XcmpQueue', 'MaxInboundSuspended')
+```
+---------
 ## Errors
 
 ---------
-### BadOverweightIndex
-Bad overweight index.
+### AlreadyResumed
+The execution is already resumed.
 
 ---------
-### BadXcm
-Bad XCM data.
+### AlreadySuspended
+The execution is already suspended.
 
 ---------
-### BadXcmOrigin
-Bad XCM origin.
-
----------
-### FailedToSend
-Failed to send XCM message.
-
----------
-### WeightOverLimit
-Provided weight is possibly not enough to execute the message.
+### BadQueueConfig
+Setting the queue config failed since one of its values was invalid.
 
 ---------

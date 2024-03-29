@@ -134,9 +134,11 @@ call = substrate.compose_call(
     'Democracy', 'propose', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -426,8 +428,8 @@ result = substrate.query(
         'u32',
         {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::12'},
+            'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
         },
         'AccountId',
     ),
@@ -470,8 +472,8 @@ result = substrate.query(
         'end': 'u32',
         'proposal': {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::12'},
+            'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
         },
         'tally': {'ayes': 'u128', 'nays': 'u128', 'turnout': 'u128'},
         'threshold': (

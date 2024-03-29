@@ -6,17 +6,7 @@
 
 ---------
 ### buy_ticket
-Buy a ticket to enter the lottery.
-
-This extrinsic acts as a passthrough function for `call`. In all
-situations where `call` alone would succeed, this extrinsic should
-succeed.
-
-If `call` is successful, then we will attempt to purchase a ticket,
-which may fail silently. To detect success of a ticket purchase, you
-should listen for the `TicketBought` event.
-
-This extrinsic must be called by a signed origin.
+See [`Pallet::buy_ticket`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -31,12 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_calls
-Set calls in storage which can be used to purchase a lottery ticket.
-
-This function only matters if you use the `ValidateCall` implementation
-provided by this pallet, which uses storage to determine the valid calls.
-
-This extrinsic must be called by the Manager origin.
+See [`Pallet::set_calls`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -51,22 +36,13 @@ call = substrate.compose_call(
 
 ---------
 ### start_lottery
-Start a lottery using the provided configuration.
-
-This extrinsic must be called by the `ManagerOrigin`.
-
-Parameters:
-
-* `price`: The cost of a single ticket.
-* `length`: How long the lottery should run for starting at the current block.
-* `delay`: How long after the lottery end we should wait before picking a winner.
-* `repeat`: If the lottery should repeat when completed.
+See [`Pallet::start_lottery`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | price | `BalanceOf<T>` | 
-| length | `T::BlockNumber` | 
-| delay | `T::BlockNumber` | 
+| length | `BlockNumberFor<T>` | 
+| delay | `BlockNumberFor<T>` | 
 | repeat | `bool` | 
 
 #### Python
@@ -83,10 +59,7 @@ call = substrate.compose_call(
 
 ---------
 ### stop_repeat
-If a lottery is repeating, you can use this to stop the repeat.
-The lottery will continue to run to completion.
-
-This extrinsic must be called by the `ManagerOrigin`.
+See [`Pallet::stop_repeat`].
 #### Attributes
 No attributes
 

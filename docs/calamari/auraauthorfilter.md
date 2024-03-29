@@ -2,3 +2,6 @@
 # AuraAuthorFilter
 
 ---------
+## Storage functions
+
+---------

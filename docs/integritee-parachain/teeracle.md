@@ -6,6 +6,7 @@
 
 ---------
 ### add_to_whitelist
+See [`Pallet::add_to_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -17,13 +18,14 @@
 call = substrate.compose_call(
     'Teeracle', 'add_to_whitelist', {
     'data_source': 'Bytes',
-    'enclave_fingerprint': '[u8; 32]',
+    'enclave_fingerprint': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### remove_from_whitelist
+See [`Pallet::remove_from_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -35,13 +37,14 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Teeracle', 'remove_from_whitelist', {
     'data_source': 'Bytes',
-    'enclave_fingerprint': '[u8; 32]',
+    'enclave_fingerprint': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### update_exchange_rate
+See [`Pallet::update_exchange_rate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -65,6 +68,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_oracle
+See [`Pallet::update_oracle`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -93,7 +97,7 @@ an oracle fingerprint has been added to the whitelist
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | data_source | `DataSource` | ```Bytes```
-| enclave_fingerprint | `EnclaveFingerprint` | ```[u8; 32]```
+| enclave_fingerprint | `EnclaveFingerprint` | ```scale_info::12```
 
 ---------
 ### ExchangeRateDeleted
@@ -130,7 +134,7 @@ an oracle fingerprint has been removed from the whitelist
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | data_source | `DataSource` | ```Bytes```
-| enclave_fingerprint | `EnclaveFingerprint` | ```[u8; 32]```
+| enclave_fingerprint | `EnclaveFingerprint` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -177,7 +181,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::12']
 ```
 ---------
 ## Constants

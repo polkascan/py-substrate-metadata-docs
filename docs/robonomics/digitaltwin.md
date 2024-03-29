@@ -33,7 +33,7 @@ call = substrate.compose_call(
     'DigitalTwin', 'set_source', {
     'id': 'u32',
     'source': 'AccountId',
-    'topic': '[u8; 32]',
+    'topic': 'scale_info::9',
 }
 )
 ```
@@ -58,7 +58,7 @@ Digital twin topic was changed: [sender, id, topic, source]
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `u32` | ```u32```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::9```
 | None | `T::AccountId` | ```AccountId```
 
 ---------

@@ -10,7 +10,7 @@ A candidate was backed. `[candidate, head_data]`
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `CandidateReceipt<T::Hash>` | ```{'descriptor': {'para_id': 'u32', 'relay_parent': '[u8; 32]', 'collator': '[u8; 32]', 'persisted_validation_data_hash': '[u8; 32]', 'pov_hash': '[u8; 32]', 'erasure_root': '[u8; 32]', 'signature': '[u8; 64]', 'para_head': '[u8; 32]', 'validation_code_hash': '[u8; 32]'}, 'commitments_hash': '[u8; 32]'}```
+| None | `CandidateReceipt<T::Hash>` | ```{'descriptor': {'para_id': 'u32', 'relay_parent': 'scale_info::12', 'collator': '[u8; 32]', 'persisted_validation_data_hash': 'scale_info::12', 'pov_hash': 'scale_info::12', 'erasure_root': 'scale_info::12', 'signature': '[u8; 64]', 'para_head': 'scale_info::12', 'validation_code_hash': 'scale_info::12'}, 'commitments_hash': 'scale_info::12'}```
 | None | `HeadData` | ```Bytes```
 | None | `CoreIndex` | ```u32```
 | None | `GroupIndex` | ```u32```
@@ -21,7 +21,7 @@ A candidate was included. `[candidate, head_data]`
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `CandidateReceipt<T::Hash>` | ```{'descriptor': {'para_id': 'u32', 'relay_parent': '[u8; 32]', 'collator': '[u8; 32]', 'persisted_validation_data_hash': '[u8; 32]', 'pov_hash': '[u8; 32]', 'erasure_root': '[u8; 32]', 'signature': '[u8; 64]', 'para_head': '[u8; 32]', 'validation_code_hash': '[u8; 32]'}, 'commitments_hash': '[u8; 32]'}```
+| None | `CandidateReceipt<T::Hash>` | ```{'descriptor': {'para_id': 'u32', 'relay_parent': 'scale_info::12', 'collator': '[u8; 32]', 'persisted_validation_data_hash': 'scale_info::12', 'pov_hash': 'scale_info::12', 'erasure_root': 'scale_info::12', 'signature': '[u8; 64]', 'para_head': 'scale_info::12', 'validation_code_hash': 'scale_info::12'}, 'commitments_hash': 'scale_info::12'}```
 | None | `HeadData` | ```Bytes```
 | None | `CoreIndex` | ```u32```
 | None | `GroupIndex` | ```u32```
@@ -32,7 +32,7 @@ A candidate timed out. `[candidate, head_data]`
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `CandidateReceipt<T::Hash>` | ```{'descriptor': {'para_id': 'u32', 'relay_parent': '[u8; 32]', 'collator': '[u8; 32]', 'persisted_validation_data_hash': '[u8; 32]', 'pov_hash': '[u8; 32]', 'erasure_root': '[u8; 32]', 'signature': '[u8; 64]', 'para_head': '[u8; 32]', 'validation_code_hash': '[u8; 32]'}, 'commitments_hash': '[u8; 32]'}```
+| None | `CandidateReceipt<T::Hash>` | ```{'descriptor': {'para_id': 'u32', 'relay_parent': 'scale_info::12', 'collator': '[u8; 32]', 'persisted_validation_data_hash': 'scale_info::12', 'pov_hash': 'scale_info::12', 'erasure_root': 'scale_info::12', 'signature': '[u8; 64]', 'para_head': 'scale_info::12', 'validation_code_hash': 'scale_info::12'}, 'commitments_hash': 'scale_info::12'}```
 | None | `HeadData` | ```Bytes```
 | None | `CoreIndex` | ```u32```
 
@@ -84,16 +84,16 @@ result = substrate.query(
     'core': 'u32',
     'descriptor': {
         'collator': '[u8; 32]',
-        'erasure_root': '[u8; 32]',
-        'para_head': '[u8; 32]',
+        'erasure_root': 'scale_info::12',
+        'para_head': 'scale_info::12',
         'para_id': 'u32',
-        'persisted_validation_data_hash': '[u8; 32]',
-        'pov_hash': '[u8; 32]',
-        'relay_parent': '[u8; 32]',
+        'persisted_validation_data_hash': 'scale_info::12',
+        'pov_hash': 'scale_info::12',
+        'relay_parent': 'scale_info::12',
         'signature': '[u8; 64]',
-        'validation_code_hash': '[u8; 32]',
+        'validation_code_hash': 'scale_info::12',
     },
-    'hash': '[u8; 32]',
+    'hash': 'scale_info::12',
     'relay_parent_number': 'u32',
 }
 ```
@@ -137,12 +137,13 @@ either intentionally or as part of a concluded
 invalid dispute.
 
 ---------
-### CandidateNotInParentContext
-Candidate not in parent context.
-
----------
 ### CandidateScheduledBeforeParaFree
 Candidate scheduled despite pending candidate already existing for the para.
+
+---------
+### DisallowedRelayParent
+The candidate&\#x27;s relay-parent was not allowed. Either it was
+not recent enough or it didn&\#x27;t advance based on the last parachain block.
 
 ---------
 ### HeadDataTooLarge
@@ -159,6 +160,11 @@ The downward message queue is not processed correctly.
 ---------
 ### InsufficientBacking
 Insufficient (non-majority) backing.
+
+---------
+### InvalidAssignment
+Failed to compute group index for the core: either it&\#x27;s out of bounds
+or the relay parent doesn&\#x27;t belong to the current session.
 
 ---------
 ### InvalidBacking
@@ -194,8 +200,8 @@ Collator did not sign PoV.
 
 ---------
 ### ParaHeadMismatch
-The `para_head` hash in the candidate descriptor doesn&\#x27;t match the hash of the actual para head in the
-commitments.
+The `para_head` hash in the candidate descriptor doesn&\#x27;t match the hash of the actual
+para head in the commitments.
 
 ---------
 ### PrematureCodeUpgrade
@@ -236,9 +242,5 @@ Validator index out of bounds.
 ---------
 ### WrongBitfieldSize
 Availability bitfield has unexpected size.
-
----------
-### WrongCollator
-Candidate included with the wrong collator.
 
 ---------

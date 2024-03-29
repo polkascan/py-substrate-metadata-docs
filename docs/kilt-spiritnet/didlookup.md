@@ -6,28 +6,12 @@
 
 ---------
 ### associate_account
-Associate the given account to the DID that authorized this call.
-
-The account has to sign the DID and a blocknumber after which the
-signature expires in order to authorize the association.
-
-The signature will be checked against the scale encoded tuple of the
-method specific id of the did identifier and the block number after
-which the signature should be regarded invalid.
-
-Emits `AssociationEstablished` and, optionally, `AssociationRemoved`
-if there was a previous association for the account.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: ConnectedDids + ConnectedAccounts + DID Origin Check
-- Writes: ConnectedDids + ConnectedAccounts
-\# &lt;/weight&gt;
+See [`Pallet::associate_account`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | req | `AssociateAccountRequest` | 
-| expiration | `<T as frame_system::Config>::BlockNumber` | 
+| expiration | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -54,17 +38,7 @@ call = substrate.compose_call(
 
 ---------
 ### associate_sender
-Associate the sender of the call to the DID that authorized this
-call.
-
-Emits `AssociationEstablished` and, optionally, `AssociationRemoved`
-if there was a previous association for the account.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: ConnectedDids + ConnectedAccounts + DID Origin Check
-- Writes: ConnectedDids + ConnectedAccounts
-\# &lt;/weight&gt;
+See [`Pallet::associate_sender`].
 #### Attributes
 No attributes
 
@@ -77,13 +51,7 @@ call = substrate.compose_call(
 
 ---------
 ### change_deposit_owner
-Changes the deposit owner.
-
-The balance that is reserved by the current deposit owner will be
-freed and balance of the new deposit owner will get reserved.
-
-The subject of the call must be linked to the account.
-The sender of the call will be the new deposit owner.
+See [`Pallet::change_deposit_owner`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -103,17 +71,7 @@ call = substrate.compose_call(
 
 ---------
 ### reclaim_deposit
-Remove the association of the provided account. This call can only
-be called from the deposit owner. The reserved deposit will be
-freed.
-
-Emits `AssociationRemoved`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: ConnectedDids
-- Writes: ConnectedDids
-\# &lt;/weight&gt;
+See [`Pallet::reclaim_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -133,17 +91,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_account_association
-Remove the association of the provided account ID. This call doesn&\#x27;t
-require the authorization of the account ID, but the associated DID
-needs to match the DID that authorized this call.
-
-Emits `AssociationRemoved`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: ConnectedDids + ConnectedAccounts + DID Origin Check
-- Writes: ConnectedDids + ConnectedAccounts
-\# &lt;/weight&gt;
+See [`Pallet::remove_account_association`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -163,16 +111,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_sender_association
-Remove the association of the sender account. This call doesn&\#x27;t
-require the authorization of the DID, but requires a signed origin.
-
-Emits `AssociationRemoved`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: ConnectedDids + ConnectedAccounts + DID Origin Check
-- Writes: ConnectedDids + ConnectedAccounts
-\# &lt;/weight&gt;
+See [`Pallet::remove_sender_association`].
 #### Attributes
 No attributes
 
@@ -185,9 +124,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_deposit
-Updates the deposit amount to the current deposit rate.
-
-The sender must be the deposit owner.
+See [`Pallet::update_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

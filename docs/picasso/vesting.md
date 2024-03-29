@@ -198,7 +198,7 @@ Claimed vesting.
 | vesting_schedule_ids | `VestingScheduleIdSet<T::VestingScheduleId, T::MaxVestingSchedules>` | ```{'All': None, 'One': 'u128', 'Many': ['u128']}```
 | locked_amount | `BalanceOf<T>` | ```u128```
 | claimed_amount_per_schedule | `BoundedBTreeMap<T::VestingScheduleId, BalanceOf<T>, T::
-MaxVestingSchedules>` | ```scale_info::144```
+MaxVestingSchedules>` | ```scale_info::140```
 
 ---------
 ### VestingScheduleAdded
@@ -254,7 +254,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::604'
+'scale_info::597'
 ```
 ---------
 ## Constants

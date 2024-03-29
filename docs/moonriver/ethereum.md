@@ -6,7 +6,7 @@
 
 ---------
 ### transact
-Transact an Ethereum transaction.
+See [`Pallet::transact`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -22,7 +22,7 @@ call = substrate.compose_call(
                 {
                     'address': '[u8; 20]',
                     'storage_keys': [
-                        '[u8; 32]',
+                        'scale_info::12',
                     ],
                 },
             ],
@@ -31,22 +31,22 @@ call = substrate.compose_call(
                 'Create': None,
             },
             'chain_id': 'u64',
-            'gas_limit': '[u64; 4]',
+            'gas_limit': 'scale_info::188',
             'input': 'Bytes',
-            'max_fee_per_gas': '[u64; 4]',
-            'max_priority_fee_per_gas': '[u64; 4]',
-            'nonce': '[u64; 4]',
+            'max_fee_per_gas': 'scale_info::188',
+            'max_priority_fee_per_gas': 'scale_info::188',
+            'nonce': 'scale_info::188',
             'odd_y_parity': 'bool',
-            'r': '[u8; 32]',
-            's': '[u8; 32]',
-            'value': '[u64; 4]',
+            'r': 'scale_info::12',
+            's': 'scale_info::12',
+            'value': 'scale_info::188',
         },
         'EIP2930': {
             'access_list': [
                 {
                     'address': '[u8; 20]',
                     'storage_keys': [
-                        '[u8; 32]',
+                        'scale_info::12',
                     ],
                 },
             ],
@@ -55,30 +55,30 @@ call = substrate.compose_call(
                 'Create': None,
             },
             'chain_id': 'u64',
-            'gas_limit': '[u64; 4]',
-            'gas_price': '[u64; 4]',
+            'gas_limit': 'scale_info::188',
+            'gas_price': 'scale_info::188',
             'input': 'Bytes',
-            'nonce': '[u64; 4]',
+            'nonce': 'scale_info::188',
             'odd_y_parity': 'bool',
-            'r': '[u8; 32]',
-            's': '[u8; 32]',
-            'value': '[u64; 4]',
+            'r': 'scale_info::12',
+            's': 'scale_info::12',
+            'value': 'scale_info::188',
         },
         'Legacy': {
             'action': {
                 'Call': '[u8; 20]',
                 'Create': None,
             },
-            'gas_limit': '[u64; 4]',
-            'gas_price': '[u64; 4]',
+            'gas_limit': 'scale_info::188',
+            'gas_price': 'scale_info::188',
             'input': 'Bytes',
-            'nonce': '[u64; 4]',
+            'nonce': 'scale_info::188',
             'signature': {
-                'r': '[u8; 32]',
-                's': '[u8; 32]',
+                'r': 'scale_info::12',
+                's': 'scale_info::12',
                 'v': 'u64',
             },
-            'value': '[u64; 4]',
+            'value': 'scale_info::188',
         },
     },
 }
@@ -96,7 +96,7 @@ An ethereum transaction was successfully executed.
 | -------- | -------- | -------- |
 | from | `H160` | ```[u8; 20]```
 | to | `H160` | ```[u8; 20]```
-| transaction_hash | `H256` | ```[u8; 32]```
+| transaction_hash | `H256` | ```scale_info::12```
 | exit_reason | `ExitReason` | ```{'Succeed': ('Stopped', 'Returned', 'Suicided'), 'Error': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', 'MaxNonce': None, 'InvalidCode': 'u8'}, 'Revert': ('Reverted',), 'Fatal': {'NotSupported': None, 'UnhandledInterrupt': None, 'CallErrorAsFatal': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', 'MaxNonce': None, 'InvalidCode': 'u8'}, 'Other': 'Str'}}```
 | extra_data | `Vec<u8>` | ```Bytes```
 
@@ -109,13 +109,13 @@ An ethereum transaction was successfully executed.
 #### Python
 ```python
 result = substrate.query(
-    'Ethereum', 'BlockHash', ['[u64; 4]']
+    'Ethereum', 'BlockHash', ['scale_info::188']
 )
 ```
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### CurrentBlock
@@ -133,77 +133,81 @@ result = substrate.query(
 {
     'header': {
         'beneficiary': '[u8; 20]',
-        'difficulty': '[u64; 4]',
+        'difficulty': 'scale_info::188',
         'extra_data': 'Bytes',
-        'gas_limit': '[u64; 4]',
-        'gas_used': '[u64; 4]',
+        'gas_limit': 'scale_info::188',
+        'gas_used': 'scale_info::188',
         'logs_bloom': '[u8; 256]',
-        'mix_hash': '[u8; 32]',
+        'mix_hash': 'scale_info::12',
         'nonce': '[u8; 8]',
-        'number': '[u64; 4]',
-        'ommers_hash': '[u8; 32]',
-        'parent_hash': '[u8; 32]',
-        'receipts_root': '[u8; 32]',
-        'state_root': '[u8; 32]',
+        'number': 'scale_info::188',
+        'ommers_hash': 'scale_info::12',
+        'parent_hash': 'scale_info::12',
+        'receipts_root': 'scale_info::12',
+        'state_root': 'scale_info::12',
         'timestamp': 'u64',
-        'transactions_root': '[u8; 32]',
+        'transactions_root': 'scale_info::12',
     },
     'ommers': [
         {
             'beneficiary': '[u8; 20]',
-            'difficulty': '[u64; 4]',
+            'difficulty': 'scale_info::188',
             'extra_data': 'Bytes',
-            'gas_limit': '[u64; 4]',
-            'gas_used': '[u64; 4]',
+            'gas_limit': 'scale_info::188',
+            'gas_used': 'scale_info::188',
             'logs_bloom': '[u8; 256]',
-            'mix_hash': '[u8; 32]',
+            'mix_hash': 'scale_info::12',
             'nonce': '[u8; 8]',
-            'number': '[u64; 4]',
-            'ommers_hash': '[u8; 32]',
-            'parent_hash': '[u8; 32]',
-            'receipts_root': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'number': 'scale_info::188',
+            'ommers_hash': 'scale_info::12',
+            'parent_hash': 'scale_info::12',
+            'receipts_root': 'scale_info::12',
+            'state_root': 'scale_info::12',
             'timestamp': 'u64',
-            'transactions_root': '[u8; 32]',
+            'transactions_root': 'scale_info::12',
         },
     ],
     'transactions': [
         {
             'EIP1559': {
-                'access_list': ['scale_info::200'],
+                'access_list': ['scale_info::201'],
                 'action': {'Call': '[u8; 20]', 'Create': None},
                 'chain_id': 'u64',
-                'gas_limit': '[u64; 4]',
+                'gas_limit': 'scale_info::188',
                 'input': 'Bytes',
-                'max_fee_per_gas': '[u64; 4]',
-                'max_priority_fee_per_gas': '[u64; 4]',
-                'nonce': '[u64; 4]',
+                'max_fee_per_gas': 'scale_info::188',
+                'max_priority_fee_per_gas': 'scale_info::188',
+                'nonce': 'scale_info::188',
                 'odd_y_parity': 'bool',
-                'r': '[u8; 32]',
-                's': '[u8; 32]',
-                'value': '[u64; 4]',
+                'r': 'scale_info::12',
+                's': 'scale_info::12',
+                'value': 'scale_info::188',
             },
             'EIP2930': {
-                'access_list': ['scale_info::200'],
+                'access_list': ['scale_info::201'],
                 'action': {'Call': '[u8; 20]', 'Create': None},
                 'chain_id': 'u64',
-                'gas_limit': '[u64; 4]',
-                'gas_price': '[u64; 4]',
+                'gas_limit': 'scale_info::188',
+                'gas_price': 'scale_info::188',
                 'input': 'Bytes',
-                'nonce': '[u64; 4]',
+                'nonce': 'scale_info::188',
                 'odd_y_parity': 'bool',
-                'r': '[u8; 32]',
-                's': '[u8; 32]',
-                'value': '[u64; 4]',
+                'r': 'scale_info::12',
+                's': 'scale_info::12',
+                'value': 'scale_info::188',
             },
             'Legacy': {
                 'action': {'Call': '[u8; 20]', 'Create': None},
-                'gas_limit': '[u64; 4]',
-                'gas_price': '[u64; 4]',
+                'gas_limit': 'scale_info::188',
+                'gas_price': 'scale_info::188',
                 'input': 'Bytes',
-                'nonce': '[u64; 4]',
-                'signature': {'r': '[u8; 32]', 's': '[u8; 32]', 'v': 'u64'},
-                'value': '[u64; 4]',
+                'nonce': 'scale_info::188',
+                'signature': {
+                    'r': 'scale_info::12',
+                    's': 'scale_info::12',
+                    'v': 'u64',
+                },
+                'value': 'scale_info::188',
             },
         },
     ],
@@ -229,36 +233,36 @@ result = substrate.query(
                 {
                     'address': '[u8; 20]',
                     'data': 'Bytes',
-                    'topics': ['[u8; 32]'],
+                    'topics': ['scale_info::12'],
                 },
             ],
             'logs_bloom': '[u8; 256]',
             'status_code': 'u8',
-            'used_gas': '[u64; 4]',
+            'used_gas': 'scale_info::188',
         },
         'EIP2930': {
             'logs': [
                 {
                     'address': '[u8; 20]',
                     'data': 'Bytes',
-                    'topics': ['[u8; 32]'],
+                    'topics': ['scale_info::12'],
                 },
             ],
             'logs_bloom': '[u8; 256]',
             'status_code': 'u8',
-            'used_gas': '[u64; 4]',
+            'used_gas': 'scale_info::188',
         },
         'Legacy': {
             'logs': [
                 {
                     'address': '[u8; 20]',
                     'data': 'Bytes',
-                    'topics': ['[u8; 32]'],
+                    'topics': ['scale_info::12'],
                 },
             ],
             'logs_bloom': '[u8; 256]',
             'status_code': 'u8',
-            'used_gas': '[u64; 4]',
+            'used_gas': 'scale_info::188',
         },
     },
 ]
@@ -281,11 +285,15 @@ result = substrate.query(
         'contract_address': (None, '[u8; 20]'),
         'from': '[u8; 20]',
         'logs': [
-            {'address': '[u8; 20]', 'data': 'Bytes', 'topics': ['[u8; 32]']},
+            {
+                'address': '[u8; 20]',
+                'data': 'Bytes',
+                'topics': ['scale_info::12'],
+            },
         ],
         'logs_bloom': '[u8; 256]',
         'to': (None, '[u8; 20]'),
-        'transaction_hash': '[u8; 32]',
+        'transaction_hash': 'scale_info::12',
         'transaction_index': 'u32',
     },
 ]
@@ -307,40 +315,44 @@ result = substrate.query(
     (
         {
             'EIP1559': {
-                'access_list': ['scale_info::200'],
+                'access_list': ['scale_info::201'],
                 'action': {'Call': '[u8; 20]', 'Create': None},
                 'chain_id': 'u64',
-                'gas_limit': '[u64; 4]',
+                'gas_limit': 'scale_info::188',
                 'input': 'Bytes',
-                'max_fee_per_gas': '[u64; 4]',
-                'max_priority_fee_per_gas': '[u64; 4]',
-                'nonce': '[u64; 4]',
+                'max_fee_per_gas': 'scale_info::188',
+                'max_priority_fee_per_gas': 'scale_info::188',
+                'nonce': 'scale_info::188',
                 'odd_y_parity': 'bool',
-                'r': '[u8; 32]',
-                's': '[u8; 32]',
-                'value': '[u64; 4]',
+                'r': 'scale_info::12',
+                's': 'scale_info::12',
+                'value': 'scale_info::188',
             },
             'EIP2930': {
-                'access_list': ['scale_info::200'],
+                'access_list': ['scale_info::201'],
                 'action': {'Call': '[u8; 20]', 'Create': None},
                 'chain_id': 'u64',
-                'gas_limit': '[u64; 4]',
-                'gas_price': '[u64; 4]',
+                'gas_limit': 'scale_info::188',
+                'gas_price': 'scale_info::188',
                 'input': 'Bytes',
-                'nonce': '[u64; 4]',
+                'nonce': 'scale_info::188',
                 'odd_y_parity': 'bool',
-                'r': '[u8; 32]',
-                's': '[u8; 32]',
-                'value': '[u64; 4]',
+                'r': 'scale_info::12',
+                's': 'scale_info::12',
+                'value': 'scale_info::188',
             },
             'Legacy': {
                 'action': {'Call': '[u8; 20]', 'Create': None},
-                'gas_limit': '[u64; 4]',
-                'gas_price': '[u64; 4]',
+                'gas_limit': 'scale_info::188',
+                'gas_price': 'scale_info::188',
                 'input': 'Bytes',
-                'nonce': '[u64; 4]',
-                'signature': {'r': '[u8; 32]', 's': '[u8; 32]', 'v': 'u64'},
-                'value': '[u64; 4]',
+                'nonce': 'scale_info::188',
+                'signature': {
+                    'r': 'scale_info::12',
+                    's': 'scale_info::12',
+                    'v': 'u64',
+                },
+                'value': 'scale_info::188',
             },
         },
         {
@@ -350,12 +362,12 @@ result = substrate.query(
                 {
                     'address': '[u8; 20]',
                     'data': 'Bytes',
-                    'topics': ['[u8; 32]'],
+                    'topics': ['scale_info::12'],
                 },
             ],
             'logs_bloom': '[u8; 256]',
             'to': (None, '[u8; 20]'),
-            'transaction_hash': '[u8; 32]',
+            'transaction_hash': 'scale_info::12',
             'transaction_index': 'u32',
         },
         {
@@ -363,19 +375,19 @@ result = substrate.query(
                 'logs': ['scale_info::63'],
                 'logs_bloom': '[u8; 256]',
                 'status_code': 'u8',
-                'used_gas': '[u64; 4]',
+                'used_gas': 'scale_info::188',
             },
             'EIP2930': {
                 'logs': ['scale_info::63'],
                 'logs_bloom': '[u8; 256]',
                 'status_code': 'u8',
-                'used_gas': '[u64; 4]',
+                'used_gas': 'scale_info::188',
             },
             'Legacy': {
                 'logs': ['scale_info::63'],
                 'logs_bloom': '[u8; 256]',
                 'status_code': 'u8',
-                'used_gas': '[u64; 4]',
+                'used_gas': 'scale_info::188',
             },
         },
     ),

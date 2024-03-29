@@ -6,8 +6,7 @@
 
 ---------
 ### deregister
-De-Register a derivative index. This prevents an account to use a derivative address
-(represented by an index) from our of our sovereign accounts anymore
+See [`Pallet::deregister`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -22,7 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### hrmp_manage
-Manage HRMP operations
+See [`Pallet::hrmp_manage`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -64,7 +63,6 @@ call = substrate.compose_call(
                 'SelfReserve': None,
             },
             'AsMultiLocation': {
-                None: None,
                 'V2': {
                     'interior': {
                         'Here': None,
@@ -131,6 +129,7 @@ call = substrate.compose_call(
                     },
                     'parents': 'u8',
                 },
+                None: None,
                 'V3': {
                     'interior': {
                         'Here': None,
@@ -206,8 +205,11 @@ call = substrate.compose_call(
         'overall_weight': (
             None,
             {
-                'proof_size': 'u64',
-                'ref_time': 'u64',
+                'Limited': {
+                    'proof_size': 'u64',
+                    'ref_time': 'u64',
+                },
+                'Unlimited': None,
             },
         ),
         'transact_required_weight_at_most': {
@@ -221,14 +223,7 @@ call = substrate.compose_call(
 
 ---------
 ### register
-Register a derivative index for an account id. Dispatchable by
-DerivativeAddressRegistrationOrigin
-
-We do not store the derivative address, but only the index. We do not need to store
-the derivative address to issue calls, only the index is enough
-
-For now an index is registered for all possible destinations and not per-destination.
-We can change this in the future although it would just make things more complicated
+See [`Pallet::register`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -244,7 +239,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_fee_per_second
-Remove the fee per second of an asset on its reserve chain
+See [`Pallet::remove_fee_per_second`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -2877,7 +2872,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_transact_info
-Remove the transact info of a location
+See [`Pallet::remove_transact_info`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -5510,7 +5505,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_fee_per_second
-Set the fee per second of an asset on its reserve chain
+See [`Pallet::set_fee_per_second`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -8145,7 +8140,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_transact_info
-Change the transact info of a location
+See [`Pallet::set_transact_info`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -10796,11 +10791,7 @@ call = substrate.compose_call(
 
 ---------
 ### transact_through_derivative
-Transact the inner call through a derivative account in a destination chain,
-using &\#x27;fee_location&\#x27; to pay for the fees. This fee_location is given as a multilocation
-
-The caller needs to have the index registered in this pallet. The fee multiasset needs
-to be a reserve asset for the destination transactor::multilocation.
+See [`Pallet::transact_through_derivative`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -10827,7 +10818,6 @@ call = substrate.compose_call(
                 'SelfReserve': None,
             },
             'AsMultiLocation': {
-                None: None,
                 'V2': {
                     'interior': {
                         'Here': None,
@@ -10894,6 +10884,7 @@ call = substrate.compose_call(
                     },
                     'parents': 'u8',
                 },
+                None: None,
                 'V3': {
                     'interior': {
                         'Here': None,
@@ -10972,8 +10963,11 @@ call = substrate.compose_call(
         'overall_weight': (
             None,
             {
-                'proof_size': 'u64',
-                'ref_time': 'u64',
+                'Limited': {
+                    'proof_size': 'u64',
+                    'ref_time': 'u64',
+                },
+                'Unlimited': None,
             },
         ),
         'transact_required_weight_at_most': {
@@ -10987,11 +10981,7 @@ call = substrate.compose_call(
 
 ---------
 ### transact_through_signed
-Transact the call through the a signed origin in this chain
-that should be converted to a transaction dispatch account in the destination chain
-by any method implemented in the destination chains runtime
-
-This time we are giving the currency as a currencyId instead of multilocation
+See [`Pallet::transact_through_signed`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -13777,8 +13767,11 @@ call = substrate.compose_call(
         'overall_weight': (
             None,
             {
-                'proof_size': 'u64',
-                'ref_time': 'u64',
+                'Limited': {
+                    'proof_size': 'u64',
+                    'ref_time': 'u64',
+                },
+                'Unlimited': None,
             },
         ),
         'transact_required_weight_at_most': {
@@ -13792,10 +13785,7 @@ call = substrate.compose_call(
 
 ---------
 ### transact_through_sovereign
-Transact the call through the sovereign account in a destination chain,
-&\#x27;fee_payer&\#x27; pays for the fee
-
-SovereignAccountDispatcherOrigin callable only
+See [`Pallet::transact_through_sovereign`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -16440,7 +16430,6 @@ call = substrate.compose_call(
                 'SelfReserve': None,
             },
             'AsMultiLocation': {
-                None: None,
                 'V2': {
                     'interior': {
                         'Here': None,
@@ -16507,6 +16496,7 @@ call = substrate.compose_call(
                     },
                     'parents': 'u8',
                 },
+                None: None,
                 'V3': {
                     'interior': {
                         'Here': None,
@@ -16590,8 +16580,11 @@ call = substrate.compose_call(
         'overall_weight': (
             None,
             {
-                'proof_size': 'u64',
-                'ref_time': 'u64',
+                'Limited': {
+                    'proof_size': 'u64',
+                    'ref_time': 'u64',
+                },
+                'Unlimited': None,
             },
         ),
         'transact_required_weight_at_most': {
@@ -19287,6 +19280,40 @@ result = substrate.query(
 #### Return value
 ```python
 '[u8; 20]'
+```
+---------
+### RelayIndices
+ Stores the indices of relay chain pallets
+
+#### Python
+```python
+result = substrate.query(
+    'XcmTransactor', 'RelayIndices', []
+)
+```
+
+#### Return value
+```python
+{
+    'accept_open_channel': 'u8',
+    'as_derivative': 'u8',
+    'bond': 'u8',
+    'bond_extra': 'u8',
+    'cancel_open_request': 'u8',
+    'chill': 'u8',
+    'close_channel': 'u8',
+    'hrmp': 'u8',
+    'init_open_channel': 'u8',
+    'nominate': 'u8',
+    'rebond': 'u8',
+    'set_controller': 'u8',
+    'set_payee': 'u8',
+    'staking': 'u8',
+    'unbond': 'u8',
+    'utility': 'u8',
+    'validate': 'u8',
+    'withdraw_unbonded': 'u8',
+}
 ```
 ---------
 ### TransactInfoWithWeightLimit

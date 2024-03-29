@@ -111,7 +111,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'last_reward': 'u128', 'value': 'u128'}
+{'last_reward': 'u128', 'q_last_reward': 'u128', 'value': 'u128'}
 ```
 ---------
 ### LendersAggregates
@@ -144,8 +144,50 @@ result = substrate.query(
 'u64'
 ```
 ---------
+### QCumulatedReward
+ Table with accumulated rewards per asset
+ cumulated_reward[i+i] &gt; cumulated_reward[i] is guaranteed
+
+#### Python
+```python
+result = substrate.query(
+    'EqLending', 'QCumulatedReward', ['u64']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### QLenders
+ Lenders deposits
+
+#### Python
+```python
+result = substrate.query(
+    'EqLending', 'QLenders', ['AccountId', 'u64']
+)
+```
+
+#### Return value
+```python
+{'last_reward': 'u128', 'q_last_reward': 'u128', 'value': 'u128'}
+```
+---------
 ## Constants
 
+---------
+### AccountsToMigratePerBlock
+ The number of accounts to migrate to Q rewards per block
+#### Value
+```python
+100
+```
+#### Python
+```python
+constant = substrate.get_constant('EqLending', 'AccountsToMigratePerBlock')
+```
 ---------
 ### ModuleId
  Lending pool ModuleId

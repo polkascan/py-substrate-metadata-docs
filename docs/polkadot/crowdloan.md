@@ -6,9 +6,7 @@
 
 ---------
 ### add_memo
-Add an optional memo to an existing crowdloan contribution.
-
-Origin must be Signed, and the user must have contributed to the crowdloan.
+See [`Pallet::add_memo`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,8 +22,7 @@ call = substrate.compose_call(
 
 ---------
 ### contribute
-Contribute to a crowd sale. This will transfer some balance over to fund a parachain
-slot. It will be withdrawable when the crowdloan has ended and the funds are unused.
+See [`Pallet::contribute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -53,8 +50,7 @@ call = substrate.compose_call(
 
 ---------
 ### contribute_all
-Contribute your entire balance to a crowd sale. This will transfer the entire balance of a user over to fund a parachain
-slot. It will be withdrawable when the crowdloan has ended and the funds are unused.
+See [`Pallet::contribute_all`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -80,10 +76,7 @@ call = substrate.compose_call(
 
 ---------
 ### create
-Create a new crowdloaning campaign for a parachain slot with the given lease period range.
-
-This applies a lock to your parachain configuration, ensuring that it cannot be changed
-by the parachain manager.
+See [`Pallet::create`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -91,7 +84,7 @@ by the parachain manager.
 | cap | `BalanceOf<T>` | 
 | first_period | `LeasePeriodOf<T>` | 
 | last_period | `LeasePeriodOf<T>` | 
-| end | `T::BlockNumber` | 
+| end | `BlockNumberFor<T>` | 
 | verifier | `Option<MultiSigner>` | 
 
 #### Python
@@ -117,7 +110,7 @@ call = substrate.compose_call(
 
 ---------
 ### dissolve
-Remove a fund after the retirement period has ended and all funds have been returned.
+See [`Pallet::dissolve`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -132,9 +125,7 @@ call = substrate.compose_call(
 
 ---------
 ### edit
-Edit the configuration for an in-progress crowdloan.
-
-Can only be called by Root origin.
+See [`Pallet::edit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -142,7 +133,7 @@ Can only be called by Root origin.
 | cap | `BalanceOf<T>` | 
 | first_period | `LeasePeriodOf<T>` | 
 | last_period | `LeasePeriodOf<T>` | 
-| end | `T::BlockNumber` | 
+| end | `BlockNumberFor<T>` | 
 | verifier | `Option<MultiSigner>` | 
 
 #### Python
@@ -168,9 +159,7 @@ call = substrate.compose_call(
 
 ---------
 ### poke
-Poke the fund into `NewRaise`
-
-Origin must be Signed, and the fund has non-zero raise.
+See [`Pallet::poke`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -185,11 +174,7 @@ call = substrate.compose_call(
 
 ---------
 ### refund
-Automatically refund contributors of an ended crowdloan.
-Due to weight restrictions, this function may need to be called multiple
-times to fully refund all users. We will refund `RemoveKeysLimit` users at a time.
-
-Origin must be signed, but can come from anyone.
+See [`Pallet::refund`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -204,23 +189,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw
-Withdraw full balance of a specific contributor.
-
-Origin must be signed, but can come from anyone.
-
-The fund must be either in, or ready for, retirement. For a fund to be *in* retirement, then the retirement
-flag must be set. For a fund to be ready for retirement, then:
-- it must not already be in retirement;
-- the amount of raised funds must be bigger than the _free_ balance of the account;
-- and either:
-  - the block number must be at least `end`; or
-  - the current lease period must be greater than the fund&\#x27;s `last_period`.
-
-In this case, the fund&\#x27;s retirement flag is set and its `end` is reset to the current block
-number.
-
-- `who`: The account whose contribution should be withdrawn.
-- `index`: The parachain to whose crowdloan the contribution was made.
+See [`Pallet::withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -408,8 +377,8 @@ result = substrate.query(
 
 ---------
 ### MinContribution
- The minimum amount that may be contributed into a crowdloan. Should almost certainly be at
- least `ExistentialDeposit`.
+ The minimum amount that may be contributed into a crowdloan. Should almost certainly be
+ at least `ExistentialDeposit`.
 #### Value
 ```python
 50000000000
@@ -420,7 +389,8 @@ constant = substrate.get_constant('Crowdloan', 'MinContribution')
 ```
 ---------
 ### PalletId
- `PalletId` for the crowdloan pallet. An appropriate value could be `PalletId(*b&quot;py/cfund&quot;)`
+ `PalletId` for the crowdloan pallet. An appropriate value could be
+ `PalletId(*b&quot;py/cfund&quot;)`
 #### Value
 ```python
 '0x70792f6366756e64'
@@ -525,7 +495,8 @@ This crowdloan does not correspond to a parachain.
 
 ---------
 ### NotReadyToDissolve
-The crowdloan is not ready to dissolve. Potentially still has a slot or in retirement period.
+The crowdloan is not ready to dissolve. Potentially still has a slot or in retirement
+period.
 
 ---------
 ### Overflow

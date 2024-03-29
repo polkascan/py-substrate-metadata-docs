@@ -19,6 +19,34 @@ call = substrate.compose_call(
 ```
 
 ---------
+### check_status
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `SpendIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Treasury', 'check_status', {'index': 'u32'}
+)
+```
+
+---------
+### payout
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `SpendIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Treasury', 'payout', {'index': 'u32'}
+)
+```
+
+---------
 ### propose_spend
 #### Attributes
 | Name | Type |
@@ -75,13 +103,35 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
+| asset_kind | `Box<T::AssetKind>` | 
+| amount | `AssetBalanceOf<T, I>` | 
+| beneficiary | `Box<BeneficiaryLookupOf<T, I>>` | 
+| valid_from | `Option<BlockNumberFor<T>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Treasury', 'spend', {
+    'amount': 'u128',
+    'asset_kind': (),
+    'beneficiary': 'AccountId',
+    'valid_from': (None, 'u32'),
+}
+)
+```
+
+---------
+### spend_local
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
 | amount | `BalanceOf<T, I>` | 
 | beneficiary | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Treasury', 'spend', {
+    'Treasury', 'spend_local', {
     'amount': 'u128',
     'beneficiary': {
         'Address20': '[u8; 20]',
@@ -95,7 +145,40 @@ call = substrate.compose_call(
 ```
 
 ---------
+### void_spend
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `SpendIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Treasury', 'void_spend', {'index': 'u32'}
+)
+```
+
+---------
 ## Events
+
+---------
+### AssetSpendApproved
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
+| asset_kind | `T::AssetKind` | ```()```
+| amount | `AssetBalanceOf<T, I>` | ```u128```
+| beneficiary | `T::Beneficiary` | ```AccountId```
+| valid_from | `BlockNumberFor<T>` | ```u32```
+| expire_at | `BlockNumberFor<T>` | ```u32```
+
+---------
+### AssetSpendVoided
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
 
 ---------
 ### Awarded
@@ -119,6 +202,22 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | value | `BalanceOf<T, I>` | ```u128```
+
+---------
+### Paid
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
+| payment_id | `<T::Paymaster as Pay>::Id` | ```()```
+
+---------
+### PaymentFailed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
+| payment_id | `<T::Paymaster as Pay>::Id` | ```()```
 
 ---------
 ### Proposed
@@ -150,6 +249,13 @@ call = substrate.compose_call(
 | proposal_index | `ProposalIndex` | ```u32```
 | amount | `BalanceOf<T, I>` | ```u128```
 | beneficiary | `T::AccountId` | ```AccountId```
+
+---------
+### SpendProcessed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
 
 ---------
 ### Spending
@@ -231,6 +337,41 @@ result = substrate.query(
 }
 ```
 ---------
+### SpendCount
+
+#### Python
+```python
+result = substrate.query(
+    'Treasury', 'SpendCount', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### Spends
+
+#### Python
+```python
+result = substrate.query(
+    'Treasury', 'Spends', ['u32']
+)
+```
+
+#### Return value
+```python
+{
+    'amount': 'u128',
+    'asset_kind': (),
+    'beneficiary': 'AccountId',
+    'expire_at': 'u32',
+    'status': {'Attempted': {'id': ()}, 'Failed': None, 'Pending': None},
+    'valid_from': 'u32',
+}
+```
+---------
 ## Constants
 
 ---------
@@ -262,6 +403,16 @@ constant = substrate.get_constant('Treasury', 'MaxApprovals')
 #### Python
 ```python
 constant = substrate.get_constant('Treasury', 'PalletId')
+```
+---------
+### PayoutPeriod
+#### Value
+```python
+216000
+```
+#### Python
+```python
+constant = substrate.get_constant('Treasury', 'PayoutPeriod')
 ```
 ---------
 ### ProposalBond
@@ -307,6 +458,18 @@ constant = substrate.get_constant('Treasury', 'SpendPeriod')
 ## Errors
 
 ---------
+### AlreadyAttempted
+
+---------
+### EarlyPayout
+
+---------
+### FailedToConvertBalance
+
+---------
+### Inconclusive
+
+---------
 ### InsufficientPermission
 
 ---------
@@ -316,7 +479,16 @@ constant = substrate.get_constant('Treasury', 'SpendPeriod')
 ### InvalidIndex
 
 ---------
+### NotAttempted
+
+---------
+### PayoutError
+
+---------
 ### ProposalNotApproved
+
+---------
+### SpendExpired
 
 ---------
 ### TooManyApprovals

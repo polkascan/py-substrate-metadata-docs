@@ -5,21 +5,6 @@
 ## Calls
 
 ---------
-### allow_xcm_transfers_native_for
-Allow for `accounts` to make limited xcm native transfers
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| accounts | `Vec<T::AccountId>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'EqBalances', 'allow_xcm_transfers_native_for', {'accounts': ['AccountId']}
-)
-```
-
----------
 ### burn
 Burns currency (sudo only). Used to withdraw currency from the system.
 Disabled in production.
@@ -86,21 +71,6 @@ No attributes
 ```python
 call = substrate.compose_call(
     'EqBalances', 'enable_transfers', {}
-)
-```
-
----------
-### forbid_xcm_transfers_native_for
-Remove accounts from whitelist of xcm native transfers
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| accounts | `Vec<T::AccountId>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'EqBalances', 'forbid_xcm_transfers_native_for', {'accounts': ['AccountId']}
 )
 ```
 
@@ -5310,21 +5280,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### update_xcm_transfer_native_limit
-Update XCM transfer limit or remove it in case of limit = `None`
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| limit | `Option<T::Balance>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'EqBalances', 'update_xcm_transfer_native_limit', {'limit': (None, 'u128')}
-)
-```
-
----------
 ### xcm_toggle
 #### Attributes
 | Name | Type |
@@ -7985,7 +7940,7 @@ Deposit event. Included values are:
 | None | `T::AccountId` | ```AccountId```
 | None | `Asset` | ```u64```
 | None | `T::Balance` | ```u128```
-| None | `DepositReason` | ```('Extrinsic', 'XcmTransfer', 'XcmPayment', 'AssetRemoval', 'Staking')```
+| None | `DepositReason` | ```('Extrinsic', 'XcmTransfer', 'XcmPayment', 'AssetRemoval', 'Staking', 'CrowdloanDotSwap')```
 
 ---------
 ### Exchange
@@ -8025,7 +7980,7 @@ Transfer event. Included values are:
 | None | `T::AccountId` | ```AccountId```
 | None | `Asset` | ```u64```
 | None | `T::Balance` | ```u128```
-| None | `TransferReason` | ```('Common', 'InterestFee', 'MarginCall', 'LiquidityFarming', 'BailsmenRedistribution', 'TreasuryEqBuyout', 'Subaccount', 'Lock', 'Unlock', 'Claim', 'CurveFeeWithdraw', 'Reserve', 'Unreserve', 'XcmTransfer', 'XcmPayment')```
+| None | `TransferReason` | ```('Common', 'InterestFee', 'MarginCall', 'LiquidityFarming', 'BailsmenRedistribution', 'TreasuryEqBuyout', 'Subaccount', 'Lock', 'Unlock', 'Claim', 'CurveFeeWithdraw', 'Reserve', 'Unreserve', 'XcmTransfer', 'XcmPayment', 'Vesting', 'QSwap')```
 
 ---------
 ### Withdraw
@@ -8040,7 +7995,7 @@ Withdraw event. Included values are:
 | None | `T::AccountId` | ```AccountId```
 | None | `Asset` | ```u64```
 | None | `T::Balance` | ```u128```
-| None | `WithdrawReason` | ```('Extrinsic', 'XcmReserve', 'XcmTransfer', 'XcmPayment', 'AssetRemoval', 'Staking')```
+| None | `WithdrawReason` | ```('Extrinsic', 'XcmReserve', 'XcmTransfer', 'XcmPayment', 'AssetRemoval', 'Staking', 'CrowdloanDotSwap')```
 
 ---------
 ### XcmMessageSendError
@@ -8189,7 +8144,7 @@ constant = substrate.get_constant('EqBalances', 'BailsmanModuleId')
 ---------
 ### ExistentialDeposit
  Minimum account balance in usd. Accounts with deposit less than
- Min(`ExistentialDeposit`,`ExistentialDepositBasic`) must be killed
+ Min(`ExistentialDeposit`,`ExistentialDepositBasic`, `ExistentialDepositEq`) must be killed
 #### Value
 ```python
 100000000
@@ -8201,14 +8156,25 @@ constant = substrate.get_constant('EqBalances', 'ExistentialDeposit')
 ---------
 ### ExistentialDepositBasic
  Minimum account balance in basic currency. Accounts with deposit less than
- Min(`ExistentialDeposit`,`ExistentialDepositBasic`) must be killed
+ Min(`ExistentialDeposit`,`ExistentialDepositBasic`, `ExistentialDepositEq`) must be killed
+#### Value
+```python
+250000000
+```
+#### Python
+```python
+constant = substrate.get_constant('EqBalances', 'ExistentialDepositBasic')
+```
+---------
+### ExistentialDepositEq
+ Minimum account balance in Eq. Will be discarded soon.
 #### Value
 ```python
 100000000000
 ```
 #### Python
 ```python
-constant = substrate.get_constant('EqBalances', 'ExistentialDepositBasic')
+constant = substrate.get_constant('EqBalances', 'ExistentialDepositEq')
 ```
 ---------
 ### ModuleId

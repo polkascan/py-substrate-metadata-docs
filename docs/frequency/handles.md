@@ -11,7 +11,7 @@
 | -------- | -------- | 
 | msa_owner_key | `T::AccountId` | 
 | proof | `MultiSignature` | 
-| payload | `ClaimHandlePayload<T::BlockNumber>` | 
+| payload | `ClaimHandlePayload<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -38,7 +38,7 @@ call = substrate.compose_call(
 | -------- | -------- | 
 | msa_owner_key | `T::AccountId` | 
 | proof | `MultiSignature` | 
-| payload | `ClaimHandlePayload<T::BlockNumber>` | 
+| payload | `ClaimHandlePayload<BlockNumberFor<T>>` | 
 
 #### Python
 ```python

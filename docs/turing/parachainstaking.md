@@ -50,21 +50,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### cancel_leave_delegators
-DEPRECATED use batch util with cancel_delegation_request for all delegations
-Cancel a pending request to exit the set of delegators. Success clears the pending exit
-request (thereby resetting the delay upon another `leave_delegators` call).
-#### Attributes
-No attributes
-
-#### Python
-```python
-call = substrate.compose_call(
-    'ParachainStaking', 'cancel_leave_delegators', {}
-)
-```
-
----------
 ### candidate_bond_more
 Increase collator candidate self bond by `more`
 #### Attributes
@@ -81,6 +66,7 @@ call = substrate.compose_call(
 
 ---------
 ### delegate
+DEPRECATED use delegateWithAutoCompound
 If caller is not a delegator and not a collator, then join the set of delegators
 If caller is a delegator, then makes delegation to change their delegation state
 #### Attributes
@@ -205,26 +191,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### execute_leave_delegators
-DEPRECATED use batch util with execute_delegation_request for all delegations
-Execute the right to exit the set of delegators and revoke all ongoing delegations.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| delegator | `T::AccountId` | 
-| delegation_count | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'ParachainStaking', 'execute_leave_delegators', {
-    'delegation_count': 'u32',
-    'delegator': 'AccountId',
-}
-)
-```
-
----------
 ### go_offline
 Temporarily leave the set of collator candidates without unbonding
 #### Attributes
@@ -285,6 +251,45 @@ call = substrate.compose_call(
 ```
 
 ---------
+### removed_call_19
+REMOVED, was schedule_leave_delegators
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ParachainStaking', 'removed_call_19', {}
+)
+```
+
+---------
+### removed_call_20
+REMOVED, was execute_leave_delegators
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ParachainStaking', 'removed_call_20', {}
+)
+```
+
+---------
+### removed_call_21
+REMOVED, was cancel_leave_delegators
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ParachainStaking', 'removed_call_21', {}
+)
+```
+
+---------
 ### schedule_candidate_bond_less
 Request by collator candidate to decrease self bond by `less`
 #### Attributes
@@ -333,22 +338,6 @@ removed from the candidate pool to prevent selection as a collator.
 ```python
 call = substrate.compose_call(
     'ParachainStaking', 'schedule_leave_candidates', {'candidate_count': 'u32'}
-)
-```
-
----------
-### schedule_leave_delegators
-DEPRECATED use batch util with schedule_revoke_delegation for all delegations
-Request to leave the set of delegators. If successful, the caller is scheduled to be
-allowed to exit via a [DelegationAction::Revoke] towards all existing delegations.
-Success forbids future delegation requests until the request is invoked or cancelled.
-#### Attributes
-No attributes
-
-#### Python
-```python
-call = substrate.compose_call(
-    'ParachainStaking', 'schedule_leave_delegators', {}
 )
 ```
 
@@ -1246,6 +1235,17 @@ constant = substrate.get_constant('ParachainStaking', 'LeaveDelegatorsDelay')
 constant = substrate.get_constant('ParachainStaking', 'MaxBottomDelegationsPerCandidate')
 ```
 ---------
+### MaxCandidates
+ Maximum candidates
+#### Value
+```python
+200
+```
+#### Python
+```python
+constant = substrate.get_constant('ParachainStaking', 'MaxCandidates')
+```
+---------
 ### MaxDelegationsPerDelegator
  Maximum delegations per delegator
 #### Value
@@ -1290,17 +1290,6 @@ constant = substrate.get_constant('ParachainStaking', 'MinBlocksPerRound')
 constant = substrate.get_constant('ParachainStaking', 'MinCandidateStk')
 ```
 ---------
-### MinCollatorStk
- Minimum stake required for any candidate to be in `SelectedCandidates` for the round
-#### Value
-```python
-4000000000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('ParachainStaking', 'MinCollatorStk')
-```
----------
 ### MinDelegation
  Minimum stake for any registered on-chain account to delegate
 #### Value
@@ -1310,17 +1299,6 @@ constant = substrate.get_constant('ParachainStaking', 'MinCollatorStk')
 #### Python
 ```python
 constant = substrate.get_constant('ParachainStaking', 'MinDelegation')
-```
----------
-### MinDelegatorStk
- Minimum stake for any registered on-chain account to be a delegator
-#### Value
-```python
-500000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('ParachainStaking', 'MinDelegatorStk')
 ```
 ---------
 ### MinSelectedCandidates
@@ -1383,6 +1361,9 @@ constant = substrate.get_constant('ParachainStaking', 'RewardPaymentDelay')
 ### CandidateExists
 
 ---------
+### CandidateLimitReached
+
+---------
 ### CandidateNotLeaving
 
 ---------
@@ -1393,6 +1374,9 @@ constant = substrate.get_constant('ParachainStaking', 'RewardPaymentDelay')
 
 ---------
 ### CannotGoOnlineIfLeaving
+
+---------
+### CannotSetAboveMaxCandidates
 
 ---------
 ### CannotSetBelowMin
@@ -1461,6 +1445,9 @@ constant = substrate.get_constant('ParachainStaking', 'RewardPaymentDelay')
 ### PendingDelegationRevoke
 
 ---------
+### RemovedCall
+
+---------
 ### RoundLengthMustBeGreaterThanTotalSelectedCollators
 
 ---------
@@ -1470,10 +1457,19 @@ constant = substrate.get_constant('ParachainStaking', 'RewardPaymentDelay')
 ### TooLowCandidateAutoCompoundingDelegationCountToDelegate
 
 ---------
+### TooLowCandidateAutoCompoundingDelegationCountToLeaveCandidates
+
+---------
 ### TooLowCandidateCountToLeaveCandidates
 
 ---------
+### TooLowCandidateCountWeightHint
+
+---------
 ### TooLowCandidateCountWeightHintCancelLeaveCandidates
+
+---------
+### TooLowCandidateCountWeightHintGoOffline
 
 ---------
 ### TooLowCandidateCountWeightHintJoinCandidates

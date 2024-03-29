@@ -6,15 +6,11 @@
 
 ---------
 ### heartbeat
-\#\# Complexity:
-- `O(K + E)` where K is length of `Keys` (heartbeat.validators_len) and E is length of
-  `heartbeat.network_state.external_address`
-  - `O(K)`: decoding of length `K`
-  - `O(E)`: decoding/encoding of length `E`
+See [`Pallet::heartbeat`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| heartbeat | `Heartbeat<T::BlockNumber>` | 
+| heartbeat | `Heartbeat<BlockNumberFor<T>>` | 
 | signature | `<T::AuthorityId as RuntimeAppPublic>::Signature` | 
 
 #### Python
@@ -24,12 +20,6 @@ call = substrate.compose_call(
     'heartbeat': {
         'authority_index': 'u32',
         'block_number': 'u32',
-        'network_state': {
-            'external_addresses': [
-                'Bytes',
-            ],
-            'peer_id': 'Bytes',
-        },
         'session_index': 'u32',
         'validators_len': 'u32',
     },
@@ -124,8 +114,7 @@ result = substrate.query(
 ```
 ---------
 ### ReceivedHeartbeats
- For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
- `WrapperOpaque&lt;BoundedOpaqueNetworkState&gt;`.
+ For each session index, we keep a mapping of `SessionIndex` and `AuthIndex`.
 
 #### Python
 ```python
@@ -136,7 +125,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('u32', {'external_addresses': ['Bytes'], 'peer_id': 'Bytes'})
+'bool'
 ```
 ---------
 ## Constants

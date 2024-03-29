@@ -5,27 +5,37 @@
 ## Calls
 
 ---------
+### establish_system_channel
+See [`Pallet::establish_system_channel`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| sender | `ParaId` | 
+| recipient | `ParaId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Hrmp', 'establish_system_channel', {'recipient': 'u32', 'sender': 'u32'}
+)
+```
+
+---------
 ### force_clean_hrmp
-This extrinsic triggers the cleanup of all the HRMP storage items that
-a para may have. Normally this happens once per session, but this allows
-you to trigger the cleanup immediately for a specific parachain.
-
-Origin must be Root.
-
-Number of inbound and outbound channels for `para` must be provided as witness data of weighing.
+See [`Pallet::force_clean_hrmp`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | para | `ParaId` | 
-| inbound | `u32` | 
-| outbound | `u32` | 
+| num_inbound | `u32` | 
+| num_outbound | `u32` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Hrmp', 'force_clean_hrmp', {
-    'inbound': 'u32',
-    'outbound': 'u32',
+    'num_inbound': 'u32',
+    'num_outbound': 'u32',
     'para': 'u32',
 }
 )
@@ -33,12 +43,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_open_hrmp_channel
-Open a channel from a `sender` to a `recipient` `ParaId` using the Root origin. Although
-opened by Root, the `max_capacity` and `max_message_size` are still subject to the Relay
-Chain&\#x27;s configured limits.
-
-Expected use is when one of the `ParaId`s involved in the channel is governed by the
-Relay Chain, e.g. a common good parachain.
+See [`Pallet::force_open_hrmp_channel`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -61,12 +66,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_process_hrmp_close
-Force process HRMP close channel requests.
-
-If there are pending HRMP close channel requests, you can use this
-function process all of those requests immediately.
-
-Total number of closing channels must be provided as witness data of weighing.
+See [`Pallet::force_process_hrmp_close`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -81,12 +81,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_process_hrmp_open
-Force process HRMP open channel requests.
-
-If there are pending HRMP open channel requests, you can use this
-function process all of those requests immediately.
-
-Total number of opening channels must be provided as witness data of weighing.
+See [`Pallet::force_process_hrmp_open`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -101,9 +96,7 @@ call = substrate.compose_call(
 
 ---------
 ### hrmp_accept_open_channel
-Accept a pending open channel request from the given sender.
-
-The channel will be opened only on the next session boundary.
+See [`Pallet::hrmp_accept_open_channel`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -118,14 +111,7 @@ call = substrate.compose_call(
 
 ---------
 ### hrmp_cancel_open_request
-This cancels a pending open channel request. It can be canceled by either of the sender
-or the recipient for that request. The origin must be either of those.
-
-The cancellation happens immediately. It is not possible to cancel the request if it is
-already accepted.
-
-Total number of open requests (i.e. `HrmpOpenChannelRequestsList`) must be provided as
-witness data.
+See [`Pallet::hrmp_cancel_open_request`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -147,10 +133,7 @@ call = substrate.compose_call(
 
 ---------
 ### hrmp_close_channel
-Initiate unilateral closing of a channel. The origin must be either the sender or the
-recipient in the channel being closed.
-
-The closure can only happen on a session change.
+See [`Pallet::hrmp_close_channel`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -170,16 +153,7 @@ call = substrate.compose_call(
 
 ---------
 ### hrmp_init_open_channel
-Initiate opening a channel from a parachain to a given recipient with given channel
-parameters.
-
-- `proposed_max_capacity` - specifies how many messages can be in the channel at once.
-- `proposed_max_message_size` - specifies the maximum size of the messages.
-
-These numbers are a subject to the relay-chain configuration limits.
-
-The channel can be opened only after the recipient confirms it and only on a session
-change.
+See [`Pallet::hrmp_init_open_channel`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -199,59 +173,92 @@ call = substrate.compose_call(
 ```
 
 ---------
+### poke_channel_deposits
+See [`Pallet::poke_channel_deposits`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| sender | `ParaId` | 
+| recipient | `ParaId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Hrmp', 'poke_channel_deposits', {'recipient': 'u32', 'sender': 'u32'}
+)
+```
+
+---------
 ## Events
 
 ---------
 ### ChannelClosed
-HRMP channel closed. `[by_parachain, channel_id]`
+HRMP channel closed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ParaId` | ```u32```
-| None | `HrmpChannelId` | ```{'sender': 'u32', 'recipient': 'u32'}```
+| by_parachain | `ParaId` | ```u32```
+| channel_id | `HrmpChannelId` | ```{'sender': 'u32', 'recipient': 'u32'}```
 
 ---------
 ### HrmpChannelForceOpened
 An HRMP channel was opened via Root origin.
-`[sender, recipient, proposed_max_capacity, proposed_max_message_size]`
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ParaId` | ```u32```
-| None | `ParaId` | ```u32```
-| None | `u32` | ```u32```
-| None | `u32` | ```u32```
+| sender | `ParaId` | ```u32```
+| recipient | `ParaId` | ```u32```
+| proposed_max_capacity | `u32` | ```u32```
+| proposed_max_message_size | `u32` | ```u32```
+
+---------
+### HrmpSystemChannelOpened
+An HRMP channel was opened between two system chains.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `ParaId` | ```u32```
+| recipient | `ParaId` | ```u32```
+| proposed_max_capacity | `u32` | ```u32```
+| proposed_max_message_size | `u32` | ```u32```
 
 ---------
 ### OpenChannelAccepted
-Open HRMP channel accepted. `[sender, recipient]`
+Open HRMP channel accepted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ParaId` | ```u32```
-| None | `ParaId` | ```u32```
+| sender | `ParaId` | ```u32```
+| recipient | `ParaId` | ```u32```
 
 ---------
 ### OpenChannelCanceled
 An HRMP channel request sent by the receiver was canceled by either party.
-`[by_parachain, channel_id]`
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ParaId` | ```u32```
-| None | `HrmpChannelId` | ```{'sender': 'u32', 'recipient': 'u32'}```
+| by_parachain | `ParaId` | ```u32```
+| channel_id | `HrmpChannelId` | ```{'sender': 'u32', 'recipient': 'u32'}```
+
+---------
+### OpenChannelDepositsUpdated
+An HRMP channel&\#x27;s deposits were updated.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `ParaId` | ```u32```
+| recipient | `ParaId` | ```u32```
 
 ---------
 ### OpenChannelRequested
 Open HRMP channel requested.
-`[sender, recipient, proposed_max_capacity, proposed_max_message_size]`
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ParaId` | ```u32```
-| None | `ParaId` | ```u32```
-| None | `u32` | ```u32```
-| None | `u32` | ```u32```
+| sender | `ParaId` | ```u32```
+| recipient | `ParaId` | ```u32```
+| proposed_max_capacity | `u32` | ```u32```
+| proposed_max_message_size | `u32` | ```u32```
 
 ---------
 ## Storage functions
@@ -328,7 +335,7 @@ result = substrate.query(
     'max_capacity': 'u32',
     'max_message_size': 'u32',
     'max_total_size': 'u32',
-    'mqc_head': (None, '[u8; 32]'),
+    'mqc_head': (None, 'scale_info::12'),
     'msg_count': 'u32',
     'recipient_deposit': 'u128',
     'sender_deposit': 'u128',
@@ -473,7 +480,8 @@ result = substrate.query(
 ### HrmpWatermarks
  The HRMP watermark associated with each para.
  Invariant:
- - each para `P` used here as a key should satisfy `Paras::is_valid_para(P)` within a session.
+ - each para `P` used here as a key should satisfy `Paras::is_valid_para(P)` within a
+   session.
 
 #### Python
 ```python
@@ -504,6 +512,10 @@ The recipient already has the maximum number of allowed inbound channels.
 ---------
 ### CancelHrmpOpenChannelUnauthorized
 Canceling is requested by neither the sender nor recipient of the open channel request.
+
+---------
+### ChannelCreationNotAuthorized
+The channel between these two chains cannot be authorized.
 
 ---------
 ### CloseHrmpChannelAlreadyUnderway

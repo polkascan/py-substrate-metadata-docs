@@ -6,6 +6,7 @@
 
 ---------
 ### force_push_pallet_message
+See [`Pallet::force_push_pallet_message`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,6 +25,7 @@ call = substrate.compose_call(
 
 ---------
 ### push_message
+See [`Pallet::push_message`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -42,7 +44,7 @@ call = substrate.compose_call(
 
 ---------
 ### sync_offchain_message
-Syncs an unverified offchain message to the message queue
+See [`Pallet::sync_offchain_message`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -57,15 +59,15 @@ call = substrate.compose_call(
             'destination': 'Bytes',
             'payload': 'Bytes',
             'sender': {
-                'AccountId': '[u8; 32]',
-                'Cluster': '[u8; 32]',
-                'Contract': '[u8; 32]',
+                'AccountId': 'scale_info::12',
+                'Cluster': 'scale_info::12',
+                'Contract': 'scale_info::12',
                 'Gatekeeper': None,
-                'Reserved': None,
-                None: None,
                 'MultiLocation': 'Bytes',
                 'Pallet': 'Bytes',
+                'Reserved': None,
                 'Worker': '[u8; 32]',
+                None: None,
             },
         },
         'sequence': 'u64',
@@ -87,15 +89,15 @@ call = substrate.compose_call(
 result = substrate.query(
     'PhalaMq', 'OffchainIngress', [
     {
-        None: None,
-        'AccountId': '[u8; 32]',
-        'Cluster': '[u8; 32]',
-        'Contract': '[u8; 32]',
+        'AccountId': 'scale_info::12',
+        'Cluster': 'scale_info::12',
+        'Contract': 'scale_info::12',
         'Gatekeeper': None,
         'MultiLocation': 'Bytes',
         'Pallet': 'Bytes',
         'Reserved': None,
         'Worker': '[u8; 32]',
+        None: None,
     },
 ]
 )
@@ -125,15 +127,15 @@ result = substrate.query(
         'destination': 'Bytes',
         'payload': 'Bytes',
         'sender': {
-            'AccountId': '[u8; 32]',
-            'Cluster': '[u8; 32]',
-            'Contract': '[u8; 32]',
+            'AccountId': 'scale_info::12',
+            'Cluster': 'scale_info::12',
+            'Contract': 'scale_info::12',
             'Gatekeeper': None,
             'MultiLocation': 'Bytes',
-            None: None,
             'Pallet': 'Bytes',
             'Reserved': None,
             'Worker': '[u8; 32]',
+            None: None,
         },
     },
 ]
@@ -155,15 +157,15 @@ result = substrate.query(
         'destination': 'Bytes',
         'payload': 'Bytes',
         'sender': {
-            'AccountId': '[u8; 32]',
-            'Cluster': '[u8; 32]',
-            'Contract': '[u8; 32]',
+            'AccountId': 'scale_info::12',
+            'Cluster': 'scale_info::12',
+            'Contract': 'scale_info::12',
             'Gatekeeper': None,
             'MultiLocation': 'Bytes',
             'Pallet': 'Bytes',
-            None: None,
             'Reserved': None,
             'Worker': '[u8; 32]',
+            None: None,
         },
     },
 ]

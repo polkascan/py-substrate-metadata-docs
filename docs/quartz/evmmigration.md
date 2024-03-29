@@ -54,7 +54,9 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'data': 'Bytes',
-            'topics': ['[u8; 32]'],
+            'topics': [
+                'scale_info::12',
+            ],
         },
     ],
 }
@@ -103,7 +105,12 @@ See [`Pallet::set_data`].
 call = substrate.compose_call(
     'EvmMigration', 'set_data', {
     'address': '[u8; 20]',
-    'data': [('[u8; 32]', '[u8; 32]')],
+    'data': [
+        (
+            'scale_info::12',
+            'scale_info::12',
+        ),
+    ],
 }
 )
 ```

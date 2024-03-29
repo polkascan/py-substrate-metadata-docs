@@ -6,22 +6,7 @@
 
 ---------
 ### ban
-Ban a name.
-
-A banned name cannot be claimed by anyone. The name&\#x27;s deposit
-is returned to the original payer.
-
-The origin must be the ban origin.
-
-Emits `Web3NameBanned` if the operation is carried out
-successfully.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: Banned, Owner, Names storage entries + origin check
-- Writes: Names, Owner, Banned storage entries + currency deposit
-  release
-\# &lt;/weight&gt;
+See [`Pallet::ban`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -36,13 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### change_deposit_owner
-Changes the deposit owner.
-
-The balance that is reserved by the current deposit owner will be
-freed and balance of the new deposit owner will get reserved.
-
-The subject of the call must be the owner of the web3name.
-The sender of the call will be the new deposit owner.
+See [`Pallet::change_deposit_owner`].
 #### Attributes
 No attributes
 
@@ -55,21 +34,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim
-Assign the specified name to the owner as specified in the
-origin.
-
-The name must not have already been claimed by someone else and the
-owner must not already own another name.
-
-Emits `Web3NameClaimed` if the operation is carried out
-successfully.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: Names, Owner, Banned storage entries + available currency
-  check + origin check
-- Writes: Names, Owner storage entries + currency deposit reserve
-\# &lt;/weight&gt;
+See [`Pallet::claim`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -84,18 +49,7 @@ call = substrate.compose_call(
 
 ---------
 ### reclaim_deposit
-Release the provided name from its owner.
-
-The origin must be the account that paid for the name&\#x27;s deposit.
-
-Emits `Web3NameReleased` if the operation is carried out
-successfully.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: Owner storage entry + origin check
-- Writes: Names, Owner storage entries + currency deposit release
-\# &lt;/weight&gt;
+See [`Pallet::reclaim_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -110,18 +64,7 @@ call = substrate.compose_call(
 
 ---------
 ### release_by_owner
-Release the provided name from its owner.
-
-The origin must be the owner of the specified name.
-
-Emits `Web3NameReleased` if the operation is carried out
-successfully.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: Names storage entry + origin check
-- Writes: Names, Owner storage entries + currency deposit release
-\# &lt;/weight&gt;
+See [`Pallet::release_by_owner`].
 #### Attributes
 No attributes
 
@@ -134,20 +77,7 @@ call = substrate.compose_call(
 
 ---------
 ### unban
-Unban a name.
-
-Make a name claimable again.
-
-The origin must be the ban origin.
-
-Emits `Web3NameUnbanned` if the operation is carried out
-successfully.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: Banned storage entry + origin check
-- Writes: Banned storage entry deposit release
-\# &lt;/weight&gt;
+See [`Pallet::unban`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -162,9 +92,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_deposit
-Updates the deposit amount to the current deposit rate.
-
-The sender must be the deposit owner.
+See [`Pallet::update_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

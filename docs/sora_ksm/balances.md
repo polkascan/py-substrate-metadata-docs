@@ -437,7 +437,7 @@ result = substrate.query(
  The minimum amount required to keep an account open.
 #### Value
 ```python
-1000000000
+1000000000000000
 ```
 #### Python
 ```python

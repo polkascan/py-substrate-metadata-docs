@@ -6,30 +6,7 @@
 
 ---------
 ### close
-Close a vote that is either approved, disapproved or whose voting period has ended.
-
-May be called by any signed account in order to finish voting and close the proposal.
-
-If called before the end of the voting period it will only close the vote if it is
-has enough votes to be approved or disapproved.
-
-If called after the end of the voting period abstentions are counted as rejections
-unless there is a prime member set and the prime member cast an approval.
-
-If the close operation completes successfully with disapproval, the transaction fee will
-be waived. Otherwise execution of the approved operation will be charged to the caller.
-
-+ `proposal_weight_bound`: The maximum amount of weight consumed by executing the closed
-proposal.
-+ `length_bound`: The upper bound for the length of the proposal in storage. Checked via
-`storage::read` so it is `size_of::&lt;u32&gt;() == 4` larger than the pure length.
-
-\#\# Complexity
-- `O(B + M + P1 + P2)` where:
-  - `B` is `proposal` size in bytes (length-fee-bounded)
-  - `M` is members-count (code- and governance-bounded)
-  - `P1` is the complexity of `proposal` preimage.
-  - `P2` is proposal-count (code-bounded)
+See [`Pallet::close`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -44,7 +21,7 @@ call = substrate.compose_call(
     'OpenTechCommitteeCollective', 'close', {
     'index': 'u32',
     'length_bound': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::12',
     'proposal_weight_bound': {
         'proof_size': 'u64',
         'ref_time': 'u64',
@@ -55,16 +32,7 @@ call = substrate.compose_call(
 
 ---------
 ### disapprove_proposal
-Disapprove a proposal, close, and remove it from the system, regardless of its current
-state.
-
-Must be called by the Root origin.
-
-Parameters:
-* `proposal_hash`: The hash of the proposal that should be disapproved.
-
-\#\# Complexity
-O(P) where P is the number of max proposals
+See [`Pallet::disapprove_proposal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -73,21 +41,13 @@ O(P) where P is the number of max proposals
 #### Python
 ```python
 call = substrate.compose_call(
-    'OpenTechCommitteeCollective', 'disapprove_proposal', {'proposal_hash': '[u8; 32]'}
+    'OpenTechCommitteeCollective', 'disapprove_proposal', {'proposal_hash': 'scale_info::12'}
 )
 ```
 
 ---------
 ### execute
-Dispatch a proposal from a member using the `Member` origin.
-
-Origin must be a member of the collective.
-
-\#\# Complexity:
-- `O(B + M + P)` where:
-- `B` is `proposal` size in bytes (length-fee-bounded)
-- `M` members-count (code-bounded)
-- `P` complexity of dispatching `proposal`
+See [`Pallet::execute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -106,20 +66,7 @@ call = substrate.compose_call(
 
 ---------
 ### propose
-Add a new proposal to either be voted on or executed directly.
-
-Requires the sender to be member.
-
-`threshold` determines whether `proposal` is executed directly (`threshold &lt; 2`)
-or put up for voting.
-
-\#\# Complexity
-- `O(B + M + P1)` or `O(B + M + P2)` where:
-  - `B` is `proposal` size in bytes (length-fee-bounded)
-  - `M` is members-count (code- and governance-bounded)
-  - branching is influenced by `threshold` where:
-    - `P1` is proposal execution complexity (`threshold &lt; 2`)
-    - `P2` is proposals-count (code-bounded) (`threshold &gt;= 2`)
+See [`Pallet::propose`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -140,30 +87,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_members
-Set the collective&\#x27;s membership.
-
-- `new_members`: The new member list. Be nice to the chain and provide it sorted.
-- `prime`: The prime member whose vote sets the default.
-- `old_count`: The upper bound for the previous number of members in storage. Used for
-  weight estimation.
-
-The dispatch of this call must be `SetMembersOrigin`.
-
-NOTE: Does not enforce the expected `MaxMembers` limit on the amount of members, but
-      the weight estimations rely on it to estimate dispatchable weight.
-
-\# WARNING:
-
-The `pallet-collective` can also be managed by logic outside of the pallet through the
-implementation of the trait [`ChangeMembers`].
-Any call to `set_members` must be careful that the member set doesn&\#x27;t get out of sync
-with other logic managing the member set.
-
-\#\# Complexity:
-- `O(MP + N)` where:
-  - `M` old-members-count (code- and governance-bounded)
-  - `N` new-members-count (code- and governance-bounded)
-  - `P` proposals-count (code-bounded)
+See [`Pallet::set_members`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -184,15 +108,7 @@ call = substrate.compose_call(
 
 ---------
 ### vote
-Add an aye or nay vote for the sender to the given proposal.
-
-Requires the sender to be a member.
-
-Transaction fees will be waived if the member is voting on any particular proposal
-for the first time and the call is successful. Subsequent vote changes will charge a
-fee.
-\#\# Complexity
-- `O(M)` where `M` is members-count (code- and governance-bounded)
+See [`Pallet::vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -206,7 +122,7 @@ call = substrate.compose_call(
     'OpenTechCommitteeCollective', 'vote', {
     'approve': 'bool',
     'index': 'u32',
-    'proposal': '[u8; 32]',
+    'proposal': 'scale_info::12',
 }
 )
 ```
@@ -220,7 +136,7 @@ A motion was approved by the required threshold.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Closed
@@ -228,7 +144,7 @@ A proposal was closed because its threshold was reached or after its duration wa
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | yes | `MemberCount` | ```u32```
 | no | `MemberCount` | ```u32```
 
@@ -238,7 +154,7 @@ A motion was not approved by the required threshold.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Executed
@@ -246,7 +162,7 @@ A motion was executed; result will be `Ok` if it returned without error.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
@@ -255,7 +171,7 @@ A single member did some action; result will be `Ok` if it returned without erro
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
@@ -267,7 +183,7 @@ A motion (given hash) has been proposed (by given account) with a threshold (giv
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```[u8; 20]```
 | proposal_index | `ProposalIndex` | ```u32```
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | threshold | `MemberCount` | ```u32```
 
 ---------
@@ -278,7 +194,7 @@ a tally (yes votes and no votes given respectively as `MemberCount`).
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```[u8; 20]```
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | voted | `bool` | ```bool```
 | yes | `MemberCount` | ```u32```
 | no | `MemberCount` | ```u32```
@@ -338,7 +254,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'OpenTechCommitteeCollective', 'ProposalOf', ['[u8; 32]']
+    'OpenTechCommitteeCollective', 'ProposalOf', ['scale_info::12']
 )
 ```
 
@@ -359,7 +275,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::12']
 ```
 ---------
 ### Voting
@@ -368,7 +284,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'OpenTechCommitteeCollective', 'Voting', ['[u8; 32]']
+    'OpenTechCommitteeCollective', 'Voting', ['scale_info::12']
 )
 ```
 
@@ -408,6 +324,10 @@ Duplicate vote ignored
 ---------
 ### NotMember
 Account is not a member
+
+---------
+### PrimeAccountNotMember
+Prime account is not a member
 
 ---------
 ### ProposalMissing

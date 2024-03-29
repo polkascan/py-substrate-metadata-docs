@@ -21,7 +21,23 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_collator_reward
+### set_annual_treasury_inflation_rate
+Admin method to set the treasury inflation rate for the next
+sessions. Current session is not affected by this call.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| treasury_inflation_rate | `T::Rate` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'BlockRewards', 'set_annual_treasury_inflation_rate', {'treasury_inflation_rate': 'u128'}
+)
+```
+
+---------
+### set_collator_reward_per_session
 Admin method to set the reward amount for a collator used for the
 next sessions. Current session is not affected by this call.
 #### Attributes
@@ -32,27 +48,9 @@ next sessions. Current session is not affected by this call.
 #### Python
 ```python
 call = substrate.compose_call(
-    'BlockRewards', 'set_collator_reward', {
+    'BlockRewards', 'set_collator_reward_per_session', {
     'collator_reward_per_session': 'u128',
 }
-)
-```
-
----------
-### set_total_reward
-Admin method to set the total reward distribution for the next
-sessions. Current session is not affected by this call.
-
-Throws if total_reward &lt; collator_reward * collator_count.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| total_reward_per_session | `T::Balance` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'BlockRewards', 'set_total_reward', {'total_reward_per_session': 'u128'}
 )
 ```
 
@@ -65,15 +63,15 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collator_reward | `T::Balance` | ```u128```
-| total_reward | `T::Balance` | ```u128```
-| last_changes | `SessionChanges<T>` | ```{'collators': {'inc': ['AccountId'], 'out': ['AccountId']}, 'collator_count': (None, 'u32'), 'collator_reward': (None, 'u128'), 'total_reward': (None, 'u128')}```
+| treasury_inflation_rate | `T::Rate` | ```u128```
+| last_changes | `SessionChanges<T>` | ```{'collators': {'inc': ['AccountId'], 'out': ['AccountId']}, 'collator_count': (None, 'u32'), 'collator_reward': (None, 'u128'), 'treasury_inflation_rate': (None, 'u128'), 'last_update': 'u64'}```
 
 ---------
 ### SessionAdvancementFailed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}```
 
 ---------
 ## Storage functions
@@ -91,7 +89,12 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'collator_count': 'u32', 'collator_reward': 'u128', 'total_reward': 'u128'}
+{
+    'collator_count': 'u32',
+    'collator_reward': 'u128',
+    'last_update': 'u64',
+    'treasury_inflation_rate': 'u128',
+}
 ```
 ---------
 ### NextSessionChanges
@@ -111,24 +114,22 @@ result = substrate.query(
     'collator_count': (None, 'u32'),
     'collator_reward': (None, 'u128'),
     'collators': {'inc': ['AccountId'], 'out': ['AccountId']},
-    'total_reward': (None, 'u128'),
+    'last_update': 'u64',
+    'treasury_inflation_rate': (None, 'u128'),
 }
 ```
 ---------
 ## Constants
 
 ---------
-### MaxChangesPerSession
- Max number of changes of the same type enqueued to apply in the next
- session. Max calls to [`Pallet::set_collator_reward()`] or to
- [`Pallet::set_total_reward()`] with the same id.
+### ExistentialDeposit
 #### Value
 ```python
-50
+1000000000000
 ```
 #### Python
 ```python
-constant = substrate.get_constant('BlockRewards', 'MaxChangesPerSession')
+constant = substrate.get_constant('BlockRewards', 'ExistentialDeposit')
 ```
 ---------
 ### MaxCollators
@@ -175,15 +176,4 @@ constant = substrate.get_constant('BlockRewards', 'StakeCurrencyId')
 ```python
 constant = substrate.get_constant('BlockRewards', 'StakeGroupId')
 ```
----------
-## Errors
-
----------
-### InsufficientTotalReward
-
----------
-### MaxChangesPerSessionReached
-Limit of max calls with same id to [`Pallet::set_collator_reward()`]
-or [`Pallet::set_total_reward()`] reached.
-
 ---------

@@ -6,8 +6,8 @@
 
 ---------
 ### AvailabilityCores
- One entry for each availability core. Entries are `None` if the core is not currently occupied. Can be
- temporarily `Some` if scheduled but not occupied.
+ One entry for each availability core. Entries are `None` if the core is not currently
+ occupied. Can be temporarily `Some` if scheduled but not occupied.
  The i&#x27;th parachain belongs to the i&#x27;th core, with the remaining cores all being
  parathread-multiplexers.
 
@@ -25,86 +25,39 @@ result = substrate.query(
 #### Return value
 ```python
 [
-    (
-        None,
-        {
-            'Parachain': None,
-            'Parathread': {'claim': ('u32', '[u8; 32]'), 'retries': 'u32'},
-        },
-    ),
-]
-```
----------
-### ParathreadClaimIndex
- An index used to ensure that only one claim on a parathread exists in the queue or is
- currently being handled by an occupied core.
-
- Bounded by the number of parathread cores and scheduling lookahead. Reasonably, 10 * 50 = 500.
-
-#### Python
-```python
-result = substrate.query(
-    'ParaScheduler', 'ParathreadClaimIndex', []
-)
-```
-
-#### Return value
-```python
-['u32']
-```
----------
-### ParathreadQueue
- A queue of upcoming claims and which core they should be mapped onto.
-
- The number of queued claims is bounded at the `scheduling_lookahead`
- multiplied by the number of parathread multiplexer cores. Reasonably, 10 * 50 = 500.
-
-#### Python
-```python
-result = substrate.query(
-    'ParaScheduler', 'ParathreadQueue', []
-)
-```
-
-#### Return value
-```python
-{
-    'next_core_offset': 'u32',
-    'queue': [
-        {'claim': {'claim': ('u32', '[u8; 32]'), 'retries': 'u32'}, 'core_offset': 'u32'},
-    ],
-}
-```
----------
-### Scheduled
- Currently scheduled cores - free but up to be occupied.
-
- Bounded by the number of cores: one for each parachain and parathread multiplexer.
-
- The value contained here will not be valid after the end of a block. Runtime APIs should be used to determine scheduled cores/
- for the upcoming block.
-
-#### Python
-```python
-result = substrate.query(
-    'ParaScheduler', 'Scheduled', []
-)
-```
-
-#### Return value
-```python
-[
     {
-        'core': 'u32',
-        'group_idx': 'u32',
-        'kind': {'Parachain': None, 'Parathread': ('[u8; 32]', 'u32')},
-        'para_id': 'u32',
+        'Free': None,
+        'Paras': {
+            'assignment': {'para_id': 'u32'},
+            'availability_timeouts': 'u32',
+            'ttl': 'u32',
+        },
     },
 ]
 ```
 ---------
+### ClaimQueue
+ One entry for each availability core. The `VecDeque` represents the assignments to be
+ scheduled on that core. `None` is used to signal to not schedule the next para of the core
+ as there is one currently being scheduled. Not using `None` here would overwrite the
+ `CoreState` in the runtime API. The value contained here will not be valid after the end of
+ a block. Runtime APIs should be used to determine scheduled cores/ for the upcoming block.
+
+#### Python
+```python
+result = substrate.query(
+    'ParaScheduler', 'ClaimQueue', []
+)
+```
+
+#### Return value
+```python
+'scale_info::803'
+```
+---------
 ### SessionStartBlock
- The block number where the session start occurred. Used to track how many group rotations have occurred.
+ The block number where the session start occurred. Used to track how many group rotations
+ have occurred.
 
  Note that in the context of parachains modules the session change is signaled during
  the block and enacted at the end of the block (at the finalization stage, to be exact).
@@ -128,8 +81,9 @@ result = substrate.query(
  broader set of Polkadot validators, but instead just the subset used for parachains during
  this session.
 
- Bound: The number of cores is the sum of the numbers of parachains and parathread multiplexers.
- Reasonably, 100-1000. The dominant factor is the number of validators: safe upper bound at 10k.
+ Bound: The number of cores is the sum of the numbers of parachains and parathread
+ multiplexers. Reasonably, 100-1000. The dominant factor is the number of validators: safe
+ upper bound at 10k.
 
 #### Python
 ```python

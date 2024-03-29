@@ -55,12 +55,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -73,22 +73,22 @@ call = substrate.compose_call(
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::9',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::9',
+            'state_root': 'scale_info::9',
         },
         'offender': '[u8; 32]',
         'second_header': {
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
                         None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -101,10 +101,10 @@ call = substrate.compose_call(
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::9',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::9',
+            'state_root': 'scale_info::9',
         },
         'slot': 'u64',
     },
@@ -160,10 +160,10 @@ call = substrate.compose_call(
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::9',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::9',
+            'state_root': 'scale_info::9',
         },
         'offender': '[u8; 32]',
         'second_header': {
@@ -188,10 +188,10 @@ call = substrate.compose_call(
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::9',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::9',
+            'state_root': 'scale_info::9',
         },
         'slot': 'u64',
     },

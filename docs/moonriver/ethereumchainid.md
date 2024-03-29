@@ -6,6 +6,7 @@
 
 ---------
 ### ChainId
+ The EVM chain ID.
 
 #### Python
 ```python

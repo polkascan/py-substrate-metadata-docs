@@ -178,7 +178,7 @@ Emits `JudgementGiven` if successful.
 ```python
 call = substrate.compose_call(
     'Identity', 'provide_judgement', {
-    'identity': '[u8; 32]',
+    'identity': 'scale_info::12',
     'judgement': {
         'Erroneous': None,
         'FeePaid': 'u128',

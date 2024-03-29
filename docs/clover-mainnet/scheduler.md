@@ -51,7 +51,7 @@ Anonymously schedule a task.
 call = substrate.compose_call(
     'Scheduler', 'schedule', {
     'call': {
-        'Hash': '[u8; 32]',
+        'Hash': 'scale_info::9',
         'Value': 'Call',
     },
     'maybe_periodic': (
@@ -85,7 +85,7 @@ call = substrate.compose_call(
     'Scheduler', 'schedule_after', {
     'after': 'u32',
     'call': {
-        'Hash': '[u8; 32]',
+        'Hash': 'scale_info::9',
         'Value': 'Call',
     },
     'maybe_periodic': (
@@ -114,7 +114,7 @@ Schedule a named task.
 call = substrate.compose_call(
     'Scheduler', 'schedule_named', {
     'call': {
-        'Hash': '[u8; 32]',
+        'Hash': 'scale_info::9',
         'Value': 'Call',
     },
     'id': 'Bytes',
@@ -150,7 +150,7 @@ call = substrate.compose_call(
     'Scheduler', 'schedule_named_after', {
     'after': 'u32',
     'call': {
-        'Hash': '[u8; 32]',
+        'Hash': 'scale_info::9',
         'Value': 'Call',
     },
     'id': 'Bytes',
@@ -224,10 +224,12 @@ result = substrate.query(
     (
         None,
         {
-            'call': {'Hash': '[u8; 32]', 'Value': 'Call'},
+            'call': {'Hash': 'scale_info::9', 'Value': 'Call'},
             'maybe_id': (None, 'Bytes'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -245,8 +247,6 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },

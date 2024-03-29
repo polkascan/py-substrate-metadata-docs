@@ -189,7 +189,7 @@ Bad XCM format used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<T::Hash>` | ```(None, 'scale_info::9')```
 
 ---------
 ### BadVersion
@@ -197,7 +197,7 @@ Bad XCM version used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<T::Hash>` | ```(None, 'scale_info::9')```
 
 ---------
 ### Fail
@@ -205,7 +205,7 @@ Some XCM failed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<T::Hash>` | ```(None, 'scale_info::9')```
 | error | `XcmError` | ```{'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'MultiLocationFull': None, 'MultiLocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'UnhandledXcmVersion': None, 'WeightLimitReached': 'u64', 'Barrier': None, 'WeightNotComputable': None}```
 | weight | `Weight` | ```u64```
 
@@ -235,7 +235,7 @@ Some XCM was executed ok.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<T::Hash>` | ```(None, 'scale_info::9')```
 | weight | `Weight` | ```u64```
 
 ---------
@@ -244,7 +244,7 @@ An upward message was sent to the relay chain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<T::Hash>` | ```(None, 'scale_info::9')```
 
 ---------
 ### XcmpMessageSent
@@ -252,7 +252,7 @@ An HRMP message was sent to a sibling parachain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `Option<T::Hash>` | ```(None, 'scale_info::9')```
 
 ---------
 ## Storage functions

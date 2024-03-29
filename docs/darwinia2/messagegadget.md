@@ -6,6 +6,7 @@
 
 ---------
 ### set_commitment_contract
+See [`Pallet::set_commitment_contract`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

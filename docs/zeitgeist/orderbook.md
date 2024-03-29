@@ -9,7 +9,10 @@
 Fill an existing order entirely (`maker_partial_fill` = None)
 or partially (`maker_partial_fill` = Some(partial_amount)).
 
-NOTE: The `maker_partial_fill` is the partial amount of what the maker wants to fill.
+External fees are paid in the base asset.
+
+NOTE: The `maker_partial_fill` is the partial amount
+of what the maker wants to get filled.
 
 \# Weight
 
@@ -44,24 +47,27 @@ Complexity: `O(1)`
 | Name | Type |
 | -------- | -------- | 
 | market_id | `MarketIdOf<T>` | 
-| outcome_asset | `Asset<MarketIdOf<T>>` | 
-| side | `OrderSide` | 
-| outcome_asset_amount | `BalanceOf<T>` | 
-| base_asset_amount | `BalanceOf<T>` | 
+| maker_asset | `AssetOf<T>` | 
+| maker_amount | `BalanceOf<T>` | 
+| taker_asset | `AssetOf<T>` | 
+| taker_amount | `BalanceOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Orderbook', 'place_order', {
-    'base_asset_amount': 'u128',
-    'market_id': 'u128',
-    'outcome_asset': {
+    'maker_amount': 'u128',
+    'maker_asset': {
         'CategoricalOutcome': (
             'u128',
             'u16',
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -69,8 +75,26 @@ call = substrate.compose_call(
         ),
         'Ztg': None,
     },
-    'outcome_asset_amount': 'u128',
-    'side': ('Bid', 'Ask'),
+    'market_id': 'u128',
+    'taker_amount': 'u128',
+    'taker_asset': {
+        'CategoricalOutcome': (
+            'u128',
+            'u16',
+        ),
+        'CombinatorialOutcome': None,
+        'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
+        'PoolShare': 'u128',
+        'ScalarOutcome': (
+            'u128',
+            ('Long', 'Short'),
+        ),
+        'Ztg': None,
+    },
 }
 )
 ```
@@ -105,9 +129,10 @@ call = substrate.compose_call(
 | order_id | `OrderId` | ```u128```
 | maker | `AccountIdOf<T>` | ```AccountId```
 | taker | `AccountIdOf<T>` | ```AccountId```
-| filled | `BalanceOf<T>` | ```u128```
-| unfilled_outcome_asset_amount | `BalanceOf<T>` | ```u128```
-| unfilled_base_asset_amount | `BalanceOf<T>` | ```u128```
+| filled_maker_amount | `BalanceOf<T>` | ```u128```
+| filled_taker_amount | `BalanceOf<T>` | ```u128```
+| unfilled_maker_amount | `BalanceOf<T>` | ```u128```
+| unfilled_taker_amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ### OrderPlaced
@@ -115,7 +140,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | order_id | `OrderId` | ```u128```
-| order | `OrderOf<T>` | ```{'market_id': 'u128', 'side': ('Bid', 'Ask'), 'maker': 'AccountId', 'outcome_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'outcome_asset_amount': 'u128', 'base_asset_amount': 'u128'}```
+| order | `OrderOf<T>` | ```{'market_id': 'u128', 'maker': 'AccountId', 'maker_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'maker_amount': 'u128', 'taker_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'taker_amount': 'u128'}```
 
 ---------
 ### OrderRemoved
@@ -155,27 +180,28 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'base_asset': {
-        'CategoricalOutcome': ('u128', 'u16'),
-        'CombinatorialOutcome': None,
-        'ForeignAsset': 'u32',
-        'PoolShare': 'u128',
-        'ScalarOutcome': ('u128', ('Long', 'Short')),
-        'Ztg': None,
-    },
-    'base_asset_amount': 'u128',
     'maker': 'AccountId',
-    'market_id': 'u128',
-    'outcome_asset': {
+    'maker_amount': 'u128',
+    'maker_asset': {
         'CategoricalOutcome': ('u128', 'u16'),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': ('u128', 'u16'),
         'PoolShare': 'u128',
         'ScalarOutcome': ('u128', ('Long', 'Short')),
         'Ztg': None,
     },
-    'outcome_asset_amount': 'u128',
-    'side': ('Bid', 'Ask'),
+    'market_id': 'u128',
+    'taker_amount': 'u128',
+    'taker_asset': {
+        'CategoricalOutcome': ('u128', 'u16'),
+        'CombinatorialOutcome': None,
+        'ForeignAsset': 'u32',
+        'ParimutuelShare': ('u128', 'u16'),
+        'PoolShare': 'u128',
+        'ScalarOutcome': ('u128', ('Long', 'Short')),
+        'Ztg': None,
+    },
 }
 ```
 ---------
@@ -195,12 +221,12 @@ constant = substrate.get_constant('Orderbook', 'PalletId')
 ## Errors
 
 ---------
-### AmountIsZero
-The specified amount parameter is zero.
-
----------
 ### AmountTooHighForOrder
 The specified amount parameter is too high for the order.
+
+---------
+### BelowMinimumBalance
+The specified amount is below the minimum balance.
 
 ---------
 ### InvalidOutcomeAsset
@@ -208,11 +234,11 @@ The specified outcome asset is not part of the market.
 
 ---------
 ### InvalidScoringRule
-The scoring rule is not orderbook.
+The scoring rule is not order book.
 
 ---------
-### MakerPartialFillTooLow
-The maker partial fill leads to a too low quotient for the next order execution.
+### MarketBaseAssetNotPresent
+The market base asset is not present.
 
 ---------
 ### MarketIsNotActive
@@ -225,5 +251,9 @@ The sender is not the order creator.
 ---------
 ### OrderDoesNotExist
 The order does not exist.
+
+---------
+### PartialFillNearFullFillNotAllowed
+The maker partial fill leads to a too low quotient for the next order execution.
 
 ---------

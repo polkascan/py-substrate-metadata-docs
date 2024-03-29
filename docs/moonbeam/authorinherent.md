@@ -6,8 +6,7 @@
 
 ---------
 ### kick_off_authorship_validation
-This inherent is a workaround to run code after the &quot;real&quot; inherents have executed,
-but before transactions are executed.
+See [`Pallet::kick_off_authorship_validation`].
 #### Attributes
 No attributes
 
@@ -35,22 +34,6 @@ result = substrate.query(
 #### Return value
 ```python
 '[u8; 20]'
-```
----------
-### HighestSlotSeen
- The highest slot that has been seen in the history of this chain.
- This is a strictly-increasing value.
-
-#### Python
-```python
-result = substrate.query(
-    'AuthorInherent', 'HighestSlotSeen', []
-)
-```
-
-#### Return value
-```python
-'u32'
 ```
 ---------
 ## Errors

@@ -22,13 +22,13 @@ call = substrate.compose_call(
         'EVM': {
             'messages': [
                 {
-                    'max_gas': '[u64; 4]',
+                    'max_gas': 'scale_info::111',
                     'payload': 'Bytes',
                     'target': '[u8; 20]',
                 },
             ],
             'nonce': 'u64',
-            'total_max_gas': '[u64; 4]',
+            'total_max_gas': 'scale_info::111',
         },
         'Sub': {
             'messages': [
@@ -46,24 +46,25 @@ call = substrate.compose_call(
             'nonce': 'u64',
         },
     },
-    'network_id': {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    'network_id': (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
     'proof': {
         'digest': {
             'logs': [
                 {
                     'Commitment': (
                         {
-                            'EVM': '[u64; 4]',
+                            'EVM': 'scale_info::111',
                             'EVMLegacy': 'u32',
-                            'Sub': 'scale_info::109',
+                            'Sub': 'scale_info::105',
                         },
-                        '[u8; 32]',
+                        'scale_info::11',
                     ),
                 },
             ],
@@ -84,13 +85,14 @@ call = substrate.compose_call(
 ```python
 result = substrate.query(
     'SubstrateBridgeInboundChannel', 'ChannelNonces', [
-    {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
 ]
 )
 ```

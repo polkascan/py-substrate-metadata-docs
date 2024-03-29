@@ -111,7 +111,7 @@ must be supplied.
 ```python
 call = substrate.compose_call(
     'Contracts', 'instantiate', {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
     'data': 'Bytes',
     'gas_limit': {
         'proof_size': 'u64',
@@ -144,7 +144,7 @@ Deprecated version if [`Self::instantiate`] for use in an in-storage `Call`.
 ```python
 call = substrate.compose_call(
     'Contracts', 'instantiate_old_weight', {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
     'data': 'Bytes',
     'gas_limit': 'u64',
     'salt': 'Bytes',
@@ -259,7 +259,7 @@ not used by any contract.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Contracts', 'remove_code', {'code_hash': '[u8; 32]'}
+    'Contracts', 'remove_code', {'code_hash': 'scale_info::12'}
 )
 ```
 
@@ -285,7 +285,7 @@ this dispatchable.
 ```python
 call = substrate.compose_call(
     'Contracts', 'set_code', {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
     'dest': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -309,9 +309,9 @@ If the code already exists in storage it will still return `Ok` and upgrades
 the in storage version to the current
 [`InstructionWeights::version`](InstructionWeights).
 
-- `determinism`: If this is set to any other value but [`Determinism::Deterministic`]
-  then the only way to use this code is to delegate call into it from an offchain
-  execution. Set to [`Determinism::Deterministic`] if in doubt.
+- `determinism`: If this is set to any other value but [`Determinism::Enforced`] then
+  the only way to use this code is to delegate call into it from an offchain execution.
+  Set to [`Determinism::Enforced`] if in doubt.
 
 \# Note
 
@@ -332,8 +332,8 @@ call = substrate.compose_call(
     'Contracts', 'upload_code', {
     'code': 'Bytes',
     'determinism': (
-        'Deterministic',
-        'AllowIndeterminism',
+        'Enforced',
+        'Relaxed',
     ),
     'storage_deposit_limit': (
         None,
@@ -367,7 +367,7 @@ A code with the specified hash was removed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### CodeStored
@@ -375,7 +375,7 @@ Code with the specified hash has been stored.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### ContractCodeUpdated
@@ -384,8 +384,8 @@ A contract&\#x27;s code was updated.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | contract | `T::AccountId` | ```AccountId```
-| new_code_hash | `T::Hash` | ```[u8; 32]```
-| old_code_hash | `T::Hash` | ```[u8; 32]```
+| new_code_hash | `T::Hash` | ```scale_info::12```
+| old_code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### ContractEmitted
@@ -409,7 +409,7 @@ rolled back.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | contract | `T::AccountId` | ```AccountId```
-| code_hash | `CodeHash<T>` | ```[u8; 32]```
+| code_hash | `CodeHash<T>` | ```scale_info::12```
 
 ---------
 ### Instantiated
@@ -444,7 +444,7 @@ The only way for a contract to be removed and emitting this event is by calling
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'CodeStorage', ['[u8; 32]']
+    'Contracts', 'CodeStorage', ['scale_info::12']
 )
 ```
 
@@ -452,7 +452,7 @@ result = substrate.query(
 ```python
 {
     'code': 'Bytes',
-    'determinism': ('Deterministic', 'AllowIndeterminism'),
+    'determinism': ('Enforced', 'Relaxed'),
     'initial': 'u32',
     'instruction_weights_version': 'u32',
     'maximum': 'u32',
@@ -474,7 +474,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
     'deposit_account': 'AccountId',
     'storage_base_deposit': 'u128',
     'storage_byte_deposit': 'u128',
@@ -489,18 +489,34 @@ result = substrate.query(
  Evicted contracts that await child trie deletion.
 
  Child trie deletion is a heavy operation depending on the amount of storage items
- stored in said trie. Therefore this operation is performed lazily in `on_initialize`.
+ stored in said trie. Therefore this operation is performed lazily in `on_idle`.
 
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'DeletionQueue', []
+    'Contracts', 'DeletionQueue', ['u32']
 )
 ```
 
 #### Return value
 ```python
-[{'trie_id': 'Bytes'}]
+'Bytes'
+```
+---------
+### DeletionQueueCounter
+ A pair of monotonic counters used to track the latest contract marked for deletion
+ and the latest deleted contract in queue.
+
+#### Python
+```python
+result = substrate.query(
+    'Contracts', 'DeletionQueueCounter', []
+)
+```
+
+#### Return value
+```python
+{'delete_counter': 'u32', 'insert_counter': 'u32'}
 ```
 ---------
 ### Nonce
@@ -545,7 +561,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'OwnerInfoOf', ['[u8; 32]']
+    'Contracts', 'OwnerInfoOf', ['scale_info::12']
 )
 ```
 
@@ -560,7 +576,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'PristineCode', ['[u8; 32]']
+    'Contracts', 'PristineCode', ['scale_info::12']
 )
 ```
 
@@ -572,45 +588,15 @@ result = substrate.query(
 ## Constants
 
 ---------
-### DeletionQueueDepth
- The maximum number of contracts that can be pending for deletion.
-
- When a contract is deleted by calling `seal_terminate` it becomes inaccessible
- immediately, but the deletion of the storage items it has accumulated is performed
- later. The contract is put into the deletion queue. This defines how many
- contracts can be queued up at the same time. If that limit is reached `seal_terminate`
- will fail. The action must be retried in a later block in that case.
-
- The reasons for limiting the queue depth are:
-
- 1. The queue is in storage in order to be persistent between blocks. We want to limit
- 	the amount of storage that can be consumed.
- 2. The queue is stored in a vector and needs to be decoded as a whole when reading
-		it at the end of each block. Longer queues take more weight to decode and hence
-		limit the amount of items that can be deleted per block.
+### DefaultDepositLimit
+ Fallback value to limit the storage deposit if it&#x27;s not being set by the caller.
 #### Value
 ```python
-128
+107642880000000
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Contracts', 'DeletionQueueDepth')
-```
----------
-### DeletionWeightLimit
- The maximum amount of weight that can be consumed per block for lazy trie removal.
-
- The amount of weight that is dedicated per block to work on the deletion queue. Larger
- values allow more trie keys to be deleted in each block but reduce the amount of
- weight that is left for transactions. See [`Self::DeletionQueueDepth`] for more
- information about the deletion queue.
-#### Value
-```python
-{'proof_size': 3932160, 'ref_time': 375000000000}
-```
-#### Python
-```python
-constant = substrate.get_constant('Contracts', 'DeletionWeightLimit')
+constant = substrate.get_constant('Contracts', 'DefaultDepositLimit')
 ```
 ---------
 ### DepositPerByte
@@ -688,123 +674,124 @@ constant = substrate.get_constant('Contracts', 'MaxStorageKeyLen')
 ```python
 {
     'host_fn_weights': {
-        'account_reentrance_count': {'proof_size': 198, 'ref_time': 225716},
-        'address': {'proof_size': 30, 'ref_time': 221053},
-        'balance': {'proof_size': 30, 'ref_time': 1228637},
-        'block_number': {'proof_size': 30, 'ref_time': 211709},
-        'call': {'proof_size': 6393, 'ref_time': 612280314},
-        'call_per_cloned_byte': {'proof_size': 0, 'ref_time': 120},
-        'call_transfer_surcharge': {'proof_size': 3562, 'ref_time': 143940274},
-        'caller': {'proof_size': 30, 'ref_time': 221445},
-        'caller_is_origin': {'proof_size': 15, 'ref_time': 141995},
-        'clear_storage': {'proof_size': 288, 'ref_time': 130666449},
-        'clear_storage_per_byte': {'proof_size': 2, 'ref_time': 11496},
-        'code_hash': {'proof_size': 3856, 'ref_time': 28777188},
-        'contains_storage': {'proof_size': 288, 'ref_time': 29464186},
-        'contains_storage_per_byte': {'proof_size': 2, 'ref_time': 2890},
-        'debug_message': {'proof_size': 35, 'ref_time': 185463},
-        'debug_message_per_byte': {'proof_size': 0, 'ref_time': 800},
-        'delegate_call': {'proof_size': 8249, 'ref_time': 499579339},
-        'deposit_event': {'proof_size': 50, 'ref_time': 2865176},
-        'deposit_event_per_byte': {'proof_size': 0, 'ref_time': 874},
-        'deposit_event_per_topic': {'proof_size': 2637, 'ref_time': 127268381},
-        'ecdsa_recover': {'proof_size': 380, 'ref_time': 37763755},
-        'ecdsa_to_eth_address': {'proof_size': 210, 'ref_time': 9228220},
-        'gas': {'proof_size': 0, 'ref_time': 100691},
-        'gas_left': {'proof_size': 30, 'ref_time': 214407},
-        'get_storage': {'proof_size': 296, 'ref_time': 29640163},
-        'get_storage_per_byte': {'proof_size': 2, 'ref_time': 4100},
-        'hash_blake2_128': {'proof_size': 42, 'ref_time': 449169},
-        'hash_blake2_128_per_byte': {'proof_size': 0, 'ref_time': 1261},
-        'hash_blake2_256': {'proof_size': 40, 'ref_time': 416839},
-        'hash_blake2_256_per_byte': {'proof_size': 0, 'ref_time': 1260},
-        'hash_keccak_256': {'proof_size': 40, 'ref_time': 722259},
-        'hash_keccak_256_per_byte': {'proof_size': 0, 'ref_time': 3185},
-        'hash_sha2_256': {'proof_size': 40, 'ref_time': 528644},
-        'hash_sha2_256_per_byte': {'proof_size': 0, 'ref_time': 3961},
-        'input': {'proof_size': 30, 'ref_time': 198355},
-        'input_per_byte': {'proof_size': 0, 'ref_time': 118},
-        'instantiate': {'proof_size': 17088, 'ref_time': 1098810328},
-        'instantiate_per_input_byte': {'proof_size': 0, 'ref_time': 1539},
-        'instantiate_per_salt_byte': {'proof_size': 0, 'ref_time': 1545},
+        'account_reentrance_count': {'proof_size': 40, 'ref_time': 260005},
+        'address': {'proof_size': 6, 'ref_time': 332291},
+        'balance': {'proof_size': 6, 'ref_time': 1449599},
+        'block_number': {'proof_size': 6, 'ref_time': 344488},
+        'call': {'proof_size': 2732, 'ref_time': 459419071},
+        'call_per_cloned_byte': {'proof_size': 0, 'ref_time': 591},
+        'call_transfer_surcharge': {'proof_size': 5154, 'ref_time': 284736740},
+        'caller': {'proof_size': 6, 'ref_time': 339913},
+        'caller_is_origin': {'proof_size': 3, 'ref_time': 165823},
+        'clear_storage': {'proof_size': 289, 'ref_time': 130854896},
+        'clear_storage_per_byte': {'proof_size': 1, 'ref_time': 74},
+        'code_hash': {'proof_size': 2719, 'ref_time': 29131820},
+        'contains_storage': {'proof_size': 289, 'ref_time': 29684126},
+        'contains_storage_per_byte': {'proof_size': 1, 'ref_time': 99},
+        'debug_message': {'proof_size': 7, 'ref_time': 230285},
+        'debug_message_per_byte': {'proof_size': 0, 'ref_time': 731},
+        'delegate_call': {'proof_size': 2572, 'ref_time': 355646517},
+        'deposit_event': {'proof_size': 10, 'ref_time': 3470410},
+        'deposit_event_per_byte': {'proof_size': 0, 'ref_time': 583},
+        'deposit_event_per_topic': {'proof_size': 2508, 'ref_time': 127163531},
+        'ecdsa_recover': {'proof_size': 77, 'ref_time': 36733552},
+        'ecdsa_to_eth_address': {'proof_size': 42, 'ref_time': 9185896},
+        'gas': {'proof_size': 0, 'ref_time': 133607},
+        'gas_left': {'proof_size': 6, 'ref_time': 328899},
+        'get_storage': {'proof_size': 297, 'ref_time': 29948021},
+        'get_storage_per_byte': {'proof_size': 1, 'ref_time': 717},
+        'hash_blake2_128': {'proof_size': 8, 'ref_time': 410177},
+        'hash_blake2_128_per_byte': {'proof_size': 0, 'ref_time': 911},
+        'hash_blake2_256': {'proof_size': 8, 'ref_time': 413343},
+        'hash_blake2_256_per_byte': {'proof_size': 0, 'ref_time': 908},
+        'hash_keccak_256': {'proof_size': 8, 'ref_time': 733879},
+        'hash_keccak_256_per_byte': {'proof_size': 0, 'ref_time': 3127},
+        'hash_sha2_256': {'proof_size': 8, 'ref_time': 572296},
+        'hash_sha2_256_per_byte': {'proof_size': 0, 'ref_time': 3892},
+        'input': {'proof_size': 6, 'ref_time': 267302},
+        'input_per_byte': {'proof_size': 0, 'ref_time': 587},
+        'instantiate': {'proof_size': 5205, 'ref_time': 991428013},
+        'instantiate_per_input_byte': {'proof_size': 0, 'ref_time': 1145},
+        'instantiate_per_salt_byte': {'proof_size': 0, 'ref_time': 1315},
         'instantiate_transfer_surcharge': {
-            'proof_size': 33,
-            'ref_time': 2621493,
+            'proof_size': 2634,
+            'ref_time': 240239834,
         },
-        'instantiation_nonce': {'proof_size': 18, 'ref_time': 117264},
-        'is_contract': {'proof_size': 3836, 'ref_time': 28113744},
-        'minimum_balance': {'proof_size': 30, 'ref_time': 214348},
-        'now': {'proof_size': 30, 'ref_time': 216705},
-        'own_code_hash': {'proof_size': 30, 'ref_time': 279709},
-        'r#return': {'proof_size': 225, 'ref_time': 1737397},
-        'random': {'proof_size': 60, 'ref_time': 1391359},
-        'reentrance_count': {'proof_size': 15, 'ref_time': 143540},
-        'return_per_byte': {'proof_size': 0, 'ref_time': 227},
-        'set_code_hash': {'proof_size': 11786, 'ref_time': 277142535},
-        'set_storage': {'proof_size': 292, 'ref_time': 130806878},
-        'set_storage_per_new_byte': {'proof_size': 0, 'ref_time': 11875},
-        'set_storage_per_old_byte': {'proof_size': 2, 'ref_time': 11484},
-        'take_storage': {'proof_size': 296, 'ref_time': 130815165},
-        'take_storage_per_byte': {'proof_size': 2, 'ref_time': 12714},
-        'terminate': {'proof_size': 15004, 'ref_time': 920441665},
-        'transfer': {'proof_size': 2701, 'ref_time': 142456889},
-        'value_transferred': {'proof_size': 30, 'ref_time': 218025},
-        'weight_to_fee': {'proof_size': 60, 'ref_time': 1106625},
+        'instantiation_nonce': {'proof_size': 3, 'ref_time': 138382},
+        'is_contract': {'proof_size': 2715, 'ref_time': 28331781},
+        'minimum_balance': {'proof_size': 6, 'ref_time': 324693},
+        'now': {'proof_size': 6, 'ref_time': 328235},
+        'own_code_hash': {'proof_size': 6, 'ref_time': 409923},
+        'r#return': {'proof_size': 45, 'ref_time': 1733181},
+        'random': {'proof_size': 10, 'ref_time': 1771297},
+        'reentrance_count': {'proof_size': 3, 'ref_time': 159851},
+        'return_per_byte': {'proof_size': 0, 'ref_time': 177},
+        'set_code_hash': {'proof_size': 3090, 'ref_time': 296447984},
+        'set_storage': {'proof_size': 293, 'ref_time': 131005187},
+        'set_storage_per_new_byte': {'proof_size': 0, 'ref_time': 410},
+        'set_storage_per_old_byte': {'proof_size': 1, 'ref_time': 27},
+        'sr25519_verify': {'proof_size': 112, 'ref_time': 47527740},
+        'sr25519_verify_per_byte': {'proof_size': 1, 'ref_time': 4693},
+        'take_storage': {'proof_size': 297, 'ref_time': 131167176},
+        'take_storage_per_byte': {'proof_size': 1, 'ref_time': 667},
+        'terminate': {'proof_size': 7781, 'ref_time': 1060758930},
+        'transfer': {'proof_size': 2520, 'ref_time': 160149946},
+        'value_transferred': {'proof_size': 6, 'ref_time': 329911},
+        'weight_to_fee': {'proof_size': 10, 'ref_time': 1337653},
     },
     'instruction_weights': {
-        'br': 2287,
-        'br_if': 3316,
-        'br_table': 5457,
-        'br_table_per_entry': 46,
-        'call': 19203,
-        'call_indirect': 23063,
-        'call_indirect_per_param': 2289,
-        'call_per_local': 913,
+        'br': 1589,
+        'br_if': 2431,
+        'br_table': 4798,
+        'br_table_per_entry': 42,
+        'call': 15983,
+        'call_indirect': 20313,
+        'call_per_local': 1243,
         'fallback': 0,
-        'global_get': 6908,
-        'global_set': 7138,
-        'i32wrapi64': 2058,
-        'i64add': 2786,
-        'i64and': 2793,
-        'i64clz': 2136,
-        'i64const': 2060,
-        'i64ctz': 2224,
-        'i64divs': 9041,
-        'i64divu': 8400,
-        'i64eq': 2914,
-        'i64eqz': 2410,
-        'i64extendsi32': 2066,
-        'i64extendui32': 1995,
-        'i64ges': 2906,
-        'i64geu': 2958,
-        'i64gts': 2889,
-        'i64gtu': 3016,
-        'i64les': 2903,
-        'i64leu': 3121,
-        'i64load': 6640,
-        'i64lts': 2843,
-        'i64ltu': 2887,
-        'i64mul': 2688,
-        'i64ne': 2896,
-        'i64or': 3456,
-        'i64popcnt': 2470,
-        'i64rems': 9322,
-        'i64remu': 8353,
-        'i64rotl': 2850,
-        'i64rotr': 2789,
-        'i64shl': 2818,
-        'i64shrs': 2855,
-        'i64shru': 2845,
-        'i64store': 5894,
-        'i64sub': 2686,
-        'i64xor': 2793,
-        'local_get': 2534,
-        'local_set': 2795,
-        'local_tee': 2460,
-        'memory_current': 6071,
-        'memory_grow': 14803549,
-        'r#if': 6979,
-        'select': 3255,
+        'global_get': 6899,
+        'global_set': 7359,
+        'i32wrapi64': 766,
+        'i64add': 1445,
+        'i64and': 1244,
+        'i64clz': 886,
+        'i64const': 1468,
+        'i64ctz': 798,
+        'i64divs': 7441,
+        'i64divu': 6212,
+        'i64eq': 1554,
+        'i64eqz': 724,
+        'i64extendsi32': 918,
+        'i64extendui32': 872,
+        'i64ges': 1542,
+        'i64geu': 1574,
+        'i64gts': 1441,
+        'i64gtu': 1674,
+        'i64les': 1570,
+        'i64leu': 1658,
+        'i64load': 3401,
+        'i64lts': 1565,
+        'i64ltu': 1564,
+        'i64mul': 1353,
+        'i64ne': 1532,
+        'i64or': 1344,
+        'i64popcnt': 797,
+        'i64rems': 7880,
+        'i64remu': 6336,
+        'i64rotl': 1586,
+        'i64rotr': 1447,
+        'i64shl': 1442,
+        'i64shrs': 1706,
+        'i64shru': 1448,
+        'i64store': 3077,
+        'i64sub': 1695,
+        'i64xor': 1472,
+        'local_get': 980,
+        'local_set': 2141,
+        'local_tee': 907,
+        'memory_current': 2279,
+        'memory_grow': 13181115,
+        'r#if': 6113,
+        'select': 2033,
         'version': 4,
     },
     'limits': {
@@ -815,6 +802,7 @@ constant = substrate.get_constant('Contracts', 'MaxStorageKeyLen')
         'memory_pages': 16,
         'parameters': 128,
         'payload_len': 16384,
+        'runtime_memory': 134217728,
         'subject_len': 32,
         'table_size': 4096,
     },
@@ -859,7 +847,7 @@ No code could be found at the supplied code hash.
 The contract&\#x27;s code was found to be invalid during validation or instrumentation.
 
 The most likely cause of this is that an API was used which is not supported by the
-node. This hapens if an older node is used with a new version of ink!. Try updating
+node. This happens if an older node is used with a new version of ink!. Try updating
 your node to the newest available version.
 
 A more detailed error can be found on the node console if debug messages are enabled
@@ -888,14 +876,6 @@ Contract trapped during execution.
 ---------
 ### DecodingFailed
 Input passed to a contract API function failed to decode as expected type.
-
----------
-### DeletionQueueFull
-Removal of a contract failed because the deletion queue is full.
-
-This can happen when calling `seal_terminate`.
-The queue is filled by deleting contracts and emptied by a fixed amount each block.
-Trying again during another block is the only way to resolve this issue.
 
 ---------
 ### DuplicateContract

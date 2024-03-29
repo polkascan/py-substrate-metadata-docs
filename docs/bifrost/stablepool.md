@@ -6,6 +6,7 @@
 
 ---------
 ### add_liquidity
+See [`Pallet::add_liquidity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -25,7 +26,154 @@ call = substrate.compose_call(
 ```
 
 ---------
+### config_vtoken_auto_refresh
+See [`Pallet::config_vtoken_auto_refresh`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| vtoken | `AssetIdOf<T>` | 
+| hardcap | `Permill` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'StablePool', 'config_vtoken_auto_refresh', {
+    'hardcap': 'u32',
+    'vtoken': {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+}
+)
+```
+
+---------
 ### create_pool
+See [`Pallet::create_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -77,6 +225,7 @@ call = substrate.compose_call(
                 ),
                 'u8',
             ),
+            'Lend': 'u8',
             'Native': (
                 'ASG',
                 'BNC',
@@ -186,6 +335,7 @@ call = substrate.compose_call(
 
 ---------
 ### edit_token_rate
+See [`Pallet::edit_token_rate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -234,6 +384,7 @@ call = substrate.compose_call(
                     ),
                     'u8',
                 ),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -337,12 +488,13 @@ call = substrate.compose_call(
 
 ---------
 ### modify_a
+See [`Pallet::modify_a`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `StableAssetPoolId` | 
 | a | `T::AtLeast64BitUnsigned` | 
-| future_a_block | `T::BlockNumber` | 
+| future_a_block | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -357,6 +509,7 @@ call = substrate.compose_call(
 
 ---------
 ### modify_fees
+See [`Pallet::modify_fees`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -379,6 +532,7 @@ call = substrate.compose_call(
 
 ---------
 ### modify_recipients
+See [`Pallet::modify_recipients`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -405,6 +559,7 @@ call = substrate.compose_call(
 
 ---------
 ### redeem_multi
+See [`Pallet::redeem_multi`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -425,6 +580,7 @@ call = substrate.compose_call(
 
 ---------
 ### redeem_proportion
+See [`Pallet::redeem_proportion`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -445,6 +601,7 @@ call = substrate.compose_call(
 
 ---------
 ### redeem_single
+See [`Pallet::redeem_single`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -468,7 +625,152 @@ call = substrate.compose_call(
 ```
 
 ---------
+### remove_vtoken_auto_refresh
+See [`Pallet::remove_vtoken_auto_refresh`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| vtoken | `AssetIdOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'StablePool', 'remove_vtoken_auto_refresh', {
+    'vtoken': {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+}
+)
+```
+
+---------
 ### swap
+See [`Pallet::swap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

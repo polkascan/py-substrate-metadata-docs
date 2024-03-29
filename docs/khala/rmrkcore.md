@@ -6,21 +6,14 @@
 
 ---------
 ### accept_nft
-Accepts an NFT sent from another account to self or owned NFT
-
-Parameters:
-- `origin`: sender of the transaction
-- `collection_id`: collection id of the nft to be accepted
-- `nft_id`: nft id of the nft to be accepted
-- `new_owner`: either origin&\#x27;s account ID or origin-owned NFT, whichever the NFT was
-  sent to
+See [`Pallet::accept_nft`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
-| new_owner | `AccountIdOrCollectionNftTuple<T::AccountId, T::CollectionId, T::ItemId
->` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
+| new_owner | `AccountIdOrCollectionNftTuple<T::AccountId, CollectionIdOf<T>, ItemIdOf
+<T>>` | 
 
 #### Python
 ```python
@@ -41,12 +34,12 @@ call = substrate.compose_call(
 
 ---------
 ### accept_resource
-accept the addition of a new resource to an existing NFT
+See [`Pallet::accept_resource`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | resource_id | `ResourceId` | 
 
 #### Python
@@ -62,12 +55,12 @@ call = substrate.compose_call(
 
 ---------
 ### accept_resource_removal
-accept the removal of a resource of an existing NFT
+See [`Pallet::accept_resource_removal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | resource_id | `ResourceId` | 
 
 #### Python
@@ -83,12 +76,12 @@ call = substrate.compose_call(
 
 ---------
 ### add_basic_resource
-Create basic resource
+See [`Pallet::add_basic_resource`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | resource | `BasicResource<StringLimitOf<T>>` | 
 | resource_id | `ResourceId` | 
 
@@ -106,12 +99,12 @@ call = substrate.compose_call(
 
 ---------
 ### add_composable_resource
-Create composable resource
+See [`Pallet::add_composable_resource`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | resource | `ComposableResource<StringLimitOf<T>, BoundedVec<PartId, T::PartsLimit
 >>` | 
 | resource_id | `ResourceId` | 
@@ -135,12 +128,12 @@ call = substrate.compose_call(
 
 ---------
 ### add_slot_resource
-Create slot resource
+See [`Pallet::add_slot_resource`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | resource | `SlotResource<StringLimitOf<T>>` | 
 | resource_id | `ResourceId` | 
 
@@ -162,12 +155,12 @@ call = substrate.compose_call(
 
 ---------
 ### burn_nft
-burn nft
+See [`Pallet::burn_nft`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 
 #### Python
 ```python
@@ -181,16 +174,11 @@ call = substrate.compose_call(
 
 ---------
 ### change_collection_issuer
-Change the issuer of a collection
-
-Parameters:
-- `origin`: sender of the transaction
-- `collection_id`: collection id of the nft to change issuer of
-- `new_issuer`: Collection&\#x27;s new issuer
+See [`Pallet::change_collection_issuer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
+| collection_id | `CollectionIdOf<T>` | 
 | new_issuer | `<T::Lookup as StaticLookup>::Source` | 
 
 #### Python
@@ -211,11 +199,11 @@ call = substrate.compose_call(
 
 ---------
 ### create_collection
-Create a collection
+See [`Pallet::create_collection`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
+| collection_id | `CollectionIdOf<T>` | 
 | metadata | `BoundedVec<u8, T::StringLimit>` | 
 | max | `Option<u32>` | 
 | symbol | `BoundedCollectionSymbolOf<T>` | 
@@ -234,11 +222,11 @@ call = substrate.compose_call(
 
 ---------
 ### destroy_collection
-destroy collection
+See [`Pallet::destroy_collection`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
+| collection_id | `CollectionIdOf<T>` | 
 
 #### Python
 ```python
@@ -249,11 +237,11 @@ call = substrate.compose_call(
 
 ---------
 ### lock_collection
-lock collection
+See [`Pallet::lock_collection`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
+| collection_id | `CollectionIdOf<T>` | 
 
 #### Python
 ```python
@@ -264,21 +252,13 @@ call = substrate.compose_call(
 
 ---------
 ### mint_nft
-Mints an NFT in the specified collection
-Sets metadata and the royalty attribute
-
-Parameters:
-- `collection_id`: The collection of the asset to be minted.
-- `nft_id`: The nft value of the asset to be minted.
-- `recipient`: Receiver of the royalty
-- `royalty`: Permillage reward from each trade for the Recipient
-- `metadata`: Arbitrary data about an nft, e.g. IPFS hash
+See [`Pallet::mint_nft`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | owner | `Option<T::AccountId>` | 
-| nft_id | `T::ItemId` | 
-| collection_id | `T::CollectionId` | 
+| nft_id | `ItemIdOf<T>` | 
+| collection_id | `CollectionIdOf<T>` | 
 | royalty_recipient | `Option<T::AccountId>` | 
 | royalty | `Option<Permill>` | 
 | metadata | `BoundedVec<u8, T::StringLimit>` | 
@@ -343,21 +323,13 @@ call = substrate.compose_call(
 
 ---------
 ### mint_nft_directly_to_nft
-Mints an NFT in the specified collection directly to another NFT
-Sets metadata and the royalty attribute
-
-Parameters:
-- `collection_id`: The class of the asset to be minted.
-- `nft_id`: The nft value of the asset to be minted.
-- `recipient`: Receiver of the royalty
-- `royalty`: Permillage reward from each trade for the Recipient
-- `metadata`: Arbitrary data about an nft, e.g. IPFS hash
+See [`Pallet::mint_nft_directly_to_nft`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| owner | `(T::CollectionId, T::ItemId)` | 
-| nft_id | `T::ItemId` | 
-| collection_id | `T::CollectionId` | 
+| owner | `(CollectionIdOf<T>, ItemIdOf<T>)` | 
+| nft_id | `ItemIdOf<T>` | 
+| collection_id | `CollectionIdOf<T>` | 
 | royalty_recipient | `Option<T::AccountId>` | 
 | royalty | `Option<Permill>` | 
 | metadata | `BoundedVec<u8, T::StringLimit>` | 
@@ -422,17 +394,12 @@ call = substrate.compose_call(
 
 ---------
 ### reject_nft
-Rejects an NFT sent from another account to self or owned NFT
-
-Parameters:
-- `origin`: sender of the transaction
-- `collection_id`: collection id of the nft to be accepted
-- `nft_id`: nft id of the nft to be accepted
+See [`Pallet::reject_nft`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 
 #### Python
 ```python
@@ -446,12 +413,12 @@ call = substrate.compose_call(
 
 ---------
 ### remove_resource
-remove resource
+See [`Pallet::remove_resource`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | resource_id | `ResourceId` | 
 
 #### Python
@@ -467,12 +434,12 @@ call = substrate.compose_call(
 
 ---------
 ### replace_resource
-Replace resource by id
+See [`Pallet::replace_resource`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | resource | `ResourceTypes<StringLimitOf<T>, BoundedVec<PartId, T::PartsLimit>>` | 
 | resource_id | `ResourceId` | 
 
@@ -512,20 +479,14 @@ call = substrate.compose_call(
 
 ---------
 ### send
-Transfers a NFT from an Account or NFT A to another Account or NFT B
-
-Parameters:
-- `origin`: sender of the transaction
-- `collection_id`: collection id of the nft to be transferred
-- `nft_id`: nft id of the nft to be transferred
-- `new_owner`: new owner of the nft which can be either an account or a NFT
+See [`Pallet::send`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
-| new_owner | `AccountIdOrCollectionNftTuple<T::AccountId, T::CollectionId, T::ItemId
->` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
+| new_owner | `AccountIdOrCollectionNftTuple<T::AccountId, CollectionIdOf<T>, ItemIdOf
+<T>>` | 
 
 #### Python
 ```python
@@ -546,12 +507,12 @@ call = substrate.compose_call(
 
 ---------
 ### set_priority
-set a different order of resource priority
+See [`Pallet::set_priority`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | priorities | `BoundedVec<ResourceId, T::MaxPriorities>` | 
 
 #### Python
@@ -567,12 +528,12 @@ call = substrate.compose_call(
 
 ---------
 ### set_property
-set a custom value on an NFT
+See [`Pallet::set_property`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| maybe_nft_id | `Option<T::ItemId>` | 
+| collection_id | `CollectionIdOf<T>` | 
+| maybe_nft_id | `Option<ItemIdOf<T>>` | 
 | key | `KeyLimitOf<T>` | 
 | value | `ValueLimitOf<T>` | 
 
@@ -597,7 +558,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | issuer | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### CollectionDestroyed
@@ -605,7 +566,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | issuer | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### CollectionLocked
@@ -613,7 +574,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | issuer | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### IssuerChanged
@@ -622,7 +583,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | old_issuer | `T::AccountId` | ```AccountId```
 | new_issuer | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### NFTAccepted
@@ -630,10 +591,10 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| recipient | `AccountIdOrCollectionNftTuple<T::AccountId, T::CollectionId, T::ItemId
->` | ```{'AccountId': 'AccountId', 'CollectionAndNftTuple': ('u32', 'u32')}```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| recipient | `AccountIdOrCollectionNftTuple<T::AccountId, CollectionIdOf<T>, ItemIdOf
+<T>>` | ```{'AccountId': 'AccountId', 'CollectionAndNftTuple': ('u32', 'u32')}```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 
 ---------
 ### NFTBurned
@@ -641,8 +602,8 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | owner | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 
 ---------
 ### NFTRejected
@@ -650,8 +611,8 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 
 ---------
 ### NFTSent
@@ -659,10 +620,10 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| recipient | `AccountIdOrCollectionNftTuple<T::AccountId, T::CollectionId, T::ItemId
->` | ```{'AccountId': 'AccountId', 'CollectionAndNftTuple': ('u32', 'u32')}```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| recipient | `AccountIdOrCollectionNftTuple<T::AccountId, CollectionIdOf<T>, ItemIdOf
+<T>>` | ```{'AccountId': 'AccountId', 'CollectionAndNftTuple': ('u32', 'u32')}```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | approval_required | `bool` | ```bool```
 
 ---------
@@ -670,34 +631,34 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| owner | `AccountIdOrCollectionNftTuple<T::AccountId, T::CollectionId, T::ItemId
->` | ```{'AccountId': 'AccountId', 'CollectionAndNftTuple': ('u32', 'u32')}```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| owner | `AccountIdOrCollectionNftTuple<T::AccountId, CollectionIdOf<T>, ItemIdOf
+<T>>` | ```{'AccountId': 'AccountId', 'CollectionAndNftTuple': ('u32', 'u32')}```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 
 ---------
 ### PrioritySet
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 
 ---------
 ### PropertiesRemoved
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| collection_id | `T::CollectionId` | ```u32```
-| maybe_nft_id | `Option<T::ItemId>` | ```(None, 'u32')```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| maybe_nft_id | `Option<ItemIdOf<T>>` | ```(None, 'u32')```
 
 ---------
 ### PropertyRemoved
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| collection_id | `T::CollectionId` | ```u32```
-| maybe_nft_id | `Option<T::ItemId>` | ```(None, 'u32')```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| maybe_nft_id | `Option<ItemIdOf<T>>` | ```(None, 'u32')```
 | key | `KeyLimitOf<T>` | ```Bytes```
 
 ---------
@@ -705,8 +666,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| collection_id | `T::CollectionId` | ```u32```
-| maybe_nft_id | `Option<T::ItemId>` | ```(None, 'u32')```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| maybe_nft_id | `Option<ItemIdOf<T>>` | ```(None, 'u32')```
 | key | `KeyLimitOf<T>` | ```Bytes```
 | value | `ValueLimitOf<T>` | ```Bytes```
 
@@ -715,45 +676,45 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| nft_id | `T::ItemId` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | resource_id | `ResourceId` | ```u32```
-| collection_id | `T::CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### ResourceAdded
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| nft_id | `T::ItemId` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | resource_id | `ResourceId` | ```u32```
-| collection_id | `T::CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### ResourceRemoval
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| nft_id | `T::ItemId` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | resource_id | `ResourceId` | ```u32```
-| collection_id | `T::CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### ResourceRemovalAccepted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| nft_id | `T::ItemId` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | resource_id | `ResourceId` | ```u32```
-| collection_id | `T::CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### ResourceReplaced
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| nft_id | `T::ItemId` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | resource_id | `ResourceId` | ```u32```
-| collection_id | `T::CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ## Storage functions

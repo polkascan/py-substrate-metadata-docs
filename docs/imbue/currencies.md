@@ -6,10 +6,7 @@
 
 ---------
 ### transfer
-Transfer some balance to another account under `currency_id`.
-
-The dispatch origin for this call must be `Signed` by the
-transactor.
+See [`Pallet::transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,7 +21,10 @@ call = substrate.compose_call(
     'amount': 'u128',
     'currency_id': {
         'AUSD': None,
-        'ForeignAsset': 'u32',
+        'ForeignAsset': (
+            'ETH',
+            'USDT',
+        ),
         'KAR': None,
         'KSM': None,
         'MGX': None,
@@ -43,10 +43,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_native_currency
-Transfer some native currency to another account.
-
-The dispatch origin for this call must be `Signed` by the
-transactor.
+See [`Pallet::transfer_native_currency`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -71,9 +68,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_balance
-update amount of account `who` under `currency_id`.
-
-The dispatch origin of this call must be _Root_.
+See [`Pallet::update_balance`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -88,7 +83,10 @@ call = substrate.compose_call(
     'amount': 'i128',
     'currency_id': {
         'AUSD': None,
-        'ForeignAsset': 'u32',
+        'ForeignAsset': (
+            'ETH',
+            'USDT',
+        ),
         'KAR': None,
         'KSM': None,
         'MGX': None,

@@ -52,6 +52,7 @@ call = substrate.compose_call(
                     },
                     'StellarNative': None,
                 },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': (
                     'u8',
@@ -74,7 +75,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| values | `Vec<(OracleKey, T::UnsignedFixedPoint)>` | ```[({'ExchangeRate': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': 'InnerStruct', 'AlphaNum12': 'InnerStruct'}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}, 'u128')]```
+| values | `Vec<(OracleKey, T::UnsignedFixedPoint)>` | ```[({'ExchangeRate': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': 'InnerStruct', 'AlphaNum12': 'InnerStruct'}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}}, 'u128')]```
 
 ---------
 ### MaxDelayUpdated
@@ -88,7 +89,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| oracle_keys | `Vec<OracleKey>` | ```[{'ExchangeRate': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}]```
+| oracle_keys | `Vec<OracleKey>` | ```[{'ExchangeRate': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}}]```
 
 ---------
 ## Storage functions
@@ -129,6 +130,7 @@ result = substrate.query(
                 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'},
                 'StellarNative': None,
             },
+            'Token': 'u64',
             'XCM': 'u8',
             'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'),
         },

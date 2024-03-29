@@ -42,7 +42,7 @@ call = substrate.compose_call(
         None,
         'Bytes',
     ),
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
     'user': 'AccountId',
 }
 )
@@ -167,7 +167,7 @@ Remove an identity
 call = substrate.compose_call(
     'IdentityManagement', 'remove_identity', {
     'encrypted_identity': 'Bytes',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
 }
 )
 ```
@@ -186,7 +186,7 @@ Set or update user&\#x27;s shielding key
 call = substrate.compose_call(
     'IdentityManagement', 'set_user_shielding_key', {
     'encrypted_key': 'Bytes',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
 }
 )
 ```
@@ -256,7 +256,7 @@ call = substrate.compose_call(
     'IdentityManagement', 'verify_identity', {
     'encrypted_identity': 'Bytes',
     'encrypted_validation_data': 'Bytes',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
 }
 )
 ```
@@ -274,7 +274,7 @@ No attributes
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 
 ---------
 ### DecodeHexFailed
@@ -357,7 +357,7 @@ No attributes
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 
 ---------
 ### SetUserShieldingKeyHandlingFailed
@@ -369,7 +369,7 @@ No attributes
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 
 ---------
 ### UnexpectedMessage
@@ -398,7 +398,7 @@ No attributes
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 
 ---------
 ### VerifySubstrateSignatureFailed

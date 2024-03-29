@@ -6,11 +6,11 @@
 
 ---------
 ### cancel
-Cancel an anonymously scheduled task.
+See [`Pallet::cancel`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| when | `T::BlockNumber` | 
+| when | `BlockNumberFor<T>` | 
 | index | `u32` | 
 
 #### Python
@@ -22,7 +22,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_named
-Cancel a named scheduled task.
+See [`Pallet::cancel_named`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -37,12 +37,12 @@ call = substrate.compose_call(
 
 ---------
 ### schedule
-Anonymously schedule a task.
+See [`Pallet::schedule`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| when | `T::BlockNumber` | 
-| maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
+| when | `BlockNumberFor<T>` | 
+| maybe_periodic | `Option<schedule::Period<BlockNumberFor<T>>>` | 
 | priority | `schedule::Priority` | 
 | call | `Box<<T as Config>::RuntimeCall>` | 
 
@@ -63,12 +63,12 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_after
-Anonymously schedule a task after a delay.
+See [`Pallet::schedule_after`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| after | `T::BlockNumber` | 
-| maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
+| after | `BlockNumberFor<T>` | 
+| maybe_periodic | `Option<schedule::Period<BlockNumberFor<T>>>` | 
 | priority | `schedule::Priority` | 
 | call | `Box<<T as Config>::RuntimeCall>` | 
 
@@ -89,13 +89,13 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_named
-Schedule a named task.
+See [`Pallet::schedule_named`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | id | `TaskName` | 
-| when | `T::BlockNumber` | 
-| maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
+| when | `BlockNumberFor<T>` | 
+| maybe_periodic | `Option<schedule::Period<BlockNumberFor<T>>>` | 
 | priority | `schedule::Priority` | 
 | call | `Box<<T as Config>::RuntimeCall>` | 
 
@@ -117,13 +117,13 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_named_after
-Schedule a named task after a delay.
+See [`Pallet::schedule_named_after`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | id | `TaskName` | 
-| after | `T::BlockNumber` | 
-| maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
+| after | `BlockNumberFor<T>` | 
+| maybe_periodic | `Option<schedule::Period<BlockNumberFor<T>>>` | 
 | priority | `schedule::Priority` | 
 | call | `Box<<T as Config>::RuntimeCall>` | 
 
@@ -152,7 +152,7 @@ The call for the provided hash was not found so the task has been aborted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| task | `TaskAddress<BlockNumberFor<T>>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
@@ -161,7 +161,7 @@ Canceled some task.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| when | `T::BlockNumber` | ```u32```
+| when | `BlockNumberFor<T>` | ```u32```
 | index | `u32` | ```u32```
 
 ---------
@@ -170,9 +170,9 @@ Dispatched some task.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| task | `TaskAddress<BlockNumberFor<T>>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### PeriodicFailed
@@ -180,7 +180,7 @@ The given task was unable to be renewed since the agenda is full at that block.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| task | `TaskAddress<BlockNumberFor<T>>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
@@ -189,7 +189,7 @@ The given task can never be executed since it is overweight.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| task | `TaskAddress<BlockNumberFor<T>>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
@@ -198,7 +198,7 @@ Scheduled some task.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| when | `T::BlockNumber` | ```u32```
+| when | `BlockNumberFor<T>` | ```u32```
 | index | `u32` | ```u32```
 
 ---------
@@ -229,11 +229,11 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'Council': 'scale_info::214',
-                'CumulusXcm': 'scale_info::213',
-                'PolkadotXcm': 'scale_info::212',
-                'Void': 'scale_info::215',
-                'system': 'scale_info::211',
+                'Council': 'scale_info::249',
+                'CumulusXcm': 'scale_info::248',
+                'PolkadotXcm': 'scale_info::247',
+                'Void': 'scale_info::250',
+                'system': 'scale_info::246',
                 None: None,
             },
             'priority': 'u8',

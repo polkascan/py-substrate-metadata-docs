@@ -6,7 +6,7 @@
 
 ---------
 ### migrate_from_self_sponsoring
-Migrate contract to use `SponsoringMode` storage instead of `SelfSponsoring`
+See [`Pallet::migrate_from_self_sponsoring`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -180,7 +180,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::492'
+'scale_info::649'
 ```
 ---------
 ### SponsoringMode

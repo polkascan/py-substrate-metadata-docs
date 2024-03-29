@@ -5,6 +5,20 @@
 ## Calls
 
 ---------
+### add_invulnerable
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CollatorSelection', 'add_invulnerable', {'who': 'AccountId'}
+)
+```
+
+---------
 ### leave_intent
 #### Attributes
 No attributes
@@ -25,6 +39,20 @@ No attributes
 ```python
 call = substrate.compose_call(
     'CollatorSelection', 'register_as_candidate', {}
+)
+```
+
+---------
+### remove_invulnerable
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CollatorSelection', 'remove_invulnerable', {'who': 'AccountId'}
 )
 ```
 
@@ -83,6 +111,27 @@ call = substrate.compose_call(
 
 ---------
 ### CandidateRemoved
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
+### InvalidInvulnerableSkipped
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
+### InvulnerableAdded
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
+### InvulnerableRemoved
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -198,19 +247,16 @@ result = substrate.query(
 ### NotCandidate
 
 ---------
-### Permission
+### NotInvulnerable
 
 ---------
-### TooFewCandidates
+### TooFewEligibleCollators
 
 ---------
 ### TooManyCandidates
 
 ---------
 ### TooManyInvulnerables
-
----------
-### Unknown
 
 ---------
 ### ValidatorNotRegistered

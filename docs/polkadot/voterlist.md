@@ -6,14 +6,7 @@
 
 ---------
 ### put_in_front_of
-Move the caller&\#x27;s Id directly in front of `lighter`.
-
-The dispatch origin for this call must be _Signed_ and can only be called by the Id of
-the account going in front of `lighter`.
-
-Only works if
-- both nodes are within the same bag,
-- and `origin` has a greater `Score` than `lighter`.
+See [`Pallet::put_in_front_of`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -35,17 +28,39 @@ call = substrate.compose_call(
 ```
 
 ---------
+### put_in_front_of_other
+See [`Pallet::put_in_front_of_other`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| heavier | `AccountIdLookupOf<T>` | 
+| lighter | `AccountIdLookupOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'VoterList', 'put_in_front_of_other', {
+    'heavier': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+    'lighter': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
 ### rebag
-Declare that some `dislocated` account has, through rewards or penalties, sufficiently
-changed its score that it should properly fall into a different bag than its current
-one.
-
-Anyone can call this function about any potentially dislocated account.
-
-Will always update the stored score of `dislocated` to the correct score, based on
-`ScoreProvider`.
-
-If `dislocated` does not exists, it returns an error.
+See [`Pallet::rebag`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

@@ -6,7 +6,7 @@
 
 ---------
 ### confirm_imported_sidechain_block
-The integritee worker calls this function for every imported sidechain_block.
+See [`Pallet::confirm_imported_sidechain_block`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -19,10 +19,10 @@ The integritee worker calls this function for every imported sidechain_block.
 ```python
 call = substrate.compose_call(
     'Sidechain', 'confirm_imported_sidechain_block', {
-    'block_header_hash': '[u8; 32]',
+    'block_header_hash': 'scale_info::12',
     'block_number': 'u64',
     'next_finalization_candidate_block_number': 'u64',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::12',
 }
 )
 ```
@@ -36,8 +36,9 @@ a sidechain block has been finalized
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
-| block_header_hash | `H256` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::12```
+| block_number | `SidechainBlockNumber` | ```u64```
+| block_header_hash | `H256` | ```scale_info::12```
 | validateer | `T::AccountId` | ```AccountId```
 
 ---------
@@ -49,27 +50,13 @@ a sidechain block has been finalized
 #### Python
 ```python
 result = substrate.query(
-    'Sidechain', 'LatestSidechainBlockConfirmation', ['[u8; 32]']
+    'Sidechain', 'LatestSidechainBlockConfirmation', ['scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-{'block_header_hash': '[u8; 32]', 'block_number': 'u64'}
-```
----------
-### SidechainBlockFinalizationCandidate
-
-#### Python
-```python
-result = substrate.query(
-    'Sidechain', 'SidechainBlockFinalizationCandidate', ['[u8; 32]']
-)
-```
-
-#### Return value
-```python
-'u64'
+{'block_header_hash': 'scale_info::12', 'block_number': 'u64'}
 ```
 ---------
 ## Errors

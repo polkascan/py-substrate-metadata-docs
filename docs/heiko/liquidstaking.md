@@ -366,6 +366,31 @@ call = substrate.compose_call(
 ```
 
 ---------
+### reduce_unstake_reserves
+Reduces unstake reserves by transferring to receiver.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| receiver | `<T::Lookup as StaticLookup>::Source` | 
+| reduce_amount | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'LiquidStaking', 'reduce_unstake_reserves', {
+    'receiver': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+    'reduce_amount': 'u128',
+}
+)
+```
+
+---------
 ### set_current_era
 Set current era by providing storage proof
 #### Attributes
@@ -494,21 +519,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### update_incentive
-Update incentive amount
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| amount | `BalanceOf<T>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'LiquidStaking', 'update_incentive', {'amount': 'u128'}
-)
-```
-
----------
 ### update_reserve_factor
 Update insurance pool&\#x27;s reserve_factor
 #### Attributes
@@ -535,6 +545,21 @@ Update ledger&\#x27;s max bonded cap
 ```python
 call = substrate.compose_call(
     'LiquidStaking', 'update_staking_ledger_cap', {'cap': 'u128'}
+)
+```
+
+---------
+### update_unstake_reserve_factor
+Update insurance pool&\#x27;s unstake_reserve_factor
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| reserve_factor | `Ratio` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'LiquidStaking', 'update_unstake_reserve_factor', {'reserve_factor': 'u32'}
 )
 ```
 
@@ -619,14 +644,6 @@ Fast Unstake Matched
 | None | `BalanceOf<T>` | ```u128```
 
 ---------
-### IncentiveUpdated
-Incentive amount was updated
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `BalanceOf<T>` | ```u128```
-
----------
 ### Matching
 Matching stakes &amp; unstakes for optimizing operations to be done
 on relay chain
@@ -655,14 +672,6 @@ Sent staking.nominate call to relaychain
 | -------- | -------- | -------- |
 | None | `DerivativeIndex` | ```u16```
 | None | `Vec<T::AccountId>` | ```['AccountId']```
-
----------
-### NonIdealStakingLedger
-Not the ideal staking ledger
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `DerivativeIndex` | ```u16```
 
 ---------
 ### NotificationReceived
@@ -746,6 +755,24 @@ Unstake cancelled
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `BalanceOf<T>` | ```u128```
+| None | `BalanceOf<T>` | ```u128```
+
+---------
+### UnstakeReserveFactorUpdated
+Unstake_reserve_factor was updated
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `Ratio` | ```u32```
+
+---------
+### UnstakeReservesReduced
+Event emitted when the unstake reserves are reduced
+[receiver, reduced_amount]
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `T::AccountId` | ```AccountId```
 | None | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -840,21 +867,6 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'LiquidStaking', 'FastUnstakeRequests', ['AccountId']
-)
-```
-
-#### Return value
-```python
-'u128'
-```
----------
-### Incentive
- Incentive for users who successfully update era/ledger
-
-#### Python
-```python
-result = substrate.query(
-    'LiquidStaking', 'Incentive', []
 )
 ```
 
@@ -993,6 +1005,20 @@ result = substrate.query(
 'u128'
 ```
 ---------
+### TotalUnstakeReserves
+
+#### Python
+```python
+result = substrate.query(
+    'LiquidStaking', 'TotalUnstakeReserves', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### Unlockings
  Unbonding requests to be handled after arriving at target era
 
@@ -1006,6 +1032,21 @@ result = substrate.query(
 #### Return value
 ```python
 [{'era': 'u32', 'value': 'u128'}]
+```
+---------
+### UnstakeReserveFactor
+ Fraction of reward currently set aside for unstake reserves.
+
+#### Python
+```python
+result = substrate.query(
+    'LiquidStaking', 'UnstakeReserveFactor', []
+)
+```
+
+#### Return value
+```python
+'u32'
 ```
 ---------
 ### ValidationData
@@ -1028,7 +1069,7 @@ result = substrate.query(
     'max_pov_size': 'u32',
     'parent_head': 'Bytes',
     'relay_parent_number': 'u32',
-    'relay_parent_storage_root': '[u8; 32]',
+    'relay_parent_storage_root': 'scale_info::11',
 }
 ```
 ---------
@@ -1173,7 +1214,7 @@ constant = substrate.get_constant('LiquidStaking', 'MinNominatorBond')
  Minimum stake amount
 #### Value
 ```python
-100000000000
+1100000000000
 ```
 #### Python
 ```python
@@ -1189,17 +1230,6 @@ constant = substrate.get_constant('LiquidStaking', 'MinStake')
 #### Python
 ```python
 constant = substrate.get_constant('LiquidStaking', 'MinUnstake')
-```
----------
-### NativeCurrency
- The asset id for native currency.
-#### Value
-```python
-0
-```
-#### Python
-```python
-constant = substrate.get_constant('LiquidStaking', 'NativeCurrency')
 ```
 ---------
 ### NumSlashingSpans

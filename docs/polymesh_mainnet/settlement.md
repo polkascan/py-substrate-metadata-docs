@@ -864,6 +864,17 @@ An instruction has been affirmed (did, portfolio, instruction_id)
 | None | `InstructionId` | ```u64```
 
 ---------
+### InstructionAutomaticallyAffirmed
+An instruction has been automatically affirmed.
+Parameters: [`IdentityId`] of the caller, [`PortfolioId`] of the receiver, and [`InstructionId`] of the instruction.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
+| None | `InstructionId` | ```u64```
+
+---------
 ### InstructionCreated
 A new instruction has been created
 (did, venue_id, instruction_id, settlement_type, trade_date, value_date, legs, memo)

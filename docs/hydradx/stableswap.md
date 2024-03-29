@@ -6,22 +6,7 @@
 
 ---------
 ### add_liquidity
-Add liquidity to selected pool.
-
-First call of `add_liquidity` adds &quot;initial liquidity&quot; of all assets.
-
-If there is liquidity already in the pool, LP can provide liquidity of any number of pool assets.
-
-LP must have sufficient amount of each assets.
-
-Origin is given corresponding amount of shares.
-
-Parameters:
-- `origin`: liquidity provider
-- `pool_id`: Pool Id
-- `assets`: asset id and liquidity amount provided
-
-Emits `LiquidityAdded` event when successful.
+See [`Pallet::add_liquidity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -45,16 +30,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_liquidity_shares
-Add liquidity to selected pool given exact amount of shares to receive.
-
-Parameters:
-- `origin`: liquidity provider
-- `pool_id`: Pool Id
-- `shares`: amount of shares to receive
-- `asset_id`: asset id of an asset to provide as liquidity
-- `max_asset_amount`: slippage limit. Max amount of asset.
-
-Emits `LiquidityAdded` event when successful.
+See [`Pallet::add_liquidity_shares`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -77,18 +53,7 @@ call = substrate.compose_call(
 
 ---------
 ### buy
-Execute a swap of `asset_in` for `asset_out` by specifying how much to get out.
-
-Parameters:
-- `origin`:
-- `pool_id`: Id of a pool
-- `asset_out`: ID of asset bought from the pool
-- `asset_in`: ID of asset sold to the pool
-- `amount_out`: Amount of asset to receive from the pool
-- `max_sell_amount`: Maximum amount allowed to be sold
-
-Emits `BuyExecuted` event when successful.
-
+See [`Pallet::buy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -113,20 +78,7 @@ call = substrate.compose_call(
 
 ---------
 ### create_pool
-Create a stableswap pool with given list of asset
-
-All assets must be correctly registered in `T::AssetRegistry`.
-Note that this does not seed the pool with liquidity. Use `add_liquidity` to provide
-initial liquidity.
-
-Parameters:
-- `origin`: Must be T::AuthorityOrigin
-- `share_asset`: Preregistered share asset identifier
-- `assets`: List of Asset ids
-- `amplification`: Pool amplification
-- `fee`: fee to be applied on trade and liquidity operations
-
-Emits `PoolCreated` event if successful.
+See [`Pallet::create_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -149,22 +101,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_liquidity_one_asset
-Remove liquidity from selected pool.
-
-Withdraws liquidity of selected asset from a pool.
-
-Share amount is burn and LP receives corresponding amount of chosen asset.
-
-Withdraw fee is applied to the asset amount.
-
-Parameters:
-- `origin`: liquidity provider
-- `pool_id`: Pool Id
-- `asset_id`: id of asset to receive
-- &\#x27;share_amount&\#x27;: amount of shares to withdraw
-- &\#x27;min_amount_out&\#x27;: minimum amount to receive
-
-Emits `LiquidityRemoved` event when successful.
+See [`Pallet::remove_liquidity_one_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -187,18 +124,7 @@ call = substrate.compose_call(
 
 ---------
 ### sell
-Execute a swap of `asset_in` for `asset_out` by specifying how much to put in.
-
-Parameters:
-- `origin`: origin of the caller
-- `pool_id`: Id of a pool
-- `asset_in`: ID of asset sold to the pool
-- `asset_out`: ID of asset bought from the pool
-- `amount_in`: Amount of asset to be sold to the pool
-- `min_buy_amount`: Minimum amount required to receive
-
-Emits `SellExecuted` event when successful.
-
+See [`Pallet::sell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -223,6 +149,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_asset_tradable_state
+See [`Pallet::set_asset_tradable_state`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -243,22 +170,14 @@ call = substrate.compose_call(
 
 ---------
 ### update_amplification
-Update pool&\#x27;s amplification.
-
-Parameters:
-- `origin`: Must be T::AuthorityOrigin
-- `pool_id`: pool to update
-- `future_amplification`: new desired pool amplification
-- `future_block`: future block number when the amplification is updated
-
-Emits `AmplificationUpdated` event if successful.
+See [`Pallet::update_amplification`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `T::AssetId` | 
 | final_amplification | `u16` | 
-| start_block | `T::BlockNumber` | 
-| end_block | `T::BlockNumber` | 
+| start_block | `BlockNumberFor<T>` | 
+| end_block | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -274,18 +193,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_pool_fee
-Update pool&\#x27;s fees.
-
-Updates pool&\#x27;s trade fee and/or withdraw fee.
-
-if pool does not exist, `PoolNotFound` is returned.
-
-Parameters:
-- `origin`: Must be T::AuthorityOrigin
-- `pool_id`: pool to update
-- `fee`: new pool fee
-
-Emits `FeeUpdated` event if successful.
+See [`Pallet::update_pool_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -301,16 +209,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw_asset_amount
-Remove liquidity from selected pool by specifying exact amount of asset to receive.
-
-Parameters:
-- `origin`: liquidity provider
-- `pool_id`: Pool Id
-- `asset_id`: id of asset to receive
-- &\#x27;amount&\#x27;: amount of asset to receive
-- &\#x27;max_share_amount&\#x27;: Slippage limit. Max amount of shares to burn.
-
-Emits `LiquidityRemoved` event when successful.
+See [`Pallet::withdraw_asset_amount`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -343,8 +242,8 @@ AAmplification of a pool has been scheduled to change.
 | pool_id | `T::AssetId` | ```u32```
 | current_amplification | `NonZeroU16` | ```u16```
 | final_amplification | `NonZeroU16` | ```u16```
-| start_block | `T::BlockNumber` | ```u32```
-| end_block | `T::BlockNumber` | ```u32```
+| start_block | `BlockNumberFor<T>` | ```u32```
+| end_block | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### BuyExecuted
@@ -362,7 +261,7 @@ Buy trade executed. Trade fee paid in asset entering the pool (already included 
 
 ---------
 ### FeeUpdated
-Pool parameters has been updated.
+Pool fee has been updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -419,7 +318,7 @@ Sell trade executed. Trade fee paid in asset leaving the pool (already subtracte
 
 ---------
 ### TradableStateUpdated
-Aseet&\#x27;s tradable state has been updated.
+Asset&\#x27;s tradable state has been updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -507,20 +406,12 @@ constant = substrate.get_constant('Stableswap', 'MinTradingLimit')
 ## Errors
 
 ---------
-### AssetInPool
-Asset is already in the pool.
-
----------
 ### AssetNotInPool
 Asset is not in the pool.
 
 ---------
 ### AssetNotRegistered
 One or more assets are not registered in AssetRegistry
-
----------
-### BalanceTooLow
-Account balance is too low.
 
 ---------
 ### BuyLimitNotReached
@@ -571,10 +462,6 @@ Initial liquidity of asset must be &gt; 0.
 Maximum number of assets has been exceeded.
 
 ---------
-### MinimumAmountNotReached
-Desired amount not reached.
-
----------
 ### NotAllowed
 Not allowed to perform an operation on given asset.
 
@@ -608,7 +495,7 @@ Share asset is not registered in Registry.
 
 ---------
 ### SlippageLimit
-Slippage
+Slippage protection.
 
 ---------
 ### UnknownDecimals

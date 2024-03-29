@@ -19,6 +19,49 @@ call = substrate.compose_call(
 ```
 
 ---------
+### allow_identity_to_create_portfolios
+Adds an identity that will be allowed to create and take custody of a portfolio under the caller&\#x27;s identity.
+
+\# Arguments
+* `trusted_identity` - the [`IdentityId`] that will be allowed to call `create_custody_portfolio`.
+
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| trusted_identity | `IdentityId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Portfolio', 'allow_identity_to_create_portfolios', {'trusted_identity': '[u8; 32]'}
+)
+```
+
+---------
+### create_custody_portfolio
+Creates a portfolio under the `portfolio_owner_id` identity and transfers its custody to the caller&\#x27;s identity.
+
+\# Arguments
+* `portfolio_owner_id` - the [`IdentityId`] that will own the new portfolio.
+* `portfolio_name` - the [`PortfolioName`] of the new portfolio.
+
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| portfolio_owner_id | `IdentityId` | 
+| portfolio_name | `PortfolioName` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Portfolio', 'create_custody_portfolio', {
+    'portfolio_name': 'Bytes',
+    'portfolio_owner_id': '[u8; 32]',
+}
+)
+```
+
+---------
 ### create_portfolio
 Creates a portfolio with the given `name`.
 #### Attributes
@@ -238,6 +281,25 @@ call = substrate.compose_call(
 ```
 
 ---------
+### revoke_create_portfolios_permission
+Removes permission of an identity to create and take custody of a portfolio under the caller&\#x27;s identity.
+
+\# Arguments
+* `identity` - the [`IdentityId`] that will have the permissions to call `create_custody_portfolio` revoked.
+
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| identity | `IdentityId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Portfolio', 'revoke_create_portfolios_permission', {'identity': '[u8; 32]'}
+)
+```
+
+---------
 ## Events
 
 ---------
@@ -318,6 +380,36 @@ The portfolio identified with `num` has been renamed to `name`.
 | None | `PortfolioName` | ```Bytes```
 
 ---------
+### PreApprovedPortfolio
+A portfolio has pre approved the receivement of an asset.
+
+\# Parameters
+* [`IdentityId`] of the caller.
+* [`PortfolioId`] that will receive assets without explicit affirmation.
+* [`Ticker`] of the asset that has been exempt from explicit affirmation.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
+| None | `Ticker` | ```[u8; 12]```
+
+---------
+### RevokePreApprovedPortfolio
+A portfolio has removed the approval of an asset.
+
+\# Parameters
+* [`IdentityId`] of the caller.
+* [`PortfolioId`] that had its pre approval revoked.
+* [`Ticker`] of the asset that had its pre approval revoked.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `PortfolioId` | ```{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}```
+| None | `Ticker` | ```[u8; 12]```
+
+---------
 ### UserPortfolios
 All non-default portfolio numbers and names of a DID.
 
@@ -333,6 +425,21 @@ All non-default portfolio numbers and names of a DID.
 ---------
 ## Storage functions
 
+---------
+### AllowedCustodians
+ Custodians allowed to create and take custody of portfolios on an id&#x27;s behalf.
+
+#### Python
+```python
+result = substrate.query(
+    'Portfolio', 'AllowedCustodians', ['[u8; 32]', '[u8; 32]']
+)
+```
+
+#### Return value
+```python
+'bool'
+```
 ---------
 ### NameToNumber
  Inverse map of `Portfolios` used to ensure bijectivitiy,
@@ -619,6 +726,10 @@ Locked NFTs can not be moved between portfolios.
 ---------
 ### InvalidTransferNFTNotOwned
 Only owned NFTs can be moved between portfolios.
+
+---------
+### MissingOwnersPermission
+The caller doesn&\#x27;t have permission to create portfolios on the owner&\#x27;s behalf.
 
 ---------
 ### NFTAlreadyLocked

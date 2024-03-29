@@ -6,19 +6,7 @@
 
 ---------
 ### execute_overweight
-Execute an overweight message.
-
-Temporary processing errors will be propagated whereas permanent errors are treated
-as success condition.
-
-- `origin`: Must be `Signed`.
-- `message_origin`: The origin from which the message to be executed arrived.
-- `page`: The page in the queue in which the message to be executed is sitting.
-- `index`: The index into the queue of the message to be executed.
-- `weight_limit`: The maximum amount of weight allowed to be consumed in the execution
-  of the message.
-
-Benchmark complexity considerations: O(index + weight_limit).
+See [`Pallet::execute_overweight`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -46,7 +34,7 @@ call = substrate.compose_call(
 
 ---------
 ### reap_page
-Remove a page which has no more messages remaining to be processed or is stale.
+See [`Pallet::reap_page`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -243,6 +231,12 @@ Page to be reaped does not exist.
 ### NotReapable
 Page is not reapable because it has items remaining to be processed and is not old
 enough.
+
+---------
+### QueuePaused
+The queue is paused and no message can be executed from it.
+
+This can change at any time and may resolve in the future by re-trying.
 
 ---------
 ### Queued

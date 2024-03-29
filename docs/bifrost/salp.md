@@ -5,8 +5,23 @@
 ## Calls
 
 ---------
+### batch_handle_reserve
+See [`Pallet::batch_handle_reserve`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `ParaId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Salp', 'batch_handle_reserve', {'index': 'u32'}
+)
+```
+
+---------
 ### batch_unlock
-Unlock the reserved vsToken/vsBond after fund success
+See [`Pallet::batch_unlock`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -21,6 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### buyback
+See [`Pallet::buyback`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -35,6 +51,7 @@ call = substrate.compose_call(
 
 ---------
 ### buyback_vstoken_by_stable_pool
+See [`Pallet::buyback_vstoken_by_stable_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -79,6 +96,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -180,8 +198,23 @@ call = substrate.compose_call(
 ```
 
 ---------
+### cancel_reservation
+See [`Pallet::cancel_reservation`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `ParaId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Salp', 'cancel_reservation', {'index': 'u32'}
+)
+```
+
+---------
 ### confirm_contribute
-Confirm contribute
+See [`Pallet::confirm_contribute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -200,6 +233,7 @@ call = substrate.compose_call(
 
 ---------
 ### confirm_contribution
+See [`Pallet::confirm_contribution`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -228,7 +262,7 @@ call = substrate.compose_call(
                 'id': {
                     'Abstract': '[u8; 32]',
                     'Concrete': {
-                        'interior': 'scale_info::120',
+                        'interior': 'scale_info::121',
                         'parents': 'u8',
                     },
                 },
@@ -309,6 +343,7 @@ call = substrate.compose_call(
 
 ---------
 ### continue_fund
+See [`Pallet::continue_fund`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -329,9 +364,7 @@ call = substrate.compose_call(
 
 ---------
 ### contribute
-Contribute to a crowd sale. This will transfer some balance over to fund a parachain
-slot. It will be withdrawable in two instances: the parachain becomes retired; or the
-slot is unable to be purchased and the timeout expires.
+See [`Pallet::contribute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -347,7 +380,7 @@ call = substrate.compose_call(
 
 ---------
 ### create
-Create a new crowdloaning campaign for a parachain slot deposit for the current auction.
+See [`Pallet::create`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -370,7 +403,7 @@ call = substrate.compose_call(
 
 ---------
 ### dissolve
-Remove a fund after the retirement period has ended and all funds have been returned.
+See [`Pallet::dissolve`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -385,7 +418,7 @@ call = substrate.compose_call(
 
 ---------
 ### dissolve_refunded
-Remove a fund after the retirement period has ended and all funds have been returned.
+See [`Pallet::dissolve_refunded`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -406,9 +439,7 @@ call = substrate.compose_call(
 
 ---------
 ### edit
-Edit the configuration for an in-progress crowdloan.
-
-Can only be called by Root origin.
+See [`Pallet::edit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -447,6 +478,7 @@ call = substrate.compose_call(
 
 ---------
 ### fund_end
+See [`Pallet::fund_end`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -461,6 +493,7 @@ call = substrate.compose_call(
 
 ---------
 ### fund_fail
+See [`Pallet::fund_fail`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -475,6 +508,7 @@ call = substrate.compose_call(
 
 ---------
 ### fund_retire
+See [`Pallet::fund_retire`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -489,6 +523,7 @@ call = substrate.compose_call(
 
 ---------
 ### fund_success
+See [`Pallet::fund_success`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -503,6 +538,7 @@ call = substrate.compose_call(
 
 ---------
 ### redeem
+See [`Pallet::redeem`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -518,6 +554,7 @@ call = substrate.compose_call(
 
 ---------
 ### refund
+See [`Pallet::refund`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -539,7 +576,29 @@ call = substrate.compose_call(
 ```
 
 ---------
+### reserve
+See [`Pallet::reserve`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `ParaId` | 
+| value | `BalanceOf<T>` | 
+| if_mint | `bool` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Salp', 'reserve', {
+    'if_mint': 'bool',
+    'index': 'u32',
+    'value': 'u128',
+}
+)
+```
+
+---------
 ### set_multisig_confirm_account
+See [`Pallet::set_multisig_confirm_account`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -554,7 +613,7 @@ call = substrate.compose_call(
 
 ---------
 ### unlock
-Unlock the reserved vsToken/vsBond after fund success
+See [`Pallet::unlock`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -570,6 +629,7 @@ call = substrate.compose_call(
 
 ---------
 ### unlock_by_vsbond
+See [`Pallet::unlock_by_vsbond`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -613,6 +673,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -714,6 +775,7 @@ call = substrate.compose_call(
 
 ---------
 ### unlock_vstoken
+See [`Pallet::unlock_vstoken`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -728,8 +790,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw
-Withdraw full balance of the parachain.
-- `index`: The parachain to whose crowdloan the contribution was made.
+See [`Pallet::withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -773,7 +834,7 @@ all refund
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pool_id | `StableAssetPoolId` | ```u32```
-| currency_id_in | `CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| currency_id_in | `CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | value | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -887,6 +948,38 @@ refund to account. [who, fund_index,value]
 | None | `ParaId` | ```u32```
 | None | `LeasePeriod` | ```u32```
 | None | `LeasePeriod` | ```u32```
+
+---------
+### ReservationCancelled
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountIdOf<T>` | ```AccountId```
+| para_id | `ParaId` | ```u32```
+
+---------
+### ReservationFullyHandled
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| para_id | `ParaId` | ```u32```
+
+---------
+### ReservationHandled
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| para_id | `ParaId` | ```u32```
+
+---------
+### Reserved
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountIdOf<T>` | ```AccountId```
+| para_id | `ParaId` | ```u32```
+| value | `BalanceOf<T>` | ```u128```
+| if_mint | `bool` | ```bool```
 
 ---------
 ### Retired
@@ -1074,8 +1167,32 @@ result = substrate.query(
 'u128'
 ```
 ---------
+### ReserveInfos
+
+#### Python
+```python
+result = substrate.query(
+    'Salp', 'ReserveInfos', ['u32', 'AccountId']
+)
+```
+
+#### Return value
+```python
+{'if_mint': 'bool', 'value': 'u128'}
+```
+---------
 ## Constants
 
+---------
+### BatchLimit
+#### Value
+```python
+50
+```
+#### Python
+```python
+constant = substrate.get_constant('Salp', 'BatchLimit')
+```
 ---------
 ### BuybackPalletId
 #### Value
@@ -1096,6 +1213,16 @@ constant = substrate.get_constant('Salp', 'BuybackPalletId')
 #### Python
 ```python
 constant = substrate.get_constant('Salp', 'LeasePeriod')
+```
+---------
+### LockId
+#### Value
+```python
+'0x73616c706c6f636b'
+```
+#### Python
+```python
+constant = substrate.get_constant('Salp', 'LockId')
 ```
 ---------
 ### MinContribution

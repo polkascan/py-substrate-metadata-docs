@@ -6,10 +6,7 @@
 
 ---------
 ### plan_config_change
-Plan an epoch config change. The epoch config change is recorded and will be enacted on
-the next call to `enact_epoch_change`. The config will be activated one epoch after.
-Multiple calls to this method will replace any existing planned config change that had
-not been enacted yet.
+See [`Pallet::plan_config_change`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -36,14 +33,11 @@ call = substrate.compose_call(
 
 ---------
 ### report_equivocation
-Report authority equivocation/misbehavior. This method will verify
-the equivocation proof and validate the given key ownership proof
-against the extracted offender. If both are valid, the offence will
-be reported.
+See [`Pallet::report_equivocation`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| equivocation_proof | `Box<EquivocationProof<T::Header>>` | 
+| equivocation_proof | `Box<EquivocationProof<HeaderFor<T>>>` | 
 | key_owner_proof | `T::KeyOwnerProof` | 
 
 #### Python
@@ -55,12 +49,11 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -70,25 +63,25 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::12',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::12',
+            'state_root': 'scale_info::12',
         },
         'offender': '[u8; 32]',
         'second_header': {
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -98,13 +91,14 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::12',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::12',
+            'state_root': 'scale_info::12',
         },
         'slot': 'u64',
     },
@@ -119,18 +113,11 @@ call = substrate.compose_call(
 
 ---------
 ### report_equivocation_unsigned
-Report authority equivocation/misbehavior. This method will verify
-the equivocation proof and validate the given key ownership proof
-against the extracted offender. If both are valid, the offence will
-be reported.
-This extrinsic must be called unsigned and it is expected that only
-block authors will call it (validated in `ValidateUnsigned`), as such
-if the block author is defined it will be defined as the equivocation
-reporter.
+See [`Pallet::report_equivocation_unsigned`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| equivocation_proof | `Box<EquivocationProof<T::Header>>` | 
+| equivocation_proof | `Box<EquivocationProof<HeaderFor<T>>>` | 
 | key_owner_proof | `T::KeyOwnerProof` | 
 
 #### Python
@@ -142,12 +129,11 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -157,25 +143,25 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::12',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::12',
+            'state_root': 'scale_info::12',
         },
         'offender': '[u8; 32]',
         'second_header': {
             'digest': {
                 'logs': [
                     {
-                        'Other': 'Bytes',
-                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        'Other': 'Bytes',
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -185,13 +171,14 @@ call = substrate.compose_call(
                             '[u8; 4]',
                             'Bytes',
                         ),
+                        None: None,
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::12',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::12',
+            'state_root': 'scale_info::12',
         },
         'slot': 'u64',
     },
@@ -582,6 +569,17 @@ constant = substrate.get_constant('Babe', 'ExpectedBlockTime')
 #### Python
 ```python
 constant = substrate.get_constant('Babe', 'MaxAuthorities')
+```
+---------
+### MaxNominators
+ The maximum number of nominators for each validator.
+#### Value
+```python
+512
+```
+#### Python
+```python
+constant = substrate.get_constant('Babe', 'MaxNominators')
 ```
 ---------
 ## Errors

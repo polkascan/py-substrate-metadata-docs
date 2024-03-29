@@ -60,27 +60,16 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Authority': {
             'delay': 'u32',
             'origin': {
-                'system': {
-                    'None': None,
-                    'Root': None,
-                    'Signed': 'AccountId',
-                },
                 None: None,
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
                         'Authority': {
                             'delay': 'u32',
-                            'origin': 'scale_info::131',
+                            'origin': 'scale_info::134',
                         },
                         'CumulusXcm': {
                             'Relay': None,
@@ -114,6 +103,8 @@ call = substrate.compose_call(
                             'Response': 'scale_info::74',
                             'Xcm': 'scale_info::74',
                         },
+                        'Void': (),
+                        None: None,
                         'TechnicalCommittee': {
                             'Member': 'AccountId',
                             'Members': (
@@ -122,13 +113,11 @@ call = substrate.compose_call(
                             ),
                             '_Phantom': None,
                         },
-                        'Void': (),
                         'system': {
                             'None': None,
                             'Root': None,
                             'Signed': 'AccountId',
                         },
-                        None: None,
                     },
                 },
                 'CumulusXcm': {
@@ -282,6 +271,11 @@ call = substrate.compose_call(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {
+                    'None': None,
+                    'Root': None,
+                    'Signed': 'AccountId',
+                },
             },
         },
         'CumulusXcm': {
@@ -342,6 +336,7 @@ call = substrate.compose_call(
                             'Ethereum': 'InnerStruct',
                             'Kusama': None,
                             'Polkadot': None,
+                            'PolkadotBulletin': None,
                             'Rococo': None,
                             'Westend': None,
                             'Wococo': None,
@@ -829,6 +824,7 @@ call = substrate.compose_call(
                             'Ethereum': 'InnerStruct',
                             'Kusama': None,
                             'Polkadot': None,
+                            'PolkadotBulletin': None,
                             'Rococo': None,
                             'Westend': None,
                             'Wococo': None,
@@ -1279,12 +1275,18 @@ call = substrate.compose_call(
                 'parents': 'u8',
             },
         },
+        'Void': (),
+        None: None,
         'TechnicalCommittee': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
             '_Phantom': None,
         },
-        'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }

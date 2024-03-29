@@ -18,12 +18,13 @@ The reward will be transferred to the origin&\#x27;s account.
 call = substrate.compose_call(
     'LiquidityRewards', 'claim_reward', {
     'currency_id': {
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
+        'Native': None,
         'Staking': ('BlockRewards', ),
+        'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
 }
 )
@@ -47,10 +48,11 @@ stake/unstake/claim calls.
 call = substrate.compose_call(
     'LiquidityRewards', 'set_currency_group', {
     'currency_id': {
+        'Native': None,
         None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'Native': None,
+        'LocalAsset': 'u32',
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
     },
@@ -128,6 +130,7 @@ call = substrate.compose_call(
         None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
         'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
@@ -154,11 +157,12 @@ call = substrate.compose_call(
     'amount': 'u128',
     'currency_id': {
         'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
         None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
         'Staking': ('BlockRewards', ),
+        'Tranche': ('u64', '[u8; 16]'),
     },
 }
 )
@@ -174,7 +178,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | ends_on | `MomentOf<T>` | ```u64```
 | reward | `T::Balance` | ```u128```
-| last_changes | `EpochChanges<T>` | ```{'duration': (None, 'u64'), 'reward': (None, 'u128'), 'weights': 'scale_info::93', 'currencies': 'scale_info::97'}```
+| last_changes | `EpochChanges<T>` | ```{'duration': (None, 'u64'), 'reward': (None, 'u128'), 'weights': 'scale_info::95', 'currencies': 'scale_info::99'}```
 
 ---------
 ## Storage functions
@@ -192,7 +196,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'duration': 'u64', 'reward': 'u128', 'weights': 'scale_info::93'}
+{'duration': 'u64', 'reward': 'u128', 'weights': 'scale_info::95'}
 ```
 ---------
 ### EndOfEpoch
@@ -224,10 +228,10 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'currencies': 'scale_info::97',
+    'currencies': 'scale_info::99',
     'duration': (None, 'u64'),
     'reward': (None, 'u128'),
-    'weights': 'scale_info::93',
+    'weights': 'scale_info::95',
 }
 ```
 ---------

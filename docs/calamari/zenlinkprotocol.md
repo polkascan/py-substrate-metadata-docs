@@ -102,7 +102,7 @@ Claim lp asset from a bootstrap pair
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| recipient | `T::AccountId` | 
+| recipient | `<T::Lookup as StaticLookup>::Source` | 
 | asset_0 | `T::AssetId` | 
 | asset_1 | `T::AssetId` | 
 | deadline | `T::BlockNumber` | 
@@ -122,7 +122,13 @@ call = substrate.compose_call(
         'chain_id': 'u32',
     },
     'deadline': 'u32',
-    'recipient': 'AccountId',
+    'recipient': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
 }
 )
 ```
@@ -308,6 +314,8 @@ update a bootstrap pair
 
 - `asset_0`: Asset which make up bootstrap pair
 - `asset_1`: Asset which make up bootstrap pair
+- `min_contribution_0`: The new min amount of asset_0 contribute
+- `min_contribution_0`: The new min amount of asset_1 contribute
 - `target_supply_0`: The new target amount of asset_0 total contribute
 - `target_supply_0`: The new target amount of asset_1 total contribute
 - `capacity_supply_0`: The new max amount of asset_0 total contribute
@@ -373,7 +381,7 @@ call = substrate.compose_call(
 | -------- | -------- | 
 | asset_0 | `T::AssetId` | 
 | asset_1 | `T::AssetId` | 
-| recipient | `T::AccountId` | 
+| recipient | `<T::Lookup as StaticLookup>::Source` | 
 
 #### Python
 ```python
@@ -389,7 +397,13 @@ call = substrate.compose_call(
         'asset_type': 'u8',
         'chain_id': 'u32',
     },
-    'recipient': 'AccountId',
+    'recipient': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
 }
 )
 ```
@@ -450,7 +464,7 @@ The order of foreign dot effect result.
 | liquidity | `AssetBalance` | 
 | amount_0_min | `AssetBalance` | 
 | amount_1_min | `AssetBalance` | 
-| recipient | `T::AccountId` | 
+| recipient | `<T::Lookup as StaticLookup>::Source` | 
 | deadline | `T::BlockNumber` | 
 
 #### Python
@@ -471,7 +485,13 @@ call = substrate.compose_call(
     },
     'deadline': 'u32',
     'liquidity': 'u128',
-    'recipient': 'AccountId',
+    'recipient': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
 }
 )
 ```
@@ -483,10 +503,8 @@ Set the protocol fee point.
 \# Arguments
 
 - `fee_point`:
-The fee_point which integer between [0,30]
-0 means no protocol fee.
-30 means 0.3% * 100% = 0.0030.
-default is 5 and means 0.3% * 1 / 6 = 0.0005.
+0 means that all exchange fees belong to the liquidity provider.
+30 means that all exchange fees belong to the fee receiver.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -511,12 +529,23 @@ Set the new receiver of the protocol fee.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| receiver | `Option<T::AccountId>` | 
+| send_to | `Option<<T::Lookup as StaticLookup>::Source>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'ZenlinkProtocol', 'set_fee_receiver', {'receiver': (None, 'AccountId')}
+    'ZenlinkProtocol', 'set_fee_receiver', {
+    'send_to': (
+        None,
+        {
+            'Address20': '[u8; 20]',
+            'Address32': '[u8; 32]',
+            'Id': 'AccountId',
+            'Index': (),
+            'Raw': 'Bytes',
+        },
+    ),
+}
 )
 ```
 
@@ -537,7 +566,7 @@ Buy amount of foreign by path.
 | amount_out | `AssetBalance` | 
 | amount_in_max | `AssetBalance` | 
 | path | `Vec<T::AssetId>` | 
-| recipient | `T::AccountId` | 
+| recipient | `<T::Lookup as StaticLookup>::Source` | 
 | deadline | `T::BlockNumber` | 
 
 #### Python
@@ -554,7 +583,13 @@ call = substrate.compose_call(
             'chain_id': 'u32',
         },
     ],
-    'recipient': 'AccountId',
+    'recipient': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
 }
 )
 ```
@@ -576,7 +611,7 @@ Sell amount of foreign by path.
 | amount_in | `AssetBalance` | 
 | amount_out_min | `AssetBalance` | 
 | path | `Vec<T::AssetId>` | 
-| recipient | `T::AccountId` | 
+| recipient | `<T::Lookup as StaticLookup>::Source` | 
 | deadline | `T::BlockNumber` | 
 
 #### Python
@@ -593,7 +628,13 @@ call = substrate.compose_call(
             'chain_id': 'u32',
         },
     ],
-    'recipient': 'AccountId',
+    'recipient': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
 }
 )
 ```
@@ -611,7 +652,7 @@ Move some assets from one holder to another.
 | Name | Type |
 | -------- | -------- | 
 | asset_id | `T::AssetId` | 
-| recipient | `T::AccountId` | 
+| recipient | `<T::Lookup as StaticLookup>::Source` | 
 | amount | `AssetBalance` | 
 
 #### Python
@@ -624,7 +665,13 @@ call = substrate.compose_call(
         'asset_type': 'u8',
         'chain_id': 'u32',
     },
-    'recipient': 'AccountId',
+    'recipient': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
 }
 )
 ```
@@ -824,6 +871,20 @@ Some assets were transferred. \[asset_id, owner, target, amount\]
 | None | `AssetBalance` | ```u128```
 
 ---------
+### TransferredToParachain
+Transfer by xcm
+Transferred to parachain. \[asset_id, src, para_id, dest, amount, used_weight\]
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `T::AssetId` | ```{'chain_id': 'u32', 'asset_type': 'u8', 'asset_index': 'u64'}```
+| None | `T::AccountId` | ```AccountId```
+| None | `ParaId` | ```u32```
+| None | `T::AccountId` | ```AccountId```
+| None | `AssetBalance` | ```u128```
+| None | `u64` | ```u64```
+
+---------
 ### WithdrawReward
 Withdraw all reward from a bootstrap.
 #### Attributes
@@ -901,7 +962,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::479'
+'scale_info::501'
 ```
 ---------
 ### BootstrapPersonalSupply
@@ -958,7 +1019,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::479'
+'scale_info::501'
 ```
 ---------
 ### FeeMeta
@@ -1062,7 +1123,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u64; 4]'
+'scale_info::493'
 ```
 ---------
 ### LiquidityPairs
@@ -1223,16 +1284,8 @@ Invalid fee_point
 Can&\#x27;t find pair though trading path.
 
 ---------
-### InvalidStatus
-LP pair status invalid.
-
----------
 ### InvariantCheckFailed
 Can&\#x27;t pass the K value check
-
----------
-### LPAssetNotExists
-LP asset not exist.
 
 ---------
 ### NativeBalanceTooLow
@@ -1289,9 +1342,5 @@ Unsupported AssetId by this ZenlinkProtocol Version.
 ---------
 ### ZeroContribute
 Zero contribute in bootstrap
-
----------
-### ZeroLiquidity
-Liquidity amount is zero.
 
 ---------

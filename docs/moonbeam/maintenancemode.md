@@ -6,11 +6,7 @@
 
 ---------
 ### enter_maintenance_mode
-Place the chain in maintenance mode
-
-Weight cost is:
-* One DB read to ensure we&\#x27;re not already in maintenance mode
-* Three DB writes - 1 for the mode, 1 for suspending xcm execution, 1 for the event
+See [`Pallet::enter_maintenance_mode`].
 #### Attributes
 No attributes
 
@@ -23,11 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### resume_normal_operation
-Return the chain to normal operating mode
-
-Weight cost is:
-* One DB read to ensure we&\#x27;re in maintenance mode
-* Three DB writes - 1 for the mode, 1 for resuming xcm execution, 1 for the event
+See [`Pallet::resume_normal_operation`].
 #### Attributes
 No attributes
 

@@ -5,14 +5,23 @@
 ## Calls
 
 ---------
+### adjust_pool_deposit
+See [`Pallet::adjust_pool_deposit`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `PoolId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'NominationPools', 'adjust_pool_deposit', {'pool_id': 'u32'}
+)
+```
+
+---------
 ### bond_extra
-Bond `extra` more funds from `origin` into the pool to which they already belong.
-
-Additional funds can come from either the free balance of the account, of from the
-accumulated rewards, see [`BondExtra`].
-
-Bonding extra funds implies an automatic payout of all pending rewards as well.
-See `bond_extra_other` to bond pending rewards of `other` members.
+See [`Pallet::bond_extra`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -32,15 +41,7 @@ call = substrate.compose_call(
 
 ---------
 ### bond_extra_other
-`origin` bonds funds from `extra` for some pool member `member` into their respective
-pools.
-
-`origin` can bond extra funds from free balance or pending rewards when `origin ==
-other`.
-
-In the case of `origin != other`, `origin` can only bond extra pending rewards of
-`other` members assuming set_claim_permission for the given member is
-`PermissionlessAll` or `PermissionlessCompound`.
+See [`Pallet::bond_extra_other`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -68,13 +69,7 @@ call = substrate.compose_call(
 
 ---------
 ### chill
-Chill on behalf of the pool.
-
-The dispatch origin of this call must be signed by the pool nominator or the pool
-root role, same as [`Pallet::nominate`].
-
-This directly forward the call to the staking pallet, on behalf of the pool bonded
-account.
+See [`Pallet::chill`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -89,11 +84,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_commission
-Claim pending commission.
-
-The dispatch origin of this call must be signed by the `root` role of the pool. Pending
-commission is paid out and added to total claimed commission`. Total pending commission
-is reset to zero. the current.
+See [`Pallet::claim_commission`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -108,14 +99,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_payout
-A bonded member can use this to claim their payout based on the rewards that the pool
-has accumulated since their last claimed payout (OR since joining if this is their first
-time claiming rewards). The payout will be transferred to the member&\#x27;s account.
-
-The member will earn rewards pro rata based on the members stake vs the sum of the
-members in the pools stake. Rewards do not &quot;expire&quot;.
-
-See `claim_payout_other` to caim rewards on bahalf of some `other` pool member.
+See [`Pallet::claim_payout`].
 #### Attributes
 No attributes
 
@@ -128,10 +112,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_payout_other
-`origin` can claim payouts on some pool member `other`&\#x27;s behalf.
-
-Pool member `other` must have a `PermissionlessAll` or `PermissionlessWithdraw` in order
-for this call to be successful.
+See [`Pallet::claim_payout_other`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -146,23 +127,7 @@ call = substrate.compose_call(
 
 ---------
 ### create
-Create a new delegation pool.
-
-\# Arguments
-
-* `amount` - The amount of funds to delegate to the pool. This also acts of a sort of
-  deposit since the pools creator cannot fully unbond funds until the pool is being
-  destroyed.
-* `index` - A disambiguation index for creating the account. Likely only useful when
-  creating multiple pools in the same extrinsic.
-* `root` - The account to set as [`PoolRoles::root`].
-* `nominator` - The account to set as the [`PoolRoles::nominator`].
-* `bouncer` - The account to set as the [`PoolRoles::bouncer`].
-
-\# Note
-
-In addition to `amount`, the caller will transfer the existential deposit; so the caller
-needs at have at least `amount + existential_deposit` transferrable.
+See [`Pallet::create`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -203,12 +168,7 @@ call = substrate.compose_call(
 
 ---------
 ### create_with_pool_id
-Create a new delegation pool with a previously used pool id
-
-\# Arguments
-
-same as `create` with the inclusion of
-* `pool_id` - `A valid PoolId.
+See [`Pallet::create_with_pool_id`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -251,16 +211,7 @@ call = substrate.compose_call(
 
 ---------
 ### join
-Stake funds with a pool. The amount to bond is transferred from the member to the
-pools account and immediately increases the pools bond.
-
-\# Note
-
-* An account can only be a member of a single pool.
-* An account cannot join the same pool multiple times.
-* This call will *not* dust the member account, so the member must have at least
-  `existential deposit + amount` in their account.
-* Only a pool with [`PoolState::Open`] can be joined
+See [`Pallet::join`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -276,13 +227,7 @@ call = substrate.compose_call(
 
 ---------
 ### nominate
-Nominate on behalf of the pool.
-
-The dispatch origin of this call must be signed by the pool nominator or the pool
-root role.
-
-This directly forward the call to the staking pallet, on behalf of the pool bonded
-account.
+See [`Pallet::nominate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -301,12 +246,7 @@ call = substrate.compose_call(
 
 ---------
 ### pool_withdraw_unbonded
-Call `withdraw_unbonded` for the pools account. This call can be made by any account.
-
-This is useful if their are too many unlocking chunks to call `unbond`, and some
-can be cleared by withdrawing. In the case there are too many unlocking chunks, the user
-would probably see an error like `NoMoreChunks` emitted from the staking system when
-they attempt to unbond.
+See [`Pallet::pool_withdraw_unbonded`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -325,18 +265,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_claim_permission
-Allows a pool member to set a claim permission to allow or disallow permissionless
-bonding and withdrawing.
-
-By default, this is `Permissioned`, which implies only the pool member themselves can
-claim their pending rewards. If a pool member wishes so, they can set this to
-`PermissionlessAll` to allow any account to claim their rewards and bond extra to the
-pool.
-
-\# Arguments
-
-* `origin` - Member of a pool.
-* `actor` - Account to claim reward. // improve this
+See [`Pallet::set_claim_permission`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -358,11 +287,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_commission
-Set the commission of a pool.
-Both a commission percentage and a commission payee must be provided in the `current`
-tuple. Where a `current` of `None` is provided, any current commission will be removed.
-
-- If a `None` is supplied to `new_commission`, existing commission will be removed.
+See [`Pallet::set_commission`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -384,15 +309,12 @@ call = substrate.compose_call(
 
 ---------
 ### set_commission_change_rate
-Set the commission change rate for a pool.
-
-Initial change rate is not bounded, whereas subsequent updates can only be more
-restrictive than the current.
+See [`Pallet::set_commission_change_rate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `PoolId` | 
-| change_rate | `CommissionChangeRate<T::BlockNumber>` | 
+| change_rate | `CommissionChangeRate<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -409,11 +331,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_commission_max
-Set the maximum commission of a pool.
-
-- Initial max can be set to any `Perbill`, and only smaller values thereafter.
-- Current commission will be lowered in the event it is higher than a new max
-  commission.
+See [`Pallet::set_commission_max`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -432,17 +350,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_configs
-Update configurations for the nomination pools. The origin for this call must be
-Root.
-
-\# Arguments
-
-* `min_join_bond` - Set [`MinJoinBond`].
-* `min_create_bond` - Set [`MinCreateBond`].
-* `max_pools` - Set [`MaxPools`].
-* `max_members` - Set [`MaxPoolMembers`].
-* `max_members_per_pool` - Set [`MaxPoolMembersPerPool`].
-* `global_max_commission` - Set [`GlobalMaxCommission`].
+See [`Pallet::set_configs`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -493,10 +401,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_metadata
-Set a new metadata for the pool.
-
-The dispatch origin of this call must be signed by the bouncer, or the root role of the
-pool.
+See [`Pallet::set_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -515,16 +420,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_state
-Set a new state for the pool.
-
-If a pool is already in the `Destroying` state, then under no condition can its state
-change again.
-
-The dispatch origin of this call must be either:
-
-1. signed by the bouncer, or the root role of the pool,
-2. if the pool conditions to be open are NOT met (as described by `ok_to_be_open`), and
-   then the state of the pool can be permissionlessly changed to `Destroying`.
+See [`Pallet::set_state`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -547,37 +443,7 @@ call = substrate.compose_call(
 
 ---------
 ### unbond
-Unbond up to `unbonding_points` of the `member_account`&\#x27;s funds from the pool. It
-implicitly collects the rewards one last time, since not doing so would mean some
-rewards would be forfeited.
-
-Under certain conditions, this call can be dispatched permissionlessly (i.e. by any
-account).
-
-\# Conditions for a permissionless dispatch.
-
-* The pool is blocked and the caller is either the root or bouncer. This is refereed to
-  as a kick.
-* The pool is destroying and the member is not the depositor.
-* The pool is destroying, the member is the depositor and no other members are in the
-  pool.
-
-\#\# Conditions for permissioned dispatch (i.e. the caller is also the
-`member_account`):
-
-* The caller is not the depositor.
-* The caller is the depositor, the pool is destroying and no other members are in the
-  pool.
-
-\# Note
-
-If there are too many unlocking chunks to unbond with the pool account,
-[`Call::pool_withdraw_unbonded`] can be called to try and minimize unlocking chunks.
-The [`StakingInterface::unbond`] will implicitly call [`Call::pool_withdraw_unbonded`]
-to try to free chunks if necessary (ie. if unbound was called and no unlocking chunks
-are available). However, it may not be possible to release the current unlocking chunks,
-in which case, the result of this call will likely be the `NoMoreChunks` error from the
-staking system.
+See [`Pallet::unbond`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -602,13 +468,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_roles
-Update the roles of the pool.
-
-The root is the only entity that can change any of the roles, including itself,
-excluding the depositor, who can never change.
-
-It emits an event, notifying UIs of the role change. This event is quite relevant to
-most pool members and they should be informed of changes to pool roles.
+See [`Pallet::update_roles`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -643,25 +503,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw_unbonded
-Withdraw unbonded funds from `member_account`. If no bonded funds can be unbonded, an
-error is returned.
-
-Under certain conditions, this call can be dispatched permissionlessly (i.e. by any
-account).
-
-\# Conditions for a permissionless dispatch
-
-* The pool is in destroy mode and the target is not the depositor.
-* The target is the depositor and they are the only member in the sub pools.
-* The pool is blocked and the caller is either the root or bouncer.
-
-\# Conditions for permissioned dispatch
-
-* The caller is the target and they are not the depositor.
-
-\# Note
-
-If the target is the depositor, the pool will be destroyed.
+See [`Pallet::withdraw_unbonded`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -727,6 +569,24 @@ The removal can be voluntary (withdrawn all unbonded funds) or involuntary (kick
 | member | `T::AccountId` | ```AccountId```
 
 ---------
+### MinBalanceDeficitAdjusted
+Topped up deficit in frozen ED of the reward pool.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pool_id | `PoolId` | ```u32```
+| amount | `BalanceOf<T>` | ```u128```
+
+---------
+### MinBalanceExcessAdjusted
+Claimed excess frozen ED of af the reward pool.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| pool_id | `PoolId` | ```u32```
+| amount | `BalanceOf<T>` | ```u128```
+
+---------
 ### PaidOut
 A payout has been made to a member.
 #### Attributes
@@ -743,7 +603,7 @@ A pool&\#x27;s commission `change_rate` has been changed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pool_id | `PoolId` | ```u32```
-| change_rate | `CommissionChangeRate<T::BlockNumber>` | ```{'max_increase': 'u32', 'min_delay': 'u32'}```
+| change_rate | `CommissionChangeRate<BlockNumberFor<T>>` | ```{'max_increase': 'u32', 'min_delay': 'u32'}```
 
 ---------
 ### PoolCommissionClaimed
@@ -1143,7 +1003,7 @@ result = substrate.query(
     'last_recorded_reward_counter': 'u128',
     'points': 'u128',
     'pool_id': 'u32',
-    'unbonding_eras': 'scale_info::699',
+    'unbonding_eras': 'scale_info::665',
 }
 ```
 ---------
@@ -1200,7 +1060,26 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'no_era': {'balance': 'u128', 'points': 'u128'}, 'with_era': 'scale_info::709'}
+{'no_era': {'balance': 'u128', 'points': 'u128'}, 'with_era': 'scale_info::675'}
+```
+---------
+### TotalValueLocked
+ The sum of funds across all pools.
+
+ This might be lower but never higher than the sum of `total_balance` of all [`PoolMembers`]
+ because calling `pool_withdraw_unbonded` might decrease the total stake of the pool&#x27;s
+ `bonded_account` without adjusting the pallet-internal `UnbondingPool`&#x27;s.
+
+#### Python
+```python
+result = substrate.query(
+    'NominationPools', 'TotalValueLocked', []
+)
+```
+
+#### Return value
+```python
+'u128'
 ```
 ---------
 ## Constants
@@ -1267,6 +1146,10 @@ The submitted changes to commission change rate are not allowed.
 Not enough blocks have surpassed since the last commission update.
 
 ---------
+### CommissionExceedsGlobalMaximum
+The supplied commission exceeds global maximum commission.
+
+---------
 ### CommissionExceedsMaximum
 The supplied commission exceeds the max allowed commission.
 
@@ -1312,9 +1195,9 @@ Metadata exceeds [`Config::MaxMetadataLen`]
 ### MinimumBondNotMet
 The amount does not meet the minimum bond to either join or create a pool.
 
-The depositor can never unbond to a value less than
-`Pallet::depositor_min_bond`. The caller does not have nominating
-permissions for the pool. Members can never unbond to a value below `MinJoinBond`.
+The depositor can never unbond to a value less than `Pallet::depositor_min_bond`. The
+caller does not have nominating permissions for the pool. Members can never unbond to a
+value below `MinJoinBond`.
 
 ---------
 ### NoCommissionCurrentSet
@@ -1340,6 +1223,10 @@ The caller does not have nominating permissions for the pool.
 ---------
 ### NotOpen
 The pool is not open to join
+
+---------
+### NothingToAdjust
+No imbalance in the ED deposit for the pool.
 
 ---------
 ### OverflowRisk

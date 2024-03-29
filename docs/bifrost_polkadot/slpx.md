@@ -6,6 +6,7 @@
 
 ---------
 ### add_whitelist
+See [`Pallet::add_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -21,6 +22,8 @@ call = substrate.compose_call(
         'Astar',
         'Moonbeam',
         'Hydradx',
+        'Interlay',
+        'Manta',
     ),
 }
 )
@@ -28,7 +31,7 @@ call = substrate.compose_call(
 
 ---------
 ### mint
-vtoken mint and transfer to target chain
+See [`Pallet::mint`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -74,6 +77,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -173,6 +177,8 @@ call = substrate.compose_call(
     'target_chain': {
         'Astar': '[u8; 20]',
         'Hydradx': 'AccountId',
+        'Interlay': 'AccountId',
+        'Manta': 'AccountId',
         'Moonbeam': '[u8; 20]',
     },
 }
@@ -181,7 +187,7 @@ call = substrate.compose_call(
 
 ---------
 ### redeem
-Redeem
+See [`Pallet::redeem`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -197,6 +203,8 @@ call = substrate.compose_call(
     'target_chain': {
         'Astar': '[u8; 20]',
         'Hydradx': 'AccountId',
+        'Interlay': 'AccountId',
+        'Manta': 'AccountId',
         'Moonbeam': '[u8; 20]',
     },
     'vtoken_id': {
@@ -232,6 +240,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -332,6 +341,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_whitelist
+See [`Pallet::remove_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -347,13 +357,334 @@ call = substrate.compose_call(
         'Astar',
         'Moonbeam',
         'Hydradx',
+        'Interlay',
+        'Manta',
     ),
 }
 )
 ```
 
 ---------
+### set_currency_ethereum_call_switch
+See [`Pallet::set_currency_ethereum_call_switch`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| currency_id | `CurrencyId` | 
+| is_support | `bool` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Slpx', 'set_currency_ethereum_call_switch', {
+    'currency_id': {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+    'is_support': 'bool',
+}
+)
+```
+
+---------
+### set_currency_support_xcm_fee
+See [`Pallet::set_currency_support_xcm_fee`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| currency_id | `CurrencyId` | 
+| is_support | `bool` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Slpx', 'set_currency_support_xcm_fee', {
+    'currency_id': {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+    'is_support': 'bool',
+}
+)
+```
+
+---------
+### set_ethereum_call_configration
+See [`Pallet::set_ethereum_call_configration`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| xcm_fee | `u128` | 
+| xcm_weight | `Weight` | 
+| period | `BlockNumberFor<T>` | 
+| contract | `H160` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Slpx', 'set_ethereum_call_configration', {
+    'contract': '[u8; 20]',
+    'period': 'u32',
+    'xcm_fee': 'u128',
+    'xcm_weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
+)
+```
+
+---------
 ### set_execution_fee
+See [`Pallet::set_execution_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -397,6 +728,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -498,6 +830,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_transfer_to_fee
+See [`Pallet::set_transfer_to_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -512,6 +845,8 @@ call = substrate.compose_call(
         'Astar',
         'Moonbeam',
         'Hydradx',
+        'Interlay',
+        'Manta',
     ),
     'transfer_to_fee': 'u128',
 }
@@ -520,7 +855,7 @@ call = substrate.compose_call(
 
 ---------
 ### stable_pool_swap
-Stable pool swap
+See [`Pallet::stable_pool_swap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -568,6 +903,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -695,6 +1031,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -795,6 +1132,8 @@ call = substrate.compose_call(
     'target_chain': {
         'Astar': '[u8; 20]',
         'Hydradx': 'AccountId',
+        'Interlay': 'AccountId',
+        'Manta': 'AccountId',
         'Moonbeam': '[u8; 20]',
     },
 }
@@ -803,7 +1142,7 @@ call = substrate.compose_call(
 
 ---------
 ### zenlink_swap
-Swap and transfer to target chain
+See [`Pallet::zenlink_swap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -850,6 +1189,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -977,6 +1317,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -1076,6 +1417,8 @@ call = substrate.compose_call(
     'target_chain': {
         'Astar': '[u8; 20]',
         'Hydradx': 'AccountId',
+        'Interlay': 'AccountId',
+        'Manta': 'AccountId',
         'Moonbeam': '[u8; 20]',
     },
 }
@@ -1090,7 +1433,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| support_chain | `SupportChain` | ```('Astar', 'Moonbeam', 'Hydradx')```
+| support_chain | `SupportChain` | ```('Astar', 'Moonbeam', 'Hydradx', 'Interlay', 'Manta')```
 | evm_contract_account_id | `AccountIdOf<T>` | ```AccountId```
 
 ---------
@@ -1098,15 +1441,41 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| support_chain | `SupportChain` | ```('Astar', 'Moonbeam', 'Hydradx')```
+| support_chain | `SupportChain` | ```('Astar', 'Moonbeam', 'Hydradx', 'Interlay', 'Manta')```
 | evm_contract_account_id | `AccountIdOf<T>` | ```AccountId```
+
+---------
+### SetCurrencyEthereumCallSwitch
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| currency_id | `CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
+| is_support | `bool` | ```bool```
+
+---------
+### SetCurrencyToSupportXcmFee
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| currency_id | `CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
+| is_support | `bool` | ```bool```
+
+---------
+### SetEthereumCallConfiguration
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| xcm_fee | `u128` | ```u128```
+| xcm_weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
+| period | `BlockNumberFor<T>` | ```u32```
+| contract | `H160` | ```[u8; 20]```
 
 ---------
 ### SetExecutionFee
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| currency_id | `CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | execution_fee | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -1114,7 +1483,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| support_chain | `SupportChain` | ```('Astar', 'Moonbeam', 'Hydradx')```
+| support_chain | `SupportChain` | ```('Astar', 'Moonbeam', 'Hydradx', 'Interlay', 'Manta')```
 | transfer_to_fee | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -1123,9 +1492,9 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | evm_caller | `H160` | ```[u8; 20]```
-| currency_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| currency_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | token_amount | `BalanceOf<T>` | ```u128```
-| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId'}```
+| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId', 'Interlay': 'AccountId', 'Manta': 'AccountId'}```
 
 ---------
 ### XcmMintFailed
@@ -1133,9 +1502,9 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | evm_caller | `H160` | ```[u8; 20]```
-| currency_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| currency_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | token_amount | `BalanceOf<T>` | ```u128```
-| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId'}```
+| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId', 'Interlay': 'AccountId', 'Manta': 'AccountId'}```
 
 ---------
 ### XcmRedeem
@@ -1143,9 +1512,9 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | evm_caller | `H160` | ```[u8; 20]```
-| vtoken_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | vtoken_amount | `BalanceOf<T>` | ```u128```
-| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId'}```
+| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId', 'Interlay': 'AccountId', 'Manta': 'AccountId'}```
 
 ---------
 ### XcmRedeemFailed
@@ -1153,9 +1522,19 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | evm_caller | `H160` | ```[u8; 20]```
-| vtoken_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken_id | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | vtoken_amount | `BalanceOf<T>` | ```u128```
-| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId'}```
+| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId', 'Interlay': 'AccountId', 'Manta': 'AccountId'}```
+
+---------
+### XcmSetTokenAmount
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| currency_id | `CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
+| token_amount | `BalanceOf<T>` | ```u128```
+| vcurrency_id | `CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
+| vtoken_amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ### XcmStablePoolSwap
@@ -1166,7 +1545,7 @@ call = substrate.compose_call(
 | pool_token_index_in | `PoolTokenIndex` | ```u32```
 | pool_token_index_out | `PoolTokenIndex` | ```u32```
 | currency_id_out_amount | `BalanceOf<T>` | ```u128```
-| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId'}```
+| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId', 'Interlay': 'AccountId', 'Manta': 'AccountId'}```
 
 ---------
 ### XcmStablePoolSwapFailed
@@ -1177,7 +1556,7 @@ call = substrate.compose_call(
 | pool_token_index_in | `PoolTokenIndex` | ```u32```
 | pool_token_index_out | `PoolTokenIndex` | ```u32```
 | currency_id_in_amount | `BalanceOf<T>` | ```u128```
-| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId'}```
+| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId', 'Interlay': 'AccountId', 'Manta': 'AccountId'}```
 
 ---------
 ### XcmZenlinkSwap
@@ -1185,10 +1564,10 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | evm_caller | `H160` | ```[u8; 20]```
-| currency_id_in | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
-| currency_id_out | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| currency_id_in | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
+| currency_id_out | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | currency_id_out_amount | `BalanceOf<T>` | ```u128```
-| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId'}```
+| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId', 'Interlay': 'AccountId', 'Manta': 'AccountId'}```
 
 ---------
 ### XcmZenlinkSwapFailed
@@ -1196,14 +1575,152 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | evm_caller | `H160` | ```[u8; 20]```
-| currency_id_in | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
-| currency_id_out | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| currency_id_in | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
+| currency_id_out | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | currency_id_in_amount | `BalanceOf<T>` | ```u128```
-| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId'}```
+| target_chain | `TargetChain<AccountIdOf<T>>` | ```{'Astar': '[u8; 20]', 'Moonbeam': '[u8; 20]', 'Hydradx': 'AccountId', 'Interlay': 'AccountId', 'Manta': 'AccountId'}```
 
 ---------
 ## Storage functions
 
+---------
+### CurrencyIdList
+
+#### Python
+```python
+result = substrate.query(
+    'Slpx', 'CurrencyIdList', []
+)
+```
+
+#### Return value
+```python
+[
+    {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': ('u8', 'u32', 'u32', 'u32'),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+]
+```
 ---------
 ### ExecutionFee
  Charge corresponding fees for different CurrencyId
@@ -1245,6 +1762,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -1348,13 +1866,159 @@ result = substrate.query(
 'u128'
 ```
 ---------
+### SupportXcmFeeList
+
+#### Python
+```python
+result = substrate.query(
+    'Slpx', 'SupportXcmFeeList', []
+)
+```
+
+#### Return value
+```python
+[
+    {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': ('u8', 'u32', 'u32', 'u32'),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+]
+```
+---------
 ### TransferToFee
  XCM fee for transferring to Moonbeam(BNC)
 
 #### Python
 ```python
 result = substrate.query(
-    'Slpx', 'TransferToFee', [('Astar', 'Moonbeam', 'Hydradx')]
+    'Slpx', 'TransferToFee', [
+    (
+        'Astar',
+        'Moonbeam',
+        'Hydradx',
+        'Interlay',
+        'Manta',
+    ),
+]
 )
 ```
 
@@ -1369,13 +2033,41 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Slpx', 'WhitelistAccountId', [('Astar', 'Moonbeam', 'Hydradx')]
+    'Slpx', 'WhitelistAccountId', [
+    (
+        'Astar',
+        'Moonbeam',
+        'Hydradx',
+        'Interlay',
+        'Manta',
+    ),
+]
 )
 ```
 
 #### Return value
 ```python
 ['AccountId']
+```
+---------
+### XcmEthereumCallConfiguration
+
+#### Python
+```python
+result = substrate.query(
+    'Slpx', 'XcmEthereumCallConfiguration', []
+)
+```
+
+#### Return value
+```python
+{
+    'contract': '[u8; 20]',
+    'last_block': 'u32',
+    'period': 'u32',
+    'xcm_fee': 'u128',
+    'xcm_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
+}
 ```
 ---------
 ## Constants
@@ -1415,6 +2107,15 @@ Contract Account is not in the whitelist
 ---------
 ### ArgumentsError
 ArgumentsError
+
+---------
+### ErrorConvertVtoken
+
+---------
+### ErrorDelivering
+
+---------
+### ErrorValidating
 
 ---------
 ### ExceededWhitelistMaxNumber

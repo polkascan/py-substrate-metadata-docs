@@ -6,6 +6,7 @@
 
 ---------
 ### register_quoting_enclave
+See [`Pallet::register_quoting_enclave`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -26,6 +27,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_sgx_enclave
+See [`Pallet::register_sgx_enclave`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -50,6 +52,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_tcb_info
+See [`Pallet::register_tcb_info`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -70,6 +73,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_security_flags
+See [`Pallet::set_security_flags`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -88,6 +92,7 @@ call = substrate.compose_call(
 
 ---------
 ### unregister_proxied_enclave
+See [`Pallet::unregister_proxied_enclave`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -98,7 +103,7 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Teerex', 'unregister_proxied_enclave', {
     'address': {
-        'fingerprint': '[u8; 32]',
+        'fingerprint': 'scale_info::12',
         'registrar': 'AccountId',
         'signer': {
             'Known': {
@@ -115,6 +120,7 @@ call = substrate.compose_call(
 
 ---------
 ### unregister_sovereign_enclave
+See [`Pallet::unregister_sovereign_enclave`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -147,7 +153,7 @@ a proxied enclave has been removed from the enclave registry
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `EnclaveInstanceAddress<T::AccountId>` | ```{'fingerprint': '[u8; 32]', 'registrar': 'AccountId', 'signer': {'Opaque': 'Bytes', 'Known': {'Ed25519': '[u8; 32]', 'Sr25519': '[u8; 32]', 'Ecdsa': '[u8; 33]'}}}```
+| None | `EnclaveInstanceAddress<T::AccountId>` | ```{'fingerprint': 'scale_info::12', 'registrar': 'AccountId', 'signer': {'Opaque': 'Bytes', 'Known': {'Ed25519': '[u8; 32]', 'Sr25519': '[u8; 32]', 'Ecdsa': '[u8; 33]'}}}```
 
 ---------
 ### RemovedSovereignEnclave
@@ -208,7 +214,7 @@ result = substrate.query(
 result = substrate.query(
     'Teerex', 'ProxiedEnclaves', [
     {
-        'fingerprint': '[u8; 32]',
+        'fingerprint': 'scale_info::12',
         'registrar': 'AccountId',
         'signer': {
             'Known': {

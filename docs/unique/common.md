@@ -292,7 +292,7 @@ result = substrate.query(
             None,
             {
                 'collection_admin': 'bool',
-                'restricted': (None, 'scale_info::285'),
+                'restricted': (None, 'scale_info::281'),
                 'token_owner': 'bool',
             },
         ),
@@ -318,7 +318,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'_reserved': 'u32', 'consumed_space': 'u32', 'map': 'scale_info::421'}
+{'_reserved': 'u32', 'consumed_space': 'u32', 'map': 'scale_info::578'}
 ```
 ---------
 ### CollectionPropertyPermissions
@@ -333,7 +333,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::426'
+'scale_info::583'
 ```
 ---------
 ### CreatedCollectionCount
@@ -383,7 +383,7 @@ result = substrate.query(
     'u32',
     'u32',
     {'collection': 'u32', 'token': 'u32'},
-    "[({'properties': ['scale_info::292'], 'owner': (None, 'scale_info::116'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::269', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::417', 'limits': 'scale_info::274', 'permissions': 'scale_info::279', 'token_property_permissions': ['scale_info::288'], 'properties': ['scale_info::292'], 'read_only': 'bool', 'flags': 'scale_info::437'}, {'proof_size': 'u64', 'compact_proof_size': 'u64', 'compressed_proof_size': 'u64', 'results': ['scale_info::440'], 'key_values': ['scale_info::445']}); 0]",
+    "[({'properties': ['scale_info::289'], 'owner': (None, 'scale_info::266'), 'pieces': 'u128'}, {'owner': 'AccountId', 'mode': 'scale_info::264', 'name': ['u16'], 'description': ['u16'], 'token_prefix': 'Bytes', 'sponsorship': 'scale_info::574', 'limits': 'scale_info::270', 'permissions': 'scale_info::275', 'token_property_permissions': ['scale_info::284'], 'properties': ['scale_info::289'], 'read_only': 'bool', 'flags': 'scale_info::594'}, {'proof_size': 'u64', 'compact_proof_size': 'u64', 'compressed_proof_size': 'u64', 'results': ['scale_info::597'], 'key_values': ['scale_info::602']}); 0]",
 )
 ```
 ---------
@@ -523,6 +523,10 @@ This address is not set as sponsor, use setCollectionSponsor first.
 Empty property keys are forbidden
 
 ---------
+### FungibleItemsHaveNoId
+Fungible tokens hold no ID, and the default value of TokenId for a fungible collection is 0.
+
+---------
 ### InvalidCharacterInPropertyKey
 Only ASCII letters, digits, and symbols `_`, `-`, and `.` are allowed
 
@@ -541,6 +545,10 @@ No permission to perform action
 ---------
 ### NoSpaceForProperty
 Tried to store more property data than allowed
+
+---------
+### NotFungibleDataUsedToMintFungibleCollectionToken
+Not Fungible item data used to mint in Fungible collection.
 
 ---------
 ### NotSufficientFounds

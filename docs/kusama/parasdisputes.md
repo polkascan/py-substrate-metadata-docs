@@ -6,6 +6,7 @@
 
 ---------
 ### force_unfreeze
+See [`Pallet::force_unfreeze`].
 #### Attributes
 No attributes
 
@@ -26,7 +27,7 @@ A dispute has concluded for or against a candidate.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `CandidateHash` | ```[u8; 32]```
+| None | `CandidateHash` | ```scale_info::12```
 | None | `DisputeResult` | ```('Valid', 'Invalid')```
 
 ---------
@@ -35,7 +36,7 @@ A dispute has been initiated. \[candidate hash, dispute location\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `CandidateHash` | ```[u8; 32]```
+| None | `CandidateHash` | ```scale_info::12```
 | None | `DisputeLocation` | ```('Local', 'Remote')```
 
 ---------
@@ -47,7 +48,7 @@ number of the child of the last known valid block in the chain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::BlockNumber` | ```u32```
+| None | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ## Storage functions
@@ -60,13 +61,13 @@ number of the child of the last known valid block in the chain.
 #### Python
 ```python
 result = substrate.query(
-    'ParasDisputes', 'BackersOnDisputes', ['u32', '[u8; 32]']
+    'ParasDisputes', 'BackersOnDisputes', ['u32', 'scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-'scale_info::809'
+'scale_info::843'
 ```
 ---------
 ### Disputes
@@ -75,7 +76,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'ParasDisputes', 'Disputes', ['u32', '[u8; 32]']
+    'ParasDisputes', 'Disputes', ['u32', 'scale_info::12']
 )
 ```
 
@@ -114,7 +115,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'ParasDisputes', 'Included', ['u32', '[u8; 32]']
+    'ParasDisputes', 'Included', ['u32', 'scale_info::12']
 )
 ```
 

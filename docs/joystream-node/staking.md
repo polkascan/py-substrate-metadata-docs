@@ -14,19 +14,17 @@ be the account that controls it.
 The dispatch origin for this call must be _Signed_ by the stash account.
 
 Emits `Bonded`.
-\# &lt;weight&gt;
+\#\# Complexity
 - Independent of the arguments. Moderate complexity.
 - O(1).
 - Three extra DB entries.
 
 NOTE: Two of the storage writes (`Self::bonded`, `Self::payee`) are _never_ cleaned
 unless the `origin` falls below _existential deposit_ and gets removed as dust.
-------------------
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| controller | `<T::Lookup as StaticLookup>::Source` | 
+| controller | `AccountIdLookupOf<T>` | 
 | value | `BalanceOf<T>` | 
 | payee | `RewardDestination<T::AccountId>` | 
 
@@ -60,10 +58,9 @@ any limitation on the amount that can be added.
 
 Emits `Bonded`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - Independent of the arguments. Insignificant complexity.
 - O(1).
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -80,7 +77,7 @@ call = substrate.compose_call(
 ### cancel_deferred_slash
 Cancel enactment of a deferred slash.
 
-Can be called by the `T::SlashCancelOrigin`.
+Can be called by the `T::AdminOrigin`.
 
 Parameters: era and indices of the slashes for that era to kill.
 #### Attributes
@@ -107,11 +104,10 @@ Effects will be felt at the beginning of the next era.
 
 The dispatch origin for this call must be _Signed_ by the controller, not the stash.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - Independent of the arguments. Insignificant complexity.
 - Contains one read.
 - Writes are limited to the `origin` account key.
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -192,11 +188,9 @@ The election process starts multiple blocks before the end of the era.
 If this is called just before a new era is triggered, the election process may not
 have enough blocks to get a result.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - No arguments.
 - Weight: O(1)
-- Write ForceEra
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -240,11 +234,9 @@ The election process starts multiple blocks before the end of the era.
 Thus the election process may be ongoing when this is called. In this case the
 election will continue until the next era is triggered.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - No arguments.
 - Weight: O(1)
-- Write: ForceEra
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -278,13 +270,13 @@ call = substrate.compose_call(
 
 ---------
 ### increase_validator_count
-Increments the ideal number of validators.
+Increments the ideal number of validators upto maximum of
+`ElectionProviderBase::MaxWinners`.
 
 The dispatch origin must be Root.
 
-\# &lt;weight&gt;
+\#\# Complexity
 Same as [`Self::set_validator_count`].
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -313,7 +305,7 @@ block any further nominations.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `Vec<<T::Lookup as StaticLookup>::Source>` | 
+| who | `Vec<AccountIdLookupOf<T>>` | 
 
 #### Python
 ```python
@@ -330,15 +322,14 @@ Effects will be felt at the beginning of the next era.
 
 The dispatch origin for this call must be _Signed_ by the controller, not the stash.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - The transaction&\#x27;s complexity is proportional to the size of `targets` (N)
 which is capped at CompactAssignments::LIMIT (T::MaxNominations).
 - Both the reads and writes follow a similar pattern.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| targets | `Vec<<T::Lookup as StaticLookup>::Source>` | 
+| targets | `Vec<AccountIdLookupOf<T>>` | 
 
 #### Python
 ```python
@@ -358,18 +349,8 @@ Pay out all the stakers behind a single validator for a single era.
 The origin of this call must be _Signed_. Any account can call this function, even if
 it is not one of the stakers.
 
-\# &lt;weight&gt;
-- Time complexity: at most O(MaxNominatorRewardedPerValidator).
-- Contains a limited number of reads and writes.
------------
-N is the Number of payouts for the validator (including the validator)
-Weight:
-- Reward Destination Staked: O(N)
-- Reward Destination Controller (Creating): O(N)
-
-  NOTE: weights are assuming that payouts are made to alive stash account (Staked).
-  Paying even a dead controller is cheaper weight-wise. We don&\#x27;t do any refunds here.
-\# &lt;/weight&gt;
+\#\# Complexity
+- At most O(MaxNominatorRewardedPerValidator).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -422,11 +403,9 @@ Rebond a portion of the stash scheduled to be unlocked.
 
 The dispatch origin must be signed by the controller.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - Time complexity: O(L), where L is unlocking chunks
 - Bounded by `MaxUnlockingChunks`.
-- Storage changes: Can&\#x27;t increase storage, only decrease it.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -441,13 +420,13 @@ call = substrate.compose_call(
 
 ---------
 ### scale_validator_count
-Scale up the ideal number of validators by a factor.
+Scale up the ideal number of validators by a factor upto maximum of
+`ElectionProviderBase::MaxWinners`.
 
 The dispatch origin must be Root.
 
-\# &lt;weight&gt;
+\#\# Complexity
 Same as [`Self::set_validator_count`].
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -468,65 +447,20 @@ Effects will be felt instantly (as soon as this function is completed successful
 
 The dispatch origin for this call must be _Signed_ by the stash, not the controller.
 
-\# &lt;weight&gt;
+\#\# Complexity
+O(1)
 - Independent of the arguments. Insignificant complexity.
 - Contains a limited number of reads.
 - Writes are limited to the `origin` account key.
-----------
-Weight: O(1)
-DB Weight:
-- Read: Bonded, Ledger New Controller, Ledger Old Controller
-- Write: Bonded, Ledger New Controller, Ledger Old Controller
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| controller | `<T::Lookup as StaticLookup>::Source` | 
+| controller | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Staking', 'set_controller', {'controller': 'AccountId'}
-)
-```
-
----------
-### set_history_depth
-Set `HistoryDepth` value. This function will delete any history information
-when `HistoryDepth` is reduced.
-
-Parameters:
-- `new_history_depth`: The new history depth you would like to set.
-- `era_items_deleted`: The number of items that will be deleted by this dispatch. This
-  should report all the storage items that will be deleted by clearing old era history.
-  Needed to report an accurate weight for the dispatch. Trusted by `Root` to report an
-  accurate number.
-
-Origin must be root.
-
-\# &lt;weight&gt;
-- E: Number of history depths removed, i.e. 10 -&gt; 7 = 3
-- Weight: O(E)
-- DB Weight:
-    - Reads: Current Era, History Depth
-    - Writes: History Depth
-    - Clear Prefix Each: Era Stakers, EraStakersClipped, ErasValidatorPrefs
-    - Writes Each: ErasValidatorReward, ErasRewardPoints, ErasTotalStake,
-      ErasStartSessionIndex
-\# &lt;/weight&gt;
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| new_history_depth | `EraIndex` | 
-| era_items_deleted | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Staking', 'set_history_depth', {
-    'era_items_deleted': 'u32',
-    'new_history_depth': 'u32',
-}
 )
 ```
 
@@ -548,6 +482,24 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_min_commission
+Sets the minimum amount of commission that each validators must maintain.
+
+This call has lower privilege requirements than `set_staking_config` and can be called
+by the `T::AdminOrigin`. Root can always call this.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| new | `Perbill` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Staking', 'set_min_commission', {'new': 'u32'}
+)
+```
+
+---------
 ### set_payee
 (Re-)set the payment target for a controller.
 
@@ -555,16 +507,12 @@ Effects will be felt instantly (as soon as this function is completed successful
 
 The dispatch origin for this call must be _Signed_ by the controller, not the stash.
 
-\# &lt;weight&gt;
+\#\# Complexity
+- O(1)
 - Independent of the arguments. Insignificant complexity.
 - Contains a limited number of reads.
 - Writes are limited to the `origin` account key.
 ---------
-- Weight: O(1)
-- DB Weight:
-    - Read: Ledger
-    - Write: Payee
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -600,7 +548,7 @@ Update the various staking configurations .
 * `min_commission`: The minimum amount of commission that each validators must maintain.
   This is checked only upon calling `validate`. Existing validators are not affected.
 
-Origin must be Root to call this function.
+RuntimeOrigin must be Root to call this function.
 
 NOTE: Existing nominators and validators will not be affected by this update.
 to kick people under the new limits, `chill_other` should be called.
@@ -658,10 +606,8 @@ Sets the ideal number of validators.
 
 The dispatch origin must be Root.
 
-\# &lt;weight&gt;
-Weight: O(1)
-Write: Validator Count
-\# &lt;/weight&gt;
+\#\# Complexity
+O(1)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -686,8 +632,8 @@ Once the unlock period is done, you can call `withdraw_unbonded` to actually mov
 the funds out of management ready for transfer.
 
 No more than a limited number of unlocking chunks (see `MaxUnlockingChunks`)
-can co-exists at the same time. In that case, [`Call::withdraw_unbonded`] need
-to be called first to remove some of the chunks (if possible).
+can co-exists at the same time. If there are no unlocking chunks slots available
+[`Call::withdraw_unbonded`] is called to remove some of the chunks (if possible).
 
 If a user encounters the `InsufficientBond` error when calling this extrinsic,
 they should call `chill` first in order to free up their bonded funds.
@@ -744,10 +690,9 @@ Emits `Withdrawn`.
 
 See also [`Call::unbond`].
 
-\# &lt;weight&gt;
-Complexity O(S) where S is the number of slashing spans to remove
+\#\# Complexity
+O(S) where S is the number of slashing spans to remove
 NOTE: Weight annotation is the kill scenario, we refund otherwise.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -772,75 +717,91 @@ it will not be emitted for staking rewards when they are added to stake.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
+| stash | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ### Chilled
 An account has stopped participating as either a validator or nominator.
-\[stash\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
+| stash | `T::AccountId` | ```AccountId```
 
 ---------
 ### EraPaid
 The era payout has been set; the first balance is the validator-payout; the second is
 the remainder from the maximum amount of reward.
-\[era_index, validator_payout, remainder\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `EraIndex` | ```u32```
-| None | `BalanceOf<T>` | ```u128```
-| None | `BalanceOf<T>` | ```u128```
+| era_index | `EraIndex` | ```u32```
+| validator_payout | `BalanceOf<T>` | ```u128```
+| remainder | `BalanceOf<T>` | ```u128```
+
+---------
+### ForceEra
+A new force era mode was set.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| mode | `Forcing` | ```('NotForcing', 'ForceNew', 'ForceNone', 'ForceAlways')```
 
 ---------
 ### Kicked
-A nominator has been kicked from a validator. \[nominator, stash\]
+A nominator has been kicked from a validator.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `T::AccountId` | ```AccountId```
+| nominator | `T::AccountId` | ```AccountId```
+| stash | `T::AccountId` | ```AccountId```
 
 ---------
 ### OldSlashingReportDiscarded
 An old slashing report from a prior era was discarded because it could
-not be processed. \[session_index\]
+not be processed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `SessionIndex` | ```u32```
+| session_index | `SessionIndex` | ```u32```
 
 ---------
 ### PayoutStarted
-The stakers&\#x27; rewards are getting paid. \[era_index, validator_stash\]
+The stakers&\#x27; rewards are getting paid.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `EraIndex` | ```u32```
-| None | `T::AccountId` | ```AccountId```
+| era_index | `EraIndex` | ```u32```
+| validator_stash | `T::AccountId` | ```AccountId```
 
 ---------
 ### Rewarded
-The nominator has been rewarded by this amount. \[stash, amount\]
+The nominator has been rewarded by this amount.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
+| stash | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
+
+---------
+### SlashReported
+A slash for the given validator, for the given percentage of their stake, at the given
+era as been reported.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| validator | `T::AccountId` | ```AccountId```
+| fraction | `Perbill` | ```u32```
+| slash_era | `EraIndex` | ```u32```
 
 ---------
 ### Slashed
-One validator (and its nominators) has been slashed by the given amount.
-\[validator, amount\]
+A staker (validator or nominator) has been slashed by the given amount.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
+| staker | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ### StakersElected
@@ -856,12 +817,12 @@ No attributes
 
 ---------
 ### Unbonded
-An account has unbonded this amount. \[stash, amount\]
+An account has unbonded this amount.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
+| stash | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ### ValidatorPrefsSet
@@ -869,18 +830,18 @@ A validator has set their preferences.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `ValidatorPrefs` | ```{'commission': 'u32', 'blocked': 'bool'}```
+| stash | `T::AccountId` | ```AccountId```
+| prefs | `ValidatorPrefs` | ```{'commission': 'u32', 'blocked': 'bool'}```
 
 ---------
 ### Withdrawn
 An account has called `withdraw_unbonded` and removed unbonding chunks worth `Balance`
-from the unlocking queue. \[stash, amount\]
+from the unlocking queue.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
+| stash | `T::AccountId` | ```AccountId```
+| amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ## Storage functions
@@ -906,6 +867,8 @@ result = substrate.query(
 ---------
 ### Bonded
  Map from all locked &quot;stash&quot; accounts to the controller account.
+
+ TWOX-NOTE: SAFE since `AccountId` is a secure hash.
 
 #### Python
 ```python
@@ -1035,21 +998,6 @@ result = substrate.query(
 'u32'
 ```
 ---------
-### EarliestUnappliedSlash
- The earliest era for which we have a pending, unapplied slash.
-
-#### Python
-```python
-result = substrate.query(
-    'Staking', 'EarliestUnappliedSlash', []
-)
-```
-
-#### Return value
-```python
-'u32'
-```
----------
 ### ErasRewardPoints
  Rewards for the last `HISTORY_DEPTH` eras.
  If reward hasn&#x27;t been set or has been removed then 0 reward is returned.
@@ -1063,7 +1011,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'individual': 'scale_info::470', 'total': 'u32'}
+{'individual': 'scale_info::469', 'total': 'u32'}
 ```
 ---------
 ### ErasStakers
@@ -1196,27 +1144,6 @@ result = substrate.query(
 ('NotForcing', 'ForceNew', 'ForceNone', 'ForceAlways')
 ```
 ---------
-### HistoryDepth
- Number of eras to keep in history.
-
- Information is kept for eras in `[current_era - history_depth; current_era]`.
-
- Must be more than the number of eras delayed by session otherwise. I.e. active era must
- always be in history. I.e. `active_era &gt; current_era - history_depth` must be
- guaranteed.
-
-#### Python
-```python
-result = substrate.query(
-    'Staking', 'HistoryDepth', []
-)
-```
-
-#### Return value
-```python
-'u32'
-```
----------
 ### Invulnerables
  Any validators that may never be slashed or forcibly kicked. It&#x27;s a Vec since they&#x27;re
  easy to initialize and the performance hit is minimal (we expect no more than four
@@ -1336,6 +1263,21 @@ result = substrate.query(
 'u128'
 ```
 ---------
+### MinimumActiveStake
+ The minimum active nominator stake of the last successful election.
+
+#### Python
+```python
+result = substrate.query(
+    'Staking', 'MinimumActiveStake', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### MinimumValidatorCount
  Minimum number of staking participants before emergency conditions are imposed.
 
@@ -1384,6 +1326,8 @@ result = substrate.query(
  Lastly, if any of the nominators become non-decodable, they can be chilled immediately via
  [`Call::chill_other`] dispatchable by anyone.
 
+ TWOX-NOTE: SAFE since `AccountId` is a secure hash.
+
 #### Python
 ```python
 result = substrate.query(
@@ -1421,6 +1365,8 @@ result = substrate.query(
 ---------
 ### Payee
  Where the reward payment should be made. Keyed by stash.
+
+ TWOX-NOTE: SAFE since `AccountId` is a secure hash.
 
 #### Python
 ```python
@@ -1493,34 +1439,6 @@ result = substrate.query(
 {'paid_out': 'u128', 'slashed': 'u128'}
 ```
 ---------
-### StorageVersion
- True if network has been upgraded to this version.
- Storage version of the pallet.
-
- This is set to v7.0.0 for new networks.
-
-#### Python
-```python
-result = substrate.query(
-    'Staking', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-(
-    'V1_0_0Ancient',
-    'V2_0_0',
-    'V3_0_0',
-    'V4_0_0',
-    'V5_0_0',
-    'V6_0_0',
-    'V7_0_0',
-    'V8_0_0',
-    'V9_0_0',
-)
-```
----------
 ### UnappliedSlashes
  All unapplied slashes that are queued for later.
 
@@ -1545,7 +1463,7 @@ result = substrate.query(
 ```
 ---------
 ### ValidatorCount
- The ideal number of staking participants.
+ The ideal number of active validators.
 
 #### Python
 ```python
@@ -1578,6 +1496,8 @@ result = substrate.query(
 ### Validators
  The map from (wannabe) validator stash key to the preferences of that validator.
 
+ TWOX-NOTE: SAFE since `AccountId` is a secure hash.
+
 #### Python
 ```python
 result = substrate.query(
@@ -1602,6 +1522,36 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('Staking', 'BondingDuration')
+```
+---------
+### HistoryDepth
+ Number of eras to keep in history.
+
+ Following information is kept for eras in `[current_era -
+ HistoryDepth, current_era]`: `ErasStakers`, `ErasStakersClipped`,
+ `ErasValidatorPrefs`, `ErasValidatorReward`, `ErasRewardPoints`,
+ `ErasTotalStake`, `ErasStartSessionIndex`,
+ `StakingLedger.claimed_rewards`.
+
+ Must be more than the number of eras delayed by session.
+ I.e. active era must always be in history. I.e. `active_era &gt;
+ current_era - history_depth` must be guaranteed.
+
+ If migrating an existing pallet from storage value to config value,
+ this should be set to same value or greater as in storage.
+
+ Note: `HistoryDepth` is used as the upper bound for the `BoundedVec`
+ item `StakingLedger.claimed_rewards`. Setting this value lower than
+ the existing value can lead to inconsistencies in the
+ `StakingLedger` and will need to be handled properly in a migration.
+ The test `reducing_history_depth_abrupt` shows this effect.
+#### Value
+```python
+120
+```
+#### Python
+```python
+constant = substrate.get_constant('Staking', 'HistoryDepth')
 ```
 ---------
 ### MaxNominations
@@ -1630,8 +1580,16 @@ constant = substrate.get_constant('Staking', 'MaxNominatorRewardedPerValidator')
 ```
 ---------
 ### MaxUnlockingChunks
- The maximum number of `unlocking` chunks a [`StakingLedger`] can have. Effectively
- determines how many unique eras a staker may be unbonding in.
+ The maximum number of `unlocking` chunks a [`StakingLedger`] can
+ have. Effectively determines how many unique eras a staker may be
+ unbonding in.
+
+ Note: `MaxUnlockingChunks` is used as the upper bound for the
+ `BoundedVec` item `StakingLedger.unlocking`. Setting this value
+ lower than the existing value can lead to inconsistencies in the
+ `StakingLedger` and will need to be handled properly in a runtime
+ migration. The test `reducing_max_unlocking_chunks_abrupt` shows
+ this effect.
 #### Value
 ```python
 32
@@ -1691,6 +1649,10 @@ A nomination target was supplied that was blocked or otherwise not a validator.
 ---------
 ### BondingRestricted
 External restriction prevents bonding with given account
+
+---------
+### BoundNotMet
+Some bound is not met.
 
 ---------
 ### CannotChillOther
@@ -1769,7 +1731,7 @@ Too many nomination targets supplied.
 
 ---------
 ### TooManyValidators
-There are too many validators in the system. Governance needs to adjust the staking
-settings to keep things safe for the runtime.
+There are too many validator candidates in the system. Governance needs to adjust the
+staking settings to keep things safe for the runtime.
 
 ---------

@@ -6,6 +6,7 @@
 
 ---------
 ### add_to_create_whitelist
+See [`Pallet::add_to_create_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -20,9 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### charge
-Charge currency to the account of merkle distributor
-
-`merkle_distributor_id`: ID of a merkle distributor.
+See [`Pallet::charge`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -37,12 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim
-`claim` Claim rewards through user information and merkle proof.
-
-- `merkle_distributor_id`: ID of a merkle distributor.
-- `index`: The index of the merkle tree leaf.
-- `account`: The owner&\#x27;s account of merkle proof.
-- `merkle_proof`: The hashes with merkle tree leaf can get merkle tree root.
+See [`Pallet::claim`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -66,22 +60,14 @@ call = substrate.compose_call(
     'amount': 'u128',
     'index': 'u32',
     'merkle_distributor_id': 'u32',
-    'merkle_proof': ['[u8; 32]'],
+    'merkle_proof': ['scale_info::12'],
 }
 )
 ```
 
 ---------
 ### create_merkle_distributor
-`create_merkle_distributor` will create a merkle distributor,
- which allow specified users claim asset.
-
-The dispatch origin for this call must be `Signed` by root.
-
-- `merkle_root`: The root of a merkle tree.
-- `description`: About the purpose of this distribution.
-- `distribute_currency`: The id of currency about this distribution.
-- `distribute_amount`: The total currency amount of this distribution.
+See [`Pallet::create_merkle_distributor`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -129,6 +115,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -223,13 +210,14 @@ call = substrate.compose_call(
         ),
         'VToken2': 'u8',
     },
-    'merkle_root': '[u8; 32]',
+    'merkle_root': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### emergency_withdraw
+See [`Pallet::emergency_withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -256,6 +244,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_from_create_whitelist
+See [`Pallet::remove_from_create_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -291,12 +280,13 @@ claim reward. \[merkle distributor id, account, balance]
 
 ---------
 ### Create
-create a merkle distributor. \ [merkle distributor id, merkle tree root, total reward balance]
+create a merkle distributor. \ [merkle distributor id, merkle tree root, total reward
+balance]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::MerkleDistributorId` | ```u32```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::12```
 | None | `T::Balance` | ```u128```
 
 ---------
@@ -347,7 +337,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::696'
+'scale_info::751'
 ```
 ---------
 ### MerkleDistributorMetadata
@@ -398,6 +388,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -488,7 +479,7 @@ result = substrate.query(
         'VToken2': 'u8',
     },
     'distribute_holder': 'AccountId',
-    'merkle_root': '[u8; 32]',
+    'merkle_root': 'scale_info::12',
 }
 ```
 ---------

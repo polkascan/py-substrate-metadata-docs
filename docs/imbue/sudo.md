@@ -6,13 +6,7 @@
 
 ---------
 ### set_key
-Authenticates the current sudo key and sets the given AccountId (`new`) as the new sudo
-key.
-
-The dispatch origin for this call must be _Signed_.
-
-\#\# Complexity
-- O(1).
+See [`Pallet::set_key`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -35,12 +29,7 @@ call = substrate.compose_call(
 
 ---------
 ### sudo
-Authenticates the sudo key and dispatches a function call with `Root` origin.
-
-The dispatch origin for this call must be _Signed_.
-
-\#\# Complexity
-- O(1).
+See [`Pallet::sudo`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -55,13 +44,7 @@ call = substrate.compose_call(
 
 ---------
 ### sudo_as
-Authenticates the sudo key and dispatches a function call with `Signed` origin from
-a given account.
-
-The dispatch origin for this call must be _Signed_.
-
-\#\# Complexity
-- O(1).
+See [`Pallet::sudo_as`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -86,14 +69,7 @@ call = substrate.compose_call(
 
 ---------
 ### sudo_unchecked_weight
-Authenticates the sudo key and dispatches a function call with `Root` origin.
-This function does not check the weight of the call, and instead allows the
-Sudo user to specify the weight of the call.
-
-The dispatch origin for this call must be _Signed_.
-
-\#\# Complexity
-- O(1).
+See [`Pallet::sudo_unchecked_weight`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -130,7 +106,7 @@ A sudo just took place. \[result\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### SudoAsDone
@@ -138,7 +114,7 @@ A sudo just took place. \[result\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ## Storage functions

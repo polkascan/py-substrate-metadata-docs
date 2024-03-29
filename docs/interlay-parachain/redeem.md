@@ -27,7 +27,7 @@ Redeem with another Vault)
 ```python
 call = substrate.compose_call(
     'Redeem', 'cancel_redeem', {
-    'redeem_id': '[u8; 32]',
+    'redeem_id': 'scale_info::12',
     'reimburse': 'bool',
 }
 )
@@ -56,7 +56,7 @@ given in the original redeem request. The Vault completes the redeem with this f
 ```python
 call = substrate.compose_call(
     'Redeem', 'execute_redeem', {
-    'redeem_id': '[u8; 32]',
+    'redeem_id': 'scale_info::12',
     'unchecked_transaction': {
         'coinbase_proof': {
             'merkle_proof': {
@@ -71,7 +71,7 @@ call = substrate.compose_call(
                         'content': '[u8; 32]',
                     },
                     'nonce': 'u32',
-                    'target': '[u64; 4]',
+                    'target': 'scale_info::186',
                     'timestamp': 'u32',
                     'version': 'i32',
                 },
@@ -132,7 +132,7 @@ call = substrate.compose_call(
                         'content': '[u8; 32]',
                     },
                     'nonce': 'u32',
-                    'target': '[u64; 4]',
+                    'target': 'scale_info::186',
                     'timestamp': 'u32',
                     'version': 'i32',
                 },
@@ -395,7 +395,7 @@ call = substrate.compose_call(
             ),
         },
     },
-    'redeem_id': '[u8; 32]',
+    'redeem_id': 'scale_info::12',
 }
 )
 ```
@@ -427,7 +427,7 @@ call = substrate.compose_call(
         'P2PKH': '[u8; 20]',
         'P2SH': '[u8; 20]',
         'P2WPKHv0': '[u8; 20]',
-        'P2WSHv0': '[u8; 32]',
+        'P2WSHv0': 'scale_info::12',
     },
     'vault_id': {
         'account_id': 'AccountId',
@@ -643,7 +643,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| redeem_id | `H256` | ```[u8; 32]```
+| redeem_id | `H256` | ```scale_info::12```
 | redeemer | `T::AccountId` | ```AccountId```
 | vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | slashed_amount | `BalanceOf<T>` | ```u128```
@@ -654,7 +654,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| redeem_id | `H256` | ```[u8; 32]```
+| redeem_id | `H256` | ```scale_info::12```
 | redeemer | `T::AccountId` | ```AccountId```
 | vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | amount | `BalanceOf<T>` | ```u128```
@@ -674,7 +674,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| redeem_id | `H256` | ```[u8; 32]```
+| redeem_id | `H256` | ```scale_info::12```
 | vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | amount | `BalanceOf<T>` | ```u128```
 
@@ -690,13 +690,13 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| redeem_id | `H256` | ```[u8; 32]```
+| redeem_id | `H256` | ```scale_info::12```
 | redeemer | `T::AccountId` | ```AccountId```
 | vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}, 'wrapped': {'Token': ('DOT', 'IBTC', 'INTR', 'KSM', 'KBTC', 'KINT'), 'ForeignAsset': 'u32', 'LendToken': 'u32', 'LpToken': ({'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}, {'Token': 'scale_info::52', 'ForeignAsset': 'u32', 'StableLpToken': 'u32'}), 'StableLpToken': 'u32'}}}```
 | amount | `BalanceOf<T>` | ```u128```
 | fee | `BalanceOf<T>` | ```u128```
 | premium | `BalanceOf<T>` | ```u128```
-| btc_address | `BtcAddress` | ```{'P2PKH': '[u8; 20]', 'P2SH': '[u8; 20]', 'P2WPKHv0': '[u8; 20]', 'P2WSHv0': '[u8; 32]'}```
+| btc_address | `BtcAddress` | ```{'P2PKH': '[u8; 20]', 'P2SH': '[u8; 20]', 'P2WPKHv0': '[u8; 20]', 'P2WSHv0': 'scale_info::12'}```
 | transfer_fee | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -752,7 +752,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Redeem', 'RedeemRequests', ['[u8; 32]']
+    'Redeem', 'RedeemRequests', ['scale_info::12']
 )
 ```
 
@@ -764,7 +764,7 @@ result = substrate.query(
         'P2PKH': '[u8; 20]',
         'P2SH': '[u8; 20]',
         'P2WPKHv0': '[u8; 20]',
-        'P2WSHv0': '[u8; 32]',
+        'P2WSHv0': 'scale_info::12',
     },
     'btc_height': 'u32',
     'fee': 'u128',

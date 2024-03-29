@@ -6,7 +6,7 @@
 
 ---------
 ### add_collator
-Add a collator to orbiters program.
+See [`Pallet::add_collator`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -21,7 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### collator_add_orbiter
-Add an orbiter in a collator pool
+See [`Pallet::collator_add_orbiter`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -36,7 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### collator_remove_orbiter
-Remove an orbiter from the caller collator pool
+See [`Pallet::collator_remove_orbiter`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -51,7 +51,7 @@ call = substrate.compose_call(
 
 ---------
 ### orbiter_leave_collator_pool
-Remove the caller from the specified collator pool
+See [`Pallet::orbiter_leave_collator_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -66,7 +66,7 @@ call = substrate.compose_call(
 
 ---------
 ### orbiter_register
-Registering as an orbiter
+See [`Pallet::orbiter_register`].
 #### Attributes
 No attributes
 
@@ -79,7 +79,7 @@ call = substrate.compose_call(
 
 ---------
 ### orbiter_unregister
-Deregistering from orbiters
+See [`Pallet::orbiter_unregister`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -94,7 +94,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_collator
-Remove a collator from orbiters program.
+See [`Pallet::remove_collator`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

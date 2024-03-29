@@ -6,9 +6,7 @@
 
 ---------
 ### abdicate_fellow_status
-Abdicate one&\#x27;s position as a voting member and just be an Ally. May be used by Fellows
-who do not want to leave the Alliance but do not have the capacity to participate
-operationally for some time.
+See [`Pallet::abdicate_fellow_status`].
 #### Attributes
 No attributes
 
@@ -21,7 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_unscrupulous_items
-Add accounts or websites to the list of unscrupulous items.
+See [`Pallet::add_unscrupulous_items`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -43,7 +41,7 @@ call = substrate.compose_call(
 
 ---------
 ### announce
-Make an announcement of a new IPFS CID about alliance issues.
+See [`Pallet::announce`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -67,9 +65,7 @@ call = substrate.compose_call(
 
 ---------
 ### close
-Close a vote that is either approved, disapproved, or whose voting period has ended.
-
-Must be called by a Fellow.
+See [`Pallet::close`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -84,7 +80,7 @@ call = substrate.compose_call(
     'Alliance', 'close', {
     'index': 'u32',
     'length_bound': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::12',
     'proposal_weight_bound': {
         'proof_size': 'u64',
         'ref_time': 'u64',
@@ -95,9 +91,7 @@ call = substrate.compose_call(
 
 ---------
 ### disband
-Disband the Alliance, remove all active members and unreserve deposits.
-
-Witness data must be set.
+See [`Pallet::disband`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -117,7 +111,7 @@ call = substrate.compose_call(
 
 ---------
 ### elevate_ally
-Elevate an Ally to Fellow.
+See [`Pallet::elevate_ally`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -140,8 +134,7 @@ call = substrate.compose_call(
 
 ---------
 ### give_retirement_notice
-As a member, give a retirement notice and start a retirement period required to pass in
-order to retire.
+See [`Pallet::give_retirement_notice`].
 #### Attributes
 No attributes
 
@@ -154,11 +147,7 @@ call = substrate.compose_call(
 
 ---------
 ### init_members
-Initialize the Alliance, onboard fellows and allies.
-
-The Alliance must be empty, and the call must provide some founding members.
-
-Must be called by the Root origin.
+See [`Pallet::init_members`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -177,7 +166,7 @@ call = substrate.compose_call(
 
 ---------
 ### join_alliance
-Submit oneself for candidacy. A fixed deposit is reserved.
+See [`Pallet::join_alliance`].
 #### Attributes
 No attributes
 
@@ -190,7 +179,7 @@ call = substrate.compose_call(
 
 ---------
 ### kick_member
-Kick a member from the Alliance and slash its deposit.
+See [`Pallet::kick_member`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -213,8 +202,7 @@ call = substrate.compose_call(
 
 ---------
 ### nominate_ally
-A Fellow can nominate someone to join the alliance as an Ally. There is no deposit
-required from the nominator or nominee.
+See [`Pallet::nominate_ally`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -237,9 +225,7 @@ call = substrate.compose_call(
 
 ---------
 ### propose
-Add a new proposal to be voted on.
-
-Must be called by a Fellow.
+See [`Pallet::propose`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -260,7 +246,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_announcement
-Remove an announcement.
+See [`Pallet::remove_announcement`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -284,7 +270,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_unscrupulous_items
-Deem some items no longer unscrupulous.
+See [`Pallet::remove_unscrupulous_items`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -306,10 +292,7 @@ call = substrate.compose_call(
 
 ---------
 ### retire
-As a member, retire from the Alliance and unreserve the deposit.
-
-This can only be done once you have called `give_retirement_notice` and the
-`RetirementPeriod` has passed.
+See [`Pallet::retire`].
 #### Attributes
 No attributes
 
@@ -322,7 +305,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_rule
-Set a new IPFS CID to the alliance rule.
+See [`Pallet::set_rule`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -346,9 +329,7 @@ call = substrate.compose_call(
 
 ---------
 ### vote
-Add an aye or nay vote for the sender to the given proposal.
-
-Must be called by a Fellow.
+See [`Pallet::vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -362,7 +343,7 @@ call = substrate.compose_call(
     'Alliance', 'vote', {
     'approve': 'bool',
     'index': 'u32',
-    'proposal': '[u8; 32]',
+    'proposal': 'scale_info::12',
 }
 )
 ```

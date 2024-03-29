@@ -25,19 +25,19 @@ Issue an EVM call operation. This is similar to a message call transaction in Et
 call = substrate.compose_call(
     'Evm', 'call', {
     'access_list': [
-        ('[u8; 20]', ['[u8; 32]']),
+        ('[u8; 20]', ['scale_info::9']),
     ],
     'gas_limit': 'u64',
     'input': 'Bytes',
-    'max_fee_per_gas': '[u64; 4]',
+    'max_fee_per_gas': 'scale_info::111',
     'max_priority_fee_per_gas': (
         None,
-        '[u64; 4]',
+        'scale_info::111',
     ),
-    'nonce': (None, '[u64; 4]'),
+    'nonce': (None, 'scale_info::111'),
     'source': '[u8; 20]',
     'target': '[u8; 20]',
-    'value': '[u64; 4]',
+    'value': 'scale_info::111',
 }
 )
 ```
@@ -63,18 +63,18 @@ Ethereum.
 call = substrate.compose_call(
     'Evm', 'create', {
     'access_list': [
-        ('[u8; 20]', ['[u8; 32]']),
+        ('[u8; 20]', ['scale_info::9']),
     ],
     'gas_limit': 'u64',
     'init': 'Bytes',
-    'max_fee_per_gas': '[u64; 4]',
+    'max_fee_per_gas': 'scale_info::111',
     'max_priority_fee_per_gas': (
         None,
-        '[u64; 4]',
+        'scale_info::111',
     ),
-    'nonce': (None, '[u64; 4]'),
+    'nonce': (None, 'scale_info::111'),
     'source': '[u8; 20]',
-    'value': '[u64; 4]',
+    'value': 'scale_info::111',
 }
 )
 ```
@@ -100,19 +100,19 @@ Issue an EVM create2 operation.
 call = substrate.compose_call(
     'Evm', 'create2', {
     'access_list': [
-        ('[u8; 20]', ['[u8; 32]']),
+        ('[u8; 20]', ['scale_info::9']),
     ],
     'gas_limit': 'u64',
     'init': 'Bytes',
-    'max_fee_per_gas': '[u64; 4]',
+    'max_fee_per_gas': 'scale_info::111',
     'max_priority_fee_per_gas': (
         None,
-        '[u64; 4]',
+        'scale_info::111',
     ),
-    'nonce': (None, '[u64; 4]'),
-    'salt': '[u8; 32]',
+    'nonce': (None, 'scale_info::111'),
+    'salt': 'scale_info::9',
     'source': '[u8; 20]',
-    'value': '[u64; 4]',
+    'value': 'scale_info::111',
 }
 )
 ```
@@ -162,7 +162,7 @@ A deposit has been made at a given address. \[sender, address, value\]
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `H160` | ```[u8; 20]```
-| None | `U256` | ```[u64; 4]```
+| None | `U256` | ```scale_info::111```
 
 ---------
 ### BalanceWithdraw
@@ -172,7 +172,7 @@ A withdrawal has been made from a given address. \[sender, address, value\]
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `H160` | ```[u8; 20]```
-| None | `U256` | ```[u64; 4]```
+| None | `U256` | ```scale_info::111```
 
 ---------
 ### Created
@@ -212,7 +212,7 @@ Ethereum events from contracts.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Log` | ```{'address': '[u8; 20]', 'topics': ['[u8; 32]'], 'data': 'Bytes'}```
+| None | `Log` | ```{'address': '[u8; 20]', 'topics': ['scale_info::9'], 'data': 'Bytes'}```
 
 ---------
 ## Storage functions
@@ -237,13 +237,13 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Evm', 'AccountStorages', ['[u8; 20]', '[u8; 32]']
+    'Evm', 'AccountStorages', ['[u8; 20]', 'scale_info::9']
 )
 ```
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::9'
 ```
 ---------
 ## Errors

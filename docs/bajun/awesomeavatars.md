@@ -6,16 +6,7 @@
 
 ---------
 ### buy
-Buy the given avatar.
-
-It consumes tokens for the trade operation. The avatar will be owned by the
-player after the transaction.
-
-Only allowed while trade period is open.
-
-Emits `AvatarTraded` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::buy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,19 +15,13 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'AwesomeAvatars', 'buy', {'avatar_id': '[u8; 32]'}
+    'AwesomeAvatars', 'buy', {'avatar_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### claim_treasury
-Claim treasury of a season.
-
-The origin of this call must be signed by a treasurer account associated with the given
-season ID. The treasurer of a season can claim the season&\#x27;s associated treasury once the
-season finishes.
-
-Weight: `O(1)`
+See [`Pallet::claim_treasury`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -51,15 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### forge
-Forge an avatar.
-
-This action can enhance the skills of an avatar by consuming a batch of avatars.
-The minimum and maximum number of avatars that can be utilized for forging is
-defined in the season configuration.
-
-Emits `AvatarForged` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::forge`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -70,25 +47,15 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'AwesomeAvatars', 'forge', {
-    'leader': '[u8; 32]',
-    'sacrifices': ['[u8; 32]'],
+    'leader': 'scale_info::12',
+    'sacrifices': ['scale_info::12'],
 }
 )
 ```
 
 ---------
 ### lock_avatar
-Locks an avatar to be tokenized as an NFT.
-
-The origin of this call must specify an avatar, owned by the origin, to prevent it from
-forging, trading and transferring it to other players. When successful, the ownership of
-the avatar is transferred from the player to the pallet&\#x27;s technical account.
-
-Locking an avatar allows for new
-ways of interacting with it currently under development.
-
-Weight: `O(n)` where:
-- `n = max avatars per player`
+See [`Pallet::lock_avatar`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -97,18 +64,13 @@ Weight: `O(n)` where:
 #### Python
 ```python
 call = substrate.compose_call(
-    'AwesomeAvatars', 'lock_avatar', {'avatar_id': '[u8; 32]'}
+    'AwesomeAvatars', 'lock_avatar', {'avatar_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### mint
-Issue a new avatar.
-
-Emits `AvatarsMinted` event when successful.
-
-Weight: `O(n)` where:
-- `n = max avatars per player`
+See [`Pallet::mint`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -137,13 +99,7 @@ call = substrate.compose_call(
 
 ---------
 ### prepare_avatar
-Prepare an avatar to be uploaded to IPFS.
-
-The origin of this call must specify an avatar, owned by the origin, to display the
-intention of uploading it to an IPFS storage. When successful, the `PreparedAvatar`
-event is emitted to be picked up by our external service that interacts with the IPFS.
-
-Weight: `O(1)`
+See [`Pallet::prepare_avatar`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -152,19 +108,13 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'AwesomeAvatars', 'prepare_avatar', {'avatar_id': '[u8; 32]'}
+    'AwesomeAvatars', 'prepare_avatar', {'avatar_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### prepare_ipfs
-Prepare IPFS for an avatar.
-
-The origin of this call must be signed by the service account to upload the given avatar
-to an IPFS storage and stores its CID. A third-party service subscribes for the
-`PreparedAvatar` events which triggers preparing assets, their upload to IPFS and
-storing their CIDs.
-Weight: `O(1)`
+See [`Pallet::prepare_ipfs`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -175,7 +125,7 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'AwesomeAvatars', 'prepare_ipfs', {
-    'avatar_id': '[u8; 32]',
+    'avatar_id': 'scale_info::12',
     'url': 'Bytes',
 }
 )
@@ -183,13 +133,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_price
-Remove the price of a given avatar.
-
-Only allowed while trade period is open.
-
-Emits `AvatarPriceUnset` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::remove_price`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -198,18 +142,13 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'AwesomeAvatars', 'remove_price', {'avatar_id': '[u8; 32]'}
+    'AwesomeAvatars', 'remove_price', {'avatar_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### set_collection_id
-Set the collection ID to associate avatars with.
-
-Externally created collection ID for avatars must be set in the `CollectionId` storage
-to serve as a lookup for locking and unlocking avatars as NFTs.
-
-Weight: `O(1)`
+See [`Pallet::set_collection_id`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -224,13 +163,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_free_mints
-Set free mints.
-
-It can only be called by an organizer account.
-
-Emits `FreeMintSet` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::set_free_mints`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -249,17 +182,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_organizer
-Set game organizer.
-
-The organizer account is like an admin, allowed to perform certain operations
-related with the game configuration like `set_season`, `ensure_free_mint` and
-`update_global_config`.
-
-It can only be set by a root account.
-
-Emits `OrganizerSet` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::set_organizer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -274,13 +197,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_price
-Set the price of a given avatar.
-
-Only allowed while trade period is open.
-
-Emits `AvatarPriceSet` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::set_price`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -291,7 +208,7 @@ Weight: `O(1)`
 ```python
 call = substrate.compose_call(
     'AwesomeAvatars', 'set_price', {
-    'avatar_id': '[u8; 32]',
+    'avatar_id': 'scale_info::12',
     'price': 'u128',
 }
 )
@@ -299,15 +216,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_season
-Set season.
-
-Creates a new season. The new season can overlap with the already existing.
-
-It can only be set by an organizer account.
-
-Emits `UpdatedSeason` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::set_season`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -374,12 +283,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_service_account
-Set a service account.
-
-The origin of this call must be root. A service account has sufficient privilege to call
-the `prepare_ipfs` extrinsic.
-
-Weight: `O(1)`
+See [`Pallet::set_service_account`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -394,15 +298,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_treasurer
-Set treasurer.
-
-This is an additional treasury.
-
-It can only be set by a root account.
-
-Emits `TreasurerSet` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::set_treasurer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -421,6 +317,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_avatar
+See [`Pallet::transfer_avatar`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -431,7 +328,7 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'AwesomeAvatars', 'transfer_avatar', {
-    'avatar_id': '[u8; 32]',
+    'avatar_id': 'scale_info::12',
     'to': 'AccountId',
 }
 )
@@ -439,11 +336,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_free_mints
-Transfer free mints to a given account.
-
-Emits `FreeMintsTransferred` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::transfer_free_mints`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -459,15 +352,7 @@ call = substrate.compose_call(
 
 ---------
 ### unlock_avatar
-Unlocks an avatar removing its NFT representation.
-
-The origin of this call must specify an avatar, owned and locked by the origin, to allow
-forging, trading and transferring it to other players. When successful, the ownership of
-the avatar is transferred from the pallet&\#x27;s technical account back to the player and its
-existing NFT representation is destroyed.
-
-Weight: `O(n)` where:
-- `n = max avatars per player`
+See [`Pallet::unlock_avatar`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -476,18 +361,13 @@ Weight: `O(n)` where:
 #### Python
 ```python
 call = substrate.compose_call(
-    'AwesomeAvatars', 'unlock_avatar', {'avatar_id': '[u8; 32]'}
+    'AwesomeAvatars', 'unlock_avatar', {'avatar_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### unprepare_avatar
-Unprepare an avatar to be detached from IPFS.
-
-The origin of this call must specify an avatar, owned by the origin, that is undergoing
-the IPFS upload process.
-
-Weight: `O(1)`
+See [`Pallet::unprepare_avatar`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -496,19 +376,13 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'AwesomeAvatars', 'unprepare_avatar', {'avatar_id': '[u8; 32]'}
+    'AwesomeAvatars', 'unprepare_avatar', {'avatar_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### update_global_config
-Update global configuration.
-
-It can only be called by an organizer account.
-
-Emits `UpdatedGlobalConfig` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::update_global_config`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -541,20 +415,7 @@ call = substrate.compose_call(
 
 ---------
 ### upgrade_storage
-Upgrade the avatar inventory space in a season.
-
-* If called with a value in the **beneficiary** parameter, that account will receive the
-  upgrade
-instead of the caller.
-* If the **in_season** parameter contains a value, this will set which specific season
-will the storage be upgraded for, if no value is set then the current season will be the
-one for which the storage will be upgraded.
-
-In all cases the upgrade fees are **paid by the caller**.
-
-Emits `StorageTierUpgraded` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::upgrade_storage`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -580,7 +441,7 @@ Avatar locked.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+| avatar_id | `AvatarIdOf<T>` | ```scale_info::12```
 
 ---------
 ### AvatarPriceSet
@@ -588,7 +449,7 @@ Avatar has price set for trade.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+| avatar_id | `AvatarIdOf<T>` | ```scale_info::12```
 | price | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -597,7 +458,7 @@ Avatar has price removed for trade.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+| avatar_id | `AvatarIdOf<T>` | ```scale_info::12```
 
 ---------
 ### AvatarTraded
@@ -605,7 +466,7 @@ Avatar has been traded.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+| avatar_id | `AvatarIdOf<T>` | ```scale_info::12```
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
 
@@ -617,7 +478,7 @@ Avatar transferred.
 | -------- | -------- | -------- |
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
-| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+| avatar_id | `AvatarIdOf<T>` | ```scale_info::12```
 
 ---------
 ### AvatarUnlocked
@@ -625,7 +486,7 @@ Avatar unlocked.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+| avatar_id | `AvatarIdOf<T>` | ```scale_info::12```
 
 ---------
 ### AvatarsForged
@@ -633,7 +494,7 @@ Avatar forged.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| avatar_ids | `Vec<(AvatarIdOf<T>, UpgradedComponents)>` | ```[('[u8; 32]', 'u8')]```
+| avatar_ids | `Vec<(AvatarIdOf<T>, UpgradedComponents)>` | ```[('scale_info::12', 'u8')]```
 
 ---------
 ### AvatarsMinted
@@ -641,7 +502,7 @@ Avatars minted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| avatar_ids | `Vec<AvatarIdOf<T>>` | ```['[u8; 32]']```
+| avatar_ids | `Vec<AvatarIdOf<T>>` | ```['scale_info::12']```
 
 ---------
 ### CollectionIdSet
@@ -684,7 +545,7 @@ Avatar prepared.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+| avatar_id | `AvatarIdOf<T>` | ```scale_info::12```
 
 ---------
 ### PreparedIpfsUrl
@@ -752,7 +613,7 @@ Avatar unprepared.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| avatar_id | `AvatarIdOf<T>` | ```[u8; 32]```
+| avatar_id | `AvatarIdOf<T>` | ```scale_info::12```
 
 ---------
 ### UpdatedGlobalConfig
@@ -780,7 +641,7 @@ The season configuration for {season_id} has been updated.
 #### Python
 ```python
 result = substrate.query(
-    'AwesomeAvatars', 'Avatars', ['[u8; 32]']
+    'AwesomeAvatars', 'Avatars', ['scale_info::12']
 )
 ```
 
@@ -859,7 +720,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'AwesomeAvatars', 'LockedAvatars', ['[u8; 32]']
+    'AwesomeAvatars', 'LockedAvatars', ['scale_info::12']
 )
 ```
 
@@ -893,7 +754,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::12']
 ```
 ---------
 ### PlayerConfigs
@@ -926,12 +787,12 @@ result = substrate.query(
         'forge': {
             'first': 'u32',
             'last': 'u32',
-            'seasons_participated': 'scale_info::457',
+            'seasons_participated': 'scale_info::520',
         },
         'mint': {
             'first': 'u32',
             'last': 'u32',
-            'seasons_participated': 'scale_info::457',
+            'seasons_participated': 'scale_info::520',
         },
         'trade': {'bought': 'u32', 'sold': 'u32'},
     },
@@ -944,7 +805,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'AwesomeAvatars', 'Preparation', ['[u8; 32]']
+    'AwesomeAvatars', 'Preparation', ['scale_info::12']
 )
 ```
 
@@ -1039,7 +900,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'AwesomeAvatars', 'Trade', ['u16', '[u8; 32]']
+    'AwesomeAvatars', 'Trade', ['u16', 'scale_info::12']
 )
 ```
 

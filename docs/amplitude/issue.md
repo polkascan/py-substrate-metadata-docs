@@ -20,7 +20,7 @@ Cancel the issuance of tokens if expired
 #### Python
 ```python
 call = substrate.compose_call(
-    'Issue', 'cancel_issue', {'issue_id': '[u8; 32]'}
+    'Issue', 'cancel_issue', {'issue_id': 'scale_info::12'}
 )
 ```
 
@@ -50,7 +50,7 @@ Finalize the issuance of tokens
 call = substrate.compose_call(
     'Issue', 'execute_issue', {
     'externalized_envelopes_encoded': 'Bytes',
-    'issue_id': '[u8; 32]',
+    'issue_id': 'scale_info::12',
     'transaction_envelope_xdr_encoded': 'Bytes',
     'transaction_set_encoded': 'Bytes',
 }
@@ -102,6 +102,7 @@ call = substrate.compose_call(
             },
             'StellarNative': None,
         },
+        'Token': 'u64',
         'XCM': 'u8',
         'ZenlinkLPToken': (
             'u8',
@@ -154,6 +155,7 @@ call = substrate.compose_call(
                     },
                     'StellarNative': None,
                 },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': (
                     'u8',
@@ -175,6 +177,7 @@ call = substrate.compose_call(
                     },
                     'StellarNative': None,
                 },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': (
                     'u8',
@@ -217,7 +220,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| issue_id | `H256` | ```[u8; 32]```
+| issue_id | `H256` | ```scale_info::12```
 | requester | `T::AccountId` | ```AccountId```
 | griefing_collateral | `BalanceOf<T>` | ```u128```
 
@@ -226,11 +229,11 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| issue_id | `H256` | ```[u8; 32]```
+| issue_id | `H256` | ```scale_info::12```
 | requester | `T::AccountId` | ```AccountId```
-| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}}```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}}}```
 | amount | `BalanceOf<T>` | ```u128```
-| asset | `CurrencyId<T>` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}```
+| asset | `CurrencyId<T>` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}```
 | fee | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -238,9 +241,9 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| issue_id | `H256` | ```[u8; 32]```
+| issue_id | `H256` | ```scale_info::12```
 | amount | `BalanceOf<T>` | ```u128```
-| asset | `CurrencyId<T>` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}```
+| asset | `CurrencyId<T>` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}```
 | fee | `BalanceOf<T>` | ```u128```
 | confiscated_griefing_collateral | `BalanceOf<T>` | ```u128```
 
@@ -264,7 +267,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | limit_volume_amount | `Option<BalanceOf<T>>` | ```(None, 'u128')```
-| limit_volume_currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}```
+| limit_volume_currency_id | `T::CurrencyId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}```
 | interval_length | `T::BlockNumber` | ```u32```
 
 ---------
@@ -272,13 +275,13 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| issue_id | `H256` | ```[u8; 32]```
+| issue_id | `H256` | ```scale_info::12```
 | requester | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T>` | ```u128```
-| asset | `CurrencyId<T>` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}```
+| asset | `CurrencyId<T>` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}```
 | fee | `BalanceOf<T>` | ```u128```
 | griefing_collateral | `BalanceOf<T>` | ```u128```
-| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}}}```
+| vault_id | `DefaultVaultId<T>` | ```{'account_id': 'AccountId', 'currencies': {'collateral': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}, 'wrapped': {'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}}}```
 | vault_stellar_public_key | `StellarPublicKeyRaw` | ```[u8; 32]```
 
 ---------
@@ -353,7 +356,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Issue', 'IssueRequests', ['[u8; 32]']
+    'Issue', 'IssueRequests', ['scale_info::12']
 )
 ```
 
@@ -368,6 +371,7 @@ result = substrate.query(
             'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'},
             'StellarNative': None,
         },
+        'Token': 'u64',
         'XCM': 'u8',
         'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'),
     },
@@ -388,6 +392,7 @@ result = substrate.query(
                     'AlphaNum4': 'InnerStruct',
                     'StellarNative': None,
                 },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'),
             },
@@ -398,6 +403,7 @@ result = substrate.query(
                     'AlphaNum4': 'InnerStruct',
                     'StellarNative': None,
                 },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'),
             },
@@ -455,6 +461,7 @@ result = substrate.query(
         'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'},
         'StellarNative': None,
     },
+    'Token': 'u64',
     'XCM': 'u8',
     'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'),
 }

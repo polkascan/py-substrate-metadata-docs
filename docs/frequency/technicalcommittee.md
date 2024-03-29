@@ -20,7 +20,7 @@ call = substrate.compose_call(
     'TechnicalCommittee', 'close', {
     'index': 'u32',
     'length_bound': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::12',
     'proposal_weight_bound': {
         'proof_size': 'u64',
         'ref_time': 'u64',
@@ -39,7 +39,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'TechnicalCommittee', 'disapprove_proposal', {'proposal_hash': '[u8; 32]'}
+    'TechnicalCommittee', 'disapprove_proposal', {'proposal_hash': 'scale_info::12'}
 )
 ```
 
@@ -116,7 +116,7 @@ call = substrate.compose_call(
     'TechnicalCommittee', 'vote', {
     'approve': 'bool',
     'index': 'u32',
-    'proposal': '[u8; 32]',
+    'proposal': 'scale_info::12',
 }
 )
 ```
@@ -129,14 +129,14 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Closed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | yes | `MemberCount` | ```u32```
 | no | `MemberCount` | ```u32```
 
@@ -145,23 +145,23 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Executed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| proposal_hash | `T::Hash` | ```scale_info::12```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### MemberExecuted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| proposal_hash | `T::Hash` | ```scale_info::12```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### Proposed
@@ -170,7 +170,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
 | proposal_index | `ProposalIndex` | ```u32```
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | threshold | `MemberCount` | ```u32```
 
 ---------
@@ -179,7 +179,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | voted | `bool` | ```bool```
 | yes | `MemberCount` | ```u32```
 | no | `MemberCount` | ```u32```
@@ -235,7 +235,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'TechnicalCommittee', 'ProposalOf', ['[u8; 32]']
+    'TechnicalCommittee', 'ProposalOf', ['scale_info::12']
 )
 ```
 
@@ -255,7 +255,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::12']
 ```
 ---------
 ### Voting
@@ -263,7 +263,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'TechnicalCommittee', 'Voting', ['[u8; 32]']
+    'TechnicalCommittee', 'Voting', ['scale_info::12']
 )
 ```
 
@@ -298,6 +298,9 @@ constant = substrate.get_constant('TechnicalCommittee', 'MaxProposalWeight')
 
 ---------
 ### NotMember
+
+---------
+### PrimeAccountNotMember
 
 ---------
 ### ProposalMissing

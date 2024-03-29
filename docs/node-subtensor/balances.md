@@ -8,15 +8,14 @@
 ### force_transfer
 Exactly as `transfer`, except the origin must be root and the source account may be
 specified.
-\# &lt;weight&gt;
+\#\# Complexity
 - Same as transfer, but additional read and write because the source account is not
   assumed to be in the overlay.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| source | `<T::Lookup as StaticLookup>::Source` | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| source | `AccountIdLookupOf<T>` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -37,7 +36,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'value': 'u128',
+    'value': 'u64',
 }
 )
 ```
@@ -50,14 +49,14 @@ Can only be called by ROOT.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| who | `AccountIdLookupOf<T>` | 
 | amount | `T::Balance` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Balances', 'force_unreserve', {
-    'amount': 'u128',
+    'amount': 'u64',
     'who': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -82,7 +81,7 @@ The dispatch origin for this call is `root`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
+| who | `AccountIdLookupOf<T>` | 
 | new_free | `T::Balance` | 
 | new_reserved | `T::Balance` | 
 
@@ -90,8 +89,8 @@ The dispatch origin for this call is `root`.
 ```python
 call = substrate.compose_call(
     'Balances', 'set_balance', {
-    'new_free': 'u128',
-    'new_reserved': 'u128',
+    'new_free': 'u64',
+    'new_reserved': 'u64',
     'who': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -113,7 +112,7 @@ of the transfer, the account will be reaped.
 
 The dispatch origin for this call must be `Signed` by the transactor.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - Dependent on arguments but not critical, given proper implementations for input config
   types. See related functions below.
 - It contains a limited number of reads and writes internally and no complex
@@ -127,13 +126,10 @@ Related functions:
   - Removing enough funds from an account will trigger `T::DustRemoval::on_unbalanced`.
   - `transfer_keep_alive` works the same way as `transfer`, but has an additional check
     that the transfer will not kill the origin account.
----------------------------------
-- Origin account is already in memory, so no DB operations for them.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -147,7 +143,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'value': 'u128',
+    'value': 'u64',
 }
 )
 ```
@@ -168,13 +164,12 @@ The dispatch origin of this call must be Signed.
 - `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
   of the funds the account has, causing the sender account to be killed (false), or
   transfer everything except at least the existential deposit, which will guarantee to
-  keep the sender account alive (true). \# &lt;weight&gt;
+  keep the sender account alive (true). \#\# Complexity
 - O(1). Just like transfer, but reading the user&\#x27;s transferable balance first.
-  \#&lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | keep_alive | `bool` | 
 
 #### Python
@@ -204,7 +199,7 @@ origin account.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| dest | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `AccountIdLookupOf<T>` | 
 | value | `T::Balance` | 
 
 #### Python
@@ -218,7 +213,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'value': 'u128',
+    'value': 'u64',
 }
 )
 ```
@@ -233,8 +228,8 @@ A balance was set by root.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| free | `T::Balance` | ```u128```
-| reserved | `T::Balance` | ```u128```
+| free | `T::Balance` | ```u64```
+| reserved | `T::Balance` | ```u64```
 
 ---------
 ### Deposit
@@ -243,7 +238,7 @@ Some amount was deposited (e.g. for transaction fees).
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| amount | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u64```
 
 ---------
 ### DustLost
@@ -253,7 +248,7 @@ resulting in an outright loss.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| amount | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u64```
 
 ---------
 ### Endowed
@@ -262,7 +257,7 @@ An account was created with some free balance.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| free_balance | `T::Balance` | ```u128```
+| free_balance | `T::Balance` | ```u64```
 
 ---------
 ### ReserveRepatriated
@@ -273,7 +268,7 @@ Final argument indicates the destination balance type.
 | -------- | -------- | -------- |
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
-| amount | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u64```
 | destination_status | `Status` | ```('Free', 'Reserved')```
 
 ---------
@@ -283,7 +278,7 @@ Some balance was reserved (moved from free to reserved).
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| amount | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u64```
 
 ---------
 ### Slashed
@@ -292,7 +287,7 @@ Some amount was removed from the account (e.g. for misbehavior).
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| amount | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u64```
 
 ---------
 ### Transfer
@@ -302,7 +297,7 @@ Transfer succeeded.
 | -------- | -------- | -------- |
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
-| amount | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u64```
 
 ---------
 ### Unreserved
@@ -311,7 +306,7 @@ Some balance was unreserved (moved from reserved to free).
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| amount | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u64```
 
 ---------
 ### Withdraw
@@ -320,7 +315,7 @@ Some amount was withdrawn from the account (e.g. for transaction fees).
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| amount | `T::Balance` | ```u128```
+| amount | `T::Balance` | ```u64```
 
 ---------
 ## Storage functions
@@ -361,12 +356,22 @@ result = substrate.query(
 
 #### Return value
 ```python
-{
-    'fee_frozen': 'u128',
-    'free': 'u128',
-    'misc_frozen': 'u128',
-    'reserved': 'u128',
-}
+{'fee_frozen': 'u64', 'free': 'u64', 'misc_frozen': 'u64', 'reserved': 'u64'}
+```
+---------
+### InactiveIssuance
+ The total units of outstanding deactivated balance in the system.
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'InactiveIssuance', []
+)
+```
+
+#### Return value
+```python
+'u64'
 ```
 ---------
 ### Locks
@@ -382,7 +387,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[{'amount': 'u128', 'id': '[u8; 8]', 'reasons': ('Fee', 'Misc', 'All')}]
+[{'amount': 'u64', 'id': '[u8; 8]', 'reasons': ('Fee', 'Misc', 'All')}]
 ```
 ---------
 ### Reserves
@@ -397,24 +402,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[{'amount': 'u128', 'id': '[u8; 8]'}]
-```
----------
-### StorageVersion
- Storage version of the pallet.
-
- This is set to v2.0.0 for new networks.
-
-#### Python
-```python
-result = substrate.query(
-    'Balances', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V1_0_0', 'V2_0_0')
+[{'amount': 'u64', 'id': '[u8; 8]'}]
 ```
 ---------
 ### TotalIssuance
@@ -429,7 +417,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'u128'
+'u64'
 ```
 ---------
 ## Constants
@@ -485,7 +473,7 @@ A vesting schedule already exists for this account
 
 ---------
 ### InsufficientBalance
-Balance too low to send value
+Balance too low to send value.
 
 ---------
 ### KeepAlive

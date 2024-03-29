@@ -89,6 +89,6 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u64; 4]'
+'scale_info::186'
 ```
 ---------

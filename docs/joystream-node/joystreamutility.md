@@ -166,6 +166,9 @@ and negative funds moving from the working group
 | None | `BalanceKind` | ```('Positive', 'Negative')```
 
 ---------
+## Storage functions
+
+---------
 ## Errors
 
 ---------

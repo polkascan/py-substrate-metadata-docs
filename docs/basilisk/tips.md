@@ -6,22 +6,7 @@
 
 ---------
 ### close_tip
-Close and payout a tip.
-
-The dispatch origin for this call must be _Signed_.
-
-The tip identified by `hash` must have finished its countdown period.
-
-- `hash`: The identity of the open tip for which a tip value is declared. This is formed
-  as the hash of the tuple of the original tip `reason` and the beneficiary account ID.
-
-\# &lt;weight&gt;
-- Complexity: `O(T)` where `T` is the number of tippers. decoding `Tipper` vec of length
-  `T`. `T` is charged as upper bound given by `ContainsLengthBound`. The actual cost
-  depends on the implementation of `T::Tippers`.
-- DbReads: `Tips`, `Tippers`, `tip finder`
-- DbWrites: `Reasons`, `Tips`, `Tippers`, `tip finder`
-\# &lt;/weight&gt;
+See [`Pallet::close_tip`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -30,31 +15,13 @@ The tip identified by `hash` must have finished its countdown period.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Tips', 'close_tip', {'hash': '[u8; 32]'}
+    'Tips', 'close_tip', {'hash': 'scale_info::12'}
 )
 ```
 
 ---------
 ### report_awesome
-Report something `reason` that deserves a tip and claim any eventual the finder&\#x27;s fee.
-
-The dispatch origin for this call must be _Signed_.
-
-Payment: `TipReportDepositBase` will be reserved from the origin account, as well as
-`DataDepositPerByte` for each byte in `reason`.
-
-- `reason`: The reason for, or the thing that deserves, the tip; generally this will be
-  a UTF-8-encoded URL.
-- `who`: The account which should be credited for the tip.
-
-Emits `NewTip` if successful.
-
-\# &lt;weight&gt;
-- Complexity: `O(R)` where `R` length of `reason`.
-  - encoding and hashing of &\#x27;reason&\#x27;
-- DbReads: `Reasons`, `Tips`
-- DbWrites: `Reasons`, `Tips`
-\# &lt;/weight&gt;
+See [`Pallet::report_awesome`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -73,25 +40,7 @@ call = substrate.compose_call(
 
 ---------
 ### retract_tip
-Retract a prior tip-report from `report_awesome`, and cancel the process of tipping.
-
-If successful, the original deposit will be unreserved.
-
-The dispatch origin for this call must be _Signed_ and the tip identified by `hash`
-must have been reported by the signing account through `report_awesome` (and not
-through `tip_new`).
-
-- `hash`: The identity of the open tip for which a tip value is declared. This is formed
-  as the hash of the tuple of the original tip `reason` and the beneficiary account ID.
-
-Emits `TipRetracted` if successful.
-
-\# &lt;weight&gt;
-- Complexity: `O(1)`
-  - Depends on the length of `T::Hash` which is fixed.
-- DbReads: `Tips`, `origin account`
-- DbWrites: `Reasons`, `Tips`, `origin account`
-\# &lt;/weight&gt;
+See [`Pallet::retract_tip`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -100,24 +49,13 @@ Emits `TipRetracted` if successful.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Tips', 'retract_tip', {'hash': '[u8; 32]'}
+    'Tips', 'retract_tip', {'hash': 'scale_info::12'}
 )
 ```
 
 ---------
 ### slash_tip
-Remove and slash an already-open tip.
-
-May only be called from `T::RejectOrigin`.
-
-As a result, the finder is slashed and the deposits are lost.
-
-Emits `TipSlashed` if successful.
-
-\# &lt;weight&gt;
-  `T` is charged as upper bound given by `ContainsLengthBound`.
-  The actual cost depends on the implementation of `T::Tippers`.
-\# &lt;/weight&gt;
+See [`Pallet::slash_tip`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -126,36 +64,13 @@ Emits `TipSlashed` if successful.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Tips', 'slash_tip', {'hash': '[u8; 32]'}
+    'Tips', 'slash_tip', {'hash': 'scale_info::12'}
 )
 ```
 
 ---------
 ### tip
-Declare a tip value for an already-open tip.
-
-The dispatch origin for this call must be _Signed_ and the signing account must be a
-member of the `Tippers` set.
-
-- `hash`: The identity of the open tip for which a tip value is declared. This is formed
-  as the hash of the tuple of the hash of the original tip `reason` and the beneficiary
-  account ID.
-- `tip_value`: The amount of tip that the sender would like to give. The median tip
-  value of active tippers will be given to the `who`.
-
-Emits `TipClosing` if the threshold of tippers has been reached and the countdown period
-has started.
-
-\# &lt;weight&gt;
-- Complexity: `O(T)` where `T` is the number of tippers. decoding `Tipper` vec of length
-  `T`, insert tip and check closing, `T` is charged as upper bound given by
-  `ContainsLengthBound`. The actual cost depends on the implementation of `T::Tippers`.
-
-  Actually weight could be lower as it depends on how many tips are in `OpenTip` but it
-  is weighted as if almost full i.e of length `T-1`.
-- DbReads: `Tippers`, `Tips`
-- DbWrites: `Tips`
-\# &lt;/weight&gt;
+See [`Pallet::tip`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -166,7 +81,7 @@ has started.
 ```python
 call = substrate.compose_call(
     'Tips', 'tip', {
-    'hash': '[u8; 32]',
+    'hash': 'scale_info::12',
     'tip_value': 'u128',
 }
 )
@@ -174,28 +89,7 @@ call = substrate.compose_call(
 
 ---------
 ### tip_new
-Give a tip for something new; no finder&\#x27;s fee will be taken.
-
-The dispatch origin for this call must be _Signed_ and the signing account must be a
-member of the `Tippers` set.
-
-- `reason`: The reason for, or the thing that deserves, the tip; generally this will be
-  a UTF-8-encoded URL.
-- `who`: The account which should be credited for the tip.
-- `tip_value`: The amount of tip that the sender would like to give. The median tip
-  value of active tippers will be given to the `who`.
-
-Emits `NewTip` if successful.
-
-\# &lt;weight&gt;
-- Complexity: `O(R + T)` where `R` length of `reason`, `T` is the number of tippers.
-  - `O(T)`: decoding `Tipper` vec of length `T`. `T` is charged as upper bound given by
-    `ContainsLengthBound`. The actual cost depends on the implementation of
-    `T::Tippers`.
-  - `O(R)`: hashing and encoding of reason of length `R`
-- DbReads: `Tippers`, `Reasons`
-- DbWrites: `Reasons`, `Tips`
-\# &lt;/weight&gt;
+See [`Pallet::tip_new`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -223,7 +117,7 @@ A new tip suggestion has been opened.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### TipClosed
@@ -231,7 +125,7 @@ A tip suggestion has been closed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 | who | `T::AccountId` | ```AccountId```
 | payout | `BalanceOf<T, I>` | ```u128```
 
@@ -241,7 +135,7 @@ A tip suggestion has reached threshold and is closing.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### TipRetracted
@@ -249,7 +143,7 @@ A tip suggestion has been retracted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### TipSlashed
@@ -257,7 +151,7 @@ A tip suggestion has been slashed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 | finder | `T::AccountId` | ```AccountId```
 | deposit | `BalanceOf<T, I>` | ```u128```
 
@@ -272,7 +166,7 @@ A tip suggestion has been slashed.
 #### Python
 ```python
 result = substrate.query(
-    'Tips', 'Reasons', ['[u8; 32]']
+    'Tips', 'Reasons', ['scale_info::12']
 )
 ```
 
@@ -289,7 +183,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Tips', 'Tips', ['[u8; 32]']
+    'Tips', 'Tips', ['scale_info::12']
 )
 ```
 
@@ -300,7 +194,7 @@ result = substrate.query(
     'deposit': 'u128',
     'finder': 'AccountId',
     'finders_fee': 'bool',
-    'reason': '[u8; 32]',
+    'reason': 'scale_info::12',
     'tips': [('AccountId', 'u128')],
     'who': 'AccountId',
 }

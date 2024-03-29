@@ -317,7 +317,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'revoked_at': 'u32', 'schema_permissions': 'scale_info::265'}
+{'revoked_at': 'u32', 'schema_permissions': 'scale_info::282'}
 ```
 ---------
 ### PayloadSignatureRegistryList

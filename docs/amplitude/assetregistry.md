@@ -31,6 +31,7 @@ call = substrate.compose_call(
                 },
                 'StellarNative': None,
             },
+            'Token': 'u64',
             'XCM': 'u8',
             'ZenlinkLPToken': (
                 'u8',
@@ -41,7 +42,13 @@ call = substrate.compose_call(
         },
     ),
     'metadata': {
-        'additional': {},
+        'additional': {
+            'dia_keys': {
+                'blockchain': 'Bytes',
+                'symbol': 'Bytes',
+            },
+            'fee_per_second': 'u128',
+        },
         'decimals': 'u32',
         'existential_deposit': 'u128',
         'location': (
@@ -63,53 +70,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X3': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X4': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X5': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X6': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X7': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X8': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                     },
                     'parents': 'u8',
@@ -123,60 +130,60 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::65',
+                            'GlobalConsensus': 'scale_info::69',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X3': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X4': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X5': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X6': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X7': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X8': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                     },
                     'parents': 'u8',
@@ -207,7 +214,16 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'AssetRegistry', 'update_asset', {
-    'additional': (None, {}),
+    'additional': (
+        None,
+        {
+            'dia_keys': {
+                'blockchain': 'Bytes',
+                'symbol': 'Bytes',
+            },
+            'fee_per_second': 'u128',
+        },
+    ),
     'asset_id': {
         'Native': None,
         'Stellar': {
@@ -221,6 +237,7 @@ call = substrate.compose_call(
             },
             'StellarNative': None,
         },
+        'Token': 'u64',
         'XCM': 'u8',
         'ZenlinkLPToken': (
             'u8',
@@ -255,53 +272,53 @@ call = substrate.compose_call(
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X3': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X4': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X5': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X6': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X7': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                         'X8': (
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
-                            'scale_info::105',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
+                            'scale_info::109',
                         ),
                     },
                     'parents': 'u8',
@@ -315,60 +332,60 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::65',
+                            'GlobalConsensus': 'scale_info::69',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
                             'Plurality': 'InnerStruct',
                         },
                         'X2': (
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X3': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X4': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X5': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X6': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X7': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                         'X8': (
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
-                            'scale_info::62',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
+                            'scale_info::66',
                         ),
                     },
                     'parents': 'u8',
@@ -390,16 +407,16 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}```
-| metadata | `AssetMetadata<T::Balance, T::CustomMetadata>` | ```{'decimals': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'existential_deposit': 'u128', 'location': (None, {None: None, 'V2': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::105', 'X2': ('scale_info::105', 'scale_info::105'), 'X3': ('scale_info::105', 'scale_info::105', 'scale_info::105'), 'X4': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105'), 'X5': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105'), 'X6': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105'), 'X7': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105'), 'X8': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105')}}, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::62', 'X2': ('scale_info::62', 'scale_info::62'), 'X3': ('scale_info::62', 'scale_info::62', 'scale_info::62'), 'X4': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62'), 'X5': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62'), 'X6': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62'), 'X7': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62'), 'X8': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62')}}}), 'additional': {}}```
+| asset_id | `T::AssetId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}```
+| metadata | `AssetMetadata<T::Balance, T::CustomMetadata>` | ```{'decimals': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'existential_deposit': 'u128', 'location': (None, {None: None, 'V2': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::109', 'X2': ('scale_info::109', 'scale_info::109'), 'X3': ('scale_info::109', 'scale_info::109', 'scale_info::109'), 'X4': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109'), 'X5': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109'), 'X6': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109'), 'X7': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109'), 'X8': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109')}}, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::66', 'X2': ('scale_info::66', 'scale_info::66'), 'X3': ('scale_info::66', 'scale_info::66', 'scale_info::66'), 'X4': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66'), 'X5': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66'), 'X6': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66'), 'X7': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66'), 'X8': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66')}}}), 'additional': {'dia_keys': {'blockchain': 'Bytes', 'symbol': 'Bytes'}, 'fee_per_second': 'u128'}}```
 
 ---------
 ### UpdatedAsset
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| asset_id | `T::AssetId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}```
-| metadata | `AssetMetadata<T::Balance, T::CustomMetadata>` | ```{'decimals': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'existential_deposit': 'u128', 'location': (None, {None: None, 'V2': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::105', 'X2': ('scale_info::105', 'scale_info::105'), 'X3': ('scale_info::105', 'scale_info::105', 'scale_info::105'), 'X4': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105'), 'X5': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105'), 'X6': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105'), 'X7': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105'), 'X8': ('scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105', 'scale_info::105')}}, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::62', 'X2': ('scale_info::62', 'scale_info::62'), 'X3': ('scale_info::62', 'scale_info::62', 'scale_info::62'), 'X4': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62'), 'X5': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62'), 'X6': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62'), 'X7': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62'), 'X8': ('scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62', 'scale_info::62')}}}), 'additional': {}}```
+| asset_id | `T::AssetId` | ```{'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}```
+| metadata | `AssetMetadata<T::Balance, T::CustomMetadata>` | ```{'decimals': 'u32', 'name': 'Bytes', 'symbol': 'Bytes', 'existential_deposit': 'u128', 'location': (None, {None: None, 'V2': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::109', 'X2': ('scale_info::109', 'scale_info::109'), 'X3': ('scale_info::109', 'scale_info::109', 'scale_info::109'), 'X4': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109'), 'X5': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109'), 'X6': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109'), 'X7': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109'), 'X8': ('scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109', 'scale_info::109')}}, 'V3': {'parents': 'u8', 'interior': {'Here': None, 'X1': 'scale_info::66', 'X2': ('scale_info::66', 'scale_info::66'), 'X3': ('scale_info::66', 'scale_info::66', 'scale_info::66'), 'X4': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66'), 'X5': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66'), 'X6': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66'), 'X7': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66'), 'X8': ('scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66', 'scale_info::66')}}}), 'additional': {'dia_keys': {'blockchain': 'Bytes', 'symbol': 'Bytes'}, 'fee_per_second': 'u128'}}```
 
 ---------
 ## Storage functions
@@ -424,6 +441,7 @@ result = substrate.query(
         'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'},
         'StellarNative': None,
     },
+    'Token': 'u64',
     'XCM': 'u8',
     'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'),
 }
@@ -559,21 +577,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -628,21 +646,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -699,21 +717,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -768,21 +786,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -837,21 +855,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -908,21 +926,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -977,21 +995,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1046,21 +1064,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1115,21 +1133,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1186,21 +1204,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1255,21 +1273,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1324,21 +1342,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1393,21 +1411,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1462,21 +1480,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1533,21 +1551,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1602,21 +1620,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1671,21 +1689,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1740,21 +1758,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1809,21 +1827,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1878,21 +1896,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1949,21 +1967,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2018,21 +2036,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2087,21 +2105,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2156,21 +2174,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2225,21 +2243,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2294,21 +2312,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2363,21 +2381,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2434,21 +2452,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2503,21 +2521,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2572,21 +2590,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2641,21 +2659,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2710,21 +2728,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2779,21 +2797,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2848,21 +2866,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2917,21 +2935,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::65',
+                            'scale_info::69',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2998,6 +3016,7 @@ result = substrate.query(
         'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'},
         'StellarNative': None,
     },
+    'Token': 'u64',
     'XCM': 'u8',
     'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'),
 }
@@ -3023,6 +3042,7 @@ result = substrate.query(
             },
             'StellarNative': None,
         },
+        'Token': 'u64',
         'XCM': 'u8',
         'ZenlinkLPToken': (
             'u8',
@@ -3038,7 +3058,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'additional': {},
+    'additional': {'dia_keys': {'blockchain': 'Bytes', 'symbol': 'Bytes'}, 'fee_per_second': 'u128'},
     'decimals': 'u32',
     'existential_deposit': 'u128',
     'location': (
@@ -3048,52 +3068,52 @@ result = substrate.query(
             'V2': {
                 'interior': {
                     'Here': None,
-                    'X1': 'scale_info::105',
-                    'X2': ('scale_info::105', 'scale_info::105'),
+                    'X1': 'scale_info::109',
+                    'X2': ('scale_info::109', 'scale_info::109'),
                     'X3': (
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
                     ),
                     'X4': (
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
                     ),
                     'X5': (
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
                     ),
                     'X6': (
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
                     ),
                     'X7': (
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
                     ),
                     'X8': (
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
-                        'scale_info::105',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
+                        'scale_info::109',
                     ),
                 },
                 'parents': 'u8',
@@ -3101,52 +3121,52 @@ result = substrate.query(
             'V3': {
                 'interior': {
                     'Here': None,
-                    'X1': 'scale_info::62',
-                    'X2': ('scale_info::62', 'scale_info::62'),
+                    'X1': 'scale_info::66',
+                    'X2': ('scale_info::66', 'scale_info::66'),
                     'X3': (
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
                     ),
                     'X4': (
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
                     ),
                     'X5': (
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
                     ),
                     'X6': (
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
                     ),
                     'X7': (
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
                     ),
                     'X8': (
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
-                        'scale_info::62',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
+                        'scale_info::66',
                     ),
                 },
                 'parents': 'u8',

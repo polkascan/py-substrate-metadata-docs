@@ -28,7 +28,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'request_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'request_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -42,7 +42,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unnote_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unnote_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -56,7 +56,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unrequest_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unrequest_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -68,21 +68,21 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Noted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Requested
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -93,7 +93,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'PreimageFor', [('[u8; 32]', 'u32')]
+    'Preimage', 'PreimageFor', [('scale_info::12', 'u32')]
 )
 ```
 
@@ -107,7 +107,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'StatusFor', ['[u8; 32]']
+    'Preimage', 'StatusFor', ['scale_info::12']
 )
 ```
 

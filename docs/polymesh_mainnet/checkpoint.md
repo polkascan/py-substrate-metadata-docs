@@ -223,7 +223,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'next_at': 'u64', 'schedules': 'scale_info::632', 'total_pending': 'u64'}
+{'next_at': 'u64', 'schedules': 'scale_info::636', 'total_pending': 'u64'}
 ```
 ---------
 ### CheckpointIdSequence

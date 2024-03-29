@@ -88,58 +88,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_balance_deprecated
-See [`Pallet::set_balance_deprecated`].
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| who | `AccountIdLookupOf<T>` | 
-| new_free | `T::Balance` | 
-| old_reserved | `T::Balance` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Balances', 'set_balance_deprecated', {
-    'new_free': 'u128',
-    'old_reserved': 'u128',
-    'who': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-}
-)
-```
-
----------
-### transfer
-See [`Pallet::transfer`].
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| dest | `AccountIdLookupOf<T>` | 
-| value | `T::Balance` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Balances', 'transfer', {
-    'dest': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': (),
-        'Raw': 'Bytes',
-    },
-    'value': 'u128',
-}
-)
-```
-
----------
 ### transfer_all
 See [`Pallet::transfer_all`].
 #### Attributes
@@ -492,7 +440,16 @@ result = substrate.query(
 
 #### Return value
 ```python
-[{'amount': 'u128', 'id': {'CollatorSelection': ('LicenseBond', ), None: None}}]
+[
+    {
+        'amount': 'u128',
+        'id': {
+            None: None,
+            'CollatorSelection': ('LicenseBond', ),
+            'Preimage': ('Preimage', ),
+        },
+    },
+]
 ```
 ---------
 ### InactiveIssuance

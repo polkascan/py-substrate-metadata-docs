@@ -11,11 +11,8 @@ and the original deposit will be returned.
 
 May only be called from `T::ApproveOrigin`.
 
-\# &lt;weight&gt;
-- Complexity: O(1).
-- DbReads: `Proposals`, `Approvals`
-- DbWrite: `Approvals`
-\# &lt;/weight&gt;
+\#\# Complexity
+ - O(1).
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -34,11 +31,8 @@ Put forward a suggestion for spending. A deposit proportional to the value
 is reserved and slashed if the proposal is rejected. It is returned once the
 proposal is awarded.
 
-\# &lt;weight&gt;
-- Complexity: O(1)
-- DbReads: `ProposalCount`, `origin account`
-- DbWrites: `ProposalCount`, `Proposals`, `origin account`
-\# &lt;/weight&gt;
+\#\# Complexity
+- O(1)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -67,11 +61,8 @@ Reject a proposed spend. The original deposit will be slashed.
 
 May only be called from `T::RejectOrigin`.
 
-\# &lt;weight&gt;
-- Complexity: O(1)
-- DbReads: `Proposals`, `rejected proposer account`
-- DbWrites: `Proposals`, `rejected proposer account`
-\# &lt;/weight&gt;
+\#\# Complexity
+- O(1)
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -92,10 +83,8 @@ The original deposit will no longer be returned.
 May only be called from `T::RejectOrigin`.
 - `proposal_id`: The index of a proposal
 
-\# &lt;weight&gt;
-- Complexity: O(A) where `A` is the number of approvals
-- Db reads and writes: `Approvals`
-\# &lt;/weight&gt;
+\#\# Complexity
+- O(A) where `A` is the number of approvals
 
 Errors:
 - `ProposalNotApproved`: The `proposal_id` supplied was not found in the approval queue,
@@ -302,7 +291,7 @@ result = substrate.query(
  Percentage of spare funds (if any) that are burnt per spend period.
 #### Value
 ```python
-0
+1000000
 ```
 #### Python
 ```python
@@ -371,7 +360,7 @@ constant = substrate.get_constant('Treasury', 'ProposalBondMinimum')
  Period between successive spends.
 #### Value
 ```python
-7200
+50400
 ```
 #### Python
 ```python

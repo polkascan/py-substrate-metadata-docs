@@ -166,7 +166,7 @@ where the last bool is whether you want to hide it apart from deleting it
 call = substrate.compose_call(
     'Forum', 'delete_posts', {
     'forum_user_id': 'u64',
-    'posts': 'scale_info::81',
+    'posts': 'scale_info::87',
     'rationale': 'Bytes',
 }
 )
@@ -411,7 +411,7 @@ call = substrate.compose_call(
         'Moderator': 'u64',
     },
     'category_id': 'u64',
-    'stickied_ids': 'scale_info::84',
+    'stickied_ids': 'scale_info::90',
 }
 )
 ```
@@ -588,7 +588,7 @@ The second argument reflects the new description hash of the category.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CategoryId` | ```u64```
-| None | `Hash` | ```[u8; 32]```
+| None | `Hash` | ```scale_info::11```
 | None | `PrivilegedActor` | ```{'Lead': None, 'Moderator': 'u64'}```
 
 ---------
@@ -608,7 +608,7 @@ Sticky thread updated for category
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CategoryId` | ```u64```
-| None | `BTreeSet<ThreadId>` | ```scale_info::84```
+| None | `BTreeSet<ThreadId>` | ```scale_info::90```
 | None | `PrivilegedActor` | ```{'Lead': None, 'Moderator': 'u64'}```
 
 ---------
@@ -619,7 +619,7 @@ The second argument reflects the new title hash of the category.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CategoryId` | ```u64```
-| None | `Hash` | ```[u8; 32]```
+| None | `Hash` | ```scale_info::11```
 | None | `PrivilegedActor` | ```{'Lead': None, 'Moderator': 'u64'}```
 
 ---------
@@ -643,7 +643,7 @@ Post with givne id was deleted.
 | -------- | -------- | -------- |
 | None | `Vec<u8>` | ```Bytes```
 | None | `ForumUserId` | ```u64```
-| None | `BTreeMap<ExtendedPostId, bool>` | ```scale_info::81```
+| None | `BTreeMap<ExtendedPostId, bool>` | ```scale_info::87```
 
 ---------
 ### PostModerated
@@ -758,13 +758,13 @@ result = substrate.query(
 ```python
 {
     'archived': 'bool',
-    'description_hash': '[u8; 32]',
+    'description_hash': 'scale_info::11',
     'num_direct_moderators': 'u32',
     'num_direct_subcategories': 'u32',
     'num_direct_threads': 'u32',
     'parent_category_id': (None, 'u64'),
-    'sticky_thread_ids': 'scale_info::84',
-    'title_hash': '[u8; 32]',
+    'sticky_thread_ids': 'scale_info::90',
+    'title_hash': 'scale_info::11',
 }
 ```
 ---------
@@ -862,7 +862,7 @@ result = substrate.query(
         'repayment_restricted_to': (None, 'AccountId'),
     },
     'last_edited': 'u32',
-    'text_hash': '[u8; 32]',
+    'text_hash': 'scale_info::11',
     'thread_id': 'u64',
 }
 ```
@@ -897,7 +897,7 @@ result = substrate.query(
  MaxDirectSubcategoriesInCategory
 #### Value
 ```python
-5
+10
 ```
 #### Python
 ```python
@@ -920,7 +920,7 @@ constant = substrate.get_constant('Forum', 'MaxTotalCategories')
  Deposit needed to create a post
 #### Value
 ```python
-1930267011
+1928887055
 ```
 #### Python
 ```python
@@ -931,7 +931,7 @@ constant = substrate.get_constant('Forum', 'PostDeposit')
  Deposit needed to create a thread
 #### Value
 ```python
-1869394073
+1864121502
 ```
 #### Python
 ```python

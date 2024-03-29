@@ -6,7 +6,7 @@
 
 ---------
 ### claim
-Claim xHDX by providing signed message with Ethereum address.
+See [`Pallet::claim`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

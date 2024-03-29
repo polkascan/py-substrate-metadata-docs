@@ -6,6 +6,7 @@
 
 ---------
 ### ping
+See [`Pallet::ping`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -21,6 +22,7 @@ call = substrate.compose_call(
 
 ---------
 ### pong
+See [`Pallet::pong`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -36,6 +38,7 @@ call = substrate.compose_call(
 
 ---------
 ### start
+See [`Pallet::start`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -51,6 +54,7 @@ call = substrate.compose_call(
 
 ---------
 ### start_many
+See [`Pallet::start_many`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -71,6 +75,7 @@ call = substrate.compose_call(
 
 ---------
 ### stop
+See [`Pallet::stop`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -85,6 +90,7 @@ call = substrate.compose_call(
 
 ---------
 ### stop_all
+See [`Pallet::stop_all`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -105,7 +111,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `SendError` | ```{'CannotReachDestination': ({'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, 'X2': ('scale_info::49', 'scale_info::49'), 'X3': ('scale_info::49', 'scale_info::49', 'scale_info::49'), 'X4': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49'), 'X5': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49'), 'X6': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49'), 'X7': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49'), 'X8': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49')}}, [{'WithdrawAsset': ['scale_info::63'], 'ReserveAssetDeposited': ['scale_info::63'], 'ReceiveTeleportedAsset': ['scale_info::63'], 'QueryResponse': 'InnerStruct', 'TransferAsset': 'InnerStruct', 'TransferReserveAsset': 'InnerStruct', 'Transact': 'InnerStruct', 'HrmpNewChannelOpenRequest': 'InnerStruct', 'HrmpChannelAccepted': 'InnerStruct', 'HrmpChannelClosing': 'InnerStruct', 'ClearOrigin': None, 'DescendOrigin': 'scale_info::48', 'ReportError': 'InnerStruct', 'DepositAsset': 'InnerStruct', 'DepositReserveAsset': 'InnerStruct', 'ExchangeAsset': 'InnerStruct', 'InitiateReserveWithdraw': 'InnerStruct', 'InitiateTeleport': 'InnerStruct', 'QueryHolding': 'InnerStruct', 'BuyExecution': 'InnerStruct', 'RefundSurplus': None, 'SetErrorHandler': ['scale_info::60'], 'SetAppendix': ['scale_info::60'], 'ClearError': None, 'ClaimAsset': 'InnerStruct', 'Trap': 'u64', 'SubscribeVersion': 'InnerStruct', 'UnsubscribeVersion': None}]), 'Transport': None, 'Unroutable': None, 'DestinationUnsupported': None, 'ExceedsMaxMessageSize': None}```
+| None | `SendError` | ```('NotApplicable', 'Transport', 'Unroutable', 'DestinationUnsupported', 'ExceedsMaxMessageSize', 'MissingArgument', 'Fees')```
 | None | `ParaId` | ```u32```
 | None | `u32` | ```u32```
 | None | `Vec<u8>` | ```Bytes```
@@ -115,7 +121,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `SendError` | ```{'CannotReachDestination': ({'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'Bytes', 'OnlyChild': None, 'Plurality': 'InnerStruct'}, 'X2': ('scale_info::49', 'scale_info::49'), 'X3': ('scale_info::49', 'scale_info::49', 'scale_info::49'), 'X4': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49'), 'X5': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49'), 'X6': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49'), 'X7': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49'), 'X8': ('scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49', 'scale_info::49')}}, [{'WithdrawAsset': ['scale_info::63'], 'ReserveAssetDeposited': ['scale_info::63'], 'ReceiveTeleportedAsset': ['scale_info::63'], 'QueryResponse': 'InnerStruct', 'TransferAsset': 'InnerStruct', 'TransferReserveAsset': 'InnerStruct', 'Transact': 'InnerStruct', 'HrmpNewChannelOpenRequest': 'InnerStruct', 'HrmpChannelAccepted': 'InnerStruct', 'HrmpChannelClosing': 'InnerStruct', 'ClearOrigin': None, 'DescendOrigin': 'scale_info::48', 'ReportError': 'InnerStruct', 'DepositAsset': 'InnerStruct', 'DepositReserveAsset': 'InnerStruct', 'ExchangeAsset': 'InnerStruct', 'InitiateReserveWithdraw': 'InnerStruct', 'InitiateTeleport': 'InnerStruct', 'QueryHolding': 'InnerStruct', 'BuyExecution': 'InnerStruct', 'RefundSurplus': None, 'SetErrorHandler': ['scale_info::60'], 'SetAppendix': ['scale_info::60'], 'ClearError': None, 'ClaimAsset': 'InnerStruct', 'Trap': 'u64', 'SubscribeVersion': 'InnerStruct', 'UnsubscribeVersion': None}]), 'Transport': None, 'Unroutable': None, 'DestinationUnsupported': None, 'ExceedsMaxMessageSize': None}```
+| None | `SendError` | ```('NotApplicable', 'Transport', 'Unroutable', 'DestinationUnsupported', 'ExceedsMaxMessageSize', 'MissingArgument', 'Fees')```
 | None | `ParaId` | ```u32```
 | None | `u32` | ```u32```
 | None | `Vec<u8>` | ```Bytes```
@@ -128,6 +134,8 @@ call = substrate.compose_call(
 | None | `ParaId` | ```u32```
 | None | `u32` | ```u32```
 | None | `Vec<u8>` | ```Bytes```
+| None | `XcmHash` | ```[u8; 32]```
+| None | `MultiAssets` | ```[{'id': {'Concrete': {'parents': 'u8', 'interior': 'scale_info::48'}, 'Abstract': '[u8; 32]'}, 'fun': {'Fungible': 'u128', 'NonFungible': {'Undefined': None, 'Index': 'u128', 'Array4': '[u8; 4]', 'Array8': '[u8; 8]', 'Array16': '[u8; 16]', 'Array32': '[u8; 32]'}}}]```
 
 ---------
 ### Pinged
@@ -146,6 +154,8 @@ call = substrate.compose_call(
 | None | `ParaId` | ```u32```
 | None | `u32` | ```u32```
 | None | `Vec<u8>` | ```Bytes```
+| None | `XcmHash` | ```[u8; 32]```
+| None | `MultiAssets` | ```[{'id': {'Concrete': {'parents': 'u8', 'interior': 'scale_info::48'}, 'Abstract': '[u8; 32]'}, 'fun': {'Fungible': 'u128', 'NonFungible': {'Undefined': None, 'Index': 'u128', 'Array4': '[u8; 4]', 'Array8': '[u8; 8]', 'Array16': '[u8; 16]', 'Array32': '[u8; 32]'}}}]```
 
 ---------
 ### Ponged
@@ -155,7 +165,7 @@ call = substrate.compose_call(
 | None | `ParaId` | ```u32```
 | None | `u32` | ```u32```
 | None | `Vec<u8>` | ```Bytes```
-| None | `T::BlockNumber` | ```u32```
+| None | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### UnknownPong

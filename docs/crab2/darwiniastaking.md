@@ -6,11 +6,7 @@
 
 ---------
 ### chill
-Declare no desire to either collect or nominate.
-
-Effects will be felt at the beginning of the next era.
-
-If the target is a collator, its nominators need to re-nominate.
+See [`Pallet::chill`].
 #### Attributes
 No attributes
 
@@ -23,7 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim
-Claim the stakes from the pallet/contract account.
+See [`Pallet::claim`].
 #### Attributes
 No attributes
 
@@ -36,9 +32,7 @@ call = substrate.compose_call(
 
 ---------
 ### collect
-Declare the desire to collect.
-
-Effects will be felt at the beginning of the next session.
+See [`Pallet::collect`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -53,9 +47,7 @@ call = substrate.compose_call(
 
 ---------
 ### nominate
-Declare the desire to nominate a collator.
-
-Effects will be felt at the beginning of the next session.
+See [`Pallet::nominate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -69,15 +61,27 @@ call = substrate.compose_call(
 ```
 
 ---------
-### restake
-Cancel the `unstake` operation.
+### payout
+See [`Pallet::payout`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `T::AccountId` | 
 
-Re-stake the unstaking assets immediately.
+#### Python
+```python
+call = substrate.compose_call(
+    'DarwiniaStaking', 'payout', {'who': '[u8; 20]'}
+)
+```
+
+---------
+### restake
+See [`Pallet::restake`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | ring_amount | `Balance` | 
-| kton_amount | `Balance` | 
 | deposits | `Vec<DepositId<T>>` | 
 
 #### Python
@@ -85,7 +89,6 @@ Re-stake the unstaking assets immediately.
 call = substrate.compose_call(
     'DarwiniaStaking', 'restake', {
     'deposits': ['u16'],
-    'kton_amount': 'u128',
     'ring_amount': 'u128',
 }
 )
@@ -93,11 +96,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_collator_count
-Set collator count.
-
-This will apply to the incoming session.
-
-Require root origin.
+See [`Pallet::set_collator_count`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -112,9 +111,7 @@ call = substrate.compose_call(
 
 ---------
 ### stake
-Add stakes to the staking pool.
-
-This will transfer the stakes to a pallet/contact account.
+See [`Pallet::stake`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -135,7 +132,7 @@ call = substrate.compose_call(
 
 ---------
 ### unstake
-Withdraw stakes from the staking pool.
+See [`Pallet::unstake`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -180,7 +177,7 @@ A payout has been made for the staker.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | staker | `T::AccountId` | ```[u8; 20]```
-| ring_amount | `Balance` | ```u128```
+| amount | `Balance` | ```u128```
 
 ---------
 ### Staked
@@ -192,6 +189,15 @@ An account has staked.
 | ring_amount | `Balance` | ```u128```
 | kton_amount | `Balance` | ```u128```
 | deposits | `Vec<DepositId<T>>` | ```['u16']```
+
+---------
+### Unpaid
+Unable to pay the staker&\#x27;s reward.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| staker | `T::AccountId` | ```[u8; 20]```
+| amount | `Balance` | ```u128```
 
 ---------
 ### Unstaked
@@ -207,6 +213,21 @@ An account has unstaked.
 ---------
 ## Storage functions
 
+---------
+### AuthoredBlocksCount
+ Number of blocks authored by the collator within current session.
+
+#### Python
+```python
+result = substrate.query(
+    'DarwiniaStaking', 'AuthoredBlocksCount', []
+)
+```
+
+#### Return value
+```python
+('u32', 'scale_info::387')
+```
 ---------
 ### CollatorCount
  The ideal number of active collators.
@@ -253,19 +274,89 @@ result = substrate.query(
 'u128'
 ```
 ---------
-### Exposures
- Current stakers&#x27; exposure.
+### ExposureCache0
+ Exposure cache 0.
 
 #### Python
 ```python
 result = substrate.query(
-    'DarwiniaStaking', 'Exposures', ['[u8; 20]']
+    'DarwiniaStaking', 'ExposureCache0', ['[u8; 20]']
 )
 ```
 
 #### Return value
 ```python
-{'nominators': [{'value': 'u32', 'who': '[u8; 20]'}], 'total': 'u32'}
+{'commission': 'u32', 'nominators': [{'vote': 'u32', 'who': '[u8; 20]'}], 'vote': 'u32'}
+```
+---------
+### ExposureCache1
+ Exposure cache 1.
+
+#### Python
+```python
+result = substrate.query(
+    'DarwiniaStaking', 'ExposureCache1', ['[u8; 20]']
+)
+```
+
+#### Return value
+```python
+{'commission': 'u32', 'nominators': [{'vote': 'u32', 'who': '[u8; 20]'}], 'vote': 'u32'}
+```
+---------
+### ExposureCache2
+ Exposure cache 2.
+
+#### Python
+```python
+result = substrate.query(
+    'DarwiniaStaking', 'ExposureCache2', ['[u8; 20]']
+)
+```
+
+#### Return value
+```python
+{'commission': 'u32', 'nominators': [{'vote': 'u32', 'who': '[u8; 20]'}], 'vote': 'u32'}
+```
+---------
+### ExposureCacheStates
+ Exposure cache states.
+
+ To avoid extra DB RWs during new session, such as:
+ ```nocompile
+ previous = current;
+ current = next;
+ next = elect();
+ ```
+
+ Now, with data:
+ ```nocompile
+ cache1 == previous;
+ cache2 == current;
+ cache3 == next;
+ ```
+ Just need to shift the marker and write the storage map once:
+ ```nocompile
+ mark(cache3, current);
+ mark(cache2, previous);
+ mark(cache1, next);
+ cache1 = elect();
+ ```
+
+#### Python
+```python
+result = substrate.query(
+    'DarwiniaStaking', 'ExposureCacheStates', []
+)
+```
+
+#### Return value
+```python
+(
+    ('Previous', 'Current', 'Next'),
+    ('Previous', 'Current', 'Next'),
+    ('Previous', 'Current', 'Next'),
+)
 ```
 ---------
 ### KtonPool
@@ -305,19 +396,19 @@ result = substrate.query(
 }
 ```
 ---------
-### NextExposures
- Next stakers&#x27; exposure.
+### MigrationStartBlock
+ Migration starting block.
 
 #### Python
 ```python
 result = substrate.query(
-    'DarwiniaStaking', 'NextExposures', ['[u8; 20]']
+    'DarwiniaStaking', 'MigrationStartBlock', []
 )
 ```
 
 #### Return value
 ```python
-{'nominators': [{'value': 'u32', 'who': '[u8; 20]'}], 'total': 'u32'}
+'u32'
 ```
 ---------
 ### Nominators
@@ -336,19 +427,19 @@ result = substrate.query(
 '[u8; 20]'
 ```
 ---------
-### RewardPoints
- Collator&#x27;s reward points.
+### PendingRewards
+ All outstanding rewards since the last payment.
 
 #### Python
 ```python
 result = substrate.query(
-    'DarwiniaStaking', 'RewardPoints', []
+    'DarwiniaStaking', 'PendingRewards', ['[u8; 20]']
 )
 ```
 
 #### Return value
 ```python
-('u32', 'scale_info::323')
+'u128'
 ```
 ---------
 ### RingPool
@@ -386,15 +477,15 @@ result = substrate.query(
 ## Constants
 
 ---------
-### MaxCommission
- Maximum commission rate.
+### KtonRewardDistributionContract
+ The address of KTON reward distribution contract.
 #### Value
 ```python
-300000000
+'0x000000000ae5db7bdaf8d071e680452e33d91dd5'
 ```
 #### Python
 ```python
-constant = substrate.get_constant('DarwiniaStaking', 'MaxCommission')
+constant = substrate.get_constant('DarwiniaStaking', 'KtonRewardDistributionContract')
 ```
 ---------
 ### MaxDeposits
@@ -419,6 +510,17 @@ constant = substrate.get_constant('DarwiniaStaking', 'MaxDeposits')
 constant = substrate.get_constant('DarwiniaStaking', 'MaxUnstakings')
 ```
 ---------
+### MigrationCurve
+ The curve of migration.
+#### Value
+```python
+582296296296296297
+```
+#### Python
+```python
+constant = substrate.get_constant('DarwiniaStaking', 'MigrationCurve')
+```
+---------
 ### MinStakingDuration
  Minimum time to stake at least.
 #### Value
@@ -430,24 +532,7 @@ constant = substrate.get_constant('DarwiniaStaking', 'MaxUnstakings')
 constant = substrate.get_constant('DarwiniaStaking', 'MinStakingDuration')
 ```
 ---------
-### PayoutFraction
- The percentage of the total payout that is distributed to stakers.
-
- Usually, the rest goes to the treasury.
-#### Value
-```python
-400000000
-```
-#### Python
-```python
-constant = substrate.get_constant('DarwiniaStaking', 'PayoutFraction')
-```
----------
 ## Errors
-
----------
-### CommissionTooHigh
-Commission rate must be less than maximum commission rate.
 
 ---------
 ### DepositNotFound
@@ -460,6 +545,10 @@ Exceed maximum deposit count.
 ---------
 ### ExceedMaxUnstakings
 Exceed maximum unstaking/unbonding count.
+
+---------
+### NoReward
+No reward to pay for this collator.
 
 ---------
 ### NotStaker

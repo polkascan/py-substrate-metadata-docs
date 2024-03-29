@@ -31,15 +31,16 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'MultisigVerifier', 'initialize', {
     'network_id': {
-        'EVM': '[u64; 4]',
+        'EVM': 'scale_info::111',
         'EVMLegacy': 'u32',
-        'Sub': {
-            'Custom': 'u32',
-            'Kusama': None,
-            'Mainnet': None,
-            'Polkadot': None,
-            'Rococo': None,
-        },
+        'Sub': (
+            'Mainnet',
+            'Kusama',
+            'Polkadot',
+            'Rococo',
+            'Alphanet',
+            'Liberland',
+        ),
     },
     'peers': ['[u8; 33]'],
 }
@@ -68,7 +69,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `GenericNetworkId` | ```{'EVM': '[u64; 4]', 'Sub': {'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}, 'EVMLegacy': 'u32'}```
+| None | `GenericNetworkId` | ```{'EVM': 'scale_info::111', 'Sub': ('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland'), 'EVMLegacy': 'u32'}```
 
 ---------
 ### PeerAdded
@@ -89,7 +90,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `GenericNetworkId` | ```{'EVM': '[u64; 4]', 'Sub': {'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}, 'EVMLegacy': 'u32'}```
+| None | `GenericNetworkId` | ```{'EVM': 'scale_info::111', 'Sub': ('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland'), 'EVMLegacy': 'u32'}```
 
 ---------
 ## Storage functions
@@ -102,15 +103,16 @@ call = substrate.compose_call(
 result = substrate.query(
     'MultisigVerifier', 'PeerKeys', [
     {
-        'EVM': '[u64; 4]',
+        'EVM': 'scale_info::111',
         'EVMLegacy': 'u32',
-        'Sub': {
-            'Custom': 'u32',
-            'Kusama': None,
-            'Mainnet': None,
-            'Polkadot': None,
-            'Rococo': None,
-        },
+        'Sub': (
+            'Mainnet',
+            'Kusama',
+            'Polkadot',
+            'Rococo',
+            'Alphanet',
+            'Liberland',
+        ),
     },
 ]
 )
@@ -118,7 +120,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::318'
+'scale_info::304'
 ```
 ---------
 ## Constants

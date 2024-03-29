@@ -171,27 +171,27 @@ def generate_docs(node_url: str):
                 storage_functions.sort(key=lambda x: x.name)
 
                 for storage_function in storage_functions:
+                    if storage_function.value['name'] != ':__STORAGE_VERSION__:':
+                        pallet_doc.append(f"### {storage_function.value['name']}")
 
-                    pallet_doc.append(f"### {storage_function.value['name']}")
+                        for d in storage_function.docs:
+                            d = html.escape(d.replace('#', '\\#'))
+                            pallet_doc.append(d)
 
-                    for d in storage_function.docs:
-                        d = html.escape(d.replace('#', '\\#'))
-                        pallet_doc.append(d)
+                        pallet_doc += ['', f'#### Python']
+                        pallet_doc += [f'```python']
+                        pallet_doc += [
+                            f"result = substrate.query(\n    '{pallet.name}', '{storage_function.name}', {pformat(storage_function.get_param_info(max_recursion=5), indent=4, width=40)}\n)"]
+                        pallet_doc += [f'```']
 
-                    pallet_doc += ['', f'#### Python']
-                    pallet_doc += [f'```python']
-                    pallet_doc += [
-                        f"result = substrate.query(\n    '{pallet.name}', '{storage_function.name}', {pformat(storage_function.get_param_info(max_recursion=5), indent=4, width=40)}\n)"]
-                    pallet_doc += [f'```']
+                        return_obj = substrate.runtime_config.create_scale_object(storage_function.get_value_type_string())
 
-                    return_obj = substrate.runtime_config.create_scale_object(storage_function.get_value_type_string())
+                        pallet_doc += ['', f'#### Return value']
+                        pallet_doc += [f'```python']
+                        pallet_doc += [pformat(return_obj.generate_type_decomposition(max_recursion=4))]
+                        pallet_doc += [f'```']
 
-                    pallet_doc += ['', f'#### Return value']
-                    pallet_doc += [f'```python']
-                    pallet_doc += [pformat(return_obj.generate_type_decomposition(max_recursion=4))]
-                    pallet_doc += [f'```']
-
-                    pallet_doc += ['---------']
+                        pallet_doc += ['---------']
 
             # Constants
             if len(pallet.constants or []) > 0:
@@ -280,5 +280,6 @@ if __name__ == "__main__":
                 for pallet in info["pallets"]:
                     print(f'    - {pallet["name"]}: {pallet["file"]}')
                 logging.info(f"Generated docs for {network}")
-            except:
+            except :
+                raise
                 logging.error(f"Failed to generate docs for {network}")

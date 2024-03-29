@@ -6,18 +6,7 @@
 
 ---------
 ### transfer
-Transfer native currencies.
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -2669,18 +2658,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_multiasset
-Transfer `MultiAsset`.
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_multiasset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -5491,27 +5469,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_multiasset_with_fee
-Transfer `MultiAsset` specifying the fee and amount as separate.
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-`fee` is the multiasset to be spent to pay for execution in
-destination chain. Both fee and amount will be subtracted form the
-callers balance For now we only accept fee and asset having the same
-`MultiLocation` id.
-
-If `fee` is not high enough to cover for the execution costs in the
-destination chain, then the assets will be trapped in the
-destination chain
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_multiasset_with_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -8492,21 +8450,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_multiassets
-Transfer several `MultiAsset` specifying the item to be used as fee
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-`fee_item` is index of the MultiAssets that we want to use for
-payment
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_multiassets`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -11198,21 +11142,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_multicurrencies
-Transfer several currencies specifying the item to be used as fee
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-`fee_item` is index of the currencies tuple that we want to use for
-payment
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_multicurrencies`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -13869,27 +13799,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_with_fee
-Transfer native currencies specifying the fee and amount as
-separate.
-
-`dest_weight_limit` is the weight for XCM execution on the dest
-chain, and it would be charged from the transferred assets. If set
-below requirements, the execution may fail and assets wouldn&\#x27;t be
-received.
-
-`fee` is the amount to be spent to pay for execution in destination
-chain. Both fee and amount will be subtracted form the callers
-balance.
-
-If `fee` is not high enough to cover for the execution costs in the
-destination chain, then the assets will be trapped in the
-destination chain
-
-It&\#x27;s a no-op if any error on local XCM execution or message sending.
-Note sending assets out per se doesn&\#x27;t guarantee they would be
-received. Receiving depends on if the XCM message could be delivered
-by the network, and if the receiving chain would handle
-messages correctly.
+See [`Pallet::transfer_with_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -13913,7 +13823,6 @@ call = substrate.compose_call(
         'SelfReserve': None,
     },
     'dest': {
-        None: None,
         'V2': {
             'interior': {
                 'Here': None,
@@ -14794,6 +14703,7 @@ call = substrate.compose_call(
             },
             'parents': 'u8',
         },
+        None: None,
         'V3': {
             'interior': {
                 'Here': None,
@@ -16554,6 +16464,9 @@ Transferred `MultiAsset` with fee.
 | assets | `MultiAssets` | ```[{'id': {'Concrete': {'parents': 'u8', 'interior': 'scale_info::130'}, 'Abstract': '[u8; 32]'}, 'fun': {'Fungible': 'u128', 'NonFungible': {'Undefined': None, 'Index': 'u128', 'Array4': '[u8; 4]', 'Array8': '[u8; 8]', 'Array16': '[u8; 16]', 'Array32': '[u8; 32]'}}}]```
 | fee | `MultiAsset` | ```{'id': {'Concrete': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::134'}, 'X2': ('scale_info::131', 'scale_info::131'), 'X3': ('scale_info::131', 'scale_info::131', 'scale_info::131'), 'X4': ('scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131'), 'X5': ('scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131'), 'X6': ('scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131'), 'X7': ('scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131'), 'X8': ('scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131', 'scale_info::131')}}, 'Abstract': '[u8; 32]'}, 'fun': {'Fungible': 'u128', 'NonFungible': {'Undefined': None, 'Index': 'u128', 'Array4': '[u8; 4]', 'Array8': '[u8; 8]', 'Array16': '[u8; 16]', 'Array32': '[u8; 32]'}}}```
 | dest | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Moniker': '[u8; 4]', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None, 'Defense': None, 'Administration': None, 'Treasury': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': {'block_number': 'u64', 'block_hash': '[u8; 32]'}, 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': {'chain_id': 'u64'}, 'BitcoinCore': None, 'BitcoinCash': None}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::134'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::134'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::134'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::135', 'part': 'scale_info::136'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}})}}```
+
+---------
+## Storage functions
 
 ---------
 ## Constants

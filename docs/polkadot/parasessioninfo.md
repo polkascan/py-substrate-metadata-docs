@@ -66,8 +66,8 @@ result = substrate.query(
 ```python
 [
     {
-        None: None,
         'MaxMemoryPages': 'u32',
+        None: None,
         'PrecheckingMaxMemory': 'u64',
         'PvfExecTimeout': (('Backing', 'Approval'), 'u64'),
         'PvfPrepTimeout': (('Precheck', 'Lenient'), 'u64'),

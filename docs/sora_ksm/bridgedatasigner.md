@@ -17,15 +17,16 @@
 call = substrate.compose_call(
     'BridgeDataSigner', 'add_peer', {
     'network_id': {
-        'EVM': '[u64; 4]',
+        'EVM': 'scale_info::111',
         'EVMLegacy': 'u32',
-        'Sub': {
-            'Custom': 'u32',
-            'Kusama': None,
-            'Mainnet': None,
-            'Polkadot': None,
-            'Rococo': None,
-        },
+        'Sub': (
+            'Mainnet',
+            'Kusama',
+            'Polkadot',
+            'Rococo',
+            'Alphanet',
+            'Liberland',
+        ),
     },
     'peer': '[u8; 33]',
 }
@@ -45,17 +46,18 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'BridgeDataSigner', 'approve', {
-    'data': '[u8; 32]',
+    'data': 'scale_info::11',
     'network_id': {
-        'EVM': '[u64; 4]',
+        'EVM': 'scale_info::111',
         'EVMLegacy': 'u32',
-        'Sub': {
-            'Custom': 'u32',
-            'Kusama': None,
-            'Mainnet': None,
-            'Polkadot': None,
-            'Rococo': None,
-        },
+        'Sub': (
+            'Mainnet',
+            'Kusama',
+            'Polkadot',
+            'Rococo',
+            'Alphanet',
+            'Liberland',
+        ),
     },
     'signature': '[u8; 65]',
 }
@@ -103,15 +105,16 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'BridgeDataSigner', 'register_network', {
     'network_id': {
-        'EVM': '[u64; 4]',
+        'EVM': 'scale_info::111',
         'EVMLegacy': 'u32',
-        'Sub': {
-            'Custom': 'u32',
-            'Kusama': None,
-            'Mainnet': None,
-            'Polkadot': None,
-            'Rococo': None,
-        },
+        'Sub': (
+            'Mainnet',
+            'Kusama',
+            'Polkadot',
+            'Rococo',
+            'Alphanet',
+            'Liberland',
+        ),
     },
     'peers': ['[u8; 33]'],
 }
@@ -131,15 +134,16 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'BridgeDataSigner', 'remove_peer', {
     'network_id': {
-        'EVM': '[u64; 4]',
+        'EVM': 'scale_info::111',
         'EVMLegacy': 'u32',
-        'Sub': {
-            'Custom': 'u32',
-            'Kusama': None,
-            'Mainnet': None,
-            'Polkadot': None,
-            'Rococo': None,
-        },
+        'Sub': (
+            'Mainnet',
+            'Kusama',
+            'Polkadot',
+            'Rococo',
+            'Alphanet',
+            'Liberland',
+        ),
     },
     'peer': '[u8; 33]',
 }
@@ -154,7 +158,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| network_id | `GenericNetworkId` | ```{'EVM': '[u64; 4]', 'Sub': {'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}, 'EVMLegacy': 'u32'}```
+| network_id | `GenericNetworkId` | ```{'EVM': 'scale_info::111', 'Sub': ('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland'), 'EVMLegacy': 'u32'}```
 | peer | `ecdsa::Public` | ```[u8; 33]```
 
 ---------
@@ -162,8 +166,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| network_id | `GenericNetworkId` | ```{'EVM': '[u64; 4]', 'Sub': {'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}, 'EVMLegacy': 'u32'}```
-| data | `H256` | ```[u8; 32]```
+| network_id | `GenericNetworkId` | ```{'EVM': 'scale_info::111', 'Sub': ('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland'), 'EVMLegacy': 'u32'}```
+| data | `H256` | ```scale_info::11```
 | signature | `ecdsa::Signature` | ```[u8; 65]```
 
 ---------
@@ -171,8 +175,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| network_id | `GenericNetworkId` | ```{'EVM': '[u64; 4]', 'Sub': {'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}, 'EVMLegacy': 'u32'}```
-| data | `H256` | ```[u8; 32]```
+| network_id | `GenericNetworkId` | ```{'EVM': 'scale_info::111', 'Sub': ('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland'), 'EVMLegacy': 'u32'}```
+| data | `H256` | ```scale_info::11```
 | signatures | `BoundedVec<ecdsa::Signature, T::MaxPeers>` | ```['[u8; 65]']```
 
 ---------
@@ -180,7 +184,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| network_id | `GenericNetworkId` | ```{'EVM': '[u64; 4]', 'Sub': {'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}, 'EVMLegacy': 'u32'}```
+| network_id | `GenericNetworkId` | ```{'EVM': 'scale_info::111', 'Sub': ('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland'), 'EVMLegacy': 'u32'}```
 | peers | `BoundedVec<ecdsa::Public, T::MaxPeers>` | ```['[u8; 33]']```
 
 ---------
@@ -188,7 +192,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| network_id | `GenericNetworkId` | ```{'EVM': '[u64; 4]', 'Sub': {'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}, 'EVMLegacy': 'u32'}```
+| network_id | `GenericNetworkId` | ```{'EVM': 'scale_info::111', 'Sub': ('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland'), 'EVMLegacy': 'u32'}```
 | peer | `ecdsa::Public` | ```[u8; 33]```
 
 ---------
@@ -203,24 +207,25 @@ call = substrate.compose_call(
 result = substrate.query(
     'BridgeDataSigner', 'Approvals', [
     {
-        'EVM': '[u64; 4]',
+        'EVM': 'scale_info::111',
         'EVMLegacy': 'u32',
-        'Sub': {
-            'Custom': 'u32',
-            'Kusama': None,
-            'Mainnet': None,
-            'Polkadot': None,
-            'Rococo': None,
-        },
+        'Sub': (
+            'Mainnet',
+            'Kusama',
+            'Polkadot',
+            'Rococo',
+            'Alphanet',
+            'Liberland',
+        ),
     },
-    '[u8; 32]',
+    'scale_info::11',
 ]
 )
 ```
 
 #### Return value
 ```python
-'scale_info::321'
+'scale_info::307'
 ```
 ---------
 ### Peers
@@ -231,15 +236,16 @@ result = substrate.query(
 result = substrate.query(
     'BridgeDataSigner', 'Peers', [
     {
-        'EVM': '[u64; 4]',
+        'EVM': 'scale_info::111',
         'EVMLegacy': 'u32',
-        'Sub': {
-            'Custom': 'u32',
-            'Kusama': None,
-            'Mainnet': None,
-            'Polkadot': None,
-            'Rococo': None,
-        },
+        'Sub': (
+            'Mainnet',
+            'Kusama',
+            'Polkadot',
+            'Rococo',
+            'Alphanet',
+            'Liberland',
+        ),
     },
 ]
 )
@@ -247,7 +253,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::318'
+'scale_info::304'
 ```
 ---------
 ### PendingPeerUpdate
@@ -258,15 +264,16 @@ result = substrate.query(
 result = substrate.query(
     'BridgeDataSigner', 'PendingPeerUpdate', [
     {
-        'EVM': '[u64; 4]',
+        'EVM': 'scale_info::111',
         'EVMLegacy': 'u32',
-        'Sub': {
-            'Custom': 'u32',
-            'Kusama': None,
-            'Mainnet': None,
-            'Polkadot': None,
-            'Rococo': None,
-        },
+        'Sub': (
+            'Mainnet',
+            'Kusama',
+            'Polkadot',
+            'Rococo',
+            'Alphanet',
+            'Liberland',
+        ),
     },
 ]
 )

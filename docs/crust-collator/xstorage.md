@@ -6,6 +6,7 @@
 
 ---------
 ### place_storage_order
+See [`Pallet::place_storage_order`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -29,6 +30,7 @@ call = substrate.compose_call(
 
 ---------
 ### place_storage_order_through_parachain
+See [`Pallet::place_storage_order_through_parachain`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -44,6 +46,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_storage_fee
+See [`Pallet::register_storage_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

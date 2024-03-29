@@ -5,6 +5,20 @@
 ## Calls
 
 ---------
+### add_boost_pool_whitelist
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| whitelist | `Vec<PoolId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'add_boost_pool_whitelist', {'whitelist': ['u32']}
+)
+```
+
+---------
 ### charge
 #### Attributes
 | Name | Type |
@@ -32,6 +46,49 @@ call = substrate.compose_call(
                     },
                     'StellarNative': None,
                 },
+                'Token': 'u64',
+                'XCM': 'u8',
+                'ZenlinkLPToken': (
+                    'u8',
+                    'u8',
+                    'u8',
+                    'u8',
+                ),
+            },
+            'u128',
+        ),
+    ],
+}
+)
+```
+
+---------
+### charge_boost
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'charge_boost', {
+    'rewards': [
+        (
+            {
+                'Native': None,
+                'Stellar': {
+                    'AlphaNum12': {
+                        'code': '[u8; 12]',
+                        'issuer': '[u8; 32]',
+                    },
+                    'AlphaNum4': {
+                        'code': '[u8; 4]',
+                        'issuer': '[u8; 32]',
+                    },
+                    'StellarNative': None,
+                },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': (
                     'u8',
@@ -111,6 +168,7 @@ call = substrate.compose_call(
                     },
                     'StellarNative': None,
                 },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': (
                     'u8',
@@ -139,6 +197,7 @@ call = substrate.compose_call(
                     },
                     'StellarNative': None,
                 },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': (
                     'u8',
@@ -157,6 +216,7 @@ call = substrate.compose_call(
                             'AlphaNum4': 'InnerStruct',
                             'StellarNative': None,
                         },
+                        'Token': 'u64',
                         'XCM': 'u8',
                         'ZenlinkLPToken': (
                             'u8',
@@ -186,6 +246,7 @@ call = substrate.compose_call(
                     },
                     'StellarNative': None,
                 },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': (
                     'u8',
@@ -259,6 +320,7 @@ call = substrate.compose_call(
                         },
                         'StellarNative': None,
                     },
+                    'Token': 'u64',
                     'XCM': 'u8',
                     'ZenlinkLPToken': (
                         'u8',
@@ -289,6 +351,7 @@ call = substrate.compose_call(
                         },
                         'StellarNative': None,
                     },
+                    'Token': 'u64',
                     'XCM': 'u8',
                     'ZenlinkLPToken': (
                         'u8',
@@ -311,6 +374,18 @@ call = substrate.compose_call(
         'u32',
     ),
 }
+)
+```
+
+---------
+### end_boost_round
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'end_boost_round', {}
 )
 ```
 
@@ -411,6 +486,7 @@ call = substrate.compose_call(
                         },
                         'StellarNative': None,
                     },
+                    'Token': 'u64',
                     'XCM': 'u8',
                     'ZenlinkLPToken': (
                         'u8',
@@ -440,6 +516,7 @@ call = substrate.compose_call(
                     },
                     'StellarNative': None,
                 },
+                'Token': 'u64',
                 'XCM': 'u8',
                 'ZenlinkLPToken': (
                     'u8',
@@ -458,6 +535,7 @@ call = substrate.compose_call(
                             'AlphaNum4': 'InnerStruct',
                             'StellarNative': None,
                         },
+                        'Token': 'u64',
                         'XCM': 'u8',
                         'ZenlinkLPToken': (
                             'u8',
@@ -489,6 +567,20 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_next_round_whitelist
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| whitelist | `Vec<PoolId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'set_next_round_whitelist', {'whitelist': ['u32']}
+)
+```
+
+---------
 ### set_retire_limit
 #### Attributes
 | Name | Type |
@@ -499,6 +591,34 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'Farming', 'set_retire_limit', {'limit': 'u32'}
+)
+```
+
+---------
+### start_boost_round
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| round_length | `BlockNumberFor<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'start_boost_round', {'round_length': 'u32'}
+)
+```
+
+---------
+### vote
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| vote_list | `Vec<(PoolId, Percent)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Farming', 'vote', {'vote_list': [('u32', 'u8')]}
 )
 ```
 
@@ -552,13 +672,21 @@ call = substrate.compose_call(
 | pid | `PoolId` | ```u32```
 
 ---------
+### BoostCharged
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountIdOf<T>` | ```AccountId```
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}, 'u128')]```
+
+---------
 ### Charged
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountIdOf<T>` | ```AccountId```
 | pid | `PoolId` | ```u32```
-| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8')}, 'u128')]```
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': None, 'XCM': 'u8', 'Stellar': {'StellarNative': None, 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'}, 'AlphaNum12': {'code': '[u8; 12]', 'issuer': '[u8; 32]'}}, 'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'), 'Token': 'u64'}, 'u128')]```
 
 ---------
 ### Claimed
@@ -643,6 +771,37 @@ call = substrate.compose_call(
 | limit | `u32` | ```u32```
 
 ---------
+### RoundEnd
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| total_votes | `BalanceOf<T>` | ```u128```
+| start_round | `BlockNumberFor<T>` | ```u32```
+| end_round | `BlockNumberFor<T>` | ```u32```
+
+---------
+### RoundStart
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| round_length | `BlockNumberFor<T>` | ```u32```
+
+---------
+### RoundStartError
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| info | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+
+---------
+### Voted
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `AccountIdOf<T>` | ```AccountId```
+| vote_list | `Vec<(PoolId, Percent)>` | ```[('u32', 'u8')]```
+
+---------
 ### WithdrawClaimed
 #### Attributes
 | Name | Type | Composition
@@ -662,6 +821,105 @@ call = substrate.compose_call(
 ---------
 ## Storage functions
 
+---------
+### BoostBasicRewards
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostBasicRewards', [
+    'u32',
+    {
+        'Native': None,
+        'Stellar': {
+            'AlphaNum12': {
+                'code': '[u8; 12]',
+                'issuer': '[u8; 32]',
+            },
+            'AlphaNum4': {
+                'code': '[u8; 4]',
+                'issuer': '[u8; 32]',
+            },
+            'StellarNative': None,
+        },
+        'Token': 'u64',
+        'XCM': 'u8',
+        'ZenlinkLPToken': (
+            'u8',
+            'u8',
+            'u8',
+            'u8',
+        ),
+    },
+]
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### BoostNextRoundWhitelist
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostNextRoundWhitelist', ['u32']
+)
+```
+
+#### Return value
+```python
+()
+```
+---------
+### BoostPoolInfos
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostPoolInfos', []
+)
+```
+
+#### Return value
+```python
+{
+    'end_round': 'u32',
+    'round_length': 'u32',
+    'start_round': 'u32',
+    'total_votes': 'u128',
+}
+```
+---------
+### BoostVotingPools
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostVotingPools', ['u32']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### BoostWhitelist
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'BoostWhitelist', ['u32']
+)
+```
+
+#### Return value
+```python
+()
+```
 ---------
 ### GaugeInfos
 
@@ -703,14 +961,14 @@ result = substrate.query(
 ```python
 {
     'gauge_amount': 'u128',
-    'gauge_basic_rewards': 'scale_info::559',
+    'gauge_basic_rewards': 'scale_info::604',
     'gauge_last_block': 'u32',
     'gauge_state': ('Unbond', 'Bonded'),
     'keeper': 'AccountId',
     'max_block': 'u32',
     'pid': 'u32',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::565',
+    'rewards': 'scale_info::610',
     'token': {
         'Native': None,
         'Stellar': {
@@ -718,6 +976,7 @@ result = substrate.query(
             'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'},
             'StellarNative': None,
         },
+        'Token': 'u64',
         'XCM': 'u8',
         'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'),
     },
@@ -755,7 +1014,7 @@ result = substrate.query(
 ```python
 {
     'after_block_to_start': 'u32',
-    'basic_rewards': 'scale_info::559',
+    'basic_rewards': 'scale_info::604',
     'basic_token': (
         {
             'Native': None,
@@ -764,6 +1023,7 @@ result = substrate.query(
                 'AlphaNum4': {'code': '[u8; 4]', 'issuer': '[u8; 32]'},
                 'StellarNative': None,
             },
+            'Token': 'u64',
             'XCM': 'u8',
             'ZenlinkLPToken': ('u8', 'u8', 'u8', 'u8'),
         },
@@ -775,9 +1035,9 @@ result = substrate.query(
     'keeper': 'AccountId',
     'min_deposit_to_start': 'u128',
     'reward_issuer': 'AccountId',
-    'rewards': 'scale_info::560',
+    'rewards': 'scale_info::605',
     'state': ('UnCharged', 'Charged', 'Ongoing', 'Dead', 'Retired'),
-    'tokens_proportion': 'scale_info::558',
+    'tokens_proportion': 'scale_info::603',
     'total_shares': 'u128',
     'withdraw_limit_count': 'u8',
     'withdraw_limit_time': 'u32',
@@ -832,12 +1092,36 @@ result = substrate.query(
     'share': 'u128',
     'who': 'AccountId',
     'withdraw_list': [('u32', 'u128')],
-    'withdrawn_rewards': 'scale_info::559',
+    'withdrawn_rewards': 'scale_info::604',
 }
+```
+---------
+### UserBoostInfos
+
+#### Python
+```python
+result = substrate.query(
+    'Farming', 'UserBoostInfos', ['AccountId']
+)
+```
+
+#### Return value
+```python
+{'last_vote': 'u32', 'vote_amount': 'u128', 'vote_list': [('u32', 'u8')]}
 ```
 ---------
 ## Constants
 
+---------
+### FarmingBoost
+#### Value
+```python
+'0x616d2f666d627374'
+```
+#### Python
+```python
+constant = substrate.get_constant('Farming', 'FarmingBoost')
+```
 ---------
 ### Keeper
  ModuleID for creating sub account
@@ -870,10 +1154,17 @@ constant = substrate.get_constant('Farming', 'RewardIssuer')
 constant = substrate.get_constant('Farming', 'TreasuryAccount')
 ```
 ---------
-## Errors
-
+### WhitelistMaximumLimit
+#### Value
+```python
+10
+```
+#### Python
+```python
+constant = substrate.get_constant('Farming', 'WhitelistMaximumLimit')
+```
 ---------
-### CalculationOverflow
+## Errors
 
 ---------
 ### CanNotClaim
@@ -899,10 +1190,37 @@ gauge pool max_block exceeded
 ### LastGaugeNotClaim
 
 ---------
+### NobodyVoting
+
+---------
+### NotInWhitelist
+
+---------
+### NotNullable
+
+---------
+### PercentOverflow
+
+---------
 ### PoolDoesNotExist
 
 ---------
+### PoolNotCleared
+
+---------
+### RoundLengthNotSet
+
+---------
+### RoundNotOver
+
+---------
 ### ShareInfoNotExists
+
+---------
+### WhitelistEmpty
+
+---------
+### WhitelistLimitExceeded
 
 ---------
 ### WithdrawLimitCountExceeded

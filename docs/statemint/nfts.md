@@ -6,15 +6,7 @@
 
 ---------
 ### approve_item_attributes
-Approve item&\#x27;s attributes to be changed by a delegated third-party account.
-
-Origin must be Signed and must be an owner of the `item`.
-
-- `collection`: A collection of the item.
-- `item`: The item that holds attributes.
-- `delegate`: The account to delegate permission to change attributes of the item.
-
-Emits `ItemAttributesApprovalAdded` on success.
+See [`Pallet::approve_item_attributes`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -41,27 +33,14 @@ call = substrate.compose_call(
 
 ---------
 ### approve_transfer
-Approve an item to be transferred by a delegated third-party account.
-
-Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
-`item`.
-
-- `collection`: The collection of the item to be approved for delegated transfer.
-- `item`: The item to be approved for delegated transfer.
-- `delegate`: The account to delegate permission to transfer the item.
-- `maybe_deadline`: Optional deadline for the approval. Specified by providing the
-	number of blocks after which the approval will expire
-
-Emits `TransferApproved` on success.
-
-Weight: `O(1)`
+See [`Pallet::approve_transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | collection | `T::CollectionId` | 
 | item | `T::ItemId` | 
 | delegate | `AccountIdLookupOf<T>` | 
-| maybe_deadline | `Option<<T as SystemConfig>::BlockNumber>` | 
+| maybe_deadline | `Option<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -83,17 +62,7 @@ call = substrate.compose_call(
 
 ---------
 ### burn
-Destroy a single item.
-
-The origin must conform to `ForceOrigin` or must be Signed and the signing account must
-be the owner of the `item`.
-
-- `collection`: The collection of the item to be burned.
-- `item`: The item to be burned.
-
-Emits `Burned`.
-
-Weight: `O(1)`
+See [`Pallet::burn`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -109,15 +78,7 @@ call = substrate.compose_call(
 
 ---------
 ### buy_item
-Allows to buy an item if it&\#x27;s up for sale.
-
-Origin must be Signed and must not be the owner of the `item`.
-
-- `collection`: The collection of the item.
-- `item`: The item the sender wants to buy.
-- `bid_price`: The price the sender is willing to pay.
-
-Emits `ItemBought` on success.
+See [`Pallet::buy_item`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -138,20 +99,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_approval
-Cancel one of the transfer approvals for a specific item.
-
-Origin must be either:
-- the `Force` origin;
-- `Signed` with the signer being the Owner of the `item`;
-
-Arguments:
-- `collection`: The collection of the item of whose approval will be cancelled.
-- `item`: The item of the collection of whose approval will be cancelled.
-- `delegate`: The account that is going to loose their approval.
-
-Emits `ApprovalCancelled` on success.
-
-Weight: `O(1)`
+See [`Pallet::cancel_approval`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -178,16 +126,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_item_attributes_approval
-Cancel the previously provided approval to change item&\#x27;s attributes.
-All the previously set attributes by the `delegate` will be removed.
-
-Origin must be Signed and must be an owner of the `item`.
-
-- `collection`: Collection that the item is contained within.
-- `item`: The item that holds attributes.
-- `delegate`: The previously approved account to remove.
-
-Emits `ItemAttributesApprovalRemoved` on success.
+See [`Pallet::cancel_item_attributes_approval`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -218,15 +157,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_swap
-Cancel an atomic swap.
-
-Origin must be Signed.
-Origin must be an owner of the `item` if the deadline hasn&\#x27;t expired.
-
-- `collection`: The collection of the item.
-- `item`: The item an owner wants to give.
-
-Emits `SwapCancelled` on success.
+See [`Pallet::cancel_swap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -245,18 +176,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_swap
-Claim an atomic swap.
-This method executes a pending swap, that was created by a counterpart before.
-
-Origin must be Signed and must be an owner of the `item`.
-
-- `send_collection`: The collection of the item to be sent.
-- `send_item`: The item to be sent.
-- `receive_collection`: The collection of the item to be received.
-- `receive_item`: The item to be received.
-- `witness_price`: A price that was previously agreed on.
-
-Emits `SwapClaimed` on success.
+See [`Pallet::claim_swap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -290,19 +210,7 @@ call = substrate.compose_call(
 
 ---------
 ### clear_all_transfer_approvals
-Cancel all the approvals of a specific item.
-
-Origin must be either:
-- the `Force` origin;
-- `Signed` with the signer being the Owner of the `item`;
-
-Arguments:
-- `collection`: The collection of the item of whose approvals will be cleared.
-- `item`: The item of the collection of whose approvals will be cleared.
-
-Emits `AllApprovalsCancelled` on success.
-
-Weight: `O(1)`
+See [`Pallet::clear_all_transfer_approvals`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -318,21 +226,7 @@ call = substrate.compose_call(
 
 ---------
 ### clear_attribute
-Clear an attribute for a collection or item.
-
-Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
-attribute.
-
-Any deposit is freed for the collection&\#x27;s owner.
-
-- `collection`: The identifier of the collection whose item&\#x27;s metadata to clear.
-- `maybe_item`: The identifier of the item whose metadata to clear.
-- `namespace`: Attribute&\#x27;s namespace.
-- `key`: The key of the attribute.
-
-Emits `AttributeCleared`.
-
-Weight: `O(1)`
+See [`Pallet::clear_attribute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -360,18 +254,7 @@ call = substrate.compose_call(
 
 ---------
 ### clear_collection_metadata
-Clear the metadata for a collection.
-
-Origin must be either `ForceOrigin` or `Signed` and the sender should be the Admin of
-the `collection`.
-
-Any deposit is freed for the collection&\#x27;s owner.
-
-- `collection`: The identifier of the collection whose metadata to clear.
-
-Emits `CollectionMetadataCleared`.
-
-Weight: `O(1)`
+See [`Pallet::clear_collection_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -386,19 +269,7 @@ call = substrate.compose_call(
 
 ---------
 ### clear_metadata
-Clear the metadata for an item.
-
-Origin must be either `ForceOrigin` or Signed and the sender should be the Admin of the
-`collection`.
-
-Any deposit is freed for the collection&\#x27;s owner.
-
-- `collection`: The identifier of the collection whose item&\#x27;s metadata to clear.
-- `item`: The identifier of the item whose metadata to clear.
-
-Emits `ItemMetadataCleared`.
-
-Weight: `O(1)`
+See [`Pallet::clear_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -414,21 +285,7 @@ call = substrate.compose_call(
 
 ---------
 ### create
-Issue a new collection of non-fungible items from a public origin.
-
-This new collection has no items initially and its owner is the origin.
-
-The origin must be Signed and the sender must have sufficient funds free.
-
-`ItemDeposit` funds of sender are reserved.
-
-Parameters:
-- `admin`: The admin of this collection. The admin is the initial address of each
-member of the collection&\#x27;s admin team.
-
-Emits `Created` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::create`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -470,22 +327,7 @@ call = substrate.compose_call(
 
 ---------
 ### create_swap
-Register a new atomic swap, declaring an intention to send an `item` in exchange for
-`desired_item` from origin to target on the current blockchain.
-The target can execute the swap during the specified `duration` of blocks (if set).
-Additionally, the price could be set for the desired `item`.
-
-Origin must be Signed and must be an owner of the `item`.
-
-- `collection`: The collection of the item.
-- `item`: The item an owner wants to give.
-- `desired_collection`: The collection of the desired item.
-- `desired_item`: The desired item an owner wants to receive.
-- `maybe_price`: The price an owner is willing to pay or receive for the desired `item`.
-- `duration`: A deadline for the swap. Specified by providing the number of blocks
-	after which the swap will expire.
-
-Emits `SwapCreated` on success.
+See [`Pallet::create_swap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -494,7 +336,7 @@ Emits `SwapCreated` on success.
 | desired_collection | `T::CollectionId` | 
 | maybe_desired_item | `Option<T::ItemId>` | 
 | maybe_price | `Option<PriceWithDirection<ItemPrice<T, I>>>` | 
-| duration | `<T as SystemConfig>::BlockNumber` | 
+| duration | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -524,23 +366,7 @@ call = substrate.compose_call(
 
 ---------
 ### destroy
-Destroy a collection of fungible items.
-
-The origin must conform to `ForceOrigin` or must be `Signed` and the sender must be the
-owner of the `collection`.
-
-NOTE: The collection must have 0 items to be destroyed.
-
-- `collection`: The identifier of the collection to be destroyed.
-- `witness`: Information on the items minted in the collection. This must be
-correct.
-
-Emits `Destroyed` event when successful.
-
-Weight: `O(m + c + a)` where:
-- `m = witness.item_metadatas`
-- `c = witness.item_configs`
-- `a = witness.attributes`
+See [`Pallet::destroy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -563,16 +389,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_collection_config
-Change the config of a collection.
-
-Origin must be `ForceOrigin`.
-
-- `collection`: The identifier of the collection.
-- `config`: The new config of this collection.
-
-Emits `CollectionConfigChanged`.
-
-Weight: `O(1)`
+See [`Pallet::force_collection_config`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -608,16 +425,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_collection_owner
-Change the Owner of a collection.
-
-Origin must be `ForceOrigin`.
-
-- `collection`: The identifier of the collection.
-- `owner`: The new Owner of this collection.
-
-Emits `OwnerChanged`.
-
-Weight: `O(1)`
+See [`Pallet::force_collection_owner`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -642,21 +450,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_create
-Issue a new collection of non-fungible items from a privileged origin.
-
-This new collection has no items initially.
-
-The origin must conform to `ForceOrigin`.
-
-Unlike `create`, no funds are reserved.
-
-- `owner`: The owner of this collection of items. The owner has full superuser
-  permissions over this item, but may later change and configure the permissions using
-  `transfer_ownership` and `set_team`.
-
-Emits `ForceCreated` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::force_create`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -698,19 +492,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_mint
-Mint an item of a particular collection from a privileged origin.
-
-The origin must conform to `ForceOrigin` or must be `Signed` and the sender must be the
-Issuer of the `collection`.
-
-- `collection`: The collection of the item to be minted.
-- `item`: An identifier of the new item.
-- `mint_to`: Account into which the item will be minted.
-- `item_config`: A config of the new item.
-
-Emits `Issued` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::force_mint`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -739,23 +521,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_set_attribute
-Force-set an attribute for a collection or item.
-
-Origin must be `ForceOrigin`.
-
-If the attribute already exists and it was set by another account, the deposit
-will be returned to the previous owner.
-
-- `set_as`: An optional owner of the attribute.
-- `collection`: The identifier of the collection whose item&\#x27;s metadata to set.
-- `maybe_item`: The identifier of the item whose metadata to set.
-- `namespace`: Attribute&\#x27;s namespace.
-- `key`: The key of the attribute.
-- `value`: The value to which to set the attribute.
-
-Emits `AttributeSet`.
-
-Weight: `O(1)`
+See [`Pallet::force_set_attribute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -787,18 +553,7 @@ call = substrate.compose_call(
 
 ---------
 ### lock_collection
-Disallows specified settings for the whole collection.
-
-Origin must be Signed and the sender should be the Owner of the `collection`.
-
-- `collection`: The collection to be locked.
-- `lock_settings`: The settings to be locked.
-
-Note: it&\#x27;s possible to only lock(set) the setting, but not to unset it.
-
-Emits `CollectionLocked`.
-
-Weight: `O(1)`
+See [`Pallet::lock_collection`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -817,23 +572,7 @@ call = substrate.compose_call(
 
 ---------
 ### lock_item_properties
-Disallows changing the metadata or attributes of the item.
-
-Origin must be either `ForceOrigin` or Signed and the sender should be the Admin
-of the `collection`.
-
-- `collection`: The collection if the `item`.
-- `item`: An item to be locked.
-- `lock_metadata`: Specifies whether the metadata should be locked.
-- `lock_attributes`: Specifies whether the attributes in the `CollectionOwner` namespace
-  should be locked.
-
-Note: `lock_attributes` affects the attributes in the `CollectionOwner` namespace only.
-When the metadata or attributes are locked, it won&\#x27;t be possible the unlock them.
-
-Emits `ItemPropertiesLocked`.
-
-Weight: `O(1)`
+See [`Pallet::lock_item_properties`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -856,16 +595,7 @@ call = substrate.compose_call(
 
 ---------
 ### lock_item_transfer
-Disallow further unprivileged transfer of an item.
-
-Origin must be Signed and the sender should be the Freezer of the `collection`.
-
-- `collection`: The collection of the item to be changed.
-- `item`: The item to become non-transferable.
-
-Emits `ItemTransferLocked`.
-
-Weight: `O(1)`
+See [`Pallet::lock_item_transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -881,28 +611,14 @@ call = substrate.compose_call(
 
 ---------
 ### mint
-Mint an item of a particular collection.
-
-The origin must be Signed and the sender must comply with the `mint_settings` rules.
-
-- `collection`: The collection of the item to be minted.
-- `item`: An identifier of the new item.
-- `mint_to`: Account into which the item will be minted.
-- `witness_data`: When the mint type is `HolderOf(collection_id)`, then the owned
-  item_id from that collection needs to be provided within the witness data object.
-
-Note: the deposit will be taken from the `origin` and not the `owner` of the `item`.
-
-Emits `Issued` event when successful.
-
-Weight: `O(1)`
+See [`Pallet::mint`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | collection | `T::CollectionId` | 
 | item | `T::ItemId` | 
 | mint_to | `AccountIdLookupOf<T>` | 
-| witness_data | `Option<MintWitness<T::ItemId>>` | 
+| witness_data | `Option<MintWitness<T::ItemId, DepositBalanceOf<T, I>>>` | 
 
 #### Python
 ```python
@@ -919,7 +635,16 @@ call = substrate.compose_call(
     },
     'witness_data': (
         None,
-        {'owned_item': 'u32'},
+        {
+            'mint_price': (
+                None,
+                'u128',
+            ),
+            'owned_item': (
+                None,
+                'u32',
+            ),
+        },
     ),
 }
 )
@@ -927,23 +652,11 @@ call = substrate.compose_call(
 
 ---------
 ### mint_pre_signed
-Mint an item by providing the pre-signed approval.
-
-Origin must be Signed.
-
-- `mint_data`: The pre-signed approval that consists of the information about the item,
-  its metadata, attributes, who can mint it (`None` for anyone) and until what block
-  number.
-- `signature`: The signature of the `data` object.
-- `signer`: The `data` object&\#x27;s signer. Should be an Issuer of the collection.
-
-Emits `Issued` on success.
-Emits `AttributeSet` if the attributes were provided.
-Emits `ItemMetadataSet` if the metadata was not empty.
+See [`Pallet::mint_pre_signed`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| mint_data | `PreSignedMintOf<T, I>` | 
+| mint_data | `Box<PreSignedMintOf<T, I>>` | 
 | signature | `T::OffchainSignature` | 
 | signer | `T::AccountId` | 
 
@@ -959,6 +672,7 @@ call = substrate.compose_call(
         'deadline': 'u32',
         'item': 'u32',
         'metadata': 'Bytes',
+        'mint_price': (None, 'u128'),
         'only_account': (
             None,
             'AccountId',
@@ -976,13 +690,7 @@ call = substrate.compose_call(
 
 ---------
 ### pay_tips
-Allows to pay the tips.
-
-Origin must be Signed.
-
-- `tips`: Tips array.
-
-Emits `TipSent` on every tip transfer.
+See [`Pallet::pay_tips`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1006,23 +714,7 @@ call = substrate.compose_call(
 
 ---------
 ### redeposit
-Re-evaluate the deposits on some items.
-
-Origin must be Signed and the sender should be the Owner of the `collection`.
-
-- `collection`: The collection of the items to be reevaluated.
-- `items`: The items of the collection whose deposits will be reevaluated.
-
-NOTE: This exists as a best-effort function. Any items which are unknown or
-in the case that the owner account does not have reservable funds to pay for a
-deposit increase are ignored. Generally the owner isn&\#x27;t going to call this on items
-whose existing deposit is less than the refreshed deposit as it would only cost them,
-so it&\#x27;s of little consequence.
-
-It will still return an error in the case that the collection is unknown or the signer
-is not permitted to call it.
-
-Weight: `O(items.len())`
+See [`Pallet::redeposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1038,16 +730,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_accept_ownership
-Set (or reset) the acceptance of ownership for a particular account.
-
-Origin must be `Signed` and if `maybe_collection` is `Some`, then the signer must have a
-provider reference.
-
-- `maybe_collection`: The identifier of the collection whose ownership the signer is
-  willing to accept, or if `None`, an indication that the signer is willing to accept no
-  ownership transferal.
-
-Emits `OwnershipAcceptanceChanged`.
+See [`Pallet::set_accept_ownership`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1062,28 +745,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_attribute
-Set an attribute for a collection or item.
-
-Origin must be Signed and must conform to the namespace ruleset:
-- `CollectionOwner` namespace could be modified by the `collection` Admin only;
-- `ItemOwner` namespace could be modified by the `maybe_item` owner only. `maybe_item`
-  should be set in that case;
-- `Account(AccountId)` namespace could be modified only when the `origin` was given a
-  permission to do so;
-
-The funds of `origin` are reserved according to the formula:
-`AttributeDepositBase + DepositPerByte * (key.len + value.len)` taking into
-account any already reserved funds.
-
-- `collection`: The identifier of the collection whose item&\#x27;s metadata to set.
-- `maybe_item`: The identifier of the item whose metadata to set.
-- `namespace`: Attribute&\#x27;s namespace.
-- `key`: The key of the attribute.
-- `value`: The value to which to set the attribute.
-
-Emits `AttributeSet`.
-
-Weight: `O(1)`
+See [`Pallet::set_attribute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1113,19 +775,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_attributes_pre_signed
-Set attributes for an item by providing the pre-signed approval.
-
-Origin must be Signed and must be an owner of the `data.item`.
-
-- `data`: The pre-signed approval that consists of the information about the item,
-  attributes to update and until what block number.
-- `signature`: The signature of the `data` object.
-- `signer`: The `data` object&\#x27;s signer. Should be an Admin of the collection for the
-  `CollectionOwner` namespace.
-
-Emits `AttributeSet` for each provided attribute.
-Emits `ItemAttributesApprovalAdded` if the approval wasn&\#x27;t set before.
-Emits `PreSignedAttributesSet` on success.
+See [`Pallet::set_attributes_pre_signed`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1163,15 +813,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_collection_max_supply
-Set the maximum number of items a collection could have.
-
-Origin must be either `ForceOrigin` or `Signed` and the sender should be the Owner of
-the `collection`.
-
-- `collection`: The identifier of the collection to change.
-- `max_supply`: The maximum number of items a collection could have.
-
-Emits `CollectionMaxSupplySet` event when successful.
+See [`Pallet::set_collection_max_supply`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1190,21 +832,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_collection_metadata
-Set the metadata for a collection.
-
-Origin must be either `ForceOrigin` or `Signed` and the sender should be the Admin of
-the `collection`.
-
-If the origin is `Signed`, then funds of signer are reserved according to the formula:
-`MetadataDepositBase + DepositPerByte * data.len` taking into
-account any already reserved funds.
-
-- `collection`: The identifier of the item whose metadata to update.
-- `data`: The general information of this item. Limited in length by `StringLimit`.
-
-Emits `CollectionMetadataSet`.
-
-Weight: `O(1)`
+See [`Pallet::set_collection_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1220,22 +848,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_metadata
-Set the metadata for an item.
-
-Origin must be either `ForceOrigin` or Signed and the sender should be the Admin of the
-`collection`.
-
-If the origin is Signed, then funds of signer are reserved according to the formula:
-`MetadataDepositBase + DepositPerByte * data.len` taking into
-account any already reserved funds.
-
-- `collection`: The identifier of the collection whose item&\#x27;s metadata to set.
-- `item`: The identifier of the item whose metadata to set.
-- `data`: The general information of this item. Limited in length by `StringLimit`.
-
-Emits `ItemMetadataSet`.
-
-Weight: `O(1)`
+See [`Pallet::set_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1256,17 +869,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_price
-Set (or reset) the price for an item.
-
-Origin must be Signed and must be the owner of the `item`.
-
-- `collection`: The collection of the item.
-- `item`: The item to set the price for.
-- `price`: The price for the item. Pass `None`, to reset the price.
-- `buyer`: Restricts the buy operation to a specific account.
-
-Emits `ItemPriceSet` on success if the price is not `None`.
-Emits `ItemPriceRemoved` on success if the price is `None`.
+See [`Pallet::set_price`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1298,22 +901,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_team
-Change the Issuer, Admin and Freezer of a collection.
-
-Origin must be either `ForceOrigin` or Signed and the sender should be the Owner of the
-`collection`.
-
-Note: by setting the role to `None` only the `ForceOrigin` will be able to change it
-after to `Some(account)`.
-
-- `collection`: The collection whose team should be changed.
-- `issuer`: The new Issuer of this collection.
-- `admin`: The new Admin of this collection.
-- `freezer`: The new Freezer of this collection.
-
-Emits `TeamChanged`.
-
-Weight: `O(1)`
+See [`Pallet::set_team`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1363,20 +951,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer
-Move an item from the sender account to another.
-
-Origin must be Signed and the signing account must be either:
-- the Owner of the `item`;
-- the approved delegate for the `item` (in this case, the approval is reset).
-
-Arguments:
-- `collection`: The collection of the item to be transferred.
-- `item`: The item to be transferred.
-- `dest`: The account to receive ownership of the item.
-
-Emits `Transferred`.
-
-Weight: `O(1)`
+See [`Pallet::transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1403,17 +978,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_ownership
-Change the Owner of a collection.
-
-Origin must be Signed and the sender should be the Owner of the `collection`.
-
-- `collection`: The collection whose owner should be changed.
-- `owner`: The new Owner of this collection. They must have called
-  `set_accept_ownership` with `collection` in order for this operation to succeed.
-
-Emits `OwnerChanged`.
-
-Weight: `O(1)`
+See [`Pallet::transfer_ownership`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1438,16 +1003,7 @@ call = substrate.compose_call(
 
 ---------
 ### unlock_item_transfer
-Re-allow unprivileged transfer of an item.
-
-Origin must be Signed and the sender should be the Freezer of the `collection`.
-
-- `collection`: The collection of the item to be changed.
-- `item`: The item to become transferable.
-
-Emits `ItemTransferUnlocked`.
-
-Weight: `O(1)`
+See [`Pallet::unlock_item_transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1463,21 +1019,12 @@ call = substrate.compose_call(
 
 ---------
 ### update_mint_settings
-Update mint settings.
-
-Origin must be either `ForceOrigin` or `Signed` and the sender should be the Issuer
-of the `collection`.
-
-- `collection`: The identifier of the collection to change.
-- `mint_settings`: The new mint settings.
-
-Emits `CollectionMintSettingsUpdated` event when successful.
+See [`Pallet::update_mint_settings`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | collection | `T::CollectionId` | 
-| mint_settings | `MintSettings<BalanceOf<T, I>,<T as SystemConfig>::BlockNumber, T::
-CollectionId,>` | 
+| mint_settings | `MintSettings<BalanceOf<T, I>, BlockNumberFor<T>, T::CollectionId>` | 
 
 #### Python
 ```python
@@ -1750,7 +1297,7 @@ Event gets emitted when the `NextCollectionId` gets incremented.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| next_id | `T::CollectionId` | ```u32```
+| next_id | `Option<T::CollectionId>` | ```(None, 'u32')```
 
 ---------
 ### OwnerChanged
@@ -1812,7 +1359,7 @@ The swap was cancelled.
 | desired_collection | `T::CollectionId` | ```u32```
 | desired_item | `Option<T::ItemId>` | ```(None, 'u32')```
 | price | `Option<PriceWithDirection<ItemPrice<T, I>>>` | ```(None, {'amount': 'u128', 'direction': ('Send', 'Receive')})```
-| deadline | `<T as SystemConfig>::BlockNumber` | ```u32```
+| deadline | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### SwapClaimed
@@ -1827,7 +1374,7 @@ The swap has been claimed.
 | received_item | `T::ItemId` | ```u32```
 | received_item_owner | `T::AccountId` | ```AccountId```
 | price | `Option<PriceWithDirection<ItemPrice<T, I>>>` | ```(None, {'amount': 'u128', 'direction': ('Send', 'Receive')})```
-| deadline | `<T as SystemConfig>::BlockNumber` | ```u32```
+| deadline | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### SwapCreated
@@ -1840,7 +1387,7 @@ An `item` swap intent was created.
 | desired_collection | `T::CollectionId` | ```u32```
 | desired_item | `Option<T::ItemId>` | ```(None, 'u32')```
 | price | `Option<PriceWithDirection<ItemPrice<T, I>>>` | ```(None, {'amount': 'u128', 'direction': ('Send', 'Receive')})```
-| deadline | `<T as SystemConfig>::BlockNumber` | ```u32```
+| deadline | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### TeamChanged
@@ -1876,7 +1423,7 @@ a `delegate`.
 | item | `T::ItemId` | ```u32```
 | owner | `T::AccountId` | ```AccountId```
 | delegate | `T::AccountId` | ```AccountId```
-| deadline | `Option<<T as SystemConfig>::BlockNumber>` | ```(None, 'u32')```
+| deadline | `Option<BlockNumberFor<T>>` | ```(None, 'u32')```
 
 ---------
 ### Transferred
@@ -2041,7 +1588,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'approvals': 'scale_info::359',
+    'approvals': 'scale_info::377',
     'deposit': {'account': 'AccountId', 'amount': 'u128'},
     'owner': 'AccountId',
 }
@@ -2059,7 +1606,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::369'
+'scale_info::387'
 ```
 ---------
 ### ItemConfigOf
@@ -2465,6 +2012,10 @@ The given item ID is unknown.
 ---------
 ### UnknownSwap
 Swap doesn&\#x27;t exist.
+
+---------
+### WitnessRequired
+The witness data should be provided.
 
 ---------
 ### WrongDelegate

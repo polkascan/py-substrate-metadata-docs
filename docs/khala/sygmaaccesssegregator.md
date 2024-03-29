@@ -6,7 +6,7 @@
 
 ---------
 ### grant_access
-Grants access to an account for a extrinsic.
+See [`Pallet::grant_access`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

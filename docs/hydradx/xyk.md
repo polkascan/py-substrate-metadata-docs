@@ -6,11 +6,7 @@
 
 ---------
 ### add_liquidity
-Add liquidity to previously created asset pair pool.
-
-Shares are issued with current price.
-
-Emits `LiquidityAdded` event when successful.
+See [`Pallet::add_liquidity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -33,13 +29,7 @@ call = substrate.compose_call(
 
 ---------
 ### buy
-Trade asset in for asset out.
-
-Executes a swap of `asset_in` for `asset_out`. Price is determined by the liquidity pool.
-
-`max_limit` - maximum amount of `asset_in` to be sold in exchange for `asset_out`.
-
-Emits `BuyExecuted` when successful.
+See [`Pallet::buy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -64,15 +54,7 @@ call = substrate.compose_call(
 
 ---------
 ### create_pool
-Create new pool for given asset pair.
-
-Registers new pool for given asset pair (`asset a` and `asset b`) in asset registry.
-Asset registry creates new id or returns previously created one if such pool existed before.
-
-Pool is created with initial liquidity provided by `origin`.
-Shares are issued with specified initial price and represents proportion of asset in the pool.
-
-Emits `PoolCreated` event when successful.
+See [`Pallet::create_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -95,12 +77,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_liquidity
-Remove liquidity from specific liquidity pool in the form of burning shares.
-
-If liquidity in the pool reaches 0, it is destroyed.
-
-Emits &\#x27;LiquidityRemoved&\#x27; when successful.
-Emits &\#x27;PoolDestroyed&\#x27; when pool is destroyed.
+See [`Pallet::remove_liquidity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -121,13 +98,7 @@ call = substrate.compose_call(
 
 ---------
 ### sell
-Trade asset in for asset out.
-
-Executes a swap of `asset_in` for `asset_out`. Price is determined by the liquidity pool.
-
-`max_limit` - minimum amount of `asset_out` / amount of asset_out to be obtained from the pool in exchange for `asset_in`.
-
-Emits `SellExecuted` when successful.
+See [`Pallet::sell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -347,6 +318,17 @@ constant = substrate.get_constant('XYK', 'MinTradingLimit')
 #### Python
 ```python
 constant = substrate.get_constant('XYK', 'NativeAssetId')
+```
+---------
+### OracleSource
+ Oracle source identifier for this pallet.
+#### Value
+```python
+'0x687964726178796b'
+```
+#### Python
+```python
+constant = substrate.get_constant('XYK', 'OracleSource')
 ```
 ---------
 ## Errors

@@ -6,7 +6,7 @@
 
 ---------
 ### create_and_convert
-Instead of iterating, create a project from the parameters of a grant.
+See [`Pallet::create_and_convert`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -16,6 +16,7 @@ Instead of iterating, create a project from the parameters of a grant.
 | amount_requested | `BalanceOf<T>` | 
 | treasury_origin | `TreasuryOrigin` | 
 | grant_id | `GrantId` | 
+| external_owned_address | `Option<common_types::ForeignOwnedAccount>` | 
 
 #### Python
 ```python
@@ -27,13 +28,23 @@ call = substrate.compose_call(
     ],
     'currency_id': {
         'AUSD': None,
-        'ForeignAsset': 'u32',
+        'ForeignAsset': (
+            'ETH',
+            'USDT',
+        ),
         'KAR': None,
         'KSM': None,
         'MGX': None,
         'Native': None,
     },
-    'grant_id': '[u8; 32]',
+    'external_owned_address': (
+        None,
+        {
+            'ETH': '[u8; 20]',
+            'TRON': '[u8; 22]',
+        },
+    ),
+    'grant_id': 'scale_info::12',
     'proposed_milestones': [
         {'percentage_to_unlock': 'u8'},
     ],
@@ -55,7 +66,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | submitter | `AccountIdOf<T>` | ```AccountId```
-| grant_id | `GrantId` | ```[u8; 32]```
+| grant_id | `GrantId` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -81,7 +92,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'ImbueGrants', 'GrantsSubmitted', ['[u8; 32]']
+    'ImbueGrants', 'GrantsSubmitted', ['scale_info::12']
 )
 ```
 
@@ -99,7 +110,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'ImbueGrants', 'GrantsSubmittedBy', ['AccountId', '[u8; 32]']
+    'ImbueGrants', 'GrantsSubmittedBy', ['AccountId', 'scale_info::12']
 )
 ```
 
@@ -108,21 +119,15 @@ result = substrate.query(
 ()
 ```
 ---------
-### StorageVersion
-
-#### Python
-```python
-result = substrate.query(
-    'ImbueGrants', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V0', 'V1', 'V2')
-```
----------
 ## Errors
+
+---------
+### CurrencyAccountComboNotSupported
+Currency is not supported for this external address.
+
+---------
+### EoaRequiredForForeignCurrencies
+If youre using a foreign currency then you need an external_owned_address.
 
 ---------
 ### GrantAlreadyExists
@@ -133,8 +138,16 @@ The grant already exists.
 The GrantId specified cannot be found.
 
 ---------
+### InvalidTreasuryOrigin
+This is an invalid Treasury origin.
+
+---------
 ### MustSumTo100
 Milestones must sum to 100
+
+---------
+### TooManyApprovers
+Too many approvers
 
 ---------
 ### TooManyMilestones

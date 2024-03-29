@@ -19,6 +19,6 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::11']
 ```
 ---------

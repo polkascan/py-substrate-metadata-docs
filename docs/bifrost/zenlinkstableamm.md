@@ -6,14 +6,7 @@
 
 ---------
 ### add_liquidity
-Supply amounts of currencies to the pool.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `amounts`: Supply amounts of currencies.
-- `min_mint_amount`: The min amount of lp currency get.
-- `deadline`: Height of the cutoff block of this transaction
+See `Pallet::add_liquidity`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -21,7 +14,7 @@ Supply amounts of currencies to the pool.
 | amounts | `Vec<Balance>` | 
 | min_mint_amount | `Balance` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -38,17 +31,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_pool_and_base_pool_liquidity
-Supply amounts of currencies to the pool which contains the lp currency of the base
-pool.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `base_pool_id`: The id of base pool.
-- `meta_amounts`: Supply amounts of currencies to pool. The last element must be zero.
-- `base_amounts`: Supply amounts of currencies to base pool.
-- `min_to_mint`: The min amount of pool lp currency get.
-- `deadline`: Height of the cutoff block of this transaction.
+See `Pallet::add_pool_and_base_pool_liquidity`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -58,7 +41,7 @@ pool.
 | base_amounts | `Vec<Balance>` | 
 | min_to_mint | `Balance` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -77,21 +60,7 @@ call = substrate.compose_call(
 
 ---------
 ### create_base_pool
-Create a stable amm pool.
-
-Only admin can create pool.
-
-\# Argument
-
-- `currency_ids`: The currencies will be join the created pool.
-- `currency_decimals`: The currencies corresponding decimals.
-- `lp_currency_id`: The specify lp currency id of the created pool.
-- `a`: The initial A of created pool.
-- `fee`: The swap fee of created pool.
-- `admin_fee`: The admin fee of created pool.
-- `admin_fee_receiver`: The admin fee receiver of created pool.
-- `lp_currency_symbol`: The symbol of created pool lp currency.
-- `lp_currency_decimal`: The decimal of created pool lp currency.
+See `Pallet::create_base_pool`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -145,6 +114,7 @@ call = substrate.compose_call(
                 ),
                 'u8',
             ),
+            'Lend': 'u8',
             'Native': (
                 'ASG',
                 'BNC',
@@ -248,21 +218,7 @@ call = substrate.compose_call(
 
 ---------
 ### create_meta_pool
-Create a stable amm meta pool.
-
-Only admin can create pool.
-
-\# Argument
-
-- `currency_ids`: The currencies will be join the created pool.
-- `currency_decimals`: The currencies corresponding decimals.
-- `lp_currency_id`: The specify lp currency id of the created pool.
-- `a`: The initial A of created pool.
-- `fee`: The swap fee of created pool.
-- `admin_fee`: The admin fee of created pool.
-- `admin_fee_receiver`: The admin fee receiver of created pool.
-- `lp_currency_symbol`: The symbol of created pool lp currency.
-- `lp_currency_decimal`: The decimal of created pool lp currency.
+See `Pallet::create_meta_pool`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -316,6 +272,7 @@ call = substrate.compose_call(
                 ),
                 'u8',
             ),
+            'Lend': 'u8',
             'Native': (
                 'ASG',
                 'BNC',
@@ -419,17 +376,7 @@ call = substrate.compose_call(
 
 ---------
 ### ramp_a
-Start ramping up or down A parameter towards given future_a and future_a_time
-
-Only called by admin.
-Checks if the change is too rapid, and commits the new A value only when it falls under
-the limit range.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `future_a`: The new A to ramp towards.
-- `future_a_time`: Timestamp when the new A should be reached
+See `Pallet::ramp_a`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -450,14 +397,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_liquidity
-Remove liquidity from a pool.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `lp_amount`: The amounts of lp currency.
-- `min_amounts`: The min amounts of pool&\#x27;s currencies to get.
-- `deadline`: Height of the cutoff block of this transaction
+See `Pallet::remove_liquidity`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -465,7 +405,7 @@ Remove liquidity from a pool.
 | lp_amount | `Balance` | 
 | min_amounts | `Vec<Balance>` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -482,14 +422,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_liquidity_imbalance
-Remove liquidity from a pool to the specify amounts of currencies.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `amounts`: The specify amounts of receive currencies.
-- `max_burn_amount`: The max amount of burned lp currency.
-- `deadline`: Height of the cutoff block of this transaction
+See `Pallet::remove_liquidity_imbalance`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -497,7 +430,7 @@ Remove liquidity from a pool to the specify amounts of currencies.
 | amounts | `Vec<Balance>` | 
 | max_burn_amount | `Balance` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -514,15 +447,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_liquidity_one_currency
-Remove liquidity from a pool to get one currency.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `lp_amount`: The amounts of lp currency.
-- `index`: The index of receive currency.
-- `min_amount`: The min amounts of received currency;
-- `deadline`: Height of the cutoff block of this transaction
+See `Pallet::remove_liquidity_one_currency`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -531,7 +456,7 @@ Remove liquidity from a pool to get one currency.
 | index | `u32` | 
 | min_amount | `Balance` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -549,16 +474,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_pool_and_base_pool_liquidity
-Remove liquidity from a pool which contains the lp currency of the base pool.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `base_pool_id`: The id of base pool.
-- `amount`: The amounts of lp currency to burn.
-- `min_amounts_meta`: The min amounts of pool&\#x27;s currencies to get.
-- `min_amounts_base`: The min amounts of basic pool&\#x27;s currencies to get.
-- `deadline`: Height of the cutoff block of this transaction.
+See `Pallet::remove_pool_and_base_pool_liquidity`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -568,7 +484,7 @@ Remove liquidity from a pool which contains the lp currency of the base pool.
 | min_amounts_meta | `Vec<Balance>` | 
 | min_amounts_base | `Vec<Balance>` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -587,17 +503,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_pool_and_base_pool_liquidity_one_currency
-Remove liquidity from a pool which contains the lp currency of the base pool
-to get one currency.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `base_pool_id`: The id of base pool.
-- `amount`: The amounts of lp currency to burn.
-- `i`: The index of target currency in basic pool.
-- `min_amount`: The min amounts of received currency.
-- `deadline`: Height of the cutoff block of this transaction.
+See `Pallet::remove_pool_and_base_pool_liquidity_one_currency`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -607,7 +513,7 @@ to get one currency.
 | i | `u32` | 
 | min_amount | `Balance` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -626,14 +532,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_admin_fee
-Update admin fee of the pool.
-
-Only called by admin.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `new_admin_fee`: The new admin fee of this pool.
+See `Pallet::set_admin_fee`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -652,14 +551,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_swap_fee
-Update fee of the pool.
-
-Only called by admin.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `new_swap_fee`: The new swap fee of this pool.
+See `Pallet::set_swap_fee`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -678,13 +570,7 @@ call = substrate.compose_call(
 
 ---------
 ### stop_ramp_a
-Stop ramping A parameter.
-
-Only called by admin.
-
-\# Argument
-
-- `pool_id`: The id of pool.
+See `Pallet::stop_ramp_a`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -699,16 +585,7 @@ call = substrate.compose_call(
 
 ---------
 ### swap
-Swap a amounts of currencies to get other.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `from_index`: The index of swap currency id.
-- `to_index`: The index of receive currency id.
-- `in_amount`: The amounts of currencies swap.
-- `min_mint_amount`: The min amount of receive currency.
-- `deadline`: Height of the cutoff block of this transaction
+See `Pallet::swap`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -718,7 +595,7 @@ Swap a amounts of currencies to get other.
 | in_amount | `Balance` | 
 | min_out_amount | `Balance` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -737,6 +614,7 @@ call = substrate.compose_call(
 
 ---------
 ### swap_meta_pool_underlying
+See `Pallet::swap_meta_pool_underlying`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -746,7 +624,7 @@ call = substrate.compose_call(
 | dx | `Balance` | 
 | min_dy | `Balance` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -765,18 +643,7 @@ call = substrate.compose_call(
 
 ---------
 ### swap_pool_from_base
-Swap the currency from basic pool to get amounts of other currency in pool.
-to get one currency.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `base_pool_id`: The id of base pool.
-- `in_index`: The index of swap currency in basic pool.
-- `out_index`: The index of target currency in pool.
-- `dx`: The amounts of swap currency.
-- `min_dy`: The min amounts of target currency.
-- `deadline`: Height of the cutoff block of this transaction.
+See `Pallet::swap_pool_from_base`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -787,7 +654,7 @@ to get one currency.
 | dx | `Balance` | 
 | min_dy | `Balance` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -807,18 +674,7 @@ call = substrate.compose_call(
 
 ---------
 ### swap_pool_to_base
-Swap the currency from pool to get amounts of other currency in basic pool.
-to get one currency.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `base_pool_id`: The id of base pool.
-- `in_index`: The index of swap currency in basic pool.
-- `out_index`: The index of target currency in pool.
-- `dx`: The amounts of swap currency.
-- `min_dy`: The min amounts of target currency.
-- `deadline`: Height of the cutoff block of this transaction.
+See `Pallet::swap_pool_to_base`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -829,7 +685,7 @@ to get one currency.
 | dx | `Balance` | 
 | min_dy | `Balance` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -849,14 +705,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_fee_receiver
-Update admin fee receiver of the pool.
-
-Only called by admin.
-
-\# Argument
-
-- `pool_id`: The id of pool.
-- `fee_receiver`: The new admin fee receiver of this pool.
+See `Pallet::update_fee_receiver`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -881,13 +730,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw_admin_fee
-Withdraw the admin fee from pool to admin fee receiver.
-
-Can called by anyone.
-
-\# Argument
-
-- `pool_id`: The id of pool.
+See `Pallet::withdraw_admin_fee`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -924,7 +767,7 @@ A pool&\#x27;s admin fee was collected.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pool_id | `T::PoolId` | ```u32```
-| currency_id | `T::CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| currency_id | `T::CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | fee_amount | `Balance` | ```u128```
 
 ---------
@@ -934,8 +777,8 @@ A pool was created.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pool_id | `T::PoolId` | ```u32```
-| currency_ids | `Vec<T::CurrencyId>` | ```[{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}]```
-| lp_currency_id | `T::CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| currency_ids | `Vec<T::CurrencyId>` | ```[{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}]```
+| lp_currency_id | `T::CurrencyId` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | a | `Number` | ```u128```
 | account | `T::AccountId` | ```AccountId```
 | admin_fee_receiver | `T::AccountId` | ```AccountId```
@@ -1100,6 +943,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -1240,7 +1084,8 @@ result = substrate.query(
             {
                 'BLP': 'u32',
                 'ForeignAsset': 'u32',
-                'LPToken': ('scale_info::256', 'u8', 'scale_info::256', 'u8'),
+                'LPToken': ('scale_info::259', 'u8', 'scale_info::259', 'u8'),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -1282,7 +1127,7 @@ result = substrate.query(
                     'MOVR',
                 ),
                 'Token2': 'u8',
-                'VSBond': ('scale_info::256', 'u32', 'u32', 'u32'),
+                'VSBond': ('scale_info::259', 'u32', 'u32', 'u32'),
                 'VSBond2': ('u8', 'u32', 'u32', 'u32'),
                 'VSToken': (
                     'ASG',
@@ -1353,6 +1198,7 @@ result = substrate.query(
                 ),
                 'u8',
             ),
+            'Lend': 'u8',
             'Native': (
                 'ASG',
                 'BNC',
@@ -1451,7 +1297,8 @@ result = substrate.query(
             {
                 'BLP': 'u32',
                 'ForeignAsset': 'u32',
-                'LPToken': ('scale_info::256', 'u8', 'scale_info::256', 'u8'),
+                'LPToken': ('scale_info::259', 'u8', 'scale_info::259', 'u8'),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -1493,7 +1340,7 @@ result = substrate.query(
                     'MOVR',
                 ),
                 'Token2': 'u8',
-                'VSBond': ('scale_info::256', 'u32', 'u32', 'u32'),
+                'VSBond': ('scale_info::259', 'u32', 'u32', 'u32'),
                 'VSBond2': ('u8', 'u32', 'u32', 'u32'),
                 'VSToken': (
                     'ASG',
@@ -1537,21 +1384,22 @@ result = substrate.query(
                     'BLP': 'u32',
                     'ForeignAsset': 'u32',
                     'LPToken': (
-                        'scale_info::256',
+                        'scale_info::259',
                         'u8',
-                        'scale_info::256',
+                        'scale_info::259',
                         'u8',
                     ),
-                    'Native': 'scale_info::256',
-                    'Stable': 'scale_info::256',
+                    'Lend': 'u8',
+                    'Native': 'scale_info::259',
+                    'Stable': 'scale_info::259',
                     'StableLpToken': 'u32',
-                    'Token': 'scale_info::256',
+                    'Token': 'scale_info::259',
                     'Token2': 'u8',
-                    'VSBond': ('scale_info::256', 'u32', 'u32', 'u32'),
+                    'VSBond': ('scale_info::259', 'u32', 'u32', 'u32'),
                     'VSBond2': ('u8', 'u32', 'u32', 'u32'),
-                    'VSToken': 'scale_info::256',
+                    'VSToken': 'scale_info::259',
                     'VSToken2': 'u8',
-                    'VToken': 'scale_info::256',
+                    'VToken': 'scale_info::259',
                     'VToken2': 'u8',
                 },
             ],
@@ -1564,7 +1412,8 @@ result = substrate.query(
             'lp_currency_id': {
                 'BLP': 'u32',
                 'ForeignAsset': 'u32',
-                'LPToken': ('scale_info::256', 'u8', 'scale_info::256', 'u8'),
+                'LPToken': ('scale_info::259', 'u8', 'scale_info::259', 'u8'),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -1606,7 +1455,7 @@ result = substrate.query(
                     'MOVR',
                 ),
                 'Token2': 'u8',
-                'VSBond': ('scale_info::256', 'u32', 'u32', 'u32'),
+                'VSBond': ('scale_info::259', 'u32', 'u32', 'u32'),
                 'VSBond2': ('u8', 'u32', 'u32', 'u32'),
                 'VSToken': (
                     'ASG',

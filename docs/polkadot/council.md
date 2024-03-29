@@ -44,7 +44,7 @@ call = substrate.compose_call(
     'Council', 'close', {
     'index': 'u32',
     'length_bound': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::12',
     'proposal_weight_bound': {
         'proof_size': 'u64',
         'ref_time': 'u64',
@@ -73,7 +73,7 @@ O(P) where P is the number of max proposals
 #### Python
 ```python
 call = substrate.compose_call(
-    'Council', 'disapprove_proposal', {'proposal_hash': '[u8; 32]'}
+    'Council', 'disapprove_proposal', {'proposal_hash': 'scale_info::12'}
 )
 ```
 
@@ -206,7 +206,7 @@ call = substrate.compose_call(
     'Council', 'vote', {
     'approve': 'bool',
     'index': 'u32',
-    'proposal': '[u8; 32]',
+    'proposal': 'scale_info::12',
 }
 )
 ```
@@ -220,7 +220,7 @@ A motion was approved by the required threshold.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Closed
@@ -228,7 +228,7 @@ A proposal was closed because its threshold was reached or after its duration wa
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | yes | `MemberCount` | ```u32```
 | no | `MemberCount` | ```u32```
 
@@ -238,7 +238,7 @@ A motion was not approved by the required threshold.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Executed
@@ -246,7 +246,7 @@ A motion was executed; result will be `Ok` if it returned without error.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
@@ -255,7 +255,7 @@ A single member did some action; result will be `Ok` if it returned without erro
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
@@ -267,7 +267,7 @@ A motion (given hash) has been proposed (by given account) with a threshold (giv
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
 | proposal_index | `ProposalIndex` | ```u32```
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | threshold | `MemberCount` | ```u32```
 
 ---------
@@ -278,7 +278,7 @@ a tally (yes votes and no votes given respectively as `MemberCount`).
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | account | `T::AccountId` | ```AccountId```
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | voted | `bool` | ```bool```
 | yes | `MemberCount` | ```u32```
 | no | `MemberCount` | ```u32```
@@ -338,7 +338,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Council', 'ProposalOf', ['[u8; 32]']
+    'Council', 'ProposalOf', ['scale_info::12']
 )
 ```
 
@@ -359,7 +359,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::12']
 ```
 ---------
 ### Voting
@@ -368,7 +368,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Council', 'Voting', ['[u8; 32]']
+    'Council', 'Voting', ['scale_info::12']
 )
 ```
 

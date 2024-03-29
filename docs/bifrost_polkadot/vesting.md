@@ -6,11 +6,12 @@
 
 ---------
 ### force_set_cliff
+See [`Pallet::force_set_cliff`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | target | `<T::Lookup as StaticLookup>::Source` | 
-| cliff_block | `T::BlockNumber` | 
+| cliff_block | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -29,66 +30,14 @@ call = substrate.compose_call(
 ```
 
 ---------
-### force_set_vested
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| source | `<T::Lookup as StaticLookup>::Source` | 
-| target | `<T::Lookup as StaticLookup>::Source` | 
-| schedule | `VestingInfo<BalanceOf<T>, T::BlockNumber>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Vesting', 'force_set_vested', {
-    'schedule': {
-        'locked': 'u128',
-        'per_block': 'u128',
-        'starting_block': 'u32',
-    },
-    'source': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': 'u32',
-        'Raw': 'Bytes',
-    },
-    'target': {
-        'Address20': '[u8; 20]',
-        'Address32': '[u8; 32]',
-        'Id': 'AccountId',
-        'Index': 'u32',
-        'Raw': 'Bytes',
-    },
-}
-)
-```
-
----------
 ### force_vested_transfer
-Force a vested transfer.
-
-The dispatch origin for this call must be _Root_.
-
-- `source`: The account whose funds should be transferred.
-- `target`: The account that should be transferred the vested funds.
-- `amount`: The amount of funds to transfer and will be vested.
-- `schedule`: The vesting schedule attached to the transfer.
-
-Emits `VestingCreated`.
-
-\# &lt;weight&gt;
-- `O(1)`.
-- DbWeight: 4 Reads, 4 Writes
-    - Reads: Vesting Storage, Balances Locks, Target Account, Source Account
-    - Writes: Vesting Storage, Balances Locks, Target Account, Source Account
-\# &lt;/weight&gt;
+See [`Pallet::force_vested_transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| source | `<T::Lookup as StaticLookup>::Source` | 
-| target | `<T::Lookup as StaticLookup>::Source` | 
-| schedule | `VestingInfo<BalanceOf<T>, T::BlockNumber>` | 
+| source | `AccountIdLookupOf<T>` | 
+| target | `AccountIdLookupOf<T>` | 
+| schedule | `VestingInfo<BalanceOf<T>, BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -119,10 +68,11 @@ call = substrate.compose_call(
 
 ---------
 ### init_vesting_start_at
+See [`Pallet::init_vesting_start_at`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| vesting_start_at | `T::BlockNumber` | 
+| vesting_start_at | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -132,17 +82,39 @@ call = substrate.compose_call(
 ```
 
 ---------
+### merge_schedules
+See [`Pallet::merge_schedules`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| schedule1_index | `u32` | 
+| schedule2_index | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Vesting', 'merge_schedules', {
+    'schedule1_index': 'u32',
+    'schedule2_index': 'u32',
+}
+)
+```
+
+---------
 ### set_vesting_per_block
+See [`Pallet::set_vesting_per_block`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | target | `<T::Lookup as StaticLookup>::Source` | 
+| index | `u32` | 
 | per_block | `BalanceOf<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Vesting', 'set_vesting_per_block', {
+    'index': 'u32',
     'per_block': 'u128',
     'target': {
         'Address20': '[u8; 20]',
@@ -157,19 +129,7 @@ call = substrate.compose_call(
 
 ---------
 ### vest
-Unlock any vested funds of the sender account.
-
-The dispatch origin for this call must be _Signed_ and the sender must have funds still
-locked under this pallet.
-
-Emits either `VestingCompleted` or `VestingUpdated`.
-
-\# &lt;weight&gt;
-- `O(1)`.
-- DbWeight: 2 Reads, 2 Writes
-    - Reads: Vesting Storage, Balances Locks, [Sender Account]
-    - Writes: Vesting Storage, Balances Locks, [Sender Account]
-\# &lt;/weight&gt;
+See [`Pallet::vest`].
 #### Attributes
 No attributes
 
@@ -182,25 +142,11 @@ call = substrate.compose_call(
 
 ---------
 ### vest_other
-Unlock any vested funds of a `target` account.
-
-The dispatch origin for this call must be _Signed_.
-
-- `target`: The account whose vested funds should be unlocked. Must have funds still
-locked under this pallet.
-
-Emits either `VestingCompleted` or `VestingUpdated`.
-
-\# &lt;weight&gt;
-- `O(1)`.
-- DbWeight: 3 Reads, 3 Writes
-    - Reads: Vesting Storage, Balances Locks, Target Account
-    - Writes: Vesting Storage, Balances Locks, Target Account
-\# &lt;/weight&gt;
+See [`Pallet::vest_other`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| target | `<T::Lookup as StaticLookup>::Source` | 
+| target | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -219,27 +165,12 @@ call = substrate.compose_call(
 
 ---------
 ### vested_transfer
-Create a vested transfer.
-
-The dispatch origin for this call must be _Signed_.
-
-- `target`: The account that should be transferred the vested funds.
-- `amount`: The amount of funds to transfer and will be vested.
-- `schedule`: The vesting schedule attached to the transfer.
-
-Emits `VestingCreated`.
-
-\# &lt;weight&gt;
-- `O(1)`.
-- DbWeight: 3 Reads, 3 Writes
-    - Reads: Vesting Storage, Balances Locks, Target Account, [Sender Account]
-    - Writes: Vesting Storage, Balances Locks, Target Account, [Sender Account]
-\# &lt;/weight&gt;
+See [`Pallet::vested_transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| target | `<T::Lookup as StaticLookup>::Source` | 
-| schedule | `VestingInfo<BalanceOf<T>, T::BlockNumber>` | 
+| target | `AccountIdLookupOf<T>` | 
+| schedule | `VestingInfo<BalanceOf<T>, BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -266,22 +197,21 @@ call = substrate.compose_call(
 
 ---------
 ### VestingCompleted
-An \[account\] has become fully vested. No further vesting can happen.
+An \[account\] has become fully vested.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
+| account | `T::AccountId` | ```AccountId```
 
 ---------
 ### VestingUpdated
-The amount vested has been updated. This could indicate more funds are available. The
-balance given is the amount which is left unvested (and thus locked).
-\[account, unvested\]
+The amount vested has been updated. This could indicate a change in funds available.
+The balance given is the amount which is left unvested (and thus locked).
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
+| account | `T::AccountId` | ```AccountId```
+| unvested | `BalanceOf<T>` | ```u128```
 
 ---------
 ## Storage functions
@@ -302,6 +232,23 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### StorageVersion
+ Storage version of the pallet.
+
+ New networks start with latest version, as determined by the genesis build.
+
+#### Python
+```python
+result = substrate.query(
+    'Vesting', 'StorageVersion', []
+)
+```
+
+#### Return value
+```python
+('V0', 'V1')
+```
+---------
 ### Vesting
  Information regarding the vesting of a given account.
 
@@ -314,7 +261,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'locked': 'u128', 'per_block': 'u128', 'starting_block': 'u32'}
+[{'locked': 'u128', 'per_block': 'u128', 'starting_block': 'u32'}]
 ```
 ---------
 ### VestingStartAt
@@ -335,6 +282,16 @@ result = substrate.query(
 ## Constants
 
 ---------
+### MaxVestingSchedules
+#### Value
+```python
+28
+```
+#### Python
+```python
+constant = substrate.get_constant('Vesting', 'MaxVestingSchedules')
+```
+---------
 ### MinVestedTransfer
  The minimum amount transferred to call `vested_transfer`.
 #### Value
@@ -353,8 +310,13 @@ constant = substrate.get_constant('Vesting', 'MinVestedTransfer')
 Amount being transferred is too low to create a vesting schedule.
 
 ---------
-### ExistingVestingSchedule
-An existing vesting schedule already exists for this account that cannot be clobbered.
+### AtMaxVestingSchedules
+The account already has `MaxVestingSchedules` count of schedules and thus
+cannot add another one. Consider merging existing schedules in order to add another.
+
+---------
+### InvalidScheduleParams
+Failed to create a new schedule because some parameter was invalid.
 
 ---------
 ### NotVesting
@@ -363,6 +325,10 @@ The account given is not vesting.
 ---------
 ### SamePerBlock
 change to the same per_block param
+
+---------
+### ScheduleIndexOutOfBounds
+An index was out of bounds of the vesting schedules.
 
 ---------
 ### VestingStartAtNotSet

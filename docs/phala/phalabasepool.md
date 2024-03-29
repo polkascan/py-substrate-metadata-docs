@@ -6,12 +6,7 @@
 
 ---------
 ### add_staker_to_whitelist
-Adds a staker accountid to contribution whitelist.
-
-Calling this method will forbide stakers contribute who isn&\#x27;t in the whitelist.
-The caller must be the owner of the pool.
-If a pool hasn&\#x27;t registed in the wihtelist map, any staker could contribute as what they use to do.
-The whitelist has a lmit len of 100 stakers.
+See [`Pallet::add_staker_to_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -26,11 +21,24 @@ call = substrate.compose_call(
 ```
 
 ---------
-### remove_staker_from_whitelist
-Removes a staker accountid to contribution whitelist.
+### claim_reimbursement
+See [`Pallet::claim_reimbursement`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pid | `u64` | 
+| target | `T::AccountId` | 
 
-The caller must be the owner of the pool.
-If the last staker in the whitelist is removed, the pool will return back to a normal pool that allow anyone to contribute.
+#### Python
+```python
+call = substrate.compose_call(
+    'PhalaBasePool', 'claim_reimbursement', {'pid': 'u64', 'target': 'AccountId'}
+)
+```
+
+---------
+### remove_staker_from_whitelist
+See [`Pallet::remove_staker_from_whitelist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -45,36 +53,8 @@ call = substrate.compose_call(
 ```
 
 ---------
-### remove_unused_lock
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| max_iterations | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'PhalaBasePool', 'remove_unused_lock', {'max_iterations': 'u32'}
-)
-```
-
----------
-### reset_lock_iter_pos
-#### Attributes
-No attributes
-
-#### Python
-```python
-call = substrate.compose_call(
-    'PhalaBasePool', 'reset_lock_iter_pos', {}
-)
-```
-
----------
 ### set_pool_description
-Adds a description to the pool
-
-The caller must be the owner of the pool.
+See [`Pallet::set_pool_description`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -85,6 +65,25 @@ The caller must be the owner of the pool.
 ```python
 call = substrate.compose_call(
     'PhalaBasePool', 'set_pool_description', {'description': 'Bytes', 'pid': 'u64'}
+)
+```
+
+---------
+### set_reimbursements
+See [`Pallet::set_reimbursements`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| input | `Vec<(T::AccountId, u64, BalanceOf<T>)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'PhalaBasePool', 'set_reimbursements', {
+    'input': [
+        ('AccountId', 'u64', 'u128'),
+    ],
+}
 )
 ```
 
@@ -356,6 +355,21 @@ result = substrate.query(
 }
 ```
 ---------
+### Reimbursements
+ Claimable reimbursement due to previous on-chain issues.
+
+#### Python
+```python
+result = substrate.query(
+    'PhalaBasePool', 'Reimbursements', [('AccountId', 'u64')]
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ## Errors
 
 ---------
@@ -371,12 +385,18 @@ Tried to get a `NftGuard` when the nft is locked. It indicates an internal error
 Burn nft failed
 
 ---------
+### DeprecatedTransferSharesAmountInvalid
+
+---------
 ### ExceedMaxDescriptionLen
 Too long for pool description length
 
 ---------
 ### ExceedWhitelistMaxLen
 Too many stakers in contribution whitelist that exceed the limit
+
+---------
+### InternalSubsidyPoolCannotWithdraw
 
 ---------
 ### InvalidSharePrice
@@ -397,6 +417,10 @@ basepool&\#x27;s collection_id isn&\#x27;t founded
 ---------
 ### NftIdNotFound
 NftId does not match any nft
+
+---------
+### NoReimbursementToClaim
+No reimbursement to claim
 
 ---------
 ### NoWhitelistCreated
@@ -430,9 +454,6 @@ E.g. Try to access a vault but it&\#x27;s actually a  stake pool.
 ---------
 ### RmrkError
 RMRK errors
-
----------
-### TransferSharesAmountInvalid
 
 ---------
 ### UnauthorizedPoolOwner

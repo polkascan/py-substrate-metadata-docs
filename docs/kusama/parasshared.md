@@ -22,8 +22,8 @@ result = substrate.query(
 ```
 ---------
 ### ActiveValidatorKeys
- The parachain attestation keys of the validators actively participating in parachain consensus.
- This should be the same length as `ActiveValidatorIndices`.
+ The parachain attestation keys of the validators actively participating in parachain
+ consensus. This should be the same length as `ActiveValidatorIndices`.
 
 #### Python
 ```python
@@ -35,6 +35,21 @@ result = substrate.query(
 #### Return value
 ```python
 ['[u8; 32]']
+```
+---------
+### AllowedRelayParents
+ All allowed relay-parents.
+
+#### Python
+```python
+result = substrate.query(
+    'ParasShared', 'AllowedRelayParents', []
+)
+```
+
+#### Return value
+```python
+{'buffer': [('scale_info::12', 'scale_info::12')], 'latest_number': 'u32'}
 ```
 ---------
 ### CurrentSessionIndex

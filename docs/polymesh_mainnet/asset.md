@@ -269,7 +269,7 @@ call = substrate.compose_call(
 
 ---------
 ### freeze
-Freezes transfers and minting of a given token.
+Freezes transfers of a given token.
 
 \# Arguments
 * `origin` - the secondary key of the sender.
@@ -921,7 +921,7 @@ call = substrate.compose_call(
 
 ---------
 ### unfreeze
-Unfreezes transfers and minting of a given token.
+Unfreezes transfers of a given token.
 
 \# Arguments
 * `origin` - the secondary key of the sender.
@@ -1035,6 +1035,15 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### AssetAffirmationExemption
+An asset has been added to the list of pre aprroved receivement (valid for all identities).
+Parameters: [`Ticker`] of the pre approved asset.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `Ticker` | ```[u8; 12]```
+
+---------
 ### AssetBalanceUpdated
 Emitted when Tokens were issued, redeemed or transferred.
 Contains the [`IdentityId`] of the receiver/issuer/redeemer, the [`Ticker`] for the token, the balance that was issued/transferred/redeemed,
@@ -1047,7 +1056,7 @@ the [`PortfolioId`] of the source, the [`PortfolioId`] of the destination and th
 | None | `Balance` | ```u128```
 | None | `Option<PortfolioId>` | ```(None, {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}})```
 | None | `Option<PortfolioId>` | ```(None, {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}})```
-| None | `PortfolioUpdateReason` | ```{'Issued': {'funding_round_name': (None, 'Bytes')}, 'Redeemed': None, 'Transferred': {'instruction_id': (None, 'u64'), 'instruction_memo': (None, '[u8; 32]')}}```
+| None | `PortfolioUpdateReason` | ```{'Issued': {'funding_round_name': (None, 'Bytes')}, 'Redeemed': None, 'Transferred': {'instruction_id': (None, 'u64'), 'instruction_memo': (None, '[u8; 32]')}, 'ControllerTransfer': None}```
 
 ---------
 ### AssetCreated
@@ -1250,6 +1259,16 @@ Parameters: caller ticker, Local type name
 | None | `AssetMetadataKey` | ```{'Global': 'u64', 'Local': 'u64'}```
 
 ---------
+### PreApprovedAsset
+An identity has added an asset to the list of pre aprroved receivement.
+Parameters: [`IdentityId`] of caller, [`Ticker`] of the pre approved asset.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `Ticker` | ```[u8; 12]```
+
+---------
 ### RegisterAssetMetadataGlobalType
 Register asset metadata global type.
 (Global type name, Global type key, type specs)
@@ -1272,6 +1291,25 @@ Register asset metadata local type.
 | None | `AssetMetadataName` | ```Bytes```
 | None | `AssetMetadataLocalKey` | ```u64```
 | None | `AssetMetadataSpec` | ```{'url': (None, 'Bytes'), 'description': (None, 'Bytes'), 'type_def': (None, 'Bytes')}```
+
+---------
+### RemoveAssetAffirmationExemption
+An asset has been removed from the list of pre aprroved receivement (valid for all identities).
+Parameters: [`Ticker`] of the asset.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `Ticker` | ```[u8; 12]```
+
+---------
+### RemovePreApprovedAsset
+An identity has removed an asset to the list of pre aprroved receivement.
+Parameters: [`IdentityId`] of caller, [`Ticker`] of the asset.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `IdentityId` | ```[u8; 32]```
+| None | `Ticker` | ```[u8; 12]```
 
 ---------
 ### SetAssetMetadataValue
@@ -1969,6 +2007,10 @@ An invalid Ethereum `EcdsaSignature`.
 An invalid granularity.
 
 ---------
+### InvalidTickerCharacter
+Invalid ticker character - valid set: A`..`Z` `0`..`9` `_` `-` `.` `/`.
+
+---------
 ### InvalidTransfer
 Transfer validation check failed.
 
@@ -1995,6 +2037,10 @@ Not an owner of the token on Ethereum.
 ---------
 ### NotFrozen
 The asset must be frozen.
+
+---------
+### NumberOfAssetMediatorsExceeded
+Number of asset mediators would exceed the maximum allowed.
 
 ---------
 ### SenderSameAsReceiver

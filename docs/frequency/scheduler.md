@@ -9,7 +9,7 @@
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| when | `T::BlockNumber` | 
+| when | `BlockNumberFor<T>` | 
 | index | `u32` | 
 
 #### Python
@@ -38,8 +38,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| when | `T::BlockNumber` | 
-| maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
+| when | `BlockNumberFor<T>` | 
+| maybe_periodic | `Option<schedule::Period<BlockNumberFor<T>>>` | 
 | priority | `schedule::Priority` | 
 | call | `Box<<T as Config>::RuntimeCall>` | 
 
@@ -63,8 +63,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| after | `T::BlockNumber` | 
-| maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
+| after | `BlockNumberFor<T>` | 
+| maybe_periodic | `Option<schedule::Period<BlockNumberFor<T>>>` | 
 | priority | `schedule::Priority` | 
 | call | `Box<<T as Config>::RuntimeCall>` | 
 
@@ -89,8 +89,8 @@ call = substrate.compose_call(
 | Name | Type |
 | -------- | -------- | 
 | id | `TaskName` | 
-| when | `T::BlockNumber` | 
-| maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
+| when | `BlockNumberFor<T>` | 
+| maybe_periodic | `Option<schedule::Period<BlockNumberFor<T>>>` | 
 | priority | `schedule::Priority` | 
 | call | `Box<<T as Config>::RuntimeCall>` | 
 
@@ -116,8 +116,8 @@ call = substrate.compose_call(
 | Name | Type |
 | -------- | -------- | 
 | id | `TaskName` | 
-| after | `T::BlockNumber` | 
-| maybe_periodic | `Option<schedule::Period<T::BlockNumber>>` | 
+| after | `BlockNumberFor<T>` | 
+| maybe_periodic | `Option<schedule::Period<BlockNumberFor<T>>>` | 
 | priority | `schedule::Priority` | 
 | call | `Box<<T as Config>::RuntimeCall>` | 
 
@@ -145,7 +145,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| task | `TaskAddress<BlockNumberFor<T>>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
@@ -153,7 +153,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| when | `T::BlockNumber` | ```u32```
+| when | `BlockNumberFor<T>` | ```u32```
 | index | `u32` | ```u32```
 
 ---------
@@ -161,16 +161,16 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| task | `TaskAddress<BlockNumberFor<T>>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### PeriodicFailed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| task | `TaskAddress<BlockNumberFor<T>>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
@@ -178,7 +178,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| task | `TaskAddress<T::BlockNumber>` | ```('u32', 'u32')```
+| task | `TaskAddress<BlockNumberFor<T>>` | ```('u32', 'u32')```
 | id | `Option<TaskName>` | ```(None, '[u8; 32]')```
 
 ---------
@@ -186,7 +186,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| when | `T::BlockNumber` | ```u32```
+| when | `BlockNumberFor<T>` | ```u32```
 | index | `u32` | ```u32```
 
 ---------
@@ -216,11 +216,11 @@ result = substrate.query(
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'system': 'scale_info::144',
+                'Council': 'scale_info::157',
+                'TechnicalCommittee': 'scale_info::158',
+                'Void': 'scale_info::159',
+                'system': 'scale_info::156',
                 None: None,
-                'Council': 'scale_info::145',
-                'TechnicalCommittee': 'scale_info::146',
-                'Void': 'scale_info::147',
             },
             'priority': 'u8',
         },

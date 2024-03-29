@@ -17,7 +17,7 @@ Launch a robot with given parameter.
 ```python
 call = substrate.compose_call(
     'Launch', 'launch', {
-    'param': '[u8; 32]',
+    'param': 'scale_info::9',
     'robot': 'AccountId',
 }
 )
@@ -34,7 +34,7 @@ Launch a robot with given parameter: sender, robot, parameter.
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `T::AccountId` | ```AccountId```
-| None | `T::Parameter` | ```[u8; 32]```
+| None | `T::Parameter` | ```scale_info::9```
 
 ---------
 ## Storage functions
@@ -51,6 +51,6 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::9'
 ```
 ---------

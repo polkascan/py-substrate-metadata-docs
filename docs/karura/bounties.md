@@ -164,6 +164,13 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### BountyApproved
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `BountyIndex` | ```u32```
+
+---------
 ### BountyAwarded
 #### Attributes
 | Name | Type | Composition
@@ -215,6 +222,29 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | index | `BountyIndex` | ```u32```
 | bond | `BalanceOf<T, I>` | ```u128```
+
+---------
+### CuratorAccepted
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| bounty_id | `BountyIndex` | ```u32```
+| curator | `T::AccountId` | ```AccountId```
+
+---------
+### CuratorProposed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| bounty_id | `BountyIndex` | ```u32```
+| curator | `T::AccountId` | ```AccountId```
+
+---------
+### CuratorUnassigned
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| bounty_id | `BountyIndex` | ```u32```
 
 ---------
 ## Storage functions

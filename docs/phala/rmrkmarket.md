@@ -6,18 +6,12 @@
 
 ---------
 ### accept_offer
-Accept an offer on a RMRK NFT from a potential buyer.
-
-Parameters:
-- `origin` - Account of the current owner that is accepting the offerer&\#x27;s offer
-- `collection_id` - Collection id of the RMRK NFT
-- `nft_id` - NFT id of the RMRK NFT
-- `offerer` - Account that made the offer
+See [`Pallet::accept_offer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | offerer | `T::AccountId` | 
 
 #### Python
@@ -33,19 +27,12 @@ call = substrate.compose_call(
 
 ---------
 ### buy
-Buy a listed NFT. Ensure that the NFT is available for purchase and has not recently
-been purchased, sent, or burned.
-
-Parameters:
-	- `origin` - Account of the potential buyer
-	- `collection_id` - Collection id of the RMRK NFT
-	- `nft_id` - NFT id of the RMRK NFT
-	- `amount` - Optional price at which buyer purchased at
+See [`Pallet::buy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | amount | `Option<BalanceOf<T>>` | 
 
 #### Python
@@ -61,24 +48,14 @@ call = substrate.compose_call(
 
 ---------
 ### list
-List a RMRK NFT on the Marketplace for purchase. A listing can be cancelled, and is
-automatically considered cancelled when a `buy` is executed on top of a given listing.
-An NFT that has another NFT as its owner CANNOT be listed. An NFT owned by a NFT must
-first be sent to an account before being listed.
-
-Parameters:
-	- `origin` - Account of owner of the RMRK NFT to be listed
-	- `collection_id` - Collection id of the RMRK NFT
-	- `nft_id` - NFT id of the RMRK NFT
-	- `amount` - Price of the RMRK NFT
-	- `expires` - Optional BlockNumber for when the listing expires
+See [`Pallet::list`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | amount | `BalanceOf<T>` | 
-| expires | `Option<T::BlockNumber>` | 
+| expires | `Option<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -94,22 +71,14 @@ call = substrate.compose_call(
 
 ---------
 ### make_offer
-Make an offer on a RMRK NFT for purchase. An offer can be set with an expiration where
-the offer can no longer be accepted by the RMRK NFT owner
-
-Parameters:
-- `origin` - Account of the potential buyer
-- `collection_id` - Collection id of the RMRK NFT
-- `nft_id` - NFT id of the RMRK NFT
-- `amount` - Price of the RMRK NFT
-- `expiration` - Expiration of the offer
+See [`Pallet::make_offer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 | amount | `BalanceOf<T>` | 
-| expires | `Option<T::BlockNumber>` | 
+| expires | `Option<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -125,17 +94,12 @@ call = substrate.compose_call(
 
 ---------
 ### unlist
-Unlist a RMRK NFT on the Marketplace and remove from storage in `Listings`.
-
-Parameters:
-- `origin` - Account owner of the listed RMRK NFT
-- `collection_id` - Collection id of the RMRK NFT
-- `nft_id` - NFT id of the RMRK NFT
+See [`Pallet::unlist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 
 #### Python
 ```python
@@ -149,18 +113,12 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw_offer
-Withdraw an offer on a RMRK NFT, such that it is no longer available to be accepted by
-the NFT owner
-
-Parameters:
-- `origin` - Account that wants to withdraw their offer
-- `collection_id` - Collection id of the RMRK NFT
-- `nft_id` - NFT id of the RMRK NFT
+See [`Pallet::withdraw_offer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `T::CollectionId` | 
-| nft_id | `T::ItemId` | 
+| collection_id | `CollectionIdOf<T>` | 
+| nft_id | `ItemIdOf<T>` | 
 
 #### Python
 ```python
@@ -183,8 +141,8 @@ Market fee paid to marketplace owner
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
 | marketplace_owner | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | amount | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -195,8 +153,8 @@ Offer was accepted
 | -------- | -------- | -------- |
 | owner | `T::AccountId` | ```AccountId```
 | buyer | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 
 ---------
 ### OfferPlaced
@@ -205,8 +163,8 @@ Offer was placed on a token
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | offerer | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | price | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -216,8 +174,8 @@ Offer was withdrawn
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 
 ---------
 ### RoyaltyFeePaid
@@ -227,8 +185,8 @@ Royalty fee paid to royalty owner
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
 | royalty_owner | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | amount | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -238,8 +196,8 @@ Token listed on Marketplace
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | owner | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | price | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -249,8 +207,8 @@ The price for a token was updated
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | owner | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | price | `Option<BalanceOf<T>>` | ```(None, 'u128')```
 
 ---------
@@ -261,8 +219,8 @@ Token was sold to a new owner
 | -------- | -------- | -------- |
 | owner | `T::AccountId` | ```AccountId```
 | buyer | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | price | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -272,8 +230,8 @@ Token unlisted on Marketplace
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | owner | `T::AccountId` | ```AccountId```
-| collection_id | `T::CollectionId` | ```u32```
-| nft_id | `T::ItemId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 
 ---------
 ## Storage functions

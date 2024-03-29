@@ -6,10 +6,7 @@
 
 ---------
 ### note_preimage
-Register a preimage on-chain.
-
-If the preimage was previously requested, no fees or deposits are taken for providing
-the preimage. Otherwise, a deposit is taken proportional to the size of the preimage.
+See [`Pallet::note_preimage`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,10 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### request_preimage
-Request a preimage be uploaded to the chain without paying any fees or deposits.
-
-If the preimage requests has already been provided on-chain, we unreserve any deposit
-a user may have paid, and take the control of the preimage out of their hands.
+See [`Pallet::request_preimage`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -36,18 +30,13 @@ a user may have paid, and take the control of the preimage out of their hands.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'request_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'request_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
 ---------
 ### unnote_preimage
-Clear an unrequested preimage from the runtime storage.
-
-If `len` is provided, then it will be a much cheaper operation.
-
-- `hash`: The hash of the preimage to be removed from the store.
-- `len`: The length of the preimage of `hash`.
+See [`Pallet::unnote_preimage`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -56,15 +45,13 @@ If `len` is provided, then it will be a much cheaper operation.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unnote_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unnote_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
 ---------
 ### unrequest_preimage
-Clear a previously made request for a preimage.
-
-NOTE: THIS MUST NOT BE CALLED ON `hash` MORE TIMES THAN `request_preimage`.
+See [`Pallet::unrequest_preimage`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -73,7 +60,7 @@ NOTE: THIS MUST NOT BE CALLED ON `hash` MORE TIMES THAN `request_preimage`.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unrequest_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unrequest_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -86,7 +73,7 @@ A preimage has ben cleared.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Noted
@@ -94,7 +81,7 @@ A preimage has been noted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Requested
@@ -102,7 +89,7 @@ A preimage has been requested.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -113,7 +100,7 @@ A preimage has been requested.
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'PreimageFor', [('[u8; 32]', 'u32')]
+    'Preimage', 'PreimageFor', [('scale_info::12', 'u32')]
 )
 ```
 
@@ -128,7 +115,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'StatusFor', ['[u8; 32]']
+    'Preimage', 'StatusFor', ['scale_info::12']
 )
 ```
 

@@ -6,6 +6,7 @@
 
 ---------
 ### force_burn
+See [`Pallet::force_burn`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -26,6 +27,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_disable_chainbridge
+See [`Pallet::force_disable_chainbridge`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -41,6 +43,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_disable_sygmabridge
+See [`Pallet::force_disable_sygmabridge`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -61,6 +64,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_enable_chainbridge
+See [`Pallet::force_enable_chainbridge`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -83,6 +87,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_enable_sygmabridge
+See [`Pallet::force_enable_sygmabridge`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -107,6 +112,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_mint
+See [`Pallet::force_mint`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -127,6 +133,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_register_asset
+See [`Pallet::force_register_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -2698,6 +2705,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_set_location
+See [`Pallet::force_set_location`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -5263,6 +5271,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_set_metadata
+See [`Pallet::force_set_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -5285,6 +5294,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_set_price
+See [`Pallet::force_set_price`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -5303,10 +5313,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_unregister_asset
-Clean asset info stored in asset wrapper, not call pallet_assets::destory(),
-By cleaning them in current pallet, xcm and bridge transfering on this asset
-will not success anymore, we should call pallet_assets::destory() manually
-if we want to delete this asset from our chain
+See [`Pallet::force_unregister_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -5321,8 +5328,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_withdraw_fund
-Force withdraw some amount of assets from ASSETS_REGISTRY_ID, if the given asset_id is None,
-would performance withdraw PHA from this account
+See [`Pallet::force_withdraw_fund`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -8615,7 +8621,7 @@ constant = substrate.get_constant('AssetsRegistry', 'NativeAssetSygmaResourceId'
 ### NativeExecutionPrice
 #### Value
 ```python
-87990000000000
+80370000000000
 ```
 #### Python
 ```python

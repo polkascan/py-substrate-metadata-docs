@@ -6,11 +6,12 @@
 
 ---------
 ### create_lock
+See [`Pallet::create_lock`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | value | `BalanceOf<T>` | 
-| unlock_time | `T::BlockNumber` | 
+| unlock_time | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -24,6 +25,7 @@ call = substrate.compose_call(
 
 ---------
 ### get_rewards
+See [`Pallet::get_rewards`].
 #### Attributes
 No attributes
 
@@ -36,6 +38,7 @@ call = substrate.compose_call(
 
 ---------
 ### increase_amount
+See [`Pallet::increase_amount`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -50,10 +53,11 @@ call = substrate.compose_call(
 
 ---------
 ### increase_unlock_time
+See [`Pallet::increase_unlock_time`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| time | `T::BlockNumber` | 
+| time | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -64,11 +68,12 @@ call = substrate.compose_call(
 
 ---------
 ### notify_rewards
+See [`Pallet::notify_rewards`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | incentive_from | `AccountIdOf<T>` | 
-| rewards_duration | `Option<T::BlockNumber>` | 
+| rewards_duration | `Option<BlockNumberFor<T>>` | 
 | rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | 
 
 #### Python
@@ -111,6 +116,7 @@ call = substrate.compose_call(
                     ),
                     'u8',
                 ),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -215,11 +221,12 @@ call = substrate.compose_call(
 
 ---------
 ### set_config
+See [`Pallet::set_config`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | min_mint | `Option<BalanceOf<T>>` | 
-| min_block | `Option<T::BlockNumber>` | 
+| min_block | `Option<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -233,6 +240,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw
+See [`Pallet::withdraw`].
 #### Attributes
 No attributes
 
@@ -259,14 +267,14 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| config | `VeConfig<BalanceOf<T>, T::BlockNumber>` | ```{'amount': 'u128', 'min_mint': 'u128', 'min_block': 'u32'}```
+| config | `VeConfig<BalanceOf<T>, BlockNumberFor<T>>` | ```{'amount': 'u128', 'min_mint': 'u128', 'min_block': 'u32'}```
 
 ---------
 ### IncentiveSet
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| rewards_duration | `T::BlockNumber` | ```u32```
+| rewards_duration | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### LockCreated
@@ -275,7 +283,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | addr | `AccountIdOf<T>` | ```AccountId```
 | value | `BalanceOf<T>` | ```u128```
-| unlock_time | `T::BlockNumber` | ```u32```
+| unlock_time | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### Minted
@@ -284,15 +292,15 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | addr | `AccountIdOf<T>` | ```AccountId```
 | value | `BalanceOf<T>` | ```u128```
-| end | `T::BlockNumber` | ```u32```
-| now | `T::BlockNumber` | ```u32```
+| end | `BlockNumberFor<T>` | ```u32```
+| now | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### RewardAdded
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}, 'u128')]```
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}, 'u128')]```
 
 ---------
 ### Rewarded
@@ -300,7 +308,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | addr | `AccountIdOf<T>` | ```AccountId```
-| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}, 'u128')]```
+| rewards | `Vec<(CurrencyIdOf<T>, BalanceOf<T>)>` | ```[({'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}, 'u128')]```
 
 ---------
 ### Supply
@@ -316,7 +324,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | addr | `AccountIdOf<T>` | ```AccountId```
-| unlock_time | `T::BlockNumber` | ```u32```
+| unlock_time | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### Withdrawn
@@ -341,7 +349,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u64; 4]'
+'scale_info::709'
 ```
 ---------
 ### IncentiveConfigs
@@ -358,8 +366,8 @@ result = substrate.query(
 {
     'last_update_time': 'u32',
     'period_finish': 'u32',
-    'reward_per_token_stored': 'scale_info::705',
-    'reward_rate': 'scale_info::705',
+    'reward_per_token_stored': 'scale_info::758',
+    'reward_rate': 'scale_info::758',
     'rewards_duration': 'u32',
 }
 ```
@@ -383,7 +391,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'VeMinting', 'PointHistory', ['[u64; 4]']
+    'VeMinting', 'PointHistory', ['scale_info::709']
 )
 ```
 
@@ -403,7 +411,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::705'
+'scale_info::758'
 ```
 ---------
 ### SlopeChanges
@@ -445,7 +453,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u64; 4]'
+'scale_info::709'
 ```
 ---------
 ### UserPointHistory
@@ -453,7 +461,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'VeMinting', 'UserPointHistory', ['AccountId', '[u64; 4]']
+    'VeMinting', 'UserPointHistory', ['AccountId', 'scale_info::709']
 )
 ```
 
@@ -473,7 +481,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::705'
+'scale_info::758'
 ```
 ---------
 ### VeConfigs

@@ -21,12 +21,12 @@ call = substrate.compose_call(
             'digest': {
                 'logs': [
                     {
+                        'Other': 'Bytes',
+                        None: None,
                         'Consensus': (
                             '[u8; 4]',
                             'Bytes',
                         ),
-                        'Other': 'Bytes',
-                        None: None,
                         'PreRuntime': (
                             '[u8; 4]',
                             'Bytes',
@@ -39,10 +39,10 @@ call = substrate.compose_call(
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::11',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::11',
+            'state_root': 'scale_info::11',
         },
     ],
 }
@@ -95,7 +95,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[{'InclusionHeight': 'u32', 'Uncle': ('[u8; 32]', (None, 'AccountId'))}]
+[{'InclusionHeight': 'u32', 'Uncle': ('scale_info::11', (None, 'AccountId'))}]
 ```
 ---------
 ## Constants

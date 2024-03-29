@@ -5,6 +5,52 @@
 ## Calls
 
 ---------
+### controller_transfer
+Forces the transfer of NFTs from a given portfolio to the caller&\#x27;s portfolio.
+
+\# Arguments
+* `origin` - is a signer that has permissions to act as an agent of `ticker`.
+* `ticker` - the [`Ticker`] of the NFT collection.
+* `nft_id` - the [`NFTId`] of the NFT to be transferred.
+* `source_portfolio` - the [`PortfolioId`] that currently holds the NFT.
+* `callers_portfolio_kind` - the [`PortfolioKind`] of the caller&\#x27;s portfolio.
+
+\# Permissions
+* Asset
+* Portfolio
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| ticker | `Ticker` | 
+| nfts | `NFTs` | 
+| source_portfolio | `PortfolioId` | 
+| callers_portfolio_kind | `PortfolioKind` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Nft', 'controller_transfer', {
+    'callers_portfolio_kind': {
+        'Default': None,
+        'User': 'u64',
+    },
+    'nfts': {
+        'ids': ['u64'],
+        'ticker': '[u8; 12]',
+    },
+    'source_portfolio': {
+        'did': '[u8; 32]',
+        'kind': {
+            'Default': None,
+            'User': 'u64',
+        },
+    },
+    'ticker': '[u8; 12]',
+}
+)
+```
+
+---------
 ### create_nft_collection
 Cretes a new `NFTCollection`.
 
@@ -155,7 +201,7 @@ of the destination and the [`PortfolioUpdateReason`].
 | None | `NFTs` | ```{'ticker': '[u8; 12]', 'ids': ['u64']}```
 | None | `Option<PortfolioId>` | ```(None, {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}})```
 | None | `Option<PortfolioId>` | ```(None, {'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}})```
-| None | `PortfolioUpdateReason` | ```{'Issued': {'funding_round_name': (None, 'Bytes')}, 'Redeemed': None, 'Transferred': {'instruction_id': (None, 'u64'), 'instruction_memo': (None, '[u8; 32]')}}```
+| None | `PortfolioUpdateReason` | ```{'Issued': {'funding_round_name': (None, 'Bytes')}, 'Redeemed': None, 'Transferred': {'instruction_id': (None, 'u64'), 'instruction_memo': (None, '[u8; 32]')}, 'ControllerTransfer': None}```
 
 ---------
 ### NftCollectionCreated
@@ -198,7 +244,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::725'
+'scale_info::730'
 ```
 ---------
 ### CollectionTicker
@@ -232,6 +278,36 @@ result = substrate.query(
 #### Return value
 ```python
 'Bytes'
+```
+---------
+### NFTOwner
+ Tracks the owner of an NFT
+
+#### Python
+```python
+result = substrate.query(
+    'Nft', 'NFTOwner', ['[u8; 12]', 'u64']
+)
+```
+
+#### Return value
+```python
+{'did': '[u8; 32]', 'kind': {'Default': None, 'User': 'u64'}}
+```
+---------
+### NFTsInCollection
+ The total number of NFTs in a collection
+
+#### Python
+```python
+result = substrate.query(
+    'Nft', 'NFTsInCollection', ['[u8; 12]']
+)
+```
+
+#### Return value
+```python
+'u64'
 ```
 ---------
 ### NextCollectionId
@@ -277,6 +353,21 @@ result = substrate.query(
 #### Return value
 ```python
 'u64'
+```
+---------
+### StorageVersion
+ Storage version.
+
+#### Python
+```python
+result = substrate.query(
+    'Nft', 'StorageVersion', []
+)
+```
+
+#### Return value
+```python
+'u8'
 ```
 ---------
 ## Constants
@@ -357,6 +448,10 @@ Failed to transfer an NFT - asset is frozen.
 Failed to transfer an NFT - the number of nfts in the identity is insufficient.
 
 ---------
+### InvalidNFTTransferNFTIsLocked
+Failed to transfer an NFT - nft is locked.
+
+---------
 ### InvalidNFTTransferNFTNotOwned
 Failed to transfer an NFT - NFT not found in portfolio.
 
@@ -375,6 +470,14 @@ The maximum number of nfts being transferred in one leg was exceeded.
 ---------
 ### NFTNotFound
 The NFT does not exist.
+
+---------
+### SupplyOverflow
+An overflow while calculating the updated supply.
+
+---------
+### SupplyUnderflow
+An underflow while calculating the updated supply.
 
 ---------
 ### UnregisteredMetadataKey

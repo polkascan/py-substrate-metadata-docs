@@ -50,7 +50,7 @@ call = substrate.compose_call(
             'Precommit': {
                 'first': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::9',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -59,7 +59,7 @@ call = substrate.compose_call(
                 'round_number': 'u64',
                 'second': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::9',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -68,7 +68,7 @@ call = substrate.compose_call(
             'Prevote': {
                 'first': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::9',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -77,7 +77,7 @@ call = substrate.compose_call(
                 'round_number': 'u64',
                 'second': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::9',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -121,7 +121,7 @@ call = substrate.compose_call(
             'Precommit': {
                 'first': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::9',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -130,7 +130,7 @@ call = substrate.compose_call(
                 'round_number': 'u64',
                 'second': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::9',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -139,7 +139,7 @@ call = substrate.compose_call(
             'Prevote': {
                 'first': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::9',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -148,7 +148,7 @@ call = substrate.compose_call(
                 'round_number': 'u64',
                 'second': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::9',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',

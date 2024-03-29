@@ -6,7 +6,7 @@
 
 ---------
 ### communify
-Make a private receipt communal and create fungible counterparts for its owner.
+See [`Pallet::communify`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -21,9 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### fund_deficit
-Ensure we have sufficient funding for all potential payouts.
-
-- `origin`: Must be accepted by `FundOrigin`.
+See [`Pallet::fund_deficit`].
 #### Attributes
 No attributes
 
@@ -36,17 +34,7 @@ call = substrate.compose_call(
 
 ---------
 ### place_bid
-Place a bid.
-
-Origin must be Signed, and account must have at least `amount` in free balance.
-
-- `amount`: The amount of the bid; these funds will be reserved, and if/when
-  consolidated, removed. Must be at least `MinBid`.
-- `duration`: The number of periods before which the newly consolidated bid may be
-  thawed. Must be greater than 1 and no more than `QueueCount`.
-
-Complexities:
-- `Queues[duration].len()` (just take max).
+See [`Pallet::place_bid`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -62,7 +50,7 @@ call = substrate.compose_call(
 
 ---------
 ### privatize
-Make a communal receipt private and burn fungible counterparts from its owner.
+See [`Pallet::privatize`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -77,13 +65,7 @@ call = substrate.compose_call(
 
 ---------
 ### retract_bid
-Retract a previously placed bid.
-
-Origin must be Signed, and the account should have previously issued a still-active bid
-of `amount` for `duration`.
-
-- `amount`: The amount of the previous bid.
-- `duration`: The duration of the previous bid.
+See [`Pallet::retract_bid`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -99,12 +81,7 @@ call = substrate.compose_call(
 
 ---------
 ### thaw_communal
-Reduce or remove an outstanding receipt, placing the according proportion of funds into
-the account of the owner.
-
-- `origin`: Must be Signed and the account must be the owner of the fungible counterpart
-  for receipt `index`.
-- `index`: The index of the receipt.
+See [`Pallet::thaw_communal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -119,14 +96,7 @@ call = substrate.compose_call(
 
 ---------
 ### thaw_private
-Reduce or remove an outstanding receipt, placing the according proportion of funds into
-the account of the owner.
-
-- `origin`: Must be Signed and the account must be the owner of the receipt `index` as
-  well as any fungible counterpart.
-- `index`: The index of the receipt.
-- `portion`: If `Some`, then only the given portion of the receipt should be thawed. If
-  `None`, then all of it should be.
+See [`Pallet::thaw_private`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -191,7 +161,7 @@ A bid was accepted. The balance may not be released until expiry.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | index | `ReceiptIndex` | ```u32```
-| expiry | `T::BlockNumber` | ```u32```
+| expiry | `BlockNumberFor<T>` | ```u32```
 | who | `T::AccountId` | ```AccountId```
 | proportion | `Perquintill` | ```u64```
 | amount | `BalanceOf<T>` | ```u128```
@@ -318,17 +288,6 @@ constant = substrate.get_constant('Nis', 'BasePeriod')
 #### Python
 ```python
 constant = substrate.get_constant('Nis', 'FifoQueueLen')
-```
----------
-### HoldReason
- The identifier of the hold reason.
-#### Value
-```python
-{'Nis': 'NftReceipt'}
-```
-#### Python
-```python
-constant = substrate.get_constant('Nis', 'HoldReason')
 ```
 ---------
 ### IntakePeriod

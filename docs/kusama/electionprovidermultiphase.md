@@ -6,10 +6,7 @@
 
 ---------
 ### governance_fallback
-Trigger the governance fallback.
-
-This can only be called when [`Phase::Emergency`] is enabled, as an alternative to
-calling [`Call::set_emergency_election_result`].
+See [`Pallet::governance_fallback`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -28,14 +25,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_emergency_election_result
-Set a solution in the queue, to be handed out to the client of this pallet in the next
-call to `ElectionProvider::elect`.
-
-This can only be set by `T::ForceOrigin`, and only when the phase is `Emergency`.
-
-The solution is not checked for any feasibility and is assumed to be trustworthy, as any
-feasibility check itself can in principle cause the election process to fail (due to
-memory/weight constrains).
+See [`Pallet::set_emergency_election_result`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -65,11 +55,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_minimum_untrusted_score
-Set a new value for `MinimumUntrustedScore`.
-
-Dispatch origin must be aligned with `T::ForceOrigin`.
-
-This check can be turned off by setting the value to `None`.
+See [`Pallet::set_minimum_untrusted_score`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -93,15 +79,7 @@ call = substrate.compose_call(
 
 ---------
 ### submit
-Submit a solution for the signed phase.
-
-The dispatch origin fo this call must be __signed__.
-
-The solution is potentially queued, based on the claimed score and processed at the end
-of the signed phase.
-
-A deposit is reserved and recorded for the solution. Based on the outcome, the solution
-might be rewarded, slashed, or get all or a part of the deposit back.
+See [`Pallet::submit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -285,20 +263,7 @@ call = substrate.compose_call(
 
 ---------
 ### submit_unsigned
-Submit a solution for the unsigned phase.
-
-The dispatch origin fo this call must be __none__.
-
-This submission is checked on the fly. Moreover, this unsigned solution is only
-validated when submitted to the pool from the **local** node. Effectively, this means
-that only active validators can submit this transaction when authoring a block (similar
-to an inherent).
-
-To prevent any incorrect solution (and thus wasted time/weight), this transaction will
-panic if the solution submitted by the validator is invalid in any way, effectively
-putting their authoring reward at risk.
-
-No deposit or reward is associated with this submission.
+See [`Pallet::submit_unsigned`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -511,8 +476,8 @@ There was a phase transition in a given round.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| from | `Phase<T::BlockNumber>` | ```{'Off': None, 'Signed': None, 'Unsigned': ('bool', 'u32'), 'Emergency': None}```
-| to | `Phase<T::BlockNumber>` | ```{'Off': None, 'Signed': None, 'Unsigned': ('bool', 'u32'), 'Emergency': None}```
+| from | `Phase<BlockNumberFor<T>>` | ```{'Off': None, 'Signed': None, 'Unsigned': ('bool', 'u32'), 'Emergency': None}```
+| to | `Phase<BlockNumberFor<T>>` | ```{'Off': None, 'Signed': None, 'Unsigned': ('bool', 'u32'), 'Emergency': None}```
 | round | `u32` | ```u32```
 
 ---------
@@ -823,30 +788,6 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'BetterSignedThr
 constant = substrate.get_constant('ElectionProviderMultiPhase', 'BetterUnsignedThreshold')
 ```
 ---------
-### MaxElectableTargets
- The maximum number of electable targets to put in the snapshot.
-#### Value
-```python
-65535
-```
-#### Python
-```python
-constant = substrate.get_constant('ElectionProviderMultiPhase', 'MaxElectableTargets')
-```
----------
-### MaxElectingVoters
- The maximum number of electing voters to put in the snapshot. At the moment, snapshots
- are only over a single block, but once multi-block elections are introduced they will
- take place over multiple blocks.
-#### Value
-```python
-12500
-```
-#### Python
-```python
-constant = substrate.get_constant('ElectionProviderMultiPhase', 'MaxElectingVoters')
-```
----------
 ### MaxWinners
  The maximum number of winners that can be elected by this `ElectionProvider`
  implementation.
@@ -884,7 +825,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxVotesPe
 ### MinerMaxWeight
 #### Value
 ```python
-{'proof_size': 13650590614545068195, 'ref_time': 1469437423000}
+{'proof_size': 13650590614545068195, 'ref_time': 1465597221000}
 ```
 #### Python
 ```python
@@ -924,17 +865,6 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerTxPriority
 #### Python
 ```python
 constant = substrate.get_constant('ElectionProviderMultiPhase', 'OffchainRepeat')
-```
----------
-### SignedDepositBase
- Base deposit for a signed solution.
-#### Value
-```python
-1333333332000
-```
-#### Python
-```python
-constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedDepositBase')
 ```
 ---------
 ### SignedDepositByte
@@ -995,7 +925,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxSubmis
  this value.
 #### Value
 ```python
-{'proof_size': 13650590614545068195, 'ref_time': 1469437423000}
+{'proof_size': 13650590614545068195, 'ref_time': 1465597221000}
 ```
 #### Python
 ```python

@@ -379,6 +379,38 @@ call = substrate.compose_call(
 ```
 
 ---------
+### redeem_and_lend_for
+If a `crowdloan` expired, redeem the contributed assets
+and lend it to Money market
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| dest | `<T::Lookup as StaticLookup>::Source` | 
+| crowdloan | `ParaId` | 
+| lease_start | `LeasePeriod` | 
+| lease_end | `LeasePeriod` | 
+| amount | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Crowdloans', 'redeem_and_lend_for', {
+    'amount': 'u128',
+    'crowdloan': 'u32',
+    'dest': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+    'lease_end': 'u32',
+    'lease_start': 'u32',
+}
+)
+```
+
+---------
 ### refund
 Refund contributions
 #### Attributes

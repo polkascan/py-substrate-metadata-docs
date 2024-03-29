@@ -40,6 +40,14 @@ call = substrate.compose_call(
         'Governance',
         '_Staking',
         'NonProxy',
+        'Borrow',
+        'Invest',
+        'ProxyManagement',
+        'KeystoreManagement',
+        'PodOperation',
+        'PodAuth',
+        'PermissionManagement',
+        'Transfer',
     ),
 }
 )
@@ -72,7 +80,7 @@ Parameters:
 ```python
 call = substrate.compose_call(
     'Proxy', 'announce', {
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::12',
     'real': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -123,6 +131,14 @@ call = substrate.compose_call(
         'Governance',
         '_Staking',
         'NonProxy',
+        'Borrow',
+        'Invest',
+        'ProxyManagement',
+        'KeystoreManagement',
+        'PodOperation',
+        'PodAuth',
+        'PermissionManagement',
+        'Transfer',
     ),
 }
 )
@@ -168,6 +184,14 @@ call = substrate.compose_call(
         'Governance',
         '_Staking',
         'NonProxy',
+        'Borrow',
+        'Invest',
+        'ProxyManagement',
+        'KeystoreManagement',
+        'PodOperation',
+        'PodAuth',
+        'PermissionManagement',
+        'Transfer',
     ),
     'spawner': {
         'Address20': '[u8; 20]',
@@ -184,8 +208,6 @@ call = substrate.compose_call(
 ### proxy
 Dispatch the given `call` from an account that the sender is authorised for through
 `add_proxy`.
-
-Removes any corresponding announcement(s).
 
 The dispatch origin for this call must be _Signed_.
 
@@ -213,6 +235,14 @@ call = substrate.compose_call(
             'Governance',
             '_Staking',
             'NonProxy',
+            'Borrow',
+            'Invest',
+            'ProxyManagement',
+            'KeystoreManagement',
+            'PodOperation',
+            'PodAuth',
+            'PermissionManagement',
+            'Transfer',
         ),
     ),
     'real': {
@@ -267,6 +297,14 @@ call = substrate.compose_call(
             'Governance',
             '_Staking',
             'NonProxy',
+            'Borrow',
+            'Invest',
+            'ProxyManagement',
+            'KeystoreManagement',
+            'PodOperation',
+            'PodAuth',
+            'PermissionManagement',
+            'Transfer',
         ),
     ),
     'real': {
@@ -302,7 +340,7 @@ Parameters:
 ```python
 call = substrate.compose_call(
     'Proxy', 'reject_announcement', {
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::12',
     'delegate': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -336,7 +374,7 @@ Parameters:
 ```python
 call = substrate.compose_call(
     'Proxy', 'remove_announcement', {
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::12',
     'real': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -400,6 +438,14 @@ call = substrate.compose_call(
         'Governance',
         '_Staking',
         'NonProxy',
+        'Borrow',
+        'Invest',
+        'ProxyManagement',
+        'KeystoreManagement',
+        'PodOperation',
+        'PodAuth',
+        'PermissionManagement',
+        'Transfer',
     ),
 }
 )
@@ -416,7 +462,7 @@ An announcement was placed to make a call in the future.
 | -------- | -------- | -------- |
 | real | `T::AccountId` | ```AccountId```
 | proxy | `T::AccountId` | ```AccountId```
-| call_hash | `CallHashOf<T>` | ```[u8; 32]```
+| call_hash | `CallHashOf<T>` | ```scale_info::12```
 
 ---------
 ### ProxyAdded
@@ -426,7 +472,7 @@ A proxy was added.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy', 'Borrow', 'Invest', 'ProxyManagement', 'KeystoreManagement', 'PodOperation', 'PodAuth', 'PermissionManagement', 'Transfer')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -435,7 +481,7 @@ A proxy was executed correctly, with the given.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### ProxyRemoved
@@ -445,7 +491,7 @@ A proxy was removed.
 | -------- | -------- | -------- |
 | delegator | `T::AccountId` | ```AccountId```
 | delegatee | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy', 'Borrow', 'Invest', 'ProxyManagement', 'KeystoreManagement', 'PodOperation', 'PodAuth', 'PermissionManagement', 'Transfer')```
 | delay | `T::BlockNumber` | ```u32```
 
 ---------
@@ -457,7 +503,7 @@ disambiguation index and proxy type.
 | -------- | -------- | -------- |
 | pure | `T::AccountId` | ```AccountId```
 | who | `T::AccountId` | ```AccountId```
-| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy')```
+| proxy_type | `T::ProxyType` | ```('Any', 'NonTransfer', 'Governance', '_Staking', 'NonProxy', 'Borrow', 'Invest', 'ProxyManagement', 'KeystoreManagement', 'PodOperation', 'PodAuth', 'PermissionManagement', 'Transfer')```
 | disambiguation_index | `u16` | ```u16```
 
 ---------
@@ -476,7 +522,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-([{'call_hash': '[u8; 32]', 'height': 'u32', 'real': 'AccountId'}], 'u128')
+([{'call_hash': 'scale_info::12', 'height': 'u32', 'real': 'AccountId'}], 'u128')
 ```
 ---------
 ### Proxies
@@ -503,6 +549,14 @@ result = substrate.query(
                 'Governance',
                 '_Staking',
                 'NonProxy',
+                'Borrow',
+                'Invest',
+                'ProxyManagement',
+                'KeystoreManagement',
+                'PodOperation',
+                'PodAuth',
+                'PermissionManagement',
+                'Transfer',
             ),
         },
     ],

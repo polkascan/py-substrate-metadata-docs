@@ -25,7 +25,7 @@ call = substrate.compose_call(
     'ClientsInfo', 'set_current_client_release', {
     'client_name': 'Bytes',
     'release': {
-        'checksum': '[u8; 32]',
+        'checksum': 'scale_info::12',
         'uri': 'Bytes',
     },
 }
@@ -54,7 +54,7 @@ call = substrate.compose_call(
     'ClientsInfo', 'set_pending_client_release', {
     'client_name': 'Bytes',
     'release': {
-        'checksum': '[u8; 32]',
+        'checksum': 'scale_info::12',
         'uri': 'Bytes',
     },
 }
@@ -69,14 +69,14 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| release | `ClientRelease<UriOf<T>, T::Hash>` | ```{'uri': 'Bytes', 'checksum': '[u8; 32]'}```
+| release | `ClientRelease<UriOf<T>, T::Hash>` | ```{'uri': 'Bytes', 'checksum': 'scale_info::12'}```
 
 ---------
 ### NotifyClientRelease
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| release | `ClientRelease<UriOf<T>, T::Hash>` | ```{'uri': 'Bytes', 'checksum': '[u8; 32]'}```
+| release | `ClientRelease<UriOf<T>, T::Hash>` | ```{'uri': 'Bytes', 'checksum': 'scale_info::12'}```
 
 ---------
 ## Storage functions
@@ -94,7 +94,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'checksum': '[u8; 32]', 'uri': 'Bytes'}
+{'checksum': 'scale_info::12', 'uri': 'Bytes'}
 ```
 ---------
 ### PendingClientReleases
@@ -109,7 +109,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'checksum': '[u8; 32]', 'uri': 'Bytes'}
+{'checksum': 'scale_info::12', 'uri': 'Bytes'}
 ```
 ---------
 ## Constants

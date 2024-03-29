@@ -186,7 +186,7 @@ On on-chain remark happened.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::11```
 
 ---------
 ## Storage functions
@@ -245,7 +245,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::11'
 ```
 ---------
 ### BlockWeight
@@ -323,7 +323,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'System', 'EventTopics', ['[u8; 32]']
+    'System', 'EventTopics', ['scale_info::11']
 )
 ```
 
@@ -458,7 +458,7 @@ result = substrate.query(
             },
             'BaseFee': {
                 'BaseFeeOverflow': None,
-                'NewBaseFeePerGas': {'fee': '[u64; 4]'},
+                'NewBaseFeePerGas': {'fee': 'scale_info::120'},
                 'NewElasticity': {'elasticity': 'u32'},
             },
             'CollatorSelection': {
@@ -472,31 +472,31 @@ result = substrate.query(
                 'NewInvulnerables': {'invulnerables': ['AccountId']},
             },
             'Council': {
-                'Approved': {'proposal_hash': '[u8; 32]'},
+                'Approved': {'proposal_hash': 'scale_info::11'},
                 'Closed': {
                     'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::11',
                     'yes': 'u32',
                 },
-                'Disapproved': {'proposal_hash': '[u8; 32]'},
+                'Disapproved': {'proposal_hash': 'scale_info::11'},
                 'Executed': {
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::11',
                     'result': 'scale_info::32',
                 },
                 'MemberExecuted': {
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::11',
                     'result': 'scale_info::32',
                 },
                 'Proposed': {
                     'account': 'AccountId',
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::11',
                     'proposal_index': 'u32',
                     'threshold': 'u32',
                 },
                 'Voted': {
                     'account': 'AccountId',
                     'no': 'u32',
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::11',
                     'voted': 'bool',
                     'yes': 'u32',
                 },
@@ -507,20 +507,20 @@ result = substrate.query(
                 'UnsupportedVersion': '[u8; 32]',
             },
             'Democracy': {
-                'Blacklisted': {'proposal_hash': '[u8; 32]'},
+                'Blacklisted': {'proposal_hash': 'scale_info::11'},
                 'Cancelled': {'ref_index': 'u32'},
                 'Delegated': {'target': 'AccountId', 'who': 'AccountId'},
                 'ExternalTabled': None,
                 'MetadataCleared': {
-                    'hash': '[u8; 32]',
+                    'hash': 'scale_info::11',
                     'owner': 'scale_info::131',
                 },
                 'MetadataSet': {
-                    'hash': '[u8; 32]',
+                    'hash': 'scale_info::11',
                     'owner': 'scale_info::131',
                 },
                 'MetadataTransferred': {
-                    'hash': '[u8; 32]',
+                    'hash': 'scale_info::11',
                     'owner': 'scale_info::131',
                     'prev_owner': 'scale_info::131',
                 },
@@ -536,7 +536,7 @@ result = substrate.query(
                 'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Undelegated': {'account': 'AccountId'},
                 'Vetoed': {
-                    'proposal_hash': '[u8; 32]',
+                    'proposal_hash': 'scale_info::11',
                     'until': 'u32',
                     'who': 'AccountId',
                 },
@@ -582,7 +582,7 @@ result = substrate.query(
                     'extra_data': 'Bytes',
                     'from': '[u8; 20]',
                     'to': '[u8; 20]',
-                    'transaction_hash': '[u8; 32]',
+                    'transaction_hash': 'scale_info::11',
                 },
             },
             'EvmAccounts': {
@@ -626,11 +626,11 @@ result = substrate.query(
             },
             'ParachainSystem': {
                 'DownwardMessagesProcessed': {
-                    'dmq_head': '[u8; 32]',
+                    'dmq_head': 'scale_info::11',
                     'weight_used': 'scale_info::8',
                 },
                 'DownwardMessagesReceived': {'count': 'u32'},
-                'UpgradeAuthorized': {'code_hash': '[u8; 32]'},
+                'UpgradeAuthorized': {'code_hash': 'scale_info::11'},
                 'UpwardMessageSent': {'message_hash': (None, '[u8; 32]')},
                 'ValidationFunctionApplied': {'relay_chain_block_num': 'u32'},
                 'ValidationFunctionDiscarded': None,
@@ -638,12 +638,12 @@ result = substrate.query(
             },
             'PolkadotXcm': {
                 'AssetsClaimed': (
-                    '[u8; 32]',
+                    'scale_info::11',
                     'scale_info::53',
                     'scale_info::96',
                 ),
                 'AssetsTrapped': (
-                    '[u8; 32]',
+                    'scale_info::11',
                     'scale_info::53',
                     'scale_info::96',
                 ),
@@ -707,9 +707,9 @@ result = substrate.query(
                 ),
             },
             'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
+                'Cleared': {'hash': 'scale_info::11'},
+                'Noted': {'hash': 'scale_info::11'},
+                'Requested': {'hash': 'scale_info::11'},
             },
             'Scheduler': {
                 'CallUnavailable': {
@@ -742,14 +742,7 @@ result = substrate.query(
                 'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': 'AccountId',
-                },
+                'Remarked': {'hash': 'scale_info::11', 'sender': 'AccountId'},
             },
             'Treasury': {
                 'Awarded': {
@@ -784,6 +777,14 @@ result = substrate.query(
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::24'},
             },
+            None: None,
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': 'AccountId',
+                },
+            },
             'Vesting': {
                 'VestingCompleted': {'account': 'AccountId'},
                 'VestingUpdated': {'account': 'AccountId', 'unvested': 'u128'},
@@ -808,7 +809,6 @@ result = substrate.query(
                     'units_per_second': 'u128',
                 },
             },
-            None: None,
             'XcmpQueue': {
                 'BadFormat': {'message_hash': (None, '[u8; 32]')},
                 'BadVersion': {'message_hash': (None, '[u8; 32]')},
@@ -836,7 +836,7 @@ result = substrate.query(
             'Finalization': None,
             'Initialization': None,
         },
-        'topics': ['[u8; 32]'],
+        'topics': ['scale_info::11'],
     },
 ]
 ```
@@ -928,7 +928,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::11'
 ```
 ---------
 ### UpgradedToTripleRefCount

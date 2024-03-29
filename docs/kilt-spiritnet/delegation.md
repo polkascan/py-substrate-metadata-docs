@@ -6,38 +6,7 @@
 
 ---------
 ### add_delegation
-Create a new delegation node.
-
-The new delegation node represents a new trust hierarchy that
-considers the new node as its root. The owner of this node has full
-control over any of its direct and indirect descendants.
-
-For the creation to succeed, the delegatee must provide a valid
-signature over the (blake256) hash of the creation operation details
-which include (in order) delegation id, root node id, parent id, and
-permissions of the new node.
-
-There must be no delegation with the same id stored on chain.
-Furthermore, the referenced root and parent nodes must already be
-present on chain and contain the valid permissions and revocation
-status (i.e., not revoked).
-
-The dispatch origin must be split into
-* a submitter of type `AccountId` who is responsible for paying the
-  transaction fee and
-* a DID subject of type `DelegationEntityId` who creates, owns and
-  can revoke the delegation.
-
-Requires the sender of the transaction to have a reservable balance
-of at least `Deposit` many tokens.
-
-Emits `DelegationCreated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Roots, Delegations
-- Writes: Delegations
-\# &lt;/weight&gt;
+See [`Pallet::add_delegation`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -57,8 +26,8 @@ call = substrate.compose_call(
         'Ed25519': '[u8; 64]',
         'Sr25519': '[u8; 64]',
     },
-    'delegation_id': '[u8; 32]',
-    'parent_id': '[u8; 32]',
+    'delegation_id': 'scale_info::12',
+    'parent_id': 'scale_info::12',
     'permissions': {'bits': 'u32'},
 }
 )
@@ -66,13 +35,7 @@ call = substrate.compose_call(
 
 ---------
 ### change_deposit_owner
-Changes the deposit owner.
-
-The balance that is reserved by the current deposit owner will be
-freed and balance of the new deposit owner will get reserved.
-
-The subject of the call must be the owner of the delegation node.
-The sender of the call will be the new deposit owner.
+See [`Pallet::change_deposit_owner`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -81,37 +44,13 @@ The sender of the call will be the new deposit owner.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Delegation', 'change_deposit_owner', {'delegation_id': '[u8; 32]'}
+    'Delegation', 'change_deposit_owner', {'delegation_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### create_hierarchy
-Create a new delegation root associated with a given CType hash.
-
-The new root will allow a new trust hierarchy to be created by
-adding children delegations to the root.
-
-There must be no delegation with the same ID stored on chain, while
-there must be already a CType with the given hash stored in the
-CType pallet.
-
-The dispatch origin must be split into
-* a submitter of type `AccountId` who is responsible for paying the
-  transaction fee and
-* a DID subject of type `DelegationEntityId` who creates, owns and
-  can revoke the delegation.
-
-Requires the sender of the transaction to have a reservable balance
-of at least `Deposit` many tokens.
-
-Emits `RootCreated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Roots, CTypes
-- Writes: Roots
-\# &lt;/weight&gt;
+See [`Pallet::create_hierarchy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -122,38 +61,15 @@ Weight: O(1)
 ```python
 call = substrate.compose_call(
     'Delegation', 'create_hierarchy', {
-    'ctype_hash': '[u8; 32]',
-    'root_node_id': '[u8; 32]',
+    'ctype_hash': 'scale_info::12',
+    'root_node_id': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### reclaim_deposit
-Reclaim the deposit for a delegation node (potentially a root
-node), removing the node and all its children.
-
-Returns the delegation deposit to the deposit owner for each
-removed DelegationNode by unreserving it.
-
-Removing a delegation node results in the trust hierarchy starting
-from the given node being removed. Nevertheless, removal starts
-from the leave nodes upwards, so if the operation ends prematurely
-because it runs out of gas, the delegation state would be consistent
-as no child would &quot;survive&quot; its parent. As a consequence, if the
-given node is removed, the trust hierarchy with the node as root is
-to be considered removed.
-
-The dispatch origin must be signed by the delegation deposit owner.
-
-`DepositReclaimed`.
-
-\# &lt;weight&gt;
-Weight: O(C) where C is the number of children of the delegation
-node which is bounded by `max_removals`.
-- Reads: [Origin Account], Roots, C * Delegations, C * Children.
-- Writes: Roots, 2 * C * Delegations
-\# &lt;/weight&gt;
+See [`Pallet::reclaim_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -164,7 +80,7 @@ node which is bounded by `max_removals`.
 ```python
 call = substrate.compose_call(
     'Delegation', 'reclaim_deposit', {
-    'delegation_id': '[u8; 32]',
+    'delegation_id': 'scale_info::12',
     'max_removals': 'u32',
 }
 )
@@ -172,34 +88,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_delegation
-Remove a delegation node (potentially a root node) and all its
-children.
-
-Returns the delegation deposit to the deposit owner for each
-removed DelegationNode by unreserving it.
-
-Removing a delegation node results in the trust hierarchy starting
-from the given node being removed. Nevertheless, removal starts
-from the leave nodes upwards, so if the operation ends prematurely
-because it runs out of gas, the delegation state would be consistent
-as no child would &quot;survive&quot; its parent. As a consequence, if the
-given node is removed, the trust hierarchy with the node as root is
-to be considered removed.
-
-The dispatch origin must be split into
-* a submitter of type `AccountId` who is responsible for paying the
-  transaction fee and
-* a DID subject of type `DelegationEntityId` who creates, owns and
-  can revoke the delegation.
-
-Emits C * `DelegationRemoved`.
-
-\# &lt;weight&gt;
-Weight: O(C) where C is the number of children of the delegation
-node which is bounded by `max_children`.
-- Reads: [Origin Account], Roots, C * Delegations, C * Children.
-- Writes: Roots, 2 * C * Delegations
-\# &lt;/weight&gt;
+See [`Pallet::remove_delegation`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -210,7 +99,7 @@ node which is bounded by `max_children`.
 ```python
 call = substrate.compose_call(
     'Delegation', 'remove_delegation', {
-    'delegation_id': '[u8; 32]',
+    'delegation_id': 'scale_info::12',
     'max_removals': 'u32',
 }
 )
@@ -218,35 +107,7 @@ call = substrate.compose_call(
 
 ---------
 ### revoke_delegation
-Revoke a delegation node (potentially a root node) and all its
-children.
-
-Does not refund the delegation back to the deposit owner as the
-node is still stored on chain. Requires to additionally call
-`remove_delegation` to unreserve the deposit.
-
-Revoking a delegation node results in the trust hierarchy starting
-from the given node being revoked. Nevertheless, revocation starts
-from the leave nodes upwards, so if the operation ends prematurely
-because it runs out of gas, the delegation state would be consistent
-as no child would &quot;survive&quot; its parent. As a consequence, if the
-given node is revoked, the trust hierarchy with the node as root is
-to be considered revoked.
-
-The dispatch origin must be split into
-* a submitter of type `AccountId` who is responsible for paying the
-  transaction fee and
-* a DID subject of type `DelegationEntityId` who creates, owns and
-  can revoke the delegation.
-
-Emits C * `DelegationRevoked`.
-
-\# &lt;weight&gt;
-Weight: O(C) where C is the number of children of the delegation
-node which is bounded by `max_children`.
-- Reads: [Origin Account], Roots, C * Delegations, C * Children.
-- Writes: Roots, C * Delegations
-\# &lt;/weight&gt;
+See [`Pallet::revoke_delegation`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -258,7 +119,7 @@ node which is bounded by `max_children`.
 ```python
 call = substrate.compose_call(
     'Delegation', 'revoke_delegation', {
-    'delegation_id': '[u8; 32]',
+    'delegation_id': 'scale_info::12',
     'max_parent_checks': 'u32',
     'max_revocations': 'u32',
 }
@@ -267,9 +128,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_deposit
-Updates the deposit amount to the current deposit rate.
-
-The sender must be the deposit owner.
+See [`Pallet::update_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -278,7 +137,7 @@ The sender must be the deposit owner.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Delegation', 'update_deposit', {'delegation_id': '[u8; 32]'}
+    'Delegation', 'update_deposit', {'delegation_id': 'scale_info::12'}
 )
 ```
 
@@ -294,9 +153,9 @@ delegate ID, permissions\]
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `DelegatorIdOf<T>` | ```AccountId```
-| None | `DelegationNodeIdOf<T>` | ```[u8; 32]```
-| None | `DelegationNodeIdOf<T>` | ```[u8; 32]```
-| None | `DelegationNodeIdOf<T>` | ```[u8; 32]```
+| None | `DelegationNodeIdOf<T>` | ```scale_info::12```
+| None | `DelegationNodeIdOf<T>` | ```scale_info::12```
+| None | `DelegationNodeIdOf<T>` | ```scale_info::12```
 | None | `DelegatorIdOf<T>` | ```AccountId```
 | None | `Permissions` | ```{'bits': 'u32'}```
 
@@ -308,7 +167,7 @@ A delegation has been removed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `AccountIdOf<T>` | ```AccountId```
-| None | `DelegationNodeIdOf<T>` | ```[u8; 32]```
+| None | `DelegationNodeIdOf<T>` | ```scale_info::12```
 
 ---------
 ### DelegationRevoked
@@ -318,7 +177,7 @@ A delegation has been revoked.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `DelegatorIdOf<T>` | ```AccountId```
-| None | `DelegationNodeIdOf<T>` | ```[u8; 32]```
+| None | `DelegationNodeIdOf<T>` | ```scale_info::12```
 
 ---------
 ### DepositReclaimed
@@ -328,7 +187,7 @@ subtree. \[revoker ID, delegation node ID\]
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `AccountIdOf<T>` | ```AccountId```
-| None | `DelegationNodeIdOf<T>` | ```[u8; 32]```
+| None | `DelegationNodeIdOf<T>` | ```scale_info::12```
 
 ---------
 ### HierarchyCreated
@@ -338,8 +197,8 @@ A new hierarchy has been created.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `DelegatorIdOf<T>` | ```AccountId```
-| None | `DelegationNodeIdOf<T>` | ```[u8; 32]```
-| None | `CtypeHashOf<T>` | ```[u8; 32]```
+| None | `DelegationNodeIdOf<T>` | ```scale_info::12```
+| None | `CtypeHashOf<T>` | ```scale_info::12```
 
 ---------
 ### HierarchyRemoved
@@ -349,7 +208,7 @@ A hierarchy has been removed from the storage on chain.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `DelegatorIdOf<T>` | ```AccountId```
-| None | `DelegationNodeIdOf<T>` | ```[u8; 32]```
+| None | `DelegationNodeIdOf<T>` | ```scale_info::12```
 
 ---------
 ### HierarchyRevoked
@@ -359,7 +218,7 @@ A hierarchy has been revoked.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `DelegatorIdOf<T>` | ```AccountId```
-| None | `DelegationNodeIdOf<T>` | ```[u8; 32]```
+| None | `DelegationNodeIdOf<T>` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -373,13 +232,13 @@ A hierarchy has been revoked.
 #### Python
 ```python
 result = substrate.query(
-    'Delegation', 'DelegationHierarchies', ['[u8; 32]']
+    'Delegation', 'DelegationHierarchies', ['scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-{'ctype_hash': '[u8; 32]'}
+{'ctype_hash': 'scale_info::12'}
 ```
 ---------
 ### DelegationNodes
@@ -390,18 +249,18 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Delegation', 'DelegationNodes', ['[u8; 32]']
+    'Delegation', 'DelegationNodes', ['scale_info::12']
 )
 ```
 
 #### Return value
 ```python
 {
-    'children': 'scale_info::424',
+    'children': 'scale_info::451',
     'deposit': {'amount': 'u128', 'owner': 'AccountId'},
     'details': {'owner': 'AccountId', 'permissions': {'bits': 'u32'}, 'revoked': 'bool'},
-    'hierarchy_root_id': '[u8; 32]',
-    'parent': (None, '[u8; 32]'),
+    'hierarchy_root_id': 'scale_info::12',
+    'parent': (None, 'scale_info::12'),
 }
 ```
 ---------

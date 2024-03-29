@@ -6,22 +6,7 @@
 
 ---------
 ### bid
-Make a new bid from an account (including a parachain account) for deploying a new
-parachain.
-
-Multiple simultaneous bids from the same bidder are allowed only as long as all active
-bids overlap each other (i.e. are mutually exclusive). Bids cannot be redacted.
-
-- `sub` is the sub-bidder ID, allowing for multiple competing bids to be made by (and
-funded by) the same account.
-- `auction_index` is the index of the auction to bid on. Should just be the present
-value of `AuctionCounter`.
-- `first_slot` is the first lease period index of the range to bid on. This is the
-absolute lease period index value, not an auction-specific offset.
-- `last_slot` is the last lease period index of the range to bid on. This is the
-absolute lease period index value, not an auction-specific offset.
-- `amount` is the amount to bid to be held as deposit for the parachain should the
-bid win. This amount is held throughout the range.
+See [`Pallet::bid`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -46,9 +31,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_auction
-Cancel an in-progress auction.
-
-Can only be called by Root origin.
+See [`Pallet::cancel_auction`].
 #### Attributes
 No attributes
 
@@ -61,15 +44,11 @@ call = substrate.compose_call(
 
 ---------
 ### new_auction
-Create a new auction.
-
-This can only happen when there isn&\#x27;t already an auction in progress and may only be
-called by the root origin. Accepts the `duration` of this auction and the
-`lease_period_index` of the initial lease period of the four that are to be auctioned.
+See [`Pallet::new_auction`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| duration | `T::BlockNumber` | 
+| duration | `BlockNumberFor<T>` | 
 | lease_period_index | `LeasePeriodOf<T>` | 
 
 #### Python
@@ -102,7 +81,7 @@ close and the first lease period of the quadruplet that is auctioned.
 | -------- | -------- | -------- |
 | auction_index | `AuctionIndex` | ```u32```
 | lease_period | `LeasePeriodOf<T>` | ```u32```
-| ending | `T::BlockNumber` | ```u32```
+| ending | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### BidAccepted
@@ -118,8 +97,8 @@ A new bid has been accepted as the current winner.
 
 ---------
 ### ReserveConfiscated
-Someone attempted to lease the same slot twice for a parachain. The amount is held in reserve
-but no parachain slot has been leased.
+Someone attempted to lease the same slot twice for a parachain. The amount is held in
+reserve but no parachain slot has been leased.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -149,12 +128,13 @@ Funds were unreserved since bidder is no longer active. `[bidder, amount]`
 
 ---------
 ### WinningOffset
-The winning offset was chosen for an auction. This will map into the `Winning` storage map.
+The winning offset was chosen for an auction. This will map into the `Winning` storage
+map.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | auction_index | `AuctionIndex` | ```u32```
-| block_number | `T::BlockNumber` | ```u32```
+| block_number | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ## Storage functions

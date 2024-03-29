@@ -6,7 +6,7 @@
 
 ---------
 ### deposit
-Initiates a transfer.
+See [`Pallet::deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3074,7 +3074,7 @@ call = substrate.compose_call(
 
 ---------
 ### execute_proposal
-Executes a batch of deposit proposals (only if signature is signed by MPC).
+See [`Pallet::execute_proposal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3099,8 +3099,21 @@ call = substrate.compose_call(
 ```
 
 ---------
+### pause_all_bridges
+See [`Pallet::pause_all_bridges`].
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'SygmaBridge', 'pause_all_bridges', {}
+)
+```
+
+---------
 ### pause_bridge
-Pause bridge, this would lead to bridge transfer failure before it being unpaused.
+See [`Pallet::pause_bridge`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3115,7 +3128,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_domain
-Mark the give dest domainID with chainID to be enabled
+See [`Pallet::register_domain`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3126,7 +3139,7 @@ Mark the give dest domainID with chainID to be enabled
 ```python
 call = substrate.compose_call(
     'SygmaBridge', 'register_domain', {
-    'dest_chain_id': '[u64; 4]',
+    'dest_chain_id': 'scale_info::131',
     'dest_domain_id': 'u8',
 }
 )
@@ -3134,7 +3147,7 @@ call = substrate.compose_call(
 
 ---------
 ### retry
-This method is used to trigger the process for retrying failed deposits on the MPC side.
+See [`Pallet::retry`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3153,7 +3166,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_mpc_address
-Mark an ECDSA address as a MPC account.
+See [`Pallet::set_mpc_address`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3167,8 +3180,21 @@ call = substrate.compose_call(
 ```
 
 ---------
+### unpause_all_bridges
+See [`Pallet::unpause_all_bridges`].
+#### Attributes
+No attributes
+
+#### Python
+```python
+call = substrate.compose_call(
+    'SygmaBridge', 'unpause_all_bridges', {}
+)
+```
+
+---------
 ### unpause_bridge
-Unpause bridge.
+See [`Pallet::unpause_bridge`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3183,7 +3209,7 @@ call = substrate.compose_call(
 
 ---------
 ### unregister_domain
-Mark the give dest domainID with chainID to be disabled
+See [`Pallet::unregister_domain`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3194,7 +3220,7 @@ Mark the give dest domainID with chainID to be disabled
 ```python
 call = substrate.compose_call(
     'SygmaBridge', 'unregister_domain', {
-    'dest_chain_id': '[u64; 4]',
+    'dest_chain_id': 'scale_info::131',
     'dest_domain_id': 'u8',
 }
 )
@@ -3202,6 +3228,22 @@ call = substrate.compose_call(
 
 ---------
 ## Events
+
+---------
+### AllBridgePaused
+When all bridges are paused
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `T::AccountId` | ```AccountId```
+
+---------
+### AllBridgeUnpaused
+When all bridges are unpaused
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `T::AccountId` | ```AccountId```
 
 ---------
 ### BridgePaused
@@ -3248,6 +3290,18 @@ When proposal was faild to execute
 | deposit_nonce | `DepositNonce` | ```u64```
 
 ---------
+### FeeCollected
+When bridge fee is collected
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| fee_payer | `T::AccountId` | ```AccountId```
+| dest_domain_id | `DomainID` | ```u8```
+| resource_id | `ResourceId` | ```[u8; 32]```
+| fee_amount | `u128` | ```u128```
+| fee_asset_id | `AssetId` | ```{'Concrete': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::56'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::56'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::56'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::59', 'part': 'scale_info::60'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, 'X2': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}), 'X3': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}), 'X4': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}), 'X5': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}), 'X6': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}), 'X7': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}), 'X8': ({'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'}, {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::56'})}}, 'Abstract': '[u8; 32]'}```
+
+---------
 ### ProposalExecution
 When proposal was executed successfully
 #### Attributes
@@ -3265,7 +3319,7 @@ When registering a new dest domainID with its corresponding chainID
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
 | domain_id | `DomainID` | ```u8```
-| chain_id | `ChainID` | ```[u64; 4]```
+| chain_id | `ChainID` | ```scale_info::131```
 
 ---------
 ### Retry
@@ -3286,7 +3340,7 @@ When unregistering a dest domainID with its corresponding chainID
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
 | domain_id | `DomainID` | ```u8```
-| chain_id | `ChainID` | ```[u64; 4]```
+| chain_id | `ChainID` | ```scale_info::131```
 
 ---------
 ## Storage functions
@@ -3321,7 +3375,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u64; 4]'
+'scale_info::131'
 ```
 ---------
 ### DestDomainIds
@@ -3406,7 +3460,7 @@ constant = substrate.get_constant('SygmaBridge', 'DestVerifyingContractAddress')
  This is used in EIP712 typed data domain
 #### Value
 ```python
-[5233, 0, 0, 0]
+5233
 ```
 #### Python
 ```python
@@ -3424,15 +3478,17 @@ constant = substrate.get_constant('SygmaBridge', 'EIP712ChainID')
 constant = substrate.get_constant('SygmaBridge', 'FeeReserveAccount')
 ```
 ---------
-### TransferReserveAccount
- Bridge transfer reserve account
+### TransferReserveAccounts
+ Bridge transfer reserve accounts mapping with designated assets
 #### Value
 ```python
-'436H4jatj6ntHTVm3wh9zs1Mqa8p1ykfcdkNH7txmjmohTu3'
+[
+    ({'Concrete': {'interior': 'Here', 'parents': 0}}, '436H4jatj6ntHTVm3wh9zs1Mqa8p1ykfcdkNH7txmjmohTu3'),
+]
 ```
 #### Python
 ```python
-constant = substrate.get_constant('SygmaBridge', 'TransferReserveAccount')
+constant = substrate.get_constant('SygmaBridge', 'TransferReserveAccounts')
 ```
 ---------
 ## Errors
@@ -3463,7 +3519,7 @@ Failed on the decimal converter
 
 ---------
 ### DepositNonceOverflow
-Deposit nonce has reached max integer qvalue
+Deposit nonce has reached max integer value
 
 ---------
 ### DestChainIDNotMatch
@@ -3504,6 +3560,10 @@ MPC address not set
 ---------
 ### MpcAddrNotUpdatable
 MPC address can not be updated
+
+---------
+### NoLiquidityHolderAccountBound
+Asset not bound to a liquidity holder account
 
 ---------
 ### ProposalAlreadyComplete

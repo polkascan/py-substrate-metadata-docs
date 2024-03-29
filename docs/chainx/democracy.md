@@ -32,7 +32,7 @@ Weight: `O(p)` (though as this is an high-privilege dispatch, we assume it has a
 call = substrate.compose_call(
     'Democracy', 'blacklist', {
     'maybe_ref_index': (None, 'u32'),
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::9',
 }
 )
 ```
@@ -201,7 +201,7 @@ Enact a proposal from a referendum. For now we just make the weight be the maxim
 call = substrate.compose_call(
     'Democracy', 'enact_proposal', {
     'index': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::9',
 }
 )
 ```
@@ -225,7 +225,7 @@ Weight: `O(V)` with V number of vetoers in the blacklist of proposal.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'external_propose', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose', {'proposal_hash': 'scale_info::9'}
 )
 ```
 
@@ -250,7 +250,7 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'external_propose_default', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose_default', {'proposal_hash': 'scale_info::9'}
 )
 ```
 
@@ -275,7 +275,7 @@ Weight: `O(1)`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'external_propose_majority', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'external_propose_majority', {'proposal_hash': 'scale_info::9'}
 )
 ```
 
@@ -308,7 +308,7 @@ Weight: `O(1)`
 call = substrate.compose_call(
     'Democracy', 'fast_track', {
     'delay': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::9',
     'voting_period': 'u32',
 }
 )
@@ -417,7 +417,7 @@ Weight: `O(p)`
 ```python
 call = substrate.compose_call(
     'Democracy', 'propose', {
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::9',
     'value': 'u128',
 }
 )
@@ -450,7 +450,7 @@ Weight: `O(D)` where D is length of proposal.
 ```python
 call = substrate.compose_call(
     'Democracy', 'reap_preimage', {
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::9',
     'proposal_len_upper_bound': 'u32',
 }
 )
@@ -622,7 +622,7 @@ Weight: `O(V + log(V))` where V is number of `existing vetoers`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'veto_external', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'veto_external', {'proposal_hash': 'scale_info::9'}
 )
 ```
 
@@ -682,7 +682,7 @@ A proposal_hash has been blacklisted permanently.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::9```
 
 ---------
 ### Cancelled
@@ -738,7 +738,7 @@ A proposal could not be executed because its preimage was invalid.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::9```
 | ref_index | `ReferendumIndex` | ```u32```
 
 ---------
@@ -747,7 +747,7 @@ A proposal could not be executed because its preimage was missing.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::9```
 | ref_index | `ReferendumIndex` | ```u32```
 
 ---------
@@ -756,7 +756,7 @@ A proposal&\#x27;s preimage was noted, and the deposit taken.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::9```
 | who | `T::AccountId` | ```AccountId```
 | deposit | `BalanceOf<T>` | ```u128```
 
@@ -766,7 +766,7 @@ A registered preimage was removed and the deposit collected by the reaper.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::9```
 | provider | `T::AccountId` | ```AccountId```
 | deposit | `BalanceOf<T>` | ```u128```
 | reaper | `T::AccountId` | ```AccountId```
@@ -777,7 +777,7 @@ A proposal preimage was removed and used (the deposit was returned).
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::9```
 | provider | `T::AccountId` | ```AccountId```
 | deposit | `BalanceOf<T>` | ```u128```
 
@@ -833,7 +833,7 @@ An external proposal has been vetoed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| proposal_hash | `T::Hash` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::9```
 | until | `T::BlockNumber` | ```u32```
 
 ---------
@@ -857,7 +857,7 @@ An account has voted in a referendum
 #### Python
 ```python
 result = substrate.query(
-    'Democracy', 'Blacklist', ['[u8; 32]']
+    'Democracy', 'Blacklist', ['scale_info::9']
 )
 ```
 
@@ -872,7 +872,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Democracy', 'Cancellations', ['[u8; 32]']
+    'Democracy', 'Cancellations', ['scale_info::9']
 )
 ```
 
@@ -946,7 +946,7 @@ result = substrate.query(
 #### Return value
 ```python
 (
-    '[u8; 32]',
+    'scale_info::9',
     ('SuperMajorityApprove', 'SuperMajorityAgainst', 'SimpleMajority'),
 )
 ```
@@ -958,7 +958,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Democracy', 'Preimages', ['[u8; 32]']
+    'Democracy', 'Preimages', ['scale_info::9']
 )
 ```
 
@@ -1003,7 +1003,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[('u32', '[u8; 32]', 'AccountId')]
+[('u32', 'scale_info::9', 'AccountId')]
 ```
 ---------
 ### ReferendumCount
@@ -1040,7 +1040,7 @@ result = substrate.query(
     'Ongoing': {
         'delay': 'u32',
         'end': 'u32',
-        'proposal_hash': '[u8; 32]',
+        'proposal_hash': 'scale_info::9',
         'tally': {'ayes': 'u128', 'nays': 'u128', 'turnout': 'u128'},
         'threshold': (
             'SuperMajorityApprove',

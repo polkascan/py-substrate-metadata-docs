@@ -107,8 +107,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash_username | `T::Hash` | ```[u8; 32]```
-| hash_owner | `T::Hash` | ```[u8; 32]```
+| hash_username | `T::Hash` | ```scale_info::12```
+| hash_owner | `T::Hash` | ```scale_info::12```
 
 ---------
 ### NameRegistered
@@ -131,8 +131,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash_username | `T::Hash` | ```[u8; 32]```
-| hash_owner | `T::Hash` | ```[u8; 32]```
+| hash_username | `T::Hash` | ```scale_info::12```
+| hash_owner | `T::Hash` | ```scale_info::12```
 
 ---------
 ### RegisterRemoved
@@ -152,13 +152,13 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'NameService', 'PendingRegister', ['[u8; 32]']
+    'NameService', 'PendingRegister', ['scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-('[u8; 32]', 'u32')
+('scale_info::12', 'u32')
 ```
 ---------
 ### PrimaryRecords

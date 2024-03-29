@@ -236,7 +236,7 @@ result = substrate.query(
 ### AppPromotionDailyRate
 #### Value
 ```python
-500000
+453256
 ```
 #### Python
 ```python
@@ -286,7 +286,7 @@ constant = substrate.get_constant('Configuration', 'DefaultCollatorSelectionMaxC
 ### DefaultMinGasPrice
 #### Value
 ```python
-1873477799288
+1873548000299
 ```
 #### Python
 ```python
@@ -296,7 +296,7 @@ constant = substrate.get_constant('Configuration', 'DefaultMinGasPrice')
 ### DefaultWeightToFeeCoefficient
 #### Value
 ```python
-74401761267585092
+74374502416291841
 ```
 #### Python
 ```python

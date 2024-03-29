@@ -107,8 +107,8 @@ call = substrate.compose_call(
                 'info': {
                     'additional': [
                         (
-                            'scale_info::152',
-                            'scale_info::152',
+                            'scale_info::150',
+                            'scale_info::150',
                         ),
                     ],
                     'display': {
@@ -175,7 +175,7 @@ call = substrate.compose_call(
                 'judgements': [
                     (
                         'u32',
-                        'scale_info::187',
+                        'scale_info::185',
                     ),
                 ],
             },
@@ -220,7 +220,7 @@ call = substrate.compose_call(
                 [
                     (
                         'AccountId',
-                        'scale_info::152',
+                        'scale_info::150',
                     ),
                 ],
             ),
@@ -268,7 +268,7 @@ See [`Pallet::provide_judgement`].
 ```python
 call = substrate.compose_call(
     'Identity', 'provide_judgement', {
-    'identity': '[u8; 32]',
+    'identity': 'scale_info::12',
     'judgement': {
         'Erroneous': None,
         'FeePaid': 'u128',
@@ -701,7 +701,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [('scale_info::152', 'scale_info::152')],
+        'additional': [('scale_info::150', 'scale_info::150')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',

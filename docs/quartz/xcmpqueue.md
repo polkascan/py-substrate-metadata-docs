@@ -244,6 +244,21 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### DeliveryFeeFactor
+ The factor to multiply the base delivery fee by.
+
+#### Python
+```python
+result = substrate.query(
+    'XcmpQueue', 'DeliveryFeeFactor', ['u32']
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### InboundXcmpMessages
  Inbound aggregate XCMP messages. It can only be one per ParaId/block.
 

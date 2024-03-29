@@ -9,7 +9,7 @@
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
 | from | `Option<T::GroupId>` | ```(None, 'u32')```
 | to | `T::GroupId` | ```u32```
 
@@ -27,7 +27,7 @@
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | group_id | `T::GroupId` | ```u32```
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
 | account_id | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T, I>` | ```u128```
 
@@ -37,7 +37,7 @@
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | group_id | `T::GroupId` | ```u32```
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
 | account_id | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T, I>` | ```u128```
 
@@ -47,7 +47,7 @@
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | group_id | `T::GroupId` | ```u32```
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
 | account_id | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T, I>` | ```u128```
 
@@ -62,12 +62,13 @@
 result = substrate.query(
     'BlockRewardsBase', 'Currency', [
     {
+        'Native': None,
+        'Tranche': ('u64', '[u8; 16]'),
+        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'KSM': None,
-        'Native': None,
+        'LocalAsset': 'u32',
         'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
     },
 ]
 )
@@ -100,12 +101,13 @@ result = substrate.query(
     'BlockRewardsBase', 'StakeAccount', [
     'AccountId',
     {
+        'Native': None,
+        'Tranche': ('u64', '[u8; 16]'),
+        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'KSM': None,
-        'Native': None,
+        'LocalAsset': 'u32',
         'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
     },
 ]
 )

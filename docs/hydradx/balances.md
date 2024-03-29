@@ -5,13 +5,27 @@
 ## Calls
 
 ---------
+### force_set_balance
+See [`Pallet::force_set_balance`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `AccountIdLookupOf<T>` | 
+| new_free | `T::Balance` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Balances', 'force_set_balance', {
+    'new_free': 'u128',
+    'who': 'AccountId',
+}
+)
+```
+
+---------
 ### force_transfer
-Exactly as `transfer`, except the origin must be root and the source account may be
-specified.
-\# &lt;weight&gt;
-- Same as transfer, but additional read and write because the source account is not
-  assumed to be in the overlay.
-\# &lt;/weight&gt;
+See [`Pallet::force_transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -32,9 +46,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_unreserve
-Unreserve some balance from a user by force.
-
-Can only be called by ROOT.
+See [`Pallet::force_unreserve`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -49,28 +61,21 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_balance
-Set the balances of a given account.
-
-This will alter `FreeBalance` and `ReservedBalance` in storage. it will
-also alter the total issuance of the system (`TotalIssuance`) appropriately.
-If the new free or reserved balance is below the existential deposit,
-it will reset the account nonce (`frame_system::AccountNonce`).
-
-The dispatch origin for this call is `root`.
+### set_balance_deprecated
+See [`Pallet::set_balance_deprecated`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | who | `AccountIdLookupOf<T>` | 
 | new_free | `T::Balance` | 
-| new_reserved | `T::Balance` | 
+| old_reserved | `T::Balance` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Balances', 'set_balance', {
+    'Balances', 'set_balance_deprecated', {
     'new_free': 'u128',
-    'new_reserved': 'u128',
+    'old_reserved': 'u128',
     'who': 'AccountId',
 }
 )
@@ -78,31 +83,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer
-Transfer some liquid free balance to another account.
-
-`transfer` will set the `FreeBalance` of the sender and receiver.
-If the sender&\#x27;s account is below the existential deposit as a result
-of the transfer, the account will be reaped.
-
-The dispatch origin for this call must be `Signed` by the transactor.
-
-\# &lt;weight&gt;
-- Dependent on arguments but not critical, given proper implementations for input config
-  types. See related functions below.
-- It contains a limited number of reads and writes internally and no complex
-  computation.
-
-Related functions:
-
-  - `ensure_can_withdraw` is always called internally but has a bounded complexity.
-  - Transferring balances to accounts that did not exist before will cause
-    `T::OnNewAccount::on_new_account` to be called.
-  - Removing enough funds from an account will trigger `T::DustRemoval::on_unbalanced`.
-  - `transfer_keep_alive` works the same way as `transfer`, but has an additional check
-    that the transfer will not kill the origin account.
----------------------------------
-- Origin account is already in memory, so no DB operations for them.
-\# &lt;/weight&gt;
+See [`Pallet::transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -118,23 +99,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_all
-Transfer the entire transferable balance from the caller account.
-
-NOTE: This function only attempts to transfer _transferable_ balances. This means that
-any locked, reserved, or existential deposits (when `keep_alive` is `true`), will not be
-transferred by this function. To ensure that this function results in a killed account,
-you might need to prepare the account by removing any reference counters, storage
-deposits, etc...
-
-The dispatch origin of this call must be Signed.
-
-- `dest`: The recipient of the transfer.
-- `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
-  of the funds the account has, causing the sender account to be killed (false), or
-  transfer everything except at least the existential deposit, which will guarantee to
-  keep the sender account alive (true). \# &lt;weight&gt;
-- O(1). Just like transfer, but reading the user&\#x27;s transferable balance first.
-  \#&lt;/weight&gt;
+See [`Pallet::transfer_all`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -152,13 +117,24 @@ call = substrate.compose_call(
 ```
 
 ---------
+### transfer_allow_death
+See [`Pallet::transfer_allow_death`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| dest | `AccountIdLookupOf<T>` | 
+| value | `T::Balance` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Balances', 'transfer_allow_death', {'dest': 'AccountId', 'value': 'u128'}
+)
+```
+
+---------
 ### transfer_keep_alive
-Same as the [`transfer`] call, but with a check that the transfer will not kill the
-origin account.
-
-99% of the time you want [`transfer`] instead.
-
-[`transfer`]: struct.Pallet.html\#method.transfer
+See [`Pallet::transfer_keep_alive`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -173,6 +149,21 @@ call = substrate.compose_call(
 ```
 
 ---------
+### upgrade_accounts
+See [`Pallet::upgrade_accounts`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `Vec<T::AccountId>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Balances', 'upgrade_accounts', {'who': ['AccountId']}
+)
+```
+
+---------
 ## Events
 
 ---------
@@ -183,7 +174,15 @@ A balance was set by root.
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | free | `T::Balance` | ```u128```
-| reserved | `T::Balance` | ```u128```
+
+---------
+### Burned
+Some amount was burned from an account.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
 
 ---------
 ### Deposit
@@ -214,6 +213,49 @@ An account was created with some free balance.
 | free_balance | `T::Balance` | ```u128```
 
 ---------
+### Frozen
+Some balance was frozen.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Issued
+Total issuance was increased by `amount`, creating a credit to be balanced.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| amount | `T::Balance` | ```u128```
+
+---------
+### Locked
+Some balance was locked.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Minted
+Some amount was minted into an account.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Rescinded
+Total issuance was decreased by `amount`, creating a debt to be balanced.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| amount | `T::Balance` | ```u128```
+
+---------
 ### ReserveRepatriated
 Some balance was moved from the reserve of the first account to the second account.
 Final argument indicates the destination balance type.
@@ -235,8 +277,35 @@ Some balance was reserved (moved from free to reserved).
 | amount | `T::Balance` | ```u128```
 
 ---------
+### Restored
+Some amount was restored into an account.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
 ### Slashed
 Some amount was removed from the account (e.g. for misbehavior).
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Suspended
+Some amount was suspended from an account (it can be restored later).
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Thawed
+Some balance was thawed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -254,6 +323,15 @@ Transfer succeeded.
 | amount | `T::Balance` | ```u128```
 
 ---------
+### Unlocked
+Some balance was unlocked.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
 ### Unreserved
 Some balance was unreserved (moved from reserved to free).
 #### Attributes
@@ -261,6 +339,14 @@ Some balance was unreserved (moved from reserved to free).
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```
+
+---------
+### Upgraded
+An account was upgraded.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
 
 ---------
 ### Withdraw
@@ -310,12 +396,37 @@ result = substrate.query(
 
 #### Return value
 ```python
-{
-    'fee_frozen': 'u128',
-    'free': 'u128',
-    'misc_frozen': 'u128',
-    'reserved': 'u128',
-}
+{'flags': 'u128', 'free': 'u128', 'frozen': 'u128', 'reserved': 'u128'}
+```
+---------
+### Freezes
+ Freeze locks on account balances.
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'Freezes', ['AccountId']
+)
+```
+
+#### Return value
+```python
+[{'amount': 'u128', 'id': ()}]
+```
+---------
+### Holds
+ Holds on account balances.
+
+#### Python
+```python
+result = substrate.query(
+    'Balances', 'Holds', ['AccountId']
+)
+```
+
+#### Return value
+```python
+[{'amount': 'u128', 'id': ()}]
 ```
 ---------
 ### InactiveIssuance
@@ -383,7 +494,14 @@ result = substrate.query(
 
 ---------
 ### ExistentialDeposit
- The minimum amount required to keep an account open.
+ The minimum amount required to keep an account open. MUST BE GREATER THAN ZERO!
+
+ If you *really* need it to be zero, you can enable the feature `insecure_zero_ed` for
+ this pallet. However, you do so at your own risk: this will open up a major DoS vector.
+ In case you have multiple sources of provider references, you may also get unexpected
+ behaviour if you set this to zero.
+
+ Bottom line: Do yourself a favour and make it at least one!
 #### Value
 ```python
 1000000000000
@@ -391,6 +509,28 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('Balances', 'ExistentialDeposit')
+```
+---------
+### MaxFreezes
+ The maximum number of individual freeze locks that can exist on an account at any time.
+#### Value
+```python
+0
+```
+#### Python
+```python
+constant = substrate.get_constant('Balances', 'MaxFreezes')
+```
+---------
+### MaxHolds
+ The maximum number of holds that can exist on an account at any time.
+#### Value
+```python
+0
+```
+#### Python
+```python
+constant = substrate.get_constant('Balances', 'MaxHolds')
 ```
 ---------
 ### MaxLocks
@@ -420,34 +560,42 @@ constant = substrate.get_constant('Balances', 'MaxReserves')
 
 ---------
 ### DeadAccount
-Beneficiary account must pre-exist
+Beneficiary account must pre-exist.
 
 ---------
 ### ExistentialDeposit
-Value too low to create account due to existential deposit
+Value too low to create account due to existential deposit.
 
 ---------
 ### ExistingVestingSchedule
-A vesting schedule already exists for this account
+A vesting schedule already exists for this account.
+
+---------
+### Expendability
+Transfer/payment would kill account.
 
 ---------
 ### InsufficientBalance
 Balance too low to send value.
 
 ---------
-### KeepAlive
-Transfer/payment would kill account
+### LiquidityRestrictions
+Account liquidity restrictions prevent withdrawal.
 
 ---------
-### LiquidityRestrictions
-Account liquidity restrictions prevent withdrawal
+### TooManyFreezes
+Number of freezes exceed `MaxFreezes`.
+
+---------
+### TooManyHolds
+Number of holds exceed `MaxHolds`.
 
 ---------
 ### TooManyReserves
-Number of named reserves exceed MaxReserves
+Number of named reserves exceed `MaxReserves`.
 
 ---------
 ### VestingBalance
-Vesting balance too high to send value
+Vesting balance too high to send value.
 
 ---------

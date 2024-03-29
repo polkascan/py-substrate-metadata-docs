@@ -550,7 +550,7 @@ result = substrate.query(
 ```python
 {
     'cycle_id': 'u64',
-    'note_hash': (None, '[u8; 32]'),
+    'note_hash': (None, 'scale_info::11'),
     'reward_account_id': 'AccountId',
     'stake': 'u128',
     'staking_account_id': 'AccountId',
@@ -656,7 +656,7 @@ result = substrate.query(
  Duration of annoncing period
 #### Value
 ```python
-129600
+86400
 ```
 #### Python
 ```python
@@ -722,7 +722,7 @@ constant = substrate.get_constant('Council', 'ElectedMemberRewardPeriod')
  Duration of idle period
 #### Value
 ```python
-1
+201600
 ```
 #### Python
 ```python

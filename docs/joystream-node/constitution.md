@@ -36,7 +36,7 @@ Parameters:
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Hash` | ```[u8; 32]```
+| None | `Hash` | ```scale_info::11```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -54,6 +54,6 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'text_hash': '[u8; 32]'}
+{'text_hash': 'scale_info::11'}
 ```
 ---------

@@ -36,7 +36,7 @@ a user may have paid, and take the control of the preimage out of their hands.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'request_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'request_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -56,7 +56,7 @@ If `len` is provided, then it will be a much cheaper operation.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unnote_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unnote_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -73,7 +73,7 @@ NOTE: THIS MUST NOT BE CALLED ON `hash` MORE TIMES THAN `request_preimage`.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unrequest_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unrequest_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -86,7 +86,7 @@ A preimage has ben cleared.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Noted
@@ -94,7 +94,7 @@ A preimage has been noted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Requested
@@ -102,7 +102,7 @@ A preimage has been requested.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -113,7 +113,7 @@ A preimage has been requested.
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'PreimageFor', [('[u8; 32]', 'u32')]
+    'Preimage', 'PreimageFor', [('scale_info::12', 'u32')]
 )
 ```
 
@@ -128,7 +128,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'StatusFor', ['[u8; 32]']
+    'Preimage', 'StatusFor', ['scale_info::12']
 )
 ```
 

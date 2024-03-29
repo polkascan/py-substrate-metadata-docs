@@ -6,6 +6,7 @@
 
 ---------
 ### pause_transaction
+See [`Pallet::pause_transaction`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,6 +25,7 @@ call = substrate.compose_call(
 
 ---------
 ### unpause_transaction
+See [`Pallet::unpause_transaction`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -91,5 +93,9 @@ can not pause
 ---------
 ### InvalidCharacter
 invalid character encoding
+
+---------
+### NameTooLong
+pallet name or function name is too long
 
 ---------

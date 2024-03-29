@@ -47,7 +47,7 @@ call = substrate.compose_call(
             'amount': 'u128',
             'nonce': 'u32',
             'recipient': 'AccountId',
-            'tx_hash': '[u8; 32]',
+            'tx_hash': 'scale_info::11',
         },
     ],
 }
@@ -166,7 +166,7 @@ call = substrate.compose_call(
         'amount': 'u128',
         'nonce': 'u32',
         'recipient': 'AccountId',
-        'tx_hash': '[u8; 32]',
+        'tx_hash': 'scale_info::11',
     },
 }
 )
@@ -213,7 +213,7 @@ call = substrate.compose_call(
             'amount': 'u128',
             'nonce': 'u32',
             'recipient': 'AccountId',
-            'tx_hash': '[u8; 32]',
+            'tx_hash': 'scale_info::11',
         },
     ],
 }
@@ -241,7 +241,7 @@ call = substrate.compose_call(
         'amount': 'u128',
         'nonce': 'u32',
         'recipient': 'AccountId',
-        'tx_hash': '[u8; 32]',
+        'tx_hash': 'scale_info::11',
     },
 }
 )
@@ -268,7 +268,7 @@ call = substrate.compose_call(
         'amount': 'u128',
         'nonce': 'u32',
         'recipient': 'AccountId',
-        'tx_hash': '[u8; 32]',
+        'tx_hash': 'scale_info::11',
     },
 }
 )
@@ -295,7 +295,7 @@ call = substrate.compose_call(
         'amount': 'u128',
         'nonce': 'u32',
         'recipient': 'AccountId',
-        'tx_hash': '[u8; 32]',
+        'tx_hash': 'scale_info::11',
     },
 }
 )
@@ -340,7 +340,7 @@ call = substrate.compose_call(
             'amount': 'u128',
             'nonce': 'u32',
             'recipient': 'AccountId',
-            'tx_hash': '[u8; 32]',
+            'tx_hash': 'scale_info::11',
         },
     ],
 }
@@ -387,7 +387,7 @@ call = substrate.compose_call(
             'amount': 'u128',
             'nonce': 'u32',
             'recipient': 'AccountId',
-            'tx_hash': '[u8; 32]',
+            'tx_hash': 'scale_info::11',
         },
     ],
 }
@@ -423,7 +423,7 @@ Bridge Tx failed.  Recipient missing CDD or limit reached.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': '[u8; 32]'}```
+| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': 'scale_info::11'}```
 | None | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
 
 ---------
@@ -433,7 +433,7 @@ Failed to schedule Bridge Tx.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': '[u8; 32]'}```
+| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': 'scale_info::11'}```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -443,7 +443,7 @@ Bridge Tx Scheduled.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': '[u8; 32]'}```
+| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': 'scale_info::11'}```
 | None | `BlockNumber` | ```u32```
 
 ---------
@@ -453,7 +453,7 @@ Confirmation of POLYX upgrade on Polymesh from POLY tokens on Ethereum.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': '[u8; 32]'}```
+| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': 'scale_info::11'}```
 
 ---------
 ### ControllerChanged
@@ -507,7 +507,7 @@ Notification of freezing a transaction.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': '[u8; 32]'}```
+| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': 'scale_info::11'}```
 
 ---------
 ### TimelockChanged
@@ -525,7 +525,7 @@ Notification of removing a transaction.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': '[u8; 32]'}```
+| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': 'scale_info::11'}```
 
 ---------
 ### TxsHandled
@@ -551,7 +551,7 @@ Notification of unfreezing a transaction.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `IdentityId` | ```[u8; 32]```
-| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': '[u8; 32]'}```
+| None | `BridgeTx<AccountId>` | ```{'nonce': 'u32', 'recipient': 'AccountId', 'amount': 'u128', 'tx_hash': 'scale_info::11'}```
 
 ---------
 ## Storage functions
@@ -626,7 +626,7 @@ result = substrate.query(
         'Pending': 'u8',
         'Timelocked': None,
     },
-    'tx_hash': '[u8; 32]',
+    'tx_hash': 'scale_info::11',
 }
 ```
 ---------

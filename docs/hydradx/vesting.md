@@ -6,6 +6,7 @@
 
 ---------
 ### claim
+See [`Pallet::claim`].
 #### Attributes
 No attributes
 
@@ -18,6 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_for
+See [`Pallet::claim_for`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -32,6 +34,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_vesting_schedules
+See [`Pallet::update_vesting_schedules`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -57,6 +60,7 @@ call = substrate.compose_call(
 
 ---------
 ### vested_transfer
+See [`Pallet::vested_transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

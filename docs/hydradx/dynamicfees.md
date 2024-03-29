@@ -28,9 +28,9 @@ result = substrate.query(
 #### Value
 ```python
 {
-    'amplification': 1000000000000000000,
-    'decay': 5000000000000,
-    'max_fee': 4000,
+    'amplification': 2000000000000000000,
+    'decay': 10000000000000,
+    'max_fee': 50000,
     'min_fee': 2500,
 }
 ```

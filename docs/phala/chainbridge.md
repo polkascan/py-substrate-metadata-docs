@@ -6,14 +6,7 @@
 
 ---------
 ### acknowledge_proposal
-Commits a vote in favour of the provided proposal.
-
-If a proposal with the given nonce and source chain ID does not already exist, it will
-be created with an initial vote in favour from the caller.
-
-\# &lt;weight&gt;
-- weight of proposed call, regardless of whether execution is performed
-\# &lt;/weight&gt;
+See [`Pallet::acknowledge_proposal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -36,11 +29,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_relayer
-Adds a new relayer to the relayer set.
-
-\# &lt;weight&gt;
-- O(1) lookup and insert
-\# &lt;/weight&gt;
+See [`Pallet::add_relayer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -55,14 +44,7 @@ call = substrate.compose_call(
 
 ---------
 ### eval_vote_state
-Evaluate the state of a proposal given the current vote threshold.
-
-A proposal with enough votes will be either executed or cancelled, and the status
-will be updated accordingly.
-
-\# &lt;weight&gt;
-- weight of proposed call, regardless of whether execution is performed
-\# &lt;/weight&gt;
+See [`Pallet::eval_vote_state`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -83,7 +65,7 @@ call = substrate.compose_call(
 
 ---------
 ### handle_fungible_transfer
-Triggered by a initial transfer on source chain, executed by relayer when proposal was resolved.
+See [`Pallet::handle_fungible_transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -104,11 +86,7 @@ call = substrate.compose_call(
 
 ---------
 ### reject_proposal
-Commits a vote against a provided proposal.
-
-\# &lt;weight&gt;
-- Fixed, since execution of proposal should not be included
-\# &lt;/weight&gt;
+See [`Pallet::reject_proposal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -131,11 +109,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_relayer
-Removes an existing relayer from the set.
-
-\# &lt;weight&gt;
-- O(1) lookup and removal
-\# &lt;/weight&gt;
+See [`Pallet::remove_relayer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -150,14 +124,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_threshold
-Sets the vote threshold for proposals.
-
-This threshold is used to determine how many votes are required
-before a proposal is executed.
-
-\# &lt;weight&gt;
-- O(1) lookup and insert
-\# &lt;/weight&gt;
+See [`Pallet::set_threshold`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -172,11 +139,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_fee
-Change extra bridge transfer fee that user should pay
-
-\# &lt;weight&gt;
-- O(1) lookup and insert
-\# &lt;/weight&gt;
+See [`Pallet::update_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -192,11 +155,7 @@ call = substrate.compose_call(
 
 ---------
 ### whitelist_chain
-Enables a chain ID as a source or destination for a bridge transfer.
-
-\# &lt;weight&gt;
-- O(1) lookup and insert
-\# &lt;/weight&gt;
+See [`Pallet::whitelist_chain`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -237,7 +196,7 @@ FungibleTransfer is for relaying fungibles (dest_id, nonce, resource_id, amount,
 | None | `BridgeChainId` | ```u8```
 | None | `DepositNonce` | ```u64```
 | None | `ResourceId` | ```[u8; 32]```
-| None | `U256` | ```[u64; 4]```
+| None | `U256` | ```scale_info::131```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -361,7 +320,13 @@ result = substrate.query(
 ```python
 [
     {
-        'FungibleTransfer': ('u8', 'u64', '[u8; 32]', '[u64; 4]', 'Bytes'),
+        'FungibleTransfer': (
+            'u8',
+            'u64',
+            '[u8; 32]',
+            'scale_info::131',
+            'Bytes',
+        ),
         'GenericTransfer': ('u8', 'u64', '[u8; 32]', 'Bytes'),
         'NonFungibleTransfer': (
             'u8',

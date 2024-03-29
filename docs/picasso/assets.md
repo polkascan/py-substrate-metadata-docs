@@ -75,6 +75,82 @@ call = substrate.compose_call(
 ```
 
 ---------
+### force_transfer_all
+Transfer all free balance of the `asset` from `source` to `dest`.
+
+\# Errors
+ - When `origin` is not signed.
+ - If the `dest` cannot be looked up.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| asset | `T::AssetId` | 
+| source | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `<T::Lookup as StaticLookup>::Source` | 
+| keep_alive | `bool` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'force_transfer_all', {
+    'asset': 'u128',
+    'dest': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': 'u32',
+        'Raw': 'Bytes',
+    },
+    'keep_alive': 'bool',
+    'source': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': 'u32',
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
+### force_transfer_all_native
+Transfer all free balance of the native asset from `source` to `dest`.
+
+\# Errors
+ - When `origin` is not signed.
+ - If the `dest` cannot be looked up.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| source | `<T::Lookup as StaticLookup>::Source` | 
+| dest | `<T::Lookup as StaticLookup>::Source` | 
+| keep_alive | `bool` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Assets', 'force_transfer_all_native', {
+    'dest': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': 'u32',
+        'Raw': 'Bytes',
+    },
+    'keep_alive': 'bool',
+    'source': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': 'u32',
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
 ### force_transfer_native
 Transfer `amount` of the the native asset from `origin` to `dest`. This requires root.
 

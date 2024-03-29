@@ -6,9 +6,7 @@
 
 ---------
 ### force_heartbeat
-Triggers a force heartbeat request to all workers by sending a MAX pow target
-
-Only for integration test.
+See [`Pallet::force_heartbeat`].
 #### Attributes
 No attributes
 
@@ -21,9 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_start_computing
-Start computing
-
-Only for integration test.
+See [`Pallet::force_start_computing`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -42,9 +38,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_stop_computing
-Stop computing
-
-Only for integration test.
+See [`Pallet::force_stop_computing`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -59,11 +53,12 @@ call = substrate.compose_call(
 
 ---------
 ### set_budget_per_block
+See [`Pallet::set_budget_per_block`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | nonce | `u64` | 
-| block_number | `T::BlockNumber` | 
+| block_number | `BlockNumberFor<T>` | 
 | budget | `u128` | 
 
 #### Python
@@ -79,9 +74,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_cool_down_expiration
-Sets the cool down expiration time in seconds.
-
-Can only be called by root.
+See [`Pallet::set_cool_down_expiration`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -96,13 +89,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_heartbeat_paused
-Pause or resume the heartbeat challenges.
-
-This API is introduced to pause the computing rewards for a period while we upgrading
-StakePool v2. Worker&\#x27;s rewards would still be accumulated in GK in the pausing period
-but never be paid out until the heartbeat is resumed.
-
-Can only be called by root.
+See [`Pallet::set_heartbeat_paused`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -117,10 +104,7 @@ call = substrate.compose_call(
 
 ---------
 ### unbind
-Unbinds a worker from the given session (or pool sub-account).
-
-It will trigger a force stop of computing if the worker is still in computing state. Anyone
-can call it.
+See [`Pallet::unbind`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -135,6 +119,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_contract_root
+See [`Pallet::update_contract_root`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -149,9 +134,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_tokenomic
-Updates the tokenomic parameters at the end of this block.
-
-Can only be called by the tokenomic admin.
+See [`Pallet::update_tokenomic`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -464,12 +447,12 @@ result = substrate.query(
 'bool'
 ```
 ---------
-### LastBugdetUpdateBlock
+### LastBudgetUpdateBlock
 
 #### Python
 ```python
 result = substrate.query(
-    'PhalaComputation', 'LastBugdetUpdateBlock', []
+    'PhalaComputation', 'LastBudgetUpdateBlock', []
 )
 ```
 

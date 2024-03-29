@@ -6,12 +6,7 @@
 
 ---------
 ### add
-Register a new public credential on chain.
-
-This function fails if a credential with the same identifier already
-exists for the specified subject.
-
-Emits `CredentialStored`.
+See [`Pallet::add`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -27,12 +22,12 @@ call = substrate.compose_call(
             {
                 'Delegation': {
                     'max_checks': 'u32',
-                    'subject_node_id': '[u8; 32]',
+                    'subject_node_id': 'scale_info::12',
                 },
             },
         ),
         'claims': 'Bytes',
-        'ctype_hash': '[u8; 32]',
+        'ctype_hash': 'scale_info::12',
         'subject': 'Bytes',
     },
 }
@@ -41,13 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### change_deposit_owner
-Changes the deposit owner.
-
-The balance that is reserved by the current deposit owner will be
-freed and balance of the new deposit owner will get reserved.
-
-The subject of the call must be the owner of the credential.
-The sender of the call will be the new deposit owner.
+See [`Pallet::change_deposit_owner`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -56,30 +45,13 @@ The sender of the call will be the new deposit owner.
 #### Python
 ```python
 call = substrate.compose_call(
-    'PublicCredentials', 'change_deposit_owner', {'credential_id': '[u8; 32]'}
+    'PublicCredentials', 'change_deposit_owner', {'credential_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### reclaim_deposit
-Removes the information pertaining a public credential from the
-chain and returns the deposit to its payer.
-
-The removal of the credential does not delete it entirely from the
-blockchain history, but only its link *from* the blockchain state
-*to* the blockchain history is removed.
-
-Clients parsing public credentials should interpret
-the lack of such a link as the fact that the credential has been
-removed by its attester some time in the past.
-
-This function fails if a credential already exists for the specified
-subject.
-
-The dispatch origin must be the owner of the deposit, hence not the
-credential&\#x27;s attester.
-
-Emits `CredentialRemoved`.
+See [`Pallet::reclaim_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -88,29 +60,13 @@ Emits `CredentialRemoved`.
 #### Python
 ```python
 call = substrate.compose_call(
-    'PublicCredentials', 'reclaim_deposit', {'credential_id': '[u8; 32]'}
+    'PublicCredentials', 'reclaim_deposit', {'credential_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### remove
-Removes the information pertaining a public credential from the
-chain.
-
-The removal of the credential does not delete it entirely from the
-blockchain history, but only its link *from* the blockchain state
-*to* the blockchain history is removed.
-
-Clients parsing public credentials should interpret
-the lack of such a link as the fact that the credential has been
-removed by its attester some time in the past.
-
-This function fails if a credential already exists for the specified
-subject.
-
-The dispatch origin must be authorized to remove the credential.
-
-Emits `CredentialRemoved`.
+See [`Pallet::remove`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -126,25 +82,18 @@ call = substrate.compose_call(
         {
             'Delegation': {
                 'max_checks': 'u32',
-                'subject_node_id': '[u8; 32]',
+                'subject_node_id': 'scale_info::12',
             },
         },
     ),
-    'credential_id': '[u8; 32]',
+    'credential_id': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### revoke
-Revokes a public credential.
-
-If a credential was already revoked, this function does not fail but
-simply results in a noop.
-
-The dispatch origin must be authorized to revoke the credential.
-
-Emits `CredentialRevoked`.
+See [`Pallet::revoke`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -160,26 +109,18 @@ call = substrate.compose_call(
         {
             'Delegation': {
                 'max_checks': 'u32',
-                'subject_node_id': '[u8; 32]',
+                'subject_node_id': 'scale_info::12',
             },
         },
     ),
-    'credential_id': '[u8; 32]',
+    'credential_id': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### unrevoke
-Unrevokes a public credential.
-
-If a credential was not revoked, this function does not fail but
-simply results in a noop.
-
-The dispatch origin must be authorized to unrevoke the
-credential.
-
-Emits `CredentialUnrevoked`.
+See [`Pallet::unrevoke`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -195,20 +136,18 @@ call = substrate.compose_call(
         {
             'Delegation': {
                 'max_checks': 'u32',
-                'subject_node_id': '[u8; 32]',
+                'subject_node_id': 'scale_info::12',
             },
         },
     ),
-    'credential_id': '[u8; 32]',
+    'credential_id': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### update_deposit
-Updates the deposit amount to the current deposit rate.
-
-The sender must be the deposit owner.
+See [`Pallet::update_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -217,7 +156,7 @@ The sender must be the deposit owner.
 #### Python
 ```python
 call = substrate.compose_call(
-    'PublicCredentials', 'update_deposit', {'credential_id': '[u8; 32]'}
+    'PublicCredentials', 'update_deposit', {'credential_id': 'scale_info::12'}
 )
 ```
 
@@ -230,8 +169,8 @@ A public credentials has been removed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| subject_id | `T::SubjectId` | ```{'chain_id': {'Eip155': 'u128', 'Bip122': '[u8; 16]', 'Dotsama': '[u8; 16]', 'Solana': 'Bytes', 'Generic': {'namespace': 'Bytes', 'reference': 'Bytes'}}, 'asset_id': {'Slip44': '[u64; 4]', 'Erc20': '[u8; 20]', 'Erc721': ('[u8; 20]', (None, 'Bytes')), 'Erc1155': ('[u8; 20]', (None, 'Bytes')), 'Generic': {'namespace': 'Bytes', 'reference': 'Bytes', 'id': (None, 'Bytes')}}}```
-| credential_id | `CredentialIdOf<T>` | ```[u8; 32]```
+| subject_id | `T::SubjectId` | ```{'chain_id': {'Eip155': 'u128', 'Bip122': '[u8; 16]', 'Dotsama': '[u8; 16]', 'Solana': 'Bytes', 'Generic': {'namespace': 'Bytes', 'reference': 'Bytes'}}, 'asset_id': {'Slip44': 'scale_info::91', 'Erc20': '[u8; 20]', 'Erc721': ('[u8; 20]', (None, 'Bytes')), 'Erc1155': ('[u8; 20]', (None, 'Bytes')), 'Generic': {'namespace': 'Bytes', 'reference': 'Bytes', 'id': (None, 'Bytes')}}}```
+| credential_id | `CredentialIdOf<T>` | ```scale_info::12```
 
 ---------
 ### CredentialRevoked
@@ -239,7 +178,7 @@ A public credential has been revoked.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| credential_id | `CredentialIdOf<T>` | ```[u8; 32]```
+| credential_id | `CredentialIdOf<T>` | ```scale_info::12```
 
 ---------
 ### CredentialStored
@@ -247,8 +186,8 @@ A new public credential has been issued.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| subject_id | `T::SubjectId` | ```{'chain_id': {'Eip155': 'u128', 'Bip122': '[u8; 16]', 'Dotsama': '[u8; 16]', 'Solana': 'Bytes', 'Generic': {'namespace': 'Bytes', 'reference': 'Bytes'}}, 'asset_id': {'Slip44': '[u64; 4]', 'Erc20': '[u8; 20]', 'Erc721': ('[u8; 20]', (None, 'Bytes')), 'Erc1155': ('[u8; 20]', (None, 'Bytes')), 'Generic': {'namespace': 'Bytes', 'reference': 'Bytes', 'id': (None, 'Bytes')}}}```
-| credential_id | `CredentialIdOf<T>` | ```[u8; 32]```
+| subject_id | `T::SubjectId` | ```{'chain_id': {'Eip155': 'u128', 'Bip122': '[u8; 16]', 'Dotsama': '[u8; 16]', 'Solana': 'Bytes', 'Generic': {'namespace': 'Bytes', 'reference': 'Bytes'}}, 'asset_id': {'Slip44': 'scale_info::91', 'Erc20': '[u8; 20]', 'Erc721': ('[u8; 20]', (None, 'Bytes')), 'Erc1155': ('[u8; 20]', (None, 'Bytes')), 'Generic': {'namespace': 'Bytes', 'reference': 'Bytes', 'id': (None, 'Bytes')}}}```
+| credential_id | `CredentialIdOf<T>` | ```scale_info::12```
 
 ---------
 ### CredentialUnrevoked
@@ -256,7 +195,7 @@ A public credential has been unrevoked.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| credential_id | `CredentialIdOf<T>` | ```[u8; 32]```
+| credential_id | `CredentialIdOf<T>` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -271,7 +210,7 @@ A public credential has been unrevoked.
 #### Python
 ```python
 result = substrate.query(
-    'PublicCredentials', 'CredentialSubjects', ['[u8; 32]']
+    'PublicCredentials', 'CredentialSubjects', ['scale_info::12']
 )
 ```
 
@@ -283,7 +222,7 @@ result = substrate.query(
         'Erc20': '[u8; 20]',
         'Erc721': ('[u8; 20]', (None, 'Bytes')),
         'Generic': {'id': (None, 'Bytes'), 'namespace': 'Bytes', 'reference': 'Bytes'},
-        'Slip44': '[u64; 4]',
+        'Slip44': 'scale_info::91',
     },
     'chain_id': {
         'Bip122': '[u8; 16]',
@@ -320,7 +259,7 @@ result = substrate.query(
                 'namespace': 'Bytes',
                 'reference': 'Bytes',
             },
-            'Slip44': '[u64; 4]',
+            'Slip44': 'scale_info::91',
         },
         'chain_id': {
             'Bip122': '[u8; 16]',
@@ -333,7 +272,7 @@ result = substrate.query(
             'Solana': 'Bytes',
         },
     },
-    '[u8; 32]',
+    'scale_info::12',
 ]
 )
 ```
@@ -342,9 +281,9 @@ result = substrate.query(
 ```python
 {
     'attester': 'AccountId',
-    'authorization_id': (None, {'Delegation': '[u8; 32]'}),
+    'authorization_id': (None, {'Delegation': 'scale_info::12'}),
     'block_number': 'u64',
-    'ctype_hash': '[u8; 32]',
+    'ctype_hash': 'scale_info::12',
     'deposit': {'amount': 'u128', 'owner': 'AccountId'},
     'revoked': 'bool',
 }

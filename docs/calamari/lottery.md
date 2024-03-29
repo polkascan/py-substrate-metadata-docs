@@ -176,6 +176,28 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_farming_params
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| mint_farming_token | `bool` | 
+| burn_farming_token | `bool` | 
+| pool_id | `PoolId` | 
+| currency_id | `<T as pallet_farming::Config>::CurrencyId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Lottery', 'set_farming_params', {
+    'burn_farming_token': 'bool',
+    'currency_id': 'u128',
+    'mint_farming_token': 'bool',
+    'pool_id': 'u128',
+}
+)
+```
+
+---------
 ### set_gas_reserve
 #### Attributes
 | Name | Type |
@@ -340,6 +362,26 @@ result = substrate.query(
 #### Return value
 ```python
 'u128'
+```
+---------
+### FarmingParameters
+ Boolean for the minting of a farming token on `deposit` call
+
+#### Python
+```python
+result = substrate.query(
+    'Lottery', 'FarmingParameters', []
+)
+```
+
+#### Return value
+```python
+{
+    'currency_id': 'u128',
+    'destroy_farming_token': 'bool',
+    'mint_farming_token': 'bool',
+    'pool_id': 'u128',
+}
 ```
 ---------
 ### GasReserve

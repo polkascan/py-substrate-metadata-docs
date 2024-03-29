@@ -22,10 +22,11 @@ call = substrate.compose_call(
     'currency_id': {
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'KSM': None,
+        'LocalAsset': 'u32',
         'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
     'dest': {
         'Address20': '[u8; 20]',
@@ -62,10 +63,11 @@ call = substrate.compose_call(
     'currency_id': {
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'KSM': None,
+        'LocalAsset': 'u32',
         'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
     'new_free': 'u128',
     'new_reserved': 'u128',
@@ -95,10 +97,11 @@ call = substrate.compose_call(
     'Tokens', 'transfer', {
     'amount': 'u128',
     'currency_id': {
+        'Native': None,
+        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'KSM': None,
-        'Native': None,
+        'LocalAsset': 'u32',
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
     },
@@ -129,10 +132,11 @@ call = substrate.compose_call(
     'currency_id': {
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'KSM': None,
+        'LocalAsset': 'u32',
         'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
     'dest': {
         'Address20': '[u8; 20]',
@@ -161,9 +165,10 @@ call = substrate.compose_call(
     'Tokens', 'transfer_keep_alive', {
     'amount': 'u128',
     'currency_id': {
+        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'KSM': None,
+        'LocalAsset': 'u32',
         'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
@@ -188,7 +193,7 @@ A balance was set by root.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
 | who | `T::AccountId` | ```AccountId```
 | free | `T::Balance` | ```u128```
 | reserved | `T::Balance` | ```u128```
@@ -199,7 +204,7 @@ Transfer succeeded.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), 'KSM': None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}```
+| currency_id | `T::CurrencyId` | ```{'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}```
 | from | `T::AccountId` | ```AccountId```
 | to | `T::AccountId` | ```AccountId```
 | amount | `T::Balance` | ```u128```

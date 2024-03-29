@@ -40,8 +40,10 @@ call = substrate.compose_call(
     },
     'scope': {
         'Currency': {
+            None: None,
             'AUSD': None,
             'ForeignAsset': 'u32',
+            'LocalAsset': 'u32',
             'Native': None,
             'Staking': (
                 'BlockRewards',
@@ -50,7 +52,6 @@ call = substrate.compose_call(
                 'u64',
                 '[u8; 16]',
             ),
-            None: None,
         },
         'Pool': 'u64',
     },
@@ -98,6 +99,7 @@ call = substrate.compose_call(
             None: None,
             'AUSD': None,
             'ForeignAsset': 'u32',
+            'LocalAsset': 'u32',
             'Staking': (
                 'BlockRewards',
             ),
@@ -125,9 +127,9 @@ call = substrate.compose_call(
     'Permissions', 'purge', {
     'scope': {
         'Currency': {
-            None: None,
             'AUSD': None,
             'ForeignAsset': 'u32',
+            'LocalAsset': 'u32',
             'Native': None,
             'Staking': (
                 'BlockRewards',
@@ -136,6 +138,7 @@ call = substrate.compose_call(
                 'u64',
                 '[u8; 16]',
             ),
+            None: None,
         },
         'Pool': 'u64',
     },
@@ -182,6 +185,7 @@ call = substrate.compose_call(
         'Currency': {
             'AUSD': None,
             'ForeignAsset': 'u32',
+            'LocalAsset': 'u32',
             'Native': None,
             'Staking': (
                 'BlockRewards',
@@ -227,7 +231,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | to | `T::AccountId` | ```AccountId```
-| scope | `T::Scope` | ```{'Pool': 'u64', 'Currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}}```
+| scope | `T::Scope` | ```{'Pool': 'u64', 'Currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}}```
 | role | `T::Role` | ```{'PoolRole': {'PoolAdmin': None, 'Borrower': None, 'PricingAdmin': None, 'LiquidityAdmin': None, 'InvestorAdmin': None, 'LoanAdmin': None, 'TrancheInvestor': ('[u8; 16]', 'u64'), 'PODReadAccess': None}, 'PermissionedCurrencyRole': {'Holder': 'u64', 'Manager': None, 'Issuer': None}}```
 
 ---------
@@ -236,7 +240,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | from | `T::AccountId` | ```AccountId```
-| scope | `T::Scope` | ```{'Pool': 'u64', 'Currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}}```
+| scope | `T::Scope` | ```{'Pool': 'u64', 'Currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}}```
 
 ---------
 ### Removed
@@ -244,7 +248,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | from | `T::AccountId` | ```AccountId```
-| scope | `T::Scope` | ```{'Pool': 'u64', 'Currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',)}}```
+| scope | `T::Scope` | ```{'Pool': 'u64', 'Currency': {'Native': None, 'Tranche': ('u64', '[u8; 16]'), None: None, 'AUSD': None, 'ForeignAsset': 'u32', 'Staking': ('BlockRewards',), 'LocalAsset': 'u32'}}```
 | role | `T::Role` | ```{'PoolRole': {'PoolAdmin': None, 'Borrower': None, 'PricingAdmin': None, 'LiquidityAdmin': None, 'InvestorAdmin': None, 'LoanAdmin': None, 'TrancheInvestor': ('[u8; 16]', 'u64'), 'PODReadAccess': None}, 'PermissionedCurrencyRole': {'Holder': 'u64', 'Manager': None, 'Issuer': None}}```
 
 ---------
@@ -260,8 +264,10 @@ result = substrate.query(
     'AccountId',
     {
         'Currency': {
+            None: None,
             'AUSD': None,
             'ForeignAsset': 'u32',
+            'LocalAsset': 'u32',
             'Native': None,
             'Staking': (
                 'BlockRewards',
@@ -270,7 +276,6 @@ result = substrate.query(
                 'u64',
                 '[u8; 16]',
             ),
-            None: None,
         },
         'Pool': 'u64',
     },
@@ -298,16 +303,17 @@ result = substrate.query(
     'Permissions', 'PermissionCount', [
     {
         'Currency': {
-            'Native': None,
-            'Tranche': (
-                'u64',
-                '[u8; 16]',
-            ),
             None: None,
             'AUSD': None,
             'ForeignAsset': 'u32',
+            'LocalAsset': 'u32',
+            'Native': None,
             'Staking': (
                 'BlockRewards',
+            ),
+            'Tranche': (
+                'u64',
+                '[u8; 16]',
             ),
         },
         'Pool': 'u64',

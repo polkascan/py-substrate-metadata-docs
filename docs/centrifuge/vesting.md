@@ -18,12 +18,8 @@ Emits `VestingCreated`.
 
 NOTE: This will unlock all schedules through the current block.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- DbWeight: 4 Reads, 4 Writes
-    - Reads: Vesting Storage, Balances Locks, Target Account, Source Account
-    - Writes: Vesting Storage, Balances Locks, Target Account, Source Account
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -106,12 +102,8 @@ locked under this pallet.
 
 Emits either `VestingCompleted` or `VestingUpdated`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- DbWeight: 2 Reads, 2 Writes
-    - Reads: Vesting Storage, Balances Locks, [Sender Account]
-    - Writes: Vesting Storage, Balances Locks, [Sender Account]
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -133,12 +125,8 @@ locked under this pallet.
 
 Emits either `VestingCompleted` or `VestingUpdated`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- DbWeight: 3 Reads, 3 Writes
-    - Reads: Vesting Storage, Balances Locks, Target Account
-    - Writes: Vesting Storage, Balances Locks, Target Account
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -172,12 +160,8 @@ Emits `VestingCreated`.
 
 NOTE: This will unlock all schedules through the current block.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- DbWeight: 3 Reads, 3 Writes
-    - Reads: Vesting Storage, Balances Locks, Target Account, [Sender Account]
-    - Writes: Vesting Storage, Balances Locks, Target Account, [Sender Account]
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

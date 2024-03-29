@@ -6,15 +6,7 @@
 
 ---------
 ### add_worker
-Adds a worker to a pool
-
-This will bind a worker to the corresponding pool sub-account. The binding will not be
-released until the worker is removed gracefully by `remove_worker()`, or a force unbind
-by the worker operator via `Computation::unbind()`.
-
-Requires:
-1. The worker is registered and benchmarked
-2. The worker is not bound a pool
+See [`Pallet::add_worker`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -29,30 +21,8 @@ call = substrate.compose_call(
 ```
 
 ---------
-### backfill_add_missing_reward
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| input | `Vec<(T::AccountId, u64, BalanceOf<T>)>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'PhalaStakePoolv2', 'backfill_add_missing_reward', {
-    'input': [
-        ('AccountId', 'u64', 'u128'),
-    ],
-}
-)
-```
-
----------
 ### check_and_maybe_force_withdraw
-Let any user to launch a stakepool withdraw. Then check if the pool need to be forced shutdown.
-
-If the shutdown condition is met, all workers in the pool will be forced shutdown.
-Note: This function doesn&\#x27;t guarantee no-op when there&\#x27;s error.
-TODO(mingxuan): add more detail comment later.
+See [`Pallet::check_and_maybe_force_withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -67,6 +37,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_legacy_rewards
+See [`Pallet::claim_legacy_rewards`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -82,12 +53,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_owner_rewards
-Claims pool-owner&\#x27;s pending rewards of the sender and send to the `target`
-
-The rewards associate to sender&\#x27;s &quot;staker role&quot; will not be claimed
-
-Requires:
-1. The sender is a pool owner
+See [`Pallet::claim_owner_rewards`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -103,11 +69,7 @@ call = substrate.compose_call(
 
 ---------
 ### contribute
-Contributes some stake to a stakepool
-
-Requires:
-1. The pool exists
-2. After the deposit, the pool doesn&\#x27;t reach the cap
+See [`Pallet::contribute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -128,7 +90,7 @@ call = substrate.compose_call(
 
 ---------
 ### create
-Creates a new stake pool
+See [`Pallet::create`].
 #### Attributes
 No attributes
 
@@ -140,22 +102,8 @@ call = substrate.compose_call(
 ```
 
 ---------
-### fix_missing_worker_lock
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| max_iterations | `u32` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'PhalaStakePoolv2', 'fix_missing_worker_lock', {'max_iterations': 'u32'}
-)
-```
-
----------
 ### reclaim_pool_worker
-Reclaims the releasing stake of a worker in a pool.
+See [`Pallet::reclaim_pool_worker`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -171,12 +119,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_worker
-Removes a worker from a pool
-
-Requires:
-1. The worker is registered
-2. The worker is associated with a pool
-3. The worker is removable (not in computing)
+See [`Pallet::remove_worker`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -191,20 +134,8 @@ call = substrate.compose_call(
 ```
 
 ---------
-### reset_iter_pos
-#### Attributes
-No attributes
-
-#### Python
-```python
-call = substrate.compose_call(
-    'PhalaStakePoolv2', 'reset_iter_pos', {}
-)
-```
-
----------
 ### restart_computing
-Restarts the worker with a higher stake
+See [`Pallet::restart_computing`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -225,11 +156,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_cap
-Sets the hard cap of the pool
-
-Note: a smaller cap than current total_value if not allowed.
-Requires:
-1. The sender is the owner
+See [`Pallet::set_cap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -245,10 +172,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_payout_pref
-Changes the pool commission rate
-
-Requires:
-1. The sender is the owner
+See [`Pallet::set_payout_pref`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -267,11 +191,7 @@ call = substrate.compose_call(
 
 ---------
 ### start_computing
-Starts a worker on behalf of the stake pool
-
-Requires:
-1. The worker is bound to the pool and is in Ready state
-2. The remaining stake in the pool can cover the minimal stake required
+See [`Pallet::start_computing`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -292,11 +212,7 @@ call = substrate.compose_call(
 
 ---------
 ### stop_computing
-Stops a worker on behalf of the stake pool
-Note: this would let worker enter CoolingDown if everything is good
-
-Requires:
-1. There worker is bound to the pool and is in a stoppable state
+See [`Pallet::stop_computing`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -312,13 +228,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw
-Demands the return of some stake from a pool.
-
-Note: there are two scenarios people may meet
-
-Once a withdraw request is proceeded successfully, The withdrawal would be queued and waiting to be dealed.
-Afer the withdrawal is queued, The withdraw queue will be automaticly consumed util there are not enough free stakes to fullfill withdrawals.
-Everytime the free stakes in the pools increases (except for rewards distributing), the withdraw queue will be consumed as it describes above.
+See [`Pallet::withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

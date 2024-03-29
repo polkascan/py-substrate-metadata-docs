@@ -6,16 +6,7 @@
 
 ---------
 ### approve_proposal
-Approve a proposal. At a later time, the proposal will be allocated to the beneficiary
-and the original deposit will be returned.
-
-May only be called from `T::ApproveOrigin`.
-
-\# &lt;weight&gt;
-- Complexity: O(1).
-- DbReads: `Proposals`, `Approvals`
-- DbWrite: `Approvals`
-\# &lt;/weight&gt;
+See [`Pallet::approve_proposal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -30,15 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### propose_spend
-Put forward a suggestion for spending. A deposit proportional to the value
-is reserved and slashed if the proposal is rejected. It is returned once the
-proposal is awarded.
-
-\# &lt;weight&gt;
-- Complexity: O(1)
-- DbReads: `ProposalCount`, `origin account`
-- DbWrites: `ProposalCount`, `Proposals`, `origin account`
-\# &lt;/weight&gt;
+See [`Pallet::propose_spend`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -63,15 +46,7 @@ call = substrate.compose_call(
 
 ---------
 ### reject_proposal
-Reject a proposed spend. The original deposit will be slashed.
-
-May only be called from `T::RejectOrigin`.
-
-\# &lt;weight&gt;
-- Complexity: O(1)
-- DbReads: `Proposals`, `rejected proposer account`
-- DbWrites: `Proposals`, `rejected proposer account`
-\# &lt;/weight&gt;
+See [`Pallet::reject_proposal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -86,21 +61,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_approval
-Force a previously approved proposal to be removed from the approval queue.
-The original deposit will no longer be returned.
-
-May only be called from `T::RejectOrigin`.
-- `proposal_id`: The index of a proposal
-
-\# &lt;weight&gt;
-- Complexity: O(A) where `A` is the number of approvals
-- Db reads and writes: `Approvals`
-\# &lt;/weight&gt;
-
-Errors:
-- `ProposalNotApproved`: The `proposal_id` supplied was not found in the approval queue,
-i.e., the proposal has not been approved. This could also mean the proposal does not
-exist altogether, thus there is no way it would have been approved in the first place.
+See [`Pallet::remove_approval`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -115,14 +76,7 @@ call = substrate.compose_call(
 
 ---------
 ### spend
-Propose and approve a spend of treasury funds.
-
-- `origin`: Must be `SpendOrigin` with the `Success` value being at least `amount`.
-- `amount`: The amount to be transferred from the treasury to the `beneficiary`.
-- `beneficiary`: The destination account for the transfer.
-
-NOTE: For record-keeping purposes, the proposer is deemed to be equivalent to the
-beneficiary.
+See [`Pallet::spend`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -218,6 +172,15 @@ We have ended a spend period and will now allocate funds.
 | budget_remaining | `BalanceOf<T, I>` | ```u128```
 
 ---------
+### UpdatedInactive
+The inactive funds of the pallet have been updated.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| reactivated | `BalanceOf<T, I>` | ```u128```
+| deactivated | `BalanceOf<T, I>` | ```u128```
+
+---------
 ## Storage functions
 
 ---------
@@ -234,6 +197,21 @@ result = substrate.query(
 #### Return value
 ```python
 ['u32']
+```
+---------
+### Deactivated
+ The amount which has been reported as inactive to Currency.
+
+#### Python
+```python
+result = substrate.query(
+    'Treasury', 'Deactivated', []
+)
+```
+
+#### Return value
+```python
+'u128'
 ```
 ---------
 ### ProposalCount

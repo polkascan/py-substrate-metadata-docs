@@ -5,13 +5,23 @@
 ## Calls
 
 ---------
+### add_invulnerable
+See [`Pallet::add_invulnerable`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CollatorSelection', 'add_invulnerable', {'who': 'AccountId'}
+)
+```
+
+---------
 ### leave_intent
-Deregister `origin` as a collator candidate. Note that the collator can only leave on
-session change. The `CandidacyBond` will be unreserved immediately.
-
-This call will fail if the total number of candidates would drop below `MinCandidates`.
-
-This call is not available to `Invulnerable` collators.
+See [`Pallet::leave_intent`].
 #### Attributes
 No attributes
 
@@ -24,10 +34,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_as_candidate
-Register this account as a collator candidate. The account must (a) already have
-registered session keys and (b) be able to reserve the `CandidacyBond`.
-
-This call is not available to `Invulnerable` collators.
+See [`Pallet::register_as_candidate`].
 #### Attributes
 No attributes
 
@@ -39,8 +46,23 @@ call = substrate.compose_call(
 ```
 
 ---------
+### remove_invulnerable
+See [`Pallet::remove_invulnerable`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CollatorSelection', 'remove_invulnerable', {'who': 'AccountId'}
+)
+```
+
+---------
 ### set_candidacy_bond
-Set the candidacy bond amount.
+See [`Pallet::set_candidacy_bond`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -55,9 +77,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_desired_candidates
-Set the ideal number of collators (not including the invulnerables).
-If lowering this number, then the number of running collators could be higher than this figure.
-Aside from that edge case, there should be no other way to have more collators than the desired number.
+See [`Pallet::set_desired_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -72,7 +92,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_invulnerables
-Set the list of invulnerable (fixed) collators.
+See [`Pallet::set_invulnerables`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -86,10 +106,54 @@ call = substrate.compose_call(
 ```
 
 ---------
+### take_candidate_slot
+See [`Pallet::take_candidate_slot`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| deposit | `BalanceOf<T>` | 
+| target | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CollatorSelection', 'take_candidate_slot', {
+    'deposit': 'u128',
+    'target': 'AccountId',
+}
+)
+```
+
+---------
+### update_bond
+See [`Pallet::update_bond`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| new_deposit | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'CollatorSelection', 'update_bond', {'new_deposit': 'u128'}
+)
+```
+
+---------
 ## Events
 
 ---------
 ### CandidateAdded
+A new candidate joined.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+| deposit | `BalanceOf<T>` | ```u128```
+
+---------
+### CandidateBondUpdated
+Bond of a candidate updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -98,6 +162,42 @@ call = substrate.compose_call(
 
 ---------
 ### CandidateRemoved
+A candidate was removed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
+### CandidateReplaced
+An account was replaced in the candidate list by another one.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| old | `T::AccountId` | ```AccountId```
+| new | `T::AccountId` | ```AccountId```
+| deposit | `BalanceOf<T>` | ```u128```
+
+---------
+### InvalidInvulnerableSkipped
+An account was unable to be added to the Invulnerables because they did not have keys
+registered. Other Invulnerables may have been set.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
+### InvulnerableAdded
+A new Invulnerable was added.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| account_id | `T::AccountId` | ```AccountId```
+
+---------
+### InvulnerableRemoved
+An Invulnerable was removed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -105,6 +205,7 @@ call = substrate.compose_call(
 
 ---------
 ### NewCandidacyBond
+The candidacy bond was set.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -112,6 +213,7 @@ call = substrate.compose_call(
 
 ---------
 ### NewDesiredCandidates
+The number of desired candidates was set.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -119,6 +221,7 @@ call = substrate.compose_call(
 
 ---------
 ### NewInvulnerables
+New Invulnerables were set.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -145,13 +248,17 @@ result = substrate.query(
 'u128'
 ```
 ---------
-### Candidates
- The (community, limited) collation candidates.
+### CandidateList
+ The (community, limited) collation candidates. `Candidates` and `Invulnerables` should be
+ mutually exclusive.
+
+ This list is sorted in ascending order by deposit and when the deposits are equal, the least
+ recently updated is considered greater.
 
 #### Python
 ```python
 result = substrate.query(
-    'CollatorSelection', 'Candidates', []
+    'CollatorSelection', 'CandidateList', []
 )
 ```
 
@@ -178,7 +285,7 @@ result = substrate.query(
 ```
 ---------
 ### Invulnerables
- The invulnerable, fixed collators.
+ The invulnerable, permissioned collators. This list must be sorted.
 
 #### Python
 ```python
@@ -211,42 +318,70 @@ result = substrate.query(
 
 ---------
 ### AlreadyCandidate
-User is already a candidate
+Account is already a candidate.
 
 ---------
 ### AlreadyInvulnerable
-User is already an Invulnerable
+Account is already an Invulnerable.
+
+---------
+### DepositTooLow
+New deposit amount would be below the minimum candidacy bond.
+
+---------
+### IdenticalDeposit
+The updated deposit amount is equal to the amount already reserved.
+
+---------
+### InsertToCandidateListFailed
+Could not insert in the candidate list.
+
+---------
+### InsufficientBond
+Deposit amount is too low to take the target&\#x27;s slot in the candidate list.
+
+---------
+### InvalidUnreserve
+Cannot lower candidacy bond while occupying a future collator slot in the list.
 
 ---------
 ### NoAssociatedValidatorId
-Account has no associated validator ID
+Account has no associated validator ID.
 
 ---------
 ### NotCandidate
-User is not a candidate
+Account is not a candidate.
 
 ---------
-### Permission
-Permission issue
+### NotInvulnerable
+Account is not an Invulnerable.
 
 ---------
-### TooFewCandidates
-Too few candidates
+### RemoveFromCandidateListFailed
+Could not remove from the candidate list.
+
+---------
+### TargetIsNotCandidate
+The target account to be replaced in the candidate list is not a candidate.
+
+---------
+### TooFewEligibleCollators
+Leaving would result in too few candidates.
 
 ---------
 ### TooManyCandidates
-Too many candidates
+The pallet has too many candidates.
 
 ---------
 ### TooManyInvulnerables
-Too many invulnerables
+There are too many Invulnerables.
 
 ---------
-### Unknown
-Unknown error
+### UpdateCandidateListFailed
+Could not update the candidate list.
 
 ---------
 ### ValidatorNotRegistered
-Validator ID is not yet registered
+Validator ID is not yet registered.
 
 ---------

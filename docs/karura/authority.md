@@ -44,6 +44,96 @@ call = substrate.compose_call(
         'Authority': {
             'delay': 'u32',
             'origin': {
+                'CumulusXcm': {
+                    'Relay': None,
+                    'SiblingParachain': 'u32',
+                },
+                'system': {
+                    'None': None,
+                    'Root': None,
+                    'Signed': 'AccountId',
+                },
+                None: None,
+                'Authority': {
+                    'delay': 'u32',
+                    'origin': {
+                        'Authority': {
+                            'delay': 'u32',
+                            'origin': 'scale_info::134',
+                        },
+                        'CumulusXcm': {
+                            'Relay': None,
+                            'SiblingParachain': 'u32',
+                        },
+                        'FinancialCouncil': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'GeneralCouncil': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'HomaCouncil': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'PolkadotXcm': {
+                            'Response': 'scale_info::74',
+                            'Xcm': 'scale_info::74',
+                        },
+                        'TechnicalCommittee': {
+                            'Member': 'AccountId',
+                            'Members': (
+                                'u32',
+                                'u32',
+                            ),
+                            '_Phantom': None,
+                        },
+                        'Void': (),
+                        'system': {
+                            'None': None,
+                            'Root': None,
+                            'Signed': 'AccountId',
+                        },
+                        None: None,
+                    },
+                },
+                'FinancialCouncil': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
+                'GeneralCouncil': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
+                'HomaCouncil': {
+                    'Member': 'AccountId',
+                    'Members': (
+                        'u32',
+                        'u32',
+                    ),
+                    '_Phantom': None,
+                },
                 'PolkadotXcm': {
                     'Response': {
                         'interior': {
@@ -158,91 +248,6 @@ call = substrate.compose_call(
                         'parents': 'u8',
                     },
                 },
-                None: None,
-                'Authority': {
-                    'delay': 'u32',
-                    'origin': {
-                        'Authority': {
-                            'delay': 'u32',
-                            'origin': 'scale_info::131',
-                        },
-                        'CumulusXcm': {
-                            'Relay': None,
-                            'SiblingParachain': 'u32',
-                        },
-                        'FinancialCouncil': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'GeneralCouncil': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'HomaCouncil': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'PolkadotXcm': {
-                            'Response': 'scale_info::74',
-                            'Xcm': 'scale_info::74',
-                        },
-                        'TechnicalCommittee': {
-                            'Member': 'AccountId',
-                            'Members': (
-                                'u32',
-                                'u32',
-                            ),
-                            '_Phantom': None,
-                        },
-                        'system': {
-                            'None': None,
-                            'Root': None,
-                            'Signed': 'AccountId',
-                        },
-                        None: None,
-                        'Void': (),
-                    },
-                },
-                'CumulusXcm': {
-                    'Relay': None,
-                    'SiblingParachain': 'u32',
-                },
-                'FinancialCouncil': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
-                },
-                'GeneralCouncil': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
-                },
-                'HomaCouncil': {
-                    'Member': 'AccountId',
-                    'Members': (
-                        'u32',
-                        'u32',
-                    ),
-                    '_Phantom': None,
-                },
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': (
@@ -252,11 +257,6 @@ call = substrate.compose_call(
                     '_Phantom': None,
                 },
                 'Void': (),
-                'system': {
-                    'None': None,
-                    'Root': None,
-                    'Signed': 'AccountId',
-                },
             },
         },
         'CumulusXcm': {
@@ -317,6 +317,7 @@ call = substrate.compose_call(
                             'Ethereum': 'InnerStruct',
                             'Kusama': None,
                             'Polkadot': None,
+                            'PolkadotBulletin': None,
                             'Rococo': None,
                             'Westend': None,
                             'Wococo': None,
@@ -804,6 +805,7 @@ call = substrate.compose_call(
                             'Ethereum': 'InnerStruct',
                             'Kusama': None,
                             'Polkadot': None,
+                            'PolkadotBulletin': None,
                             'Rococo': None,
                             'Westend': None,
                             'Wococo': None,
@@ -1281,22 +1283,23 @@ call = substrate.compose_call(
     'Authority', 'delay_scheduled_dispatch', {
     'additional_delay': 'u32',
     'initial_origin': {
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
         'Authority': {
             'delay': 'u32',
             'origin': {
+                None: None,
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
                         'Authority': {
                             'delay': 'u32',
-                            'origin': 'scale_info::131',
+                            'origin': 'scale_info::134',
                         },
-                        'system': {
-                            'None': None,
-                            'Root': None,
-                            'Signed': 'AccountId',
-                        },
-                        None: None,
                         'CumulusXcm': {
                             'Relay': None,
                             'SiblingParachain': 'u32',
@@ -1338,6 +1341,12 @@ call = substrate.compose_call(
                             '_Phantom': None,
                         },
                         'Void': (),
+                        'system': {
+                            'None': None,
+                            'Root': None,
+                            'Signed': 'AccountId',
+                        },
+                        None: None,
                     },
                 },
                 'CumulusXcm': {
@@ -1490,13 +1499,12 @@ call = substrate.compose_call(
                     ),
                     '_Phantom': None,
                 },
+                'Void': (),
                 'system': {
                     'None': None,
                     'Root': None,
                     'Signed': 'AccountId',
                 },
-                None: None,
-                'Void': (),
             },
         },
         'CumulusXcm': {
@@ -1557,6 +1565,7 @@ call = substrate.compose_call(
                             'Ethereum': 'InnerStruct',
                             'Kusama': None,
                             'Polkadot': None,
+                            'PolkadotBulletin': None,
                             'Rococo': None,
                             'Westend': None,
                             'Wococo': None,
@@ -2044,6 +2053,7 @@ call = substrate.compose_call(
                             'Ethereum': 'InnerStruct',
                             'Kusama': None,
                             'Polkadot': None,
+                            'PolkadotBulletin': None,
                             'Rococo': None,
                             'Westend': None,
                             'Wococo': None,
@@ -2500,12 +2510,6 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
     },
     'task_id': 'u32',
 }
@@ -2550,10 +2554,6 @@ call = substrate.compose_call(
 call = substrate.compose_call(
     'Authority', 'fast_track_scheduled_dispatch', {
     'initial_origin': {
-        'CumulusXcm': {
-            'Relay': None,
-            'SiblingParachain': 'u32',
-        },
         'system': {
             'None': None,
             'Root': None,
@@ -2563,23 +2563,22 @@ call = substrate.compose_call(
         'Authority': {
             'delay': 'u32',
             'origin': {
-                'system': {
-                    'None': None,
-                    'Root': None,
-                    'Signed': 'AccountId',
-                },
-                None: None,
                 'Authority': {
                     'delay': 'u32',
                     'origin': {
-                        None: None,
-                        'Authority': {
-                            'delay': 'u32',
-                            'origin': 'scale_info::131',
-                        },
                         'CumulusXcm': {
                             'Relay': None,
                             'SiblingParachain': 'u32',
+                        },
+                        'system': {
+                            'None': None,
+                            'Root': None,
+                            'Signed': 'AccountId',
+                        },
+                        None: None,
+                        'Authority': {
+                            'delay': 'u32',
+                            'origin': 'scale_info::134',
                         },
                         'FinancialCouncil': {
                             'Member': 'AccountId',
@@ -2618,11 +2617,6 @@ call = substrate.compose_call(
                             '_Phantom': None,
                         },
                         'Void': (),
-                        'system': {
-                            'None': None,
-                            'Root': None,
-                            'Signed': 'AccountId',
-                        },
                     },
                 },
                 'CumulusXcm': {
@@ -2776,7 +2770,17 @@ call = substrate.compose_call(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {
+                    'None': None,
+                    'Root': None,
+                    'Signed': 'AccountId',
+                },
+                None: None,
             },
+        },
+        'CumulusXcm': {
+            'Relay': None,
+            'SiblingParachain': 'u32',
         },
         'FinancialCouncil': {
             'Member': 'AccountId',
@@ -2832,6 +2836,7 @@ call = substrate.compose_call(
                             'Ethereum': 'InnerStruct',
                             'Kusama': None,
                             'Polkadot': None,
+                            'PolkadotBulletin': None,
                             'Rococo': None,
                             'Westend': None,
                             'Wococo': None,
@@ -3319,6 +3324,7 @@ call = substrate.compose_call(
                             'Ethereum': 'InnerStruct',
                             'Kusama': None,
                             'Polkadot': None,
+                            'PolkadotBulletin': None,
                             'Rococo': None,
                             'Westend': None,
                             'Wococo': None,
@@ -3795,7 +3801,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Authority', 'remove_authorized_call', {'hash': '[u8; 32]'}
+    'Authority', 'remove_authorized_call', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -3840,7 +3846,7 @@ call = substrate.compose_call(
         'proof_size': 'u64',
         'ref_time': 'u64',
     },
-    'hash': '[u8; 32]',
+    'hash': 'scale_info::12',
 }
 )
 ```
@@ -3853,7 +3859,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 | caller | `Option<T::AccountId>` | ```(None, 'AccountId')```
 
 ---------
@@ -3861,7 +3867,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| origin | `T::PalletsOrigin` | ```{'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}, 'Response': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': 'scale_info::75'}, 'Response': {'parents': 'u8', 'interior': 'scale_info::75'}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': 'scale_info::132', None: None, 'Void': 'scale_info::140', 'PolkadotXcm': 'scale_info::133', 'CumulusXcm': 'scale_info::134', 'Authority': 'scale_info::135', 'GeneralCouncil': 'scale_info::136', 'FinancialCouncil': 'scale_info::137', 'HomaCouncil': 'scale_info::138', 'TechnicalCommittee': 'scale_info::139'}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}```
+| origin | `T::PalletsOrigin` | ```{'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}, 'Response': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': 'scale_info::75'}, 'Response': {'parents': 'u8', 'interior': 'scale_info::75'}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': 'scale_info::135', None: None, 'Void': 'scale_info::143', 'PolkadotXcm': 'scale_info::136', 'CumulusXcm': 'scale_info::137', 'Authority': 'scale_info::138', 'GeneralCouncil': 'scale_info::139', 'FinancialCouncil': 'scale_info::140', 'HomaCouncil': 'scale_info::141', 'TechnicalCommittee': 'scale_info::142'}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}```
 | index | `ScheduleTaskIndex` | ```u32```
 
 ---------
@@ -3869,7 +3875,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| origin | `T::PalletsOrigin` | ```{'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}, 'Response': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': 'scale_info::75'}, 'Response': {'parents': 'u8', 'interior': 'scale_info::75'}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': 'scale_info::132', None: None, 'Void': 'scale_info::140', 'PolkadotXcm': 'scale_info::133', 'CumulusXcm': 'scale_info::134', 'Authority': 'scale_info::135', 'GeneralCouncil': 'scale_info::136', 'FinancialCouncil': 'scale_info::137', 'HomaCouncil': 'scale_info::138', 'TechnicalCommittee': 'scale_info::139'}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}```
+| origin | `T::PalletsOrigin` | ```{'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}, 'Response': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': 'scale_info::75'}, 'Response': {'parents': 'u8', 'interior': 'scale_info::75'}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': 'scale_info::135', None: None, 'Void': 'scale_info::143', 'PolkadotXcm': 'scale_info::136', 'CumulusXcm': 'scale_info::137', 'Authority': 'scale_info::138', 'GeneralCouncil': 'scale_info::139', 'FinancialCouncil': 'scale_info::140', 'HomaCouncil': 'scale_info::141', 'TechnicalCommittee': 'scale_info::142'}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}```
 | index | `ScheduleTaskIndex` | ```u32```
 | when | `BlockNumberFor<T>` | ```u32```
 
@@ -3885,7 +3891,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| origin | `T::PalletsOrigin` | ```{'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}, 'Response': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': 'scale_info::75'}, 'Response': {'parents': 'u8', 'interior': 'scale_info::75'}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': 'scale_info::132', None: None, 'Void': 'scale_info::140', 'PolkadotXcm': 'scale_info::133', 'CumulusXcm': 'scale_info::134', 'Authority': 'scale_info::135', 'GeneralCouncil': 'scale_info::136', 'FinancialCouncil': 'scale_info::137', 'HomaCouncil': 'scale_info::138', 'TechnicalCommittee': 'scale_info::139'}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}```
+| origin | `T::PalletsOrigin` | ```{'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}, 'Response': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': 'scale_info::75'}, 'Response': {'parents': 'u8', 'interior': 'scale_info::75'}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': 'scale_info::135', None: None, 'Void': 'scale_info::143', 'PolkadotXcm': 'scale_info::136', 'CumulusXcm': 'scale_info::137', 'Authority': 'scale_info::138', 'GeneralCouncil': 'scale_info::139', 'FinancialCouncil': 'scale_info::140', 'HomaCouncil': 'scale_info::141', 'TechnicalCommittee': 'scale_info::142'}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}```
 | index | `ScheduleTaskIndex` | ```u32```
 | when | `BlockNumberFor<T>` | ```u32```
 
@@ -3894,14 +3900,14 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Scheduled
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| origin | `T::PalletsOrigin` | ```{'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}, 'Response': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': 'scale_info::75'}, 'Response': {'parents': 'u8', 'interior': 'scale_info::75'}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': 'scale_info::132', None: None, 'Void': 'scale_info::140', 'PolkadotXcm': 'scale_info::133', 'CumulusXcm': 'scale_info::134', 'Authority': 'scale_info::135', 'GeneralCouncil': 'scale_info::136', 'FinancialCouncil': 'scale_info::137', 'HomaCouncil': 'scale_info::138', 'TechnicalCommittee': 'scale_info::139'}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}```
+| origin | `T::PalletsOrigin` | ```{'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}, 'Response': {'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': 'InnerStruct', 'AccountIndex64': 'InnerStruct', 'AccountKey20': 'InnerStruct', 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': 'InnerStruct', 'OnlyChild': None, 'Plurality': 'InnerStruct', 'GlobalConsensus': 'scale_info::79'}, 'X2': ('scale_info::76', 'scale_info::76'), 'X3': ('scale_info::76', 'scale_info::76', 'scale_info::76'), 'X4': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X5': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X6': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X7': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76'), 'X8': ('scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76', 'scale_info::76')}}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': {'Root': None, 'Signed': 'AccountId', 'None': None}, None: None, 'Void': (), 'PolkadotXcm': {'Xcm': {'parents': 'u8', 'interior': 'scale_info::75'}, 'Response': {'parents': 'u8', 'interior': 'scale_info::75'}}, 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'}, 'Authority': {'delay': 'u32', 'origin': {'system': 'scale_info::135', None: None, 'Void': 'scale_info::143', 'PolkadotXcm': 'scale_info::136', 'CumulusXcm': 'scale_info::137', 'Authority': 'scale_info::138', 'GeneralCouncil': 'scale_info::139', 'FinancialCouncil': 'scale_info::140', 'HomaCouncil': 'scale_info::141', 'TechnicalCommittee': 'scale_info::142'}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}}, 'GeneralCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'FinancialCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'HomaCouncil': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}, 'TechnicalCommittee': {'Members': ('u32', 'u32'), 'Member': 'AccountId', '_Phantom': None}}```
 | index | `ScheduleTaskIndex` | ```u32```
 
 ---------
@@ -3909,7 +3915,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 | caller | `T::AccountId` | ```AccountId```
 
 ---------
@@ -3935,7 +3941,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Authority', 'SavedCalls', ['[u8; 32]']
+    'Authority', 'SavedCalls', ['scale_info::12']
 )
 ```
 

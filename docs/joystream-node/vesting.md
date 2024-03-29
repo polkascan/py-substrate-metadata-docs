@@ -18,17 +18,13 @@ Emits `VestingCreated`.
 
 NOTE: This will unlock all schedules through the current block.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- DbWeight: 4 Reads, 4 Writes
-    - Reads: Vesting Storage, Balances Locks, Target Account, Source Account
-    - Writes: Vesting Storage, Balances Locks, Target Account, Source Account
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| source | `<T::Lookup as StaticLookup>::Source` | 
-| target | `<T::Lookup as StaticLookup>::Source` | 
+| source | `AccountIdLookupOf<T>` | 
+| target | `AccountIdLookupOf<T>` | 
 | schedule | `VestingInfo<BalanceOf<T>, T::BlockNumber>` | 
 
 #### Python
@@ -94,12 +90,8 @@ locked under this pallet.
 
 Emits either `VestingCompleted` or `VestingUpdated`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- DbWeight: 2 Reads, 2 Writes
-    - Reads: Vesting Storage, Balances Locks, [Sender Account]
-    - Writes: Vesting Storage, Balances Locks, [Sender Account]
-\# &lt;/weight&gt;
 #### Attributes
 No attributes
 
@@ -121,16 +113,12 @@ locked under this pallet.
 
 Emits either `VestingCompleted` or `VestingUpdated`.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- DbWeight: 3 Reads, 3 Writes
-    - Reads: Vesting Storage, Balances Locks, Target Account
-    - Writes: Vesting Storage, Balances Locks, Target Account
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| target | `<T::Lookup as StaticLookup>::Source` | 
+| target | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -152,16 +140,12 @@ Emits `VestingCreated`.
 
 NOTE: This will unlock all schedules through the current block.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - `O(1)`.
-- DbWeight: 3 Reads, 3 Writes
-    - Reads: Vesting Storage, Balances Locks, Target Account, [Sender Account]
-    - Writes: Vesting Storage, Balances Locks, Target Account, [Sender Account]
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| target | `<T::Lookup as StaticLookup>::Source` | 
+| target | `AccountIdLookupOf<T>` | 
 | schedule | `VestingInfo<BalanceOf<T>, T::BlockNumber>` | 
 
 #### Python

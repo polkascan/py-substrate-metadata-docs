@@ -134,21 +134,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -203,21 +203,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -274,21 +274,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -343,21 +343,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -412,21 +412,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -483,21 +483,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -552,21 +552,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -621,21 +621,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -690,21 +690,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -761,21 +761,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -830,21 +830,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -899,21 +899,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -968,21 +968,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1037,21 +1037,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1108,21 +1108,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1177,21 +1177,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1246,21 +1246,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1315,21 +1315,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1384,21 +1384,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1453,21 +1453,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1524,21 +1524,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1593,21 +1593,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1662,21 +1662,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1731,21 +1731,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1800,21 +1800,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1869,21 +1869,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -1938,21 +1938,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2009,21 +2009,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2078,21 +2078,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2147,21 +2147,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2216,21 +2216,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2285,21 +2285,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2354,21 +2354,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2423,21 +2423,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2492,21 +2492,21 @@ result = substrate.query(
                         'id': '[u8; 32]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountIndex64': {
                         'index': 'u64',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'AccountKey20': {
                         'key': '[u8; 20]',
                         'network': (
                             None,
-                            'scale_info::79',
+                            'scale_info::81',
                         ),
                     },
                     'GeneralIndex': 'u128',
@@ -2576,7 +2576,7 @@ result = substrate.query(
  Defer duration base to be used for calculating the specific defer duration for any asset
 #### Value
 ```python
-100
+21600
 ```
 #### Python
 ```python

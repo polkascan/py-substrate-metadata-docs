@@ -6,16 +6,7 @@
 
 ---------
 ### feed_origin_of_shell
-Sender tried to feed another Origin of Shell. This function will allocate a new daily
-daily ration of food if the sender has not sent food to another Origin of Shell within
-the current Era. If the sender has already sent food, the sender&\#x27;s FoodInfo will be
-mutated to update the food left and the origin of shells the sender has fed during the
-current Era.
-
-Parameters:
-- origin: The origin of the extrinsic feeding the target Origin of Shell.
-- collection_id: The collection id of the Origin of Shell.
-- nft_id: The NFT id of the Origin of Shell.
+See [`Pallet::feed_origin_of_shell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -34,17 +25,7 @@ call = substrate.compose_call(
 
 ---------
 ### hatch_origin_of_shell
-Hatch the origin_of_shell that is currently being hatched. This will trigger the end of
-the incubation process and the origin_of_shell will be burned. After burning, the user
-will receive the awakened Shell RMRK NFT and the nested NFT parts that renders the Shell
-NFT.
-
-Parameters:
-- `origin`: Expected to be the `Overlord` account
-- `collection_id`: The collection id of the Origin of Shell RMRK NFT
-- `nft_id`: The NFT id of the Origin of Shell RMRK NFT
-- `default_shell_metadata`: File resource URI in decentralized storage for Shell NFT
-	parts that render the Shell NFT
+See [`Pallet::hatch_origin_of_shell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -65,12 +46,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_can_start_incubation_status
-Privileged function to enable incubation phase for accounts to start the incubation
-process for their Origin of Shells.
-
-Parameters:
-`origin`: Expected to be the `Overlord` account
-`status`: `bool` value to set for the status in storage
+See [`Pallet::set_can_start_incubation_status`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -85,13 +61,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_origin_of_shell_chosen_parts
-Privileged function to set the parts chosen by an account for a specific Origin of Shell.
-
-Parameters:
-- `origin` - Expected Overlord admin account to set the chosen part to the Origin of Shell
-- `collection_id` - Collection ID of Origin of Shell
-- `nft_id` - NFT ID of the Origin of Shell
-- `chosen_parts` - Shell parts to be stored in Storage
+See [`Pallet::set_origin_of_shell_chosen_parts`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -104,7 +74,7 @@ Parameters:
 call = substrate.compose_call(
     'PWIncubation', 'set_origin_of_shell_chosen_parts', {
     'chosen_parts': {
-        'parts': 'scale_info::182',
+        'parts': 'scale_info::183',
     },
     'collection_id': 'u32',
     'nft_id': 'u32',
@@ -114,11 +84,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_shell_collection_id
-Privileged function to set the collection id for the Awakened Shell collection.
-
-Parameters:
-- `origin` - Expected Overlord admin account to set the Shell Collection ID
-- `collection_id` - Collection ID of the Shell Collection
+See [`Pallet::set_shell_collection_id`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -133,11 +99,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_shell_parts_collection_id
-Privileged function to set the collection id for the Shell Parts collection.
-
-Parameters:
-- `origin` - Expected Overlord admin account to set the Shell Parts Collection ID
-- `collection_id` - Collection ID of the Shell Parts Collection
+See [`Pallet::set_shell_parts_collection_id`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -152,15 +114,7 @@ call = substrate.compose_call(
 
 ---------
 ### start_incubation
-Once users have received their origin_of_shells and the start incubation event has been
-triggered, they can start the incubation process and a timer will start for the
-origin_of_shell to awaken at a designated time. Origin of Shells can reduce their time
-by being in the top 10 of origin_of_shell&\#x27;s fed per era.
-
-Parameters:
-- origin: The origin of the extrinsic starting the incubation process
-- collection_id: The collection id of the Origin of Shell RMRK NFT
-- nft_id: The NFT id of the Origin of Shell RMRK NFT
+See [`Pallet::start_incubation`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -198,8 +152,8 @@ Origin of Shell updated chosen parts.
 | -------- | -------- | -------- |
 | collection_id | `CollectionId` | ```u32```
 | nft_id | `NftId` | ```u32```
-| old_chosen_parts | `Option<ShellPartsOf<T>>` | ```(None, {'parts': 'scale_info::182'})```
-| new_chosen_parts | `ShellPartsOf<T>` | ```{'parts': 'scale_info::182'}```
+| old_chosen_parts | `Option<ShellPartsOf<T>>` | ```(None, {'parts': 'scale_info::183'})```
+| new_chosen_parts | `ShellPartsOf<T>` | ```{'parts': 'scale_info::183'}```
 
 ---------
 ### OriginOfShellReceivedFood
@@ -300,7 +254,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::674'}
+{'era': 'u64', 'food_left': 'u32', 'origin_of_shells_fed': 'scale_info::704'}
 ```
 ---------
 ### HasOriginOfShellStartedIncubation
@@ -360,7 +314,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'parts': 'scale_info::182'}
+{'parts': 'scale_info::183'}
 ```
 ---------
 ### ShellCollectionId

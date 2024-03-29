@@ -99,7 +99,7 @@ must be supplied.
 ```python
 call = substrate.compose_call(
     'Contracts', 'instantiate', {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
     'data': 'Bytes',
     'gas_limit': {
         'proof_size': 'u64',
@@ -132,7 +132,7 @@ Deprecated version if [`Self::instantiate`] for use in an in-storage `Call`.
 ```python
 call = substrate.compose_call(
     'Contracts', 'instantiate_old_weight', {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
     'data': 'Bytes',
     'gas_limit': 'u64',
     'salt': 'Bytes',
@@ -247,7 +247,7 @@ not used by any contract.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Contracts', 'remove_code', {'code_hash': '[u8; 32]'}
+    'Contracts', 'remove_code', {'code_hash': 'scale_info::12'}
 )
 ```
 
@@ -273,7 +273,7 @@ this dispatchable.
 ```python
 call = substrate.compose_call(
     'Contracts', 'set_code', {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
     'dest': 'AccountId',
 }
 )
@@ -349,7 +349,7 @@ A code with the specified hash was removed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### CodeStored
@@ -357,7 +357,7 @@ Code with the specified hash has been stored.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### ContractCodeUpdated
@@ -366,8 +366,8 @@ A contract&\#x27;s code was updated.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | contract | `T::AccountId` | ```AccountId```
-| new_code_hash | `T::Hash` | ```[u8; 32]```
-| old_code_hash | `T::Hash` | ```[u8; 32]```
+| new_code_hash | `T::Hash` | ```scale_info::12```
+| old_code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### ContractEmitted
@@ -391,7 +391,7 @@ rolled back.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | contract | `T::AccountId` | ```AccountId```
-| code_hash | `CodeHash<T>` | ```[u8; 32]```
+| code_hash | `CodeHash<T>` | ```scale_info::12```
 
 ---------
 ### Instantiated
@@ -426,7 +426,7 @@ The only way for a contract to be removed and emitting this event is by calling
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'CodeStorage', ['[u8; 32]']
+    'Contracts', 'CodeStorage', ['scale_info::12']
 )
 ```
 
@@ -456,7 +456,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
     'deposit_account': 'AccountId',
     'storage_base_deposit': 'u128',
     'storage_byte_deposit': 'u128',
@@ -543,7 +543,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'OwnerInfoOf', ['[u8; 32]']
+    'Contracts', 'OwnerInfoOf', ['scale_info::12']
 )
 ```
 
@@ -558,7 +558,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Contracts', 'PristineCode', ['[u8; 32]']
+    'Contracts', 'PristineCode', ['scale_info::12']
 )
 ```
 

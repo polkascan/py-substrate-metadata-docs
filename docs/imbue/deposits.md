@@ -57,7 +57,7 @@ result = substrate.query(
     'amount': 'u128',
     'currency_id': {
         'AUSD': None,
-        'ForeignAsset': 'u32',
+        'ForeignAsset': ('ETH', 'USDT'),
         'KAR': None,
         'KSM': None,
         'MGX': None,

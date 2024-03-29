@@ -6,14 +6,7 @@
 
 ---------
 ### cancel_leave_candidates
-Revert the previously requested exit of the network of a collator
-candidate. On success, adds back the candidate to the TopCandidates
-and updates the collators.
-
-Requires the candidate to previously have called
-`init_leave_candidates`.
-
-Emits `CollatorCanceledExit`.
+See [`Pallet::cancel_leave_candidates`].
 #### Attributes
 No attributes
 
@@ -26,21 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### candidate_stake_less
-Stake less funds for a collator candidate.
-
-If the new amount of staked fund is not large enough, the account
-could be removed from the set of collator candidates and not be
-considered for authoring the next blocks.
-
-This operation affects the pallet&\#x27;s total stake amount.
-
-The unstaked funds are not released immediately to the account, but
-they will be available after `StakeDuration` blocks.
-
-The resulting total amount of funds staked must be within the
-allowed range as set in the pallet&\#x27;s configuration.
-
-Emits `CollatorStakedLess`.
+See [`Pallet::candidate_stake_less`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -55,18 +34,7 @@ call = substrate.compose_call(
 
 ---------
 ### candidate_stake_more
-Stake more funds for a collator candidate.
-
-If not in the set of candidates, staking enough funds allows the
-account to be added to it. The larger amount of funds, the higher
-chances to be selected as the author of the next block.
-
-This operation affects the pallet&\#x27;s total stake amount.
-
-The resulting total amount of funds staked must be within the
-allowed range as set in the pallet&\#x27;s configuration.
-
-Emits `CollatorStakedMore`.
+See [`Pallet::candidate_stake_more`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -81,21 +49,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_rewards
-Claim block authoring rewards for the target address.
-
-Requires `Rewards` to be set beforehand, which can by triggered by
-any of the following options
-* Calling increment_{collator, delegator}_rewards (active)
-* Altering your stake (active)
-* Leaving the network as a collator (active)
-* Revoking a delegation as a delegator (active)
-* Being a delegator whose collator left the network, altered their
-  stake or incremented rewards (passive)
-
-The dispatch origin can be any signed one, e.g., anyone can claim
-for anyone.
-
-Emits `Rewarded`.
+See [`Pallet::claim_rewards`].
 #### Attributes
 No attributes
 
@@ -108,22 +62,7 @@ call = substrate.compose_call(
 
 ---------
 ### delegator_stake_less
-Reduce the stake for delegating a collator candidate.
-
-If the new amount of staked fund is not large enough, the collator
-could be removed from the set of collator candidates and not be
-considered for authoring the next blocks.
-
-The unstaked funds are not release immediately to the account, but
-they will be available after `StakeDuration` blocks.
-
-The remaining staked funds must still be larger than the minimum
-required by this pallet to maintain the status of delegator.
-
-The resulting total amount of funds staked must be within the
-allowed range as set in the pallet&\#x27;s configuration.
-
-Emits `DelegatorStakedLess`.
+See [`Pallet::delegator_stake_less`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -138,12 +77,7 @@ call = substrate.compose_call(
 
 ---------
 ### delegator_stake_more
-Increase the stake for delegating a collator candidate.
-
-If not in the set of candidates, staking enough funds allows the
-collator candidate to be added to it.
-
-Emits `DelegatorStakedMore`.
+See [`Pallet::delegator_stake_more`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -158,23 +92,7 @@ call = substrate.compose_call(
 
 ---------
 ### execute_leave_candidates
-Execute the network exit of a candidate who requested to leave at
-least `ExitQueueDelay` rounds ago. Prepares unstaking of the
-candidates and their delegators stake which can be unlocked via
-`unlock_unstaked` after waiting at least `StakeDuration` many
-blocks.
-
-Requires the candidate to previously have called
-`init_leave_candidates`.
-
-The exit request can be reversed by calling
-`cancel_leave_candidates`.
-
-NOTE: Iterates over CandidatePool for each candidate over their
-delegators to set rewards. Needs to be improved when scaling up
-`MaxTopCandidates`.
-
-Emits `CollatorLeft`.
+See [`Pallet::execute_leave_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -197,16 +115,7 @@ call = substrate.compose_call(
 
 ---------
 ### execute_scheduled_reward_change
-Executes the annual reduction of the reward rates for collators and
-delegators.
-
-Moreover, sets rewards for all collators and delegators
-before adjusting the inflation.
-
-The dispatch origin can be any signed one because we bail if called
-too early.
-
-Emits `RoundInflationSet`.
+See [`Pallet::execute_scheduled_reward_change`].
 #### Attributes
 No attributes
 
@@ -219,12 +128,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_new_round
-Forces the start of the new round in the next block.
-
-The new round will be enforced via &lt;T as
-ShouldEndSession&lt;_&gt;&gt;::should_end_session.
-
-The dispatch origin must be Root.
+See [`Pallet::force_new_round`].
 #### Attributes
 No attributes
 
@@ -237,18 +141,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_remove_candidate
-Forcedly removes a collator candidate from the TopCandidates and
-clears all associated storage for the candidate and their
-delegators.
-
-Prepares unstaking of the candidates and their delegators stake
-which can be unlocked via `unlock_unstaked` after waiting at
-least `StakeDuration` many blocks. Also increments rewards for the
-collator and their delegators.
-
-Increments rewards of candidate and their delegators.
-
-Emits `CandidateRemoved`.
+See [`Pallet::force_remove_candidate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -271,12 +164,7 @@ call = substrate.compose_call(
 
 ---------
 ### increment_collator_rewards
-Actively increment the rewards of a collator.
-
-The same effect is triggered by changing the stake or leaving the
-network.
-
-The dispatch origin must be a collator.
+See [`Pallet::increment_collator_rewards`].
 #### Attributes
 No attributes
 
@@ -289,12 +177,7 @@ call = substrate.compose_call(
 
 ---------
 ### increment_delegator_rewards
-Actively increment the rewards of a delegator.
-
-The same effect is triggered by changing the stake or revoking
-delegations.
-
-The dispatch origin must be a delegator.
+See [`Pallet::increment_delegator_rewards`].
 #### Attributes
 No attributes
 
@@ -307,33 +190,7 @@ call = substrate.compose_call(
 
 ---------
 ### init_leave_candidates
-Request to leave the set of collator candidates.
-
-On success, the account is immediately removed from the candidate
-pool to prevent selection as a collator in future validation rounds,
-but unstaking of the funds is executed with a delay of
-`StakeDuration` blocks.
-
-The exit request can be reversed by calling
-`cancel_leave_candidates`.
-
-This operation affects the pallet&\#x27;s total stake amount. It is
-updated even though the funds of the candidate who signaled to leave
-are still locked for `ExitDelay` + `StakeDuration` more blocks.
-
-NOTE 1: Upon starting a new session_i in `new_session`, the current
-top candidates are selected to be block authors for session_i+1. Any
-changes to the top candidates afterwards do not effect the set of
-authors for session_i+1.
-Thus, we have to make sure none of these collators can
-leave before session_i+1 ends by delaying their
-exit for `ExitDelay` many blocks.
-
-NOTE 2: We do not increment rewards in this extrinsic as the
-candidate could still author blocks, and thus be eligible to receive
-rewards, until the end of the next session.
-
-Emits `CollatorScheduledExit`.
+See [`Pallet::init_leave_candidates`].
 #### Attributes
 No attributes
 
@@ -346,23 +203,7 @@ call = substrate.compose_call(
 
 ---------
 ### join_candidates
-Join the set of collator candidates.
-
-In the next blocks, if the collator candidate has enough funds
-staked to be included in any of the top `MaxSelectedCandidates`
-positions, it will be included in the set of potential authors that
-will be selected by the stake-weighted random selection function.
-
-The staked funds of the new collator candidate are added to the
-total stake of the system.
-
-The total amount of funds staked must be within the allowed range as
-set in the pallet&\#x27;s configuration.
-
-The dispatch origin must not be already part of the collator
-candidates nor of the delegators set.
-
-Emits `JoinedCollatorCandidates`.
+See [`Pallet::join_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -377,28 +218,7 @@ call = substrate.compose_call(
 
 ---------
 ### join_delegators
-Join the set of delegators by delegating to a collator candidate.
-
-The account that wants to delegate cannot be part of the collator
-candidates set as well.
-
-The caller must _not_ have a delegation. If that is the case, they
-are required to first remove the delegation.
-
-The amount staked must be larger than the minimum required to become
-a delegator as set in the pallet&\#x27;s configuration.
-
-As only `MaxDelegatorsPerCollator` are allowed to delegate a given
-collator, the amount staked must be larger than the lowest one in
-the current set of delegator for the operation to be meaningful.
-
-The collator&\#x27;s total stake as well as the pallet&\#x27;s total stake are
-increased accordingly.
-
-Emits `Delegation`.
-Emits `DelegationReplaced` if the candidate has
-`MaxDelegatorsPerCollator` many delegations but this delegator
-staked more than one of the other delegators of this candidate.
+See [`Pallet::join_delegators`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -423,22 +243,7 @@ call = substrate.compose_call(
 
 ---------
 ### leave_delegators
-Leave the set of delegators and, by implication, revoke the ongoing
-delegation.
-
-All staked funds are not unlocked immediately, but they are added to
-the queue of pending unstaking, and will effectively be released
-after `StakeDuration` blocks from the moment the delegator leaves.
-
-This operation reduces the total stake of the pallet as well as the
-stakes of all collators that were delegated, potentially affecting
-their chances to be included in the set of candidates in the next
-rounds.
-
-Automatically increments the accumulated rewards of the origin of
-the current delegation.
-
-Emits `DelegatorLeft`.
+See [`Pallet::leave_delegators`].
 #### Attributes
 No attributes
 
@@ -451,21 +256,11 @@ call = substrate.compose_call(
 
 ---------
 ### set_blocks_per_round
-Set the number of blocks each validation round lasts.
-
-If the new value is less than the length of the current round, the
-system will immediately move to the next round in the next block.
-
-The new value must be higher than the minimum allowed as set in the
-pallet&\#x27;s configuration.
-
-The dispatch origin must be Root.
-
-Emits `BlocksPerRoundSet`.
+See [`Pallet::set_blocks_per_round`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new | `T::BlockNumber` | 
+| new | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -476,21 +271,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_inflation
-Set the annual inflation rate to derive per-round inflation.
-
-The inflation details are considered valid if the annual reward rate
-is approximately the per-block reward rate multiplied by the
-estimated* total number of blocks per year.
-
-The estimated average block time is twelve seconds.
-
-NOTE: Iterates over CandidatePool and for each candidate over their
-delegators to update their rewards before the reward rates change.
-Needs to be improved when scaling up `MaxTopCandidates`.
-
-The dispatch origin must be Root.
-
-Emits `RoundInflationSet`.
+See [`Pallet::set_inflation`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -513,12 +294,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_max_candidate_stake
-Set the maximal amount a collator can stake. Existing stakes are not
-changed.
-
-The dispatch origin must be Root.
-
-Emits `MaxCandidateStakeChanged`.
+See [`Pallet::set_max_candidate_stake`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -533,17 +309,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_max_selected_candidates
-Set the maximum number of collator candidates that can be selected
-at the beginning of each validation round.
-
-Changes are not applied until the start of the next round.
-
-The new value must be higher than the minimum allowed as set in the
-pallet&\#x27;s configuration.
-
-The dispatch origin must be Root.
-
-Emits `MaxSelectedCandidatesSet`.
+See [`Pallet::set_max_selected_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -558,16 +324,7 @@ call = substrate.compose_call(
 
 ---------
 ### unlock_unstaked
-Unlock all previously staked funds that are now available for
-unlocking by the origin account after `StakeDuration` blocks have
-elapsed.
-
-Weight: O(U) where U is the number of locked unstaking requests
-bounded by `MaxUnstakeRequests`.
-- Reads: [Origin Account], Unstaking, Locks
-- Writes: Unstaking, Locks
-- Kills: Unstaking &amp; Locks if no balance is locked anymore
-\# &lt;/weight&gt;
+See [`Pallet::unlock_unstaked`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -600,9 +357,9 @@ value\]
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `SessionIndex` | ```u32```
-| None | `T::BlockNumber` | ```u64```
-| None | `T::BlockNumber` | ```u64```
-| None | `T::BlockNumber` | ```u64```
+| None | `BlockNumberFor<T>` | ```u64```
+| None | `BlockNumberFor<T>` | ```u64```
+| None | `BlockNumberFor<T>` | ```u64```
 
 ---------
 ### CandidateLeft
@@ -803,7 +560,7 @@ A new staking round has started.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::BlockNumber` | ```u64```
+| None | `BlockNumberFor<T>` | ```u64```
 | None | `SessionIndex` | ```u32```
 
 ---------
@@ -1072,9 +829,9 @@ result = substrate.query(
  Each time the stake of a collator is increased, it is checked whether
  this pushes another candidate out of the list. When the stake is
  reduced however, it is not checked if another candidate has more stake,
- since this would require iterating over the entire [CandidatePool].
+ since this would require iterating over the entire `CandidatePool`.
 
- There must always be more candidates than [MaxSelectedCandidates] so
+ There must always be more candidates than `MaxSelectedCandidates` so
  that a collator can drop out of the collator set by reducing their
  stake.
 
@@ -1095,7 +852,7 @@ result = substrate.query(
  The sum of all collator and their delegator stakes.
 
  Note: There are more funds locked by this pallet, since the backing for
- non collating candidates is not included in [TotalCollatorStake].
+ non collating candidates is not included in `TotalCollatorStake`.
 
 #### Python
 ```python
@@ -1124,7 +881,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::229'
+'scale_info::257'
 ```
 ---------
 ## Constants

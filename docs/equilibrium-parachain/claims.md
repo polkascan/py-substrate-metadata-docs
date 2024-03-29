@@ -114,8 +114,8 @@ Parameters:
 | Name | Type |
 | -------- | -------- | 
 | who | `EthereumAddress` | 
-| value | `BalanceOf<T>` | 
-| vesting_schedule | `Option<(BalanceOf<T>, BalanceOf<T>, T::BlockNumber)>` | 
+| value | `T::Balance` | 
+| vesting_schedule | `Option<(T::Balance, T::Balance, T::BlockNumber)>` | 
 | statement | `bool` | 
 
 #### Python
@@ -169,7 +169,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
 | None | `EthereumAddress` | ```[u8; 20]```
-| None | `BalanceOf<T>` | ```u128```
+| None | `T::Balance` | ```u128```
 
 ---------
 ## Storage functions

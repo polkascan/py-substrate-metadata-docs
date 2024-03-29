@@ -18,12 +18,13 @@ from the given currency.
 call = substrate.compose_call(
     'LiquidityPools', 'add_currency', {
     'currency_id': {
-        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
         'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
 }
 )
@@ -83,7 +84,6 @@ pool on the domain derived from the given currency.
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `T::PoolId` | 
-| tranche_id | `T::TrancheId` | 
 | currency_id | `CurrencyIdOf<T>` | 
 
 #### Python
@@ -91,15 +91,15 @@ pool on the domain derived from the given currency.
 call = substrate.compose_call(
     'LiquidityPools', 'allow_investment_currency', {
     'currency_id': {
-        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
         'Native': None,
         'Staking': ('BlockRewards', ),
         'Tranche': ('u64', '[u8; 16]'),
+        None: None,
     },
     'pool_id': 'u64',
-    'tranche_id': '[u8; 16]',
 }
 )
 ```
@@ -119,6 +119,34 @@ call = substrate.compose_call(
     'LiquidityPools', 'cancel_upgrade', {
     'contract': '[u8; 20]',
     'evm_chain_id': 'u64',
+}
+)
+```
+
+---------
+### disallow_investment_currency
+Disallow a currency to be used as a pool currency and to invest in a
+pool on the domain derived from the given currency.
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| pool_id | `T::PoolId` | 
+| currency_id | `CurrencyIdOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'LiquidityPools', 'disallow_investment_currency', {
+    'currency_id': {
+        'AUSD': None,
+        'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
+        'Native': None,
+        'Staking': ('BlockRewards', ),
+        None: None,
+        'Tranche': ('u64', '[u8; 16]'),
+    },
+    'pool_id': 'u64',
 }
 )
 ```
@@ -163,12 +191,13 @@ call = substrate.compose_call(
     'LiquidityPools', 'transfer', {
     'amount': 'u128',
     'currency_id': {
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
         None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
+        'Native': None,
         'Staking': ('BlockRewards', ),
+        'Tranche': ('u64', '[u8; 16]'),
     },
     'receiver': {
         'Centrifuge': '[u8; 32]',
@@ -218,7 +247,7 @@ Update a member
 | pool_id | `T::PoolId` | 
 | tranche_id | `T::TrancheId` | 
 | domain_address | `DomainAddress` | 
-| valid_until | `Moment` | 
+| valid_until | `Seconds` | 
 
 #### Python
 ```python
@@ -256,12 +285,13 @@ The `currency_id` parameter is necessary for the EVM side.
 call = substrate.compose_call(
     'LiquidityPools', 'update_token_price', {
     'currency_id': {
-        'Native': None,
-        'Tranche': ('u64', '[u8; 16]'),
-        None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
+        'LocalAsset': 'u32',
+        'Native': None,
         'Staking': ('BlockRewards', ),
+        None: None,
+        'Tranche': ('u64', '[u8; 16]'),
     },
     'destination': {
         'Centrifuge': None,
@@ -312,7 +342,10 @@ detected and is further processed
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `DomainAddress` | ```{'Centrifuge': '[u8; 32]', 'EVM': ('u64', '[u8; 20]')}```
-| message | `MessageOf<T>` | ```{'Invalid': None, 'AddCurrency': {'currency': 'u128', 'evm_address': '[u8; 20]'}, 'AddPool': {'pool_id': 'u64'}, 'AllowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}, 'AddTranche': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]', 'decimals': 'u8'}, 'UpdateTrancheTokenPrice': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'currency': 'u128', 'price': 'u128'}, 'UpdateMember': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'member': '[u8; 32]', 'valid_until': 'u64'}, 'Transfer': {'currency': 'u128', 'sender': '[u8; 32]', 'receiver': '[u8; 32]', 'amount': 'u128'}, 'TransferTrancheTokens': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'sender': '[u8; 32]', 'domain': {'Centrifuge': None, 'EVM': 'u64'}, 'receiver': '[u8; 32]', 'amount': 'u128'}, 'IncreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'IncreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'CollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ExecutedDecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedDecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'ExecutedCollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedCollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'CancelInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CancelRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ScheduleUpgrade': {'contract': '[u8; 20]'}, 'CancelUpgrade': {'contract': '[u8; 20]'}, 'UpdateTrancheTokenMetadata': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]'}}```
+| message | `MessageOf<T>` | ```{'Invalid': None, 'AddCurrency': {'currency': 'u128', 'evm_address': '[u8; 20]'}, 'AddPool': {'pool_id': 'u64'}, 'AllowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}, 'AddTranche': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]', 'decimals': 'u8', 'restriction_set': 'u8'}, 'UpdateTrancheTokenPrice': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'currency': 'u128', 'price': 'u128', 'computed_at': 'u64'}, 'UpdateMember': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'member': '[u8; 32]', 'valid_until': 'u64'}, 'Transfer': {'currency': 'u128', 'sender': '[u8; 32]', 'receiver': '[u8; 32]', 'amount': 'u128'}, 'TransferTrancheTokens': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'sender': '[u8; 32]', 'domain': {'Centrifuge': None, 'EVM': 'u64'}, 'receiver': '[u8; 32]', 'amount': 'u128'}, 'IncreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'IncreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'DecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'amount': 'u128'}, 'CollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ExecutedDecreaseInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedDecreaseRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'ExecutedCollectInvest': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_invest_amount': 'u128'}, 'ExecutedCollectRedeem': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128', 'currency_payout': 'u128', 'tranche_tokens_payout': 'u128', 'remaining_redeem_amount': 'u128'}, 'CancelInvestOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'CancelRedeemOrder': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'investor': '[u8; 32]', 'currency': 'u128'}, 'ScheduleUpgrade': {'contract': '[u8; 20]'}, 'CancelUpgrade': {'contract': '[u8; 20]'}, 'UpdateTrancheTokenMetadata': {'pool_id': 'u64', 'tranche_id': '[u8; 16]', 'token_name': '[u8; 128]', 'token_symbol': '[u8; 32]'}, 'DisallowInvestmentCurrency': {'pool_id': 'u64', 'currency': 'u128'}}```
+
+---------
+## Storage functions
 
 ---------
 ## Constants
@@ -369,12 +402,8 @@ The asset is not a [LiquidityPoolsWrappedToken] and thus cannot be
 transferred via liquidity pools.
 
 ---------
-### AssetNotPoolCurrency
-The given asset does not match the currency of the pool.
-
----------
-### FailedToBuildEthereumXcmCall
-Failed to build Ethereum_Xcm call.
+### BalanceTooLow
+Senders balance is insufficient for transfer amount
 
 ---------
 ### InvalidDomain
@@ -383,20 +412,6 @@ The destination domain is invalid.
 ---------
 ### InvalidIncomingMessage
 Failed to decode an incoming message.
-
----------
-### InvalidIncomingMessageOrigin
-The origin of an incoming message is not in the allow-list.
-
----------
-### InvalidPaymentCurrency
-The derived currency from the provided GeneralCurrencyIndex is not
-accepted as payment for the given pool.
-
----------
-### InvalidPayoutCurrency
-The derived currency from the provided GeneralCurrencyIndex is not
-accepted as payout for the given pool.
 
 ---------
 ### InvalidTrancheInvestorValidity
@@ -414,10 +429,6 @@ The currency is not allowed to be transferred via LiquidityPools.
 ### InvestorDomainAddressNotAMember
 The account derived from the [Domain] and [DomainAddress] has not
 been whitelisted as a TrancheInvestor.
-
----------
-### MissingRouter
-Router not set for a given domain.
 
 ---------
 ### MissingTranchePrice

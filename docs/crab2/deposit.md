@@ -6,7 +6,7 @@
 
 ---------
 ### claim
-Claim the expired-locked RING.
+See [`Pallet::claim`].
 #### Attributes
 No attributes
 
@@ -19,7 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_with_penalty
-Claim the unexpired-locked RING by paying the KTON penalty.
+See [`Pallet::claim_with_penalty`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -34,7 +34,7 @@ call = substrate.compose_call(
 
 ---------
 ### lock
-Lock the RING for some KTON profit/interest.
+See [`Pallet::lock`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

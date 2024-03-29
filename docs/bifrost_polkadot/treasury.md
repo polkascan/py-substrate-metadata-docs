@@ -6,13 +6,7 @@
 
 ---------
 ### approve_proposal
-Approve a proposal. At a later time, the proposal will be allocated to the beneficiary
-and the original deposit will be returned.
-
-May only be called from `T::ApproveOrigin`.
-
-\#\# Complexity
- - O(1).
+See [`Pallet::approve_proposal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -26,13 +20,38 @@ call = substrate.compose_call(
 ```
 
 ---------
-### propose_spend
-Put forward a suggestion for spending. A deposit proportional to the value
-is reserved and slashed if the proposal is rejected. It is returned once the
-proposal is awarded.
+### check_status
+See [`Pallet::check_status`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `SpendIndex` | 
 
-\#\# Complexity
-- O(1)
+#### Python
+```python
+call = substrate.compose_call(
+    'Treasury', 'check_status', {'index': 'u32'}
+)
+```
+
+---------
+### payout
+See [`Pallet::payout`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `SpendIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Treasury', 'payout', {'index': 'u32'}
+)
+```
+
+---------
+### propose_spend
+See [`Pallet::propose_spend`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -57,12 +76,7 @@ call = substrate.compose_call(
 
 ---------
 ### reject_proposal
-Reject a proposed spend. The original deposit will be slashed.
-
-May only be called from `T::RejectOrigin`.
-
-\#\# Complexity
-- O(1)
+See [`Pallet::reject_proposal`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -77,19 +91,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_approval
-Force a previously approved proposal to be removed from the approval queue.
-The original deposit will no longer be returned.
-
-May only be called from `T::RejectOrigin`.
-- `proposal_id`: The index of a proposal
-
-\#\# Complexity
-- O(A) where `A` is the number of approvals
-
-Errors:
-- `ProposalNotApproved`: The `proposal_id` supplied was not found in the approval queue,
-i.e., the proposal has not been approved. This could also mean the proposal does not
-exist altogether, thus there is no way it would have been approved in the first place.
+See [`Pallet::remove_approval`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -104,14 +106,30 @@ call = substrate.compose_call(
 
 ---------
 ### spend
-Propose and approve a spend of treasury funds.
+See [`Pallet::spend`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| asset_kind | `Box<T::AssetKind>` | 
+| amount | `AssetBalanceOf<T, I>` | 
+| beneficiary | `Box<BeneficiaryLookupOf<T, I>>` | 
+| valid_from | `Option<BlockNumberFor<T>>` | 
 
-- `origin`: Must be `SpendOrigin` with the `Success` value being at least `amount`.
-- `amount`: The amount to be transferred from the treasury to the `beneficiary`.
-- `beneficiary`: The destination account for the transfer.
+#### Python
+```python
+call = substrate.compose_call(
+    'Treasury', 'spend', {
+    'amount': 'u128',
+    'asset_kind': (),
+    'beneficiary': 'AccountId',
+    'valid_from': (None, 'u32'),
+}
+)
+```
 
-NOTE: For record-keeping purposes, the proposer is deemed to be equivalent to the
-beneficiary.
+---------
+### spend_local
+See [`Pallet::spend_local`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -121,7 +139,7 @@ beneficiary.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Treasury', 'spend', {
+    'Treasury', 'spend_local', {
     'amount': 'u128',
     'beneficiary': {
         'Address20': '[u8; 20]',
@@ -135,7 +153,43 @@ call = substrate.compose_call(
 ```
 
 ---------
+### void_spend
+See [`Pallet::void_spend`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| index | `SpendIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Treasury', 'void_spend', {'index': 'u32'}
+)
+```
+
+---------
 ## Events
+
+---------
+### AssetSpendApproved
+A new asset spend proposal has been approved.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
+| asset_kind | `T::AssetKind` | ```()```
+| amount | `AssetBalanceOf<T, I>` | ```u128```
+| beneficiary | `T::Beneficiary` | ```AccountId```
+| valid_from | `BlockNumberFor<T>` | ```u32```
+| expire_at | `BlockNumberFor<T>` | ```u32```
+
+---------
+### AssetSpendVoided
+An approved spend was voided.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
 
 ---------
 ### Awarded
@@ -162,6 +216,24 @@ Some funds have been deposited.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | value | `BalanceOf<T, I>` | ```u128```
+
+---------
+### Paid
+A payment happened.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
+| payment_id | `<T::Paymaster as Pay>::Id` | ```()```
+
+---------
+### PaymentFailed
+A payment failed and can be retried.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
+| payment_id | `<T::Paymaster as Pay>::Id` | ```()```
 
 ---------
 ### Proposed
@@ -197,6 +269,15 @@ A new spend proposal has been approved.
 | proposal_index | `ProposalIndex` | ```u32```
 | amount | `BalanceOf<T, I>` | ```u128```
 | beneficiary | `T::AccountId` | ```AccountId```
+
+---------
+### SpendProcessed
+A spend was processed and removed from the storage. It might have been successfully
+paid or it may have expired.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| index | `SpendIndex` | ```u32```
 
 ---------
 ### Spending
@@ -284,6 +365,43 @@ result = substrate.query(
 }
 ```
 ---------
+### SpendCount
+ The count of spends that have been made.
+
+#### Python
+```python
+result = substrate.query(
+    'Treasury', 'SpendCount', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### Spends
+ Spends that have been approved and being processed.
+
+#### Python
+```python
+result = substrate.query(
+    'Treasury', 'Spends', ['u32']
+)
+```
+
+#### Return value
+```python
+{
+    'amount': 'u128',
+    'asset_kind': (),
+    'beneficiary': 'AccountId',
+    'expire_at': 'u32',
+    'status': {'Attempted': {'id': ()}, 'Failed': None, 'Pending': None},
+    'valid_from': 'u32',
+}
+```
+---------
 ## Constants
 
 ---------
@@ -320,6 +438,17 @@ constant = substrate.get_constant('Treasury', 'MaxApprovals')
 #### Python
 ```python
 constant = substrate.get_constant('Treasury', 'PalletId')
+```
+---------
+### PayoutPeriod
+ The period during which an approved treasury spend has to be claimed.
+#### Value
+```python
+216000
+```
+#### Python
+```python
+constant = substrate.get_constant('Treasury', 'PayoutPeriod')
 ```
 ---------
 ### ProposalBond
@@ -360,7 +489,7 @@ constant = substrate.get_constant('Treasury', 'ProposalBondMinimum')
  Period between successive spends.
 #### Value
 ```python
-172800
+43200
 ```
 #### Python
 ```python
@@ -368,6 +497,22 @@ constant = substrate.get_constant('Treasury', 'SpendPeriod')
 ```
 ---------
 ## Errors
+
+---------
+### AlreadyAttempted
+The payment has already been attempted.
+
+---------
+### EarlyPayout
+The spend is not yet eligible for payout.
+
+---------
+### FailedToConvertBalance
+The balance of the asset kind is not convertible to the balance of the native asset.
+
+---------
+### Inconclusive
+The payment has neither failed nor succeeded yet.
 
 ---------
 ### InsufficientPermission
@@ -380,11 +525,23 @@ Proposer&\#x27;s balance is too low.
 
 ---------
 ### InvalidIndex
-No proposal or bounty at that index.
+No proposal, bounty or spend at that index.
+
+---------
+### NotAttempted
+The payout was not yet attempted/claimed.
+
+---------
+### PayoutError
+There was some issue with the mechanism of payment.
 
 ---------
 ### ProposalNotApproved
 Proposal has not been approved.
+
+---------
+### SpendExpired
+The spend has expired and cannot be claimed.
 
 ---------
 ### TooManyApprovals

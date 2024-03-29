@@ -31,7 +31,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::11']
 ```
 ---------
 ### Reports
@@ -40,7 +40,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Offences', 'Reports', ['[u8; 32]']
+    'Offences', 'Reports', ['scale_info::11']
 )
 ```
 

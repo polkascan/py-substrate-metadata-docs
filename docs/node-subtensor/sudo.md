@@ -11,15 +11,12 @@ key.
 
 The dispatch origin for this call must be _Signed_.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-- Limited storage reads.
-- One DB change.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new | `<T::Lookup as StaticLookup>::Source` | 
+| new | `AccountIdLookupOf<T>` | 
 
 #### Python
 ```python
@@ -42,16 +39,12 @@ Authenticates the sudo key and dispatches a function call with `Root` origin.
 
 The dispatch origin for this call must be _Signed_.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-- Limited storage reads.
-- One DB write (event).
-- Weight of derivative `call` execution + 10,000.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| call | `Box<<T as Config>::Call>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
@@ -67,17 +60,13 @@ a given account.
 
 The dispatch origin for this call must be _Signed_.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-- Limited storage reads.
-- One DB write (event).
-- Weight of derivative `call` execution + 10,000.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| who | `<T::Lookup as StaticLookup>::Source` | 
-| call | `Box<<T as Config>::Call>` | 
+| who | `AccountIdLookupOf<T>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 
 #### Python
 ```python
@@ -103,20 +92,24 @@ Sudo user to specify the weight of the call.
 
 The dispatch origin for this call must be _Signed_.
 
-\# &lt;weight&gt;
+\#\# Complexity
 - O(1).
-- The weight of this call is defined by the caller.
-\# &lt;/weight&gt;
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| call | `Box<<T as Config>::Call>` | 
+| call | `Box<<T as Config>::RuntimeCall>` | 
 | weight | `Weight` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Sudo', 'sudo_unchecked_weight', {'call': 'Call', 'weight': 'u64'}
+    'Sudo', 'sudo_unchecked_weight', {
+    'call': 'Call',
+    'weight': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
 )
 ```
 
@@ -137,7 +130,7 @@ A sudo just took place. \[result\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': 'u8'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero')}}```
+| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ### SudoAsDone
@@ -145,7 +138,7 @@ A sudo just took place. \[result\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': 'u8'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero')}}```
+| sudo_result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ## Storage functions

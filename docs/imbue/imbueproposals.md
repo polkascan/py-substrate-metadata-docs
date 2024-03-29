@@ -5,10 +5,58 @@
 ## Calls
 
 ---------
-### raise_vote_of_no_confidence
-In case of contributors losing confidence in the initiator a &quot;Vote of no confidence&quot; can be called.
-This will start a round which each contributor can vote on.
-The round will last as long as set in the Config.
+### mint_offchain_assets
+See [`Pallet::mint_offchain_assets`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| beneficiary | `AccountIdOf<T>` | 
+| currency_id | `CurrencyId` | 
+| amount | `BalanceOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ImbueProposals', 'mint_offchain_assets', {
+    'amount': 'u128',
+    'beneficiary': 'AccountId',
+    'currency_id': {
+        'AUSD': None,
+        'ForeignAsset': (
+            'ETH',
+            'USDT',
+        ),
+        'KAR': None,
+        'KSM': None,
+        'MGX': None,
+        'Native': None,
+    },
+}
+)
+```
+
+---------
+### raise_dispute
+See [`Pallet::raise_dispute`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| project_key | `ProjectKey` | 
+| milestone_keys | `BoundedVec<MilestoneKey, T::MaxMilestonesPerProject>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ImbueProposals', 'raise_dispute', {
+    'milestone_keys': ['u32'],
+    'project_key': 'u32',
+}
+)
+```
+
+---------
+### refund
+See [`Pallet::refund`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -17,13 +65,28 @@ The round will last as long as set in the Config.
 #### Python
 ```python
 call = substrate.compose_call(
-    'ImbueProposals', 'raise_vote_of_no_confidence', {'project_key': 'u32'}
+    'ImbueProposals', 'refund', {'project_key': 'u32'}
+)
+```
+
+---------
+### set_foreign_asset_signer
+See [`Pallet::set_foreign_asset_signer`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| new | `AccountIdOf<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ImbueProposals', 'set_foreign_asset_signer', {'new': 'AccountId'}
 )
 ```
 
 ---------
 ### submit_milestone
-Submit a milestones to be voted on.
+See [`Pallet::submit_milestone`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -42,7 +105,7 @@ call = substrate.compose_call(
 
 ---------
 ### vote_on_milestone
-The contributors call this to vote on a milestone submission.
+See [`Pallet::vote_on_milestone`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -62,31 +125,8 @@ call = substrate.compose_call(
 ```
 
 ---------
-### vote_on_no_confidence_round
-pallet-disputes?
-Vote on an already existing &quot;Vote of no condidence&quot; round.
-is_yay is FOR the project&\#x27;s continuation.
-so is_yay == false == against the project from continuing.
-This autofinalises like in the milestone voting.
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| project_key | `ProjectKey` | 
-| is_yay | `bool` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'ImbueProposals', 'vote_on_no_confidence_round', {
-    'is_yay': 'bool',
-    'project_key': 'u32',
-}
-)
-```
-
----------
 ### withdraw
-Withdraw some avaliable funds from the project.
+See [`Pallet::withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -103,6 +143,25 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### ForeignAssetMinted
+Foreign Asset Signer Changed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `T::AccountId` | ```AccountId```
+| None | `T::AccountId` | ```AccountId```
+| None | `CurrencyId` | ```{'Native': None, 'KSM': None, 'AUSD': None, 'KAR': None, 'MGX': None, 'ForeignAsset': ('ETH', 'USDT')}```
+| None | `BalanceOf<T>` | ```u128```
+
+---------
+### ForeignAssetSignerChanged
+Foreign Asset Signer Changed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `T::AccountId` | ```AccountId```
+
+---------
 ### MilestoneApproved
 A milestone has been approved.
 #### Attributes
@@ -111,7 +170,16 @@ A milestone has been approved.
 | None | `T::AccountId` | ```AccountId```
 | None | `ProjectKey` | ```u32```
 | None | `MilestoneKey` | ```u32```
-| None | `T::BlockNumber` | ```u32```
+| None | `BlockNumberFor<T>` | ```u32```
+
+---------
+### MilestoneRejected
+This milestone has been rejected.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `ProjectKey` | ```u32```
+| None | `MilestoneKey` | ```u32```
 
 ---------
 ### MilestoneSubmitted
@@ -122,33 +190,6 @@ You have submitted a milestone.
 | None | `T::AccountId` | ```AccountId```
 | None | `ProjectKey` | ```u32```
 | None | `MilestoneKey` | ```u32```
-
----------
-### NoConfidenceRoundCreated
-You have created a vote of no confidence.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `ProjectKey` | ```u32```
-
----------
-### NoConfidenceRoundFinalised
-You have finalised a vote of no confidence.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `ProjectKey` | ```u32```
-
----------
-### NoConfidenceRoundVotedUpon
-You have voted upon a round of no confidence.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `T::AccountId` | ```AccountId```
-| None | `ProjectKey` | ```u32```
 
 ---------
 ### ProjectCancelled
@@ -165,10 +206,10 @@ You have created a project.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::12```
 | None | `ProjectKey` | ```u32```
 | None | `BalanceOf<T>` | ```u128```
-| None | `common_types::CurrencyId` | ```{'Native': None, 'KSM': None, 'AUSD': None, 'KAR': None, 'MGX': None, 'ForeignAsset': 'u32'}```
+| None | `common_types::CurrencyId` | ```{'Native': None, 'KSM': None, 'AUSD': None, 'KAR': None, 'MGX': None, 'ForeignAsset': ('ETH', 'USDT')}```
 | None | `T::AccountId` | ```AccountId```
 
 ---------
@@ -180,7 +221,16 @@ Successfully withdrawn funds from the project.
 | None | `T::AccountId` | ```AccountId```
 | None | `ProjectKey` | ```u32```
 | None | `BalanceOf<T>` | ```u128```
-| None | `CurrencyId` | ```{'Native': None, 'KSM': None, 'AUSD': None, 'KAR': None, 'MGX': None, 'ForeignAsset': 'u32'}```
+| None | `CurrencyId` | ```{'Native': None, 'KSM': None, 'AUSD': None, 'KAR': None, 'MGX': None, 'ForeignAsset': ('ETH', 'USDT')}```
+
+---------
+### ProjectRefunded
+A project has been refunded either partially or completely.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| project_key | `ProjectKey` | ```u32```
+| total_amount | `BalanceOf<T>` | ```u128```
 
 ---------
 ### VoteSubmitted
@@ -192,7 +242,7 @@ Vote submited successfully.
 | None | `ProjectKey` | ```u32```
 | None | `MilestoneKey` | ```u32```
 | None | `bool` | ```bool```
-| None | `T::BlockNumber` | ```u32```
+| None | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### VotingRoundCreated
@@ -207,6 +257,7 @@ A voting round has been created.
 
 ---------
 ### CompletedProjects
+ Stores the completed project by a given initiator.
 
 #### Python
 ```python
@@ -220,33 +271,48 @@ result = substrate.query(
 ['u32']
 ```
 ---------
+### ForeignCurrencySigner
+ The `AccountId` of the multichain signer
+
+#### Python
+```python
+result = substrate.query(
+    'ImbueProposals', 'ForeignCurrencySigner', []
+)
+```
+
+#### Return value
+```python
+'AccountId'
+```
+---------
+### IndividualVoteStore
+ Stores the individuals votes on a given milestone key
+
+#### Python
+```python
+result = substrate.query(
+    'ImbueProposals', 'IndividualVoteStore', ['u32']
+)
+```
+
+#### Return value
+```python
+{'votes': 'scale_info::508'}
+```
+---------
 ### MilestoneVotes
 
 #### Python
 ```python
 result = substrate.query(
-    'ImbueProposals', 'MilestoneVotes', ['u32', 'u32']
+    'ImbueProposals', 'MilestoneVotes', ['u32']
 )
 ```
 
 #### Return value
 ```python
-{'is_approved': 'bool', 'nay': 'u128', 'yay': 'u128'}
-```
----------
-### NoConfidenceVotes
- This holds the votes when a no confidence round is raised.
-
-#### Python
-```python
-result = substrate.query(
-    'ImbueProposals', 'NoConfidenceVotes', ['u32']
-)
-```
-
-#### Return value
-```python
-{'is_approved': 'bool', 'nay': 'u128', 'yay': 'u128'}
+'scale_info::513'
 ```
 ---------
 ### ProjectCount
@@ -263,7 +329,24 @@ result = substrate.query(
 'u32'
 ```
 ---------
+### ProjectInVoting
+ Projects in Voting round.
+ A helper for the runtime api so we dont have to iterate over the Rounds Double map.
+
+#### Python
+```python
+result = substrate.query(
+    'ImbueProposals', 'ProjectInVoting', ['u32', 'u32']
+)
+```
+
+#### Return value
+```python
+()
+```
+---------
 ### Projects
+ Stores the projects of the pallet.
 
 #### Python
 ```python
@@ -275,25 +358,46 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'agreement_hash': '[u8; 32]',
+    'agreement_hash': 'scale_info::12',
     'cancelled': 'bool',
-    'contributions': 'scale_info::459',
+    'contributions': 'scale_info::491',
     'created_on': 'u32',
     'currency_id': {
         'AUSD': None,
-        'ForeignAsset': 'u32',
+        'ForeignAsset': ('ETH', 'USDT'),
         'KAR': None,
         'KSM': None,
         'MGX': None,
         'Native': None,
     },
     'deposit_id': 'u64',
-    'funding_type': {'Brief': None, 'Grant': ('Kusama', 'Imbue', 'Karura'), 'Proposal': None},
+    'external_owned_address': (None, {'ETH': '[u8; 20]', 'TRON': '[u8; 22]'}),
     'initiator': 'AccountId',
-    'milestones': 'scale_info::454',
+    'jury': ['AccountId'],
+    'milestones': 'scale_info::486',
+    'on_creation_funding': ('TakeFromReserved', 'WaitForFunding'),
     'raised_funds': 'u128',
+    'refund_locations': [
+        ({'Foreign': 'scale_info::66', 'Local': 'AccountId'}, 'u8'),
+    ],
+    'refunded_funds': 'u128',
     'withdrawn_funds': 'u128',
 }
+```
+---------
+### ProjectsInDispute
+ A helper to find what projects / milestones are in a dispute.
+
+#### Python
+```python
+result = substrate.query(
+    'ImbueProposals', 'ProjectsInDispute', ['u32']
+)
+```
+
+#### Return value
+```python
+['u32']
 ```
 ---------
 ### Rounds
@@ -303,7 +407,7 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'ImbueProposals', 'Rounds', [
-    'u32',
+    ('u32', 'u32'),
     (
         'VotingRound',
         'VoteOfNoConfidence',
@@ -332,20 +436,6 @@ result = substrate.query(
 [('u32', ('VotingRound', 'VoteOfNoConfidence'), 'u32')]
 ```
 ---------
-### StorageVersion
-
-#### Python
-```python
-result = substrate.query(
-    'ImbueProposals', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V0', 'V1', 'V2', 'V3', 'V4')
-```
----------
 ### UserHasVoted
 
 #### Python
@@ -366,14 +456,22 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::466'
+'scale_info::503'
 ```
 ---------
 ## Errors
 
 ---------
+### CannotRaiseDisputeOnApprovedMilestone
+You cannot raise a dispute on an approved milestone.
+
+---------
 ### ImbueRequiredForStorageDep
 You dont have enough IMBU for the project storage deposit.
+
+---------
+### IndividualVoteNotFound
+An internal error, a collection of votes for a milestone has been lost.s
 
 ---------
 ### InvalidAccount
@@ -396,6 +494,10 @@ Error with a mathematical operation
 The milestone has already been approved.
 
 ---------
+### MilestoneConversionFailed
+Conversion failed due to an error in milestone conversion (probably a bound has been abused).
+
+---------
 ### MilestoneDoesNotExist
 The milestone does not exist.
 
@@ -404,12 +506,28 @@ The milestone does not exist.
 The voting threshhold has not been met.
 
 ---------
+### MilestonesAlreadyInDispute
+One of these milestones is already in a dispute.
+
+---------
 ### NoActiveRound
 Currently no active round to participate in.
 
 ---------
 ### NoAvailableFundsToWithdraw
 There are no avaliable funds to withdraw.
+
+---------
+### NotEnoughFundsForFees
+Not enough funds in project account to distribute fees.
+
+---------
+### OnlyContributorsCanInitiateRefund
+Only a contributor can initiate a refund.
+
+---------
+### OnlyContributorsCanRaiseDispute
+Only a contributor can raise a dispute.
 
 ---------
 ### OnlyContributorsCanVote
@@ -424,12 +542,20 @@ There was an internal overflow prevented in pallet_proposals.
 Project does not exist.
 
 ---------
+### ProjectFundingFailed
+Conversion failed due to an error while funding the Project.
+
+---------
 ### ProjectNotInRound
 The selected project does not exist in the round.
 
 ---------
 ### ProjectWithdrawn
 The project has been cancelled.
+
+---------
+### RequireForeignAssetSigner
+Only the ForeignAssetSigner can mint tokens
 
 ---------
 ### RoundCanceled
@@ -444,12 +570,24 @@ Round has already started and cannot be modified.
 There are too many contributions.
 
 ---------
+### TooManyJuryMembers
+This project has too many jury members.
+
+---------
+### TooManyMilestoneVotes
+There are too many milestone votes, this generally shouldnt be hit.
+
+---------
 ### TooManyMilestones
 There are too many milestones.
 
 ---------
 ### TooManyProjects
 There are too many projects for a given account
+
+---------
+### TooManyRefundLocations
+This project has too many refund locations.
 
 ---------
 ### UserIsNotInitiator

@@ -17,7 +17,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('[u8; 32]', 'u32')
+('scale_info::11', 'u32')
 ```
 ---------
 ### StoredRange

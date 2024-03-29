@@ -144,6 +144,9 @@ Withdraw success. [currency_id, who, amount]
 | None | `BalanceOf<T>` | ```u128```
 
 ---------
+## Storage functions
+
+---------
 ## Constants
 
 ---------

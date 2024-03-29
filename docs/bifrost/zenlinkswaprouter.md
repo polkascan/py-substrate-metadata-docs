@@ -6,6 +6,7 @@
 
 ---------
 ### swap_exact_token_for_tokens_through_stable_pool
+See [`Pallet::swap_exact_token_for_tokens_through_stable_pool`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -14,7 +15,7 @@
 | routes | `Vec<Route<T::StablePoolId, T::StableCurrencyId, T::NormalCurrencyId
 >>` | 
 | to | `T::AccountId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -67,6 +68,7 @@ call = substrate.compose_call(
                         ),
                         'u8',
                     ),
+                    'Lend': 'u8',
                     'Native': (
                         'ASG',
                         'BNC',
@@ -200,6 +202,7 @@ call = substrate.compose_call(
                         ),
                         'u8',
                     ),
+                    'Lend': 'u8',
                     'Native': (
                         'ASG',
                         'BNC',

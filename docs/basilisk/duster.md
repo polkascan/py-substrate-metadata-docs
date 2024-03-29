@@ -6,9 +6,7 @@
 
 ---------
 ### add_nondustable_account
-Add account to list of non-dustable account. Account whihc are excluded from udsting.
-If such account should be dusted - `AccountBlacklisted` error is returned.
-Only root can perform this action.
+See [`Pallet::add_nondustable_account`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -23,11 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### dust_account
-Dust specified account.
-IF account balance is &lt; min. existential deposit of given currency, and account is allowed to
-be dusted, the remaining balance is transferred to selected account (usually treasury).
-
-Caller is rewarded with chosen reward in native currency.
+See [`Pallet::dust_account`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -46,7 +40,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_nondustable_account
-Remove account from list of non-dustable accounts. That means account can be dusted again.
+See [`Pallet::remove_nondustable_account`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

@@ -6,9 +6,7 @@
 
 ---------
 ### complete_multisig_migration
-To complete the pending multisig migration.
-
-The `_signature` should be provided by `submitter`.
+See [`Pallet::complete_multisig_migration`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -29,7 +27,7 @@ call = substrate.compose_call(
 
 ---------
 ### migrate
-Migrate all the account data under the `from` to `to`.
+See [`Pallet::migrate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -50,9 +48,7 @@ call = substrate.compose_call(
 
 ---------
 ### migrate_multisig
-Similar to `migrate` but for multisig accounts.
-
-The `_signature` should be provided by `who`.
+See [`Pallet::migrate_multisig`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -186,7 +182,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [('scale_info::275', 'scale_info::275')],
+        'additional': [('scale_info::131', 'scale_info::131')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',

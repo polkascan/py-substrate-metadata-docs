@@ -6,20 +6,7 @@
 
 ---------
 ### add_key_agreement_key
-Add a single new key agreement key to the DID.
-
-The new key is added to the set of public keys.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidUpdated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did
-- Writes: Did
-\# &lt;/weight&gt;
+See [`Pallet::add_key_agreement_key`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -34,18 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_service_endpoint
-Add a new service endpoint under the given DID.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidUpdated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did, ServiceEndpoints, DidEndpointsCount
-- Writes: Did, ServiceEndpoints, DidEndpointsCount
-\# &lt;/weight&gt;
+See [`Pallet::add_service_endpoint`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -66,13 +42,7 @@ call = substrate.compose_call(
 
 ---------
 ### change_deposit_owner
-Changes the deposit owner.
-
-The balance that is reserved by the current deposit owner will be
-freed and balance of the new deposit owner will get reserved.
-
-The subject of the call must be the did owner.
-The sender of the call will be the new deposit owner.
+See [`Pallet::change_deposit_owner`].
 #### Attributes
 No attributes
 
@@ -85,37 +55,7 @@ call = substrate.compose_call(
 
 ---------
 ### create
-Store a new DID on chain, after verifying that the creation
-operation has been signed by the KILT account associated with the
-identifier of the DID being created and that a DID with the same
-identifier has not previously existed on (and then deleted from) the
-chain.
-
-There must be no DID information stored on chain under the same DID
-identifier.
-
-The new keys added with this operation are stored under the DID
-identifier along with the block number in which the operation was
-executed.
-
-The dispatch origin can be any KILT account with enough funds to
-execute the extrinsic and it does not have to be tied in any way to
-the KILT account identifying the DID subject.
-
-Emits `DidCreated`.
-
-\# &lt;weight&gt;
-- The transaction&\#x27;s complexity is mainly dependent on the number of
-  new key agreement keys and the number of new service endpoints
-  included in the operation.
----------
-Weight: O(K) + O(N) where K is the number of new key agreement
-keys bounded by `MaxNewKeyAgreementKeys`, while N is the number of
-new service endpoints bounded by `MaxNumberOfServicesPerDid`.
-- Reads: [Origin Account], Did, DidBlacklist
-- Writes: Did (with K new key agreement keys), ServiceEndpoints
-  (with N new service endpoints), DidEndpointsCount
-\# &lt;/weight&gt;
+See [`Pallet::create`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -131,6 +71,7 @@ call = substrate.compose_call(
         'new_attestation_key': (
             None,
             {
+                'Account': 'AccountId',
                 'Ecdsa': '[u8; 33]',
                 'Ed25519': '[u8; 32]',
                 'Sr25519': '[u8; 32]',
@@ -139,12 +80,13 @@ call = substrate.compose_call(
         'new_delegation_key': (
             None,
             {
+                'Account': 'AccountId',
                 'Ecdsa': '[u8; 33]',
                 'Ed25519': '[u8; 32]',
                 'Sr25519': '[u8; 32]',
             },
         ),
-        'new_key_agreement_keys': 'scale_info::296',
+        'new_key_agreement_keys': 'scale_info::321',
         'new_service_details': [
             {
                 'id': 'Bytes',
@@ -166,31 +108,30 @@ call = substrate.compose_call(
 ```
 
 ---------
+### create_from_account
+See [`Pallet::create_from_account`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| authentication_key | `DidVerificationKey<AccountIdOf<T>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Did', 'create_from_account', {
+    'authentication_key': {
+        'Account': 'AccountId',
+        'Ecdsa': '[u8; 33]',
+        'Ed25519': '[u8; 32]',
+        'Sr25519': '[u8; 32]',
+    },
+}
+)
+```
+
+---------
 ### delete
-Delete a DID from the chain and all information associated with it,
-after verifying that the delete operation has been signed by the DID
-subject using the authentication key currently stored on chain.
-
-The referenced DID identifier must be present on chain before the
-delete operation is evaluated.
-
-After it is deleted, a DID with the same identifier cannot be
-re-created ever again.
-
-As the result of the deletion, all traces of the DID are removed
-from the storage, which results in the invalidation of all
-attestations issued by the DID subject.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidDeleted`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did
-- Kills: Did entry associated to the DID identifier
-\# &lt;/weight&gt;
+See [`Pallet::delete`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -204,28 +145,27 @@ call = substrate.compose_call(
 ```
 
 ---------
+### dispatch_as
+See [`Pallet::dispatch_as`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| did_identifier | `DidIdentifierOf<T>` | 
+| call | `Box<DidCallableOf<T>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Did', 'dispatch_as', {
+    'call': 'Call',
+    'did_identifier': 'AccountId',
+}
+)
+```
+
+---------
 ### reclaim_deposit
-Reclaim a deposit for a DID. This will delete the DID and all
-information associated with it, after verifying that the caller is
-the owner of the deposit.
-
-The referenced DID identifier must be present on chain before the
-delete operation is evaluated.
-
-After it is deleted, a DID with the same identifier cannot be
-re-created ever again.
-
-As the result of the deletion, all traces of the DID are removed
-from the storage, which results in the invalidation of all
-attestations issued by the DID subject.
-
-Emits `DidDeleted`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did
-- Kills: Did entry associated to the DID identifier
-\# &lt;/weight&gt;
+See [`Pallet::reclaim_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -244,21 +184,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_attestation_key
-Remove the DID attestation key.
-
-The old key is deleted from the set of public keys if
-it is not used in any other part of the DID.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidUpdated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did
-- Writes: Did
-\# &lt;/weight&gt;
+See [`Pallet::remove_attestation_key`].
 #### Attributes
 No attributes
 
@@ -271,21 +197,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_delegation_key
-Remove the DID delegation key.
-
-The old key is deleted from the set of public keys if
-it is not used in any other part of the DID.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidUpdated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did
-- Writes: Did
-\# &lt;/weight&gt;
+See [`Pallet::remove_delegation_key`].
 #### Attributes
 No attributes
 
@@ -298,19 +210,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_key_agreement_key
-Remove a DID key agreement key from both its set of key agreement
-keys and as well as its public keys.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidUpdated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did
-- Writes: Did
-\# &lt;/weight&gt;
+See [`Pallet::remove_key_agreement_key`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -319,24 +219,13 @@ Weight: O(1)
 #### Python
 ```python
 call = substrate.compose_call(
-    'Did', 'remove_key_agreement_key', {'key_id': '[u8; 32]'}
+    'Did', 'remove_key_agreement_key', {'key_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### remove_service_endpoint
-Remove the service with the provided ID from the DID.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidUpdated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], ServiceEndpoints, DidEndpointsCount
-- Writes: Did, ServiceEndpoints, DidEndpointsCount
-\# &lt;/weight&gt;
+See [`Pallet::remove_service_endpoint`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -351,32 +240,18 @@ call = substrate.compose_call(
 
 ---------
 ### set_attestation_key
-Set or update the DID attestation key.
-
-If an old key existed, it is deleted from the set of public keys if
-it is not used in any other part of the DID. The new key is added to
-the set of public keys.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidUpdated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did
-- Writes: Did
-\# &lt;/weight&gt;
+See [`Pallet::set_attestation_key`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new_key | `DidVerificationKey` | 
+| new_key | `DidVerificationKey<AccountIdOf<T>>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Did', 'set_attestation_key', {
     'new_key': {
+        'Account': 'AccountId',
         'Ecdsa': '[u8; 33]',
         'Ed25519': '[u8; 32]',
         'Sr25519': '[u8; 32]',
@@ -387,32 +262,18 @@ call = substrate.compose_call(
 
 ---------
 ### set_authentication_key
-Update the DID authentication key.
-
-The old key is deleted from the set of public keys if it is
-not used in any other part of the DID. The new key is added to the
-set of public keys.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidUpdated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did
-- Writes: Did
-\# &lt;/weight&gt;
+See [`Pallet::set_authentication_key`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new_key | `DidVerificationKey` | 
+| new_key | `DidVerificationKey<AccountIdOf<T>>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Did', 'set_authentication_key', {
     'new_key': {
+        'Account': 'AccountId',
         'Ecdsa': '[u8; 33]',
         'Ed25519': '[u8; 32]',
         'Sr25519': '[u8; 32]',
@@ -423,32 +284,18 @@ call = substrate.compose_call(
 
 ---------
 ### set_delegation_key
-Set or update the DID delegation key.
-
-If an old key existed, it is deleted from the set of public keys if
-it is not used in any other part of the DID. The new key is added to
-the set of public keys.
-
-The dispatch origin must be a DID origin proxied via the
-`submit_did_call` extrinsic.
-
-Emits `DidUpdated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: [Origin Account], Did
-- Writes: Did
-\# &lt;/weight&gt;
+See [`Pallet::set_delegation_key`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| new_key | `DidVerificationKey` | 
+| new_key | `DidVerificationKey<AccountIdOf<T>>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Did', 'set_delegation_key', {
     'new_key': {
+        'Account': 'AccountId',
         'Ecdsa': '[u8; 33]',
         'Ed25519': '[u8; 32]',
         'Sr25519': '[u8; 32]',
@@ -459,41 +306,7 @@ call = substrate.compose_call(
 
 ---------
 ### submit_did_call
-Proxy a dispatchable call of another runtime extrinsic that
-supports a DID origin.
-
-The referenced DID identifier must be present on chain before the
-operation is dispatched.
-
-A call submitted through this extrinsic must be signed with the
-right DID key, depending on the call. This information is provided
-by the `DidAuthorizedCallOperation` parameter, which specifies the
-DID subject acting as the origin of the call, the DID&\#x27;s tx counter
-(nonce), the dispatchable to call in case signature verification
-succeeds, the type of DID key to use to verify the operation
-signature, and the block number the operation was targeting for
-inclusion, when it was created and signed.
-
-In case the signature is incorrect, the nonce is not valid, the
-required key is not present for the specified DID, or the block
-specified is too old the verification fails and the call is not
-dispatched. Otherwise, the call is properly dispatched with a
-`DidOrigin` origin indicating the DID subject.
-
-A successful dispatch operation results in the tx counter associated
-with the given DID to be incremented, to mitigate replay attacks.
-
-The dispatch origin can be any KILT account with enough funds to
-execute the extrinsic and it does not have to be tied in any way to
-the KILT account identifying the DID subject.
-
-Emits `DidCallDispatched`.
-
-\# &lt;weight&gt;
-Weight: O(1) + weight of the dispatched call
-- Reads: [Origin Account], Did
-- Writes: Did
-\# &lt;/weight&gt;
+See [`Pallet::submit_did_call`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -522,9 +335,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_deposit
-Updates the deposit amount to the current deposit rate.
-
-The sender must be the deposit owner.
+See [`Pallet::update_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -548,7 +359,7 @@ A DID-authorised call has been executed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `DidIdentifierOf<T>` | ```AccountId```
-| None | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| None | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}```
 
 ---------
 ### DidCreated
@@ -597,13 +408,13 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'attestation_key': (None, '[u8; 32]'),
-    'authentication_key': '[u8; 32]',
-    'delegation_key': (None, '[u8; 32]'),
+    'attestation_key': (None, 'scale_info::12'),
+    'authentication_key': 'scale_info::12',
+    'delegation_key': (None, 'scale_info::12'),
     'deposit': {'amount': 'u128', 'owner': 'AccountId'},
-    'key_agreement_keys': 'scale_info::424',
+    'key_agreement_keys': 'scale_info::451',
     'last_tx_counter': 'u64',
-    'public_keys': 'scale_info::432',
+    'public_keys': 'scale_info::459',
 }
 ```
 ---------

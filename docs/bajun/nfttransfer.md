@@ -11,7 +11,7 @@ Item has been restored back from its NFT representation [collection_id, item_id,
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection_id | `T::CollectionId` | ```u32```
-| item_id | `T::ItemId` | ```[u8; 32]```
+| item_id | `T::ItemId` | ```scale_info::12```
 | owner | `T::AccountId` | ```AccountId```
 
 ---------
@@ -21,7 +21,7 @@ Item has been stored as an NFT [collection_id, item_id, owner]
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | collection_id | `T::CollectionId` | ```u32```
-| item_id | `T::ItemId` | ```[u8; 32]```
+| item_id | `T::ItemId` | ```scale_info::12```
 | owner | `T::AccountId` | ```AccountId```
 
 ---------
@@ -33,7 +33,7 @@ Item has been stored as an NFT [collection_id, item_id, owner]
 #### Python
 ```python
 result = substrate.query(
-    'NftTransfer', 'NftStatuses', ['u32', '[u8; 32]']
+    'NftTransfer', 'NftStatuses', ['u32', 'scale_info::12']
 )
 ```
 

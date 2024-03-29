@@ -19,7 +19,7 @@ Parameters:
 | -------- | -------- | 
 | asset | `Asset` | 
 | target | `T::AccountId` | 
-| value | `BalanceOf<T, I>` | 
+| value | `T::Balance` | 
 
 #### Python
 ```python
@@ -48,7 +48,7 @@ Parameters:
 | Name | Type |
 | -------- | -------- | 
 | target | `T::AccountId` | 
-| schedule | `(BalanceOf<T, I>, BalanceOf<T, I>, T::BlockNumber)` | 
+| schedule | `(T::Balance, T::Balance, T::BlockNumber)` | 
 
 #### Python
 ```python

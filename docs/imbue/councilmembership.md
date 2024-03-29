@@ -6,9 +6,7 @@
 
 ---------
 ### add_member
-Add a member `who` to the set.
-
-May only be called from `T::AddOrigin`.
+See [`Pallet::add_member`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -31,11 +29,7 @@ call = substrate.compose_call(
 
 ---------
 ### change_key
-Swap out the sending member for some other key `new`.
-
-May only be called from `Signed` origin of a current member.
-
-Prime membership is passed from the origin account to `new`, if extant.
+See [`Pallet::change_key`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -58,9 +52,7 @@ call = substrate.compose_call(
 
 ---------
 ### clear_prime
-Remove the prime member if it exists.
-
-May only be called from `T::PrimeOrigin`.
+See [`Pallet::clear_prime`].
 #### Attributes
 No attributes
 
@@ -73,9 +65,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_member
-Remove a member `who` from the set.
-
-May only be called from `T::RemoveOrigin`.
+See [`Pallet::remove_member`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -98,10 +88,7 @@ call = substrate.compose_call(
 
 ---------
 ### reset_members
-Change the membership to a new set, disregarding the existing membership. Be nice and
-pass `members` pre-sorted.
-
-May only be called from `T::ResetOrigin`.
+See [`Pallet::reset_members`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -116,9 +103,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_prime
-Set the prime member. Must be a current member.
-
-May only be called from `T::PrimeOrigin`.
+See [`Pallet::set_prime`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -141,11 +126,7 @@ call = substrate.compose_call(
 
 ---------
 ### swap_member
-Swap out one member `remove` for another `add`.
-
-May only be called from `T::SwapOrigin`.
-
-Prime membership is *not* passed from `remove` to `add`, if extant.
+See [`Pallet::swap_member`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

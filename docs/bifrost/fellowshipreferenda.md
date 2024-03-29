@@ -6,12 +6,7 @@
 
 ---------
 ### cancel
-Cancel an ongoing referendum.
-
-- `origin`: must be the `CancelOrigin`.
-- `index`: The index of the referendum to be cancelled.
-
-Emits `Cancelled`.
+See [`Pallet::cancel`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -26,12 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### kill
-Cancel an ongoing referendum and slash the deposits.
-
-- `origin`: must be the `KillOrigin`.
-- `index`: The index of the referendum to be cancelled.
-
-Emits `Killed` and `DepositSlashed`.
+See [`Pallet::kill`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -46,10 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### nudge_referendum
-Advance a referendum onto its next logical state. Only used internally.
-
-- `origin`: must be `Root`.
-- `index`: the referendum to be advanced.
+See [`Pallet::nudge_referendum`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -64,15 +51,7 @@ call = substrate.compose_call(
 
 ---------
 ### one_fewer_deciding
-Advance a track onto its next logical state. Only used internally.
-
-- `origin`: must be `Root`.
-- `track`: the track to be advanced.
-
-Action item for when there is now one fewer referendum in the deciding phase and the
-`DecidingCount` is not yet updated. This means that we should either:
-- begin deciding another referendum (and leave `DecidingCount` alone); or
-- decrement `DecidingCount`.
+See [`Pallet::one_fewer_deciding`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -87,14 +66,7 @@ call = substrate.compose_call(
 
 ---------
 ### place_decision_deposit
-Post the Decision Deposit for a referendum.
-
-- `origin`: must be `Signed` and the account must have funds available for the
-  referendum&\#x27;s track&\#x27;s Decision Deposit.
-- `index`: The index of the submitted referendum whose Decision Deposit is yet to be
-  posted.
-
-Emits `DecisionDepositPlaced`.
+See [`Pallet::place_decision_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -109,13 +81,7 @@ call = substrate.compose_call(
 
 ---------
 ### refund_decision_deposit
-Refund the Decision Deposit for a closed referendum back to the depositor.
-
-- `origin`: must be `Signed` or `Root`.
-- `index`: The index of a closed referendum whose Decision Deposit has not yet been
-  refunded.
-
-Emits `DecisionDepositRefunded`.
+See [`Pallet::refund_decision_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -130,13 +96,7 @@ call = substrate.compose_call(
 
 ---------
 ### refund_submission_deposit
-Refund the Submission Deposit for a closed referendum back to the depositor.
-
-- `origin`: must be `Signed` or `Root`.
-- `index`: The index of a closed referendum whose Submission Deposit has not yet been
-  refunded.
-
-Emits `SubmissionDepositRefunded`.
+See [`Pallet::refund_submission_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -151,46 +111,35 @@ call = substrate.compose_call(
 
 ---------
 ### set_metadata
-Set or clear metadata of a referendum.
-
-Parameters:
-- `origin`: Must be `Signed` by a creator of a referendum or by anyone to clear a
-  metadata of a finished referendum.
-- `index`:  The index of a referendum to set or clear metadata for.
-- `maybe_hash`: The hash of an on-chain stored preimage. `None` to clear a metadata.
+See [`Pallet::set_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | index | `ReferendumIndex` | 
-| maybe_hash | `Option<PreimageHash>` | 
+| maybe_hash | `Option<T::Hash>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'FellowshipReferenda', 'set_metadata', {
     'index': 'u32',
-    'maybe_hash': (None, '[u8; 32]'),
+    'maybe_hash': (
+        None,
+        'scale_info::12',
+    ),
 }
 )
 ```
 
 ---------
 ### submit
-Propose a referendum on a privileged action.
-
-- `origin`: must be `SubmitOrigin` and the account must have `SubmissionDeposit` funds
-  available.
-- `proposal_origin`: The origin from which the proposal should be executed.
-- `proposal`: The proposal.
-- `enactment_moment`: The moment that the proposal should be enacted.
-
-Emits `Submitted`.
+See [`Pallet::submit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | proposal_origin | `Box<PalletsOriginOf<T>>` | 
 | proposal | `BoundedCallOf<T, I>` | 
-| enactment_moment | `DispatchTime<T::BlockNumber>` | 
+| enactment_moment | `DispatchTime<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -202,18 +151,15 @@ call = substrate.compose_call(
     },
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
     'proposal_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
         None: None,
         'Council': {
             'Member': 'AccountId',
@@ -229,8 +175,7 @@ call = substrate.compose_call(
             'FellowshipAdmin',
             'ReferendumCanceller',
             'ReferendumKiller',
-            'ValidatorElection',
-            'SystemStakingAdmin',
+            'LiquidStaking',
             'SALPAdmin',
             'FellowshipInitiates',
             'Fellows',
@@ -247,6 +192,7 @@ call = substrate.compose_call(
             'Fellowship9Dan',
             'TechAdmin',
             'CoreAdmin',
+            'TreasurySpend',
         ),
         'PolkadotXcm': {
             'Response': {
@@ -257,21 +203,21 @@ call = substrate.compose_call(
                             'id': '[u8; 32]',
                             'network': (
                                 None,
-                                'scale_info::123',
+                                'scale_info::124',
                             ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
                             'network': (
                                 None,
-                                'scale_info::123',
+                                'scale_info::124',
                             ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
                             'network': (
                                 None,
-                                'scale_info::123',
+                                'scale_info::124',
                             ),
                         },
                         'GeneralIndex': 'u128',
@@ -295,8 +241,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::124',
-                            'part': 'scale_info::125',
+                            'id': 'scale_info::125',
+                            'part': 'scale_info::126',
                         },
                     },
                     'X2': (
@@ -306,7 +252,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -318,7 +264,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -332,7 +278,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -344,7 +290,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -356,7 +302,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -370,7 +316,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -382,7 +328,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -394,7 +340,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -406,7 +352,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -420,7 +366,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -432,7 +378,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -444,7 +390,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -456,7 +402,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -468,7 +414,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -482,7 +428,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -494,7 +440,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -506,7 +452,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -518,7 +464,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -530,7 +476,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -542,7 +488,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -556,7 +502,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -568,7 +514,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -580,7 +526,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -592,7 +538,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -604,7 +550,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -616,7 +562,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -628,7 +574,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -642,7 +588,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -654,7 +600,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -666,7 +612,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -678,7 +624,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -690,7 +636,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -702,7 +648,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -714,7 +660,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -726,7 +672,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -744,21 +690,21 @@ call = substrate.compose_call(
                             'id': '[u8; 32]',
                             'network': (
                                 None,
-                                'scale_info::123',
+                                'scale_info::124',
                             ),
                         },
                         'AccountIndex64': {
                             'index': 'u64',
                             'network': (
                                 None,
-                                'scale_info::123',
+                                'scale_info::124',
                             ),
                         },
                         'AccountKey20': {
                             'key': '[u8; 20]',
                             'network': (
                                 None,
-                                'scale_info::123',
+                                'scale_info::124',
                             ),
                         },
                         'GeneralIndex': 'u128',
@@ -782,8 +728,8 @@ call = substrate.compose_call(
                         'PalletInstance': 'u8',
                         'Parachain': 'u32',
                         'Plurality': {
-                            'id': 'scale_info::124',
-                            'part': 'scale_info::125',
+                            'id': 'scale_info::125',
+                            'part': 'scale_info::126',
                         },
                     },
                     'X2': (
@@ -793,7 +739,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -805,7 +751,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -819,7 +765,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -831,7 +777,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -843,7 +789,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -857,7 +803,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -869,7 +815,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -881,7 +827,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -893,7 +839,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -907,7 +853,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -919,7 +865,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -931,7 +877,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -943,7 +889,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -955,7 +901,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -969,7 +915,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -981,7 +927,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -993,7 +939,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1005,7 +951,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1017,7 +963,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1029,7 +975,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1043,7 +989,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1055,7 +1001,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1067,7 +1013,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1079,7 +1025,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1091,7 +1037,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1103,7 +1049,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1115,7 +1061,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1129,7 +1075,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1141,7 +1087,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1153,7 +1099,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1165,7 +1111,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1177,7 +1123,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1189,7 +1135,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1201,7 +1147,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1213,7 +1159,7 @@ call = substrate.compose_call(
                             'AccountKey20': 'InnerStruct',
                             'GeneralIndex': 'u128',
                             'GeneralKey': 'InnerStruct',
-                            'GlobalConsensus': 'scale_info::123',
+                            'GlobalConsensus': 'scale_info::124',
                             'OnlyChild': None,
                             'PalletInstance': 'u8',
                             'Parachain': 'u32',
@@ -1230,6 +1176,11 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
 }
 )
@@ -1306,7 +1257,7 @@ A referendum has moved into the deciding phase.
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
 | track | `TrackIdOf<T, I>` | ```u16```
-| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': '[u8; 32]'}, 'Inline': 'Bytes', 'Lookup': {'hash': '[u8; 32]', 'len': 'u32'}}```
+| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': 'scale_info::12'}, 'Inline': 'Bytes', 'Lookup': {'hash': 'scale_info::12', 'len': 'u32'}}```
 | tally | `T::Tally` | ```{'bare_ayes': 'u32', 'ayes': 'u32', 'nays': 'u32'}```
 
 ---------
@@ -1334,7 +1285,7 @@ Metadata for a referendum has been cleared.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### MetadataSet
@@ -1343,7 +1294,7 @@ Metadata for a referendum has been set.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Rejected
@@ -1372,7 +1323,7 @@ A referendum has been submitted.
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
 | track | `TrackIdOf<T, I>` | ```u16```
-| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': '[u8; 32]'}, 'Inline': 'Bytes', 'Lookup': {'hash': '[u8; 32]', 'len': 'u32'}}```
+| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': 'scale_info::12'}, 'Inline': 'Bytes', 'Lookup': {'hash': 'scale_info::12', 'len': 'u32'}}```
 
 ---------
 ### TimedOut
@@ -1404,7 +1355,7 @@ result = substrate.query(
 ---------
 ### MetadataOf
  The metadata is a general information concerning the referendum.
- The `PreimageHash` refers to the preimage of the `Preimages` provider which can be a JSON
+ The `Hash` refers to the preimage of the `Preimages` provider which can be a JSON
  dump or IPFS hash of a JSON file.
 
  Consider a garbage collection for a metadata of finished referendums to `unrequest` (remove)
@@ -1419,7 +1370,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### ReferendumCount
@@ -1468,8 +1419,6 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
-            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
             'Council': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
@@ -1481,8 +1430,7 @@ result = substrate.query(
                 'FellowshipAdmin',
                 'ReferendumCanceller',
                 'ReferendumKiller',
-                'ValidatorElection',
-                'SystemStakingAdmin',
+                'LiquidStaking',
                 'SALPAdmin',
                 'FellowshipInitiates',
                 'Fellows',
@@ -1499,10 +1447,11 @@ result = substrate.query(
                 'Fellowship9Dan',
                 'TechAdmin',
                 'CoreAdmin',
+                'TreasurySpend',
             ),
             'PolkadotXcm': {
-                'Response': {'interior': 'scale_info::120', 'parents': 'u8'},
-                'Xcm': {'interior': 'scale_info::120', 'parents': 'u8'},
+                'Response': {'interior': 'scale_info::121', 'parents': 'u8'},
+                'Xcm': {'interior': 'scale_info::121', 'parents': 'u8'},
             },
             'TechnicalCommittee': {
                 'Member': 'AccountId',
@@ -1510,11 +1459,13 @@ result = substrate.query(
                 '_Phantom': None,
             },
             'Void': (),
+            'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
+            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::12'},
+            'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
         },
         'submission_deposit': {'amount': 'u128', 'who': 'AccountId'},
         'submitted': 'u32',
@@ -1612,8 +1563,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },
@@ -1638,8 +1589,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },
@@ -1664,8 +1615,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },
@@ -1690,8 +1641,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },
@@ -1716,8 +1667,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },
@@ -1742,8 +1693,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },
@@ -1768,8 +1719,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },
@@ -1794,8 +1745,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },
@@ -1820,8 +1771,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },
@@ -1846,8 +1797,8 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
             'min_enactment_period': 5,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
+                    'ceil': 600000000,
+                    'floor': 500000000,
                     'length': 1000000000,
                 },
             },

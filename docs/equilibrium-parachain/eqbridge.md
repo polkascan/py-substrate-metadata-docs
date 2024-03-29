@@ -63,7 +63,7 @@ This can be called by the bridge to demonstrate an arbitrary call from a proposa
 #### Python
 ```python
 call = substrate.compose_call(
-    'EqBridge', 'remark', {'hash': '[u8; 32]'}
+    'EqBridge', 'remark', {'hash': 'scale_info::16'}
 )
 ```
 
@@ -258,7 +258,7 @@ Demonstrate an arbitrary call from a proposal. \[hash\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `T::Hash` | ```[u8; 32]```
+| None | `T::Hash` | ```scale_info::16```
 
 ---------
 ### ToBridgeTransfer

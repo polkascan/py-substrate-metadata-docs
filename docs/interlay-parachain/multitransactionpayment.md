@@ -65,3 +65,6 @@ call = substrate.compose_call(
 ```
 
 ---------
+## Storage functions
+
+---------

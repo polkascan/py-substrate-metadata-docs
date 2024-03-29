@@ -116,14 +116,17 @@ See [`Pallet::set_metadata`].
 | Name | Type |
 | -------- | -------- | 
 | index | `ReferendumIndex` | 
-| maybe_hash | `Option<PreimageHash>` | 
+| maybe_hash | `Option<T::Hash>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'FellowshipReferenda', 'set_metadata', {
     'index': 'u32',
-    'maybe_hash': (None, '[u8; 32]'),
+    'maybe_hash': (
+        None,
+        'scale_info::12',
+    ),
 }
 )
 ```
@@ -148,19 +151,15 @@ call = substrate.compose_call(
     },
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
     'proposal_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
-        None: None,
         'Council': {
             'Member': 'AccountId',
             'Members': ('u32', 'u32'),
@@ -1158,6 +1157,12 @@ call = substrate.compose_call(
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
+        None: None,
     },
 }
 )
@@ -1234,7 +1239,7 @@ A referendum has moved into the deciding phase.
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
 | track | `TrackIdOf<T, I>` | ```u16```
-| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': '[u8; 32]'}, 'Inline': 'Bytes', 'Lookup': {'hash': '[u8; 32]', 'len': 'u32'}}```
+| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': 'scale_info::12'}, 'Inline': 'Bytes', 'Lookup': {'hash': 'scale_info::12', 'len': 'u32'}}```
 | tally | `T::Tally` | ```{'bare_ayes': 'u32', 'ayes': 'u32', 'nays': 'u32'}```
 
 ---------
@@ -1262,7 +1267,7 @@ Metadata for a referendum has been cleared.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### MetadataSet
@@ -1271,7 +1276,7 @@ Metadata for a referendum has been set.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Rejected
@@ -1300,7 +1305,7 @@ A referendum has been submitted.
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
 | track | `TrackIdOf<T, I>` | ```u16```
-| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': '[u8; 32]'}, 'Inline': 'Bytes', 'Lookup': {'hash': '[u8; 32]', 'len': 'u32'}}```
+| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': 'scale_info::12'}, 'Inline': 'Bytes', 'Lookup': {'hash': 'scale_info::12', 'len': 'u32'}}```
 
 ---------
 ### TimedOut
@@ -1332,7 +1337,7 @@ result = substrate.query(
 ---------
 ### MetadataOf
  The metadata is a general information concerning the referendum.
- The `PreimageHash` refers to the preimage of the `Preimages` provider which can be a JSON
+ The `Hash` refers to the preimage of the `Preimages` provider which can be a JSON
  dump or IPFS hash of a JSON file.
 
  Consider a garbage collection for a metadata of finished referendums to `unrequest` (remove)
@@ -1347,7 +1352,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### ReferendumCount
@@ -1408,19 +1413,19 @@ result = substrate.query(
                 'Response': {'interior': 'scale_info::54', 'parents': 'u8'},
                 'Xcm': {'interior': 'scale_info::54', 'parents': 'u8'},
             },
+            'Void': (),
+            None: None,
             'TechnicalCommittee': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
-            'Void': (),
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::12'},
+            'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
         },
         'submission_deposit': {'amount': 'u128', 'who': 'AccountId'},
         'submitted': 'u32',

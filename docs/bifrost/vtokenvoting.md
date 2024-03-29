@@ -5,7 +5,154 @@
 ## Calls
 
 ---------
+### add_delegator
+See [`Pallet::add_delegator`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| vtoken | `CurrencyIdOf<T>` | 
+| derivative_index | `DerivativeIndex` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'VtokenVoting', 'add_delegator', {
+    'derivative_index': 'u16',
+    'vtoken': {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+}
+)
+```
+
+---------
 ### kill_referendum
+See [`Pallet::kill_referendum`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -50,6 +197,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -150,6 +298,7 @@ call = substrate.compose_call(
 
 ---------
 ### notify_remove_delegator_vote
+See [`Pallet::notify_remove_delegator_vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -178,7 +327,7 @@ call = substrate.compose_call(
                 'id': {
                     'Abstract': '[u8; 32]',
                     'Concrete': {
-                        'interior': 'scale_info::120',
+                        'interior': 'scale_info::121',
                         'parents': 'u8',
                     },
                 },
@@ -259,6 +408,7 @@ call = substrate.compose_call(
 
 ---------
 ### notify_vote
+See [`Pallet::notify_vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -287,7 +437,7 @@ call = substrate.compose_call(
                 'id': {
                     'Abstract': '[u8; 32]',
                     'Concrete': {
-                        'interior': 'scale_info::120',
+                        'interior': 'scale_info::121',
                         'parents': 'u8',
                     },
                 },
@@ -368,6 +518,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_delegator_vote
+See [`Pallet::remove_delegator_vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -414,167 +565,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
-        'Native': (
-            'ASG',
-            'BNC',
-            'KUSD',
-            'DOT',
-            'KSM',
-            'ETH',
-            'KAR',
-            'ZLK',
-            'PHA',
-            'RMRK',
-            'MOVR',
-        ),
-        'Stable': (
-            'ASG',
-            'BNC',
-            'KUSD',
-            'DOT',
-            'KSM',
-            'ETH',
-            'KAR',
-            'ZLK',
-            'PHA',
-            'RMRK',
-            'MOVR',
-        ),
-        'StableLpToken': 'u32',
-        'Token': (
-            'ASG',
-            'BNC',
-            'KUSD',
-            'DOT',
-            'KSM',
-            'ETH',
-            'KAR',
-            'ZLK',
-            'PHA',
-            'RMRK',
-            'MOVR',
-        ),
-        'Token2': 'u8',
-        'VSBond': (
-            (
-                'ASG',
-                'BNC',
-                'KUSD',
-                'DOT',
-                'KSM',
-                'ETH',
-                'KAR',
-                'ZLK',
-                'PHA',
-                'RMRK',
-                'MOVR',
-            ),
-            'u32',
-            'u32',
-            'u32',
-        ),
-        'VSBond2': (
-            'u8',
-            'u32',
-            'u32',
-            'u32',
-        ),
-        'VSToken': (
-            'ASG',
-            'BNC',
-            'KUSD',
-            'DOT',
-            'KSM',
-            'ETH',
-            'KAR',
-            'ZLK',
-            'PHA',
-            'RMRK',
-            'MOVR',
-        ),
-        'VSToken2': 'u8',
-        'VToken': (
-            'ASG',
-            'BNC',
-            'KUSD',
-            'DOT',
-            'KSM',
-            'ETH',
-            'KAR',
-            'ZLK',
-            'PHA',
-            'RMRK',
-            'MOVR',
-        ),
-        'VToken2': 'u8',
-    },
-}
-)
-```
-
----------
-### set_delegator_role
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| vtoken | `CurrencyIdOf<T>` | 
-| derivative_index | `DerivativeIndex` | 
-| vote_role | `VoteRole` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'VtokenVoting', 'set_delegator_role', {
-    'derivative_index': 'u16',
-    'vote_role': {
-        'Split': None,
-        'SplitAbstain': None,
-        'Standard': {
-            'aye': 'bool',
-            'conviction': (
-                'None',
-                'Locked1x',
-                'Locked2x',
-                'Locked3x',
-                'Locked4x',
-                'Locked5x',
-                'Locked6x',
-            ),
-        },
-    },
-    'vtoken': {
-        'BLP': 'u32',
-        'ForeignAsset': 'u32',
-        'LPToken': (
-            (
-                'ASG',
-                'BNC',
-                'KUSD',
-                'DOT',
-                'KSM',
-                'ETH',
-                'KAR',
-                'ZLK',
-                'PHA',
-                'RMRK',
-                'MOVR',
-            ),
-            'u8',
-            (
-                'ASG',
-                'BNC',
-                'KUSD',
-                'DOT',
-                'KSM',
-                'ETH',
-                'KAR',
-                'ZLK',
-                'PHA',
-                'RMRK',
-                'MOVR',
-            ),
-            'u8',
-        ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -675,6 +666,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_referendum_status
+See [`Pallet::set_referendum_status`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -732,6 +724,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -832,6 +825,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_undeciding_timeout
+See [`Pallet::set_undeciding_timeout`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -876,6 +870,153 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+}
+)
+```
+
+---------
+### set_vote_cap_ratio
+See [`Pallet::set_vote_cap_ratio`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| vtoken | `CurrencyIdOf<T>` | 
+| vote_cap_ratio | `Perbill` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'VtokenVoting', 'set_vote_cap_ratio', {
+    'vote_cap_ratio': 'u32',
+    'vtoken': {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -976,6 +1117,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_vote_locking_period
+See [`Pallet::set_vote_locking_period`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1020,6 +1162,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -1120,6 +1263,7 @@ call = substrate.compose_call(
 
 ---------
 ### unlock
+See [`Pallet::unlock`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1164,6 +1308,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -1264,44 +1409,19 @@ call = substrate.compose_call(
 
 ---------
 ### vote
+See [`Pallet::vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | vtoken | `CurrencyIdOf<T>` | 
 | poll_index | `PollIndex` | 
-| vote | `AccountVote<BalanceOf<T>>` | 
+| vtoken_vote | `AccountVote<BalanceOf<T>>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'VtokenVoting', 'vote', {
     'poll_index': 'u32',
-    'vote': {
-        'Split': {
-            'aye': 'u128',
-            'nay': 'u128',
-        },
-        'SplitAbstain': {
-            'abstain': 'u128',
-            'aye': 'u128',
-            'nay': 'u128',
-        },
-        'Standard': {
-            'balance': 'u128',
-            'vote': {
-                'aye': 'bool',
-                'conviction': (
-                    'None',
-                    'Locked1x',
-                    'Locked2x',
-                    'Locked3x',
-                    'Locked4x',
-                    'Locked5x',
-                    'Locked6x',
-                ),
-            },
-        },
-    },
     'vtoken': {
         'BLP': 'u32',
         'ForeignAsset': 'u32',
@@ -1335,6 +1455,7 @@ call = substrate.compose_call(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -1429,6 +1550,32 @@ call = substrate.compose_call(
         ),
         'VToken2': 'u8',
     },
+    'vtoken_vote': {
+        'Split': {
+            'aye': 'u128',
+            'nay': 'u128',
+        },
+        'SplitAbstain': {
+            'abstain': 'u128',
+            'aye': 'u128',
+            'nay': 'u128',
+        },
+        'Standard': {
+            'balance': 'u128',
+            'vote': {
+                'aye': 'bool',
+                'conviction': (
+                    'None',
+                    'Locked1x',
+                    'Locked2x',
+                    'Locked3x',
+                    'Locked4x',
+                    'Locked5x',
+                    'Locked6x',
+                ),
+            },
+        },
+    },
 }
 )
 ```
@@ -1437,12 +1584,11 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### DelegatorRoleSet
+### DelegatorAdded
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
-| role | `VoteRole` | ```{'Standard': {'aye': 'bool', 'conviction': ('None', 'Locked1x', 'Locked2x', 'Locked3x', 'Locked4x', 'Locked5x', 'Locked6x')}, 'Split': None, 'SplitAbstain': None}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | derivative_index | `DerivativeIndex` | ```u16```
 
 ---------
@@ -1451,7 +1597,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountIdOf<T>` | ```AccountId```
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | derivative_index | `DerivativeIndex` | ```u16```
 
 ---------
@@ -1459,7 +1605,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | poll_index | `PollIndex` | ```u32```
 | success | `bool` | ```bool```
 
@@ -1468,7 +1614,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | poll_index | `PollIndex` | ```u32```
 | info | `ReferendumInfoOf<T>` | ```{'Ongoing': {'submitted': (None, 'u32'), 'tally': {'ayes': 'u128', 'nays': 'u128', 'support': 'u128'}}, 'Completed': 'u32', 'Killed': 'u32'}```
 
@@ -1477,7 +1623,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | poll_index | `PollIndex` | ```u32```
 | info | `ReferendumInfoOf<T>` | ```{'Ongoing': {'submitted': (None, 'u32'), 'tally': {'ayes': 'u128', 'nays': 'u128', 'support': 'u128'}}, 'Completed': 'u32', 'Killed': 'u32'}```
 
@@ -1486,7 +1632,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | poll_index | `PollIndex` | ```u32```
 
 ---------
@@ -1494,16 +1640,16 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| responder | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Moniker': '[u8; 4]', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None, 'Defense': None, 'Administration': None, 'Treasury': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': {'block_number': 'u64', 'block_hash': '[u8; 32]'}, 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': {'chain_id': 'u64'}, 'BitcoinCore': None, 'BitcoinCash': None}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::123'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::123'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::123'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::124', 'part': 'scale_info::125'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}})}}```
+| responder | `MultiLocation` | ```{'parents': 'u8', 'interior': {'Here': None, 'X1': {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': {'Unit': None, 'Moniker': '[u8; 4]', 'Index': 'u32', 'Executive': None, 'Technical': None, 'Legislative': None, 'Judicial': None, 'Defense': None, 'Administration': None, 'Treasury': None}, 'part': {'Voice': None, 'Members': 'InnerStruct', 'Fraction': 'InnerStruct', 'AtLeastProportion': 'InnerStruct', 'MoreThanProportion': 'InnerStruct'}}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': {'block_number': 'u64', 'block_hash': '[u8; 32]'}, 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': {'chain_id': 'u64'}, 'BitcoinCore': None, 'BitcoinCash': None}}, 'X2': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X3': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X4': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X5': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X6': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X7': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}), 'X8': ({'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}}, {'Parachain': 'u32', 'AccountId32': {'network': (None, 'scale_info::124'), 'id': '[u8; 32]'}, 'AccountIndex64': {'network': (None, 'scale_info::124'), 'index': 'u64'}, 'AccountKey20': {'network': (None, 'scale_info::124'), 'key': '[u8; 20]'}, 'PalletInstance': 'u8', 'GeneralIndex': 'u128', 'GeneralKey': {'length': 'u8', 'data': '[u8; 32]'}, 'OnlyChild': None, 'Plurality': {'id': 'scale_info::125', 'part': 'scale_info::126'}, 'GlobalConsensus': {'ByGenesis': '[u8; 32]', 'ByFork': 'InnerStruct', 'Polkadot': None, 'Kusama': None, 'Westend': None, 'Rococo': None, 'Wococo': None, 'Ethereum': 'InnerStruct', 'BitcoinCore': None, 'BitcoinCash': None}})}}```
 | query_id | `QueryId` | ```u64```
-| response | `Response` | ```{'Null': None, 'Assets': [{'id': {'Concrete': 'scale_info::119', 'Abstract': '[u8; 32]'}, 'fun': {'Fungible': 'u128', 'NonFungible': 'scale_info::170'}}], 'ExecutionResult': (None, ('u32', {'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'LocationFull': None, 'LocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'ExpectationFalse': None, 'PalletNotFound': None, 'NameMismatch': None, 'VersionIncompatible': None, 'HoldingWouldOverflow': None, 'ExportError': None, 'ReanchorFailed': None, 'NoDeal': None, 'FeesNotMet': None, 'LockError': None, 'NoPermission': None, 'Unanchored': None, 'NotDepositable': None, 'UnhandledXcmVersion': None, 'WeightLimitReached': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Barrier': None, 'WeightNotComputable': None, 'ExceedsStackLimit': None})), 'Version': 'u32', 'PalletsInfo': [{'index': 'u32', 'name': 'Bytes', 'module_name': 'Bytes', 'major': 'u32', 'minor': 'u32', 'patch': 'u32'}], 'DispatchResult': {'Success': None, 'Error': 'Bytes', 'TruncatedError': 'Bytes'}}```
+| response | `Response` | ```{'Null': None, 'Assets': [{'id': {'Concrete': 'scale_info::120', 'Abstract': '[u8; 32]'}, 'fun': {'Fungible': 'u128', 'NonFungible': 'scale_info::171'}}], 'ExecutionResult': (None, ('u32', {'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'LocationFull': None, 'LocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'ExpectationFalse': None, 'PalletNotFound': None, 'NameMismatch': None, 'VersionIncompatible': None, 'HoldingWouldOverflow': None, 'ExportError': None, 'ReanchorFailed': None, 'NoDeal': None, 'FeesNotMet': None, 'LockError': None, 'NoPermission': None, 'Unanchored': None, 'NotDepositable': None, 'UnhandledXcmVersion': None, 'WeightLimitReached': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Barrier': None, 'WeightNotComputable': None, 'ExceedsStackLimit': None})), 'Version': 'u32', 'PalletsInfo': [{'index': 'u32', 'name': 'Bytes', 'module_name': 'Bytes', 'major': 'u32', 'minor': 'u32', 'patch': 'u32'}], 'DispatchResult': {'Success': None, 'Error': 'Bytes', 'TruncatedError': 'Bytes'}}```
 
 ---------
 ### UndecidingTimeoutSet
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | undeciding_timeout | `BlockNumberFor<T>` | ```u32```
 
 ---------
@@ -1512,15 +1658,23 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountIdOf<T>` | ```AccountId```
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | poll_index | `PollIndex` | ```u32```
+
+---------
+### VoteCapRatioSet
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
+| vote_cap_ratio | `Perbill` | ```u32```
 
 ---------
 ### VoteLockingPeriodSet
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | locking_period | `BlockNumberFor<T>` | ```u32```
 
 ---------
@@ -1528,7 +1682,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | poll_index | `PollIndex` | ```u32```
 | success | `bool` | ```bool```
 
@@ -1538,9 +1692,9 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `AccountIdOf<T>` | ```AccountId```
-| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| vtoken | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | poll_index | `PollIndex` | ```u32```
-| new_vote | `AccountVote<BalanceOf<T>>` | ```{'Standard': {'vote': {'aye': 'bool', 'conviction': ('None', 'Locked1x', 'Locked2x', 'Locked3x', 'Locked4x', 'Locked5x', 'Locked6x')}, 'balance': 'u128'}, 'Split': {'aye': 'u128', 'nay': 'u128'}, 'SplitAbstain': {'aye': 'u128', 'nay': 'u128', 'abstain': 'u128'}}```
+| token_vote | `AccountVote<BalanceOf<T>>` | ```{'Standard': {'vote': {'aye': 'bool', 'conviction': ('None', 'Locked1x', 'Locked2x', 'Locked3x', 'Locked4x', 'Locked5x', 'Locked6x')}, 'balance': 'u128'}, 'Split': {'aye': 'u128', 'nay': 'u128'}, 'SplitAbstain': {'aye': 'u128', 'nay': 'u128', 'abstain': 'u128'}}```
 | delegator_vote | `AccountVote<BalanceOf<T>>` | ```{'Standard': {'vote': {'aye': 'bool', 'conviction': ('None', 'Locked1x', 'Locked2x', 'Locked3x', 'Locked4x', 'Locked5x', 'Locked6x')}, 'balance': 'u128'}, 'Split': {'aye': 'u128', 'nay': 'u128'}, 'SplitAbstain': {'aye': 'u128', 'nay': 'u128', 'abstain': 'u128'}}```
 
 ---------
@@ -1564,12 +1718,12 @@ result = substrate.query(
 [('u32', 'u128')]
 ```
 ---------
-### DelegatorVote
+### DelegatorVotes
 
 #### Python
 ```python
 result = substrate.query(
-    'VtokenVoting', 'DelegatorVote', [
+    'VtokenVoting', 'DelegatorVotes', [
     {
         'BLP': 'u32',
         'ForeignAsset': 'u32',
@@ -1603,6 +1757,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -1698,40 +1853,44 @@ result = substrate.query(
         'VToken2': 'u8',
     },
     'u32',
-    'u16',
 ]
 )
 ```
 
 #### Return value
 ```python
-{
-    'Split': {'aye': 'u128', 'nay': 'u128'},
-    'SplitAbstain': {'abstain': 'u128', 'aye': 'u128', 'nay': 'u128'},
-    'Standard': {
-        'balance': 'u128',
-        'vote': {
-            'aye': 'bool',
-            'conviction': (
-                'None',
-                'Locked1x',
-                'Locked2x',
-                'Locked3x',
-                'Locked4x',
-                'Locked5x',
-                'Locked6x',
-            ),
+[
+    (
+        'u16',
+        {
+            'Split': {'aye': 'u128', 'nay': 'u128'},
+            'SplitAbstain': {'abstain': 'u128', 'aye': 'u128', 'nay': 'u128'},
+            'Standard': {
+                'balance': 'u128',
+                'vote': {
+                    'aye': 'bool',
+                    'conviction': (
+                        'None',
+                        'Locked1x',
+                        'Locked2x',
+                        'Locked3x',
+                        'Locked4x',
+                        'Locked5x',
+                        'Locked6x',
+                    ),
+                },
+            },
         },
-    },
-}
+    ),
+]
 ```
 ---------
-### DelegatorVoteRole
+### Delegators
 
 #### Python
 ```python
 result = substrate.query(
-    'VtokenVoting', 'DelegatorVoteRole', [
+    'VtokenVoting', 'Delegators', [
     {
         'BLP': 'u32',
         'ForeignAsset': 'u32',
@@ -1765,6 +1924,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -1859,29 +2019,180 @@ result = substrate.query(
         ),
         'VToken2': 'u8',
     },
-    'u16',
 ]
 )
 ```
 
 #### Return value
 ```python
-{
-    'Split': None,
-    'SplitAbstain': None,
-    'Standard': {
-        'aye': 'bool',
-        'conviction': (
-            'None',
-            'Locked1x',
-            'Locked2x',
-            'Locked3x',
-            'Locked4x',
-            'Locked5x',
-            'Locked6x',
+['u16']
+```
+---------
+### PendingDelegatorVotes
+
+#### Python
+```python
+result = substrate.query(
+    'VtokenVoting', 'PendingDelegatorVotes', [
+    {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
         ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
     },
-}
+    'u32',
+]
+)
+```
+
+#### Return value
+```python
+[
+    (
+        'u16',
+        {
+            'Split': {'aye': 'u128', 'nay': 'u128'},
+            'SplitAbstain': {'abstain': 'u128', 'aye': 'u128', 'nay': 'u128'},
+            'Standard': {
+                'balance': 'u128',
+                'vote': {
+                    'aye': 'bool',
+                    'conviction': (
+                        'None',
+                        'Locked1x',
+                        'Locked2x',
+                        'Locked3x',
+                        'Locked4x',
+                        'Locked5x',
+                        'Locked6x',
+                    ),
+                },
+            },
+        },
+    ),
+]
 ```
 ---------
 ### PendingReferendumInfo
@@ -1929,6 +2240,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -2067,6 +2379,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -2206,6 +2519,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -2370,6 +2684,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -2497,7 +2812,8 @@ result = substrate.query(
         {
             'BLP': 'u32',
             'ForeignAsset': 'u32',
-            'LPToken': ('scale_info::256', 'u8', 'scale_info::256', 'u8'),
+            'LPToken': ('scale_info::259', 'u8', 'scale_info::259', 'u8'),
+            'Lend': 'u8',
             'Native': (
                 'ASG',
                 'BNC',
@@ -2539,7 +2855,7 @@ result = substrate.query(
                 'MOVR',
             ),
             'Token2': 'u8',
-            'VSBond': ('scale_info::256', 'u32', 'u32', 'u32'),
+            'VSBond': ('scale_info::259', 'u32', 'u32', 'u32'),
             'VSBond2': ('u8', 'u32', 'u32', 'u32'),
             'VSToken': (
                 'ASG',
@@ -2614,6 +2930,150 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
+        'Native': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Stable': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'StableLpToken': 'u32',
+        'Token': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'Token2': 'u8',
+        'VSBond': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSBond2': (
+            'u8',
+            'u32',
+            'u32',
+            'u32',
+        ),
+        'VSToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VSToken2': 'u8',
+        'VToken': (
+            'ASG',
+            'BNC',
+            'KUSD',
+            'DOT',
+            'KSM',
+            'ETH',
+            'KAR',
+            'ZLK',
+            'PHA',
+            'RMRK',
+            'MOVR',
+        ),
+        'VToken2': 'u8',
+    },
+]
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### VoteCapRatio
+
+#### Python
+```python
+result = substrate.query(
+    'VtokenVoting', 'VoteCapRatio', [
+    {
+        'BLP': 'u32',
+        'ForeignAsset': 'u32',
+        'LPToken': (
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+            (
+                'ASG',
+                'BNC',
+                'KUSD',
+                'DOT',
+                'KSM',
+                'ETH',
+                'KAR',
+                'ZLK',
+                'PHA',
+                'RMRK',
+                'MOVR',
+            ),
+            'u8',
+        ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -2757,6 +3217,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -2900,6 +3361,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',
@@ -3020,7 +3482,7 @@ result = substrate.query(
     'Casting': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u32', 'u128'),
-        'votes': [('u32', 'scale_info::378', 'u16', 'u128')],
+        'votes': [('u32', 'scale_info::382', 'u16', 'u128')],
     },
     'Delegating': {
         'balance': 'u128',
@@ -3091,20 +3553,16 @@ constant = substrate.get_constant('VtokenVoting', 'ReferendumCheckInterval')
 The account is already delegating.
 
 ---------
-### ChangeDelegator
-Change delegator is not allowed.
-
----------
-### DelegatorVoteRoleMismatch
-DelegatorVoteRole mismatch.
-
----------
 ### DerivativeIndexOccupied
 Derivative index occupied.
 
 ---------
 ### InsufficientFunds
 Too high a balance was provided that the account cannot afford.
+
+---------
+### InvalidConviction
+The given conviction is not valid.
 
 ---------
 ### MaxVotesReached
@@ -3139,8 +3597,16 @@ Poll is not killed.
 Poll is not ongoing.
 
 ---------
+### NotStandardVote
+The given vote is not Standard vote.
+
+---------
 ### NotVoter
 The given account did not vote on the poll.
+
+---------
+### OutOfRange
+The given value is out of range.
 
 ---------
 ### PendingUpdateReferendumStatus

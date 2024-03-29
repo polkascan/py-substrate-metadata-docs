@@ -231,19 +231,18 @@ result = substrate.query(
         {
             'call': {
                 'Inline': 'Bytes',
-                'Legacy': {'hash': '[u8; 32]'},
-                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+                'Legacy': {'hash': 'scale_info::11'},
+                'Lookup': {'hash': 'scale_info::11', 'len': 'u32'},
             },
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u64', 'u32')),
             'origin': {
+                None: None,
                 'AdvisoryCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
                 'Council': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
@@ -251,8 +250,8 @@ result = substrate.query(
                 },
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
-                    'Response': 'scale_info::136',
-                    'Xcm': 'scale_info::136',
+                    'Response': 'scale_info::148',
+                    'Xcm': 'scale_info::148',
                 },
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
@@ -260,6 +259,7 @@ result = substrate.query(
                     '_Phantom': None,
                 },
                 'Void': (),
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },

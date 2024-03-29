@@ -6,9 +6,7 @@
 
 ---------
 ### change_existing_asset_type
-Change the xcm type mapping for a given assetId
-We also change this if the previous units per second where pointing at the old
-assetType
+See [`Pallet::change_existing_asset_type`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1764,10 +1762,7 @@ call = substrate.compose_call(
 
 ---------
 ### destroy_foreign_asset
-Destroy a given foreign assetId
-The weight in this case is the one returned by the trait
-plus the db writes and reads from removing all the associated
-data
+See [`Pallet::destroy_foreign_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1786,10 +1781,7 @@ call = substrate.compose_call(
 
 ---------
 ### destroy_local_asset
-Destroy a given local assetId
-We do not store anything related to local assets in this pallet other than the counter
-and the counter is not used for destroying the asset, so no additional db reads/writes
-to be counter here
+See [`Pallet::destroy_local_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1804,7 +1796,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_foreign_asset
-Register new asset with the asset manager
+See [`Pallet::register_foreign_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3567,11 +3559,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_local_asset
-Register a new local asset
-No information is stored in this pallet about the local asset
-The reason is that we dont need to hold a mapping between the multilocation
-and the local asset, as this conversion is deterministic
-Further, we dont allow xcm fee payment in local assets
+See [`Pallet::register_local_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3594,7 +3582,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_existing_asset_type
-Remove a given assetId -&gt; assetType association
+See [`Pallet::remove_existing_asset_type`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -3613,6 +3601,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_supported_asset
+See [`Pallet::remove_supported_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -5366,8 +5355,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_asset_units_per_second
-Change the amount of units we are charging per execution second
-for a given ForeignAssetType
+See [`Pallet::set_asset_units_per_second`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

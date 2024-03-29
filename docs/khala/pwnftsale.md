@@ -6,15 +6,7 @@
 
 ---------
 ### buy_prime_origin_of_shell
-Accounts that have been whitelisted can purchase an Origin of Shell. The only Origin of
-Shell type available for this purchase are Prime
-
-Parameters:
-- origin: The origin of the extrinsic purchasing the Prime Origin of Shell
-- message: OverlordMessage with account and purpose
-- signature: The signature of the account that is claiming the spirit.
-- race: The race that the user has chosen (limited \# of races)
-- career: The career that the user has chosen (unlimited careers)
+See [`Pallet::buy_prime_origin_of_shell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -46,16 +38,7 @@ call = substrate.compose_call(
 
 ---------
 ### buy_rare_origin_of_shell
-Buy a rare origin_of_shell of either type Magic or Legendary. Both Rarity Types
-will have a set price. These will also be limited in quantity and on a first come, first
-serve basis.
-
-Parameters:
-- origin: The origin of the extrinsic.
-- rarity_type: The type of origin_of_shell to be purchased.
-- race: The race of the origin_of_shell chosen by the user.
-- career: The career of the origin_of_shell chosen by the user or auto-generated based
-  on metadata
+See [`Pallet::buy_rare_origin_of_shell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -91,10 +74,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_spirit
-Claim a spirit for any account with at least 10 PHA in their account
-
-Parameters:
-- origin: The origin of the extrinsic.
+See [`Pallet::claim_spirit`].
 #### Attributes
 No attributes
 
@@ -107,13 +87,7 @@ call = substrate.compose_call(
 
 ---------
 ### init_rarity_type_counts
-Initialize the settings for the non-whitelist preorder period amount of races &amp;
-giveaways available for the Origin of Shell NFTs. This is a privileged function and can
-only be executed by the Overlord account. This will call the helper function
-`set_initial_origin_of_shell_inventory`
-
-Parameters:
-- `origin` - Expected Overlord admin account
+See [`Pallet::init_rarity_type_counts`].
 #### Attributes
 No attributes
 
@@ -126,11 +100,7 @@ call = substrate.compose_call(
 
 ---------
 ### initialize_world_clock
-Phala World Zero Day is set to begin the tracking of the official time starting at the
-current timestamp when `initialize_world_clock` is called by the `Overlord`
-
-Parameters:
-`origin`: Expected to be called by `Overlord` admin account
+See [`Pallet::initialize_world_clock`].
 #### Attributes
 No attributes
 
@@ -143,12 +113,7 @@ call = substrate.compose_call(
 
 ---------
 ### mint_chosen_preorders
-This is an admin only function that will mint the list of `Chosen` preorders and will
-mint the Origin of Shell NFT to the preorder owner.
-
-Parameters:
-`origin`: Expected to come from Overlord admin account
-`preorders`: Vec of Preorder IDs that were `Chosen`
+See [`Pallet::mint_chosen_preorders`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -163,16 +128,7 @@ call = substrate.compose_call(
 
 ---------
 ### mint_gift_origin_of_shell
-This is an admin only function that will be used to mint either a giveaway or a reserved Origin of Shell NFT
-
-Parameters:
-`origin`: Expected to come from Overlord admin account
-`owner`: Owner to gift the Origin of Shell to
-- rarity_type: The type of origin_of_shell to be gifted.
-- `race`: The race of the origin_of_shell chosen by the user.
-- `career`: The career of the origin_of_shell chosen by the user or auto-generated based
-  on metadata
-- `nft_sale_type`: Either a `NftSaleType::Giveaway` or `NftSaleType::Reserved`
+See [`Pallet::mint_gift_origin_of_shell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -216,15 +172,7 @@ call = substrate.compose_call(
 
 ---------
 ### preorder_origin_of_shell
-Users can pre-order an Origin of Shell. This will enable users that are non-whitelisted
-to be added to the queue of users that can claim Origin of Shells. Those that come after
-the whitelist pre-sale will be able to win the chance to acquire an Origin of Shell
-based on their choice of race and career as they will have a limited quantity.
-
-Parameters:
-- origin: The origin of the extrinsic preordering the origin_of_shell
-- race: The race that the user has chosen (limited \# of races)
-- career: The career that the user has chosen (limited \# of careers)
+See [`Pallet::preorder_origin_of_shell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -254,15 +202,7 @@ call = substrate.compose_call(
 
 ---------
 ### pw_create_collection
-Privileged function to allow Overlord to mint the Spirit, Origin of Shell or Shell NFT
-Collections. This allows for only Overlord to be able to mint Collections on Phala &amp;
-prevents other users from calling the RMRK Core `create_collection` function.
-
-Parameters:
-- `origin`: Expected to be called by Overlord
-- `metadata`: Metadata pertaining to the collection
-- `max`: Optional max u32 for the size of the collection
-- `symbol`: BoundedString of the collection&\#x27;s symbol i.e &\#x27;OVRLD&\#x27;
+See [`Pallet::pw_create_collection`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -283,12 +223,7 @@ call = substrate.compose_call(
 
 ---------
 ### redeem_spirit
-Redeem spirit function is called when an account has a `SpiritClaimTicket` that enables
-an account to acquire a Spirit NFT without the 10 PHA minimum requirement, such that,
-the account has a valid `SpiritClaimTicket` signed by the Overlord admin account.
-
-Parameters:
-- origin: The origin of the extrinsic.
+See [`Pallet::redeem_spirit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -303,12 +238,7 @@ call = substrate.compose_call(
 
 ---------
 ### refund_not_chosen_preorders
-This is an admin only function that will be used to refund the preorders that were not
-selected during the preorders drawing.
-
-Parameters:
-`origin`: Expected to come from Overlord admin account
-`preorders`: Preorder ids of the not chosen preorders
+See [`Pallet::refund_not_chosen_preorders`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -323,15 +253,11 @@ call = substrate.compose_call(
 
 ---------
 ### set_origin_of_shell_collection_id
-Privileged function to set the collection id for the Origin of Shell collection
-
-Parameters:
-- `origin` - Expected Overlord admin account to set the Origin of Shell Collection ID
-- `collection_id` - Collection ID of the Origin of Shell Collection
+See [`Pallet::set_origin_of_shell_collection_id`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `CollectionId` | 
+| collection_id | `CollectionIdOf<T>` | 
 
 #### Python
 ```python
@@ -342,13 +268,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_origin_of_shells_metadata
-Privileged function to set the metadata for the Origin of Shells in the StorageMap
-`OriginOfShellsMetadata` where the key is a tuple of `(RaceType, CareerType)` with a
-value of a `BoundedVec&lt;u8, T::StringLimit`.
-
-Parameters:
-- `origin`: Expected to be called from the Overlord account
-- `origin_of_shells_metadata`: A Vec of `((RaceType, CareerType), BoundedVec&lt;u8, T::StringLimit&gt;&gt;)` to be added in storage
+See [`Pallet::set_origin_of_shells_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -375,11 +295,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_overlord
-Privileged function set the Overlord Admin account of Phala World
-
-Parameters:
-- origin: Expected to be called by `GovernanceOrigin`
-- new_overlord: T::AccountId
+See [`Pallet::set_overlord`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -394,11 +310,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_payee
-Privileged function set the Payee account of PhalaWorld.
-
-Parameters:
-- origin: Expected to be called by `Overlord`.
-- new_payee: T::AccountId of the Payee account.
+See [`Pallet::set_payee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -413,11 +325,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_signer
-Privileged function set the Signer account of PhalaWorld.
-
-Parameters:
-- origin: Expected to be called by `Overlord`.
-- new_signer: T::AccountId of the Signer.
+See [`Pallet::set_signer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -432,15 +340,11 @@ call = substrate.compose_call(
 
 ---------
 ### set_spirit_collection_id
-Privileged function to set the collection id for the Spirits collection
-
-Parameters:
-- `origin` - Expected Overlord admin account to set the Spirit Collection ID
-- `collection_id` - Collection ID of the Spirit Collection
+See [`Pallet::set_spirit_collection_id`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| collection_id | `CollectionId` | 
+| collection_id | `CollectionIdOf<T>` | 
 
 #### Python
 ```python
@@ -451,12 +355,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_spirits_metadata
-Privileged function to set the metadata for the Spirits in the StorageValue
-`SpiritMetadata` where the value is a `BoundedVec&lt;u8, T::StringLimit`.
-
-Parameters:
-- `origin`: Expected to be called from the Overlord account
-- `spirits_metadata`: `BoundedVec&lt;u8, T::StringLimit&gt;` to be added in storage
+See [`Pallet::set_spirits_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -471,14 +370,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_status_type
-Privileged function to set the status for one of the defined StatusTypes like
-ClaimSpirits, PurchaseRareOriginOfShells, or PreorderOriginOfShells to enable
-functionality in Phala World
-
-Parameters:
-- `origin` - Expected Overlord admin account to set the status
-- `status` - `bool` to set the status to
-- `status_type` - `StatusType` to set the status for
+See [`Pallet::set_status_type`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -503,17 +395,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_rarity_type_counts
-Update for the non-whitelist preorder period amount of races &amp; giveaways available for
-the Origin of Shell NFTs. This is a privileged function and can only be executed by the
-Overlord account. Update the OriginOfShellInventory counts by incrementing them based on
-the defined counts
-
-Parameters:
-- `origin` - Expected Overlord admin account
-- `rarity_type` - Type of Origin of Shell
-- `for_sale_count` - Number of Origin of Shells for sale
-- `giveaway_count` - Number of Origin of Shells for giveaways
-- `reserve_count` - Number of Origin of Shells to be reserved
+See [`Pallet::update_rarity_type_counts`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -589,7 +471,7 @@ Origin of Shell collection id was set
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| collection_id | `CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### OriginOfShellGiftedToOwner
@@ -615,8 +497,8 @@ Origin of Shell minted from the preorder
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | rarity_type | `RarityType` | ```('Prime', 'Magic', 'Legendary')```
-| collection_id | `CollectionId` | ```u32```
-| nft_id | `NftId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 | owner | `T::AccountId` | ```AccountId```
 | race | `RaceType` | ```('Cyborg', 'AISpectre', 'XGene', 'Pandroid')```
 | career | `CareerType` | ```('HackerWizard', 'HardwareDruid', 'RoboWarrior', 'TradeNegotiator', 'Web3Monk')```
@@ -706,8 +588,8 @@ Spirit has been claimed
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | owner | `T::AccountId` | ```AccountId```
-| collection_id | `CollectionId` | ```u32```
-| nft_id | `NftId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
+| nft_id | `ItemIdOf<T>` | ```u32```
 
 ---------
 ### SpiritCollectionIdSet
@@ -715,7 +597,7 @@ Spirit collection id was set
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| collection_id | `CollectionId` | ```u32```
+| collection_id | `CollectionIdOf<T>` | ```u32```
 
 ---------
 ### SpiritsMetadataSet

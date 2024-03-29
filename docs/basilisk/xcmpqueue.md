@@ -10,7 +10,7 @@ Bad XCM format used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ### BadVersion
@@ -18,6 +18,28 @@ Bad XCM version used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
+| message_hash | `XcmHash` | ```[u8; 32]```
+
+---------
+### DeferredBucketDiscarded
+The deferred bucket was discarded.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `ParaId` | ```u32```
+| index | `DeferredIndex` | ```('u32', 'u16')```
+
+---------
+### DeferredXcmDiscarded
+The deferred message was successfully discarded.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| sender | `ParaId` | ```u32```
+| sent_at | `RelayBlockNumber` | ```u32```
+| deferred_to | `RelayBlockNumber` | ```u32```
+| index | `DeferredIndex` | ```('u32', 'u16')```
+| position | `u32` | ```u32```
 | message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
 
 ---------
@@ -26,7 +48,8 @@ Some XCM failed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
+| message_id | `XcmHash` | ```[u8; 32]```
 | error | `XcmError` | ```{'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'LocationFull': None, 'LocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'ExpectationFalse': None, 'PalletNotFound': None, 'NameMismatch': None, 'VersionIncompatible': None, 'HoldingWouldOverflow': None, 'ExportError': None, 'ReanchorFailed': None, 'NoDeal': None, 'FeesNotMet': None, 'LockError': None, 'NoPermission': None, 'Unanchored': None, 'NotDepositable': None, 'UnhandledXcmVersion': None, 'WeightLimitReached': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Barrier': None, 'WeightNotComputable': None, 'ExceedsStackLimit': None}```
 | weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
@@ -56,7 +79,8 @@ Some XCM was executed ok.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
+| message_id | `XcmHash` | ```[u8; 32]```
 | weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
@@ -68,6 +92,8 @@ Some XCM was deferred for later execution
 | sender | `ParaId` | ```u32```
 | sent_at | `RelayBlockNumber` | ```u32```
 | deferred_to | `RelayBlockNumber` | ```u32```
+| index | `DeferredIndex` | ```('u32', 'u16')```
+| position | `u32` | ```u32```
 | message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
 
 ---------
@@ -86,7 +112,7 @@ An HRMP message was sent to a sibling parachain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ## Storage functions
@@ -107,30 +133,78 @@ result = substrate.query(
 'u32'
 ```
 ---------
-### DeferredXcmMessages
- Inbound aggregate XCMP messages per ParaId.
+### DeferAllBy
+ Whether or not and if so by how much to defer all incoming XCMs.
 
 #### Python
 ```python
 result = substrate.query(
-    'XcmpQueue', 'DeferredXcmMessages', ['u32']
+    'XcmpQueue', 'DeferAllBy', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### DeferredIndices
+ Index of deferred message buckets to process.
+
+#### Python
+```python
+result = substrate.query(
+    'XcmpQueue', 'DeferredIndices', ['u32']
+)
+```
+
+#### Return value
+```python
+'scale_info::502'
+```
+---------
+### DeferredMessageBuckets
+ Storage for deferred messages, indexed by para id, block and counter.
+
+#### Python
+```python
+result = substrate.query(
+    'XcmpQueue', 'DeferredMessageBuckets', ['u32', ('u32', 'u16')]
 )
 ```
 
 #### Return value
 ```python
 [
-    {
-        'deferred_to': 'u32',
-        'sender': 'u32',
-        'sent_at': 'u32',
-        'xcm': {
-            None: None,
-            'V2': ['scale_info::300'],
-            'V3': ['scale_info::304'],
+    (
+        None,
+        {
+            'deferred_to': 'u32',
+            'sender': 'u32',
+            'sent_at': 'u32',
+            'xcm': {
+                None: None,
+                'V2': ['scale_info::307'],
+                'V3': ['scale_info::311'],
+            },
         },
-    },
+    ),
 ]
+```
+---------
+### DeferredQueueSuspended
+ Whether or not the Deferred queue is suspended from executing XCMs or not.
+
+#### Python
+```python
+result = substrate.query(
+    'XcmpQueue', 'DeferredQueueSuspended', []
+)
+```
+
+#### Return value
+```python
+'bool'
 ```
 ---------
 ### InboundXcmpMessages
@@ -324,6 +398,10 @@ Bad XCM origin.
 ---------
 ### FailedToSend
 Failed to send XCM message.
+
+---------
+### MessageNotFound
+Indicated message is not present.
 
 ---------
 ### WeightOverLimit

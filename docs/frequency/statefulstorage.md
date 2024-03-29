@@ -319,6 +319,9 @@ call = substrate.compose_call(
 | curr_content_hash | `PageHash` | ```u32```
 
 ---------
+## Storage functions
+
+---------
 ## Constants
 
 ---------
@@ -345,7 +348,7 @@ constant = substrate.get_constant('StatefulStorage', 'MaxItemizedBlobSizeBytes')
 ### MaxItemizedPageSizeBytes
 #### Value
 ```python
-65536
+10260
 ```
 #### Python
 ```python

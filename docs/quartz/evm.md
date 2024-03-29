@@ -25,19 +25,22 @@ See [`Pallet::call`].
 call = substrate.compose_call(
     'EVM', 'call', {
     'access_list': [
-        ('[u8; 20]', ['[u8; 32]']),
+        (
+            '[u8; 20]',
+            ['scale_info::12'],
+        ),
     ],
     'gas_limit': 'u64',
     'input': 'Bytes',
-    'max_fee_per_gas': '[u64; 4]',
+    'max_fee_per_gas': 'scale_info::334',
     'max_priority_fee_per_gas': (
         None,
-        '[u64; 4]',
+        'scale_info::334',
     ),
-    'nonce': (None, '[u64; 4]'),
+    'nonce': (None, 'scale_info::334'),
     'source': '[u8; 20]',
     'target': '[u8; 20]',
-    'value': '[u64; 4]',
+    'value': 'scale_info::334',
 }
 )
 ```
@@ -62,18 +65,21 @@ See [`Pallet::create`].
 call = substrate.compose_call(
     'EVM', 'create', {
     'access_list': [
-        ('[u8; 20]', ['[u8; 32]']),
+        (
+            '[u8; 20]',
+            ['scale_info::12'],
+        ),
     ],
     'gas_limit': 'u64',
     'init': 'Bytes',
-    'max_fee_per_gas': '[u64; 4]',
+    'max_fee_per_gas': 'scale_info::334',
     'max_priority_fee_per_gas': (
         None,
-        '[u64; 4]',
+        'scale_info::334',
     ),
-    'nonce': (None, '[u64; 4]'),
+    'nonce': (None, 'scale_info::334'),
     'source': '[u8; 20]',
-    'value': '[u64; 4]',
+    'value': 'scale_info::334',
 }
 )
 ```
@@ -99,19 +105,22 @@ See [`Pallet::create2`].
 call = substrate.compose_call(
     'EVM', 'create2', {
     'access_list': [
-        ('[u8; 20]', ['[u8; 32]']),
+        (
+            '[u8; 20]',
+            ['scale_info::12'],
+        ),
     ],
     'gas_limit': 'u64',
     'init': 'Bytes',
-    'max_fee_per_gas': '[u64; 4]',
+    'max_fee_per_gas': 'scale_info::334',
     'max_priority_fee_per_gas': (
         None,
-        '[u64; 4]',
+        'scale_info::334',
     ),
-    'nonce': (None, '[u64; 4]'),
-    'salt': '[u8; 32]',
+    'nonce': (None, 'scale_info::334'),
+    'salt': 'scale_info::12',
     'source': '[u8; 20]',
-    'value': '[u64; 4]',
+    'value': 'scale_info::334',
 }
 )
 ```
@@ -176,7 +185,7 @@ Ethereum events from contracts.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| log | `Log` | ```{'address': '[u8; 20]', 'topics': ['[u8; 32]'], 'data': 'Bytes'}```
+| log | `Log` | ```{'address': '[u8; 20]', 'topics': ['scale_info::12'], 'data': 'Bytes'}```
 
 ---------
 ## Storage functions
@@ -207,7 +216,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'hash': '[u8; 32]', 'size': 'u64'}
+{'hash': 'scale_info::12', 'size': 'u64'}
 ```
 ---------
 ### AccountStorages
@@ -215,13 +224,13 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'EVM', 'AccountStorages', ['[u8; 20]', '[u8; 32]']
+    'EVM', 'AccountStorages', ['[u8; 20]', 'scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### CurrentLogs
@@ -237,7 +246,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-[{'address': '[u8; 20]', 'data': 'Bytes', 'topics': ['[u8; 32]']}]
+[{'address': '[u8; 20]', 'data': 'Bytes', 'topics': ['scale_info::12']}]
 ```
 ---------
 ## Errors

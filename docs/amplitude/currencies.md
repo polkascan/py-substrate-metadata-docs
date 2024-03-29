@@ -35,6 +35,7 @@ call = substrate.compose_call(
             },
             'StellarNative': None,
         },
+        'Token': 'u64',
         'XCM': 'u8',
         'ZenlinkLPToken': (
             'u8',
@@ -112,6 +113,7 @@ call = substrate.compose_call(
             },
             'StellarNative': None,
         },
+        'Token': 'u64',
         'XCM': 'u8',
         'ZenlinkLPToken': (
             'u8',
@@ -130,6 +132,9 @@ call = substrate.compose_call(
 }
 )
 ```
+
+---------
+## Storage functions
 
 ---------
 ## Constants

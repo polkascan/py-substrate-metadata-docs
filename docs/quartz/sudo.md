@@ -94,7 +94,7 @@ call = substrate.compose_call(
 
 ---------
 ### KeyChanged
-The \[sudoer\] just switched identity; the old key is supplied if one existed.
+The sudo key has been updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -102,7 +102,7 @@ The \[sudoer\] just switched identity; the old key is supplied if one existed.
 
 ---------
 ### Sudid
-A sudo just took place. \[result\]
+A sudo call just took place.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -110,7 +110,7 @@ A sudo just took place. \[result\]
 
 ---------
 ### SudoAsDone
-A sudo just took place. \[result\]
+A [sudo_as](Pallet::sudo_as) call just took place.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |

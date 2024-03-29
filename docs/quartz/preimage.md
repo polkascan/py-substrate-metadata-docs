@@ -5,6 +5,21 @@
 ## Calls
 
 ---------
+### ensure_updated
+See [`Pallet::ensure_updated`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| hashes | `Vec<T::Hash>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Preimage', 'ensure_updated', {'hashes': ['scale_info::12']}
+)
+```
+
+---------
 ### note_preimage
 See [`Pallet::note_preimage`].
 #### Attributes
@@ -30,7 +45,7 @@ See [`Pallet::request_preimage`].
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'request_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'request_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -45,7 +60,7 @@ See [`Pallet::unnote_preimage`].
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unnote_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unnote_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -60,7 +75,7 @@ See [`Pallet::unrequest_preimage`].
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unrequest_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unrequest_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -73,7 +88,7 @@ A preimage has ben cleared.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Noted
@@ -81,7 +96,7 @@ A preimage has been noted.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Requested
@@ -89,7 +104,7 @@ A preimage has been requested.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -100,7 +115,7 @@ A preimage has been requested.
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'PreimageFor', [('[u8; 32]', 'u32')]
+    'Preimage', 'PreimageFor', [('scale_info::12', 'u32')]
 )
 ```
 
@@ -109,13 +124,35 @@ result = substrate.query(
 'Bytes'
 ```
 ---------
+### RequestStatusFor
+ The request status of a given hash.
+
+#### Python
+```python
+result = substrate.query(
+    'Preimage', 'RequestStatusFor', ['scale_info::12']
+)
+```
+
+#### Return value
+```python
+{
+    'Requested': {
+        'count': 'u32',
+        'maybe_len': (None, 'u32'),
+        'maybe_ticket': (None, ('AccountId', 'u128')),
+    },
+    'Unrequested': {'len': 'u32', 'ticket': ('AccountId', 'u128')},
+}
+```
+---------
 ### StatusFor
  The request status of a given hash.
 
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'StatusFor', ['[u8; 32]']
+    'Preimage', 'StatusFor', ['scale_info::12']
 )
 ```
 
@@ -156,5 +193,13 @@ A preimage may not be removed when there are outstanding requests.
 ---------
 ### TooBig
 Preimage is too large to store on-chain.
+
+---------
+### TooFew
+Too few hashes were requested to be upgraded (i.e. zero).
+
+---------
+### TooMany
+More than `MAX_HASH_UPGRADE_BULK_COUNT` hashes were requested to be upgraded at once.
 
 ---------

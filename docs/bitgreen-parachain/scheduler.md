@@ -231,12 +231,13 @@ result = substrate.query(
         {
             'call': {
                 'Inline': 'Bytes',
-                'Legacy': {'hash': '[u8; 32]'},
-                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+                'Legacy': {'hash': 'scale_info::11'},
+                'Lookup': {'hash': 'scale_info::11', 'len': 'u32'},
             },
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
+                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
                 None: None,
                 'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
                 'PolkadotXcm': {
@@ -244,7 +245,6 @@ result = substrate.query(
                     'Xcm': 'scale_info::48',
                 },
                 'Void': (),
-                'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
             },
             'priority': 'u8',
         },

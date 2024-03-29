@@ -39,7 +39,7 @@ call = substrate.compose_call(
         None,
         'Bytes',
     ),
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
     'user': 'AccountId',
 }
 )
@@ -164,7 +164,7 @@ Remove an identity
 call = substrate.compose_call(
     'IdentityManagementMock', 'remove_identity', {
     'encrypted_identity': 'Bytes',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
 }
 )
 ```
@@ -183,7 +183,7 @@ Set or update user&\#x27;s shielding key
 call = substrate.compose_call(
     'IdentityManagementMock', 'set_user_shielding_key', {
     'encrypted_key': 'Bytes',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
 }
 )
 ```
@@ -233,7 +233,7 @@ call = substrate.compose_call(
     'IdentityManagementMock', 'verify_identity', {
     'encrypted_identity': 'Bytes',
     'encrypted_validation_data': 'Bytes',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::11',
 }
 )
 ```
@@ -246,7 +246,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 
 ---------
 ### DelegateeAdded
@@ -323,14 +323,14 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 
 ---------
 ### SetUserShieldingKeyRequested
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 
 ---------
 ### SomeError
@@ -359,7 +359,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::11```
 
 ---------
 ## Storage functions

@@ -6,9 +6,7 @@
 
 ---------
 ### clear_all_leases
-Clear all leases for a Para Id, refunding any deposits back to the original owners.
-
-The dispatch origin for this call must match `T::ForceOrigin`.
+See [`Pallet::clear_all_leases`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -23,10 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_lease
-Just a connect into the `lease_out` call, in case Root wants to force some lease to happen
-independently of any other on-chain mechanism to use it.
-
-The dispatch origin for this call must match `T::ForceOrigin`.
+See [`Pallet::force_lease`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -51,13 +46,7 @@ call = substrate.compose_call(
 
 ---------
 ### trigger_onboard
-Try to onboard a parachain that has a lease for the current lease period.
-
-This function can be useful if there was some state issue with a para that should
-have onboarded, but was unable to. As long as they have a lease period, we can
-let them onboard from here.
-
-Origin must be signed, but can be called by anyone.
+See [`Pallet::trigger_onboard`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -103,8 +92,8 @@ A new `[lease_period]` is beginning.
 ### Leases
  Amounts held on deposit for each (possibly future) leased parachain.
 
- The actual amount locked on its behalf by any account at any time is the maximum of the second values
- of the items in this list whose first value is the account.
+ The actual amount locked on its behalf by any account at any time is the maximum of the
+ second values of the items in this list whose first value is the account.
 
  The first item in the list is the amount locked for the current Lease Period. Following
  items are for the subsequent lease periods.

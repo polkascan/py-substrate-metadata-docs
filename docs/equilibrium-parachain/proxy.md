@@ -66,7 +66,7 @@ Parameters:
 ```python
 call = substrate.compose_call(
     'Proxy', 'announce', {
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::16',
     'real': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -270,7 +270,7 @@ Parameters:
 ```python
 call = substrate.compose_call(
     'Proxy', 'reject_announcement', {
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::16',
     'delegate': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -304,7 +304,7 @@ Parameters:
 ```python
 call = substrate.compose_call(
     'Proxy', 'remove_announcement', {
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::16',
     'real': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -378,7 +378,7 @@ An announcement was placed to make a call in the future.
 | -------- | -------- | -------- |
 | real | `T::AccountId` | ```AccountId```
 | proxy | `T::AccountId` | ```AccountId```
-| call_hash | `CallHashOf<T>` | ```[u8; 32]```
+| call_hash | `CallHashOf<T>` | ```scale_info::16```
 
 ---------
 ### ProxyAdded
@@ -438,7 +438,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-([{'call_hash': '[u8; 32]', 'height': 'u32', 'real': 'AccountId'}], 'u128')
+([{'call_hash': 'scale_info::16', 'height': 'u32', 'real': 'AccountId'}], 'u128')
 ```
 ---------
 ### Proxies

@@ -6,6 +6,7 @@
 
 ---------
 ### leave_intent
+See [`Pallet::leave_intent`].
 #### Attributes
 No attributes
 
@@ -18,6 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_as_candidate
+See [`Pallet::register_as_candidate`].
 #### Attributes
 No attributes
 
@@ -30,6 +32,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_candidacy_bond
+See [`Pallet::set_candidacy_bond`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -44,6 +47,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_desired_candidates
+See [`Pallet::set_desired_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -58,6 +62,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_invulnerables
+See [`Pallet::set_invulnerables`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

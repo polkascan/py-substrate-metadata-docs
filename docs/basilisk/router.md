@@ -6,17 +6,7 @@
 
 ---------
 ### buy
-Executes a buy with a series of trades specified in the route.
-The price for each trade is determined by the corresponding AMM.
-
-- `origin`: The executor of the trade
-- `asset_in`: The identifier of the asset to be swapped to buy `asset_out`
-- `asset_out`: The identifier of the asset to buy
-- `amount_out`: The amount of `asset_out` to buy
-- `max_amount_in`: The max amount of `asset_in` to spend on the buy.
-- `route`: Series of [`Trade&lt;AssetId&gt;`] to be executed. A [`Trade&lt;AssetId&gt;`] specifies the asset pair (`asset_in`, `asset_out`) and the AMM (`pool`) in which the trade is executed.
-
-Emits `RouteExecuted` when successful.
+See [`Pallet::buy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -52,17 +42,7 @@ call = substrate.compose_call(
 
 ---------
 ### sell
-Executes a sell with a series of trades specified in the route.
-The price for each trade is determined by the corresponding AMM.
-
-- `origin`: The executor of the trade
-- `asset_in`: The identifier of the asset to sell
-- `asset_out`: The identifier of the asset to receive
-- `amount_in`: The amount of `asset_in` to sell
-- `min_amount_out`: The minimum amount of `asset_out` to receive.
-- `route`: Series of [`Trade&lt;AssetId&gt;`] to be executed. A [`Trade&lt;AssetId&gt;`] specifies the asset pair (`asset_in`, `asset_out`) and the AMM (`pool`) in which the trade is executed.
-
-Emits `RouteExecuted` when successful.
+See [`Pallet::sell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -97,6 +77,39 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_route
+See [`Pallet::set_route`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| asset_pair | `AssetPair<T::AssetId>` | 
+| new_route | `Vec<Trade<T::AssetId>>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Router', 'set_route', {
+    'asset_pair': {
+        'asset_in': 'u32',
+        'asset_out': 'u32',
+    },
+    'new_route': [
+        {
+            'asset_in': 'u32',
+            'asset_out': 'u32',
+            'pool': {
+                'LBP': None,
+                'Omnipool': None,
+                'Stableswap': 'u32',
+                'XYK': None,
+            },
+        },
+    ],
+}
+)
+```
+
+---------
 ## Events
 
 ---------
@@ -111,18 +124,60 @@ The route with trades has been successfully executed
 | amount_out | `T::Balance` | ```u128```
 
 ---------
+### RouteUpdated
+The route with trades has been successfully executed
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_ids | `Vec<T::AssetId>` | ```['u32']```
+
+---------
+## Storage functions
+
+---------
+### Routes
+ Storing routes for asset pairs
+
+#### Python
+```python
+result = substrate.query(
+    'Router', 'Routes', [
+    {
+        'asset_in': 'u32',
+        'asset_out': 'u32',
+    },
+]
+)
+```
+
+#### Return value
+```python
+[
+    {
+        'asset_in': 'u32',
+        'asset_out': 'u32',
+        'pool': {
+            'LBP': None,
+            'Omnipool': None,
+            'Stableswap': 'u32',
+            'XYK': None,
+        },
+    },
+]
+```
+---------
 ## Constants
 
 ---------
-### MaxNumberOfTrades
- Max limit for the number of trades within a route
+### NativeAssetId
+ Native Asset Id
 #### Value
 ```python
-5
+0
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Router', 'MaxNumberOfTrades')
+constant = substrate.get_constant('Router', 'NativeAssetId')
 ```
 ---------
 ## Errors
@@ -130,6 +185,10 @@ constant = substrate.get_constant('Router', 'MaxNumberOfTrades')
 ---------
 ### InsufficientBalance
 The user has not enough balance to execute the trade
+
+---------
+### InvalidRoute
+The route is invalid
 
 ---------
 ### InvalidRouteExecution
@@ -150,6 +209,10 @@ The calculation of route trade amounts failed in the underlying AMM
 ---------
 ### RouteHasNoTrades
 Route has not trades to be executed
+
+---------
+### RouteUpdateIsNotSuccessful
+The route update was not successful
 
 ---------
 ### TradingLimitReached

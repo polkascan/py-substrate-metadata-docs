@@ -5,34 +5,24 @@
 ## Calls
 
 ---------
-### claim_all_task
-#### Attributes
-No attributes
-
-#### Python
-```python
-call = substrate.compose_call(
-    'PalletIndex', 'claim_all_task', {}
-)
-```
-
----------
 ### claim_task
-Claim the oldest task that saved in actived task queue
+See [`Pallet::claim_task`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | task_id | `TaskId` | 
+| fee | `u128` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'PalletIndex', 'claim_task', {'task_id': '[u8; 32]'}
+    'PalletIndex', 'claim_task', {'fee': 'u128', 'task_id': '[u8; 32]'}
 )
 ```
 
 ---------
 ### deposit_task
+See [`Pallet::deposit_task`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1795,6 +1785,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_add_worker
+See [`Pallet::force_add_worker`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1809,6 +1800,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_remove_worker
+See [`Pallet::force_remove_worker`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -1831,6 +1823,7 @@ Task has been claimed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | tasks | `Vec<TaskId>` | ```['[u8; 32]']```
+| fee | `u128` | ```u128```
 
 ---------
 ### NewTask
@@ -1973,10 +1966,27 @@ result = substrate.query(
 'bool'
 ```
 ---------
+## Constants
+
+---------
+### FeeReserveAccount
+ Fee reserve account
+#### Value
+```python
+'41jWo4Q2ogXXHCHofUvkwrXjkxyWNdZdpCf92tdqdTB2ZeHP'
+```
+#### Python
+```python
+constant = substrate.get_constant('PalletIndex', 'FeeReserveAccount')
+```
+---------
 ## Errors
 
 ---------
 ### AssetNotFound
+
+---------
+### FeeTooExpensive
 
 ---------
 ### NotFoundInTaskQueue

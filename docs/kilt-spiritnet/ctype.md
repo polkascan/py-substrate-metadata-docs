@@ -6,18 +6,7 @@
 
 ---------
 ### add
-Create a new CType from the given unique CType hash and associates
-it with its creator.
-
-A CType with the same hash must not be stored on chain.
-
-Emits `CTypeCreated`.
-
-\# &lt;weight&gt;
-Weight: O(1)
-- Reads: Ctypes, Balance
-- Writes: Ctypes, Balance
-\# &lt;/weight&gt;
+See [`Pallet::add`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -32,9 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_block_number
-Set the creation block number for a given CType, if found.
-
-Emits `CTypeUpdated`.
+See [`Pallet::set_block_number`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -46,7 +33,7 @@ Emits `CTypeUpdated`.
 call = substrate.compose_call(
     'Ctype', 'set_block_number', {
     'block_number': 'u64',
-    'ctype_hash': '[u8; 32]',
+    'ctype_hash': 'scale_info::12',
 }
 )
 ```
@@ -62,7 +49,7 @@ A new CType has been created.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CtypeCreatorOf<T>` | ```AccountId```
-| None | `CtypeHashOf<T>` | ```[u8; 32]```
+| None | `CtypeHashOf<T>` | ```scale_info::12```
 
 ---------
 ### CTypeUpdated
@@ -71,7 +58,7 @@ Information about a CType has been updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `CtypeHashOf<T>` | ```[u8; 32]```
+| None | `CtypeHashOf<T>` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -86,7 +73,7 @@ Information about a CType has been updated.
 #### Python
 ```python
 result = substrate.query(
-    'Ctype', 'Ctypes', ['[u8; 32]']
+    'Ctype', 'Ctypes', ['scale_info::12']
 )
 ```
 

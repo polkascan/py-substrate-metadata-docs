@@ -250,6 +250,14 @@ An account was created with some free balance.
 | amount | `T::Balance` | ```u128```
 
 ---------
+### Issued
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| currency_id | `T::CurrencyId` | ```u128```
+| amount | `T::Balance` | ```u128```
+
+---------
 ### LockRemoved
 Some locked funds were unlocked
 #### Attributes
@@ -278,6 +286,14 @@ Some free balance was locked.
 | -------- | -------- | -------- |
 | currency_id | `T::CurrencyId` | ```u128```
 | who | `T::AccountId` | ```AccountId```
+| amount | `T::Balance` | ```u128```
+
+---------
+### Rescinded
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| currency_id | `T::CurrencyId` | ```u128```
 | amount | `T::Balance` | ```u128```
 
 ---------
@@ -440,7 +456,7 @@ result = substrate.query(
 ### MaxLocks
 #### Value
 ```python
-50
+64
 ```
 #### Python
 ```python

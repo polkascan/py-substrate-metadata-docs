@@ -6,24 +6,7 @@
 
 ---------
 ### add_liquidity
-Add liquidity of asset `asset` in quantity `amount` to Omnipool
-
-`add_liquidity` adds specified asset amount to pool and in exchange gives the origin
-corresponding shares amount in form of NFT at current price.
-
-Asset&\#x27;s tradable state must contain ADD_LIQUIDITY flag, otherwise `NotAllowed` error is returned.
-
-NFT is minted using NTFHandler which implements non-fungibles traits from frame_support.
-
-Asset weight cap must be respected, otherwise `AssetWeightExceeded` error is returned.
-Asset weight is ratio between new HubAsset reserve and total reserve of Hub asset in Omnipool.
-
-Parameters:
-- `asset`: The identifier of the new asset added to the pool. Must be already in the pool
-- `amount`: Amount of asset added to omnipool
-
-Emits `LiquidityAdded` event when successful.
-
+See [`Pallet::add_liquidity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -39,23 +22,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_token
-Add new token to omnipool in quantity `amount` at price `initial_price`
-
-Can be called only after pool is initialized, otherwise it returns `NoStableAssetInPool`
-
-Initial liquidity must be transferred to pool&\#x27;s account for this new token manually prior to calling `add_token`.
-
-Initial liquidity is pool&\#x27;s account balance of the token.
-
-Position NFT token is minted for `position_owner`.
-
-Parameters:
-- `asset`: The identifier of the new asset added to the pool. Must be registered in Asset registry
-- `initial_price`: Initial price
-- `position_owner`: account id for which share are distributed in form on NFT
-
-Emits `TokenAdded` event when successful.
-
+See [`Pallet::add_token`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -78,22 +45,7 @@ call = substrate.compose_call(
 
 ---------
 ### buy
-Execute a swap of `asset_out` for `asset_in`.
-
-Price is determined by the Omnipool.
-
-Hub asset is traded separately.
-
-Asset&\#x27;s tradable states must contain SELL flag for asset_in and BUY flag for asset_out, otherwise `NotAllowed` error is returned.
-
-Parameters:
-- `asset_in`: ID of asset sold to the pool
-- `asset_out`: ID of asset bought from the pool
-- `amount`: Amount of asset sold
-- `max_sell_amount`: Maximum amount to be sold.
-
-Emits `BuyExecuted` event when successful.
-
+See [`Pallet::buy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -115,52 +67,8 @@ call = substrate.compose_call(
 ```
 
 ---------
-### initialize_pool
-Initialize Omnipool with stable asset and native asset.
-
-First added assets must be:
-- preferred stable coin asset set as `StableCoinAssetId` pallet parameter
-- native asset
-
-Omnipool account must already have correct balances of stable and native asset.
-
-Parameters:
-- `stable_asset_price`: Initial price of stable asset
-- `native_asset_price`: Initial price of stable asset
-
-Emits two `TokenAdded` events when successful.
-
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| stable_asset_price | `Price` | 
-| native_asset_price | `Price` | 
-| stable_weight_cap | `Permill` | 
-| native_weight_cap | `Permill` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Omnipool', 'initialize_pool', {
-    'native_asset_price': 'u128',
-    'native_weight_cap': 'u32',
-    'stable_asset_price': 'u128',
-    'stable_weight_cap': 'u32',
-}
-)
-```
-
----------
 ### refund_refused_asset
-Refund given amount of asset to a recipient.
-
-A refund is needed when a token is refused to be added to Omnipool, and initial liquidity of the asset has been already transferred to pool&\#x27;s account.
-
-Transfer is performed only when asset is not in Omnipool and pool&\#x27;s balance has sufficient amount.
-
-Only `AuthorityOrigin` can perform this operition -same as `add_token`o
-
-Emits `AssetRefunded`
+See [`Pallet::refund_refused_asset`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -181,20 +89,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_liquidity
-Remove liquidity of asset `asset` in quantity `amount` from Omnipool
-
-`remove_liquidity` removes specified shares amount from given PositionId (NFT instance).
-
-Asset&\#x27;s tradable state must contain REMOVE_LIQUIDITY flag, otherwise `NotAllowed` error is returned.
-
-if all shares from given position are removed, NFT is burned.
-
-Parameters:
-- `position_id`: The identifier of position which liquidity is removed from.
-- `amount`: Amount of shares removed from omnipool
-
-Emits `LiquidityRemoved` event when successful.
-
+See [`Pallet::remove_liquidity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -212,14 +107,27 @@ call = substrate.compose_call(
 ```
 
 ---------
+### remove_token
+See [`Pallet::remove_token`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| asset_id | `T::AssetId` | 
+| beneficiary | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Omnipool', 'remove_token', {
+    'asset_id': 'u32',
+    'beneficiary': 'AccountId',
+}
+)
+```
+
+---------
 ### sacrifice_position
-Sacrifice LP position in favor of pool.
-
-A position is destroyed and liquidity owned by LP becomes pool owned liquidity.
-
-Only owner of position can perform this action.
-
-Emits `PositionDestroyed`.
+See [`Pallet::sacrifice_position`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -234,22 +142,7 @@ call = substrate.compose_call(
 
 ---------
 ### sell
-Execute a swap of `asset_in` for `asset_out`.
-
-Price is determined by the Omnipool.
-
-Hub asset is traded separately.
-
-Asset&\#x27;s tradable states must contain SELL flag for asset_in and BUY flag for asset_out, otherwise `NotAllowed` error is returned.
-
-Parameters:
-- `asset_in`: ID of asset sold to the pool
-- `asset_out`: ID of asset bought from the pool
-- `amount`: Amount of asset sold
-- `min_buy_amount`: Minimum amount required to receive
-
-Emits `SellExecuted` event when successful.
-
+See [`Pallet::sell`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -272,14 +165,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_asset_tradable_state
-Update asset&\#x27;s tradable state.
-
-Parameters:
-- `asset_id`: asset id
-- `state`: new state
-
-Emits `TradableStateUpdated` event when successful.
-
+See [`Pallet::set_asset_tradable_state`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -298,14 +184,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_asset_weight_cap
-Update asset&\#x27;s weight cap
-
-Parameters:
-- `asset_id`: asset id
-- `cap`: new weight cap
-
-Emits `AssetWeightCapUpdated` event when successful.
-
+See [`Pallet::set_asset_weight_cap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -320,23 +199,25 @@ call = substrate.compose_call(
 ```
 
 ---------
-### set_tvl_cap
-Update TVL cap
-
-Parameters:
-- `cap`: new tvl cap
-
-Emits `TVLCapUpdated` event when successful.
-
+### withdraw_protocol_liquidity
+See [`Pallet::withdraw_protocol_liquidity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| cap | `Balance` | 
+| asset_id | `T::AssetId` | 
+| amount | `Balance` | 
+| price | `(Balance, Balance)` | 
+| dest | `T::AccountId` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Omnipool', 'set_tvl_cap', {'cap': 'u128'}
+    'Omnipool', 'withdraw_protocol_liquidity', {
+    'amount': 'u128',
+    'asset_id': 'u32',
+    'dest': 'AccountId',
+    'price': ('u128', 'u128'),
+}
 )
 ```
 
@@ -373,6 +254,8 @@ Buy trade executed.
 | asset_out | `T::AssetId` | ```u32```
 | amount_in | `Balance` | ```u128```
 | amount_out | `Balance` | ```u128```
+| hub_amount_in | `Balance` | ```u128```
+| hub_amount_out | `Balance` | ```u128```
 | asset_fee_amount | `Balance` | ```u128```
 | protocol_fee_amount | `Balance` | ```u128```
 
@@ -389,7 +272,7 @@ Liquidity of an asset was added to Omnipool.
 
 ---------
 ### LiquidityRemoved
-Liquidity of an asset was removed to Omnipool.
+Liquidity of an asset was removed from Omnipool.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -423,7 +306,7 @@ LP Position was destroyed and NFT instance burned.
 
 ---------
 ### PositionUpdated
-LP Position was created and NFT instance minted.
+LP Position was updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -433,6 +316,18 @@ LP Position was created and NFT instance minted.
 | amount | `Balance` | ```u128```
 | shares | `Balance` | ```u128```
 | price | `Price` | ```u128```
+
+---------
+### ProtocolLiquidityRemoved
+PRotocol Liquidity was removed from Omnipool.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| asset_id | `T::AssetId` | ```u32```
+| amount | `Balance` | ```u128```
+| hub_amount | `Balance` | ```u128```
+| shares_removed | `Balance` | ```u128```
 
 ---------
 ### SellExecuted
@@ -445,16 +340,10 @@ Sell trade executed.
 | asset_out | `T::AssetId` | ```u32```
 | amount_in | `Balance` | ```u128```
 | amount_out | `Balance` | ```u128```
+| hub_amount_in | `Balance` | ```u128```
+| hub_amount_out | `Balance` | ```u128```
 | asset_fee_amount | `Balance` | ```u128```
 | protocol_fee_amount | `Balance` | ```u128```
-
----------
-### TVLCapUpdated
-TVL cap has been updated.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| cap | `Balance` | ```u128```
 
 ---------
 ### TokenAdded
@@ -467,8 +356,18 @@ An asset was added to Omnipool
 | initial_price | `Price` | ```u128```
 
 ---------
+### TokenRemoved
+An asset was removed from Omnipool
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| asset_id | `T::AssetId` | ```u32```
+| amount | `Balance` | ```u128```
+| hub_withdrawn | `Balance` | ```u128```
+
+---------
 ### TradableStateUpdated
-Aseet&\#x27;s tradable state has been updated.
+Asset&\#x27;s tradable state has been updated.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
@@ -558,21 +457,6 @@ result = substrate.query(
 #### Return value
 ```python
 {'amount': 'u128', 'asset_id': 'u32', 'price': ('u128', 'u128'), 'shares': 'u128'}
-```
----------
-### TvlCap
- TVL cap
-
-#### Python
-```python
-result = substrate.query(
-    'Omnipool', 'TvlCap', []
-)
-```
-
-#### Return value
-```python
-'u128'
 ```
 ---------
 ## Constants
@@ -666,17 +550,6 @@ constant = substrate.get_constant('Omnipool', 'MinimumTradingLimit')
 constant = substrate.get_constant('Omnipool', 'NFTCollectionId')
 ```
 ---------
-### StableCoinAssetId
- Preferred stable Asset ID
-#### Value
-```python
-2
-```
-#### Python
-```python
-constant = substrate.get_constant('Omnipool', 'StableCoinAssetId')
-```
----------
 ## Errors
 
 ---------
@@ -686,6 +559,10 @@ Asset is already in omnipool
 ---------
 ### AssetNotFound
 Asset is not in omnipool
+
+---------
+### AssetNotFrozen
+Token cannot be removed from Omnipool because asset is not frozen.
 
 ---------
 ### AssetNotRegistered
@@ -701,7 +578,7 @@ Asset weight cap has been exceeded.
 
 ---------
 ### BuyLimitNotReached
-Minimum limit has not been reached during trade.
+Slippage protection - minimum limit has not been reached.
 
 ---------
 ### FeeOverdraft
@@ -733,11 +610,11 @@ Traded amount is below minimum allowed limit
 
 ---------
 ### InvalidHubAssetTradableState
-HJb Asset&\#x27;s trabable is only allowed to be SELL or BUY.
+Hub asset is only allowed to be sold.
 
 ---------
 ### InvalidInitialAssetPrice
-Invalid initial asset price. Price must be non-zero.
+Invalid initial asset price.
 
 ---------
 ### InvalidOraclePrice
@@ -753,27 +630,19 @@ Failed to calculate withdrawal fee.
 
 ---------
 ### MaxInRatioExceeded
-Max fraction of asset reserve to sell has been exceeded.
+Max fraction of asset to sell has been exceeded.
 
 ---------
 ### MaxOutRatioExceeded
-Max fraction of asset reserve to buy has been exceeded.
+Max fraction of asset to buy has been exceeded.
 
 ---------
 ### MissingBalance
-Adding token as protocol ( root ), token balance has not been updated prior to add token.
-
----------
-### NoNativeAssetInPool
-No native asset in the pool yet.
-
----------
-### NoStableAssetInPool
-No stable asset in the pool
+Failed to add token to Omnipool due to insufficient initial liquidity.
 
 ---------
 ### NotAllowed
-Asset is not allowed to be bought or sold
+Asset is not allowed to be traded.
 
 ---------
 ### PositionNotFound
@@ -793,10 +662,14 @@ Sell or buy with same asset ids is not allowed.
 
 ---------
 ### SellLimitExceeded
-Maximum limit has been exceeded during trade.
+Slippage protection - maximum limit has been exceeded.
 
 ---------
-### TVLCapExceeded
-TVL cap has been exceeded
+### SharesRemaining
+Token cannot be removed from Omnipool due to shares still owned by other users.
+
+---------
+### ZeroAmountOut
+Calculated amount out from sell trade is zero.
 
 ---------

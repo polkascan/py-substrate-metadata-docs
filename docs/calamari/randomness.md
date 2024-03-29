@@ -49,7 +49,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'randomness': (None, '[u8; 32]'), 'request_count': 'u64'}
+{'randomness': (None, 'scale_info::12'), 'request_count': 'u64'}
 ```
 ---------
 ### RelayEpoch

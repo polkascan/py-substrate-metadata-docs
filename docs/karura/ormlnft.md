@@ -18,7 +18,7 @@ result = substrate.query(
 ```python
 {
     'data': {
-        'attributes': 'scale_info::346',
+        'attributes': 'scale_info::354',
         'deposit': 'u128',
         'properties': 'u8',
     },
@@ -67,7 +67,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'data': {'attributes': 'scale_info::346', 'deposit': 'u128'}, 'metadata': 'Bytes', 'owner': 'AccountId'}
+{'data': {'attributes': 'scale_info::354', 'deposit': 'u128'}, 'metadata': 'Bytes', 'owner': 'AccountId'}
 ```
 ---------
 ### TokensByOwner

@@ -6,19 +6,7 @@
 
 ---------
 ### add_liquidity
-Provide liquidity to a pair.
-
-The order of foreign dot effect result.
-
-\# Arguments
-
-- `asset_0`: Asset which make up pair
-- `asset_1`: Asset which make up pair
-- `amount_0_desired`: Maximum amount of asset_0 added to the pair
-- `amount_1_desired`: Maximum amount of asset_1 added to the pair
-- `amount_0_min`: Minimum amount of asset_0 added to the pair
-- `amount_1_min`: Minimum amount of asset_1 added to the pair
-- `deadline`: Height of the cutoff block of this transaction
+See [`Pallet::add_liquidity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -28,7 +16,7 @@ The order of foreign dot effect result.
 | amount_1_desired | `AssetBalance` | 
 | amount_0_min | `AssetBalance` | 
 | amount_1_min | `AssetBalance` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -55,6 +43,7 @@ call = substrate.compose_call(
 
 ---------
 ### bootstrap_charge_reward
+See [`Pallet::bootstrap_charge_reward`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -92,20 +81,14 @@ call = substrate.compose_call(
 
 ---------
 ### bootstrap_claim
-Claim lp asset from a bootstrap pair
-
-\# Arguments
-
-- `asset_0`: Asset which make up bootstrap pair
-- `asset_1`: Asset which make up bootstrap pair
-- `deadline`: Height of the cutoff block of this transaction
+See [`Pallet::bootstrap_claim`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | recipient | `<T::Lookup as StaticLookup>::Source` | 
 | asset_0 | `T::AssetId` | 
 | asset_1 | `T::AssetId` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -135,15 +118,7 @@ call = substrate.compose_call(
 
 ---------
 ### bootstrap_contribute
-Contribute some asset to a bootstrap pair
-
-\# Arguments
-
-- `asset_0`: Asset which make up bootstrap pair
-- `asset_1`: Asset which make up bootstrap pair
-- `amount_0_contribute`: The amount of asset_0 contribute to this bootstrap pair
-- `amount_1_contribute`: The amount of asset_1 contribute to this bootstrap pair
-- `deadline`: Height of the cutoff block of this transaction
+See [`Pallet::bootstrap_contribute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -151,7 +126,7 @@ Contribute some asset to a bootstrap pair
 | asset_1 | `T::AssetId` | 
 | amount_0_contribute | `AssetBalance` | 
 | amount_1_contribute | `AssetBalance` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -176,19 +151,7 @@ call = substrate.compose_call(
 
 ---------
 ### bootstrap_create
-Create bootstrap pair
-
-The order of asset don&\#x27;t affect result.
-
-\# Arguments
-
-- `asset_0`: Asset which make up bootstrap pair
-- `asset_1`: Asset which make up bootstrap pair
-- `target_supply_0`: Target amount of asset_0 total contribute
-- `target_supply_0`: Target amount of asset_1 total contribute
-- `capacity_supply_0`: The max amount of asset_0 total contribute
-- `capacity_supply_1`: The max amount of asset_1 total contribute
-- `end`: The earliest ending block.
+See [`Pallet::bootstrap_create`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -198,7 +161,7 @@ The order of asset don&\#x27;t affect result.
 | target_supply_1 | `AssetBalance` | 
 | capacity_supply_0 | `AssetBalance` | 
 | capacity_supply_1 | `AssetBalance` | 
-| end | `T::BlockNumber` | 
+| end | `BlockNumberFor<T>` | 
 | rewards | `Vec<T::AssetId>` | 
 | limits | `Vec<(T::AssetId, AssetBalance)>` | 
 
@@ -244,12 +207,7 @@ call = substrate.compose_call(
 
 ---------
 ### bootstrap_end
-End a bootstrap pair
-
-\# Arguments
-
-- `asset_0`: Asset which make up bootstrap pair
-- `asset_1`: Asset which make up bootstrap pair
+See [`Pallet::bootstrap_end`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -276,12 +234,7 @@ call = substrate.compose_call(
 
 ---------
 ### bootstrap_refund
-Contributor refund from disable bootstrap pair
-
-\# Arguments
-
-- `asset_0`: Asset which make up bootstrap pair
-- `asset_1`: Asset which make up bootstrap pair
+See [`Pallet::bootstrap_refund`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -308,19 +261,7 @@ call = substrate.compose_call(
 
 ---------
 ### bootstrap_update
-update a bootstrap pair
-
-\# Arguments
-
-- `asset_0`: Asset which make up bootstrap pair
-- `asset_1`: Asset which make up bootstrap pair
-- `min_contribution_0`: The new min amount of asset_0 contribute
-- `min_contribution_0`: The new min amount of asset_1 contribute
-- `target_supply_0`: The new target amount of asset_0 total contribute
-- `target_supply_0`: The new target amount of asset_1 total contribute
-- `capacity_supply_0`: The new max amount of asset_0 total contribute
-- `capacity_supply_1`: The new max amount of asset_1 total contribute
-- `end`: The earliest ending block.
+See [`Pallet::bootstrap_update`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -330,7 +271,7 @@ update a bootstrap pair
 | target_supply_1 | `AssetBalance` | 
 | capacity_supply_0 | `AssetBalance` | 
 | capacity_supply_1 | `AssetBalance` | 
-| end | `T::BlockNumber` | 
+| end | `BlockNumberFor<T>` | 
 | rewards | `Vec<T::AssetId>` | 
 | limits | `Vec<(T::AssetId, AssetBalance)>` | 
 
@@ -376,6 +317,7 @@ call = substrate.compose_call(
 
 ---------
 ### bootstrap_withdraw_reward
+See [`Pallet::bootstrap_withdraw_reward`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -410,14 +352,7 @@ call = substrate.compose_call(
 
 ---------
 ### create_pair
-Create pair by two assets.
-
-The order of foreign dot effect result.
-
-\# Arguments
-
-- `asset_0`: Asset which make up Pair
-- `asset_1`: Asset which make up Pair
+See [`Pallet::create_pair`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -444,18 +379,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_liquidity
-Extract liquidity.
-
-The order of foreign dot effect result.
-
-\# Arguments
-
-- `asset_0`: Asset which make up pair
-- `asset_1`: Asset which make up pair
-- `amount_asset_0_min`: Minimum amount of asset_0 to exact
-- `amount_asset_1_min`: Minimum amount of asset_1 to exact
-- `recipient`: Account that accepts withdrawal of assets
-- `deadline`: Height of the cutoff block of this transaction
+See [`Pallet::remove_liquidity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -465,7 +389,7 @@ The order of foreign dot effect result.
 | amount_0_min | `AssetBalance` | 
 | amount_1_min | `AssetBalance` | 
 | recipient | `<T::Lookup as StaticLookup>::Source` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -498,13 +422,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_fee_point
-Set the protocol fee point.
-
-\# Arguments
-
-- `fee_point`:
-0 means that all exchange fees belong to the liquidity provider.
-30 means that all exchange fees belong to the fee receiver.
+See [`Pallet::set_fee_point`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -519,13 +437,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_fee_receiver
-Set the new receiver of the protocol fee.
-
-\# Arguments
-
-- `send_to`:
-(1) Some(receiver): it turn on the protocol fee and the new receiver account.
-(2) None: it turn off the protocol fee.
+See [`Pallet::set_fee_receiver`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -551,15 +463,7 @@ call = substrate.compose_call(
 
 ---------
 ### swap_assets_for_exact_assets
-Buy amount of foreign by path.
-
-\# Arguments
-
-- `amount_out`: Amount of the foreign will be bought
-- `amount_in_max`: Maximum amount of sold foreign
-- `path`: path can convert to pairs.
-- `recipient`: Account that receive the target foreign
-- `deadline`: Height of the cutoff block of this transaction
+See [`Pallet::swap_assets_for_exact_assets`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -567,7 +471,7 @@ Buy amount of foreign by path.
 | amount_in_max | `AssetBalance` | 
 | path | `Vec<T::AssetId>` | 
 | recipient | `<T::Lookup as StaticLookup>::Source` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -596,15 +500,7 @@ call = substrate.compose_call(
 
 ---------
 ### swap_exact_assets_for_assets
-Sell amount of foreign by path.
-
-\# Arguments
-
-- `amount_in`: Amount of the foreign will be sold
-- `amount_out_min`: Minimum amount of target foreign
-- `path`: path can convert to pairs.
-- `recipient`: Account that receive the target foreign
-- `deadline`: Height of the cutoff block of this transaction
+See [`Pallet::swap_exact_assets_for_assets`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -612,7 +508,7 @@ Sell amount of foreign by path.
 | amount_out_min | `AssetBalance` | 
 | path | `Vec<T::AssetId>` | 
 | recipient | `<T::Lookup as StaticLookup>::Source` | 
-| deadline | `T::BlockNumber` | 
+| deadline | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -641,13 +537,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer
-Move some assets from one holder to another.
-
-\# Arguments
-
-- `asset_id`: The foreign id.
-- `target`: The receiver of the foreign.
-- `amount`: The amount of the foreign to transfer.
+See [`Pallet::transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -732,7 +622,7 @@ total_supply_0,total_supply_1, capacity_supply_0,capacity_supply_1, end\]
 | None | `AssetBalance` | ```u128```
 | None | `AssetBalance` | ```u128```
 | None | `AssetBalance` | ```u128```
-| None | `T::BlockNumber` | ```u32```
+| None | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### BootstrapEnd
@@ -775,7 +665,7 @@ total_supply_0,total_supply_1, capacity_supply_0,capacity_supply_1\]
 | None | `AssetBalance` | ```u128```
 | None | `AssetBalance` | ```u128```
 | None | `AssetBalance` | ```u128```
-| None | `T::BlockNumber` | ```u32```
+| None | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### Burned
@@ -962,7 +852,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::692'
+'scale_info::747'
 ```
 ---------
 ### BootstrapPersonalSupply
@@ -1019,7 +909,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::692'
+'scale_info::747'
 ```
 ---------
 ### FeeMeta
@@ -1123,7 +1013,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u64; 4]'
+'scale_info::739'
 ```
 ---------
 ### LiquidityPairs

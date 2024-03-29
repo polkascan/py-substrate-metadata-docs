@@ -6,29 +6,30 @@
 
 ---------
 ### confirm_processed_parentchain_block
-The integritee worker calls this function for every processed parentchain_block to confirm a state update.
+See [`Pallet::confirm_processed_parentchain_block`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | shard | `ShardIdentifier` | 
 | block_hash | `H256` | 
-| block_number | `T::BlockNumber` | 
+| block_number | `BlockNumberFor<T>` | 
 | trusted_calls_merkle_root | `H256` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'EnclaveBridge', 'confirm_processed_parentchain_block', {
-    'block_hash': '[u8; 32]',
+    'block_hash': 'scale_info::12',
     'block_number': 'u32',
-    'shard': '[u8; 32]',
-    'trusted_calls_merkle_root': '[u8; 32]',
+    'shard': 'scale_info::12',
+    'trusted_calls_merkle_root': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### invoke
+See [`Pallet::invoke`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -40,7 +41,7 @@ call = substrate.compose_call(
     'EnclaveBridge', 'invoke', {
     'request': {
         'cyphertext': 'Bytes',
-        'shard': '[u8; 32]',
+        'shard': 'scale_info::12',
     },
 }
 )
@@ -48,17 +49,7 @@ call = substrate.compose_call(
 
 ---------
 ### publish_hash
-Publish a hash as a result of an arbitrary enclave operation.
-
-The `mrenclave` of the origin will be used as an event topic a client can subscribe to.
-The concept of shards isn&\#x27;t applied here because a proof of computation should be bound
-to the fingerprint of the enclave. A shard would only be necessary if state needs to be
-persisted across upgrades.
-
-`extra_topics`, if any, will be used as additional event topics.
-
-`data` can be anything worthwhile publishing related to the hash. If it is a
-utf8-encoded string, the UIs will usually even render the text.
+See [`Pallet::publish_hash`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -71,17 +62,34 @@ utf8-encoded string, the UIs will usually even render the text.
 call = substrate.compose_call(
     'EnclaveBridge', 'publish_hash', {
     'data': 'Bytes',
-    'extra_topics': ['[u8; 32]'],
-    'hash': '[u8; 32]',
+    'extra_topics': ['scale_info::12'],
+    'hash': 'scale_info::12',
+}
+)
+```
+
+---------
+### purge_enclave_from_shard_status
+See [`Pallet::purge_enclave_from_shard_status`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| shard | `ShardIdentifier` | 
+| subject | `T::AccountId` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'EnclaveBridge', 'purge_enclave_from_shard_status', {
+    'shard': 'scale_info::12',
+    'subject': 'AccountId',
 }
 )
 ```
 
 ---------
 ### shield_funds
-Sent by a client who requests to get shielded funds managed by an enclave. For this on-chain balance is sent to the bonding_account of the enclave.
-The bonding_account does not have a private key as the balance on this account is exclusively managed from withing the pallet_teerex.
-Note: The bonding_account is bit-equivalent to the worker shard.
+See [`Pallet::shield_funds`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -95,14 +103,14 @@ call = substrate.compose_call(
     'EnclaveBridge', 'shield_funds', {
     'amount': 'u128',
     'incognito_account_encrypted': 'Bytes',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### unshield_funds
-Sent by enclaves only as a result of an `unshield` request from a client to an enclave.
+See [`Pallet::unshield_funds`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -117,37 +125,34 @@ call = substrate.compose_call(
     'EnclaveBridge', 'unshield_funds', {
     'amount': 'u128',
     'beneficiary': 'AccountId',
-    'call_hash': '[u8; 32]',
-    'shard': '[u8; 32]',
+    'call_hash': 'scale_info::12',
+    'shard': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### update_shard_config
-Update shard config
-To be respected by L2 instances after `enactment_delay` parentchain blocks
-If no previous config exists, the `enactment_delay` parameter will be ignored
-and the `shard_config` will be active immediately
+See [`Pallet::update_shard_config`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | shard | `ShardIdentifier` | 
 | shard_config | `ShardConfig<T::AccountId>` | 
-| enactment_delay | `T::BlockNumber` | 
+| enactment_delay | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'EnclaveBridge', 'update_shard_config', {
     'enactment_delay': 'u32',
-    'shard': '[u8; 32]',
+    'shard': 'scale_info::12',
     'shard_config': {
         'authorities': (
             None,
             ['AccountId'],
         ),
-        'enclave_fingerprint': '[u8; 32]',
+        'enclave_fingerprint': 'scale_info::12',
         'maintenance_mode': 'bool',
         'max_instances': (None, 'u32'),
     },
@@ -164,7 +169,7 @@ an indirect invocation has been registered for execution on L2
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ShardIdentifier` | ```[u8; 32]```
+| None | `ShardIdentifier` | ```scale_info::12```
 
 ---------
 ### ProcessedParentchainBlock
@@ -172,10 +177,10 @@ L2 confirmed processing of a parentchain block
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
-| block_hash | `H256` | ```[u8; 32]```
-| trusted_calls_merkle_root | `H256` | ```[u8; 32]```
-| block_number | `T::BlockNumber` | ```u32```
+| shard | `ShardIdentifier` | ```scale_info::12```
+| block_hash | `H256` | ```scale_info::12```
+| trusted_calls_merkle_root | `H256` | ```scale_info::12```
+| block_number | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### PublishedHash
@@ -183,16 +188,25 @@ An enclave has published some [hash] with some metadata [data].
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| enclave_fingerprint | `EnclaveFingerprint` | ```[u8; 32]```
-| hash | `H256` | ```[u8; 32]```
+| enclave_fingerprint | `EnclaveFingerprint` | ```scale_info::12```
+| hash | `H256` | ```scale_info::12```
 | data | `Vec<u8>` | ```Bytes```
+
+---------
+### PurgedEnclaveFromShardConfig
+An enclave has been purged from a shard status. Most likely due to inactivity
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| shard | `ShardIdentifier` | ```scale_info::12```
+| subject | `T::AccountId` | ```AccountId```
 
 ---------
 ### ShardConfigUpdated
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ShardIdentifier` | ```[u8; 32]```
+| None | `ShardIdentifier` | ```scale_info::12```
 
 ---------
 ### ShieldFunds
@@ -200,7 +214,7 @@ funds have been shielded to L2
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::12```
 | encrypted_beneficiary | `Vec<u8>` | ```Bytes```
 | amount | `BalanceOf<T>` | ```u128```
 
@@ -210,7 +224,7 @@ funds have been unshielded from L2 back to L1
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| shard | `ShardIdentifier` | ```[u8; 32]```
+| shard | `ShardIdentifier` | ```scale_info::12```
 | beneficiary | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T>` | ```u128```
 
@@ -223,7 +237,7 @@ funds have been unshielded from L2 back to L1
 #### Python
 ```python
 result = substrate.query(
-    'EnclaveBridge', 'ExecutedUnshieldCalls', ['[u8; 32]']
+    'EnclaveBridge', 'ExecutedUnshieldCalls', ['scale_info::12']
 )
 ```
 
@@ -241,7 +255,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'EnclaveBridge', 'ShardConfigRegistry', ['[u8; 32]']
+    'EnclaveBridge', 'ShardConfigRegistry', ['scale_info::12']
 )
 ```
 
@@ -250,7 +264,7 @@ result = substrate.query(
 {
     'active_config': {
         'authorities': (None, ['AccountId']),
-        'enclave_fingerprint': '[u8; 32]',
+        'enclave_fingerprint': 'scale_info::12',
         'maintenance_mode': 'bool',
         'max_instances': (None, 'u32'),
     },
@@ -258,7 +272,7 @@ result = substrate.query(
         None,
         {
             'authorities': (None, ['AccountId']),
-            'enclave_fingerprint': '[u8; 32]',
+            'enclave_fingerprint': 'scale_info::12',
             'maintenance_mode': 'bool',
             'max_instances': (None, 'u32'),
         },
@@ -272,13 +286,19 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'EnclaveBridge', 'ShardStatus', ['[u8; 32]']
+    'EnclaveBridge', 'ShardStatus', ['scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-[{'fingerprint': '[u8; 32]', 'last_activity': 'u32', 'signer': 'AccountId'}]
+[
+    {
+        'fingerprint': 'scale_info::12',
+        'last_activity': 'u32',
+        'signer': 'AccountId',
+    },
+]
 ```
 ---------
 ## Errors
@@ -286,6 +306,18 @@ result = substrate.query(
 ---------
 ### DataTooLong
 The length of the `data` passed to `publish_hash` exceeds the limit.
+
+---------
+### EnclaveNotFoundInShardStatus
+No such enclave was found in shard status
+
+---------
+### ShardNotFound
+Shard not found
+
+---------
+### TooManyEnclaves
+Too many enclaves in ShardStatus
 
 ---------
 ### TooManyTopics

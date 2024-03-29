@@ -434,6 +434,10 @@ Asset Spent
 An asset present in this transfer has already been spent.
 
 ---------
+### Blocked
+Account cannot receive the assets.
+
+---------
 ### DuplicateRegister
 Duplicate Register
 
@@ -569,7 +573,7 @@ Receiver Ledger Utxo Accumulator Item Hash Decoding Error
 
 ---------
 ### ReceiverLedgerUtxoDecodeFailed
-Reciever Ledger Utxo decode failed
+Receiver Ledger Utxo decode failed
 
 ---------
 ### SenderLedgerFpEncodeError

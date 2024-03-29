@@ -72,7 +72,7 @@ Parameters:
 ```python
 call = substrate.compose_call(
     'Proxy', 'announce', {
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::12',
     'real': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -300,7 +300,7 @@ Parameters:
 ```python
 call = substrate.compose_call(
     'Proxy', 'reject_announcement', {
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::12',
     'delegate': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -334,7 +334,7 @@ Parameters:
 ```python
 call = substrate.compose_call(
     'Proxy', 'remove_announcement', {
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::12',
     'real': {
         'Address20': '[u8; 20]',
         'Address32': '[u8; 32]',
@@ -414,7 +414,7 @@ An announcement was placed to make a call in the future.
 | -------- | -------- | -------- |
 | real | `T::AccountId` | ```AccountId```
 | proxy | `T::AccountId` | ```AccountId```
-| call_hash | `CallHashOf<T>` | ```[u8; 32]```
+| call_hash | `CallHashOf<T>` | ```scale_info::12```
 
 ---------
 ### ProxyAdded
@@ -433,7 +433,7 @@ A proxy was executed correctly, with the given.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
+| result | `DispatchResult` | ```{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}```
 
 ---------
 ### ProxyRemoved
@@ -474,7 +474,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-([{'call_hash': '[u8; 32]', 'height': 'u32', 'real': 'AccountId'}], 'u128')
+([{'call_hash': 'scale_info::12', 'height': 'u32', 'real': 'AccountId'}], 'u128')
 ```
 ---------
 ### Proxies

@@ -6,21 +6,11 @@
 
 ---------
 ### start_inflation
-This method sets the inflation start date. Can be only called once.
-Inflation start block can be backdated and will catch up. The method will create Treasury
-account if it does not exist and perform the first inflation deposit.
-
-\# Permissions
-
-* Root
-
-\# Arguments
-
-* inflation_start_relay_block: The relay chain block at which inflation should start
+See [`Pallet::start_inflation`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| inflation_start_relay_block | `T::BlockNumber` | 
+| inflation_start_relay_block | `BlockNumberFor<T>` | 
 
 #### Python
 ```python

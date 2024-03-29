@@ -6,13 +6,7 @@
 
 ---------
 ### add_currency
-Add a currency to the list of accepted currencies.
-
-Only member can perform this action.
-
-Currency must not be already accepted. Core asset id cannot be explicitly added.
-
-Emits `CurrencyAdded` event when successful.
+See [`Pallet::add_currency`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -28,12 +22,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_currency
-Remove currency from the list of supported currencies
-Only selected members can perform this action
-
-Core asset cannot be removed.
-
-Emits `CurrencyRemoved` when successful.
+See [`Pallet::remove_currency`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -48,16 +37,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_currency
-Set selected currency for given account.
-
-This allows to set a currency for an account in which all transaction fees will be paid.
-Account balance cannot be zero.
-
-Chosen currency must be in the list of accepted currencies.
-
-When currency is set, fixed fee is withdrawn from the account to pay for the currency change
-
-Emits `CurrencySet` event when successful.
+See [`Pallet::set_currency`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

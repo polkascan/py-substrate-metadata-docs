@@ -6,18 +6,7 @@
 
 ---------
 ### service_overweight
-Service a single overweight message.
-
-- `origin`: Must pass `ExecuteOverweightOrigin`.
-- `index`: The index of the overweight message to service.
-- `weight_limit`: The amount of weight that message execution may take.
-
-Errors:
-- `Unknown`: Message of `index` is unknown.
-- `OverLimit`: Message execution may use greater than `weight_limit`.
-
-Events:
-- `OverweightServiced`: On success.
+See [`Pallet::service_overweight`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -30,6 +19,7 @@ call = substrate.compose_call(
     'DmpQueue', 'service_overweight', {
     'index': 'u64',
     'weight_limit': {
+        'proof_size': 'u64',
         'ref_time': 'u64',
     },
 }
@@ -45,8 +35,9 @@ Downward message executed with the given outcome.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_id | `MessageId` | ```[u8; 32]```
-| outcome | `Outcome` | ```{'Complete': 'u64', 'Incomplete': ('u64', {'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'MultiLocationFull': None, 'MultiLocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'UnhandledXcmVersion': None, 'WeightLimitReached': 'u64', 'Barrier': None, 'WeightNotComputable': None}), 'Error': {'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'MultiLocationFull': None, 'MultiLocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'UnhandledXcmVersion': None, 'WeightLimitReached': 'u64', 'Barrier': None, 'WeightNotComputable': None}}```
+| message_hash | `XcmHash` | ```[u8; 32]```
+| message_id | `XcmHash` | ```[u8; 32]```
+| outcome | `Outcome` | ```{'Complete': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Incomplete': ({'ref_time': 'u64', 'proof_size': 'u64'}, {'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'LocationFull': None, 'LocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'ExpectationFalse': None, 'PalletNotFound': None, 'NameMismatch': None, 'VersionIncompatible': None, 'HoldingWouldOverflow': None, 'ExportError': None, 'ReanchorFailed': None, 'NoDeal': None, 'FeesNotMet': None, 'LockError': None, 'NoPermission': None, 'Unanchored': None, 'NotDepositable': None, 'UnhandledXcmVersion': None, 'WeightLimitReached': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Barrier': None, 'WeightNotComputable': None, 'ExceedsStackLimit': None}), 'Error': {'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'LocationFull': None, 'LocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'ExpectationFalse': None, 'PalletNotFound': None, 'NameMismatch': None, 'VersionIncompatible': None, 'HoldingWouldOverflow': None, 'ExportError': None, 'ReanchorFailed': None, 'NoDeal': None, 'FeesNotMet': None, 'LockError': None, 'NoPermission': None, 'Unanchored': None, 'NotDepositable': None, 'UnhandledXcmVersion': None, 'WeightLimitReached': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Barrier': None, 'WeightNotComputable': None, 'ExceedsStackLimit': None}}```
 
 ---------
 ### InvalidFormat
@@ -54,7 +45,15 @@ Downward message is invalid XCM.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_id | `MessageId` | ```[u8; 32]```
+| message_hash | `XcmHash` | ```[u8; 32]```
+
+---------
+### MaxMessagesExhausted
+The maximum number of downward messages was reached.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ### OverweightEnqueued
@@ -62,9 +61,10 @@ Downward message is overweight and was placed in the overweight queue.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_id | `MessageId` | ```[u8; 32]```
+| message_hash | `XcmHash` | ```[u8; 32]```
+| message_id | `XcmHash` | ```[u8; 32]```
 | overweight_index | `OverweightIndex` | ```u64```
-| required_weight | `Weight` | ```{'ref_time': 'u64'}```
+| required_weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### OverweightServiced
@@ -73,7 +73,7 @@ Downward message from the overweight queue was executed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | overweight_index | `OverweightIndex` | ```u64```
-| weight_used | `Weight` | ```{'ref_time': 'u64'}```
+| weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### UnsupportedVersion
@@ -81,7 +81,7 @@ Downward message is unsupported version of XCM.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_id | `MessageId` | ```[u8; 32]```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ### WeightExhausted
@@ -89,9 +89,10 @@ The weight limit for handling downward messages was reached.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_id | `MessageId` | ```[u8; 32]```
-| remaining_weight | `Weight` | ```{'ref_time': 'u64'}```
-| required_weight | `Weight` | ```{'ref_time': 'u64'}```
+| message_hash | `XcmHash` | ```[u8; 32]```
+| message_id | `XcmHash` | ```[u8; 32]```
+| remaining_weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
+| required_weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ## Storage functions
@@ -109,7 +110,22 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'max_individual': {'ref_time': 'u64'}}
+{'max_individual': {'proof_size': 'u64', 'ref_time': 'u64'}}
+```
+---------
+### CounterForOverweight
+Counter for the related counted storage map
+
+#### Python
+```python
+result = substrate.query(
+    'DmpQueue', 'CounterForOverweight', []
+)
+```
+
+#### Return value
+```python
+'u32'
 ```
 ---------
 ### Overweight

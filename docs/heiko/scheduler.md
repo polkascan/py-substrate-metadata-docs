@@ -231,8 +231,8 @@ result = substrate.query(
         {
             'call': {
                 'Inline': 'Bytes',
-                'Legacy': {'hash': '[u8; 32]'},
-                'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+                'Legacy': {'hash': 'scale_info::11'},
+                'Lookup': {'hash': 'scale_info::11', 'len': 'u32'},
             },
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
@@ -248,14 +248,14 @@ result = substrate.query(
                     'Response': 'scale_info::60',
                     'Xcm': 'scale_info::60',
                 },
+                'Void': (),
+                None: None,
                 'TechnicalCommittee': {
                     'Member': 'AccountId',
                     'Members': ('u32', 'u32'),
                     '_Phantom': None,
                 },
-                'Void': (),
                 'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-                None: None,
             },
             'priority': 'u8',
         },

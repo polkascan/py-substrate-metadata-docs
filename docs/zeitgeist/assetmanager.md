@@ -29,6 +29,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -99,6 +103,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -116,6 +124,9 @@ call = substrate.compose_call(
 }
 )
 ```
+
+---------
+## Storage functions
 
 ---------
 ## Constants

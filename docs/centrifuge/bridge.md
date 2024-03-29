@@ -18,7 +18,7 @@ call from a proposal.
 ```python
 call = substrate.compose_call(
     'Bridge', 'remark', {
-    'hash': '[u8; 32]',
+    'hash': 'scale_info::12',
     'r_id': '[u8; 32]',
 }
 )
@@ -76,8 +76,11 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `<T as frame_system::Config>::Hash` | ```[u8; 32]```
+| None | `<T as frame_system::Config>::Hash` | ```scale_info::12```
 | None | `ResourceId` | ```[u8; 32]```
+
+---------
+## Storage functions
 
 ---------
 ## Constants

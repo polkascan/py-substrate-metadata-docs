@@ -21,17 +21,18 @@ result = substrate.query(
     {
         'Commitment': (
             {
-                'EVM': '[u64; 4]',
+                'EVM': 'scale_info::111',
                 'EVMLegacy': 'u32',
-                'Sub': {
-                    'Custom': 'u32',
-                    'Kusama': None,
-                    'Mainnet': None,
-                    'Polkadot': None,
-                    'Rococo': None,
-                },
+                'Sub': (
+                    'Mainnet',
+                    'Kusama',
+                    'Polkadot',
+                    'Rococo',
+                    'Alphanet',
+                    'Liberland',
+                ),
             },
-            '[u8; 32]',
+            'scale_info::11',
         ),
     },
 ]

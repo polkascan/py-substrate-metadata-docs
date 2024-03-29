@@ -17,7 +17,7 @@
 call = substrate.compose_call(
     'Democracy', 'blacklist', {
     'maybe_ref_index': (None, 'u32'),
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::12',
 }
 )
 ```
@@ -123,9 +123,11 @@ call = substrate.compose_call(
     'Democracy', 'external_propose', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -146,9 +148,11 @@ call = substrate.compose_call(
     'Democracy', 'external_propose_default', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -169,9 +173,11 @@ call = substrate.compose_call(
     'Democracy', 'external_propose_majority', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -185,15 +191,15 @@ call = substrate.compose_call(
 | Name | Type |
 | -------- | -------- | 
 | proposal_hash | `H256` | 
-| voting_period | `T::BlockNumber` | 
-| delay | `T::BlockNumber` | 
+| voting_period | `BlockNumberFor<T>` | 
+| delay | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Democracy', 'fast_track', {
     'delay': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::12',
     'voting_period': 'u32',
 }
 )
@@ -213,9 +219,11 @@ call = substrate.compose_call(
     'Democracy', 'propose', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -288,7 +296,10 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'Democracy', 'set_metadata', {
-    'maybe_hash': (None, '[u8; 32]'),
+    'maybe_hash': (
+        None,
+        'scale_info::12',
+    ),
     'owner': {
         'External': None,
         'Proposal': 'u32',
@@ -342,7 +353,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'veto_external', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'veto_external', {'proposal_hash': 'scale_info::12'}
 )
 ```
 
@@ -392,7 +403,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `H256` | ```[u8; 32]```
+| proposal_hash | `H256` | ```scale_info::12```
 
 ---------
 ### Cancelled
@@ -420,7 +431,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `PreimageHash` | ```scale_info::12```
 
 ---------
 ### MetadataSet
@@ -428,7 +439,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `PreimageHash` | ```scale_info::12```
 
 ---------
 ### MetadataTransferred
@@ -437,7 +448,7 @@ No attributes
 | -------- | -------- | -------- |
 | prev_owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
 | owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `PreimageHash` | ```scale_info::12```
 
 ---------
 ### NotPassed
@@ -505,8 +516,8 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| proposal_hash | `H256` | ```[u8; 32]```
-| until | `T::BlockNumber` | ```u32```
+| proposal_hash | `H256` | ```scale_info::12```
+| until | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### Voted
@@ -526,7 +537,7 @@ No attributes
 #### Python
 ```python
 result = substrate.query(
-    'Democracy', 'Blacklist', ['[u8; 32]']
+    'Democracy', 'Blacklist', ['scale_info::12']
 )
 ```
 
@@ -540,7 +551,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Democracy', 'Cancellations', ['[u8; 32]']
+    'Democracy', 'Cancellations', ['scale_info::12']
 )
 ```
 
@@ -608,7 +619,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### NextExternal
@@ -625,8 +636,8 @@ result = substrate.query(
 (
     {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
-        'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        'Legacy': {'hash': 'scale_info::12'},
+        'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
     },
     ('SuperMajorityApprove', 'SuperMajorityAgainst', 'SimpleMajority'),
 )
@@ -662,8 +673,8 @@ result = substrate.query(
         'u32',
         {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::12'},
+            'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
         },
         'AccountId',
     ),
@@ -702,8 +713,8 @@ result = substrate.query(
         'end': 'u32',
         'proposal': {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::12'},
+            'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
         },
         'tally': {'ayes': 'u128', 'nays': 'u128', 'turnout': 'u128'},
         'threshold': (

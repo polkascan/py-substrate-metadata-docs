@@ -156,7 +156,7 @@ Require signed leader origin or the root (to fill opening for the leader positio
 call = substrate.compose_call(
     'StorageWorkingGroup', 'fill_opening', {
     'opening_id': 'u64',
-    'successful_application_ids': 'scale_info::84',
+    'successful_application_ids': 'scale_info::90',
 }
 )
 ```
@@ -662,8 +662,8 @@ Params:
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `OpeningId` | ```u64```
-| None | `ApplicationIdToWorkerIdMap` | ```scale_info::214```
-| None | `BTreeSet<ApplicationId>` | ```scale_info::84```
+| None | `ApplicationIdToWorkerIdMap` | ```scale_info::221```
+| None | `BTreeSet<ApplicationId>` | ```scale_info::90```
 
 ---------
 ### RewardPaid
@@ -730,7 +730,7 @@ Params:
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `Hash` | ```[u8; 32]```
+| None | `Hash` | ```scale_info::11```
 | None | `Option<Vec<u8>>` | ```(None, 'Bytes')```
 
 ---------
@@ -878,7 +878,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'description_hash': '[u8; 32]',
+    'description_hash': 'scale_info::11',
     'member_id': 'u64',
     'opening_id': 'u64',
     'reward_account_id': 'AccountId',
@@ -977,7 +977,7 @@ result = substrate.query(
 {
     'created': 'u32',
     'creation_stake': 'u128',
-    'description_hash': '[u8; 32]',
+    'description_hash': 'scale_info::11',
     'opening_type': ('Leader', 'Regular'),
     'reward_per_block': (None, 'u128'),
     'stake_policy': {
@@ -999,7 +999,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::11'
 ```
 ---------
 ### WorkerById
@@ -1046,7 +1046,7 @@ constant = substrate.get_constant('StorageWorkingGroup', 'LeaderOpeningStake')
  Max simultaneous active worker number.
 #### Value
 ```python
-30
+50
 ```
 #### Python
 ```python

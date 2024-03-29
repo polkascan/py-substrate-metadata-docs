@@ -6,13 +6,7 @@
 
 ---------
 ### burn
-Removes a token from existence.
-Burning needs to be enabled in the permissions for the given collection type.
-
-Parameters:
-- `origin`: The NFT owner.
-- `collection_id`: The collection of the asset to be burned.
-- `item_id`: The instance of the asset to be burned.
+See [`Pallet::burn`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -31,18 +25,7 @@ call = substrate.compose_call(
 
 ---------
 ### create_collection
-Creates an NFT collection of the given collection type and sets its metadata.
-The collection ID needs to be outside of the range of reserved IDs.
-The creation of a collection needs to be enabled in the permissions
-for the given collection type.
-
-Parameters:
-- `origin`: The owner of the newly created collection.
-- `collection_id`: Identifier of a collection.
-- `collection_type`: The collection type determines its purpose and usage.
-- `metadata`: Arbitrary data about a collection, e.g. IPFS hash or name.
-
-Emits CollectionCreated event
+See [`Pallet::create_collection`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -66,14 +49,7 @@ call = substrate.compose_call(
 
 ---------
 ### destroy_collection
-Removes a collection from existence.
-Destroying of collections need to be enabled in the permissions
-for the given collection type.
-Fails if the collection is not empty.
-
-Parameters:
-- `origin`: The collection owner.
-- `collection_id`: The identifier of the asset collection to be destroyed.
+See [`Pallet::destroy_collection`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -88,15 +64,7 @@ call = substrate.compose_call(
 
 ---------
 ### mint
-Mints an NFT in the specified collection and sets its metadata.
-Minting of new items needs to be enabled in the permissions
-for the given collection type.
-
-Parameters:
-- `origin`: The owner of the newly minted NFT.
-- `collection_id`: The collection of the asset to be minted.
-- `item_id`: The item of the asset to be minted.
-- `metadata`: Arbitrary data about an item, e.g. IPFS hash or symbol.
+See [`Pallet::mint`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -117,14 +85,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer
-Transfers NFT from account A to account B.
-Transfers need to be enabled in the permissions for the given collection type.
-
-Parameters:
-- `origin`: The NFT owner
-- `collection_id`: The collection of the asset to be transferred.
-- `item_id`: The instance of the asset to be transferred.
-- `dest`: The account to receive ownership of the asset.
+See [`Pallet::transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

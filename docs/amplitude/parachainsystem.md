@@ -25,7 +25,7 @@ This call requires Root origin.
 call = substrate.compose_call(
     'ParachainSystem', 'authorize_upgrade', {
     'check_version': 'bool',
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
 }
 )
 ```
@@ -80,15 +80,15 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::214',
+        'horizontal_messages': 'scale_info::230',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::196',
+            'trie_nodes': 'scale_info::212',
         },
         'validation_data': {
             'max_pov_size': 'u32',
             'parent_head': 'Bytes',
             'relay_parent_number': 'u32',
-            'relay_parent_storage_root': '[u8; 32]',
+            'relay_parent_storage_root': 'scale_info::12',
         },
     },
 }
@@ -119,7 +119,7 @@ Downward messages were processed using the given weight.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
-| dmq_head | `relay_chain::Hash` | ```[u8; 32]```
+| dmq_head | `relay_chain::Hash` | ```scale_info::12```
 
 ---------
 ### DownwardMessagesReceived
@@ -135,7 +135,7 @@ An upgrade has been authorized.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### UpwardMessageSent
@@ -197,7 +197,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'check_version': 'bool', 'code_hash': '[u8; 32]'}
+{'check_version': 'bool', 'code_hash': 'scale_info::12'}
 ```
 ---------
 ### CustomValidationHeadData
@@ -311,7 +311,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### LastHrmpMqcHeads
@@ -329,7 +329,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::204'
+'scale_info::220'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -435,7 +435,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::196'}
+{'trie_nodes': 'scale_info::212'}
 ```
 ---------
 ### RelevantMessagingState
@@ -457,7 +457,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'dmq_mqc_head': '[u8; 32]',
+    'dmq_mqc_head': 'scale_info::12',
     'egress_channels': [
         (
             'u32',
@@ -465,7 +465,7 @@ result = substrate.query(
                 'max_capacity': 'u32',
                 'max_message_size': 'u32',
                 'max_total_size': 'u32',
-                'mqc_head': (None, '[u8; 32]'),
+                'mqc_head': (None, 'scale_info::12'),
                 'msg_count': 'u32',
                 'total_size': 'u32',
             },
@@ -478,7 +478,7 @@ result = substrate.query(
                 'max_capacity': 'u32',
                 'max_message_size': 'u32',
                 'max_total_size': 'u32',
-                'mqc_head': (None, '[u8; 32]'),
+                'mqc_head': (None, 'scale_info::12'),
                 'msg_count': 'u32',
                 'total_size': 'u32',
             },
@@ -576,7 +576,7 @@ result = substrate.query(
     'max_pov_size': 'u32',
     'parent_head': 'Bytes',
     'relay_parent_number': 'u32',
-    'relay_parent_storage_root': '[u8; 32]',
+    'relay_parent_storage_root': 'scale_info::12',
 }
 ```
 ---------

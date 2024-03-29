@@ -32,7 +32,7 @@ Weight: `O(p)` (though as this is an high-privilege dispatch, we assume it has a
 call = substrate.compose_call(
     'Democracy', 'blacklist', {
     'maybe_ref_index': (None, 'u32'),
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::11',
 }
 )
 ```
@@ -191,9 +191,11 @@ call = substrate.compose_call(
     'Democracy', 'external_propose', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::11',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::11',
             'len': 'u32',
         },
     },
@@ -225,9 +227,11 @@ call = substrate.compose_call(
     'Democracy', 'external_propose_default', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::11',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::11',
             'len': 'u32',
         },
     },
@@ -259,9 +263,11 @@ call = substrate.compose_call(
     'Democracy', 'external_propose_majority', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::11',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::11',
             'len': 'u32',
         },
     },
@@ -299,7 +305,7 @@ Weight: `O(1)`
 call = substrate.compose_call(
     'Democracy', 'fast_track', {
     'delay': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::11',
     'voting_period': 'u32',
 }
 )
@@ -328,9 +334,11 @@ call = substrate.compose_call(
     'Democracy', 'propose', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::11',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::11',
             'len': 'u32',
         },
     },
@@ -511,7 +519,7 @@ Weight: `O(V + log(V))` where V is number of `existing vetoers`
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'veto_external', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'veto_external', {'proposal_hash': 'scale_info::11'}
 )
 ```
 
@@ -569,7 +577,7 @@ A proposal_hash has been blacklisted permanently.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `H256` | ```[u8; 32]```
+| proposal_hash | `H256` | ```scale_info::11```
 
 ---------
 ### Cancelled
@@ -669,7 +677,7 @@ An external proposal has been vetoed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| proposal_hash | `H256` | ```[u8; 32]```
+| proposal_hash | `H256` | ```scale_info::11```
 | until | `T::BlockNumber` | ```u32```
 
 ---------
@@ -693,7 +701,7 @@ An account has voted in a referendum
 #### Python
 ```python
 result = substrate.query(
-    'Democracy', 'Blacklist', ['[u8; 32]']
+    'Democracy', 'Blacklist', ['scale_info::11']
 )
 ```
 
@@ -708,7 +716,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Democracy', 'Cancellations', ['[u8; 32]']
+    'Democracy', 'Cancellations', ['scale_info::11']
 )
 ```
 
@@ -784,8 +792,8 @@ result = substrate.query(
 (
     {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
-        'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        'Legacy': {'hash': 'scale_info::11'},
+        'Lookup': {'hash': 'scale_info::11', 'len': 'u32'},
     },
     ('SuperMajorityApprove', 'SuperMajorityAgainst', 'SimpleMajority'),
 )
@@ -823,8 +831,8 @@ result = substrate.query(
         'u32',
         {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::11'},
+            'Lookup': {'hash': 'scale_info::11', 'len': 'u32'},
         },
         'AccountId',
     ),
@@ -867,8 +875,8 @@ result = substrate.query(
         'end': 'u32',
         'proposal': {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::11'},
+            'Lookup': {'hash': 'scale_info::11', 'len': 'u32'},
         },
         'tally': {'ayes': 'u128', 'nays': 'u128', 'turnout': 'u128'},
         'threshold': (

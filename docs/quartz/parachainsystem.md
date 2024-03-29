@@ -18,7 +18,7 @@ See [`Pallet::authorize_upgrade`].
 call = substrate.compose_call(
     'ParachainSystem', 'authorize_upgrade', {
     'check_version': 'bool',
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
 }
 )
 ```
@@ -57,15 +57,15 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::106',
+        'horizontal_messages': 'scale_info::103',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::103',
+            'trie_nodes': 'scale_info::100',
         },
         'validation_data': {
             'max_pov_size': 'u32',
             'parent_head': 'Bytes',
             'relay_parent_number': 'u32',
-            'relay_parent_storage_root': '[u8; 32]',
+            'relay_parent_storage_root': 'scale_info::12',
         },
     },
 }
@@ -97,7 +97,7 @@ Downward messages were processed using the given weight.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
-| dmq_head | `relay_chain::Hash` | ```[u8; 32]```
+| dmq_head | `relay_chain::Hash` | ```scale_info::12```
 
 ---------
 ### DownwardMessagesReceived
@@ -113,7 +113,7 @@ An upgrade has been authorized.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### UpwardMessageSent
@@ -149,7 +149,7 @@ No attributes
 ---------
 ### AggregatedUnincludedSegment
  Storage field that keeps track of bandwidth used by the unincluded segment along with the
- latest the latest HRMP watermark. Used for limiting the acceptance of new blocks with
+ latest HRMP watermark. Used for limiting the acceptance of new blocks with
  respect to relay chain constraints.
 
 #### Python
@@ -165,7 +165,7 @@ result = substrate.query(
     'consumed_go_ahead_signal': (None, ('Abort', 'GoAhead')),
     'hrmp_watermark': (None, 'u32'),
     'used_bandwidth': {
-        'hrmp_outgoing': 'scale_info::408',
+        'hrmp_outgoing': 'scale_info::404',
         'ump_msg_count': 'u32',
         'ump_total_bytes': 'u32',
     },
@@ -200,7 +200,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'check_version': 'bool', 'code_hash': '[u8; 32]'}
+{'check_version': 'bool', 'code_hash': 'scale_info::12'}
 ```
 ---------
 ### CustomValidationHeadData
@@ -318,7 +318,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### LastHrmpMqcHeads
@@ -336,11 +336,13 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::425'
+'scale_info::421'
 ```
 ---------
 ### LastRelayChainBlockNumber
  The relay chain block number associated with the last parachain block.
+
+ This is updated in `on_finalize`.
 
 #### Python
 ```python
@@ -442,7 +444,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::103'}
+{'trie_nodes': 'scale_info::100'}
 ```
 ---------
 ### RelevantMessagingState
@@ -464,7 +466,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'dmq_mqc_head': '[u8; 32]',
+    'dmq_mqc_head': 'scale_info::12',
     'egress_channels': [
         (
             'u32',
@@ -472,7 +474,7 @@ result = substrate.query(
                 'max_capacity': 'u32',
                 'max_message_size': 'u32',
                 'max_total_size': 'u32',
-                'mqc_head': (None, '[u8; 32]'),
+                'mqc_head': (None, 'scale_info::12'),
                 'msg_count': 'u32',
                 'total_size': 'u32',
             },
@@ -485,7 +487,7 @@ result = substrate.query(
                 'max_capacity': 'u32',
                 'max_message_size': 'u32',
                 'max_total_size': 'u32',
-                'mqc_head': (None, '[u8; 32]'),
+                'mqc_head': (None, 'scale_info::12'),
                 'msg_count': 'u32',
                 'total_size': 'u32',
             },
@@ -550,9 +552,9 @@ result = substrate.query(
 [
     {
         'consumed_go_ahead_signal': (None, ('Abort', 'GoAhead')),
-        'para_head_hash': (None, '[u8; 32]'),
+        'para_head_hash': (None, 'scale_info::12'),
         'used_bandwidth': {
-            'hrmp_outgoing': 'scale_info::408',
+            'hrmp_outgoing': 'scale_info::404',
             'ump_msg_count': 'u32',
             'ump_total_bytes': 'u32',
         },
@@ -600,6 +602,21 @@ result = substrate.query(
 (None, ('Present', ))
 ```
 ---------
+### UpwardDeliveryFeeFactor
+ The factor to multiply the base delivery fee by for UMP.
+
+#### Python
+```python
+result = substrate.query(
+    'ParachainSystem', 'UpwardDeliveryFeeFactor', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
 ### UpwardMessages
  Upward messages that were sent in a block.
 
@@ -635,7 +652,7 @@ result = substrate.query(
     'max_pov_size': 'u32',
     'parent_head': 'Bytes',
     'relay_parent_number': 'u32',
-    'relay_parent_storage_root': '[u8; 32]',
+    'relay_parent_storage_root': 'scale_info::12',
 }
 ```
 ---------

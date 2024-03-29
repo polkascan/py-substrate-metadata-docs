@@ -81,10 +81,6 @@ Tried to set data for fungible item.
 Only a fungible collection could be possibly broken; any fungible token is valid.
 
 ---------
-### NotFungibleDataUsedToMintFungibleCollectionToken
-Not Fungible item data used to mint in Fungible collection.
-
----------
 ### SettingAllowanceForAllNotAllowed
 Setting allowance for all is not allowed.
 

@@ -31,7 +31,7 @@ call = substrate.compose_call(
             'Sr25519': '[u8; 64]',
         },
         'technics': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::9',
         },
     },
 }
@@ -53,7 +53,7 @@ call = substrate.compose_call(
     'report': {
         'index': 'u32',
         'payload': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::9',
         },
         'sender': 'AccountId',
         'signature': {
@@ -76,7 +76,7 @@ Yay! New liability created.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::Index` | ```u32```
-| None | `TechnicsFor<T>` | ```{'hash': '[u8; 32]'}```
+| None | `TechnicsFor<T>` | ```{'hash': 'scale_info::9'}```
 | None | `EconomicsFor<T>` | ```{'price': 'u128'}```
 | None | `T::AccountId` | ```AccountId```
 | None | `T::AccountId` | ```AccountId```
@@ -88,7 +88,7 @@ Liability report published.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::Index` | ```u32```
-| None | `ReportFor<T>` | ```{'index': 'u32', 'sender': 'AccountId', 'payload': {'hash': '[u8; 32]'}, 'signature': {'Ed25519': '[u8; 64]', 'Sr25519': '[u8; 64]', 'Ecdsa': '[u8; 65]'}}```
+| None | `ReportFor<T>` | ```{'index': 'u32', 'sender': 'AccountId', 'payload': {'hash': 'scale_info::9'}, 'signature': {'Ed25519': '[u8; 64]', 'Sr25519': '[u8; 64]', 'Ecdsa': '[u8; 65]'}}```
 
 ---------
 ## Storage functions
@@ -120,7 +120,7 @@ result = substrate.query(
         'Ed25519': '[u8; 64]',
         'Sr25519': '[u8; 64]',
     },
-    'technics': {'hash': '[u8; 32]'},
+    'technics': {'hash': 'scale_info::9'},
 }
 ```
 ---------
@@ -169,7 +169,7 @@ result = substrate.query(
 ```python
 {
     'index': 'u32',
-    'payload': {'hash': '[u8; 32]'},
+    'payload': {'hash': 'scale_info::9'},
     'sender': 'AccountId',
     'signature': {
         'Ecdsa': '[u8; 65]',

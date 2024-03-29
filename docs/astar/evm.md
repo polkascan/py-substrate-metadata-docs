@@ -6,7 +6,7 @@
 
 ---------
 ### call
-Issue an EVM call operation. This is similar to a message call transaction in Ethereum.
+See [`Pallet::call`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -25,27 +25,29 @@ Issue an EVM call operation. This is similar to a message call transaction in Et
 call = substrate.compose_call(
     'EVM', 'call', {
     'access_list': [
-        ('[u8; 20]', ['[u8; 32]']),
+        (
+            '[u8; 20]',
+            ['scale_info::12'],
+        ),
     ],
     'gas_limit': 'u64',
     'input': 'Bytes',
-    'max_fee_per_gas': '[u64; 4]',
+    'max_fee_per_gas': 'scale_info::135',
     'max_priority_fee_per_gas': (
         None,
-        '[u64; 4]',
+        'scale_info::135',
     ),
-    'nonce': (None, '[u64; 4]'),
+    'nonce': (None, 'scale_info::135'),
     'source': '[u8; 20]',
     'target': '[u8; 20]',
-    'value': '[u64; 4]',
+    'value': 'scale_info::135',
 }
 )
 ```
 
 ---------
 ### create
-Issue an EVM create operation. This is similar to a contract creation transaction in
-Ethereum.
+See [`Pallet::create`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -63,25 +65,28 @@ Ethereum.
 call = substrate.compose_call(
     'EVM', 'create', {
     'access_list': [
-        ('[u8; 20]', ['[u8; 32]']),
+        (
+            '[u8; 20]',
+            ['scale_info::12'],
+        ),
     ],
     'gas_limit': 'u64',
     'init': 'Bytes',
-    'max_fee_per_gas': '[u64; 4]',
+    'max_fee_per_gas': 'scale_info::135',
     'max_priority_fee_per_gas': (
         None,
-        '[u64; 4]',
+        'scale_info::135',
     ),
-    'nonce': (None, '[u64; 4]'),
+    'nonce': (None, 'scale_info::135'),
     'source': '[u8; 20]',
-    'value': '[u64; 4]',
+    'value': 'scale_info::135',
 }
 )
 ```
 
 ---------
 ### create2
-Issue an EVM create2 operation.
+See [`Pallet::create2`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -100,26 +105,29 @@ Issue an EVM create2 operation.
 call = substrate.compose_call(
     'EVM', 'create2', {
     'access_list': [
-        ('[u8; 20]', ['[u8; 32]']),
+        (
+            '[u8; 20]',
+            ['scale_info::12'],
+        ),
     ],
     'gas_limit': 'u64',
     'init': 'Bytes',
-    'max_fee_per_gas': '[u64; 4]',
+    'max_fee_per_gas': 'scale_info::135',
     'max_priority_fee_per_gas': (
         None,
-        '[u64; 4]',
+        'scale_info::135',
     ),
-    'nonce': (None, '[u64; 4]'),
-    'salt': '[u8; 32]',
+    'nonce': (None, 'scale_info::135'),
+    'salt': 'scale_info::12',
     'source': '[u8; 20]',
-    'value': '[u64; 4]',
+    'value': 'scale_info::135',
 }
 )
 ```
 
 ---------
 ### withdraw
-Withdraw balance from EVM into currency/balances pallet.
+See [`Pallet::withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -177,7 +185,7 @@ Ethereum events from contracts.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| log | `Log` | ```{'address': '[u8; 20]', 'topics': ['[u8; 32]'], 'data': 'Bytes'}```
+| log | `Log` | ```{'address': '[u8; 20]', 'topics': ['scale_info::12'], 'data': 'Bytes'}```
 
 ---------
 ## Storage functions
@@ -208,7 +216,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'hash': '[u8; 32]', 'size': 'u64'}
+{'hash': 'scale_info::12', 'size': 'u64'}
 ```
 ---------
 ### AccountStorages
@@ -216,13 +224,27 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'EVM', 'AccountStorages', ['[u8; 20]', '[u8; 32]']
+    'EVM', 'AccountStorages', ['[u8; 20]', 'scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
+```
+---------
+### Suicided
+
+#### Python
+```python
+result = substrate.query(
+    'EVM', 'Suicided', ['[u8; 20]']
+)
+```
+
+#### Return value
+```python
+()
 ```
 ---------
 ## Errors

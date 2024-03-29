@@ -6,12 +6,7 @@
 
 ---------
 ### cancel
-Cancel an ongoing referendum.
-
-- `origin`: must be the `CancelOrigin`.
-- `index`: The index of the referendum to be cancelled.
-
-Emits `Cancelled`.
+See [`Pallet::cancel`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -26,12 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### kill
-Cancel an ongoing referendum and slash the deposits.
-
-- `origin`: must be the `KillOrigin`.
-- `index`: The index of the referendum to be cancelled.
-
-Emits `Killed` and `DepositSlashed`.
+See [`Pallet::kill`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -46,10 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### nudge_referendum
-Advance a referendum onto its next logical state. Only used internally.
-
-- `origin`: must be `Root`.
-- `index`: the referendum to be advanced.
+See [`Pallet::nudge_referendum`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -64,15 +51,7 @@ call = substrate.compose_call(
 
 ---------
 ### one_fewer_deciding
-Advance a track onto its next logical state. Only used internally.
-
-- `origin`: must be `Root`.
-- `track`: the track to be advanced.
-
-Action item for when there is now one fewer referendum in the deciding phase and the
-`DecidingCount` is not yet updated. This means that we should either:
-- begin deciding another referendum (and leave `DecidingCount` alone); or
-- decrement `DecidingCount`.
+See [`Pallet::one_fewer_deciding`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -87,14 +66,7 @@ call = substrate.compose_call(
 
 ---------
 ### place_decision_deposit
-Post the Decision Deposit for a referendum.
-
-- `origin`: must be `Signed` and the account must have funds available for the
-  referendum&\#x27;s track&\#x27;s Decision Deposit.
-- `index`: The index of the submitted referendum whose Decision Deposit is yet to be
-  posted.
-
-Emits `DecisionDepositPlaced`.
+See [`Pallet::place_decision_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -109,13 +81,7 @@ call = substrate.compose_call(
 
 ---------
 ### refund_decision_deposit
-Refund the Decision Deposit for a closed referendum back to the depositor.
-
-- `origin`: must be `Signed` or `Root`.
-- `index`: The index of a closed referendum whose Decision Deposit has not yet been
-  refunded.
-
-Emits `DecisionDepositRefunded`.
+See [`Pallet::refund_decision_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -130,13 +96,7 @@ call = substrate.compose_call(
 
 ---------
 ### refund_submission_deposit
-Refund the Submission Deposit for a closed referendum back to the depositor.
-
-- `origin`: must be `Signed` or `Root`.
-- `index`: The index of a closed referendum whose Submission Deposit has not yet been
-  refunded.
-
-Emits `SubmissionDepositRefunded`.
+See [`Pallet::refund_submission_deposit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -151,46 +111,35 @@ call = substrate.compose_call(
 
 ---------
 ### set_metadata
-Set or clear metadata of a referendum.
-
-Parameters:
-- `origin`: Must be `Signed` by a creator of a referendum or by anyone to clear a
-  metadata of a finished referendum.
-- `index`:  The index of a referendum to set or clear metadata for.
-- `maybe_hash`: The hash of an on-chain stored preimage. `None` to clear a metadata.
+See [`Pallet::set_metadata`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | index | `ReferendumIndex` | 
-| maybe_hash | `Option<PreimageHash>` | 
+| maybe_hash | `Option<T::Hash>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'FellowshipReferenda', 'set_metadata', {
     'index': 'u32',
-    'maybe_hash': (None, '[u8; 32]'),
+    'maybe_hash': (
+        None,
+        'scale_info::12',
+    ),
 }
 )
 ```
 
 ---------
 ### submit
-Propose a referendum on a privileged action.
-
-- `origin`: must be `SubmitOrigin` and the account must have `SubmissionDeposit` funds
-  available.
-- `proposal_origin`: The origin from which the proposal should be executed.
-- `proposal`: The proposal.
-- `enactment_moment`: The moment that the proposal should be enacted.
-
-Emits `Submitted`.
+See [`Pallet::submit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | proposal_origin | `Box<PalletsOriginOf<T>>` | 
 | proposal | `BoundedCallOf<T, I>` | 
-| enactment_moment | `DispatchTime<T::BlockNumber>` | 
+| enactment_moment | `DispatchTime<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -202,9 +151,11 @@ call = substrate.compose_call(
     },
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -220,19 +171,27 @@ call = substrate.compose_call(
             'SiblingParachain': 'u32',
         },
         'FellowshipOrigins': (
-            'FellowshipCandidates',
-            'Fellows',
-            'FellowshipExperts',
-            'FellowshipMasters',
-            'Fellowship1Dan',
+            'Members',
             'Fellowship2Dan',
-            'Fellowship3Dan',
-            'Fellowship4Dan',
+            'Fellows',
+            'Architects',
             'Fellowship5Dan',
             'Fellowship6Dan',
-            'Fellowship7Dan',
+            'Masters',
             'Fellowship8Dan',
             'Fellowship9Dan',
+            'RetainAt1Dan',
+            'RetainAt2Dan',
+            'RetainAt3Dan',
+            'RetainAt4Dan',
+            'RetainAt5Dan',
+            'RetainAt6Dan',
+            'PromoteTo1Dan',
+            'PromoteTo2Dan',
+            'PromoteTo3Dan',
+            'PromoteTo4Dan',
+            'PromoteTo5Dan',
+            'PromoteTo6Dan',
         ),
         'PolkadotXcm': {
             'Response': {
@@ -1292,7 +1251,7 @@ A referendum has moved into the deciding phase.
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
 | track | `TrackIdOf<T, I>` | ```u16```
-| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': '[u8; 32]'}, 'Inline': 'Bytes', 'Lookup': {'hash': '[u8; 32]', 'len': 'u32'}}```
+| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': 'scale_info::12'}, 'Inline': 'Bytes', 'Lookup': {'hash': 'scale_info::12', 'len': 'u32'}}```
 | tally | `T::Tally` | ```{'bare_ayes': 'u32', 'ayes': 'u32', 'nays': 'u32'}```
 
 ---------
@@ -1320,7 +1279,7 @@ Metadata for a referendum has been cleared.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### MetadataSet
@@ -1329,7 +1288,7 @@ Metadata for a referendum has been set.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Rejected
@@ -1358,7 +1317,7 @@ A referendum has been submitted.
 | -------- | -------- | -------- |
 | index | `ReferendumIndex` | ```u32```
 | track | `TrackIdOf<T, I>` | ```u16```
-| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': '[u8; 32]'}, 'Inline': 'Bytes', 'Lookup': {'hash': '[u8; 32]', 'len': 'u32'}}```
+| proposal | `BoundedCallOf<T, I>` | ```{'Legacy': {'hash': 'scale_info::12'}, 'Inline': 'Bytes', 'Lookup': {'hash': 'scale_info::12', 'len': 'u32'}}```
 
 ---------
 ### TimedOut
@@ -1390,7 +1349,7 @@ result = substrate.query(
 ---------
 ### MetadataOf
  The metadata is a general information concerning the referendum.
- The `PreimageHash` refers to the preimage of the `Preimages` provider which can be a JSON
+ The `Hash` refers to the preimage of the `Preimages` provider which can be a JSON
  dump or IPFS hash of a JSON file.
 
  Consider a garbage collection for a metadata of finished referendums to `unrequest` (remove)
@@ -1405,7 +1364,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### ReferendumCount
@@ -1454,26 +1413,35 @@ result = substrate.query(
         'enactment': {'After': 'u32', 'At': 'u32'},
         'in_queue': 'bool',
         'origin': {
+            'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
+            None: None,
             'AllianceMotion': {
                 'Member': 'AccountId',
                 'Members': ('u32', 'u32'),
                 '_Phantom': None,
             },
-            'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
             'FellowshipOrigins': (
-                'FellowshipCandidates',
-                'Fellows',
-                'FellowshipExperts',
-                'FellowshipMasters',
-                'Fellowship1Dan',
+                'Members',
                 'Fellowship2Dan',
-                'Fellowship3Dan',
-                'Fellowship4Dan',
+                'Fellows',
+                'Architects',
                 'Fellowship5Dan',
                 'Fellowship6Dan',
-                'Fellowship7Dan',
+                'Masters',
                 'Fellowship8Dan',
                 'Fellowship9Dan',
+                'RetainAt1Dan',
+                'RetainAt2Dan',
+                'RetainAt3Dan',
+                'RetainAt4Dan',
+                'RetainAt5Dan',
+                'RetainAt6Dan',
+                'PromoteTo1Dan',
+                'PromoteTo2Dan',
+                'PromoteTo3Dan',
+                'PromoteTo4Dan',
+                'PromoteTo5Dan',
+                'PromoteTo6Dan',
             ),
             'PolkadotXcm': {
                 'Response': {'interior': 'scale_info::44', 'parents': 'u8'},
@@ -1481,12 +1449,11 @@ result = substrate.query(
             },
             'Void': (),
             'system': {'None': None, 'Root': None, 'Signed': 'AccountId'},
-            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::12'},
+            'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
         },
         'submission_deposit': {'amount': 'u128', 'who': 'AccountId'},
         'submitted': 'u32',
@@ -1568,36 +1535,10 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
 ```python
 [
     (
-        0,
-        {
-            'confirm_period': 150,
-            'decision_deposit': 1000000000000,
-            'decision_period': 50400,
-            'max_deciding': 10,
-            'min_approval': {
-                'LinearDecreasing': {
-                    'ceil': 1000000000,
-                    'floor': 500000000,
-                    'length': 1000000000,
-                },
-            },
-            'min_enactment_period': 5,
-            'min_support': {
-                'LinearDecreasing': {
-                    'ceil': 500000000,
-                    'floor': 0,
-                    'length': 1000000000,
-                },
-            },
-            'name': 'candidates',
-            'prepare_period': 150,
-        },
-    ),
-    (
         1,
         {
             'confirm_period': 150,
-            'decision_deposit': 100000000000,
+            'decision_deposit': 50000000000,
             'decision_period': 50400,
             'max_deciding': 10,
             'min_approval': {
@@ -1607,10 +1548,10 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
                     'length': 1000000000,
                 },
             },
-            'min_enactment_period': 5,
+            'min_enactment_period': 25,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
+                    'ceil': 1000000000,
                     'floor': 0,
                     'length': 1000000000,
                 },
@@ -1623,7 +1564,7 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
         2,
         {
             'confirm_period': 150,
-            'decision_deposit': 100000000000,
+            'decision_deposit': 50000000000,
             'decision_period': 50400,
             'max_deciding': 10,
             'min_approval': {
@@ -1633,15 +1574,15 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
                     'length': 1000000000,
                 },
             },
-            'min_enactment_period': 5,
+            'min_enactment_period': 25,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
+                    'ceil': 1000000000,
                     'floor': 0,
                     'length': 1000000000,
                 },
             },
-            'name': 'proficients',
+            'name': 'proficient members',
             'prepare_period': 150,
         },
     ),
@@ -1649,7 +1590,7 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
         3,
         {
             'confirm_period': 150,
-            'decision_deposit': 100000000000,
+            'decision_deposit': 50000000000,
             'decision_period': 50400,
             'max_deciding': 10,
             'min_approval': {
@@ -1659,10 +1600,10 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
                     'length': 1000000000,
                 },
             },
-            'min_enactment_period': 5,
+            'min_enactment_period': 25,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
+                    'ceil': 1000000000,
                     'floor': 0,
                     'length': 1000000000,
                 },
@@ -1675,7 +1616,7 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
         4,
         {
             'confirm_period': 150,
-            'decision_deposit': 100000000000,
+            'decision_deposit': 50000000000,
             'decision_period': 50400,
             'max_deciding': 10,
             'min_approval': {
@@ -1685,15 +1626,15 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
                     'length': 1000000000,
                 },
             },
-            'min_enactment_period': 5,
+            'min_enactment_period': 25,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
+                    'ceil': 1000000000,
                     'floor': 0,
                     'length': 1000000000,
                 },
             },
-            'name': 'senior fellows',
+            'name': 'architects',
             'prepare_period': 150,
         },
     ),
@@ -1701,7 +1642,7 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
         5,
         {
             'confirm_period': 150,
-            'decision_deposit': 10000000000,
+            'decision_deposit': 50000000000,
             'decision_period': 50400,
             'max_deciding': 10,
             'min_approval': {
@@ -1711,15 +1652,15 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
                     'length': 1000000000,
                 },
             },
-            'min_enactment_period': 5,
+            'min_enactment_period': 25,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
+                    'ceil': 1000000000,
                     'floor': 0,
                     'length': 1000000000,
                 },
             },
-            'name': 'experts',
+            'name': 'architects adept',
             'prepare_period': 150,
         },
     ),
@@ -1727,7 +1668,7 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
         6,
         {
             'confirm_period': 150,
-            'decision_deposit': 10000000000,
+            'decision_deposit': 50000000000,
             'decision_period': 50400,
             'max_deciding': 10,
             'min_approval': {
@@ -1737,15 +1678,15 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
                     'length': 1000000000,
                 },
             },
-            'min_enactment_period': 5,
+            'min_enactment_period': 25,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
+                    'ceil': 1000000000,
                     'floor': 0,
                     'length': 1000000000,
                 },
             },
-            'name': 'senior experts',
+            'name': 'grand architects',
             'prepare_period': 150,
         },
     ),
@@ -1753,7 +1694,7 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
         7,
         {
             'confirm_period': 150,
-            'decision_deposit': 10000000000,
+            'decision_deposit': 50000000000,
             'decision_period': 50400,
             'max_deciding': 10,
             'min_approval': {
@@ -1763,10 +1704,10 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
                     'length': 1000000000,
                 },
             },
-            'min_enactment_period': 5,
+            'min_enactment_period': 25,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
+                    'ceil': 1000000000,
                     'floor': 0,
                     'length': 1000000000,
                 },
@@ -1779,7 +1720,7 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
         8,
         {
             'confirm_period': 150,
-            'decision_deposit': 10000000000,
+            'decision_deposit': 50000000000,
             'decision_period': 50400,
             'max_deciding': 10,
             'min_approval': {
@@ -1789,15 +1730,15 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
                     'length': 1000000000,
                 },
             },
-            'min_enactment_period': 5,
+            'min_enactment_period': 25,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
+                    'ceil': 1000000000,
                     'floor': 0,
                     'length': 1000000000,
                 },
             },
-            'name': 'senior masters',
+            'name': 'masters constant',
             'prepare_period': 150,
         },
     ),
@@ -1805,7 +1746,7 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
         9,
         {
             'confirm_period': 150,
-            'decision_deposit': 10000000000,
+            'decision_deposit': 50000000000,
             'decision_period': 50400,
             'max_deciding': 10,
             'min_approval': {
@@ -1815,16 +1756,328 @@ constant = substrate.get_constant('FellowshipReferenda', 'SubmissionDeposit')
                     'length': 1000000000,
                 },
             },
-            'min_enactment_period': 5,
+            'min_enactment_period': 25,
             'min_support': {
                 'LinearDecreasing': {
-                    'ceil': 500000000,
+                    'ceil': 1000000000,
                     'floor': 0,
                     'length': 1000000000,
                 },
             },
             'name': 'grand masters',
             'prepare_period': 150,
+        },
+    ),
+    (
+        11,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 100800,
+            'max_deciding': 25,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'retain at I Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        12,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 100800,
+            'max_deciding': 25,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'retain at II Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        13,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 100800,
+            'max_deciding': 25,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'retain at III Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        14,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 100800,
+            'max_deciding': 25,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'retain at IV Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        15,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 100800,
+            'max_deciding': 25,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'retain at V Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        16,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 100800,
+            'max_deciding': 25,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'retain at VI Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        21,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 216000,
+            'max_deciding': 10,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'promote to I Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        22,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 216000,
+            'max_deciding': 10,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'promote to II Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        23,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 216000,
+            'max_deciding': 10,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'promote to III Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        24,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 216000,
+            'max_deciding': 10,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'promote to IV Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        25,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 216000,
+            'max_deciding': 10,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'promote to V Dan',
+            'prepare_period': 0,
+        },
+    ),
+    (
+        26,
+        {
+            'confirm_period': 300,
+            'decision_deposit': 50000000000,
+            'decision_period': 216000,
+            'max_deciding': 10,
+            'min_approval': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 600000000,
+                    'length': 1000000000,
+                },
+            },
+            'min_enactment_period': 0,
+            'min_support': {
+                'LinearDecreasing': {
+                    'ceil': 1000000000,
+                    'floor': 100000000,
+                    'length': 1000000000,
+                },
+            },
+            'name': 'promote to VI Dan',
+            'prepare_period': 0,
         },
     ),
 ]

@@ -6,12 +6,7 @@
 
 ---------
 ### change_miner
-Change miner
-
-The dispatch origin for this call must be _Root_.
-
-Parameters:
-- `new_miner`: The new miner&\#x27;s address
+See [`Pallet::change_miner`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -34,12 +29,7 @@ call = substrate.compose_call(
 
 ---------
 ### change_superior
-Change superior
-
-The dispatch origin for this call must be _Root_.
-
-Parameter:
-- `new_superior`: The new superior&\#x27;s address
+See [`Pallet::change_superior`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -62,6 +52,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim
+See [`Pallet::claim`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -82,14 +73,7 @@ call = substrate.compose_call(
 
 ---------
 ### mint_claim
-Mint the claim
-
-This dispatch origin for this call must be _Miner_.
-
-Parameters:
-- `tx`: The claim ethereum tx hash
-- `who`: The claimer ethereum address
-- `value`: The amount of this tx, should be less than claim_limit
+See [`Pallet::mint_claim`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -110,12 +94,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_claim_limit
-Set claim limit
-
-The dispatch origin for this call must be _Superior_.
-
-Parameters:
-- `limit`: The claim CRUs limit
+See [`Pallet::set_claim_limit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

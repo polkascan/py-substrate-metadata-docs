@@ -52,6 +52,7 @@ use, or if the tranche configuration cannot be used.
 | max_reserve | `T::Balance` | 
 | metadata | `Option<Vec<u8>>` | 
 | write_off_policy | `PolicyOf<T>` | 
+| pool_fees | `Vec<PoolFeeInputOf<T>>` | 
 
 #### Python
 ```python
@@ -59,15 +60,42 @@ call = substrate.compose_call(
     'PoolRegistry', 'register', {
     'admin': 'AccountId',
     'currency': {
+        'Native': None,
+        'Tranche': ('u64', '[u8; 16]'),
         None: None,
         'AUSD': None,
         'ForeignAsset': 'u32',
-        'Native': None,
+        'LocalAsset': 'u32',
         'Staking': ('BlockRewards', ),
-        'Tranche': ('u64', '[u8; 16]'),
     },
     'max_reserve': 'u128',
     'metadata': (None, 'Bytes'),
+    'pool_fees': [
+        (
+            ('Top', ),
+            {
+                'destination': 'AccountId',
+                'editor': {
+                    'Account': 'AccountId',
+                    'Root': None,
+                },
+                'fee_type': {
+                    'ChargedUpTo': {
+                        'limit': {
+                            'AmountPerSecond': 'u128',
+                            'ShareOfPortfolioValuation': 'u128',
+                        },
+                    },
+                    'Fixed': {
+                        'limit': {
+                            'AmountPerSecond': 'u128',
+                            'ShareOfPortfolioValuation': 'u128',
+                        },
+                    },
+                },
+            },
+        ),
+    ],
     'pool_id': 'u64',
     'tranche_inputs': [
         {
@@ -91,7 +119,7 @@ call = substrate.compose_call(
                 'penalty': 'u128',
                 'percentage': 'u128',
             },
-            'triggers': 'scale_info::259',
+            'triggers': 'scale_info::405',
         },
     ],
 }
@@ -170,10 +198,7 @@ call = substrate.compose_call(
                         'u32',
                     ),
                     'tranche_type': {
-                        'NonResidual': {
-                            'interest_rate_per_sec': 'u128',
-                            'min_risk_buffer': 'u64',
-                        },
+                        'NonResidual': 'InnerStruct',
                         'Residual': None,
                     },
                 },

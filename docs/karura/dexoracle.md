@@ -642,7 +642,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('u128', 'u128', '[u64; 4]', '[u64; 4]', 'u64', 'u64')
+('u128', 'u128', 'scale_info::578', 'scale_info::578', 'u64', 'u64')
 ```
 ---------
 ### Cumulatives
@@ -801,7 +801,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-('[u64; 4]', '[u64; 4]', 'u64')
+('scale_info::578', 'scale_info::578', 'u64')
 ```
 ---------
 ## Errors

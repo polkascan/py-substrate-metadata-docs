@@ -6,11 +6,7 @@
 
 ---------
 ### resume_xcm_execution
-Resumes all XCM executions for the XCMP queue.
-
-Note that this function doesn&\#x27;t change the status of the in/out bound channels.
-
-- `origin`: Must pass `ControllerOrigin`.
+See [`Pallet::resume_xcm_execution`].
 #### Attributes
 No attributes
 
@@ -23,19 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### service_overweight
-Services a single overweight XCM.
-
-- `origin`: Must pass `ExecuteOverweightOrigin`.
-- `index`: The index of the overweight XCM to service
-- `weight_limit`: The amount of weight that XCM execution may take.
-
-Errors:
-- `BadOverweightIndex`: XCM under `index` is not found in the `Overweight` storage map.
-- `BadXcm`: XCM under `index` cannot be properly decoded into a valid XCM format.
-- `WeightOverLimit`: XCM execution may use greater `weight_limit`.
-
-Events:
-- `OverweightServiced`: On success.
+See [`Pallet::service_overweight`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -48,6 +32,7 @@ call = substrate.compose_call(
     'XcmpQueue', 'service_overweight', {
     'index': 'u64',
     'weight_limit': {
+        'proof_size': 'u64',
         'ref_time': 'u64',
     },
 }
@@ -56,9 +41,7 @@ call = substrate.compose_call(
 
 ---------
 ### suspend_xcm_execution
-Suspends all XCM executions for the XCMP queue, regardless of the sender&\#x27;s origin.
-
-- `origin`: Must pass `ControllerOrigin`.
+See [`Pallet::suspend_xcm_execution`].
 #### Attributes
 No attributes
 
@@ -71,11 +54,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_drop_threshold
-Overwrites the number of pages of messages which must be in the queue after which we drop any further
-messages from the channel.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.drop_threshold`
+See [`Pallet::update_drop_threshold`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -90,11 +69,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_resume_threshold
-Overwrites the number of pages of messages which the queue must be reduced to before it signals that
-message sending may recommence after it has been suspended.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.resume_threshold`
+See [`Pallet::update_resume_threshold`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -109,11 +84,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_suspend_threshold
-Overwrites the number of pages of messages which must be in the queue for the other side to be told to
-suspend their sending.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.suspend_value`
+See [`Pallet::update_suspend_threshold`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -128,10 +99,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_threshold_weight
-Overwrites the amount of remaining weight under which we stop processing messages.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.threshold_weight`
+See [`Pallet::update_threshold_weight`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -140,17 +108,18 @@ Overwrites the amount of remaining weight under which we stop processing message
 #### Python
 ```python
 call = substrate.compose_call(
-    'XcmpQueue', 'update_threshold_weight', {'new': {'ref_time': 'u64'}}
+    'XcmpQueue', 'update_threshold_weight', {
+    'new': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
 )
 ```
 
 ---------
 ### update_weight_restrict_decay
-Overwrites the speed to which the available weight approaches the maximum weight.
-A lower number results in a faster progression. A value of 1 makes the entire weight available initially.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.weight_restrict_decay`.
+See [`Pallet::update_weight_restrict_decay`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -159,17 +128,18 @@ A lower number results in a faster progression. A value of 1 makes the entire we
 #### Python
 ```python
 call = substrate.compose_call(
-    'XcmpQueue', 'update_weight_restrict_decay', {'new': {'ref_time': 'u64'}}
+    'XcmpQueue', 'update_weight_restrict_decay', {
+    'new': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
 )
 ```
 
 ---------
 ### update_xcmp_max_individual_weight
-Overwrite the maximum amount of weight any individual message may consume.
-Messages above this weight go into the overweight queue and may only be serviced explicitly.
-
-- `origin`: Must pass `Root`.
-- `new`: Desired value for `QueueConfigData.xcmp_max_individual_weight`.
+See [`Pallet::update_xcmp_max_individual_weight`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -178,7 +148,12 @@ Messages above this weight go into the overweight queue and may only be serviced
 #### Python
 ```python
 call = substrate.compose_call(
-    'XcmpQueue', 'update_xcmp_max_individual_weight', {'new': {'ref_time': 'u64'}}
+    'XcmpQueue', 'update_xcmp_max_individual_weight', {
+    'new': {
+        'proof_size': 'u64',
+        'ref_time': 'u64',
+    },
+}
 )
 ```
 
@@ -191,7 +166,7 @@ Bad XCM format used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ### BadVersion
@@ -199,7 +174,7 @@ Bad XCM version used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ### Fail
@@ -207,9 +182,10 @@ Some XCM failed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
-| error | `XcmError` | ```{'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'MultiLocationFull': None, 'MultiLocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'UnhandledXcmVersion': None, 'WeightLimitReached': 'u64', 'Barrier': None, 'WeightNotComputable': None}```
-| weight | `Weight` | ```{'ref_time': 'u64'}```
+| message_hash | `XcmHash` | ```[u8; 32]```
+| message_id | `XcmHash` | ```[u8; 32]```
+| error | `XcmError` | ```{'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'LocationFull': None, 'LocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'ExpectationFalse': None, 'PalletNotFound': None, 'NameMismatch': None, 'VersionIncompatible': None, 'HoldingWouldOverflow': None, 'ExportError': None, 'ReanchorFailed': None, 'NoDeal': None, 'FeesNotMet': None, 'LockError': None, 'NoPermission': None, 'Unanchored': None, 'NotDepositable': None, 'UnhandledXcmVersion': None, 'WeightLimitReached': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Barrier': None, 'WeightNotComputable': None, 'ExceedsStackLimit': None}```
+| weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### OverweightEnqueued
@@ -220,7 +196,7 @@ An XCM exceeded the individual message weight budget.
 | sender | `ParaId` | ```u32```
 | sent_at | `RelayBlockNumber` | ```u32```
 | index | `OverweightIndex` | ```u64```
-| required | `Weight` | ```{'ref_time': 'u64'}```
+| required | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### OverweightServiced
@@ -229,7 +205,7 @@ An XCM from the overweight queue was executed with the given actual weight used.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | index | `OverweightIndex` | ```u64```
-| used | `Weight` | ```{'ref_time': 'u64'}```
+| used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### Success
@@ -237,16 +213,9 @@ Some XCM was executed ok.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
-| weight | `Weight` | ```{'ref_time': 'u64'}```
-
----------
-### UpwardMessageSent
-An upward message was sent to the relay chain.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
+| message_id | `XcmHash` | ```[u8; 32]```
+| weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
 ### XcmpMessageSent
@@ -254,11 +223,26 @@ An HRMP message was sent to a sibling parachain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<T::Hash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ## Storage functions
 
+---------
+### CounterForOverweight
+Counter for the related counted storage map
+
+#### Python
+```python
+result = substrate.query(
+    'XcmpQueue', 'CounterForOverweight', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
 ---------
 ### InboundXcmpMessages
  Inbound aggregate XCMP messages. It can only be one per ParaId/block.
@@ -398,9 +382,9 @@ result = substrate.query(
     'drop_threshold': 'u32',
     'resume_threshold': 'u32',
     'suspend_threshold': 'u32',
-    'threshold_weight': {'ref_time': 'u64'},
-    'weight_restrict_decay': {'ref_time': 'u64'},
-    'xcmp_max_individual_weight': {'ref_time': 'u64'},
+    'threshold_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'weight_restrict_decay': {'proof_size': 'u64', 'ref_time': 'u64'},
+    'xcmp_max_individual_weight': {'proof_size': 'u64', 'ref_time': 'u64'},
 }
 ```
 ---------

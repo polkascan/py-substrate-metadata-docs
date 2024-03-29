@@ -6,10 +6,11 @@
 
 ---------
 ### set_app_promotion_configuration_override
+See [`Pallet::set_app_promotion_configuration_override`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| configuration | `AppPromotionConfiguration<T::BlockNumber>` | 
+| configuration | `AppPromotionConfiguration<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -39,6 +40,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_collator_selection_desired_collators
+See [`Pallet::set_collator_selection_desired_collators`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -53,10 +55,11 @@ call = substrate.compose_call(
 
 ---------
 ### set_collator_selection_kick_threshold
+See [`Pallet::set_collator_selection_kick_threshold`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| threshold | `Option<T::BlockNumber>` | 
+| threshold | `Option<BlockNumberFor<T>>` | 
 
 #### Python
 ```python
@@ -67,6 +70,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_collator_selection_license_bond
+See [`Pallet::set_collator_selection_license_bond`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -81,6 +85,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_min_gas_price_override
+See [`Pallet::set_min_gas_price_override`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -95,6 +100,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_weight_to_fee_coefficient_override
+See [`Pallet::set_weight_to_fee_coefficient_override`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -115,7 +121,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| length_in_blocks | `Option<T::BlockNumber>` | ```(None, 'u32')```
+| length_in_blocks | `Option<BlockNumberFor<T>>` | ```(None, 'u32')```
 
 ---------
 ### NewCollatorLicenseBond
@@ -230,7 +236,7 @@ result = substrate.query(
 ### AppPromotionDailyRate
 #### Value
 ```python
-500000
+453256
 ```
 #### Python
 ```python
@@ -280,7 +286,7 @@ constant = substrate.get_constant('Configuration', 'DefaultCollatorSelectionMaxC
 ### DefaultMinGasPrice
 #### Value
 ```python
-1906626161453
+1873548000299
 ```
 #### Python
 ```python
@@ -290,7 +296,7 @@ constant = substrate.get_constant('Configuration', 'DefaultMinGasPrice')
 ### DefaultWeightToFeeCoefficient
 #### Value
 ```python
-76840511488584762
+74374502416291841
 ```
 #### Python
 ```python

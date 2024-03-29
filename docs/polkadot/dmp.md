@@ -6,7 +6,7 @@
 
 ---------
 ### DeliveryFeeFactor
- The number to multiply the base delivery fee by.
+ The factor to multiply the base delivery fee by.
 
 #### Python
 ```python
@@ -38,7 +38,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### DownwardMessageQueues

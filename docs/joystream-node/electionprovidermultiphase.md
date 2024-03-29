@@ -377,13 +377,31 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### ElectionFailed
+An election failed.
+
+Not much can be said about which computes failed in the process.
+#### Attributes
+No attributes
+
+---------
 ### ElectionFinalized
-The election has been finalized, with `Some` of the given computation, or else if the
-election failed, `None`.
+The election has been finalized, with the given computation and score.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| election_compute | `Option<ElectionCompute>` | ```(None, ('OnChain', 'Signed', 'Unsigned', 'Fallback', 'Emergency'))```
+| compute | `ElectionCompute` | ```('OnChain', 'Signed', 'Unsigned', 'Fallback', 'Emergency')```
+| score | `ElectionScore` | ```{'minimal_stake': 'u128', 'sum_stake': 'u128', 'sum_stake_squared': 'u128'}```
+
+---------
+### PhaseTransitioned
+There was a phase transition in a given round.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| from | `Phase<T::BlockNumber>` | ```{'Off': None, 'Signed': None, 'Unsigned': ('bool', 'u32'), 'Emergency': None}```
+| to | `Phase<T::BlockNumber>` | ```{'Off': None, 'Signed': None, 'Unsigned': ('bool', 'u32'), 'Emergency': None}```
+| round | `u32` | ```u32```
 
 ---------
 ### Rewarded
@@ -393,14 +411,6 @@ An account has been rewarded for their signed submission being finalized.
 | -------- | -------- | -------- |
 | account | `<T as frame_system::Config>::AccountId` | ```AccountId```
 | value | `BalanceOf<T>` | ```u128```
-
----------
-### SignedPhaseStarted
-The signed phase of the given round has started.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| round | `u32` | ```u32```
 
 ---------
 ### Slashed
@@ -415,23 +425,17 @@ An account has been slashed for submitting an invalid signed submission.
 ### SolutionStored
 A solution was stored with the given compute.
 
-If the solution is signed, this means that it hasn&\#x27;t yet been processed. If the
-solution is unsigned, this means that it has also been processed.
-
-The `bool` is `true` when a previous solution was ejected to make room for this one.
+The `origin` indicates the origin of the solution. If `origin` is `Some(AccountId)`,
+the stored solution was submited in the signed phase by a miner with the `AccountId`.
+Otherwise, the solution was stored either during the unsigned phase or by
+`T::ForceOrigin`. The `bool` is `true` when a previous solution was ejected to make
+room for this one.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| election_compute | `ElectionCompute` | ```('OnChain', 'Signed', 'Unsigned', 'Fallback', 'Emergency')```
+| compute | `ElectionCompute` | ```('OnChain', 'Signed', 'Unsigned', 'Fallback', 'Emergency')```
+| origin | `Option<T::AccountId>` | ```(None, 'AccountId')```
 | prev_ejected | `bool` | ```bool```
-
----------
-### UnsignedPhaseStarted
-The unsigned phase of the given round has started.
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| round | `u32` | ```u32```
 
 ---------
 ## Storage functions
@@ -533,8 +537,8 @@ result = substrate.query(
 ```
 ---------
 ### SignedSubmissionIndices
- A sorted, bounded set of `(score, index)`, where each `index` points to a value in
- `SignedSubmissions`.
+ A sorted, bounded vector of `(score, block_number, index)`, where each `index` points to a
+ value in `SignedSubmissions`.
 
  We never need to process more than a single signed submission at a time. Signed submissions
  can be quite large, so we&#x27;re willing to pay the cost of multiple database accesses to access
@@ -549,7 +553,17 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::457'
+[
+    (
+        {
+            'minimal_stake': 'u128',
+            'sum_stake': 'u128',
+            'sum_stake_squared': 'u128',
+        },
+        'u32',
+        'u32',
+    ),
+]
 ```
 ---------
 ### SignedSubmissionNextIndex
@@ -711,6 +725,60 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'MaxElectableTar
 constant = substrate.get_constant('ElectionProviderMultiPhase', 'MaxElectingVoters')
 ```
 ---------
+### MaxWinners
+ The maximum number of winners that can be elected by this `ElectionProvider`
+ implementation.
+
+ Note: This must always be greater or equal to `T::DataProvider::desired_targets()`.
+#### Value
+```python
+400
+```
+#### Python
+```python
+constant = substrate.get_constant('ElectionProviderMultiPhase', 'MaxWinners')
+```
+---------
+### MinerMaxLength
+#### Value
+```python
+3538944
+```
+#### Python
+```python
+constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxLength')
+```
+---------
+### MinerMaxVotesPerVoter
+#### Value
+```python
+16
+```
+#### Python
+```python
+constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxVotesPerVoter')
+```
+---------
+### MinerMaxWeight
+#### Value
+```python
+{'proof_size': 11990383647911208550, 'ref_time': 1299447784000}
+```
+#### Python
+```python
+constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxWeight')
+```
+---------
+### MinerMaxWinners
+#### Value
+```python
+400
+```
+#### Python
+```python
+constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxWinners')
+```
+---------
 ### MinerTxPriority
  The priority of the unsigned transaction submitted in the unsigned-phase
 #### Value
@@ -805,7 +873,7 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxSubmis
  this value.
 #### Value
 ```python
-1293973704000
+{'proof_size': 11990383647911208550, 'ref_time': 1299447784000}
 ```
 #### Python
 ```python
@@ -846,6 +914,10 @@ constant = substrate.get_constant('ElectionProviderMultiPhase', 'UnsignedPhase')
 ```
 ---------
 ## Errors
+
+---------
+### BoundNotMet
+Some bound not met
 
 ---------
 ### CallNotAllowed
@@ -894,5 +966,9 @@ The queue was full, and the solution was not better than any of the existing one
 ---------
 ### SignedTooMuchWeight
 The signed submission consumes too much weight
+
+---------
+### TooManyWinners
+Submitted solution has too many winners
 
 ---------

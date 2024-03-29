@@ -95,7 +95,7 @@ Cast a sealed vote in the referendum.
 ```python
 call = substrate.compose_call(
     'Referendum', 'vote', {
-    'commitment': '[u8; 32]',
+    'commitment': 'scale_info::11',
     'stake': 'u128',
 }
 )
@@ -161,7 +161,7 @@ User cast a vote in referendum
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `AccountId` | ```AccountId```
-| None | `Hash` | ```[u8; 32]```
+| None | `Hash` | ```scale_info::11```
 | None | `Balance` | ```u128```
 
 ---------
@@ -241,7 +241,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'commitment': '[u8; 32]',
+    'commitment': 'scale_info::11',
     'cycle_id': 'u64',
     'stake': 'u128',
     'vote_for': (None, 'u64'),
@@ -278,7 +278,7 @@ constant = substrate.get_constant('Referendum', 'MinimumStake')
  Duration of revealing stage (number of blocks)
 #### Value
 ```python
-43200
+57600
 ```
 #### Python
 ```python
@@ -300,7 +300,7 @@ constant = substrate.get_constant('Referendum', 'StakingHandlerLockId')
  Duration of voting stage (number of blocks)
 #### Value
 ```python
-43200
+57600
 ```
 #### Python
 ```python

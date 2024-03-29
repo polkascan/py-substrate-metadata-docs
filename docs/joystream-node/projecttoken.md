@@ -55,6 +55,43 @@ call = substrate.compose_call(
 ```
 
 ---------
+### buy_on_amm
+Mint desired `token_id` amount into user account via JOY exchnage
+Preconditions
+- origin, member_id pair must be a valid authentication pair
+- token_id must exist
+- user usable JOY balance must be enough for buying (+ existential deposit)
+- slippage tolerance constraints respected if provided
+- token total supply and amount value must be s.t. `eval` function doesn&\#x27;t overflow
+
+Postconditions
+- `amount` CRT minted into account (which is created if necessary with existential deposit transferred to it)
+- respective JOY amount transferred from user balance to amm treasury account
+- event deposited
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| token_id | `T::TokenId` | 
+| member_id | `T::MemberId` | 
+| amount | `<T as Config>::Balance` | 
+| slippage_tolerance | `Option<(Permill, JoyBalanceOf<T>)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ProjectToken', 'buy_on_amm', {
+    'amount': 'u128',
+    'member_id': 'u64',
+    'slippage_tolerance': (
+        None,
+        ('u32', 'u128'),
+    ),
+    'token_id': 'u64',
+}
+)
+```
+
+---------
 ### dust_account
 Allow any user to remove an account
 
@@ -163,7 +200,10 @@ call = substrate.compose_call(
     'ProjectToken', 'join_whitelist', {
     'member_id': 'u64',
     'proof': [
-        ('[u8; 32]', ('Right', 'Left')),
+        (
+            'scale_info::11',
+            ('Right', 'Left'),
+        ),
     ],
     'token_id': 'u64',
 }
@@ -296,6 +336,69 @@ call = substrate.compose_call(
 ```
 
 ---------
+### sell_on_amm
+Burn desired `token_id` amount from user account and get JOY from treasury account
+Preconditions
+- origin, member_id pair must be a valid authentication pair
+- token_id must exist
+- token_id, member_id must be valid account coordinates
+- user usable CRT balance must be at least `amount`
+- slippage tolerance constraints respected if provided
+- token total supply and amount value must be s.t. `eval` function doesn&\#x27;t overflow
+- amm treasury account must have sufficient JOYs for the operation
+
+Postconditions
+- `amount` burned from user account
+- total supply decreased by amount
+- respective JOY amount transferred from amm treasury account to user account
+- event deposited
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| token_id | `T::TokenId` | 
+| member_id | `T::MemberId` | 
+| amount | `<T as Config>::Balance` | 
+| slippage_tolerance | `Option<(Permill, JoyBalanceOf<T>)>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ProjectToken', 'sell_on_amm', {
+    'amount': 'u128',
+    'member_id': 'u64',
+    'slippage_tolerance': (
+        None,
+        ('u32', 'u128'),
+    ),
+    'token_id': 'u64',
+}
+)
+```
+
+---------
+### set_frozen_status
+Allows to freeze or unfreeze this pallet. Requires root origin.
+
+&lt;weight&gt;
+
+\#\# Weight
+`O (1)`
+- DB:
+   - O(1) doesn&\#x27;t depend on the state or parameters
+\# &lt;/weight&gt;
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| freeze | `bool` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'ProjectToken', 'set_frozen_status', {'freeze': 'bool'}
+)
+```
+
+---------
 ### transfer
 Allow to transfer from `src_member_id` account to the various `outputs` beneficiaries
 in the specified amounts.
@@ -328,7 +431,7 @@ Postconditions:
 | -------- | -------- | 
 | src_member_id | `T::MemberId` | 
 | token_id | `T::TokenId` | 
-| outputs | `TransfersOf<T>` | 
+| outputs | `TransferOutputsOf<T>` | 
 | metadata | `Vec<u8>` | 
 
 #### Python
@@ -336,7 +439,7 @@ Postconditions:
 call = substrate.compose_call(
     'ProjectToken', 'transfer', {
     'metadata': 'Bytes',
-    'outputs': 'scale_info::399',
+    'outputs': [('u64', 'u128')],
     'src_member_id': 'u64',
     'token_id': 'u64',
 }
@@ -360,7 +463,45 @@ Params:
 | None | `TokenId` | ```u64```
 | None | `MemberId` | ```u64```
 | None | `AccountId` | ```AccountId```
-| None | `TransferPolicy` | ```{'Permissionless': None, 'Permissioned': '[u8; 32]'}```
+| None | `TransferPolicy` | ```{'Permissionless': None, 'Permissioned': 'scale_info::11'}```
+
+---------
+### AmmActivated
+AMM activated
+Params:
+- token id
+- member id
+- params for the bonding curve
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `TokenId` | ```u64```
+| None | `MemberId` | ```u64```
+| None | `AmmCurve` | ```{'slope': 'u128', 'intercept': 'u128', 'provided_supply': 'u128'}```
+
+---------
+### AmmDeactivated
+AMM deactivated
+Params:
+- token id
+- member id
+- amm treasury amount burned upon deactivation
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `TokenId` | ```u64```
+| None | `MemberId` | ```u64```
+| None | `JoyBalance` | ```u128```
+
+---------
+### FrozenStatusUpdated
+Pallet Frozen status toggled
+Params:
+- new frozen status (true | false)
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `bool` | ```bool```
 
 ---------
 ### MemberJoinedWhitelist
@@ -374,7 +515,7 @@ Params:
 | -------- | -------- | -------- |
 | None | `TokenId` | ```u64```
 | None | `MemberId` | ```u64```
-| None | `TransferPolicy` | ```{'Permissionless': None, 'Permissioned': '[u8; 32]'}```
+| None | `TransferPolicy` | ```{'Permissionless': None, 'Permissioned': 'scale_info::11'}```
 
 ---------
 ### PatronageCreditClaimed
@@ -400,7 +541,7 @@ Params:
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `TokenId` | ```u64```
-| None | `Perquintill` | ```u64```
+| None | `YearlyRate` | ```u32```
 
 ---------
 ### RevenueSplitFinalized
@@ -459,7 +600,7 @@ Params:
 | -------- | -------- | -------- |
 | None | `TokenId` | ```u64```
 | None | `MemberId` | ```u64```
-| None | `ValidatedTransfers` | ```scale_info::191```
+| None | `ValidatedTransfers` | ```scale_info::197```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -477,7 +618,7 @@ Params:
 | -------- | -------- | -------- |
 | None | `TokenId` | ```u64```
 | None | `MemberId` | ```u64```
-| None | `ValidatedTransfers` | ```scale_info::191```
+| None | `ValidatedTransfers` | ```scale_info::197```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -500,7 +641,7 @@ Params:
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `TokenId` | ```u64```
-| None | `TokenIssuanceParameters` | ```{'initial_allocation': 'scale_info::181', 'symbol': '[u8; 32]', 'transfer_policy': {'Permissionless': None, 'Permissioned': {'commitment': '[u8; 32]', 'payload': (None, {'object_creation_params': 'scale_info::130', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'})}}, 'patronage_rate': 'u32', 'revenue_split_rate': 'u32'}```
+| None | `TokenIssuanceParameters` | ```{'initial_allocation': 'scale_info::187', 'transfer_policy': {'Permissionless': None, 'Permissioned': {'commitment': 'scale_info::11', 'payload': (None, {'object_creation_params': 'scale_info::136', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'})}}, 'patronage_rate': 'u32', 'revenue_split_rate': 'u32', 'metadata': 'Bytes'}```
 
 ---------
 ### TokenSaleFinalized
@@ -535,6 +676,22 @@ Params:
 | None | `Option<Vec<u8>>` | ```(None, 'Bytes')```
 
 ---------
+### TokensBoughtOnAmm
+Tokens Bought on AMM
+Params:
+- token id
+- member id
+- amount of CRT minted
+- amount of JOY deposited into curve treasury
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `TokenId` | ```u64```
+| None | `MemberId` | ```u64```
+| None | `Balance` | ```u128```
+| None | `JoyBalance` | ```u128```
+
+---------
 ### TokensBurned
 Tokens Burned
 Params:
@@ -563,6 +720,22 @@ Params:
 | None | `TokenSaleId` | ```u32```
 | None | `Balance` | ```u128```
 | None | `MemberId` | ```u64```
+
+---------
+### TokensSoldOnAmm
+Tokens Sold on AMM
+Params:
+- token id
+- member id
+- amount of CRT burned
+- amount of JOY withdrawn from curve treasury
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `TokenId` | ```u64```
+| None | `MemberId` | ```u64```
+| None | `Balance` | ```u128```
+| None | `JoyBalance` | ```u128```
 
 ---------
 ### TransferPolicyChangedToPermissionless
@@ -633,8 +806,53 @@ result = substrate.query(
     'last_sale_total_purchased_amount': (None, ('u32', 'u128')),
     'next_vesting_transfer_id': 'u64',
     'split_staking_status': (None, {'amount': 'u128', 'split_id': 'u32'}),
-    'vesting_schedules': 'scale_info::592',
+    'vesting_schedules': 'scale_info::589',
 }
+```
+---------
+### AmmBuyTxFees
+ AMM buy transaction fee percentage
+
+#### Python
+```python
+result = substrate.query(
+    'ProjectToken', 'AmmBuyTxFees', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### AmmDeactivationThreshold
+ Percentage threshold for deactivating the amm functionality
+
+#### Python
+```python
+result = substrate.query(
+    'ProjectToken', 'AmmDeactivationThreshold', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### AmmSellTxFees
+ AMM sell transaction fee percentage
+
+#### Python
+```python
+result = substrate.query(
+    'ProjectToken', 'AmmSellTxFees', []
+)
+```
+
+#### Return value
+```python
+'u32'
 ```
 ---------
 ### BloatBond
@@ -644,6 +862,36 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'ProjectToken', 'BloatBond', []
+)
+```
+
+#### Return value
+```python
+'u128'
+```
+---------
+### MaxYearlyPatronageRate
+ Max patronage rate allowed
+
+#### Python
+```python
+result = substrate.query(
+    'ProjectToken', 'MaxYearlyPatronageRate', []
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
+### MinAmmSlopeParameter
+ Minimum slope parameters allowed for AMM curve
+
+#### Python
+```python
+result = substrate.query(
+    'ProjectToken', 'MinAmmSlopeParameter', []
 )
 ```
 
@@ -712,6 +960,21 @@ result = substrate.query(
 'u64'
 ```
 ---------
+### PalletFrozen
+ Current frozen state.
+
+#### Python
+```python
+result = substrate.query(
+    'ProjectToken', 'PalletFrozen', []
+)
+```
+
+#### Return value
+```python
+'bool'
+```
+---------
 ### SalePlatformFee
  Platform fee (percentage) charged on top of each sale purchase (in JOY) and burned
 
@@ -725,21 +988,6 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
-```
----------
-### SymbolsUsed
- Set for the tokens symbols
-
-#### Python
-```python
-result = substrate.query(
-    'ProjectToken', 'SymbolsUsed', ['[u8; 32]']
-)
-```
-
-#### Return value
-```python
-()
 ```
 ---------
 ### TokenInfoById
@@ -756,11 +1004,15 @@ result = substrate.query(
 ```python
 {
     'accounts_number': 'u64',
+    'amm_curve': (
+        None,
+        {'intercept': 'u128', 'provided_supply': 'u128', 'slope': 'u128'},
+    ),
     'next_revenue_split_id': 'u32',
     'next_sale_id': 'u32',
     'patronage_info': {
         'last_unclaimed_patronage_tally_block': 'u32',
-        'rate': 'u64',
+        'rate': 'u32',
         'unclaimed_patronage_tally_amount': 'u128',
     },
     'revenue_split': {
@@ -794,10 +1046,12 @@ result = substrate.query(
             ),
         },
     ),
-    'symbol': '[u8; 32]',
     'tokens_issued': 'u128',
     'total_supply': 'u128',
-    'transfer_policy': {'Permissioned': '[u8; 32]', 'Permissionless': None},
+    'transfer_policy': {
+        'Permissioned': 'scale_info::11',
+        'Permissionless': None,
+    },
 }
 ```
 ---------
@@ -836,6 +1090,10 @@ Provided amount to burn is == 0
 Cannot Deissue Token with outstanding accounts
 
 ---------
+### CannotInitSaleIfAmmIsActive
+No Sale if Amm is active
+
+---------
 ### CannotIssueSplitWithZeroAllocationAmount
 Attempt to issue in a split with zero allocation amount
 
@@ -850,6 +1108,14 @@ Attempt to modify supply when revenue split is active
 ---------
 ### CannotParticipateInSplitWithZeroAmount
 Attempt to participate in a split with zero token to stake
+
+---------
+### CurveSlopeParametersTooLow
+Curve slope parameters below minimum allowed
+
+---------
+### DeadlineExpired
+Deadline constraint not satisfied
 
 ---------
 ### InitialAllocationToNonExistingMember
@@ -868,8 +1134,16 @@ Account&\#x27;s JOY balance is insufficient to make the token purchase
 Insufficient JOY Balance to cover the transaction costs
 
 ---------
+### InsufficientTokenBalance
+Creator token balance is insufficient
+
+---------
 ### InsufficientTransferrableBalance
 Account&\#x27;s transferrable balance is insufficient to perform the transfer or initialize token sale
+
+---------
+### InvalidCurveParameters
+Invalid bonding curve construction parameters
 
 ---------
 ### JoyTransferSubjectToDusting
@@ -897,8 +1171,25 @@ There are no remaining tokes to recover from the previous token sale.
 The token has no upcoming sale
 
 ---------
+### NotEnoughTokenMintedByAmmForThisSale
+Attempting to sell more than amm provided supply
+
+---------
 ### NotEnoughTokensOnSale
 Amount of tokens to purchase on sale exceeds the quantity of tokens still available on the sale
+
+---------
+### NotInAmmState
+------ AMM ---------------------------------------------------------
+not in AMM state
+
+---------
+### OutstandingAmmProvidedSupplyTooLarge
+Oustanding AMM-provided supply constitutes too large percentage of the token&\#x27;s total supply
+
+---------
+### PalletFrozen
+Attempt to perform an action when pallet is frozen
 
 ---------
 ### PreviousSaleNotFinalized
@@ -975,7 +1266,12 @@ Token&\#x27;s unit price cannot be zero
 Upper bound quantity cannot be zero
 
 ---------
+### SlippageToleranceExceeded
+Slippage tolerance constraint tolerance not satisfied
+
+---------
 ### TargetPatronageRateIsHigherThanCurrentRate
+-------- Patronage --------------------------------------------------
 Target Rate is higher than current patronage rate
 
 ---------
@@ -991,6 +1287,10 @@ Token&\#x27;s current offering state is not Idle
 Symbol already in use
 
 ---------
+### TooManyTransferOutputs
+Transfer destination member id invalid
+
+---------
 ### TransferDestinationMemberDoesNotExist
 At least one of the transfer destinations is not an existing member id
 
@@ -1001,5 +1301,9 @@ User already participating in the revenue split
 ---------
 ### UserNotParticipantingInAnySplit
 User is not participating in any split
+
+---------
+### YearlyPatronageRateLimitExceeded
+Provided value for patronage is too big (yearly format)
 
 ---------

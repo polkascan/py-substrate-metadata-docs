@@ -19,22 +19,23 @@
 call = substrate.compose_call(
     'BeefyLightClient', 'initialize', {
     'latest_beefy_block': 'u64',
-    'network_id': {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    'network_id': (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
     'next_validator_set': {
         'id': 'u64',
         'len': 'u32',
-        'root': '[u8; 32]',
+        'root': 'scale_info::11',
     },
     'validator_set': {
         'id': 'u64',
         'len': 'u32',
-        'root': '[u8; 32]',
+        'root': 'scale_info::11',
     },
 }
 )
@@ -66,33 +67,34 @@ call = substrate.compose_call(
         'beefy_next_authority_set': {
             'id': 'u64',
             'len': 'u32',
-            'root': '[u8; 32]',
+            'root': 'scale_info::11',
         },
         'leaf_extra': {
-            'digest_hash': '[u8; 32]',
-            'random_seed': '[u8; 32]',
+            'digest_hash': 'scale_info::11',
+            'random_seed': 'scale_info::11',
         },
         'parent_number_and_hash': (
             'u32',
-            '[u8; 32]',
+            'scale_info::11',
         ),
         'version': 'u8',
     },
-    'network_id': {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    'network_id': (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
     'proof': {
-        'items': ['[u8; 32]'],
+        'items': ['scale_info::11'],
         'order': 'u64',
     },
     'validator_proof': {
         'positions': ['u128'],
         'public_key_merkle_proofs': [
-            ['[u8; 32]'],
+            ['scale_info::11'],
         ],
         'public_keys': ['[u8; 20]'],
         'signatures': ['Bytes'],
@@ -110,8 +112,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `SubNetworkId` | ```{'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}```
-| None | `H256` | ```[u8; 32]```
+| None | `SubNetworkId` | ```('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland')```
+| None | `H256` | ```scale_info::11```
 | None | `u64` | ```u64```
 
 ---------
@@ -119,8 +121,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `SubNetworkId` | ```{'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}```
-| None | `H256` | ```[u8; 32]```
+| None | `SubNetworkId` | ```('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland')```
+| None | `H256` | ```scale_info::11```
 | None | `u32` | ```u32```
 | None | `u64` | ```u64```
 
@@ -129,7 +131,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `SubNetworkId` | ```{'Mainnet': None, 'Kusama': None, 'Polkadot': None, 'Rococo': None, 'Custom': 'u32'}```
+| None | `SubNetworkId` | ```('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland')```
 | None | `T::AccountId` | ```AccountId```
 | None | `u32` | ```u32```
 
@@ -143,20 +145,21 @@ call = substrate.compose_call(
 ```python
 result = substrate.query(
     'BeefyLightClient', 'CurrentValidatorSet', [
-    {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
 ]
 )
 ```
 
 #### Return value
 ```python
-{'id': 'u64', 'len': 'u32', 'root': '[u8; 32]'}
+{'id': 'u64', 'len': 'u32', 'root': 'scale_info::11'}
 ```
 ---------
 ### LatestBeefyBlock
@@ -165,13 +168,14 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'BeefyLightClient', 'LatestBeefyBlock', [
-    {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
 ]
 )
 ```
@@ -187,20 +191,21 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'BeefyLightClient', 'LatestMMRRoots', [
-    {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
 ]
 )
 ```
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::11']
 ```
 ---------
 ### LatestRandomSeed
@@ -209,20 +214,21 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'BeefyLightClient', 'LatestRandomSeed', [
-    {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
 ]
 )
 ```
 
 #### Return value
 ```python
-('[u8; 32]', 'u32')
+('scale_info::11', 'u32')
 ```
 ---------
 ### NextValidatorSet
@@ -231,20 +237,21 @@ result = substrate.query(
 ```python
 result = substrate.query(
     'BeefyLightClient', 'NextValidatorSet', [
-    {
-        'Custom': 'u32',
-        'Kusama': None,
-        'Mainnet': None,
-        'Polkadot': None,
-        'Rococo': None,
-    },
+    (
+        'Mainnet',
+        'Kusama',
+        'Polkadot',
+        'Rococo',
+        'Alphanet',
+        'Liberland',
+    ),
 ]
 )
 ```
 
 #### Return value
 ```python
-{'id': 'u64', 'len': 'u32', 'root': '[u8; 32]'}
+{'id': 'u64', 'len': 'u32', 'root': 'scale_info::11'}
 ```
 ---------
 ### ThisNetworkId
@@ -258,13 +265,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{
-    'Custom': 'u32',
-    'Kusama': None,
-    'Mainnet': None,
-    'Polkadot': None,
-    'Rococo': None,
-}
+('Mainnet', 'Kusama', 'Polkadot', 'Rococo', 'Alphanet', 'Liberland')
 ```
 ---------
 ## Errors

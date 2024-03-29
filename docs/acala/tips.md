@@ -14,7 +14,7 @@
 #### Python
 ```python
 call = substrate.compose_call(
-    'Tips', 'close_tip', {'hash': '[u8; 32]'}
+    'Tips', 'close_tip', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -52,7 +52,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Tips', 'retract_tip', {'hash': '[u8; 32]'}
+    'Tips', 'retract_tip', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -66,7 +66,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Tips', 'slash_tip', {'hash': '[u8; 32]'}
+    'Tips', 'slash_tip', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -82,7 +82,7 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'Tips', 'tip', {
-    'hash': '[u8; 32]',
+    'hash': 'scale_info::12',
     'tip_value': 'u128',
 }
 )
@@ -122,14 +122,14 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### TipClosed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 | who | `T::AccountId` | ```AccountId```
 | payout | `BalanceOf<T, I>` | ```u128```
 
@@ -138,21 +138,21 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### TipRetracted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### TipSlashed
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| tip_hash | `T::Hash` | ```[u8; 32]```
+| tip_hash | `T::Hash` | ```scale_info::12```
 | finder | `T::AccountId` | ```AccountId```
 | deposit | `BalanceOf<T, I>` | ```u128```
 
@@ -165,7 +165,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'Tips', 'Reasons', ['[u8; 32]']
+    'Tips', 'Reasons', ['scale_info::12']
 )
 ```
 
@@ -179,7 +179,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Tips', 'Tips', ['[u8; 32]']
+    'Tips', 'Tips', ['scale_info::12']
 )
 ```
 
@@ -190,7 +190,7 @@ result = substrate.query(
     'deposit': 'u128',
     'finder': 'AccountId',
     'finders_fee': 'bool',
-    'reason': '[u8; 32]',
+    'reason': 'scale_info::12',
     'tips': [('AccountId', 'u128')],
     'who': 'AccountId',
 }
@@ -207,6 +207,16 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('Tips', 'DataDepositPerByte')
+```
+---------
+### MaxTipAmount
+#### Value
+```python
+0
+```
+#### Python
+```python
+constant = substrate.get_constant('Tips', 'MaxTipAmount')
 ```
 ---------
 ### MaximumReasonLength
@@ -253,6 +263,9 @@ constant = substrate.get_constant('Tips', 'TipReportDepositBase')
 
 ---------
 ### AlreadyKnown
+
+---------
+### MaxTipAmountExceeded
 
 ---------
 ### NotFinder

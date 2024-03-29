@@ -116,7 +116,7 @@ Emits `RewardClaimed` if successful.
 call = substrate.compose_call(
     'Reward', 'claim_nft_reward_root', {
     'id': 'u32',
-    'leaf_nodes': ['[u8; 32]'],
+    'leaf_nodes': ['scale_info::9'],
     'reward_tokens': [('u32', 'u64')],
 }
 )
@@ -168,7 +168,7 @@ call = substrate.compose_call(
     'Reward', 'claim_reward_root', {
     'balance': 'u128',
     'id': 'u32',
-    'leaf_nodes': ['[u8; 32]'],
+    'leaf_nodes': ['scale_info::9'],
 }
 )
 ```
@@ -373,7 +373,7 @@ Emits `SetReward` if successful.
 call = substrate.compose_call(
     'Reward', 'set_nft_reward_root', {
     'id': 'u32',
-    'merkle_root': '[u8; 32]',
+    'merkle_root': 'scale_info::9',
 }
 )
 ```
@@ -427,7 +427,7 @@ Emits `SetReward` if successful.
 call = substrate.compose_call(
     'Reward', 'set_reward_root', {
     'id': 'u32',
-    'merkle_root': '[u8; 32]',
+    'merkle_root': 'scale_info::9',
     'total_amount': 'u128',
 }
 )
@@ -513,7 +513,7 @@ Set NFT rewards using merkle root[campaign_id, hash]
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CampaignId` | ```u32```
-| None | `Hash` | ```[u8; 32]```
+| None | `Hash` | ```scale_info::9```
 
 ---------
 ### SetReward
@@ -548,7 +548,7 @@ Set reward using merkle root [campaign_id, balance, hash]
 | -------- | -------- | -------- |
 | None | `CampaignId` | ```u32```
 | None | `BalanceOf<T>` | ```u128```
-| None | `Hash` | ```[u8; 32]```
+| None | `Hash` | ```scale_info::9```
 
 ---------
 ## Storage functions
@@ -581,7 +581,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::9']
 ```
 ---------
 ### Campaigns

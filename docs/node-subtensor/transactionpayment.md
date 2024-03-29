@@ -2,6 +2,20 @@
 # TransactionPayment
 
 ---------
+## Events
+
+---------
+### TransactionFeePaid
+A transaction fee `actual_fee`, of which `tip` was added to the minimum inclusion fee,
+has been paid by `who`.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| actual_fee | `BalanceOf<T>` | ```u64```
+| tip | `BalanceOf<T>` | ```u64```
+
+---------
 ## Storage functions
 
 ---------
@@ -60,32 +74,10 @@ result = substrate.query(
  transactions.
 #### Value
 ```python
-5
-```
-#### Python
-```python
-constant = substrate.get_constant('TransactionPayment', 'OperationalFeeMultiplier')
-```
----------
-### TransactionByteFee
- The fee to be paid for making a transaction; the per-byte portion.
-#### Value
-```python
 1
 ```
 #### Python
 ```python
-constant = substrate.get_constant('TransactionPayment', 'TransactionByteFee')
-```
----------
-### WeightToFee
- The polynomial that is applied in order to derive fee from weight.
-#### Value
-```python
-[{'coeff_frac': 0, 'coeff_integer': 1, 'degree': 1, 'negative': False}]
-```
-#### Python
-```python
-constant = substrate.get_constant('TransactionPayment', 'WeightToFee')
+constant = substrate.get_constant('TransactionPayment', 'OperationalFeeMultiplier')
 ```
 ---------

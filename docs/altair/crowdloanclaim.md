@@ -22,8 +22,10 @@ call = substrate.compose_call(
     'CrowdloanClaim', 'claim_reward', {
     'contribution': 'u128',
     'contribution_proof': {
-        'leaf_hash': '[u8; 32]',
-        'sorted_hashes': ['[u8; 32]'],
+        'leaf_hash': 'scale_info::12',
+        'sorted_hashes': [
+            'scale_info::12',
+        ],
     },
     'identity_proof': {
         'Ecdsa': '[u8; 65]',
@@ -62,7 +64,7 @@ that the amount of the contribution is correct as well.
 ```python
 call = substrate.compose_call(
     'CrowdloanClaim', 'initialize', {
-    'contributions': '[u8; 32]',
+    'contributions': 'scale_info::12',
     'index': 'u32',
     'lease_period': 'u32',
     'lease_start': 'u32',
@@ -87,7 +89,7 @@ contribution.
 #### Python
 ```python
 call = substrate.compose_call(
-    'CrowdloanClaim', 'set_contributions_root', {'root': '[u8; 32]'}
+    'CrowdloanClaim', 'set_contributions_root', {'root': 'scale_info::12'}
 )
 ```
 
@@ -177,7 +179,7 @@ Relay-chain Root hash which allows to verify contributions
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `RootHashOf<T>` | ```[u8; 32]```
+| None | `RootHashOf<T>` | ```scale_info::12```
 
 ---------
 ### CrowdloanTrieIndexUpdated
@@ -240,7 +242,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### CrowdloanTrieIndex

@@ -6,21 +6,7 @@
 
 ---------
 ### send_swap_ump
-Send swap instruction to the relay chain to swap the slot lease of our two parachains.
-This needs to be done from within a pallet as the `XCM` origin must be the parachain
-itself.
-
-This function should really only be called once via governance, on each chain that
-performs the slot swap.
-
-Sane weight values:
- Rococo-Local as of 11.01.2022:
-		* xcm_weight: 10_000_000_000
-		* buy_execution_weight: 500_000_000
- Kusama as of 11.01.2022:
-		* xcm_weight: 10_000_000_000
-		* buy_execution_weight: 5_000_000_000
-
+See [`Pallet::send_swap_ump`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

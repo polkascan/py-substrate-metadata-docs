@@ -6,18 +6,7 @@
 
 ---------
 ### adjust_stake
-Adjust stake to given contract.
-
-Phat contracts accept depoits from accounts. The deposit info would be sent the cluster&\#x27;s
-system contract. Then the system contract would invoke the driver contract (if installed)
-to process the deposit info. A public good cluster usually would set the contracts&\#x27; scheduling
-weights according to the total depoit on contracts. More weights means it would get more
-compute resource to run the contract. The weights are applied on contract query and Sidevm
-CPU round scheduling.
-
-If users stake on a contract doesn&\#x27;t deployed yet. The deposit would send to the cluster
-even if the contract is deployed later. User can re-stake with or without changing the amount
-to sync the depoit the the cluster after the contract is actually deployed.
+See [`Pallet::adjust_stake`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -29,7 +18,7 @@ to sync the depoit the the cluster after the contract is actually deployed.
 call = substrate.compose_call(
     'PhalaPhatTokenomic', 'adjust_stake', {
     'amount': 'u128',
-    'contract': '[u8; 32]',
+    'contract': 'scale_info::12',
 }
 )
 ```
@@ -42,8 +31,8 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| cluster | `Option<ContractClusterId>` | ```(None, '[u8; 32]')```
-| contract | `ContractId` | ```[u8; 32]```
+| cluster | `Option<ContractClusterId>` | ```(None, 'scale_info::12')```
+| contract | `ContractId` | ```scale_info::12```
 | deposit | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -51,9 +40,9 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| cluster | `Option<ContractClusterId>` | ```(None, '[u8; 32]')```
+| cluster | `Option<ContractClusterId>` | ```(None, 'scale_info::12')```
 | account | `T::AccountId` | ```AccountId```
-| contract | `ContractId` | ```[u8; 32]```
+| contract | `ContractId` | ```scale_info::12```
 | stake | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -66,7 +55,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'PhalaPhatTokenomic', 'ContractTotalStakes', ['[u8; 32]']
+    'PhalaPhatTokenomic', 'ContractTotalStakes', ['scale_info::12']
 )
 ```
 
@@ -81,7 +70,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'PhalaPhatTokenomic', 'ContractUserStakes', ['AccountId', '[u8; 32]']
+    'PhalaPhatTokenomic', 'ContractUserStakes', ['AccountId', 'scale_info::12']
 )
 ```
 

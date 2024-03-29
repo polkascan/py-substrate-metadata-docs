@@ -6,7 +6,7 @@
 
 ---------
 ### set_eligible
-Update the eligible count. Intended to be called by governance.
+See [`Pallet::set_eligible`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

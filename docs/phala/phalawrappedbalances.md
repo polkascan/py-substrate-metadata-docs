@@ -5,22 +5,8 @@
 ## Calls
 
 ---------
-### backfill_vote_lock
-#### Attributes
-No attributes
-
-#### Python
-```python
-call = substrate.compose_call(
-    'PhalaWrappedBalances', 'backfill_vote_lock', {}
-)
-```
-
----------
 ### unlock
-Tries to unlock W-PHAs used in vote after the vote finished or canceled
-
-Must assign the max iterations to avoid computing complexity overwhelm
+See [`Pallet::unlock`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -39,9 +25,7 @@ call = substrate.compose_call(
 
 ---------
 ### unwrap
-Unwraps some pha by burning equal amount of W-PHA
-
-The unwrapped pha is transfered from `WrappedBalancesAccountId` to the user&\#x27;s wallet
+See [`Pallet::unwrap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -56,9 +40,7 @@ call = substrate.compose_call(
 
 ---------
 ### unwrap_all
-Burns the amount of all free W-PHA and unwraps equal amount of pha
-
-The unwrapped pha is transfered from `WrappedBalancesAccountId` to the user&\#x27;s wallet
+See [`Pallet::unwrap_all`].
 #### Attributes
 No attributes
 
@@ -71,10 +53,7 @@ call = substrate.compose_call(
 
 ---------
 ### vote
-Uses some W-PHA to approve or oppose a vote
-
-Can both approve and oppose a vote at the same time
-The W-PHA used in vote will be locked until the vote is finished or canceled
+See [`Pallet::vote`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -95,9 +74,7 @@ call = substrate.compose_call(
 
 ---------
 ### wrap
-Wraps some pha and gain equal amount of W-PHA
-
-The wrapped pha is stored in `WrappedBalancesAccountId`&\#x27;s wallet and can not be taken away
+See [`Pallet::wrap`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

@@ -6,10 +6,7 @@
 
 ---------
 ### check_and_maybe_force_withdraw
-Let any user to launch a vault withdraw. Then check if the vault need to be forced withdraw all its contributions.
-
-If the shutdown condition is met, all shares owned by the vault will be forced withdraw.
-Note: This function doesn&\#x27;t guarantee no-op when there&\#x27;s error.
+See [`Pallet::check_and_maybe_force_withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,10 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_owner_shares
-Transfers some owner shares wrapped in a nft to the assigned account
-
-Requires:
-1. The sender is the owner
+See [`Pallet::claim_owner_shares`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -48,11 +42,7 @@ call = substrate.compose_call(
 
 ---------
 ### contribute
-Contributes some stake to a vault
-
-Requires:
-1. The pool exists
-2. After the deposit, the pool doesn&\#x27;t reach the cap
+See [`Pallet::contribute`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -68,7 +58,7 @@ call = substrate.compose_call(
 
 ---------
 ### create
-Creates a new vault
+See [`Pallet::create`].
 #### Attributes
 No attributes
 
@@ -81,12 +71,7 @@ call = substrate.compose_call(
 
 ---------
 ### maybe_gain_owner_shares
-Tries to settle owner shares if the vault profits
-
-The mechanism of issuing shares to distribute owner reward is metioned in comments of struct `Vault` in poolproxy.rs
-
-Requires:
-1. The sender is the owner
+See [`Pallet::maybe_gain_owner_shares`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -100,25 +85,8 @@ call = substrate.compose_call(
 ```
 
 ---------
-### refresh_vault_lock_and_check
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| pid | `u64` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'PhalaVault', 'refresh_vault_lock_and_check', {'pid': 'u64'}
-)
-```
-
----------
 ### set_payout_pref
-Changes the vault commission rate
-
-Requires:
-1. The sender is the owner
+See [`Pallet::set_payout_pref`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -137,11 +105,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw
-Demands the return of some stake from a pool.
-
-Once a withdraw request is proceeded successfully, The withdrawal would be queued and waiting to be dealed.
-Afer the withdrawal is queued, The withdraw queue will be automaticly consumed util there are not enough free stakes to fullfill withdrawals.
-Everytime the free stakes in the pools increases, the withdraw queue will be consumed as it describes above.
+See [`Pallet::withdraw`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

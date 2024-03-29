@@ -142,7 +142,7 @@ constant = substrate.get_constant('Ics20Fee', 'PalletId')
  1000_u32 ) };
 #### Value
 ```python
-4000000
+5000000
 ```
 #### Python
 ```python

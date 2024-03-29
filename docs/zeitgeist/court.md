@@ -108,7 +108,7 @@ call = substrate.compose_call(
         'Index': (),
         'Raw': 'Bytes',
     },
-    'salt': '[u8; 32]',
+    'salt': 'scale_info::11',
     'vote_item': {
         'Binary': 'bool',
         'Outcome': {
@@ -269,7 +269,7 @@ in the specified court.
 call = substrate.compose_call(
     'Court', 'reveal_vote', {
     'court_id': 'u128',
-    'salt': '[u8; 32]',
+    'salt': 'scale_info::11',
     'vote_item': {
         'Binary': 'bool',
         'Outcome': {
@@ -328,7 +328,7 @@ in the list of random selections (draws).
 ```python
 call = substrate.compose_call(
     'Court', 'vote', {
-    'commitment_vote': '[u8; 32]',
+    'commitment_vote': 'scale_info::11',
     'court_id': 'u128',
 }
 )
@@ -344,7 +344,17 @@ A market has been appealed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | court_id | `CourtId` | ```u128```
-| appeal_number | `u32` | ```u32```
+| appeal_info | `AppealOf<T>` | ```{'backer': 'AccountId', 'bond': 'u128', 'appealed_vote_item': {'Outcome': {'Categorical': 'u16', 'Scalar': 'u128'}, 'Binary': 'bool'}}```
+| new_round_ends | `Option<RoundTimingOf<T>>` | ```(None, {'pre_vote': 'u64', 'vote': 'u64', 'aggregation': 'u64', 'appeal': 'u64'})```
+
+---------
+### CourtOpened
+A court case was opened.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| market_id | `MarketIdOf<T>` | ```u128```
+| court_info | `CourtOf<T>` | ```{'status': {'Open': None, 'Closed': {'winner': {'Outcome': {'Categorical': 'u16', 'Scalar': 'u128'}, 'Binary': 'bool'}}, 'Reassigned': None}, 'appeals': [{'backer': 'AccountId', 'bond': 'u128', 'appealed_vote_item': {'Outcome': {'Categorical': 'u16', 'Scalar': 'u128'}, 'Binary': 'bool'}}], 'round_ends': {'pre_vote': 'u64', 'vote': 'u64', 'aggregation': 'u64', 'appeal': 'u64'}, 'vote_item_type': ('Outcome', 'Binary')}```
 
 ---------
 ### DelegatorJoined
@@ -366,7 +376,7 @@ A juror vote has been denounced.
 | juror | `T::AccountId` | ```AccountId```
 | court_id | `CourtId` | ```u128```
 | vote_item | `VoteItem` | ```{'Outcome': {'Categorical': 'u16', 'Scalar': 'u128'}, 'Binary': 'bool'}```
-| salt | `T::Hash` | ```[u8; 32]```
+| salt | `T::Hash` | ```scale_info::11```
 
 ---------
 ### ExitPrepared
@@ -412,7 +422,9 @@ A juror has revealed their vote.
 | juror | `T::AccountId` | ```AccountId```
 | court_id | `CourtId` | ```u128```
 | vote_item | `VoteItem` | ```{'Outcome': {'Categorical': 'u16', 'Scalar': 'u128'}, 'Binary': 'bool'}```
-| salt | `T::Hash` | ```[u8; 32]```
+| salt | `T::Hash` | ```scale_info::11```
+| slashable_amount | `BalanceOf<T>` | ```u128```
+| draw_weight | `u32` | ```u32```
 
 ---------
 ### JurorVoted
@@ -422,7 +434,7 @@ A juror has voted in a court.
 | -------- | -------- | -------- |
 | court_id | `CourtId` | ```u128```
 | juror | `T::AccountId` | ```AccountId```
-| commitment | `T::Hash` | ```[u8; 32]```
+| commitment | `T::Hash` | ```scale_info::11```
 
 ---------
 ### MintedInCourt
@@ -615,17 +627,17 @@ result = substrate.query(
         'vote': {
             'Delegated': {'delegated_stakes': [('AccountId', 'u128')]},
             'Denounced': {
-                'commitment': '[u8; 32]',
-                'salt': '[u8; 32]',
+                'commitment': 'scale_info::11',
+                'salt': 'scale_info::11',
                 'vote_item': {'Binary': 'bool', 'Outcome': 'scale_info::68'},
             },
             'Drawn': None,
             'Revealed': {
-                'commitment': '[u8; 32]',
-                'salt': '[u8; 32]',
+                'commitment': 'scale_info::11',
+                'salt': 'scale_info::11',
                 'vote_item': {'Binary': 'bool', 'Outcome': 'scale_info::68'},
             },
-            'Secret': {'commitment': '[u8; 32]'},
+            'Secret': {'commitment': 'scale_info::11'},
         },
         'weight': 'u32',
     },
@@ -786,6 +798,17 @@ constant = substrate.get_constant('Court', 'MaxDelegations')
 constant = substrate.get_constant('Court', 'MaxSelectedDraws')
 ```
 ---------
+### MaxYearlyInflation
+ The maximum yearly inflation rate.
+#### Value
+```python
+100000000
+```
+#### Python
+```python
+constant = substrate.get_constant('Court', 'MaxYearlyInflation')
+```
+---------
 ### MinJurorStake
  The minimum stake a user needs to lock to become a juror.
 #### Value
@@ -925,6 +948,10 @@ The set of delegations should contain only valid and active juror accounts.
 The set of delegations has to be distinct.
 
 ---------
+### InflationExceedsMaxYearlyInflation
+The inflation rate is too high.
+
+---------
 ### InvalidVoteItemForBinaryCourt
 The vote item is not valid for this (binary) court.
 
@@ -1020,6 +1047,11 @@ The `prepare_exit_at` field is not present.
 ---------
 ### SelfDelegationNotAllowed
 A delegation to the own account is not possible.
+
+---------
+### Unexpected
+Action cannot be completed because an unexpected error has occurred. This should be
+reported to protocol maintainers.
 
 ---------
 ### VoteAlreadyDenounced

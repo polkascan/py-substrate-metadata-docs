@@ -186,7 +186,7 @@ On on-chain remark happened.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::11```
 
 ---------
 ## Storage functions
@@ -245,7 +245,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::11'
 ```
 ---------
 ### BlockWeight
@@ -323,7 +323,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'System', 'EventTopics', ['[u8; 32]']
+    'System', 'EventTopics', ['scale_info::11']
 )
 ```
 
@@ -353,7 +353,20 @@ result = substrate.query(
 [
     {
         'event': {
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': 'scale_info::11', 'sender': 'AccountId'},
+            },
+            None: None,
             'Asset': {
+                'AssetAffirmationExemption': '[u8; 12]',
                 'AssetBalanceUpdated': (
                     '[u8; 32]',
                     '[u8; 12]',
@@ -415,6 +428,7 @@ result = substrate.query(
                     '[u8; 12]',
                     'scale_info::158',
                 ),
+                'PreApprovedAsset': ('[u8; 32]', '[u8; 12]'),
                 'RegisterAssetMetadataGlobalType': (
                     'Bytes',
                     'u64',
@@ -427,6 +441,8 @@ result = substrate.query(
                     'u64',
                     'scale_info::151',
                 ),
+                'RemoveAssetAffirmationExemption': '[u8; 12]',
+                'RemovePreApprovedAsset': ('[u8; 32]', '[u8; 12]'),
                 'SetAssetMetadataValue': (
                     '[u8; 32]',
                     '[u8; 12]',
@@ -582,16 +598,16 @@ result = substrate.query(
             },
             'Contracts': {
                 'Called': {'caller': 'AccountId', 'contract': 'AccountId'},
-                'CodeRemoved': {'code_hash': '[u8; 32]'},
-                'CodeStored': {'code_hash': '[u8; 32]'},
+                'CodeRemoved': {'code_hash': 'scale_info::11'},
+                'CodeStored': {'code_hash': 'scale_info::11'},
                 'ContractCodeUpdated': {
                     'contract': 'AccountId',
-                    'new_code_hash': '[u8; 32]',
-                    'old_code_hash': '[u8; 32]',
+                    'new_code_hash': 'scale_info::11',
+                    'old_code_hash': 'scale_info::11',
                 },
                 'ContractEmitted': {'contract': 'AccountId', 'data': 'Bytes'},
                 'DelegateCalled': {
-                    'code_hash': '[u8; 32]',
+                    'code_hash': 'scale_info::11',
                     'contract': 'AccountId',
                 },
                 'Instantiated': {
@@ -688,12 +704,6 @@ result = substrate.query(
                 'Paused': None,
                 'Resumed': None,
             },
-            'Indices': {
-                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
-                'IndexFreed': {'index': 'u32'},
-                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
-            },
-            None: None,
             'Identity': {
                 'AssetDidRegistered': ('[u8; 32]', '[u8; 12]'),
                 'AuthorizationAdded': (
@@ -749,6 +759,11 @@ result = substrate.query(
                 'AllGood': None,
                 'HeartbeatReceived': {'authority_id': '[u8; 32]'},
                 'SomeOffline': {'offline': [('AccountId', 'scale_info::118')]},
+            },
+            'Indices': {
+                'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
+                'IndexFreed': {'index': 'u32'},
+                'IndexFrozen': {'index': 'u32', 'who': 'AccountId'},
             },
             'MultiSig': {
                 'MultiSigCreated': (
@@ -877,32 +892,51 @@ result = substrate.query(
                 'Voted': ('[u8; 32]', 'AccountId', 'u32', 'bool', 'u128'),
             },
             'PolymeshCommittee': {
-                'Approved': ('[u8; 32]', '[u8; 32]', 'u32', 'u32', 'u32'),
-                'Executed': ('[u8; 32]', '[u8; 32]', 'scale_info::80'),
+                'Approved': (
+                    '[u8; 32]',
+                    'scale_info::11',
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
+                'Executed': ('[u8; 32]', 'scale_info::11', 'scale_info::80'),
                 'ExpiresAfterUpdated': ('[u8; 32]', 'scale_info::82'),
                 'FinalVotes': (
                     '[u8; 32]',
                     'u32',
-                    '[u8; 32]',
+                    'scale_info::11',
                     ['[u8; 32]'],
                     ['[u8; 32]'],
                 ),
-                'Proposed': ('[u8; 32]', 'u32', '[u8; 32]'),
-                'Rejected': ('[u8; 32]', '[u8; 32]', 'u32', 'u32', 'u32'),
+                'Proposed': ('[u8; 32]', 'u32', 'scale_info::11'),
+                'Rejected': (
+                    '[u8; 32]',
+                    'scale_info::11',
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
                 'ReleaseCoordinatorUpdated': ('[u8; 32]', (None, '[u8; 32]')),
-                'VoteRetracted': ('[u8; 32]', 'u32', '[u8; 32]', 'bool'),
+                'VoteRetracted': ('[u8; 32]', 'u32', 'scale_info::11', 'bool'),
                 'VoteThresholdUpdated': ('[u8; 32]', 'u32', 'u32'),
                 'Voted': (
                     '[u8; 32]',
                     'u32',
-                    '[u8; 32]',
+                    'scale_info::11',
                     'bool',
                     'u32',
                     'u32',
                     'u32',
                 ),
             },
-            'PolymeshContracts': (),
+            'PolymeshContracts': {
+                'ApiHashUpdated': (
+                    'scale_info::290',
+                    'scale_info::291',
+                    'scale_info::11',
+                ),
+                'SCRuntimeCall': ('AccountId', ('u8', 'u8')),
+            },
             'Portfolio': {
                 'FundsMovedBetweenPortfolios': (
                     '[u8; 32]',
@@ -919,12 +953,22 @@ result = substrate.query(
                 ),
                 'PortfolioDeleted': ('[u8; 32]', 'u64'),
                 'PortfolioRenamed': ('[u8; 32]', 'u64', 'Bytes'),
+                'PreApprovedPortfolio': (
+                    '[u8; 32]',
+                    'scale_info::56',
+                    '[u8; 12]',
+                ),
+                'RevokePreApprovedPortfolio': (
+                    '[u8; 32]',
+                    'scale_info::56',
+                    '[u8; 12]',
+                ),
                 'UserPortfolios': ('[u8; 32]', [('u64', 'Bytes')]),
             },
             'Preimage': {
-                'Cleared': {'hash': '[u8; 32]'},
-                'Noted': {'hash': '[u8; 32]'},
-                'Requested': {'hash': '[u8; 32]'},
+                'Cleared': {'hash': 'scale_info::11'},
+                'Noted': {'hash': 'scale_info::11'},
+                'Requested': {'hash': 'scale_info::11'},
             },
             'ProtocolFee': {
                 'CoefficientSet': ('[u8; 32]', ('u32', 'u32')),
@@ -975,6 +1019,11 @@ result = substrate.query(
                 'AffirmationWithdrawn': ('[u8; 32]', 'scale_info::56', 'u64'),
                 'FailedToExecuteInstruction': ('u64', 'scale_info::24'),
                 'InstructionAffirmed': ('[u8; 32]', 'scale_info::56', 'u64'),
+                'InstructionAutomaticallyAffirmed': (
+                    '[u8; 32]',
+                    'scale_info::56',
+                    'u64',
+                ),
                 'InstructionCreated': (
                     '[u8; 32]',
                     'u64',
@@ -1119,37 +1168,38 @@ result = substrate.query(
                     'u128',
                 ),
             },
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': '[u8; 32]', 'sender': 'AccountId'},
-            },
             'TechnicalCommittee': {
-                'Approved': ('[u8; 32]', '[u8; 32]', 'u32', 'u32', 'u32'),
-                'Executed': ('[u8; 32]', '[u8; 32]', 'scale_info::80'),
+                'Approved': (
+                    '[u8; 32]',
+                    'scale_info::11',
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
+                'Executed': ('[u8; 32]', 'scale_info::11', 'scale_info::80'),
                 'ExpiresAfterUpdated': ('[u8; 32]', 'scale_info::82'),
                 'FinalVotes': (
                     '[u8; 32]',
                     'u32',
-                    '[u8; 32]',
+                    'scale_info::11',
                     ['[u8; 32]'],
                     ['[u8; 32]'],
                 ),
-                'Proposed': ('[u8; 32]', 'u32', '[u8; 32]'),
-                'Rejected': ('[u8; 32]', '[u8; 32]', 'u32', 'u32', 'u32'),
+                'Proposed': ('[u8; 32]', 'u32', 'scale_info::11'),
+                'Rejected': (
+                    '[u8; 32]',
+                    'scale_info::11',
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
                 'ReleaseCoordinatorUpdated': ('[u8; 32]', (None, '[u8; 32]')),
-                'VoteRetracted': ('[u8; 32]', 'u32', '[u8; 32]', 'bool'),
+                'VoteRetracted': ('[u8; 32]', 'u32', 'scale_info::11', 'bool'),
                 'VoteThresholdUpdated': ('[u8; 32]', 'u32', 'u32'),
                 'Voted': (
                     '[u8; 32]',
                     'u32',
-                    '[u8; 32]',
+                    'scale_info::11',
                     'bool',
                     'u32',
                     'u32',
@@ -1188,25 +1238,37 @@ result = substrate.query(
                 'TreasuryReimbursement': ('[u8; 32]', 'u128'),
             },
             'UpgradeCommittee': {
-                'Approved': ('[u8; 32]', '[u8; 32]', 'u32', 'u32', 'u32'),
-                'Executed': ('[u8; 32]', '[u8; 32]', 'scale_info::80'),
+                'Approved': (
+                    '[u8; 32]',
+                    'scale_info::11',
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
+                'Executed': ('[u8; 32]', 'scale_info::11', 'scale_info::80'),
                 'ExpiresAfterUpdated': ('[u8; 32]', 'scale_info::82'),
                 'FinalVotes': (
                     '[u8; 32]',
                     'u32',
-                    '[u8; 32]',
+                    'scale_info::11',
                     ['[u8; 32]'],
                     ['[u8; 32]'],
                 ),
-                'Proposed': ('[u8; 32]', 'u32', '[u8; 32]'),
-                'Rejected': ('[u8; 32]', '[u8; 32]', 'u32', 'u32', 'u32'),
+                'Proposed': ('[u8; 32]', 'u32', 'scale_info::11'),
+                'Rejected': (
+                    '[u8; 32]',
+                    'scale_info::11',
+                    'u32',
+                    'u32',
+                    'u32',
+                ),
                 'ReleaseCoordinatorUpdated': ('[u8; 32]', (None, '[u8; 32]')),
-                'VoteRetracted': ('[u8; 32]', 'u32', '[u8; 32]', 'bool'),
+                'VoteRetracted': ('[u8; 32]', 'u32', 'scale_info::11', 'bool'),
                 'VoteThresholdUpdated': ('[u8; 32]', 'u32', 'u32'),
                 'Voted': (
                     '[u8; 32]',
                     'u32',
-                    '[u8; 32]',
+                    'scale_info::11',
                     'bool',
                     'u32',
                     'u32',
@@ -1247,7 +1309,7 @@ result = substrate.query(
             'Finalization': None,
             'Initialization': None,
         },
-        'topics': ['[u8; 32]'],
+        'topics': ['scale_info::11'],
     },
 ]
 ```
@@ -1339,7 +1401,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::11'
 ```
 ---------
 ### UpgradedToTripleRefCount
@@ -1508,7 +1570,7 @@ constant = substrate.get_constant('System', 'SS58Prefix')
     'impl_name': 'polymesh_mainnet',
     'impl_version': 0,
     'spec_name': 'polymesh_mainnet',
-    'spec_version': 6000004,
+    'spec_version': 6001031,
     'state_version': 1,
     'transaction_version': 4,
 }

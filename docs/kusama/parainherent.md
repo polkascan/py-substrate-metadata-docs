@@ -6,11 +6,11 @@
 
 ---------
 ### enter
-Enter the paras inherent. This will process bitfields and backed candidates.
+See [`Pallet::enter`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| data | `ParachainsInherentData<T::Header>` | 
+| data | `ParachainsInherentData<HeaderFor<T>>` | 
 
 #### Python
 ```python
@@ -23,7 +23,7 @@ call = substrate.compose_call(
                     'commitments': {
                         'head_data': 'Bytes',
                         'horizontal_messages': [
-                            'scale_info::346',
+                            'scale_info::354',
                         ],
                         'hrmp_watermark': 'u32',
                         'new_validation_code': (
@@ -37,14 +37,14 @@ call = substrate.compose_call(
                     },
                     'descriptor': {
                         'collator': '[u8; 32]',
-                        'erasure_root': '[u8; 32]',
-                        'para_head': '[u8; 32]',
+                        'erasure_root': 'scale_info::12',
+                        'para_head': 'scale_info::12',
                         'para_id': 'u32',
-                        'persisted_validation_data_hash': '[u8; 32]',
-                        'pov_hash': '[u8; 32]',
-                        'relay_parent': '[u8; 32]',
+                        'persisted_validation_data_hash': 'scale_info::12',
+                        'pov_hash': 'scale_info::12',
+                        'relay_parent': 'scale_info::12',
                         'signature': '[u8; 64]',
-                        'validation_code_hash': '[u8; 32]',
+                        'validation_code_hash': 'scale_info::12',
                     },
                 },
                 'validator_indices': 'BitVec',
@@ -66,13 +66,13 @@ call = substrate.compose_call(
         ],
         'disputes': [
             {
-                'candidate_hash': '[u8; 32]',
+                'candidate_hash': 'scale_info::12',
                 'session': 'u32',
                 'statements': [
                     (
                         {
-                            'Invalid': 'scale_info::360',
-                            'Valid': 'scale_info::359',
+                            'Invalid': 'scale_info::368',
+                            'Valid': 'scale_info::367',
                         },
                         'u32',
                         '[u8; 64]',
@@ -102,10 +102,10 @@ call = substrate.compose_call(
                     },
                 ],
             },
-            'extrinsics_root': '[u8; 32]',
+            'extrinsics_root': 'scale_info::12',
             'number': 'u32',
-            'parent_hash': '[u8; 32]',
-            'state_root': '[u8; 32]',
+            'parent_hash': 'scale_info::12',
+            'state_root': 'scale_info::12',
         },
     },
 }
@@ -152,27 +152,27 @@ result = substrate.query(
     'backing_validators_per_candidate': [
         (
             {
-                'commitments_hash': '[u8; 32]',
+                'commitments_hash': 'scale_info::12',
                 'descriptor': {
                     'collator': '[u8; 32]',
-                    'erasure_root': '[u8; 32]',
-                    'para_head': '[u8; 32]',
+                    'erasure_root': 'scale_info::12',
+                    'para_head': 'scale_info::12',
                     'para_id': 'u32',
-                    'persisted_validation_data_hash': '[u8; 32]',
-                    'pov_hash': '[u8; 32]',
-                    'relay_parent': '[u8; 32]',
+                    'persisted_validation_data_hash': 'scale_info::12',
+                    'pov_hash': 'scale_info::12',
+                    'relay_parent': 'scale_info::12',
                     'signature': '[u8; 64]',
-                    'validation_code_hash': '[u8; 32]',
+                    'validation_code_hash': 'scale_info::12',
                 },
             },
-            [('u32', 'scale_info::352')],
+            [('u32', 'scale_info::360')],
         ),
     ],
     'disputes': [
         {
-            'candidate_hash': '[u8; 32]',
+            'candidate_hash': 'scale_info::12',
             'session': 'u32',
-            'statements': [('scale_info::358', 'u32', '[u8; 64]')],
+            'statements': [('scale_info::366', 'u32', '[u8; 64]')],
         },
     ],
     'session': 'u32',

@@ -9,7 +9,7 @@
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| length | `T::BlockNumber` | 
+| length | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -79,7 +79,7 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| blocks | `T::BlockNumber` | ```u32```
+| blocks | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### StakeWithdrawn
@@ -303,9 +303,6 @@ constant = substrate.get_constant('Capacity', 'UnstakingThawPeriod')
 
 ---------
 ### StakerTargetRelationshipNotFound
-
----------
-### StakingAccountNotFound
 
 ---------
 ### TargetCapacityNotFound

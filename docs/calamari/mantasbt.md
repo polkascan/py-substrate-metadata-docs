@@ -1116,7 +1116,7 @@ Receiver Ledger Utxo Accumulator Item Hash Decoding Error
 
 ---------
 ### ReceiverLedgerUtxoDecodeFailed
-Reciever Ledger Utxo decode failed
+Receiver Ledger Utxo decode failed
 
 ---------
 ### SenderLedgerFpEncodeError

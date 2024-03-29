@@ -6,14 +6,7 @@
 
 ---------
 ### authorize_upgrade
-Authorize an upgrade to a given `code_hash` for the runtime. The runtime can be supplied
-later.
-
-The `check_version` parameter sets a boolean flag for whether or not the runtime&\#x27;s spec
-version and name should be verified on upgrade. Since the authorization only has a hash,
-it cannot actually perform the verification.
-
-This call requires Root origin.
+See [`Pallet::authorize_upgrade`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -25,22 +18,14 @@ This call requires Root origin.
 call = substrate.compose_call(
     'ParachainSystem', 'authorize_upgrade', {
     'check_version': 'bool',
-    'code_hash': '[u8; 32]',
+    'code_hash': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### enact_authorized_upgrade
-Provide the preimage (runtime binary) `code` for an upgrade that has been authorized.
-
-If the authorization required a version check, this call will ensure the spec name
-remains unchanged and that the spec version has increased.
-
-Note that this function will not apply the new `code`, but only attempt to schedule the
-upgrade with the Relay Chain.
-
-All origins are allowed.
+See [`Pallet::enact_authorized_upgrade`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -55,15 +40,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_validation_data
-Set the current validation data.
-
-This should be invoked exactly once per block. It will panic at the finalization
-phase if the call was not invoked.
-
-The dispatch origin for this call must be `Inherent`
-
-As a side effect, this function upgrades the current validation function
-if the appropriate time has come.
+See [`Pallet::set_validation_data`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -80,15 +57,15 @@ call = substrate.compose_call(
                 'sent_at': 'u32',
             },
         ],
-        'horizontal_messages': 'scale_info::322',
+        'horizontal_messages': 'scale_info::348',
         'relay_chain_state': {
-            'trie_nodes': 'scale_info::319',
+            'trie_nodes': 'scale_info::345',
         },
         'validation_data': {
             'max_pov_size': 'u32',
             'parent_head': 'Bytes',
             'relay_parent_number': 'u32',
-            'relay_parent_storage_root': '[u8; 32]',
+            'relay_parent_storage_root': 'scale_info::12',
         },
     },
 }
@@ -97,6 +74,7 @@ call = substrate.compose_call(
 
 ---------
 ### sudo_send_upward_message
+See [`Pallet::sudo_send_upward_message`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -119,7 +97,7 @@ Downward messages were processed using the given weight.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | weight_used | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
-| dmq_head | `relay_chain::Hash` | ```[u8; 32]```
+| dmq_head | `relay_chain::Hash` | ```scale_info::12```
 
 ---------
 ### DownwardMessagesReceived
@@ -135,7 +113,7 @@ An upgrade has been authorized.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| code_hash | `T::Hash` | ```[u8; 32]```
+| code_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### UpwardMessageSent
@@ -197,13 +175,13 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'check_version': 'bool', 'code_hash': '[u8; 32]'}
+{'check_version': 'bool', 'code_hash': 'scale_info::12'}
 ```
 ---------
 ### CustomValidationHeadData
  A custom head data that should be returned as result of `validate_block`.
 
- See [`Pallet::set_custom_validation_head_data`] for more information.
+ See `Pallet::set_custom_validation_head_data` for more information.
 
 #### Python
 ```python
@@ -311,7 +289,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### LastHrmpMqcHeads
@@ -329,7 +307,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::454'
+'scale_info::481'
 ```
 ---------
 ### LastRelayChainBlockNumber
@@ -384,10 +362,8 @@ result = substrate.query(
 ### PendingValidationCode
  In case of a scheduled upgrade, this storage field contains the validation code to be applied.
 
- As soon as the relay chain gives us the go-ahead signal, we will overwrite the [`:code`][well_known_keys::CODE]
+ As soon as the relay chain gives us the go-ahead signal, we will overwrite the [`:code`][sp_core::storage::well_known_keys::CODE]
  which will result the next block process with the new validation code. This concludes the upgrade process.
-
- [well_known_keys::CODE]: sp_core::storage::well_known_keys::CODE
 
 #### Python
 ```python
@@ -435,7 +411,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'trie_nodes': 'scale_info::319'}
+{'trie_nodes': 'scale_info::345'}
 ```
 ---------
 ### RelevantMessagingState
@@ -457,7 +433,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'dmq_mqc_head': '[u8; 32]',
+    'dmq_mqc_head': 'scale_info::12',
     'egress_channels': [
         (
             'u32',
@@ -465,7 +441,7 @@ result = substrate.query(
                 'max_capacity': 'u32',
                 'max_message_size': 'u32',
                 'max_total_size': 'u32',
-                'mqc_head': (None, '[u8; 32]'),
+                'mqc_head': (None, 'scale_info::12'),
                 'msg_count': 'u32',
                 'total_size': 'u32',
             },
@@ -478,13 +454,16 @@ result = substrate.query(
                 'max_capacity': 'u32',
                 'max_message_size': 'u32',
                 'max_total_size': 'u32',
-                'mqc_head': (None, '[u8; 32]'),
+                'mqc_head': (None, 'scale_info::12'),
                 'msg_count': 'u32',
                 'total_size': 'u32',
             },
         ),
     ],
-    'relay_dispatch_queue_size': ('u32', 'u32'),
+    'relay_dispatch_queue_size': {
+        'remaining_count': 'u32',
+        'remaining_size': 'u32',
+    },
 }
 ```
 ---------
@@ -576,7 +555,7 @@ result = substrate.query(
     'max_pov_size': 'u32',
     'parent_head': 'Bytes',
     'relay_parent_number': 'u32',
-    'relay_parent_storage_root': '[u8; 32]',
+    'relay_parent_storage_root': 'scale_info::12',
 }
 ```
 ---------

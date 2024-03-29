@@ -6,7 +6,7 @@
 
 ---------
 ### cancel_brief
-Extrinsic to cancel a brief
+See [`Pallet::cancel_brief`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -15,13 +15,13 @@ Extrinsic to cancel a brief
 #### Python
 ```python
 call = substrate.compose_call(
-    'ImbueBriefs', 'cancel_brief', {'brief_id': '[u8; 32]'}
+    'ImbueBriefs', 'cancel_brief', {'brief_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### commence_work
-Once the freelancer is happy with both the milestones and the offering this can be called.
+See [`Pallet::commence_work`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -30,16 +30,13 @@ Once the freelancer is happy with both the milestones and the offering this can 
 #### Python
 ```python
 call = substrate.compose_call(
-    'ImbueBriefs', 'commence_work', {'brief_id': '[u8; 32]'}
+    'ImbueBriefs', 'commence_work', {'brief_id': 'scale_info::12'}
 )
 ```
 
 ---------
 ### contribute_to_brief
-Add a bounty to a brief.
-A bounty must be fully contributed to before a piece of work is started.
-
-TODO: runtime api to return how much bounty exactly is left on a brief.
+See [`Pallet::contribute_to_brief`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -51,15 +48,14 @@ TODO: runtime api to return how much bounty exactly is left on a brief.
 call = substrate.compose_call(
     'ImbueBriefs', 'contribute_to_brief', {
     'amount': 'u128',
-    'brief_id': '[u8; 32]',
+    'brief_id': 'scale_info::12',
 }
 )
 ```
 
 ---------
 ### create_brief
-Create a brief to be funded or amended.
-In the current state the applicant must be approved.
+See [`Pallet::create_brief`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -70,23 +66,34 @@ In the current state the applicant must be approved.
 | brief_id | `BriefHash` | 
 | currency_id | `CurrencyId` | 
 | milestones | `BoundedProposedMilestones<T>` | 
+| external_owned_address | `Option<common_types::ForeignOwnedAccount>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'ImbueBriefs', 'create_brief', {
     'applicant': 'AccountId',
-    'brief_id': '[u8; 32]',
+    'brief_id': 'scale_info::12',
     'brief_owners': ['AccountId'],
     'budget': 'u128',
     'currency_id': {
         'AUSD': None,
-        'ForeignAsset': 'u32',
+        'ForeignAsset': (
+            'ETH',
+            'USDT',
+        ),
         'KAR': None,
         'KSM': None,
         'MGX': None,
         'Native': None,
     },
+    'external_owned_address': (
+        None,
+        {
+            'ETH': '[u8; 20]',
+            'TRON': '[u8; 22]',
+        },
+    ),
     'initial_contribution': 'u128',
     'milestones': [
         {'percentage_to_unlock': 'u8'},
@@ -111,7 +118,7 @@ A brief has been cancelled.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `BriefHash` | ```[u8; 32]```
+| None | `BriefHash` | ```scale_info::12```
 
 ---------
 ### BriefContribution
@@ -120,7 +127,7 @@ A brief has been contributed to.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
-| None | `BriefHash` | ```[u8; 32]```
+| None | `BriefHash` | ```scale_info::12```
 
 ---------
 ### BriefEvolution
@@ -128,7 +135,7 @@ A brief has been converted to milestones.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `BriefHash` | ```[u8; 32]```
+| None | `BriefHash` | ```scale_info::12```
 
 ---------
 ### BriefSubmitted
@@ -137,7 +144,7 @@ A brief has been successfully submitted!
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
-| None | `BriefHash` | ```[u8; 32]```
+| None | `BriefHash` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -153,13 +160,13 @@ A brief has been successfully submitted!
 #### Python
 ```python
 result = substrate.query(
-    'ImbueBriefs', 'BriefContributions', ['[u8; 32]']
+    'ImbueBriefs', 'BriefContributions', ['scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-'scale_info::459'
+'scale_info::491'
 ```
 ---------
 ### Briefs
@@ -167,7 +174,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'ImbueBriefs', 'Briefs', ['[u8; 32]']
+    'ImbueBriefs', 'Briefs', ['scale_info::12']
 )
 ```
 
@@ -180,13 +187,14 @@ result = substrate.query(
     'created_at': 'u32',
     'currency_id': {
         'AUSD': None,
-        'ForeignAsset': 'u32',
+        'ForeignAsset': ('ETH', 'USDT'),
         'KAR': None,
         'KSM': None,
         'MGX': None,
         'Native': None,
     },
     'deposit_id': 'u64',
+    'eoa': (None, {'ETH': '[u8; 20]', 'TRON': '[u8; 22]'}),
     'milestones': [{'percentage_to_unlock': 'u8'}],
 }
 ```
@@ -204,20 +212,6 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
-```
----------
-### StorageVersion
-
-#### Python
-```python
-result = substrate.query(
-    'ImbueBriefs', 'StorageVersion', []
-)
-```
-
-#### Return value
-```python
-('V0', 'V1')
 ```
 ---------
 ## Errors
@@ -255,8 +249,16 @@ Brief not found.
 The contribution you have sent is more than the bounty total.
 
 ---------
+### CurrencyAccountComboNotSupported
+Currency is not supported for this external address.
+
+---------
 ### DepositBelowMinimum
 The deposit you have sent is below the minimum requirement.
+
+---------
+### EoaRequiredForForeignCurrencies
+If youre using a foreign currency then you need an external_owned_address.
 
 ---------
 ### FreelancerApprovalRequired
@@ -281,5 +283,9 @@ Only approved account can apply for briefs.
 ---------
 ### TooManyBriefOwners
 Too many brief owners.
+
+---------
+### TooManyMilestones
+too many milestones here mate fixed with https://github.com/ImbueNetwork/imbue/issues/267
 
 ---------

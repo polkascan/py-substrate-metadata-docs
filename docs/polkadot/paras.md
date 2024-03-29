@@ -6,19 +6,7 @@
 
 ---------
 ### add_trusted_validation_code
-Adds the validation code to the storage.
-
-The code will not be added if it is already present. Additionally, if PVF pre-checking
-is running for that code, it will be instantly accepted.
-
-Otherwise, the code will be added into the storage. Note that the code will be added
-into storage with reference count 0. This is to account the fact that there are no users
-for this code yet. The caller will have to make sure that this code eventually gets
-used by some parachain or removed from the storage to avoid storage leaks. For the latter
-prefer to use the `poke_unused_validation_code` dispatchable to raw storage manipulation.
-
-This function is mainly meant to be used for upgrading parachains that do not follow
-the go-ahead signal while the PVF pre-checking feature is enabled.
+See [`Pallet::add_trusted_validation_code`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -33,7 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_note_new_head
-Note a new block head for para within the context of the current block.
+See [`Pallet::force_note_new_head`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -49,9 +37,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_queue_action
-Put a parachain directly into the next session&\#x27;s action queue.
-We can&\#x27;t queue it any sooner than this without going into the
-initializer...
+See [`Pallet::force_queue_action`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -66,13 +52,13 @@ call = substrate.compose_call(
 
 ---------
 ### force_schedule_code_upgrade
-Schedule an upgrade as if it was scheduled in the given relay parent block.
+See [`Pallet::force_schedule_code_upgrade`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | para | `ParaId` | 
 | new_code | `ValidationCode` | 
-| relay_parent_number | `T::BlockNumber` | 
+| relay_parent_number | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -87,7 +73,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_set_current_code
-Set the storage for the parachain validation code immediately.
+See [`Pallet::force_set_current_code`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -103,7 +89,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_set_current_head
-Set the storage for the current parachain head data immediately.
+See [`Pallet::force_set_current_head`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -118,9 +104,24 @@ call = substrate.compose_call(
 ```
 
 ---------
+### force_set_most_recent_context
+See [`Pallet::force_set_most_recent_context`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| para | `ParaId` | 
+| context | `BlockNumberFor<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Paras', 'force_set_most_recent_context', {'context': 'u32', 'para': 'u32'}
+)
+```
+
+---------
 ### include_pvf_check_statement
-Includes a statement for a PVF pre-checking vote. Potentially, finalizes the vote and
-enacts the results if that was the last vote before achieving the supermajority.
+See [`Pallet::include_pvf_check_statement`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -135,7 +136,7 @@ call = substrate.compose_call(
     'stmt': {
         'accept': 'bool',
         'session_index': 'u32',
-        'subject': '[u8; 32]',
+        'subject': 'scale_info::12',
         'validator_index': 'u32',
     },
 }
@@ -144,11 +145,7 @@ call = substrate.compose_call(
 
 ---------
 ### poke_unused_validation_code
-Remove the validation code from the storage iff the reference count is 0.
-
-This is better than removing the storage directly, because it will not remove the code
-that was suddenly got used by some parachain while this dispatchable was pending
-dispatching.
+See [`Pallet::poke_unused_validation_code`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -157,7 +154,9 @@ dispatching.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Paras', 'poke_unused_validation_code', {'validation_code_hash': '[u8; 32]'}
+    'Paras', 'poke_unused_validation_code', {
+    'validation_code_hash': 'scale_info::12',
+}
 )
 ```
 
@@ -212,7 +211,7 @@ The given validation code was accepted by the PVF pre-checking vote.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ValidationCodeHash` | ```[u8; 32]```
+| None | `ValidationCodeHash` | ```scale_info::12```
 | None | `ParaId` | ```u32```
 
 ---------
@@ -222,7 +221,7 @@ The given validation code was rejected by the PVF pre-checking vote.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ValidationCodeHash` | ```[u8; 32]```
+| None | `ValidationCodeHash` | ```scale_info::12```
 | None | `ParaId` | ```u32```
 
 ---------
@@ -232,7 +231,7 @@ code. `code_hash` `para_id`
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `ValidationCodeHash` | ```[u8; 32]```
+| None | `ValidationCodeHash` | ```scale_info::12```
 | None | `ParaId` | ```u32```
 
 ---------
@@ -263,7 +262,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Paras', 'CodeByHash', ['[u8; 32]']
+    'Paras', 'CodeByHash', ['scale_info::12']
 )
 ```
 
@@ -278,7 +277,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Paras', 'CodeByHashRefs', ['[u8; 32]']
+    'Paras', 'CodeByHashRefs', ['scale_info::12']
 )
 ```
 
@@ -301,7 +300,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### FutureCodeHash
@@ -318,7 +317,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### FutureCodeUpgrades
@@ -353,6 +352,21 @@ result = substrate.query(
 'Bytes'
 ```
 ---------
+### MostRecentContext
+ The context (relay-chain block number) of the most recent parachain head.
+
+#### Python
+```python
+result = substrate.query(
+    'Paras', 'MostRecentContext', ['u32']
+)
+```
+
+#### Return value
+```python
+'u32'
+```
+---------
 ### ParaLifecycles
  The current lifecycle of a all known Para IDs.
 
@@ -377,7 +391,8 @@ result = substrate.query(
 ```
 ---------
 ### Parachains
- All parachains. Ordered ascending by `ParaId`. Parathreads are not included.
+ All lease holding parachains. Ordered ascending by `ParaId`. On demand parachains are not
+ included.
 
  Consider using the [`ParachainsCache`] type of modifying.
 
@@ -408,7 +423,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### PastCodeMeta
@@ -432,11 +447,11 @@ result = substrate.query(
 ```
 ---------
 ### PastCodePruning
- Which paras have past code that needs pruning and the relay-chain block at which the code was replaced.
- Note that this is the actual height of the included block, not the expected height at which the
- code upgrade would be applied, although they may be equal.
- This is to ensure the entire acceptance period is covered, not an offset acceptance period starting
- from the time at which the parachain perceives a code upgrade as having occurred.
+ Which paras have past code that needs pruning and the relay-chain block at which the code
+ was replaced. Note that this is the actual height of the included block, not the expected
+ height at which the code upgrade would be applied, although they may be equal.
+ This is to ensure the entire acceptance period is covered, not an offset acceptance period
+ starting from the time at which the parachain perceives a code upgrade as having occurred.
  Multiple entries for a single para are permitted. Ordered ascending by block number.
 
 #### Python
@@ -463,7 +478,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::12']
 ```
 ---------
 ### PvfActiveVoteMap
@@ -475,7 +490,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Paras', 'PvfActiveVoteMap', ['[u8; 32]']
+    'Paras', 'PvfActiveVoteMap', ['scale_info::12']
 )
 ```
 
@@ -486,7 +501,11 @@ result = substrate.query(
     'causes': [
         {
             'Onboarding': 'u32',
-            'Upgrade': {'id': 'u32', 'relay_parent_number': 'u32'},
+            'Upgrade': {
+                'id': 'u32',
+                'included_at': 'u32',
+                'set_go_ahead': ('Yes', 'No'),
+            },
         },
     ],
     'created_at': 'u32',
@@ -549,12 +568,13 @@ result = substrate.query(
 ```
 ---------
 ### UpgradeGoAheadSignal
- This is used by the relay-chain to communicate to a parachain a go-ahead with in the upgrade procedure.
+ This is used by the relay-chain to communicate to a parachain a go-ahead with in the upgrade
+ procedure.
 
  This value is absent when there are no upgrades scheduled or during the time the relay chain
- performs the checks. It is set at the first relay-chain block when the corresponding parachain
- can switch its upgrade function. As soon as the parachain&#x27;s block is included, the value
- gets reset to `None`.
+ performs the checks. It is set at the first relay-chain block when the corresponding
+ parachain can switch its upgrade function. As soon as the parachain&#x27;s block is included, the
+ value gets reset to `None`.
 
  NOTE that this field is used by parachains via merkle storage proofs, therefore changing
  the format will require migration of parachains.
@@ -611,7 +631,7 @@ constant = substrate.get_constant('Paras', 'UnsignedPriority')
 
 ---------
 ### CannotDowngrade
-Para cannot be downgraded to a parathread.
+Para cannot be downgraded to an on-demand parachain.
 
 ---------
 ### CannotOffboard
@@ -623,7 +643,7 @@ Para cannot be onboarded because it is already tracked by our system.
 
 ---------
 ### CannotUpgrade
-Para cannot be upgraded to a parachain.
+Para cannot be upgraded to a lease holding parachain.
 
 ---------
 ### CannotUpgradeCode

@@ -5,6 +5,20 @@
 ## Calls
 
 ---------
+### ensure_updated
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| hashes | `Vec<T::Hash>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Preimage', 'ensure_updated', {'hashes': ['scale_info::12']}
+)
+```
+
+---------
 ### note_preimage
 #### Attributes
 | Name | Type |
@@ -28,7 +42,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'request_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'request_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -42,7 +56,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unnote_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unnote_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -56,7 +70,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 call = substrate.compose_call(
-    'Preimage', 'unrequest_preimage', {'hash': '[u8; 32]'}
+    'Preimage', 'unrequest_preimage', {'hash': 'scale_info::12'}
 )
 ```
 
@@ -68,21 +82,21 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Noted
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Requested
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| hash | `T::Hash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -93,7 +107,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'PreimageFor', [('[u8; 32]', 'u32')]
+    'Preimage', 'PreimageFor', [('scale_info::12', 'u32')]
 )
 ```
 
@@ -102,12 +116,33 @@ result = substrate.query(
 'Bytes'
 ```
 ---------
+### RequestStatusFor
+
+#### Python
+```python
+result = substrate.query(
+    'Preimage', 'RequestStatusFor', ['scale_info::12']
+)
+```
+
+#### Return value
+```python
+{
+    'Requested': {
+        'count': 'u32',
+        'maybe_len': (None, 'u32'),
+        'maybe_ticket': (None, ('AccountId', 'u128')),
+    },
+    'Unrequested': {'len': 'u32', 'ticket': ('AccountId', 'u128')},
+}
+```
+---------
 ### StatusFor
 
 #### Python
 ```python
 result = substrate.query(
-    'Preimage', 'StatusFor', ['[u8; 32]']
+    'Preimage', 'StatusFor', ['scale_info::12']
 )
 ```
 
@@ -142,5 +177,11 @@ result = substrate.query(
 
 ---------
 ### TooBig
+
+---------
+### TooFew
+
+---------
+### TooMany
 
 ---------

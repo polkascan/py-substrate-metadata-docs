@@ -294,14 +294,14 @@ call = substrate.compose_call(
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::53',
+                            'Token': 'scale_info::54',
                         },
                         {
                             'Erc20': '[u8; 20]',
                             'ForeignAsset': 'u16',
                             'LiquidCrowdloan': 'u32',
                             'StableAssetPoolToken': 'u32',
-                            'Token': 'scale_info::53',
+                            'Token': 'scale_info::54',
                         },
                     ),
                     'Erc20': '[u8; 20]',
@@ -584,14 +584,14 @@ result = substrate.query(
                 'ForeignAsset': 'u16',
                 'LiquidCrowdloan': 'u32',
                 'StableAssetPoolToken': 'u32',
-                'Token': 'scale_info::53',
+                'Token': 'scale_info::54',
             },
             {
                 'Erc20': '[u8; 20]',
                 'ForeignAsset': 'u16',
                 'LiquidCrowdloan': 'u32',
                 'StableAssetPoolToken': 'u32',
-                'Token': 'scale_info::53',
+                'Token': 'scale_info::54',
             },
         ),
         'Erc20': '[u8; 20]',
@@ -710,14 +710,14 @@ result = substrate.query(
                 'ForeignAsset': 'u16',
                 'LiquidCrowdloan': 'u32',
                 'StableAssetPoolToken': 'u32',
-                'Token': 'scale_info::53',
+                'Token': 'scale_info::54',
             },
             {
                 'Erc20': '[u8; 20]',
                 'ForeignAsset': 'u16',
                 'LiquidCrowdloan': 'u32',
                 'StableAssetPoolToken': 'u32',
-                'Token': 'scale_info::53',
+                'Token': 'scale_info::54',
             },
         ),
         'Erc20': '[u8; 20]',
@@ -757,6 +757,107 @@ result = substrate.query(
 #### Return value
 ```python
 'u128'
+```
+---------
+### OverrideChargeFeeMethod
+
+#### Python
+```python
+result = substrate.query(
+    'TransactionPayment', 'OverrideChargeFeeMethod', []
+)
+```
+
+#### Return value
+```python
+{
+    'FeeAggregatedPath': [
+        {
+            'Dex': [
+                {
+                    'DexShare': ('scale_info::55', 'scale_info::55'),
+                    'Erc20': '[u8; 20]',
+                    'ForeignAsset': 'u16',
+                    'LiquidCrowdloan': 'u32',
+                    'StableAssetPoolToken': 'u32',
+                    'Token': 'scale_info::54',
+                },
+            ],
+            'Taiga': ('u32', 'u32', 'u32'),
+        },
+    ],
+    'FeeCurrency': {
+        'DexShare': (
+            {
+                'Erc20': '[u8; 20]',
+                'ForeignAsset': 'u16',
+                'LiquidCrowdloan': 'u32',
+                'StableAssetPoolToken': 'u32',
+                'Token': (
+                    'ACA',
+                    'AUSD',
+                    'DOT',
+                    'LDOT',
+                    'TAP',
+                    'KAR',
+                    'KUSD',
+                    'KSM',
+                    'LKSM',
+                    'TAI',
+                    'BNC',
+                    'VSKSM',
+                    'PHA',
+                    'KINT',
+                    'KBTC',
+                ),
+            },
+            {
+                'Erc20': '[u8; 20]',
+                'ForeignAsset': 'u16',
+                'LiquidCrowdloan': 'u32',
+                'StableAssetPoolToken': 'u32',
+                'Token': (
+                    'ACA',
+                    'AUSD',
+                    'DOT',
+                    'LDOT',
+                    'TAP',
+                    'KAR',
+                    'KUSD',
+                    'KSM',
+                    'LKSM',
+                    'TAI',
+                    'BNC',
+                    'VSKSM',
+                    'PHA',
+                    'KINT',
+                    'KBTC',
+                ),
+            },
+        ),
+        'Erc20': '[u8; 20]',
+        'ForeignAsset': 'u16',
+        'LiquidCrowdloan': 'u32',
+        'StableAssetPoolToken': 'u32',
+        'Token': (
+            'ACA',
+            'AUSD',
+            'DOT',
+            'LDOT',
+            'TAP',
+            'KAR',
+            'KUSD',
+            'KSM',
+            'LKSM',
+            'TAI',
+            'BNC',
+            'VSKSM',
+            'PHA',
+            'KINT',
+            'KBTC',
+        ),
+    },
+}
 ```
 ---------
 ### PoolSize

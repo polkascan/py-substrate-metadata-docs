@@ -6,7 +6,7 @@
 
 ---------
 ### sudo_change_fee
-Change extra bridge transfer fee that user should pay
+See [`Pallet::sudo_change_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -27,7 +27,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer
-Executes a simple currency transfer using the bridge account as the source
+See [`Pallet::transfer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -48,7 +48,7 @@ call = substrate.compose_call(
 
 ---------
 ### transfer_native
-Transfers some amount of the native token to some recipient on a (whitelisted) destination chain.
+See [`Pallet::transfer_native`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

@@ -19,7 +19,7 @@ The dispatch origin for this call must be _Root_.
 | -------- | -------- | 
 | source | `<T::Lookup as StaticLookup>::Source` | 
 | target | `<T::Lookup as StaticLookup>::Source` | 
-| schedule | `VestingInfo<BalanceOf<T, I>, T::BlockNumber>` | 
+| schedule | `VestingInfo<T::Balance, T::BlockNumber>` | 
 
 #### Python
 ```python
@@ -100,6 +100,15 @@ call = substrate.compose_call(
 ## Events
 
 ---------
+### NewAccountsPerBlock
+New value of AccountsPerBlock set
+\[accounts_per_block\]
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| None | `u32` | ```u32```
+
+---------
 ### VestingCompleted
 An `account` has become fully vested. No further vesting can happen
 \[account\]
@@ -117,7 +126,7 @@ balance given is the amount which is left unvested (and thus locked)
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
-| None | `BalanceOf<T, I>` | ```u128```
+| None | `T::Balance` | ```u128```
 
 ---------
 ## Storage functions

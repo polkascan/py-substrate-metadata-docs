@@ -30,9 +30,9 @@ refer section 3.4 of [Centrifuge Protocol Paper](https://staticw.centrifuge.io/a
 ```python
 call = substrate.compose_call(
     'Anchor', 'commit', {
-    'anchor_id_preimage': '[u8; 32]',
-    'doc_root': '[u8; 32]',
-    'proof': '[u8; 32]',
+    'anchor_id_preimage': 'scale_info::12',
+    'doc_root': 'scale_info::12',
+    'proof': 'scale_info::12',
     'stored_until_date': 'u64',
 }
 )
@@ -69,7 +69,7 @@ that made it originally.
 #### Python
 ```python
 call = substrate.compose_call(
-    'Anchor', 'evict_pre_commits', {'anchor_ids': ['[u8; 32]']}
+    'Anchor', 'evict_pre_commits', {'anchor_ids': ['scale_info::12']}
 )
 ```
 
@@ -103,8 +103,8 @@ explanation refer section 3.4 of [Centrifuge Protocol Paper](https://staticw.cen
 ```python
 call = substrate.compose_call(
     'Anchor', 'pre_commit', {
-    'anchor_id': '[u8; 32]',
-    'signing_root': '[u8; 32]',
+    'anchor_id': 'scale_info::12',
+    'signing_root': 'scale_info::12',
 }
 )
 ```
@@ -119,7 +119,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'Anchor', 'AnchorEvictDates', ['[u8; 32]']
+    'Anchor', 'AnchorEvictDates', ['scale_info::12']
 )
 ```
 
@@ -140,7 +140,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### EvictedAnchorRoots
@@ -217,7 +217,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Anchor', 'PreCommits', ['[u8; 32]']
+    'Anchor', 'PreCommits', ['scale_info::12']
 )
 ```
 
@@ -227,7 +227,7 @@ result = substrate.query(
     'deposit': 'u128',
     'expiration_block': 'u32',
     'identity': 'AccountId',
-    'signing_root': '[u8; 32]',
+    'signing_root': 'scale_info::12',
 }
 ```
 ---------

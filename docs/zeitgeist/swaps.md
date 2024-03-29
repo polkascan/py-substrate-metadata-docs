@@ -5,34 +5,23 @@
 ## Calls
 
 ---------
-### admin_clean_up_pool
-Clean up the pool of a resolved market.
-
-\# Arguments
-
-- `origin`: The root origin.
-- `market_id`: The id of the market that the pool belongs to.
-- `outcome_report`: The report that resolved the market.
-
-\# Weight
-
-Complexity: `O(1)` if the market is scalar, `O(n)` where `n` is the number of
-assets in the pool if the market is categorical.
+### force_pool_exit
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| market_id | `MarketIdOf<T>` | 
-| outcome_report | `OutcomeReport` | 
+| who | `T::AccountId` | 
+| pool_id | `PoolId` | 
+| pool_amount | `BalanceOf<T>` | 
+| min_assets_out | `Vec<BalanceOf<T>>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Swaps', 'admin_clean_up_pool', {
-    'market_id': 'u128',
-    'outcome_report': {
-        'Categorical': 'u16',
-        'Scalar': 'u128',
-    },
+    'Swaps', 'force_pool_exit', {
+    'min_assets_out': ['u128'],
+    'pool_amount': 'u128',
+    'pool_id': 'u128',
+    'who': 'AccountId',
 }
 )
 ```
@@ -74,36 +63,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### pool_exit_subsidy
-Pool - Remove subsidty from a pool that uses the Rikiddo scoring rule.
-
-Unreserves `pool_amount` of the base currency from being used as subsidy.
-If `amount` is greater than the amount reserved for subsidy by `origin`,
-then the whole amount reserved for subsidy will be unreserved.
-
-\# Arguments
-
-* `origin`: Liquidity Provider (LP). The account whose assets should be unreserved.
-* `pool_id`: Unique pool identifier.
-* `amount`: The amount of base currency that should be removed from subsidy.
-
-\# Weight
-
-Complexity: O(1)
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| pool_id | `PoolId` | 
-| amount | `BalanceOf<T>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Swaps', 'pool_exit_subsidy', {'amount': 'u128', 'pool_id': 'u128'}
-)
-```
-
----------
 ### pool_exit_with_exact_asset_amount
 Pool - Exit with exact pool amount
 
@@ -126,7 +85,7 @@ Complexity: `O(1)`
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `PoolId` | 
-| asset | `Asset<MarketIdOf<T>>` | 
+| asset | `AssetOf<T>` | 
 | asset_amount | `BalanceOf<T>` | 
 | max_pool_amount | `BalanceOf<T>` | 
 
@@ -141,6 +100,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -178,7 +141,7 @@ Complexity: `O(1)`
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `PoolId` | 
-| asset | `Asset<MarketIdOf<T>>` | 
+| asset | `AssetOf<T>` | 
 | pool_amount | `BalanceOf<T>` | 
 | min_asset_amount | `BalanceOf<T>` | 
 
@@ -193,6 +156,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -243,34 +210,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### pool_join_subsidy
-Pool - Add subsidy to a pool that uses the Rikiddo scoring rule.
-
-Reserves `pool_amount` of the base currency to be added as subsidy on pool activation.
-
-\# Arguments
-
-* `origin`: Liquidity Provider (LP). The account whose assets should be reserved.
-* `pool_id`: Unique pool identifier.
-* `amount`: The amount of base currency that should be added to subsidy.
-
-\# Weight
-
-Complexity: O(1)
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| pool_id | `PoolId` | 
-| amount | `BalanceOf<T>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Swaps', 'pool_join_subsidy', {'amount': 'u128', 'pool_id': 'u128'}
-)
-```
-
----------
 ### pool_join_with_exact_asset_amount
 Pool - Join with exact asset amount
 
@@ -293,7 +232,7 @@ Complexity: O(1)
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `PoolId` | 
-| asset_in | `Asset<MarketIdOf<T>>` | 
+| asset_in | `AssetOf<T>` | 
 | asset_amount | `BalanceOf<T>` | 
 | min_pool_amount | `BalanceOf<T>` | 
 
@@ -309,6 +248,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -345,7 +288,7 @@ Complexity: `O(1)`
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `PoolId` | 
-| asset | `Asset<MarketIdOf<T>>` | 
+| asset | `AssetOf<T>` | 
 | pool_amount | `BalanceOf<T>` | 
 | max_asset_amount | `BalanceOf<T>` | 
 
@@ -360,6 +303,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -398,9 +345,9 @@ assets if the scoring rule is Rikiddo.
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `PoolId` | 
-| asset_in | `Asset<MarketIdOf<T>>` | 
+| asset_in | `AssetOf<T>` | 
 | asset_amount_in | `BalanceOf<T>` | 
-| asset_out | `Asset<MarketIdOf<T>>` | 
+| asset_out | `AssetOf<T>` | 
 | min_asset_amount_out | `Option<BalanceOf<T>>` | 
 | max_price | `Option<BalanceOf<T>>` | 
 
@@ -416,6 +363,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -430,6 +381,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -471,9 +426,9 @@ assets if the scoring rule is Rikiddo.
 | Name | Type |
 | -------- | -------- | 
 | pool_id | `PoolId` | 
-| asset_in | `Asset<MarketIdOf<T>>` | 
+| asset_in | `AssetOf<T>` | 
 | max_asset_amount_in | `Option<BalanceOf<T>>` | 
-| asset_out | `Asset<MarketIdOf<T>>` | 
+| asset_out | `AssetOf<T>` | 
 | asset_amount_out | `BalanceOf<T>` | 
 | max_price | `Option<BalanceOf<T>>` | 
 
@@ -489,6 +444,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -503,6 +462,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -524,32 +487,6 @@ call = substrate.compose_call(
 ## Events
 
 ---------
-### ArbitrageBuyBurn
-Buy-burn arbitrage was executed on a CPMM pool. \[pool_id, amount\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `PoolId` | ```u128```
-| None | `BalanceOf<T>` | ```u128```
-
----------
-### ArbitrageMintSell
-Mint-sell arbitrage was executed on a CPMM pool. \[pool_id, amount\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `PoolId` | ```u128```
-| None | `BalanceOf<T>` | ```u128```
-
----------
-### ArbitrageSkipped
-Arbitrage was skipped on a CPMM pool. \[pool_id\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `PoolId` | ```u128```
-
----------
 ### DistributeShareHolderRewards
 Share holder rewards were distributed. \[pool_id, num_accounts_rewarded, amount\]
 #### Attributes
@@ -558,29 +495,6 @@ Share holder rewards were distributed. \[pool_id, num_accounts_rewarded, amount\
 | None | `PoolId` | ```u128```
 | None | `u64` | ```u64```
 | None | `BalanceOf<T>` | ```u128```
-
----------
-### MarketCreatorFeePaymentFailed
-Fee payment to market creator failed (usually due to existential deposit requirements) \[payer, payee, amount, asset, error\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
-| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
-| None | `Asset<MarketIdOf<T>>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
-| None | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
-
----------
-### MarketCreatorFeesPaid
-Fees were paid to the market creators. \[payer, payee, amount, asset\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
-| None | `<T as frame_system::Config>::AccountId` | ```AccountId```
-| None | `BalanceOf<T>` | ```u128```
-| None | `Asset<MarketIdOf<T>>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
 
 ---------
 ### PoolActive
@@ -613,7 +527,7 @@ A new pool has been created. \[CommonPoolEventParams, pool, pool_amount, pool_ac
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `CommonPoolEventParams<<T as frame_system::Config>::AccountId>` | ```{'pool_id': 'u128', 'who': 'AccountId'}```
-| None | `Pool<BalanceOf<T>, MarketIdOf<T>>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}], 'base_asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'market_id': 'u128', 'pool_status': ('Active', 'CollectingSubsidy', 'Closed', 'Clean', 'Initialized'), 'scoring_rule': ('CPMM', 'RikiddoSigmoidFeeMarketEma', 'Lmsr', 'Orderbook'), 'swap_fee': (None, 'u128'), 'total_subsidy': (None, 'u128'), 'total_weight': (None, 'u128'), 'weights': (None, 'scale_info::85')}```
+| None | `PoolOf<T>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}], 'status': ('Open', 'Closed'), 'swap_fee': 'u128', 'total_weight': 'u128', 'weights': 'scale_info::92'}```
 | None | `BalanceOf<T>` | ```u128```
 | None | `T::AccountId` | ```AccountId```
 
@@ -640,19 +554,8 @@ Someone has exited a pool. \[PoolAssetsEvent\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `PoolAssetsEvent<<T as frame_system::Config>::AccountId, Asset<
-MarketIdOf<T>>, BalanceOf<T>,>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}], 'bounds': ['u128'], 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': ['u128'], 'pool_amount': 'u128'}```
-
----------
-### PoolExitSubsidy
-Someone has (partially) exited a pool by removing subsidy. \[asset, bound, pool_id, who, amount\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `Asset<MarketIdOf<T>>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
-| None | `BalanceOf<T>` | ```u128```
-| None | `CommonPoolEventParams<<T as frame_system::Config>::AccountId>` | ```{'pool_id': 'u128', 'who': 'AccountId'}```
-| None | `BalanceOf<T>` | ```u128```
+| None | `PoolAssetsEvent<<T as frame_system::Config>::AccountId, AssetOf<T>,
+BalanceOf<T>>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}], 'bounds': ['u128'], 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': ['u128'], 'pool_amount': 'u128'}```
 
 ---------
 ### PoolExitWithExactAssetAmount
@@ -660,8 +563,8 @@ Exits a pool given an exact amount of an asset. \[PoolAssetEvent\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `PoolAssetEvent<<T as frame_system::Config>::AccountId, Asset<
-MarketIdOf<T>>, BalanceOf<T>,>` | ```{'asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'bound': 'u128', 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': 'u128', 'pool_amount': 'u128'}```
+| None | `PoolAssetEvent<<T as frame_system::Config>::AccountId, AssetOf<T>,
+BalanceOf<T>>` | ```{'asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'bound': 'u128', 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': 'u128', 'pool_amount': 'u128'}```
 
 ---------
 ### PoolExitWithExactPoolAmount
@@ -669,8 +572,8 @@ Exits a pool given an exact pool&\#x27;s amount. \[PoolAssetEvent\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `PoolAssetEvent<<T as frame_system::Config>::AccountId, Asset<
-MarketIdOf<T>>, BalanceOf<T>,>` | ```{'asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'bound': 'u128', 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': 'u128', 'pool_amount': 'u128'}```
+| None | `PoolAssetEvent<<T as frame_system::Config>::AccountId, AssetOf<T>,
+BalanceOf<T>>` | ```{'asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'bound': 'u128', 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': 'u128', 'pool_amount': 'u128'}```
 
 ---------
 ### PoolJoin
@@ -678,18 +581,8 @@ Someone has joined a pool. \[PoolAssetsEvent\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `PoolAssetsEvent<<T as frame_system::Config>::AccountId, Asset<
-MarketIdOf<T>>, BalanceOf<T>,>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}], 'bounds': ['u128'], 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': ['u128'], 'pool_amount': 'u128'}```
-
----------
-### PoolJoinSubsidy
-Someone has joined a pool by providing subsidy. \[asset, amount, pool_id, who\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `Asset<MarketIdOf<T>>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
-| None | `BalanceOf<T>` | ```u128```
-| None | `CommonPoolEventParams<<T as frame_system::Config>::AccountId>` | ```{'pool_id': 'u128', 'who': 'AccountId'}```
+| None | `PoolAssetsEvent<<T as frame_system::Config>::AccountId, AssetOf<T>,
+BalanceOf<T>>` | ```{'assets': [{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}], 'bounds': ['u128'], 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': ['u128'], 'pool_amount': 'u128'}```
 
 ---------
 ### PoolJoinWithExactAssetAmount
@@ -697,8 +590,8 @@ Joins a pool given an exact amount of an asset. \[PoolAssetEvent\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `PoolAssetEvent<<T as frame_system::Config>::AccountId, Asset<
-MarketIdOf<T>>, BalanceOf<T>,>` | ```{'asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'bound': 'u128', 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': 'u128', 'pool_amount': 'u128'}```
+| None | `PoolAssetEvent<<T as frame_system::Config>::AccountId, AssetOf<T>,
+BalanceOf<T>>` | ```{'asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'bound': 'u128', 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': 'u128', 'pool_amount': 'u128'}```
 
 ---------
 ### PoolJoinWithExactPoolAmount
@@ -706,18 +599,8 @@ Joins a pool given an exact pool&\#x27;s amount. \[PoolAssetEvent\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `PoolAssetEvent<<T as frame_system::Config>::AccountId, Asset<
-MarketIdOf<T>>, BalanceOf<T>,>` | ```{'asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'bound': 'u128', 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': 'u128', 'pool_amount': 'u128'}```
-
----------
-### SubsidyCollected
-Total subsidy collected for a pool. \[pool_id, \[(provider, subsidy), ...\], total_subsidy\]
-#### Attributes
-| Name | Type | Composition
-| -------- | -------- | -------- |
-| None | `PoolId` | ```u128```
-| None | `Vec<(<T as frame_system::Config>::AccountId, BalanceOf<T>)>` | ```[('AccountId', 'u128')]```
-| None | `BalanceOf<T>` | ```u128```
+| None | `PoolAssetEvent<<T as frame_system::Config>::AccountId, AssetOf<T>,
+BalanceOf<T>>` | ```{'asset': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'bound': 'u128', 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'transferred': 'u128', 'pool_amount': 'u128'}```
 
 ---------
 ### SwapExactAmountIn
@@ -725,8 +608,8 @@ An exact amount of an asset is entering the pool. \[SwapEvent\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `SwapEvent<<T as frame_system::Config>::AccountId, Asset<MarketIdOf<
-T>>, BalanceOf<T>>` | ```{'asset_amount_in': 'u128', 'asset_amount_out': 'u128', 'asset_bound': (None, 'u128'), 'asset_in': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'asset_out': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'max_price': (None, 'u128')}```
+| None | `SwapEvent<<T as frame_system::Config>::AccountId, AssetOf<T>,
+BalanceOf<T>>` | ```{'asset_amount_in': 'u128', 'asset_amount_out': 'u128', 'asset_bound': (None, 'u128'), 'asset_in': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'asset_out': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'max_price': (None, 'u128')}```
 
 ---------
 ### SwapExactAmountOut
@@ -734,8 +617,8 @@ An exact amount of an asset is leaving the pool. \[SwapEvent\]
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| None | `SwapEvent<<T as frame_system::Config>::AccountId, Asset<MarketIdOf<
-T>>, BalanceOf<T>>` | ```{'asset_amount_in': 'u128', 'asset_amount_out': 'u128', 'asset_bound': (None, 'u128'), 'asset_in': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'asset_out': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}, 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'max_price': (None, 'u128')}```
+| None | `SwapEvent<<T as frame_system::Config>::AccountId, AssetOf<T>,
+BalanceOf<T>>` | ```{'asset_amount_in': 'u128', 'asset_amount_out': 'u128', 'asset_bound': (None, 'u128'), 'asset_in': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'asset_out': {'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}, 'cpep': {'pool_id': 'u128', 'who': 'AccountId'}, 'max_price': (None, 'u128')}```
 
 ---------
 ## Storage functions
@@ -766,47 +649,23 @@ result = substrate.query(
 
 #### Return value
 ```python
-(
-    None,
-    {
-        'assets': [
-            {
-                'CategoricalOutcome': ('u128', 'u16'),
-                'CombinatorialOutcome': None,
-                'ForeignAsset': 'u32',
-                'PoolShare': 'u128',
-                'ScalarOutcome': ('u128', 'scale_info::64'),
-                'Ztg': None,
-            },
-        ],
-        'base_asset': {
+{
+    'assets': [
+        {
             'CategoricalOutcome': ('u128', 'u16'),
             'CombinatorialOutcome': None,
             'ForeignAsset': 'u32',
+            'ParimutuelShare': ('u128', 'u16'),
             'PoolShare': 'u128',
             'ScalarOutcome': ('u128', ('Long', 'Short')),
             'Ztg': None,
         },
-        'market_id': 'u128',
-        'pool_status': (
-            'Active',
-            'CollectingSubsidy',
-            'Closed',
-            'Clean',
-            'Initialized',
-        ),
-        'scoring_rule': (
-            'CPMM',
-            'RikiddoSigmoidFeeMarketEma',
-            'Lmsr',
-            'Orderbook',
-        ),
-        'swap_fee': (None, 'u128'),
-        'total_subsidy': (None, 'u128'),
-        'total_weight': (None, 'u128'),
-        'weights': (None, 'scale_info::85'),
-    },
-)
+    ],
+    'status': ('Open', 'Closed'),
+    'swap_fee': 'u128',
+    'total_weight': 'u128',
+    'weights': 'scale_info::92',
+}
 ```
 ---------
 ### PoolsCachedForArbitrage
@@ -922,29 +781,6 @@ constant = substrate.get_constant('Swaps', 'MaxWeight')
 constant = substrate.get_constant('Swaps', 'MinAssets')
 ```
 ---------
-### MinSubsidy
- The minimum amount of subsidy required to state transit a market into active state.
- Must be greater than 0, but can be arbitrarily close to 0.
-#### Value
-```python
-1000000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('Swaps', 'MinSubsidy')
-```
----------
-### MinSubsidyPerAccount
- The minimum amount of subsidy that each subsidy provider must contribute.
-#### Value
-```python
-1000000000000
-```
-#### Python
-```python
-constant = substrate.get_constant('Swaps', 'MinSubsidyPerAccount')
-```
----------
 ### MinWeight
 #### Value
 ```python
@@ -1001,10 +837,6 @@ Some funds could not be transferred due to a too low balance.
 Liquidity provided to new CPMM pool is less than the minimum allowed balance.
 
 ---------
-### InsufficientSubsidy
-The market was not started since the subsidy goal was not reached.
-
----------
 ### InvalidAmountArgument
 Could not create CPMM pool since no amount was specified.
 
@@ -1015,11 +847,6 @@ Could not create CPMM pool since no fee was supplied.
 ---------
 ### InvalidPoolStatus
 Dispatch called on pool with invalid status.
-
----------
-### InvalidScoringRule
-A function that is only valid for pools with specific scoring rules was called for a
-pool with another scoring rule.
 
 ---------
 ### InvalidStateTransition
@@ -1064,11 +891,6 @@ of that asset in the pool is above the threshhold specified by a constant.
 ### MaxTotalWeight
 The total weight of all assets within a CPMM pool is above a treshhold specified
 by a constant.
-
----------
-### NoSubsidyProvided
-It was tried to remove subsidy from a pool which does not have subsidy provided by
-the address that tried to remove the subsidy.
 
 ---------
 ### PoolDoesNotExist
@@ -1119,6 +941,11 @@ a constant.
 ### TooManyAssets
 Tried to create a pool that has more assets than the upper threshhold specified by
 a constant.
+
+---------
+### Unexpected
+An unexpected error occurred. This is the result of faulty pallet logic and should be
+reported to the pallet maintainers.
 
 ---------
 ### UnsupportedTrade

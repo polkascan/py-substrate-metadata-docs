@@ -6,7 +6,7 @@
 
 ---------
 ### cancel_candidate_bond_less
-Cancel pending request to adjust the collator candidate self bond
+See [`Pallet::cancel_candidate_bond_less`].
 #### Attributes
 No attributes
 
@@ -19,7 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_delegation_request
-Cancel request to change an existing delegation.
+See [`Pallet::cancel_delegation_request`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -34,9 +34,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_leave_candidates
-Cancel open request to leave candidates
-- only callable by collator account
-- result upon successful call is the candidate is active in the candidate pool
+See [`Pallet::cancel_leave_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -51,8 +49,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_leave_delegators
-Cancel a pending request to exit the set of delegators. Success clears the pending exit
-request (thereby resetting the delay upon another `leave_delegators` call).
+See [`Pallet::cancel_leave_delegators`].
 #### Attributes
 No attributes
 
@@ -65,7 +62,7 @@ call = substrate.compose_call(
 
 ---------
 ### candidate_bond_more
-Increase collator candidate self bond by `more`
+See [`Pallet::candidate_bond_more`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -80,8 +77,7 @@ call = substrate.compose_call(
 
 ---------
 ### delegate
-If caller is not a delegator and not a collator, then join the set of delegators
-If caller is a delegator, then makes delegation to change their delegation state
+See [`Pallet::delegate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -104,7 +100,7 @@ call = substrate.compose_call(
 
 ---------
 ### delegator_bond_more
-Bond more for delegators wrt a specific collator candidate.
+See [`Pallet::delegator_bond_more`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -123,7 +119,7 @@ call = substrate.compose_call(
 
 ---------
 ### execute_candidate_bond_less
-Execute pending request to adjust the collator candidate self bond
+See [`Pallet::execute_candidate_bond_less`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -138,7 +134,7 @@ call = substrate.compose_call(
 
 ---------
 ### execute_delegation_request
-Execute pending request to change an existing delegation
+See [`Pallet::execute_delegation_request`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -157,7 +153,7 @@ call = substrate.compose_call(
 
 ---------
 ### execute_leave_candidates
-Execute leave candidates request
+See [`Pallet::execute_leave_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -176,7 +172,7 @@ call = substrate.compose_call(
 
 ---------
 ### execute_leave_delegators
-Execute the right to exit the set of delegators and revoke all ongoing delegations.
+See [`Pallet::execute_leave_delegators`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -195,7 +191,7 @@ call = substrate.compose_call(
 
 ---------
 ### go_offline
-Temporarily leave the set of collator candidates without unbonding
+See [`Pallet::go_offline`].
 #### Attributes
 No attributes
 
@@ -208,7 +204,7 @@ call = substrate.compose_call(
 
 ---------
 ### go_online
-Rejoin the set of collator candidates if previously had called `go_offline`
+See [`Pallet::go_online`].
 #### Attributes
 No attributes
 
@@ -221,22 +217,7 @@ call = substrate.compose_call(
 
 ---------
 ### hotfix_migrate_collators_from_reserve_to_locks
-Hotfix to migrate a collator&\#x27;s reserve to a lock. For any given collator in the
-provided list:
-* this fn is idempotent
-* is safe to call if the collator doesn&\#x27;t exist
-* is safe to call if the collator has been migrated
-* is safe to call if the collator is a collator (this is a no-op)
-
-weight calculation:
-  reads:
-   * CollatorReserveToLockMigrations
-   * CandidateInfo
-  writes:
-   * unreserve()
-   * set_lock()
-   * CollatorReserveToLockMigrations
-  other: 50M flat weight + 100M weight per item
+See [`Pallet::hotfix_migrate_collators_from_reserve_to_locks`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -251,22 +232,7 @@ call = substrate.compose_call(
 
 ---------
 ### hotfix_migrate_delegators_from_reserve_to_locks
-Hotfix to migrate a delegator&\#x27;s reserve to a lock. For any given delegator in the
-provided list:
-* this fn is idempotent
-* is safe to call if the delegator doesn&\#x27;t exist
-* is safe to call if the delegator has been migrated
-* is safe to call if the delegator is a collator (this is a no-op)
-
-weight calculation:
-  reads:
-   * DelegatorReserveToLockMigrations
-   * DelegatorState
-  writes:
-   * unreserve()
-   * set_lock()
-   * DelegatorReserveToLockMigrations
-  other: 50M flat weight + 100M weight per item
+See [`Pallet::hotfix_migrate_delegators_from_reserve_to_locks`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -281,7 +247,7 @@ call = substrate.compose_call(
 
 ---------
 ### hotfix_remove_delegation_requests_exited_candidates
-Hotfix to remove existing empty entries for candidates that have left.
+See [`Pallet::hotfix_remove_delegation_requests_exited_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -296,7 +262,7 @@ call = substrate.compose_call(
 
 ---------
 ### join_candidates
-Join the set of collator candidates
+See [`Pallet::join_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -315,7 +281,7 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_candidate_bond_less
-Request by collator candidate to decrease self bond by `less`
+See [`Pallet::schedule_candidate_bond_less`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -330,7 +296,7 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_delegator_bond_less
-Request bond less for delegators wrt a specific collator candidate.
+See [`Pallet::schedule_delegator_bond_less`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -349,8 +315,7 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_leave_candidates
-Request to leave the set of candidates. If successful, the account is immediately
-removed from the candidate pool to prevent selection as a collator.
+See [`Pallet::schedule_leave_candidates`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -365,9 +330,7 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_leave_delegators
-Request to leave the set of delegators. If successful, the caller is scheduled to be
-allowed to exit via a [DelegationAction::Revoke] towards all existing delegations.
-Success forbids future delegation requests until the request is invoked or cancelled.
+See [`Pallet::schedule_leave_delegators`].
 #### Attributes
 No attributes
 
@@ -380,8 +343,7 @@ call = substrate.compose_call(
 
 ---------
 ### schedule_revoke_delegation
-Request to revoke an existing delegation. If successful, the delegation is scheduled
-to be allowed to be revoked via the `execute_delegation_request` extrinsic.
+See [`Pallet::schedule_revoke_delegation`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -396,10 +358,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_blocks_per_round
-Set blocks per round
-- if called with `new` less than length of current round, will transition immediately
-in the next block
-- also updates per-round inflation config
+See [`Pallet::set_blocks_per_round`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -414,7 +373,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_collator_commission
-Set the commission for all collators
+See [`Pallet::set_collator_commission`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -429,7 +388,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_inflation
-Set the annual inflation rate to derive per-round inflation
+See [`Pallet::set_inflation`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -450,7 +409,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_parachain_bond_account
-Set the account that will hold funds set aside for parachain bond
+See [`Pallet::set_parachain_bond_account`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -465,7 +424,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_parachain_bond_reserve_percent
-Set the percent of inflation set aside for parachain bond
+See [`Pallet::set_parachain_bond_reserve_percent`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -480,8 +439,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_staking_expectations
-Set the expectations for total staked. These expectations determine the issuance for
-the round according to logic in `fn compute_issuance`
+See [`Pallet::set_staking_expectations`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -502,8 +460,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_total_selected
-Set the total number of collator candidates selected per round
-- changes are not applied until the start of the next round
+See [`Pallet::set_total_selected`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -526,7 +483,7 @@ Set blocks per round
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | current_round | `RoundIndex` | ```u32```
-| first_block | `T::BlockNumber` | ```u32```
+| first_block | `BlockNumberFor<T>` | ```u32```
 | old | `u32` | ```u32```
 | new | `u32` | ```u32```
 | new_per_round_inflation_min | `Perbill` | ```u32```
@@ -786,7 +743,7 @@ Started new round.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| starting_block | `T::BlockNumber` | ```u32```
+| starting_block | `BlockNumberFor<T>` | ```u32```
 | round | `RoundIndex` | ```u32```
 | selected_collators_number | `u32` | ```u32```
 | total_balance | `BalanceOf<T>` | ```u128```

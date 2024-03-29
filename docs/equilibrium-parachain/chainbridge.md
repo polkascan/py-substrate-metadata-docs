@@ -344,7 +344,7 @@ FunglibleTransfer is for relaying fungibles. \[dest_id, nonce, resource_id, amou
 | None | `ChainId` | ```u8```
 | None | `DepositNonce` | ```u64```
 | None | `ResourceId` | ```[u8; 32]```
-| None | `U256` | ```[u64; 4]```
+| None | `U256` | ```scale_info::72```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------

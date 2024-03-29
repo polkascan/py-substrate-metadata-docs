@@ -6,14 +6,7 @@
 
 ---------
 ### as_recovered
-Send a call through a recovered account.
-
-The dispatch origin for this call must be _Signed_ and registered to
-be able to make calls on behalf of the recovered account.
-
-Parameters:
-- `account`: The recovered account you want to make a call on-behalf-of.
-- `call`: The call you want to make with the recovered account.
+See [`Pallet::as_recovered`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -38,13 +31,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_recovered
-Cancel the ability to use `as_recovered` for `account`.
-
-The dispatch origin for this call must be _Signed_ and registered to
-be able to make calls on behalf of the recovered account.
-
-Parameters:
-- `account`: The recovered account you are able to call on-behalf-of.
+See [`Pallet::cancel_recovered`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -67,15 +54,7 @@ call = substrate.compose_call(
 
 ---------
 ### claim_recovery
-Allow a successful rescuer to claim their recovered account.
-
-The dispatch origin for this call must be _Signed_ and must be a &quot;rescuer&quot;
-who has successfully completed the account recovery process: collected
-`threshold` or more vouches, waited `delay_period` blocks since initiation.
-
-Parameters:
-- `account`: The lost account that you want to claim has been successfully recovered by
-  you.
+See [`Pallet::claim_recovery`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -98,17 +77,7 @@ call = substrate.compose_call(
 
 ---------
 ### close_recovery
-As the controller of a recoverable account, close an active recovery
-process for your account.
-
-Payment: By calling this function, the recoverable account will receive
-the recovery deposit `RecoveryDeposit` placed by the rescuer.
-
-The dispatch origin for this call must be _Signed_ and must be a
-recoverable account with an active recovery process for it.
-
-Parameters:
-- `rescuer`: The account trying to rescue this recoverable account.
+See [`Pallet::close_recovery`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -131,28 +100,13 @@ call = substrate.compose_call(
 
 ---------
 ### create_recovery
-Create a recovery configuration for your account. This makes your account recoverable.
-
-Payment: `ConfigDepositBase` + `FriendDepositFactor` * \#_of_friends balance
-will be reserved for storing the recovery configuration. This deposit is returned
-in full when the user calls `remove_recovery`.
-
-The dispatch origin for this call must be _Signed_.
-
-Parameters:
-- `friends`: A list of friends you trust to vouch for recovery attempts. Should be
-  ordered and contain no duplicate values.
-- `threshold`: The number of friends that must vouch for a recovery attempt before the
-  account can be recovered. Should be less than or equal to the length of the list of
-  friends.
-- `delay_period`: The number of blocks after a recovery attempt is initialized that
-  needs to pass before the account can be recovered.
+See [`Pallet::create_recovery`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | friends | `Vec<T::AccountId>` | 
 | threshold | `u16` | 
-| delay_period | `T::BlockNumber` | 
+| delay_period | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -167,17 +121,7 @@ call = substrate.compose_call(
 
 ---------
 ### initiate_recovery
-Initiate the process for recovering a recoverable account.
-
-Payment: `RecoveryDeposit` balance will be reserved for initiating the
-recovery process. This deposit will always be repatriated to the account
-trying to be recovered. See `close_recovery`.
-
-The dispatch origin for this call must be _Signed_.
-
-Parameters:
-- `account`: The lost account that you want to recover. This account needs to be
-  recoverable (i.e. have a recovery configuration).
+See [`Pallet::initiate_recovery`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -200,17 +144,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_recovery
-Remove the recovery process for your account. Recovered accounts are still accessible.
-
-NOTE: The user must make sure to call `close_recovery` on all active
-recovery attempts before calling this function else it will fail.
-
-Payment: By calling this function the recoverable account will unreserve
-their recovery configuration deposit.
-(`ConfigDepositBase` + `FriendDepositFactor` * \#_of_friends)
-
-The dispatch origin for this call must be _Signed_ and must be a
-recoverable account (i.e. has a recovery configuration).
+See [`Pallet::remove_recovery`].
 #### Attributes
 No attributes
 
@@ -223,14 +157,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_recovered
-Allow ROOT to bypass the recovery process and set an a rescuer account
-for a lost account directly.
-
-The dispatch origin for this call must be _ROOT_.
-
-Parameters:
-- `lost`: The &quot;lost account&quot; to be recovered.
-- `rescuer`: The &quot;rescuer account&quot; which can call as the lost account.
+See [`Pallet::set_recovered`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -261,18 +188,7 @@ call = substrate.compose_call(
 
 ---------
 ### vouch_recovery
-Allow a &quot;friend&quot; of a recoverable account to vouch for an active recovery
-process for that account.
-
-The dispatch origin for this call must be _Signed_ and must be a &quot;friend&quot;
-for the recoverable account.
-
-Parameters:
-- `lost`: The lost account that you want to recover.
-- `rescuer`: The account trying to rescue the lost account that you want to vouch for.
-
-The combination of these two parameters must point to an active recovery
-process.
+See [`Pallet::vouch_recovery`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

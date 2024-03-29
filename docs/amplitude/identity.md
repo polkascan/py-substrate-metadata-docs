@@ -200,7 +200,7 @@ Emits `JudgementGiven` if successful.
 ```python
 call = substrate.compose_call(
     'Identity', 'provide_judgement', {
-    'identity': '[u8; 32]',
+    'identity': 'scale_info::12',
     'judgement': {
         'Erroneous': None,
         'FeePaid': 'u128',
@@ -704,7 +704,7 @@ result = substrate.query(
 {
     'deposit': 'u128',
     'info': {
-        'additional': [('scale_info::301', 'scale_info::301')],
+        'additional': [('scale_info::324', 'scale_info::324')],
         'display': {
             'BlakeTwo256': 'h256',
             'Keccak256': 'h256',

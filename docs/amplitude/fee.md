@@ -125,75 +125,6 @@ call = substrate.compose_call(
 ```
 
 ---------
-### withdraw_rewards
-Withdraw all rewards from the `origin` account in the `vault_id` staking pool.
-
-\# Arguments
-
-* `origin` - signing account
-#### Attributes
-| Name | Type |
-| -------- | -------- | 
-| vault_id | `DefaultVaultId<T>` | 
-| index | `Option<T::Index>` | 
-
-#### Python
-```python
-call = substrate.compose_call(
-    'Fee', 'withdraw_rewards', {
-    'index': (None, 'u32'),
-    'vault_id': {
-        'account_id': 'AccountId',
-        'currencies': {
-            'collateral': {
-                'Native': None,
-                'Stellar': {
-                    'AlphaNum12': {
-                        'code': '[u8; 12]',
-                        'issuer': '[u8; 32]',
-                    },
-                    'AlphaNum4': {
-                        'code': '[u8; 4]',
-                        'issuer': '[u8; 32]',
-                    },
-                    'StellarNative': None,
-                },
-                'XCM': 'u8',
-                'ZenlinkLPToken': (
-                    'u8',
-                    'u8',
-                    'u8',
-                    'u8',
-                ),
-            },
-            'wrapped': {
-                'Native': None,
-                'Stellar': {
-                    'AlphaNum12': {
-                        'code': '[u8; 12]',
-                        'issuer': '[u8; 32]',
-                    },
-                    'AlphaNum4': {
-                        'code': '[u8; 4]',
-                        'issuer': '[u8; 32]',
-                    },
-                    'StellarNative': None,
-                },
-                'XCM': 'u8',
-                'ZenlinkLPToken': (
-                    'u8',
-                    'u8',
-                    'u8',
-                    'u8',
-                ),
-            },
-        },
-    },
-}
-)
-```
-
----------
 ## Storage functions
 
 ---------
@@ -327,6 +258,9 @@ constant = substrate.get_constant('Fee', 'MaxExpectedValue')
 ---------
 ### AboveMaxExpectedValue
 Value exceeds the expected upper bound for storage fields in this pallet.
+
+---------
+### Overflow
 
 ---------
 ### TryIntoIntError

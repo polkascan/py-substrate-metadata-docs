@@ -10,7 +10,7 @@ Bad XCM format used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ### BadVersion
@@ -18,7 +18,7 @@ Bad XCM version used.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ### Fail
@@ -26,7 +26,8 @@ Some XCM failed.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
+| message_id | `XcmHash` | ```[u8; 32]```
 | error | `XcmError` | ```{'Overflow': None, 'Unimplemented': None, 'UntrustedReserveLocation': None, 'UntrustedTeleportLocation': None, 'LocationFull': None, 'LocationNotInvertible': None, 'BadOrigin': None, 'InvalidLocation': None, 'AssetNotFound': None, 'FailedToTransactAsset': None, 'NotWithdrawable': None, 'LocationCannotHold': None, 'ExceedsMaxMessageSize': None, 'DestinationUnsupported': None, 'Transport': None, 'Unroutable': None, 'UnknownClaim': None, 'FailedToDecode': None, 'MaxWeightInvalid': None, 'NotHoldingFees': None, 'TooExpensive': None, 'Trap': 'u64', 'ExpectationFalse': None, 'PalletNotFound': None, 'NameMismatch': None, 'VersionIncompatible': None, 'HoldingWouldOverflow': None, 'ExportError': None, 'ReanchorFailed': None, 'NoDeal': None, 'FeesNotMet': None, 'LockError': None, 'NoPermission': None, 'Unanchored': None, 'NotDepositable': None, 'UnhandledXcmVersion': None, 'WeightLimitReached': {'ref_time': 'u64', 'proof_size': 'u64'}, 'Barrier': None, 'WeightNotComputable': None, 'ExceedsStackLimit': None}```
 | weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
@@ -56,7 +57,8 @@ Some XCM was executed ok.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
+| message_id | `XcmHash` | ```[u8; 32]```
 | weight | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 
 ---------
@@ -65,7 +67,7 @@ An HRMP message was sent to a sibling parachain.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message_hash | `Option<XcmHash>` | ```(None, '[u8; 32]')```
+| message_hash | `XcmHash` | ```[u8; 32]```
 
 ---------
 ## Storage functions
@@ -84,6 +86,21 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
+```
+---------
+### DeliveryFeeFactor
+ The factor to multiply the base delivery fee by.
+
+#### Python
+```python
+result = substrate.query(
+    'XcmpQueue', 'DeliveryFeeFactor', ['u32']
+)
+```
+
+#### Return value
+```python
+'u128'
 ```
 ---------
 ### InboundXcmpMessages

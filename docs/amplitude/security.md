@@ -139,7 +139,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'scale_info::540'
+'scale_info::576'
 ```
 ---------
 ### Nonce
@@ -155,7 +155,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u64; 4]'
+'scale_info::551'
 ```
 ---------
 ### ParachainStatus

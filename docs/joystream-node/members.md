@@ -667,7 +667,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Members', 'MemberIdByHandleHash', ['[u8; 32]']
+    'Members', 'MemberIdByHandleHash', ['scale_info::11']
 )
 ```
 
@@ -690,7 +690,7 @@ result = substrate.query(
 ```python
 {
     'controller_account': 'AccountId',
-    'handle_hash': '[u8; 32]',
+    'handle_hash': 'scale_info::11',
     'invites': 'u32',
     'root_account': 'AccountId',
     'verified': 'bool',

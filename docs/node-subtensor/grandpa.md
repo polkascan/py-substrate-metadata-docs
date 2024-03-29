@@ -6,12 +6,17 @@
 
 ---------
 ### note_stalled
-Note that the current authority set of the GRANDPA finality gadget has
-stalled. This will trigger a forced authority set change at the beginning
-of the next session, to be enacted `delay` blocks after that. The delay
-should be high enough to safely assume that the block signalling the
-forced change will not be re-orged (e.g. 1000 blocks). The GRANDPA voters
-will start the new authority set using the given finalized block as base.
+Note that the current authority set of the GRANDPA finality gadget has stalled.
+
+This will trigger a forced authority set change at the beginning of the next session, to
+be enacted `delay` blocks after that. The `delay` should be high enough to safely assume
+that the block signalling the forced change will not be re-orged e.g. 1000 blocks.
+The block production rate (which may be slowed down because of finality lagging) should
+be taken into account when choosing the `delay`. The GRANDPA voters based on the new
+authority will start voting on top of `best_finalized_block_number` for new finalized
+blocks. `best_finalized_block_number` should be the highest of the latest finalized
+block of all validators of the new authority set.
+
 Only callable by root.
 #### Attributes
 | Name | Type |
@@ -50,7 +55,7 @@ call = substrate.compose_call(
             'Precommit': {
                 'first': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::10',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -59,7 +64,7 @@ call = substrate.compose_call(
                 'round_number': 'u64',
                 'second': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::10',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -68,7 +73,7 @@ call = substrate.compose_call(
             'Prevote': {
                 'first': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::10',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -77,7 +82,7 @@ call = substrate.compose_call(
                 'round_number': 'u64',
                 'second': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::10',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -117,7 +122,7 @@ call = substrate.compose_call(
             'Precommit': {
                 'first': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::10',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -126,7 +131,7 @@ call = substrate.compose_call(
                 'round_number': 'u64',
                 'second': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::10',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -135,7 +140,7 @@ call = substrate.compose_call(
             'Prevote': {
                 'first': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::10',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -144,7 +149,7 @@ call = substrate.compose_call(
                 'round_number': 'u64',
                 'second': (
                     {
-                        'target_hash': '[u8; 32]',
+                        'target_hash': 'scale_info::10',
                         'target_number': 'u32',
                     },
                     '[u8; 64]',
@@ -240,6 +245,12 @@ result = substrate.query(
  A mapping from grandpa set ID to the index of the *most recent* session for which its
  members were responsible.
 
+ This is only used for validating equivocation proofs. An equivocation proof must
+ contains a key-ownership proof for a given session, therefore we need a way to tie
+ together sessions and GRANDPA set ids, i.e. we need to validate that a validator
+ was the owner of a given key on a given session, and what the active set ID was
+ during that session.
+
  TWOX-NOTE: `SetId` is not under user control.
 
 #### Python
@@ -301,6 +312,22 @@ result = substrate.query(
 #### Python
 ```python
 constant = substrate.get_constant('Grandpa', 'MaxAuthorities')
+```
+---------
+### MaxSetIdSessionEntries
+ The maximum number of entries to keep in the set id to session index mapping.
+
+ Since the `SetIdSession` map is only used for validating equivocations this
+ value should relate to the bonding duration of whatever staking system is
+ being used (if any). If equivocation handling is not enabled then this value
+ can be zero.
+#### Value
+```python
+0
+```
+#### Python
+```python
+constant = substrate.get_constant('Grandpa', 'MaxSetIdSessionEntries')
 ```
 ---------
 ## Errors

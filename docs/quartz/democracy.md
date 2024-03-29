@@ -10,7 +10,7 @@ See [`Pallet::blacklist`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `H256` | 
+| proposal_hash | `T::Hash` | 
 | maybe_ref_index | `Option<ReferendumIndex>` | 
 
 #### Python
@@ -18,7 +18,7 @@ See [`Pallet::blacklist`].
 call = substrate.compose_call(
     'Democracy', 'blacklist', {
     'maybe_ref_index': (None, 'u32'),
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::12',
 }
 )
 ```
@@ -130,9 +130,11 @@ call = substrate.compose_call(
     'Democracy', 'external_propose', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -154,9 +156,11 @@ call = substrate.compose_call(
     'Democracy', 'external_propose_default', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -178,9 +182,11 @@ call = substrate.compose_call(
     'Democracy', 'external_propose_majority', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -194,7 +200,7 @@ See [`Pallet::fast_track`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `H256` | 
+| proposal_hash | `T::Hash` | 
 | voting_period | `BlockNumberFor<T>` | 
 | delay | `BlockNumberFor<T>` | 
 
@@ -203,7 +209,7 @@ See [`Pallet::fast_track`].
 call = substrate.compose_call(
     'Democracy', 'fast_track', {
     'delay': 'u32',
-    'proposal_hash': '[u8; 32]',
+    'proposal_hash': 'scale_info::12',
     'voting_period': 'u32',
 }
 )
@@ -224,9 +230,11 @@ call = substrate.compose_call(
     'Democracy', 'propose', {
     'proposal': {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
+        'Legacy': {
+            'hash': 'scale_info::12',
+        },
         'Lookup': {
-            'hash': '[u8; 32]',
+            'hash': 'scale_info::12',
             'len': 'u32',
         },
     },
@@ -297,13 +305,16 @@ See [`Pallet::set_metadata`].
 | Name | Type |
 | -------- | -------- | 
 | owner | `MetadataOwner` | 
-| maybe_hash | `Option<PreimageHash>` | 
+| maybe_hash | `Option<T::Hash>` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
     'Democracy', 'set_metadata', {
-    'maybe_hash': (None, '[u8; 32]'),
+    'maybe_hash': (
+        None,
+        'scale_info::12',
+    ),
     'owner': {
         'External': None,
         'Proposal': 'u32',
@@ -355,12 +366,12 @@ See [`Pallet::veto_external`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| proposal_hash | `H256` | 
+| proposal_hash | `T::Hash` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Democracy', 'veto_external', {'proposal_hash': '[u8; 32]'}
+    'Democracy', 'veto_external', {'proposal_hash': 'scale_info::12'}
 )
 ```
 
@@ -412,7 +423,7 @@ A proposal_hash has been blacklisted permanently.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| proposal_hash | `H256` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### Cancelled
@@ -444,7 +455,7 @@ Metadata for a proposal or a referendum has been cleared.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### MetadataSet
@@ -453,7 +464,7 @@ Metadata for a proposal or a referendum has been set.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### MetadataTransferred
@@ -463,7 +474,7 @@ Metadata has been transferred to new owner.
 | -------- | -------- | -------- |
 | prev_owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
 | owner | `MetadataOwner` | ```{'External': None, 'Proposal': 'u32', 'Referendum': 'u32'}```
-| hash | `PreimageHash` | ```[u8; 32]```
+| hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### NotPassed
@@ -540,7 +551,7 @@ An external proposal has been vetoed.
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
-| proposal_hash | `H256` | ```[u8; 32]```
+| proposal_hash | `T::Hash` | ```scale_info::12```
 | until | `BlockNumberFor<T>` | ```u32```
 
 ---------
@@ -564,7 +575,7 @@ An account has voted in a referendum
 #### Python
 ```python
 result = substrate.query(
-    'Democracy', 'Blacklist', ['[u8; 32]']
+    'Democracy', 'Blacklist', ['scale_info::12']
 )
 ```
 
@@ -579,7 +590,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Democracy', 'Cancellations', ['[u8; 32]']
+    'Democracy', 'Cancellations', ['scale_info::12']
 )
 ```
 
@@ -639,7 +650,7 @@ result = substrate.query(
 ---------
 ### MetadataOf
  General information concerning any proposal or referendum.
- The `PreimageHash` refers to the preimage of the `Preimages` provider which can be a JSON
+ The `Hash` refers to the preimage of the `Preimages` provider which can be a JSON
  dump or IPFS hash of a JSON file.
 
  Consider a garbage collection for a metadata of finished referendums to `unrequest` (remove)
@@ -660,7 +671,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### NextExternal
@@ -681,8 +692,8 @@ result = substrate.query(
 (
     {
         'Inline': 'Bytes',
-        'Legacy': {'hash': '[u8; 32]'},
-        'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+        'Legacy': {'hash': 'scale_info::12'},
+        'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
     },
     ('SuperMajorityApprove', 'SuperMajorityAgainst', 'SimpleMajority'),
 )
@@ -720,8 +731,8 @@ result = substrate.query(
         'u32',
         {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::12'},
+            'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
         },
         'AccountId',
     ),
@@ -764,8 +775,8 @@ result = substrate.query(
         'end': 'u32',
         'proposal': {
             'Inline': 'Bytes',
-            'Legacy': {'hash': '[u8; 32]'},
-            'Lookup': {'hash': '[u8; 32]', 'len': 'u32'},
+            'Legacy': {'hash': 'scale_info::12'},
+            'Lookup': {'hash': 'scale_info::12', 'len': 'u32'},
         },
         'tally': {'ayes': 'u128', 'nays': 'u128', 'turnout': 'u128'},
         'threshold': (
@@ -811,7 +822,7 @@ result = substrate.query(
     'Direct': {
         'delegations': {'capital': 'u128', 'votes': 'u128'},
         'prior': ('u32', 'u128'),
-        'votes': [('u32', 'scale_info::73')],
+        'votes': [('u32', 'scale_info::70')],
     },
 }
 ```

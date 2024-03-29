@@ -336,7 +336,7 @@ constant = substrate.get_constant('AppPromotion', 'FreezeIdentifier')
  Rate of return for interval in blocks defined in `RecalculationInterval`.
 #### Value
 ```python
-500000
+453256
 ```
 #### Python
 ```python

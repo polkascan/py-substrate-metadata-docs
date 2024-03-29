@@ -14,7 +14,7 @@
 #### Python
 ```python
 call = substrate.compose_call(
-    'BaseFee', 'set_base_fee_per_gas', {'fee': '[u64; 4]'}
+    'BaseFee', 'set_base_fee_per_gas', {'fee': 'scale_info::186'}
 )
 ```
 
@@ -45,7 +45,7 @@ No attributes
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| fee | `U256` | ```[u64; 4]```
+| fee | `U256` | ```scale_info::186```
 
 ---------
 ### NewElasticity
@@ -69,7 +69,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u64; 4]'
+'scale_info::186'
 ```
 ---------
 ### Elasticity

@@ -6,9 +6,7 @@
 
 ---------
 ### resume_ethereum_xcm_execution
-Resumes all Ethereum executions from XCM.
-
-- `origin`: Must pass `ControllerOrigin`.
+See `Pallet::resume_ethereum_xcm_execution`.
 #### Attributes
 No attributes
 
@@ -21,9 +19,7 @@ call = substrate.compose_call(
 
 ---------
 ### suspend_ethereum_xcm_execution
-Suspends all Ethereum executions from XCM.
-
-- `origin`: Must pass `ControllerOrigin`.
+See `Pallet::suspend_ethereum_xcm_execution`.
 #### Attributes
 No attributes
 
@@ -36,8 +32,7 @@ call = substrate.compose_call(
 
 ---------
 ### transact
-Xcm Transact an Ethereum transaction.
-Weight: Gas limit plus the db read involving the suspension check
+See `Pallet::transact`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -54,7 +49,9 @@ call = substrate.compose_call(
                 [
                     (
                         '[u8; 20]',
-                        ['[u8; 32]'],
+                        [
+                            'scale_info::12',
+                        ],
                     ),
                 ],
             ),
@@ -67,17 +64,17 @@ call = substrate.compose_call(
                 'Manual': {
                     'gas_price': (
                         None,
-                        '[u64; 4]',
+                        'scale_info::188',
                     ),
                     'max_fee_per_gas': (
                         None,
-                        '[u64; 4]',
+                        'scale_info::188',
                     ),
                 },
             },
-            'gas_limit': '[u64; 4]',
+            'gas_limit': 'scale_info::188',
             'input': 'Bytes',
-            'value': '[u64; 4]',
+            'value': 'scale_info::188',
         },
         'V2': {
             'access_list': (
@@ -85,7 +82,9 @@ call = substrate.compose_call(
                 [
                     (
                         '[u8; 20]',
-                        ['[u8; 32]'],
+                        [
+                            'scale_info::12',
+                        ],
                     ),
                 ],
             ),
@@ -93,9 +92,9 @@ call = substrate.compose_call(
                 'Call': '[u8; 20]',
                 'Create': None,
             },
-            'gas_limit': '[u64; 4]',
+            'gas_limit': 'scale_info::188',
             'input': 'Bytes',
-            'value': '[u64; 4]',
+            'value': 'scale_info::188',
         },
     },
 }
@@ -104,8 +103,7 @@ call = substrate.compose_call(
 
 ---------
 ### transact_through_proxy
-Xcm Transact an Ethereum transaction through proxy.
-Weight: Gas limit plus the db reads involving the suspension and proxy checks
+See `Pallet::transact_through_proxy`.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -124,7 +122,9 @@ call = substrate.compose_call(
                 [
                     (
                         '[u8; 20]',
-                        ['[u8; 32]'],
+                        [
+                            'scale_info::12',
+                        ],
                     ),
                 ],
             ),
@@ -137,17 +137,17 @@ call = substrate.compose_call(
                 'Manual': {
                     'gas_price': (
                         None,
-                        '[u64; 4]',
+                        'scale_info::188',
                     ),
                     'max_fee_per_gas': (
                         None,
-                        '[u64; 4]',
+                        'scale_info::188',
                     ),
                 },
             },
-            'gas_limit': '[u64; 4]',
+            'gas_limit': 'scale_info::188',
             'input': 'Bytes',
-            'value': '[u64; 4]',
+            'value': 'scale_info::188',
         },
         'V2': {
             'access_list': (
@@ -155,7 +155,9 @@ call = substrate.compose_call(
                 [
                     (
                         '[u8; 20]',
-                        ['[u8; 32]'],
+                        [
+                            'scale_info::12',
+                        ],
                     ),
                 ],
             ),
@@ -163,9 +165,9 @@ call = substrate.compose_call(
                 'Call': '[u8; 20]',
                 'Create': None,
             },
-            'gas_limit': '[u64; 4]',
+            'gas_limit': 'scale_info::188',
             'input': 'Bytes',
-            'value': '[u64; 4]',
+            'value': 'scale_info::188',
         },
     },
 }
@@ -203,7 +205,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-'[u64; 4]'
+'scale_info::188'
 ```
 ---------
 ## Errors

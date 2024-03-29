@@ -95,7 +95,7 @@ call = substrate.compose_call(
     'params': {
         'cherry': 'u128',
         'contract_type': {
-            'Closed': 'scale_info::84',
+            'Closed': 'scale_info::90',
             'Open': None,
         },
         'creator': {
@@ -301,7 +301,7 @@ by an arbitrary percentage and rewarding the winners by an arbitrary amount
 call = substrate.compose_call(
     'Bounty', 'submit_oracle_judgment', {
     'bounty_id': 'u64',
-    'judgment': 'scale_info::91',
+    'judgment': 'scale_info::97',
     'rationale': 'Bytes',
 }
 )
@@ -502,7 +502,7 @@ Params:
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `BountyId` | ```u64```
-| None | `BountyCreationParameters` | ```{'oracle': {'Council': None, 'Member': 'u64'}, 'contract_type': {'Open': None, 'Closed': 'scale_info::84'}, 'creator': {'Council': None, 'Member': 'u64'}, 'cherry': 'u128', 'oracle_reward': 'u128', 'entrant_stake': 'u128', 'funding_type': {'Perpetual': {'target': 'u128'}, 'Limited': {'target': 'u128', 'funding_period': 'u32'}}}```
+| None | `BountyCreationParameters` | ```{'oracle': {'Council': None, 'Member': 'u64'}, 'contract_type': {'Open': None, 'Closed': 'scale_info::90'}, 'creator': {'Council': None, 'Member': 'u64'}, 'cherry': 'u128', 'oracle_reward': 'u128', 'entrant_stake': 'u128', 'funding_type': {'Perpetual': {'target': 'u128'}, 'Limited': {'target': 'u128', 'funding_period': 'u32'}}}```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -706,7 +706,7 @@ Params:
 | -------- | -------- | -------- |
 | None | `BountyId` | ```u64```
 | None | `BountyActor<MemberId>` | ```{'Council': None, 'Member': 'u64'}```
-| None | `OracleJudgment` | ```scale_info::91```
+| None | `OracleJudgment` | ```scale_info::97```
 | None | `Vec<u8>` | ```Bytes```
 
 ---------
@@ -819,7 +819,7 @@ result = substrate.query(
     'active_work_entry_count': 'u32',
     'creation_params': {
         'cherry': 'u128',
-        'contract_type': {'Closed': 'scale_info::84', 'Open': None},
+        'contract_type': {'Closed': 'scale_info::90', 'Open': None},
         'creator': {'Council': None, 'Member': 'u64'},
         'entrant_stake': 'u128',
         'funding_type': {
@@ -927,7 +927,7 @@ constant = substrate.get_constant('Bounty', 'ClosedContractSizeLimit')
  Exports const - creator state bloat bond amount for a bounty.
 #### Value
 ```python
-1826887182
+1826603960
 ```
 #### Python
 ```python
@@ -938,7 +938,7 @@ constant = substrate.get_constant('Bounty', 'CreatorStateBloatBondAmount')
  Exports const - funder state bloat bond amount for a bounty.
 #### Value
 ```python
-1824556112
+1823667291
 ```
 #### Python
 ```python
@@ -949,7 +949,7 @@ constant = substrate.get_constant('Bounty', 'FunderStateBloatBondAmount')
  Exports const - min work entrant stake for a bounty.
 #### Value
 ```python
-1842581141
+1844685259
 ```
 #### Python
 ```python

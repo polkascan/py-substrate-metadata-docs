@@ -6,10 +6,11 @@
 
 ---------
 ### dispatch_whitelisted_call
+See [`Pallet::dispatch_whitelisted_call`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| call_hash | `PreimageHash` | 
+| call_hash | `T::Hash` | 
 | call_encoded_len | `u32` | 
 | call_weight_witness | `Weight` | 
 
@@ -18,7 +19,7 @@
 call = substrate.compose_call(
     'Whitelist', 'dispatch_whitelisted_call', {
     'call_encoded_len': 'u32',
-    'call_hash': '[u8; 32]',
+    'call_hash': 'scale_info::12',
     'call_weight_witness': {
         'proof_size': 'u64',
         'ref_time': 'u64',
@@ -29,6 +30,7 @@ call = substrate.compose_call(
 
 ---------
 ### dispatch_whitelisted_call_with_preimage
+See [`Pallet::dispatch_whitelisted_call_with_preimage`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -43,29 +45,31 @@ call = substrate.compose_call(
 
 ---------
 ### remove_whitelisted_call
+See [`Pallet::remove_whitelisted_call`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| call_hash | `PreimageHash` | 
+| call_hash | `T::Hash` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Whitelist', 'remove_whitelisted_call', {'call_hash': '[u8; 32]'}
+    'Whitelist', 'remove_whitelisted_call', {'call_hash': 'scale_info::12'}
 )
 ```
 
 ---------
 ### whitelist_call
+See [`Pallet::whitelist_call`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| call_hash | `PreimageHash` | 
+| call_hash | `T::Hash` | 
 
 #### Python
 ```python
 call = substrate.compose_call(
-    'Whitelist', 'whitelist_call', {'call_hash': '[u8; 32]'}
+    'Whitelist', 'whitelist_call', {'call_hash': 'scale_info::12'}
 )
 ```
 
@@ -77,22 +81,22 @@ call = substrate.compose_call(
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| call_hash | `PreimageHash` | ```[u8; 32]```
+| call_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### WhitelistedCallDispatched
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| call_hash | `PreimageHash` | ```[u8; 32]```
-| result | `DispatchResultWithPostInfo` | ```{'Ok': {'actual_weight': (None, {'ref_time': 'u64', 'proof_size': 'u64'}), 'pays_fee': ('Yes', 'No')}, 'Err': {'post_info': {'actual_weight': (None, {'ref_time': 'u64', 'proof_size': 'u64'}), 'pays_fee': ('Yes', 'No')}, 'error': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}}```
+| call_hash | `T::Hash` | ```scale_info::12```
+| result | `DispatchResultWithPostInfo` | ```{'Ok': {'actual_weight': (None, {'ref_time': 'u64', 'proof_size': 'u64'}), 'pays_fee': ('Yes', 'No')}, 'Err': {'post_info': {'actual_weight': (None, {'ref_time': 'u64', 'proof_size': 'u64'}), 'pays_fee': ('Yes', 'No')}, 'error': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}}```
 
 ---------
 ### WhitelistedCallRemoved
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| call_hash | `PreimageHash` | ```[u8; 32]```
+| call_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -103,7 +107,7 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'Whitelist', 'WhitelistedCall', ['[u8; 32]']
+    'Whitelist', 'WhitelistedCall', ['scale_info::12']
 )
 ```
 

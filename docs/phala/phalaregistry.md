@@ -6,9 +6,7 @@
 
 ---------
 ### add_pruntime
-Registers a pruntime binary to [`PRuntimeAllowList`]
-
-Can only be called by `GovernanceOrigin`.
+See [`Pallet::add_pruntime`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -23,9 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_relaychain_genesis_block_hash
-Adds an entry in [`RelaychainGenesisBlockHashAllowList`]
-
-Can only be called by `GovernanceOrigin`.
+See [`Pallet::add_relaychain_genesis_block_hash`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -34,15 +30,15 @@ Can only be called by `GovernanceOrigin`.
 #### Python
 ```python
 call = substrate.compose_call(
-    'PhalaRegistry', 'add_relaychain_genesis_block_hash', {'genesis_block_hash': '[u8; 32]'}
+    'PhalaRegistry', 'add_relaychain_genesis_block_hash', {
+    'genesis_block_hash': 'scale_info::12',
+}
 )
 ```
 
 ---------
 ### force_register_topic_pubkey
-Force register a topic pubkey
-
-For test only.
+See [`Pallet::force_register_topic_pubkey`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -58,9 +54,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_register_worker
-Force register a worker with the given pubkey with sudo permission
-
-For test only.
+See [`Pallet::force_register_worker`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -81,9 +75,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_set_benchmark_duration
-Sets [`BenchmarkDuration`]
-
-Can only be called by `GovernanceOrigin`.
+See [`Pallet::force_set_benchmark_duration`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -98,9 +90,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_gatekeeper
-Register a gatekeeper.
-
-Can only be called by `GovernanceOrigin`.
+See [`Pallet::register_gatekeeper`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -115,11 +105,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_worker
-Registers a worker on the blockchain
-This is the legacy version that support EPID attestation type only.
-
-Usually called by a bridging relayer program (`pherry` and `prb`). Can be called by
-anyone on behalf of a worker.
+See [`Pallet::register_worker`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -140,7 +126,7 @@ call = substrate.compose_call(
     'pruntime_info': {
         'ecdh_pubkey': '[u8; 32]',
         'features': ['u32'],
-        'genesis_block_hash': '[u8; 32]',
+        'genesis_block_hash': 'scale_info::12',
         'machine_id': 'Bytes',
         'operator': (
             None,
@@ -155,11 +141,7 @@ call = substrate.compose_call(
 
 ---------
 ### register_worker_v2
-Registers a worker on the blockchain.
-This is the version 2 that both support DCAP attestation type.
-
-Usually called by a bridging relayer program (`pherry` and `prb`). Can be called by
-anyone on behalf of a worker.
+See [`Pallet::register_worker_v2`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -183,7 +165,7 @@ call = substrate.compose_call(
     'pruntime_info': {
         'ecdh_pubkey': '[u8; 32]',
         'features': ['u32'],
-        'genesis_block_hash': '[u8; 32]',
+        'genesis_block_hash': 'scale_info::12',
         'machine_id': 'Bytes',
         'max_consensus_version': 'u32',
         'operator': (
@@ -200,9 +182,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_pruntime
-Removes a pruntime binary from [`PRuntimeAllowList`]
-
-Can only be called by `GovernanceOrigin`.
+See [`Pallet::remove_pruntime`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -217,9 +197,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_relaychain_genesis_block_hash
-Deletes an entry in [`RelaychainGenesisBlockHashAllowList`]
-
-Can only be called by `GovernanceOrigin`.
+See [`Pallet::remove_relaychain_genesis_block_hash`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -228,13 +206,15 @@ Can only be called by `GovernanceOrigin`.
 #### Python
 ```python
 call = substrate.compose_call(
-    'PhalaRegistry', 'remove_relaychain_genesis_block_hash', {'genesis_block_hash': '[u8; 32]'}
+    'PhalaRegistry', 'remove_relaychain_genesis_block_hash', {
+    'genesis_block_hash': 'scale_info::12',
+}
 )
 ```
 
 ---------
 ### rotate_master_key
-Rotate the master key
+See [`Pallet::rotate_master_key`].
 #### Attributes
 No attributes
 
@@ -247,9 +227,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_minimum_pruntime_version
-Set minimum pRuntime version. Versions less than MinimumPRuntimeVersion would be forced to quit.
-
-Can only be called by `GovernanceOrigin`.
+See [`Pallet::set_minimum_pruntime_version`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -270,10 +248,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_pruntime_consensus_version
-Set the consensus version used by pruntime. PRuntimes would switch some code path according
-the current consensus version.
-
-Can only be called by `GovernanceOrigin`.
+See [`Pallet::set_pruntime_consensus_version`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -288,9 +263,7 @@ call = substrate.compose_call(
 
 ---------
 ### unregister_gatekeeper
-Unregister a gatekeeper
-
-At least one gatekeeper should be available
+See [`Pallet::unregister_gatekeeper`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -305,6 +278,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_worker_endpoint
+See [`Pallet::update_worker_endpoint`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -396,7 +370,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pubkey | `WorkerPublicKey` | ```[u8; 32]```
-| attestation_provider | `Option<AttestationProvider>` | ```(None, ('Root', 'Ias'))```
+| attestation_provider | `Option<AttestationProvider>` | ```(None, ('Root', 'Ias', 'Dcap'))```
 | confidence_level | `u8` | ```u8```
 
 ---------
@@ -405,7 +379,7 @@ No attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | pubkey | `WorkerPublicKey` | ```[u8; 32]```
-| attestation_provider | `Option<AttestationProvider>` | ```(None, ('Root', 'Ias'))```
+| attestation_provider | `Option<AttestationProvider>` | ```(None, ('Root', 'Ias', 'Dcap'))```
 | confidence_level | `u8` | ```u8```
 
 ---------
@@ -432,7 +406,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'PhalaRegistry', 'ClusterKeys', ['[u8; 32]']
+    'PhalaRegistry', 'ClusterKeys', ['scale_info::12']
 )
 ```
 
@@ -447,7 +421,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'PhalaRegistry', 'ContractKeys', ['[u8; 32]']
+    'PhalaRegistry', 'ContractKeys', ['scale_info::12']
 )
 ```
 
@@ -627,7 +601,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-['[u8; 32]']
+['scale_info::12']
 ```
 ---------
 ### RotationCounter
@@ -706,7 +680,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'attestation_provider': (None, ('Root', 'Ias')),
+    'attestation_provider': (None, ('Root', 'Ias', 'Dcap')),
     'confidence_level': 'u8',
     'ecdh_pubkey': '[u8; 32]',
     'features': ['u32'],

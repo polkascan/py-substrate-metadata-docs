@@ -24,14 +24,14 @@ call = substrate.compose_call(
                         'ForeignAsset': 'u16',
                         'LiquidCrowdloan': 'u32',
                         'StableAssetPoolToken': 'u32',
-                        'Token': 'scale_info::53',
+                        'Token': 'scale_info::54',
                     },
                     {
                         'Erc20': '[u8; 20]',
                         'ForeignAsset': 'u16',
                         'LiquidCrowdloan': 'u32',
                         'StableAssetPoolToken': 'u32',
-                        'Token': 'scale_info::53',
+                        'Token': 'scale_info::54',
                     },
                 ),
                 'Erc20': '[u8; 20]',
@@ -72,7 +72,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | sender | `T::AccountId` | ```AccountId```
-| values | `Vec<(T::OracleKey, T::OracleValue)>` | ```[({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': 'scale_info::53', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': 'scale_info::53', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'u128')]```
+| values | `Vec<(T::OracleKey, T::OracleValue)>` | ```[({'Token': ('ACA', 'AUSD', 'DOT', 'LDOT', 'TAP', 'KAR', 'KUSD', 'KSM', 'LKSM', 'TAI', 'BNC', 'VSKSM', 'PHA', 'KINT', 'KBTC'), 'DexShare': ({'Token': 'scale_info::54', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}, {'Token': 'scale_info::54', 'Erc20': '[u8; 20]', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16', 'StableAssetPoolToken': 'u32'}), 'Erc20': '[u8; 20]', 'StableAssetPoolToken': 'u32', 'LiquidCrowdloan': 'u32', 'ForeignAsset': 'u16'}, 'u128')]```
 
 ---------
 ## Storage functions

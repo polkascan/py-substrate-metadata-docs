@@ -6,12 +6,7 @@
 
 ---------
 ### accept_offer
-Accept an offer and process the trade
-
-Parameters:
-- `collection_id`: The identifier of a non-fungible token collection
-- `item_id`: The item identifier of a collection
-- `maker`: User who made the offer
+See [`Pallet::accept_offer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -32,14 +27,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_royalty
-Add royalty feature where a cut for author is provided
-There is non-refundable reserve held for creating a royalty
-
-Parameters:
-- `collection_id`: The collection of the asset to be minted.
-- `item_id`: The item value of the asset to be minted.
-- `author`: Receiver of the royalty
-- `royalty`: Percentage reward from each trade for the author, represented in basis points
+See [`Pallet::add_royalty`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -62,13 +50,7 @@ call = substrate.compose_call(
 
 ---------
 ### buy
-Pays a price to the current owner
-Transfers NFT ownership to the buyer
-Disables automatic sell of the NFT
-
-Parameters:
-- `collection_id`: The identifier of a non-fungible token collection
-- `item_id`: The item identifier of a collection
+See [`Pallet::buy`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -87,22 +69,14 @@ call = substrate.compose_call(
 
 ---------
 ### make_offer
-Users can indicate what price they would be willing to pay for a token
-Price can be lower than current listing price
-Token doesn&\#x27;t have to be currently listed
-
-Parameters:
-- `collection_id`: The identifier of a non-fungible token collection
-- `item_id`: The item identifier of a collection
-- `amount`: The amount user is willing to pay
-- `expires`: The block until the current owner can accept the offer
+See [`Pallet::make_offer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | collection_id | `T::NftCollectionId` | 
 | item_id | `T::NftItemId` | 
 | amount | `BalanceOf<T>` | 
-| expires | `T::BlockNumber` | 
+| expires | `BlockNumberFor<T>` | 
 
 #### Python
 ```python
@@ -118,13 +92,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_price
-Set trading price and allow sell
-Setting price to None disables auto sell
-
-Parameters:
-- `collection_id`: The identifier of a non-fungible token collection
-- `item_id`: The item identifier of a collection
-- `new_price`: price the token will be listed for
+See [`Pallet::set_price`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -145,14 +113,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw_offer
-Reverse action to make_offer
-Removes an offer and unreserves funds
-Can be done by the offer maker or owner of the token
-
-Parameters:
-- `collection_id`: The identifier of a non-fungible token collection
-- `item_id`: The item identifier of a collection
-- `maker`: User who made the offer
+See [`Pallet::withdraw_offer`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -196,7 +157,7 @@ Offer was placed on a token
 | collection | `T::NftCollectionId` | ```u128```
 | item | `T::NftItemId` | ```u128```
 | amount | `BalanceOf<T>` | ```u128```
-| expires | `T::BlockNumber` | ```u32```
+| expires | `BlockNumberFor<T>` | ```u32```
 
 ---------
 ### OfferWithdrawn

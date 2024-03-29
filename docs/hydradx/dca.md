@@ -6,30 +6,7 @@
 
 ---------
 ### schedule
-Creates a new DCA (Dollar-Cost Averaging) schedule and plans the next execution
-for the specified block.
-
-If the block is not specified, the execution is planned for the next block.
-If the given block is full, the execution will be planned in the subsequent block.
-
-Once the schedule is created, the specified `total_amount` will be reserved for DCA.
-The reservation currency will be the `amount_in` currency of the order.
-
-Trades are executed as long as there is budget remaining
-from the initial `total_amount` allocation.
-
-If a trade fails due to slippage limit or price stability errors, it will be retried.
-If the number of retries reaches the maximum allowed,
-the schedule will be terminated permanently.
-In the case of a successful trade, the retry counter is reset.
-
-Parameters:
-- `origin`: schedule owner
-- `schedule`: schedule details
-- `start_execution_block`: start execution block for the schedule
-
-Emits `Scheduled` and `ExecutionPlanned` event when successful.
-
+See [`Pallet::schedule`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -52,12 +29,7 @@ call = substrate.compose_call(
                     {
                         'asset_in': 'u32',
                         'asset_out': 'u32',
-                        'pool': {
-                            'LBP': None,
-                            'Omnipool': None,
-                            'Stableswap': 'u32',
-                            'XYK': None,
-                        },
+                        'pool': 'scale_info::145',
                     },
                 ],
             },
@@ -70,12 +42,7 @@ call = substrate.compose_call(
                     {
                         'asset_in': 'u32',
                         'asset_out': 'u32',
-                        'pool': {
-                            'LBP': None,
-                            'Omnipool': None,
-                            'Stableswap': 'u32',
-                            'XYK': None,
-                        },
+                        'pool': 'scale_info::145',
                     },
                 ],
             },
@@ -99,17 +66,7 @@ call = substrate.compose_call(
 
 ---------
 ### terminate
-Terminates a DCA schedule and remove it completely from the chain.
-
-This can be called by both schedule owner or the configured `T::TechnicalOrigin`
-
-Parameters:
-- `origin`: schedule owner
-- `schedule_id`: schedule id
-- `next_execution_block`: block number where the schedule is planned.
-
-Emits `Terminated` event when successful.
-
+See [`Pallet::terminate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -167,7 +124,7 @@ Randomness generation failed possibly coming from missing data about relay chain
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | block | `BlockNumberFor<T>` | ```u32```
-| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}```
 
 ---------
 ### Scheduled
@@ -177,6 +134,9 @@ The DCA is scheduled for next execution
 | -------- | -------- | -------- |
 | id | `ScheduleId` | ```u32```
 | who | `T::AccountId` | ```AccountId```
+| period | `BlockNumberFor<T>` | ```u32```
+| total_amount | `Balance` | ```u128```
+| order | `Order<T::AssetId>` | ```{'Sell': {'asset_in': 'u32', 'asset_out': 'u32', 'amount_in': 'u128', 'min_amount_out': 'u128', 'route': [{'pool': 'scale_info::145', 'asset_in': 'u32', 'asset_out': 'u32'}]}, 'Buy': {'asset_in': 'u32', 'asset_out': 'u32', 'amount_out': 'u128', 'max_amount_in': 'u128', 'route': [{'pool': 'scale_info::145', 'asset_in': 'u32', 'asset_out': 'u32'}]}}```
 
 ---------
 ### Terminated
@@ -186,7 +146,7 @@ The DCA is terminated and completely removed from the chain
 | -------- | -------- | -------- |
 | id | `ScheduleId` | ```u32```
 | who | `T::AccountId` | ```AccountId```
-| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}```
 
 ---------
 ### TradeExecuted
@@ -207,7 +167,7 @@ The DCA trade execution is failed
 | -------- | -------- | -------- |
 | id | `ScheduleId` | ```u32```
 | who | `T::AccountId` | ```AccountId```
-| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}```
+| error | `DispatchError` | ```{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}```
 
 ---------
 ## Storage functions
@@ -308,26 +268,14 @@ result = substrate.query(
             'asset_in': 'u32',
             'asset_out': 'u32',
             'max_amount_in': 'u128',
-            'route': [
-                {
-                    'asset_in': 'u32',
-                    'asset_out': 'u32',
-                    'pool': 'scale_info::290',
-                },
-            ],
+            'route': ['scale_info::144'],
         },
         'Sell': {
             'amount_in': 'u128',
             'asset_in': 'u32',
             'asset_out': 'u32',
             'min_amount_out': 'u128',
-            'route': [
-                {
-                    'asset_in': 'u32',
-                    'asset_out': 'u32',
-                    'pool': 'scale_info::290',
-                },
-            ],
+            'route': ['scale_info::144'],
         },
     },
     'owner': 'AccountId',
@@ -474,10 +422,6 @@ No parent hash has been found from relay chain
 ---------
 ### PriceUnstable
 Price is unstable as price change from oracle data is bigger than max allowed
-
----------
-### RouteNotSpecified
-The route to execute the trade on is not specified
 
 ---------
 ### ScheduleNotFound

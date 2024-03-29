@@ -12,6 +12,14 @@ The `amount_in` is paid in collateral. The transaction fails if the amount of ou
 tokens received is smaller than `min_amount_out`. The user must correctly specify the
 number of outcomes for benchmarking reasons.
 
+The `amount_in` parameter must also satisfy lower and upper limits due to numerical
+constraints. In fact, after `amount_in` has been adjusted for fees, the following must
+hold:
+
+- `amount_in_minus_fees &lt;= EXP_NUMERICAL_LIMIT * pool.liquidity_parameter`.
+- `exp(amount_in_minus_fees/pool.liquidity_parameter) - 1 + p &lt;= LN_NUMERICAL_LIMIT`,
+  where `p` is the spot price of `asset_out`.
+
 \# Parameters
 
 - `origin`: The origin account making the purchase.
@@ -47,6 +55,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -85,7 +97,7 @@ The operation is currently limited to binary and scalar markets.
 
 \# Complexity
 
-`O(n)` where `n` is the number of outcomes in the specified market.
+`O(n)` where `n` is the number of assets in the pool.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -120,7 +132,9 @@ The transaction will fail unless the LP withdraws their fees from the pool befor
 batch transaction is very useful here.
 
 If the LP withdraws all pool shares that exist, then the pool is afterwards destroyed. A
-new pool can be deployed at any time, provided that the market is still open.
+new pool can be deployed at any time, provided that the market is still open. If there
+are funds left in the pool account (this can happen due to exit fees), the remaining
+funds are destroyed.
 
 The LP is not allowed to leave a positive but small amount liquidity in the pool. If the
 liquidity parameter drops below a certain threshold, the transaction will fail. The only
@@ -135,7 +149,9 @@ solution is to withdraw _all_ liquidity and let the pool die.
 
 \# Complexity
 
-`O(n)` where `n` is the number of assets in the pool.
+`O(n + d)` where `n` is the number of assets in the pool and `d` is the depth of the
+pool&\#x27;s liquidity tree, or, equivalently, `log_2(m)` where `m` is the number of liquidity
+providers in the pool.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -175,7 +191,9 @@ buying from the pool or by using complete set operations.
 
 \# Complexity
 
-`O(n)` where `n` is the number of assets in the pool.
+`O(n + d)` where `n` is the number of assets in the pool and `d` is the depth of the
+pool&\#x27;s liquidity tree, or, equivalently, `log_2(m)` where `m` is the number of liquidity
+providers in the pool.
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -201,6 +219,13 @@ Sell outcome tokens to the specified market.
 The `amount_in` is paid in outcome tokens. The transaction fails if the amount of outcome
 tokens received is smaller than `min_amount_out`. The user must correctly specify the
 number of outcomes for benchmarking reasons.
+
+The `amount_in` parameter must also satisfy lower and upper limits due to numerical
+constraints. In fact, the following must hold:
+
+- `amount_in &lt;= EXP_NUMERICAL_LIMIT * pool.liquidity_parameter`.
+- The spot price of `asset_in` is greater than `exp(-EXP_NUMERICAL_LIMIT)` before and
+  after execution
 
 \# Parameters
 
@@ -237,6 +262,10 @@ call = substrate.compose_call(
         ),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': (
+            'u128',
+            'u16',
+        ),
         'PoolShare': 'u128',
         'ScalarOutcome': (
             'u128',
@@ -281,13 +310,14 @@ call = substrate.compose_call(
 
 ---------
 ### BuyExecuted
-Informant bought a position.
+Informant bought a position. `amount_in` is the amount of collateral paid by `who`,
+including swap and external fees.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | market_id | `MarketIdOf<T>` | ```u128```
-| asset_out | `AssetOf<T>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
+| asset_out | `AssetOf<T>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}```
 | amount_in | `BalanceOf<T>` | ```u128```
 | amount_out | `BalanceOf<T>` | ```u128```
 | swap_fee_amount | `BalanceOf<T>` | ```u128```
@@ -335,9 +365,12 @@ Pool was createed.
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | market_id | `MarketIdOf<T>` | ```u128```
-| pool_shares_amount | `BalanceOf<T>` | ```u128```
-| amounts_in | `Vec<BalanceOf<T>>` | ```['u128']```
+| account_id | `T::AccountId` | ```AccountId```
+| reserves | `BTreeMap<AssetOf<T>, BalanceOf<T>>` | ```scale_info::92```
+| collateral | `AssetOf<T>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}```
 | liquidity_parameter | `BalanceOf<T>` | ```u128```
+| pool_shares_amount | `BalanceOf<T>` | ```u128```
+| swap_fee | `BalanceOf<T>` | ```u128```
 
 ---------
 ### PoolDestroyed
@@ -347,18 +380,18 @@ Pool was destroyed.
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | market_id | `MarketIdOf<T>` | ```u128```
-| pool_shares_amount | `BalanceOf<T>` | ```u128```
 | amounts_out | `Vec<BalanceOf<T>>` | ```['u128']```
 
 ---------
 ### SellExecuted
-Informant sold a position.
+Informant sold a position. `amount_out` is the amount of collateral received by `who`,
+including swap and external fees.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | who | `T::AccountId` | ```AccountId```
 | market_id | `MarketIdOf<T>` | ```u128```
-| asset_in | `AssetOf<T>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32'}```
+| asset_in | `AssetOf<T>` | ```{'CategoricalOutcome': ('u128', 'u16'), 'ScalarOutcome': ('u128', ('Long', 'Short')), 'CombinatorialOutcome': None, 'PoolShare': 'u128', 'Ztg': None, 'ForeignAsset': 'u32', 'ParimutuelShare': ('u128', 'u16')}```
 | amount_in | `BalanceOf<T>` | ```u128```
 | amount_out | `BalanceOf<T>` | ```u128```
 | swap_fee_amount | `BalanceOf<T>` | ```u128```
@@ -385,23 +418,44 @@ result = substrate.query(
         'CategoricalOutcome': ('u128', 'u16'),
         'CombinatorialOutcome': None,
         'ForeignAsset': 'u32',
+        'ParimutuelShare': ('u128', 'u16'),
         'PoolShare': 'u128',
         'ScalarOutcome': ('u128', ('Long', 'Short')),
         'Ztg': None,
     },
     'liquidity_parameter': 'u128',
     'liquidity_shares_manager': {
-        'fees': 'u128',
-        'owner': 'AccountId',
-        'total_shares': 'u128',
+        'abandoned_nodes': ['u32'],
+        'account_to_index': 'scale_info::556',
+        'nodes': [
+            {
+                'account': (None, 'AccountId'),
+                'descendant_stake': 'u128',
+                'fees': 'u128',
+                'lazy_fees': 'u128',
+                'stake': 'u128',
+            },
+        ],
     },
-    'reserves': 'scale_info::85',
+    'reserves': 'scale_info::92',
     'swap_fee': 'u128',
 }
 ```
 ---------
 ## Constants
 
+---------
+### MaxLiquidityTreeDepth
+ The maximum allowed liquidity tree depth per pool. Each pool can support `2^(depth + 1)
+ - 1` liquidity providers. **Must** be less than 16.
+#### Value
+```python
+9
+```
+#### Python
+```python
+constant = substrate.get_constant('NeoSwaps', 'MaxLiquidityTreeDepth')
+```
 ---------
 ### MaxSwapFee
 #### Value
@@ -469,16 +523,20 @@ Market&\#x27;s trading mechanism is not LMSR.
 The liquidity in the pool is too low.
 
 ---------
+### LiquidityTreeError
+An error occurred when handling the liquidty tree.
+
+---------
 ### MarketNotActive
 Pool can only be traded on if the market is active.
 
 ---------
-### MarketNotBinaryOrScalar
-Deploying pools is only supported for scalar or binary markets.
-
----------
 ### MathError
 Some calculation failed. This shouldn&\#x27;t happen.
+
+---------
+### MinRelativeLiquidityThresholdViolated
+The relative value of a new LP position is too low.
 
 ---------
 ### NotAllowed

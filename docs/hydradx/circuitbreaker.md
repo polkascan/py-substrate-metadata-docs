@@ -6,15 +6,7 @@
 
 ---------
 ### set_add_liquidity_limit
-Set add liquidity limit for an asset.
-
-Parameters:
-- `origin`: The dispatch origin for this call. Must be `TechnicalOrigin`
-- `asset_id`: The identifier of an asset
-- `liquidity_limit`: Optional add liquidity limit represented as a percentage
-
-Emits `AddLiquidityLimitChanged` event when successful.
-
+See [`Pallet::set_add_liquidity_limit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -36,15 +28,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_remove_liquidity_limit
-Set remove liquidity limit for an asset.
-
-Parameters:
-- `origin`: The dispatch origin for this call. Must be `TechnicalOrigin`
-- `asset_id`: The identifier of an asset
-- `liquidity_limit`: Optional remove liquidity limit represented as a percentage
-
-Emits `RemoveLiquidityLimitChanged` event when successful.
-
+See [`Pallet::set_remove_liquidity_limit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -66,15 +50,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_trade_volume_limit
-Set trade volume limit for an asset.
-
-Parameters:
-- `origin`: The dispatch origin for this call. Must be `TechnicalOrigin`
-- `asset_id`: The identifier of an asset
-- `trade_volume_limit`: New trade volume limit represented as a percentage
-
-Emits `TradeVolumeLimitChanged` event when successful.
-
+See [`Pallet::set_trade_volume_limit`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 

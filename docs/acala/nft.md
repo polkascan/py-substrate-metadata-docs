@@ -49,7 +49,7 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'NFT', 'create_class', {
-    'attributes': 'scale_info::345',
+    'attributes': 'scale_info::351',
     'metadata': 'Bytes',
     'properties': 'u8',
 }
@@ -95,7 +95,7 @@ call = substrate.compose_call(
 ```python
 call = substrate.compose_call(
     'NFT', 'mint', {
-    'attributes': 'scale_info::345',
+    'attributes': 'scale_info::351',
     'class_id': 'u32',
     'metadata': 'Bytes',
     'quantity': 'u32',
@@ -172,7 +172,7 @@ call = substrate.compose_call(
 | owner | `T::AccountId` | ```AccountId```
 | class_id | `ClassIdOf<T>` | ```u32```
 | token_id | `TokenIdOf<T>` | ```u64```
-| remark_hash | `T::Hash` | ```[u8; 32]```
+| remark_hash | `T::Hash` | ```scale_info::12```
 
 ---------
 ### CreatedClass

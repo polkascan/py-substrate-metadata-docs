@@ -5,17 +5,23 @@
 ## Calls
 
 ---------
+### accept_username
+See [`Pallet::accept_username`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| username | `Username<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'accept_username', {'username': 'Bytes'}
+)
+```
+
+---------
 ### add_registrar
-Add a registrar to the system.
-
-The dispatch origin for this call must be `T::RegistrarOrigin`.
-
-- `account`: the account of the registrar.
-
-Emits `RegistrarAdded` if successful.
-
-\#\# Complexity
-- `O(R)` where `R` registrar-count (governance-bounded and code-bounded).
+See [`Pallet::add_registrar`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -38,13 +44,7 @@ call = substrate.compose_call(
 
 ---------
 ### add_sub
-Add the given account to the sender&\#x27;s subs.
-
-Payment: Balance reserved by a previous `set_subs` call for one sub will be repatriated
-to the sender.
-
-The dispatch origin for this call must be _Signed_ and the sender must have a registered
-sub identity of `sub`.
+See [`Pallet::add_sub`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -75,22 +75,35 @@ call = substrate.compose_call(
 ```
 
 ---------
+### add_username_authority
+See [`Pallet::add_username_authority`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| authority | `AccountIdLookupOf<T>` | 
+| suffix | `Vec<u8>` | 
+| allocation | `u32` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'add_username_authority', {
+    'allocation': 'u32',
+    'authority': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+    'suffix': 'Bytes',
+}
+)
+```
+
+---------
 ### cancel_request
-Cancel a previous request.
-
-Payment: A previously reserved deposit is returned on success.
-
-The dispatch origin for this call must be _Signed_ and the sender must have a
-registered identity.
-
-- `reg_index`: The index of the registrar whose judgement is no longer requested.
-
-Emits `JudgementUnrequested` if successful.
-
-\#\# Complexity
-- `O(R + X)`.
-  - where `R` registrar-count (governance-bounded).
-  - where `X` additional-field-count (deposit-bounded and code-bounded).
+See [`Pallet::cancel_request`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -105,20 +118,7 @@ call = substrate.compose_call(
 
 ---------
 ### clear_identity
-Clear an account&\#x27;s identity info and all sub-accounts and return all deposits.
-
-Payment: All reserved balances on the account are returned.
-
-The dispatch origin for this call must be _Signed_ and the sender must have a registered
-identity.
-
-Emits `IdentityCleared` if successful.
-
-\#\# Complexity
-- `O(R + S + X)`
-  - where `R` registrar-count (governance-bounded).
-  - where `S` subs-count (hard- and deposit-bounded).
-  - where `X` additional-field-count (deposit-bounded and code-bounded).
+See [`Pallet::clear_identity`].
 #### Attributes
 No attributes
 
@@ -131,24 +131,7 @@ call = substrate.compose_call(
 
 ---------
 ### kill_identity
-Remove an account&\#x27;s identity and sub-account information and slash the deposits.
-
-Payment: Reserved balances from `set_subs` and `set_identity` are slashed and handled by
-`Slash`. Verification request deposits are not returned; they should be cancelled
-manually using `cancel_request`.
-
-The dispatch origin for this call must match `T::ForceOrigin`.
-
-- `target`: the account whose identity the judgement is upon. This must be an account
-  with a registered identity.
-
-Emits `IdentityKilled` if successful.
-
-\#\# Complexity
-- `O(R + S + X)`
-  - where `R` registrar-count (governance-bounded).
-  - where `S` subs-count (hard- and deposit-bounded).
-  - where `X` additional-field-count (deposit-bounded and code-bounded).
+See [`Pallet::kill_identity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -171,23 +154,7 @@ call = substrate.compose_call(
 
 ---------
 ### provide_judgement
-Provide a judgement for an account&\#x27;s identity.
-
-The dispatch origin for this call must be _Signed_ and the sender must be the account
-of the registrar whose index is `reg_index`.
-
-- `reg_index`: the index of the registrar whose judgement is being made.
-- `target`: the account whose identity the judgement is upon. This must be an account
-  with a registered identity.
-- `judgement`: the judgement of the registrar of index `reg_index` about `target`.
-- `identity`: The hash of the [`IdentityInfo`] for that the judgement is provided.
-
-Emits `JudgementGiven` if successful.
-
-\#\# Complexity
-- `O(R + X)`.
-  - where `R` registrar-count (governance-bounded).
-  - where `X` additional-field-count (deposit-bounded and code-bounded).
+See [`Pallet::provide_judgement`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -200,7 +167,7 @@ Emits `JudgementGiven` if successful.
 ```python
 call = substrate.compose_call(
     'Identity', 'provide_judgement', {
-    'identity': '[u8; 32]',
+    'identity': 'scale_info::12',
     'judgement': {
         'Erroneous': None,
         'FeePaid': 'u128',
@@ -224,16 +191,7 @@ call = substrate.compose_call(
 
 ---------
 ### quit_sub
-Remove the sender as a sub-account.
-
-Payment: Balance reserved by a previous `set_subs` call for one sub will be repatriated
-to the sender (*not* the original depositor).
-
-The dispatch origin for this call must be _Signed_ and the sender must have a registered
-super-identity.
-
-NOTE: This should not normally be used, but is provided in the case that the non-
-controller of an account is maliciously registered as a sub-account.
+See [`Pallet::quit_sub`].
 #### Attributes
 No attributes
 
@@ -245,14 +203,38 @@ call = substrate.compose_call(
 ```
 
 ---------
+### remove_dangling_username
+See [`Pallet::remove_dangling_username`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| username | `Username<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'remove_dangling_username', {'username': 'Bytes'}
+)
+```
+
+---------
+### remove_expired_approval
+See [`Pallet::remove_expired_approval`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| username | `Username<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'remove_expired_approval', {'username': 'Bytes'}
+)
+```
+
+---------
 ### remove_sub
-Remove the given account from the sender&\#x27;s subs.
-
-Payment: Balance reserved by a previous `set_subs` call for one sub will be repatriated
-to the sender.
-
-The dispatch origin for this call must be _Signed_ and the sender must have a registered
-sub identity of `sub`.
+See [`Pallet::remove_sub`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -274,11 +256,31 @@ call = substrate.compose_call(
 ```
 
 ---------
-### rename_sub
-Alter the associated name of the given sub-account.
+### remove_username_authority
+See [`Pallet::remove_username_authority`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| authority | `AccountIdLookupOf<T>` | 
 
-The dispatch origin for this call must be _Signed_ and the sender must have a registered
-sub identity of `sub`.
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'remove_username_authority', {
+    'authority': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
+### rename_sub
+See [`Pallet::rename_sub`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -310,27 +312,7 @@ call = substrate.compose_call(
 
 ---------
 ### request_judgement
-Request a judgement from a registrar.
-
-Payment: At most `max_fee` will be reserved for payment to the registrar if judgement
-given.
-
-The dispatch origin for this call must be _Signed_ and the sender must have a
-registered identity.
-
-- `reg_index`: The index of the registrar whose judgement is requested.
-- `max_fee`: The maximum fee that may be paid. This should just be auto-populated as:
-
-```nocompile
-Self::registrars().get(reg_index).unwrap().fee
-```
-
-Emits `JudgementRequested` if successful.
-
-\#\# Complexity
-- `O(R + X)`.
-  - where `R` registrar-count (governance-bounded).
-  - where `X` additional-field-count (deposit-bounded and code-bounded).
+See [`Pallet::request_judgement`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -349,17 +331,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_account_id
-Change the account associated with a registrar.
-
-The dispatch origin for this call must be _Signed_ and the sender must be the account
-of the registrar whose index is `index`.
-
-- `index`: the index of the registrar whose fee is to be set.
-- `new`: the new account ID.
-
-\#\# Complexity
-- `O(R)`.
-  - where `R` registrar-count (governance-bounded).
+See [`Pallet::set_account_id`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -384,17 +356,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_fee
-Set the fee required for a judgement to be requested from a registrar.
-
-The dispatch origin for this call must be _Signed_ and the sender must be the account
-of the registrar whose index is `index`.
-
-- `index`: the index of the registrar whose fee is to be set.
-- `fee`: the new fee.
-
-\#\# Complexity
-- `O(R)`.
-  - where `R` registrar-count (governance-bounded).
+See [`Pallet::set_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -410,22 +372,13 @@ call = substrate.compose_call(
 
 ---------
 ### set_fields
-Set the field information for a registrar.
-
-The dispatch origin for this call must be _Signed_ and the sender must be the account
-of the registrar whose index is `index`.
-
-- `index`: the index of the registrar whose fee is to be set.
-- `fields`: the fields that the registrar concerns themselves with.
-
-\#\# Complexity
-- `O(R)`.
-  - where `R` registrar-count (governance-bounded).
+See [`Pallet::set_fields`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
 | index | `RegistrarIndex` | 
-| fields | `IdentityFields` | 
+| fields | `<T::IdentityInformation as IdentityInformationProvider>::
+FieldsIdentifier` | 
 
 #### Python
 ```python
@@ -436,25 +389,11 @@ call = substrate.compose_call(
 
 ---------
 ### set_identity
-Set an account&\#x27;s identity information and reserve the appropriate deposit.
-
-If the account already has identity information, the deposit is taken as part payment
-for the new deposit.
-
-The dispatch origin for this call must be _Signed_.
-
-- `info`: The identity information.
-
-Emits `IdentitySet` if successful.
-
-\#\# Complexity
-- `O(X + X&\#x27; + R)`
-  - where `X` additional-field-count (deposit-bounded and code-bounded)
-  - where `R` judgements-count (registrar-count-bounded)
+See [`Pallet::set_identity`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
-| info | `Box<IdentityInfo<T::MaxAdditionalFields>>` | 
+| info | `Box<T::IdentityInformation>` | 
 
 #### Python
 ```python
@@ -547,21 +486,23 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_primary_username
+See [`Pallet::set_primary_username`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| username | `Username<T>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'set_primary_username', {'username': 'Bytes'}
+)
+```
+
+---------
 ### set_subs
-Set the sub-accounts of the sender.
-
-Payment: Any aggregate balance reserved by previous `set_subs` calls will be returned
-and an amount `SubAccountDeposit` will be reserved for each item in `subs`.
-
-The dispatch origin for this call must be _Signed_ and the sender must have a registered
-identity.
-
-- `subs`: The identity&\#x27;s (new) sub-accounts.
-
-\#\# Complexity
-- `O(P + S)`
-  - where `P` old-subs-count (hard- and deposit-bounded).
-  - where `S` subs-count (hard- and deposit-bounded).
+See [`Pallet::set_subs`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -589,7 +530,67 @@ call = substrate.compose_call(
 ```
 
 ---------
+### set_username_for
+See [`Pallet::set_username_for`].
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| who | `AccountIdLookupOf<T>` | 
+| username | `Vec<u8>` | 
+| signature | `Option<T::OffchainSignature>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Identity', 'set_username_for', {
+    'signature': (
+        None,
+        {
+            'Ecdsa': '[u8; 65]',
+            'Ed25519': '[u8; 64]',
+            'Sr25519': '[u8; 64]',
+        },
+    ),
+    'username': 'Bytes',
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
+)
+```
+
+---------
 ## Events
+
+---------
+### AuthorityAdded
+A username authority was added.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| authority | `T::AccountId` | ```AccountId```
+
+---------
+### AuthorityRemoved
+A username authority was removed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| authority | `T::AccountId` | ```AccountId```
+
+---------
+### DanglingUsernameRemoved
+A dangling username (as in, a username corresponding to an account that has removed its
+identity) has been removed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| username | `Username<T>` | ```Bytes```
 
 ---------
 ### IdentityCleared
@@ -645,6 +646,23 @@ A judgement request was retracted.
 | registrar_index | `RegistrarIndex` | ```u32```
 
 ---------
+### PreapprovalExpired
+A queued username passed its expiration without being claimed and was removed.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| whose | `T::AccountId` | ```AccountId```
+
+---------
+### PrimaryUsernameSet
+A username was set as a primary and can be looked up from `who`.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| username | `Username<T>` | ```Bytes```
+
+---------
 ### RegistrarAdded
 A registrar was added.
 #### Attributes
@@ -684,11 +702,50 @@ main identity account to the sub-identity account.
 | deposit | `BalanceOf<T>` | ```u128```
 
 ---------
+### UsernameQueued
+A username was queued, but `who` must accept it prior to `expiration`.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| username | `Username<T>` | ```Bytes```
+| expiration | `BlockNumberFor<T>` | ```u32```
+
+---------
+### UsernameSet
+A username was set for `who`.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| who | `T::AccountId` | ```AccountId```
+| username | `Username<T>` | ```Bytes```
+
+---------
 ## Storage functions
 
 ---------
+### AccountOfUsername
+ Reverse lookup from `username` to the `AccountId` that has registered it. The value should
+ be a key in the `IdentityOf` map, but it may not if the user has cleared their identity.
+
+ Multiple usernames may map to the same `AccountId`, but `IdentityOf` will only map to one
+ primary username.
+
+#### Python
+```python
+result = substrate.query(
+    'Identity', 'AccountOfUsername', ['Bytes']
+)
+```
+
+#### Return value
+```python
+'AccountId'
+```
+---------
 ### IdentityOf
- Information that is pertinent to identify the entity behind an account.
+ Information that is pertinent to identify the entity behind an account. First item is the
+ registration, second is the account&#x27;s primary username.
 
  TWOX-NOTE: OK ― `AccountId` is a secure hash.
 
@@ -701,83 +758,93 @@ result = substrate.query(
 
 #### Return value
 ```python
-{
-    'deposit': 'u128',
-    'info': {
-        'additional': [('scale_info::222', 'scale_info::222')],
-        'display': {
-            'BlakeTwo256': 'h256',
-            'Keccak256': 'h256',
-            'None': None,
-            'Raw': 'Bytes',
-            'Sha256': 'h256',
-            'ShaThree256': 'h256',
-        },
-        'email': {
-            'BlakeTwo256': 'h256',
-            'Keccak256': 'h256',
-            'None': None,
-            'Raw': 'Bytes',
-            'Sha256': 'h256',
-            'ShaThree256': 'h256',
-        },
-        'image': {
-            'BlakeTwo256': 'h256',
-            'Keccak256': 'h256',
-            'None': None,
-            'Raw': 'Bytes',
-            'Sha256': 'h256',
-            'ShaThree256': 'h256',
-        },
-        'legal': {
-            'BlakeTwo256': 'h256',
-            'Keccak256': 'h256',
-            'None': None,
-            'Raw': 'Bytes',
-            'Sha256': 'h256',
-            'ShaThree256': 'h256',
-        },
-        'pgp_fingerprint': (None, '[u8; 20]'),
-        'riot': {
-            'BlakeTwo256': 'h256',
-            'Keccak256': 'h256',
-            'None': None,
-            'Raw': 'Bytes',
-            'Sha256': 'h256',
-            'ShaThree256': 'h256',
-        },
-        'twitter': {
-            'BlakeTwo256': 'h256',
-            'Keccak256': 'h256',
-            'None': None,
-            'Raw': 'Bytes',
-            'Sha256': 'h256',
-            'ShaThree256': 'h256',
-        },
-        'web': {
-            'BlakeTwo256': 'h256',
-            'Keccak256': 'h256',
-            'None': None,
-            'Raw': 'Bytes',
-            'Sha256': 'h256',
-            'ShaThree256': 'h256',
-        },
-    },
-    'judgements': [
-        (
-            'u32',
-            {
-                'Erroneous': None,
-                'FeePaid': 'u128',
-                'KnownGood': None,
-                'LowQuality': None,
-                'OutOfDate': None,
-                'Reasonable': None,
-                'Unknown': None,
+(
+    {
+        'deposit': 'u128',
+        'info': {
+            'additional': [('scale_info::257', 'scale_info::257')],
+            'display': {
+                'BlakeTwo256': 'h256',
+                'Keccak256': 'h256',
+                'None': None,
+                'Raw': 'Bytes',
+                'Sha256': 'h256',
+                'ShaThree256': 'h256',
             },
-        ),
-    ],
-}
+            'email': {
+                'BlakeTwo256': 'h256',
+                'Keccak256': 'h256',
+                'None': None,
+                'Raw': 'Bytes',
+                'Sha256': 'h256',
+                'ShaThree256': 'h256',
+            },
+            'image': {
+                'BlakeTwo256': 'h256',
+                'Keccak256': 'h256',
+                'None': None,
+                'Raw': 'Bytes',
+                'Sha256': 'h256',
+                'ShaThree256': 'h256',
+            },
+            'legal': {
+                'BlakeTwo256': 'h256',
+                'Keccak256': 'h256',
+                'None': None,
+                'Raw': 'Bytes',
+                'Sha256': 'h256',
+                'ShaThree256': 'h256',
+            },
+            'pgp_fingerprint': (None, '[u8; 20]'),
+            'riot': {
+                'BlakeTwo256': 'h256',
+                'Keccak256': 'h256',
+                'None': None,
+                'Raw': 'Bytes',
+                'Sha256': 'h256',
+                'ShaThree256': 'h256',
+            },
+            'twitter': {
+                'BlakeTwo256': 'h256',
+                'Keccak256': 'h256',
+                'None': None,
+                'Raw': 'Bytes',
+                'Sha256': 'h256',
+                'ShaThree256': 'h256',
+            },
+            'web': {
+                'BlakeTwo256': 'h256',
+                'Keccak256': 'h256',
+                'None': None,
+                'Raw': 'Bytes',
+                'Sha256': 'h256',
+                'ShaThree256': 'h256',
+            },
+        },
+        'judgements': [('u32', 'scale_info::290')],
+    },
+    (None, 'Bytes'),
+)
+```
+---------
+### PendingUsernames
+ Usernames that an authority has granted, but that the account controller has not confirmed
+ that they want it. Used primarily in cases where the `AccountId` cannot provide a signature
+ because they are a pure proxy, multisig, etc. In order to confirm it, they should call
+ [`Call::accept_username`].
+
+ First tuple item is the account and second is the acceptance deadline.
+
+#### Python
+```python
+result = substrate.query(
+    'Identity', 'PendingUsernames', ['Bytes']
+)
+```
+
+#### Return value
+```python
+('AccountId', 'u32')
 ```
 ---------
 ### Registrars
@@ -843,11 +910,26 @@ result = substrate.query(
 )
 ```
 ---------
+### UsernameAuthorities
+ A map of the accounts who are authorized to grant usernames.
+
+#### Python
+```python
+result = substrate.query(
+    'Identity', 'UsernameAuthorities', ['AccountId']
+)
+```
+
+#### Return value
+```python
+{'allocation': 'u32', 'suffix': 'Bytes'}
+```
+---------
 ## Constants
 
 ---------
 ### BasicDeposit
- The amount held on deposit for a registered identity
+ The amount held on deposit for a registered identity.
 #### Value
 ```python
 20258000000000
@@ -857,27 +939,15 @@ result = substrate.query(
 constant = substrate.get_constant('Identity', 'BasicDeposit')
 ```
 ---------
-### FieldDeposit
- The amount held on deposit per additional field for a registered identity.
+### ByteDeposit
+ The amount held on deposit per encoded byte for a registered identity.
 #### Value
 ```python
 66000000000
 ```
 #### Python
 ```python
-constant = substrate.get_constant('Identity', 'FieldDeposit')
-```
----------
-### MaxAdditionalFields
- Maximum number of additional fields that may be stored in an ID. Needed to bound the I/O
- required to access an identity, but can be pretty high.
-#### Value
-```python
-100
-```
-#### Python
-```python
-constant = substrate.get_constant('Identity', 'MaxAdditionalFields')
+constant = substrate.get_constant('Identity', 'ByteDeposit')
 ```
 ---------
 ### MaxRegistrars
@@ -901,6 +971,39 @@ constant = substrate.get_constant('Identity', 'MaxRegistrars')
 #### Python
 ```python
 constant = substrate.get_constant('Identity', 'MaxSubAccounts')
+```
+---------
+### MaxSuffixLength
+ The maximum length of a suffix.
+#### Value
+```python
+7
+```
+#### Python
+```python
+constant = substrate.get_constant('Identity', 'MaxSuffixLength')
+```
+---------
+### MaxUsernameLength
+ The maximum length of a username, including its suffix and any system-added delimiters.
+#### Value
+```python
+32
+```
+#### Python
+```python
+constant = substrate.get_constant('Identity', 'MaxUsernameLength')
+```
+---------
+### PendingUsernameExpiration
+ The number of blocks within which a username grant must be accepted.
+#### Value
+```python
+100
+```
+#### Python
+```python
+constant = substrate.get_constant('Identity', 'PendingUsernameExpiration')
 ```
 ---------
 ### SubAccountDeposit
@@ -939,8 +1042,20 @@ The index is invalid.
 Invalid judgement.
 
 ---------
+### InvalidSignature
+The signature on a username was not valid.
+
+---------
+### InvalidSuffix
+The provided suffix is too long.
+
+---------
 ### InvalidTarget
 The target is invalid.
+
+---------
+### InvalidUsername
+The username does not meet the requirements.
 
 ---------
 ### JudgementForDifferentIdentity
@@ -955,8 +1070,20 @@ Judgement given.
 Error that occurs when there is an issue paying for judgement.
 
 ---------
+### NoAllocation
+The authority cannot allocate any more usernames.
+
+---------
 ### NoIdentity
 No identity found.
+
+---------
+### NoUsername
+The requested username does not exist.
+
+---------
+### NotExpired
+The username cannot be forcefully removed because it can still be accepted.
 
 ---------
 ### NotFound
@@ -975,12 +1102,16 @@ Sub-account isn&\#x27;t owned by sender.
 Sender is not a sub-account.
 
 ---------
-### StickyJudgement
-Sticky judgement.
+### NotUsernameAuthority
+The sender does not have permission to issue a username.
 
 ---------
-### TooManyFields
-Too many additional fields.
+### RequiresSignature
+Setting this username requires a signature, but none was provided.
+
+---------
+### StickyJudgement
+Sticky judgement.
 
 ---------
 ### TooManyRegistrars
@@ -989,5 +1120,9 @@ Maximum amount of registrars reached. Cannot add any more.
 ---------
 ### TooManySubAccounts
 Too many subs-accounts.
+
+---------
+### UsernameTaken
+The username is already taken.
 
 ---------

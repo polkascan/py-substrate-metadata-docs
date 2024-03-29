@@ -6,10 +6,7 @@
 
 ---------
 ### add_authority
-Add a authority and trigger `on_authorities_change`.
-
-Not allow to call while authorities is changing.
-This will insert new authority into the index 0 of authorities.
+See [`Pallet::add_authority`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -24,9 +21,7 @@ call = substrate.compose_call(
 
 ---------
 ### remove_authority
-Remove a authority and trigger `on_authorities_change`.
-
-Not allow to call while authorities is changing.
+See [`Pallet::remove_authority`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -41,9 +36,7 @@ call = substrate.compose_call(
 
 ---------
 ### submit_authorities_change_signature
-Submit the authorities change signature.
-
-Free to submit the first-correct signature.
+See [`Pallet::submit_authorities_change_signature`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -58,9 +51,7 @@ call = substrate.compose_call(
 
 ---------
 ### submit_new_message_root_signature
-Submit the new message root signature.
-
-Free to submit the first-correct signature.
+See [`Pallet::submit_new_message_root_signature`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -75,9 +66,7 @@ call = substrate.compose_call(
 
 ---------
 ### swap_authority
-Swap the old authority with the new authority and trigger `on_authorities_change`.
-
-Not allow to call while authorities is changing.
+See [`Pallet::swap_authority`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -102,7 +91,7 @@ Collected enough authorities change signatures.
 | -------- | -------- | -------- |
 | operation | `Operation<T::AccountId>` | ```{'AddMember': {'new': '[u8; 20]'}, 'RemoveMember': {'pre': '[u8; 20]', 'old': '[u8; 20]'}, 'SwapMembers': {'pre': '[u8; 20]', 'old': '[u8; 20]', 'new': '[u8; 20]'}}```
 | threshold | `Option<u32>` | ```(None, 'u32')```
-| message | `Hash` | ```[u8; 32]```
+| message | `Hash` | ```scale_info::12```
 | signatures | `Vec<(T::AccountId, Signature)>` | ```[('[u8; 20]', '[u8; 65]')]```
 
 ---------
@@ -111,8 +100,8 @@ Collected enough new message root signatures.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| commitment | `Commitment` | ```{'block_number': 'u32', 'message_root': '[u8; 32]', 'nonce': 'u32'}```
-| message | `Hash` | ```[u8; 32]```
+| commitment | `Commitment<BlockNumberFor<T>>` | ```{'block_number': 'u32', 'message_root': 'scale_info::12', 'nonce': 'u32'}```
+| message | `Hash` | ```scale_info::12```
 | signatures | `Vec<(T::AccountId, Signature)>` | ```[('[u8; 20]', '[u8; 65]')]```
 
 ---------
@@ -121,7 +110,7 @@ Authorities changed. Collecting authorities change signatures.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message | `Hash` | ```[u8; 32]```
+| message | `Hash` | ```scale_info::12```
 
 ---------
 ### CollectingNewMessageRootSignatures
@@ -129,7 +118,7 @@ New message root found. Collecting new message root signatures.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
-| message | `Hash` | ```[u8; 32]```
+| message | `Hash` | ```scale_info::12```
 
 ---------
 ## Storage functions
@@ -163,7 +152,7 @@ result = substrate.query(
 #### Return value
 ```python
 {
-    'message': '[u8; 32]',
+    'message': 'scale_info::12',
     'operation': {
         'AddMember': {'new': '[u8; 20]'},
         'RemoveMember': {'old': '[u8; 20]', 'pre': '[u8; 20]'},
@@ -194,10 +183,10 @@ result = substrate.query(
     'authorized': 'bool',
     'commitment': {
         'block_number': 'u32',
-        'message_root': '[u8; 32]',
+        'message_root': 'scale_info::12',
         'nonce': 'u32',
     },
-    'message': '[u8; 32]',
+    'message': 'scale_info::12',
     'signatures': [('[u8; 20]', '[u8; 65]')],
 }
 ```

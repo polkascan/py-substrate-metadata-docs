@@ -19,10 +19,10 @@ The integritee worker calls this function for every imported sidechain_block.
 ```python
 call = substrate.compose_call(
     'Sidechain', 'confirm_imported_sidechain_block', {
-    'block_header_hash': '[u8; 32]',
+    'block_header_hash': 'scale_info::11',
     'block_number': 'u64',
     'next_finalization_candidate_block_number': 'u64',
-    'shard_id': '[u8; 32]',
+    'shard_id': 'scale_info::11',
 }
 )
 ```
@@ -36,7 +36,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::11```
 
 ---------
 ### ProposedSidechainBlock
@@ -44,7 +44,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `T::AccountId` | ```AccountId```
-| None | `H256` | ```[u8; 32]```
+| None | `H256` | ```scale_info::11```
 
 ---------
 ## Storage functions
@@ -55,13 +55,13 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'Sidechain', 'LatestSidechainBlockConfirmation', ['[u8; 32]']
+    'Sidechain', 'LatestSidechainBlockConfirmation', ['scale_info::11']
 )
 ```
 
 #### Return value
 ```python
-{'block_header_hash': '[u8; 32]', 'block_number': 'u64'}
+{'block_header_hash': 'scale_info::11', 'block_number': 'u64'}
 ```
 ---------
 ### SidechainBlockFinalizationCandidate
@@ -69,7 +69,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Sidechain', 'SidechainBlockFinalizationCandidate', ['[u8; 32]']
+    'Sidechain', 'SidechainBlockFinalizationCandidate', ['scale_info::11']
 )
 ```
 
@@ -83,7 +83,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'Sidechain', 'WorkerForShard', ['[u8; 32]']
+    'Sidechain', 'WorkerForShard', ['scale_info::11']
 )
 ```
 

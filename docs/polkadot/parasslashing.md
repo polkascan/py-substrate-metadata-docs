@@ -6,6 +6,7 @@
 
 ---------
 ### report_dispute_lost_unsigned
+See [`Pallet::report_dispute_lost_unsigned`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -22,7 +23,7 @@ call = substrate.compose_call(
             'AgainstValid',
         ),
         'time_slot': {
-            'candidate_hash': '[u8; 32]',
+            'candidate_hash': 'scale_info::12',
             'session_index': 'u32',
         },
         'validator_id': '[u8; 32]',
@@ -47,13 +48,13 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'ParasSlashing', 'UnappliedSlashes', ['u32', '[u8; 32]']
+    'ParasSlashing', 'UnappliedSlashes', ['u32', 'scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-{'keys': 'scale_info::783', 'kind': ('ForInvalid', 'AgainstValid')}
+{'keys': 'scale_info::751', 'kind': ('ForInvalid', 'AgainstValid')}
 ```
 ---------
 ### ValidatorSetCounts

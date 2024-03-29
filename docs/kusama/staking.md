@@ -6,21 +6,7 @@
 
 ---------
 ### bond
-Take the origin account as a stash and lock up `value` of its balance. `controller` will
-be the account that controls it.
-
-`value` must be more than the `minimum_balance` specified by `T::Currency`.
-
-The dispatch origin for this call must be _Signed_ by the stash account.
-
-Emits `Bonded`.
-\#\# Complexity
-- Independent of the arguments. Moderate complexity.
-- O(1).
-- Three extra DB entries.
-
-NOTE: Two of the storage writes (`Self::bonded`, `Self::payee`) are _never_ cleaned
-unless the `origin` falls below _existential deposit_ and gets removed as dust.
+See [`Pallet::bond`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -45,20 +31,7 @@ call = substrate.compose_call(
 
 ---------
 ### bond_extra
-Add some extra amount that have appeared in the stash `free_balance` into the balance up
-for staking.
-
-The dispatch origin for this call must be _Signed_ by the stash, not the controller.
-
-Use this if there are additional funds in your stash account that you wish to bond.
-Unlike [`bond`](Self::bond) or [`unbond`](Self::unbond) this function does not impose
-any limitation on the amount that can be added.
-
-Emits `Bonded`.
-
-\#\# Complexity
-- Independent of the arguments. Insignificant complexity.
-- O(1).
+See [`Pallet::bond_extra`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -73,11 +46,7 @@ call = substrate.compose_call(
 
 ---------
 ### cancel_deferred_slash
-Cancel enactment of a deferred slash.
-
-Can be called by the `T::AdminOrigin`.
-
-Parameters: era and indices of the slashes for that era to kill.
+See [`Pallet::cancel_deferred_slash`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -96,16 +65,7 @@ call = substrate.compose_call(
 
 ---------
 ### chill
-Declare no desire to either validate or nominate.
-
-Effects will be felt at the beginning of the next era.
-
-The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-
-\#\# Complexity
-- Independent of the arguments. Insignificant complexity.
-- Contains one read.
-- Writes are limited to the `origin` account key.
+See [`Pallet::chill`].
 #### Attributes
 No attributes
 
@@ -118,32 +78,7 @@ call = substrate.compose_call(
 
 ---------
 ### chill_other
-Declare a `controller` to stop participating as either a validator or nominator.
-
-Effects will be felt at the beginning of the next era.
-
-The dispatch origin for this call must be _Signed_, but can be called by anyone.
-
-If the caller is the same as the controller being targeted, then no further checks are
-enforced, and this function behaves just like `chill`.
-
-If the caller is different than the controller being targeted, the following conditions
-must be met:
-
-* `controller` must belong to a nominator who has become non-decodable,
-
-Or:
-
-* A `ChillThreshold` must be set and checked which defines how close to the max
-  nominators or validators we must reach before users can start chilling one-another.
-* A `MaxNominatorCount` and `MaxValidatorCount` must be set which is used to determine
-  how close we are to the threshold.
-* A `MinNominatorBond` and `MinValidatorBond` must be set and checked, which determines
-  if this is a person that should be chilled because they have not met the threshold
-  bond required.
-
-This can be helpful if bond requirements are updated, and we need to remove old users
-who do not satisfy these requirements.
+See [`Pallet::chill_other`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -158,9 +93,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_apply_min_commission
-Force a validator to have at least the minimum commission. This will not affect a
-validator who already has a commission greater than or equal to the minimum. Any account
-can call this.
+See [`Pallet::force_apply_min_commission`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -175,20 +108,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_new_era
-Force there to be a new era at the end of the next session. After this, it will be
-reset to normal (non-forced) behaviour.
-
-The dispatch origin must be Root.
-
-\# Warning
-
-The election process starts multiple blocks before the end of the era.
-If this is called just before a new era is triggered, the election process may not
-have enough blocks to get a result.
-
-\#\# Complexity
-- No arguments.
-- Weight: O(1)
+See [`Pallet::force_new_era`].
 #### Attributes
 No attributes
 
@@ -201,15 +121,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_new_era_always
-Force there to be a new era at the end of sessions indefinitely.
-
-The dispatch origin must be Root.
-
-\# Warning
-
-The election process starts multiple blocks before the end of the era.
-If this is called just before a new era is triggered, the election process may not
-have enough blocks to get a result.
+See [`Pallet::force_new_era_always`].
 #### Attributes
 No attributes
 
@@ -222,19 +134,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_no_eras
-Force there to be no new eras indefinitely.
-
-The dispatch origin must be Root.
-
-\# Warning
-
-The election process starts multiple blocks before the end of the era.
-Thus the election process may be ongoing when this is called. In this case the
-election will continue until the next era is triggered.
-
-\#\# Complexity
-- No arguments.
-- Weight: O(1)
+See [`Pallet::force_no_eras`].
 #### Attributes
 No attributes
 
@@ -247,9 +147,7 @@ call = substrate.compose_call(
 
 ---------
 ### force_unstake
-Force a current staker to become completely unstaked, immediately.
-
-The dispatch origin must be Root.
+See [`Pallet::force_unstake`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -268,13 +166,7 @@ call = substrate.compose_call(
 
 ---------
 ### increase_validator_count
-Increments the ideal number of validators upto maximum of
-`ElectionProviderBase::MaxWinners`.
-
-The dispatch origin must be Root.
-
-\#\# Complexity
-Same as [`Self::set_validator_count`].
+See [`Pallet::increase_validator_count`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -289,17 +181,7 @@ call = substrate.compose_call(
 
 ---------
 ### kick
-Remove the given nominations from the calling validator.
-
-Effects will be felt at the beginning of the next era.
-
-The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-
-- `who`: A list of nominator stash accounts who are nominating this validator which
-  should no longer be nominating this validator.
-
-Note: Making this call only makes sense if you first set the validator preferences to
-block any further nominations.
+See [`Pallet::kick`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -324,16 +206,7 @@ call = substrate.compose_call(
 
 ---------
 ### nominate
-Declare the desire to nominate `targets` for the origin controller.
-
-Effects will be felt at the beginning of the next era.
-
-The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-
-\#\# Complexity
-- The transaction&\#x27;s complexity is proportional to the size of `targets` (N)
-which is capped at CompactAssignments::LIMIT (T::MaxNominations).
-- Both the reads and writes follow a similar pattern.
+See [`Pallet::nominate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -358,17 +231,7 @@ call = substrate.compose_call(
 
 ---------
 ### payout_stakers
-Pay out all the stakers behind a single validator for a single era.
-
-- `validator_stash` is the stash account of the validator. Their nominators, up to
-  `T::MaxNominatorRewardedPerValidator`, will also receive their rewards.
-- `era` may be any era between `[current_era - history_depth; current_era]`.
-
-The origin of this call must be _Signed_. Any account can call this function, even if
-it is not one of the stakers.
-
-\#\# Complexity
-- At most O(MaxNominatorRewardedPerValidator).
+See [`Pallet::payout_stakers`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -387,18 +250,7 @@ call = substrate.compose_call(
 
 ---------
 ### reap_stash
-Remove all data structures concerning a staker/stash once it is at a state where it can
-be considered `dust` in the staking system. The requirements are:
-
-1. the `total_balance` of the stash is below existential deposit.
-2. or, the `ledger.total` of the stash is below existential deposit.
-
-The former can happen in cases like a slash; the latter when a fully unbonded account
-is still receiving staking rewards in `RewardDestination::Staked`.
-
-It can be called by anyone, as long as `stash` meets the above requirements.
-
-Refunds the transaction fees upon successful execution.
+See [`Pallet::reap_stash`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -417,13 +269,7 @@ call = substrate.compose_call(
 
 ---------
 ### rebond
-Rebond a portion of the stash scheduled to be unlocked.
-
-The dispatch origin must be signed by the controller.
-
-\#\# Complexity
-- Time complexity: O(L), where L is unlocking chunks
-- Bounded by `MaxUnlockingChunks`.
+See [`Pallet::rebond`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -438,13 +284,7 @@ call = substrate.compose_call(
 
 ---------
 ### scale_validator_count
-Scale up the ideal number of validators by a factor upto maximum of
-`ElectionProviderBase::MaxWinners`.
-
-The dispatch origin must be Root.
-
-\#\# Complexity
-Same as [`Self::set_validator_count`].
+See [`Pallet::scale_validator_count`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -459,20 +299,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_controller
-(Re-)sets the controller of a stash to the stash itself. This function previously
-accepted a `controller` argument to set the controller to an account other than the
-stash itself. This functionality has now been removed, now only setting the controller
-to the stash, if it is not already.
-
-Effects will be felt instantly (as soon as this function is completed successfully).
-
-The dispatch origin for this call must be _Signed_ by the stash, not the controller.
-
-\#\# Complexity
-O(1)
-- Independent of the arguments. Insignificant complexity.
-- Contains a limited number of reads.
-- Writes are limited to the `origin` account key.
+See [`Pallet::set_controller`].
 #### Attributes
 No attributes
 
@@ -485,9 +312,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_invulnerables
-Set the validators who cannot be slashed (if any).
-
-The dispatch origin must be Root.
+See [`Pallet::set_invulnerables`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -502,10 +327,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_min_commission
-Sets the minimum amount of commission that each validators must maintain.
-
-This call has lower privilege requirements than `set_staking_config` and can be called
-by the `T::AdminOrigin`. Root can always call this.
+See [`Pallet::set_min_commission`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -520,18 +342,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_payee
-(Re-)set the payment target for a controller.
-
-Effects will be felt instantly (as soon as this function is completed successfully).
-
-The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-
-\#\# Complexity
-- O(1)
-- Independent of the arguments. Insignificant complexity.
-- Contains a limited number of reads.
-- Writes are limited to the `origin` account key.
----------
+See [`Pallet::set_payee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -554,23 +365,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_staking_configs
-Update the various staking configurations .
-
-* `min_nominator_bond`: The minimum active bond needed to be a nominator.
-* `min_validator_bond`: The minimum active bond needed to be a validator.
-* `max_nominator_count`: The max number of users who can be a nominator at once. When
-  set to `None`, no limit is enforced.
-* `max_validator_count`: The max number of users who can be a validator at once. When
-  set to `None`, no limit is enforced.
-* `chill_threshold`: The ratio of `max_nominator_count` or `max_validator_count` which
-  should be filled in order for the `chill_other` transaction to work.
-* `min_commission`: The minimum amount of commission that each validators must maintain.
-  This is checked only upon calling `validate`. Existing validators are not affected.
-
-RuntimeOrigin must be Root to call this function.
-
-NOTE: Existing nominators and validators will not be affected by this update.
-to kick people under the new limits, `chill_other` should be called.
+See [`Pallet::set_staking_configs`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -621,12 +416,7 @@ call = substrate.compose_call(
 
 ---------
 ### set_validator_count
-Sets the ideal number of validators.
-
-The dispatch origin must be Root.
-
-\#\# Complexity
-O(1)
+See [`Pallet::set_validator_count`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -641,25 +431,7 @@ call = substrate.compose_call(
 
 ---------
 ### unbond
-Schedule a portion of the stash to be unlocked ready for transfer out after the bond
-period ends. If this leaves an amount actively bonded less than
-T::Currency::minimum_balance(), then it is increased to the full amount.
-
-The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-
-Once the unlock period is done, you can call `withdraw_unbonded` to actually move
-the funds out of management ready for transfer.
-
-No more than a limited number of unlocking chunks (see `MaxUnlockingChunks`)
-can co-exists at the same time. If there are no unlocking chunks slots available
-[`Call::withdraw_unbonded`] is called to remove some of the chunks (if possible).
-
-If a user encounters the `InsufficientBond` error when calling this extrinsic,
-they should call `chill` first in order to free up their bonded funds.
-
-Emits `Unbonded`.
-
-See also [`Call::withdraw_unbonded`].
+See [`Pallet::unbond`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -674,11 +446,7 @@ call = substrate.compose_call(
 
 ---------
 ### validate
-Declare the desire to validate for the origin controller.
-
-Effects will be felt at the beginning of the next era.
-
-The dispatch origin for this call must be _Signed_ by the controller, not the stash.
+See [`Pallet::validate`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -698,20 +466,7 @@ call = substrate.compose_call(
 
 ---------
 ### withdraw_unbonded
-Remove any unlocked chunks from the `unlocking` queue from our management.
-
-This essentially frees up that balance to be used by the stash account to do
-whatever it wants.
-
-The dispatch origin for this call must be _Signed_ by the controller.
-
-Emits `Withdrawn`.
-
-See also [`Call::unbond`].
-
-\#\# Complexity
-O(S) where S is the number of slashing spans to remove
-NOTE: Weight annotation is the kill scenario, we refund otherwise.
+See [`Pallet::withdraw_unbonded`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -795,11 +550,12 @@ The stakers&\#x27; rewards are getting paid.
 
 ---------
 ### Rewarded
-The nominator has been rewarded by this amount.
+The nominator has been rewarded by this amount to this destination.
 #### Attributes
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | stash | `T::AccountId` | ```AccountId```
+| dest | `RewardDestination<T::AccountId>` | ```{'Staked': None, 'Stash': None, 'Controller': None, 'Account': 'AccountId', 'None': None}```
 | amount | `BalanceOf<T>` | ```u128```
 
 ---------
@@ -821,6 +577,22 @@ A staker (validator or nominator) has been slashed by the given amount.
 | -------- | -------- | -------- |
 | staker | `T::AccountId` | ```AccountId```
 | amount | `BalanceOf<T>` | ```u128```
+
+---------
+### SnapshotTargetsSizeExceeded
+Targets size limit reached.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| size | `u32` | ```u32```
+
+---------
+### SnapshotVotersSizeExceeded
+Voters size limit reached.
+#### Attributes
+| Name | Type | Composition
+| -------- | -------- | -------- |
+| size | `u32` | ```u32```
 
 ---------
 ### StakersElected
@@ -1030,7 +802,7 @@ result = substrate.query(
 
 #### Return value
 ```python
-{'individual': 'scale_info::563', 'total': 'u32'}
+{'individual': 'scale_info::583', 'total': 'u32'}
 ```
 ---------
 ### ErasStakers
@@ -1183,6 +955,9 @@ result = substrate.query(
 ### Ledger
  Map from all (unlocked) &quot;controller&quot; accounts to the info regarding the staking.
 
+ Note: All the reads and mutations to this storage *MUST* be done through the methods exposed
+ by [`StakingLedger`] to ensure data and lock consistency.
+
 #### Python
 ```python
 result = substrate.query(
@@ -1332,7 +1107,8 @@ result = substrate.query(
  they wish to support.
 
  Note that the keys of this storage map might become non-decodable in case the
- [`Config::MaxNominations`] configuration is decreased. In this rare case, these nominators
+ account&#x27;s [`NominationsQuota::MaxNominations`] configuration is decreased.
+ In this rare case, these nominators
  are still existent in storage, their key is correct and retrievable (i.e. `contains_key`
  indicates that they exist), but their value cannot be decoded. Therefore, the non-decodable
  nominators will effectively not-exist, until they re-submit their preferences such that it
@@ -1571,17 +1347,6 @@ constant = substrate.get_constant('Staking', 'BondingDuration')
 #### Python
 ```python
 constant = substrate.get_constant('Staking', 'HistoryDepth')
-```
----------
-### MaxNominations
- Maximum number of nominations per nominator.
-#### Value
-```python
-24
-```
-#### Python
-```python
-constant = substrate.get_constant('Staking', 'MaxNominations')
 ```
 ---------
 ### MaxNominatorRewardedPerValidator

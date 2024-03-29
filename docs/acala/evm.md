@@ -24,7 +24,7 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'storage_keys': [
-                '[u8; 32]',
+                'scale_info::12',
             ],
         },
     ],
@@ -56,7 +56,7 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'storage_keys': [
-                '[u8; 32]',
+                'scale_info::12',
             ],
         },
     ],
@@ -88,13 +88,13 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'storage_keys': [
-                '[u8; 32]',
+                'scale_info::12',
             ],
         },
     ],
     'gas_limit': 'u64',
     'input': 'Bytes',
-    'salt': '[u8; 32]',
+    'salt': 'scale_info::12',
     'storage_limit': 'u32',
     'value': 'u128',
 }
@@ -120,7 +120,7 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'storage_keys': [
-                '[u8; 32]',
+                'scale_info::12',
             ],
         },
     ],
@@ -152,7 +152,7 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'storage_keys': [
-                '[u8; 32]',
+                'scale_info::12',
             ],
         },
     ],
@@ -210,7 +210,7 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'storage_keys': [
-                '[u8; 32]',
+                'scale_info::12',
             ],
         },
     ],
@@ -247,7 +247,7 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'storage_keys': [
-                '[u8; 32]',
+                'scale_info::12',
             ],
         },
     ],
@@ -312,7 +312,7 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'storage_keys': [
-                '[u8; 32]',
+                'scale_info::12',
             ],
         },
     ],
@@ -378,7 +378,7 @@ call = substrate.compose_call(
         {
             'address': '[u8; 20]',
             'storage_keys': [
-                '[u8; 32]',
+                'scale_info::12',
             ],
         },
     ],
@@ -454,7 +454,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | from | `EvmAddress` | ```[u8; 20]```
 | contract | `EvmAddress` | ```[u8; 20]```
-| logs | `Vec<Log>` | ```[{'address': '[u8; 20]', 'topics': ['[u8; 32]'], 'data': 'Bytes'}]```
+| logs | `Vec<Log>` | ```[{'address': '[u8; 20]', 'topics': ['scale_info::12'], 'data': 'Bytes'}]```
 | used_gas | `u64` | ```u64```
 | used_storage | `i32` | ```i32```
 
@@ -465,8 +465,8 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | from | `EvmAddress` | ```[u8; 20]```
 | contract | `EvmAddress` | ```[u8; 20]```
-| exit_reason | `ExitReason` | ```{'Succeed': ('Stopped', 'Returned', 'Suicided'), 'Error': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', None: None, 'InvalidCode': 'u8'}, 'Revert': ('Reverted',), 'Fatal': {'NotSupported': None, 'UnhandledInterrupt': None, 'CallErrorAsFatal': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', None: None, 'InvalidCode': 'u8'}, 'Other': 'Str'}}```
-| logs | `Vec<Log>` | ```[{'address': '[u8; 20]', 'topics': ['[u8; 32]'], 'data': 'Bytes'}]```
+| exit_reason | `ExitReason` | ```{'Succeed': ('Stopped', 'Returned', 'Suicided'), 'Error': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', 'MaxNonce': None, 'InvalidCode': 'u8'}, 'Revert': ('Reverted',), 'Fatal': {'NotSupported': None, 'UnhandledInterrupt': None, 'CallErrorAsFatal': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', 'MaxNonce': None, 'InvalidCode': 'u8'}, 'Other': 'Str'}}```
+| logs | `Vec<Log>` | ```[{'address': '[u8; 20]', 'topics': ['scale_info::12'], 'data': 'Bytes'}]```
 | used_gas | `u64` | ```u64```
 | used_storage | `i32` | ```i32```
 
@@ -477,7 +477,7 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | from | `EvmAddress` | ```[u8; 20]```
 | contract | `EvmAddress` | ```[u8; 20]```
-| logs | `Vec<Log>` | ```[{'address': '[u8; 20]', 'topics': ['[u8; 32]'], 'data': 'Bytes'}]```
+| logs | `Vec<Log>` | ```[{'address': '[u8; 20]', 'topics': ['scale_info::12'], 'data': 'Bytes'}]```
 | used_gas | `u64` | ```u64```
 | used_storage | `i32` | ```i32```
 
@@ -488,9 +488,9 @@ call = substrate.compose_call(
 | -------- | -------- | -------- |
 | from | `EvmAddress` | ```[u8; 20]```
 | contract | `EvmAddress` | ```[u8; 20]```
-| exit_reason | `ExitReason` | ```{'Succeed': ('Stopped', 'Returned', 'Suicided'), 'Error': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', None: None, 'InvalidCode': 'u8'}, 'Revert': ('Reverted',), 'Fatal': {'NotSupported': None, 'UnhandledInterrupt': None, 'CallErrorAsFatal': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', None: None, 'InvalidCode': 'u8'}, 'Other': 'Str'}}```
+| exit_reason | `ExitReason` | ```{'Succeed': ('Stopped', 'Returned', 'Suicided'), 'Error': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', 'MaxNonce': None, 'InvalidCode': 'u8'}, 'Revert': ('Reverted',), 'Fatal': {'NotSupported': None, 'UnhandledInterrupt': None, 'CallErrorAsFatal': {'StackUnderflow': None, 'StackOverflow': None, 'InvalidJump': None, 'InvalidRange': None, 'DesignatedInvalid': None, 'CallTooDeep': None, 'CreateCollision': None, 'CreateContractLimit': None, 'OutOfOffset': None, 'OutOfGas': None, 'OutOfFund': None, 'PCUnderflow': None, 'CreateEmpty': None, 'Other': 'Str', 'MaxNonce': None, 'InvalidCode': 'u8'}, 'Other': 'Str'}}```
 | output | `Vec<u8>` | ```Bytes```
-| logs | `Vec<Log>` | ```[{'address': '[u8; 20]', 'topics': ['[u8; 32]'], 'data': 'Bytes'}]```
+| logs | `Vec<Log>` | ```[{'address': '[u8; 20]', 'topics': ['scale_info::12'], 'data': 'Bytes'}]```
 | used_gas | `u64` | ```u64```
 | used_storage | `i32` | ```i32```
 
@@ -511,13 +511,13 @@ call = substrate.compose_call(
 #### Python
 ```python
 result = substrate.query(
-    'EVM', 'AccountStorages', ['[u8; 20]', '[u8; 32]']
+    'EVM', 'AccountStorages', ['[u8; 20]', 'scale_info::12']
 )
 ```
 
 #### Return value
 ```python
-'[u8; 32]'
+'scale_info::12'
 ```
 ---------
 ### Accounts
@@ -535,7 +535,7 @@ result = substrate.query(
     'contract_info': (
         None,
         {
-            'code_hash': '[u8; 32]',
+            'code_hash': 'scale_info::12',
             'maintainer': '[u8; 20]',
             'published': 'bool',
         },
@@ -563,7 +563,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'EVM', 'CodeInfos', ['[u8; 32]']
+    'EVM', 'CodeInfos', ['scale_info::12']
 )
 ```
 
@@ -577,7 +577,7 @@ result = substrate.query(
 #### Python
 ```python
 result = substrate.query(
-    'EVM', 'Codes', ['[u8; 32]']
+    'EVM', 'Codes', ['scale_info::12']
 )
 ```
 

@@ -6,6 +6,7 @@
 
 ---------
 ### transfer_statemine_assets
+See [`Pallet::transfer_statemine_assets`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -26,10 +27,7 @@ call = substrate.compose_call(
 
 ---------
 ### update_xcm_dest_weight_and_fee
-Sets the xcm_dest_weight and fee for XCM operation of XcmInterface.
-
-Parameters:
-- `updates`: vec of tuple: (XcmOperationType, WeightChange, FeeChange).
+See [`Pallet::update_xcm_dest_weight_and_fee`].
 #### Attributes
 | Name | Type |
 | -------- | -------- | 
@@ -74,6 +72,7 @@ call = substrate.compose_call(
                     ),
                     'u8',
                 ),
+                'Lend': 'u8',
                 'Native': (
                     'ASG',
                     'BNC',
@@ -219,7 +218,7 @@ call = substrate.compose_call(
 | Name | Type | Composition
 | -------- | -------- | -------- |
 | None | `XcmOperationType` | ```('UmpContributeTransact', 'StatemineTransfer', 'Bond', 'WithdrawUnbonded', 'BondExtra', 'Unbond', 'Rebond', 'Delegate', 'Payout', 'Liquidize', 'TransferBack', 'TransferTo', 'Chill', 'Undelegate', 'CancelLeave', 'XtokensTransferBack', 'ExecuteLeave', 'ConvertAsset', 'Vote', 'RemoveVote', 'Any')```
-| None | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32'}```
+| None | `CurrencyIdOf<T>` | ```{'Native': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Token': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'Stable': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSToken': ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'VSBond': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u32', 'u32', 'u32'), 'LPToken': (('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8', ('ASG', 'BNC', 'KUSD', 'DOT', 'KSM', 'ETH', 'KAR', 'ZLK', 'PHA', 'RMRK', 'MOVR'), 'u8'), 'ForeignAsset': 'u32', 'Token2': 'u8', 'VToken2': 'u8', 'VSToken2': 'u8', 'VSBond2': ('u8', 'u32', 'u32', 'u32'), 'StableLpToken': 'u32', 'BLP': 'u32', 'Lend': 'u8'}```
 | None | `Weight` | ```{'ref_time': 'u64', 'proof_size': 'u64'}```
 | None | `BalanceOf<T>` | ```u128```
 
@@ -239,25 +238,6 @@ result = substrate.query(
 #### Return value
 ```python
 'u32'
-```
----------
-### XcmDestWeightAndFee
-
-#### Python
-```python
-result = substrate.query(
-    'XcmInterface', 'XcmDestWeightAndFee', [
-    (
-        'UmpContributeTransact',
-        'StatemineTransfer',
-    ),
-]
-)
-```
-
-#### Return value
-```python
-({'proof_size': 'u64', 'ref_time': 'u64'}, 'u128')
 ```
 ---------
 ### XcmWeightAndFee
@@ -303,6 +283,7 @@ result = substrate.query(
             ),
             'u8',
         ),
+        'Lend': 'u8',
         'Native': (
             'ASG',
             'BNC',

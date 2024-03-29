@@ -315,7 +315,7 @@ call = substrate.compose_call(
                         'collection_admin': 'bool',
                         'restricted': (
                             None,
-                            'scale_info::291',
+                            'scale_info::288',
                         ),
                         'token_owner': 'bool',
                     },
@@ -449,7 +449,7 @@ call = substrate.compose_call(
     'Unique', 'create_multiple_items_ex', {
     'collection_id': 'u32',
     'data': {
-        'Fungible': 'scale_info::316',
+        'Fungible': 'scale_info::313',
         'NFT': [
             {
                 'owner': {
@@ -457,7 +457,7 @@ call = substrate.compose_call(
                     'Substrate': 'AccountId',
                 },
                 'properties': [
-                    'scale_info::299',
+                    'scale_info::296',
                 ],
             },
         ],
@@ -465,7 +465,7 @@ call = substrate.compose_call(
             {
                 'pieces': 'u128',
                 'properties': [
-                    'scale_info::299',
+                    'scale_info::296',
                 ],
                 'user': {
                     'Ethereum': '[u8; 20]',
@@ -480,7 +480,7 @@ call = substrate.compose_call(
                     'value': 'Bytes',
                 },
             ],
-            'users': 'scale_info::316',
+            'users': 'scale_info::313',
         },
     },
 }
@@ -762,7 +762,7 @@ call = substrate.compose_call(
                 'collection_admin': 'bool',
                 'restricted': (
                     None,
-                    'scale_info::291',
+                    'scale_info::288',
                 ),
                 'token_owner': 'bool',
             },
@@ -1104,7 +1104,7 @@ constant = substrate.get_constant('Unique', 'collection_admins_limit')
 #### Value
 ```python
 {
-    'account_token_ownership_limit': 1000000,
+    'account_token_ownership_limit': 100000000,
     'owner_can_destroy': True,
     'owner_can_transfer': False,
     'sponsor_approve_timeout': 5,
@@ -1224,7 +1224,7 @@ constant = substrate.get_constant('Unique', 'nesting_budget')
 #### Value
 ```python
 {
-    'account_token_ownership_limit': 1000000,
+    'account_token_ownership_limit': 100000000,
     'owner_can_destroy': True,
     'owner_can_transfer': False,
     'sponsor_approve_timeout': 5,
@@ -1245,7 +1245,7 @@ constant = substrate.get_constant('Unique', 'nft_default_collection_limits')
 #### Value
 ```python
 {
-    'account_token_ownership_limit': 1000000,
+    'account_token_ownership_limit': 100000000,
     'owner_can_destroy': True,
     'owner_can_transfer': False,
     'sponsor_approve_timeout': 5,

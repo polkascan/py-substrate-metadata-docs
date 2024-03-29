@@ -33,6 +33,41 @@ call = substrate.compose_call(
 ```
 
 ---------
+### create_schema_v2
+#### Attributes
+| Name | Type |
+| -------- | -------- | 
+| model | `BoundedVec<u8, T::SchemaModelMaxBytesBoundedVecLimit>` | 
+| model_type | `ModelType` | 
+| payload_location | `PayloadLocation` | 
+| settings | `BoundedVec<SchemaSetting, T::MaxSchemaSettingsPerSchema>` | 
+
+#### Python
+```python
+call = substrate.compose_call(
+    'Schemas', 'create_schema_v2', {
+    'model': 'Bytes',
+    'model_type': (
+        'AvroBinary',
+        'Parquet',
+    ),
+    'payload_location': (
+        'OnChain',
+        'IPFS',
+        'Itemized',
+        'Paginated',
+    ),
+    'settings': [
+        (
+            'AppendOnly',
+            'SignatureRequired',
+        ),
+    ],
+}
+)
+```
+
+---------
 ### create_schema_via_governance
 #### Attributes
 | Name | Type |
@@ -168,23 +203,36 @@ result = substrate.query(
 'u32'
 ```
 ---------
-### Schemas
+### SchemaInfos
 
 #### Python
 ```python
 result = substrate.query(
-    'Schemas', 'Schemas', ['u16']
+    'Schemas', 'SchemaInfos', ['u16']
 )
 ```
 
 #### Return value
 ```python
 {
-    'model': 'Bytes',
     'model_type': ('AvroBinary', 'Parquet'),
     'payload_location': ('OnChain', 'IPFS', 'Itemized', 'Paginated'),
     'settings': 'u16',
 }
+```
+---------
+### SchemaPayloads
+
+#### Python
+```python
+result = substrate.query(
+    'Schemas', 'SchemaPayloads', ['u16']
+)
+```
+
+#### Return value
+```python
+'Bytes'
 ```
 ---------
 ## Constants
