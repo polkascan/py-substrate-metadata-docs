@@ -1,0 +1,12316 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../cumulusxcm/">
+      
+      
+        <link rel="next" href="../dappstakingmigration/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.10">
+    
+    
+      
+        <title>DappStaking - PySubstrate metadata docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dappstaking" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="PySubstrate metadata docs" class="md-header__button md-logo" aria-label="PySubstrate metadata docs" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/43450475" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PySubstrate metadata docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DappStaking
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/polkascan/py-substrate-interface" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Usage
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../polkadot-runtimes/" class="md-tabs__link">
+          
+  
+    
+  
+  Polkadot Ecosystem Runtimes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../kusama-runtimes/" class="md-tabs__link">
+          
+  
+    
+  
+  Kusama Ecosystem Runtimes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../standalone-runtimes/" class="md-tabs__link">
+          
+  
+    
+  
+  Standalone Runtimes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://polkascan.github.io/py-substrate-interface/" class="md-tabs__link">
+        
+  
+    
+  
+  Library documentation
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="PySubstrate metadata docs" class="md-nav__button md-logo" aria-label="PySubstrate metadata docs" data-md-component="logo">
+      
+  <img src="https://avatars.githubusercontent.com/u/43450475" alt="logo">
+
+    </a>
+    PySubstrate metadata docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/polkascan/py-substrate-interface" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Polkadot Ecosystem Runtimes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Polkadot Ecosystem Runtimes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../polkadot-runtimes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../polkadot/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Polkadot
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../statemint/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Polkadot Asset Hub
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../collectives/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Collectives
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../moonbeam/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Moonbeam
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../acala/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Acala
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../bifrost_polkadot/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Bifrost Polkadot
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../bitgreen-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Bitgreen
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../clover-mainnet/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Clover
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../composable/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Composable Finance
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../kilt-spiritnet/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    KILT Spiritnet
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../centrifuge/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Centrifuge
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../darwinia2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Darwinia2
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_14" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Astar
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_14" id="__nav_2_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_14_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_14">
+            <span class="md-nav__icon md-icon"></span>
+            Astar
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Aura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auraext/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AuraExt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authorship/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Authorship
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../balances/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Balances
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../collatorselection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CollatorSelection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contracts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contracts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cumulusxcm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CumulusXcm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    DappStaking
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    DappStaking
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calls
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claim_bonus_reward" class="md-nav__link">
+    <span class="md-ellipsis">
+      claim_bonus_reward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim_dapp_reward" class="md-nav__link">
+    <span class="md-ellipsis">
+      claim_dapp_reward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim_staker_rewards" class="md-nav__link">
+    <span class="md-ellipsis">
+      claim_staker_rewards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim_unlocked" class="md-nav__link">
+    <span class="md-ellipsis">
+      claim_unlocked
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup_expired_entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      cleanup_expired_entries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force" class="md-nav__link">
+    <span class="md-ellipsis">
+      force
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      lock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register" class="md-nav__link">
+    <span class="md-ellipsis">
+      register
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relock_unlocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      relock_unlocking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_dapp_owner" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_dapp_owner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_dapp_reward_beneficiary" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_dapp_reward_beneficiary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stake" class="md-nav__link">
+    <span class="md-ellipsis">
+      stake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unbond_and_unstake" class="md-nav__link">
+    <span class="md-ellipsis">
+      unbond_and_unstake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      unlock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unregister" class="md-nav__link">
+    <span class="md-ellipsis">
+      unregister
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstake" class="md-nav__link">
+    <span class="md-ellipsis">
+      unstake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstake_from_unregistered" class="md-nav__link">
+    <span class="md-ellipsis">
+      unstake_from_unregistered
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#withdraw_unbonded" class="md-nav__link">
+    <span class="md-ellipsis">
+      withdraw_unbonded
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bonusreward" class="md-nav__link">
+    <span class="md-ellipsis">
+      BonusReward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claimedunlocked" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClaimedUnlocked
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dappownerchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppOwnerChanged
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dappregistered" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppRegistered
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dappreward" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppReward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dapprewarddestinationupdated" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppRewardDestinationUpdated
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dappunregistered" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppUnregistered
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expiredentriesremoved" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExpiredEntriesRemoved
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Force
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      Locked
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenancemode" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaintenanceMode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newera" class="md-nav__link">
+    <span class="md-ellipsis">
+      NewEra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newsubperiod" class="md-nav__link">
+    <span class="md-ellipsis">
+      NewSubperiod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relock" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reward" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stake_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unlocking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstake_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unstake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstakefromunregistered" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnstakeFromUnregistered
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activeprotocolstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      ActiveProtocolState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contractstake" class="md-nav__link">
+    <span class="md-ellipsis">
+      ContractStake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counterforintegrateddapps" class="md-nav__link">
+    <span class="md-ellipsis">
+      CounterForIntegratedDApps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#currenterainfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      CurrentEraInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dapptiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppTiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erarewards" class="md-nav__link">
+    <span class="md-ellipsis">
+      EraRewards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historycleanupmarker" class="md-nav__link">
+    <span class="md-ellipsis">
+      HistoryCleanupMarker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrateddapps" class="md-nav__link">
+    <span class="md-ellipsis">
+      IntegratedDApps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ledger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextdappid" class="md-nav__link">
+    <span class="md-ellipsis">
+      NextDAppId
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#periodend" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeriodEnd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safeguard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Safeguard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stakerinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      StakerInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statictierparams" class="md-nav__link">
+    <span class="md-ellipsis">
+      StaticTierParams
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tierconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      TierConfig
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constants
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erarewardspanlength" class="md-nav__link">
+    <span class="md-ellipsis">
+      EraRewardSpanLength
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxnumberofcontracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaxNumberOfContracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxnumberofstakedcontracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaxNumberOfStakedContracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxunlockingchunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaxUnlockingChunks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimumlockedamount" class="md-nav__link">
+    <span class="md-ellipsis">
+      MinimumLockedAmount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimumstakeamount" class="md-nav__link">
+    <span class="md-ellipsis">
+      MinimumStakeAmount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numberoftiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      NumberOfTiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rewardretentioninperiods" class="md-nav__link">
+    <span class="md-ellipsis">
+      RewardRetentionInPeriods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlockingperiod" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnlockingPeriod
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Errors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accountnotavailablefordappstaking" class="md-nav__link">
+    <span class="md-ellipsis">
+      AccountNotAvailableForDappStaking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contractalreadyexists" class="md-nav__link">
+    <span class="md-ellipsis">
+      ContractAlreadyExists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contractnotfound" class="md-nav__link">
+    <span class="md-ellipsis">
+      ContractNotFound
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contractstillactive" class="md-nav__link">
+    <span class="md-ellipsis">
+      ContractStillActive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disabled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceededmaxnumberofcontracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExceededMaxNumberOfContracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forcenotallowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      ForceNotAllowed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insufficientstakeamount" class="md-nav__link">
+    <span class="md-ellipsis">
+      InsufficientStakeAmount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalclaimbonuserror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalClaimBonusError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalclaimdapperror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalClaimDAppError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalclaimstakererror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalClaimStakerError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalstakeerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalStakeError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalunstakeerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalUnstakeError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalidclaimera" class="md-nav__link">
+    <span class="md-ellipsis">
+      InvalidClaimEra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockedamountbelowthreshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      LockedAmountBelowThreshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newdappidunavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      NewDAppIdUnavailable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noclaimablerewards" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoClaimableRewards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodapptierinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoDAppTierInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noexpiredentries" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoExpiredEntries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nostakinginfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoStakingInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nounlockedchunkstoclaim" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoUnlockedChunksToClaim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nounlockingchunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoUnlockingChunks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noteligibleforbonusreward" class="md-nav__link">
+    <span class="md-ellipsis">
+      NotEligibleForBonusReward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#originnotowner" class="md-nav__link">
+    <span class="md-ellipsis">
+      OriginNotOwner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#periodendsinnextera" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeriodEndsInNextEra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remainingstakepreventsfullunlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      RemainingStakePreventsFullUnlock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rewardexpired" class="md-nav__link">
+    <span class="md-ellipsis">
+      RewardExpired
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rewardpayoutfailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      RewardPayoutFailed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toomanystakedcontracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      TooManyStakedContracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toomanyunlockingchunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      TooManyUnlockingChunks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unavailablestakefunds" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnavailableStakeFunds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unclaimedrewards" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnclaimedRewards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstakeamounttoolarge" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnstakeAmountTooLarge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstakefrompastperiod" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnstakeFromPastPeriod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zeroamount" class="md-nav__link">
+    <span class="md-ellipsis">
+      ZeroAmount
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dappstakingmigration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DappStakingMigration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dmpqueue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DmpQueue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dynamicevmbasefee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DynamicEvmBaseFee
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EVM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ethereum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ethereum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../identity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Identity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inflation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inflation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multisig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multisig
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parachaininfo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ParachainInfo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parachainsystem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ParachainSystem
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../polkadotxcm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PolkadotXcm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Proxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../session/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Session
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staticpriceprovider/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    StaticPriceProvider
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sudo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sudo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../system/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timestamp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Timestamp
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transactionpayment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TransactionPayment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utility/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Utility
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vesting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vesting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xtokens/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XTokens
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xcassetconfig/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XcAssetConfig
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xcmpqueue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XcmpQueue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../equilibrium-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Equilibrium parachain
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../frequency/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Frequency
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../hydradx/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    HydraDX
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../integritee-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Integritee Network (Polkadot)
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../interlay-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Interlay
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../litentry-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Litentry
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../origintrail-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    NeuroWeb
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../phala/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Phala
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../unique/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    UNIQUE
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Kusama Ecosystem Runtimes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Kusama Ecosystem Runtimes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kusama-runtimes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../kusama/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Kusama
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../statemine/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Kusama Asset Hub
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../altair/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Altair
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../amplitude/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Amplitude
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../bajun/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Bajun Kusama
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../basilisk/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Basilisk
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../bifrost/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Bifrost
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../pioneer-runtime/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Pioneer Network
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../calamari/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Calamari Parachain
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../crust-collator/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Crust Shadow
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../ipci/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Ipci
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../crab2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Crab2
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../imbue/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    imbue kusama
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../integritee-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Integritee Network (Kusama)
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../kabocha-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Kabocha
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../karura/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Karura
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../khala/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Khala
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../kintsugi-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    kintsugi
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../litmus-parachain/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Litmus
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../moonriver/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Moonriver
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../heiko/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Parallel Heiko
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../picasso/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Picasso
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../quartz/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    QUARTZ by UNIQUE
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../robonomics/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Robonomics
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../shiden/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Shiden
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../sora_ksm/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    SORA Kusama
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../turing/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Turing Network
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../zeitgeist/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Zeitgeist
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Standalone Runtimes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Standalone Runtimes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standalone-runtimes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../node-subtensor/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Bittensor
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../chainx/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    ChainX
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../darwinia2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Darwinia2
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../crab2/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Crab2
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../joystream-node/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Joystream
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../polymesh_mainnet/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Polymesh Mainnet
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://polkascan.github.io/py-substrate-interface/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Library documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Calls
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claim_bonus_reward" class="md-nav__link">
+    <span class="md-ellipsis">
+      claim_bonus_reward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim_dapp_reward" class="md-nav__link">
+    <span class="md-ellipsis">
+      claim_dapp_reward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim_staker_rewards" class="md-nav__link">
+    <span class="md-ellipsis">
+      claim_staker_rewards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claim_unlocked" class="md-nav__link">
+    <span class="md-ellipsis">
+      claim_unlocked
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup_expired_entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      cleanup_expired_entries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force" class="md-nav__link">
+    <span class="md-ellipsis">
+      force
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      lock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenance_mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register" class="md-nav__link">
+    <span class="md-ellipsis">
+      register
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relock_unlocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      relock_unlocking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_dapp_owner" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_dapp_owner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_dapp_reward_beneficiary" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_dapp_reward_beneficiary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stake" class="md-nav__link">
+    <span class="md-ellipsis">
+      stake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unbond_and_unstake" class="md-nav__link">
+    <span class="md-ellipsis">
+      unbond_and_unstake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      unlock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unregister" class="md-nav__link">
+    <span class="md-ellipsis">
+      unregister
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstake" class="md-nav__link">
+    <span class="md-ellipsis">
+      unstake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstake_from_unregistered" class="md-nav__link">
+    <span class="md-ellipsis">
+      unstake_from_unregistered
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#withdraw_unbonded" class="md-nav__link">
+    <span class="md-ellipsis">
+      withdraw_unbonded
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bonusreward" class="md-nav__link">
+    <span class="md-ellipsis">
+      BonusReward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claimedunlocked" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClaimedUnlocked
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dappownerchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppOwnerChanged
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dappregistered" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppRegistered
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dappreward" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppReward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dapprewarddestinationupdated" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppRewardDestinationUpdated
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dappunregistered" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppUnregistered
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expiredentriesremoved" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExpiredEntriesRemoved
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Force
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#locked" class="md-nav__link">
+    <span class="md-ellipsis">
+      Locked
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maintenancemode" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaintenanceMode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newera" class="md-nav__link">
+    <span class="md-ellipsis">
+      NewEra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newsubperiod" class="md-nav__link">
+    <span class="md-ellipsis">
+      NewSubperiod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relock" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reward" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stake_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unlocking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstake_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unstake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstakefromunregistered" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnstakeFromUnregistered
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activeprotocolstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      ActiveProtocolState
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contractstake" class="md-nav__link">
+    <span class="md-ellipsis">
+      ContractStake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counterforintegrateddapps" class="md-nav__link">
+    <span class="md-ellipsis">
+      CounterForIntegratedDApps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#currenterainfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      CurrentEraInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dapptiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAppTiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erarewards" class="md-nav__link">
+    <span class="md-ellipsis">
+      EraRewards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historycleanupmarker" class="md-nav__link">
+    <span class="md-ellipsis">
+      HistoryCleanupMarker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integrateddapps" class="md-nav__link">
+    <span class="md-ellipsis">
+      IntegratedDApps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ledger" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ledger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextdappid" class="md-nav__link">
+    <span class="md-ellipsis">
+      NextDAppId
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#periodend" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeriodEnd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safeguard" class="md-nav__link">
+    <span class="md-ellipsis">
+      Safeguard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stakerinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      StakerInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statictierparams" class="md-nav__link">
+    <span class="md-ellipsis">
+      StaticTierParams
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tierconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      TierConfig
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constants
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erarewardspanlength" class="md-nav__link">
+    <span class="md-ellipsis">
+      EraRewardSpanLength
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxnumberofcontracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaxNumberOfContracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxnumberofstakedcontracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaxNumberOfStakedContracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxunlockingchunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaxUnlockingChunks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimumlockedamount" class="md-nav__link">
+    <span class="md-ellipsis">
+      MinimumLockedAmount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimumstakeamount" class="md-nav__link">
+    <span class="md-ellipsis">
+      MinimumStakeAmount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#numberoftiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      NumberOfTiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rewardretentioninperiods" class="md-nav__link">
+    <span class="md-ellipsis">
+      RewardRetentionInPeriods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlockingperiod" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnlockingPeriod
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Errors
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accountnotavailablefordappstaking" class="md-nav__link">
+    <span class="md-ellipsis">
+      AccountNotAvailableForDappStaking
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contractalreadyexists" class="md-nav__link">
+    <span class="md-ellipsis">
+      ContractAlreadyExists
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contractnotfound" class="md-nav__link">
+    <span class="md-ellipsis">
+      ContractNotFound
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contractstillactive" class="md-nav__link">
+    <span class="md-ellipsis">
+      ContractStillActive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disabled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceededmaxnumberofcontracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      ExceededMaxNumberOfContracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forcenotallowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      ForceNotAllowed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insufficientstakeamount" class="md-nav__link">
+    <span class="md-ellipsis">
+      InsufficientStakeAmount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalclaimbonuserror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalClaimBonusError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalclaimdapperror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalClaimDAppError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalclaimstakererror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalClaimStakerError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalstakeerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalStakeError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalunstakeerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      InternalUnstakeError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalidclaimera" class="md-nav__link">
+    <span class="md-ellipsis">
+      InvalidClaimEra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockedamountbelowthreshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      LockedAmountBelowThreshold
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newdappidunavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      NewDAppIdUnavailable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noclaimablerewards" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoClaimableRewards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodapptierinfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoDAppTierInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noexpiredentries" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoExpiredEntries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nostakinginfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoStakingInfo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nounlockedchunkstoclaim" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoUnlockedChunksToClaim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nounlockingchunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      NoUnlockingChunks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#noteligibleforbonusreward" class="md-nav__link">
+    <span class="md-ellipsis">
+      NotEligibleForBonusReward
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#originnotowner" class="md-nav__link">
+    <span class="md-ellipsis">
+      OriginNotOwner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#periodendsinnextera" class="md-nav__link">
+    <span class="md-ellipsis">
+      PeriodEndsInNextEra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remainingstakepreventsfullunlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      RemainingStakePreventsFullUnlock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rewardexpired" class="md-nav__link">
+    <span class="md-ellipsis">
+      RewardExpired
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rewardpayoutfailed" class="md-nav__link">
+    <span class="md-ellipsis">
+      RewardPayoutFailed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toomanystakedcontracts" class="md-nav__link">
+    <span class="md-ellipsis">
+      TooManyStakedContracts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toomanyunlockingchunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      TooManyUnlockingChunks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unavailablestakefunds" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnavailableStakeFunds
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unclaimedrewards" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnclaimedRewards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstakeamounttoolarge" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnstakeAmountTooLarge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstakefrompastperiod" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnstakeFromPastPeriod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zeroamount" class="md-nav__link">
+    <span class="md-ellipsis">
+      ZeroAmount
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="dappstaking">DappStaking<a class="headerlink" href="#dappstaking" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="claim_bonus_reward">claim_bonus_reward<a class="headerlink" href="#claim_bonus_reward" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::claim_bonus_reward</code>].</p>
+<h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'claim_bonus_reward', {
+    'smart_contract': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="claim_dapp_reward">claim_dapp_reward<a class="headerlink" href="#claim_dapp_reward" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::claim_dapp_reward</code>].</p>
+<h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+<tr>
+<td>era</td>
+<td><code>EraNumber</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'claim_dapp_reward', {
+    'era': 'u32',
+    'smart_contract': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="claim_staker_rewards">claim_staker_rewards<a class="headerlink" href="#claim_staker_rewards" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::claim_staker_rewards</code>].</p>
+<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
+<p>No attributes</p>
+<h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'claim_staker_rewards', {}
+)
+</code></pre>
+<hr />
+<h3 id="claim_unlocked">claim_unlocked<a class="headerlink" href="#claim_unlocked" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::claim_unlocked</code>].</p>
+<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
+<p>No attributes</p>
+<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'claim_unlocked', {}
+)
+</code></pre>
+<hr />
+<h3 id="cleanup_expired_entries">cleanup_expired_entries<a class="headerlink" href="#cleanup_expired_entries" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::cleanup_expired_entries</code>].</p>
+<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
+<p>No attributes</p>
+<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'cleanup_expired_entries', {}
+)
+</code></pre>
+<hr />
+<h3 id="force">force<a class="headerlink" href="#force" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::force</code>].</p>
+<h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>forcing_type</td>
+<td><code>ForcingType</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'force', {'forcing_type': ('Era', 'Subperiod')}
+)
+</code></pre>
+<hr />
+<h3 id="lock">lock<a class="headerlink" href="#lock" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::lock</code>].</p>
+<h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'lock', {'amount': 'u128'}
+)
+</code></pre>
+<hr />
+<h3 id="maintenance_mode">maintenance_mode<a class="headerlink" href="#maintenance_mode" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::maintenance_mode</code>].</p>
+<h4 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'maintenance_mode', {'enabled': 'bool'}
+)
+</code></pre>
+<hr />
+<h3 id="register">register<a class="headerlink" href="#register" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::register</code>].</p>
+<h4 id="attributes_8">Attributes<a class="headerlink" href="#attributes_8" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>owner</td>
+<td><code>T::AccountId</code></td>
+</tr>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'register', {
+    'owner': 'AccountId',
+    'smart_contract': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="relock_unlocking">relock_unlocking<a class="headerlink" href="#relock_unlocking" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::relock_unlocking</code>].</p>
+<h4 id="attributes_9">Attributes<a class="headerlink" href="#attributes_9" title="Permanent link">&para;</a></h4>
+<p>No attributes</p>
+<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'relock_unlocking', {}
+)
+</code></pre>
+<hr />
+<h3 id="set_dapp_owner">set_dapp_owner<a class="headerlink" href="#set_dapp_owner" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_dapp_owner</code>].</p>
+<h4 id="attributes_10">Attributes<a class="headerlink" href="#attributes_10" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+<tr>
+<td>new_owner</td>
+<td><code>T::AccountId</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'set_dapp_owner', {
+    'new_owner': 'AccountId',
+    'smart_contract': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="set_dapp_reward_beneficiary">set_dapp_reward_beneficiary<a class="headerlink" href="#set_dapp_reward_beneficiary" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_dapp_reward_beneficiary</code>].</p>
+<h4 id="attributes_11">Attributes<a class="headerlink" href="#attributes_11" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+<tr>
+<td>beneficiary</td>
+<td><code>Option&lt;T::AccountId&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'set_dapp_reward_beneficiary', {
+    'beneficiary': (None, 'AccountId'),
+    'smart_contract': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="stake">stake<a class="headerlink" href="#stake" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::stake</code>].</p>
+<h4 id="attributes_12">Attributes<a class="headerlink" href="#attributes_12" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'stake', {
+    'amount': 'u128',
+    'smart_contract': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="unbond_and_unstake">unbond_and_unstake<a class="headerlink" href="#unbond_and_unstake" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::unbond_and_unstake</code>].</p>
+<h4 id="attributes_13">Attributes<a class="headerlink" href="#attributes_13" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contract_id</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+<tr>
+<td>value</td>
+<td><code>Balance</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_13">Python<a class="headerlink" href="#python_13" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'unbond_and_unstake', {
+    'contract_id': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+    'value': 'u128',
+}
+)
+</code></pre>
+<hr />
+<h3 id="unlock">unlock<a class="headerlink" href="#unlock" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::unlock</code>].</p>
+<h4 id="attributes_14">Attributes<a class="headerlink" href="#attributes_14" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'unlock', {'amount': 'u128'}
+)
+</code></pre>
+<hr />
+<h3 id="unregister">unregister<a class="headerlink" href="#unregister" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::unregister</code>].</p>
+<h4 id="attributes_15">Attributes<a class="headerlink" href="#attributes_15" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'unregister', {
+    'smart_contract': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="unstake">unstake<a class="headerlink" href="#unstake" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::unstake</code>].</p>
+<h4 id="attributes_16">Attributes<a class="headerlink" href="#attributes_16" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'unstake', {
+    'amount': 'u128',
+    'smart_contract': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="unstake_from_unregistered">unstake_from_unregistered<a class="headerlink" href="#unstake_from_unregistered" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::unstake_from_unregistered</code>].</p>
+<h4 id="attributes_17">Attributes<a class="headerlink" href="#attributes_17" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'unstake_from_unregistered', {
+    'smart_contract': {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="withdraw_unbonded">withdraw_unbonded<a class="headerlink" href="#withdraw_unbonded" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::withdraw_unbonded</code>].</p>
+<h4 id="attributes_18">Attributes<a class="headerlink" href="#attributes_18" title="Permanent link">&para;</a></h4>
+<p>No attributes</p>
+<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'DappStaking', 'withdraw_unbonded', {}
+)
+</code></pre>
+<hr />
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="bonusreward">BonusReward<a class="headerlink" href="#bonusreward" title="Permanent link">&para;</a></h3>
+<p>Bonus reward has been paid out to a loyal staker.</p>
+<h4 id="attributes_19">Attributes<a class="headerlink" href="#attributes_19" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+<td><code>{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}</code></td>
+</tr>
+<tr>
+<td>period</td>
+<td><code>PeriodNumber</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="claimedunlocked">ClaimedUnlocked<a class="headerlink" href="#claimedunlocked" title="Permanent link">&para;</a></h3>
+<p>Account has claimed unlocked amount, removing the lock from it.</p>
+<h4 id="attributes_20">Attributes<a class="headerlink" href="#attributes_20" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dappownerchanged">DAppOwnerChanged<a class="headerlink" href="#dappownerchanged" title="Permanent link">&para;</a></h3>
+<p>dApp owner has been changed.</p>
+<h4 id="attributes_21">Attributes<a class="headerlink" href="#attributes_21" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+<td><code>{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}</code></td>
+</tr>
+<tr>
+<td>new_owner</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dappregistered">DAppRegistered<a class="headerlink" href="#dappregistered" title="Permanent link">&para;</a></h3>
+<p>A smart contract has been registered for dApp staking</p>
+<h4 id="attributes_22">Attributes<a class="headerlink" href="#attributes_22" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>owner</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+<td><code>{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}</code></td>
+</tr>
+<tr>
+<td>dapp_id</td>
+<td><code>DAppId</code></td>
+<td><code>u16</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dappreward">DAppReward<a class="headerlink" href="#dappreward" title="Permanent link">&para;</a></h3>
+<p>dApp reward has been paid out to a beneficiary.</p>
+<h4 id="attributes_23">Attributes<a class="headerlink" href="#attributes_23" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beneficiary</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+<td><code>{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}</code></td>
+</tr>
+<tr>
+<td>tier_id</td>
+<td><code>TierId</code></td>
+<td><code>u8</code></td>
+</tr>
+<tr>
+<td>era</td>
+<td><code>EraNumber</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dapprewarddestinationupdated">DAppRewardDestinationUpdated<a class="headerlink" href="#dapprewarddestinationupdated" title="Permanent link">&para;</a></h3>
+<p>dApp reward destination has been updated.</p>
+<h4 id="attributes_24">Attributes<a class="headerlink" href="#attributes_24" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+<td><code>{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}</code></td>
+</tr>
+<tr>
+<td>beneficiary</td>
+<td><code>Option&lt;T::AccountId&gt;</code></td>
+<td><code>(None, 'AccountId')</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="dappunregistered">DAppUnregistered<a class="headerlink" href="#dappunregistered" title="Permanent link">&para;</a></h3>
+<p>dApp has been unregistered</p>
+<h4 id="attributes_25">Attributes<a class="headerlink" href="#attributes_25" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+<td><code>{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}</code></td>
+</tr>
+<tr>
+<td>era</td>
+<td><code>EraNumber</code></td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="expiredentriesremoved">ExpiredEntriesRemoved<a class="headerlink" href="#expiredentriesremoved" title="Permanent link">&para;</a></h3>
+<p>Some expired stake entries have been removed from storage.</p>
+<h4 id="attributes_26">Attributes<a class="headerlink" href="#attributes_26" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>count</td>
+<td><code>u16</code></td>
+<td><code>u16</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="force_1">Force<a class="headerlink" href="#force_1" title="Permanent link">&para;</a></h3>
+<p>Privileged origin has forced a new era and possibly a subperiod to start from next block.</p>
+<h4 id="attributes_27">Attributes<a class="headerlink" href="#attributes_27" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>forcing_type</td>
+<td><code>ForcingType</code></td>
+<td><code>('Era', 'Subperiod')</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="locked">Locked<a class="headerlink" href="#locked" title="Permanent link">&para;</a></h3>
+<p>Account has locked some amount into dApp staking.</p>
+<h4 id="attributes_28">Attributes<a class="headerlink" href="#attributes_28" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="maintenancemode">MaintenanceMode<a class="headerlink" href="#maintenancemode" title="Permanent link">&para;</a></h3>
+<p>Maintenance mode has been either enabled or disabled.</p>
+<h4 id="attributes_29">Attributes<a class="headerlink" href="#attributes_29" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td><code>bool</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="newera">NewEra<a class="headerlink" href="#newera" title="Permanent link">&para;</a></h3>
+<p>New era has started.</p>
+<h4 id="attributes_30">Attributes<a class="headerlink" href="#attributes_30" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>era</td>
+<td><code>EraNumber</code></td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="newsubperiod">NewSubperiod<a class="headerlink" href="#newsubperiod" title="Permanent link">&para;</a></h3>
+<p>New subperiod has started.</p>
+<h4 id="attributes_31">Attributes<a class="headerlink" href="#attributes_31" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>subperiod</td>
+<td><code>Subperiod</code></td>
+<td><code>('Voting', 'BuildAndEarn')</code></td>
+</tr>
+<tr>
+<td>number</td>
+<td><code>PeriodNumber</code></td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="relock">Relock<a class="headerlink" href="#relock" title="Permanent link">&para;</a></h3>
+<p>Account has relocked all of the unlocking chunks.</p>
+<h4 id="attributes_32">Attributes<a class="headerlink" href="#attributes_32" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="reward">Reward<a class="headerlink" href="#reward" title="Permanent link">&para;</a></h3>
+<p>Account has claimed some stake rewards.</p>
+<h4 id="attributes_33">Attributes<a class="headerlink" href="#attributes_33" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>era</td>
+<td><code>EraNumber</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="stake_1">Stake<a class="headerlink" href="#stake_1" title="Permanent link">&para;</a></h3>
+<p>Account has staked some amount on a smart contract.</p>
+<h4 id="attributes_34">Attributes<a class="headerlink" href="#attributes_34" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+<td><code>{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="unlocking">Unlocking<a class="headerlink" href="#unlocking" title="Permanent link">&para;</a></h3>
+<p>Account has started the unlocking process for some amount.</p>
+<h4 id="attributes_35">Attributes<a class="headerlink" href="#attributes_35" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="unstake_1">Unstake<a class="headerlink" href="#unstake_1" title="Permanent link">&para;</a></h3>
+<p>Account has unstaked some amount from a smart contract.</p>
+<h4 id="attributes_36">Attributes<a class="headerlink" href="#attributes_36" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+<td><code>{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="unstakefromunregistered">UnstakeFromUnregistered<a class="headerlink" href="#unstakefromunregistered" title="Permanent link">&para;</a></h3>
+<p>Account has unstaked funds from an unregistered smart contract</p>
+<h4 id="attributes_37">Attributes<a class="headerlink" href="#attributes_37" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>smart_contract</td>
+<td><code>T::SmartContract</code></td>
+<td><code>{'Evm': '[u8; 20]', 'Wasm': 'AccountId'}</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>Balance</code></td>
+<td><code>u128</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="storage-functions">Storage functions<a class="headerlink" href="#storage-functions" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="activeprotocolstate">ActiveProtocolState<a class="headerlink" href="#activeprotocolstate" title="Permanent link">&para;</a></h3>
+<p>General information about dApp staking protocol state.</p>
+<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'ActiveProtocolState', []
+)
+</code></pre>
+<h4 id="return-value">Return value<a class="headerlink" href="#return-value" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'era': 'u32',
+    'maintenance': 'bool',
+    'next_era_start': 'u32',
+    'period_info': {
+        'next_subperiod_start_era': 'u32',
+        'number': 'u32',
+        'subperiod': ('Voting', 'BuildAndEarn'),
+    },
+}
+</code></pre>
+<hr />
+<h3 id="contractstake">ContractStake<a class="headerlink" href="#contractstake" title="Permanent link">&para;</a></h3>
+<p>Information about how much has been staked on a smart contract in some era or period.</p>
+<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'ContractStake', ['u16']
+)
+</code></pre>
+<h4 id="return-value_1">Return value<a class="headerlink" href="#return-value_1" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'staked': {
+        'build_and_earn': 'u128',
+        'era': 'u32',
+        'period': 'u32',
+        'voting': 'u128',
+    },
+    'staked_future': (
+        None,
+        {
+            'build_and_earn': 'u128',
+            'era': 'u32',
+            'period': 'u32',
+            'voting': 'u128',
+        },
+    ),
+}
+</code></pre>
+<hr />
+<h3 id="counterforintegrateddapps">CounterForIntegratedDApps<a class="headerlink" href="#counterforintegrateddapps" title="Permanent link">&para;</a></h3>
+<p>Counter for the related counted storage map</p>
+<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'CounterForIntegratedDApps', []
+)
+</code></pre>
+<h4 id="return-value_2">Return value<a class="headerlink" href="#return-value_2" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">'u32'
+</code></pre>
+<hr />
+<h3 id="currenterainfo">CurrentEraInfo<a class="headerlink" href="#currenterainfo" title="Permanent link">&para;</a></h3>
+<p>General information about the current era.</p>
+<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'CurrentEraInfo', []
+)
+</code></pre>
+<h4 id="return-value_3">Return value<a class="headerlink" href="#return-value_3" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'current_stake_amount': {
+        'build_and_earn': 'u128',
+        'era': 'u32',
+        'period': 'u32',
+        'voting': 'u128',
+    },
+    'next_stake_amount': {
+        'build_and_earn': 'u128',
+        'era': 'u32',
+        'period': 'u32',
+        'voting': 'u128',
+    },
+    'total_locked': 'u128',
+    'unlocking': 'u128',
+}
+</code></pre>
+<hr />
+<h3 id="dapptiers">DAppTiers<a class="headerlink" href="#dapptiers" title="Permanent link">&para;</a></h3>
+<p>Information about which tier a dApp belonged to in a specific era.</p>
+<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'DAppTiers', ['u32']
+)
+</code></pre>
+<h4 id="return-value_4">Return value<a class="headerlink" href="#return-value_4" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{'dapps': 'scale_info::406', 'period': 'u32', 'rewards': ['u128']}
+</code></pre>
+<hr />
+<h3 id="erarewards">EraRewards<a class="headerlink" href="#erarewards" title="Permanent link">&para;</a></h3>
+<p>Information about rewards for each era.</p>
+<p>Since each entry is a &#x27;span&#x27;, covering up to <code>T::EraRewardSpanLength</code> entries, only certain era value keys can exist in storage.
+ For the sake of simplicity, valid <code>era</code> keys are calculated as:</p>
+<p>era_key = era - (era % T::EraRewardSpanLength)</p>
+<p>This means that e.g. in case <code>EraRewardSpanLength = 8</code>, only era values 0, 8, 16, 24, etc. can exist in storage.
+ Eras 1-7 will be stored in the same entry as era 0, eras 9-15 will be stored in the same entry as era 8, etc.</p>
+<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'EraRewards', ['u32']
+)
+</code></pre>
+<h4 id="return-value_5">Return value<a class="headerlink" href="#return-value_5" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'first_era': 'u32',
+    'last_era': 'u32',
+    'span': [
+        {
+            'dapp_reward_pool': 'u128',
+            'staked': 'u128',
+            'staker_reward_pool': 'u128',
+        },
+    ],
+}
+</code></pre>
+<hr />
+<h3 id="historycleanupmarker">HistoryCleanupMarker<a class="headerlink" href="#historycleanupmarker" title="Permanent link">&para;</a></h3>
+<p>History cleanup marker - holds information about which DB entries should be cleaned up next, when applicable.</p>
+<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'HistoryCleanupMarker', []
+)
+</code></pre>
+<h4 id="return-value_6">Return value<a class="headerlink" href="#return-value_6" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'dapp_tiers_index': 'u32',
+    'era_reward_index': 'u32',
+    'oldest_valid_era': 'u32',
+}
+</code></pre>
+<hr />
+<h3 id="integrateddapps">IntegratedDApps<a class="headerlink" href="#integrateddapps" title="Permanent link">&para;</a></h3>
+<p>Map of all dApps integrated into dApp staking protocol.</p>
+<p>Even though dApp is integrated, it does not mean it&#x27;s still actively participating in dApp staking.
+ It might have been unregistered at some point in history.</p>
+<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'IntegratedDApps', [
+    {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+]
+)
+</code></pre>
+<h4 id="return-value_7">Return value<a class="headerlink" href="#return-value_7" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{'id': 'u16', 'owner': 'AccountId', 'reward_beneficiary': (None, 'AccountId')}
+</code></pre>
+<hr />
+<h3 id="ledger">Ledger<a class="headerlink" href="#ledger" title="Permanent link">&para;</a></h3>
+<p>General locked/staked information for each account.</p>
+<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'Ledger', ['AccountId']
+)
+</code></pre>
+<h4 id="return-value_8">Return value<a class="headerlink" href="#return-value_8" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'contract_stake_count': 'u32',
+    'locked': 'u128',
+    'staked': {
+        'build_and_earn': 'u128',
+        'era': 'u32',
+        'period': 'u32',
+        'voting': 'u128',
+    },
+    'staked_future': (
+        None,
+        {
+            'build_and_earn': 'u128',
+            'era': 'u32',
+            'period': 'u32',
+            'voting': 'u128',
+        },
+    ),
+    'unlocking': [{'amount': 'u128', 'unlock_block': 'u32'}],
+}
+</code></pre>
+<hr />
+<h3 id="nextdappid">NextDAppId<a class="headerlink" href="#nextdappid" title="Permanent link">&para;</a></h3>
+<p>Counter for unique dApp identifiers.</p>
+<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'NextDAppId', []
+)
+</code></pre>
+<h4 id="return-value_9">Return value<a class="headerlink" href="#return-value_9" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">'u16'
+</code></pre>
+<hr />
+<h3 id="periodend">PeriodEnd<a class="headerlink" href="#periodend" title="Permanent link">&para;</a></h3>
+<p>Information about period&#x27;s end.</p>
+<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'PeriodEnd', ['u32']
+)
+</code></pre>
+<h4 id="return-value_10">Return value<a class="headerlink" href="#return-value_10" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{'bonus_reward_pool': 'u128', 'final_era': 'u32', 'total_vp_stake': 'u128'}
+</code></pre>
+<hr />
+<h3 id="safeguard">Safeguard<a class="headerlink" href="#safeguard" title="Permanent link">&para;</a></h3>
+<p>Safeguard to prevent unwanted operations in production.
+ Kept as a storage without extrinsic setter, so we can still enable it for some
+ chain-fork debugging if required.</p>
+<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'Safeguard', []
+)
+</code></pre>
+<h4 id="return-value_11">Return value<a class="headerlink" href="#return-value_11" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">'bool'
+</code></pre>
+<hr />
+<h3 id="stakerinfo">StakerInfo<a class="headerlink" href="#stakerinfo" title="Permanent link">&para;</a></h3>
+<p>Information about how much each staker has staked for each smart contract in some period.</p>
+<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'StakerInfo', [
+    'AccountId',
+    {
+        'Evm': '[u8; 20]',
+        'Wasm': 'AccountId',
+    },
+]
+)
+</code></pre>
+<h4 id="return-value_12">Return value<a class="headerlink" href="#return-value_12" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'loyal_staker': 'bool',
+    'previous_staked': {
+        'build_and_earn': 'u128',
+        'era': 'u32',
+        'period': 'u32',
+        'voting': 'u128',
+    },
+    'staked': {
+        'build_and_earn': 'u128',
+        'era': 'u32',
+        'period': 'u32',
+        'voting': 'u128',
+    },
+}
+</code></pre>
+<hr />
+<h3 id="statictierparams">StaticTierParams<a class="headerlink" href="#statictierparams" title="Permanent link">&para;</a></h3>
+<p>Static tier parameters used to calculate tier configuration.</p>
+<h4 id="python_32">Python<a class="headerlink" href="#python_32" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'StaticTierParams', []
+)
+</code></pre>
+<h4 id="return-value_13">Return value<a class="headerlink" href="#return-value_13" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'reward_portion': ['u32'],
+    'slot_distribution': ['u32'],
+    'tier_thresholds': [
+        {
+            'DynamicTvlAmount': {'amount': 'u128', 'minimum_amount': 'u128'},
+            'FixedTvlAmount': {'amount': 'u128'},
+        },
+    ],
+}
+</code></pre>
+<hr />
+<h3 id="tierconfig">TierConfig<a class="headerlink" href="#tierconfig" title="Permanent link">&para;</a></h3>
+<p>Tier configuration user for current &amp; preceding eras.</p>
+<h4 id="python_33">Python<a class="headerlink" href="#python_33" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'DappStaking', 'TierConfig', []
+)
+</code></pre>
+<h4 id="return-value_14">Return value<a class="headerlink" href="#return-value_14" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'number_of_slots': 'u16',
+    'reward_portion': ['u32'],
+    'slots_per_tier': ['u16'],
+    'tier_thresholds': [
+        {
+            'DynamicTvlAmount': {'amount': 'u128', 'minimum_amount': 'u128'},
+            'FixedTvlAmount': {'amount': 'u128'},
+        },
+    ],
+}
+</code></pre>
+<hr />
+<h2 id="constants">Constants<a class="headerlink" href="#constants" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="erarewardspanlength">EraRewardSpanLength<a class="headerlink" href="#erarewardspanlength" title="Permanent link">&para;</a></h3>
+<p>Maximum length of a single era reward span length entry.</p>
+<h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">16
+</code></pre>
+<h4 id="python_34">Python<a class="headerlink" href="#python_34" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('DappStaking', 'EraRewardSpanLength')
+</code></pre>
+<hr />
+<h3 id="maxnumberofcontracts">MaxNumberOfContracts<a class="headerlink" href="#maxnumberofcontracts" title="Permanent link">&para;</a></h3>
+<p>Maximum number of contracts that can be integrated into dApp staking at once.</p>
+<h4 id="value_1">Value<a class="headerlink" href="#value_1" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">500
+</code></pre>
+<h4 id="python_35">Python<a class="headerlink" href="#python_35" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('DappStaking', 'MaxNumberOfContracts')
+</code></pre>
+<hr />
+<h3 id="maxnumberofstakedcontracts">MaxNumberOfStakedContracts<a class="headerlink" href="#maxnumberofstakedcontracts" title="Permanent link">&para;</a></h3>
+<p>Maximum amount of stake contract entries an account is allowed to have at once.</p>
+<h4 id="value_2">Value<a class="headerlink" href="#value_2" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">16
+</code></pre>
+<h4 id="python_36">Python<a class="headerlink" href="#python_36" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('DappStaking', 'MaxNumberOfStakedContracts')
+</code></pre>
+<hr />
+<h3 id="maxunlockingchunks">MaxUnlockingChunks<a class="headerlink" href="#maxunlockingchunks" title="Permanent link">&para;</a></h3>
+<p>Maximum number of unlocking chunks that can exist per account at a time.</p>
+<h4 id="value_3">Value<a class="headerlink" href="#value_3" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">8
+</code></pre>
+<h4 id="python_37">Python<a class="headerlink" href="#python_37" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('DappStaking', 'MaxUnlockingChunks')
+</code></pre>
+<hr />
+<h3 id="minimumlockedamount">MinimumLockedAmount<a class="headerlink" href="#minimumlockedamount" title="Permanent link">&para;</a></h3>
+<p>Minimum amount an account has to lock in dApp staking in order to participate.</p>
+<h4 id="value_4">Value<a class="headerlink" href="#value_4" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">500000000000000000000
+</code></pre>
+<h4 id="python_38">Python<a class="headerlink" href="#python_38" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('DappStaking', 'MinimumLockedAmount')
+</code></pre>
+<hr />
+<h3 id="minimumstakeamount">MinimumStakeAmount<a class="headerlink" href="#minimumstakeamount" title="Permanent link">&para;</a></h3>
+<p>Minimum amount staker can stake on a contract.</p>
+<h4 id="value_5">Value<a class="headerlink" href="#value_5" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">500000000000000000000
+</code></pre>
+<h4 id="python_39">Python<a class="headerlink" href="#python_39" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('DappStaking', 'MinimumStakeAmount')
+</code></pre>
+<hr />
+<h3 id="numberoftiers">NumberOfTiers<a class="headerlink" href="#numberoftiers" title="Permanent link">&para;</a></h3>
+<p>Number of different tiers.</p>
+<h4 id="value_6">Value<a class="headerlink" href="#value_6" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">4
+</code></pre>
+<h4 id="python_40">Python<a class="headerlink" href="#python_40" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('DappStaking', 'NumberOfTiers')
+</code></pre>
+<hr />
+<h3 id="rewardretentioninperiods">RewardRetentionInPeriods<a class="headerlink" href="#rewardretentioninperiods" title="Permanent link">&para;</a></h3>
+<p>Number of periods for which we keep rewards available for claiming.
+ After that period, they are no longer claimable.</p>
+<h4 id="value_7">Value<a class="headerlink" href="#value_7" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">4
+</code></pre>
+<h4 id="python_41">Python<a class="headerlink" href="#python_41" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('DappStaking', 'RewardRetentionInPeriods')
+</code></pre>
+<hr />
+<h3 id="unlockingperiod">UnlockingPeriod<a class="headerlink" href="#unlockingperiod" title="Permanent link">&para;</a></h3>
+<p>Number of standard eras that need to pass before unlocking chunk can be claimed.
+ Even though it&#x27;s expressed in &#x27;eras&#x27;, it&#x27;s actually measured in number of blocks.</p>
+<h4 id="value_8">Value<a class="headerlink" href="#value_8" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">9
+</code></pre>
+<h4 id="python_42">Python<a class="headerlink" href="#python_42" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('DappStaking', 'UnlockingPeriod')
+</code></pre>
+<hr />
+<h2 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="accountnotavailablefordappstaking">AccountNotAvailableForDappStaking<a class="headerlink" href="#accountnotavailablefordappstaking" title="Permanent link">&para;</a></h3>
+<p>Account is not allowed to participate in dApp staking due to some external reason (e.g. account is already a collator).</p>
+<hr />
+<h3 id="contractalreadyexists">ContractAlreadyExists<a class="headerlink" href="#contractalreadyexists" title="Permanent link">&para;</a></h3>
+<p>Smart contract already exists within dApp staking protocol.</p>
+<hr />
+<h3 id="contractnotfound">ContractNotFound<a class="headerlink" href="#contractnotfound" title="Permanent link">&para;</a></h3>
+<p>Specified smart contract does not exist in dApp staking.</p>
+<hr />
+<h3 id="contractstillactive">ContractStillActive<a class="headerlink" href="#contractstillactive" title="Permanent link">&para;</a></h3>
+<p>Contract is still active, not unregistered.</p>
+<hr />
+<h3 id="disabled">Disabled<a class="headerlink" href="#disabled" title="Permanent link">&para;</a></h3>
+<p>Pallet is disabled/in maintenance mode.</p>
+<hr />
+<h3 id="exceededmaxnumberofcontracts">ExceededMaxNumberOfContracts<a class="headerlink" href="#exceededmaxnumberofcontracts" title="Permanent link">&para;</a></h3>
+<p>Maximum number of smart contracts has been reached.</p>
+<hr />
+<h3 id="forcenotallowed">ForceNotAllowed<a class="headerlink" href="#forcenotallowed" title="Permanent link">&para;</a></h3>
+<p>Force call is not allowed in production.</p>
+<hr />
+<h3 id="insufficientstakeamount">InsufficientStakeAmount<a class="headerlink" href="#insufficientstakeamount" title="Permanent link">&para;</a></h3>
+<p>Total staked amount on contract is below the minimum required value.</p>
+<hr />
+<h3 id="internalclaimbonuserror">InternalClaimBonusError<a class="headerlink" href="#internalclaimbonuserror" title="Permanent link">&para;</a></h3>
+<p>An unexpected error occurred while trying to claim bonus reward.</p>
+<hr />
+<h3 id="internalclaimdapperror">InternalClaimDAppError<a class="headerlink" href="#internalclaimdapperror" title="Permanent link">&para;</a></h3>
+<p>An unexpected error occurred while trying to claim dApp reward.</p>
+<hr />
+<h3 id="internalclaimstakererror">InternalClaimStakerError<a class="headerlink" href="#internalclaimstakererror" title="Permanent link">&para;</a></h3>
+<p>An unexpected error occurred while trying to claim staker rewards.</p>
+<hr />
+<h3 id="internalstakeerror">InternalStakeError<a class="headerlink" href="#internalstakeerror" title="Permanent link">&para;</a></h3>
+<p>An unexpected error occurred while trying to stake.</p>
+<hr />
+<h3 id="internalunstakeerror">InternalUnstakeError<a class="headerlink" href="#internalunstakeerror" title="Permanent link">&para;</a></h3>
+<p>An unexpected error occurred while trying to unstake.</p>
+<hr />
+<h3 id="invalidclaimera">InvalidClaimEra<a class="headerlink" href="#invalidclaimera" title="Permanent link">&para;</a></h3>
+<p>Claim era is invalid - it must be in history, and rewards must exist for it.</p>
+<hr />
+<h3 id="lockedamountbelowthreshold">LockedAmountBelowThreshold<a class="headerlink" href="#lockedamountbelowthreshold" title="Permanent link">&para;</a></h3>
+<p>Total locked amount for staker is below minimum threshold.</p>
+<hr />
+<h3 id="newdappidunavailable">NewDAppIdUnavailable<a class="headerlink" href="#newdappidunavailable" title="Permanent link">&para;</a></h3>
+<p>Not possible to assign a new dApp Id.
+This should never happen since current type can support up to 65536 - 1 unique dApps.</p>
+<hr />
+<h3 id="noclaimablerewards">NoClaimableRewards<a class="headerlink" href="#noclaimablerewards" title="Permanent link">&para;</a></h3>
+<p>There are no claimable rewards.</p>
+<hr />
+<h3 id="nodapptierinfo">NoDAppTierInfo<a class="headerlink" href="#nodapptierinfo" title="Permanent link">&para;</a></h3>
+<p>No dApp tier info exists for the specified era. This can be because era has expired
+or because during the specified era there were no eligible rewards or protocol wasn&amp;#x27;t active.</p>
+<hr />
+<h3 id="noexpiredentries">NoExpiredEntries<a class="headerlink" href="#noexpiredentries" title="Permanent link">&para;</a></h3>
+<p>There are no expired entries to cleanup for the account.</p>
+<hr />
+<h3 id="nostakinginfo">NoStakingInfo<a class="headerlink" href="#nostakinginfo" title="Permanent link">&para;</a></h3>
+<p>Account has no staking information for the contract.</p>
+<hr />
+<h3 id="nounlockedchunkstoclaim">NoUnlockedChunksToClaim<a class="headerlink" href="#nounlockedchunkstoclaim" title="Permanent link">&para;</a></h3>
+<p>There are no eligible unlocked chunks to claim. This can happen either if no eligible chunks exist, or if user has no chunks at all.</p>
+<hr />
+<h3 id="nounlockingchunks">NoUnlockingChunks<a class="headerlink" href="#nounlockingchunks" title="Permanent link">&para;</a></h3>
+<p>There are no unlocking chunks available to relock.</p>
+<hr />
+<h3 id="noteligibleforbonusreward">NotEligibleForBonusReward<a class="headerlink" href="#noteligibleforbonusreward" title="Permanent link">&para;</a></h3>
+<p>Account is has no eligible stake amount for bonus reward.</p>
+<hr />
+<h3 id="originnotowner">OriginNotOwner<a class="headerlink" href="#originnotowner" title="Permanent link">&para;</a></h3>
+<p>Call origin is not dApp owner.</p>
+<hr />
+<h3 id="periodendsinnextera">PeriodEndsInNextEra<a class="headerlink" href="#periodendsinnextera" title="Permanent link">&para;</a></h3>
+<p>Stake operation is rejected since period ends in the next era.</p>
+<hr />
+<h3 id="remainingstakepreventsfullunlock">RemainingStakePreventsFullUnlock<a class="headerlink" href="#remainingstakepreventsfullunlock" title="Permanent link">&para;</a></h3>
+<p>Remaining stake prevents entire balance of starting the unlocking process.</p>
+<hr />
+<h3 id="rewardexpired">RewardExpired<a class="headerlink" href="#rewardexpired" title="Permanent link">&para;</a></h3>
+<p>Rewards are no longer claimable since they are too old.</p>
+<hr />
+<h3 id="rewardpayoutfailed">RewardPayoutFailed<a class="headerlink" href="#rewardpayoutfailed" title="Permanent link">&para;</a></h3>
+<p>Reward payout has failed due to an unexpected reason.</p>
+<hr />
+<h3 id="toomanystakedcontracts">TooManyStakedContracts<a class="headerlink" href="#toomanystakedcontracts" title="Permanent link">&para;</a></h3>
+<p>There are too many contract stake entries for the account. This can be cleaned up by either unstaking or cleaning expired entries.</p>
+<hr />
+<h3 id="toomanyunlockingchunks">TooManyUnlockingChunks<a class="headerlink" href="#toomanyunlockingchunks" title="Permanent link">&para;</a></h3>
+<p>Cannot add additional unlocking chunks due to capacity limit.</p>
+<hr />
+<h3 id="unavailablestakefunds">UnavailableStakeFunds<a class="headerlink" href="#unavailablestakefunds" title="Permanent link">&para;</a></h3>
+<p>The amount being staked is too large compared to what&amp;#x27;s available for staking.</p>
+<hr />
+<h3 id="unclaimedrewards">UnclaimedRewards<a class="headerlink" href="#unclaimedrewards" title="Permanent link">&para;</a></h3>
+<p>There are unclaimed rewards remaining from past eras or periods. They should be claimed before attempting any stake modification again.</p>
+<hr />
+<h3 id="unstakeamounttoolarge">UnstakeAmountTooLarge<a class="headerlink" href="#unstakeamounttoolarge" title="Permanent link">&para;</a></h3>
+<p>Unstake amount is greater than the staked amount.</p>
+<hr />
+<h3 id="unstakefrompastperiod">UnstakeFromPastPeriod<a class="headerlink" href="#unstakefrompastperiod" title="Permanent link">&para;</a></h3>
+<p>Unstaking is rejected since the period in which past stake was active has passed.</p>
+<hr />
+<h3 id="zeroamount">ZeroAmount<a class="headerlink" href="#zeroamount" title="Permanent link">&para;</a></h3>
+<p>Performing locking or staking with 0 amount.</p>
+<hr />
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../cumulusxcm/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CumulusXcm">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                CumulusXcm
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../dappstakingmigration/" class="md-footer__link md-footer__link--next" aria-label="Next: DappStakingMigration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                DappStakingMigration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/polkascan/py-substrate-interface" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/polkascan" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant", "navigation.prune", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6c14ae12.min.js"></script>
+      
+    
+  </body>
+</html>
