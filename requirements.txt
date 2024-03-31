@@ -1,7 +1,7 @@
 pprintpp~=0.4.0
 PyYAML==6.0
-mkdocs~=1.4.2
-mkdocs-material~=9.0
-substrate-interface~=1.4.2
+mkdocs~=1.5.3
+mkdocs-material~=9.4
+substrate-interface==1.8.0a
 scalecodec>=1.1.4
 
