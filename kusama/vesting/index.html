@@ -4940,6 +4940,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#force_remove_vesting_schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      force_remove_vesting_schedule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#force_vested_transfer" class="md-nav__link">
     <span class="md-ellipsis">
       force_vested_transfer
@@ -9670,6 +9679,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#force_remove_vesting_schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      force_remove_vesting_schedule
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#force_vested_transfer" class="md-nav__link">
     <span class="md-ellipsis">
       force_vested_transfer
@@ -9900,9 +9918,45 @@
 <hr />
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
+<h3 id="force_remove_vesting_schedule">force_remove_vesting_schedule<a class="headerlink" href="#force_remove_vesting_schedule" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::force_remove_vesting_schedule</code>].</p>
+<h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target</td>
+<td><code>&lt;T::Lookup as StaticLookup&gt;::Source</code></td>
+</tr>
+<tr>
+<td>schedule_index</td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Vesting', 'force_remove_vesting_schedule', {
+    'schedule_index': 'u32',
+    'target': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
+)
+</code></pre>
+<hr />
 <h3 id="force_vested_transfer">force_vested_transfer<a class="headerlink" href="#force_vested_transfer" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::force_vested_transfer</code>].</p>
-<h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -9925,7 +9979,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'force_vested_transfer', {
     'schedule': {
@@ -9953,7 +10007,7 @@
 <hr />
 <h3 id="merge_schedules">merge_schedules<a class="headerlink" href="#merge_schedules" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::merge_schedules</code>].</p>
-<h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -9972,7 +10026,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
+<h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'merge_schedules', {
     'schedule1_index': 'u32',
@@ -9983,9 +10037,9 @@
 <hr />
 <h3 id="vest">vest<a class="headerlink" href="#vest" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::vest</code>].</p>
-<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <p>No attributes</p>
-<h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
+<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vest', {}
 )
@@ -9993,7 +10047,7 @@
 <hr />
 <h3 id="vest_other">vest_other<a class="headerlink" href="#vest_other" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::vest_other</code>].</p>
-<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10008,7 +10062,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
+<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vest_other', {
     'target': {
@@ -10024,7 +10078,7 @@
 <hr />
 <h3 id="vested_transfer">vested_transfer<a class="headerlink" href="#vested_transfer" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::vested_transfer</code>].</p>
-<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10043,7 +10097,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
+<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Vesting', 'vested_transfer', {
     'schedule': {
@@ -10066,7 +10120,7 @@
 <hr />
 <h3 id="vestingcompleted">VestingCompleted<a class="headerlink" href="#vestingcompleted" title="Permanent link">&para;</a></h3>
 <p>An [account] has become fully vested.</p>
-<h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10087,7 +10141,7 @@
 <h3 id="vestingupdated">VestingUpdated<a class="headerlink" href="#vestingupdated" title="Permanent link">&para;</a></h3>
 <p>The amount vested has been updated. This could indicate a change in funds available.
 The balance given is the amount which is left unvested (and thus locked).</p>
-<h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10115,7 +10169,7 @@ The balance given is the amount which is left unvested (and thus locked).</p>
 <h3 id="storageversion">StorageVersion<a class="headerlink" href="#storageversion" title="Permanent link">&para;</a></h3>
 <p>Storage version of the pallet.</p>
 <p>New networks start with latest version, as determined by the genesis build.</p>
-<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
+<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Vesting', 'StorageVersion', []
 )
@@ -10126,7 +10180,7 @@ The balance given is the amount which is left unvested (and thus locked).</p>
 <hr />
 <h3 id="vesting_1">Vesting<a class="headerlink" href="#vesting_1" title="Permanent link">&para;</a></h3>
 <p>Information regarding the vesting of a given account.</p>
-<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
+<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Vesting', 'Vesting', ['AccountId']
 )
@@ -10141,7 +10195,7 @@ The balance given is the amount which is left unvested (and thus locked).</p>
 <h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">28
 </code></pre>
-<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
+<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('Vesting', 'MaxVestingSchedules')
 </code></pre>
 <hr />
@@ -10150,7 +10204,7 @@ The balance given is the amount which is left unvested (and thus locked).</p>
 <h4 id="value_1">Value<a class="headerlink" href="#value_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">33333333300
 </code></pre>
-<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
+<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('Vesting', 'MinVestedTransfer')
 </code></pre>
 <hr />

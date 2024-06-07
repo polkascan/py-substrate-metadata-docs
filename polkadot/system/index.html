@@ -1572,6 +1572,33 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#apply_authorized_upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      apply_authorized_upgrade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorize_upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      authorize_upgrade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorize_upgrade_without_checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      authorize_upgrade_without_checks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#kill_prefix" class="md-nav__link">
     <span class="md-ellipsis">
       kill_prefix
@@ -1712,6 +1739,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#upgradeauthorized" class="md-nav__link">
+    <span class="md-ellipsis">
+      UpgradeAuthorized
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1740,6 +1776,15 @@
   <a href="#allextrinsicslen" class="md-nav__link">
     <span class="md-ellipsis">
       AllExtrinsicsLen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizedupgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      AuthorizedUpgrade
     </span>
   </a>
   
@@ -2001,9 +2046,27 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nothingauthorized" class="md-nav__link">
+    <span class="md-ellipsis">
+      NothingAuthorized
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#specversionneedstoincrease" class="md-nav__link">
     <span class="md-ellipsis">
       SpecVersionNeedsToIncrease
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unauthorized" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unauthorized
     </span>
   </a>
   
@@ -9764,6 +9827,33 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#apply_authorized_upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      apply_authorized_upgrade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorize_upgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      authorize_upgrade
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorize_upgrade_without_checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      authorize_upgrade_without_checks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#kill_prefix" class="md-nav__link">
     <span class="md-ellipsis">
       kill_prefix
@@ -9904,6 +9994,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#upgradeauthorized" class="md-nav__link">
+    <span class="md-ellipsis">
+      UpgradeAuthorized
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -9932,6 +10031,15 @@
   <a href="#allextrinsicslen" class="md-nav__link">
     <span class="md-ellipsis">
       AllExtrinsicsLen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizedupgrade" class="md-nav__link">
+    <span class="md-ellipsis">
+      AuthorizedUpgrade
     </span>
   </a>
   
@@ -10193,9 +10301,27 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#nothingauthorized" class="md-nav__link">
+    <span class="md-ellipsis">
+      NothingAuthorized
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#specversionneedstoincrease" class="md-nav__link">
     <span class="md-ellipsis">
       SpecVersionNeedsToIncrease
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unauthorized" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unauthorized
     </span>
   </a>
   
@@ -10228,9 +10354,78 @@
 <hr />
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
+<h3 id="apply_authorized_upgrade">apply_authorized_upgrade<a class="headerlink" href="#apply_authorized_upgrade" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::apply_authorized_upgrade</code>].</p>
+<h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td><code>Vec&lt;u8&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'System', 'apply_authorized_upgrade', {'code': 'Bytes'}
+)
+</code></pre>
+<hr />
+<h3 id="authorize_upgrade">authorize_upgrade<a class="headerlink" href="#authorize_upgrade" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::authorize_upgrade</code>].</p>
+<h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code_hash</td>
+<td><code>T::Hash</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'System', 'authorize_upgrade', {'code_hash': 'scale_info::12'}
+)
+</code></pre>
+<hr />
+<h3 id="authorize_upgrade_without_checks">authorize_upgrade_without_checks<a class="headerlink" href="#authorize_upgrade_without_checks" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::authorize_upgrade_without_checks</code>].</p>
+<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code_hash</td>
+<td><code>T::Hash</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'System', 'authorize_upgrade_without_checks', {'code_hash': 'scale_info::12'}
+)
+</code></pre>
+<hr />
 <h3 id="kill_prefix">kill_prefix<a class="headerlink" href="#kill_prefix" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::kill_prefix</code>].</p>
-<h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10249,7 +10444,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'kill_prefix', {'prefix': 'Bytes', 'subkeys': 'u32'}
 )
@@ -10257,7 +10452,7 @@
 <hr />
 <h3 id="kill_storage">kill_storage<a class="headerlink" href="#kill_storage" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::kill_storage</code>].</p>
-<h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10272,7 +10467,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
+<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'kill_storage', {'keys': ['Bytes']}
 )
@@ -10280,75 +10475,6 @@
 <hr />
 <h3 id="remark">remark<a class="headerlink" href="#remark" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::remark</code>].</p>
-<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>remark</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'System', 'remark', {'remark': 'Bytes'}
-)
-</code></pre>
-<hr />
-<h3 id="remark_with_event">remark_with_event<a class="headerlink" href="#remark_with_event" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::remark_with_event</code>].</p>
-<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>remark</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'System', 'remark_with_event', {'remark': 'Bytes'}
-)
-</code></pre>
-<hr />
-<h3 id="set_code">set_code<a class="headerlink" href="#set_code" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_code</code>].</p>
-<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'System', 'set_code', {'code': 'Bytes'}
-)
-</code></pre>
-<hr />
-<h3 id="set_code_without_checks">set_code_without_checks<a class="headerlink" href="#set_code_without_checks" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_code_without_checks</code>].</p>
 <h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10359,12 +10485,81 @@
 </thead>
 <tbody>
 <tr>
-<td>code</td>
+<td>remark</td>
 <td><code>Vec&lt;u8&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'System', 'remark', {'remark': 'Bytes'}
+)
+</code></pre>
+<hr />
+<h3 id="remark_with_event">remark_with_event<a class="headerlink" href="#remark_with_event" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::remark_with_event</code>].</p>
+<h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>remark</td>
+<td><code>Vec&lt;u8&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'System', 'remark_with_event', {'remark': 'Bytes'}
+)
+</code></pre>
+<hr />
+<h3 id="set_code">set_code<a class="headerlink" href="#set_code" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_code</code>].</p>
+<h4 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td><code>Vec&lt;u8&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'System', 'set_code', {'code': 'Bytes'}
+)
+</code></pre>
+<hr />
+<h3 id="set_code_without_checks">set_code_without_checks<a class="headerlink" href="#set_code_without_checks" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_code_without_checks</code>].</p>
+<h4 id="attributes_8">Attributes<a class="headerlink" href="#attributes_8" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td><code>Vec&lt;u8&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_code_without_checks', {'code': 'Bytes'}
 )
@@ -10372,7 +10567,7 @@
 <hr />
 <h3 id="set_heap_pages">set_heap_pages<a class="headerlink" href="#set_heap_pages" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_heap_pages</code>].</p>
-<h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_9">Attributes<a class="headerlink" href="#attributes_9" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10387,7 +10582,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
+<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_heap_pages', {'pages': 'u64'}
 )
@@ -10395,7 +10590,7 @@
 <hr />
 <h3 id="set_storage">set_storage<a class="headerlink" href="#set_storage" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_storage</code>].</p>
-<h4 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_10">Attributes<a class="headerlink" href="#attributes_10" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10410,7 +10605,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
+<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'System', 'set_storage', {'items': [('Bytes', 'Bytes')]}
 )
@@ -10420,12 +10615,12 @@
 <hr />
 <h3 id="codeupdated">CodeUpdated<a class="headerlink" href="#codeupdated" title="Permanent link">&para;</a></h3>
 <p><code>:code</code> was updated.</p>
-<h4 id="attributes_8">Attributes<a class="headerlink" href="#attributes_8" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_11">Attributes<a class="headerlink" href="#attributes_11" title="Permanent link">&para;</a></h4>
 <p>No attributes</p>
 <hr />
 <h3 id="extrinsicfailed">ExtrinsicFailed<a class="headerlink" href="#extrinsicfailed" title="Permanent link">&para;</a></h3>
 <p>An extrinsic failed.</p>
-<h4 id="attributes_9">Attributes<a class="headerlink" href="#attributes_9" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_12">Attributes<a class="headerlink" href="#attributes_12" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10450,7 +10645,7 @@
 <hr />
 <h3 id="extrinsicsuccess">ExtrinsicSuccess<a class="headerlink" href="#extrinsicsuccess" title="Permanent link">&para;</a></h3>
 <p>An extrinsic completed successfully.</p>
-<h4 id="attributes_10">Attributes<a class="headerlink" href="#attributes_10" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_13">Attributes<a class="headerlink" href="#attributes_13" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10470,7 +10665,7 @@
 <hr />
 <h3 id="killedaccount">KilledAccount<a class="headerlink" href="#killedaccount" title="Permanent link">&para;</a></h3>
 <p>An account was reaped.</p>
-<h4 id="attributes_11">Attributes<a class="headerlink" href="#attributes_11" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_14">Attributes<a class="headerlink" href="#attributes_14" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10490,7 +10685,7 @@
 <hr />
 <h3 id="newaccount">NewAccount<a class="headerlink" href="#newaccount" title="Permanent link">&para;</a></h3>
 <p>A new account was created.</p>
-<h4 id="attributes_12">Attributes<a class="headerlink" href="#attributes_12" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_15">Attributes<a class="headerlink" href="#attributes_15" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10510,7 +10705,7 @@
 <hr />
 <h3 id="remarked">Remarked<a class="headerlink" href="#remarked" title="Permanent link">&para;</a></h3>
 <p>On on-chain remark happened.</p>
-<h4 id="attributes_13">Attributes<a class="headerlink" href="#attributes_13" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_16">Attributes<a class="headerlink" href="#attributes_16" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10533,11 +10728,36 @@
 </tbody>
 </table>
 <hr />
+<h3 id="upgradeauthorized">UpgradeAuthorized<a class="headerlink" href="#upgradeauthorized" title="Permanent link">&para;</a></h3>
+<p>An upgrade was authorized.</p>
+<h4 id="attributes_17">Attributes<a class="headerlink" href="#attributes_17" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code_hash</td>
+<td><code>T::Hash</code></td>
+<td><code>scale_info::12</code></td>
+</tr>
+<tr>
+<td>check_version</td>
+<td><code>bool</code></td>
+<td><code>bool</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="storage-functions">Storage functions<a class="headerlink" href="#storage-functions" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h3>
 <p>The full account information for a particular account ID.</p>
-<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
+<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Account', ['AccountId']
 )
@@ -10559,7 +10779,7 @@
 <hr />
 <h3 id="allextrinsicslen">AllExtrinsicsLen<a class="headerlink" href="#allextrinsicslen" title="Permanent link">&para;</a></h3>
 <p>Total length (in bytes) for all extrinsics put together, for the current block.</p>
-<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
+<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'AllExtrinsicsLen', []
 )
@@ -10568,25 +10788,36 @@
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
+<h3 id="authorizedupgrade">AuthorizedUpgrade<a class="headerlink" href="#authorizedupgrade" title="Permanent link">&para;</a></h3>
+<p><code>Some</code> if a code upgrade has been authorized.</p>
+<h4 id="python_13">Python<a class="headerlink" href="#python_13" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'System', 'AuthorizedUpgrade', []
+)
+</code></pre>
+<h4 id="return-value_2">Return value<a class="headerlink" href="#return-value_2" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{'check_version': 'bool', 'code_hash': 'scale_info::12'}
+</code></pre>
+<hr />
 <h3 id="blockhash">BlockHash<a class="headerlink" href="#blockhash" title="Permanent link">&para;</a></h3>
 <p>Map of block numbers to block hashes.</p>
-<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
+<h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockHash', ['u32']
 )
 </code></pre>
-<h4 id="return-value_2">Return value<a class="headerlink" href="#return-value_2" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_3">Return value<a class="headerlink" href="#return-value_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'scale_info::12'
 </code></pre>
 <hr />
 <h3 id="blockweight">BlockWeight<a class="headerlink" href="#blockweight" title="Permanent link">&para;</a></h3>
 <p>The current weight for the block.</p>
-<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
+<h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'BlockWeight', []
 )
 </code></pre>
-<h4 id="return-value_3">Return value<a class="headerlink" href="#return-value_3" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_4">Return value<a class="headerlink" href="#return-value_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'mandatory': {'proof_size': 'u64', 'ref_time': 'u64'},
     'normal': {'proof_size': 'u64', 'ref_time': 'u64'},
@@ -10596,12 +10827,12 @@
 <hr />
 <h3 id="digest">Digest<a class="headerlink" href="#digest" title="Permanent link">&para;</a></h3>
 <p>Digest of the current block, also part of the block header.</p>
-<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
+<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Digest', []
 )
 </code></pre>
-<h4 id="return-value_4">Return value<a class="headerlink" href="#return-value_4" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_5">Return value<a class="headerlink" href="#return-value_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'logs': [
         {
@@ -10618,12 +10849,12 @@
 <hr />
 <h3 id="eventcount">EventCount<a class="headerlink" href="#eventcount" title="Permanent link">&para;</a></h3>
 <p>The number of events in the <code>Events&amp;lt;T&amp;gt;</code> list.</p>
-<h4 id="python_13">Python<a class="headerlink" href="#python_13" title="Permanent link">&para;</a></h4>
+<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventCount', []
 )
 </code></pre>
-<h4 id="return-value_5">Return value<a class="headerlink" href="#return-value_5" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_6">Return value<a class="headerlink" href="#return-value_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
@@ -10636,12 +10867,12 @@
 <p>The value has the type <code>(BlockNumberFor&amp;lt;T&amp;gt;, EventIndex)</code> because if we used only just
  the <code>EventIndex</code> then in case if the topic has the same contents on the next block
  no notification will be triggered thus the event might be lost.</p>
-<h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
+<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'EventTopics', ['scale_info::12']
 )
 </code></pre>
-<h4 id="return-value_6">Return value<a class="headerlink" href="#return-value_6" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_7">Return value<a class="headerlink" href="#return-value_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">[('u32', 'u32')]
 </code></pre>
 <hr />
@@ -10651,12 +10882,12 @@
  It could otherwise inflate the PoV size of a block.</p>
 <p>Events have a large in-memory size. Box the events to not go out-of-memory
  just in case someone still reads them from within the runtime.</p>
-<h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
+<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Events', []
 )
 </code></pre>
-<h4 id="return-value_7">Return value<a class="headerlink" href="#return-value_7" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_8">Return value<a class="headerlink" href="#return-value_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">[
     {
         'event': {
@@ -10715,7 +10946,7 @@
                 'Rescinded': {'amount': 'u128'},
                 'ReserveRepatriated': {
                     'amount': 'u128',
-                    'destination_status': 'scale_info::38',
+                    'destination_status': 'scale_info::39',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
@@ -10724,6 +10955,7 @@
                 'Slashed': {'amount': 'u128', 'who': 'AccountId'},
                 'Suspended': {'amount': 'u128', 'who': 'AccountId'},
                 'Thawed': {'amount': 'u128', 'who': 'AccountId'},
+                'TotalIssuanceForced': {'new': 'u128', 'old': 'u128'},
                 'Transfer': {
                     'amount': 'u128',
                     'from': 'AccountId',
@@ -10793,7 +11025,7 @@
                 'Edited': {'para_id': 'u32'},
                 'HandleBidResult': {
                     'para_id': 'u32',
-                    'result': 'scale_info::33',
+                    'result': 'scale_info::34',
                 },
                 'MemoUpdated': {
                     'memo': 'Bytes',
@@ -10810,18 +11042,18 @@
             'ElectionProviderMultiPhase': {
                 'ElectionFailed': None,
                 'ElectionFinalized': {
-                    'compute': 'scale_info::445',
-                    'score': 'scale_info::277',
+                    'compute': 'scale_info::493',
+                    'score': 'scale_info::297',
                 },
                 'PhaseTransitioned': {
-                    'from': 'scale_info::446',
+                    'from': 'scale_info::494',
                     'round': 'u32',
-                    'to': 'scale_info::446',
+                    'to': 'scale_info::494',
                 },
                 'Rewarded': {'account': 'AccountId', 'value': 'u128'},
                 'Slashed': {'account': 'AccountId', 'value': 'u128'},
                 'SolutionStored': {
-                    'compute': 'scale_info::445',
+                    'compute': 'scale_info::493',
                     'origin': (None, 'AccountId'),
                     'prev_ejected': 'bool',
                 },
@@ -10831,47 +11063,20 @@
                 'BatchFinished': {'size': 'u32'},
                 'InternalError': None,
                 'Slashed': {'amount': 'u128', 'stash': 'AccountId'},
-                'Unstaked': {'result': 'scale_info::33', 'stash': 'AccountId'},
+                'Unstaked': {'result': 'scale_info::34', 'stash': 'AccountId'},
             },
             'Grandpa': {
                 'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
                 'Paused': None,
                 'Resumed': None,
             },
-            'Hrmp': {
-                'ChannelClosed': {
-                    'by_parachain': 'u32',
-                    'channel_id': 'scale_info::345',
-                },
-                'HrmpChannelForceOpened': {
-                    'proposed_max_capacity': 'u32',
-                    'proposed_max_message_size': 'u32',
-                    'recipient': 'u32',
-                    'sender': 'u32',
-                },
-                'HrmpSystemChannelOpened': {
-                    'proposed_max_capacity': 'u32',
-                    'proposed_max_message_size': 'u32',
-                    'recipient': 'u32',
-                    'sender': 'u32',
-                },
-                'OpenChannelAccepted': {'recipient': 'u32', 'sender': 'u32'},
-                'OpenChannelCanceled': {
-                    'by_parachain': 'u32',
-                    'channel_id': 'scale_info::345',
-                },
-                'OpenChannelDepositsUpdated': {
-                    'recipient': 'u32',
-                    'sender': 'u32',
-                },
-                'OpenChannelRequested': {
-                    'proposed_max_capacity': 'u32',
-                    'proposed_max_message_size': 'u32',
-                    'recipient': 'u32',
-                    'sender': 'u32',
-                },
-            },
             'Identity': {
+                'AuthorityAdded': {'authority': 'AccountId'},
+                'AuthorityRemoved': {'authority': 'AccountId'},
+                'DanglingUsernameRemoved': {
+                    'username': 'Bytes',
+                    'who': 'AccountId',
+                },
                 'IdentityCleared': {'deposit': 'u128', 'who': 'AccountId'},
                 'IdentityKilled': {'deposit': 'u128', 'who': 'AccountId'},
                 'IdentitySet': {'who': 'AccountId'},
@@ -10885,6 +11090,11 @@
                 },
                 'JudgementUnrequested': {
                     'registrar_index': 'u32',
+                    'who': 'AccountId',
+                },
+                'PreapprovalExpired': {'whose': 'AccountId'},
+                'PrimaryUsernameSet': {
+                    'username': 'Bytes',
                     'who': 'AccountId',
                 },
                 'RegistrarAdded': {'registrar_index': 'u32'},
@@ -10903,11 +11113,52 @@
                     'main': 'AccountId',
                     'sub': 'AccountId',
                 },
+                'UsernameQueued': {
+                    'expiration': 'u32',
+                    'username': 'Bytes',
+                    'who': 'AccountId',
+                },
+                'UsernameSet': {'username': 'Bytes', 'who': 'AccountId'},
             },
             'ImOnline': {
                 'AllGood': None,
                 'HeartbeatReceived': {'authority_id': '[u8; 32]'},
                 'SomeOffline': {'offline': [('AccountId', 'scale_info::60')]},
+            },
+            'Offences': {'Offence': {'kind': '[u8; 16]', 'timeslot': 'Bytes'}},
+            None: None,
+            'Hrmp': {
+                'ChannelClosed': {
+                    'by_parachain': 'u32',
+                    'channel_id': 'scale_info::369',
+                },
+                'HrmpChannelForceOpened': {
+                    'proposed_max_capacity': 'u32',
+                    'proposed_max_message_size': 'u32',
+                    'recipient': 'u32',
+                    'sender': 'u32',
+                },
+                'HrmpSystemChannelOpened': {
+                    'proposed_max_capacity': 'u32',
+                    'proposed_max_message_size': 'u32',
+                    'recipient': 'u32',
+                    'sender': 'u32',
+                },
+                'OpenChannelAccepted': {'recipient': 'u32', 'sender': 'u32'},
+                'OpenChannelCanceled': {
+                    'by_parachain': 'u32',
+                    'channel_id': 'scale_info::369',
+                },
+                'OpenChannelDepositsUpdated': {
+                    'recipient': 'u32',
+                    'sender': 'u32',
+                },
+                'OpenChannelRequested': {
+                    'proposed_max_capacity': 'u32',
+                    'proposed_max_message_size': 'u32',
+                    'recipient': 'u32',
+                    'sender': 'u32',
+                },
             },
             'Indices': {
                 'IndexAssigned': {'index': 'u32', 'who': 'AccountId'},
@@ -10918,20 +11169,20 @@
                 'OverweightEnqueued': {
                     'id': '[u8; 32]',
                     'message_index': 'u32',
-                    'origin': 'scale_info::416',
+                    'origin': 'scale_info::464',
                     'page_index': 'u32',
                 },
-                'PageReaped': {'index': 'u32', 'origin': 'scale_info::416'},
+                'PageReaped': {'index': 'u32', 'origin': 'scale_info::464'},
                 'Processed': {
-                    'id': '[u8; 32]',
-                    'origin': 'scale_info::416',
+                    'id': 'scale_info::12',
+                    'origin': 'scale_info::464',
                     'success': 'bool',
                     'weight_used': 'scale_info::9',
                 },
                 'ProcessingFailed': {
-                    'error': 'scale_info::467',
-                    'id': '[u8; 32]',
-                    'origin': 'scale_info::416',
+                    'error': 'scale_info::518',
+                    'id': 'scale_info::12',
+                    'origin': 'scale_info::464',
                 },
             },
             'Multisig': {
@@ -10939,20 +11190,20 @@
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::221',
+                    'timepoint': 'scale_info::241',
                 },
                 'MultisigCancelled': {
                     'call_hash': '[u8; 32]',
                     'cancelling': 'AccountId',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::221',
+                    'timepoint': 'scale_info::241',
                 },
                 'MultisigExecuted': {
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'result': 'scale_info::33',
-                    'timepoint': 'scale_info::221',
+                    'result': 'scale_info::34',
+                    'timepoint': 'scale_info::241',
                 },
                 'NewMultisig': {
                     'approving': 'AccountId',
@@ -10984,7 +11235,11 @@
                     'pool_id': 'u32',
                 },
                 'PoolCommissionChangeRateUpdated': {
-                    'change_rate': 'scale_info::296',
+                    'change_rate': 'scale_info::316',
+                    'pool_id': 'u32',
+                },
+                'PoolCommissionClaimPermissionUpdated': {
+                    'permission': (None, 'scale_info::318'),
                     'pool_id': 'u32',
                 },
                 'PoolCommissionClaimed': {
@@ -11006,7 +11261,7 @@
                     'root': (None, 'AccountId'),
                 },
                 'StateChanged': {
-                    'new_state': 'scale_info::288',
+                    'new_state': 'scale_info::308',
                     'pool_id': 'u32',
                 },
                 'Unbonded': {
@@ -11028,16 +11283,15 @@
                     'pool_id': 'u32',
                 },
             },
-            'Offences': {'Offence': {'kind': '[u8; 16]', 'timeslot': 'Bytes'}},
             'ParaInclusion': {
-                'CandidateBacked': ('scale_info::452', 'Bytes', 'u32', 'u32'),
+                'CandidateBacked': ('scale_info::500', 'Bytes', 'u32', 'u32'),
                 'CandidateIncluded': (
-                    'scale_info::452',
+                    'scale_info::500',
                     'Bytes',
                     'u32',
                     'u32',
                 ),
-                'CandidateTimedOut': ('scale_info::452', 'Bytes', 'u32'),
+                'CandidateTimedOut': ('scale_info::500', 'Bytes', 'u32'),
                 'UpwardMessagesReceived': {'count': 'u32', 'from': 'u32'},
             },
             'Paras': {
@@ -11051,8 +11305,8 @@
                 'PvfCheckStarted': ('scale_info::12', 'u32'),
             },
             'ParasDisputes': {
-                'DisputeConcluded': ('scale_info::12', 'scale_info::459'),
-                'DisputeInitiated': ('scale_info::12', 'scale_info::458'),
+                'DisputeConcluded': ('scale_info::12', 'scale_info::507'),
+                'DisputeInitiated': ('scale_info::12', 'scale_info::506'),
                 'Revert': 'u32',
             },
             'Preimage': {
@@ -11070,28 +11324,28 @@
                     'delay': 'u32',
                     'delegatee': 'AccountId',
                     'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::218',
+                    'proxy_type': 'scale_info::238',
                 },
-                'ProxyExecuted': {'result': 'scale_info::33'},
+                'ProxyExecuted': {'result': 'scale_info::34'},
                 'ProxyRemoved': {
                     'delay': 'u32',
                     'delegatee': 'AccountId',
                     'delegator': 'AccountId',
-                    'proxy_type': 'scale_info::218',
+                    'proxy_type': 'scale_info::238',
                 },
                 'PureCreated': {
                     'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::218',
+                    'proxy_type': 'scale_info::238',
                     'pure': 'AccountId',
                     'who': 'AccountId',
                 },
             },
             'Referenda': {
                 'Approved': {'index': 'u32'},
-                'Cancelled': {'index': 'u32', 'tally': 'scale_info::430'},
+                'Cancelled': {'index': 'u32', 'tally': 'scale_info::478'},
                 'ConfirmAborted': {'index': 'u32'},
                 'ConfirmStarted': {'index': 'u32'},
-                'Confirmed': {'index': 'u32', 'tally': 'scale_info::430'},
+                'Confirmed': {'index': 'u32', 'tally': 'scale_info::478'},
                 'DecisionDepositPlaced': {
                     'amount': 'u128',
                     'index': 'u32',
@@ -11104,15 +11358,15 @@
                 },
                 'DecisionStarted': {
                     'index': 'u32',
-                    'proposal': 'scale_info::87',
-                    'tally': 'scale_info::430',
+                    'proposal': 'scale_info::101',
+                    'tally': 'scale_info::478',
                     'track': 'u16',
                 },
                 'DepositSlashed': {'amount': 'u128', 'who': 'AccountId'},
-                'Killed': {'index': 'u32', 'tally': 'scale_info::430'},
+                'Killed': {'index': 'u32', 'tally': 'scale_info::478'},
                 'MetadataCleared': {'hash': 'scale_info::12', 'index': 'u32'},
                 'MetadataSet': {'hash': 'scale_info::12', 'index': 'u32'},
-                'Rejected': {'index': 'u32', 'tally': 'scale_info::430'},
+                'Rejected': {'index': 'u32', 'tally': 'scale_info::478'},
                 'SubmissionDepositRefunded': {
                     'amount': 'u128',
                     'index': 'u32',
@@ -11120,10 +11374,10 @@
                 },
                 'Submitted': {
                     'index': 'u32',
-                    'proposal': 'scale_info::87',
+                    'proposal': 'scale_info::101',
                     'track': 'u16',
                 },
-                'TimedOut': {'index': 'u32', 'tally': 'scale_info::430'},
+                'TimedOut': {'index': 'u32', 'tally': 'scale_info::478'},
             },
             'Registrar': {
                 'Deregistered': {'para_id': 'u32'},
@@ -11139,7 +11393,7 @@
                 'Canceled': {'index': 'u32', 'when': 'u32'},
                 'Dispatched': {
                     'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::33',
+                    'result': 'scale_info::34',
                     'task': ('u32', 'u32'),
                 },
                 'PeriodicFailed': {
@@ -11167,6 +11421,7 @@
             'Staking': {
                 'Bonded': {'amount': 'u128', 'stash': 'AccountId'},
                 'Chilled': {'stash': 'AccountId'},
+                'ControllerBatchDeprecated': {'failures': 'u32'},
                 'EraPaid': {
                     'era_index': 'u32',
                     'remainder': 'u128',
@@ -11181,7 +11436,7 @@
                 },
                 'Rewarded': {
                     'amount': 'u128',
-                    'dest': 'scale_info::41',
+                    'dest': 'scale_info::42',
                     'stash': 'AccountId',
                 },
                 'SlashReported': {
@@ -11196,10 +11451,20 @@
                 'StakingElectionFailed': None,
                 'Unbonded': {'amount': 'u128', 'stash': 'AccountId'},
                 'ValidatorPrefsSet': {
-                    'prefs': 'scale_info::43',
+                    'prefs': 'scale_info::44',
                     'stash': 'AccountId',
                 },
                 'Withdrawn': {'amount': 'u128', 'stash': 'AccountId'},
+            },
+            'StateTrieMigration': {
+                'AutoMigrationFinished': None,
+                'Halted': {'error': 'scale_info::514'},
+                'Migrated': {
+                    'child': 'u32',
+                    'compute': 'scale_info::513',
+                    'top': 'u32',
+                },
+                'Slashed': {'amount': 'u128', 'who': 'AccountId'},
             },
             'System': {
                 'CodeUpdated': None,
@@ -11211,6 +11476,10 @@
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
                 'Remarked': {'hash': 'scale_info::12', 'sender': 'AccountId'},
+                'UpgradeAuthorized': {
+                    'check_version': 'bool',
+                    'code_hash': 'scale_info::12',
+                },
             },
             'TransactionPayment': {
                 'TransactionFeePaid': {
@@ -11223,7 +11492,7 @@
                 'AssetSpendApproved': {
                     'amount': 'u128',
                     'asset_kind': 'scale_info::65',
-                    'beneficiary': 'scale_info::76',
+                    'beneficiary': 'scale_info::90',
                     'expire_at': 'u32',
                     'index': 'u32',
                     'valid_from': 'u32',
@@ -11260,7 +11529,7 @@
                     'error': 'scale_info::25',
                     'index': 'u32',
                 },
-                'DispatchedAs': {'result': 'scale_info::33'},
+                'DispatchedAs': {'result': 'scale_info::34'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::25'},
             },
@@ -11276,41 +11545,40 @@
                 'CallWhitelisted': {'call_hash': 'scale_info::12'},
                 'WhitelistedCallDispatched': {
                     'call_hash': 'scale_info::12',
-                    'result': 'scale_info::432',
+                    'result': 'scale_info::480',
                 },
                 'WhitelistedCallRemoved': {'call_hash': 'scale_info::12'},
             },
-            None: None,
             'XcmPallet': {
                 'AssetsClaimed': {
-                    'assets': 'scale_info::406',
+                    'assets': 'scale_info::451',
                     'hash': 'scale_info::12',
-                    'origin': 'scale_info::66',
+                    'origin': 'scale_info::76',
                 },
                 'AssetsTrapped': {
-                    'assets': 'scale_info::406',
+                    'assets': 'scale_info::451',
                     'hash': 'scale_info::12',
-                    'origin': 'scale_info::66',
+                    'origin': 'scale_info::76',
                 },
-                'Attempted': {'outcome': 'scale_info::465'},
-                'FeesPaid': {'fees': ['scale_info::387'], 'paying': 'scale_info::66'},
+                'Attempted': {'outcome': 'scale_info::516'},
+                'FeesPaid': {'fees': ['scale_info::438'], 'paying': 'scale_info::76'},
                 'InvalidQuerier': {
-                    'expected_querier': 'scale_info::66',
-                    'maybe_actual_querier': (None, 'scale_info::66'),
-                    'origin': 'scale_info::66',
+                    'expected_querier': 'scale_info::76',
+                    'maybe_actual_querier': (None, 'scale_info::76'),
+                    'origin': 'scale_info::76',
                     'query_id': 'u64',
                 },
                 'InvalidQuerierVersion': {
-                    'origin': 'scale_info::66',
+                    'origin': 'scale_info::76',
                     'query_id': 'u64',
                 },
                 'InvalidResponder': {
-                    'expected_location': (None, 'scale_info::66'),
-                    'origin': 'scale_info::66',
+                    'expected_location': (None, 'scale_info::76'),
+                    'origin': 'scale_info::76',
                     'query_id': 'u64',
                 },
                 'InvalidResponderVersion': {
-                    'origin': 'scale_info::66',
+                    'origin': 'scale_info::76',
                     'query_id': 'u64',
                 },
                 'Notified': {
@@ -11336,52 +11604,53 @@
                     'query_id': 'u64',
                 },
                 'NotifyTargetMigrationFail': {
-                    'location': 'scale_info::76',
+                    'location': 'scale_info::90',
                     'query_id': 'u64',
                 },
                 'NotifyTargetSendFail': {
-                    'error': 'scale_info::393',
-                    'location': 'scale_info::66',
+                    'error': 'scale_info::420',
+                    'location': 'scale_info::76',
                     'query_id': 'u64',
                 },
                 'ResponseReady': {
                     'query_id': 'u64',
-                    'response': 'scale_info::390',
+                    'response': 'scale_info::441',
                 },
                 'ResponseTaken': {'query_id': 'u64'},
                 'Sent': {
-                    'destination': 'scale_info::66',
-                    'message': ['scale_info::384'],
+                    'destination': 'scale_info::76',
+                    'message': ['scale_info::435'],
                     'message_id': '[u8; 32]',
-                    'origin': 'scale_info::66',
+                    'origin': 'scale_info::76',
                 },
                 'SupportedVersionChanged': {
-                    'location': 'scale_info::66',
+                    'location': 'scale_info::76',
                     'version': 'u32',
                 },
                 'UnexpectedResponse': {
-                    'origin': 'scale_info::66',
+                    'origin': 'scale_info::76',
                     'query_id': 'u64',
                 },
                 'VersionChangeNotified': {
-                    'cost': ['scale_info::387'],
-                    'destination': 'scale_info::66',
+                    'cost': ['scale_info::438'],
+                    'destination': 'scale_info::76',
                     'message_id': '[u8; 32]',
                     'result': 'u32',
                 },
+                'VersionMigrationFinished': {'version': 'u32'},
                 'VersionNotifyRequested': {
-                    'cost': ['scale_info::387'],
-                    'destination': 'scale_info::66',
+                    'cost': ['scale_info::438'],
+                    'destination': 'scale_info::76',
                     'message_id': '[u8; 32]',
                 },
                 'VersionNotifyStarted': {
-                    'cost': ['scale_info::387'],
-                    'destination': 'scale_info::66',
+                    'cost': ['scale_info::438'],
+                    'destination': 'scale_info::76',
                     'message_id': '[u8; 32]',
                 },
                 'VersionNotifyUnrequested': {
-                    'cost': ['scale_info::387'],
-                    'destination': 'scale_info::66',
+                    'cost': ['scale_info::438'],
+                    'destination': 'scale_info::76',
                     'message_id': '[u8; 32]',
                 },
             },
@@ -11398,90 +11667,90 @@
 <hr />
 <h3 id="executionphase">ExecutionPhase<a class="headerlink" href="#executionphase" title="Permanent link">&para;</a></h3>
 <p>The execution phase of the block.</p>
-<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
+<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExecutionPhase', []
 )
 </code></pre>
-<h4 id="return-value_8">Return value<a class="headerlink" href="#return-value_8" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_9">Return value<a class="headerlink" href="#return-value_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{'ApplyExtrinsic': 'u32', 'Finalization': None, 'Initialization': None}
 </code></pre>
 <hr />
 <h3 id="extrinsiccount">ExtrinsicCount<a class="headerlink" href="#extrinsiccount" title="Permanent link">&para;</a></h3>
 <p>Total extrinsics count for the current block.</p>
-<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
+<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicCount', []
 )
 </code></pre>
-<h4 id="return-value_9">Return value<a class="headerlink" href="#return-value_9" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_10">Return value<a class="headerlink" href="#return-value_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h3 id="extrinsicdata">ExtrinsicData<a class="headerlink" href="#extrinsicdata" title="Permanent link">&para;</a></h3>
 <p>Extrinsics data for the current block (maps an extrinsic&#x27;s index to its data).</p>
-<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
+<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ExtrinsicData', ['u32']
 )
 </code></pre>
-<h4 id="return-value_10">Return value<a class="headerlink" href="#return-value_10" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_11">Return value<a class="headerlink" href="#return-value_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
 <h3 id="lastruntimeupgrade">LastRuntimeUpgrade<a class="headerlink" href="#lastruntimeupgrade" title="Permanent link">&para;</a></h3>
 <p>Stores the <code>spec_version</code> and <code>spec_name</code> of when the last runtime upgrade happened.</p>
-<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
+<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'LastRuntimeUpgrade', []
 )
 </code></pre>
-<h4 id="return-value_11">Return value<a class="headerlink" href="#return-value_11" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_12">Return value<a class="headerlink" href="#return-value_12" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{'spec_name': 'Str', 'spec_version': 'u32'}
 </code></pre>
 <hr />
 <h3 id="number">Number<a class="headerlink" href="#number" title="Permanent link">&para;</a></h3>
 <p>The current block number being processed. Set by <code>execute_block</code>.</p>
-<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
+<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'Number', []
 )
 </code></pre>
-<h4 id="return-value_12">Return value<a class="headerlink" href="#return-value_12" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_13">Return value<a class="headerlink" href="#return-value_13" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h3 id="parenthash">ParentHash<a class="headerlink" href="#parenthash" title="Permanent link">&para;</a></h3>
 <p>Hash of the previous block.</p>
-<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
+<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'ParentHash', []
 )
 </code></pre>
-<h4 id="return-value_13">Return value<a class="headerlink" href="#return-value_13" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_14">Return value<a class="headerlink" href="#return-value_14" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'scale_info::12'
 </code></pre>
 <hr />
 <h3 id="upgradedtotriplerefcount">UpgradedToTripleRefCount<a class="headerlink" href="#upgradedtotriplerefcount" title="Permanent link">&para;</a></h3>
 <p>True if we have upgraded so that AccountInfo contains three types of <code>RefCount</code>. False
  (default) if not.</p>
-<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
+<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToTripleRefCount', []
 )
 </code></pre>
-<h4 id="return-value_14">Return value<a class="headerlink" href="#return-value_14" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_15">Return value<a class="headerlink" href="#return-value_15" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h3 id="upgradedtou32refcount">UpgradedToU32RefCount<a class="headerlink" href="#upgradedtou32refcount" title="Permanent link">&para;</a></h3>
 <p>True if we have upgraded so that <code>type RefCount</code> is <code>u32</code>. False (default) if not.</p>
-<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
+<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'System', 'UpgradedToU32RefCount', []
 )
 </code></pre>
-<h4 id="return-value_15">Return value<a class="headerlink" href="#return-value_15" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_16">Return value<a class="headerlink" href="#return-value_16" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
@@ -11492,7 +11761,7 @@
 <h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">4096
 </code></pre>
-<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
+<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockHashCount')
 </code></pre>
 <hr />
@@ -11501,7 +11770,7 @@
 <h4 id="value_1">Value<a class="headerlink" href="#value_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{'max': {'mandatory': 5242880, 'normal': 3932160, 'operational': 5242880}}
 </code></pre>
-<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
+<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockLength')
 </code></pre>
 <hr />
@@ -11551,7 +11820,7 @@
     },
 }
 </code></pre>
-<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
+<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'BlockWeights')
 </code></pre>
 <hr />
@@ -11560,7 +11829,7 @@
 <h4 id="value_3">Value<a class="headerlink" href="#value_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{'read': 20499000, 'write': 83471000}
 </code></pre>
-<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
+<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'DbWeight')
 </code></pre>
 <hr />
@@ -11572,7 +11841,7 @@
 <h4 id="value_4">Value<a class="headerlink" href="#value_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">0
 </code></pre>
-<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
+<h4 id="python_32">Python<a class="headerlink" href="#python_32" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'SS58Prefix')
 </code></pre>
 <hr />
@@ -11588,7 +11857,7 @@
         ('0x18ef58a3b67ba770', 1),
         ('0xd2bc9897eed08f15', 3),
         ('0xf78b278be53f454c', 2),
-        ('0xaf2c0297a23e6d3d', 5),
+        ('0xaf2c0297a23e6d3d', 10),
         ('0x49eaaf1b548a0cb0', 3),
         ('0x91d5df18b0d2cf58', 2),
         ('0x2a5e924655399e60', 1),
@@ -11605,12 +11874,12 @@
     'impl_name': 'parity-polkadot',
     'impl_version': 0,
     'spec_name': 'polkadot',
-    'spec_version': 1001002,
-    'state_version': 0,
+    'spec_version': 1002000,
+    'state_version': 1,
     'transaction_version': 25,
 }
 </code></pre>
-<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
+<h4 id="python_33">Python<a class="headerlink" href="#python_33" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('System', 'Version')
 </code></pre>
 <hr />
@@ -11633,9 +11902,15 @@ and the new runtime.</p>
 <h3 id="nonzerorefcount">NonZeroRefCount<a class="headerlink" href="#nonzerorefcount" title="Permanent link">&para;</a></h3>
 <p>There is a non-zero reference count preventing the account from being purged.</p>
 <hr />
+<h3 id="nothingauthorized">NothingAuthorized<a class="headerlink" href="#nothingauthorized" title="Permanent link">&para;</a></h3>
+<p>No upgrade authorized.</p>
+<hr />
 <h3 id="specversionneedstoincrease">SpecVersionNeedsToIncrease<a class="headerlink" href="#specversionneedstoincrease" title="Permanent link">&para;</a></h3>
 <p>The specification version is not allowed to decrease between the current runtime
 and the new runtime.</p>
+<hr />
+<h3 id="unauthorized">Unauthorized<a class="headerlink" href="#unauthorized" title="Permanent link">&para;</a></h3>
+<p>The submitted code is not authorized.</p>
 <hr />
 
 

@@ -8955,15 +8955,7 @@
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="as_derivative">as_derivative<a class="headerlink" href="#as_derivative" title="Permanent link">&para;</a></h3>
-<p>Send a call through an indexed pseudonym of the sender.</p>
-<p>Filter from origin are passed along. The call will be dispatched with an origin which
-use the same filter as the origin of this call.</p>
-<p>NOTE: If you need to ensure that any account-based filtering is not honored (i.e.
-because you expect <code>proxy</code> to have been used prior in the call stack and you do not want
-the call restrictions to apply to any sub-accounts), then use <code>as_multi_threshold_1</code>
-in the Multisig pallet instead.</p>
-<p>NOTE: Prior to version *12, this was called <code>as_limited_sub</code>.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
+<p>See [<code>Pallet::as_derivative</code>].</p>
 <h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -8990,21 +8982,7 @@ in the Multisig pallet instead.</p>
 </code></pre>
 <hr />
 <h3 id="batch">batch<a class="headerlink" href="#batch" title="Permanent link">&para;</a></h3>
-<p>Send a batch of dispatch calls.</p>
-<p>May be called from any origin except <code>None</code>.</p>
-<ul>
-<li><code>calls</code>: The calls to be dispatched from the same origin. The number of call must not
-  exceed the constant: <code>batched_calls_limit</code> (available in constant metadata).</li>
-</ul>
-<p>If origin is root then the calls are dispatched without checking origin filter. (This
-includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
-<p>## Complexity
-- O(C) where C is the number of calls to be batched.</p>
-<p>This will return <code>Ok</code> in all circumstances. To determine the success of the batch, an
-event is deposited. If a call failed and the batch was interrupted, then the
-<code>BatchInterrupted</code> event is deposited, along with the number of successful calls made
-and the error of the failed call. If all were successful, then the <code>BatchCompleted</code>
-event is deposited.</p>
+<p>See [<code>Pallet::batch</code>].</p>
 <h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9027,17 +9005,7 @@ event is deposited.</p>
 </code></pre>
 <hr />
 <h3 id="batch_all">batch_all<a class="headerlink" href="#batch_all" title="Permanent link">&para;</a></h3>
-<p>Send a batch of dispatch calls and atomically execute them.
-The whole transaction will rollback and fail if any of the calls failed.</p>
-<p>May be called from any origin except <code>None</code>.</p>
-<ul>
-<li><code>calls</code>: The calls to be dispatched from the same origin. The number of call must not
-  exceed the constant: <code>batched_calls_limit</code> (available in constant metadata).</li>
-</ul>
-<p>If origin is root then the calls are dispatched without checking origin filter. (This
-includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
-<p>## Complexity
-- O(C) where C is the number of calls to be batched.</p>
+<p>See [<code>Pallet::batch_all</code>].</p>
 <h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9060,10 +9028,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </code></pre>
 <hr />
 <h3 id="dispatch_as">dispatch_as<a class="headerlink" href="#dispatch_as" title="Permanent link">&para;</a></h3>
-<p>Dispatches a function call with a provided origin.</p>
-<p>The dispatch origin for this call must be <em>Root</em>.</p>
-<p>## Complexity
-- O(1).</p>
+<p>See [<code>Pallet::dispatch_as</code>].</p>
 <h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9087,11 +9052,6 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Utility', 'dispatch_as', {
     'as_origin': {
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': 'AccountId',
-        },
         None: None,
         'Triumvirate': {
             'Member': 'AccountId',
@@ -9099,6 +9059,11 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
             '_Phantom': None,
         },
         'Void': (),
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': 'AccountId',
+        },
     },
     'call': 'Call',
 }
@@ -9106,17 +9071,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </code></pre>
 <hr />
 <h3 id="force_batch">force_batch<a class="headerlink" href="#force_batch" title="Permanent link">&para;</a></h3>
-<p>Send a batch of dispatch calls.
-Unlike <code>batch</code>, it allows errors and won&amp;#x27;t interrupt.</p>
-<p>May be called from any origin except <code>None</code>.</p>
-<ul>
-<li><code>calls</code>: The calls to be dispatched from the same origin. The number of call must not
-  exceed the constant: <code>batched_calls_limit</code> (available in constant metadata).</li>
-</ul>
-<p>If origin is root then the calls are dispatch without checking origin filter. (This
-includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
-<p>## Complexity
-- O(C) where C is the number of calls to be batched.</p>
+<p>See [<code>Pallet::force_batch</code>].</p>
 <h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9139,10 +9094,7 @@ includes bypassing <code>frame_system::Config::BaseCallFilter</code>).</p>
 </code></pre>
 <hr />
 <h3 id="with_weight">with_weight<a class="headerlink" href="#with_weight" title="Permanent link">&para;</a></h3>
-<p>Dispatch a function call with a specified weight.</p>
-<p>This function does not check the weight of the call, and instead allows the
-Root origin to specify the weight of the call.</p>
-<p>The dispatch origin for this call must be <em>Root</em>.</p>
+<p>See [<code>Pallet::with_weight</code>].</p>
 <h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9207,7 +9159,7 @@ well as the error.</p>
 <tr>
 <td>error</td>
 <td><code>DispatchError</code></td>
-<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}</code></td>
+<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}</code></td>
 </tr>
 </tbody>
 </table>
@@ -9227,7 +9179,7 @@ well as the error.</p>
 <tr>
 <td>result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}</code></td>
 </tr>
 </tbody>
 </table>
@@ -9252,7 +9204,7 @@ well as the error.</p>
 <tr>
 <td>error</td>
 <td><code>DispatchError</code></td>
-<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}</code></td>
+<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}</code></td>
 </tr>
 </tbody>
 </table>

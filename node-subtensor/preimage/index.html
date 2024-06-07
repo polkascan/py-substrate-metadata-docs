@@ -8973,9 +8973,7 @@
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="note_preimage">note_preimage<a class="headerlink" href="#note_preimage" title="Permanent link">&para;</a></h3>
-<p>Register a preimage on-chain.</p>
-<p>If the preimage was previously requested, no fees or deposits are taken for providing
-the preimage. Otherwise, a deposit is taken proportional to the size of the preimage.</p>
+<p>See [<code>Pallet::note_preimage</code>].</p>
 <h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -8998,9 +8996,7 @@ the preimage. Otherwise, a deposit is taken proportional to the size of the prei
 </code></pre>
 <hr />
 <h3 id="request_preimage">request_preimage<a class="headerlink" href="#request_preimage" title="Permanent link">&para;</a></h3>
-<p>Request a preimage be uploaded to the chain without paying any fees or deposits.</p>
-<p>If the preimage requests has already been provided on-chain, we unreserve any deposit
-a user may have paid, and take the control of the preimage out of their hands.</p>
+<p>See [<code>Pallet::request_preimage</code>].</p>
 <h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9018,17 +9014,12 @@ a user may have paid, and take the control of the preimage out of their hands.</
 </table>
 <h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Preimage', 'request_preimage', {'hash': 'scale_info::10'}
+    'Preimage', 'request_preimage', {'hash': 'scale_info::12'}
 )
 </code></pre>
 <hr />
 <h3 id="unnote_preimage">unnote_preimage<a class="headerlink" href="#unnote_preimage" title="Permanent link">&para;</a></h3>
-<p>Clear an unrequested preimage from the runtime storage.</p>
-<p>If <code>len</code> is provided, then it will be a much cheaper operation.</p>
-<ul>
-<li><code>hash</code>: The hash of the preimage to be removed from the store.</li>
-<li><code>len</code>: The length of the preimage of <code>hash</code>.</li>
-</ul>
+<p>See [<code>Pallet::unnote_preimage</code>].</p>
 <h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9046,13 +9037,12 @@ a user may have paid, and take the control of the preimage out of their hands.</
 </table>
 <h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Preimage', 'unnote_preimage', {'hash': 'scale_info::10'}
+    'Preimage', 'unnote_preimage', {'hash': 'scale_info::12'}
 )
 </code></pre>
 <hr />
 <h3 id="unrequest_preimage">unrequest_preimage<a class="headerlink" href="#unrequest_preimage" title="Permanent link">&para;</a></h3>
-<p>Clear a previously made request for a preimage.</p>
-<p>NOTE: THIS MUST NOT BE CALLED ON <code>hash</code> MORE TIMES THAN <code>request_preimage</code>.</p>
+<p>See [<code>Pallet::unrequest_preimage</code>].</p>
 <h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9070,7 +9060,7 @@ a user may have paid, and take the control of the preimage out of their hands.</
 </table>
 <h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Preimage', 'unrequest_preimage', {'hash': 'scale_info::10'}
+    'Preimage', 'unrequest_preimage', {'hash': 'scale_info::12'}
 )
 </code></pre>
 <hr />
@@ -9091,7 +9081,7 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <tr>
 <td>hash</td>
 <td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 </tbody>
 </table>
@@ -9111,7 +9101,7 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <tr>
 <td>hash</td>
 <td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 </tbody>
 </table>
@@ -9131,7 +9121,7 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <tr>
 <td>hash</td>
 <td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 </tbody>
 </table>
@@ -9141,7 +9131,7 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <h3 id="preimagefor">PreimageFor<a class="headerlink" href="#preimagefor" title="Permanent link">&para;</a></h3>
 <h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
-    'Preimage', 'PreimageFor', [('scale_info::10', 'u32')]
+    'Preimage', 'PreimageFor', [('scale_info::12', 'u32')]
 )
 </code></pre>
 <h4 id="return-value">Return value<a class="headerlink" href="#return-value" title="Permanent link">&para;</a></h4>
@@ -9152,7 +9142,7 @@ a user may have paid, and take the control of the preimage out of their hands.</
 <p>The request status of a given hash.</p>
 <h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
-    'Preimage', 'StatusFor', ['scale_info::10']
+    'Preimage', 'StatusFor', ['scale_info::12']
 )
 </code></pre>
 <h4 id="return-value_1">Return value<a class="headerlink" href="#return-value_1" title="Permanent link">&para;</a></h4>

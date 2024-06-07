@@ -1307,6 +1307,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#set_commission_claim_permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_commission_claim_permission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#set_commission_max" class="md-nav__link">
     <span class="md-ellipsis">
       set_commission_max
@@ -1451,6 +1460,15 @@
   <a href="#poolcommissionchangerateupdated" class="md-nav__link">
     <span class="md-ellipsis">
       PoolCommissionChangeRateUpdated
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poolcommissionclaimpermissionupdated" class="md-nav__link">
+    <span class="md-ellipsis">
+      PoolCommissionClaimPermissionUpdated
     </span>
   </a>
   
@@ -1760,6 +1778,15 @@
   <a href="#maxpointstobalance" class="md-nav__link">
     <span class="md-ellipsis">
       MaxPointsToBalance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxunbonding" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaxUnbonding
     </span>
   </a>
   
@@ -10367,6 +10394,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#set_commission_claim_permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_commission_claim_permission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#set_commission_max" class="md-nav__link">
     <span class="md-ellipsis">
       set_commission_max
@@ -10511,6 +10547,15 @@
   <a href="#poolcommissionchangerateupdated" class="md-nav__link">
     <span class="md-ellipsis">
       PoolCommissionChangeRateUpdated
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#poolcommissionclaimpermissionupdated" class="md-nav__link">
+    <span class="md-ellipsis">
+      PoolCommissionClaimPermissionUpdated
     </span>
   </a>
   
@@ -10820,6 +10865,15 @@
   <a href="#maxpointstobalance" class="md-nav__link">
     <span class="md-ellipsis">
       MaxPointsToBalance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxunbonding" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaxUnbonding
     </span>
   </a>
   
@@ -11637,9 +11691,45 @@
 )
 </code></pre>
 <hr />
+<h3 id="set_commission_claim_permission">set_commission_claim_permission<a class="headerlink" href="#set_commission_claim_permission" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_commission_claim_permission</code>].</p>
+<h4 id="attributes_15">Attributes<a class="headerlink" href="#attributes_15" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pool_id</td>
+<td><code>PoolId</code></td>
+</tr>
+<tr>
+<td>permission</td>
+<td><code>Option&lt;CommissionClaimPermission&lt;T::AccountId&gt;&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'NominationPools', 'set_commission_claim_permission', {
+    'permission': (
+        None,
+        {
+            'Account': 'AccountId',
+            'Permissionless': None,
+        },
+    ),
+    'pool_id': 'u32',
+}
+)
+</code></pre>
+<hr />
 <h3 id="set_commission_max">set_commission_max<a class="headerlink" href="#set_commission_max" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_commission_max</code>].</p>
-<h4 id="attributes_15">Attributes<a class="headerlink" href="#attributes_15" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_16">Attributes<a class="headerlink" href="#attributes_16" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11658,7 +11748,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
+<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'NominationPools', 'set_commission_max', {
     'max_commission': 'u32',
@@ -11669,7 +11759,7 @@
 <hr />
 <h3 id="set_configs">set_configs<a class="headerlink" href="#set_configs" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_configs</code>].</p>
-<h4 id="attributes_16">Attributes<a class="headerlink" href="#attributes_16" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_17">Attributes<a class="headerlink" href="#attributes_17" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11704,7 +11794,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
+<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'NominationPools', 'set_configs', {
     'global_max_commission': {
@@ -11743,7 +11833,7 @@
 <hr />
 <h3 id="set_metadata">set_metadata<a class="headerlink" href="#set_metadata" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_metadata</code>].</p>
-<h4 id="attributes_17">Attributes<a class="headerlink" href="#attributes_17" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_18">Attributes<a class="headerlink" href="#attributes_18" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11762,7 +11852,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
+<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'NominationPools', 'set_metadata', {
     'metadata': 'Bytes',
@@ -11773,7 +11863,7 @@
 <hr />
 <h3 id="set_state">set_state<a class="headerlink" href="#set_state" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_state</code>].</p>
-<h4 id="attributes_18">Attributes<a class="headerlink" href="#attributes_18" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_19">Attributes<a class="headerlink" href="#attributes_19" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11792,7 +11882,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
+<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'NominationPools', 'set_state', {
     'pool_id': 'u32',
@@ -11807,7 +11897,7 @@
 <hr />
 <h3 id="unbond">unbond<a class="headerlink" href="#unbond" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::unbond</code>].</p>
-<h4 id="attributes_19">Attributes<a class="headerlink" href="#attributes_19" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_20">Attributes<a class="headerlink" href="#attributes_20" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11826,7 +11916,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
+<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'NominationPools', 'unbond', {
     'member_account': {
@@ -11843,7 +11933,7 @@
 <hr />
 <h3 id="update_roles">update_roles<a class="headerlink" href="#update_roles" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::update_roles</code>].</p>
-<h4 id="attributes_20">Attributes<a class="headerlink" href="#attributes_20" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_21">Attributes<a class="headerlink" href="#attributes_21" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11870,7 +11960,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
+<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'NominationPools', 'update_roles', {
     'new_bouncer': {
@@ -11895,7 +11985,7 @@
 <hr />
 <h3 id="withdraw_unbonded">withdraw_unbonded<a class="headerlink" href="#withdraw_unbonded" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::withdraw_unbonded</code>].</p>
-<h4 id="attributes_21">Attributes<a class="headerlink" href="#attributes_21" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_22">Attributes<a class="headerlink" href="#attributes_22" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11914,7 +12004,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
+<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'NominationPools', 'withdraw_unbonded', {
     'member_account': {
@@ -11933,7 +12023,7 @@
 <hr />
 <h3 id="bonded">Bonded<a class="headerlink" href="#bonded" title="Permanent link">&para;</a></h3>
 <p>A member has became bonded in a pool.</p>
-<h4 id="attributes_22">Attributes<a class="headerlink" href="#attributes_22" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_23">Attributes<a class="headerlink" href="#attributes_23" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11968,7 +12058,7 @@
 <hr />
 <h3 id="created">Created<a class="headerlink" href="#created" title="Permanent link">&para;</a></h3>
 <p>A pool has been created.</p>
-<h4 id="attributes_23">Attributes<a class="headerlink" href="#attributes_23" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_24">Attributes<a class="headerlink" href="#attributes_24" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11993,7 +12083,7 @@
 <hr />
 <h3 id="destroyed">Destroyed<a class="headerlink" href="#destroyed" title="Permanent link">&para;</a></h3>
 <p>A pool has been destroyed.</p>
-<h4 id="attributes_24">Attributes<a class="headerlink" href="#attributes_24" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_25">Attributes<a class="headerlink" href="#attributes_25" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12014,7 +12104,7 @@
 <h3 id="memberremoved">MemberRemoved<a class="headerlink" href="#memberremoved" title="Permanent link">&para;</a></h3>
 <p>A member has been removed from a pool.</p>
 <p>The removal can be voluntary (withdrawn all unbonded funds) or involuntary (kicked).</p>
-<h4 id="attributes_25">Attributes<a class="headerlink" href="#attributes_25" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_26">Attributes<a class="headerlink" href="#attributes_26" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12039,7 +12129,7 @@
 <hr />
 <h3 id="minbalancedeficitadjusted">MinBalanceDeficitAdjusted<a class="headerlink" href="#minbalancedeficitadjusted" title="Permanent link">&para;</a></h3>
 <p>Topped up deficit in frozen ED of the reward pool.</p>
-<h4 id="attributes_26">Attributes<a class="headerlink" href="#attributes_26" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_27">Attributes<a class="headerlink" href="#attributes_27" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12064,7 +12154,7 @@
 <hr />
 <h3 id="minbalanceexcessadjusted">MinBalanceExcessAdjusted<a class="headerlink" href="#minbalanceexcessadjusted" title="Permanent link">&para;</a></h3>
 <p>Claimed excess frozen ED of af the reward pool.</p>
-<h4 id="attributes_27">Attributes<a class="headerlink" href="#attributes_27" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_28">Attributes<a class="headerlink" href="#attributes_28" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12089,7 +12179,7 @@
 <hr />
 <h3 id="paidout">PaidOut<a class="headerlink" href="#paidout" title="Permanent link">&para;</a></h3>
 <p>A payout has been made to a member.</p>
-<h4 id="attributes_28">Attributes<a class="headerlink" href="#attributes_28" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_29">Attributes<a class="headerlink" href="#attributes_29" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12119,7 +12209,7 @@
 <hr />
 <h3 id="poolcommissionchangerateupdated">PoolCommissionChangeRateUpdated<a class="headerlink" href="#poolcommissionchangerateupdated" title="Permanent link">&para;</a></h3>
 <p>A pool&amp;#x27;s commission <code>change_rate</code> has been changed.</p>
-<h4 id="attributes_29">Attributes<a class="headerlink" href="#attributes_29" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_30">Attributes<a class="headerlink" href="#attributes_30" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12142,9 +12232,34 @@
 </tbody>
 </table>
 <hr />
+<h3 id="poolcommissionclaimpermissionupdated">PoolCommissionClaimPermissionUpdated<a class="headerlink" href="#poolcommissionclaimpermissionupdated" title="Permanent link">&para;</a></h3>
+<p>Pool commission claim permission has been updated.</p>
+<h4 id="attributes_31">Attributes<a class="headerlink" href="#attributes_31" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pool_id</td>
+<td><code>PoolId</code></td>
+<td><code>u32</code></td>
+</tr>
+<tr>
+<td>permission</td>
+<td><code>Option&lt;CommissionClaimPermission&lt;T::AccountId&gt;&gt;</code></td>
+<td><code>(None, {'Permissionless': None, 'Account': 'AccountId'})</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h3 id="poolcommissionclaimed">PoolCommissionClaimed<a class="headerlink" href="#poolcommissionclaimed" title="Permanent link">&para;</a></h3>
 <p>Pool commission has been claimed.</p>
-<h4 id="attributes_30">Attributes<a class="headerlink" href="#attributes_30" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_32">Attributes<a class="headerlink" href="#attributes_32" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12169,7 +12284,7 @@
 <hr />
 <h3 id="poolcommissionupdated">PoolCommissionUpdated<a class="headerlink" href="#poolcommissionupdated" title="Permanent link">&para;</a></h3>
 <p>A pool&amp;#x27;s commission setting has been changed.</p>
-<h4 id="attributes_31">Attributes<a class="headerlink" href="#attributes_31" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_33">Attributes<a class="headerlink" href="#attributes_33" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12194,7 +12309,7 @@
 <hr />
 <h3 id="poolmaxcommissionupdated">PoolMaxCommissionUpdated<a class="headerlink" href="#poolmaxcommissionupdated" title="Permanent link">&para;</a></h3>
 <p>A pool&amp;#x27;s maximum commission setting has been changed.</p>
-<h4 id="attributes_32">Attributes<a class="headerlink" href="#attributes_32" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_34">Attributes<a class="headerlink" href="#attributes_34" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12219,7 +12334,7 @@
 <hr />
 <h3 id="poolslashed">PoolSlashed<a class="headerlink" href="#poolslashed" title="Permanent link">&para;</a></h3>
 <p>The active balance of pool <code>pool_id</code> has been slashed to <code>balance</code>.</p>
-<h4 id="attributes_33">Attributes<a class="headerlink" href="#attributes_33" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_35">Attributes<a class="headerlink" href="#attributes_35" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12245,7 +12360,7 @@
 <h3 id="rolesupdated">RolesUpdated<a class="headerlink" href="#rolesupdated" title="Permanent link">&para;</a></h3>
 <p>The roles of a pool have been updated to the given new roles. Note that the depositor
 can never change.</p>
-<h4 id="attributes_34">Attributes<a class="headerlink" href="#attributes_34" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_36">Attributes<a class="headerlink" href="#attributes_36" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12275,7 +12390,7 @@ can never change.</p>
 <hr />
 <h3 id="statechanged">StateChanged<a class="headerlink" href="#statechanged" title="Permanent link">&para;</a></h3>
 <p>The state of a pool has changed</p>
-<h4 id="attributes_35">Attributes<a class="headerlink" href="#attributes_35" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_37">Attributes<a class="headerlink" href="#attributes_37" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12311,7 +12426,7 @@ In the absence of slashing, these values will match. In the presence of slashing
 number of points that are issued in the unbonding pool will be less than the amount
 requested to be unbonded.</li>
 </ul>
-<h4 id="attributes_36">Attributes<a class="headerlink" href="#attributes_36" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_38">Attributes<a class="headerlink" href="#attributes_38" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12351,7 +12466,7 @@ requested to be unbonded.</li>
 <hr />
 <h3 id="unbondingpoolslashed">UnbondingPoolSlashed<a class="headerlink" href="#unbondingpoolslashed" title="Permanent link">&para;</a></h3>
 <p>The unbond pool at <code>era</code> of pool <code>pool_id</code> has been slashed to <code>balance</code>.</p>
-<h4 id="attributes_37">Attributes<a class="headerlink" href="#attributes_37" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_39">Attributes<a class="headerlink" href="#attributes_39" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12384,7 +12499,7 @@ requested to be unbonded.</li>
 <p>The given number of <code>points</code> have been dissolved in return of <code>balance</code>.</p>
 <p>Similar to <code>Unbonded</code> event, in the absence of slashing, the ratio of point to balance
 will be 1.</p>
-<h4 id="attributes_38">Attributes<a class="headerlink" href="#attributes_38" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_40">Attributes<a class="headerlink" href="#attributes_40" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12421,7 +12536,7 @@ will be 1.</p>
 <hr />
 <h3 id="bondedpools">BondedPools<a class="headerlink" href="#bondedpools" title="Permanent link">&para;</a></h3>
 <p>Storage for bonded pools.</p>
-<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
+<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'BondedPools', ['u32']
 )
@@ -12430,6 +12545,10 @@ will be 1.</p>
 <pre><code class="language-python">{
     'commission': {
         'change_rate': (None, {'max_increase': 'u32', 'min_delay': 'u32'}),
+        'claim_permission': (
+            None,
+            {'Account': 'AccountId', 'Permissionless': None},
+        ),
         'current': (None, ('u32', 'AccountId')),
         'max': (None, 'u32'),
         'throttle_from': (None, 'u32'),
@@ -12448,7 +12567,7 @@ will be 1.</p>
 <hr />
 <h3 id="claimpermissions">ClaimPermissions<a class="headerlink" href="#claimpermissions" title="Permanent link">&para;</a></h3>
 <p>Map from a pool member account to their opted claim permission.</p>
-<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
+<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'ClaimPermissions', ['AccountId']
 )
@@ -12464,7 +12583,7 @@ will be 1.</p>
 <hr />
 <h3 id="counterforbondedpools">CounterForBondedPools<a class="headerlink" href="#counterforbondedpools" title="Permanent link">&para;</a></h3>
 <p>Counter for the related counted storage map</p>
-<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
+<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'CounterForBondedPools', []
 )
@@ -12475,7 +12594,7 @@ will be 1.</p>
 <hr />
 <h3 id="counterformetadata">CounterForMetadata<a class="headerlink" href="#counterformetadata" title="Permanent link">&para;</a></h3>
 <p>Counter for the related counted storage map</p>
-<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
+<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'CounterForMetadata', []
 )
@@ -12486,7 +12605,7 @@ will be 1.</p>
 <hr />
 <h3 id="counterforpoolmembers">CounterForPoolMembers<a class="headerlink" href="#counterforpoolmembers" title="Permanent link">&para;</a></h3>
 <p>Counter for the related counted storage map</p>
-<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
+<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'CounterForPoolMembers', []
 )
@@ -12497,7 +12616,7 @@ will be 1.</p>
 <hr />
 <h3 id="counterforreversepoolidlookup">CounterForReversePoolIdLookup<a class="headerlink" href="#counterforreversepoolidlookup" title="Permanent link">&para;</a></h3>
 <p>Counter for the related counted storage map</p>
-<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
+<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'CounterForReversePoolIdLookup', []
 )
@@ -12508,7 +12627,7 @@ will be 1.</p>
 <hr />
 <h3 id="counterforrewardpools">CounterForRewardPools<a class="headerlink" href="#counterforrewardpools" title="Permanent link">&para;</a></h3>
 <p>Counter for the related counted storage map</p>
-<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
+<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'CounterForRewardPools', []
 )
@@ -12519,7 +12638,7 @@ will be 1.</p>
 <hr />
 <h3 id="counterforsubpoolsstorage">CounterForSubPoolsStorage<a class="headerlink" href="#counterforsubpoolsstorage" title="Permanent link">&para;</a></h3>
 <p>Counter for the related counted storage map</p>
-<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
+<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'CounterForSubPoolsStorage', []
 )
@@ -12532,7 +12651,7 @@ will be 1.</p>
 <p>The maximum commission that can be charged by a pool. Used on commission payouts to bound
  pool commissions that are &gt; <code>GlobalMaxCommission</code>, necessary if a future
  <code>GlobalMaxCommission</code> is lower than some current pool commissions.</p>
-<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
+<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'GlobalMaxCommission', []
 )
@@ -12543,7 +12662,7 @@ will be 1.</p>
 <hr />
 <h3 id="lastpoolid">LastPoolId<a class="headerlink" href="#lastpoolid" title="Permanent link">&para;</a></h3>
 <p>Ever increasing number of all pools created so far.</p>
-<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
+<h4 id="python_32">Python<a class="headerlink" href="#python_32" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'LastPoolId', []
 )
@@ -12555,7 +12674,7 @@ will be 1.</p>
 <h3 id="maxpoolmembers">MaxPoolMembers<a class="headerlink" href="#maxpoolmembers" title="Permanent link">&para;</a></h3>
 <p>Maximum number of members that can exist in the system. If <code>None</code>, then the count
  members are not bound on a system wide basis.</p>
-<h4 id="python_32">Python<a class="headerlink" href="#python_32" title="Permanent link">&para;</a></h4>
+<h4 id="python_33">Python<a class="headerlink" href="#python_33" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'MaxPoolMembers', []
 )
@@ -12567,7 +12686,7 @@ will be 1.</p>
 <h3 id="maxpoolmembersperpool">MaxPoolMembersPerPool<a class="headerlink" href="#maxpoolmembersperpool" title="Permanent link">&para;</a></h3>
 <p>Maximum number of members that may belong to pool. If <code>None</code>, then the count of
  members is not bound on a per pool basis.</p>
-<h4 id="python_33">Python<a class="headerlink" href="#python_33" title="Permanent link">&para;</a></h4>
+<h4 id="python_34">Python<a class="headerlink" href="#python_34" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'MaxPoolMembersPerPool', []
 )
@@ -12579,7 +12698,7 @@ will be 1.</p>
 <h3 id="maxpools">MaxPools<a class="headerlink" href="#maxpools" title="Permanent link">&para;</a></h3>
 <p>Maximum number of nomination pools that can exist. If <code>None</code>, then an unbounded number of
  pools can exist.</p>
-<h4 id="python_34">Python<a class="headerlink" href="#python_34" title="Permanent link">&para;</a></h4>
+<h4 id="python_35">Python<a class="headerlink" href="#python_35" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'MaxPools', []
 )
@@ -12590,7 +12709,7 @@ will be 1.</p>
 <hr />
 <h3 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h3>
 <p>Metadata for the pool.</p>
-<h4 id="python_35">Python<a class="headerlink" href="#python_35" title="Permanent link">&para;</a></h4>
+<h4 id="python_36">Python<a class="headerlink" href="#python_36" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'Metadata', ['u32']
 )
@@ -12605,7 +12724,7 @@ will be 1.</p>
  indication of &quot;skin in the game&quot;.</p>
 <p>This is the value that will always exist in the staking ledger of the pool bonded account
  while all other accounts leave.</p>
-<h4 id="python_36">Python<a class="headerlink" href="#python_36" title="Permanent link">&para;</a></h4>
+<h4 id="python_37">Python<a class="headerlink" href="#python_37" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'MinCreateBond', []
 )
@@ -12616,7 +12735,7 @@ will be 1.</p>
 <hr />
 <h3 id="minjoinbond">MinJoinBond<a class="headerlink" href="#minjoinbond" title="Permanent link">&para;</a></h3>
 <p>Minimum amount to bond to join a pool.</p>
-<h4 id="python_37">Python<a class="headerlink" href="#python_37" title="Permanent link">&para;</a></h4>
+<h4 id="python_38">Python<a class="headerlink" href="#python_38" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'MinJoinBond', []
 )
@@ -12628,7 +12747,7 @@ will be 1.</p>
 <h3 id="poolmembers">PoolMembers<a class="headerlink" href="#poolmembers" title="Permanent link">&para;</a></h3>
 <p>Active members.</p>
 <p>TWOX-NOTE: SAFE since <code>AccountId</code> is a secure hash.</p>
-<h4 id="python_38">Python<a class="headerlink" href="#python_38" title="Permanent link">&para;</a></h4>
+<h4 id="python_39">Python<a class="headerlink" href="#python_39" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'PoolMembers', ['AccountId']
 )
@@ -12638,7 +12757,7 @@ will be 1.</p>
     'last_recorded_reward_counter': 'u128',
     'points': 'u128',
     'pool_id': 'u32',
-    'unbonding_eras': 'scale_info::665',
+    'unbonding_eras': 'scale_info::720',
 }
 </code></pre>
 <hr />
@@ -12646,7 +12765,7 @@ will be 1.</p>
 <p>A reverse lookup from the pool&#x27;s account id to its id.</p>
 <p>This is only used for slashing. In all other instances, the pool id is used, and the
  accounts are deterministically derived from it.</p>
-<h4 id="python_39">Python<a class="headerlink" href="#python_39" title="Permanent link">&para;</a></h4>
+<h4 id="python_40">Python<a class="headerlink" href="#python_40" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'ReversePoolIdLookup', ['AccountId']
 )
@@ -12658,7 +12777,7 @@ will be 1.</p>
 <h3 id="rewardpools">RewardPools<a class="headerlink" href="#rewardpools" title="Permanent link">&para;</a></h3>
 <p>Reward pools. This is where there rewards for each pool accumulate. When a members payout is
  claimed, the balance comes out fo the reward pool. Keyed by the bonded pools account.</p>
-<h4 id="python_40">Python<a class="headerlink" href="#python_40" title="Permanent link">&para;</a></h4>
+<h4 id="python_41">Python<a class="headerlink" href="#python_41" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'RewardPools', ['u32']
 )
@@ -12676,13 +12795,13 @@ will be 1.</p>
 <h3 id="subpoolsstorage">SubPoolsStorage<a class="headerlink" href="#subpoolsstorage" title="Permanent link">&para;</a></h3>
 <p>Groups of unbonding pools. Each group of unbonding pools belongs to a
  bonded pool, hence the name sub-pools. Keyed by the bonded pools account.</p>
-<h4 id="python_41">Python<a class="headerlink" href="#python_41" title="Permanent link">&para;</a></h4>
+<h4 id="python_42">Python<a class="headerlink" href="#python_42" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'SubPoolsStorage', ['u32']
 )
 </code></pre>
 <h4 id="return-value_19">Return value<a class="headerlink" href="#return-value_19" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">{'no_era': {'balance': 'u128', 'points': 'u128'}, 'with_era': 'scale_info::675'}
+<pre><code class="language-python">{'no_era': {'balance': 'u128', 'points': 'u128'}, 'with_era': 'scale_info::730'}
 </code></pre>
 <hr />
 <h3 id="totalvaluelocked">TotalValueLocked<a class="headerlink" href="#totalvaluelocked" title="Permanent link">&para;</a></h3>
@@ -12690,7 +12809,7 @@ will be 1.</p>
 <p>This might be lower but never higher than the sum of <code>total_balance</code> of all [<code>PoolMembers</code>]
  because calling <code>pool_withdraw_unbonded</code> might decrease the total stake of the pool&#x27;s
  <code>bonded_account</code> without adjusting the pallet-internal <code>UnbondingPool</code>&#x27;s.</p>
-<h4 id="python_42">Python<a class="headerlink" href="#python_42" title="Permanent link">&para;</a></h4>
+<h4 id="python_43">Python<a class="headerlink" href="#python_43" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'NominationPools', 'TotalValueLocked', []
 )
@@ -12714,16 +12833,25 @@ will be 1.</p>
 <h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">10
 </code></pre>
-<h4 id="python_43">Python<a class="headerlink" href="#python_43" title="Permanent link">&para;</a></h4>
+<h4 id="python_44">Python<a class="headerlink" href="#python_44" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('NominationPools', 'MaxPointsToBalance')
+</code></pre>
+<hr />
+<h3 id="maxunbonding">MaxUnbonding<a class="headerlink" href="#maxunbonding" title="Permanent link">&para;</a></h3>
+<p>The maximum number of simultaneous unbonding chunks that can exist per member.</p>
+<h4 id="value_1">Value<a class="headerlink" href="#value_1" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">32
+</code></pre>
+<h4 id="python_45">Python<a class="headerlink" href="#python_45" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('NominationPools', 'MaxUnbonding')
 </code></pre>
 <hr />
 <h3 id="palletid">PalletId<a class="headerlink" href="#palletid" title="Permanent link">&para;</a></h3>
 <p>The nomination pool&#x27;s pallet id.</p>
-<h4 id="value_1">Value<a class="headerlink" href="#value_1" title="Permanent link">&para;</a></h4>
+<h4 id="value_2">Value<a class="headerlink" href="#value_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'0x70792f6e6f706c73'
 </code></pre>
-<h4 id="python_44">Python<a class="headerlink" href="#python_44" title="Permanent link">&para;</a></h4>
+<h4 id="python_46">Python<a class="headerlink" href="#python_46" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('NominationPools', 'PalletId')
 </code></pre>
 <hr />

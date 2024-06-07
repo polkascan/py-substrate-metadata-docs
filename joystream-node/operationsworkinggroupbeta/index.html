@@ -8615,6 +8615,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vested_spend_from_budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      vested_spend_from_budget
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#withdraw_application" class="md-nav__link">
     <span class="md-ellipsis">
       withdraw_application
@@ -8804,6 +8813,15 @@
   <a href="#terminatedworker" class="md-nav__link">
     <span class="md-ellipsis">
       TerminatedWorker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vestedbudgetspending" class="md-nav__link">
+    <span class="md-ellipsis">
+      VestedBudgetSpending
     </span>
   </a>
   
@@ -10067,6 +10085,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vested_spend_from_budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      vested_spend_from_budget
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#withdraw_application" class="md-nav__link">
     <span class="md-ellipsis">
       withdraw_application
@@ -10256,6 +10283,15 @@
   <a href="#terminatedworker" class="md-nav__link">
     <span class="md-ellipsis">
       TerminatedWorker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vestedbudgetspending" class="md-nav__link">
+    <span class="md-ellipsis">
+      VestedBudgetSpending
     </span>
   </a>
   
@@ -11026,7 +11062,7 @@ Require signed leader origin or the root (to fill opening for the leader positio
 <pre><code class="language-python">call = substrate.compose_call(
     'OperationsWorkingGroupBeta', 'fill_opening', {
     'opening_id': 'u64',
-    'successful_application_ids': 'scale_info::90',
+    'successful_application_ids': 'scale_info::91',
 }
 )
 </code></pre>
@@ -11281,14 +11317,6 @@ Requires signed leader origin or the root (to slash the leader stake).
 </code></pre>
 <hr />
 <h3 id="spend_from_budget">spend_from_budget<a class="headerlink" href="#spend_from_budget" title="Permanent link">&para;</a></h3>
-<p>Transfers specified amount to any account.
-Requires leader origin.</p>
-<p># &lt;weight&gt;</p>
-<p>## Weight
-<code>O (1)</code>
-- DB:
-   - O(1) doesn&amp;#x27;t depend on the state or parameters
-# &lt;/weight&gt;</p>
 <h4 id="attributes_12">Attributes<a class="headerlink" href="#attributes_12" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11474,8 +11502,9 @@ Require signed leader origin or the root (to update leader&amp;#x27;s reward amo
 )
 </code></pre>
 <hr />
-<h3 id="withdraw_application">withdraw_application<a class="headerlink" href="#withdraw_application" title="Permanent link">&para;</a></h3>
-<p>Withdraw the worker application. Can be done by the worker only.</p>
+<h3 id="vested_spend_from_budget">vested_spend_from_budget<a class="headerlink" href="#vested_spend_from_budget" title="Permanent link">&para;</a></h3>
+<p>Transfers specified amount to any account.
+Requires leader origin.</p>
 <p># &lt;weight&gt;</p>
 <p>## Weight
 <code>O (1)</code>
@@ -11492,12 +11521,57 @@ Require signed leader origin or the root (to update leader&amp;#x27;s reward amo
 </thead>
 <tbody>
 <tr>
+<td>account_id</td>
+<td><code>T::AccountId</code></td>
+</tr>
+<tr>
+<td>vesting_schedule</td>
+<td><code>VestingInfoOf&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td>rationale</td>
+<td><code>Option&lt;Vec&lt;u8&gt;&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'OperationsWorkingGroupBeta', 'vested_spend_from_budget', {
+    'account_id': 'AccountId',
+    'rationale': (None, 'Bytes'),
+    'vesting_schedule': {
+        'locked': 'u128',
+        'per_block': 'u128',
+        'starting_block': 'u32',
+    },
+}
+)
+</code></pre>
+<hr />
+<h3 id="withdraw_application">withdraw_application<a class="headerlink" href="#withdraw_application" title="Permanent link">&para;</a></h3>
+<p>Withdraw the worker application. Can be done by the worker only.</p>
+<p># &lt;weight&gt;</p>
+<p>## Weight
+<code>O (1)</code>
+- DB:
+   - O(1) doesn&amp;#x27;t depend on the state or parameters
+# &lt;/weight&gt;</p>
+<h4 id="attributes_18">Attributes<a class="headerlink" href="#attributes_18" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td>application_id</td>
 <td><code>ApplicationId</code></td>
 </tr>
 </tbody>
 </table>
-<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
+<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'OperationsWorkingGroupBeta', 'withdraw_application', {'application_id': 'u64'}
 )
@@ -11512,7 +11586,7 @@ Require signed leader origin or the root (to update leader&amp;#x27;s reward amo
 - DB:
    - O(1) doesn&amp;#x27;t depend on the state or parameters
 # &lt;/weight&gt;</p>
-<h4 id="attributes_18">Attributes<a class="headerlink" href="#attributes_18" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_19">Attributes<a class="headerlink" href="#attributes_19" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11531,7 +11605,7 @@ Require signed leader origin or the root (to update leader&amp;#x27;s reward amo
 </tr>
 </tbody>
 </table>
-<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
+<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'OperationsWorkingGroupBeta', 'worker_remark', {'msg': 'Bytes', 'worker_id': 'u64'}
 )
@@ -11543,7 +11617,7 @@ Require signed leader origin or the root (to update leader&amp;#x27;s reward amo
 <p>Emits on withdrawing the application for the regular worker/lead opening.
 Params:
 - Job application id</p>
-<h4 id="attributes_19">Attributes<a class="headerlink" href="#attributes_19" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_20">Attributes<a class="headerlink" href="#attributes_20" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11566,7 +11640,7 @@ Params:
 Params:
 - Opening parameteres
 - Application id</p>
-<h4 id="attributes_20">Attributes<a class="headerlink" href="#attributes_20" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_21">Attributes<a class="headerlink" href="#attributes_21" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11593,7 +11667,7 @@ Params:
 <p>Emits on setting the budget for the working group.
 Params:
 - new budget</p>
-<h4 id="attributes_21">Attributes<a class="headerlink" href="#attributes_21" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_22">Attributes<a class="headerlink" href="#attributes_22" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11615,9 +11689,9 @@ Params:
 <p>Emits on budget from the working group being spent
 Params:
 - Receiver Account Id.
-- Balance spent.
+- Amount to spend
 - Rationale.</p>
-<h4 id="attributes_22">Attributes<a class="headerlink" href="#attributes_22" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_23">Attributes<a class="headerlink" href="#attributes_23" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11649,7 +11723,7 @@ Params:
 <p>Emits on Lead making a remark message
 Params:
 - message</p>
-<h4 id="attributes_23">Attributes<a class="headerlink" href="#attributes_23" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_24">Attributes<a class="headerlink" href="#attributes_24" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11671,7 +11745,7 @@ Params:
 <p>Emits on setting the group leader.
 Params:
 - Group worker id.</p>
-<h4 id="attributes_24">Attributes<a class="headerlink" href="#attributes_24" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_25">Attributes<a class="headerlink" href="#attributes_25" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11691,7 +11765,7 @@ Params:
 <hr />
 <h3 id="leaderunset">LeaderUnset<a class="headerlink" href="#leaderunset" title="Permanent link">&para;</a></h3>
 <p>Emits on un-setting the leader.</p>
-<h4 id="attributes_25">Attributes<a class="headerlink" href="#attributes_25" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_26">Attributes<a class="headerlink" href="#attributes_26" title="Permanent link">&para;</a></h4>
 <p>No attributes</p>
 <hr />
 <h3 id="newmissedrewardlevelreached">NewMissedRewardLevelReached<a class="headerlink" href="#newmissedrewardlevelreached" title="Permanent link">&para;</a></h3>
@@ -11699,7 +11773,7 @@ Params:
 Params:
 - Worker ID.
 - Missed reward (optional). None means &amp;#x27;no missed reward&amp;#x27;.</p>
-<h4 id="attributes_26">Attributes<a class="headerlink" href="#attributes_26" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_27">Attributes<a class="headerlink" href="#attributes_27" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11730,7 +11804,7 @@ Params:
 - Opening Type(Lead or Worker)
 - Stake Policy for the opening
 - Reward per block</p>
-<h4 id="attributes_27">Attributes<a class="headerlink" href="#attributes_27" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_28">Attributes<a class="headerlink" href="#attributes_28" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11772,7 +11846,7 @@ Params:
 <p>Emits on canceling the job opening.
 Params:
 - Opening id</p>
-<h4 id="attributes_28">Attributes<a class="headerlink" href="#attributes_28" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_29">Attributes<a class="headerlink" href="#attributes_29" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11796,7 +11870,7 @@ Params:
 - Worker opening id
 - Worker application id to the worker id dictionary
 - Applicationd ids used to fill the opening</p>
-<h4 id="attributes_29">Attributes<a class="headerlink" href="#attributes_29" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_30">Attributes<a class="headerlink" href="#attributes_30" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11814,12 +11888,12 @@ Params:
 <tr>
 <td>None</td>
 <td><code>ApplicationIdToWorkerIdMap</code></td>
-<td><code>scale_info::221</code></td>
+<td><code>scale_info::225</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;ApplicationId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -11831,7 +11905,7 @@ Params:
 - Receiver Account Id.
 - Reward
 - Payment type (missed reward or regular one)</p>
-<h4 id="attributes_30">Attributes<a class="headerlink" href="#attributes_30" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_31">Attributes<a class="headerlink" href="#attributes_31" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11869,7 +11943,7 @@ Params:
 Params:
 - regular worker/lead id.
 - stake delta amount</p>
-<h4 id="attributes_31">Attributes<a class="headerlink" href="#attributes_31" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_32">Attributes<a class="headerlink" href="#attributes_32" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11897,7 +11971,7 @@ Params:
 Params:
 - regular worker/lead id.
 - stake delta amount</p>
-<h4 id="attributes_32">Attributes<a class="headerlink" href="#attributes_32" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_33">Attributes<a class="headerlink" href="#attributes_33" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11927,7 +12001,7 @@ Params:
 - actual slashed balance.
 - Requested slashed balance.
 - Rationale.</p>
-<h4 id="attributes_33">Attributes<a class="headerlink" href="#attributes_33" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_34">Attributes<a class="headerlink" href="#attributes_34" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11965,7 +12039,7 @@ Params:
 Params:
 - status text hash
 - status text</p>
-<h4 id="attributes_34">Attributes<a class="headerlink" href="#attributes_34" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_35">Attributes<a class="headerlink" href="#attributes_35" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11994,7 +12068,7 @@ Params:
 - leader worker id.
 - Penalty.
 - Rationale.</p>
-<h4 id="attributes_35">Attributes<a class="headerlink" href="#attributes_35" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_36">Attributes<a class="headerlink" href="#attributes_36" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12028,7 +12102,7 @@ Params:
 - worker id.
 - Penalty.
 - Rationale.</p>
-<h4 id="attributes_36">Attributes<a class="headerlink" href="#attributes_36" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_37">Attributes<a class="headerlink" href="#attributes_37" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12056,12 +12130,46 @@ Params:
 </tbody>
 </table>
 <hr />
+<h3 id="vestedbudgetspending">VestedBudgetSpending<a class="headerlink" href="#vestedbudgetspending" title="Permanent link">&para;</a></h3>
+<p>Emits on budget from the working group being spent
+Params:
+- Receiver Account Id.
+- Vesting scheduled
+- Rationale.</p>
+<h4 id="attributes_38">Attributes<a class="headerlink" href="#attributes_38" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td><code>AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>None</td>
+<td><code>VestingInfo</code></td>
+<td><code>{'locked': 'u128', 'per_block': 'u128', 'starting_block': 'u32'}</code></td>
+</tr>
+<tr>
+<td>None</td>
+<td><code>Option&lt;Vec&lt;u8&gt;&gt;</code></td>
+<td><code>(None, 'Bytes')</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h3 id="workerexited">WorkerExited<a class="headerlink" href="#workerexited" title="Permanent link">&para;</a></h3>
 <p>Emits on exiting the worker.
 Params:
 - worker id.
 - Rationale.</p>
-<h4 id="attributes_37">Attributes<a class="headerlink" href="#attributes_37" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_39">Attributes<a class="headerlink" href="#attributes_39" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12084,7 +12192,7 @@ Params:
 Params:
 - worker
 - message</p>
-<h4 id="attributes_38">Attributes<a class="headerlink" href="#attributes_38" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_40">Attributes<a class="headerlink" href="#attributes_40" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12112,7 +12220,7 @@ Params:
 Params:
 - Id of the worker.
 - Reward account id of the worker.</p>
-<h4 id="attributes_39">Attributes<a class="headerlink" href="#attributes_39" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_41">Attributes<a class="headerlink" href="#attributes_41" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12140,7 +12248,7 @@ Params:
 Params:
 - Id of the worker.
 - Reward per block</p>
-<h4 id="attributes_40">Attributes<a class="headerlink" href="#attributes_40" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_42">Attributes<a class="headerlink" href="#attributes_42" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12168,7 +12276,7 @@ Params:
 Params:
 - Id of the worker.
 - Role account id of the worker.</p>
-<h4 id="attributes_41">Attributes<a class="headerlink" href="#attributes_41" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_43">Attributes<a class="headerlink" href="#attributes_43" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12196,7 +12304,7 @@ Params:
 Params:
 - Worker id.
 - Rationale.</p>
-<h4 id="attributes_42">Attributes<a class="headerlink" href="#attributes_42" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_44">Attributes<a class="headerlink" href="#attributes_44" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12225,7 +12333,7 @@ Params:
 - Member ID
 - Amount of balance
 - Rationale</p>
-<h4 id="attributes_43">Attributes<a class="headerlink" href="#attributes_43" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_45">Attributes<a class="headerlink" href="#attributes_45" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12257,7 +12365,7 @@ Params:
 <hr />
 <h3 id="activeworkercount">ActiveWorkerCount<a class="headerlink" href="#activeworkercount" title="Permanent link">&para;</a></h3>
 <p>Count of active workers.</p>
-<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
+<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'ActiveWorkerCount', []
 )
@@ -12268,7 +12376,7 @@ Params:
 <hr />
 <h3 id="applicationbyid">ApplicationById<a class="headerlink" href="#applicationbyid" title="Permanent link">&para;</a></h3>
 <p>Maps identifier to worker application on opening.</p>
-<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
+<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'ApplicationById', ['u64']
 )
@@ -12286,7 +12394,7 @@ Params:
 <hr />
 <h3 id="budget">Budget<a class="headerlink" href="#budget" title="Permanent link">&para;</a></h3>
 <p>Budget for the working group.</p>
-<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
+<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'Budget', []
 )
@@ -12297,7 +12405,7 @@ Params:
 <hr />
 <h3 id="currentlead">CurrentLead<a class="headerlink" href="#currentlead" title="Permanent link">&para;</a></h3>
 <p>Current group lead.</p>
-<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
+<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'CurrentLead', []
 )
@@ -12308,7 +12416,7 @@ Params:
 <hr />
 <h3 id="nextapplicationid">NextApplicationId<a class="headerlink" href="#nextapplicationid" title="Permanent link">&para;</a></h3>
 <p>Next identifier value for new worker application.</p>
-<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
+<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'NextApplicationId', []
 )
@@ -12319,7 +12427,7 @@ Params:
 <hr />
 <h3 id="nextopeningid">NextOpeningId<a class="headerlink" href="#nextopeningid" title="Permanent link">&para;</a></h3>
 <p>Next identifier value for new job opening.</p>
-<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
+<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'NextOpeningId', []
 )
@@ -12330,7 +12438,7 @@ Params:
 <hr />
 <h3 id="nextworkerid">NextWorkerId<a class="headerlink" href="#nextworkerid" title="Permanent link">&para;</a></h3>
 <p>Next identifier for a new worker.</p>
-<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
+<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'NextWorkerId', []
 )
@@ -12341,7 +12449,7 @@ Params:
 <hr />
 <h3 id="openingbyid">OpeningById<a class="headerlink" href="#openingbyid" title="Permanent link">&para;</a></h3>
 <p>Maps identifier to job opening.</p>
-<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
+<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'OpeningById', ['u64']
 )
@@ -12362,7 +12470,7 @@ Params:
 <hr />
 <h3 id="statustexthash">StatusTextHash<a class="headerlink" href="#statustexthash" title="Permanent link">&para;</a></h3>
 <p>Status text hash.</p>
-<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
+<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'StatusTextHash', []
 )
@@ -12373,7 +12481,7 @@ Params:
 <hr />
 <h3 id="workerbyid">WorkerById<a class="headerlink" href="#workerbyid" title="Permanent link">&para;</a></h3>
 <p>Maps identifier to corresponding worker.</p>
-<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
+<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'OperationsWorkingGroupBeta', 'WorkerById', ['u64']
 )
@@ -12399,7 +12507,7 @@ Params:
 <h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">16666666666600
 </code></pre>
-<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
+<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('OperationsWorkingGroupBeta', 'LeaderOpeningStake')
 </code></pre>
 <hr />
@@ -12409,7 +12517,7 @@ Params:
 <h4 id="value_1">Value<a class="headerlink" href="#value_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">30
 </code></pre>
-<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
+<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('OperationsWorkingGroupBeta', 'MaxWorkerNumberLimit')
 </code></pre>
 <hr />
@@ -12418,7 +12526,7 @@ Params:
 <h4 id="value_2">Value<a class="headerlink" href="#value_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">288000
 </code></pre>
-<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
+<h4 id="python_32">Python<a class="headerlink" href="#python_32" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('OperationsWorkingGroupBeta', 'MinUnstakingPeriodLimit')
 </code></pre>
 <hr />
@@ -12427,7 +12535,7 @@ Params:
 <h4 id="value_3">Value<a class="headerlink" href="#value_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">3333333333320
 </code></pre>
-<h4 id="python_32">Python<a class="headerlink" href="#python_32" title="Permanent link">&para;</a></h4>
+<h4 id="python_33">Python<a class="headerlink" href="#python_33" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('OperationsWorkingGroupBeta', 'MinimumApplicationStake')
 </code></pre>
 <hr />
@@ -12436,7 +12544,7 @@ Params:
 <h4 id="value_4">Value<a class="headerlink" href="#value_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">14470
 </code></pre>
-<h4 id="python_33">Python<a class="headerlink" href="#python_33" title="Permanent link">&para;</a></h4>
+<h4 id="python_34">Python<a class="headerlink" href="#python_34" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('OperationsWorkingGroupBeta', 'RewardPeriod')
 </code></pre>
 <hr />
@@ -12445,7 +12553,7 @@ Params:
 <h4 id="value_5">Value<a class="headerlink" href="#value_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'0x77672d6f70657262'
 </code></pre>
-<h4 id="python_34">Python<a class="headerlink" href="#python_34" title="Permanent link">&para;</a></h4>
+<h4 id="python_35">Python<a class="headerlink" href="#python_35" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('OperationsWorkingGroupBeta', 'StakingHandlerLockId')
 </code></pre>
 <hr />

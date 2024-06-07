@@ -9201,33 +9201,7 @@
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="approve_as_multi">approve_as_multi<a class="headerlink" href="#approve_as_multi" title="Permanent link">&para;</a></h3>
-<p>Register approval for a dispatch to be made from a deterministic composite account if
-approved by a total of <code>threshold - 1</code> of <code>other_signatories</code>.</p>
-<p>Payment: <code>DepositBase</code> will be reserved if this is the first approval, plus
-<code>threshold</code> times <code>DepositFactor</code>. It is returned once this dispatch happens or
-is cancelled.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>threshold</code>: The total number of approvals for this dispatch before it is executed.</li>
-<li><code>other_signatories</code>: The accounts (other than the sender) who can approve this
-dispatch. May not be empty.</li>
-<li><code>maybe_timepoint</code>: If this is the first approval, then this must be <code>None</code>. If it is
-not the first approval, then it must be <code>Some</code>, with the timepoint (block number and
-transaction index) of the first approval transaction.</li>
-<li><code>call_hash</code>: The hash of the call to be executed.</li>
-</ul>
-<p>NOTE: If this is the final approval, you will want to use <code>as_multi</code> instead.</p>
-<p>## Complexity
-- <code>O(S)</code>.
-- Up to one balance-reserve or unreserve operation.
-- One passthrough operation, one insert, both <code>O(S)</code> where <code>S</code> is the number of
-  signatories. <code>S</code> is capped by <code>MaxSignatories</code>, with weight being proportional.
-- One encode &amp; hash, both of complexity <code>O(S)</code>.
-- Up to one binary search and insert (<code>O(logS + S)</code>).
-- I/O: 1 read <code>O(S)</code>, up to 1 mutate <code>O(S)</code>. Up to one remove.
-- One event.
-- Storage: inserts one item, value size bounded by <code>MaxSignatories</code>, with a deposit
-  taken for its lifetime of <code>DepositBase + threshold * DepositFactor</code>.</p>
+<p>See [<code>Pallet::approve_as_multi</code>].</p>
 <h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9247,7 +9221,7 @@ transaction index) of the first approval transaction.</li>
 </tr>
 <tr>
 <td>maybe_timepoint</td>
-<td><code>Option&lt;Timepoint&lt;T::BlockNumber&gt;&gt;</code></td>
+<td><code>Option&lt;Timepoint&lt;BlockNumberFor&lt;T&gt;&gt;&gt;</code></td>
 </tr>
 <tr>
 <td>call_hash</td>
@@ -9281,40 +9255,7 @@ transaction index) of the first approval transaction.</li>
 </code></pre>
 <hr />
 <h3 id="as_multi">as_multi<a class="headerlink" href="#as_multi" title="Permanent link">&para;</a></h3>
-<p>Register approval for a dispatch to be made from a deterministic composite account if
-approved by a total of <code>threshold - 1</code> of <code>other_signatories</code>.</p>
-<p>If there are enough, then dispatch the call.</p>
-<p>Payment: <code>DepositBase</code> will be reserved if this is the first approval, plus
-<code>threshold</code> times <code>DepositFactor</code>. It is returned once this dispatch happens or
-is cancelled.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>threshold</code>: The total number of approvals for this dispatch before it is executed.</li>
-<li><code>other_signatories</code>: The accounts (other than the sender) who can approve this
-dispatch. May not be empty.</li>
-<li><code>maybe_timepoint</code>: If this is the first approval, then this must be <code>None</code>. If it is
-not the first approval, then it must be <code>Some</code>, with the timepoint (block number and
-transaction index) of the first approval transaction.</li>
-<li><code>call</code>: The call to be executed.</li>
-</ul>
-<p>NOTE: Unless this is the final approval, you will generally want to use
-<code>approve_as_multi</code> instead, since it only requires a hash of the call.</p>
-<p>Result is equivalent to the dispatched result if <code>threshold</code> is exactly <code>1</code>. Otherwise
-on success, result is <code>Ok</code> and the result from the interior call, if it was executed,
-may be found in the deposited <code>MultisigExecuted</code> event.</p>
-<p>## Complexity
-- <code>O(S + Z + Call)</code>.
-- Up to one balance-reserve or unreserve operation.
-- One passthrough operation, one insert, both <code>O(S)</code> where <code>S</code> is the number of
-  signatories. <code>S</code> is capped by <code>MaxSignatories</code>, with weight being proportional.
-- One call encode &amp; hash, both of complexity <code>O(Z)</code> where <code>Z</code> is tx-len.
-- One encode &amp; hash, both of complexity <code>O(S)</code>.
-- Up to one binary search and insert (<code>O(logS + S)</code>).
-- I/O: 1 read <code>O(S)</code>, up to 1 mutate <code>O(S)</code>. Up to one remove.
-- One event.
-- The weight of the <code>call</code>.
-- Storage: inserts one item, value size bounded by <code>MaxSignatories</code>, with a deposit
-  taken for its lifetime of <code>DepositBase + threshold * DepositFactor</code>.</p>
+<p>See [<code>Pallet::as_multi</code>].</p>
 <h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9334,7 +9275,7 @@ may be found in the deposited <code>MultisigExecuted</code> event.</p>
 </tr>
 <tr>
 <td>maybe_timepoint</td>
-<td><code>Option&lt;Timepoint&lt;T::BlockNumber&gt;&gt;</code></td>
+<td><code>Option&lt;Timepoint&lt;BlockNumberFor&lt;T&gt;&gt;&gt;</code></td>
 </tr>
 <tr>
 <td>call</td>
@@ -9368,16 +9309,7 @@ may be found in the deposited <code>MultisigExecuted</code> event.</p>
 </code></pre>
 <hr />
 <h3 id="as_multi_threshold_1">as_multi_threshold_1<a class="headerlink" href="#as_multi_threshold_1" title="Permanent link">&para;</a></h3>
-<p>Immediately dispatch a multi-signature call using a single approval from the caller.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>other_signatories</code>: The accounts (other than the sender) who are part of the
-multi-signature, but do not participate in the approval process.</li>
-<li><code>call</code>: The call to be executed.</li>
-</ul>
-<p>Result is equivalent to the dispatched result.</p>
-<p>## Complexity
-O(Z + C) where Z is the length of the call and C its execution weight.</p>
+<p>See [<code>Pallet::as_multi_threshold_1</code>].</p>
 <h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9407,26 +9339,7 @@ O(Z + C) where Z is the length of the call and C its execution weight.</p>
 </code></pre>
 <hr />
 <h3 id="cancel_as_multi">cancel_as_multi<a class="headerlink" href="#cancel_as_multi" title="Permanent link">&para;</a></h3>
-<p>Cancel a pre-existing, on-going multisig transaction. Any deposit reserved previously
-for this operation will be unreserved on success.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<ul>
-<li><code>threshold</code>: The total number of approvals for this dispatch before it is executed.</li>
-<li><code>other_signatories</code>: The accounts (other than the sender) who can approve this
-dispatch. May not be empty.</li>
-<li><code>timepoint</code>: The timepoint (block number and transaction index) of the first approval
-transaction for this dispatch.</li>
-<li><code>call_hash</code>: The hash of the call to be executed.</li>
-</ul>
-<p>## Complexity
-- <code>O(S)</code>.
-- Up to one balance-reserve or unreserve operation.
-- One passthrough operation, one insert, both <code>O(S)</code> where <code>S</code> is the number of
-  signatories. <code>S</code> is capped by <code>MaxSignatories</code>, with weight being proportional.
-- One encode &amp; hash, both of complexity <code>O(S)</code>.
-- One event.
-- I/O: 1 read <code>O(S)</code>, one remove.
-- Storage: removes one item.</p>
+<p>See [<code>Pallet::cancel_as_multi</code>].</p>
 <h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9446,7 +9359,7 @@ transaction for this dispatch.</li>
 </tr>
 <tr>
 <td>timepoint</td>
-<td><code>Timepoint&lt;T::BlockNumber&gt;</code></td>
+<td><code>Timepoint&lt;BlockNumberFor&lt;T&gt;&gt;</code></td>
 </tr>
 <tr>
 <td>call_hash</td>
@@ -9489,7 +9402,7 @@ transaction for this dispatch.</li>
 </tr>
 <tr>
 <td>timepoint</td>
-<td><code>Timepoint&lt;T::BlockNumber&gt;</code></td>
+<td><code>Timepoint&lt;BlockNumberFor&lt;T&gt;&gt;</code></td>
 <td><code>{'height': 'u32', 'index': 'u32'}</code></td>
 </tr>
 <tr>
@@ -9524,7 +9437,7 @@ transaction for this dispatch.</li>
 </tr>
 <tr>
 <td>timepoint</td>
-<td><code>Timepoint&lt;T::BlockNumber&gt;</code></td>
+<td><code>Timepoint&lt;BlockNumberFor&lt;T&gt;&gt;</code></td>
 <td><code>{'height': 'u32', 'index': 'u32'}</code></td>
 </tr>
 <tr>
@@ -9559,7 +9472,7 @@ transaction for this dispatch.</li>
 </tr>
 <tr>
 <td>timepoint</td>
-<td><code>Timepoint&lt;T::BlockNumber&gt;</code></td>
+<td><code>Timepoint&lt;BlockNumberFor&lt;T&gt;&gt;</code></td>
 <td><code>{'height': 'u32', 'index': 'u32'}</code></td>
 </tr>
 <tr>
@@ -9575,7 +9488,7 @@ transaction for this dispatch.</li>
 <tr>
 <td>result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}</code></td>
 </tr>
 </tbody>
 </table>
@@ -9637,7 +9550,7 @@ transaction for this dispatch.</li>
  <code>4 + sizeof((BlockNumber, Balance, AccountId))</code> bytes and whose key size is
  <code>32 + sizeof(AccountId)</code> bytes.</p>
 <h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">108000000
+<pre><code class="language-python">132000000
 </code></pre>
 <h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('Multisig', 'DepositBase')

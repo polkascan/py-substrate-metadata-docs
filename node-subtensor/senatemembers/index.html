@@ -9027,8 +9027,7 @@
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="add_member">add_member<a class="headerlink" href="#add_member" title="Permanent link">&para;</a></h3>
-<p>Add a member <code>who</code> to the set.</p>
-<p>May only be called from <code>T::AddOrigin</code>.</p>
+<p>See [<code>Pallet::add_member</code>].</p>
 <h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9059,9 +9058,7 @@
 </code></pre>
 <hr />
 <h3 id="change_key">change_key<a class="headerlink" href="#change_key" title="Permanent link">&para;</a></h3>
-<p>Swap out the sending member for some other key <code>new</code>.</p>
-<p>May only be called from <code>Signed</code> origin of a current member.</p>
-<p>Prime membership is passed from the origin account to <code>new</code>, if extant.</p>
+<p>See [<code>Pallet::change_key</code>].</p>
 <h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9092,8 +9089,7 @@
 </code></pre>
 <hr />
 <h3 id="clear_prime">clear_prime<a class="headerlink" href="#clear_prime" title="Permanent link">&para;</a></h3>
-<p>Remove the prime member if it exists.</p>
-<p>May only be called from <code>T::PrimeOrigin</code>.</p>
+<p>See [<code>Pallet::clear_prime</code>].</p>
 <h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <p>No attributes</p>
 <h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
@@ -9103,8 +9099,7 @@
 </code></pre>
 <hr />
 <h3 id="remove_member">remove_member<a class="headerlink" href="#remove_member" title="Permanent link">&para;</a></h3>
-<p>Remove a member <code>who</code> from the set.</p>
-<p>May only be called from <code>T::RemoveOrigin</code>.</p>
+<p>See [<code>Pallet::remove_member</code>].</p>
 <h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9135,9 +9130,7 @@
 </code></pre>
 <hr />
 <h3 id="reset_members">reset_members<a class="headerlink" href="#reset_members" title="Permanent link">&para;</a></h3>
-<p>Change the membership to a new set, disregarding the existing membership. Be nice and
-pass <code>members</code> pre-sorted.</p>
-<p>May only be called from <code>T::ResetOrigin</code>.</p>
+<p>See [<code>Pallet::reset_members</code>].</p>
 <h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9160,8 +9153,7 @@ pass <code>members</code> pre-sorted.</p>
 </code></pre>
 <hr />
 <h3 id="set_prime">set_prime<a class="headerlink" href="#set_prime" title="Permanent link">&para;</a></h3>
-<p>Set the prime member. Must be a current member.</p>
-<p>May only be called from <code>T::PrimeOrigin</code>.</p>
+<p>See [<code>Pallet::set_prime</code>].</p>
 <h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9192,9 +9184,7 @@ pass <code>members</code> pre-sorted.</p>
 </code></pre>
 <hr />
 <h3 id="swap_member">swap_member<a class="headerlink" href="#swap_member" title="Permanent link">&para;</a></h3>
-<p>Swap out one member <code>remove</code> for another <code>add</code>.</p>
-<p>May only be called from <code>T::SwapOrigin</code>.</p>
-<p>Prime membership is <em>not</em> passed from <code>remove</code> to <code>add</code>, if extant.</p>
+<p>See [<code>Pallet::swap_member</code>].</p>
 <h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
 <table>
 <thead>

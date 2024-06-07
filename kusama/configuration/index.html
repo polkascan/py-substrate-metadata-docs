@@ -3980,6 +3980,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#set_approval_voting_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_approval_voting_params
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#set_async_backing_params" class="md-nav__link">
     <span class="md-ellipsis">
       set_async_backing_params
@@ -4001,6 +4010,15 @@
   <a href="#set_code_retention_period" class="md-nav__link">
     <span class="md-ellipsis">
       set_code_retention_period
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_coretime_cores" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_coretime_cores
     </span>
   </a>
   
@@ -4259,18 +4277,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#set_on_demand_base_fee" class="md-nav__link">
+  <a href="#set_node_feature" class="md-nav__link">
     <span class="md-ellipsis">
-      set_on_demand_base_fee
+      set_node_feature
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#set_on_demand_cores" class="md-nav__link">
+  <a href="#set_on_demand_base_fee" class="md-nav__link">
     <span class="md-ellipsis">
-      set_on_demand_cores
+      set_on_demand_base_fee
     </span>
   </a>
   
@@ -9937,6 +9955,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#set_approval_voting_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_approval_voting_params
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#set_async_backing_params" class="md-nav__link">
     <span class="md-ellipsis">
       set_async_backing_params
@@ -9958,6 +9985,15 @@
   <a href="#set_code_retention_period" class="md-nav__link">
     <span class="md-ellipsis">
       set_code_retention_period
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_coretime_cores" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_coretime_cores
     </span>
   </a>
   
@@ -10216,18 +10252,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#set_on_demand_base_fee" class="md-nav__link">
+  <a href="#set_node_feature" class="md-nav__link">
     <span class="md-ellipsis">
-      set_on_demand_base_fee
+      set_node_feature
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#set_on_demand_cores" class="md-nav__link">
+  <a href="#set_on_demand_base_fee" class="md-nav__link">
     <span class="md-ellipsis">
-      set_on_demand_cores
+      set_on_demand_base_fee
     </span>
   </a>
   
@@ -10434,9 +10470,36 @@
 <hr />
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
+<h3 id="set_approval_voting_params">set_approval_voting_params<a class="headerlink" href="#set_approval_voting_params" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_approval_voting_params</code>].</p>
+<h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>ApprovalVotingParams</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_approval_voting_params', {
+    'new': {
+        'max_approval_coalesce_count': 'u32',
+    },
+}
+)
+</code></pre>
+<hr />
 <h3 id="set_async_backing_params">set_async_backing_params<a class="headerlink" href="#set_async_backing_params" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_async_backing_params</code>].</p>
-<h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10451,7 +10514,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Configuration', 'set_async_backing_params', {
     'new': {
@@ -10464,7 +10527,7 @@
 <hr />
 <h3 id="set_bypass_consistency_check">set_bypass_consistency_check<a class="headerlink" href="#set_bypass_consistency_check" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_bypass_consistency_check</code>].</p>
-<h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10479,7 +10542,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
+<h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Configuration', 'set_bypass_consistency_check', {'new': 'bool'}
 )
@@ -10487,7 +10550,7 @@
 <hr />
 <h3 id="set_code_retention_period">set_code_retention_period<a class="headerlink" href="#set_code_retention_period" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_code_retention_period</code>].</p>
-<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10502,15 +10565,38 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
+<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Configuration', 'set_code_retention_period', {'new': 'u32'}
 )
 </code></pre>
 <hr />
+<h3 id="set_coretime_cores">set_coretime_cores<a class="headerlink" href="#set_coretime_cores" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_coretime_cores</code>].</p>
+<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_coretime_cores', {'new': 'u32'}
+)
+</code></pre>
+<hr />
 <h3 id="set_dispute_period">set_dispute_period<a class="headerlink" href="#set_dispute_period" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_dispute_period</code>].</p>
-<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10525,7 +10611,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
+<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Configuration', 'set_dispute_period', {'new': 'u32'}
 )
@@ -10533,77 +10619,6 @@
 <hr />
 <h3 id="set_dispute_post_conclusion_acceptance_period">set_dispute_post_conclusion_acceptance_period<a class="headerlink" href="#set_dispute_post_conclusion_acceptance_period" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_dispute_post_conclusion_acceptance_period</code>].</p>
-<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>BlockNumberFor&lt;T&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_dispute_post_conclusion_acceptance_period', {'new': 'u32'}
-)
-</code></pre>
-<hr />
-<h3 id="set_executor_params">set_executor_params<a class="headerlink" href="#set_executor_params" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_executor_params</code>].</p>
-<h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>ExecutorParams</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_executor_params', {
-    'new': [
-        {
-            None: None,
-            'MaxMemoryPages': 'u32',
-            'PrecheckingMaxMemory': 'u64',
-            'PvfExecTimeout': (
-                (
-                    'Backing',
-                    'Approval',
-                ),
-                'u64',
-            ),
-            'PvfPrepTimeout': (
-                (
-                    'Precheck',
-                    'Lenient',
-                ),
-                'u64',
-            ),
-            'StackLogicalMax': 'u32',
-            'StackNativeMax': 'u32',
-            'WasmExtBulkMemory': None,
-        },
-    ],
-}
-)
-</code></pre>
-<hr />
-<h3 id="set_group_rotation_frequency">set_group_rotation_frequency<a class="headerlink" href="#set_group_rotation_frequency" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_group_rotation_frequency</code>].</p>
 <h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10621,12 +10636,12 @@
 </table>
 <h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_group_rotation_frequency', {'new': 'u32'}
+    'Configuration', 'set_dispute_post_conclusion_acceptance_period', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_hrmp_channel_max_capacity">set_hrmp_channel_max_capacity<a class="headerlink" href="#set_hrmp_channel_max_capacity" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_hrmp_channel_max_capacity</code>].</p>
+<h3 id="set_executor_params">set_executor_params<a class="headerlink" href="#set_executor_params" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_executor_params</code>].</p>
 <h4 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10638,18 +10653,43 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>u32</code></td>
+<td><code>ExecutorParams</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_hrmp_channel_max_capacity', {'new': 'u32'}
+    'Configuration', 'set_executor_params', {
+    'new': [
+        {
+            None: None,
+            'MaxMemoryPages': 'u32',
+            'PrecheckingMaxMemory': 'u64',
+            'PvfExecTimeout': (
+                (
+                    'Backing',
+                    'Approval',
+                ),
+                'u64',
+            ),
+            'PvfPrepTimeout': (
+                (
+                    'Precheck',
+                    'Prepare',
+                ),
+                'u64',
+            ),
+            'StackLogicalMax': 'u32',
+            'StackNativeMax': 'u32',
+            'WasmExtBulkMemory': None,
+        },
+    ],
+}
 )
 </code></pre>
 <hr />
-<h3 id="set_hrmp_channel_max_message_size">set_hrmp_channel_max_message_size<a class="headerlink" href="#set_hrmp_channel_max_message_size" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_hrmp_channel_max_message_size</code>].</p>
+<h3 id="set_group_rotation_frequency">set_group_rotation_frequency<a class="headerlink" href="#set_group_rotation_frequency" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_group_rotation_frequency</code>].</p>
 <h4 id="attributes_8">Attributes<a class="headerlink" href="#attributes_8" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10661,18 +10701,18 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>u32</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_hrmp_channel_max_message_size', {'new': 'u32'}
+    'Configuration', 'set_group_rotation_frequency', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_hrmp_channel_max_total_size">set_hrmp_channel_max_total_size<a class="headerlink" href="#set_hrmp_channel_max_total_size" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_hrmp_channel_max_total_size</code>].</p>
+<h3 id="set_hrmp_channel_max_capacity">set_hrmp_channel_max_capacity<a class="headerlink" href="#set_hrmp_channel_max_capacity" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_hrmp_channel_max_capacity</code>].</p>
 <h4 id="attributes_9">Attributes<a class="headerlink" href="#attributes_9" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10690,12 +10730,12 @@
 </table>
 <h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_hrmp_channel_max_total_size', {'new': 'u32'}
+    'Configuration', 'set_hrmp_channel_max_capacity', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_hrmp_max_message_num_per_candidate">set_hrmp_max_message_num_per_candidate<a class="headerlink" href="#set_hrmp_max_message_num_per_candidate" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_hrmp_max_message_num_per_candidate</code>].</p>
+<h3 id="set_hrmp_channel_max_message_size">set_hrmp_channel_max_message_size<a class="headerlink" href="#set_hrmp_channel_max_message_size" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_hrmp_channel_max_message_size</code>].</p>
 <h4 id="attributes_10">Attributes<a class="headerlink" href="#attributes_10" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10713,12 +10753,12 @@
 </table>
 <h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_hrmp_max_message_num_per_candidate', {'new': 'u32'}
+    'Configuration', 'set_hrmp_channel_max_message_size', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_hrmp_max_parachain_inbound_channels">set_hrmp_max_parachain_inbound_channels<a class="headerlink" href="#set_hrmp_max_parachain_inbound_channels" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_hrmp_max_parachain_inbound_channels</code>].</p>
+<h3 id="set_hrmp_channel_max_total_size">set_hrmp_channel_max_total_size<a class="headerlink" href="#set_hrmp_channel_max_total_size" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_hrmp_channel_max_total_size</code>].</p>
 <h4 id="attributes_11">Attributes<a class="headerlink" href="#attributes_11" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10736,12 +10776,12 @@
 </table>
 <h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_hrmp_max_parachain_inbound_channels', {'new': 'u32'}
+    'Configuration', 'set_hrmp_channel_max_total_size', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_hrmp_max_parachain_outbound_channels">set_hrmp_max_parachain_outbound_channels<a class="headerlink" href="#set_hrmp_max_parachain_outbound_channels" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_hrmp_max_parachain_outbound_channels</code>].</p>
+<h3 id="set_hrmp_max_message_num_per_candidate">set_hrmp_max_message_num_per_candidate<a class="headerlink" href="#set_hrmp_max_message_num_per_candidate" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_hrmp_max_message_num_per_candidate</code>].</p>
 <h4 id="attributes_12">Attributes<a class="headerlink" href="#attributes_12" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10759,12 +10799,12 @@
 </table>
 <h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_hrmp_max_parachain_outbound_channels', {'new': 'u32'}
+    'Configuration', 'set_hrmp_max_message_num_per_candidate', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_hrmp_open_request_ttl">set_hrmp_open_request_ttl<a class="headerlink" href="#set_hrmp_open_request_ttl" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_hrmp_open_request_ttl</code>].</p>
+<h3 id="set_hrmp_max_parachain_inbound_channels">set_hrmp_max_parachain_inbound_channels<a class="headerlink" href="#set_hrmp_max_parachain_inbound_channels" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_hrmp_max_parachain_inbound_channels</code>].</p>
 <h4 id="attributes_13">Attributes<a class="headerlink" href="#attributes_13" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10782,12 +10822,12 @@
 </table>
 <h4 id="python_13">Python<a class="headerlink" href="#python_13" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_hrmp_open_request_ttl', {'new': 'u32'}
+    'Configuration', 'set_hrmp_max_parachain_inbound_channels', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_hrmp_recipient_deposit">set_hrmp_recipient_deposit<a class="headerlink" href="#set_hrmp_recipient_deposit" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_hrmp_recipient_deposit</code>].</p>
+<h3 id="set_hrmp_max_parachain_outbound_channels">set_hrmp_max_parachain_outbound_channels<a class="headerlink" href="#set_hrmp_max_parachain_outbound_channels" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_hrmp_max_parachain_outbound_channels</code>].</p>
 <h4 id="attributes_14">Attributes<a class="headerlink" href="#attributes_14" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10799,18 +10839,18 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>Balance</code></td>
+<td><code>u32</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_hrmp_recipient_deposit', {'new': 'u128'}
+    'Configuration', 'set_hrmp_max_parachain_outbound_channels', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_hrmp_sender_deposit">set_hrmp_sender_deposit<a class="headerlink" href="#set_hrmp_sender_deposit" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_hrmp_sender_deposit</code>].</p>
+<h3 id="set_hrmp_open_request_ttl">set_hrmp_open_request_ttl<a class="headerlink" href="#set_hrmp_open_request_ttl" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_hrmp_open_request_ttl</code>].</p>
 <h4 id="attributes_15">Attributes<a class="headerlink" href="#attributes_15" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10822,18 +10862,18 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>Balance</code></td>
+<td><code>u32</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_hrmp_sender_deposit', {'new': 'u128'}
+    'Configuration', 'set_hrmp_open_request_ttl', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_max_code_size">set_max_code_size<a class="headerlink" href="#set_max_code_size" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_code_size</code>].</p>
+<h3 id="set_hrmp_recipient_deposit">set_hrmp_recipient_deposit<a class="headerlink" href="#set_hrmp_recipient_deposit" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_hrmp_recipient_deposit</code>].</p>
 <h4 id="attributes_16">Attributes<a class="headerlink" href="#attributes_16" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10845,18 +10885,18 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>u32</code></td>
+<td><code>Balance</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_code_size', {'new': 'u32'}
+    'Configuration', 'set_hrmp_recipient_deposit', {'new': 'u128'}
 )
 </code></pre>
 <hr />
-<h3 id="set_max_downward_message_size">set_max_downward_message_size<a class="headerlink" href="#set_max_downward_message_size" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_downward_message_size</code>].</p>
+<h3 id="set_hrmp_sender_deposit">set_hrmp_sender_deposit<a class="headerlink" href="#set_hrmp_sender_deposit" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_hrmp_sender_deposit</code>].</p>
 <h4 id="attributes_17">Attributes<a class="headerlink" href="#attributes_17" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10868,18 +10908,18 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>u32</code></td>
+<td><code>Balance</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_downward_message_size', {'new': 'u32'}
+    'Configuration', 'set_hrmp_sender_deposit', {'new': 'u128'}
 )
 </code></pre>
 <hr />
-<h3 id="set_max_head_data_size">set_max_head_data_size<a class="headerlink" href="#set_max_head_data_size" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_head_data_size</code>].</p>
+<h3 id="set_max_code_size">set_max_code_size<a class="headerlink" href="#set_max_code_size" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_code_size</code>].</p>
 <h4 id="attributes_18">Attributes<a class="headerlink" href="#attributes_18" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10897,12 +10937,12 @@
 </table>
 <h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_head_data_size', {'new': 'u32'}
+    'Configuration', 'set_max_code_size', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_max_pov_size">set_max_pov_size<a class="headerlink" href="#set_max_pov_size" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_pov_size</code>].</p>
+<h3 id="set_max_downward_message_size">set_max_downward_message_size<a class="headerlink" href="#set_max_downward_message_size" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_downward_message_size</code>].</p>
 <h4 id="attributes_19">Attributes<a class="headerlink" href="#attributes_19" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10920,12 +10960,12 @@
 </table>
 <h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_pov_size', {'new': 'u32'}
+    'Configuration', 'set_max_downward_message_size', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_max_upward_message_num_per_candidate">set_max_upward_message_num_per_candidate<a class="headerlink" href="#set_max_upward_message_num_per_candidate" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_upward_message_num_per_candidate</code>].</p>
+<h3 id="set_max_head_data_size">set_max_head_data_size<a class="headerlink" href="#set_max_head_data_size" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_head_data_size</code>].</p>
 <h4 id="attributes_20">Attributes<a class="headerlink" href="#attributes_20" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10943,12 +10983,12 @@
 </table>
 <h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_upward_message_num_per_candidate', {'new': 'u32'}
+    'Configuration', 'set_max_head_data_size', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_max_upward_message_size">set_max_upward_message_size<a class="headerlink" href="#set_max_upward_message_size" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_upward_message_size</code>].</p>
+<h3 id="set_max_pov_size">set_max_pov_size<a class="headerlink" href="#set_max_pov_size" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_pov_size</code>].</p>
 <h4 id="attributes_21">Attributes<a class="headerlink" href="#attributes_21" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10966,12 +11006,12 @@
 </table>
 <h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_upward_message_size', {'new': 'u32'}
+    'Configuration', 'set_max_pov_size', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_max_upward_queue_count">set_max_upward_queue_count<a class="headerlink" href="#set_max_upward_queue_count" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_upward_queue_count</code>].</p>
+<h3 id="set_max_upward_message_num_per_candidate">set_max_upward_message_num_per_candidate<a class="headerlink" href="#set_max_upward_message_num_per_candidate" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_upward_message_num_per_candidate</code>].</p>
 <h4 id="attributes_22">Attributes<a class="headerlink" href="#attributes_22" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -10989,12 +11029,12 @@
 </table>
 <h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_upward_queue_count', {'new': 'u32'}
+    'Configuration', 'set_max_upward_message_num_per_candidate', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_max_upward_queue_size">set_max_upward_queue_size<a class="headerlink" href="#set_max_upward_queue_size" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_upward_queue_size</code>].</p>
+<h3 id="set_max_upward_message_size">set_max_upward_message_size<a class="headerlink" href="#set_max_upward_message_size" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_upward_message_size</code>].</p>
 <h4 id="attributes_23">Attributes<a class="headerlink" href="#attributes_23" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11012,59 +11052,13 @@
 </table>
 <h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_upward_queue_size', {'new': 'u32'}
+    'Configuration', 'set_max_upward_message_size', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_max_validators">set_max_validators<a class="headerlink" href="#set_max_validators" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_validators</code>].</p>
+<h3 id="set_max_upward_queue_count">set_max_upward_queue_count<a class="headerlink" href="#set_max_upward_queue_count" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_upward_queue_count</code>].</p>
 <h4 id="attributes_24">Attributes<a class="headerlink" href="#attributes_24" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>Option&lt;u32&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_validators', {'new': (None, 'u32')}
-)
-</code></pre>
-<hr />
-<h3 id="set_max_validators_per_core">set_max_validators_per_core<a class="headerlink" href="#set_max_validators_per_core" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_max_validators_per_core</code>].</p>
-<h4 id="attributes_25">Attributes<a class="headerlink" href="#attributes_25" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>Option&lt;u32&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_max_validators_per_core', {'new': (None, 'u32')}
-)
-</code></pre>
-<hr />
-<h3 id="set_minimum_backing_votes">set_minimum_backing_votes<a class="headerlink" href="#set_minimum_backing_votes" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_minimum_backing_votes</code>].</p>
-<h4 id="attributes_26">Attributes<a class="headerlink" href="#attributes_26" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11079,14 +11073,60 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
+<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_minimum_backing_votes', {'new': 'u32'}
+    'Configuration', 'set_max_upward_queue_count', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_minimum_validation_upgrade_delay">set_minimum_validation_upgrade_delay<a class="headerlink" href="#set_minimum_validation_upgrade_delay" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_minimum_validation_upgrade_delay</code>].</p>
+<h3 id="set_max_upward_queue_size">set_max_upward_queue_size<a class="headerlink" href="#set_max_upward_queue_size" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_upward_queue_size</code>].</p>
+<h4 id="attributes_25">Attributes<a class="headerlink" href="#attributes_25" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_max_upward_queue_size', {'new': 'u32'}
+)
+</code></pre>
+<hr />
+<h3 id="set_max_validators">set_max_validators<a class="headerlink" href="#set_max_validators" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_validators</code>].</p>
+<h4 id="attributes_26">Attributes<a class="headerlink" href="#attributes_26" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>Option&lt;u32&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_max_validators', {'new': (None, 'u32')}
+)
+</code></pre>
+<hr />
+<h3 id="set_max_validators_per_core">set_max_validators_per_core<a class="headerlink" href="#set_max_validators_per_core" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_max_validators_per_core</code>].</p>
 <h4 id="attributes_27">Attributes<a class="headerlink" href="#attributes_27" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11098,18 +11138,18 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>BlockNumberFor&lt;T&gt;</code></td>
+<td><code>Option&lt;u32&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_minimum_validation_upgrade_delay', {'new': 'u32'}
+    'Configuration', 'set_max_validators_per_core', {'new': (None, 'u32')}
 )
 </code></pre>
 <hr />
-<h3 id="set_n_delay_tranches">set_n_delay_tranches<a class="headerlink" href="#set_n_delay_tranches" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_n_delay_tranches</code>].</p>
+<h3 id="set_minimum_backing_votes">set_minimum_backing_votes<a class="headerlink" href="#set_minimum_backing_votes" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_minimum_backing_votes</code>].</p>
 <h4 id="attributes_28">Attributes<a class="headerlink" href="#attributes_28" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11127,12 +11167,12 @@
 </table>
 <h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_n_delay_tranches', {'new': 'u32'}
+    'Configuration', 'set_minimum_backing_votes', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_needed_approvals">set_needed_approvals<a class="headerlink" href="#set_needed_approvals" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_needed_approvals</code>].</p>
+<h3 id="set_minimum_validation_upgrade_delay">set_minimum_validation_upgrade_delay<a class="headerlink" href="#set_minimum_validation_upgrade_delay" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_minimum_validation_upgrade_delay</code>].</p>
 <h4 id="attributes_29">Attributes<a class="headerlink" href="#attributes_29" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11144,18 +11184,18 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>u32</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_needed_approvals', {'new': 'u32'}
+    'Configuration', 'set_minimum_validation_upgrade_delay', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_no_show_slots">set_no_show_slots<a class="headerlink" href="#set_no_show_slots" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_no_show_slots</code>].</p>
+<h3 id="set_n_delay_tranches">set_n_delay_tranches<a class="headerlink" href="#set_n_delay_tranches" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_n_delay_tranches</code>].</p>
 <h4 id="attributes_30">Attributes<a class="headerlink" href="#attributes_30" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11173,12 +11213,12 @@
 </table>
 <h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_no_show_slots', {'new': 'u32'}
+    'Configuration', 'set_n_delay_tranches', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_on_demand_base_fee">set_on_demand_base_fee<a class="headerlink" href="#set_on_demand_base_fee" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_on_demand_base_fee</code>].</p>
+<h3 id="set_needed_approvals">set_needed_approvals<a class="headerlink" href="#set_needed_approvals" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_needed_approvals</code>].</p>
 <h4 id="attributes_31">Attributes<a class="headerlink" href="#attributes_31" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11190,18 +11230,18 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>Balance</code></td>
+<td><code>u32</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_on_demand_base_fee', {'new': 'u128'}
+    'Configuration', 'set_needed_approvals', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_on_demand_cores">set_on_demand_cores<a class="headerlink" href="#set_on_demand_cores" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_on_demand_cores</code>].</p>
+<h3 id="set_no_show_slots">set_no_show_slots<a class="headerlink" href="#set_no_show_slots" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_no_show_slots</code>].</p>
 <h4 id="attributes_32">Attributes<a class="headerlink" href="#attributes_32" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11219,12 +11259,12 @@
 </table>
 <h4 id="python_32">Python<a class="headerlink" href="#python_32" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_on_demand_cores', {'new': 'u32'}
+    'Configuration', 'set_no_show_slots', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_on_demand_fee_variability">set_on_demand_fee_variability<a class="headerlink" href="#set_on_demand_fee_variability" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_on_demand_fee_variability</code>].</p>
+<h3 id="set_node_feature">set_node_feature<a class="headerlink" href="#set_node_feature" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_node_feature</code>].</p>
 <h4 id="attributes_33">Attributes<a class="headerlink" href="#attributes_33" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11235,19 +11275,23 @@
 </thead>
 <tbody>
 <tr>
-<td>new</td>
-<td><code>Perbill</code></td>
+<td>index</td>
+<td><code>u8</code></td>
+</tr>
+<tr>
+<td>value</td>
+<td><code>bool</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_33">Python<a class="headerlink" href="#python_33" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_on_demand_fee_variability', {'new': 'u32'}
+    'Configuration', 'set_node_feature', {'index': 'u8', 'value': 'bool'}
 )
 </code></pre>
 <hr />
-<h3 id="set_on_demand_queue_max_size">set_on_demand_queue_max_size<a class="headerlink" href="#set_on_demand_queue_max_size" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_on_demand_queue_max_size</code>].</p>
+<h3 id="set_on_demand_base_fee">set_on_demand_base_fee<a class="headerlink" href="#set_on_demand_base_fee" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_on_demand_base_fee</code>].</p>
 <h4 id="attributes_34">Attributes<a class="headerlink" href="#attributes_34" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11259,42 +11303,19 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>u32</code></td>
+<td><code>Balance</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_34">Python<a class="headerlink" href="#python_34" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_on_demand_queue_max_size', {'new': 'u32'}
+    'Configuration', 'set_on_demand_base_fee', {'new': 'u128'}
 )
 </code></pre>
 <hr />
-<h3 id="set_on_demand_retries">set_on_demand_retries<a class="headerlink" href="#set_on_demand_retries" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_on_demand_retries</code>].</p>
+<h3 id="set_on_demand_fee_variability">set_on_demand_fee_variability<a class="headerlink" href="#set_on_demand_fee_variability" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_on_demand_fee_variability</code>].</p>
 <h4 id="attributes_35">Attributes<a class="headerlink" href="#attributes_35" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_35">Python<a class="headerlink" href="#python_35" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_on_demand_retries', {'new': 'u32'}
-)
-</code></pre>
-<hr />
-<h3 id="set_on_demand_target_queue_utilization">set_on_demand_target_queue_utilization<a class="headerlink" href="#set_on_demand_target_queue_utilization" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_on_demand_target_queue_utilization</code>].</p>
-<h4 id="attributes_36">Attributes<a class="headerlink" href="#attributes_36" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11309,14 +11330,37 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_36">Python<a class="headerlink" href="#python_36" title="Permanent link">&para;</a></h4>
+<h4 id="python_35">Python<a class="headerlink" href="#python_35" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_on_demand_target_queue_utilization', {'new': 'u32'}
+    'Configuration', 'set_on_demand_fee_variability', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_on_demand_ttl">set_on_demand_ttl<a class="headerlink" href="#set_on_demand_ttl" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_on_demand_ttl</code>].</p>
+<h3 id="set_on_demand_queue_max_size">set_on_demand_queue_max_size<a class="headerlink" href="#set_on_demand_queue_max_size" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_on_demand_queue_max_size</code>].</p>
+<h4 id="attributes_36">Attributes<a class="headerlink" href="#attributes_36" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_36">Python<a class="headerlink" href="#python_36" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_on_demand_queue_max_size', {'new': 'u32'}
+)
+</code></pre>
+<hr />
+<h3 id="set_on_demand_retries">set_on_demand_retries<a class="headerlink" href="#set_on_demand_retries" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_on_demand_retries</code>].</p>
 <h4 id="attributes_37">Attributes<a class="headerlink" href="#attributes_37" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11328,19 +11372,42 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>BlockNumberFor&lt;T&gt;</code></td>
+<td><code>u32</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_37">Python<a class="headerlink" href="#python_37" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_on_demand_ttl', {'new': 'u32'}
+    'Configuration', 'set_on_demand_retries', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_paras_availability_period">set_paras_availability_period<a class="headerlink" href="#set_paras_availability_period" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_paras_availability_period</code>].</p>
+<h3 id="set_on_demand_target_queue_utilization">set_on_demand_target_queue_utilization<a class="headerlink" href="#set_on_demand_target_queue_utilization" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_on_demand_target_queue_utilization</code>].</p>
 <h4 id="attributes_38">Attributes<a class="headerlink" href="#attributes_38" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>Perbill</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_38">Python<a class="headerlink" href="#python_38" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_on_demand_target_queue_utilization', {'new': 'u32'}
+)
+</code></pre>
+<hr />
+<h3 id="set_on_demand_ttl">set_on_demand_ttl<a class="headerlink" href="#set_on_demand_ttl" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_on_demand_ttl</code>].</p>
+<h4 id="attributes_39">Attributes<a class="headerlink" href="#attributes_39" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11355,7 +11422,30 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_38">Python<a class="headerlink" href="#python_38" title="Permanent link">&para;</a></h4>
+<h4 id="python_39">Python<a class="headerlink" href="#python_39" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_on_demand_ttl', {'new': 'u32'}
+)
+</code></pre>
+<hr />
+<h3 id="set_paras_availability_period">set_paras_availability_period<a class="headerlink" href="#set_paras_availability_period" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_paras_availability_period</code>].</p>
+<h4 id="attributes_40">Attributes<a class="headerlink" href="#attributes_40" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_40">Python<a class="headerlink" href="#python_40" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Configuration', 'set_paras_availability_period', {'new': 'u32'}
 )
@@ -11363,7 +11453,7 @@
 <hr />
 <h3 id="set_pvf_voting_ttl">set_pvf_voting_ttl<a class="headerlink" href="#set_pvf_voting_ttl" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_pvf_voting_ttl</code>].</p>
-<h4 id="attributes_39">Attributes<a class="headerlink" href="#attributes_39" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_41">Attributes<a class="headerlink" href="#attributes_41" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11378,7 +11468,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_39">Python<a class="headerlink" href="#python_39" title="Permanent link">&para;</a></h4>
+<h4 id="python_41">Python<a class="headerlink" href="#python_41" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Configuration', 'set_pvf_voting_ttl', {'new': 'u32'}
 )
@@ -11386,52 +11476,6 @@
 <hr />
 <h3 id="set_relay_vrf_modulo_samples">set_relay_vrf_modulo_samples<a class="headerlink" href="#set_relay_vrf_modulo_samples" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::set_relay_vrf_modulo_samples</code>].</p>
-<h4 id="attributes_40">Attributes<a class="headerlink" href="#attributes_40" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_40">Python<a class="headerlink" href="#python_40" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_relay_vrf_modulo_samples', {'new': 'u32'}
-)
-</code></pre>
-<hr />
-<h3 id="set_scheduling_lookahead">set_scheduling_lookahead<a class="headerlink" href="#set_scheduling_lookahead" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_scheduling_lookahead</code>].</p>
-<h4 id="attributes_41">Attributes<a class="headerlink" href="#attributes_41" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>u32</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_41">Python<a class="headerlink" href="#python_41" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_scheduling_lookahead', {'new': 'u32'}
-)
-</code></pre>
-<hr />
-<h3 id="set_validation_upgrade_cooldown">set_validation_upgrade_cooldown<a class="headerlink" href="#set_validation_upgrade_cooldown" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_validation_upgrade_cooldown</code>].</p>
 <h4 id="attributes_42">Attributes<a class="headerlink" href="#attributes_42" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -11443,42 +11487,19 @@
 <tbody>
 <tr>
 <td>new</td>
-<td><code>BlockNumberFor&lt;T&gt;</code></td>
+<td><code>u32</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python_42">Python<a class="headerlink" href="#python_42" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_validation_upgrade_cooldown', {'new': 'u32'}
+    'Configuration', 'set_relay_vrf_modulo_samples', {'new': 'u32'}
 )
 </code></pre>
 <hr />
-<h3 id="set_validation_upgrade_delay">set_validation_upgrade_delay<a class="headerlink" href="#set_validation_upgrade_delay" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_validation_upgrade_delay</code>].</p>
+<h3 id="set_scheduling_lookahead">set_scheduling_lookahead<a class="headerlink" href="#set_scheduling_lookahead" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_scheduling_lookahead</code>].</p>
 <h4 id="attributes_43">Attributes<a class="headerlink" href="#attributes_43" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>new</td>
-<td><code>BlockNumberFor&lt;T&gt;</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_43">Python<a class="headerlink" href="#python_43" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Configuration', 'set_validation_upgrade_delay', {'new': 'u32'}
-)
-</code></pre>
-<hr />
-<h3 id="set_zeroth_delay_tranche_width">set_zeroth_delay_tranche_width<a class="headerlink" href="#set_zeroth_delay_tranche_width" title="Permanent link">&para;</a></h3>
-<p>See [<code>Pallet::set_zeroth_delay_tranche_width</code>].</p>
-<h4 id="attributes_44">Attributes<a class="headerlink" href="#attributes_44" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11493,7 +11514,76 @@
 </tr>
 </tbody>
 </table>
+<h4 id="python_43">Python<a class="headerlink" href="#python_43" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_scheduling_lookahead', {'new': 'u32'}
+)
+</code></pre>
+<hr />
+<h3 id="set_validation_upgrade_cooldown">set_validation_upgrade_cooldown<a class="headerlink" href="#set_validation_upgrade_cooldown" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_validation_upgrade_cooldown</code>].</p>
+<h4 id="attributes_44">Attributes<a class="headerlink" href="#attributes_44" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
+</tr>
+</tbody>
+</table>
 <h4 id="python_44">Python<a class="headerlink" href="#python_44" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_validation_upgrade_cooldown', {'new': 'u32'}
+)
+</code></pre>
+<hr />
+<h3 id="set_validation_upgrade_delay">set_validation_upgrade_delay<a class="headerlink" href="#set_validation_upgrade_delay" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_validation_upgrade_delay</code>].</p>
+<h4 id="attributes_45">Attributes<a class="headerlink" href="#attributes_45" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_45">Python<a class="headerlink" href="#python_45" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'Configuration', 'set_validation_upgrade_delay', {'new': 'u32'}
+)
+</code></pre>
+<hr />
+<h3 id="set_zeroth_delay_tranche_width">set_zeroth_delay_tranche_width<a class="headerlink" href="#set_zeroth_delay_tranche_width" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::set_zeroth_delay_tranche_width</code>].</p>
+<h4 id="attributes_46">Attributes<a class="headerlink" href="#attributes_46" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td><code>u32</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_46">Python<a class="headerlink" href="#python_46" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Configuration', 'set_zeroth_delay_tranche_width', {'new': 'u32'}
 )
@@ -11503,18 +11593,20 @@
 <hr />
 <h3 id="activeconfig">ActiveConfig<a class="headerlink" href="#activeconfig" title="Permanent link">&para;</a></h3>
 <p>The active configuration for the current session.</p>
-<h4 id="python_45">Python<a class="headerlink" href="#python_45" title="Permanent link">&para;</a></h4>
+<h4 id="python_47">Python<a class="headerlink" href="#python_47" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Configuration', 'ActiveConfig', []
 )
 </code></pre>
 <h4 id="return-value">Return value<a class="headerlink" href="#return-value" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
+    'approval_voting_params': {'max_approval_coalesce_count': 'u32'},
     'async_backing_params': {
         'allowed_ancestry_len': 'u32',
         'max_candidate_depth': 'u32',
     },
     'code_retention_period': 'u32',
+    'coretime_cores': 'u32',
     'dispute_period': 'u32',
     'dispute_post_conclusion_acceptance_period': 'u32',
     'executor_params': [
@@ -11522,8 +11614,8 @@
             None: None,
             'MaxMemoryPages': 'u32',
             'PrecheckingMaxMemory': 'u64',
-            'PvfExecTimeout': ('scale_info::332', 'u64'),
-            'PvfPrepTimeout': ('scale_info::331', 'u64'),
+            'PvfExecTimeout': ('scale_info::354', 'u64'),
+            'PvfPrepTimeout': ('scale_info::353', 'u64'),
             'StackLogicalMax': 'u32',
             'StackNativeMax': 'u32',
             'WasmExtBulkMemory': None,
@@ -11553,8 +11645,8 @@
     'n_delay_tranches': 'u32',
     'needed_approvals': 'u32',
     'no_show_slots': 'u32',
+    'node_features': 'BitVec',
     'on_demand_base_fee': 'u128',
-    'on_demand_cores': 'u32',
     'on_demand_fee_variability': 'u32',
     'on_demand_queue_max_size': 'u32',
     'on_demand_retries': 'u32',
@@ -11573,7 +11665,7 @@
 <h3 id="bypassconsistencycheck">BypassConsistencyCheck<a class="headerlink" href="#bypassconsistencycheck" title="Permanent link">&para;</a></h3>
 <p>If this is set, then the configuration setters will bypass the consistency checks. This
  is meant to be used only as the last resort.</p>
-<h4 id="python_46">Python<a class="headerlink" href="#python_46" title="Permanent link">&para;</a></h4>
+<h4 id="python_48">Python<a class="headerlink" href="#python_48" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Configuration', 'BypassConsistencyCheck', []
 )
@@ -11588,7 +11680,7 @@
  be applied.</p>
 <p>The list is sorted ascending by session index. Also, this list can only contain at most
  2 items: for the next session and for the <code>scheduled_session</code>.</p>
-<h4 id="python_47">Python<a class="headerlink" href="#python_47" title="Permanent link">&para;</a></h4>
+<h4 id="python_49">Python<a class="headerlink" href="#python_49" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Configuration', 'PendingConfigs', []
 )
@@ -11598,14 +11690,16 @@
     (
         'u32',
         {
+            'approval_voting_params': {'max_approval_coalesce_count': 'u32'},
             'async_backing_params': {
                 'allowed_ancestry_len': 'u32',
                 'max_candidate_depth': 'u32',
             },
             'code_retention_period': 'u32',
+            'coretime_cores': 'u32',
             'dispute_period': 'u32',
             'dispute_post_conclusion_acceptance_period': 'u32',
-            'executor_params': ['scale_info::330'],
+            'executor_params': ['scale_info::352'],
             'group_rotation_frequency': 'u32',
             'hrmp_channel_max_capacity': 'u32',
             'hrmp_channel_max_message_size': 'u32',
@@ -11630,8 +11724,8 @@
             'n_delay_tranches': 'u32',
             'needed_approvals': 'u32',
             'no_show_slots': 'u32',
+            'node_features': 'BitVec',
             'on_demand_base_fee': 'u128',
-            'on_demand_cores': 'u32',
             'on_demand_fee_variability': 'u32',
             'on_demand_queue_max_size': 'u32',
             'on_demand_retries': 'u32',

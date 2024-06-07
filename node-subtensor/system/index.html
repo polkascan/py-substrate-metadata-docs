@@ -9489,9 +9489,7 @@
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="kill_prefix">kill_prefix<a class="headerlink" href="#kill_prefix" title="Permanent link">&para;</a></h3>
-<p>Kill all storage items with a key that starts with the given prefix.</p>
-<p><strong>NOTE:</strong> We rely on the Root origin to provide us the number of subkeys under
-the prefix we are removing to accurately calculate the weight of this function.</p>
+<p>See [<code>Pallet::kill_prefix</code>].</p>
 <h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9518,7 +9516,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h3 id="kill_storage">kill_storage<a class="headerlink" href="#kill_storage" title="Permanent link">&para;</a></h3>
-<p>Kill some items from storage.</p>
+<p>See [<code>Pallet::kill_storage</code>].</p>
 <h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9541,9 +9539,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h3 id="remark">remark<a class="headerlink" href="#remark" title="Permanent link">&para;</a></h3>
-<p>Make some on-chain remark.</p>
-<p>## Complexity
-- <code>O(1)</code></p>
+<p>See [<code>Pallet::remark</code>].</p>
 <h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9566,7 +9562,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h3 id="remark_with_event">remark_with_event<a class="headerlink" href="#remark_with_event" title="Permanent link">&para;</a></h3>
-<p>Make some on-chain remark and emit event.</p>
+<p>See [<code>Pallet::remark_with_event</code>].</p>
 <h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9589,9 +9585,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h3 id="set_code">set_code<a class="headerlink" href="#set_code" title="Permanent link">&para;</a></h3>
-<p>Set the new runtime code.</p>
-<p>## Complexity
-- <code>O(C + S)</code> where <code>C</code> length of <code>code</code> and <code>S</code> complexity of <code>can_set_code</code></p>
+<p>See [<code>Pallet::set_code</code>].</p>
 <h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9614,9 +9608,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h3 id="set_code_without_checks">set_code_without_checks<a class="headerlink" href="#set_code_without_checks" title="Permanent link">&para;</a></h3>
-<p>Set the new runtime code without doing any checks of the given <code>code</code>.</p>
-<p>## Complexity
-- <code>O(C)</code> where <code>C</code> length of <code>code</code></p>
+<p>See [<code>Pallet::set_code_without_checks</code>].</p>
 <h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9639,7 +9631,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h3 id="set_heap_pages">set_heap_pages<a class="headerlink" href="#set_heap_pages" title="Permanent link">&para;</a></h3>
-<p>Set the number of pages in the WebAssembly environment&amp;#x27;s heap.</p>
+<p>See [<code>Pallet::set_heap_pages</code>].</p>
 <h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9662,7 +9654,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 </code></pre>
 <hr />
 <h3 id="set_storage">set_storage<a class="headerlink" href="#set_storage" title="Permanent link">&para;</a></h3>
-<p>Set some items of storage.</p>
+<p>See [<code>Pallet::set_storage</code>].</p>
 <h4 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9706,7 +9698,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <tr>
 <td>dispatch_error</td>
 <td><code>DispatchError</code></td>
-<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}</code></td>
+<td><code>{'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}</code></td>
 </tr>
 <tr>
 <td>dispatch_info</td>
@@ -9796,7 +9788,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <tr>
 <td>hash</td>
 <td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 </tbody>
 </table>
@@ -9814,9 +9806,9 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">{
     'consumers': 'u32',
     'data': {
-        'fee_frozen': 'u64',
+        'flags': 'u128',
         'free': 'u64',
-        'misc_frozen': 'u64',
+        'frozen': 'u64',
         'reserved': 'u64',
     },
     'nonce': 'u32',
@@ -9844,7 +9836,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 )
 </code></pre>
 <h4 id="return-value_2">Return value<a class="headerlink" href="#return-value_2" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">'scale_info::10'
+<pre><code class="language-python">'scale_info::12'
 </code></pre>
 <hr />
 <h3 id="blockweight">BlockWeight<a class="headerlink" href="#blockweight" title="Permanent link">&para;</a></h3>
@@ -9901,12 +9893,12 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <p>All topic vectors have deterministic storage locations depending on the topic. This
  allows light-clients to leverage the changes trie storage tracking mechanism and
  in case of changes fetch the list of events of interest.</p>
-<p>The value has the type <code>(T::BlockNumber, EventIndex)</code> because if we used only just
+<p>The value has the type <code>(BlockNumberFor&amp;lt;T&amp;gt;, EventIndex)</code> because if we used only just
  the <code>EventIndex</code> then in case if the topic has the same contents on the next block
  no notification will be triggered thus the event might be lost.</p>
 <h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
-    'System', 'EventTopics', ['scale_info::10']
+    'System', 'EventTopics', ['scale_info::12']
 )
 </code></pre>
 <h4 id="return-value_6">Return value<a class="headerlink" href="#return-value_6" title="Permanent link">&para;</a></h4>
@@ -9928,60 +9920,129 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">[
     {
         'event': {
-            'AdminUtils': (),
             'Balances': {
-                'BalanceSet': {
-                    'free': 'u64',
-                    'reserved': 'u64',
-                    'who': 'AccountId',
-                },
+                'BalanceSet': {'free': 'u64', 'who': 'AccountId'},
+                'Burned': {'amount': 'u64', 'who': 'AccountId'},
                 'Deposit': {'amount': 'u64', 'who': 'AccountId'},
                 'DustLost': {'account': 'AccountId', 'amount': 'u64'},
                 'Endowed': {'account': 'AccountId', 'free_balance': 'u64'},
+                'Frozen': {'amount': 'u64', 'who': 'AccountId'},
+                'Issued': {'amount': 'u64'},
+                'Locked': {'amount': 'u64', 'who': 'AccountId'},
+                'Minted': {'amount': 'u64', 'who': 'AccountId'},
+                'Rescinded': {'amount': 'u64'},
                 'ReserveRepatriated': {
                     'amount': 'u64',
-                    'destination_status': 'scale_info::34',
+                    'destination_status': 'scale_info::36',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
                 'Reserved': {'amount': 'u64', 'who': 'AccountId'},
+                'Restored': {'amount': 'u64', 'who': 'AccountId'},
                 'Slashed': {'amount': 'u64', 'who': 'AccountId'},
+                'Suspended': {'amount': 'u64', 'who': 'AccountId'},
+                'Thawed': {'amount': 'u64', 'who': 'AccountId'},
                 'Transfer': {
                     'amount': 'u64',
                     'from': 'AccountId',
                     'to': 'AccountId',
                 },
+                'Unlocked': {'amount': 'u64', 'who': 'AccountId'},
                 'Unreserved': {'amount': 'u64', 'who': 'AccountId'},
+                'Upgraded': {'who': 'AccountId'},
                 'Withdraw': {'amount': 'u64', 'who': 'AccountId'},
             },
             'Commitments': {
                 'Commitment': {'netuid': 'u16', 'who': 'AccountId'},
+            },
+            None: None,
+            'AdminUtils': (),
+            'Grandpa': {
+                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
+                'Paused': None,
+                'Resumed': None,
             },
             'Multisig': {
                 'MultisigApproval': {
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::48',
+                    'timepoint': 'scale_info::50',
                 },
                 'MultisigCancelled': {
                     'call_hash': '[u8; 32]',
                     'cancelling': 'AccountId',
                     'multisig': 'AccountId',
-                    'timepoint': 'scale_info::48',
+                    'timepoint': 'scale_info::50',
                 },
                 'MultisigExecuted': {
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
-                    'result': 'scale_info::38',
-                    'timepoint': 'scale_info::48',
+                    'result': 'scale_info::40',
+                    'timepoint': 'scale_info::50',
                 },
                 'NewMultisig': {
                     'approving': 'AccountId',
                     'call_hash': '[u8; 32]',
                     'multisig': 'AccountId',
                 },
+            },
+            'Preimage': {
+                'Cleared': {'hash': 'scale_info::12'},
+                'Noted': {'hash': 'scale_info::12'},
+                'Requested': {'hash': 'scale_info::12'},
+            },
+            'Proxy': {
+                'Announced': {
+                    'call_hash': 'scale_info::12',
+                    'proxy': 'AccountId',
+                    'real': 'AccountId',
+                },
+                'ProxyAdded': {
+                    'delay': 'u32',
+                    'delegatee': 'AccountId',
+                    'delegator': 'AccountId',
+                    'proxy_type': 'scale_info::56',
+                },
+                'ProxyExecuted': {'result': 'scale_info::40'},
+                'ProxyRemoved': {
+                    'delay': 'u32',
+                    'delegatee': 'AccountId',
+                    'delegator': 'AccountId',
+                    'proxy_type': 'scale_info::56',
+                },
+                'PureCreated': {
+                    'disambiguation_index': 'u16',
+                    'proxy_type': 'scale_info::56',
+                    'pure': 'AccountId',
+                    'who': 'AccountId',
+                },
+            },
+            'Registry': {
+                'IdentityDissolved': {'who': 'AccountId'},
+                'IdentitySet': {'who': 'AccountId'},
+            },
+            'Scheduler': {
+                'CallUnavailable': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Canceled': {'index': 'u32', 'when': 'u32'},
+                'Dispatched': {
+                    'id': (None, '[u8; 32]'),
+                    'result': 'scale_info::40',
+                    'task': ('u32', 'u32'),
+                },
+                'PeriodicFailed': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'PermanentlyOverweight': {
+                    'id': (None, '[u8; 32]'),
+                    'task': ('u32', 'u32'),
+                },
+                'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
             'SenateMembers': (
                 'MemberAdded',
@@ -10015,11 +10076,13 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'MaxAllowedUidsSet': ('u16', 'u16'),
                 'MaxAllowedValidatorsSet': ('u16', 'u16'),
                 'MaxBurnSet': ('u16', 'u64'),
+                'MaxDelegateTakeSet': 'u16',
                 'MaxDifficultySet': ('u16', 'u64'),
                 'MaxRegistrationsPerBlockSet': ('u16', 'u16'),
                 'MaxWeightLimitSet': ('u16', 'u16'),
                 'MinAllowedWeightSet': ('u16', 'u16'),
                 'MinBurnSet': ('u16', 'u64'),
+                'MinDelegateTakeSet': 'u16',
                 'MinDifficultySet': ('u16', 'u64'),
                 'NetworkAdded': ('u16', 'u16'),
                 'NetworkImmunityPeriodSet': 'u64',
@@ -10041,8 +10104,11 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'StakeRemoved': ('AccountId', 'u64'),
                 'SubnetLimitSet': 'u16',
                 'SubnetOwnerCutSet': 'u16',
-                'Sudid': {'Err': 'scale_info::23', 'Ok': ()},
+                'Sudid': {'Err': 'scale_info::25', 'Ok': ()},
+                'TakeDecreased': ('AccountId', 'AccountId', 'u16'),
+                'TakeIncreased': ('AccountId', 'AccountId', 'u16'),
                 'TempoSet': ('u16', 'u16'),
+                'TxDelegateTakeRateLimitSet': 'u64',
                 'TxRateLimitSet': 'u64',
                 'ValidatorPruneLenSet': ('u16', 'u64'),
                 'WeightsMinStake': 'u64',
@@ -10050,65 +10116,21 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'WeightsSetRateLimitSet': ('u16', 'u64'),
                 'WeightsVersionKeySet': ('u16', 'u64'),
             },
+            'Sudo': {
+                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
+                'Sudid': {'sudo_result': 'scale_info::40'},
+                'SudoAsDone': {'sudo_result': 'scale_info::40'},
+            },
             'System': {
                 'CodeUpdated': None,
                 'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::23',
-                    'dispatch_info': 'scale_info::20',
+                    'dispatch_error': 'scale_info::25',
+                    'dispatch_info': 'scale_info::22',
                 },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::20'},
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::22'},
                 'KilledAccount': {'account': 'AccountId'},
                 'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': 'scale_info::10', 'sender': 'AccountId'},
-            },
-            'TriumvirateMembers': (
-                'MemberAdded',
-                'MemberRemoved',
-                'MembersSwapped',
-                'MembersReset',
-                'KeyChanged',
-                'Dummy',
-            ),
-            None: None,
-            'Grandpa': {
-                'NewAuthorities': {'authority_set': [('[u8; 32]', 'u64')]},
-                'Paused': None,
-                'Resumed': None,
-            },
-            'Preimage': {
-                'Cleared': {'hash': 'scale_info::10'},
-                'Noted': {'hash': 'scale_info::10'},
-                'Requested': {'hash': 'scale_info::10'},
-            },
-            'Registry': {
-                'IdentityDissolved': {'who': 'AccountId'},
-                'IdentitySet': {'who': 'AccountId'},
-            },
-            'Scheduler': {
-                'CallUnavailable': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Canceled': {'index': 'u32', 'when': 'u32'},
-                'Dispatched': {
-                    'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::38',
-                    'task': ('u32', 'u32'),
-                },
-                'PeriodicFailed': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'PermanentlyOverweight': {
-                    'id': (None, '[u8; 32]'),
-                    'task': ('u32', 'u32'),
-                },
-                'Scheduled': {'index': 'u32', 'when': 'u32'},
-            },
-            'Sudo': {
-                'KeyChanged': {'old_sudoer': (None, 'AccountId')},
-                'Sudid': {'sudo_result': 'scale_info::38'},
-                'SudoAsDone': {'sudo_result': 'scale_info::38'},
+                'Remarked': {'hash': 'scale_info::12', 'sender': 'AccountId'},
             },
             'TransactionPayment': {
                 'TransactionFeePaid': {
@@ -10118,45 +10140,53 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 },
             },
             'Triumvirate': {
-                'Approved': {'proposal_hash': 'scale_info::10'},
+                'Approved': {'proposal_hash': 'scale_info::12'},
                 'Closed': {
                     'no': 'u32',
-                    'proposal_hash': 'scale_info::10',
+                    'proposal_hash': 'scale_info::12',
                     'yes': 'u32',
                 },
-                'Disapproved': {'proposal_hash': 'scale_info::10'},
+                'Disapproved': {'proposal_hash': 'scale_info::12'},
                 'Executed': {
-                    'proposal_hash': 'scale_info::10',
-                    'result': 'scale_info::38',
+                    'proposal_hash': 'scale_info::12',
+                    'result': 'scale_info::40',
                 },
                 'MemberExecuted': {
-                    'proposal_hash': 'scale_info::10',
-                    'result': 'scale_info::38',
+                    'proposal_hash': 'scale_info::12',
+                    'result': 'scale_info::40',
                 },
                 'Proposed': {
                     'account': 'AccountId',
-                    'proposal_hash': 'scale_info::10',
+                    'proposal_hash': 'scale_info::12',
                     'proposal_index': 'u32',
                     'threshold': 'u32',
                 },
                 'Voted': {
                     'account': 'AccountId',
                     'no': 'u32',
-                    'proposal_hash': 'scale_info::10',
+                    'proposal_hash': 'scale_info::12',
                     'voted': 'bool',
                     'yes': 'u32',
                 },
             },
+            'TriumvirateMembers': (
+                'MemberAdded',
+                'MemberRemoved',
+                'MembersSwapped',
+                'MembersReset',
+                'KeyChanged',
+                'Dummy',
+            ),
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
                 'BatchInterrupted': {
-                    'error': 'scale_info::23',
+                    'error': 'scale_info::25',
                     'index': 'u32',
                 },
-                'DispatchedAs': {'result': 'scale_info::38'},
+                'DispatchedAs': {'result': 'scale_info::40'},
                 'ItemCompleted': None,
-                'ItemFailed': {'error': 'scale_info::23'},
+                'ItemFailed': {'error': 'scale_info::25'},
             },
         },
         'phase': {
@@ -10164,7 +10194,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
             'Finalization': None,
             'Initialization': None,
         },
-        'topics': ['scale_info::10'],
+        'topics': ['scale_info::12'],
     },
 ]
 </code></pre>
@@ -10232,7 +10262,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 )
 </code></pre>
 <h4 id="return-value_13">Return value<a class="headerlink" href="#return-value_13" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">'scale_info::10'
+<pre><code class="language-python">'scale_info::12'
 </code></pre>
 <hr />
 <h3 id="upgradedtotriplerefcount">UpgradedToTripleRefCount<a class="headerlink" href="#upgradedtotriplerefcount" title="Permanent link">&para;</a></h3>
@@ -10282,23 +10312,23 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <p>Block &amp; extrinsics weights: base values and limits.</p>
 <h4 id="value_2">Value<a class="headerlink" href="#value_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
-    'base_block': {'proof_size': 0, 'ref_time': 381015000},
+    'base_block': {'proof_size': 0, 'ref_time': 390584000},
     'max_block': {
         'proof_size': 18446744073709551615,
         'ref_time': 4000000000000,
     },
     'per_class': {
         'mandatory': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 124414000},
             'max_extrinsic': None,
             'max_total': None,
             'reserved': None,
         },
         'normal': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 124414000},
             'max_extrinsic': {
                 'proof_size': 11990383647911208550,
-                'ref_time': 2599900160000,
+                'ref_time': 2599875586000,
             },
             'max_total': {
                 'proof_size': 13835058055282163711,
@@ -10307,10 +10337,10 @@ the prefix we are removing to accurately calculate the weight of this function.<
             'reserved': {'proof_size': 0, 'ref_time': 0},
         },
         'operational': {
-            'base_extrinsic': {'proof_size': 0, 'ref_time': 99840000},
+            'base_extrinsic': {'proof_size': 0, 'ref_time': 124414000},
             'max_extrinsic': {
                 'proof_size': 16602069666338596454,
-                'ref_time': 3599900160000,
+                'ref_time': 3599875586000,
             },
             'max_total': {
                 'proof_size': 18446744073709551615,
@@ -10355,7 +10385,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">{
     'apis': [
         ('0xdf6acb689907609b', 4),
-        ('0x37e397fc7c91f5e4', 1),
+        ('0x37e397fc7c91f5e4', 2),
         ('0x40fe3ad401f8959a', 6),
         ('0xd2bc9897eed08f15', 3),
         ('0xf78b278be53f454c', 2),
@@ -10363,8 +10393,9 @@ the prefix we are removing to accurately calculate the weight of this function.<
         ('0xab3c0572291feb8b', 1),
         ('0xed99c5acb25eedf5', 3),
         ('0xbc9d89904f5b923f', 1),
-        ('0x37c8bb1350a9a2a8', 3),
+        ('0x37c8bb1350a9a2a8', 4),
         ('0xf3ff14d5ab527059', 3),
+        ('0xe0837fce09f4829a', 1),
         ('0x42e62be4a39e5b60', 1),
         ('0x806df4ccaa9ed485', 1),
         ('0x8375104b299b74c5', 1),
@@ -10375,7 +10406,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
     'impl_name': 'node-subtensor',
     'impl_version': 1,
     'spec_name': 'node-subtensor',
-    'spec_version': 144,
+    'spec_version': 150,
     'state_version': 1,
     'transaction_version': 1,
 }

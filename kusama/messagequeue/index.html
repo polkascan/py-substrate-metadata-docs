@@ -4511,6 +4511,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#recursivedisallowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      RecursiveDisallowed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#temporarilyunprocessable" class="md-nav__link">
     <span class="md-ellipsis">
       TemporarilyUnprocessable
@@ -9937,6 +9946,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#recursivedisallowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      RecursiveDisallowed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#temporarilyunprocessable" class="md-nav__link">
     <span class="md-ellipsis">
       TemporarilyUnprocessable
@@ -10125,8 +10143,8 @@
 <tbody>
 <tr>
 <td>id</td>
-<td><code>[u8; 32]</code></td>
-<td><code>[u8; 32]</code></td>
+<td><code>H256</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 <tr>
 <td>origin</td>
@@ -10160,8 +10178,8 @@
 <tbody>
 <tr>
 <td>id</td>
-<td><code>[u8; 32]</code></td>
-<td><code>[u8; 32]</code></td>
+<td><code>H256</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 <tr>
 <td>origin</td>
@@ -10289,6 +10307,9 @@ enough.</p>
 <hr />
 <h3 id="queued">Queued<a class="headerlink" href="#queued" title="Permanent link">&para;</a></h3>
 <p>The message is queued for future execution.</p>
+<hr />
+<h3 id="recursivedisallowed">RecursiveDisallowed<a class="headerlink" href="#recursivedisallowed" title="Permanent link">&para;</a></h3>
+<p>Another call is in progress and needs to finish before this call can happen.</p>
 <hr />
 <h3 id="temporarilyunprocessable">TemporarilyUnprocessable<a class="headerlink" href="#temporarilyunprocessable" title="Permanent link">&para;</a></h3>
 <p>This message is temporarily unprocessable.</p>

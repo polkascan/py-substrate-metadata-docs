@@ -8621,6 +8621,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#decreasecouncilbudgetproposalparameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      DecreaseCouncilBudgetProposalParameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#decreaseworkinggroupleadstakeproposalparameters" class="md-nav__link">
     <span class="md-ellipsis">
       DecreaseWorkingGroupLeadStakeProposalParameters
@@ -8687,6 +8696,15 @@
   <a href="#setcouncilorrewardproposalparameters" class="md-nav__link">
     <span class="md-ellipsis">
       SetCouncilorRewardProposalParameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seterapayoutdampingfactorproposalparameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      SetEraPayoutDampingFactorProposalParameters
     </span>
   </a>
   
@@ -8813,6 +8831,15 @@
   <a href="#updateglobalnftlimitproposalparameters" class="md-nav__link">
     <span class="md-ellipsis">
       UpdateGlobalNftLimitProposalParameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatetokenpallettokenconstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      UpdateTokenPalletTokenConstraints
     </span>
   </a>
   
@@ -9044,6 +9071,15 @@
   <a href="#invalidworkinggroupbudgetcapacity" class="md-nav__link">
     <span class="md-ellipsis">
       InvalidWorkingGroupBudgetCapacity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reductionamountzero" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReductionAmountZero
     </span>
   </a>
   
@@ -9689,6 +9725,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#decreasecouncilbudgetproposalparameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      DecreaseCouncilBudgetProposalParameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#decreaseworkinggroupleadstakeproposalparameters" class="md-nav__link">
     <span class="md-ellipsis">
       DecreaseWorkingGroupLeadStakeProposalParameters
@@ -9755,6 +9800,15 @@
   <a href="#setcouncilorrewardproposalparameters" class="md-nav__link">
     <span class="md-ellipsis">
       SetCouncilorRewardProposalParameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seterapayoutdampingfactorproposalparameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      SetEraPayoutDampingFactorProposalParameters
     </span>
   </a>
   
@@ -9881,6 +9935,15 @@
   <a href="#updateglobalnftlimitproposalparameters" class="md-nav__link">
     <span class="md-ellipsis">
       UpdateGlobalNftLimitProposalParameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatetokenpallettokenconstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      UpdateTokenPalletTokenConstraints
     </span>
   </a>
   
@@ -10118,6 +10181,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#reductionamountzero" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReductionAmountZero
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#requirerootorigin" class="md-nav__link">
     <span class="md-ellipsis">
       RequireRootOrigin
@@ -10265,6 +10337,7 @@
                 'stake_amount': 'u128',
             },
         },
+        'DecreaseCouncilBudget': 'u128',
         'DecreaseWorkingGroupLeadStake': (
             'u64',
             'u128',
@@ -10304,6 +10377,7 @@
         'RuntimeUpgrade': 'Bytes',
         'SetCouncilBudgetIncrement': 'u128',
         'SetCouncilorReward': 'u128',
+        'SetEraPayoutDampingFactor': 'u8',
         'SetInitialInvitationBalance': 'u128',
         'SetInitialInvitationCount': 'u32',
         'SetMaxValidatorCount': 'u32',
@@ -10396,6 +10470,44 @@
             ('Daily', 'Weekly'),
             'u64',
         ),
+        'UpdateTokenPalletTokenConstraints': {
+            'amm_buy_tx_fees': (
+                None,
+                'u32',
+            ),
+            'amm_sell_tx_fees': (
+                None,
+                'u32',
+            ),
+            'bloat_bond': (
+                None,
+                'u128',
+            ),
+            'max_yearly_rate': (
+                None,
+                'u32',
+            ),
+            'min_amm_slope': (
+                None,
+                'u128',
+            ),
+            'min_revenue_split_duration': (
+                None,
+                'u32',
+            ),
+            'min_revenue_split_time_to_start': (
+                None,
+                'u32',
+            ),
+            'min_sale_duration': (
+                None,
+                'u32',
+            ),
+            'sale_platform_fee': (
+                None,
+                'u32',
+            ),
+        },
         'UpdateWorkingGroupBudget': (
             'u128',
             (
@@ -10449,7 +10561,7 @@ Params:
 <tr>
 <td>None</td>
 <td><code>ProposalDetailsOf</code></td>
-<td><code>{'Signal': 'Bytes', 'RuntimeUpgrade': 'Bytes', 'FundingRequest': [{'account': 'AccountId', 'amount': 'u128'}], 'SetMaxValidatorCount': 'u32', 'CreateWorkingGroupLeadOpening': {'description': 'Bytes', 'stake_policy': {'stake_amount': 'u128', 'leaving_unstaking_period': 'u32'}, 'reward_per_block': (None, 'u128'), 'group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'FillWorkingGroupLeadOpening': {'opening_id': 'u64', 'application_id': 'u64', 'working_group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'UpdateWorkingGroupBudget': ('u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership'), ('Positive', 'Negative')), 'DecreaseWorkingGroupLeadStake': ('u64', 'u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SlashWorkingGroupLead': ('u64', 'u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SetWorkingGroupLeadReward': ('u64', (None, 'u128'), ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'TerminateWorkingGroupLead': {'worker_id': 'u64', 'slashing_amount': (None, 'u128'), 'group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'AmendConstitution': 'Bytes', 'CancelWorkingGroupLeadOpening': ('u64', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SetMembershipPrice': 'u128', 'SetCouncilBudgetIncrement': 'u128', 'SetCouncilorReward': 'u128', 'SetInitialInvitationBalance': 'u128', 'SetInitialInvitationCount': 'u32', 'SetMembershipLeadInvitationQuota': 'u32', 'SetReferralCut': 'u8', 'VetoProposal': 'u32', 'UpdateGlobalNftLimit': (('Daily', 'Weekly'), 'u64'), 'UpdateChannelPayouts': {'commitment': (None, 'scale_info::11'), 'payload': (None, {'object_creation_params': {'size': 'u64', 'ipfs_content_id': 'Bytes'}, 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}), 'min_cashout_allowed': (None, 'u128'), 'max_cashout_allowed': (None, 'u128'), 'channel_cashouts_enabled': (None, 'bool')}, 'SetPalletFozenStatus': ('bool', ('ProjectToken',))}</code></td>
+<td><code>{'Signal': 'Bytes', 'RuntimeUpgrade': 'Bytes', 'FundingRequest': [{'account': 'AccountId', 'amount': 'u128'}], 'SetMaxValidatorCount': 'u32', 'CreateWorkingGroupLeadOpening': {'description': 'Bytes', 'stake_policy': {'stake_amount': 'u128', 'leaving_unstaking_period': 'u32'}, 'reward_per_block': (None, 'u128'), 'group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'FillWorkingGroupLeadOpening': {'opening_id': 'u64', 'application_id': 'u64', 'working_group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'UpdateWorkingGroupBudget': ('u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership'), ('Positive', 'Negative')), 'DecreaseWorkingGroupLeadStake': ('u64', 'u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SlashWorkingGroupLead': ('u64', 'u128', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SetWorkingGroupLeadReward': ('u64', (None, 'u128'), ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'TerminateWorkingGroupLead': {'worker_id': 'u64', 'slashing_amount': (None, 'u128'), 'group': ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')}, 'AmendConstitution': 'Bytes', 'CancelWorkingGroupLeadOpening': ('u64', ('Forum', 'Storage', 'Content', 'OperationsAlpha', 'App', 'Distribution', 'OperationsBeta', 'OperationsGamma', 'Membership')), 'SetMembershipPrice': 'u128', 'SetCouncilBudgetIncrement': 'u128', 'SetCouncilorReward': 'u128', 'SetInitialInvitationBalance': 'u128', 'SetInitialInvitationCount': 'u32', 'SetMembershipLeadInvitationQuota': 'u32', 'SetReferralCut': 'u8', 'VetoProposal': 'u32', 'UpdateGlobalNftLimit': (('Daily', 'Weekly'), 'u64'), 'UpdateChannelPayouts': {'commitment': (None, 'scale_info::11'), 'payload': (None, {'object_creation_params': {'size': 'u64', 'ipfs_content_id': 'Bytes'}, 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}), 'min_cashout_allowed': (None, 'u128'), 'max_cashout_allowed': (None, 'u128'), 'channel_cashouts_enabled': (None, 'bool')}, 'SetPalletFozenStatus': ('bool', ('ProjectToken',)), 'UpdateTokenPalletTokenConstraints': {'max_yearly_rate': (None, 'u32'), 'min_amm_slope': (None, 'u128'), 'min_sale_duration': (None, 'u32'), 'min_revenue_split_duration': (None, 'u32'), 'min_revenue_split_time_to_start': (None, 'u32'), 'sale_platform_fee': (None, 'u32'), 'amm_buy_tx_fees': (None, 'u32'), 'amm_sell_tx_fees': (None, 'u32'), 'bloat_bond': (None, 'u128')}, 'SetEraPayoutDampingFactor': 'u8', 'DecreaseCouncilBudget': 'u128'}</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -10528,9 +10640,27 @@ Params:
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'CreateWorkingGroupLeadOpeningProposalParameters')
 </code></pre>
 <hr />
+<h3 id="decreasecouncilbudgetproposalparameters">DecreaseCouncilBudgetProposalParameters<a class="headerlink" href="#decreasecouncilbudgetproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Decrease Council budget parameters</p>
+<h4 id="value_3">Value<a class="headerlink" href="#value_3" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'approval_quorum_percentage': 100,
+    'approval_threshold_percentage': 100,
+    'constitutionality': 1,
+    'grace_period': 0,
+    'required_stake': 8333333333300,
+    'slashing_quorum_percentage': 100,
+    'slashing_threshold_percentage': 100,
+    'voting_period': 43200,
+}
+</code></pre>
+<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'DecreaseCouncilBudgetProposalParameters')
+</code></pre>
+<hr />
 <h3 id="decreaseworkinggroupleadstakeproposalparameters">DecreaseWorkingGroupLeadStakeProposalParameters<a class="headerlink" href="#decreaseworkinggroupleadstakeproposalparameters" title="Permanent link">&para;</a></h3>
 <p>Exports &#x27;Decrease Working Group Lead Stake&#x27; proposal parameters.</p>
-<h4 id="value_3">Value<a class="headerlink" href="#value_3" title="Permanent link">&para;</a></h4>
+<h4 id="value_4">Value<a class="headerlink" href="#value_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 100,
     'approval_threshold_percentage': 100,
@@ -10542,13 +10672,13 @@ Params:
     'voting_period': 43200,
 }
 </code></pre>
-<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
+<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'DecreaseWorkingGroupLeadStakeProposalParameters')
 </code></pre>
 <hr />
 <h3 id="fillworkinggroupopeningproposalparameters">FillWorkingGroupOpeningProposalParameters<a class="headerlink" href="#fillworkinggroupopeningproposalparameters" title="Permanent link">&para;</a></h3>
 <p>Exports &#x27;Fill Working Group Lead Opening&#x27; proposal parameters.</p>
-<h4 id="value_4">Value<a class="headerlink" href="#value_4" title="Permanent link">&para;</a></h4>
+<h4 id="value_5">Value<a class="headerlink" href="#value_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
     'approval_threshold_percentage': 66,
@@ -10560,31 +10690,31 @@ Params:
     'voting_period': 43200,
 }
 </code></pre>
-<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
+<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'FillWorkingGroupOpeningProposalParameters')
 </code></pre>
 <hr />
 <h3 id="fundingrequestproposalmaxaccounts">FundingRequestProposalMaxAccounts<a class="headerlink" href="#fundingrequestproposalmaxaccounts" title="Permanent link">&para;</a></h3>
 <p>Max number of accounts per funding request proposal</p>
-<h4 id="value_5">Value<a class="headerlink" href="#value_5" title="Permanent link">&para;</a></h4>
+<h4 id="value_6">Value<a class="headerlink" href="#value_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">20
 </code></pre>
-<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
+<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'FundingRequestProposalMaxAccounts')
 </code></pre>
 <hr />
 <h3 id="fundingrequestproposalmaxtotalamount">FundingRequestProposalMaxTotalAmount<a class="headerlink" href="#fundingrequestproposalmaxtotalamount" title="Permanent link">&para;</a></h3>
 <p>Maximum total amount in funding request proposal</p>
-<h4 id="value_6">Value<a class="headerlink" href="#value_6" title="Permanent link">&para;</a></h4>
+<h4 id="value_7">Value<a class="headerlink" href="#value_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">1666666666660000
 </code></pre>
-<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
+<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'FundingRequestProposalMaxTotalAmount')
 </code></pre>
 <hr />
 <h3 id="fundingrequestproposalparameters">FundingRequestProposalParameters<a class="headerlink" href="#fundingrequestproposalparameters" title="Permanent link">&para;</a></h3>
 <p>Exports &#x27;Funding Request&#x27; proposal parameters.</p>
-<h4 id="value_7">Value<a class="headerlink" href="#value_7" title="Permanent link">&para;</a></h4>
+<h4 id="value_8">Value<a class="headerlink" href="#value_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
     'approval_threshold_percentage': 66,
@@ -10596,13 +10726,13 @@ Params:
     'voting_period': 43200,
 }
 </code></pre>
-<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
+<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'FundingRequestProposalParameters')
 </code></pre>
 <hr />
 <h3 id="runtimeupgradeproposalparameters">RuntimeUpgradeProposalParameters<a class="headerlink" href="#runtimeupgradeproposalparameters" title="Permanent link">&para;</a></h3>
 <p>Exports &#x27;Runtime Upgrade&#x27; proposal parameters.</p>
-<h4 id="value_8">Value<a class="headerlink" href="#value_8" title="Permanent link">&para;</a></h4>
+<h4 id="value_9">Value<a class="headerlink" href="#value_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 100,
     'approval_threshold_percentage': 100,
@@ -10614,13 +10744,13 @@ Params:
     'voting_period': 100800,
 }
 </code></pre>
-<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
+<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'RuntimeUpgradeProposalParameters')
 </code></pre>
 <hr />
 <h3 id="setcouncilbudgetincrementproposalparameters">SetCouncilBudgetIncrementProposalParameters<a class="headerlink" href="#setcouncilbudgetincrementproposalparameters" title="Permanent link">&para;</a></h3>
 <p>Exports <code>Set Council Budget Increment</code> proposal parameters.</p>
-<h4 id="value_9">Value<a class="headerlink" href="#value_9" title="Permanent link">&para;</a></h4>
+<h4 id="value_10">Value<a class="headerlink" href="#value_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 100,
     'approval_threshold_percentage': 100,
@@ -10632,13 +10762,13 @@ Params:
     'voting_period': 72000,
 }
 </code></pre>
-<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
+<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetCouncilBudgetIncrementProposalParameters')
 </code></pre>
 <hr />
 <h3 id="setcouncilorrewardproposalparameters">SetCouncilorRewardProposalParameters<a class="headerlink" href="#setcouncilorrewardproposalparameters" title="Permanent link">&para;</a></h3>
 <p>Exports <code>Set Councilor Reward Proposal Parameters</code> proposal parameters.</p>
-<h4 id="value_10">Value<a class="headerlink" href="#value_10" title="Permanent link">&para;</a></h4>
+<h4 id="value_11">Value<a class="headerlink" href="#value_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 100,
     'approval_threshold_percentage': 100,
@@ -10650,109 +10780,13 @@ Params:
     'voting_period': 28800,
 }
 </code></pre>
-<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
+<h4 id="python_13">Python<a class="headerlink" href="#python_13" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetCouncilorRewardProposalParameters')
 </code></pre>
 <hr />
-<h3 id="setinitialinvitationbalanceproposalparameters">SetInitialInvitationBalanceProposalParameters<a class="headerlink" href="#setinitialinvitationbalanceproposalparameters" title="Permanent link">&para;</a></h3>
-<p>Exports <code>Set Initial Invitation Balance</code> proposal parameters.</p>
-<h4 id="value_11">Value<a class="headerlink" href="#value_11" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">{
-    'approval_quorum_percentage': 66,
-    'approval_threshold_percentage': 66,
-    'constitutionality': 1,
-    'grace_period': 1200,
-    'required_stake': 33333333333200,
-    'slashing_quorum_percentage': 100,
-    'slashing_threshold_percentage': 100,
-    'voting_period': 28800,
-}
-</code></pre>
-<h4 id="python_13">Python<a class="headerlink" href="#python_13" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetInitialInvitationBalanceProposalParameters')
-</code></pre>
-<hr />
-<h3 id="setinvitationcountproposalparameters">SetInvitationCountProposalParameters<a class="headerlink" href="#setinvitationcountproposalparameters" title="Permanent link">&para;</a></h3>
+<h3 id="seterapayoutdampingfactorproposalparameters">SetEraPayoutDampingFactorProposalParameters<a class="headerlink" href="#seterapayoutdampingfactorproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Era payout damping factor</p>
 <h4 id="value_12">Value<a class="headerlink" href="#value_12" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">{
-    'approval_quorum_percentage': 66,
-    'approval_threshold_percentage': 66,
-    'constitutionality': 1,
-    'grace_period': 1200,
-    'required_stake': 8333333333300,
-    'slashing_quorum_percentage': 100,
-    'slashing_threshold_percentage': 100,
-    'voting_period': 43200,
-}
-</code></pre>
-<h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetInvitationCountProposalParameters')
-</code></pre>
-<hr />
-<h3 id="setmaxvalidatorcountproposalmaxvalidators">SetMaxValidatorCountProposalMaxValidators<a class="headerlink" href="#setmaxvalidatorcountproposalmaxvalidators" title="Permanent link">&para;</a></h3>
-<p>Max allowed number of validators in set max validator count proposal</p>
-<h4 id="value_13">Value<a class="headerlink" href="#value_13" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">100
-</code></pre>
-<h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetMaxValidatorCountProposalMaxValidators')
-</code></pre>
-<hr />
-<h3 id="setmaxvalidatorcountproposalparameters">SetMaxValidatorCountProposalParameters<a class="headerlink" href="#setmaxvalidatorcountproposalparameters" title="Permanent link">&para;</a></h3>
-<p>Exports &#x27;Set Max Validator Count&#x27; proposal parameters.</p>
-<h4 id="value_14">Value<a class="headerlink" href="#value_14" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">{
-    'approval_quorum_percentage': 100,
-    'approval_threshold_percentage': 100,
-    'constitutionality': 2,
-    'grace_period': 72000,
-    'required_stake': 1666666666660000,
-    'slashing_quorum_percentage': 100,
-    'slashing_threshold_percentage': 100,
-    'voting_period': 100800,
-}
-</code></pre>
-<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetMaxValidatorCountProposalParameters')
-</code></pre>
-<hr />
-<h3 id="setmembershipleadinvitationquotaproposalparameters">SetMembershipLeadInvitationQuotaProposalParameters<a class="headerlink" href="#setmembershipleadinvitationquotaproposalparameters" title="Permanent link">&para;</a></h3>
-<h4 id="value_15">Value<a class="headerlink" href="#value_15" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">{
-    'approval_quorum_percentage': 66,
-    'approval_threshold_percentage': 66,
-    'constitutionality': 1,
-    'grace_period': 1200,
-    'required_stake': 8333333333300,
-    'slashing_quorum_percentage': 100,
-    'slashing_threshold_percentage': 100,
-    'voting_period': 43200,
-}
-</code></pre>
-<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetMembershipLeadInvitationQuotaProposalParameters')
-</code></pre>
-<hr />
-<h3 id="setmembershippriceproposalparameters">SetMembershipPriceProposalParameters<a class="headerlink" href="#setmembershippriceproposalparameters" title="Permanent link">&para;</a></h3>
-<p>Exports &#x27;Set Membership Price&#x27; proposal parameters.</p>
-<h4 id="value_16">Value<a class="headerlink" href="#value_16" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">{
-    'approval_quorum_percentage': 66,
-    'approval_threshold_percentage': 66,
-    'constitutionality': 1,
-    'grace_period': 1200,
-    'required_stake': 8333333333300,
-    'slashing_quorum_percentage': 100,
-    'slashing_threshold_percentage': 100,
-    'voting_period': 43200,
-}
-</code></pre>
-<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetMembershipPriceProposalParameters')
-</code></pre>
-<hr />
-<h3 id="setpalletfozenstatusproposalparameters">SetPalletFozenStatusProposalParameters<a class="headerlink" href="#setpalletfozenstatusproposalparameters" title="Permanent link">&para;</a></h3>
-<h4 id="value_17">Value<a class="headerlink" href="#value_17" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
     'approval_threshold_percentage': 66,
@@ -10764,11 +10798,91 @@ Params:
     'voting_period': 43200,
 }
 </code></pre>
-<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetPalletFozenStatusProposalParameters')
+<h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetEraPayoutDampingFactorProposalParameters')
 </code></pre>
 <hr />
-<h3 id="setreferralcutproposalparameters">SetReferralCutProposalParameters<a class="headerlink" href="#setreferralcutproposalparameters" title="Permanent link">&para;</a></h3>
+<h3 id="setinitialinvitationbalanceproposalparameters">SetInitialInvitationBalanceProposalParameters<a class="headerlink" href="#setinitialinvitationbalanceproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Exports <code>Set Initial Invitation Balance</code> proposal parameters.</p>
+<h4 id="value_13">Value<a class="headerlink" href="#value_13" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'approval_quorum_percentage': 66,
+    'approval_threshold_percentage': 66,
+    'constitutionality': 1,
+    'grace_period': 1200,
+    'required_stake': 33333333333200,
+    'slashing_quorum_percentage': 100,
+    'slashing_threshold_percentage': 100,
+    'voting_period': 28800,
+}
+</code></pre>
+<h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetInitialInvitationBalanceProposalParameters')
+</code></pre>
+<hr />
+<h3 id="setinvitationcountproposalparameters">SetInvitationCountProposalParameters<a class="headerlink" href="#setinvitationcountproposalparameters" title="Permanent link">&para;</a></h3>
+<h4 id="value_14">Value<a class="headerlink" href="#value_14" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'approval_quorum_percentage': 66,
+    'approval_threshold_percentage': 66,
+    'constitutionality': 1,
+    'grace_period': 1200,
+    'required_stake': 8333333333300,
+    'slashing_quorum_percentage': 100,
+    'slashing_threshold_percentage': 100,
+    'voting_period': 43200,
+}
+</code></pre>
+<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetInvitationCountProposalParameters')
+</code></pre>
+<hr />
+<h3 id="setmaxvalidatorcountproposalmaxvalidators">SetMaxValidatorCountProposalMaxValidators<a class="headerlink" href="#setmaxvalidatorcountproposalmaxvalidators" title="Permanent link">&para;</a></h3>
+<p>Max allowed number of validators in set max validator count proposal</p>
+<h4 id="value_15">Value<a class="headerlink" href="#value_15" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">100
+</code></pre>
+<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetMaxValidatorCountProposalMaxValidators')
+</code></pre>
+<hr />
+<h3 id="setmaxvalidatorcountproposalparameters">SetMaxValidatorCountProposalParameters<a class="headerlink" href="#setmaxvalidatorcountproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Exports &#x27;Set Max Validator Count&#x27; proposal parameters.</p>
+<h4 id="value_16">Value<a class="headerlink" href="#value_16" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'approval_quorum_percentage': 100,
+    'approval_threshold_percentage': 100,
+    'constitutionality': 2,
+    'grace_period': 72000,
+    'required_stake': 1666666666660000,
+    'slashing_quorum_percentage': 100,
+    'slashing_threshold_percentage': 100,
+    'voting_period': 100800,
+}
+</code></pre>
+<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetMaxValidatorCountProposalParameters')
+</code></pre>
+<hr />
+<h3 id="setmembershipleadinvitationquotaproposalparameters">SetMembershipLeadInvitationQuotaProposalParameters<a class="headerlink" href="#setmembershipleadinvitationquotaproposalparameters" title="Permanent link">&para;</a></h3>
+<h4 id="value_17">Value<a class="headerlink" href="#value_17" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'approval_quorum_percentage': 66,
+    'approval_threshold_percentage': 66,
+    'constitutionality': 1,
+    'grace_period': 1200,
+    'required_stake': 8333333333300,
+    'slashing_quorum_percentage': 100,
+    'slashing_threshold_percentage': 100,
+    'voting_period': 43200,
+}
+</code></pre>
+<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetMembershipLeadInvitationQuotaProposalParameters')
+</code></pre>
+<hr />
+<h3 id="setmembershippriceproposalparameters">SetMembershipPriceProposalParameters<a class="headerlink" href="#setmembershippriceproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Exports &#x27;Set Membership Price&#x27; proposal parameters.</p>
 <h4 id="value_18">Value<a class="headerlink" href="#value_18" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
@@ -10782,12 +10896,29 @@ Params:
 }
 </code></pre>
 <h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetReferralCutProposalParameters')
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetMembershipPriceProposalParameters')
 </code></pre>
 <hr />
-<h3 id="setworkinggroupleadrewardproposalparameters">SetWorkingGroupLeadRewardProposalParameters<a class="headerlink" href="#setworkinggroupleadrewardproposalparameters" title="Permanent link">&para;</a></h3>
-<p>Exports &#x27;Set Working Group Lead Reward&#x27; proposal parameters.</p>
+<h3 id="setpalletfozenstatusproposalparameters">SetPalletFozenStatusProposalParameters<a class="headerlink" href="#setpalletfozenstatusproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Set Pallet Frozen status</p>
 <h4 id="value_19">Value<a class="headerlink" href="#value_19" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'approval_quorum_percentage': 66,
+    'approval_threshold_percentage': 66,
+    'constitutionality': 1,
+    'grace_period': 0,
+    'required_stake': 8333333333300,
+    'slashing_quorum_percentage': 100,
+    'slashing_threshold_percentage': 100,
+    'voting_period': 43200,
+}
+</code></pre>
+<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetPalletFozenStatusProposalParameters')
+</code></pre>
+<hr />
+<h3 id="setreferralcutproposalparameters">SetReferralCutProposalParameters<a class="headerlink" href="#setreferralcutproposalparameters" title="Permanent link">&para;</a></h3>
+<h4 id="value_20">Value<a class="headerlink" href="#value_20" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
     'approval_threshold_percentage': 66,
@@ -10799,30 +10930,12 @@ Params:
     'voting_period': 43200,
 }
 </code></pre>
-<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetWorkingGroupLeadRewardProposalParameters')
-</code></pre>
-<hr />
-<h3 id="signalproposalparameters">SignalProposalParameters<a class="headerlink" href="#signalproposalparameters" title="Permanent link">&para;</a></h3>
-<p>Exports &#x27;Signal&#x27; proposal parameters.</p>
-<h4 id="value_20">Value<a class="headerlink" href="#value_20" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">{
-    'approval_quorum_percentage': 100,
-    'approval_threshold_percentage': 100,
-    'constitutionality': 1,
-    'grace_period': 1200,
-    'required_stake': 166666666666000,
-    'slashing_quorum_percentage': 100,
-    'slashing_threshold_percentage': 100,
-    'voting_period': 43200,
-}
-</code></pre>
 <h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SignalProposalParameters')
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetReferralCutProposalParameters')
 </code></pre>
 <hr />
-<h3 id="slashworkinggroupleadproposalparameters">SlashWorkingGroupLeadProposalParameters<a class="headerlink" href="#slashworkinggroupleadproposalparameters" title="Permanent link">&para;</a></h3>
-<p>Exports &#x27;Slash Working Group Lead&#x27; proposal parameters.</p>
+<h3 id="setworkinggroupleadrewardproposalparameters">SetWorkingGroupLeadRewardProposalParameters<a class="headerlink" href="#setworkinggroupleadrewardproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Exports &#x27;Set Working Group Lead Reward&#x27; proposal parameters.</p>
 <h4 id="value_21">Value<a class="headerlink" href="#value_21" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
@@ -10836,12 +10949,30 @@ Params:
 }
 </code></pre>
 <h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SlashWorkingGroupLeadProposalParameters')
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SetWorkingGroupLeadRewardProposalParameters')
 </code></pre>
 <hr />
-<h3 id="terminateworkinggroupleadproposalparameters">TerminateWorkingGroupLeadProposalParameters<a class="headerlink" href="#terminateworkinggroupleadproposalparameters" title="Permanent link">&para;</a></h3>
-<p>Exports &#x27;Terminate Working Group Lead&#x27; proposal parameters.</p>
+<h3 id="signalproposalparameters">SignalProposalParameters<a class="headerlink" href="#signalproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Exports &#x27;Signal&#x27; proposal parameters.</p>
 <h4 id="value_22">Value<a class="headerlink" href="#value_22" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'approval_quorum_percentage': 100,
+    'approval_threshold_percentage': 100,
+    'constitutionality': 1,
+    'grace_period': 1200,
+    'required_stake': 166666666666000,
+    'slashing_quorum_percentage': 100,
+    'slashing_threshold_percentage': 100,
+    'voting_period': 43200,
+}
+</code></pre>
+<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SignalProposalParameters')
+</code></pre>
+<hr />
+<h3 id="slashworkinggroupleadproposalparameters">SlashWorkingGroupLeadProposalParameters<a class="headerlink" href="#slashworkinggroupleadproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Exports &#x27;Slash Working Group Lead&#x27; proposal parameters.</p>
+<h4 id="value_23">Value<a class="headerlink" href="#value_23" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
     'approval_threshold_percentage': 66,
@@ -10853,12 +10984,30 @@ Params:
     'voting_period': 43200,
 }
 </code></pre>
-<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
+<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'SlashWorkingGroupLeadProposalParameters')
+</code></pre>
+<hr />
+<h3 id="terminateworkinggroupleadproposalparameters">TerminateWorkingGroupLeadProposalParameters<a class="headerlink" href="#terminateworkinggroupleadproposalparameters" title="Permanent link">&para;</a></h3>
+<p>Exports &#x27;Terminate Working Group Lead&#x27; proposal parameters.</p>
+<h4 id="value_24">Value<a class="headerlink" href="#value_24" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'approval_quorum_percentage': 66,
+    'approval_threshold_percentage': 66,
+    'constitutionality': 1,
+    'grace_period': 1200,
+    'required_stake': 8333333333300,
+    'slashing_quorum_percentage': 100,
+    'slashing_threshold_percentage': 100,
+    'voting_period': 43200,
+}
+</code></pre>
+<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'TerminateWorkingGroupLeadProposalParameters')
 </code></pre>
 <hr />
 <h3 id="updatechannelpayoutsproposalparameters">UpdateChannelPayoutsProposalParameters<a class="headerlink" href="#updatechannelpayoutsproposalparameters" title="Permanent link">&para;</a></h3>
-<h4 id="value_23">Value<a class="headerlink" href="#value_23" title="Permanent link">&para;</a></h4>
+<h4 id="value_25">Value<a class="headerlink" href="#value_25" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
     'approval_threshold_percentage': 100,
@@ -10870,12 +11019,12 @@ Params:
     'voting_period': 100800,
 }
 </code></pre>
-<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
+<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'UpdateChannelPayoutsProposalParameters')
 </code></pre>
 <hr />
 <h3 id="updateglobalnftlimitproposalparameters">UpdateGlobalNftLimitProposalParameters<a class="headerlink" href="#updateglobalnftlimitproposalparameters" title="Permanent link">&para;</a></h3>
-<h4 id="value_24">Value<a class="headerlink" href="#value_24" title="Permanent link">&para;</a></h4>
+<h4 id="value_26">Value<a class="headerlink" href="#value_26" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
     'approval_threshold_percentage': 66,
@@ -10887,13 +11036,31 @@ Params:
     'voting_period': 28800,
 }
 </code></pre>
-<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
+<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'UpdateGlobalNftLimitProposalParameters')
+</code></pre>
+<hr />
+<h3 id="updatetokenpallettokenconstraints">UpdateTokenPalletTokenConstraints<a class="headerlink" href="#updatetokenpallettokenconstraints" title="Permanent link">&para;</a></h3>
+<p>pallet token governance parameters proposal</p>
+<h4 id="value_27">Value<a class="headerlink" href="#value_27" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">{
+    'approval_quorum_percentage': 66,
+    'approval_threshold_percentage': 100,
+    'constitutionality': 1,
+    'grace_period': 14400,
+    'required_stake': 16666666666600,
+    'slashing_quorum_percentage': 100,
+    'slashing_threshold_percentage': 100,
+    'voting_period': 100800,
+}
+</code></pre>
+<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'UpdateTokenPalletTokenConstraints')
 </code></pre>
 <hr />
 <h3 id="updateworkinggroupbudgetproposalparameters">UpdateWorkingGroupBudgetProposalParameters<a class="headerlink" href="#updateworkinggroupbudgetproposalparameters" title="Permanent link">&para;</a></h3>
 <p>Exports &#x27;Update Working Group Budget&#x27; proposal parameters.</p>
-<h4 id="value_25">Value<a class="headerlink" href="#value_25" title="Permanent link">&para;</a></h4>
+<h4 id="value_28">Value<a class="headerlink" href="#value_28" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 66,
     'approval_threshold_percentage': 66,
@@ -10905,12 +11072,12 @@ Params:
     'voting_period': 43200,
 }
 </code></pre>
-<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
+<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'UpdateWorkingGroupBudgetProposalParameters')
 </code></pre>
 <hr />
 <h3 id="vetoproposalproposalparameters">VetoProposalProposalParameters<a class="headerlink" href="#vetoproposalproposalparameters" title="Permanent link">&para;</a></h3>
-<h4 id="value_26">Value<a class="headerlink" href="#value_26" title="Permanent link">&para;</a></h4>
+<h4 id="value_29">Value<a class="headerlink" href="#value_29" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'approval_quorum_percentage': 100,
     'approval_threshold_percentage': 100,
@@ -10922,7 +11089,7 @@ Params:
     'voting_period': 14400,
 }
 </code></pre>
-<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
+<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ProposalsCodex', 'VetoProposalProposalParameters')
 </code></pre>
 <hr />
@@ -10993,6 +11160,9 @@ Params:
 <hr />
 <h3 id="invalidworkinggroupbudgetcapacity">InvalidWorkingGroupBudgetCapacity<a class="headerlink" href="#invalidworkinggroupbudgetcapacity" title="Permanent link">&para;</a></h3>
 <p>Invalid working group budget capacity parameter</p>
+<hr />
+<h3 id="reductionamountzero">ReductionAmountZero<a class="headerlink" href="#reductionamountzero" title="Permanent link">&para;</a></h3>
+<p>Reduction Amount Zero</p>
 <hr />
 <h3 id="requirerootorigin">RequireRootOrigin<a class="headerlink" href="#requirerootorigin" title="Permanent link">&para;</a></h3>
 <p>Require root origin in extrinsics</p>

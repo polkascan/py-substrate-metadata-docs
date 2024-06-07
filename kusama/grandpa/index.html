@@ -4224,6 +4224,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#authorities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#currentsetid" class="md-nav__link">
     <span class="md-ellipsis">
       CurrentSetId
@@ -9808,6 +9817,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#authorities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authorities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#currentsetid" class="md-nav__link">
     <span class="md-ellipsis">
       CurrentSetId
@@ -10220,37 +10238,48 @@
 <hr />
 <h2 id="storage-functions">Storage functions<a class="headerlink" href="#storage-functions" title="Permanent link">&para;</a></h2>
 <hr />
+<h3 id="authorities">Authorities<a class="headerlink" href="#authorities" title="Permanent link">&para;</a></h3>
+<p>The current list of authorities.</p>
+<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'Grandpa', 'Authorities', []
+)
+</code></pre>
+<h4 id="return-value">Return value<a class="headerlink" href="#return-value" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">[('[u8; 32]', 'u64')]
+</code></pre>
+<hr />
 <h3 id="currentsetid">CurrentSetId<a class="headerlink" href="#currentsetid" title="Permanent link">&para;</a></h3>
 <p>The number of changes (both in terms of keys and underlying economic responsibilities)
  in the &quot;set&quot; of Grandpa validators from genesis.</p>
-<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
+<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Grandpa', 'CurrentSetId', []
 )
 </code></pre>
-<h4 id="return-value">Return value<a class="headerlink" href="#return-value" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_1">Return value<a class="headerlink" href="#return-value_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
 <h3 id="nextforced">NextForced<a class="headerlink" href="#nextforced" title="Permanent link">&para;</a></h3>
 <p>next block number where we can force a change.</p>
-<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
+<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Grandpa', 'NextForced', []
 )
 </code></pre>
-<h4 id="return-value_1">Return value<a class="headerlink" href="#return-value_1" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_2">Return value<a class="headerlink" href="#return-value_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h3 id="pendingchange">PendingChange<a class="headerlink" href="#pendingchange" title="Permanent link">&para;</a></h3>
 <p>Pending change: (signaled at, scheduled change).</p>
-<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
+<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Grandpa', 'PendingChange', []
 )
 </code></pre>
-<h4 id="return-value_2">Return value<a class="headerlink" href="#return-value_2" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_3">Return value<a class="headerlink" href="#return-value_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'delay': 'u32',
     'forced': (None, 'u32'),
@@ -10268,34 +10297,34 @@
  was the owner of a given key on a given session, and what the active set ID was
  during that session.</p>
 <p>TWOX-NOTE: <code>SetId</code> is not under user control.</p>
-<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
+<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Grandpa', 'SetIdSession', ['u64']
 )
 </code></pre>
-<h4 id="return-value_3">Return value<a class="headerlink" href="#return-value_3" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_4">Return value<a class="headerlink" href="#return-value_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h3 id="stalled">Stalled<a class="headerlink" href="#stalled" title="Permanent link">&para;</a></h3>
 <p><code>true</code> if we are currently stalled.</p>
-<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
+<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Grandpa', 'Stalled', []
 )
 </code></pre>
-<h4 id="return-value_4">Return value<a class="headerlink" href="#return-value_4" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_5">Return value<a class="headerlink" href="#return-value_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">('u32', 'u32')
 </code></pre>
 <hr />
 <h3 id="state">State<a class="headerlink" href="#state" title="Permanent link">&para;</a></h3>
 <p>State of the current authority set.</p>
-<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
+<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Grandpa', 'State', []
 )
 </code></pre>
-<h4 id="return-value_5">Return value<a class="headerlink" href="#return-value_5" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_6">Return value<a class="headerlink" href="#return-value_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'Live': None,
     'Paused': None,
@@ -10311,7 +10340,7 @@
 <h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">100000
 </code></pre>
-<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
+<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('Grandpa', 'MaxAuthorities')
 </code></pre>
 <hr />
@@ -10320,7 +10349,7 @@
 <h4 id="value_1">Value<a class="headerlink" href="#value_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">512
 </code></pre>
-<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
+<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('Grandpa', 'MaxNominators')
 </code></pre>
 <hr />
@@ -10333,7 +10362,7 @@
 <h4 id="value_2">Value<a class="headerlink" href="#value_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">168
 </code></pre>
-<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
+<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('Grandpa', 'MaxSetIdSessionEntries')
 </code></pre>
 <hr />

@@ -8128,9 +8128,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#messagetransacterror" class="md-nav__link">
+  <a href="#validationerror" class="md-nav__link">
     <span class="md-ellipsis">
-      MessageTransactError
+      ValidationError
     </span>
   </a>
   
@@ -9083,9 +9083,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#messagetransacterror" class="md-nav__link">
+  <a href="#validationerror" class="md-nav__link">
     <span class="md-ellipsis">
-      MessageTransactError
+      ValidationError
     </span>
   </a>
   
@@ -9130,78 +9130,27 @@
 </thead>
 <tbody>
 <tr>
-<td>transaction</td>
-<td><code>Box&lt;Transaction&gt;</code></td>
+<td>request</td>
+<td><code>ForwardRequest</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'EthTxForwarder', 'forward_transact', {
-    'transaction': {
-        'EIP1559': {
-            'access_list': [
-                {
-                    'address': '[u8; 20]',
-                    'storage_keys': [
-                        'scale_info::12',
-                    ],
-                },
-            ],
-            'action': {
-                'Call': '[u8; 20]',
-                'Create': None,
-            },
-            'chain_id': 'u64',
-            'gas_limit': 'scale_info::265',
-            'input': 'Bytes',
-            'max_fee_per_gas': 'scale_info::265',
-            'max_priority_fee_per_gas': 'scale_info::265',
-            'nonce': 'scale_info::265',
-            'odd_y_parity': 'bool',
-            'r': 'scale_info::12',
-            's': 'scale_info::12',
-            'value': 'scale_info::265',
+    'request': {
+        'action': {
+            'Call': '[u8; 20]',
+            'Create': None,
         },
-        'EIP2930': {
-            'access_list': [
-                {
-                    'address': '[u8; 20]',
-                    'storage_keys': [
-                        'scale_info::12',
-                    ],
-                },
-            ],
-            'action': {
-                'Call': '[u8; 20]',
-                'Create': None,
-            },
-            'chain_id': 'u64',
-            'gas_limit': 'scale_info::265',
-            'gas_price': 'scale_info::265',
-            'input': 'Bytes',
-            'nonce': 'scale_info::265',
-            'odd_y_parity': 'bool',
-            'r': 'scale_info::12',
-            's': 'scale_info::12',
-            'value': 'scale_info::265',
-        },
-        'Legacy': {
-            'action': {
-                'Call': '[u8; 20]',
-                'Create': None,
-            },
-            'gas_limit': 'scale_info::265',
-            'gas_price': 'scale_info::265',
-            'input': 'Bytes',
-            'nonce': 'scale_info::265',
-            'signature': {
-                'r': 'scale_info::12',
-                's': 'scale_info::12',
-                'v': 'u64',
-            },
-            'value': 'scale_info::265',
-        },
+        'gas_limit': 'scale_info::256',
+        'input': 'Bytes',
+        'tx_type': (
+            'LegacyTransaction',
+            'EIP2930Transaction',
+            'EIP1559Transaction',
+        ),
+        'value': 'scale_info::256',
     },
 }
 )
@@ -9209,8 +9158,8 @@
 <hr />
 <h2 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
 <hr />
-<h3 id="messagetransacterror">MessageTransactError<a class="headerlink" href="#messagetransacterror" title="Permanent link">&para;</a></h3>
-<p>EVM validation errors.</p>
+<h3 id="validationerror">ValidationError<a class="headerlink" href="#validationerror" title="Permanent link">&para;</a></h3>
+<p>Transaction validation errors.</p>
 <hr />
 
 

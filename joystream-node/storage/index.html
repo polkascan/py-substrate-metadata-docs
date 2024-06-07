@@ -12366,7 +12366,7 @@
             ),
         },
     },
-    'data_objects': 'scale_info::90',
+    'data_objects': 'scale_info::91',
     'storage_bucket_id': 'u64',
     'worker_id': 'u64',
 }
@@ -13102,8 +13102,8 @@ containing a generic message.
 <h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Storage', 'update_blacklist', {
-    'add_hashes': 'scale_info::169',
-    'remove_hashes': 'scale_info::169',
+    'add_hashes': 'scale_info::170',
+    'remove_hashes': 'scale_info::170',
 }
 )
 </code></pre>
@@ -13284,7 +13284,7 @@ containing a generic message.
 <h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Storage', 'update_distribution_buckets_for_bag', {
-    'add_buckets_indices': 'scale_info::90',
+    'add_buckets_indices': 'scale_info::91',
     'bag_id': {
         'Dynamic': {
             'Channel': 'u64',
@@ -13306,7 +13306,7 @@ containing a generic message.
         },
     },
     'family_id': 'u64',
-    'remove_buckets_indices': 'scale_info::90',
+    'remove_buckets_indices': 'scale_info::91',
 }
 )
 </code></pre>
@@ -13376,7 +13376,7 @@ Updates distribution buckets for a bag.
         'Member',
         'Channel',
     ),
-    'families': 'scale_info::173',
+    'families': 'scale_info::174',
 }
 )
 </code></pre>
@@ -13492,7 +13492,7 @@ Updates distribution buckets for a bag.
 <h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Storage', 'update_storage_buckets_for_bag', {
-    'add_buckets': 'scale_info::90',
+    'add_buckets': 'scale_info::91',
     'bag_id': {
         'Dynamic': {
             'Channel': 'u64',
@@ -13513,7 +13513,7 @@ Updates distribution buckets for a bag.
             ),
         },
     },
-    'remove_buckets': 'scale_info::90',
+    'remove_buckets': 'scale_info::91',
 }
 )
 </code></pre>
@@ -13687,7 +13687,7 @@ Params
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -13721,7 +13721,7 @@ Params
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -13750,12 +13750,12 @@ Params
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -13779,7 +13779,7 @@ Params
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -14175,12 +14175,12 @@ Params
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DistributionBucketIndex&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DistributionBucketIndex&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -14237,12 +14237,12 @@ Params
 <tr>
 <td>None</td>
 <td><code>DynamicBagCreationParameters</code></td>
-<td><code>{'bag_id': {'Member': 'u64', 'Channel': 'u64'}, 'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'state_bloat_bond_source_account_id': 'AccountId', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets': 'scale_info::90', 'distribution_buckets': 'scale_info::142'}</code></td>
+<td><code>{'bag_id': {'Member': 'u64', 'Channel': 'u64'}, 'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'state_bloat_bond_source_account_id': 'AccountId', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets': 'scale_info::91', 'distribution_buckets': 'scale_info::143'}</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -14292,7 +14292,7 @@ Params
 <tr>
 <td>None</td>
 <td><code>BTreeMap&lt;DistributionBucketFamilyId, u32&gt;</code></td>
-<td><code>scale_info::173</code></td>
+<td><code>scale_info::174</code></td>
 </tr>
 </tbody>
 </table>
@@ -14360,7 +14360,7 @@ Params
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -14647,12 +14647,12 @@ Params
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;StorageBucketId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;StorageBucketId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -14771,12 +14771,12 @@ Params
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;Vec&lt;u8&gt;&gt;</code></td>
-<td><code>scale_info::169</code></td>
+<td><code>scale_info::170</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;Vec&lt;u8&gt;&gt;</code></td>
-<td><code>scale_info::169</code></td>
+<td><code>scale_info::170</code></td>
 </tr>
 </tbody>
 </table>
@@ -14863,10 +14863,10 @@ Params
 </code></pre>
 <h4 id="return-value">Return value<a class="headerlink" href="#return-value" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
-    'distributed_by': 'scale_info::142',
+    'distributed_by': 'scale_info::143',
     'objects_number': 'u64',
     'objects_total_size': 'u64',
-    'stored_by': 'scale_info::90',
+    'stored_by': 'scale_info::91',
 }
 </code></pre>
 <hr />
@@ -14967,8 +14967,8 @@ Params
     'accepting_new_bags': 'bool',
     'assigned_bags': 'u64',
     'distributing': 'bool',
-    'operators': 'scale_info::90',
-    'pending_invitations': 'scale_info::90',
+    'operators': 'scale_info::91',
+    'pending_invitations': 'scale_info::91',
 }
 </code></pre>
 <hr />
@@ -15013,7 +15013,7 @@ Params
 )
 </code></pre>
 <h4 id="return-value_10">Return value<a class="headerlink" href="#return-value_10" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">{'families': 'scale_info::173', 'number_of_storage_buckets': 'u32'}
+<pre><code class="language-python">{'families': 'scale_info::174', 'number_of_storage_buckets': 'u32'}
 </code></pre>
 <hr />
 <h3 id="nextdataobjectid">NextDataObjectId<a class="headerlink" href="#nextdataobjectid" title="Permanent link">&para;</a></h3>

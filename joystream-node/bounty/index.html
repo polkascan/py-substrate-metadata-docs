@@ -10777,7 +10777,7 @@
     'params': {
         'cherry': 'u128',
         'contract_type': {
-            'Closed': 'scale_info::90',
+            'Closed': 'scale_info::91',
             'Open': None,
         },
         'creator': {
@@ -11055,7 +11055,7 @@ by an arbitrary percentage and rewarding the winners by an arbitrary amount
 <pre><code class="language-python">call = substrate.compose_call(
     'Bounty', 'submit_oracle_judgment', {
     'bounty_id': 'u64',
-    'judgment': 'scale_info::97',
+    'judgment': 'scale_info::98',
     'rationale': 'Bytes',
 }
 )
@@ -11350,7 +11350,7 @@ Params:
 <tr>
 <td>None</td>
 <td><code>BountyCreationParameters</code></td>
-<td><code>{'oracle': {'Council': None, 'Member': 'u64'}, 'contract_type': {'Open': None, 'Closed': 'scale_info::90'}, 'creator': {'Council': None, 'Member': 'u64'}, 'cherry': 'u128', 'oracle_reward': 'u128', 'entrant_stake': 'u128', 'funding_type': {'Perpetual': {'target': 'u128'}, 'Limited': {'target': 'u128', 'funding_period': 'u32'}}}</code></td>
+<td><code>{'oracle': {'Council': None, 'Member': 'u64'}, 'contract_type': {'Open': None, 'Closed': 'scale_info::91'}, 'creator': {'Council': None, 'Member': 'u64'}, 'cherry': 'u128', 'oracle_reward': 'u128', 'entrant_stake': 'u128', 'funding_type': {'Perpetual': {'target': 'u128'}, 'Limited': {'target': 'u128', 'funding_period': 'u32'}}}</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -11842,7 +11842,7 @@ Params:
 <tr>
 <td>None</td>
 <td><code>OracleJudgment</code></td>
-<td><code>scale_info::97</code></td>
+<td><code>scale_info::98</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -12088,7 +12088,7 @@ Params:
     'active_work_entry_count': 'u32',
     'creation_params': {
         'cherry': 'u128',
-        'contract_type': {'Closed': 'scale_info::90', 'Open': None},
+        'contract_type': {'Closed': 'scale_info::91', 'Open': None},
         'creator': {'Council': None, 'Member': 'u64'},
         'entrant_stake': 'u128',
         'funding_type': {

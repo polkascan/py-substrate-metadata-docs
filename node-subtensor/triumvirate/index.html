@@ -7837,15 +7837,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#close_old_weight" class="md-nav__link">
-    <span class="md-ellipsis">
-      close_old_weight
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#disapprove_proposal" class="md-nav__link">
     <span class="md-ellipsis">
       disapprove_proposal
@@ -8919,15 +8910,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#close_old_weight" class="md-nav__link">
-    <span class="md-ellipsis">
-      close_old_weight
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#disapprove_proposal" class="md-nav__link">
     <span class="md-ellipsis">
       disapprove_proposal
@@ -9261,26 +9243,7 @@
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="close">close<a class="headerlink" href="#close" title="Permanent link">&para;</a></h3>
-<p>Close a vote that is either approved, disapproved or whose voting period has ended.</p>
-<p>May be called by any signed account in order to finish voting and close the proposal.</p>
-<p>If called before the end of the voting period it will only close the vote if it is
-has enough votes to be approved or disapproved.</p>
-<p>If called after the end of the voting period abstentions are counted as rejections
-unless there is a prime member set and the prime member cast an approval.</p>
-<p>If the close operation completes successfully with disapproval, the transaction fee will
-be waived. Otherwise execution of the approved operation will be charged to the caller.</p>
-<ul>
-<li><code>proposal_weight_bound</code>: The maximum amount of weight consumed by executing the closed
-proposal.</li>
-<li><code>length_bound</code>: The upper bound for the length of the proposal in storage. Checked via
-<code>storage::read</code> so it is <code>size_of::&amp;lt;u32&amp;gt;() == 4</code> larger than the pure length.</li>
-</ul>
-<p>## Complexity
-- <code>O(B + M + P1 + P2)</code> where:
-  - <code>B</code> is <code>proposal</code> size in bytes (length-fee-bounded)
-  - <code>M</code> is members-count (code- and governance-bounded)
-  - <code>P1</code> is the complexity of <code>proposal</code> preimage.
-  - <code>P2</code> is proposal-count (code-bounded)</p>
+<p>See [<code>Pallet::close</code>].</p>
 <h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9313,7 +9276,7 @@ proposal.</li>
     'Triumvirate', 'close', {
     'index': 'u32',
     'length_bound': 'u32',
-    'proposal_hash': 'scale_info::10',
+    'proposal_hash': 'scale_info::12',
     'proposal_weight_bound': {
         'proof_size': 'u64',
         'ref_time': 'u64',
@@ -9322,27 +9285,8 @@ proposal.</li>
 )
 </code></pre>
 <hr />
-<h3 id="close_old_weight">close_old_weight<a class="headerlink" href="#close_old_weight" title="Permanent link">&para;</a></h3>
-<p>Close a vote that is either approved, disapproved or whose voting period has ended.</p>
-<p>May be called by any signed account in order to finish voting and close the proposal.</p>
-<p>If called before the end of the voting period it will only close the vote if it is
-has enough votes to be approved or disapproved.</p>
-<p>If called after the end of the voting period abstentions are counted as rejections
-unless there is a prime member set and the prime member cast an approval.</p>
-<p>If the close operation completes successfully with disapproval, the transaction fee will
-be waived. Otherwise execution of the approved operation will be charged to the caller.</p>
-<ul>
-<li><code>proposal_weight_bound</code>: The maximum amount of weight consumed by executing the closed
-proposal.</li>
-<li><code>length_bound</code>: The upper bound for the length of the proposal in storage. Checked via
-<code>storage::read</code> so it is <code>size_of::&amp;lt;u32&amp;gt;() == 4</code> larger than the pure length.</li>
-</ul>
-<p>## Complexity
-- <code>O(B + M + P1 + P2)</code> where:
-  - <code>B</code> is <code>proposal</code> size in bytes (length-fee-bounded)
-  - <code>M</code> is members-count (code- and governance-bounded)
-  - <code>P1</code> is the complexity of <code>proposal</code> preimage.
-  - <code>P2</code> is proposal-count (code-bounded)</p>
+<h3 id="disapprove_proposal">disapprove_proposal<a class="headerlink" href="#disapprove_proposal" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::disapprove_proposal</code>].</p>
 <h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9356,69 +9300,17 @@ proposal.</li>
 <td>proposal_hash</td>
 <td><code>T::Hash</code></td>
 </tr>
-<tr>
-<td>index</td>
-<td><code>ProposalIndex</code></td>
-</tr>
-<tr>
-<td>proposal_weight_bound</td>
-<td><code>OldWeight</code></td>
-</tr>
-<tr>
-<td>length_bound</td>
-<td><code>u32</code></td>
-</tr>
 </tbody>
 </table>
 <h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
-    'Triumvirate', 'close_old_weight', {
-    'index': 'u32',
-    'length_bound': 'u32',
-    'proposal_hash': 'scale_info::10',
-    'proposal_weight_bound': 'u64',
-}
-)
-</code></pre>
-<hr />
-<h3 id="disapprove_proposal">disapprove_proposal<a class="headerlink" href="#disapprove_proposal" title="Permanent link">&para;</a></h3>
-<p>Disapprove a proposal, close, and remove it from the system, regardless of its current
-state.</p>
-<p>Must be called by the Root origin.</p>
-<p>Parameters:
-* <code>proposal_hash</code>: The hash of the proposal that should be disapproved.</p>
-<p>## Complexity
-O(P) where P is the number of max proposals</p>
-<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-</tr>
-</tbody>
-</table>
-<h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">call = substrate.compose_call(
-    'Triumvirate', 'disapprove_proposal', {'proposal_hash': 'scale_info::10'}
+    'Triumvirate', 'disapprove_proposal', {'proposal_hash': 'scale_info::12'}
 )
 </code></pre>
 <hr />
 <h3 id="execute">execute<a class="headerlink" href="#execute" title="Permanent link">&para;</a></h3>
-<p>Dispatch a proposal from a member using the <code>Member</code> origin.</p>
-<p>Origin must be a member of the collective.</p>
-<p>## Complexity:
-- <code>O(B + M + P)</code> where:
-- <code>B</code> is <code>proposal</code> size in bytes (length-fee-bounded)
-- <code>M</code> members-count (code-bounded)
-- <code>P</code> complexity of dispatching <code>proposal</code></p>
-<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
+<p>See [<code>Pallet::execute</code>].</p>
+<h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -9437,7 +9329,7 @@ O(P) where P is the number of max proposals</p>
 </tr>
 </tbody>
 </table>
-<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
+<h4 id="python_2">Python<a class="headerlink" href="#python_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Triumvirate', 'execute', {
     'length_bound': 'u32',
@@ -9447,18 +9339,8 @@ O(P) where P is the number of max proposals</p>
 </code></pre>
 <hr />
 <h3 id="propose">propose<a class="headerlink" href="#propose" title="Permanent link">&para;</a></h3>
-<p>Add a new proposal to either be voted on or executed directly.</p>
-<p>Requires the sender to be member.</p>
-<p><code>threshold</code> determines whether <code>proposal</code> is executed directly (<code>threshold &amp;lt; 2</code>)
-or put up for voting.</p>
-<p>## Complexity
-- <code>O(B + M + P1)</code> or <code>O(B + M + P2)</code> where:
-  - <code>B</code> is <code>proposal</code> size in bytes (length-fee-bounded)
-  - <code>M</code> is members-count (code- and governance-bounded)
-  - branching is influenced by <code>threshold</code> where:
-    - <code>P1</code> is proposal execution complexity (<code>threshold &amp;lt; 2</code>)
-    - <code>P2</code> is proposals-count (code-bounded) (<code>threshold &amp;gt;= 2</code>)</p>
-<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
+<p>See [<code>Pallet::propose</code>].</p>
+<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -9477,11 +9359,11 @@ or put up for voting.</p>
 </tr>
 <tr>
 <td>duration</td>
-<td><code>T::BlockNumber</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 </tr>
 </tbody>
 </table>
-<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
+<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Triumvirate', 'propose', {
     'duration': 'u32',
@@ -9492,27 +9374,8 @@ or put up for voting.</p>
 </code></pre>
 <hr />
 <h3 id="set_members">set_members<a class="headerlink" href="#set_members" title="Permanent link">&para;</a></h3>
-<p>Set the collective&amp;#x27;s membership.</p>
-<ul>
-<li><code>new_members</code>: The new member list. Be nice to the chain and provide it sorted.</li>
-<li><code>prime</code>: The prime member whose vote sets the default.</li>
-<li><code>old_count</code>: The upper bound for the previous number of members in storage. Used for
-  weight estimation.</li>
-</ul>
-<p>The dispatch of this call must be <code>SetMembersOrigin</code>.</p>
-<p>NOTE: Does not enforce the expected <code>MaxMembers</code> limit on the amount of members, but
-      the weight estimations rely on it to estimate dispatchable weight.</p>
-<p># WARNING:</p>
-<p>The <code>pallet-collective</code> can also be managed by logic outside of the pallet through the
-implementation of the trait [<code>ChangeMembers</code>].
-Any call to <code>set_members</code> must be careful that the member set doesn&amp;#x27;t get out of sync
-with other logic managing the member set.</p>
-<p>## Complexity:
-- <code>O(MP + N)</code> where:
-  - <code>M</code> old-members-count (code- and governance-bounded)
-  - <code>N</code> new-members-count (code- and governance-bounded)
-  - <code>P</code> proposals-count (code-bounded)</p>
-<h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
+<p>See [<code>Pallet::set_members</code>].</p>
+<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -9535,7 +9398,7 @@ with other logic managing the member set.</p>
 </tr>
 </tbody>
 </table>
-<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
+<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Triumvirate', 'set_members', {
     'new_members': ['AccountId'],
@@ -9546,14 +9409,8 @@ with other logic managing the member set.</p>
 </code></pre>
 <hr />
 <h3 id="vote">vote<a class="headerlink" href="#vote" title="Permanent link">&para;</a></h3>
-<p>Add an aye or nay vote for the sender to the given proposal.</p>
-<p>Requires the sender to be a member.</p>
-<p>Transaction fees will be waived if the member is voting on any particular proposal
-for the first time and the call is successful. Subsequent vote changes will charge a
-fee.
-## Complexity
-- <code>O(M)</code> where <code>M</code> is members-count (code- and governance-bounded)</p>
-<h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
+<p>See [<code>Pallet::vote</code>].</p>
+<h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -9576,12 +9433,12 @@ fee.
 </tr>
 </tbody>
 </table>
-<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
+<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'Triumvirate', 'vote', {
     'approve': 'bool',
     'index': 'u32',
-    'proposal': 'scale_info::10',
+    'proposal': 'scale_info::12',
 }
 )
 </code></pre>
@@ -9590,6 +9447,26 @@ fee.
 <hr />
 <h3 id="approved">Approved<a class="headerlink" href="#approved" title="Permanent link">&para;</a></h3>
 <p>A motion was approved by the required threshold.</p>
+<h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proposal_hash</td>
+<td><code>T::Hash</code></td>
+<td><code>scale_info::12</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="closed">Closed<a class="headerlink" href="#closed" title="Permanent link">&para;</a></h3>
+<p>A proposal was closed because its threshold was reached or after its duration was up.</p>
 <h4 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9603,27 +9480,7 @@ fee.
 <tr>
 <td>proposal_hash</td>
 <td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="closed">Closed<a class="headerlink" href="#closed" title="Permanent link">&para;</a></h3>
-<p>A proposal was closed because its threshold was reached or after its duration was up.</p>
-<h4 id="attributes_8">Attributes<a class="headerlink" href="#attributes_8" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 <tr>
 <td>yes</td>
@@ -9640,6 +9497,26 @@ fee.
 <hr />
 <h3 id="disapproved">Disapproved<a class="headerlink" href="#disapproved" title="Permanent link">&para;</a></h3>
 <p>A motion was not approved by the required threshold.</p>
+<h4 id="attributes_8">Attributes<a class="headerlink" href="#attributes_8" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>proposal_hash</td>
+<td><code>T::Hash</code></td>
+<td><code>scale_info::12</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="executed">Executed<a class="headerlink" href="#executed" title="Permanent link">&para;</a></h3>
+<p>A motion was executed; result will be <code>Ok</code> if it returned without error.</p>
 <h4 id="attributes_9">Attributes<a class="headerlink" href="#attributes_9" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9653,13 +9530,18 @@ fee.
 <tr>
 <td>proposal_hash</td>
 <td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
+<td><code>scale_info::12</code></td>
+</tr>
+<tr>
+<td>result</td>
+<td><code>DispatchResult</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}</code></td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h3 id="executed">Executed<a class="headerlink" href="#executed" title="Permanent link">&para;</a></h3>
-<p>A motion was executed; result will be <code>Ok</code> if it returned without error.</p>
+<h3 id="memberexecuted">MemberExecuted<a class="headerlink" href="#memberexecuted" title="Permanent link">&para;</a></h3>
+<p>A single member did some action; result will be <code>Ok</code> if it returned without error.</p>
 <h4 id="attributes_10">Attributes<a class="headerlink" href="#attributes_10" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9673,37 +9555,12 @@ fee.
 <tr>
 <td>proposal_hash</td>
 <td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 <tr>
 <td>result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="memberexecuted">MemberExecuted<a class="headerlink" href="#memberexecuted" title="Permanent link">&para;</a></h3>
-<p>A single member did some action; result will be <code>Ok</code> if it returned without error.</p>
-<h4 id="attributes_11">Attributes<a class="headerlink" href="#attributes_11" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>proposal_hash</td>
-<td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
-</tr>
-<tr>
-<td>result</td>
-<td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}</code></td>
 </tr>
 </tbody>
 </table>
@@ -9711,7 +9568,7 @@ fee.
 <h3 id="proposed">Proposed<a class="headerlink" href="#proposed" title="Permanent link">&para;</a></h3>
 <p>A motion (given hash) has been proposed (by given account) with a threshold (given
 <code>MemberCount</code>).</p>
-<h4 id="attributes_12">Attributes<a class="headerlink" href="#attributes_12" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_11">Attributes<a class="headerlink" href="#attributes_11" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -9734,7 +9591,7 @@ fee.
 <tr>
 <td>proposal_hash</td>
 <td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 <tr>
 <td>threshold</td>
@@ -9747,7 +9604,7 @@ fee.
 <h3 id="voted">Voted<a class="headerlink" href="#voted" title="Permanent link">&para;</a></h3>
 <p>A motion (given hash) has been voted on by given account, leaving
 a tally (yes votes and no votes given respectively as <code>MemberCount</code>).</p>
-<h4 id="attributes_13">Attributes<a class="headerlink" href="#attributes_13" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_12">Attributes<a class="headerlink" href="#attributes_12" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -9765,7 +9622,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <tr>
 <td>proposal_hash</td>
 <td><code>T::Hash</code></td>
-<td><code>scale_info::10</code></td>
+<td><code>scale_info::12</code></td>
 </tr>
 <tr>
 <td>voted</td>
@@ -9789,7 +9646,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <hr />
 <h3 id="members">Members<a class="headerlink" href="#members" title="Permanent link">&para;</a></h3>
 <p>The current members of the collective. This is stored sorted (just by value).</p>
-<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
+<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Triumvirate', 'Members', []
 )
@@ -9800,7 +9657,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <hr />
 <h3 id="prime">Prime<a class="headerlink" href="#prime" title="Permanent link">&para;</a></h3>
 <p>The prime member that helps determine the default vote behavior in case of absentations.</p>
-<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
+<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Triumvirate', 'Prime', []
 )
@@ -9811,7 +9668,7 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <hr />
 <h3 id="proposalcount">ProposalCount<a class="headerlink" href="#proposalcount" title="Permanent link">&para;</a></h3>
 <p>Proposals so far.</p>
-<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
+<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Triumvirate', 'ProposalCount', []
 )
@@ -9822,9 +9679,9 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <hr />
 <h3 id="proposalof">ProposalOf<a class="headerlink" href="#proposalof" title="Permanent link">&para;</a></h3>
 <p>Actual proposal for a given hash, if it&#x27;s current.</p>
-<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
+<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
-    'Triumvirate', 'ProposalOf', ['scale_info::10']
+    'Triumvirate', 'ProposalOf', ['scale_info::12']
 )
 </code></pre>
 <h4 id="return-value_3">Return value<a class="headerlink" href="#return-value_3" title="Permanent link">&para;</a></h4>
@@ -9833,20 +9690,20 @@ a tally (yes votes and no votes given respectively as <code>MemberCount</code>).
 <hr />
 <h3 id="proposals">Proposals<a class="headerlink" href="#proposals" title="Permanent link">&para;</a></h3>
 <p>The hashes of the active proposals.</p>
-<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
+<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Triumvirate', 'Proposals', []
 )
 </code></pre>
 <h4 id="return-value_4">Return value<a class="headerlink" href="#return-value_4" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">['scale_info::10']
+<pre><code class="language-python">['scale_info::12']
 </code></pre>
 <hr />
 <h3 id="voting">Voting<a class="headerlink" href="#voting" title="Permanent link">&para;</a></h3>
 <p>Votes on a given proposal, if it is ongoing.</p>
-<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
+<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
-    'Triumvirate', 'Voting', ['scale_info::10']
+    'Triumvirate', 'Voting', ['scale_info::12']
 )
 </code></pre>
 <h4 id="return-value_5">Return value<a class="headerlink" href="#return-value_5" title="Permanent link">&para;</a></h4>

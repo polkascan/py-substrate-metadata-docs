@@ -10697,7 +10697,7 @@ where the last bool is whether you want to hide it apart from deleting it</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Forum', 'delete_posts', {
     'forum_user_id': 'u64',
-    'posts': 'scale_info::87',
+    'posts': 'scale_info::88',
     'rationale': 'Bytes',
 }
 )
@@ -11050,7 +11050,7 @@ where the last bool is whether you want to hide it apart from deleting it</p>
         'Moderator': 'u64',
     },
     'category_id': 'u64',
-    'stickied_ids': 'scale_info::90',
+    'stickied_ids': 'scale_info::91',
 }
 )
 </code></pre>
@@ -11407,7 +11407,7 @@ The second argument reflects the new description hash of the category.</p>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;ThreadId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -11518,7 +11518,7 @@ The second argument reflects the new title hash of the category.</p>
 <tr>
 <td>None</td>
 <td><code>BTreeMap&lt;ExtendedPostId, bool&gt;</code></td>
-<td><code>scale_info::87</code></td>
+<td><code>scale_info::88</code></td>
 </tr>
 </tbody>
 </table>
@@ -11843,7 +11843,7 @@ The second argument reflects the new archival status of the thread.</p>
     'num_direct_subcategories': 'u32',
     'num_direct_threads': 'u32',
     'parent_category_id': (None, 'u64'),
-    'sticky_thread_ids': 'scale_info::90',
+    'sticky_thread_ids': 'scale_info::91',
     'title_hash': 'scale_info::11',
 }
 </code></pre>

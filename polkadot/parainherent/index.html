@@ -1309,6 +1309,24 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#backedbydisabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      BackedByDisabled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backedonunscheduledcore" class="md-nav__link">
+    <span class="md-ellipsis">
+      BackedOnUnscheduledCore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#candidateconcludedinvalid" class="md-nav__link">
     <span class="md-ellipsis">
       CandidateConcludedInvalid
@@ -1357,6 +1375,15 @@
   <a href="#toomanyinclusioninherents" class="md-nav__link">
     <span class="md-ellipsis">
       TooManyInclusionInherents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unscheduledcandidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnscheduledCandidate
     </span>
   </a>
   
@@ -9494,6 +9521,24 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#backedbydisabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      BackedByDisabled
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backedonunscheduledcore" class="md-nav__link">
+    <span class="md-ellipsis">
+      BackedOnUnscheduledCore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#candidateconcludedinvalid" class="md-nav__link">
     <span class="md-ellipsis">
       CandidateConcludedInvalid
@@ -9542,6 +9587,15 @@
   <a href="#toomanyinclusioninherents" class="md-nav__link">
     <span class="md-ellipsis">
       TooManyInclusionInherents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unscheduledcandidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      UnscheduledCandidate
     </span>
   </a>
   
@@ -9601,7 +9655,7 @@
                     'commitments': {
                         'head_data': 'Bytes',
                         'horizontal_messages': [
-                            'scale_info::326',
+                            'scale_info::349',
                         ],
                         'hrmp_watermark': 'u32',
                         'new_validation_code': (
@@ -9649,8 +9703,8 @@
                 'statements': [
                     (
                         {
-                            'Invalid': 'scale_info::340',
-                            'Valid': 'scale_info::339',
+                            'Invalid': 'scale_info::364',
+                            'Valid': 'scale_info::362',
                         },
                         'u32',
                         '[u8; 64]',
@@ -9731,14 +9785,14 @@
                     'validation_code_hash': 'scale_info::12',
                 },
             },
-            [('u32', 'scale_info::332')],
+            [('u32', 'scale_info::355')],
         ),
     ],
     'disputes': [
         {
             'candidate_hash': 'scale_info::12',
             'session': 'u32',
-            'statements': [('scale_info::338', 'u32', '[u8; 64]')],
+            'statements': [('scale_info::361', 'u32', '[u8; 64]')],
         },
     ],
     'session': 'u32',
@@ -9746,6 +9800,12 @@
 </code></pre>
 <hr />
 <h2 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="backedbydisabled">BackedByDisabled<a class="headerlink" href="#backedbydisabled" title="Permanent link">&para;</a></h3>
+<p>A candidate was backed by a disabled validator</p>
+<hr />
+<h3 id="backedonunscheduledcore">BackedOnUnscheduledCore<a class="headerlink" href="#backedonunscheduledcore" title="Permanent link">&para;</a></h3>
+<p>A candidate was backed even though the paraid was not scheduled.</p>
 <hr />
 <h3 id="candidateconcludedinvalid">CandidateConcludedInvalid<a class="headerlink" href="#candidateconcludedinvalid" title="Permanent link">&para;</a></h3>
 <p>Disputed candidate that was concluded invalid.</p>
@@ -9765,6 +9825,9 @@ the parent.</p>
 <hr />
 <h3 id="toomanyinclusioninherents">TooManyInclusionInherents<a class="headerlink" href="#toomanyinclusioninherents" title="Permanent link">&para;</a></h3>
 <p>Inclusion inherent called more than once per block.</p>
+<hr />
+<h3 id="unscheduledcandidate">UnscheduledCandidate<a class="headerlink" href="#unscheduledcandidate" title="Permanent link">&para;</a></h3>
+<p>Too many candidates supplied.</p>
 <hr />
 
 

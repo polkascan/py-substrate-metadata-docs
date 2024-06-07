@@ -9129,7 +9129,7 @@
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="cancel">cancel<a class="headerlink" href="#cancel" title="Permanent link">&para;</a></h3>
-<p>Cancel an anonymously scheduled task.</p>
+<p>See [<code>Pallet::cancel</code>].</p>
 <h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9141,7 +9141,7 @@
 <tbody>
 <tr>
 <td>when</td>
-<td><code>T::BlockNumber</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 </tr>
 <tr>
 <td>index</td>
@@ -9156,7 +9156,7 @@
 </code></pre>
 <hr />
 <h3 id="cancel_named">cancel_named<a class="headerlink" href="#cancel_named" title="Permanent link">&para;</a></h3>
-<p>Cancel a named scheduled task.</p>
+<p>See [<code>Pallet::cancel_named</code>].</p>
 <h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9179,7 +9179,7 @@
 </code></pre>
 <hr />
 <h3 id="schedule">schedule<a class="headerlink" href="#schedule" title="Permanent link">&para;</a></h3>
-<p>Anonymously schedule a task.</p>
+<p>See [<code>Pallet::schedule</code>].</p>
 <h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9191,11 +9191,11 @@
 <tbody>
 <tr>
 <td>when</td>
-<td><code>T::BlockNumber</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 </tr>
 <tr>
 <td>maybe_periodic</td>
-<td><code>Option&lt;schedule::Period&lt;T::BlockNumber&gt;&gt;</code></td>
+<td><code>Option&lt;schedule::Period&lt;BlockNumberFor&lt;T&gt;&gt;&gt;</code></td>
 </tr>
 <tr>
 <td>priority</td>
@@ -9222,7 +9222,7 @@
 </code></pre>
 <hr />
 <h3 id="schedule_after">schedule_after<a class="headerlink" href="#schedule_after" title="Permanent link">&para;</a></h3>
-<p>Anonymously schedule a task after a delay.</p>
+<p>See [<code>Pallet::schedule_after</code>].</p>
 <h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9234,11 +9234,11 @@
 <tbody>
 <tr>
 <td>after</td>
-<td><code>T::BlockNumber</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 </tr>
 <tr>
 <td>maybe_periodic</td>
-<td><code>Option&lt;schedule::Period&lt;T::BlockNumber&gt;&gt;</code></td>
+<td><code>Option&lt;schedule::Period&lt;BlockNumberFor&lt;T&gt;&gt;&gt;</code></td>
 </tr>
 <tr>
 <td>priority</td>
@@ -9265,7 +9265,7 @@
 </code></pre>
 <hr />
 <h3 id="schedule_named">schedule_named<a class="headerlink" href="#schedule_named" title="Permanent link">&para;</a></h3>
-<p>Schedule a named task.</p>
+<p>See [<code>Pallet::schedule_named</code>].</p>
 <h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9281,11 +9281,11 @@
 </tr>
 <tr>
 <td>when</td>
-<td><code>T::BlockNumber</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 </tr>
 <tr>
 <td>maybe_periodic</td>
-<td><code>Option&lt;schedule::Period&lt;T::BlockNumber&gt;&gt;</code></td>
+<td><code>Option&lt;schedule::Period&lt;BlockNumberFor&lt;T&gt;&gt;&gt;</code></td>
 </tr>
 <tr>
 <td>priority</td>
@@ -9313,7 +9313,7 @@
 </code></pre>
 <hr />
 <h3 id="schedule_named_after">schedule_named_after<a class="headerlink" href="#schedule_named_after" title="Permanent link">&para;</a></h3>
-<p>Schedule a named task after a delay.</p>
+<p>See [<code>Pallet::schedule_named_after</code>].</p>
 <h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9329,11 +9329,11 @@
 </tr>
 <tr>
 <td>after</td>
-<td><code>T::BlockNumber</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 </tr>
 <tr>
 <td>maybe_periodic</td>
-<td><code>Option&lt;schedule::Period&lt;T::BlockNumber&gt;&gt;</code></td>
+<td><code>Option&lt;schedule::Period&lt;BlockNumberFor&lt;T&gt;&gt;&gt;</code></td>
 </tr>
 <tr>
 <td>priority</td>
@@ -9376,7 +9376,7 @@
 <tbody>
 <tr>
 <td>task</td>
-<td><code>TaskAddress&lt;T::BlockNumber&gt;</code></td>
+<td><code>TaskAddress&lt;BlockNumberFor&lt;T&gt;&gt;</code></td>
 <td><code>('u32', 'u32')</code></td>
 </tr>
 <tr>
@@ -9401,7 +9401,7 @@
 <tbody>
 <tr>
 <td>when</td>
-<td><code>T::BlockNumber</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 <td><code>u32</code></td>
 </tr>
 <tr>
@@ -9426,7 +9426,7 @@
 <tbody>
 <tr>
 <td>task</td>
-<td><code>TaskAddress&lt;T::BlockNumber&gt;</code></td>
+<td><code>TaskAddress&lt;BlockNumberFor&lt;T&gt;&gt;</code></td>
 <td><code>('u32', 'u32')</code></td>
 </tr>
 <tr>
@@ -9437,7 +9437,7 @@
 <tr>
 <td>result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}</code></td>
 </tr>
 </tbody>
 </table>
@@ -9456,7 +9456,7 @@
 <tbody>
 <tr>
 <td>task</td>
-<td><code>TaskAddress&lt;T::BlockNumber&gt;</code></td>
+<td><code>TaskAddress&lt;BlockNumberFor&lt;T&gt;&gt;</code></td>
 <td><code>('u32', 'u32')</code></td>
 </tr>
 <tr>
@@ -9481,7 +9481,7 @@
 <tbody>
 <tr>
 <td>task</td>
-<td><code>TaskAddress&lt;T::BlockNumber&gt;</code></td>
+<td><code>TaskAddress&lt;BlockNumberFor&lt;T&gt;&gt;</code></td>
 <td><code>('u32', 'u32')</code></td>
 </tr>
 <tr>
@@ -9506,7 +9506,7 @@
 <tbody>
 <tr>
 <td>when</td>
-<td><code>T::BlockNumber</code></td>
+<td><code>BlockNumberFor&lt;T&gt;</code></td>
 <td><code>u32</code></td>
 </tr>
 <tr>
@@ -9539,10 +9539,10 @@
             'maybe_id': (None, '[u8; 32]'),
             'maybe_periodic': (None, ('u32', 'u32')),
             'origin': {
-                'Triumvirate': 'scale_info::143',
-                'Void': 'scale_info::102',
-                'system': 'scale_info::142',
+                'Triumvirate': 'scale_info::154',
+                'system': 'scale_info::153',
                 None: None,
+                'Void': 'scale_info::106',
             },
             'priority': 'u8',
         },
@@ -9577,6 +9577,9 @@
 <hr />
 <h3 id="maxscheduledperblock">MaxScheduledPerBlock<a class="headerlink" href="#maxscheduledperblock" title="Permanent link">&para;</a></h3>
 <p>The maximum number of scheduled calls in the queue for a single block.</p>
+<p>NOTE:
+ + Dependent pallets&#x27; benchmarks might require a higher limit for the setting. Set a
+ higher limit under <code>runtime-benchmarks</code> feature.</p>
 <h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">50
 </code></pre>

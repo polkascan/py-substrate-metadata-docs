@@ -8745,17 +8745,7 @@
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="set">set<a class="headerlink" href="#set" title="Permanent link">&para;</a></h3>
-<p>Set the current time.</p>
-<p>This call should be invoked exactly once per block. It will panic at the finalization
-phase, if this call hasn&amp;#x27;t been invoked by that time.</p>
-<p>The timestamp should be greater than the previous one by the amount specified by
-<code>MinimumPeriod</code>.</p>
-<p>The dispatch origin for this call must be <code>Inherent</code>.</p>
-<p>## Complexity
-- <code>O(1)</code> (Note that implementations of <code>OnTimestampSet</code> must also be <code>O(1)</code>)
-- 1 storage read and 1 storage mutation (codec <code>O(1)</code>). (because of <code>DidUpdate::take</code> in
-  <code>on_finalize</code>)
-- 1 event handler <code>on_timestamp_set</code>. Must be <code>O(1)</code>.</p>
+<p>See [<code>Pallet::set</code>].</p>
 <h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
 <table>
 <thead>

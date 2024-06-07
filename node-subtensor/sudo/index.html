@@ -8865,11 +8865,7 @@
 <h2 id="calls">Calls<a class="headerlink" href="#calls" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="set_key">set_key<a class="headerlink" href="#set_key" title="Permanent link">&para;</a></h3>
-<p>Authenticates the current sudo key and sets the given AccountId (<code>new</code>) as the new sudo
-key.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<p>## Complexity
-- O(1).</p>
+<p>See [<code>Pallet::set_key</code>].</p>
 <h4 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -8900,10 +8896,7 @@ key.</p>
 </code></pre>
 <hr />
 <h3 id="sudo_1">sudo<a class="headerlink" href="#sudo_1" title="Permanent link">&para;</a></h3>
-<p>Authenticates the sudo key and dispatches a function call with <code>Root</code> origin.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<p>## Complexity
-- O(1).</p>
+<p>See [<code>Pallet::sudo</code>].</p>
 <h4 id="attributes_1">Attributes<a class="headerlink" href="#attributes_1" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -8926,11 +8919,7 @@ key.</p>
 </code></pre>
 <hr />
 <h3 id="sudo_as">sudo_as<a class="headerlink" href="#sudo_as" title="Permanent link">&para;</a></h3>
-<p>Authenticates the sudo key and dispatches a function call with <code>Signed</code> origin from
-a given account.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<p>## Complexity
-- O(1).</p>
+<p>See [<code>Pallet::sudo_as</code>].</p>
 <h4 id="attributes_2">Attributes<a class="headerlink" href="#attributes_2" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -8966,12 +8955,7 @@ a given account.</p>
 </code></pre>
 <hr />
 <h3 id="sudo_unchecked_weight">sudo_unchecked_weight<a class="headerlink" href="#sudo_unchecked_weight" title="Permanent link">&para;</a></h3>
-<p>Authenticates the sudo key and dispatches a function call with <code>Root</code> origin.
-This function does not check the weight of the call, and instead allows the
-Sudo user to specify the weight of the call.</p>
-<p>The dispatch origin for this call must be <em>Signed</em>.</p>
-<p>## Complexity
-- O(1).</p>
+<p>See [<code>Pallet::sudo_unchecked_weight</code>].</p>
 <h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -9040,7 +9024,7 @@ Sudo user to specify the weight of the call.</p>
 <tr>
 <td>sudo_result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}</code></td>
 </tr>
 </tbody>
 </table>
@@ -9060,7 +9044,7 @@ Sudo user to specify the weight of the call.</p>
 <tr>
 <td>sudo_result</td>
 <td><code>DispatchResult</code></td>
-<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('NoFunds', 'WouldDie', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None}}</code></td>
+<td><code>{'Ok': (), 'Err': {'Other': None, 'CannotLookup': None, 'BadOrigin': None, 'Module': {'index': 'u8', 'error': '[u8; 4]'}, 'ConsumerRemaining': None, 'NoProviders': None, 'TooManyConsumers': None, 'Token': ('FundsUnavailable', 'OnlyProvider', 'BelowMinimum', 'CannotCreate', 'UnknownAsset', 'Frozen', 'Unsupported', 'CannotCreateHold', 'NotExpendable', 'Blocked'), 'Arithmetic': ('Underflow', 'Overflow', 'DivisionByZero'), 'Transactional': ('LimitReached', 'NoLayer'), 'Exhausted': None, 'Corruption': None, 'Unavailable': None, 'RootNotAllowed': None}}</code></td>
 </tr>
 </tbody>
 </table>

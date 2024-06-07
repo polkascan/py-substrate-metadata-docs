@@ -10133,15 +10133,21 @@
         },
     },
     'proposal_origin': {
+        'Ethereum': {
+            'EthereumTransaction': '[u8; 20]',
+        },
+        'system': {
+            'None': None,
+            'Root': None,
+            'Signed': '[u8; 20]',
+        },
+        None: None,
         'CumulusXcm': {
             'Relay': None,
             'SiblingParachain': 'u32',
         },
         'EthTxForwarder': {
             'ForwardEth': '[u8; 20]',
-        },
-        'Ethereum': {
-            'EthereumTransaction': '[u8; 20]',
         },
         'Origins': (
             'WhitelistedCaller',
@@ -11133,12 +11139,6 @@
             '_Phantom': None,
         },
         'Void': (),
-        None: None,
-        'system': {
-            'None': None,
-            'Root': None,
-            'Signed': '[u8; 20]',
-        },
     },
 }
 )
@@ -11628,7 +11628,6 @@
             'CumulusXcm': {'Relay': None, 'SiblingParachain': 'u32'},
             'EthTxForwarder': {'ForwardEth': '[u8; 20]'},
             'Ethereum': {'EthereumTransaction': '[u8; 20]'},
-            None: None,
             'Origins': (
                 'WhitelistedCaller',
                 'GeneralAdmin',
@@ -11648,6 +11647,7 @@
             },
             'Void': (),
             'system': {'None': None, 'Root': None, 'Signed': '[u8; 20]'},
+            None: None,
         },
         'proposal': {
             'Inline': 'Bytes',

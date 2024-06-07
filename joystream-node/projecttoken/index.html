@@ -8591,6 +8591,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#update_token_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      update_token_constraints
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -8709,6 +8718,15 @@
   <a href="#tokenamounttransferredbyissuer" class="md-nav__link">
     <span class="md-ellipsis">
       TokenAmountTransferredByIssuer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenconstraintsupdated" class="md-nav__link">
+    <span class="md-ellipsis">
+      TokenConstraintsUpdated
     </span>
   </a>
   
@@ -10132,6 +10150,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#update_token_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      update_token_constraints
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -10250,6 +10277,15 @@
   <a href="#tokenamounttransferredbyissuer" class="md-nav__link">
     <span class="md-ellipsis">
       TokenAmountTransferredByIssuer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenconstraintsupdated" class="md-nav__link">
+    <span class="md-ellipsis">
+      TokenConstraintsUpdated
     </span>
   </a>
   
@@ -11153,7 +11189,8 @@ Preconditions
 - token_id must exist
 - user usable JOY balance must be enough for buying (+ existential deposit)
 - slippage tolerance constraints respected if provided
-- token total supply and amount value must be s.t. <code>eval</code> function doesn&amp;#x27;t overflow</p>
+- token total supply and amount value must be s.t. <code>eval</code> function doesn&amp;#x27;t overflow
+- token supply can be modified (there is no active revenue split)</p>
 <p>Postconditions
 - <code>amount</code> CRT minted into account (which is created if necessary with existential deposit transferred to it)
 - respective JOY amount transferred from user balance to amm treasury account
@@ -11499,7 +11536,8 @@ Preconditions
 - user usable CRT balance must be at least <code>amount</code>
 - slippage tolerance constraints respected if provided
 - token total supply and amount value must be s.t. <code>eval</code> function doesn&amp;#x27;t overflow
-- amm treasury account must have sufficient JOYs for the operation</p>
+- amm treasury account must have sufficient JOYs for the operation
+- token supply can be modified (there is no active revenue split)</p>
 <p>Postconditions
 - <code>amount</code> burned from user account
 - total supply decreased by amount
@@ -11637,6 +11675,73 @@ Postconditions:
 )
 </code></pre>
 <hr />
+<h3 id="update_token_constraints">update_token_constraints<a class="headerlink" href="#update_token_constraints" title="Permanent link">&para;</a></h3>
+<p>Allow Governance to Set constraints
+Preconditions:
+- origin is signed by <code>root</code>
+PostConditions:
+- governance parameters storage value set to the provided values
+&lt;weight&gt;</p>
+<p>## Weight
+<code>O (1)</code>
+# &lt;/weight&gt;</p>
+<h4 id="attributes_10">Attributes<a class="headerlink" href="#attributes_10" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>parameters</td>
+<td><code>TokenConstraintsOf&lt;T&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'ProjectToken', 'update_token_constraints', {
+    'parameters': {
+        'amm_buy_tx_fees': (
+            None,
+            'u32',
+        ),
+        'amm_sell_tx_fees': (
+            None,
+            'u32',
+        ),
+        'bloat_bond': (None, 'u128'),
+        'max_yearly_rate': (
+            None,
+            'u32',
+        ),
+        'min_amm_slope': (
+            None,
+            'u128',
+        ),
+        'min_revenue_split_duration': (
+            None,
+            'u32',
+        ),
+        'min_revenue_split_time_to_start': (
+            None,
+            'u32',
+        ),
+        'min_sale_duration': (
+            None,
+            'u32',
+        ),
+        'sale_platform_fee': (
+            None,
+            'u32',
+        ),
+    },
+}
+)
+</code></pre>
+<hr />
 <h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
 <hr />
 <h3 id="accountdustedby">AccountDustedBy<a class="headerlink" href="#accountdustedby" title="Permanent link">&para;</a></h3>
@@ -11646,7 +11751,7 @@ Params:
 - id of the dusted account owner member
 - account that called the extrinsic
 - ongoing policy</p>
-<h4 id="attributes_10">Attributes<a class="headerlink" href="#attributes_10" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_11">Attributes<a class="headerlink" href="#attributes_11" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11685,7 +11790,7 @@ Params:
 - token id
 - member id
 - params for the bonding curve</p>
-<h4 id="attributes_11">Attributes<a class="headerlink" href="#attributes_11" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_12">Attributes<a class="headerlink" href="#attributes_12" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11719,7 +11824,7 @@ Params:
 - token id
 - member id
 - amm treasury amount burned upon deactivation</p>
-<h4 id="attributes_12">Attributes<a class="headerlink" href="#attributes_12" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_13">Attributes<a class="headerlink" href="#attributes_13" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11751,7 +11856,7 @@ Params:
 <p>Pallet Frozen status toggled
 Params:
 - new frozen status (true | false)</p>
-<h4 id="attributes_13">Attributes<a class="headerlink" href="#attributes_13" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_14">Attributes<a class="headerlink" href="#attributes_14" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11775,7 +11880,7 @@ Params:
 - token identifier
 - member id
 - ongoing transfer policy</p>
-<h4 id="attributes_14">Attributes<a class="headerlink" href="#attributes_14" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_15">Attributes<a class="headerlink" href="#attributes_15" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11809,7 +11914,7 @@ Params:
 - token identifier
 - credit amount
 - member id</p>
-<h4 id="attributes_15">Attributes<a class="headerlink" href="#attributes_15" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_16">Attributes<a class="headerlink" href="#attributes_16" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11842,7 +11947,7 @@ Params:
 Params:
 - token identifier
 - new patronage rate</p>
-<h4 id="attributes_16">Attributes<a class="headerlink" href="#attributes_16" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_17">Attributes<a class="headerlink" href="#attributes_17" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11871,7 +11976,7 @@ Params:
 - token identifier
 - recovery account for the leftover funds
 - leftover funds</p>
-<h4 id="attributes_17">Attributes<a class="headerlink" href="#attributes_17" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_18">Attributes<a class="headerlink" href="#attributes_18" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11906,7 +12011,7 @@ Params:
 - starting block for the split
 - duration of the split
 - JOY allocated for the split</p>
-<h4 id="attributes_18">Attributes<a class="headerlink" href="#attributes_18" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_19">Attributes<a class="headerlink" href="#attributes_19" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11945,7 +12050,7 @@ Params:
 - token identifier
 - ex-participant&amp;#x27;s member id
 - amount unstaked</p>
-<h4 id="attributes_19">Attributes<a class="headerlink" href="#attributes_19" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_20">Attributes<a class="headerlink" href="#attributes_20" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -11980,48 +12085,6 @@ Params:
 - source member id
 - map containing validated outputs (amount indexed by (member_id + account existance))
 - transfer&amp;#x27;s metadata</p>
-<h4 id="attributes_20">Attributes<a class="headerlink" href="#attributes_20" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Composition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>None</td>
-<td><code>TokenId</code></td>
-<td><code>u64</code></td>
-</tr>
-<tr>
-<td>None</td>
-<td><code>MemberId</code></td>
-<td><code>u64</code></td>
-</tr>
-<tr>
-<td>None</td>
-<td><code>ValidatedTransfers</code></td>
-<td><code>scale_info::197</code></td>
-</tr>
-<tr>
-<td>None</td>
-<td><code>Vec&lt;u8&gt;</code></td>
-<td><code>Bytes</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="tokenamounttransferredbyissuer">TokenAmountTransferredByIssuer<a class="headerlink" href="#tokenamounttransferredbyissuer" title="Permanent link">&para;</a></h3>
-<p>Token amount transferred by issuer
-Params:
-- token identifier
-- source (issuer) member id
-- map containing validated outputs
-  (amount, opt. vesting schedule, opt. vesting cleanup key) data indexed by
-  (account_id + account existance)
-- transfer&amp;#x27;s metadata</p>
 <h4 id="attributes_21">Attributes<a class="headerlink" href="#attributes_21" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -12045,7 +12108,7 @@ Params:
 <tr>
 <td>None</td>
 <td><code>ValidatedTransfers</code></td>
-<td><code>scale_info::197</code></td>
+<td><code>scale_info::198</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -12055,11 +12118,75 @@ Params:
 </tbody>
 </table>
 <hr />
+<h3 id="tokenamounttransferredbyissuer">TokenAmountTransferredByIssuer<a class="headerlink" href="#tokenamounttransferredbyissuer" title="Permanent link">&para;</a></h3>
+<p>Token amount transferred by issuer
+Params:
+- token identifier
+- source (issuer) member id
+- map containing validated outputs
+  (amount, opt. vesting schedule, opt. vesting cleanup key) data indexed by
+  (account_id + account existance)
+- transfer&amp;#x27;s metadata</p>
+<h4 id="attributes_22">Attributes<a class="headerlink" href="#attributes_22" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td><code>TokenId</code></td>
+<td><code>u64</code></td>
+</tr>
+<tr>
+<td>None</td>
+<td><code>MemberId</code></td>
+<td><code>u64</code></td>
+</tr>
+<tr>
+<td>None</td>
+<td><code>ValidatedTransfers</code></td>
+<td><code>scale_info::198</code></td>
+</tr>
+<tr>
+<td>None</td>
+<td><code>Vec&lt;u8&gt;</code></td>
+<td><code>Bytes</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="tokenconstraintsupdated">TokenConstraintsUpdated<a class="headerlink" href="#tokenconstraintsupdated" title="Permanent link">&para;</a></h3>
+<p>Governance parameters updated
+Params:
+- governance parameters</p>
+<h4 id="attributes_23">Attributes<a class="headerlink" href="#attributes_23" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td><code>TokenConstraints</code></td>
+<td><code>{'max_yearly_rate': (None, 'u32'), 'min_amm_slope': (None, 'u128'), 'min_sale_duration': (None, 'u32'), 'min_revenue_split_duration': (None, 'u32'), 'min_revenue_split_time_to_start': (None, 'u32'), 'sale_platform_fee': (None, 'u32'), 'amm_buy_tx_fees': (None, 'u32'), 'amm_sell_tx_fees': (None, 'u32'), 'bloat_bond': (None, 'u128')}</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h3 id="tokendeissued">TokenDeissued<a class="headerlink" href="#tokendeissued" title="Permanent link">&para;</a></h3>
 <p>Token Deissued
 Params:
 - token id</p>
-<h4 id="attributes_22">Attributes<a class="headerlink" href="#attributes_22" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_24">Attributes<a class="headerlink" href="#attributes_24" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12082,7 +12209,7 @@ Params:
 Params:
 - token id
 - token issuance parameters</p>
-<h4 id="attributes_23">Attributes<a class="headerlink" href="#attributes_23" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_25">Attributes<a class="headerlink" href="#attributes_25" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12100,7 +12227,7 @@ Params:
 <tr>
 <td>None</td>
 <td><code>TokenIssuanceParameters</code></td>
-<td><code>{'initial_allocation': 'scale_info::187', 'transfer_policy': {'Permissionless': None, 'Permissioned': {'commitment': 'scale_info::11', 'payload': (None, {'object_creation_params': 'scale_info::136', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'})}}, 'patronage_rate': 'u32', 'revenue_split_rate': 'u32', 'metadata': 'Bytes'}</code></td>
+<td><code>{'initial_allocation': 'scale_info::188', 'transfer_policy': {'Permissionless': None, 'Permissioned': {'commitment': 'scale_info::11', 'payload': (None, {'object_creation_params': 'scale_info::137', 'expected_data_size_fee': 'u128', 'expected_data_object_state_bloat_bond': 'u128'})}}, 'patronage_rate': 'u32', 'revenue_split_rate': 'u32', 'metadata': 'Bytes'}</code></td>
 </tr>
 </tbody>
 </table>
@@ -12112,7 +12239,7 @@ Params:
 - token sale id
 - amount of unsold tokens recovered
 - amount of JOY collected</p>
-<h4 id="attributes_24">Attributes<a class="headerlink" href="#attributes_24" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_26">Attributes<a class="headerlink" href="#attributes_26" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12152,7 +12279,7 @@ Params:
 - token sale id
 - token sale data
 - token sale metadata</p>
-<h4 id="attributes_25">Attributes<a class="headerlink" href="#attributes_25" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_27">Attributes<a class="headerlink" href="#attributes_27" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12192,7 +12319,7 @@ Params:
 - member id
 - amount of CRT minted
 - amount of JOY deposited into curve treasury</p>
-<h4 id="attributes_26">Attributes<a class="headerlink" href="#attributes_26" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_28">Attributes<a class="headerlink" href="#attributes_28" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12231,7 +12358,7 @@ Params:
 - token id
 - member id
 - number of tokens burned</p>
-<h4 id="attributes_27">Attributes<a class="headerlink" href="#attributes_27" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_29">Attributes<a class="headerlink" href="#attributes_29" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12266,7 +12393,7 @@ Params:
 - token sale id
 - amount of tokens purchased
 - buyer&amp;#x27;s member id</p>
-<h4 id="attributes_28">Attributes<a class="headerlink" href="#attributes_28" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_30">Attributes<a class="headerlink" href="#attributes_30" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12306,7 +12433,7 @@ Params:
 - member id
 - amount of CRT burned
 - amount of JOY withdrawn from curve treasury</p>
-<h4 id="attributes_29">Attributes<a class="headerlink" href="#attributes_29" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_31">Attributes<a class="headerlink" href="#attributes_31" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12343,7 +12470,7 @@ Params:
 <p>Transfer Policy Changed To Permissionless
 Params:
 - token id</p>
-<h4 id="attributes_30">Attributes<a class="headerlink" href="#attributes_30" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_32">Attributes<a class="headerlink" href="#attributes_32" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12368,7 +12495,7 @@ Params:
 - token sale id
 - new sale start block
 - new sale duration</p>
-<h4 id="attributes_31">Attributes<a class="headerlink" href="#attributes_31" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_33">Attributes<a class="headerlink" href="#attributes_33" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12409,7 +12536,7 @@ Params:
 - user allocated staked balance
 - dividend amount (JOY) granted
 - revenue split identifier</p>
-<h4 id="attributes_32">Attributes<a class="headerlink" href="#attributes_32" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_34">Attributes<a class="headerlink" href="#attributes_34" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -12451,7 +12578,7 @@ Params:
 <hr />
 <h3 id="accountinfobytokenandmember">AccountInfoByTokenAndMember<a class="headerlink" href="#accountinfobytokenandmember" title="Permanent link">&para;</a></h3>
 <p>Double map TokenId x MemberId =&gt; AccountData for managing account data</p>
-<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
+<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'AccountInfoByTokenAndMember', ['u64', 'u64']
 )
@@ -12466,13 +12593,13 @@ Params:
     'last_sale_total_purchased_amount': (None, ('u32', 'u128')),
     'next_vesting_transfer_id': 'u64',
     'split_staking_status': (None, {'amount': 'u128', 'split_id': 'u32'}),
-    'vesting_schedules': 'scale_info::589',
+    'vesting_schedules': 'scale_info::596',
 }
 </code></pre>
 <hr />
 <h3 id="ammbuytxfees">AmmBuyTxFees<a class="headerlink" href="#ammbuytxfees" title="Permanent link">&para;</a></h3>
 <p>AMM buy transaction fee percentage</p>
-<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
+<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'AmmBuyTxFees', []
 )
@@ -12483,7 +12610,7 @@ Params:
 <hr />
 <h3 id="ammdeactivationthreshold">AmmDeactivationThreshold<a class="headerlink" href="#ammdeactivationthreshold" title="Permanent link">&para;</a></h3>
 <p>Percentage threshold for deactivating the amm functionality</p>
-<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
+<h4 id="python_13">Python<a class="headerlink" href="#python_13" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'AmmDeactivationThreshold', []
 )
@@ -12494,7 +12621,7 @@ Params:
 <hr />
 <h3 id="ammselltxfees">AmmSellTxFees<a class="headerlink" href="#ammselltxfees" title="Permanent link">&para;</a></h3>
 <p>AMM sell transaction fee percentage</p>
-<h4 id="python_13">Python<a class="headerlink" href="#python_13" title="Permanent link">&para;</a></h4>
+<h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'AmmSellTxFees', []
 )
@@ -12505,7 +12632,7 @@ Params:
 <hr />
 <h3 id="bloatbond">BloatBond<a class="headerlink" href="#bloatbond" title="Permanent link">&para;</a></h3>
 <p>Bloat Bond value used during account creation</p>
-<h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
+<h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'BloatBond', []
 )
@@ -12516,7 +12643,7 @@ Params:
 <hr />
 <h3 id="maxyearlypatronagerate">MaxYearlyPatronageRate<a class="headerlink" href="#maxyearlypatronagerate" title="Permanent link">&para;</a></h3>
 <p>Max patronage rate allowed</p>
-<h4 id="python_15">Python<a class="headerlink" href="#python_15" title="Permanent link">&para;</a></h4>
+<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'MaxYearlyPatronageRate', []
 )
@@ -12527,7 +12654,7 @@ Params:
 <hr />
 <h3 id="minammslopeparameter">MinAmmSlopeParameter<a class="headerlink" href="#minammslopeparameter" title="Permanent link">&para;</a></h3>
 <p>Minimum slope parameters allowed for AMM curve</p>
-<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
+<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'MinAmmSlopeParameter', []
 )
@@ -12538,7 +12665,7 @@ Params:
 <hr />
 <h3 id="minrevenuesplitduration">MinRevenueSplitDuration<a class="headerlink" href="#minrevenuesplitduration" title="Permanent link">&para;</a></h3>
 <p>Minimum revenue split duration constraint</p>
-<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
+<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'MinRevenueSplitDuration', []
 )
@@ -12549,7 +12676,7 @@ Params:
 <hr />
 <h3 id="minrevenuesplittimetostart">MinRevenueSplitTimeToStart<a class="headerlink" href="#minrevenuesplittimetostart" title="Permanent link">&para;</a></h3>
 <p>Minimum revenue split time to start constraint</p>
-<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
+<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'MinRevenueSplitTimeToStart', []
 )
@@ -12560,7 +12687,7 @@ Params:
 <hr />
 <h3 id="minsaleduration">MinSaleDuration<a class="headerlink" href="#minsaleduration" title="Permanent link">&para;</a></h3>
 <p>Minimum duration of a token sale</p>
-<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
+<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'MinSaleDuration', []
 )
@@ -12571,7 +12698,7 @@ Params:
 <hr />
 <h3 id="nexttokenid">NextTokenId<a class="headerlink" href="#nexttokenid" title="Permanent link">&para;</a></h3>
 <p>Token Id nonce</p>
-<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
+<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'NextTokenId', []
 )
@@ -12582,7 +12709,7 @@ Params:
 <hr />
 <h3 id="palletfrozen">PalletFrozen<a class="headerlink" href="#palletfrozen" title="Permanent link">&para;</a></h3>
 <p>Current frozen state.</p>
-<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
+<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'PalletFrozen', []
 )
@@ -12593,7 +12720,7 @@ Params:
 <hr />
 <h3 id="saleplatformfee">SalePlatformFee<a class="headerlink" href="#saleplatformfee" title="Permanent link">&para;</a></h3>
 <p>Platform fee (percentage) charged on top of each sale purchase (in JOY) and burned</p>
-<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
+<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'SalePlatformFee', []
 )
@@ -12604,7 +12731,7 @@ Params:
 <hr />
 <h3 id="tokeninfobyid">TokenInfoById<a class="headerlink" href="#tokeninfobyid" title="Permanent link">&para;</a></h3>
 <p>map TokenId =&gt; TokenData to retrieve token information</p>
-<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
+<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ProjectToken', 'TokenInfoById', ['u64']
 )

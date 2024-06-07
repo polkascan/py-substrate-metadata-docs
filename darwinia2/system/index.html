@@ -10373,27 +10373,27 @@
             },
             'AssetLimit': {
                 'AssetLimitChanged': {
-                    'asset_type': 'scale_info::279',
+                    'asset_type': 'scale_info::270',
                     'units_limit': 'u128',
                 },
             },
             'AssetManager': {
                 'ForeignAssetDestroyed': {
                     'asset_id': 'u64',
-                    'asset_type': 'scale_info::279',
+                    'asset_type': 'scale_info::270',
                 },
                 'ForeignAssetRegistered': {
-                    'asset': 'scale_info::279',
+                    'asset': 'scale_info::270',
                     'asset_id': 'u64',
-                    'metadata': 'scale_info::280',
+                    'metadata': 'scale_info::271',
                 },
                 'ForeignAssetRemoved': {
                     'asset_id': 'u64',
-                    'asset_type': 'scale_info::279',
+                    'asset_type': 'scale_info::270',
                 },
                 'ForeignAssetTypeChanged': {
                     'asset_id': 'u64',
-                    'new_asset_type': 'scale_info::279',
+                    'new_asset_type': 'scale_info::270',
                 },
                 'LocalAssetDestroyed': {'asset_id': 'u64'},
                 'LocalAssetRegistered': {
@@ -10401,9 +10401,9 @@
                     'creator': '[u8; 20]',
                     'owner': '[u8; 20]',
                 },
-                'SupportedAssetRemoved': {'asset_type': 'scale_info::279'},
+                'SupportedAssetRemoved': {'asset_type': 'scale_info::270'},
                 'UnitsPerSecondChanged': {
-                    'asset_type': 'scale_info::279',
+                    'asset_type': 'scale_info::270',
                     'units_per_second': 'u128',
                 },
             },
@@ -10534,11 +10534,11 @@
                 'Disapproved': {'proposal_hash': 'scale_info::12'},
                 'Executed': {
                     'proposal_hash': 'scale_info::12',
-                    'result': 'scale_info::61',
+                    'result': 'scale_info::53',
                 },
                 'MemberExecuted': {
                     'proposal_hash': 'scale_info::12',
-                    'result': 'scale_info::61',
+                    'result': 'scale_info::53',
                 },
                 'Proposed': {
                     'account': '[u8; 20]',
@@ -10555,26 +10555,24 @@
                 },
             },
             'CumulusXcm': {
-                'ExecutedDownward': ('[u8; 32]', 'scale_info::312'),
+                'ExecutedDownward': ('[u8; 32]', 'scale_info::305'),
                 'InvalidFormat': '[u8; 32]',
                 'UnsupportedVersion': '[u8; 32]',
             },
             'DarwiniaStaking': {
                 'CommissionUpdated': {'commission': 'u32', 'who': '[u8; 20]'},
                 'Elected': {'collators': ['[u8; 20]']},
-                'Payout': {'amount': 'u128', 'staker': '[u8; 20]'},
+                'Payout': {'amount': 'u128', 'who': '[u8; 20]'},
                 'Staked': {
                     'deposits': ['u16'],
-                    'kton_amount': 'u128',
                     'ring_amount': 'u128',
-                    'staker': '[u8; 20]',
+                    'who': '[u8; 20]',
                 },
-                'Unpaid': {'amount': 'u128', 'staker': '[u8; 20]'},
+                'Unpaid': {'amount': 'u128', 'who': '[u8; 20]'},
                 'Unstaked': {
                     'deposits': ['u16'],
-                    'kton_amount': 'u128',
                     'ring_amount': 'u128',
-                    'staker': '[u8; 20]',
+                    'who': '[u8; 20]',
                 },
             },
             'Democracy': {
@@ -10584,23 +10582,23 @@
                 'ExternalTabled': None,
                 'MetadataCleared': {
                     'hash': 'scale_info::12',
-                    'owner': 'scale_info::69',
+                    'owner': 'scale_info::61',
                 },
                 'MetadataSet': {
                     'hash': 'scale_info::12',
-                    'owner': 'scale_info::69',
+                    'owner': 'scale_info::61',
                 },
                 'MetadataTransferred': {
                     'hash': 'scale_info::12',
-                    'owner': 'scale_info::69',
-                    'prev_owner': 'scale_info::69',
+                    'owner': 'scale_info::61',
+                    'prev_owner': 'scale_info::61',
                 },
                 'NotPassed': {'ref_index': 'u32'},
                 'Passed': {'ref_index': 'u32'},
                 'ProposalCanceled': {'prop_index': 'u32'},
                 'Proposed': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Seconded': {'prop_index': 'u32', 'seconder': '[u8; 20]'},
-                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::66'},
+                'Started': {'ref_index': 'u32', 'threshold': 'scale_info::58'},
                 'Tabled': {'deposit': 'u128', 'proposal_index': 'u32'},
                 'Undelegated': {'account': '[u8; 20]'},
                 'Vetoed': {
@@ -10610,7 +10608,7 @@
                 },
                 'Voted': {
                     'ref_index': 'u32',
-                    'vote': 'scale_info::67',
+                    'vote': 'scale_info::59',
                     'voter': '[u8; 20]',
                 },
             },
@@ -10634,7 +10632,7 @@
                 'ExecutedDownward': {
                     'message_hash': '[u8; 32]',
                     'message_id': '[u8; 32]',
-                    'outcome': 'scale_info::312',
+                    'outcome': 'scale_info::305',
                 },
                 'InvalidFormat': {'message_hash': '[u8; 32]'},
                 'MaxMessagesExhausted': {'message_hash': '[u8; 32]'},
@@ -10661,30 +10659,11 @@
                 'CreatedFailed': {'address': '[u8; 20]'},
                 'Executed': {'address': '[u8; 20]'},
                 'ExecutedFailed': {'address': '[u8; 20]'},
-                'Log': {'log': 'scale_info::328'},
-            },
-            'EcdsaAuthority': {
-                'CollectedEnoughAuthoritiesChangeSignatures': {
-                    'message': 'scale_info::12',
-                    'operation': 'scale_info::53',
-                    'signatures': [('[u8; 20]', '[u8; 65]')],
-                    'threshold': (None, 'u32'),
-                },
-                'CollectedEnoughNewMessageRootSignatures': {
-                    'commitment': 'scale_info::59',
-                    'message': 'scale_info::12',
-                    'signatures': [('[u8; 20]', '[u8; 65]')],
-                },
-                'CollectingAuthoritiesChangeSignatures': {
-                    'message': 'scale_info::12',
-                },
-                'CollectingNewMessageRootSignatures': {
-                    'message': 'scale_info::12',
-                },
+                'Log': {'log': 'scale_info::321'},
             },
             'Ethereum': {
                 'Executed': {
-                    'exit_reason': 'scale_info::319',
+                    'exit_reason': 'scale_info::312',
                     'extra_data': 'Bytes',
                     'from': '[u8; 20]',
                     'to': '[u8; 20]',
@@ -10738,34 +10717,34 @@
             },
             'PolkadotXcm': {
                 'AssetsClaimed': {
-                    'assets': 'scale_info::252',
+                    'assets': 'scale_info::243',
                     'hash': 'scale_info::12',
-                    'origin': 'scale_info::132',
+                    'origin': 'scale_info::122',
                 },
                 'AssetsTrapped': {
-                    'assets': 'scale_info::252',
+                    'assets': 'scale_info::243',
                     'hash': 'scale_info::12',
-                    'origin': 'scale_info::132',
+                    'origin': 'scale_info::122',
                 },
-                'Attempted': {'outcome': 'scale_info::312'},
-                'FeesPaid': {'fees': ['scale_info::232'], 'paying': 'scale_info::132'},
+                'Attempted': {'outcome': 'scale_info::305'},
+                'FeesPaid': {'fees': ['scale_info::223'], 'paying': 'scale_info::122'},
                 'InvalidQuerier': {
-                    'expected_querier': 'scale_info::132',
-                    'maybe_actual_querier': (None, 'scale_info::132'),
-                    'origin': 'scale_info::132',
+                    'expected_querier': 'scale_info::122',
+                    'maybe_actual_querier': (None, 'scale_info::122'),
+                    'origin': 'scale_info::122',
                     'query_id': 'u64',
                 },
                 'InvalidQuerierVersion': {
-                    'origin': 'scale_info::132',
+                    'origin': 'scale_info::122',
                     'query_id': 'u64',
                 },
                 'InvalidResponder': {
-                    'expected_location': (None, 'scale_info::132'),
-                    'origin': 'scale_info::132',
+                    'expected_location': (None, 'scale_info::122'),
+                    'origin': 'scale_info::122',
                     'query_id': 'u64',
                 },
                 'InvalidResponderVersion': {
-                    'origin': 'scale_info::132',
+                    'origin': 'scale_info::122',
                     'query_id': 'u64',
                 },
                 'Notified': {
@@ -10791,52 +10770,52 @@
                     'query_id': 'u64',
                 },
                 'NotifyTargetMigrationFail': {
-                    'location': 'scale_info::199',
+                    'location': 'scale_info::190',
                     'query_id': 'u64',
                 },
                 'NotifyTargetSendFail': {
-                    'error': 'scale_info::239',
-                    'location': 'scale_info::132',
+                    'error': 'scale_info::230',
+                    'location': 'scale_info::122',
                     'query_id': 'u64',
                 },
                 'ResponseReady': {
                     'query_id': 'u64',
-                    'response': 'scale_info::236',
+                    'response': 'scale_info::227',
                 },
                 'ResponseTaken': {'query_id': 'u64'},
                 'Sent': {
-                    'destination': 'scale_info::132',
-                    'message': ['scale_info::229'],
+                    'destination': 'scale_info::122',
+                    'message': ['scale_info::220'],
                     'message_id': '[u8; 32]',
-                    'origin': 'scale_info::132',
+                    'origin': 'scale_info::122',
                 },
                 'SupportedVersionChanged': {
-                    'location': 'scale_info::132',
+                    'location': 'scale_info::122',
                     'version': 'u32',
                 },
                 'UnexpectedResponse': {
-                    'origin': 'scale_info::132',
+                    'origin': 'scale_info::122',
                     'query_id': 'u64',
                 },
                 'VersionChangeNotified': {
-                    'cost': ['scale_info::232'],
-                    'destination': 'scale_info::132',
+                    'cost': ['scale_info::223'],
+                    'destination': 'scale_info::122',
                     'message_id': '[u8; 32]',
                     'result': 'u32',
                 },
                 'VersionNotifyRequested': {
-                    'cost': ['scale_info::232'],
-                    'destination': 'scale_info::132',
+                    'cost': ['scale_info::223'],
+                    'destination': 'scale_info::122',
                     'message_id': '[u8; 32]',
                 },
                 'VersionNotifyStarted': {
-                    'cost': ['scale_info::232'],
-                    'destination': 'scale_info::132',
+                    'cost': ['scale_info::223'],
+                    'destination': 'scale_info::122',
                     'message_id': '[u8; 32]',
                 },
                 'VersionNotifyUnrequested': {
-                    'cost': ['scale_info::232'],
-                    'destination': 'scale_info::132',
+                    'cost': ['scale_info::223'],
+                    'destination': 'scale_info::122',
                     'message_id': '[u8; 32]',
                 },
             },
@@ -10855,28 +10834,28 @@
                     'delay': 'u32',
                     'delegatee': '[u8; 20]',
                     'delegator': '[u8; 20]',
-                    'proxy_type': 'scale_info::196',
+                    'proxy_type': 'scale_info::187',
                 },
-                'ProxyExecuted': {'result': 'scale_info::61'},
+                'ProxyExecuted': {'result': 'scale_info::53'},
                 'ProxyRemoved': {
                     'delay': 'u32',
                     'delegatee': '[u8; 20]',
                     'delegator': '[u8; 20]',
-                    'proxy_type': 'scale_info::196',
+                    'proxy_type': 'scale_info::187',
                 },
                 'PureCreated': {
                     'disambiguation_index': 'u16',
-                    'proxy_type': 'scale_info::196',
+                    'proxy_type': 'scale_info::187',
                     'pure': '[u8; 20]',
                     'who': '[u8; 20]',
                 },
             },
             'Referenda': {
                 'Approved': {'index': 'u32'},
-                'Cancelled': {'index': 'u32', 'tally': 'scale_info::299'},
+                'Cancelled': {'index': 'u32', 'tally': 'scale_info::292'},
                 'ConfirmAborted': {'index': 'u32'},
                 'ConfirmStarted': {'index': 'u32'},
-                'Confirmed': {'index': 'u32', 'tally': 'scale_info::299'},
+                'Confirmed': {'index': 'u32', 'tally': 'scale_info::292'},
                 'DecisionDepositPlaced': {
                     'amount': 'u128',
                     'index': 'u32',
@@ -10889,15 +10868,15 @@
                 },
                 'DecisionStarted': {
                     'index': 'u32',
-                    'proposal': 'scale_info::72',
-                    'tally': 'scale_info::299',
+                    'proposal': 'scale_info::64',
+                    'tally': 'scale_info::292',
                     'track': 'u16',
                 },
                 'DepositSlashed': {'amount': 'u128', 'who': '[u8; 20]'},
-                'Killed': {'index': 'u32', 'tally': 'scale_info::299'},
+                'Killed': {'index': 'u32', 'tally': 'scale_info::292'},
                 'MetadataCleared': {'hash': 'scale_info::12', 'index': 'u32'},
                 'MetadataSet': {'hash': 'scale_info::12', 'index': 'u32'},
-                'Rejected': {'index': 'u32', 'tally': 'scale_info::299'},
+                'Rejected': {'index': 'u32', 'tally': 'scale_info::292'},
                 'SubmissionDepositRefunded': {
                     'amount': 'u128',
                     'index': 'u32',
@@ -10905,10 +10884,10 @@
                 },
                 'Submitted': {
                     'index': 'u32',
-                    'proposal': 'scale_info::72',
+                    'proposal': 'scale_info::64',
                     'track': 'u16',
                 },
-                'TimedOut': {'index': 'u32', 'tally': 'scale_info::299'},
+                'TimedOut': {'index': 'u32', 'tally': 'scale_info::292'},
             },
             'Scheduler': {
                 'CallUnavailable': {
@@ -10918,7 +10897,7 @@
                 'Canceled': {'index': 'u32', 'when': 'u32'},
                 'Dispatched': {
                     'id': (None, '[u8; 32]'),
-                    'result': 'scale_info::61',
+                    'result': 'scale_info::53',
                     'task': ('u32', 'u32'),
                 },
                 'PeriodicFailed': {
@@ -10931,14 +10910,6 @@
                 },
                 'Scheduled': {'index': 'u32', 'when': 'u32'},
             },
-            'TransactionPayment': {
-                'TransactionFeePaid': {
-                    'actual_fee': 'u128',
-                    'tip': 'u128',
-                    'who': '[u8; 20]',
-                },
-            },
-            None: None,
             'Session': {'NewSession': {'session_index': 'u32'}},
             'System': {
                 'CodeUpdated': None,
@@ -10961,11 +10932,11 @@
                 'Disapproved': {'proposal_hash': 'scale_info::12'},
                 'Executed': {
                     'proposal_hash': 'scale_info::12',
-                    'result': 'scale_info::61',
+                    'result': 'scale_info::53',
                 },
                 'MemberExecuted': {
                     'proposal_hash': 'scale_info::12',
-                    'result': 'scale_info::61',
+                    'result': 'scale_info::53',
                 },
                 'Proposed': {
                     'account': '[u8; 20]',
@@ -11003,6 +10974,14 @@
                     'reactivated': 'u128',
                 },
             },
+            None: None,
+            'TransactionPayment': {
+                'TransactionFeePaid': {
+                    'actual_fee': 'u128',
+                    'tip': 'u128',
+                    'who': '[u8; 20]',
+                },
+            },
             'Utility': {
                 'BatchCompleted': None,
                 'BatchCompletedWithErrors': None,
@@ -11010,7 +10989,7 @@
                     'error': 'scale_info::26',
                     'index': 'u32',
                 },
-                'DispatchedAs': {'result': 'scale_info::61'},
+                'DispatchedAs': {'result': 'scale_info::53'},
                 'ItemCompleted': None,
                 'ItemFailed': {'error': 'scale_info::26'},
             },
@@ -11022,15 +11001,15 @@
                 'CallWhitelisted': {'call_hash': 'scale_info::12'},
                 'WhitelistedCallDispatched': {
                     'call_hash': 'scale_info::12',
-                    'result': 'scale_info::301',
+                    'result': 'scale_info::294',
                 },
                 'WhitelistedCallRemoved': {'call_hash': 'scale_info::12'},
             },
             'XTokens': {
                 'TransferredMultiAssets': {
-                    'assets': ['scale_info::232'],
-                    'dest': 'scale_info::132',
-                    'fee': 'scale_info::232',
+                    'assets': ['scale_info::223'],
+                    'dest': 'scale_info::122',
+                    'fee': 'scale_info::223',
                     'sender': '[u8; 20]',
                 },
             },
@@ -11038,7 +11017,7 @@
                 'BadFormat': {'message_hash': '[u8; 32]'},
                 'BadVersion': {'message_hash': '[u8; 32]'},
                 'Fail': {
-                    'error': 'scale_info::239',
+                    'error': 'scale_info::230',
                     'message_hash': '[u8; 32]',
                     'message_id': '[u8; 32]',
                     'weight': 'scale_info::9',
@@ -11257,7 +11236,7 @@
     'impl_name': 'DarwiniaOfficialRust',
     'impl_version': 0,
     'spec_name': 'Darwinia2',
-    'spec_version': 6610,
+    'spec_version': 6630,
     'state_version': 0,
     'transaction_version': 0,
 }

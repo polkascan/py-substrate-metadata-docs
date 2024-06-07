@@ -4127,6 +4127,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#exchange_member" class="md-nav__link">
+    <span class="md-ellipsis">
+      exchange_member
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#promote_member" class="md-nav__link">
     <span class="md-ellipsis">
       promote_member
@@ -4172,6 +4181,15 @@
   <a href="#memberadded" class="md-nav__link">
     <span class="md-ellipsis">
       MemberAdded
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memberexchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      MemberExchanged
     </span>
   </a>
   
@@ -4364,6 +4382,15 @@
   <a href="#ranktoolow" class="md-nav__link">
     <span class="md-ellipsis">
       RankTooLow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#samemember" class="md-nav__link">
+    <span class="md-ellipsis">
+      SameMember
     </span>
   </a>
   
@@ -9763,6 +9790,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#exchange_member" class="md-nav__link">
+    <span class="md-ellipsis">
+      exchange_member
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#promote_member" class="md-nav__link">
     <span class="md-ellipsis">
       promote_member
@@ -9808,6 +9844,15 @@
   <a href="#memberadded" class="md-nav__link">
     <span class="md-ellipsis">
       MemberAdded
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memberexchanged" class="md-nav__link">
+    <span class="md-ellipsis">
+      MemberExchanged
     </span>
   </a>
   
@@ -10005,6 +10050,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#samemember" class="md-nav__link">
+    <span class="md-ellipsis">
+      SameMember
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -10121,9 +10175,51 @@
 )
 </code></pre>
 <hr />
+<h3 id="exchange_member">exchange_member<a class="headerlink" href="#exchange_member" title="Permanent link">&para;</a></h3>
+<p>See [<code>Pallet::exchange_member</code>].</p>
+<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>who</td>
+<td><code>AccountIdLookupOf&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td>new_who</td>
+<td><code>AccountIdLookupOf&lt;T&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">call = substrate.compose_call(
+    'FellowshipCollective', 'exchange_member', {
+    'new_who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+    'who': {
+        'Address20': '[u8; 20]',
+        'Address32': '[u8; 32]',
+        'Id': 'AccountId',
+        'Index': (),
+        'Raw': 'Bytes',
+    },
+}
+)
+</code></pre>
+<hr />
 <h3 id="promote_member">promote_member<a class="headerlink" href="#promote_member" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::promote_member</code>].</p>
-<h4 id="attributes_3">Attributes<a class="headerlink" href="#attributes_3" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10138,7 +10234,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_3">Python<a class="headerlink" href="#python_3" title="Permanent link">&para;</a></h4>
+<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'FellowshipCollective', 'promote_member', {
     'who': {
@@ -10154,7 +10250,7 @@
 <hr />
 <h3 id="remove_member">remove_member<a class="headerlink" href="#remove_member" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::remove_member</code>].</p>
-<h4 id="attributes_4">Attributes<a class="headerlink" href="#attributes_4" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10173,7 +10269,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_4">Python<a class="headerlink" href="#python_4" title="Permanent link">&para;</a></h4>
+<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'FellowshipCollective', 'remove_member', {
     'min_rank': 'u16',
@@ -10190,7 +10286,7 @@
 <hr />
 <h3 id="vote">vote<a class="headerlink" href="#vote" title="Permanent link">&para;</a></h3>
 <p>See [<code>Pallet::vote</code>].</p>
-<h4 id="attributes_5">Attributes<a class="headerlink" href="#attributes_5" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10209,7 +10305,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="python_5">Python<a class="headerlink" href="#python_5" title="Permanent link">&para;</a></h4>
+<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">call = substrate.compose_call(
     'FellowshipCollective', 'vote', {'aye': 'bool', 'poll': 'u32'}
 )
@@ -10219,7 +10315,7 @@
 <hr />
 <h3 id="memberadded">MemberAdded<a class="headerlink" href="#memberadded" title="Permanent link">&para;</a></h3>
 <p>A member <code>who</code> has been added.</p>
-<h4 id="attributes_6">Attributes<a class="headerlink" href="#attributes_6" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10237,9 +10333,34 @@
 </tbody>
 </table>
 <hr />
+<h3 id="memberexchanged">MemberExchanged<a class="headerlink" href="#memberexchanged" title="Permanent link">&para;</a></h3>
+<p>The member <code>who</code> had their <code>AccountId</code> changed to <code>new_who</code>.</p>
+<h4 id="attributes_8">Attributes<a class="headerlink" href="#attributes_8" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Composition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>who</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+<tr>
+<td>new_who</td>
+<td><code>T::AccountId</code></td>
+<td><code>AccountId</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h3 id="memberremoved">MemberRemoved<a class="headerlink" href="#memberremoved" title="Permanent link">&para;</a></h3>
 <p>The member <code>who</code> of given <code>rank</code> has been removed from the collective.</p>
-<h4 id="attributes_7">Attributes<a class="headerlink" href="#attributes_7" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_9">Attributes<a class="headerlink" href="#attributes_9" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10264,7 +10385,7 @@
 <hr />
 <h3 id="rankchanged">RankChanged<a class="headerlink" href="#rankchanged" title="Permanent link">&para;</a></h3>
 <p>The member <code>who</code>se rank has been changed to the given <code>rank</code>.</p>
-<h4 id="attributes_8">Attributes<a class="headerlink" href="#attributes_8" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_10">Attributes<a class="headerlink" href="#attributes_10" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10290,7 +10411,7 @@
 <h3 id="voted">Voted<a class="headerlink" href="#voted" title="Permanent link">&para;</a></h3>
 <p>The member <code>who</code> has voted for the <code>poll</code> with the given <code>vote</code> leading to an updated
 <code>tally</code>.</p>
-<h4 id="attributes_9">Attributes<a class="headerlink" href="#attributes_9" title="Permanent link">&para;</a></h4>
+<h4 id="attributes_11">Attributes<a class="headerlink" href="#attributes_11" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -10327,7 +10448,7 @@
 <hr />
 <h3 id="idtoindex">IdToIndex<a class="headerlink" href="#idtoindex" title="Permanent link">&para;</a></h3>
 <p>The index of each ranks&#x27;s member into the group of members who have at least that rank.</p>
-<h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
+<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'FellowshipCollective', 'IdToIndex', ['u16', 'AccountId']
 )
@@ -10339,7 +10460,7 @@
 <h3 id="indextoid">IndexToId<a class="headerlink" href="#indextoid" title="Permanent link">&para;</a></h3>
 <p>The members in the collective by index. All indices in the range <code>0..MemberCount</code> will
  return <code>Some</code>, however a member&#x27;s index is not guaranteed to remain unchanged over time.</p>
-<h4 id="python_7">Python<a class="headerlink" href="#python_7" title="Permanent link">&para;</a></h4>
+<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'FellowshipCollective', 'IndexToId', ['u16', 'u32']
 )
@@ -10351,7 +10472,7 @@
 <h3 id="membercount">MemberCount<a class="headerlink" href="#membercount" title="Permanent link">&para;</a></h3>
 <p>The number of members in the collective who have at least the rank according to the index
  of the vec.</p>
-<h4 id="python_8">Python<a class="headerlink" href="#python_8" title="Permanent link">&para;</a></h4>
+<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'FellowshipCollective', 'MemberCount', ['u16']
 )
@@ -10362,7 +10483,7 @@
 <hr />
 <h3 id="members">Members<a class="headerlink" href="#members" title="Permanent link">&para;</a></h3>
 <p>The current members of the collective.</p>
-<h4 id="python_9">Python<a class="headerlink" href="#python_9" title="Permanent link">&para;</a></h4>
+<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'FellowshipCollective', 'Members', ['AccountId']
 )
@@ -10373,7 +10494,7 @@
 <hr />
 <h3 id="voting">Voting<a class="headerlink" href="#voting" title="Permanent link">&para;</a></h3>
 <p>Votes on a given proposal, if it is ongoing.</p>
-<h4 id="python_10">Python<a class="headerlink" href="#python_10" title="Permanent link">&para;</a></h4>
+<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'FellowshipCollective', 'Voting', ['u32', 'AccountId']
 )
@@ -10383,7 +10504,7 @@
 </code></pre>
 <hr />
 <h3 id="votingcleanup">VotingCleanup<a class="headerlink" href="#votingcleanup" title="Permanent link">&para;</a></h3>
-<h4 id="python_11">Python<a class="headerlink" href="#python_11" title="Permanent link">&para;</a></h4>
+<h4 id="python_12">Python<a class="headerlink" href="#python_12" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'FellowshipCollective', 'VotingCleanup', ['u32']
 )
@@ -10420,6 +10541,9 @@
 <hr />
 <h3 id="ranktoolow">RankTooLow<a class="headerlink" href="#ranktoolow" title="Permanent link">&para;</a></h3>
 <p>The member&amp;#x27;s rank is too low to vote.</p>
+<hr />
+<h3 id="samemember">SameMember<a class="headerlink" href="#samemember" title="Permanent link">&para;</a></h3>
+<p>The new member to exchange is the same as the old member</p>
 <hr />
 
 

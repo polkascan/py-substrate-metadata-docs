@@ -945,6 +945,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Historical
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -954,6 +965,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#storage-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historicalsessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      HistoricalSessions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storedrange" class="md-nav__link">
+    <span class="md-ellipsis">
+      StoredRange
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -9264,6 +9327,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#storage-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Storage functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historicalsessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      HistoricalSessions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storedrange" class="md-nav__link">
+    <span class="md-ellipsis">
+      StoredRange
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -9281,6 +9385,30 @@
 
 
 <h1 id="historical">Historical<a class="headerlink" href="#historical" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="storage-functions">Storage functions<a class="headerlink" href="#storage-functions" title="Permanent link">&para;</a></h2>
+<hr />
+<h3 id="historicalsessions">HistoricalSessions<a class="headerlink" href="#historicalsessions" title="Permanent link">&para;</a></h3>
+<p>Mapping from historical session indices to session-data root hash and validator count.</p>
+<h4 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'Historical', 'HistoricalSessions', ['u32']
+)
+</code></pre>
+<h4 id="return-value">Return value<a class="headerlink" href="#return-value" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">('scale_info::12', 'u32')
+</code></pre>
+<hr />
+<h3 id="storedrange">StoredRange<a class="headerlink" href="#storedrange" title="Permanent link">&para;</a></h3>
+<p>The range of historical sessions we store. [first, last)</p>
+<h4 id="python_1">Python<a class="headerlink" href="#python_1" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'Historical', 'StoredRange', []
+)
+</code></pre>
+<h4 id="return-value_1">Return value<a class="headerlink" href="#return-value_1" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">('u32', 'u32')
+</code></pre>
 <hr />
 
 

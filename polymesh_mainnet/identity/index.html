@@ -8973,6 +8973,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#childdid" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChildDid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#claims" class="md-nav__link">
     <span class="md-ellipsis">
       Claims
@@ -10564,6 +10573,15 @@
   <a href="#cddauthforprimarykeyrotation" class="md-nav__link">
     <span class="md-ellipsis">
       CddAuthForPrimaryKeyRotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#childdid" class="md-nav__link">
+    <span class="md-ellipsis">
+      ChildDid
     </span>
   </a>
   
@@ -13293,9 +13311,20 @@ instead of unlinking the old primary key.</p>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
+<h3 id="childdid">ChildDid<a class="headerlink" href="#childdid" title="Permanent link">&para;</a></h3>
+<p>All child identities of a parent (i.e ParentDID, ChildDID, true)</p>
+<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'Identity', 'ChildDid', ['[u8; 32]', '[u8; 32]']
+)
+</code></pre>
+<h4 id="return-value_4">Return value<a class="headerlink" href="#return-value_4" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">'bool'
+</code></pre>
+<hr />
 <h3 id="claims">Claims<a class="headerlink" href="#claims" title="Permanent link">&para;</a></h3>
 <p>(Target ID, claim type) (issuer,scope) -&gt; Associated claims</p>
-<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
+<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'Claims', [
     {
@@ -13327,7 +13356,7 @@ instead of unlinking the old primary key.</p>
 ]
 )
 </code></pre>
-<h4 id="return-value_4">Return value<a class="headerlink" href="#return-value_4" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_5">Return value<a class="headerlink" href="#return-value_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'claim': {
         'Accredited': {
@@ -13642,100 +13671,100 @@ instead of unlinking the old primary key.</p>
 <hr />
 <h3 id="currentdid">CurrentDid<a class="headerlink" href="#currentdid" title="Permanent link">&para;</a></h3>
 <p>It stores the current identity for current transaction.</p>
-<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
+<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'CurrentDid', []
 )
 </code></pre>
-<h4 id="return-value_5">Return value<a class="headerlink" href="#return-value_5" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_6">Return value<a class="headerlink" href="#return-value_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'[u8; 32]'
 </code></pre>
 <hr />
 <h3 id="currentpayer">CurrentPayer<a class="headerlink" href="#currentpayer" title="Permanent link">&para;</a></h3>
 <p>It stores the current gas fee payer for the current transaction</p>
-<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
+<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'CurrentPayer', []
 )
 </code></pre>
-<h4 id="return-value_6">Return value<a class="headerlink" href="#return-value_6" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_7">Return value<a class="headerlink" href="#return-value_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'AccountId'
 </code></pre>
 <hr />
 <h3 id="customclaimidsequence">CustomClaimIdSequence<a class="headerlink" href="#customclaimidsequence" title="Permanent link">&para;</a></h3>
 <p>The next <code>CustomClaimTypeId</code>.</p>
-<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
+<h4 id="python_32">Python<a class="headerlink" href="#python_32" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'CustomClaimIdSequence', []
 )
 </code></pre>
-<h4 id="return-value_7">Return value<a class="headerlink" href="#return-value_7" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_8">Return value<a class="headerlink" href="#return-value_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h3 id="customclaims">CustomClaims<a class="headerlink" href="#customclaims" title="Permanent link">&para;</a></h3>
 <p>CustomClaimTypeId -&gt; String constant</p>
-<h4 id="python_32">Python<a class="headerlink" href="#python_32" title="Permanent link">&para;</a></h4>
+<h4 id="python_33">Python<a class="headerlink" href="#python_33" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'CustomClaims', ['u32']
 )
 </code></pre>
-<h4 id="return-value_8">Return value<a class="headerlink" href="#return-value_8" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_9">Return value<a class="headerlink" href="#return-value_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'Bytes'
 </code></pre>
 <hr />
 <h3 id="customclaimsinverse">CustomClaimsInverse<a class="headerlink" href="#customclaimsinverse" title="Permanent link">&para;</a></h3>
 <p>String constant -&gt; CustomClaimTypeId</p>
-<h4 id="python_33">Python<a class="headerlink" href="#python_33" title="Permanent link">&para;</a></h4>
+<h4 id="python_34">Python<a class="headerlink" href="#python_34" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'CustomClaimsInverse', ['Bytes']
 )
 </code></pre>
-<h4 id="return-value_9">Return value<a class="headerlink" href="#return-value_9" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_10">Return value<a class="headerlink" href="#return-value_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u32'
 </code></pre>
 <hr />
 <h3 id="didkeys">DidKeys<a class="headerlink" href="#didkeys" title="Permanent link">&para;</a></h3>
 <p>A reverse double map to allow finding all keys for an identity.</p>
-<h4 id="python_34">Python<a class="headerlink" href="#python_34" title="Permanent link">&para;</a></h4>
+<h4 id="python_35">Python<a class="headerlink" href="#python_35" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'DidKeys', ['[u8; 32]', 'AccountId']
 )
 </code></pre>
-<h4 id="return-value_10">Return value<a class="headerlink" href="#return-value_10" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_11">Return value<a class="headerlink" href="#return-value_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h3 id="didrecords">DidRecords<a class="headerlink" href="#didrecords" title="Permanent link">&para;</a></h3>
 <p>DID -&gt; identity info</p>
-<h4 id="python_35">Python<a class="headerlink" href="#python_35" title="Permanent link">&para;</a></h4>
+<h4 id="python_36">Python<a class="headerlink" href="#python_36" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'DidRecords', ['[u8; 32]']
 )
 </code></pre>
-<h4 id="return-value_11">Return value<a class="headerlink" href="#return-value_11" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_12">Return value<a class="headerlink" href="#return-value_12" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{'primary_key': (None, 'AccountId')}
 </code></pre>
 <hr />
 <h3 id="isdidfrozen">IsDidFrozen<a class="headerlink" href="#isdidfrozen" title="Permanent link">&para;</a></h3>
 <p>DID -&gt; bool that indicates if secondary keys are frozen.</p>
-<h4 id="python_36">Python<a class="headerlink" href="#python_36" title="Permanent link">&para;</a></h4>
+<h4 id="python_37">Python<a class="headerlink" href="#python_37" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'IsDidFrozen', ['[u8; 32]']
 )
 </code></pre>
-<h4 id="return-value_12">Return value<a class="headerlink" href="#return-value_12" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_13">Return value<a class="headerlink" href="#return-value_13" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'bool'
 </code></pre>
 <hr />
 <h3 id="keyrecords">KeyRecords<a class="headerlink" href="#keyrecords" title="Permanent link">&para;</a></h3>
 <p>Map from AccountId to <code>KeyRecord</code> that holds the key&#x27;s identity and permissions.</p>
-<h4 id="python_37">Python<a class="headerlink" href="#python_37" title="Permanent link">&para;</a></h4>
+<h4 id="python_38">Python<a class="headerlink" href="#python_38" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'KeyRecords', ['AccountId']
 )
 </code></pre>
-<h4 id="return-value_13">Return value<a class="headerlink" href="#return-value_13" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_14">Return value<a class="headerlink" href="#return-value_14" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'MultiSigSignerKey': 'AccountId',
     'PrimaryKey': '[u8; 32]',
@@ -13764,45 +13793,45 @@ instead of unlinking the old primary key.</p>
 <hr />
 <h3 id="multipurposenonce">MultiPurposeNonce<a class="headerlink" href="#multipurposenonce" title="Permanent link">&para;</a></h3>
 <p>Nonce to ensure unique actions. starts from 1.</p>
-<h4 id="python_38">Python<a class="headerlink" href="#python_38" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">result = substrate.query(
-    'Identity', 'MultiPurposeNonce', []
-)
-</code></pre>
-<h4 id="return-value_14">Return value<a class="headerlink" href="#return-value_14" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">'u64'
-</code></pre>
-<hr />
-<h3 id="offchainauthorizationnonce">OffChainAuthorizationNonce<a class="headerlink" href="#offchainauthorizationnonce" title="Permanent link">&para;</a></h3>
-<p>Authorization nonce per Identity. Initially is 0.</p>
 <h4 id="python_39">Python<a class="headerlink" href="#python_39" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
-    'Identity', 'OffChainAuthorizationNonce', ['[u8; 32]']
+    'Identity', 'MultiPurposeNonce', []
 )
 </code></pre>
 <h4 id="return-value_15">Return value<a class="headerlink" href="#return-value_15" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u64'
 </code></pre>
 <hr />
+<h3 id="offchainauthorizationnonce">OffChainAuthorizationNonce<a class="headerlink" href="#offchainauthorizationnonce" title="Permanent link">&para;</a></h3>
+<p>Authorization nonce per Identity. Initially is 0.</p>
+<h4 id="python_40">Python<a class="headerlink" href="#python_40" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">result = substrate.query(
+    'Identity', 'OffChainAuthorizationNonce', ['[u8; 32]']
+)
+</code></pre>
+<h4 id="return-value_16">Return value<a class="headerlink" href="#return-value_16" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">'u64'
+</code></pre>
+<hr />
 <h3 id="parentdid">ParentDid<a class="headerlink" href="#parentdid" title="Permanent link">&para;</a></h3>
 <p>Parent identity if the DID is a child Identity.</p>
-<h4 id="python_40">Python<a class="headerlink" href="#python_40" title="Permanent link">&para;</a></h4>
+<h4 id="python_41">Python<a class="headerlink" href="#python_41" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'ParentDid', ['[u8; 32]']
 )
 </code></pre>
-<h4 id="return-value_16">Return value<a class="headerlink" href="#return-value_16" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_17">Return value<a class="headerlink" href="#return-value_17" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'[u8; 32]'
 </code></pre>
 <hr />
 <h3 id="storageversion">StorageVersion<a class="headerlink" href="#storageversion" title="Permanent link">&para;</a></h3>
 <p>Storage version.</p>
-<h4 id="python_41">Python<a class="headerlink" href="#python_41" title="Permanent link">&para;</a></h4>
+<h4 id="python_42">Python<a class="headerlink" href="#python_42" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'Identity', 'StorageVersion', []
 )
 </code></pre>
-<h4 id="return-value_17">Return value<a class="headerlink" href="#return-value_17" title="Permanent link">&para;</a></h4>
+<h4 id="return-value_18">Return value<a class="headerlink" href="#return-value_18" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">'u8'
 </code></pre>
 <hr />
@@ -13812,7 +13841,7 @@ instead of unlinking the old primary key.</p>
 <h4 id="value">Value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">0
 </code></pre>
-<h4 id="python_42">Python<a class="headerlink" href="#python_42" title="Permanent link">&para;</a></h4>
+<h4 id="python_43">Python<a class="headerlink" href="#python_43" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('Identity', 'InitialPOLYX')
 </code></pre>
 <hr />

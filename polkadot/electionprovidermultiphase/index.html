@@ -1175,15 +1175,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#betterunsignedthreshold" class="md-nav__link">
-    <span class="md-ellipsis">
-      BetterUnsignedThreshold
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#maxwinners" class="md-nav__link">
     <span class="md-ellipsis">
       MaxWinners
@@ -1382,6 +1373,15 @@
   <a href="#ocwcallwrongera" class="md-nav__link">
     <span class="md-ellipsis">
       OcwCallWrongEra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predispatchdifferentround" class="md-nav__link">
+    <span class="md-ellipsis">
+      PreDispatchDifferentRound
     </span>
   </a>
   
@@ -10097,15 +10097,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#betterunsignedthreshold" class="md-nav__link">
-    <span class="md-ellipsis">
-      BetterUnsignedThreshold
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#maxwinners" class="md-nav__link">
     <span class="md-ellipsis">
       MaxWinners
@@ -10304,6 +10295,15 @@
   <a href="#ocwcallwrongera" class="md-nav__link">
     <span class="md-ellipsis">
       OcwCallWrongEra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predispatchdifferentround" class="md-nav__link">
+    <span class="md-ellipsis">
+      PreDispatchDifferentRound
     </span>
   </a>
   
@@ -10951,7 +10951,8 @@ room for this one.</p>
 <hr />
 <h3 id="desiredtargets">DesiredTargets<a class="headerlink" href="#desiredtargets" title="Permanent link">&para;</a></h3>
 <p>Desired number of targets to elect for this round.</p>
-<p>Only exists when [<code>Snapshot</code>] is present.</p>
+<p>Only exists when [<code>Snapshot</code>] is present.
+ Note: This storage type must only be mutated through [<code>SnapshotWrapper</code>].</p>
 <h4 id="python_6">Python<a class="headerlink" href="#python_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ElectionProviderMultiPhase', 'DesiredTargets', []
@@ -11099,7 +11100,8 @@ room for this one.</p>
 <hr />
 <h3 id="snapshot">Snapshot<a class="headerlink" href="#snapshot" title="Permanent link">&para;</a></h3>
 <p>Snapshot data of the round.</p>
-<p>This is created at the beginning of the signed phase and cleared upon calling <code>elect</code>.</p>
+<p>This is created at the beginning of the signed phase and cleared upon calling <code>elect</code>.
+ Note: This storage type must only be mutated through [<code>SnapshotWrapper</code>].</p>
 <h4 id="python_13">Python<a class="headerlink" href="#python_13" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ElectionProviderMultiPhase', 'Snapshot', []
@@ -11111,7 +11113,8 @@ room for this one.</p>
 <hr />
 <h3 id="snapshotmetadata">SnapshotMetadata<a class="headerlink" href="#snapshotmetadata" title="Permanent link">&para;</a></h3>
 <p>The metadata of the [<code>RoundSnapshot</code>]</p>
-<p>Only exists when [<code>Snapshot</code>] is present.</p>
+<p>Only exists when [<code>Snapshot</code>] is present.
+ Note: This storage type must only be mutated through [<code>SnapshotWrapper</code>].</p>
 <h4 id="python_14">Python<a class="headerlink" href="#python_14" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">result = substrate.query(
     'ElectionProviderMultiPhase', 'SnapshotMetadata', []
@@ -11133,65 +11136,55 @@ room for this one.</p>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'BetterSignedThreshold')
 </code></pre>
 <hr />
-<h3 id="betterunsignedthreshold">BetterUnsignedThreshold<a class="headerlink" href="#betterunsignedthreshold" title="Permanent link">&para;</a></h3>
-<p>The minimum amount of improvement to the solution score that defines a solution as
- &quot;better&quot; in the Unsigned phase.</p>
-<h4 id="value_1">Value<a class="headerlink" href="#value_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">500000
-</code></pre>
-<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'BetterUnsignedThreshold')
-</code></pre>
-<hr />
 <h3 id="maxwinners">MaxWinners<a class="headerlink" href="#maxwinners" title="Permanent link">&para;</a></h3>
 <p>The maximum number of winners that can be elected by this <code>ElectionProvider</code>
  implementation.</p>
 <p>Note: This must always be greater or equal to <code>T::DataProvider::desired_targets()</code>.</p>
-<h4 id="value_2">Value<a class="headerlink" href="#value_2" title="Permanent link">&para;</a></h4>
+<h4 id="value_1">Value<a class="headerlink" href="#value_1" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">1200
 </code></pre>
-<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
+<h4 id="python_16">Python<a class="headerlink" href="#python_16" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'MaxWinners')
 </code></pre>
 <hr />
 <h3 id="minermaxlength">MinerMaxLength<a class="headerlink" href="#minermaxlength" title="Permanent link">&para;</a></h3>
-<h4 id="value_3">Value<a class="headerlink" href="#value_3" title="Permanent link">&para;</a></h4>
+<h4 id="value_2">Value<a class="headerlink" href="#value_2" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">3538944
 </code></pre>
-<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
+<h4 id="python_17">Python<a class="headerlink" href="#python_17" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxLength')
 </code></pre>
 <hr />
 <h3 id="minermaxvotespervoter">MinerMaxVotesPerVoter<a class="headerlink" href="#minermaxvotespervoter" title="Permanent link">&para;</a></h3>
-<h4 id="value_4">Value<a class="headerlink" href="#value_4" title="Permanent link">&para;</a></h4>
+<h4 id="value_3">Value<a class="headerlink" href="#value_3" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">16
 </code></pre>
-<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
+<h4 id="python_18">Python<a class="headerlink" href="#python_18" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxVotesPerVoter')
 </code></pre>
 <hr />
 <h3 id="minermaxweight">MinerMaxWeight<a class="headerlink" href="#minermaxweight" title="Permanent link">&para;</a></h3>
-<h4 id="value_5">Value<a class="headerlink" href="#value_5" title="Permanent link">&para;</a></h4>
+<h4 id="value_4">Value<a class="headerlink" href="#value_4" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{'proof_size': 13650590614545068195, 'ref_time': 1466067765000}
 </code></pre>
-<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
+<h4 id="python_19">Python<a class="headerlink" href="#python_19" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxWeight')
 </code></pre>
 <hr />
 <h3 id="minermaxwinners">MinerMaxWinners<a class="headerlink" href="#minermaxwinners" title="Permanent link">&para;</a></h3>
-<h4 id="value_6">Value<a class="headerlink" href="#value_6" title="Permanent link">&para;</a></h4>
+<h4 id="value_5">Value<a class="headerlink" href="#value_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">1200
 </code></pre>
-<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
+<h4 id="python_20">Python<a class="headerlink" href="#python_20" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerMaxWinners')
 </code></pre>
 <hr />
 <h3 id="minertxpriority">MinerTxPriority<a class="headerlink" href="#minertxpriority" title="Permanent link">&para;</a></h3>
 <p>The priority of the unsigned transaction submitted in the unsigned-phase</p>
-<h4 id="value_7">Value<a class="headerlink" href="#value_7" title="Permanent link">&para;</a></h4>
+<h4 id="value_6">Value<a class="headerlink" href="#value_6" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">16602069666338596453
 </code></pre>
-<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
+<h4 id="python_21">Python<a class="headerlink" href="#python_21" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'MinerTxPriority')
 </code></pre>
 <hr />
@@ -11199,37 +11192,37 @@ room for this one.</p>
 <p>The repeat threshold of the offchain worker.</p>
 <p>For example, if it is 5, that means that at least 5 blocks will elapse between attempts
  to submit the worker&#x27;s solution.</p>
-<h4 id="value_8">Value<a class="headerlink" href="#value_8" title="Permanent link">&para;</a></h4>
+<h4 id="value_7">Value<a class="headerlink" href="#value_7" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">18
 </code></pre>
-<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
+<h4 id="python_22">Python<a class="headerlink" href="#python_22" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'OffchainRepeat')
 </code></pre>
 <hr />
 <h3 id="signeddepositbyte">SignedDepositByte<a class="headerlink" href="#signeddepositbyte" title="Permanent link">&para;</a></h3>
 <p>Per-byte deposit for a signed solution.</p>
-<h4 id="value_9">Value<a class="headerlink" href="#value_9" title="Permanent link">&para;</a></h4>
+<h4 id="value_8">Value<a class="headerlink" href="#value_8" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">97656
 </code></pre>
-<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
+<h4 id="python_23">Python<a class="headerlink" href="#python_23" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedDepositByte')
 </code></pre>
 <hr />
 <h3 id="signeddepositweight">SignedDepositWeight<a class="headerlink" href="#signeddepositweight" title="Permanent link">&para;</a></h3>
 <p>Per-weight deposit for a signed solution.</p>
-<h4 id="value_10">Value<a class="headerlink" href="#value_10" title="Permanent link">&para;</a></h4>
+<h4 id="value_9">Value<a class="headerlink" href="#value_9" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">0
 </code></pre>
-<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
+<h4 id="python_24">Python<a class="headerlink" href="#python_24" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedDepositWeight')
 </code></pre>
 <hr />
 <h3 id="signedmaxrefunds">SignedMaxRefunds<a class="headerlink" href="#signedmaxrefunds" title="Permanent link">&para;</a></h3>
 <p>The maximum amount of unchecked solutions to refund the call fee for.</p>
-<h4 id="value_11">Value<a class="headerlink" href="#value_11" title="Permanent link">&para;</a></h4>
+<h4 id="value_10">Value<a class="headerlink" href="#value_10" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">4
 </code></pre>
-<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
+<h4 id="python_25">Python<a class="headerlink" href="#python_25" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxRefunds')
 </code></pre>
 <hr />
@@ -11240,10 +11233,10 @@ room for this one.</p>
  update this value during an election, you <em>must</em> ensure that
  <code>SignedSubmissionIndices.len()</code> is less than or equal to the new value. Otherwise,
  attempts to submit new solutions may cause a runtime panic.</p>
-<h4 id="value_12">Value<a class="headerlink" href="#value_12" title="Permanent link">&para;</a></h4>
+<h4 id="value_11">Value<a class="headerlink" href="#value_11" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">16
 </code></pre>
-<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
+<h4 id="python_26">Python<a class="headerlink" href="#python_26" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxSubmissions')
 </code></pre>
 <hr />
@@ -11252,37 +11245,37 @@ room for this one.</p>
 <p>If [<code>Config::MinerConfig</code>] is being implemented to submit signed solutions (outside of
  this pallet), then [<code>MinerConfig::solution_weight</code>] is used to compare against
  this value.</p>
-<h4 id="value_13">Value<a class="headerlink" href="#value_13" title="Permanent link">&para;</a></h4>
+<h4 id="value_12">Value<a class="headerlink" href="#value_12" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{'proof_size': 13650590614545068195, 'ref_time': 1466067765000}
 </code></pre>
-<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
+<h4 id="python_27">Python<a class="headerlink" href="#python_27" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedMaxWeight')
 </code></pre>
 <hr />
 <h3 id="signedphase">SignedPhase<a class="headerlink" href="#signedphase" title="Permanent link">&para;</a></h3>
 <p>Duration of the signed phase.</p>
-<h4 id="value_14">Value<a class="headerlink" href="#value_14" title="Permanent link">&para;</a></h4>
+<h4 id="value_13">Value<a class="headerlink" href="#value_13" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">600
 </code></pre>
-<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
+<h4 id="python_28">Python<a class="headerlink" href="#python_28" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedPhase')
 </code></pre>
 <hr />
 <h3 id="signedrewardbase">SignedRewardBase<a class="headerlink" href="#signedrewardbase" title="Permanent link">&para;</a></h3>
 <p>Base reward for a signed solution</p>
-<h4 id="value_15">Value<a class="headerlink" href="#value_15" title="Permanent link">&para;</a></h4>
+<h4 id="value_14">Value<a class="headerlink" href="#value_14" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">10000000000
 </code></pre>
-<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
+<h4 id="python_29">Python<a class="headerlink" href="#python_29" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'SignedRewardBase')
 </code></pre>
 <hr />
 <h3 id="unsignedphase">UnsignedPhase<a class="headerlink" href="#unsignedphase" title="Permanent link">&para;</a></h3>
 <p>Duration of the unsigned phase.</p>
-<h4 id="value_16">Value<a class="headerlink" href="#value_16" title="Permanent link">&para;</a></h4>
+<h4 id="value_15">Value<a class="headerlink" href="#value_15" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">600
 </code></pre>
-<h4 id="python_31">Python<a class="headerlink" href="#python_31" title="Permanent link">&para;</a></h4>
+<h4 id="python_30">Python<a class="headerlink" href="#python_30" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">constant = substrate.get_constant('ElectionProviderMultiPhase', 'UnsignedPhase')
 </code></pre>
 <hr />
@@ -11305,6 +11298,9 @@ room for this one.</p>
 <hr />
 <h3 id="ocwcallwrongera">OcwCallWrongEra<a class="headerlink" href="#ocwcallwrongera" title="Permanent link">&para;</a></h3>
 <p>OCW submitted solution for wrong round</p>
+<hr />
+<h3 id="predispatchdifferentround">PreDispatchDifferentRound<a class="headerlink" href="#predispatchdifferentround" title="Permanent link">&para;</a></h3>
+<p>Sumission was prepared for a different round.</p>
 <hr />
 <h3 id="predispatchearlysubmission">PreDispatchEarlySubmission<a class="headerlink" href="#predispatchearlysubmission" title="Permanent link">&para;</a></h3>
 <p>Submission was too early.</p>

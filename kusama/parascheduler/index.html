@@ -9582,7 +9582,10 @@
     {
         'Free': None,
         'Paras': {
-            'assignment': {'para_id': 'u32'},
+            'assignment': {
+                'Bulk': 'u32',
+                'Pool': {'core_index': 'u32', 'para_id': 'u32'},
+            },
             'availability_timeouts': 'u32',
             'ttl': 'u32',
         },
@@ -9602,7 +9605,7 @@
 )
 </code></pre>
 <h4 id="return-value_1">Return value<a class="headerlink" href="#return-value_1" title="Permanent link">&para;</a></h4>
-<pre><code class="language-python">'scale_info::803'
+<pre><code class="language-python">'scale_info::851'
 </code></pre>
 <hr />
 <h3 id="sessionstartblock">SessionStartBlock<a class="headerlink" href="#sessionstartblock" title="Permanent link">&para;</a></h3>

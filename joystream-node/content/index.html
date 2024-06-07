@@ -14390,7 +14390,7 @@
     'Content', 'accept_channel_transfer', {
     'channel_id': 'u64',
     'commitment_params': {
-        'new_collaborators': 'scale_info::139',
+        'new_collaborators': 'scale_info::140',
         'price': 'u128',
         'transfer_id': 'u64',
     },
@@ -14512,7 +14512,7 @@
     'Content', 'add_curator_to_group', {
     'curator_group_id': 'u64',
     'curator_id': 'u64',
-    'permissions': 'scale_info::111',
+    'permissions': 'scale_info::112',
 }
 )
 </code></pre>
@@ -15022,12 +15022,12 @@ where:
                 ],
             },
         ),
-        'collaborators': 'scale_info::139',
-        'distribution_buckets': 'scale_info::142',
+        'collaborators': 'scale_info::140',
+        'distribution_buckets': 'scale_info::143',
         'expected_channel_state_bloat_bond': 'u128',
         'expected_data_object_state_bloat_bond': 'u128',
         'meta': (None, 'Bytes'),
-        'storage_buckets': 'scale_info::90',
+        'storage_buckets': 'scale_info::91',
     },
 }
 )
@@ -15065,7 +15065,7 @@ where:
 <pre><code class="language-python">call = substrate.compose_call(
     'Content', 'create_curator_group', {
     'is_active': 'bool',
-    'permissions_by_level': 'scale_info::149',
+    'permissions_by_level': 'scale_info::150',
 }
 )
 </code></pre>
@@ -15144,7 +15144,7 @@ where:
                             None,
                             'u32',
                         ),
-                        'whitelist': 'scale_info::90',
+                        'whitelist': 'scale_info::91',
                     },
                     'Idle': None,
                     'InitiatedOfferToMember': (
@@ -15162,7 +15162,7 @@ where:
                             None,
                             'u32',
                         ),
-                        'whitelist': 'scale_info::90',
+                        'whitelist': 'scale_info::91',
                     },
                 },
                 'nft_metadata': 'Bytes',
@@ -15469,7 +15469,7 @@ where:
         'Lead': None,
         'Member': 'u64',
     },
-    'assets_to_remove': 'scale_info::90',
+    'assets_to_remove': 'scale_info::91',
     'channel_id': 'u64',
     'rationale': 'Bytes',
     'storage_buckets_num_witness': 'u32',
@@ -15580,7 +15580,7 @@ where:
         'Lead': None,
         'Member': 'u64',
     },
-    'assets_to_remove': 'scale_info::90',
+    'assets_to_remove': 'scale_info::91',
     'rationale': 'Bytes',
     'storage_buckets_num_witness': 'u32',
     'video_id': 'u64',
@@ -15814,7 +15814,7 @@ where:
     },
     'channel_id': 'u64',
     'transfer_params': {
-        'new_collaborators': 'scale_info::139',
+        'new_collaborators': 'scale_info::140',
         'new_owner': {
             'CuratorGroup': 'u64',
             'Member': 'u64',
@@ -15867,7 +15867,7 @@ where:
     },
     'channel_id': 'u64',
     'params': {
-        'initial_allocation': 'scale_info::187',
+        'initial_allocation': 'scale_info::188',
         'metadata': 'Bytes',
         'patronage_rate': 'u32',
         'revenue_split_rate': 'u32',
@@ -15951,7 +15951,7 @@ where:
                     None,
                     'u32',
                 ),
-                'whitelist': 'scale_info::90',
+                'whitelist': 'scale_info::91',
             },
             'Idle': None,
             'InitiatedOfferToMember': (
@@ -15969,7 +15969,7 @@ where:
                     None,
                     'u32',
                 ),
-                'whitelist': 'scale_info::90',
+                'whitelist': 'scale_info::91',
             },
         },
         'nft_metadata': 'Bytes',
@@ -16475,7 +16475,7 @@ Should only be called by auctioneer
         'Member': 'u64',
     },
     'channel_id': 'u64',
-    'new_paused_features': 'scale_info::118',
+    'new_paused_features': 'scale_info::119',
     'rationale': 'Bytes',
 }
 )
@@ -16734,7 +16734,7 @@ Can be called by anyone
         'min_bid_step': 'u128',
         'starting_price': 'u128',
         'starts_at': (None, 'u32'),
-        'whitelist': 'scale_info::90',
+        'whitelist': 'scale_info::91',
     },
     'owner_id': {
         'Curator': ('u64', 'u64'),
@@ -16789,7 +16789,7 @@ Can be called by anyone
         ),
         'starting_price': 'u128',
         'starts_at': (None, 'u32'),
-        'whitelist': 'scale_info::90',
+        'whitelist': 'scale_info::91',
     },
     'owner_id': {
         'Curator': ('u64', 'u64'),
@@ -16920,7 +16920,7 @@ Can be called by anyone
     },
     'channel_id': 'u64',
     'params': {
-        'assets_to_remove': 'scale_info::90',
+        'assets_to_remove': 'scale_info::91',
         'assets_to_upload': (
             None,
             {
@@ -16935,7 +16935,7 @@ Can be called by anyone
         ),
         'collaborators': (
             None,
-            'scale_info::139',
+            'scale_info::140',
         ),
         'expected_data_object_state_bloat_bond': 'u128',
         'new_meta': (None, 'Bytes'),
@@ -17165,7 +17165,7 @@ Only lead can upload this value</p>
 <pre><code class="language-python">call = substrate.compose_call(
     'Content', 'update_curator_group_permissions', {
     'curator_group_id': 'u64',
-    'permissions_by_level': 'scale_info::149',
+    'permissions_by_level': 'scale_info::150',
 }
 )
 </code></pre>
@@ -17303,7 +17303,7 @@ Only lead can upload this value</p>
         'Member': 'u64',
     },
     'params': {
-        'assets_to_remove': 'scale_info::90',
+        'assets_to_remove': 'scale_info::91',
         'assets_to_upload': (
             None,
             {
@@ -17334,7 +17334,7 @@ Only lead can upload this value</p>
                             None,
                             'u32',
                         ),
-                        'whitelist': 'scale_info::90',
+                        'whitelist': 'scale_info::91',
                     },
                     'Idle': None,
                     'InitiatedOfferToMember': (
@@ -17352,7 +17352,7 @@ Only lead can upload this value</p>
                             None,
                             'u32',
                         ),
-                        'whitelist': 'scale_info::90',
+                        'whitelist': 'scale_info::91',
                     },
                 },
                 'nft_metadata': 'Bytes',
@@ -17696,7 +17696,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -17730,12 +17730,12 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>Channel</code></td>
-<td><code>{'owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'num_videos': 'u64', 'collaborators': 'scale_info::113', 'cumulative_reward_claimed': 'u128', 'privilege_level': 'u8', 'paused_features': 'scale_info::118', 'transfer_status': {'NoActiveTransfer': None, 'PendingTransfer': {'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::113', 'price': 'u128', 'transfer_id': 'u64'}}}, 'data_objects': 'scale_info::90', 'daily_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'weekly_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'weekly_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'creator_token_id': (None, 'u64'), 'channel_state_bloat_bond': {'repayment_restricted_to': (None, 'AccountId'), 'amount': 'u128'}}</code></td>
+<td><code>{'owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'num_videos': 'u64', 'collaborators': 'scale_info::114', 'cumulative_reward_claimed': 'u128', 'privilege_level': 'u8', 'paused_features': 'scale_info::119', 'transfer_status': {'NoActiveTransfer': None, 'PendingTransfer': {'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::114', 'price': 'u128', 'transfer_id': 'u64'}}}, 'data_objects': 'scale_info::91', 'daily_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'weekly_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'weekly_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'creator_token_id': (None, 'u64'), 'channel_state_bloat_bond': {'repayment_restricted_to': (None, 'AccountId'), 'amount': 'u128'}}</code></td>
 </tr>
 </tbody>
 </table>
@@ -17759,12 +17759,12 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>Channel</code></td>
-<td><code>{'owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'num_videos': 'u64', 'collaborators': 'scale_info::113', 'cumulative_reward_claimed': 'u128', 'privilege_level': 'u8', 'paused_features': 'scale_info::118', 'transfer_status': {'NoActiveTransfer': None, 'PendingTransfer': {'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::113', 'price': 'u128', 'transfer_id': 'u64'}}}, 'data_objects': 'scale_info::90', 'daily_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'weekly_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'weekly_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'creator_token_id': (None, 'u64'), 'channel_state_bloat_bond': {'repayment_restricted_to': (None, 'AccountId'), 'amount': 'u128'}}</code></td>
+<td><code>{'owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'num_videos': 'u64', 'collaborators': 'scale_info::114', 'cumulative_reward_claimed': 'u128', 'privilege_level': 'u8', 'paused_features': 'scale_info::119', 'transfer_status': {'NoActiveTransfer': None, 'PendingTransfer': {'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::114', 'price': 'u128', 'transfer_id': 'u64'}}}, 'data_objects': 'scale_info::91', 'daily_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'weekly_nft_limit': {'limit': 'u64', 'block_number_period': 'u32'}, 'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'weekly_nft_counter': {'counter': 'u64', 'last_updated': 'u32'}, 'creator_token_id': (None, 'u64'), 'channel_state_bloat_bond': {'repayment_restricted_to': (None, 'AccountId'), 'amount': 'u128'}}</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>ChannelCreationParameters</code></td>
-<td><code>{'assets': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'meta': (None, 'Bytes'), 'collaborators': 'scale_info::139', 'storage_buckets': 'scale_info::90', 'distribution_buckets': 'scale_info::142', 'expected_channel_state_bloat_bond': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}</code></td>
+<td><code>{'assets': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'meta': (None, 'Bytes'), 'collaborators': 'scale_info::140', 'storage_buckets': 'scale_info::91', 'distribution_buckets': 'scale_info::143', 'expected_channel_state_bloat_bond': 'u128', 'expected_data_object_state_bloat_bond': 'u128'}</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -17915,7 +17915,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;PausableChannelFeature&gt;</code></td>
-<td><code>scale_info::118</code></td>
+<td><code>scale_info::119</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -18079,7 +18079,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>TransferCommitmentWitness</code></td>
-<td><code>{'new_collaborators': 'scale_info::139', 'price': 'u128', 'transfer_id': 'u64'}</code></td>
+<td><code>{'new_collaborators': 'scale_info::140', 'price': 'u128', 'transfer_id': 'u64'}</code></td>
 </tr>
 </tbody>
 </table>
@@ -18108,12 +18108,12 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>ChannelUpdateParameters</code></td>
-<td><code>{'assets_to_upload': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'new_meta': (None, 'Bytes'), 'assets_to_remove': 'scale_info::90', 'collaborators': (None, 'scale_info::139'), 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': (None, 'u32')}</code></td>
+<td><code>{'assets_to_upload': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'new_meta': (None, 'Bytes'), 'assets_to_remove': 'scale_info::91', 'collaborators': (None, 'scale_info::140'), 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': (None, 'u32')}</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -18234,7 +18234,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>ChannelAgentPermissions</code></td>
-<td><code>scale_info::111</code></td>
+<td><code>scale_info::112</code></td>
 </tr>
 </tbody>
 </table>
@@ -18277,7 +18277,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>ModerationPermissionsByLevel</code></td>
-<td><code>scale_info::149</code></td>
+<td><code>scale_info::150</code></td>
 </tr>
 </tbody>
 </table>
@@ -18383,7 +18383,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>EnglishAuctionParams</code></td>
-<td><code>{'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::90', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}</code></td>
+<td><code>{'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::91', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}</code></td>
 </tr>
 </tbody>
 </table>
@@ -18436,7 +18436,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>PendingTransfer</code></td>
-<td><code>{'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::113', 'price': 'u128', 'transfer_id': 'u64'}}</code></td>
+<td><code>{'new_owner': {'Member': 'u64', 'CuratorGroup': 'u64'}, 'transfer_params': {'new_collaborators': 'scale_info::114', 'price': 'u128', 'transfer_id': 'u64'}}</code></td>
 </tr>
 </tbody>
 </table>
@@ -18513,7 +18513,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>NftIssuanceParameters</code></td>
-<td><code>{'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::90', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::90', 'bid_lock_duration': 'u32'}}}</code></td>
+<td><code>{'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::91', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::91', 'bid_lock_duration': 'u32'}}}</code></td>
 </tr>
 </tbody>
 </table>
@@ -18735,7 +18735,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>OpenAuctionParams</code></td>
-<td><code>{'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::90', 'bid_lock_duration': 'u32'}</code></td>
+<td><code>{'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::91', 'bid_lock_duration': 'u32'}</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -18788,7 +18788,7 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 <tr>
 <td>None</td>
@@ -18832,12 +18832,12 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>VideoCreationParameters</code></td>
-<td><code>{'assets': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'meta': (None, 'Bytes'), 'auto_issue_nft': (None, {'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::90', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::90', 'bid_lock_duration': 'u32'}}}), 'expected_video_state_bloat_bond': 'u128', 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': 'u32'}</code></td>
+<td><code>{'assets': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'meta': (None, 'Bytes'), 'auto_issue_nft': (None, {'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::91', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::91', 'bid_lock_duration': 'u32'}}}), 'expected_video_state_bloat_bond': 'u128', 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': 'u32'}</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -18909,12 +18909,12 @@ Only lead can upload this value</p>
 <tr>
 <td>None</td>
 <td><code>VideoUpdateParameters</code></td>
-<td><code>{'assets_to_upload': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'new_meta': (None, 'Bytes'), 'assets_to_remove': 'scale_info::90', 'auto_issue_nft': (None, {'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::90', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::90', 'bid_lock_duration': 'u32'}}}), 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': (None, 'u32')}</code></td>
+<td><code>{'assets_to_upload': (None, {'object_creation_list': [{'size': 'u64', 'ipfs_content_id': 'Bytes'}], 'expected_data_size_fee': 'u128'}), 'new_meta': (None, 'Bytes'), 'assets_to_remove': 'scale_info::91', 'auto_issue_nft': (None, {'royalty': (None, 'u32'), 'nft_metadata': 'Bytes', 'non_channel_owner': (None, 'u64'), 'init_transactional_status': {'Idle': None, 'BuyNow': 'u128', 'InitiatedOfferToMember': ('u64', (None, 'u128')), 'EnglishAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'whitelist': 'scale_info::91', 'starts_at': (None, 'u32'), 'duration': 'u32', 'extension_period': 'u32', 'min_bid_step': 'u128'}, 'OpenAuction': {'starting_price': 'u128', 'buy_now_price': (None, 'u128'), 'starts_at': (None, 'u32'), 'whitelist': 'scale_info::91', 'bid_lock_duration': 'u32'}}}), 'expected_data_object_state_bloat_bond': 'u128', 'storage_buckets_num_witness': (None, 'u32')}</code></td>
 </tr>
 <tr>
 <td>None</td>
 <td><code>BTreeSet&lt;DataObjectId&gt;</code></td>
-<td><code>scale_info::90</code></td>
+<td><code>scale_info::91</code></td>
 </tr>
 </tbody>
 </table>
@@ -18978,22 +18978,22 @@ Only lead can upload this value</p>
         'amount': 'u128',
         'repayment_restricted_to': (None, 'AccountId'),
     },
-    'collaborators': 'scale_info::113',
+    'collaborators': 'scale_info::114',
     'creator_token_id': (None, 'u64'),
     'cumulative_reward_claimed': 'u128',
     'daily_nft_counter': {'counter': 'u64', 'last_updated': 'u32'},
     'daily_nft_limit': {'block_number_period': 'u32', 'limit': 'u64'},
-    'data_objects': 'scale_info::90',
+    'data_objects': 'scale_info::91',
     'num_videos': 'u64',
     'owner': {'CuratorGroup': 'u64', 'Member': 'u64'},
-    'paused_features': 'scale_info::118',
+    'paused_features': 'scale_info::119',
     'privilege_level': 'u8',
     'transfer_status': {
         'NoActiveTransfer': None,
         'PendingTransfer': {
             'new_owner': {'CuratorGroup': 'u64', 'Member': 'u64'},
             'transfer_params': {
-                'new_collaborators': 'scale_info::113',
+                'new_collaborators': 'scale_info::114',
                 'price': 'u128',
                 'transfer_id': 'u64',
             },
@@ -19044,8 +19044,8 @@ Only lead can upload this value</p>
 <h4 id="return-value_5">Return value<a class="headerlink" href="#return-value_5" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
     'active': 'bool',
-    'curators': 'scale_info::113',
-    'permissions_by_level': 'scale_info::565',
+    'curators': 'scale_info::114',
+    'permissions_by_level': 'scale_info::572',
 }
 </code></pre>
 <hr />
@@ -19327,7 +19327,7 @@ Only lead can upload this value</p>
 </code></pre>
 <h4 id="return-value_31">Return value<a class="headerlink" href="#return-value_31" title="Permanent link">&para;</a></h4>
 <pre><code class="language-python">{
-    'data_objects': 'scale_info::90',
+    'data_objects': 'scale_info::91',
     'in_channel': 'u64',
     'nft_status': (
         None,
@@ -19344,8 +19344,8 @@ Only lead can upload this value</p>
                     'min_bid_step': 'u128',
                     'start': 'u32',
                     'starting_price': 'u128',
-                    'top_bid': (None, 'scale_info::556'),
-                    'whitelist': 'scale_info::90',
+                    'top_bid': (None, 'scale_info::563'),
+                    'whitelist': 'scale_info::91',
                 },
                 'Idle': None,
                 'InitiatedOfferToMember': ('u64', (None, 'u128')),
@@ -19355,7 +19355,7 @@ Only lead can upload this value</p>
                     'buy_now_price': (None, 'u128'),
                     'start': 'u32',
                     'starting_price': 'u128',
-                    'whitelist': 'scale_info::90',
+                    'whitelist': 'scale_info::91',
                 },
             },
         },

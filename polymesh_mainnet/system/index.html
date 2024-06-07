@@ -10508,17 +10508,6 @@ the prefix we are removing to accurately calculate the weight of this function.<
 <pre><code class="language-python">[
     {
         'event': {
-            'System': {
-                'CodeUpdated': None,
-                'ExtrinsicFailed': {
-                    'dispatch_error': 'scale_info::24',
-                    'dispatch_info': 'scale_info::21',
-                },
-                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
-                'KilledAccount': {'account': 'AccountId'},
-                'NewAccount': {'account': 'AccountId'},
-                'Remarked': {'hash': 'scale_info::11', 'sender': 'AccountId'},
-            },
             None: None,
             'Asset': {
                 'AssetAffirmationExemption': '[u8; 12]',
@@ -10541,6 +10530,16 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     (None, 'Bytes'),
                 ),
                 'AssetFrozen': ('[u8; 32]', '[u8; 12]'),
+                'AssetMediatorsAdded': (
+                    '[u8; 32]',
+                    '[u8; 12]',
+                    'scale_info::163',
+                ),
+                'AssetMediatorsRemoved': (
+                    '[u8; 32]',
+                    '[u8; 12]',
+                    'scale_info::163',
+                ),
                 'AssetOwnershipTransferred': (
                     '[u8; 32]',
                     '[u8; 12]',
@@ -10673,14 +10672,14 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'BenefitClaimed': (
                     '[u8; 32]',
                     '[u8; 32]',
-                    'scale_info::165',
-                    'scale_info::167',
+                    'scale_info::166',
+                    'scale_info::168',
                     'u128',
                     'u32',
                 ),
-                'Created': ('[u8; 32]', 'scale_info::165', 'scale_info::167'),
-                'Reclaimed': ('[u8; 32]', 'scale_info::165', 'u128'),
-                'Removed': ('[u8; 32]', 'scale_info::165'),
+                'Created': ('[u8; 32]', 'scale_info::166', 'scale_info::168'),
+                'Reclaimed': ('[u8; 32]', 'scale_info::166', 'u128'),
+                'Removed': ('[u8; 32]', 'scale_info::166'),
             },
             'CddServiceProviders': {
                 'ActiveLimitChanged': ('[u8; 32]', 'u32', 'u32'),
@@ -10698,13 +10697,13 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     '[u8; 32]',
                     '[u8; 12]',
                     'u64',
-                    'scale_info::172',
+                    'scale_info::173',
                 ),
                 'ScheduleRemoved': (
                     '[u8; 32]',
                     '[u8; 12]',
                     'u64',
-                    'scale_info::172',
+                    'scale_info::173',
                 ),
             },
             'CommitteeMembership': {
@@ -10721,19 +10720,19 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'AssetComplianceReplaced': (
                     '[u8; 32]',
                     '[u8; 12]',
-                    ['scale_info::176'],
+                    ['scale_info::177'],
                 ),
                 'AssetComplianceReset': ('[u8; 32]', '[u8; 12]'),
                 'AssetComplianceResumed': ('[u8; 32]', '[u8; 12]'),
                 'ComplianceRequirementChanged': (
                     '[u8; 32]',
                     '[u8; 12]',
-                    'scale_info::176',
+                    'scale_info::177',
                 ),
                 'ComplianceRequirementCreated': (
                     '[u8; 32]',
                     '[u8; 12]',
-                    'scale_info::176',
+                    'scale_info::177',
                 ),
                 'ComplianceRequirementRemoved': (
                     '[u8; 32]',
@@ -10743,7 +10742,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'TrustedDefaultClaimIssuerAdded': (
                     '[u8; 32]',
                     '[u8; 12]',
-                    'scale_info::183',
+                    'scale_info::184',
                 ),
                 'TrustedDefaultClaimIssuerRemoved': (
                     '[u8; 32]',
@@ -10777,16 +10776,16 @@ the prefix we are removing to accurately calculate the weight of this function.<
             'CorporateAction': {
                 'CAInitiated': (
                     '[u8; 32]',
-                    'scale_info::165',
-                    'scale_info::192',
+                    'scale_info::166',
+                    'scale_info::193',
                     'Bytes',
                 ),
-                'CALinkedToDoc': ('[u8; 32]', 'scale_info::165', ['u32']),
-                'CARemoved': ('[u8; 32]', 'scale_info::165'),
+                'CALinkedToDoc': ('[u8; 32]', 'scale_info::166', ['u32']),
+                'CARemoved': ('[u8; 32]', 'scale_info::166'),
                 'DefaultTargetIdentitiesChanged': (
                     '[u8; 32]',
                     '[u8; 12]',
-                    'scale_info::189',
+                    'scale_info::190',
                 ),
                 'DefaultWithholdingTaxChanged': (
                     '[u8; 32]',
@@ -10802,34 +10801,34 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'MaxDetailsLengthChanged': ('[u8; 32]', 'u32'),
                 'RecordDateChanged': (
                     '[u8; 32]',
-                    'scale_info::165',
-                    'scale_info::192',
+                    'scale_info::166',
+                    'scale_info::193',
                 ),
             },
             'CorporateBallot': {
                 'Created': (
                     '[u8; 32]',
-                    'scale_info::165',
-                    'scale_info::202',
+                    'scale_info::166',
                     'scale_info::203',
+                    'scale_info::204',
                     'bool',
                 ),
                 'MetaChanged': (
                     '[u8; 32]',
-                    'scale_info::165',
-                    'scale_info::203',
+                    'scale_info::166',
+                    'scale_info::204',
                 ),
-                'RCVChanged': ('[u8; 32]', 'scale_info::165', 'bool'),
+                'RCVChanged': ('[u8; 32]', 'scale_info::166', 'bool'),
                 'RangeChanged': (
                     '[u8; 32]',
-                    'scale_info::165',
-                    'scale_info::202',
+                    'scale_info::166',
+                    'scale_info::203',
                 ),
-                'Removed': ('[u8; 32]', 'scale_info::165'),
+                'Removed': ('[u8; 32]', 'scale_info::166'),
                 'VoteCast': (
                     '[u8; 32]',
-                    'scale_info::165',
-                    ['scale_info::212'],
+                    'scale_info::166',
+                    ['scale_info::213'],
                 ),
             },
             'ExternalAgents': {
@@ -10997,7 +10996,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
             'Nft': {
                 'NFTPortfolioUpdated': (
                     '[u8; 32]',
-                    'scale_info::236',
+                    'scale_info::237',
                     (None, 'scale_info::56'),
                     (None, 'scale_info::56'),
                     'scale_info::160',
@@ -11025,16 +11024,16 @@ the prefix we are removing to accurately calculate the weight of this function.<
                 'PipSkipped': ('[u8; 32]', 'u32', 'u8'),
                 'ProposalCreated': (
                     '[u8; 32]',
-                    'scale_info::216',
+                    'scale_info::217',
                     'u32',
                     'u128',
                     (None, 'Bytes'),
                     (None, 'Bytes'),
                     'scale_info::82',
-                    'scale_info::221',
+                    'scale_info::222',
                 ),
                 'ProposalRefund': ('[u8; 32]', 'u32', 'u128'),
-                'ProposalStateUpdated': ('[u8; 32]', 'u32', 'scale_info::222'),
+                'ProposalStateUpdated': ('[u8; 32]', 'u32', 'scale_info::223'),
                 'SnapshotCleared': ('[u8; 32]', 'u32'),
                 'SnapshotResultsEnacted': (
                     '[u8; 32]',
@@ -11043,7 +11042,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     ['u32'],
                     ['u32'],
                 ),
-                'SnapshotTaken': ('[u8; 32]', 'u32', ['scale_info::225']),
+                'SnapshotTaken': ('[u8; 32]', 'u32', ['scale_info::226']),
                 'Voted': ('[u8; 32]', 'AccountId', 'u32', 'bool', 'u128'),
             },
             'PolymeshCommittee': {
@@ -11086,8 +11085,8 @@ the prefix we are removing to accurately calculate the weight of this function.<
             },
             'PolymeshContracts': {
                 'ApiHashUpdated': (
-                    'scale_info::290',
                     'scale_info::291',
+                    'scale_info::292',
                     'scale_info::11',
                 ),
                 'SCRuntimeCall': ('AccountId', ('u8', 'u8')),
@@ -11097,7 +11096,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     '[u8; 32]',
                     'scale_info::56',
                     'scale_info::56',
-                    'scale_info::235',
+                    'scale_info::236',
                     (None, '[u8; 32]'),
                 ),
                 'PortfolioCreated': ('[u8; 32]', 'u64', 'Bytes'),
@@ -11183,17 +11182,24 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     '[u8; 32]',
                     'u64',
                     'u64',
-                    'scale_info::252',
+                    'scale_info::253',
                     (None, 'u64'),
                     (None, 'u64'),
-                    ['scale_info::254'],
+                    ['scale_info::255'],
                     (None, '[u8; 32]'),
                 ),
                 'InstructionExecuted': ('[u8; 32]', 'u64'),
                 'InstructionFailed': ('[u8; 32]', 'u64'),
+                'InstructionMediators': ('u64', 'scale_info::163'),
                 'InstructionRejected': ('[u8; 32]', 'u64'),
                 'InstructionRescheduled': ('[u8; 32]', 'u64'),
                 'LegFailedExecution': ('[u8; 32]', 'u64', 'u64'),
+                'MediatorAffirmationReceived': (
+                    '[u8; 32]',
+                    'u64',
+                    (None, 'u64'),
+                ),
+                'MediatorAffirmationWithdrawn': ('[u8; 32]', 'u64'),
                 'ReceiptClaimed': (
                     '[u8; 32]',
                     'u64',
@@ -11222,12 +11228,12 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     '[u8; 32]',
                     'u64',
                     'Bytes',
-                    'scale_info::247',
+                    'scale_info::248',
                 ),
                 'VenueDetailsUpdated': ('[u8; 32]', 'u64', 'Bytes'),
                 'VenueFiltering': ('[u8; 32]', '[u8; 12]', 'bool'),
                 'VenueSignersUpdated': ('[u8; 32]', 'u64', ['AccountId'], 'bool'),
-                'VenueTypeUpdated': ('[u8; 32]', 'u64', 'scale_info::247'),
+                'VenueTypeUpdated': ('[u8; 32]', 'u64', 'scale_info::248'),
                 'VenueUnauthorized': ('[u8; 32]', '[u8; 12]', 'u64'),
                 'VenuesAllowed': ('[u8; 32]', '[u8; 12]', ['u64']),
                 'VenuesBlocked': ('[u8; 32]', '[u8; 12]', ['u64']),
@@ -11266,33 +11272,33 @@ the prefix we are removing to accurately calculate the weight of this function.<
             'Statistics': {
                 'AssetStatsUpdated': (
                     '[u8; 32]',
-                    'scale_info::256',
-                    'scale_info::258',
-                    ['scale_info::263'],
+                    'scale_info::257',
+                    'scale_info::259',
+                    ['scale_info::264'],
                 ),
                 'SetAssetTransferCompliance': (
                     '[u8; 32]',
-                    'scale_info::256',
-                    ['scale_info::269'],
+                    'scale_info::257',
+                    ['scale_info::270'],
                 ),
                 'StatTypesAdded': (
                     '[u8; 32]',
-                    'scale_info::256',
-                    ['scale_info::258'],
+                    'scale_info::257',
+                    ['scale_info::259'],
                 ),
                 'StatTypesRemoved': (
                     '[u8; 32]',
-                    'scale_info::256',
-                    ['scale_info::258'],
+                    'scale_info::257',
+                    ['scale_info::259'],
                 ),
                 'TransferConditionExemptionsAdded': (
                     '[u8; 32]',
-                    'scale_info::270',
+                    'scale_info::271',
                     ['[u8; 32]'],
                 ),
                 'TransferConditionExemptionsRemoved': (
                     '[u8; 32]',
-                    'scale_info::270',
+                    'scale_info::271',
                     ['[u8; 32]'],
                 ),
             },
@@ -11302,7 +11308,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     '[u8; 32]',
                     'u64',
                     'Bytes',
-                    'scale_info::275',
+                    'scale_info::276',
                 ),
                 'FundraiserFrozen': ('[u8; 32]', 'u64'),
                 'FundraiserUnfrozen': ('[u8; 32]', 'u64'),
@@ -11322,6 +11328,17 @@ the prefix we are removing to accurately calculate the weight of this function.<
                     'u128',
                     'u128',
                 ),
+            },
+            'System': {
+                'CodeUpdated': None,
+                'ExtrinsicFailed': {
+                    'dispatch_error': 'scale_info::24',
+                    'dispatch_info': 'scale_info::21',
+                },
+                'ExtrinsicSuccess': {'dispatch_info': 'scale_info::21'},
+                'KilledAccount': {'account': 'AccountId'},
+                'NewAccount': {'account': 'AccountId'},
+                'Remarked': {'hash': 'scale_info::11', 'sender': 'AccountId'},
             },
             'TechnicalCommittee': {
                 'Approved': (
@@ -11680,7 +11697,7 @@ the prefix we are removing to accurately calculate the weight of this function.<
     'impl_name': 'polymesh_mainnet',
     'impl_version': 0,
     'spec_name': 'polymesh_mainnet',
-    'spec_version': 6001031,
+    'spec_version': 6002010,
     'state_version': 1,
     'transaction_version': 4,
 }
